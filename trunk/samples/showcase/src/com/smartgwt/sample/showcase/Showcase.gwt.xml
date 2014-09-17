@@ -6,6 +6,7 @@
     <inherits name='com.google.gwt.user.User'/>
     <inherits name="com.google.gwt.core.Core"/>
     <inherits name="com.google.gwt.user.History"/>
+    <inherits name="com.google.gwt.i18n.I18N"/>
 
     <inherits name="com.smartgwt.SmartGwtNoScript"/>
     <inherits name="com.smartgwt.DrawingNoScript"/>
@@ -14,7 +15,6 @@
     <inherits name="com.smartclient.theme.enterpriseblue.EnterpriseBlueResources"/>
     <inherits name="com.smartclient.theme.graphite.GraphiteResources"/>
     <inherits name="com.smartclient.theme.simplicity.SimplicityResources"/>
-	<inherits name="com.google.gwt.i18n.I18N"/>
 
     <!-- Uncomment lines below for GWT Super Dev Mode Support:
        - both lines needed for GWT < 2.6, only the first line needed for GWT < 2.7
