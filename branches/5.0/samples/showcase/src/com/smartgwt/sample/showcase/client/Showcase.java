@@ -36,6 +36,8 @@ import com.smartgwt.client.widgets.events.IconClickEvent;
 import com.smartgwt.client.widgets.events.IconClickHandler;
 import com.smartgwt.client.widgets.events.ResizedEvent;
 import com.smartgwt.client.widgets.events.ResizedHandler;
+import com.smartgwt.client.widgets.events.VisibilityChangedEvent;
+import com.smartgwt.client.widgets.events.VisibilityChangedHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.TextItem;
@@ -168,6 +170,12 @@ public class Showcase implements EntryPoint, HistoryListener {
 
         splitPane = new SplitPane();
         splitPane.setDeviceMode(useDesktopMode ? DeviceMode.DESKTOP : DeviceMode.HANDSET);
+
+        if (isc_websiteMode) {
+            splitPane.setShowResizeBar(true);
+            splitPane.setResizeBarTarget("next");
+        }
+
         splitPane.setShowMiniNav(false);
         splitPane.setWidth100();
         splitPane.setHeight100();
@@ -342,6 +350,19 @@ public class Showcase implements EntryPoint, HistoryListener {
             rightPane.setOverflow(Overflow.HIDDEN);
             rightPane.setWidth(234);
             rightPane.hide();
+
+            rightPane.addVisibilityChangedHandler(new VisibilityChangedHandler() {
+                public void onVisibilityChanged(VisibilityChangedEvent event) {
+                    if (event.getIsVisible()) {
+                        topPane.setHeight100();
+                        bottomPane.hide();
+                    } else {
+                        int bottomPaneHeight = bottomPane.getHeight();
+                        topPane.setHeight(topPane.getHeight() - bottomPaneHeight);
+                        bottomPane.show();
+                    }
+                }
+            });
 
             // Add bottomPane
             bottomPaneLeft = new HLayout();
@@ -693,7 +714,7 @@ public class Showcase implements EntryPoint, HistoryListener {
 			}
 		});
 
-        splitPane.addResizedHandler(new ResizedHandler() {
+        main.addResizedHandler(new ResizedHandler() {
 			@Override
 			public void onResized(ResizedEvent event) {
 				pageResized();
@@ -713,7 +734,7 @@ public class Showcase implements EntryPoint, HistoryListener {
 
     private void pageResized() {
         if (isc_websiteMode) {
-            if (Page.getWidth() <= 900) {
+            if (Page.getWidth() <= 1050) {
                 rightPane.hide();
                 bottomPane.show();
             } else {
