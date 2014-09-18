@@ -28,9 +28,9 @@ package com.smartgwt.client.docs;
  *     value of the "listAsArray" parameter (an array if that param is true, an <code>ArrayList</code> if it is false)</li>
  * <li>JavaScript objects are converted as follows:<ul>
  *   <li>If the GWT condition "<code>object instanceof JavaScriptObject</code>" is true, the object itself is returned</li>
+ *   <li>If Smart GWT detects that the object has a GWT Java wrapper object created by Smart GWT, that GWT wrapper object is returned</li>
  *   <li>If the object has a "_constructor" property set to "DateRange" convert to {@link com.smartgwt.client.data.DateRange}</li>
  *   <li>If the object has a "_constructor" property set to "RelativeDate" convert to {@link com.smartgwt.client.data.RelativeDate}</li>
- *   <li>If the object has a "__ref" property, return the value of that property (because this is a reference to the corresponding GWT object)</li>
  *   <li>If the SmartClient call "<code>isc.isA.Canvas(object)</code>" returns true, return the result of calling 
  *       {@link com.smartgwt.client.widgets.Canvas#getById(java.lang.String)}.  This will result in a Smart GWT Java object
  *       equivalent to the SmartClient Canvas - for example a SmartClient <code>ListGrid</code> will be returned as a 
