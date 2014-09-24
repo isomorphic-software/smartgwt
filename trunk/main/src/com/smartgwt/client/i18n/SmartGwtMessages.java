@@ -43,11 +43,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String batchUploader_discardedColumnsMessage();
 
   /**
-   * Translated "Either enter valid criteria or hit &#39;Cancel&#39; to abandon changes.".
+   * Translated "Either enter valid criteria or hit ''Cancel'' to abandon changes.".
    * 
-   * @return translated "Either enter valid criteria or hit &#39;Cancel&#39; to abandon changes."
+   * @return translated "Either enter valid criteria or hit ''Cancel'' to abandon changes."
    */
-  @DefaultMessage("Either enter valid criteria or hit &#39;Cancel&#39; to abandon changes.")
+  @DefaultMessage("Either enter valid criteria or hit ''Cancel'' to abandon changes.")
   @Key("advancedHiliteEditor_invalidCriteriaPrompt")
   String advancedHiliteEditor_invalidCriteriaPrompt();
 
@@ -343,11 +343,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String colorPicker_greenFieldTitle();
 
   /**
-   * Translated "The selected color&#39;s HTML coding".
+   * Translated "The selected color''s HTML coding".
    * 
-   * @return translated "The selected color&#39;s HTML coding"
+   * @return translated "The selected color''s HTML coding"
    */
-  @DefaultMessage("The selected color&#39;s HTML coding")
+  @DefaultMessage("The selected color''s HTML coding")
   @Key("colorPicker_htmlFieldPrompt")
   String colorPicker_htmlFieldPrompt();
 
@@ -623,11 +623,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dataSource_offlineMessage();
 
   /**
-   * Translated "Size of &#39;$uploadedFileName&#39; ($uploadedFileSize) exceeded maximum allowed file size of $maxFileSize".
+   * Translated "Size of ''$uploadedFileName'' ($uploadedFileSize) exceeded maximum allowed file size of $maxFileSize".
    * 
-   * @return translated "Size of &#39;$uploadedFileName&#39; ($uploadedFileSize) exceeded maximum allowed file size of $maxFileSize"
+   * @return translated "Size of ''$uploadedFileName'' ($uploadedFileSize) exceeded maximum allowed file size of $maxFileSize"
    */
-  @DefaultMessage("Size of &#39;$uploadedFileName&#39; ($uploadedFileSize) exceeded maximum allowed file size of $maxFileSize")
+  @DefaultMessage("Size of ''$uploadedFileName'' ($uploadedFileSize) exceeded maximum allowed file size of $maxFileSize")
   @Key("dataSource_maxFileSizeExceededMessage")
   String dataSource_maxFileSizeExceededMessage();
 
@@ -992,11 +992,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dateRangeItem_toTitle();
 
   /**
-   * Translated "&#39;To&#39; field value cannot be earlier than &#39;From&#39; field value.".
+   * Translated "''To'' field value cannot be earlier than ''From'' field value.".
    * 
-   * @return translated "&#39;To&#39; field value cannot be earlier than &#39;From&#39; field value."
+   * @return translated "''To'' field value cannot be earlier than ''From'' field value."
    */
-  @DefaultMessage("&#39;To&#39; field value cannot be earlier than &#39;From&#39; field value.")
+  @DefaultMessage("''To'' field value cannot be earlier than ''From'' field value.")
   @Key("dateRangeItem_invalidRangeErrorMessage")
   String dateRangeItem_invalidRangeErrorMessage();
 
@@ -2241,11 +2241,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String formulaBuilder_saveAddAnotherButtonTitle();
   
   /**
-   * Translated "Another field already has the title &#39;$fieldTitle&#39;.  Continue anyway?".
+   * Translated "Another field already has the title ''$fieldTitle''.  Continue anyway?".
    * 
-   * @return translated "Another field already has the title &#39;$fieldTitle&#39;.  Continue anyway?"
+   * @return translated "Another field already has the title ''$fieldTitle''.  Continue anyway?"
    */
-  @DefaultMessage("Another field already has the title &#39;$fieldTitle&#39;.  Continue anyway?")
+  @DefaultMessage("Another field already has the title ''$fieldTitle''.  Continue anyway?")
   @Key("formulaBuilder_warnDuplicateTitlesMessage")
   String formulaBuilder_warnDuplicateTitlesMessage();
 
@@ -2737,11 +2737,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String advancedHiliteEditor_cancelButtonTitle();
 
   /**
-   * Translated "Enter at least one rule, a color or icon, and a target field, or press &#39;Cancel&#39; to abandon changes.".
+   * Translated "Enter at least one rule, a color or icon, and a target field, or press ''Cancel'' to abandon changes.".
    * 
-   * @return translated "Enter at least one rule, a color or icon, and a target field, or press &#39;Cancel&#39; to abandon changes."
+   * @return translated "Enter at least one rule, a color or icon, and a target field, or press ''Cancel'' to abandon changes."
    */
-  @DefaultMessage("Enter at least one rule, a color or icon, and a target field, or press &#39;Cancel&#39; to abandon changes.")
+  @DefaultMessage("Enter at least one rule, a color or icon, and a target field, or press ''Cancel'' to abandon changes.")
   @Key("advancedHiliteEditor_invalidHilitePrompt")
   String advancedHiliteEditor_invalidHilitePrompt();
 
@@ -3412,11 +3412,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String multiSortDialog_firstSortLevelTitle();
 
   /**
-   * Translated "Columns may only be used once: &#39;$title&#39; is used multiple times.".
+   * Translated "Columns may only be used once: ''$title'' is used multiple times.".
    * 
-   * @return translated "Columns may only be used once: &#39;$title&#39; is used multiple times."
+   * @return translated "Columns may only be used once: ''$title'' is used multiple times."
    */
-  @DefaultMessage("Columns may only be used once: &#39;$title&#39; is used multiple times.")
+  @DefaultMessage("Columns may only be used once: ''$title'' is used multiple times.")
   @Key("multiSortDialog_invalidListPrompt")
   String multiSortDialog_invalidListPrompt();
 
@@ -3520,11 +3520,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String multiGroupDialog_groupingFieldTitle();
 
   /**
-   * Translated "Columns may only be used once: &#39;$title&#39; is used multiple times.".
+   * Translated "Columns may only be used once: ''$title'' is used multiple times.".
    * 
-   * @return translated "Columns may only be used once: &#39;$title&#39; is used multiple times."
+   * @return translated "Columns may only be used once: ''$title'' is used multiple times."
    */
-  @DefaultMessage("Columns may only be used once: &#39;$title&#39; is used multiple times.")
+  @DefaultMessage("Columns may only be used once: ''$title'' is used multiple times.")
   @Key("multiGroupDialog_invalidListPrompt")
   String multiGroupDialog_invalidListPrompt();
 
@@ -4719,11 +4719,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String selectOtherItem_selectOtherPrompt();
 
   /**
-   * Translated "Can&#39;t select that many records at once.<br><br>Please try working in smaller batches.".
+   * Translated "Can''t select that many records at once.<br><br>Please try working in smaller batches.".
    * 
-   * @return translated "Can&#39;t select that many records at once.<br><br>Please try working in smaller batches."
+   * @return translated "Can''t select that many records at once.<br><br>Please try working in smaller batches."
    */
-  @DefaultMessage("Can&#39;t select that many records at once.<br><br>Please try working in smaller batches.")
+  @DefaultMessage("Can''t select that many records at once.<br><br>Please try working in smaller batches.")
   @Key("selection_selectionRangeNotLoadedMessage")
   String selection_selectionRangeNotLoadedMessage();
 
@@ -4773,20 +4773,20 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String time_PMIndicator();
 
   /**
-   * Translated "You can&#39;t drag an item into one of it&#39;s children.".
+   * Translated "You can''t drag an item into one of it''s children.".
    * 
-   * @return translated "You can&#39;t drag an item into one of it&#39;s children."
+   * @return translated "You can''t drag an item into one of it''s children."
    */
-  @DefaultMessage("You can&#39;t drag an item into one of it&#39;s children.")
+  @DefaultMessage("You can''t drag an item into one of it''s children.")
   @Key("treeGrid_cantDragIntoChildMessage")
   String treeGrid_cantDragIntoChildMessage();
 
   /**
-   * Translated "You can&#39;t drag an item into itself.".
+   * Translated "You can''t drag an item into itself.".
    * 
-   * @return translated "You can&#39;t drag an item into itself."
+   * @return translated "You can''t drag an item into itself."
    */
-  @DefaultMessage("You can&#39;t drag an item into itself.")
+  @DefaultMessage("You can''t drag an item into itself.")
   @Key("treeGrid_cantDragIntoSelfMessage")
   String treeGrid_cantDragIntoSelfMessage();
 
