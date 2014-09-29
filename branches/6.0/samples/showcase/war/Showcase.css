@@ -1,0 +1,1011 @@
+.navBarHeader {
+    font: 18px Arial, Verdana, Tahoma, sans-serif !important;
+}
+
+.exampleSeparator {
+    border-bottom: 2px solid gray;
+    background-color:white; color:black;
+    font-weight: bold;
+    text-align: left;
+}
+
+.hoverTreeGridCustom {
+    border:1px solid #CCCCCC;
+    background-color:white;
+    -moz-box-shadow: 0 0 6px #E8E8E8;
+    -webkit-box-shadow: 0 0 6px#E8E8E8;
+    box-shadow: 0 0 6px #E8E8E8;
+    font-size:11px;
+    font-family: Calibri, "Lucida Sans Unicode","Lucida Grande","Trebuchet MS", Helvetica, Arial, sans-serif;
+    text-decoration: none;
+    color:#363B30;
+}
+
+.showcaseTileGrid {
+    border: 6px solid transparent;
+    -moz-border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAAnRSTlMAAHaTzTgAAAA6SURBVHgBY9iOBhi2v0YBIIGHSACXwOOXINUvH8MFXp4HGXf+JVQATAEBkEWBAMJQTGsJuxSb59AAAOBGySGOFM5JAAAAAElFTkSuQmCC) 6 repeat;
+    -o-border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAAnRSTlMAAHaTzTgAAAA6SURBVHgBY9iOBhi2v0YBIIGHSACXwOOXINUvH8MFXp4HGXf+JVQATAEBkEWBAMJQTGsJuxSb59AAAOBGySGOFM5JAAAAAElFTkSuQmCC) 6 repeat;
+    -webkit-border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAAnRSTlMAAHaTzTgAAAA6SURBVHgBY9iOBhi2v0YBIIGHSACXwOOXINUvH8MFXp4HGXf+JVQATAEBkEWBAMJQTGsJuxSb59AAAOBGySGOFM5JAAAAAElFTkSuQmCC) 6 repeat;
+    border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAAnRSTlMAAHaTzTgAAAA6SURBVHgBY9iOBhi2v0YBIIGHSACXwOOXINUvH8MFXp4HGXf+JVQATAEBkEWBAMJQTGsJuxSb59AAAOBGySGOFM5JAAAAAElFTkSuQmCC) 6 repeat;
+}
+
+/* Buttons*/
+.cssButton {
+    padding:2px;
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; background-color:#CCCCCC;
+    border-left:1px solid white; border-top:1px solid white;
+    border-right:1px solid #808080; border-bottom:1px solid #808080;
+    filter:"progid:dximagetransform.microsoft.gradient(gradientType=0, startColorStr=#AAAAAA, endColorStr=#EEEEEE)";
+}
+.cssButtonOver {
+    padding:2px;
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; background-color:#CCCCCC;
+    border-left:1px solid #808080; border-top:1px solid #808080;
+    border-right:1px solid white; border-bottom:1px solid white;
+    filter:"progid:dximagetransform.microsoft.gradient(gradientType=0, startColorStr=#EEEEEE, endColorStr=#AAAAAA)";
+}
+.cssButtonDown {
+    padding:2px;
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; background-color:#AAAAAA;
+    border-left:1px solid #666666; border-top:1px solid #666666;
+    border-right:1px solid white; border-bottom:1px solid white;
+    filter:"progid:dximagetransform.microsoft.gradient(gradientType=0, startColorStr=#CCCCCC, endColorStr=#888888)";
+}
+.cssButtonDisabled {
+    padding:2px;
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; color:#666666;
+    background-color:#CCCCCC;
+    border-left:1px solid #CCCCCC; border-top:1px solid #CCCCCC;
+    border-right:1px solid #CCCCCC; border-bottom:1px solid #CCCCCC;
+    filter:"progid:dximagetransform.microsoft.gradient(gradientType=0, startColorStr=#888888, endColorStr=#CCCCCC)";
+}
+
+.stretchTitle,
+.stretchTitleOver {
+    font-family:Tahoma,Verdana, Bitstream Vera Sans, sans-serif;
+    font-size:10px;
+    font-weight:bold;
+}
+
+.stretchTitleDown {
+    font-family:Tahoma,Verdana, Bitstream Vera Sans, sans-serif; font-size:10px; font-weight:bold;
+    padding-left:1px; padding-top:2px;
+}
+
+.stretchTitleDisabled {
+    font-family:Tahoma,Verdana, Bitstream Vera Sans, sans-serif; font-size:10px; color:#666666;
+    font-weight:bold;
+}
+
+.explorerTabTitle,
+.explorerTabTitleDown {
+    font-family:Tahoma,Verdana,Bitstream Vera Sans, sans-serif; font-size:11px;
+    padding-top:3px;
+}
+.explorerTabTitleOver {
+    font-family:Tahoma,Verdana,Bitstream Vera Sans, sans-serif; font-size:11px;
+    padding-top:3px;
+}
+.explorerTabTitleDisabled {
+    font-family:Tahoma,Verdana,Bitstream Vera Sans, sans-serif; font-size:11px;
+      color:#666666;
+    padding-top:3px;
+}
+.explorerTabTitleSelected,
+.explorerTabTitleSelectedDown {
+    font-family:Tahoma,Verdana,Bitstream Vera Sans, sans-serif; font-size:11px;
+      font-weight:bold;
+    padding-bottom:2px;
+}
+.explorerTabTitleSelectedOver {
+    font-family:Tahoma,Verdana,Bitstream Vera Sans, sans-serif; font-size:11px;
+      font-weight:bold;
+    padding-bottom:2px;
+}
+.explorerTabTitleSelectedDisabled {
+    font-family:Tahoma,Verdana,Bitstream Vera Sans, sans-serif; font-size:11px;
+      color:#666666;
+    font-weight:bold;
+    padding-bottom:2px;
+}
+.exampleTabTitle,
+.exampleTabTitleSelected,
+.exampleTabTitleOver,
+.exampleTabTitleDown,
+.exampleTabTitleSelectedOver,
+.exampleTabTitleSelectedDown,
+.exampleTabTitleDisabled,
+.exampleTabTitleSelectedDisabled {
+    font-family:Arial,Bitstream Vera Sans,sans-serif; font-size:11px; font-weight:bold;
+    color: #DDDDDD;
+    padding-right:20px;
+}
+
+.exampleTabTitleSelected {
+    color: #213D42;
+}
+.exampleTabTitleOver,
+.exampleTabTitleDown,
+.exampleTabTitleSelectedOver,
+.exampleTabTitleSelectedDown {
+    color: #00CCCC;
+}
+.exampleTabTitleDisabled,
+.exampleTabTitleSelectedDisabled {
+    color: #666666;
+}
+
+.explorerExampleTitle {
+	font-family:Bitstream Vera Sans,sans-serif;
+	color:#ffffff;
+	padding-left:6px;
+	background-color:#404080;
+	font-size:18px;
+}
+.explorerExampleDescription {
+	font-family:Georgia,serif;
+	font-size:13px;
+	padding:6px;
+}
+.explorerTitlePageTitle {
+	font-family:Bitstream Vera Sans,sans-serif;
+	color:#ffffff;
+	padding-left:6px;
+	background-color:#404080;
+	font-size:18px;
+}
+.explorerTitlePageDescription {
+	font-family:Georgia,serif;
+	font-size:13px;
+	padding:6px;
+}
+.explorerFolderList {
+	font-family:Georgia,serif;
+	font-size:13px;
+	padding:6px;
+}
+.explorerCheckErrorMessage {
+    color: red;
+	font-family:Georgia,serif;
+	font-size:13px;
+}
+.explorerSourceEditor {
+	border:1px solid #808080;
+	padding:10px;
+	font-size:12px;
+	font-family:Lucida Console, Monaco, Bitstream Vera Sans Mono, sans-serif;
+}
+.explorerSourceViewer {
+	padding:10px;
+	font-size:12px;
+	font-family:Lucida Console, Monaco, Bitstream Vera Sans Mono, sans-serif;
+}
+
+.explorerTree {
+    border-top: 2px solid rgb(129,141,185);
+}
+
+.splitbarDown {
+	border-left:2px solid #606060;
+	border-right:2px solid #606060;
+	background-color:#F0F0F0;
+}
+
+.examplePane {
+	margin:20px;
+}
+
+.jumpButton {
+    font-family:Tahoma,Verdana,Bitstream Vera Sans, sans-serif; font-size:11px;
+	border:1px solid #F0F0F0;
+}
+
+.jumpButtonOver {
+    font-family:Tahoma,Verdana,Bitstream Vera Sans, sans-serif; font-size:11px;
+    border: 1px solid white;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+
+}
+
+.jumpButtonDown {
+    font-family:Tahoma,Verdana,Bitstream Vera Sans, sans-serif; font-size:11px;
+    border: 1px solid #808080;
+    border-right-color: white;
+    border-bottom-color: white;
+
+}
+
+.exampleDescCode {
+	font-family:Bitstream Vera Sans Mono, Courier New, monospace;
+	font-size:14px;
+	font-weight:bold;
+}
+
+.exampleTitle {
+	font-family:Gill Sans MT,Bitstream Vera Sans,sans-serif; font-size:22px;
+}
+
+.exampleText {
+	font-family:Georgia,serif; font-size:11px;
+}
+
+.exampleTextBlock {
+	font-family:Georgia,serif; font-size:11px;
+	line-height:16px; text-align:justify;
+	padding-left:10px; padding-right:10px;
+}
+
+.exampleDropTitle {
+	float:left;font-family:Gill Sans MT,Bitstream Vera Sans,sans-serif;
+    font-size:22px;
+    line-height:32px;
+    color:#404040;
+}
+
+.interactImageHover {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif;
+    font-size:11px;
+    border:1px solid #808080;
+    padding:5px;
+    background-color:#b8d0ff;
+    color:black;
+}
+
+.interactFormHover {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif;
+    font-size:11px;
+    border:1px solid #ffffff;
+    padding:5px;
+    background-color:#000000;
+    color:#ffffff;
+}
+
+/*
+grid cell styles sample
+*/
+.myBoxedGridCell,
+.myBoxedGridCellDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#ffffff;
+}
+.myBoxedGridCellOver,
+.myBoxedGridCellOverDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#c0ffc0;
+}
+.myBoxedGridCellSelected,
+.myBoxedGridCellSelectedDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:white;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#000080;
+}
+.myBoxedGridCellSelectedOver,
+.myBoxedGridCellSelectedOverDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:white;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#8080ff;
+}
+.myBoxedGridCellDisabled,
+.myBoxedGridCellDisabledDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:#808080;
+    border-bottom:1px solid #a0a0a0; border-right:1px solid #a0a0a0;
+    background-color:#ffffff;
+}
+
+.myOtherGridCell,
+.myEvenGridCell, 
+.myEvenGridCellDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #ffffff; border-top:1px solid #ffffff;
+    background-color:#ffffff;
+}
+.myOtherGridCellDark,
+.myOddGridCell, 
+.myOddGridCellDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #f0f0e8; border-top:1px solid #f0f0e8;
+    background-color:#f0f0e8;
+}
+.myOtherGridCellOver,
+.myOtherGridCellOverDark,
+.myEvenGridCellOver,
+.myEvenGridCellOverDark,
+.myOddGridCellOver,
+.myOddGridCellOverDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #c0c0c0; border-top:1px solid #c0c0c0;
+    background-color:#ffffc0;
+}
+.myOtherGridCellSelected,
+.myOtherGridCellSelectedDark,
+.myEvenGridCellSelected,
+.myEvenGridCellSelectedDark,
+.myOddGridCellSelected,
+.myOddGridCellSelectedDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #c0c0ff; border-top:1px solid #c0c0ff;
+    background-color:#c0c0ff;
+}
+.myOtherGridCellSelectedOver,
+.myOtherGridCellSelectedOverDark,
+.myEvenGridCellSelectedOver,
+.myEvenGridCellSelectedOverDark,
+.myOddGridCellSelectedOver,
+.myOddGridCellSelectedOverDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-top:1px solid #a0a0a0;
+    background-color:#e0e0ff;
+}
+.myOtherGridCellDisabled,
+.myEvenGridCellDisabled,
+.myEvenGridCellDisabledDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:#808080;
+    border-bottom:1px solid #ffffff; border-top:1px solid #ffffff;
+    background-color:#ffffff;
+}
+.myOtherGridCellDisabledDark,
+.myOddGridCellDisabled,
+.myOddGridCellDisabledDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:#808080;
+    border-bottom:1px solid #f0f0e8; border-top:1px solid #f0f0e8;
+    background-color:#f0f0e8;
+}
+
+.simpleCell,
+.simpleCellSelected,
+.simpleCellOver,
+.simpleCellSelectedOver {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:black;
+}
+
+.simpleCellDisabled {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px;
+    color:#808080;
+}
+
+/*
+hilite cells replace
+*/
+.myHighGridCell,
+.myHighGridCellDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+    color:black;
+    border-bottom:1px solid #ffc0c0; border-top:1px solid #ffc0c0;
+    background-color:#ffc0c0;
+}
+.myHighGridCellOver,
+.myHighGridCellOverDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+    color:black;
+    border-bottom:1px solid #c0c0c0; border-top:1px solid #c0c0c0;
+    background-color:#ffe0e0;
+}
+.myHighGridCellSelected,
+.myHighGridCellSelectedDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+    color:black;
+    border-bottom:1px solid #ffc0ff; border-top:1px solid #ffc0ff;
+    background-color:#ffc0ff;
+}
+.myHighGridCellSelectedOver,
+.myHighGridCellSelectedOverDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-top:1px solid #a0a0a0;
+    background-color:#ffe0ff;
+}
+.myHighGridCellDisabled,
+.myHighGridCellDisabledDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+    color:#808080;
+    border-bottom:1px solid #ffc0c0; border-top:1px solid #ffc0c0;
+    background-color:#ffc0c0;
+}
+
+
+.myLowGridCell,
+.myLowGridCellDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+    color:black;
+    border-bottom:1px solid #c0ffc0; border-top:1px solid #c0ffc0;
+    background-color:#c0ffc0;
+}
+.myLowGridCellOver,
+.myLowGridCellOverDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+    color:black;
+    border-bottom:1px solid #c0c0c0; border-top:1px solid #c0c0c0;
+    background-color:#e0ffe0;
+}
+.myLowGridCellSelected,
+.myLowGridCellSelectedDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+    color:black;
+    border-bottom:1px solid #c0ffff; border-top:1px solid #c0ffff;
+    background-color:#c0ffff;
+}
+.myLowGridCellSelectedOver,
+.myLowGridCellSelectedOverDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+    color:black;
+    border-bottom:1px solid #a0a0a0; border-top:1px solid #a0a0a0;
+    background-color:#e0ffff;
+}
+.myLowGridCellDisabled,
+.myLowGridCellDisabledDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+    color:#808080;
+    border-bottom:1px solid #c0ffc0; border-top:1px solid #c0ffc0;
+    background-color:#c0ffc0;
+}
+
+/*calendar samples*/
+.testStyle {
+    font-size:9px;
+    background-color:#FA8072;
+   border: 1px solid #004D99;
+}
+
+.testStyleHeader {
+    font-size:9px; color: white;
+    background-color:#B22222;
+}
+
+.testStyleBody {
+    font-size: 9px;
+    background-color: #FA8072;
+    padding: 3px;
+}
+
+.testStyleResizer{
+    border-top:1px solid white;
+    border-bottom: 1px solid white;
+}
+
+/* tree connectors sample */
+
+.noBorderCell {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+    color:black;
+    background-color:#ffffff;
+}
+.noBorderCellDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+    color:black;
+    background-color:#f0f0f0;
+}
+.noBorderCellOver,
+.noBorderCellOverDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+    color:black;
+    background-color:#ffffc0;
+}
+.noBorderCellSelected,
+.noBorderCellSelectedDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+    color:black;
+    background-color:#b8d0ff;
+}
+.noBorderCellSelectedOver,
+.noBorderCellSelectedOverDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+    color:black;
+    background-color:#e0ebff;
+}
+.noBorderCellDisabled {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+    color:#808080;
+    background-color:#ffffff;
+}
+.noBorderCellDisabledDark {
+    font-family:Verdana,Bitstream Vera Sans,sans-serif; font-size:11px; text-overflow:ellipsis;
+    color:#808080;
+    background-color:#f0f0e8;
+}
+
+/*filter tiling sample*/
+.commonName,
+.commonNameOver,
+.commonNameSelected,
+.commonNameSelectedOver,
+.endangered,
+.threatened,
+.notEndangered {
+    font-size:8pt;
+}
+
+.commonName,
+.commonNameOver,
+.commonNameSelected,
+.commonNameSelectedOver {
+    color:darkblue;
+    font-weight:bold;
+}
+
+.endangered {
+    color:red;
+    font-weight:bold;
+}
+
+.threatened {
+    color:orange;
+}
+
+.notEndangered {
+    color:green;
+}
+
+.lifeSpan,
+.lifeSpanOver,
+.lifeSpanSelected,
+.lifeSpanSelectedOver{
+    color:green;
+}
+
+/*gwt  intergration */
+
+.gwt-Reference-standard {
+  height: 5px;
+  width: 5px;
+  zoom: 1;
+}
+
+.gwt-Button {
+  margin: 0;
+  padding: 3px 5px;
+  text-decoration: none;
+  font-size: small;
+  cursor: pointer;
+  cursor: hand;
+  background: url("images/hborder.png") repeat-x 0px -27px;
+  border: 1px outset #ccc;
+}
+.gwt-Button:active {
+  border: 1px inset #ccc;
+}
+.gwt-Button:hover {
+  border-color: #9cf #69e #69e #7af;
+}
+.gwt-Button[disabled] {
+  cursor: default;
+  color: #888;
+}
+.gwt-Button[disabled]:hover {
+  border: 1px outset #ccc;
+}
+
+.gwt-DecoratorPanel {
+}
+.gwt-DecoratorPanel .topCenter,
+.gwt-DecoratorPanel .bottomCenter {
+  background: url(images/hborder.png) repeat-x;
+}
+.gwt-DecoratorPanel .middleLeft,
+.gwt-DecoratorPanel .middleRight {
+  background: url(images/vborder.png) repeat-y;
+}
+.gwt-DecoratorPanel .topLeftInner,
+.gwt-DecoratorPanel .topRightInner,
+.gwt-DecoratorPanel .bottomLeftInner,
+.gwt-DecoratorPanel .bottomRightInner {
+  width: 5px;
+  height: 5px;
+  zoom: 1;
+}
+html>body .gwt-DecoratorPanel .topLeft {
+  background: url(images/corner.png) no-repeat 0px 0px;
+}
+html>body .gwt-DecoratorPanel .topRight {
+  background: url(images/corner.png) no-repeat -5px 0px;
+}
+html>body .gwt-DecoratorPanel .bottomLeft {
+  background: url(images/corner.png) no-repeat 0px -5px;
+}
+html>body .gwt-DecoratorPanel .bottomRight {
+  background: url(images/corner.png) no-repeat -5px -5px;
+}
+* html .gwt-DecoratorPanel .topLeftInner {
+  width: 5px;
+  height: 5px;
+  overflow: hidden;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='gwt/standard/images/corner.png',sizingMethod='crop');
+}
+* html .gwt-DecoratorPanel .topRightInner {
+  width: 10px;
+  height: 5px;
+  margin-left: -5px;
+  overflow: hidden;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='gwt/standard/images/corner.png',sizingMethod='crop');
+}
+* html .gwt-DecoratorPanel .bottomLeftInner {
+  width: 5px;
+  height: 10px;
+  margin-left: 0px;
+  margin-top: -5px;
+  overflow: hidden;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='gwt/standard/images/corner.png',sizingMethod='crop');
+}
+* html .gwt-DecoratorPanel .bottomRightInner {
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  margin-top: -5px;
+  overflow: hidden;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='gwt/standard/images/corner.png',sizingMethod='crop');
+}
+
+.gwt-TabBar {
+}
+.gwt-TabBar .gwt-TabBarFirst {
+  width: 5px;  /* first tab distance from the left */
+}
+.gwt-TabBar .gwt-TabBarRest {
+}
+.gwt-TabBar .gwt-TabBarItem {
+  margin-left: 6px;
+  padding: 3px 6px 3px 6px;
+  cursor: pointer;
+  cursor: hand;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  background: #d0e4f6;
+}
+.gwt-TabBar .gwt-TabBarItem-selected {
+  cursor: default;
+  background: #92c1f0;
+}
+.gwt-TabPanel {
+}
+.gwt-TabPanelBottom {
+  border-color: #92c1f0;
+  border-style: solid;
+  border-width: 3px 2px 2px;
+  overflow: hidden;
+  padding: 6px;
+}
+
+.gwt-DecoratedTabBar {
+}
+.gwt-DecoratedTabBar .gwt-TabBarFirst {
+  width: 5px;  /* first tab distance from the left */
+}
+.gwt-DecoratedTabBar .gwt-TabBarRest {
+}
+.gwt-DecoratedTabBar .gwt-TabBarItem {
+  border-collapse: collapse;
+  margin-left: 6px;
+}
+.gwt-DecoratedTabBar .tabTopCenter {
+  padding: 0px;
+  background: #d0e4f6;
+}
+.gwt-DecoratedTabBar .tabTopLeft,
+.gwt-DecoratedTabBar .tabTopRight {
+  padding: 0px;
+  zoom: 1;
+}
+.gwt-DecoratedTabBar .tabTopLeftInner,
+.gwt-DecoratedTabBar .tabTopRightInner {
+  width: 6px;
+  height: 6px;
+}
+html>body .gwt-DecoratedTabBar .tabTopLeft {
+  background: url(images/corner.png) no-repeat 0px -55px;
+}
+html>body .gwt-DecoratedTabBar .tabTopRight {
+  background: url(images/corner.png) no-repeat -6px -55px;
+}
+* html .gwt-DecoratedTabBar .tabTopLeftInner {
+  width: 5px;
+  height: 61px;
+  margin-top: -55px;
+  overflow: hidden;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='gwt/standard/images/corner.png',sizingMethod='crop');
+}
+* html .gwt-DecoratedTabBar .tabTopRightInner {
+  width: 12px;
+  height: 61px;
+  margin-top: -55px;
+  margin-left: -6px;
+  overflow: hidden;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='gwt/standard/images/corner.png',sizingMethod='crop');
+}
+.gwt-DecoratedTabBar .tabMiddleLeft,
+.gwt-DecoratedTabBar .tabMiddleRight {
+  width: 6px;
+  padding: 0px;
+  background: #d0e4f6;
+}
+.gwt-DecoratedTabBar .tabMiddleLeftInner,
+.gwt-DecoratedTabBar .tabMiddleRightInner {
+  width: 1px;
+  height: 1px;
+}
+.gwt-DecoratedTabBar .tabMiddleCenter {
+  padding: 0px 4px 2px 4px;
+  cursor: pointer;
+  cursor: hand;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  background: #d0e4f6;
+}
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopCenter {
+  background: #92c1f0;
+}
+html>body .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopLeft {
+  background-position: 0px -61px;
+}
+html>body .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopRight {
+  background-position: -6px -61px;
+}
+* html .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopLeftInner {
+  width: 5px;
+  height: 67px;
+  margin-top: -61px;
+  overflow: hidden;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='gwt/standard/images/corner.png',sizingMethod='crop');
+}
+* html .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopRightInner {
+  width: 12px;
+  height: 67px;
+  margin-top: -61px;
+  margin-left: -6px;
+  overflow: hidden;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='gwt/standard/images/corner.png',sizingMethod='crop');
+}
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleLeft,
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleRight {
+  background: #92c1f0;
+}
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleCenter {
+  cursor: default;
+  background: #92c1f0;
+}
+
+.vpDotted {
+  border: 1px dotted blue;
+}
+
+.thumbnail,
+.thumbnailOver,
+.thumbnailSelected,
+.thumbnailSelectedOver {
+    border : 1px solid #CDCDCB;
+}
+
+.thumbnailTitle,
+.thumbnailTitleOver,
+.thumbnailTitleSelected,
+.thumbnailTitleSelectedOver {
+    font-size:9px;
+    text-overflow:ellipsis;
+}
+
+.thumbnailTitleOver,
+.thumbnailTitleSelected,
+.thumbnailTitleSelectedOver {
+    font-size:9px;
+    text-overflow:ellipsis;    
+    color: #336699;
+}
+
+/* ------- Explorer Buttons ------- */
+.explorerButtonBoxR {
+	padding: 5px;
+	padding-top: 15px;
+	padding-bottom: 10px;
+	margin-top: 8px;
+	margin-bottom: 6pt;
+	text-align: center;
+	-moz-box-shadow: 1px 1px 2px 2px #aaa;
+	-webkit-box-shadow: 1px 1px 2px 2px #aaa;
+	box-shadow: 1px 1px 2px 2px #aaa;
+	border: 1px solid #e2e2e2;
+}
+.explorerButtonBoxGradient {
+	background-color: #e2e2e2;
+	background:linear-gradient(to bottom, #e2e2e2 5%, #fdfdfd 100%);
+}
+.explorerButtonBoxB {
+	height: 28pt;
+	width: 65pt;
+	border: 2px solid red;
+	background: grey;
+}
+
+.ERbutton a {
+	margin-top: 8pt;
+	line-height: 40px;
+	height:40px;
+	width: 96pt;
+	font-size: 10.5pt;
+}
+.ERbutton div {
+	line-height: 14pt;
+	margin-bottom: 4pt;
+	font-family: Calibri, Lucida Sans Unicode, Lucida Grande, Trebuchet MS, Helvetica, Arial, sans-serif;
+	font-size: 11pt;
+	color: #666;
+	font-weight: bold;
+}
+.EBbutton a {
+	font-size: 10pt;
+	line-height: 14pt;
+	height: 20px;
+	width: 100pt;
+}				 
+.EBbutton span {
+	font-family: Calibri, Lucida Sans Unicode, Lucida Grande, Trebuchet MS, Helvetica, Arial, sans-serif;
+	font-size: 10pt;
+	color: #666;
+	font-weight: bold;
+}
+.EbuttonPrefix {
+	line-height: 14pt;
+	margin-bottom: 4pt;
+	font-family: Calibri, Lucida Sans Unicode, Lucida Grande, Trebuchet MS, Helvetica, Arial, sans-serif;
+	font-size: 11pt;
+	color: #666;
+	font-weight: bold;
+}
+ 
+.darkgrey_Ebutton a {	
+	background-color:#595959;
+	text-align:center;
+	vertical-align: middle;
+    display:inline-block;
+	color:#ffffff;
+    font-family: Calibri, "Lucida Sans Unicode","Lucida Grande","Trebuchet MS", Helvetica, Arial, sans-serif;
+    text-decoration:none;
+}
+.darkgrey_Ebutton a:hover {
+    background-color:#363636;
+	color: #fff;
+}
+.darkgrey_Ebutton a:active {
+    position:relative;
+    top:1px;
+}
+
+.blue_Ebutton a {
+    background-color:#4b76f7;
+    text-align:center;
+    vertical-align: middle;
+    display:inline-block;
+    color:#ffffff;
+    font-family: Calibri, "Lucida Sans Unicode","Lucida Grande","Trebuchet MS", Helvetica, Arial, sans-serif;
+    text-decoration:none;
+}
+.blue_Ebutton a:hover {
+    background-color:#1a3ea9;
+	color: #fff;
+}
+.blue_Ebutton a:active {
+    position:relative;
+    top:1px;
+}
+.orange_Ebutton a {
+    background-color:#f60;
+    text-align:center;
+    vertical-align: middle;
+    display:inline-block;
+    color:#ffffff;
+    font-family: Calibri, "Lucida Sans Unicode","Lucida Grande","Trebuchet MS", Helvetica, Arial, sans-serif;
+    text-decoration:none;
+}
+.orange_Ebutton a:hover {
+    background-color:#cd5a0d;
+	color: #fff;
+}
+.orange_Ebutton a:active {
+    position:relative;
+    top:1px;
+}
+
+/* ------- Explorer Style ------- */
+.explorerBottomPane {
+	border-top: 1px solid lightgrey;
+}
+
+.explorerSelectedButtonPrefixText {
+	padding-left: 8pt;
+	overflow: hidden;
+}
+
+.explorerWelcomePageTitle {
+	text-align: center;
+	font-size: 14pt;
+    padding:7px;
+	border-bottom: 1px solid #ebebeb;
+}
+
+.explorerWelcomePagePoints {
+	float: left;
+} 
+.explorerWelcomePageBullet {
+	border: 6px solid grey; background-color: grey; color: white;
+	width: 12px;
+	height: 12px;
+	border-radius: 12px;
+	float: left;
+	margin-right: 5pt;
+}
+.explorerWelcomePageNumber {
+	position: relative; top: -5pt; left: 1pt;
+}
+.explorerWelcomeViewDoc {
+	float: left;
+}
+
+.explorerSearchItem,
+.explorerSearchItemRTL,
+.explorerSearchItemFocused,
+.explorerSearchItemFocusedRTL,
+.explorerSearchItemDisabled,
+.explorerSearchItemDisabledRTL,
+.explorerSearchItemDisabledHint,
+.explorerSearchItemDisabledHintRTL,
+.explorerSearchItemError,
+.explorerSearchItemErrorRTL,
+.explorerSearchItemHint,
+.explorerSearchItemHintRTL {
+    border: 1px solid #888;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    padding: 4px 6px 4px 5px;
+    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: Black;
+    font: 11px Arial, Verdana, sans-serif;
+
+    /* Apply text-overflow:ellipsis for browsers that support text-overflow on <input>
+       elements.
+       Opera was the only major browser to prefix text-overflow. However, -o-text-overflow
+       is omitted here because Opera Presto does not support text-overflow on <input>s. */
+    text-overflow: ellipsis;
+}
+
+.explorerSearchItemRTL,
+.explorerSearchItemFocusedRTL,
+.explorerSearchItemDisabledRTL,
+.explorerSearchItemDisabledHintRTL,
+.explorerSearchItemErrorRTL,
+.explorerSearchItemHintRTL {
+    padding: 4px 5px 4px 6px;
+}
+
+/* Hide IE10+'s clear button - we have our own.
+   http://support.microsoft.com/kb/2813492 */
+.explorerSearchItem::-ms-clear,
+.explorerSearchItemRTL::-ms-clear,
+.explorerSearchItemFocused::-ms-clear,
+.explorerSearchItemFocusedRTL::-ms-clear,
+.explorerSearchItemDisabled::-ms-clear,
+.explorerSearchItemDisabledRTL::-ms-clear,
+.explorerSearchItemDisabledHint::-ms-clear,
+.explorerSearchItemDisabledHintRTL::-ms-clear,
+.explorerSearchItemError::-ms-clear,
+.explorerSearchItemErrorRTL::-ms-clear,
+.explorerSearchItemHint::-ms-clear,
+.explorerSearchItemHintRTL::-ms-clear {
+    display: none;
+}

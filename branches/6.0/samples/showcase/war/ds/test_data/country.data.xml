@@ -1,0 +1,211 @@
+<List>
+
+<country>
+    <continent>North America</continent>
+    <countryName>United States</countryName>
+    <countryCode>US</countryCode>
+    <area>9631420</area>
+    <population>298444215</population>
+    <gdp>12360000</gdp>
+    <independence>1776-07-04</independence>
+    <government>federal republic</government>
+    <government_desc>2</government_desc>
+    <capital>Washington, DC</capital>
+    <member_g8>true</member_g8>
+    <article>http://en.wikipedia.org/wiki/United_states</article>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>China</countryName>
+    <countryCode>CH</countryCode>
+    <area>9596960</area>
+    <population>1313973713</population>
+    <gdp>8859000</gdp>
+    <government>Communist state</government>
+    <government_desc>0</government_desc>
+    <capital>Beijing</capital>
+    <member_g8>false</member_g8>
+    <article>http://en.wikipedia.org/wiki/China</article>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Japan</countryName>
+    <countryCode>JA</countryCode>
+    <area>377835</area>
+    <population>127463611</population>
+    <gdp>4018000</gdp>
+    <government>constitutional monarchy with parliamentary government</government>
+    <government_desc>1</government_desc>
+    <capital>Tokyo</capital>
+    <member_g8>true</member_g8>
+    <article>http://en.wikipedia.org/wiki/Japan</article>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>India</countryName>
+    <countryCode>IN</countryCode>
+    <area>3287590</area>
+    <population>1095351995</population>
+    <gdp>3611000</gdp>
+    <independence>1947-08-15</independence>
+    <government>federal republic</government>
+    <government_desc>2</government_desc>
+    <capital>New Delhi</capital>
+    <member_g8>false</member_g8>
+    <article>http://en.wikipedia.org/wiki/India</article>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Germany</countryName>
+    <countryCode>GM</countryCode>
+    <area>357021</area>
+    <population>82422299</population>
+    <gdp>2504000</gdp>
+    <independence>1871-01-18</independence>
+    <government>federal republic</government>
+    <government_desc>2</government_desc>
+    <capital>Berlin</capital>
+    <member_g8>true</member_g8>
+    <article>http://en.wikipedia.org/wiki/Germany</article>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>United Kingdom</countryName>
+    <countryCode>UK</countryCode>
+    <area>244820</area>
+    <population>60609153</population>
+    <gdp>1830000</gdp>
+    <independence>1801-01-01</independence>
+    <government>constitutional monarchy</government>
+    <government_desc>1</government_desc>
+    <capital>London</capital>
+    <member_g8>true</member_g8>
+    <article>http://en.wikipedia.org/wiki/United_kingdom</article>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>France</countryName>
+    <countryCode>FR</countryCode>
+    <area>547030</area>
+    <population>60876136</population>
+    <gdp>1816000</gdp>
+    <government>republic</government>
+    <government_desc>5</government_desc>
+    <capital>Paris</capital>
+    <member_g8>true</member_g8>
+    <article>http://en.wikipedia.org/wiki/France</article>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Italy</countryName>
+    <countryCode>IT</countryCode>
+    <area>301230</area>
+    <population>58133509</population>
+    <gdp>1698000</gdp>
+    <independence>1861-03-17</independence>
+    <government>republic</government>
+    <government_desc>5</government_desc>
+    <capital>Rome</capital>
+    <member_g8>true</member_g8>
+    <article>http://en.wikipedia.org/wiki/Italy</article>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Russia</countryName>
+    <countryCode>RS</countryCode>
+    <area>17075200</area>
+    <population>142893540</population>
+    <gdp>1589000</gdp>
+    <independence>1991-08-24</independence>
+    <government>federation</government>
+    <government_desc>3</government_desc>
+    <capital>Moscow</capital>
+    <member_g8>true</member_g8>
+    <article>http://en.wikipedia.org/wiki/Russia</article>
+</country>
+<country>
+    <continent>South America</continent>
+    <countryName>Brazil</countryName>
+    <countryCode>BR</countryCode>
+    <area>8511965</area>
+    <population>188078227</population>
+    <gdp>1556000</gdp>
+    <independence>1822-09-07</independence>
+    <government>federative republic</government>
+    <government_desc>3</government_desc>
+    <capital>Brasilia</capital>
+    <member_g8>false</member_g8>
+    <article>http://en.wikipedia.org/wiki/Brazil</article>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Canada</countryName>
+    <countryCode>CA</countryCode>
+    <area>9984670</area>
+    <population>33098932</population>
+    <gdp>1114000</gdp>
+    <independence>1867-07-01</independence>
+    <government>constitutional monarchy with parliamentary democracy and federation</government>
+    <government_desc>1</government_desc>
+    <capital>Ottawa</capital>
+    <member_g8>true</member_g8>
+    <article>http://en.wikipedia.org/wiki/Canada</article>
+</country>
+<country>
+    <continent>North America</continent>
+    <countryName>Mexico</countryName>
+    <countryCode>MX</countryCode>
+    <area>1972550</area>
+    <population>107449525</population>
+    <gdp>1067000</gdp>
+    <independence>1810-09-16</independence>
+    <government>federal republic</government>
+    <government_desc>2</government_desc>
+    <capital>Mexico (Distrito Federal)</capital>
+    <member_g8>false</member_g8>
+    <article>http://en.wikipedia.org/wiki/Mexico</article>
+</country>
+<country>
+    <continent>Europe</continent>
+    <countryName>Spain</countryName>
+    <countryCode>SP</countryCode>
+    <area>504782</area>
+    <population>40397842</population>
+    <gdp>1029000</gdp>
+    <independence>1492-01-01</independence>
+    <government>parliamentary monarchy</government>
+    <government_desc>4</government_desc>
+    <capital>Madrid</capital>
+    <member_g8>false</member_g8>
+    <article>http://en.wikipedia.org/wiki/Spain</article>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>South Korea</countryName>
+    <countryCode>KS</countryCode>
+    <area>98480</area>
+    <population>48846823</population>
+    <gdp>965300</gdp>
+    <independence>1945-08-15</independence>
+    <government>republic</government>
+    <government_desc>5</government_desc>
+    <capital>Seoul</capital>
+    <member_g8>false</member_g8>
+    <article>http://en.wikipedia.org/wiki/South_korea</article>
+</country>
+<country>
+    <continent>Asia</continent>
+    <countryName>Indonesia</countryName>
+    <countryCode>ID</countryCode>
+    <area>1919440</area>
+    <population>245452739</population>
+    <gdp>865600</gdp>
+    <independence>1945-08-17</independence>
+    <government>republic</government>
+    <government_desc>5</government_desc>
+    <capital>Jakarta</capital>
+    <member_g8>false</member_g8>
+    <article>http://en.wikipedia.org/wiki/Indonesia</article>
+</country>
+
+</List>

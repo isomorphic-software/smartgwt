@@ -1,0 +1,84 @@
+<project name="dist-windows" default="build" basedir=".">
+	<property name="dist.platform" value="windows" />
+	<import file="../common.ant.xml" />
+	<property name="project.dist" location="${smartgwt.build.dist}/${project.distname}.zip" />
+
+	<target name="build" depends="filter" description="Packages the distro">
+		<!-- TODO: figure out how to share most of this across platforms -->
+
+		<copy file="${smartgwt.tools.lib}/css/javadoc/stylesheet.css" todir="${smartgwt.build.out}/doc/javadoc" overwrite="true"/>
+		<copy file="${smartgwt.root}/samples/showcase/build-distro.xml" tofile="${smartgwt.build.out}/samples/showcase/build.xml" overwrite="true"/>
+		<copy file="${smartgwt.root}/samples/showcase/README.txt" todir="${smartgwt.build.out}/samples/showcase/" overwrite="true"/>
+		<copy file="${smartgwt.root}/doc/SmartGWT_Quick_Start_Guide.pdf" todir="${smartgwt.build.out}/doc/" overwrite="true" failonerror="false"/>
+
+
+		<mkdir dir="${smartgwt.build.dist}" />
+		<zip destfile="${project.dist}">
+			<!-- jars -->
+
+			<zipfileset file="${smartgwt.build.lib}/smartgwt.jar" prefix="${project.distname}" />
+			<zipfileset file="${smartgwt.build.lib}/smartgwt-skins.jar" prefix="${project.distname}" />
+
+			<zipfileset dirmode="755" filemode="644" src="${smartgwt.tools.lib}/sc/${smartclient.version}/smartclient.jar"  includes="**/selenium/user-extensions.js" fullpath="${project.distname}/selenium/user-extensions.js"/>			
+			<zipfileset dirmode="755" filemode="644" src="${smartgwt.tools.lib}/sc/${smartclient.version}/smartclient.jar"  includes="**/selenium/user-extensions-ide.js" fullpath="${project.distname}/selenium/user-extensions-ide.js"/>	
+			<zipfileset dirmode="755" filemode="644" src="${smartgwt.tools.lib}/sc/${smartclient.version}/smartclient.jar"  includes="**/selenium/user-guide.html" fullpath="${project.distname}/selenium/user-guide.html"/>	
+			<zipfileset dirmode="755" filemode="644" src="${smartgwt.tools.lib}/sc/${smartclient.version}/smartclient.jar"  includes="**/selenium/selenium-ide-example.png" fullpath="${project.distname}/selenium/selenium-ide-example.png"/>				
+						
+			<!-- raw files -->
+			<zipfileset dir="${project.build}" prefix="${project.distname}" />
+			<zipfileset dir="src" prefix="${project.distname}" />
+
+            <zipfileset dir="${smartgwt.build.out}/maven" prefix="${project.distname}/maven" />
+
+			<zipfileset dir="${smartgwt.root}/samples" prefix="${project.distname}">
+				<include name="helloworld-1.5"/>
+				<include name="helloworld-1.5/**"/>
+				<exclude name="helloworld-1.5/build.xml" />
+				<exclude name="helloworld-1.5/*.iml" />
+			</zipfileset>
+
+			<zipfileset dir="${smartgwt.root}/samples" prefix="${project.distname}">
+				<include name="helloworld-1.6"/>
+				<include name="helloworld-1.6/**"/>
+				<exclude name="helloworld-1.6/*.iml" />
+			</zipfileset>
+
+			<zipfileset dir="${smartgwt.root}/samples" prefix="${project.distname}">
+				<include name="helloworld-2.0"/>
+				<include name="helloworld-2.0/**"/>
+				<exclude name="helloworld-2.0/*.iml" />
+			</zipfileset>
+
+			<!-- doc -->
+			<zipfileset dir="${smartgwt.build.out}" prefix="${project.distname}">
+				<include name="doc" />
+				<include name="doc/*.html" />
+				<include name="doc/*.pdf" />
+				<include name="doc/html/**" />
+				<include name="doc/css/**" />
+				<include name="doc/javadoc/**" />
+			</zipfileset>
+
+            <!--
+            <zipfileset file="${smartgwt.build.out}/Samples/showcase/showcase.war" prefix="${project.distname}" />
+            -->
+			<!-- samples -->
+			<zipfileset dir="${smartgwt.build.out}" prefix="${project.distname}">
+				<include name="samples" />
+				<include name="samples/*" />
+				<include name="samples/**/build.xml" />
+				<include name="samples/**/README.txt" />
+				<include name="samples/*/src/**" />
+				<include name="samples/*/war/**" />
+            </zipfileset>
+			<!--<zipfileset dir="${smartgwt.build.out}/samples-scripts/${dist.platform}" prefix="${project.distname}/samples">
+				<include name="*/*-compile.cmd" />
+				<include name="*/*-shell.cmd" />
+			</zipfileset>-->
+		</zip>
+		
+        <mkdir dir="${smartgwt.build.staging}" />
+        <unzip src="${project.dist}" dest="${smartgwt.build.staging}" />
+
+	</target>
+</project>
