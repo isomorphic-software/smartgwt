@@ -17,15 +17,10 @@
 package com.smartgwt.client.core;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.event.shared.HandlerManager;
-import com.google.gwt.event.shared.GwtEvent;
-import com.google.gwt.event.shared.EventHandler;
-import com.google.gwt.event.shared.HandlerRegistration;
+import com.smartgwt.client.bean.BeanFactory;
 import com.smartgwt.client.util.IDManager;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.SC;
-import com.smartgwt.client.bean.BeanFactory;
-
 
 public class RefDataClass extends DataClass {
 
