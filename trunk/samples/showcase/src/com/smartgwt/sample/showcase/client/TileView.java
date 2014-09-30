@@ -2,12 +2,12 @@ package com.smartgwt.sample.showcase.client;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Set;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.History;
@@ -21,8 +21,6 @@ import com.smartgwt.client.types.TitleOrientation;
 import com.smartgwt.client.types.TreeModelType;
 import com.smartgwt.client.util.Browser;
 import com.smartgwt.client.widgets.Canvas;
-import com.smartgwt.client.widgets.events.DrawEvent;
-import com.smartgwt.client.widgets.events.DrawHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.events.ItemChangedEvent;
 import com.smartgwt.client.widgets.form.events.ItemChangedHandler;
@@ -45,13 +43,9 @@ import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.sample.showcase.client.data.CommandTreeNode;
 import com.smartgwt.sample.showcase.client.data.ExplorerTreeNode;
-import com.smartgwt.sample.showcase.client.data.ShowcaseData;
 
 public class TileView extends VLayout {
     private static final ShowcaseMessages M = ShowcaseMessages.INSTANCE;
-    
-    private Map<String, Integer> rankOfSamples;
-    private boolean considerForRanking;
 
     private static final native boolean _useRoundedSearchItem() /*-{
         var isc = $wnd.isc;
@@ -59,6 +53,9 @@ public class TileView extends VLayout {
     }-*/;
 
     private final boolean useDesktopMode;
+
+    private Map<String, Integer> rankOfSamples;
+    private boolean considerForRanking;
 
     private TileGrid tileGrid;
     private final String idSuffix = SideNavTree.ID_SUFFIX;
