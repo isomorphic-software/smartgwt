@@ -25,6 +25,7 @@ import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.event.shared.HasHandlers;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Window;
 import com.smartgwt.client.bean.BeanFactory;
@@ -34,7 +35,7 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.ObjectFactory;
 import com.smartgwt.client.util.SC;
 
-public abstract class BaseClass {
+public abstract class BaseClass implements HasHandlers {
 
     protected String id;
     protected JavaScriptObject config = JSOHelper.createObject();
@@ -680,9 +681,10 @@ public abstract class BaseClass {
         self.setProperty(property, value);
     }-*/;
 
-    //event handling ode
+    //event handling code
     private HandlerManager manager = null;
 
+    //@Override
     public void fireEvent(GwtEvent<?> event) {
         if (manager != null) {
             manager.fireEvent(event);
