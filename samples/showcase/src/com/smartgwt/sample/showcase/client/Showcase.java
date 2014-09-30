@@ -19,6 +19,7 @@ import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.CurrentPane;
 import com.smartgwt.client.types.Cursor;
 import com.smartgwt.client.types.DeviceMode;
+import com.smartgwt.client.types.NavigationDirection;
 import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.types.TabBarControls;
 import com.smartgwt.client.types.VerticalAlignment;
@@ -113,7 +114,7 @@ public class Showcase implements EntryPoint, HistoryListener {
     private String lastValue;
     private String lastName;
     private List<ExplorerTreeNode> lastOpenedFolders = new ArrayList<ExplorerTreeNode>();
-	
+
     public static String getPreReleaseVersion() {
         return preReleaseVersion;
     }
@@ -280,7 +281,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         sideNav.addNodeClickHandler(new NodeClickHandler() {
             public void onNodeClick(NodeClickEvent event) {
                 TreeNode node = event.getNode();
-                showSample(node);
+                showSample(node, NavigationDirection.FORWARD);
             }
         });
 
@@ -833,7 +834,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         }
     }
 
-    protected void showSample(TreeNode node) {
+    protected void showSample(TreeNode node, NavigationDirection direction) {
         final boolean autotest = ShowcaseConfiguration.getSingleton().isOpenForTesting();
         final boolean useDesktopMode = splitPane.getDeviceMode() == DeviceMode.DESKTOP;
         assert !autotest || useDesktopMode;
@@ -846,7 +847,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         } else if (node instanceof FolderTreeNode && sideNav.getTree().hasChildren(node)) {
             final FolderTreeNode folderTreeNode = (FolderTreeNode)node;
             String panelID = folderTreeNode.getNodeID();
-           
+
             revertState();
 
             final String folderName = folderTreeNode.getHTML();
@@ -900,7 +901,7 @@ public class Showcase implements EntryPoint, HistoryListener {
                 if (oldDetailPane != null && oldDetailPane != homePanel) {
                     oldDetailPane.destroy();
                 }
-                splitPane.showDetailPane(folderName, M.shortNavigationPaneTitle().asString());
+                splitPane.showDetailPane(folderName, M.shortNavigationPaneTitle().asString(), direction);
                 updateSampleIcon(icon);
             }
 
@@ -975,7 +976,7 @@ public class Showcase implements EntryPoint, HistoryListener {
                     if (oldDetailPane != null && oldDetailPane != homePanel) {
                         oldDetailPane.destroy();
                     }
-                    splitPane.showDetailPane(sampleName, M.shortNavigationPaneTitle().asString());
+                    splitPane.showDetailPane(sampleName, M.shortNavigationPaneTitle().asString(), direction);
                     updateSampleIcon(icon);
                 }
             }
@@ -1082,7 +1083,7 @@ public class Showcase implements EntryPoint, HistoryListener {
             for (final ExplorerTreeNode explorerTreeNode : showcaseData) {
                 final String nodeID = explorerTreeNode.getNodeID();
                 if (historyToken.equals(nodeID)) {
-                    showSample(explorerTreeNode);
+                    showSample(explorerTreeNode, null);
                     final ListGridRecord selectedRecord = sideNav.getSelectedRecord();
                     if (selectedRecord != null) {
                         sideNav.deselectRecord(selectedRecord);
