@@ -50,6 +50,7 @@ public class GridCellWidgetsSample extends ShowcasePanel {
                 if (fieldName.equals("iconField")) {
                     HLayout recordCanvas = new HLayout(3);
                     recordCanvas.setHeight(22);
+                    recordCanvas.setWidth100();
                     recordCanvas.setAlign(Alignment.CENTER);
                     ImgButton editImg = new ImgButton();
                     editImg.setShowDown(false);
