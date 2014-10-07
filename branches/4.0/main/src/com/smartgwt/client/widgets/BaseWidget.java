@@ -139,8 +139,15 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     }
 
     private native void wrapDestroy() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        if (self && self.__sgwtDestroy == null) self.__sgwtDestroy = function () {
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        if (self == null) {
+            var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            $wnd.isc.logWarn("wrapDestroy(): the JavaScriptObject is null unexpectedly for " +
+                $wnd.isc.echo(config) + " with " + this.@java.lang.Object::getClass()() +
+                ".  This may lead to an ID collision after the widget is destroy()ed.");
+            return;
+        }
+        if (self.__sgwtDestroy == null) self.__sgwtDestroy = function () {
             var jObj = this.__ref;
             if (jObj != null) jObj.@com.smartgwt.client.widgets.BaseWidget::destroy()();
         }

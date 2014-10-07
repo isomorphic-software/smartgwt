@@ -244,8 +244,15 @@ public abstract class BaseClass {
     protected abstract JavaScriptObject create();
 
     private native void wrapDestroy() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        if (self && self.__sgwtDestroy == null) self.__sgwtDestroy = function () {
+        var self = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+        if (self == null) {
+            var config = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+            $wnd.isc.logWarn("wrapDestroy(): the JavaScriptObject is null unexpectedly for " +
+                $wnd.isc.echo(config) + " with " + this.@java.lang.Object::getClass()() +
+                ".  This may lead to an ID collision after the widget is destroy()ed.");
+            return;
+        }
+        if (self.__sgwtDestroy == null) self.__sgwtDestroy = function () {
             var jObj = this.__ref;
             if (jObj != null) jObj.@com.smartgwt.client.core.BaseClass::destroy()();
         }
