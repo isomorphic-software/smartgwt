@@ -123,7 +123,7 @@ public class DrawItemKnobsSample extends ShowcasePanel {
     private SectionStackSection createSection(
             final DrawItem drawItem, boolean expanded, KnobType[] knobTypes)
     {
-        String title = drawItem.getClass().getSimpleName();
+        String title = drawItem.getScClassName();
         DrawPane drawPane = drawItem.getDrawPane();
         DynamicForm knobsForm = createForm(drawItem, knobTypes);
 
