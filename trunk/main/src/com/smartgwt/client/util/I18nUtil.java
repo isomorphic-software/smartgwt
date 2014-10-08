@@ -16,8 +16,8 @@
 
 package com.smartgwt.client.util;
 
-import com.smartgwt.client.i18n.SmartGwtMessages;
 import com.google.gwt.core.client.GWT;
+import com.smartgwt.client.i18n.SmartGwtMessages;
 
 public class I18nUtil {
 
@@ -302,6 +302,7 @@ public class I18nUtil {
         if($wnd.isc.DynamicForm) {
             $wnd.isc.DynamicForm.addProperties({errorsPreamble: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dynamicForm_errorsPreamble()()});
             $wnd.isc.DynamicForm.addProperties({formSubmitFailedWarning: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dynamicForm_formSubmitFailedWarning()()});
+            $wnd.isc.DynamicForm.addProperties({originalValueMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dynamicForm_originalValueMessage()()});
         }
 
         if($wnd.isc.FormItem) {
@@ -311,6 +312,13 @@ public class I18nUtil {
         if($wnd.isc.SelectItem) {
             $wnd.isc.SelectItem.addProperties({otherTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::selectOtherItem_otherTitle()()});
             $wnd.isc.SelectItem.addProperties({selectOtherPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::selectOtherItem_selectOtherPrompt()() + ' ${item.getTitle()} :'});
+        }
+
+        if($wnd.isc.CheckboxItem) {
+            $wnd.isc.CheckboxItem.addProperties({checkedDescription: messages.@com.smartgwt.client.i18n.SmartGwtMessages::checkboxItem_checkedDescription()()});
+            $wnd.isc.CheckboxItem.addProperties({uncheckedDescription: messages.@com.smartgwt.client.i18n.SmartGwtMessages::checkboxItem_uncheckedDescription()()});
+            $wnd.isc.CheckboxItem.addProperties({partialSelectedDescription: messages.@com.smartgwt.client.i18n.SmartGwtMessages::checkboxItem_partialSelectedDescription()()});
+            $wnd.isc.CheckboxItem.addProperties({unsetDescription: messages.@com.smartgwt.client.i18n.SmartGwtMessages::checkboxItem_unsetDescription()()});
         }
 
         if($wnd.isc.DateItem) {
