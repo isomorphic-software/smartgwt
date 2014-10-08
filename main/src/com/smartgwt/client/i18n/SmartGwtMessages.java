@@ -722,6 +722,42 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String tileGrid_emptyMessage();
 
   /**
+   * Translated "checked".
+   * 
+   * @return translated "checked"
+   */
+  @DefaultMessage("checked")
+  @Key("checkboxItem_checkedDescription")
+  String checkboxItem_checkedDescription();
+
+  /**
+   * Translated "unchecked".
+   * 
+   * @return translated "unchecked"
+   */
+  @DefaultMessage("unchecked")
+  @Key("checkboxItem_uncheckedDescription")
+  String checkboxItem_uncheckedDescription();
+
+  /**
+   * Translated "partially selected".
+   * 
+   * @return translated "partially selected"
+   */
+  @DefaultMessage("partially selected")
+  @Key("checkboxItem_partialSelectedDescription")
+  String checkboxItem_partialSelectedDescription();
+
+  /**
+   * Translated "unset".
+   * 
+   * @return translated "unset"
+   */
+  @DefaultMessage("unset")
+  @Key("checkboxItem_unsetDescription")
+  String checkboxItem_unsetDescription();
+
+  /**
    * Translated "Cancel".
    * 
    * @return translated "Cancel"
@@ -1600,6 +1636,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Form was unable to be submitted. The most likely cause for this is an invalid value in an upload field.")
   @Key("dynamicForm_formSubmitFailedWarning")
   String dynamicForm_formSubmitFailedWarning();
+
+  /**
+   * Translated "Original value: $value".
+   * 
+   * @return translated "Original value: $value"
+   */
+  @DefaultMessage("Original value: $value")
+  @Key("dynamicForm_originalValueMessage")
+  String dynamicForm_originalValueMessage();
 
   /**
    * Translated "Add".
