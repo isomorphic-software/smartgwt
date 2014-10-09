@@ -53,6 +53,9 @@ public class SmartGwtEntryPoint implements EntryPoint {
             @com.google.gwt.core.client.GWT::log(Ljava/lang/String;Ljava/lang/Throwable;)(message, @com.smartgwt.client.core.JsObject.SGWT_WARN::new(Ljava/lang/String;)(message));
         }
 
+        // this must be called after we verify the SC libs are loaded
+        @com.smartgwt.client.util.LogUtil::setJSNIErrorHandler()();
+
         //pre GWT 2.0 fallback
         if(typeof $entry === "undefined") {
             $entry = function(jsFunction) {
@@ -357,7 +360,6 @@ public class SmartGwtEntryPoint implements EntryPoint {
         // class twice in hosted mode even though it appears only once in the load
         // hierarchy. Check with GWT team.
         if (!initialized) {
-            LogUtil.setJSNIErrorHandler();
             init();
             I18nUtil.init();
 
