@@ -273,11 +273,12 @@ public class I18nUtil {
             $wnd.isc.Validator.addClassProperties({mustBeLongerThan: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_mustBeLongerThan()()).replace('$min', '${min}')});
             $wnd.isc.Validator.addClassProperties({mustBeExactLength: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_mustBeExactLength()()).replace('$max', '${max}')});
             $wnd.isc.Validator.addClassProperties({requiredField: messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_requiredField()()});
+            $wnd.isc.Validator.addClassProperties({requiredFile: messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_requiredFile()()});
             $wnd.isc.Validator.addClassProperties({notOneOf: messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_notOneOf()()});
             $wnd.isc.Validator.addClassProperties({notAFunction: messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_notAFunction()()});
-
             $wnd.isc.Validator.addClassProperties({mustBeLaterThanTime: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_mustBeLaterThanTime()()).replace('$min', '${isc.Time.toShortTime(min)}')});
             $wnd.isc.Validator.addClassProperties({mustBeEarlierThanTime: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_mustBeEarlierThanTime()()).replace('$max', '${isc.Time.toShortTime(max)}')});
+            $wnd.isc.Validator.addClassProperties({maxFileSizeExceeded: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_maxFileSizeExceeded()()).replace('$fileName', '${fileName}').replace('$fileSizeMiB', '${Math.round(fileSize/104857.6)/10}').replace('$maxFileSizeMiB', '${Math.round(maxFileSize/104857.6)/10}')});
         }
 
         if($wnd.isc.Time) {
@@ -472,6 +473,7 @@ public class I18nUtil {
         if($wnd.isc.DataSource) {
             $wnd.isc.DataSource.addClassProperties({offlineMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataSource_offlineMessage()()});
             $wnd.isc.DataSource.addClassProperties({maxFileSizeExceededMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataSource_maxFileSizeExceededMessage()()).replace('$uploadedFileName', '${uploadedFileName}').replace('$uploadedFileSize', '${uploadedFileSize}').replace('$maxFileSize', '${maxFileSize}')});
+            $wnd.isc.DataSource.addClassProperties({requiredFileMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataSource_requiredFileMessage()()).replace('$uploadedFileName', '${uploadedFileName}')});
         }
 
         if($wnd.isc.DetailViewer) {
