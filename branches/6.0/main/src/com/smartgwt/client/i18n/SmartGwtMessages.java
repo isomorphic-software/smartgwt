@@ -632,6 +632,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String dataSource_maxFileSizeExceededMessage();
 
   /**
+   * Translated "''$uploadedFileName'' was empty, but empty files are not allowed.".
+   * 
+   * @return translated "''$uploadedFileName'' was empty, but empty files are not allowed."
+   */
+  @DefaultMessage("''$uploadedFileName'' was empty, but empty files are not allowed.")
+  @Key("dataSource_requiredFileMessage")
+  String dataSource_requiredFileMessage();
+
+  /**
    * Translated "Configure Fields...".
    * 
    * @return translated "Configure Fields..."
@@ -4989,6 +4998,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String validator_requiredField();
 
   /**
+   * Translated "Non-empty file required".
+   * 
+   * @return translated "Non-empty file required"
+   */
+  @DefaultMessage("Non-empty file required")
+  @Key("validator_requiredFile")
+  String validator_requiredFile();
+
+  /**
    * Translated "Must be later than $min".
    * 
    * @return translated "Must be later than $min"
@@ -5005,6 +5023,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Must be earlier than $max")
   @Key("validator_mustBeEarlierThanTime")
   String validator_mustBeEarlierThanTime();
+
+  /**
+   * Translated "Size of ''$fileName'' ($fileSizeMiB MiB) exceeds maximum allowed file size of $maxFileSizeMiB MiB.".
+   * 
+   * @return translated "Size of ''$fileName'' ($fileSizeMiB MiB) exceeds maximum allowed file size of $maxFileSizeMiB MiB."
+   */
+  @DefaultMessage("Size of ''$fileName'' ($fileSizeMiB MiB) exceeds maximum allowed file size of $maxFileSizeMiB MiB.")
+  @Key("validator_maxFileSizeExceeded")
+  String validator_maxFileSizeExceeded();
 
   /**
    * Translated "Untitled Window".
