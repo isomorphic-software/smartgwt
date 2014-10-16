@@ -278,7 +278,7 @@ public class I18nUtil {
             $wnd.isc.Validator.addClassProperties({notAFunction: messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_notAFunction()()});
             $wnd.isc.Validator.addClassProperties({mustBeLaterThanTime: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_mustBeLaterThanTime()()).replace('$min', '${isc.Time.toShortTime(min)}')});
             $wnd.isc.Validator.addClassProperties({mustBeEarlierThanTime: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_mustBeEarlierThanTime()()).replace('$max', '${isc.Time.toShortTime(max)}')});
-            $wnd.isc.Validator.addClassProperties({maxFileSizeExceeded: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_maxFileSizeExceeded()()).replace('$fileName', '${fileName}').replace('$fileSizeMiB', '${Math.round(fileSize/104857.6)/10}').replace('$maxFileSizeMiB', '${Math.round(maxFileSize/104857.6)/10}')});
+            $wnd.isc.Validator.addClassProperties({maxFileSizeExceeded: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_maxFileSizeExceeded()()).replace('$fileName', '${fileName}').replace('$fileSizeMiB', '${isc.NumberUtil.toMiBString(fileSize, maxFileSize)}').replace('$maxFileSizeMiB', '${isc.NumberUtil.toMiBString(maxFileSize, fileSize)}')});
         }
 
         if($wnd.isc.Time) {
