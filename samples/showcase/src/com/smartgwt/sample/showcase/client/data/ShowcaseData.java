@@ -67,6 +67,7 @@ import com.smartgwt.sample.showcase.client.dataintegration.xml.FormServerXmlVali
 import com.smartgwt.sample.showcase.client.dataintegration.xml.RestfulDataSourceSample;
 import com.smartgwt.sample.showcase.client.dataintegration.xml.XmlXPathSample;
 import com.smartgwt.sample.showcase.client.drawing.DrawingMouseEventsSample;
+import com.smartgwt.sample.showcase.client.drawing.DrawItemKnobsSample;
 import com.smartgwt.sample.showcase.client.drawing.GaugeSample;
 import com.smartgwt.sample.showcase.client.drawing.LinesAndArrowheadsSample;
 import com.smartgwt.sample.showcase.client.drawing.RotationSample;
@@ -881,6 +882,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Linear Gradient", "linear-gradient", "gradients", "silk/palette.png", new LinearGradientSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Radial Gradient", "radial-gradient", "gradients", "silk/palette.png", new RadialGradientSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Gauge", "gauge", "drawing", "silk/color_wheel.png", new GaugeSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("DrawItem Knobs", "knobs", "drawing", "silk/palette.png", new DrawItemKnobsSample.Factory(), true, idSuffix),
 
 
                     new ExplorerTreeNode("Effects", "effects-category", "root", "silk/shape_move_front.png", null, true, idSuffix),
