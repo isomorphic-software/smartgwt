@@ -48,7 +48,6 @@ public class RadialGradientSample extends ShowcasePanel {
     }
 
     public Canvas getViewPanel() {
-
         drawPane = new DrawPane();
         drawPane.setTop(1850);
         drawPane.setHeight(400);
@@ -62,36 +61,29 @@ public class RadialGradientSample extends ShowcasePanel {
         drawPane.draw();
 
         drawPane.addDrawHandler(new DrawHandler() {
-            
             @Override
             public void onDraw(DrawEvent event) {
-
-                DrawPane drawPane = (DrawPane) event.getSource();
-
                 radialGradientShapesDraw(drawPane);
             }
-            
         });
-        
-        ColorPickerItem startColorColorPicker = new ColorPickerItem("startColor","Start Color");
-        ColorPickerItem firstStopColorPicker  = new ColorPickerItem("firstStop","First Stop Color");
-        ColorPickerItem secondStopColorPicker = new ColorPickerItem("secondStop","Second Stop Color");
-        ColorPickerItem endColorColorPicker   = new ColorPickerItem("endColor","End Color");
+
+        final ColorPickerItem startColorColorPicker = new ColorPickerItem("startColor","Start Color");
+        final ColorPickerItem firstStopColorPicker  = new ColorPickerItem("firstStop","First Stop Color");
+        final ColorPickerItem secondStopColorPicker = new ColorPickerItem("secondStop","Second Stop Color");
+        final ColorPickerItem endColorColorPicker   = new ColorPickerItem("endColor","End Color");
 
         startColorColorPicker.setDefaultValue("#ff0000");
         firstStopColorPicker.setDefaultValue("#ffff00");
         secondStopColorPicker.setDefaultValue("#00ff00");
         endColorColorPicker.setDefaultValue("#0000ff");
 
-        ItemChangedHandler radialGradientItemChangedHandler = new ItemChangedHandler() {
+        final ItemChangedHandler radialGradientItemChangedHandler = new ItemChangedHandler() {
             @Override
             public void onItemChanged(ItemChangedEvent event) {
                 radialGradientShapesDraw(drawPane);
             }
-
-
         };
-        
+
         radialGradientDynamicForm = new DynamicForm();
         radialGradientDynamicForm.setTop(1850);
         radialGradientDynamicForm.setWidth(270);
@@ -99,14 +91,14 @@ public class RadialGradientSample extends ShowcasePanel {
         radialGradientDynamicForm.setFields(startColorColorPicker,firstStopColorPicker,secondStopColorPicker,endColorColorPicker);
         radialGradientDynamicForm.addItemChangedHandler(radialGradientItemChangedHandler);
         radialGradientDynamicForm.draw();
-        
 
-        SliderItem rSlider = new SliderItem("r");
+
+        final SliderItem rSlider = new SliderItem("r");
         rSlider.setDefaultValue(100);
-        rSlider.setMinValue(1);
-        rSlider.setMaxValue(100);
+        rSlider.setMinValue(1.0);
+        rSlider.setMaxValue(100.0);
         rSlider.setHeight(20);
-        
+
         radialGradientSliderDynamicForm = new DynamicForm();
         radialGradientSliderDynamicForm.setTop(1950);
         radialGradientSliderDynamicForm.setWidth(270);
@@ -116,51 +108,51 @@ public class RadialGradientSample extends ShowcasePanel {
         radialGradientSliderDynamicForm.draw();
 
 
-        VLayout layout = new VLayout();
+        final VLayout layout = new VLayout();
         layout.addMember(drawPane);
         layout.addMember(radialGradientDynamicForm);
         layout.addMember(radialGradientSliderDynamicForm);
         layout.draw();
-        
+
         return layout;
     }
 
     private void radialGradientShapesDraw(DrawPane drawPane) {
-        drawPane.erase();
+        drawPane.destroyItems();
 
-        ColorStop colorStop1 = new ColorStop();
+        final ColorStop colorStop1 = new ColorStop();
         colorStop1.setColor(radialGradientDynamicForm.getValueAsString("startColor"));
         colorStop1.setOffset(0.0f);
 
-        ColorStop colorStop2 = new ColorStop();
+        final ColorStop colorStop2 = new ColorStop();
         colorStop2.setColor(radialGradientDynamicForm.getValueAsString("firstStop"));
         colorStop2.setOffset(0.33f);
 
-        ColorStop colorStop3 = new ColorStop();
+        final ColorStop colorStop3 = new ColorStop();
         colorStop3.setColor(radialGradientDynamicForm.getValueAsString("secondStop"));
         colorStop3.setOffset(0.66f);
 
-        ColorStop colorStop4 = new ColorStop();
+        final ColorStop colorStop4 = new ColorStop();
         colorStop4.setColor(radialGradientDynamicForm.getValueAsString("endColor"));
         colorStop4.setOffset(1.0f);
-        
-        int r = (Integer) radialGradientSliderDynamicForm.getValue("r");
-        
-        RadialGradient radialGradient = new RadialGradient();
+
+        final int r = (Integer) radialGradientSliderDynamicForm.getValue("r");
+
+        final RadialGradient radialGradient = new RadialGradient();
         radialGradient.setCx("0");
         radialGradient.setCy("0");
         radialGradient.setR(r+"%");
         radialGradient.setFx("0");
         radialGradient.setFy("0");
         radialGradient.setColorStops(colorStop1,colorStop2,colorStop3,colorStop4);
-               
-        DrawTriangle drawTriangle = new DrawTriangle();
+
+        final DrawTriangle drawTriangle = new DrawTriangle();
         drawTriangle.setDrawPane(drawPane);
         drawTriangle.setFillGradient(radialGradient);
         drawTriangle.setPoints(new Point(100,50),new Point(150,150),new Point(50,150));
         drawTriangle.draw();
-        
-        DrawCurve drawCurve = new DrawCurve();
+
+        final DrawCurve drawCurve = new DrawCurve();
         drawCurve.setDrawPane(drawPane);
         drawCurve.setFillGradient(radialGradient);
         drawCurve.setStartPoint(new Point(200,50));
@@ -168,8 +160,8 @@ public class RadialGradientSample extends ShowcasePanel {
         drawCurve.setControlPoint1(new Point(270,0));
         drawCurve.setControlPoint2(new Point(270,200));
         drawCurve.draw();
-        
-        DrawOval drawOval = new DrawOval();
+
+        final DrawOval drawOval = new DrawOval();
         drawOval.setDrawPane(drawPane);
         drawOval.setFillGradient(radialGradient);
         drawOval.setLeft(50);
@@ -177,8 +169,8 @@ public class RadialGradientSample extends ShowcasePanel {
         drawOval.setWidth(100);
         drawOval.setHeight(150);
         drawOval.draw();
-        
-        DrawRect drawRect = new DrawRect();
+
+        final DrawRect drawRect = new DrawRect();
         drawRect.setDrawPane(drawPane);
         drawRect.setFillGradient(radialGradient);
         drawRect.setLeft(200);
@@ -186,7 +178,6 @@ public class RadialGradientSample extends ShowcasePanel {
         drawRect.setWidth(150);
         drawRect.setHeight(100);
         drawRect.draw();
-        
     }
 
     public String getIntro() {
