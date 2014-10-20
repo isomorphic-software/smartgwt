@@ -46,9 +46,6 @@ public class SimpleGradientSample extends ShowcasePanel {
     }
 
     public Canvas getViewPanel() {
-
-        /* ------------------------------------------- */
-        
         drawPane = new DrawPane();
         drawPane.setTop(950);
         drawPane.setHeight(400);
@@ -63,24 +60,21 @@ public class SimpleGradientSample extends ShowcasePanel {
         drawPane.addDrawHandler(new DrawHandler() {
             @Override
             public void onDraw(DrawEvent event) {
-
-                DrawPane drawPane = (DrawPane) event.getSource();
-
                 simpleGradientShapesDraw(drawPane);
             }
             
         });
-        
-        ItemChangedHandler simpleGradientItemChangedHandler = new ItemChangedHandler() {
+
+        final ItemChangedHandler simpleGradientItemChangedHandler = new ItemChangedHandler() {
             @Override
             public void onItemChanged(ItemChangedEvent event) {
                 simpleGradientShapesDraw(drawPane);
             }
-
         };
-        ColorPickerItem startColorColorPicker = new ColorPickerItem("startColor","Start Color");
-        ColorPickerItem endColorColorPicker   = new ColorPickerItem("endColor","End Color");
-        SpinnerItem     directionSpinnerItem  = new SpinnerItem("direction","Direction");
+
+        final ColorPickerItem startColorColorPicker = new ColorPickerItem("startColor","Start Color");
+        final ColorPickerItem endColorColorPicker   = new ColorPickerItem("endColor","End Color");
+        final SpinnerItem     directionSpinnerItem  = new SpinnerItem("direction","Direction");
 
         startColorColorPicker.setDefaultValue("#0000ff");
         endColorColorPicker.setDefaultValue("#00ff00");
@@ -97,39 +91,38 @@ public class SimpleGradientSample extends ShowcasePanel {
         simpleGradientDynamicForm.addItemChangedHandler(simpleGradientItemChangedHandler);
         simpleGradientDynamicForm.setFields(startColorColorPicker,endColorColorPicker,directionSpinnerItem);
         simpleGradientDynamicForm.draw();
-        
+
         simpleGradientShapesDraw(drawPane);
         drawPane.draw();
-        
 
-        VLayout layout = new VLayout();
+
+        final VLayout layout = new VLayout();
         layout.addMember(drawPane);
         layout.addMember(simpleGradientDynamicForm);
         layout.draw();
-        
+
         return layout;
     }
-    
+
     /**
      * This method is called to re-render the pane that contains the shapes with
      *  a defined gradient in them.
      */
     private void simpleGradientShapesDraw(DrawPane drawPane) {
+        drawPane.destroyItems();
 
-        drawPane.erase();
-        
-        SimpleGradient simpleGradient = new SimpleGradient();
+        final SimpleGradient simpleGradient = new SimpleGradient();
         simpleGradient.setDirection( (Integer) simpleGradientDynamicForm.getValue("direction") );
         simpleGradient.setEndColor( (String) simpleGradientDynamicForm.getValue("endColor") );
         simpleGradient.setStartColor( (String) simpleGradientDynamicForm.getValue("startColor") );
-        
-        DrawTriangle drawTriangle = new DrawTriangle();
+
+        final DrawTriangle drawTriangle = new DrawTriangle();
         drawTriangle.setDrawPane(drawPane);
         drawTriangle.setFillGradient(simpleGradient);
         drawTriangle.setPoints(new Point(100,50), new Point(150,150), new Point(50,150));
         drawTriangle.draw();
-        
-        DrawCurve drawCurve = new DrawCurve();
+
+        final DrawCurve drawCurve = new DrawCurve();
         drawCurve.setDrawPane(drawPane);
         drawCurve.setFillGradient(simpleGradient);
         drawCurve.setStartPoint(new Point(200,50));
@@ -137,8 +130,8 @@ public class SimpleGradientSample extends ShowcasePanel {
         drawCurve.setControlPoint1(new Point(270,0));
         drawCurve.setControlPoint2(new Point(270,200));
         drawCurve.draw();
-        
-        DrawOval drawOval = new DrawOval();
+
+        final DrawOval drawOval = new DrawOval();
         drawOval.setDrawPane(drawPane);
         drawOval.setFillGradient(simpleGradient);
         drawOval.setLeft(50);
@@ -146,8 +139,8 @@ public class SimpleGradientSample extends ShowcasePanel {
         drawOval.setWidth(100);
         drawOval.setHeight(150);
         drawOval.draw();
-        
-        DrawRect drawRect = new DrawRect();
+
+        final DrawRect drawRect = new DrawRect();
         drawRect.setDrawPane(drawPane);
         drawRect.setFillGradient(simpleGradient);
         drawRect.setLeft(200);
@@ -155,7 +148,6 @@ public class SimpleGradientSample extends ShowcasePanel {
         drawRect.setWidth(150);
         drawRect.setHeight(100);
         drawRect.draw();
-               
     }
 
     public String getIntro() {
