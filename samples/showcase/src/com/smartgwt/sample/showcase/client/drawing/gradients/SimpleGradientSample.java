@@ -17,13 +17,19 @@ import com.smartgwt.client.widgets.form.events.ItemChangedEvent;
 import com.smartgwt.client.widgets.form.events.ItemChangedHandler;
 import com.smartgwt.client.widgets.form.fields.ColorPickerItem;
 import com.smartgwt.client.widgets.form.fields.SpinnerItem;
-import com.smartgwt.client.widgets.layout.VLayout;
+import com.smartgwt.client.widgets.layout.HStack;
+import com.smartgwt.client.widgets.layout.Layout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class SimpleGradientSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Sample of using simple type of gradient.";
+    private static final Integer DEFAULT_DIRECTION = 45;
     private DrawPane drawPane;
+    private DrawTriangle drawTriangle;
+    private DrawCurve drawCurve;
+    private DrawOval drawOval;
+    private DrawRect drawRect;
     private DynamicForm simpleGradientDynamicForm;
 
     public static class Factory implements PanelFactory {
@@ -47,38 +53,63 @@ public class SimpleGradientSample extends ShowcasePanel {
 
     public Canvas getViewPanel() {
         drawPane = new DrawPane();
-        drawPane.setTop(950);
-        drawPane.setHeight(400);
-        drawPane.setLeft(25);
         drawPane.setWidth(400);
+        drawPane.setHeight(400);
         drawPane.setShowEdges(true);
-        drawPane.setEdgeSize(4);
-        drawPane.setBackgroundColor("papayawhip");
         drawPane.setOverflow(Overflow.HIDDEN);
         drawPane.setCursor(Cursor.AUTO);
 
         drawPane.addDrawHandler(new DrawHandler() {
             @Override
             public void onDraw(DrawEvent event) {
-                simpleGradientShapesDraw(drawPane);
+                updateGradient(drawPane);
             }
-            
         });
+
+        drawTriangle = new DrawTriangle();
+        drawTriangle.setDrawPane(drawPane);
+        drawTriangle.setPoints(new Point(100, 50), new Point(150, 150), new Point(50, 150));
+        drawTriangle.draw();
+
+        drawCurve = new DrawCurve();
+        drawCurve.setDrawPane(drawPane);
+        drawCurve.setStartPoint(new Point(200, 50));
+        drawCurve.setEndPoint(new Point(340, 150));
+        drawCurve.setControlPoint1(new Point(270, 0));
+        drawCurve.setControlPoint2(new Point(270, 200));
+        drawCurve.draw();
+
+        drawOval = new DrawOval();
+        drawOval.setDrawPane(drawPane);
+        drawOval.setLeft(50);
+        drawOval.setTop(200);
+        drawOval.setWidth(100);
+        drawOval.setHeight(150);
+        drawOval.draw();
+
+        drawRect = new DrawRect();
+        drawRect.setDrawPane(drawPane);
+        drawRect.setLeft(200);
+        drawRect.setTop(225);
+        drawRect.setWidth(150);
+        drawRect.setHeight(100);
+        drawRect.draw();
 
         final ItemChangedHandler simpleGradientItemChangedHandler = new ItemChangedHandler() {
             @Override
             public void onItemChanged(ItemChangedEvent event) {
-                simpleGradientShapesDraw(drawPane);
+                updateGradient(drawPane);
             }
         };
 
-        final ColorPickerItem startColorColorPicker = new ColorPickerItem("startColor","Start Color");
-        final ColorPickerItem endColorColorPicker   = new ColorPickerItem("endColor","End Color");
-        final SpinnerItem     directionSpinnerItem  = new SpinnerItem("direction","Direction");
+        final ColorPickerItem startColorColorPicker = new ColorPickerItem("startColor", "Start Color");
+        startColorColorPicker.setDefaultValue("#33CCCC");
 
-        startColorColorPicker.setDefaultValue("#0000ff");
-        endColorColorPicker.setDefaultValue("#00ff00");
-        directionSpinnerItem.setDefaultValue(45);
+        final ColorPickerItem endColorColorPicker = new ColorPickerItem("endColor", "End Color");
+        endColorColorPicker.setDefaultValue("#3366FF");
+
+        final SpinnerItem directionSpinnerItem = new SpinnerItem("direction", "Direction");
+        directionSpinnerItem.setDefaultValue(DEFAULT_DIRECTION);
         directionSpinnerItem.setMin(0);
         directionSpinnerItem.setMax(360);
         directionSpinnerItem.setStep(1);
@@ -86,68 +117,32 @@ public class SimpleGradientSample extends ShowcasePanel {
         simpleGradientDynamicForm = new DynamicForm();
         simpleGradientDynamicForm.setID("simpleGradientDynamicForm");
         simpleGradientDynamicForm.setWidth(250);
-        simpleGradientDynamicForm.setLeft(475);
-        simpleGradientDynamicForm.setTop(950);
         simpleGradientDynamicForm.addItemChangedHandler(simpleGradientItemChangedHandler);
-        simpleGradientDynamicForm.setFields(startColorColorPicker,endColorColorPicker,directionSpinnerItem);
+        simpleGradientDynamicForm.setFields(startColorColorPicker, endColorColorPicker, directionSpinnerItem);
         simpleGradientDynamicForm.draw();
 
-        simpleGradientShapesDraw(drawPane);
-        drawPane.draw();
 
-
-        final VLayout layout = new VLayout();
+        final Layout layout = new HStack();
         layout.addMember(drawPane);
         layout.addMember(simpleGradientDynamicForm);
-        layout.draw();
-
         return layout;
     }
 
-    /**
-     * This method is called to re-render the pane that contains the shapes with
-     *  a defined gradient in them.
-     */
-    private void simpleGradientShapesDraw(DrawPane drawPane) {
-        drawPane.destroyItems();
+    private void updateGradient(DrawPane drawPane) {
+        drawPane.removeGradient("mySimpleGradient");
 
         final SimpleGradient simpleGradient = new SimpleGradient();
-        simpleGradient.setDirection( (Integer) simpleGradientDynamicForm.getValue("direction") );
-        simpleGradient.setEndColor( (String) simpleGradientDynamicForm.getValue("endColor") );
-        simpleGradient.setStartColor( (String) simpleGradientDynamicForm.getValue("startColor") );
+        simpleGradient.setId("mySimpleGradient");
+        Number direction = (Number)simpleGradientDynamicForm.getValue("direction");
+        if (direction == null) direction = DEFAULT_DIRECTION;
+        simpleGradient.setDirection(direction.intValue());
+        simpleGradient.setStartColor(simpleGradientDynamicForm.getValueAsString("startColor"));
+        simpleGradient.setEndColor(simpleGradientDynamicForm.getValueAsString("endColor"));
 
-        final DrawTriangle drawTriangle = new DrawTriangle();
-        drawTriangle.setDrawPane(drawPane);
         drawTriangle.setFillGradient(simpleGradient);
-        drawTriangle.setPoints(new Point(100,50), new Point(150,150), new Point(50,150));
-        drawTriangle.draw();
-
-        final DrawCurve drawCurve = new DrawCurve();
-        drawCurve.setDrawPane(drawPane);
         drawCurve.setFillGradient(simpleGradient);
-        drawCurve.setStartPoint(new Point(200,50));
-        drawCurve.setEndPoint(new Point(340,150));
-        drawCurve.setControlPoint1(new Point(270,0));
-        drawCurve.setControlPoint2(new Point(270,200));
-        drawCurve.draw();
-
-        final DrawOval drawOval = new DrawOval();
-        drawOval.setDrawPane(drawPane);
         drawOval.setFillGradient(simpleGradient);
-        drawOval.setLeft(50);
-        drawOval.setTop(200);
-        drawOval.setWidth(100);
-        drawOval.setHeight(150);
-        drawOval.draw();
-
-        final DrawRect drawRect = new DrawRect();
-        drawRect.setDrawPane(drawPane);
         drawRect.setFillGradient(simpleGradient);
-        drawRect.setLeft(200);
-        drawRect.setTop(225);
-        drawRect.setWidth(150);
-        drawRect.setHeight(100);
-        drawRect.draw();
     }
 
     public String getIntro() {
