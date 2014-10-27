@@ -2,6 +2,7 @@ package com.smartgwt.sample.showcase.client.layout;
 
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.DragAppearance;
+import com.smartgwt.client.types.EdgeName;
 import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
@@ -40,13 +41,13 @@ public class UserSizingSample extends ShowcasePanel {
 
         final HLayout mainLayout = new HLayout();
         mainLayout.setWidth(350);
-       
+
         mainLayout.setShowEdges(true);
         mainLayout.setEdgeImage("edges/custom/sharpframe_10.png");
         mainLayout.setDragAppearance(DragAppearance.TARGET);
         mainLayout.setOverflow(Overflow.HIDDEN);
         mainLayout.setCanDragResize(true);
-        mainLayout.setResizeFrom("L", "R");
+        mainLayout.setResizeFrom(EdgeName.L, EdgeName.R);
         mainLayout.setLayoutMargin(10);
         mainLayout.setMembersMargin(10);
         mainLayout.setMinWidth(100);
@@ -57,7 +58,7 @@ public class UserSizingSample extends ShowcasePanel {
         member1.setOverflow(Overflow.HIDDEN);
         member1.setShowEdges(true);
         member1.setCanDragResize(true);
-        member1.setResizeFrom("L", "R");
+        member1.setResizeFrom(EdgeName.L, EdgeName.R);
         member1.setAlign(Alignment.CENTER);
 
         Label member2 = new Label();
@@ -65,7 +66,7 @@ public class UserSizingSample extends ShowcasePanel {
         member2.setOverflow(Overflow.HIDDEN);
         member2.setShowEdges(true);
         member2.setCanDragResize(true);
-        member2.setResizeFrom("L", "R");
+        member2.setResizeFrom(EdgeName.L, EdgeName.R);
         member2.setAlign(Alignment.CENTER);
 
         mainLayout.addMember(member1);
@@ -82,7 +83,6 @@ public class UserSizingSample extends ShowcasePanel {
 
         removeMember.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                Canvas[] children = mainLayout.getChildren();
                 mainLayout.removeChild(member1);
                 removeMember.disable();
                 addMember.enable();
