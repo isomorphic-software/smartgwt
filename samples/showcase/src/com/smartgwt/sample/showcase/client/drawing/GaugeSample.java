@@ -85,11 +85,11 @@ public class GaugeSample extends ShowcasePanel {
         gauge.setValue(45.0);
 
         gauge.setSectors(new GaugeSector[]{
-            new GaugeSector(10, "#FF0000"),
-            new GaugeSector(30, "#FF6600"),
-            new GaugeSector(60, "#FFFF00"),
-            new GaugeSector(90, "#99CC00"),
-            new GaugeSector(100, "#00FF00")
+            new GaugeSector(10.0, "#FF0000"),
+            new GaugeSector(30.0, "#FF6600"),
+            new GaugeSector(60.0, "#FFFF00"),
+            new GaugeSector(90.0, "#99CC00"),
+            new GaugeSector(100.0, "#00FF00")
         });
 
         configForm = new DynamicForm();
