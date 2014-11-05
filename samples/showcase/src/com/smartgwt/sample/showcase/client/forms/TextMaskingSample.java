@@ -62,7 +62,7 @@ public class TextMaskingSample extends ShowcasePanel {
 
         TextItem phoneNumberField = new TextItem("phoneNo", "Phone No.");
         phoneNumberField.setMask("(###) ###-####");
-        phoneNumberField.setHint("<nobr>(###)&nbsp;###-####</nobr>");
+        phoneNumberField.setHint("(###) ###-####");
         phoneNumberField.setShowHintInField(true);
 
         DateItem dateField = new DateItem("dateItem", "Date");
