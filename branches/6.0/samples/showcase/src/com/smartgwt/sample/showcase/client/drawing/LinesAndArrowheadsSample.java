@@ -173,7 +173,7 @@ public class LinesAndArrowheadsSample extends ShowcasePanel {
             }
         });
 
-        final SelectItem arrowHeadStyleSelect = new SelectItem("arrowheadStyle", "Line Cap Style");
+        final SelectItem arrowHeadStyleSelect = new SelectItem("arrowHeadStyle", "Arrow Head Style");
         arrowHeadStyleSelect.setDefaultValue(DEFAULT_ARROW_HEAD_STYLE.getValue());
         final LinkedHashMap<String, String> arrowHeadStyleValueMap = new LinkedHashMap<String, String>();
         arrowHeadStyleValueMap.put(ArrowStyle.OPEN.getValue(), "Open");
@@ -194,10 +194,10 @@ public class LinesAndArrowheadsSample extends ShowcasePanel {
         dataForm.setAutoDraw(false);
         dataForm.setID("dataForm");
         dataForm.setWidth(300);
-        dataForm.setHeight(105);
+        dataForm.setHeight(140);
         dataForm.setOverflow(Overflow.HIDDEN);
         dataForm.setColWidths(150, "*");
-        dataForm.setFields(lineWidthSpinner, linePatternSelect, lineCapSelect, lineColorItem, arrowHeadStyleSelect);
+        dataForm.setItems(lineWidthSpinner, linePatternSelect, lineCapSelect, lineColorItem, arrowHeadStyleSelect);
 
         final Layout layout = new VLayout(10);
         layout.setMembers(dataForm, mainPane);
