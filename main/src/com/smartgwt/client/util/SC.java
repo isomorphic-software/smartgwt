@@ -714,7 +714,7 @@ public class SC {
      * @return true if Analytics module is loaded
      */
     public static native boolean hasAnalytics()/*-{
-        return $wnd.isc.CubeGrid != null;
+        return $wnd.isc.hasOptionalModule("Analytics");
     }-*/;
 
     /**
@@ -750,7 +750,7 @@ public class SC {
      * @return true if RealtimeMessaging module is loaded
      */
     public static native boolean hasRealtimeMessaging()/*-{
-        return $wnd.isc.Messaging != null;
+        return $wnd.isc.hasOptionalModule("RealtimeMessaging");
     }-*/;
 
     /**
