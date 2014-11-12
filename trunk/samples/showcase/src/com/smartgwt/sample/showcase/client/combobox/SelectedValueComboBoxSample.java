@@ -62,6 +62,7 @@ public class SelectedValueComboBoxSample extends ShowcasePanel {
         SelectItem selectItem = new SelectItem();
         selectItem.setDefaultToFirstOption(true); 
         selectItem.setTitle("Item");
+        selectItem.setName("itemID");
         selectItem.setDisplayField("itemName");
         selectItem.setPickListWidth(250);
         selectItem.setOptionDataSource(supplyItemDS);
