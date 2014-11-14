@@ -14,7 +14,7 @@ import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 public class AnimatedSelectionSample extends ShowcasePanel {
 
     private static final String DESCRIPTION = "RollOver, and select the rows in the grid to see rollover and selection indicators fade into view. " +
-            "This is achieved via the rollOverCanvas and selectionCanvas subsystem. Note that the opacity setting on the rollUnderCanvas allows true color layering.";
+            "This is achieved via the rollUnderCanvas and selectionUnderCanvas subsystems. Note that the opacity setting on the rollUnderCanvas allows true color layering.";
 
     public static class Factory implements PanelFactory {
         private String id;
@@ -35,13 +35,10 @@ public class AnimatedSelectionSample extends ShowcasePanel {
     }
 
     public Canvas getViewPanel() {
-
-
-        ListGrid countryGrid = new ListGrid();
-        countryGrid.setAlternateRecordStyles(false);
-
+        final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(500);
         countryGrid.setHeight(224);
+        countryGrid.setAlternateRecordStyles(false);
         countryGrid.setShowAllRecords(true);
 
         ListGridField countryCodeField = new ListGridField("countryCode", "Flag", 40);
@@ -49,21 +46,19 @@ public class AnimatedSelectionSample extends ShowcasePanel {
         countryCodeField.setType(ListGridFieldType.IMAGE);
         countryCodeField.setImageURLPrefix("flags/16/");
         countryCodeField.setImageURLSuffix(".png");
-
         ListGridField nameField = new ListGridField("countryName", "Country");
         ListGridField capitalField = new ListGridField("capital", "Capital");
         ListGridField continentField = new ListGridField("continent", "Continent");
         countryGrid.setFields(countryCodeField, nameField, capitalField, continentField);
         countryGrid.setCanResizeFields(true);
         countryGrid.setData(CountrySampleData.getRecords());
-
         countryGrid.setSelectionType(SelectionStyle.SINGLE);
         countryGrid.setBaseStyle("simpleCell");
 
-        countryGrid.setShowRollOverCanvas(true);
+        countryGrid.setShowRollUnderCanvas(true);
         countryGrid.setAnimateRollUnder(true);
 
-        Canvas rollUnderCanvasProperties = new Canvas();
+        final Canvas rollUnderCanvasProperties = new Canvas();
         rollUnderCanvasProperties.setAnimateFadeTime(1000);
         rollUnderCanvasProperties.setAnimateShowEffect(AnimationEffect.FADE);
         rollUnderCanvasProperties.setBackgroundColor("#00ffff");
@@ -71,19 +66,17 @@ public class AnimatedSelectionSample extends ShowcasePanel {
         //can also override ListGrid.getRollUnderCanvas(int rowNum, int colNum)
         countryGrid.setRollUnderCanvasProperties(rollUnderCanvasProperties);
 
-        countryGrid.setShowSelectionCanvas(true);
+        countryGrid.setShowSelectionUnderCanvas(true);
         countryGrid.setAnimateSelectionUnder(true);
 
-        Canvas selectionUnderCanvasProperties = new Canvas();
+        final Canvas selectionUnderCanvasProperties = new Canvas();
         selectionUnderCanvasProperties.setAnimateShowEffect(AnimationEffect.FADE);
         selectionUnderCanvasProperties.setAnimateFadeTime(1000);
         selectionUnderCanvasProperties.setBackgroundColor("#ffff40");
         countryGrid.setSelectionUnderCanvasProperties(selectionUnderCanvasProperties);
 
-        
         return countryGrid;
     }
-
 
     public String getIntro() {
         return DESCRIPTION;
