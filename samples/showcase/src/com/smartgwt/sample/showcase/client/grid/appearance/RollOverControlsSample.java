@@ -105,6 +105,8 @@ public class RollOverControlsSample extends ShowcasePanel {
             }
         };
         countryGrid.setShowRollOverCanvas(true);
+        // Disable the rollUnderCanvas because we're not using it.
+        countryGrid.setShowRollUnderCanvas(false);
 
 
         countryGrid.setWidth(500);
