@@ -20,7 +20,7 @@ public final class PartsListGrid extends ListGrid {
 
         ListGridField partSrcField = new ListGridField("partSrc", 24);
         partSrcField.setType(ListGridFieldType.IMAGE);
-        partSrcField.setImgDir("pieces/16/");
+        partSrcField.setImageURLPrefix("pieces/16/");
 
         ListGridField partNameField = new ListGridField("partName");
         ListGridField partNumField = new ListGridField("partNum", 20);

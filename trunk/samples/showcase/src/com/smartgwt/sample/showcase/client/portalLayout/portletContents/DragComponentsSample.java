@@ -133,7 +133,7 @@ public class DragComponentsSample extends ShowcasePanel {
             ListGridField partSrcField = new ListGridField("partSrc");
             partSrcField.setType(ListGridFieldType.IMAGE);
             partSrcField.setWidth(24);
-            partSrcField.setImgDir("pieces/16/");
+            partSrcField.setImageURLPrefix("pieces/16/");
             ListGridField partNameField = new ListGridField("partName");
             ListGridField partNumField = new ListGridField("partNum");
             partNumField.setWidth(20);
