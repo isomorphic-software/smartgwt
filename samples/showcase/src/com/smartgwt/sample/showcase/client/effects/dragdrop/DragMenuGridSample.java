@@ -41,7 +41,7 @@ public class DragMenuGridSample extends ShowcasePanel {
         Menu menu = new Menu();
         ListGridField partSrcField = new ListGridField("partSrc", 20);
         partSrcField.setType(ListGridFieldType.IMAGE);
-        partSrcField.setImgDir("pieces/16/");
+        partSrcField.setImageURLPrefix("pieces/16/");
 
         ListGridField partNameField = new ListGridField("partName");
         partNameField.setWidth(70);
@@ -64,7 +64,7 @@ public class DragMenuGridSample extends ShowcasePanel {
 
         ListGridField partSrcField2 = new ListGridField("partSrc", 80);
         partSrcField2.setType(ListGridFieldType.IMAGE);
-        partSrcField2.setImgDir("pieces/16/");
+        partSrcField2.setImageURLPrefix("pieces/16/");
 
         ListGridField partNameField2 = new ListGridField("partName");
         partNameField2.setWidth(140);
