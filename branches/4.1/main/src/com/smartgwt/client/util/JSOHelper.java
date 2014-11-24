@@ -1297,6 +1297,8 @@ public class JSOHelper {
                 setAttribute(valueJS, key, ((BaseClass) value).getJsObj());
             } else if (value instanceof BaseWidget) {
                 setAttribute(valueJS, key, ((BaseWidget) value).getOrCreateJsObj());
+            } else if (value instanceof ValueEnum) {
+                setAttribute(valueJS, key, ((ValueEnum) value).getValue());
             } else {
                 assert value != null;
                 if (strict) {
