@@ -67,7 +67,8 @@ public class FormHintsSample extends ShowcasePanel {
         final TextItem dueDate = new TextItem("dueDate", "Due Date");
         dueDate.setWidth(70);
         dueDate.setHint("MM/YYYY");
-        
+        dueDate.setWrapHintText(false);
+
         form.setFields(caseNumber, severityLevel, dueDate);
 
         return form;

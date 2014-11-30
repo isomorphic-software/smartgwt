@@ -37,7 +37,7 @@ public class KeyPressFiltersSample extends ShowcasePanel {
 
         TextItem commisionField = new TextItem("commission", "Commission");
         commisionField.setWidth(100);
-        commisionField.setHint("Numeric&nbsp;only<br>[0-9.]");        
+        commisionField.setHint("Numeric only [0-9.]");
         commisionField.setKeyPressFilter("[0-9.]");
 
         form.setFields(nameField, commisionField);

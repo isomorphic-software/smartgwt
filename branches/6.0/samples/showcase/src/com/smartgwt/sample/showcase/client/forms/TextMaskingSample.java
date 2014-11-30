@@ -47,22 +47,24 @@ public class TextMaskingSample extends ShowcasePanel {
     public Canvas getViewPanel() {
         DynamicForm form = new DynamicForm();
         form.setWidth(400);
+        form.setWrapHintText(false);
 
         TextItem firstName = new TextItem("firstName", "First name");
         firstName.setMask(">?<??????????????");
-        firstName.setHint("<nobr>&gt;?&lt;??????????????<nobr>");
+        firstName.setHint("&gt;?&lt;??????????????");
 
         TextItem lastName = new TextItem("lastName", "Last name");
         lastName.setMask(">?<??????????????");
-        lastName.setHint("<nobr>&gt;?&lt;??????????????<nobr>");
+        lastName.setHint("&gt;?&lt;??????????????");
 
         TextItem stateField = new TextItem("state", "State");
         stateField.setMask(">LL");
-        stateField.setHint("<nobr>&gt;LL</nobr>");
+        stateField.setHint("&gt;LL");
 
         TextItem phoneNumberField = new TextItem("phoneNo", "Phone No.");
         phoneNumberField.setMask("(###) ###-####");
-        phoneNumberField.setHint("<nobr>(###)&nbsp;###-####</nobr>");
+        phoneNumberField.setHint("(###)&nbsp;###-####");
+        phoneNumberField.setShowHintInField(true);
 
         DateItem dateField = new DateItem("dateItem", "Date");
         dateField.setUseTextField(true);

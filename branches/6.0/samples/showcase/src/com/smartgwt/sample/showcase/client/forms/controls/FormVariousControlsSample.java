@@ -59,7 +59,8 @@ public class FormVariousControlsSample extends ShowcasePanel {
 
         TextItem textItem = new TextItem();
         textItem.setTitle("Text");
-        textItem.setHint("<nobr>A plain text field</nobr>");
+        textItem.setHint("A plain text field");
+        textItem.setWrapHintText(false);
 
         TextAreaItem textAreaItem = new TextAreaItem();
         textAreaItem.setTitle("TextArea");
@@ -122,7 +123,8 @@ public class FormVariousControlsSample extends ShowcasePanel {
 
         ComboBoxItem cbItem = new ComboBoxItem();
         cbItem.setTitle("Select");
-        cbItem.setHint("<nobr>A simple combobox</nobr>");
+        cbItem.setHint("A simple combobox");
+        cbItem.setWrapHintText(false);
         cbItem.setType("comboBox");
         cbItem.setValueMap("Cat", "Dog", "Giraffe", "Goat", "Marmoset", "Mouse");
 
@@ -142,7 +144,8 @@ public class FormVariousControlsSample extends ShowcasePanel {
 
         final SelectItem selectItem = new SelectItem();
         selectItem.setTitle("Select");
-        selectItem.setHint("<nobr>A combobox with icons</nobr>");
+        selectItem.setHint("A combobox with icons");
+        selectItem.setWrapHintText(false);
         selectItem.setValueMap(valueMap);
         selectItem.setImageURLPrefix("flags/16/");
         selectItem.setImageURLSuffix(".png");
@@ -164,7 +167,8 @@ public class FormVariousControlsSample extends ShowcasePanel {
 
         SelectItem selectItem2 = new SelectItem();
         selectItem2.setTitle("Select");
-        selectItem2.setHint("<nobr>A combobox with styled entries</nobr>");
+        selectItem2.setHint("A combobox with styled entries");
+        selectItem2.setWrapHintText(false);
         selectItem2.setValueMap("<span style='color:#FF0000;'>Red</span>",
                 "<span style='color:#00FF00;'>Green</span>",
                 "<span style='color:#0000FF;'>Blue</span>");
@@ -193,12 +197,12 @@ public class FormVariousControlsSample extends ShowcasePanel {
 
         DateItem dateItem = new DateItem();
         dateItem.setTitle("Date");
-        dateItem.setHint("<nobr>Picklist based date input</nobr>");
+        dateItem.setHint("Picklist based date input");
 
         DateItem dateItem2 = new DateItem();
         dateItem2.setTitle("Date");
         dateItem2.setUseTextField(true);
-        dateItem2.setHint("<nobr>Direct date input</nobr>");
+        dateItem2.setHint("Direct date input");
 
         TimeItem timeItem1 = new TimeItem("timeItem", "Time");
         TimeItem timeItem2 = new TimeItem("timeItem", "Time");
