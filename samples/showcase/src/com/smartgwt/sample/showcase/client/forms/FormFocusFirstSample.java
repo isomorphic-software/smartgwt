@@ -40,15 +40,17 @@ public class FormFocusFirstSample extends ShowcasePanel {
         form.setWidth(300);
 
         TextItem firstName = new TextItem("fName");
-        firstName.setTitle("First Name");
         firstName.setSelectOnFocus(true);
+        firstName.setTitle("First Name");
         firstName.setWrapTitle(false);
-        firstName.setDefaultValue("[First Name]");
+        firstName.setHint("First Name");
+        firstName.setShowHintInField(true);
 
         TextItem lastName = new TextItem("lName");
         lastName.setTitle("Last Name");
-        lastName.setDefaultValue("[Last Name]");
         lastName.setWrapTitle(false);
+        lastName.setHint("Last Name");
+        lastName.setShowHintInField(true);
 
         ButtonItem button = new ButtonItem("hello", "Hello");
         button.setStartRow(false);
