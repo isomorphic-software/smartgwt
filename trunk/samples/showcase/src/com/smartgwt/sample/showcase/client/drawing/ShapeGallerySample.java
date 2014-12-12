@@ -1,5 +1,6 @@
 package com.smartgwt.sample.showcase.client.drawing;
 
+import com.smartgwt.client.types.LineCap;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.drawing.DrawCurve;
 import com.smartgwt.client.widgets.drawing.DrawItem;
@@ -67,6 +68,7 @@ public class ShapeGallerySample extends ShowcasePanel {
                 drawCurve.setEndPoint(new Point(300, 150));
                 drawCurve.setControlPoint1(new Point(250, 0));
                 drawCurve.setControlPoint2(new Point(250, 200));
+                drawCurve.setLineCap(LineCap.ROUND);
                 drawCurve.setTitle("Curve");
                 applyCommonProps(drawCurve);
                 drawCurve.draw();
