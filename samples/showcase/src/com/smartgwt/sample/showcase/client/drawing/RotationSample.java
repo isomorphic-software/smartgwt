@@ -2,7 +2,6 @@ package com.smartgwt.sample.showcase.client.drawing;
 
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Slider;
-import com.smartgwt.client.widgets.drawing.CloseCommand;
 import com.smartgwt.client.widgets.drawing.DrawCurve;
 import com.smartgwt.client.widgets.drawing.DrawItem;
 import com.smartgwt.client.widgets.drawing.DrawLabel;
@@ -10,11 +9,9 @@ import com.smartgwt.client.widgets.drawing.DrawLine;
 import com.smartgwt.client.widgets.drawing.DrawLinePath;
 import com.smartgwt.client.widgets.drawing.DrawOval;
 import com.smartgwt.client.widgets.drawing.DrawPane;
+import com.smartgwt.client.widgets.drawing.DrawPolygon;
 import com.smartgwt.client.widgets.drawing.DrawRect;
-import com.smartgwt.client.widgets.drawing.DrawShape;
 import com.smartgwt.client.widgets.drawing.DrawTriangle;
-import com.smartgwt.client.widgets.drawing.LineToCommand;
-import com.smartgwt.client.widgets.drawing.MoveToCommand;
 import com.smartgwt.client.widgets.drawing.Point;
 import com.smartgwt.client.widgets.events.ValueChangedEvent;
 import com.smartgwt.client.widgets.events.ValueChangedHandler;
@@ -50,7 +47,7 @@ public class RotationSample extends ShowcasePanel {
     private DrawTriangle drawTriangle;
     private DrawCurve drawCurve;
     private DrawLinePath drawLinePath;
-    private DrawShape drawShape;
+    private DrawPolygon drawPolygon;
     private DrawOval drawOval;
     private DrawRect drawRect;
     private DrawLine drawLine;
@@ -105,24 +102,22 @@ public class RotationSample extends ShowcasePanel {
         applyCommonProps(drawLinePath);
         drawLinePath.draw();
 
-        drawShape = new DrawShape();
-        drawShape.setID("drawShape");
-        drawShape.setCommands(
-                new MoveToCommand(new Point(275, 50)),
-                new LineToCommand(
-                        new Point(287, 50),
-                        new Point(300, 62),
-                        new Point(312, 62),
-                        new Point(325, 62),
-                        new Point(325, 87),
-                        new Point(312, 87),
-                        new Point(300, 87),
-                        new Point(287, 100),
-                        new Point(275, 100)),
-                new CloseCommand());
-        drawShape.setTitle("Shape");
-        applyCommonProps(drawShape);
-        drawShape.draw();
+        drawPolygon = new DrawPolygon();
+        drawPolygon.setID("drawPolygon");
+        drawPolygon.setPoints(
+                new Point(275, 50),
+                new Point(287, 50),
+                new Point(300, 62),
+                new Point(312, 62),
+                new Point(325, 62),
+                new Point(325, 87),
+                new Point(312, 87),
+                new Point(300, 87),
+                new Point(287, 100),
+                new Point(275, 100));
+        drawPolygon.setTitle("Polygon");
+        applyCommonProps(drawPolygon);
+        drawPolygon.draw();
 
         drawOval = new DrawOval();
         drawOval.setID("drawOval");
@@ -168,7 +163,7 @@ public class RotationSample extends ShowcasePanel {
                 drawTriangle.rotateTo(value);
                 drawCurve.rotateTo(value);
                 drawLinePath.rotateTo(value);
-                drawShape.rotateTo(value);
+                drawPolygon.rotateTo(value);
                 drawOval.rotateTo(value);
                 drawRect.rotateTo(value);
                 drawLine.rotateTo(value);
