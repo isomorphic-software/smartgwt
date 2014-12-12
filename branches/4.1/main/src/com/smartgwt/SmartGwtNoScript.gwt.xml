@@ -12,30 +12,30 @@ include them yourself in your host html file as follows :
 <script src=[module-name]/sc/modules/ISC_DataBinding.js></script>
 <script src=[module-name]/sc/modules/ISC_Calendar.js></script>
 -->
-        
 
 <module>
     <inherits name='com.google.gwt.user.User'/>
     <inherits name="com.google.gwt.xml.XML"/>
-    <inherits name="com.google.gwt.i18n.I18N"/>    
+    <inherits name="com.google.gwt.i18n.I18N"/>
     <inherits name="com.google.gwt.json.JSON"/>
     <inherits name="com.google.gwt.http.HTTP"/>
     <inherits name="com.google.gwt.event.Event"/>
 
     <inherits name='com.smartclient.SmartClientNoScript'/>
+    <inherits name="com.smartclient.theme.enterprise.EnterpriseResources"/>
 
     <entry-point class='com.smartgwt.client.SmartGwtEntryPoint'/>
-    
+
 	<define-linker name="smartgwt" class="com.smartgwt.linker.SmartGwtLinker" />
     <define-linker name="smartgwt_domain_sync" class="com.smartgwt.linker.SmartGwtDomainSyncLinker" />
 
   	<add-linker name="smartgwt" />
 
-	<set-configuration-property name="document.compatMode.severity" value="IGNORE" />
-
   	<source path='client'/>
   	<super-source path='deprecated'/>
   	<source path='logicalstructure'/>
+
+	<set-configuration-property name="document.compatMode.severity" value="IGNORE" />
 
 	<generate-with class="com.smartgwt.rebind.MetaBeanFactoryGenerator">
         <when-type-assignable class="com.smartgwt.client.bean.BeanFactory.MetaFactory" />
