@@ -46,7 +46,6 @@ public class ShapeGallerySample extends ShowcasePanel {
     private void applyCommonProps(DrawItem item) {
         item.setDrawPane(mainPane);
         item.setCanDrag(true);
-        item.setAutoRotateTitle(true);
     }
 
     public Canvas getViewPanel() {
