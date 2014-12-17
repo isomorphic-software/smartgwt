@@ -1,5 +1,6 @@
 package com.smartgwt.sample.showcase.client.drawing;
 
+import com.smartgwt.client.types.TitleRotationMode;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Slider;
 import com.smartgwt.client.widgets.drawing.DrawCurve;
@@ -61,7 +62,7 @@ public class RotationSample extends ShowcasePanel {
         titleLabelProperties.setFontSize(12);
         titleLabelProperties.setLineColor("#0000ff");
         item.setAutoChildProperties("titleLabel", titleLabelProperties);
-        item.setAutoRotateTitle(true);
+        item.setTitleRotationMode(TitleRotationMode.WITH_ITEM);
         final DrawRect titleLabelBackgroundProperties = new DrawRect();
         titleLabelBackgroundProperties.setLineColor(null);
         titleLabelBackgroundProperties.setFillColor("#d0d0ff");

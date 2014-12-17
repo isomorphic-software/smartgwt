@@ -1,6 +1,7 @@
 package com.smartgwt.sample.showcase.client.drawing;
 
 import com.smartgwt.client.types.LineCap;
+import com.smartgwt.client.types.TitleRotationMode;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.drawing.DrawCurve;
 import com.smartgwt.client.widgets.drawing.DrawItem;
@@ -47,6 +48,7 @@ public class ShapeGallerySample extends ShowcasePanel {
     private void applyCommonProps(DrawItem item) {
         item.setDrawPane(mainPane);
         item.setCanDrag(true);
+        item.setTitleRotationMode(TitleRotationMode.NEVER_ROTATE);
     }
 
     public Canvas getViewPanel() {
