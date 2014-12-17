@@ -1,7 +1,10 @@
 package com.smartgwt.sample.showcase.client.drawing;
 
-import com.smartgwt.client.types.Overflow;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.smartgwt.client.types.KnobType;
+import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.types.VisibilityMode;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Slider;
@@ -32,9 +35,6 @@ import com.smartgwt.client.widgets.layout.SectionStackSection;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
-
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class DrawItemKnobsSample extends ShowcasePanel {
@@ -131,12 +131,6 @@ public class DrawItemKnobsSample extends ShowcasePanel {
         // of the DrawItem.
         double minValue = 0, maxValue = 360;
         int numValues = 361;
-        if (drawItem instanceof DrawLabel) {
-            // For DrawLabels in Internet Explorer 8 and earlier, only rotation
-            // by 0 or 90 degrees is supported.
-            maxValue = 90;
-            numValues = 2;
-        }
         Slider rotationSlider = new Slider();
         rotationSlider.setVertical(false);
         rotationSlider.setValue(0.0);
@@ -254,8 +248,8 @@ public class DrawItemKnobsSample extends ShowcasePanel {
         drawLabel.setDrawPane(createDrawPane());
         drawLabel.setLeft(160);
         drawLabel.setTop(30);
-        drawLabel.setContents("This is a DrawLabel.");
-        drawLabel.setFontSize(30);
+        drawLabel.setContents("DrawLabel");
+        drawLabel.setFontSize(25);
         drawLabel.setFontWeight("normal");
         drawLabel.setFontStyle("italic");
         drawLabel.setFontFamily("Times New Roman, serif");
