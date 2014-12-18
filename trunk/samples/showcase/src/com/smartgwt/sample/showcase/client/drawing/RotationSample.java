@@ -1,5 +1,6 @@
 package com.smartgwt.sample.showcase.client.drawing;
 
+import com.smartgwt.client.types.LineCap;
 import com.smartgwt.client.types.TitleRotationMode;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Slider;
@@ -55,50 +56,40 @@ public class RotationSample extends ShowcasePanel {
 
     private void applyCommonProps(DrawItem item) {
         item.setDrawPane(mainPane);
-        item.setLineColor("#000000");
-        item.setLineWidth(1);
         item.setCanDrag(true);
-        final DrawLabel titleLabelProperties = new DrawLabel();
-        titleLabelProperties.setFontSize(12);
-        titleLabelProperties.setLineColor("#0000ff");
-        item.setAutoChildProperties("titleLabel", titleLabelProperties);
         item.setTitleRotationMode(TitleRotationMode.WITH_ITEM);
-        final DrawRect titleLabelBackgroundProperties = new DrawRect();
-        titleLabelBackgroundProperties.setLineColor(null);
-        titleLabelBackgroundProperties.setFillColor("#d0d0ff");
-        titleLabelBackgroundProperties.setFillOpacity(0.5f);
-        item.setAutoChildProperties("titleLabelBackground", titleLabelBackgroundProperties);
     }
 
     public Canvas getViewPanel() {
         mainPane = new DrawPane();
         mainPane.setID("mainPane");
-        mainPane.setWidth(400);
-        mainPane.setHeight(300);
+        mainPane.setWidth(720);
+        mainPane.setHeight(475);
         mainPane.setTop(120);
         mainPane.setShowEdges(true);
 
         drawTriangle = new DrawTriangle();
         drawTriangle.setID("drawTriangle");
-        drawTriangle.setPoints(new Point(75, 50), new Point(100, 100), new Point(50, 100));
+        drawTriangle.setPoints(new Point(100, 50), new Point(150, 150), new Point(50, 150));
         drawTriangle.setTitle("Triangle");
         applyCommonProps(drawTriangle);
         drawTriangle.draw();
 
         drawCurve = new DrawCurve();
         drawCurve.setID("drawCurve");
-        drawCurve.setStartPoint(new Point(125, 50));
-        drawCurve.setEndPoint(new Point(175, 100));
-        drawCurve.setControlPoint1(new Point(150, 25));
-        drawCurve.setControlPoint2(new Point(150, 125));
+        drawCurve.setStartPoint(new Point(200, 50));
+        drawCurve.setEndPoint(new Point(300, 150));
+        drawCurve.setControlPoint1(new Point(250, 0));
+        drawCurve.setControlPoint2(new Point(250, 200));
+        drawCurve.setLineCap(LineCap.ROUND);
         drawCurve.setTitle("Curve");
         applyCommonProps(drawCurve);
         drawCurve.draw();
 
         drawLinePath = new DrawLinePath();
         drawLinePath.setID("drawLinePath");
-        drawLinePath.setStartPoint(new Point(200, 50));
-        drawLinePath.setEndPoint(new Point(250, 100));
+        drawLinePath.setStartPoint(new Point(350, 50));
+        drawLinePath.setEndPoint(new Point(450, 150));
         drawLinePath.setTitle("LinePath");
         applyCommonProps(drawLinePath);
         drawLinePath.draw();
@@ -106,16 +97,17 @@ public class RotationSample extends ShowcasePanel {
         drawPolygon = new DrawPolygon();
         drawPolygon.setID("drawPolygon");
         drawPolygon.setPoints(
-                new Point(275, 50),
-                new Point(287, 50),
-                new Point(300, 62),
-                new Point(312, 62),
-                new Point(325, 62),
-                new Point(325, 87),
-                new Point(312, 87),
-                new Point(300, 87),
-                new Point(287, 100),
-                new Point(275, 100));
+                new Point(500, 50),
+                new Point(525, 50),
+                new Point(550, 75),
+                new Point(575, 75),
+                new Point(600, 75),
+                new Point(600, 125),
+                new Point(575, 125),
+                new Point(550, 125),
+                new Point(525, 150),
+                new Point(500, 150)
+        );
         drawPolygon.setTitle("Polygon");
         applyCommonProps(drawPolygon);
         drawPolygon.draw();
@@ -123,27 +115,27 @@ public class RotationSample extends ShowcasePanel {
         drawOval = new DrawOval();
         drawOval.setID("drawOval");
         drawOval.setLeft(50);
-        drawOval.setTop(150);
-        drawOval.setWidth(50);
-        drawOval.setHeight(75);
+        drawOval.setTop(300);
+        drawOval.setWidth(100);
+        drawOval.setHeight(100);
         drawOval.setTitle("Oval");
         applyCommonProps(drawOval);
         drawOval.draw();
 
         drawRect = new DrawRect();
         drawRect.setID("drawRect");
-        drawRect.setLeft(150);
-        drawRect.setTop(175);
-        drawRect.setWidth(75);
-        drawRect.setHeight(50);
+        drawRect.setLeft(200);
+        drawRect.setTop(300);
+        drawRect.setWidth(150);
+        drawRect.setHeight(100);
         drawRect.setTitle("Rect");
         applyCommonProps(drawRect);
         drawRect.draw();
 
         drawLine = new DrawLine();
         drawLine.setID("drawLine");
-        drawLine.setStartPoint(new Point(275, 175));
-        drawLine.setEndPoint(new Point(325, 225));
+        drawLine.setStartPoint(new Point(400, 300));
+        drawLine.setEndPoint(new Point(500, 400));
         drawLine.setTitle("Line");
         applyCommonProps(drawLine);
         drawLine.draw();
