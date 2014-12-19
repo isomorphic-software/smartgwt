@@ -41,8 +41,9 @@ public abstract class AdaptWidthByCustomizer {
      * the parent {@link com.smartgwt.client.widgets.layout.Layout Layout}.
      *
      * @param deltaX number of horizontal pixels available (positive) or overflowed (negative)
+     * @param unadaptedWidth width of member currently assumed by parent layout
      * @return number of pixels that this Canvas is willing to take (positive) or surrender (negative)
      * @see com.smartgwt.client.widgets.Canvas#setCanAdaptWidth
      */
-    public abstract int adaptWidthBy(int deltaX);
+    public abstract int adaptWidthBy(int deltaX, int unadaptedWidth);
 } 

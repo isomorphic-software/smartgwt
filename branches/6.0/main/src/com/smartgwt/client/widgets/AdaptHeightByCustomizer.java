@@ -41,8 +41,9 @@ public abstract class AdaptHeightByCustomizer {
      * the parent {@link com.smartgwt.client.widgets.layout.Layout Layout}.
      *
      * @param deltaY number of vertical pixels available (positive) or overflowed (negative)
+     * @param unadaptedHeight height of member currently assumed by parent layout
      * @return number of pixels that this Canvas is willing to take (positive) or surrender (negative)
      * @see com.smartgwt.client.widgets.Canvas#setCanAdaptHeight
      */
-    public abstract int adaptHeightBy(int deltaY);
+    public abstract int adaptHeightBy(int deltaY, int unadaptedHeight);
 } 
