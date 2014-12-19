@@ -181,6 +181,7 @@ import com.smartgwt.sample.showcase.client.mobile.DialingSample;
 import com.smartgwt.sample.showcase.client.mobile.ResponsiveDesign;
 import com.smartgwt.sample.showcase.client.mobile.NavigationBarSample;
 import com.smartgwt.sample.showcase.client.mobile.SpinnerControlSample;
+import com.smartgwt.sample.showcase.client.mobile.InlinedMenuSample;
 import com.smartgwt.sample.showcase.client.mobile.MobileMenusSample;
 import com.smartgwt.sample.showcase.client.mobile.MobileSelectListSample;
 import com.smartgwt.sample.showcase.client.mobile.MobileComboBoxSample;
@@ -399,6 +400,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Windows &amp; Dialogs", "windows-dialogs-ms", "adaptive-ui-ms", null, new MobileWindowsDialogsSample.Factory(), true, idSuffix, "5.0"),
                     new ExplorerTreeNode("Calendar", "mobile-calendar-ms", "adaptive-ui-ms", null, new MobileCalendarSample.Factory(), true, idSuffix, "5.0"),
                     new ExplorerTreeNode("Spinner Control", "spinner-control-ms", "adaptive-ui-ms", null, new SpinnerControlSample.Factory(), true, idSuffix, "5.0"),
+                    new ExplorerTreeNode("Inlined Menu", "inlined-menu-ms", "adaptive-ui-ms", null, new InlinedMenuSample.Factory(), true, idSuffix, "6.0"),
                     new ExplorerTreeNode("Navigation Bar Auto-fit", "navigation-bar-ms", "mobile", "silk/phone.png", new NavigationBarSample.Factory(), true, idSuffix, "5.0"),
 
                     new ExplorerTreeNode("Adv. Filter Builder", "featured-filter-builder-grid", "featured-category", "crystal/oo/sc_insertformula.png", new GridNestedFilterBulderSample.Factory(), true, idSuffix),
