@@ -88,6 +88,7 @@ public class InlinedMenuSample extends ShowcasePanel {
             menuButton.setWidth(1);
             menuButton.setOverflow(Overflow.VISIBLE);
             menuButton.setAutoDraw(false);
+            setMembers(menuButton);
 
             MenuItem[] items = menu.getItems();
             inlinedItems  = new Canvas[items.length];
@@ -96,32 +97,34 @@ public class InlinedMenuSample extends ShowcasePanel {
                 Canvas item = createMenuItem(items[i].getTitle());
                 inlinedItems[i] = item;
             }
-            setMembers(inlinedItems);
-        }
-
-        // configure "wide" width based on actual drawn width of this widget
-        private void hookDraw() {
-            addDrawHandler(new DrawHandler() {
-                public void onDraw(DrawEvent event) {
-                    if (wideWidth == 0) setWidth(wideWidth = getVisibleWidth());
-                }
-            });
         }
 
         public InlinedMenu(Menu menu) {
             setMembers();
             setCanAdaptWidth(true);
+            setOverflow(Overflow.HIDDEN);
             setDefaultLayoutAlign(Alignment.CENTER);
             setAdaptWidthByCustomizer(new AdaptWidthByCustomizer() {
                 @Override
                 public int adaptWidthBy(int deltaX, int unadaptedWidth) {
+                    // establish the "wide" width needed for showing all menu items
+                    if (wideWidth == 0) {
+                        for (int i = 0; i < inlinedItems.length; i++) {
+                            inlinedItems[i].draw();
+                            wideWidth += inlinedItems[i].getVisibleWidth();
+                        };
+                    }
                     // if we're offered enough pixels to expand to our "wide" width, accept them
                     if (unadaptedWidth < wideWidth && deltaX >= wideWidth - unadaptedWidth) {
                         setMembers(inlinedItems);
                         return wideWidth - unadaptedWidth;
                     }
-                    // if an overflow is present, drop to our "narrow" width
-                    if (unadaptedWidth > narrowWidth && deltaX < 0) {
+                    // drop to our "narrow" width if we're wider than our "narrow" width, and:
+                    // - we're at some unexpected width less than our "wide" width, or
+                    // - an overflow is present
+                    if (unadaptedWidth > narrowWidth && (unadaptedWidth < wideWidth || 
+                                                         deltaX < 0))
+                    {
                         setMembers(menuButton);
                         return narrowWidth - unadaptedWidth;
                     }
@@ -131,7 +134,6 @@ public class InlinedMenuSample extends ShowcasePanel {
             });
             this.menu = menu;
             initialize();
-            hookDraw();
         }
     }
 
