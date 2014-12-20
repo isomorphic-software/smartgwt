@@ -144,44 +144,56 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
     String getFetchOperation();
 
     /**
-     * Operation ID this component should use when performing update operations.
+     * {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} this component 
+     * should use when performing update operations.
      *
-     * @param updateOperation updateOperation Default value is null
+     * @param updateOperation  Default value is null
+     * @see com.smartgwt.client.docs.Operations Operations overview and related methods
      */
     void setUpdateOperation(String updateOperation);
 
     /**
-     * Operation ID this component should use when performing update operations.
+     * {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} this component 
+     * should use when performing update operations.
      *
      * @return String
+     * @see com.smartgwt.client.docs.Operations Operations overview and related methods
      */
     String getUpdateOperation();
 
     /**
-     * Operation ID this component should use when performing add operations.
+     * {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} this component 
+     * should use when performing add operations.
      *
-     * @param addOperation addOperation Default value is null
+     * @param addOperation  Default value is null
+     * @see com.smartgwt.client.docs.Operations Operations overview and related methods
      */
     void setAddOperation(String addOperation);
 
     /**
-     * Operation ID this component should use when performing add operations.
+     * {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} this component 
+     * should use when performing add operations.
      *
      * @return String
+     * @see com.smartgwt.client.docs.Operations Operations overview and related methods
      */
     String getAddOperation();
 
     /**
-     * Operation ID this component should use when performing remove operations.
+     * {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} this component 
+     * should use when performing remove operations.
      *
-     * @param removeOperation removeOperation Default value is null
+     * @param removeOperation  Default value is null
+     * @see com.smartgwt.client.docs.Operations Operations overview and related methods
      */
     void setRemoveOperation(String removeOperation);
 
     /**
-     * Operation ID this component should use when performing remove operations.
+     * {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} this component 
+     * should use when performing remove operations.
      *
      * @return String
+     * @see com.smartgwt.client.docs.Operations Operations overview and related methods
      */
     String getRemoveOperation();
 
