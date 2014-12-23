@@ -35,6 +35,8 @@ import com.smartgwt.client.widgets.form.fields.events.IconClickEvent;
 import com.smartgwt.client.widgets.form.fields.events.IconClickHandler;
 import com.smartgwt.client.widgets.form.fields.events.KeyPressEvent;
 import com.smartgwt.client.widgets.form.fields.events.KeyPressHandler;
+import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
+import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.tile.TileGrid;
 import com.smartgwt.client.widgets.tile.events.RecordClickEvent;
@@ -53,9 +55,12 @@ public class TileView extends VLayout {
     }-*/;
 
     private final boolean useDesktopMode;
+    private final ShowcaseNavigator navigator;
 
     private Map<String, Integer> rankOfSamples;
     private boolean considerForRanking;
+
+    private Integer maxResults;
 
     private TileGrid tileGrid;
     private final String idSuffix = SideNavTree.ID_SUFFIX;
@@ -98,7 +103,10 @@ public class TileView extends VLayout {
         BeanFactory<ShowcaseCustomTile> getShowcaseCustomTileFactory();  
     }
 
-    public TileView(TreeNode[] showcaseData, boolean useDesktopMode, boolean hasBetaSamples) {
+    public TileView(final TreeNode[] showcaseData, final boolean useDesktopMode,
+                    final boolean hasBetaSamples, final ShowcaseNavigator navigator)
+    {
+        this.navigator = navigator;
         this.useDesktopMode = useDesktopMode;
 
         tree = new Tree();
@@ -167,10 +175,19 @@ public class TileView extends VLayout {
         searchItem.setBrowserAutoCorrect(false);
         searchItem.addKeyPressHandler(new KeyPressHandler() {
             public void onKeyPress(KeyPressEvent event) {
-                if ("Enter".equals(event.getKeyName())) {
-                    searchItem.blurItem();
-                    updateTiles();
+                String searchText = (String)searchItem.getValue();
+                if (searchText == null) return;
+
+                // hitting enter searches for the next match in the SideNavTree
+                if ("Enter".equals(event.getKeyName()) && useDesktopMode) {
+                    if (navigator.iterateCurrentMatch(searchText)) event.cancel();
                 }
+            }
+        });
+        searchItem.addChangedHandler(new ChangedHandler() {
+            public void onChanged(ChangedEvent event) {
+                navigator.incrementalSearch((String)event.getValue());
+                updateTilesOnPause();
             }
         });
         final FormItemIcon searchIcon = new FormItemIcon();
@@ -197,6 +214,8 @@ public class TileView extends VLayout {
                 if ("clear".equals(event.getIcon().getName())) {
                     filterForm.reset();
                     featuredCB.setValue(true);
+                    ascendingItem.setValue(true);
+                    navigator.incrementalSearch(null);
                 }
                 updateTiles();
             }
@@ -217,6 +236,7 @@ public class TileView extends VLayout {
 
             ascendingItem = new CheckboxItem("chkSortDir");
             ascendingItem.setTitle(M.ascendingTitle().asString());
+            ascendingItem.setValue(true);
         }
 
         //disabledModeCB = new CheckboxItem("disabledModeCB", M.disabledModeTitle().asString());
@@ -342,6 +362,16 @@ public class TileView extends VLayout {
         updateTiles();
     }
 
+    public native void updateTilesOnPause() /*-{
+        var searchItemJ = this.@com.smartgwt.sample.showcase.client.TileView::searchItem,
+            formItem = searchItemJ.@com.smartgwt.client.core.JsObject::getJsObj()();
+        if (formItem.pendingActionOnPause("tileSearch")) return;
+        var selfJ = this;
+        formItem.fireOnPause("tileSearch", $entry(function() {
+            selfJ.@com.smartgwt.sample.showcase.client.TileView::updateTiles()();
+        }));
+    }-*/;
+
     public void updateTiles(String searchText) {
         searchItem.setValue(searchText);
         updateTiles();
@@ -384,10 +414,14 @@ public class TileView extends VLayout {
 
         showTiles(searchText, categories);
 
-        final boolean sortDir = (ascendingItem == null ? true : ascendingItem.getValueAsBoolean());
-        if (this.considerForRanking) tileGrid.sortByProperty("position", false);
-        else tileGrid.sortByProperty("name", sortDir);
-
+        // truncate the node list _after_ sorting it so the most meaningful nodes are kept
+        maxResults = useDesktopMode ? numSamplesItem.getValueAsFloat().intValue() : null;
+        if (this.considerForRanking) {
+            sortAndTruncateNodeList("position", false, maxResults);
+        } else {
+            boolean sortDir = useDesktopMode ? ascendingItem.getValueAsBoolean() : true;
+            sortAndTruncateNodeList("nodeTitle", sortDir, maxResults);
+        }
     }
 
     private void showSample(Record node) {
@@ -403,56 +437,58 @@ public class TileView extends VLayout {
 
     private void showTiles(String searchText, List<String> categories) {
 
+        // sample will be replaced now by the tile search results
+        navigator.clearSelectedSamples();
+
         // clear any existing ranking from previous search
         rankOfSamples = new HashMap<String, Integer>();
 
         final Set<TreeNode> data = new HashSet<TreeNode>();
-        final Integer maxResults = numSamplesItem == null ? null : 
-            Integer.valueOf(numSamplesItem.getValueAsFloat().intValue());
 
         if (searchText != null) {
             TreeNode[] children = tree.getAllNodes();
-            applyFilterAccordingToRanking(tree, children, data, searchText, maxResults);
+            applyFilterAccordingToRanking(tree, children, data, searchText);
         } else {
             for (final String category : categories) {
                 if (category.equalsIgnoreCase("beta_samples")) {
                     TreeNode[] children = tree.getAllNodes();
-                    searchBetaSamples(tree, children, data, searchText, maxResults, false);
+                    searchBetaSamples(tree, children, data, searchText, false);
                 } else {
                     TreeNode categoryNode = tree.find("nodeID", category + idSuffix);
                     if (categoryNode == null) continue;
                     TreeNode[] children = tree.getChildren(categoryNode);
-
-                    applyFilter(tree, children, data, searchText, maxResults, false);
+                    applyFilter(tree, children, data, searchText, false);
                 }
             }
         }
         tileGrid.setData((Record[])data.toArray(new Record[data.size()]));
     }
 
-    private void searchBetaSamples(Tree tree, TreeNode[] children, Set<TreeNode> data, String searchText, 
-        Integer maxResults, boolean skipCategories) 
+    private void searchBetaSamples(Tree tree, TreeNode[] children, Set<TreeNode> data, 
+                                   String searchText, boolean skipCategories) 
     {
         for (int i = 0; i < children.length; i++) {
-            if (maxResults != null && data.size() >= maxResults) return;
             final TreeNode child = children[i];
             if (!tree.hasChildren(child)) {
                 boolean isExplorerTreeNode = child instanceof ExplorerTreeNode;
                 if (isExplorerTreeNode) {
                     final ExplorerTreeNode explorerTreeNode = (ExplorerTreeNode) child;
-                    if (explorerTreeNode.getHTML().contains("BETA")) { // note that BETA tag is only in HTML
-                        children[i].setAttribute("description", explorerTreeNode.getFactory().getDescription());
+                    // note that BETA tag is only in HTML
+                    if (explorerTreeNode.getHTML().contains("BETA")) { 
+                        children[i].setAttribute("description", 
+                            explorerTreeNode.getFactory().getDescription());
                         data.add(children[i]);
                     }
                 }
             } else if(!skipCategories) {
-                searchBetaSamples(tree, tree.getChildren(child), data, searchText, maxResults, skipCategories);
+                searchBetaSamples(tree, tree.getChildren(child), data, searchText, 
+                                  skipCategories);
             }
         }
     }
 
     private void applyFilterAccordingToRanking(Tree tree, TreeNode[] children, 
-            Set<TreeNode> data, String searchText, Integer maxResults)
+                                               Set<TreeNode> data, String searchText)
     {
         String[] arraySearchText = searchText.trim().split(" ");
         for (int j = 0; j < arraySearchText.length; j++) {
@@ -460,12 +496,6 @@ public class TileView extends VLayout {
             searchText = arraySearchText[j].toLowerCase();
 
             for (int i = 0; i < children.length; i++) {
-                // hit limit - continue accumulating rank for existing result nodes
-                if (maxResults != null && data.size() >= maxResults) {
-                    children = data.toArray(new TreeNode[0]);
-                    maxResults = null;
-                    break;
-                }
                 TreeNode child = children[i];
                 if (!tree.hasChildren(child) && child.getClass() == ExplorerTreeNode.class) {
                     ExplorerTreeNode explorerTreeNode = (ExplorerTreeNode) child;
@@ -492,19 +522,18 @@ public class TileView extends VLayout {
         }
     }
     
-    private void applyFilter(Tree tree, TreeNode[] children, Set<TreeNode> data, String searchText, 
-        Integer maxResults, boolean skipCategories) 
+    private void applyFilter(Tree tree, TreeNode[] children, Set<TreeNode> data, 
+                             String searchText, boolean skipCategories) 
     {
         for (int i = 0; i < children.length; i++) {
-            if (maxResults != null && data.size() >= maxResults) return;
             TreeNode child = children[i];
             if (!tree.hasChildren(child)) {
                 if (searchText == null) data.add(child);
 
             } else if(!skipCategories) {
-                //skip categories when searching all nodes so that duplicates that exist in featured section and category are
-                //both not included
-                applyFilter(tree, tree.getChildren(child), data, searchText, maxResults, skipCategories);
+                // skip categories when searching all nodes so that duplicates that exist in
+                // featured section and category are both not included
+                applyFilter(tree, tree.getChildren(child), data, searchText, skipCategories);
             }
         }
     }
@@ -519,4 +548,17 @@ public class TileView extends VLayout {
         }
         return (Integer)rankOfSamples.get(name);
     }
+
+    // truncating the sorted array can be done in JSNI without having to copy the nodes
+    private native void sortAndTruncateNodeList(String property, boolean ascending,
+                                                Integer maxLength)
+    /*-{
+        var tileGridJ = this.@com.smartgwt.sample.showcase.client.TileView::tileGrid,
+            tileGridJS = tileGridJ.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(),
+            data = tileGridJS.data;
+        if (data) {
+            if (property && property != "") data.sortByProperty(property, ascending);
+            if (maxLength != null && data.length > maxLength) data.length = maxLength;
+        }
+    }-*/;
 }

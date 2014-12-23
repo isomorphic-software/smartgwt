@@ -80,7 +80,7 @@ import com.smartgwt.sample.showcase.client.data.ExplorerTreeNode;
 import com.smartgwt.sample.showcase.client.data.FolderTreeNode;
 
 @SuppressWarnings("deprecation")
-public class Showcase implements EntryPoint, HistoryListener {
+public class Showcase implements EntryPoint, HistoryListener, ShowcaseNavigator {
     private static final ShowcaseMessages M = ShowcaseMessages.INSTANCE;
     private static final String preReleaseVersion = "5.0";
 
@@ -114,6 +114,13 @@ public class Showcase implements EntryPoint, HistoryListener {
     private String lastValue;
     private String lastName;
     private List<ExplorerTreeNode> lastOpenedFolders = new ArrayList<ExplorerTreeNode>();
+
+
+    private final String BETA_MESSAGE = 
+        "<br><br><span style='color: red;font-size:11px;font-weight: 700;'>BETA</span> : " + 
+        "This sample demonstrates features available in the <a href=\"" + 
+        "http://www.smartclient.com/product/downloadOtherReleases.jsp#nextVersion\" " + 
+        "target=\"_blank\"> next available version</a> of Smart GWT, ";
 
     public static String getPreReleaseVersion() {
         return preReleaseVersion;
@@ -224,12 +231,11 @@ public class Showcase implements EntryPoint, HistoryListener {
                             searchItem.blurItem();
                             showHomePanel();
                             tileView.updateTiles(value);
-                            searchItem.clearValue();
                         }
                     }
                 }
                 if ("escape".equalsIgnoreCase(keyName)) {
-                    revertState();
+                    revertState(false);
                     return;
                 }
             }
@@ -340,7 +346,7 @@ public class Showcase implements EntryPoint, HistoryListener {
         homePanel.setOverflow(Overflow.HIDDEN);
 
         tileView = new TileView(sideNav.getShowcaseData(), useDesktopMode,
-                                sideNav.hasBetaSamples());
+                                sideNav.hasBetaSamples(), this);
         tileView.setWidth100();
         homePanel.addMember(tileView);
 
@@ -840,17 +846,29 @@ public class Showcase implements EntryPoint, HistoryListener {
         assert !autotest || useDesktopMode;
         assert !useDesktopMode || mainTabSet != null;
 
+        if (!(node instanceof ExplorerTreeNode)) {
+            SC.logWarn("Showcase.showSample() must be passed an ExplorerTreeNode");
+            return;
+        }
         if (node instanceof CommandTreeNode) {
             disableDetailTools();
             final CommandTreeNode commandTreeNode = (CommandTreeNode)node;
             commandTreeNode.getCommand().execute();
-        } else if (node instanceof FolderTreeNode && sideNav.getTree().hasChildren(node)) {
-            final FolderTreeNode folderTreeNode = (FolderTreeNode)node;
+            return;
+        }
+
+        final ExplorerTreeNode explorerTreeNode = (ExplorerTreeNode)node;
+
+        // clear auto-opened folders; show new node
+        revertState(false);
+        showNode(explorerTreeNode, false);
+
+        if (node instanceof FolderTreeNode && sideNav.getTree().hasChildren(node)) {
+            final FolderTreeNode folderTreeNode = (FolderTreeNode)explorerTreeNode;
+            final String folderName = folderTreeNode.getHTML();
+
             String panelID = folderTreeNode.getNodeID();
 
-            revertState();
-
-            final String folderName = folderTreeNode.getHTML();
             String icon = folderTreeNode.getIcon();
             if (icon == null) {
                 icon = "silk/plugin.png";
@@ -865,12 +883,14 @@ public class Showcase implements EntryPoint, HistoryListener {
                 if (tab == null) {
                     tab = new Tab();
                     tab.setID(folderTreeNode.getNodeID() + "_tab");
-                    //store history token on tab so that when an already open is selected, one can retrieve the
-                    //history token and update the URL
+                    // store history token on tab so that when an already open is selected, one
+                    // can retrieve the history token and update the URL
                     tab.setAttribute("historyToken", folderTreeNode.getNodeID());
                     tab.setContextMenu(contextMenu);
 
-                    tab.setTitle("<nobr>" + Canvas.imgHTML(icon, 16, 16) + "&nbsp;<span style='display:inline-block;line-height:16px;vertical-align:text-top'>" + folderName + "</span></nobr>");
+                    tab.setTitle("<nobr>" + Canvas.imgHTML(icon, 16, 16) + "&nbsp;<span " +
+                        "style='display:inline-block;line-height:16px;vertical-align:" +
+                        "text-top'>" + folderName + "</span></nobr>");
 
                     Window window = new Window();
                     window.setTitle(tab.getTitle());
@@ -901,19 +921,18 @@ public class Showcase implements EntryPoint, HistoryListener {
                 if (oldDetailPane != null && oldDetailPane != homePanel) {
                     oldDetailPane.destroy();
                 }
-                splitPane.showDetailPane(folderName, M.shortNavigationPaneTitle().asString(), direction);
+                splitPane.showDetailPane(folderName, M.shortNavigationPaneTitle().asString(),
+                                         direction);
                 updateSampleIcon(icon);
             }
 
             disableDetailTools();
             History.newItem(folderTreeNode.getNodeID(), false);
-        } else if (node instanceof ExplorerTreeNode) {
-            final ExplorerTreeNode explorerTreeNode = (ExplorerTreeNode)node;
+        } else {
             final PanelFactory factory;
             if ("main".equals(explorerTreeNode.getNodeID())) {
                 showHomePanel();
             } else if ((factory = explorerTreeNode.getFactory()) != null) {
-                revertState();
                 final String sampleName = explorerTreeNode.getHTML();
                 String icon = explorerTreeNode.getIcon();
                 if (icon == null) {
@@ -929,26 +948,25 @@ public class Showcase implements EntryPoint, HistoryListener {
                     }
                     final Canvas panel;
                     if (tab == null) {
-                        panel = autotest ? SampleResultsManager.create(mainTabSet, factory) : factory.create();
+                        panel = autotest ? SampleResultsManager.create(mainTabSet, factory) : 
+                            factory.create();
                         if (panel instanceof ShowcasePanel) {
                             String betaMessage = "";
                             if (explorerTreeNode.getHTML().contains("BETA")) {
-                                betaMessage = "<br><br><span style='color: red;font-size:11px;font-weight: 700;'>BETA</span> : "+
-                                    "This sample demonstrates features available in the "+
-                                    "<a href=\"http://www.smartclient.com/product/downloadOtherReleases.jsp#nextVersion\" target=\"_blank\"> "+
-                                    "next available version</a> "+
-                                    "of Smart GWT, " +preReleaseVersion+ ".";
+                                betaMessage = BETA_MESSAGE + preReleaseVersion + ".";
                             }
                             ((ShowcasePanel)panel).setBetaMessage(betaMessage);
                             ((ShowcasePanel)panel).showOverview(useDesktopMode);
                         }
                         tab = new Tab();
                         tab.setID(factory.getID() + "_tab");
-                        // store history token on tab so that when an already open is selected, one can retrieve the
-                        // history token and update the URL
+                        // store history token on tab so that when an already open is selected,
+                        // one can retrieve the history token and update the URL
                         tab.setAttribute("historyToken", explorerTreeNode.getNodeID());
                         tab.setContextMenu(contextMenu);
-                        tab.setTitle("<nobr>" + Canvas.imgHTML(icon, 16, 16) + "&nbsp;<span style='display:inline-block;line-height:16px;vertical-align:text-top'>" + sampleName + "</span></nobr>");
+                        tab.setTitle("<nobr>" + Canvas.imgHTML(icon, 16, 16) + "&nbsp;" +
+                            "<span style='display:inline-block;line-height:16px;" +
+                            "vertical-align:text-top'>" + sampleName + "</span></nobr>");
                         tab.setPane(panel);
                         tab.setCanClose(true);
                         mainTabSet.addTab(tab);
@@ -963,7 +981,8 @@ public class Showcase implements EntryPoint, HistoryListener {
                     assert tab != null;
                     mainTabSet.selectTab(tab);
                 } else {
-                    final Canvas panel = autotest ? SampleResultsManager.create(mainTabSet, factory) : factory.create();
+                    final Canvas panel = autotest ? 
+                        SampleResultsManager.create(mainTabSet, factory) : factory.create();
                     panel.setOverflow(Overflow.AUTO);
                     if (panel instanceof ShowcasePanel) {
                         ((ShowcasePanel)panel).setLayoutMargin(15);
@@ -976,7 +995,8 @@ public class Showcase implements EntryPoint, HistoryListener {
                     if (oldDetailPane != null && oldDetailPane != homePanel) {
                         oldDetailPane.destroy();
                     }
-                    splitPane.showDetailPane(sampleName, M.shortNavigationPaneTitle().asString(), direction);
+                    splitPane.showDetailPane(sampleName, M.shortNavigationPaneTitle().
+                                             asString(), direction);
                     updateSampleIcon(icon);
                 }
             }
@@ -989,7 +1009,8 @@ public class Showcase implements EntryPoint, HistoryListener {
         final List<Canvas> layoutMembers = new ArrayList<Canvas>();
 
         if (folderTreeNode.getDescription() != null) {
-            String descriptionText = "<p class='intro-para'>" + folderTreeNode.getDescription() + "</p>";
+            String descriptionText = "<p class='intro-para'>" + 
+                folderTreeNode.getDescription() + "</p>";
             Canvas descriptionCanvas = new Canvas();
             descriptionCanvas.setPadding(10);
             descriptionCanvas.setContents(descriptionText);
@@ -1007,7 +1028,8 @@ public class Showcase implements EntryPoint, HistoryListener {
         buf.append("<table class='explorerFolderList' align='center' cellSpacing='5'>");
         for (int i = 0; i < numRows; i++) {
             ExplorerTreeNode node1 = (ExplorerTreeNode) children[firstColIndex++];
-            ExplorerTreeNode node2 = (secondColIndex < children.length ? (ExplorerTreeNode) children[secondColIndex++] : null);
+            ExplorerTreeNode node2 = (secondColIndex < children.length ? 
+                                      (ExplorerTreeNode) children[secondColIndex++] : null);
 
             this._htmlForCell(node1, buf);
             buf.append("<td width=10>&nbsp;</td>");
@@ -1109,27 +1131,53 @@ public class Showcase implements EntryPoint, HistoryListener {
         }
     }
 
-    private void revertState() {
-        if (lastMatch != null) {
-            lastMatch.setHTML(lastName);
-            sideNav.refreshRow(sideNav.getRecordIndex(lastMatch));
-        }
-        lastValue = null;
-        lastMatch = null;
-        lastName = null;
+    private void revertState(boolean preserveSearch) {
+        if (!preserveSearch) {
+            if (lastMatch != null) {
+                lastMatch.setHTML(lastName);
+                sideNav.refreshRow(sideNav.getRecordIndex(lastMatch));
+            }
+            lastValue = null;
+            lastMatch = null;
+            lastName = null;
 
+            searchForm.clearValue("search");
+        }
         if (lastOpenedFolders != null) {
-            for (int i = 0; i < lastOpenedFolders.size(); i++) sideNav.getTree().closeFolder(lastOpenedFolders.get(i));
+            for (int i = 0; i < lastOpenedFolders.size(); i++) {
+                sideNav.getTree().closeFolder(lastOpenedFolders.get(i));
+            }
         }
         lastOpenedFolders = null;
-        searchForm.clearValue("search");
+    }
+
+    private void showNode(ExplorerTreeNode node, boolean saveLastOpened) {
+        if (saveLastOpened) lastOpenedFolders = new ArrayList<ExplorerTreeNode>();
+        
+        // open intervening folders to the requested node
+        TreeNode[] parents = (sideNav.getTree().getParents(node) != null) ? 
+                              sideNav.getTree().getParents(node) : null;
+        if (parents != null) {
+            for (int i = 0; i < parents.length; i++) {
+                TreeNode parent = parents[i];
+                if (!sideNav.getTree().isOpen(parent)) {
+                    if (saveLastOpened) lastOpenedFolders.add((ExplorerTreeNode)parent);
+                        sideNav.getTree().openFolder(parent);
+                }
+            }
+        }
+        // if the matched node is a folder, auto-expand it (probably want to see what's inside)
+        if (sideNav.getTree().isFolder(node) && !sideNav.getTree().isOpen(node)) {
+            if (saveLastOpened) lastOpenedFolders.add(node);
+            sideNav.getTree().openFolder(node);
+        }
     }
 	
     private void findNode() {
         if ((sideNav == null) || (sideNav.getData() == null)) return;
         String search = (String)searchForm.getValue("search");
         if (search == null) {
-            revertState();
+            revertState(false);
             return;
         }
         search = search.toLowerCase();
@@ -1159,29 +1207,10 @@ public class Showcase implements EntryPoint, HistoryListener {
 
         if (match != null) {
             lastMatch = match;
-            // collapse previously auto-opened folders
-            if (lastOpenedFolders != null) {
-                for (int i = 0; i < lastOpenedFolders.size(); i++) {
-                    sideNav.getTree().closeFolder(lastOpenedFolders.get(i));
-                }
-            }
-            lastOpenedFolders = null;
-            TreeNode[] parents = (sideNav.getTree().getParents(match) != null) ? sideNav.getTree().getParents(match) : null;
-            if (parents != null) {
-                lastOpenedFolders = new ArrayList<ExplorerTreeNode>();
-                for (int i = 0; i < parents.length; i++) {
-                    TreeNode parent = parents[i];
-                    if (!sideNav.getTree().isOpen(parent)) {
-                        lastOpenedFolders.add((ExplorerTreeNode)parent);
-                        sideNav.getTree().openFolder(parent);
-                    }
-                }
-            }
-            // if the matched node is a folder, auto-expand it (probably want to see what's inside)
-            if (sideNav.getTree().isFolder(match) && !sideNav.getTree().isOpen(match)) {
-                sideNav.getTree().openFolder(match);
-                lastOpenedFolders.add(match);
-            }
+
+            revertState(true);
+            this.showNode(match, true);
+
             int recordIndex = sideNav.getRecordIndex(match);
             sideNav.refreshRow(recordIndex);
             sideNav.scrollToRow(recordIndex);
@@ -1207,5 +1236,28 @@ public class Showcase implements EntryPoint, HistoryListener {
             }
         }
         return null;
+    }
+
+    // actions on the Showcase allowed to the TileView
+
+    public void incrementalSearch(String text) {
+        revertState(false);
+        if (text != null) {
+            searchForm.setValue("search", text);
+            findNode();
+        }
+    }
+
+    public boolean iterateCurrentMatch(String text) {
+        // text is guaranteed not to be null
+        if (text.equals(searchForm.getValue("search"))) {
+            findNode();
+            return true;
+        }
+        return false;
+    }
+
+    public void clearSelectedSamples() {
+        sideNav.deselectAllRecords();
     }
 }
