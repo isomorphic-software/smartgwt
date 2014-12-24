@@ -87,8 +87,6 @@ public class InlinedMenuSample extends ShowcasePanel {
             menuButton = new MenuButton(null, menu);
             menuButton.setWidth(1);
             menuButton.setOverflow(Overflow.VISIBLE);
-            menuButton.setAutoDraw(false);
-            setMembers(menuButton);
 
             MenuItem[] items = menu.getItems();
             inlinedItems  = new Canvas[items.length];
@@ -97,10 +95,10 @@ public class InlinedMenuSample extends ShowcasePanel {
                 Canvas item = createMenuItem(items[i].getTitle());
                 inlinedItems[i] = item;
             }
+            setMembers(this.inlinedItems);
         }
 
         public InlinedMenu(Menu menu) {
-            setMembers();
             setCanAdaptWidth(true);
             setOverflow(Overflow.HIDDEN);
             setDefaultLayoutAlign(Alignment.CENTER);
