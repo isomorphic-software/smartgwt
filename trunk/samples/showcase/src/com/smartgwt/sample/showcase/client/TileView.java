@@ -213,8 +213,12 @@ public class TileView extends VLayout {
             public void onIconClick(IconClickEvent event) {
                 if ("clear".equals(event.getIcon().getName())) {
                     filterForm.reset();
-                    featuredCB.setValue(true);
-                    ascendingItem.setValue(true);
+                    if (useDesktopMode) {
+                        featuredCB.setValue(true);
+                        ascendingItem.setValue(true);
+                    } else {
+                        categoriesItem.setValue(new String[] {"featured_category"});
+                    }
                     navigator.incrementalSearch(null);
                 }
                 updateTiles();
@@ -384,7 +388,7 @@ public class TileView extends VLayout {
         final String searchText = (String)searchItem.getValue();
         this.considerForRanking = searchText != null && searchText.length() > 0;
         final List<String> categories = new ArrayList<String>();
-        if (!Browser.getIsTouch()) {
+        if (useDesktopMode) {
             if (featuredCB.getValueAsBoolean()) categories.add("featured_category");
             if (newSamplesCB.getValueAsBoolean()) categories.add("new_category");
             if (comboBoxCB.getValueAsBoolean()) categories.add("combobox_category");
