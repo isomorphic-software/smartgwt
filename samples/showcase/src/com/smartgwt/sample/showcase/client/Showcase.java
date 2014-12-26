@@ -921,9 +921,9 @@ public class Showcase implements EntryPoint, HistoryListener, ShowcaseNavigator 
                 if (oldDetailPane != null && oldDetailPane != homePanel) {
                     oldDetailPane.destroy();
                 }
+                updateSampleIcon(icon);
                 splitPane.showDetailPane(folderName, M.shortNavigationPaneTitle().asString(),
                                          direction);
-                updateSampleIcon(icon);
             }
 
             disableDetailTools();
@@ -995,9 +995,9 @@ public class Showcase implements EntryPoint, HistoryListener, ShowcaseNavigator 
                     if (oldDetailPane != null && oldDetailPane != homePanel) {
                         oldDetailPane.destroy();
                     }
+                    updateSampleIcon(icon);
                     splitPane.showDetailPane(sampleName, M.shortNavigationPaneTitle().
                                              asString(), direction);
-                    updateSampleIcon(icon);
                 }
             }
         }
