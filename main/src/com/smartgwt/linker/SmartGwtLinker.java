@@ -45,15 +45,17 @@ public class SmartGwtLinker extends AbstractLinker {
         Set<EmittedArtifact> emittedArtifacts = artifacts.find(EmittedArtifact.class);
         for (EmittedArtifact emittedArtifact : emittedArtifacts) {
             String partialPath = emittedArtifact.getPartialPath();
-            //if encounter ISC_Core.js or Page.js (when inheriting SmartGwtDebug.gwt.xml), inject the appropriate
-            //isomorphicDir var so that users don't need to explicitly specify this in their host html file.
+            // If encounter ISC_Core.js or Page.js (when inheriting SmartGwtDebug.gwt.xml),
+            // inject the appropriate isomorphicDir var so that users don't need to explicitly
+            // specify this in their host html file.
             if (partialPath.endsWith("/ISC_Core.js") || partialPath.endsWith("/Page.js")) {
-                String contents = getContents(emittedArtifact, logger);
+                String contents = SmartGwtLinkerUtils.getContents(emittedArtifact, logger);
                 int isoDirInd = contents.indexOf("/*#ISO_DIR#*/");
                 if (isoDirInd >= 0) {
                     StringBuffer sb = new StringBuffer(contents);
                     sb.replace(isoDirInd, isoDirInd + "/*#ISO_DIR#*/".length(), 
-                        "if(typeof isomorphicDir == 'undefined'){isomorphicDir = '" + context.getModuleName() + "/sc/';}\n");
+                        "if(typeof isomorphicDir == 'undefined'){isomorphicDir = '" +
+                               context.getModuleName() + "/sc/';}\n");
 
                     toReturn.remove(emittedArtifact);
                     toReturn.add(emitString(logger, sb.toString(), partialPath));
@@ -61,31 +63,5 @@ public class SmartGwtLinker extends AbstractLinker {
             }
         }
         return toReturn;
-    }
-
-    /**
-     * Returns the contents of the artifact as a String.
-     * @param emittedArtifact the artifact
-     * @param logger the logger
-     * @return contents of the artifact
-     * @throws UnableToCompleteException
-     */
-    private String getContents(EmittedArtifact emittedArtifact, TreeLogger logger) throws UnableToCompleteException {
-        InputStream in = emittedArtifact.getContents(logger);
-        BufferedInputStream bis = new BufferedInputStream(in);
-        ByteArrayOutputStream buf = new ByteArrayOutputStream();
-        try {
-            int result = bis.read();
-            while (result != -1) {
-                byte b = (byte) result;
-                buf.write(b);
-                result = bis.read();
-
-            }
-        } catch (IOException e) {
-            logger.log(TreeLogger.ERROR, "Unable to read resource load_skin.js", e);
-            throw new UnableToCompleteException();
-        }
-        return buf.toString();
     }
 }
