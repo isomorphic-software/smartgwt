@@ -31,6 +31,13 @@ include them yourself in your host html file as follows :
 
   	<add-linker name="smartgwt" />
 
+    <!-- Add our SmartGwtScriptInjector Linker, which will augment the noscript.js file to load
+         scripts that are no longer loaded by the (possibly default) xsiframe linker. -->
+    <define-linker name="scriptInjector" class="com.smartgwt.linker.SmartGwtScriptInjector"/>
+    <add-linker    name="scriptInjector"/> 
+
+    <set-configuration-property name='xsiframe.failIfScriptTag' value='FALSE'/>
+
   	<source path='client'/>
   	<super-source path='deprecated'/>
   	<source path='logicalstructure'/>
