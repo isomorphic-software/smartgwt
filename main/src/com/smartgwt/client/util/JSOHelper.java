@@ -1478,5 +1478,40 @@ public class JSOHelper {
         }
         return properties;
     }-*/;
+    
+    
+    // Invoking functions in JavaScript scope
+    // Convert Java Object Array to JavaScript array of appropriate types and use function.apply()
+    /**
+     * Invoke a method on some JavaScript object, passing in the specified array of parameters.
+     * <P> 
+     * This method converts the specified parameters to a equivalent 
+     * objects in JavaScript before calling the method in JavaScript scope, and will convert any return
+     * value to Java before returning it - see 
+     * {@link com.smartgwt.client.docs.JavaToJavaScriptConversion} for details of the conversions
+     * that take place.<br>
+     * If the invoked method has no return value, this method will return null.
+     * 
+     * @param target
+     * @param methodName
+     * @param arguments
+     * @return
+     */
+    public static Object callMethod (JavaScriptObject target, String methodName, Object[] arguments) {
+    	
+    	JavaScriptObject argumentsJS =  convertToJavaScriptArray(arguments);
+    	JavaScriptObject result = callMethodJS(target, methodName, argumentsJS);
+    	if (result == null) return null;
+    	// Use convertToJava to appropriately wrap things in the right object type.
+    	return convertToJava(result);
+    }
+    private static native JavaScriptObject callMethodJS (JavaScriptObject target, String methodName, JavaScriptObject arguments) /*-{
+    	var returnVal = null;
+    	if (target != null && target[methodName] != null) {
+    		returnVal = target[methodName].apply(target, arguments);
+    	}
+    	return returnVal;
+    	
+    }-*/;
 
 }
