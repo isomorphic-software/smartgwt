@@ -5,7 +5,9 @@ import java.util.Arrays;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.types.Alignment;
+import com.smartgwt.client.types.Visibility;
 import com.smartgwt.client.types.LayoutPolicy;
+import com.smartgwt.client.data.RecordList;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Button;
 import com.smartgwt.client.widgets.Label;
@@ -32,9 +34,11 @@ public class InlinedMenuSample extends ShowcasePanel {
         "Smart GWT's adaptive layout system allows components to react to the amount of " +
         "available space and show a different appearance space for compact spaces.<p>" +
         
-        "In the example below, a menu is shown inline in a tool strip.  Use the resize bar " +
-        "at the right end of the tool strip to reduce the available size, and note how the " +
-        "menu turns into a drop-down control that provides access to the same menu options." +
+        "In the example to the left, a menu is shown inline in a tool strip.  Use the resize " +
+        "bar at the right end of the tool strip to reduce the available size, and note how " +
+        "a drop-down control appears that provides access to those items that no longer " +
+        "can be inlined due to the reduced available space.  At its minimum width, no " +
+        "items are inlined and access to all of them is provided via the drop-down control." +
 
         "<p>Click the Button that says \"Longer Name\" and try resizing again.  Note how the " +
         "menu switches to a drop-down sooner, because more space is taken by the name.<p>" +
@@ -63,12 +67,12 @@ public class InlinedMenuSample extends ShowcasePanel {
 
     public class InlinedMenu extends HLayout {
 
-        int narrowWidth = 20;
-        int wideWidth;
-
         Menu menu;
         MenuButton menuButton;
-        Canvas[] inlinedItems;
+        Integer minimalWidth;
+
+        RecordList inlinedItems = new RecordList();
+        int inlinedCount, inlinedMax;
 
         private ToolStripButton createMenuItem(final String title) {
             ToolStripButton item = new ToolStripButton(title);
@@ -78,24 +82,48 @@ public class InlinedMenuSample extends ShowcasePanel {
                     SC.say(title);
                 }
             });
-            item.setWrap(false);
             item.setWidth(1);
+            item.setWrap(false);
+            item.setVisibility(Visibility.HIDDEN);
             return item;
         }
 
         private void initialize() {
+            // add buttons to represent inlined menu items
+            MenuItem[] items = menu.getItems();
+            for (int i = 0; i < items.length; i++) {
+                addMember(createMenuItem(items[i].getTitle()));
+            }
+            inlinedMax = getMembers().length;
+
+            // add a menu button to show non-inlined items
             menuButton = new MenuButton(null, menu);
             menuButton.setWidth(1);
             menuButton.setOverflow(Overflow.VISIBLE);
+            addMember(menuButton);
+        }
 
-            MenuItem[] items = menu.getItems();
-            inlinedItems  = new Canvas[items.length];
+        // get width of the next item to be inlined, by drawing it if needed
+        private int getNextInlinedItemWidth() {
+            Canvas item = getMembers()[inlinedCount];
+            if (!item.isDrawn()) item.draw();
+                                              
+            boolean isLast = inlinedCount == inlinedMax - 1;
+            return item.getVisibleWidth() + (isLast ? -minimalWidth : 0);
+        }
+    
+        // add an  inlined item - hide menu button if appropriate
+        private void addInlinedItem() {
+            inlinedItems.addAt(menu.getDataAsRecordList().removeAt(0), 0);
+            if (menu.getTotalRows() == 0) menuButton.hide();
+            getMembers()[inlinedCount++].show();
+        }
 
-            for (int i = 0; i < items.length; i++) {
-                Canvas item = createMenuItem(items[i].getTitle());
-                inlinedItems[i] = item;
-            }
-            setMembers(this.inlinedItems);
+        // remove an inlined item - show menu button if appropriate
+        private void removeInlinedItem() {
+            if (menu.getTotalRows() == 0) menuButton.show();
+            menu.getDataAsRecordList().addAt(inlinedItems.removeAt(0), 0);
+            getMembers()[--inlinedCount].hide();
         }
 
         public InlinedMenu(Menu menu) {
@@ -104,30 +132,40 @@ public class InlinedMenuSample extends ShowcasePanel {
             setDefaultLayoutAlign(Alignment.CENTER);
             setAdaptWidthByCustomizer(new AdaptWidthByCustomizer() {
                 @Override
-                public int adaptWidthBy(int deltaX, int unadaptedWidth) {
-                    // establish the "wide" width needed for showing all menu items
-                    if (wideWidth == 0) {
-                        for (int i = 0; i < inlinedItems.length; i++) {
-                            inlinedItems[i].draw();
-                            wideWidth += inlinedItems[i].getVisibleWidth();
-                        };
+                public int adaptWidthBy(int pixelDifference, int unadaptedWidth) {
+                    // set the minimal width
+                    if (minimalWidth == null) {
+                        minimalWidth = menuButton.getVisibleWidth();
                     }
-                    // if we're offered enough pixels to expand to our "wide" width, accept them
-                    if (unadaptedWidth < wideWidth && deltaX >= wideWidth - unadaptedWidth) {
-                        setMembers(inlinedItems);
-                        return wideWidth - unadaptedWidth;
+
+                    // all non-hidden children are drawn; expected width is sum of their widths
+                    int expectedWidth = 0;
+                    for (Canvas member : getMembers()) {
+                        if (member.getVisibility() == Visibility.HIDDEN) continue;
+                        expectedWidth += member.getVisibleWidth();
                     }
-                    // drop to our "narrow" width if we're wider than our "narrow" width, and:
-                    // - we're at some unexpected width less than our "wide" width, or
-                    // - an overflow is present
-                    if (unadaptedWidth > narrowWidth && (unadaptedWidth < wideWidth || 
-                                                         deltaX < 0))
-                    {
-                        setMembers(menuButton);
-                        return narrowWidth - unadaptedWidth;
+
+                    // calculate desired width based on overflow/surplus and unadapted width;
+                    // if desired width differs from the expected, add/remove inlined items
+                    int desiredWidth = unadaptedWidth + pixelDifference;
+                    if (desiredWidth < expectedWidth) {
+                        // remove inlined items if we have an overflow
+                        while (inlinedCount > 0 && expectedWidth > desiredWidth) 
+                            {
+                                removeInlinedItem();
+                                expectedWidth -= getNextInlinedItemWidth();
+                            }
+                    } else if (desiredWidth > expectedWidth) {
+                        int deltaX;
+                        // add inlined items if we have surplus space
+                        while (inlinedCount < inlinedMax && 
+                               expectedWidth + (deltaX = getNextInlinedItemWidth()) <= desiredWidth)
+                            {
+                                addInlinedItem();
+                                expectedWidth += deltaX;
+                            }
                     }
-                    // no change
-                    return 0;
+                    return expectedWidth - unadaptedWidth;
                 }
             });
             this.menu = menu;
@@ -153,7 +191,7 @@ public class InlinedMenuSample extends ShowcasePanel {
         variableName.setWrap(false);
 
         Menu menu = new Menu();
-        menu.setData(new MenuItem[] {
+        menu.setItems(new MenuItem[] {
             createMenuItem("Contact"),
             createMenuItem("Hire Now"),
             createMenuItem("View Résumé")
