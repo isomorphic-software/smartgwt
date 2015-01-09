@@ -157,11 +157,15 @@ public class Record extends RefDataClass {
     }
     
     /**
-     * Convert this record to a Map. This is a recursive conversion so if an attribute on this record is set to
-     * another Record instance it will also be converted to a Map.
-     * @return
+     * Convert this record to a Map. This is a recursive conversion so if an attribute on this
+     * record is set to another Record instance it will also be converted to a Map.
+     * @return the Map
      */
-    public Map toMap() {
-        return JSOHelper.convertToMap(this.getJsObj());
-    }
+    public native Map toMap() /*-{
+        $wnd.SmartGWT._cleanSgwtProperties = true;
+        var jsObj = this.@com.smartgwt.client.data.Record::getJsObj()(),
+            map = @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj);
+        delete $wnd.SmartGWT._cleanSgwtProperties;
+        return map;
+    }-*/;
 }
