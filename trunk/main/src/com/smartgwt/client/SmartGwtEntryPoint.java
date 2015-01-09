@@ -293,6 +293,13 @@ public class SmartGwtEntryPoint implements EntryPoint {
                 if (object[treeProp] != null) {
 	    	 	    object = $wnd.isc.Tree.getCleanNodeData(object);
 	    	 	}
+
+                // remove SGWT backrefs if appropriate
+                // see http://forums.smartclient.com/showthread.php?p=127912
+                if (this._cleanSgwtProperties) {
+                    delete object.__ref;
+                    delete object.__module;
+                }
 	    	 	
 	    	 	for (var fieldName in object) {
 	    	 		// Not sure whether this could really happen
