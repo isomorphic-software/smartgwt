@@ -54,8 +54,9 @@ public class SmartGwtEntryPoint implements EntryPoint {
             @com.google.gwt.core.client.GWT::log(Ljava/lang/String;Ljava/lang/Throwable;)(message, @com.smartgwt.client.core.JsObject.SGWT_WARN::new(Ljava/lang/String;)(message));
         }
 
-        // this must be called after we verify the SC libs are loaded
+        // these must be called after we verify the SC libs are loaded
         @com.smartgwt.client.util.LogUtil::setJSNIErrorHandler()();
+        @com.smartgwt.client.util.LogUtil::addSGWTLoggerCategories()();
 
         //pre GWT 2.0 fallback
         if(typeof $entry === "undefined") {
