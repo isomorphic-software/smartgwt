@@ -35,4 +35,28 @@ public class LogUtil {
         SC.logWarn(message);
         return true;
     }
+
+    public static native void addSGWTLoggerCategories() /*-{
+
+        var defaultCategories = $wnd.isc.DebugTarget.getPrototype().DEFAULT_CATEGORIES;
+
+        var sgwtCategories = new $wnd.Array(
+            {name: "configProperties", predecessor: "loadTime",
+             description: "Tracks and alerts when config properties are applied incorrectly"}
+        );
+
+        for (var i = 0; i < sgwtCategories.length; i = j) {
+            var currentCategories = new $wnd.Array(),
+                predecessor = sgwtCategories[i].predecessor;
+            for (var j = i; j < sgwtCategories.length; j++) {
+                if (j > i && sgwtCategories[j].predecessor != predecessor &&
+                             sgwtCategories[j].predecessor != null) break;
+                currentCategories.add(sgwtCategories[j]);
+            }
+            var position = defaultCategories.findIndex("name", predecessor);
+            if (position >= 0) defaultCategories.addListAt(currentCategories, position + 1);
+            else               defaultCategories.addList  (currentCategories);
+        }
+            
+    }-*/;
 }
