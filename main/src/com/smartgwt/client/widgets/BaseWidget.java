@@ -325,6 +325,9 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
      * Draws the widget on the page.&#010
      */
     public native void draw() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "draw", "");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.draw();
     }-*/;
