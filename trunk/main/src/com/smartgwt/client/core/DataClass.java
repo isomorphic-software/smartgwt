@@ -30,6 +30,7 @@ import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.ValueEnum;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.widgets.BaseWidget;
+import com.smartgwt.client.util.ConfigUtil;
 import com.smartgwt.client.util.SC;
 
 public class DataClass extends JsObject implements HasHandlers {
@@ -80,6 +81,17 @@ public class DataClass extends JsObject implements HasHandlers {
 
     public boolean isFactoryCreated () {
         return factoryCreated;
+    }
+
+    // if this instance has been used to set the properties of another object, mark it as
+    // read-only so that no further changes can be made (lest a warning be generated).
+    protected boolean readOnly;
+
+    public void setReadOnly() {
+        readOnly = true;
+    }
+    public boolean getReadOnly() {
+        return readOnly;
     }
 
     public DataClass() {
@@ -590,59 +602,13 @@ public class DataClass extends JsObject implements HasHandlers {
         return manager == null? 0 : manager.getHandlerCount(type);
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////
-    // Configuration Safeguards - detect if this DataClass instance is improperly used to 
-    //                            initialize another Object (BaseWidget, BaseClass, etc.)
-
-    public static final String CONFIG_PROPERTIES = "configProperties";
-
-    // if this instance has been used to set the properties of another object, mark it as
-    // read-only so that no further changes can be made (lest a warning be generated).
-    protected boolean readOnly;
-
-    public void setReadOnly() {
-        readOnly = true;
-    }
-    public boolean getReadOnly() {
-        return readOnly;
-    }
-
-    // java.lang.Class.getSimpleName() is only supported in GWT 2.6+
-    private static String getSimpleClassName(Class targetClass) {
-        String className = targetClass.getName();
-        return className.replaceFirst(".*\\.", "");
-    }
-
-    public void warnOfPostConfigHandlerAdd(String callerMethodName, Class argumentType) {
-        String className = getSimpleClassName(this.getClass()),
-               callerDesc = className + "." + callerMethodName + "()",
-               argumentTypeName = argumentType.getName();
-        SC.logWarn(callerDesc + ": unable to add the " + argumentTypeName + " handler to the " +
-                   className + " instance because the instance was previously used to " +
-                   "configure the properties of another Object", CONFIG_PROPERTIES);
-    }
-
-    public void warnOfPostConfigModification(String callerMethodName, String argumentTypeName) {
-        String className = getSimpleClassName(this.getClass()),
-               callerDesc = className + "." + callerMethodName + "()";
-        SC.logWarn(callerDesc + ": unable to apply the " + argumentTypeName + " argument to " +
-                   "the " + className + " instance because the instance was previously used " +
-                   "to configure the properties of another Object", CONFIG_PROPERTIES);
-    }
-
-    public void warnOfReconfiguration(Class callerClass, String callerMethodName,
-                                      String argumentTypeName)
-    {
-        String className = getSimpleClassName(callerClass),
-               callerDesc = className + "." + callerMethodName + "()";
-
+    public void logConfiguration(Class callerClass, String callerMethodName) {
+        String configTypeName = ConfigUtil.getSimpleClassName(this.getClass());
         if (readOnly) {
-            SC.logWarn(callerDesc + ": the " + argumentTypeName + " passed has already been " +
-                       "applied to an Object; unable to apply it again", CONFIG_PROPERTIES);
+            ConfigUtil.warnOfReconfiguration(callerClass, callerMethodName, configTypeName);
         } else {
-            SC.logDebug(callerDesc + ": the " + argumentTypeName + " passed will be applied to " +
-                        "this " + className + " instance", CONFIG_PROPERTIES);
-        }
+            ConfigUtil.debugInitialConfiguration(callerClass, callerMethodName, configTypeName);
+        }            
     }
 
 }

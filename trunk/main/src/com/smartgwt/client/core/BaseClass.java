@@ -40,6 +40,7 @@ public abstract class BaseClass implements HasHandlers {
     protected String id;
     protected JavaScriptObject config = JSOHelper.createObject();
     protected String scClassName;
+    protected boolean configOnly;
 
     public BaseClass() {
         internalSetID(SC.generateID(getClass().getName()), true);
@@ -303,6 +304,16 @@ public abstract class BaseClass implements HasHandlers {
     // install callbacks for a live SC object
     protected void onBind() {
         wrapDestroy();
+    }
+
+    // if this instance has been used to set the properties of another object, mark it as
+    // "config only" so that a warning will be generated if it's ever instantiated.
+    public void setConfigOnly(boolean configOnly) {
+        this.configOnly = configOnly;
+    }
+
+    public boolean isConfigOnly() {
+         return configOnly;
     }
 
     public String getAttribute(String attribute) {
