@@ -805,6 +805,10 @@ public class I18nUtil {
             $wnd.isc.NumberUtil.addClassProperties({ negativeSymbol: messages.@com.smartgwt.client.i18n.SmartGwtMessages::numberUtil_negativeSymbol()() });
         }
 
+        if($wnd.isc.TabSet) {
+            $wnd.isc.TabSet.addProperties({ariaCloseableSuffix: messages.@com.smartgwt.client.i18n.SmartGwtMessages::tabSet_ariaCloseableSuffix()()});
+        }
+
 //<localeGenerator -- SC locale parser will process whatever's inside these tags
 
         $wnd.isc.addProperties($wnd.Date, {dayNames: [
