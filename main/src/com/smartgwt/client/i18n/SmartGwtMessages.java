@@ -4746,6 +4746,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String summaryBuilder_helpTextIntro();
 
   /**
+   * Translated ", closeable".
+   * 
+   * @return translated ", closeable"
+   */
+  @DefaultMessage(", closeable")
+  @Key("tabSet_ariaCloseableSuffix")
+  String tabSet_ariaCloseableSuffix();
+
+  /**
    * Translated "am".
    * 
    * @return translated "am"
