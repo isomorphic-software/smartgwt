@@ -97,6 +97,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String calendar_detailsButtonTitle();
 
   /**
+   * Translated "Remove Event".
+   * 
+   * @return translated "Remove Event"
+   */
+  @DefaultMessage("Remove Event")
+  @Key("calendar_removeButtonTitle")
+  String calendar_removeButtonTitle();
+
+  /**
    * Translated "Event Name".
    * 
    * @return translated "Event Name"
