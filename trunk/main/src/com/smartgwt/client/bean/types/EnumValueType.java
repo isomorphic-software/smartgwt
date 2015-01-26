@@ -17,6 +17,7 @@
 package com.smartgwt.client.bean.types;
 
 import com.smartgwt.client.bean.BeanValueType;
+import com.google.gwt.regexp.shared.RegExp;
 
 public class EnumValueType<ValueType extends Enum<ValueType>> extends OtherValueType<ValueType> {
 
@@ -42,6 +43,8 @@ public class EnumValueType<ValueType extends Enum<ValueType>> extends OtherValue
         return super.convertabilityFrom(value);
     }
 
+    private static final RegExp camelCase = RegExp.compile("[A-Z]", "g");
+
     @Override
     public ValueType convertFrom (Object value) {
         if (value instanceof String) {
@@ -52,8 +55,15 @@ public class EnumValueType<ValueType extends Enum<ValueType>> extends OtherValue
                 return Enum.valueOf(valueType, noDashes.toUpperCase());
             }
             catch (IllegalArgumentException e) {
-                // But we may as well try the lowercase version if that doesn't work
-                return Enum.valueOf(valueType, noDashes);
+                // However, in some cases, there are underscores inserted to
+                // separate camel-case words -- e.g. isNull -> IS_NULL
+                try {
+                    return Enum.valueOf(valueType, camelCase.replace(noDashes, "_$&").toUpperCase());
+                }
+                catch (IllegalArgumentException f) {
+                    // But we may as well try the lowercase version if that doesn't work
+                    return Enum.valueOf(valueType, noDashes);
+                }
             }
         } else {
             // The superclass will deal with the case where the value is
