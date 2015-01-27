@@ -175,7 +175,31 @@ public class SmartGwtEntryPoint implements EntryPoint {
             $wnd.isc.Canvas.validateFieldNames = true;
         }
 
-        $wnd.SmartGWT.convertToJavaType = $entry(function(obj) {
+        // helper routine for convertToJavaType(); not wrapped with $entry()
+        $wnd.SmartGWT._convertToJavaArrayType = function (obj, type) {
+            if ($wnd.isc.SimpleType.inheritsFrom(type, "text")) {
+                return @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
+            } else if ($wnd.isc.SimpleType.inheritsFrom(type, "date")) {
+                return @com.smartgwt.client.util.JSOHelper::convertToJavaDateArray(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
+            } else if ($wnd.isc.SimpleType.inheritsFrom(type, "boolean")) {
+                return @com.smartgwt.client.util.JSOHelper::convertToJavaBooleanArray(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
+            } else if ($wnd.isc.SimpleType.inheritsFrom(type, "integer")) {
+                return @com.smartgwt.client.util.JSOHelper::convertToJavaIntegerArray(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
+            } else if ($wnd.isc.SimpleType.inheritsFrom(type, "float")) {
+                return @com.smartgwt.client.util.JSOHelper::convertToJavaDoubleArray(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
+            } else {
+                return @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
+            }
+        };
+
+        //> @method convertToJavaType()
+        // Converts a JS object to a Java object.  The type argument is optional
+        // and only used when isc.isAn.Array(obj) is true.  The type is determined
+        // by inspecting the object in all other cases.
+        // @param obj (object) the JS object to be converted
+        // @param [type] (String) type of the field as in +link{DataSourceField.type} (optional)
+        //<
+        $wnd.SmartGWT.convertToJavaType = $entry(function(obj, type) {
         		if(obj == null) return null;
                 
                 var objType = typeof obj;
@@ -208,11 +232,10 @@ public class SmartGwtEntryPoint implements EntryPoint {
                     return @com.smartgwt.client.util.JSOHelper::convertToJavaDate(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
                 } else if (obj._constructor && obj._constructor == 'DateRange') {
                     return @com.smartgwt.client.widgets.form.fields.DateRangeItem::convertToDateRange(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
-                } else if(@com.smartgwt.client.util.JSOHelper::isJSO(Ljava/lang/Object;)(obj)) {
-                	
-                    return obj;
                 } else if($wnd.isc.isA.Array(obj)) {
-                    return @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
+                    return this._convertToJavaArrayType(obj, type);
+                } else if(@com.smartgwt.client.util.JSOHelper::isJSO(Ljava/lang/Object;)(obj)) {
+                    return obj;
                 } else {
                 	// We were unable to determine the type - return the object unmodified.
                     return obj;

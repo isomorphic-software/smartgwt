@@ -956,6 +956,14 @@ public class JSOHelper {
         return obj instanceof Map;
     }
 
+    /**
+     * @param obj the object
+     * @return true if object is a Java Array
+     */
+    public static boolean isJavaArray(Object obj) {
+        return obj == null ? false : obj.getClass().isArray();
+    }
+
     public static <O extends JavaScriptObject> JsArray<O> convertToJsArray(O[] array) {
         if (array == null) return null;
         else {
@@ -1207,6 +1215,11 @@ public class JSOHelper {
         return (result == null ? null : result);
     }-*/;
 
+    public static native Boolean getBooleanArrayValue(JavaScriptObject array, int index) /*-{
+        var ret = array[index];
+        return ret == null ? null : @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
     public static native int getIntArrayValue(JavaScriptObject array, int index) /*-{
         return array[index];
     }-*/;
@@ -1246,6 +1259,15 @@ public class JSOHelper {
         return array.length;
     }-*/;
 
+    public static Boolean[] convertToJavaBooleanArray(JavaScriptObject array) {
+        int length = getArrayLength(array);
+        Boolean[] arr = new Boolean[length];
+        for (int i = 0; i < length; i++) {
+            arr[i] = getBooleanArrayValue(array, i);
+        }
+        return arr;
+    }
+
     public static int[] convertToJavaIntArray(JavaScriptObject array) {
         int length = getArrayLength(array);
         int[] arr = new int[length];
@@ -1255,7 +1277,14 @@ public class JSOHelper {
         return arr;
     }
 
+    /**
+     * @deprecated deprecated in favor of {@link #convertToJavaIntegerArray}
+     */
     public static Integer[] convertToJavaInterArray(JavaScriptObject array) {
+        return convertToJavaIntegerArray(array);
+    }
+
+    public static Integer[] convertToJavaIntegerArray(JavaScriptObject array) {
         int length = getArrayLength(array);
         Integer[] arr = new Integer[length];
         for (int i = 0; i < length; i++) {
