@@ -196,6 +196,8 @@ public class SmartGwtEntryPoint implements EntryPoint {
         // Converts a JS object to a Java object.  The type argument is optional
         // and only used when isc.isAn.Array(obj) is true.  The type is determined
         // by inspecting the object in all other cases.
+        // Note: If null is explicitly passed for type, conversion to a Java array
+        // (if applicable) will be skipped and a JavaScriptObject will be returned.
         // @param obj (object) the JS object to be converted
         // @param [type] (String) type of the field as in +link{DataSourceField.type} (optional)
         //<
@@ -232,7 +234,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
                     return @com.smartgwt.client.util.JSOHelper::convertToJavaDate(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
                 } else if (obj._constructor && obj._constructor == 'DateRange') {
                     return @com.smartgwt.client.widgets.form.fields.DateRangeItem::convertToDateRange(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
-                } else if($wnd.isc.isA.Array(obj)) {
+                } else if($wnd.isc.isA.Array(obj) && type !== null) {
                     return this._convertToJavaArrayType(obj, type);
                 } else if(@com.smartgwt.client.util.JSOHelper::isJSO(Ljava/lang/Object;)(obj)) {
                     return obj;
