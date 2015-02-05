@@ -85,8 +85,10 @@ public class CellSelectionSample extends ShowcasePanel {
                 CellSelection selection = countryGrid.getCellSelection();
                 int[][] selectedCells = selection.getSelectedCells();
                 String cells = "[";
+                String separator = "";
                 for (int i = 0; i < selectedCells.length; i++) {
-                    cells += "[" + selectedCells[i][0] + ", " + selectedCells[i][1] + "],";
+                    separator = (selectedCells.length == 1 || (selectedCells.length-1) == i)?"]":"],";
+                    cells += "[" + selectedCells[i][0] + "," + selectedCells[i][1] + separator;
                 }
                 cells += "]";
                 form.setValue("countries", cells);
