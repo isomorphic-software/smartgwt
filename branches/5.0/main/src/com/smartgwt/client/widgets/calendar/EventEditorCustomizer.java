@@ -12,8 +12,9 @@ public abstract class EventEditorCustomizer {
         this.calendar = calendar;
     }
     /**
-     * Returns the Calendar in which the date is being rendered
-     * @return Calendar in which the date is being rendered
+     * Returns the Calendar in which the EventEditor is being displayed.  To access the current 
+     * view, use getCalendar().getSelectedView().
+     * @return Calendar in which the EventEditor is being displayed
      */
     public Calendar getCalendar() {
         return this.calendar;
@@ -21,9 +22,8 @@ public abstract class EventEditorCustomizer {
 
     /**
      * showEventEditor() can be used to show some custom user interface for editing or creating calendar events.
-     * To access the Calendar itself, use calendarView.getCalendar().
-     * @param calendarEvent the event being rendered
-     * @param calendarView the view in which the event is being rendered
+     * @param calendarEvent the event to edit
+     * @param isNewEvent true for a new event - if true, calendarEvent represents defaults for the new event
      * @return false to prevent the default Event Editor from showing
      */
     public abstract boolean showEventEditor(CalendarEvent calendarEvent, Boolean isNewEvent);
