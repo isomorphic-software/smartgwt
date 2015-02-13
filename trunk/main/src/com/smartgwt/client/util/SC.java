@@ -31,15 +31,19 @@ public class SC {
         return $wnd.isc.licenseType;
     }-*/;
 
+    public static native String getAUTOIDClass(String className) /*-{
+        var simpleName = className.substring(className.lastIndexOf(".")+1);
+        //replace any $ characters from inner class names with an underscore
+        simpleName = simpleName.replace("$", "_");
+        return simpleName;
+    }-*/;
+
     public static native String generateID() /*-{        
         return $wnd.isc.ClassFactory.getNextGlobalID();
     }-*/;
     
     public static native String generateID(String className) /*-{
-        var simpleName = className.substring(className.lastIndexOf(".")+1);
-        //replace any $ characters from inner class names with an underscore
-        simpleName = simpleName.replace("$", "_");
-        return $wnd.isc.ClassFactory.getNextGlobalIDForClass(simpleName);
+        return $wnd.isc.ClassFactory.getNextGlobalIDForClass(className);
     }-*/;
 
     //>IDocument One complication is that in "keep globals" mode, the SGWT wrapper's current SC
@@ -47,9 +51,7 @@ public class SC {
     // don't immediately release it but merely update the ID class to the right value.  We also
     // log a warning if we're not able to release the ID and it's not expected.//<IDocument
     public static native void releaseID(String className, String id) /*-{
-        var simpleName = className.substring(className.lastIndexOf(".")+1);
-        //replace any $ characters from inner class names with an underscore
-        simpleName = simpleName.replace("$", "_");
+        var simpleName = @com.smartgwt.client.util.SC::getAUTOIDClass(Ljava/lang/String;)(className);
         // handle "keep globals" mode where spurious $wnd bindings are present
         if (id == null || $wnd.window[id] == null) {
             $wnd.isc.ClassFactory.releaseGlobalID(simpleName, id);
