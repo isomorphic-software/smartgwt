@@ -43,7 +43,9 @@ public abstract class BaseClass implements HasHandlers {
     protected boolean configOnly;
 
     public BaseClass() {
-        internalSetID(SC.generateID(getClass().getName()), true);
+        final String className = SC.getAUTOIDClass(getClass().getName());
+        setAttribute("AUTOIDClass", className, false);
+        internalSetID(SC.generateID(className), true);
     }
 
     protected BaseClass(JavaScriptObject jsObj) {
@@ -161,7 +163,11 @@ public abstract class BaseClass implements HasHandlers {
     }-*/;
 
     protected JavaScriptObject createJsObj() {
-        if (id == null) internalSetID(SC.generateID(getClass().getName()), true);
+        if (id == null) {
+            final String className = SC.getAUTOIDClass(getClass().getName());
+            setAttribute("AUTOIDClass", className, false);
+            internalSetID(SC.generateID(className), true);
+        }
         JSOHelper.setObjectAttribute(config, SC.REF, this);
         JSOHelper.setObjectAttribute(config, SC.MODULE, BeanFactory.getSGWTModule());
         JavaScriptObject jsObj = create();

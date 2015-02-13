@@ -434,7 +434,9 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     public String getID() {
         if (id == null) {
             // Generate an ID because one was requested by the caller.
-            internalSetID(SC.generateID(getClass().getName()), true);
+            final String className = SC.getAUTOIDClass(getClass().getName());
+            setAttribute("AUTOIDClass", className, false);
+            internalSetID(SC.generateID(className), true);
         }
         assert id != null;
         return id;
@@ -515,7 +517,9 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     public JavaScriptObject getOrCreateJsObj() {
         if (!isCreated()) {
             if (id == null) {
-                internalSetID(SC.generateID(getClass().getName()), true);
+                final String className = SC.getAUTOIDClass(getClass().getName());
+                setAttribute("AUTOIDClass", className, false);
+                internalSetID(SC.generateID(className), true);
             }
             // The SC.REF property will already be set if new was called on a SmartClient
             // JS properties object; warn here if we actually attempt to create() it.
