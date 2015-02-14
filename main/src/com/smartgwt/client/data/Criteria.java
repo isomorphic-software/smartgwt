@@ -71,15 +71,11 @@ public class Criteria extends DataClass {
         JSOHelper.setAttribute(jsObj, field, value);
     }
 
-    public void addCriteria(String field, Integer value) {
-        JSOHelper.setAttribute(jsObj, field, value);
-    }
-
     public void addCriteria(String field, Boolean value) {
         JSOHelper.setAttribute(jsObj, field, value);
     }
 
-    public void addCriteria(String field, Date value) {
+    public void addCriteria(String field, Integer value) {
         JSOHelper.setAttribute(jsObj, field, value);
     }
 
@@ -87,7 +83,15 @@ public class Criteria extends DataClass {
         JSOHelper.setAttribute(jsObj, field, value);
     }
 
+    public void addCriteria(String field, Double value) {
+        JSOHelper.setAttribute(jsObj, field, value);
+    }
+
     public void addCriteria(String field, Long value) {
+        JSOHelper.setAttribute(jsObj, field, value);
+    }
+
+    public void addCriteria(String field, Date value) {
         JSOHelper.setAttribute(jsObj, field, value);
     }
 
@@ -114,6 +118,8 @@ public class Criteria extends DataClass {
             addCriteria(field, (Date) value);
         } else if (value instanceof Float) {
             addCriteria(field, (Float) value);
+        } else if (value instanceof Double) {
+            addCriteria(field, (Double) value);
         } else if (value instanceof Long) {
             addCriteria(field, (Long) value);
         } else if (value instanceof String[]) {
