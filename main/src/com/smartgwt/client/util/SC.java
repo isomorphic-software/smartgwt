@@ -26,6 +26,7 @@ public class SC {
     public static final String REF = "__ref";
     public static final String MODULE = "__module";
     public static final String AUTOID = "_autoAssignedID";
+    public static final String AUTOIDCLASS = "AUTOIDClass";
 
     public static native String getLicenseType() /*-{
         return $wnd.isc.licenseType;

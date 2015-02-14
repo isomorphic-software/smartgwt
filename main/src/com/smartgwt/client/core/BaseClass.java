@@ -44,7 +44,7 @@ public abstract class BaseClass implements HasHandlers {
 
     public BaseClass() {
         final String className = SC.getAUTOIDClass(getClass().getName());
-        setAttribute("AUTOIDClass", className, false);
+        setAttribute(SC.AUTOIDCLASS, className, false);
         internalSetID(SC.generateID(className), true);
     }
 
@@ -91,10 +91,12 @@ public abstract class BaseClass implements HasHandlers {
         if (this.id != null) {
             IDManager.unregisterID(this, this.id);
         }
+        String className = JSOHelper.getAttribute(jsObj, SC.AUTOIDCLASS);
         String  id   = JSOHelper.getAttribute         (jsObj,      "ID");
         boolean auto = JSOHelper.getAttributeAsBoolean(jsObj, SC.AUTOID);
         if (id != null) registerID(id, true);
         this.id = id;
+        JSOHelper.setAttribute(config, SC.AUTOIDCLASS, className);
         JSOHelper.setAttribute(config,      "ID",   id);
         JSOHelper.setAttribute(config, SC.AUTOID, auto);
     }
@@ -107,6 +109,7 @@ public abstract class BaseClass implements HasHandlers {
         this.id = id;
         setAttribute("ID",                id, false);
         setAttribute(SC.AUTOID, autoAssigned, false);
+        if (!autoAssigned) setAttribute(SC.AUTOIDCLASS, (String)null, false);
     }
 
     public void setID(String id) {
@@ -165,7 +168,7 @@ public abstract class BaseClass implements HasHandlers {
     protected JavaScriptObject createJsObj() {
         if (id == null) {
             final String className = SC.getAUTOIDClass(getClass().getName());
-            setAttribute("AUTOIDClass", className, false);
+            setAttribute(SC.AUTOIDCLASS, className, false);
             internalSetID(SC.generateID(className), true);
         }
         JSOHelper.setObjectAttribute(config, SC.REF, this);
@@ -251,7 +254,8 @@ public abstract class BaseClass implements HasHandlers {
     private void clearID() {
         IDManager.unregisterID(this, this.id);
         this.id = null;
-        JSOHelper.setNullAttribute(config,      "ID");
+        JSOHelper.setNullAttribute(config, SC.AUTOIDCLASS);
+        JSOHelper.setNullAttribute(config, "ID");
         JSOHelper.setNullAttribute(config, SC.AUTOID);
     }
 
