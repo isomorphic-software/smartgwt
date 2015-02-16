@@ -1355,6 +1355,7 @@ public class JSOHelper {
     /*-{
         if (properties != null) {
             if (copyProperties) properties = $wnd.isc.addProperties({}, properties);
+            delete properties.AUTOIDClass;
             delete properties.ID;
             delete properties.__ref;
             delete properties.__module;
