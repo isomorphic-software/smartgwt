@@ -78,6 +78,7 @@ public class RefDataClass extends DataClass {
         this.id = id;
         setAttribute(     "ID",           id);
         setAttribute(SC.AUTOID, autoAssigned);
+        if (!autoAssigned) setAttribute(SC.AUTOIDCLASS, (String)null);
     }
 
 	/**
