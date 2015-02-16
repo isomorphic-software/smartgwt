@@ -303,7 +303,8 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     private void clearID() {
         IDManager.unregisterID(this, this.id);
         this.id = null;
-    	JSOHelper.setNullAttribute(config,      "ID");
+        JSOHelper.setNullAttribute(config, SC.AUTOIDCLASS);
+    	JSOHelper.setNullAttribute(config, "ID");
     	JSOHelper.setNullAttribute(config, SC.AUTOID);
     }
 
@@ -383,9 +384,11 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         if (this.id != null && !this.id.equals(id) && getAttributeAsBoolean(SC.AUTOID)) {
             SC.releaseID(getClass().getName(), this.id);
         }
+        String className = JSOHelper.getAttribute(jsObj, SC.AUTOIDCLASS);
         boolean auto = JSOHelper.getAttributeAsBoolean(jsObj, SC.AUTOID);
         IDManager.registerID(this, id, true);
         if (id != null) this.id = id;
+        JSOHelper.setAttribute(config, SC.AUTOIDCLASS, className);
         JSOHelper.setAttribute(config,      "ID",   id);
         JSOHelper.setAttribute(config, SC.AUTOID, auto);
     }
@@ -409,6 +412,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         this.id = id;
         setAttribute(     "ID",           id, false);
         setAttribute(SC.AUTOID, autoAssigned, false);
+        if (!autoAssigned) setAttribute(SC.AUTOIDCLASS, (String)null, false);
     }
 
     public void setID(String id) {
