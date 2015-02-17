@@ -1,0 +1,10 @@
+.telIcon,
+.telIconDisabled,
+.telIconOver,
+.telIconFocused {
+    font-size: 18px;
+    text-align: center;
+}
+.telIconDisabled {
+    color: #ababab;
+}
