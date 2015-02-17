@@ -807,6 +807,17 @@ html>body .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopRight {
     color: #336699;
 }
 
+.telIcon,
+.telIconDisabled,
+.telIconOver,
+.telIconFocused {
+    font-size: 18px;
+    text-align: center;
+}
+.telIconDisabled {
+    color: #ababab;
+}
+
 /* ------- Explorer Buttons ------- */
 .explorerButtonBoxR {
 	padding: 5px;

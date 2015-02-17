@@ -114,9 +114,9 @@ import com.smartgwt.sample.showcase.client.forms.FormDataBindingSample;
 import com.smartgwt.sample.showcase.client.forms.FormFocusFirstSample;
 import com.smartgwt.sample.showcase.client.forms.ListGridItemSample;
 import com.smartgwt.sample.showcase.client.forms.NestedEditorSample;
+import com.smartgwt.sample.showcase.client.forms.PickTreeSample;
 import com.smartgwt.sample.showcase.client.forms.PickerControlsSample;
 import com.smartgwt.sample.showcase.client.forms.TextMaskingSample;
-import com.smartgwt.sample.showcase.client.forms.PickTreeSample;
 import com.smartgwt.sample.showcase.client.forms.controls.FormVariousControlsSample;
 import com.smartgwt.sample.showcase.client.forms.dependencies.FormConditionallyRequiredSample;
 import com.smartgwt.sample.showcase.client.forms.dependencies.FormDataboundDependentSelectsSample;
@@ -128,6 +128,7 @@ import com.smartgwt.sample.showcase.client.forms.details.FormHintsSample;
 import com.smartgwt.sample.showcase.client.forms.details.FormHoversSample;
 import com.smartgwt.sample.showcase.client.forms.details.FormIconsSample;
 import com.smartgwt.sample.showcase.client.forms.details.KeyPressFiltersSample;
+import com.smartgwt.sample.showcase.client.forms.details.TextIconsSample;
 import com.smartgwt.sample.showcase.client.forms.layout.FormFillingSample;
 import com.smartgwt.sample.showcase.client.forms.layout.FormSectionsSample;
 import com.smartgwt.sample.showcase.client.forms.layout.FormSpanningSample;
@@ -177,16 +178,6 @@ import com.smartgwt.sample.showcase.client.grid.autofit.AutofitNewRecordsSample;
 import com.smartgwt.sample.showcase.client.grid.autofit.AutofitRowsSample;
 import com.smartgwt.sample.showcase.client.grid.autofit.AutofitValuesSample;
 import com.smartgwt.sample.showcase.client.grid.autofit.FreeSpaceSample;
-import com.smartgwt.sample.showcase.client.mobile.DialingSample;
-import com.smartgwt.sample.showcase.client.mobile.ResponsiveDesign;
-import com.smartgwt.sample.showcase.client.mobile.NavigationBarSample;
-import com.smartgwt.sample.showcase.client.mobile.SpinnerControlSample;
-import com.smartgwt.sample.showcase.client.mobile.InlinedMenuSample;
-import com.smartgwt.sample.showcase.client.mobile.MobileMenusSample;
-import com.smartgwt.sample.showcase.client.mobile.MobileSelectListSample;
-import com.smartgwt.sample.showcase.client.mobile.MobileComboBoxSample;
-import com.smartgwt.sample.showcase.client.mobile.MobileWindowsDialogsSample;
-import com.smartgwt.sample.showcase.client.mobile.MobileCalendarSample;
 import com.smartgwt.sample.showcase.client.grid.databinding.GridDataBindingDataSourceFieldsSample;
 import com.smartgwt.sample.showcase.client.grid.databinding.GridDataBindingInlineDataSample;
 import com.smartgwt.sample.showcase.client.grid.databinding.GridDataBindingJSONDataSourceSample;
@@ -278,13 +269,23 @@ import com.smartgwt.sample.showcase.client.grid.sortfilter.SortDataTypesSample;
 import com.smartgwt.sample.showcase.client.gwtintegration.GwtShowcaseSample;
 import com.smartgwt.sample.showcase.client.layout.CenterAlignSample;
 import com.smartgwt.sample.showcase.client.layout.NestingSample;
-import com.smartgwt.sample.showcase.client.layout.UserSizingSample;
 import com.smartgwt.sample.showcase.client.layout.SplitPaneSample;
+import com.smartgwt.sample.showcase.client.layout.UserSizingSample;
 import com.smartgwt.sample.showcase.client.menu.MenuAppearanceSample;
 import com.smartgwt.sample.showcase.client.menu.MenuCustomColumnsSample;
 import com.smartgwt.sample.showcase.client.menu.MenuSubmenusSample;
 import com.smartgwt.sample.showcase.client.menu.MenuTreeBindingSample;
 import com.smartgwt.sample.showcase.client.miniapp.MiniAppSample;
+import com.smartgwt.sample.showcase.client.mobile.DialingSample;
+import com.smartgwt.sample.showcase.client.mobile.InlinedMenuSample;
+import com.smartgwt.sample.showcase.client.mobile.MobileCalendarSample;
+import com.smartgwt.sample.showcase.client.mobile.MobileComboBoxSample;
+import com.smartgwt.sample.showcase.client.mobile.MobileMenusSample;
+import com.smartgwt.sample.showcase.client.mobile.MobileSelectListSample;
+import com.smartgwt.sample.showcase.client.mobile.MobileWindowsDialogsSample;
+import com.smartgwt.sample.showcase.client.mobile.NavigationBarSample;
+import com.smartgwt.sample.showcase.client.mobile.ResponsiveDesign;
+import com.smartgwt.sample.showcase.client.mobile.SpinnerControlSample;
 import com.smartgwt.sample.showcase.client.mvc.PatternReuseSample;
 import com.smartgwt.sample.showcase.client.offline.OfflinePreferencesSample;
 import com.smartgwt.sample.showcase.client.other.DateChooserSample;
@@ -708,6 +709,7 @@ public class ShowcaseData {
                     new ExplorerTreeNode("Server XML Validation", "form-validation-server-xml", "form-validation-category", null, new FormServerXmlValidationSample.Factory(), true, idSuffix),
 
                     new ExplorerTreeNode("Icons", "form-details-icons", "form-category", "silk/vcard_edit.png", new FormIconsSample.Factory(), true, idSuffix),
+                    new ExplorerTreeNode("Text Icons", "form-details-text-icons", "form-category", "silk/vcard_edit.png", new TextIconsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Hovers", "form-details-hovers", "form-category", "silk/vcard_edit.png", new FormHoversSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("Hints", "form-details-hints", "form-category", "silk/vcard_edit.png", new FormHintsSample.Factory(), true, idSuffix),
                     new ExplorerTreeNode("KeyPress Filters", "form-keypress-filter", "form-category", "silk/vcard_edit.png", new KeyPressFiltersSample.Factory(), true, idSuffix),
