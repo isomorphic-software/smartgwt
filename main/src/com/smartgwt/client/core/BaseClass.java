@@ -25,6 +25,7 @@ import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.event.shared.HasHandlers;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Window;
 import com.smartgwt.client.bean.BeanFactory;
@@ -34,14 +35,17 @@ import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.ObjectFactory;
 import com.smartgwt.client.util.SC;
 
-public abstract class BaseClass {
+public abstract class BaseClass implements HasHandlers {
 
     protected String id;
     protected JavaScriptObject config = JSOHelper.createObject();
     protected String scClassName;
+    protected boolean configOnly;
 
     public BaseClass() {
-        internalSetID(SC.generateID(getClass().getName()), true);
+        final String className = SC.getAUTOIDClass(getClass().getName());
+        setAttribute(SC.AUTOIDCLASS, className, false);
+        internalSetID(SC.generateID(className), true);
     }
 
     protected BaseClass(JavaScriptObject jsObj) {
@@ -87,10 +91,12 @@ public abstract class BaseClass {
         if (this.id != null) {
             IDManager.unregisterID(this, this.id);
         }
+        String className = JSOHelper.getAttribute(jsObj, SC.AUTOIDCLASS);
         String  id   = JSOHelper.getAttribute         (jsObj,      "ID");
         boolean auto = JSOHelper.getAttributeAsBoolean(jsObj, SC.AUTOID);
         if (id != null) registerID(id, true);
         this.id = id;
+        JSOHelper.setAttribute(config, SC.AUTOIDCLASS, className);
         JSOHelper.setAttribute(config,      "ID",   id);
         JSOHelper.setAttribute(config, SC.AUTOID, auto);
     }
@@ -103,6 +109,7 @@ public abstract class BaseClass {
         this.id = id;
         setAttribute("ID",                id, false);
         setAttribute(SC.AUTOID, autoAssigned, false);
+        if (!autoAssigned) setAttribute(SC.AUTOIDCLASS, (String)null, false);
     }
 
     public void setID(String id) {
@@ -159,7 +166,11 @@ public abstract class BaseClass {
     }-*/;
 
     protected JavaScriptObject createJsObj() {
-        if (id == null) internalSetID(SC.generateID(getClass().getName()), true);
+        if (id == null) {
+            final String className = SC.getAUTOIDClass(getClass().getName());
+            setAttribute(SC.AUTOIDCLASS, className, false);
+            internalSetID(SC.generateID(className), true);
+        }
         JSOHelper.setObjectAttribute(config, SC.REF, this);
         JSOHelper.setObjectAttribute(config, SC.MODULE, BeanFactory.getSGWTModule());
         JavaScriptObject jsObj = create();
@@ -243,7 +254,8 @@ public abstract class BaseClass {
     private void clearID() {
         IDManager.unregisterID(this, this.id);
         this.id = null;
-        JSOHelper.setNullAttribute(config,      "ID");
+        JSOHelper.setNullAttribute(config, SC.AUTOIDCLASS);
+        JSOHelper.setNullAttribute(config, "ID");
         JSOHelper.setNullAttribute(config, SC.AUTOID);
     }
 
@@ -278,8 +290,15 @@ public abstract class BaseClass {
     protected abstract JavaScriptObject create();
 
     private native void wrapDestroy() /*-{
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        if (self && self.__sgwtDestroy == null) self.__sgwtDestroy = function () {
+        var self = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+        if (self == null) {
+            var config = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+            $wnd.isc.logWarn("wrapDestroy(): the JavaScriptObject is null unexpectedly for " +
+                $wnd.isc.echo(config) + " with " + this.@java.lang.Object::getClass()() +
+                ".  This may lead to an ID collision after the widget is destroy()ed.");
+            return;
+        }
+        if (self.__sgwtDestroy == null) self.__sgwtDestroy = function () {
             var jObj = this.__ref;
             if (jObj != null) jObj.@com.smartgwt.client.core.BaseClass::destroy()();
         }
@@ -295,6 +314,16 @@ public abstract class BaseClass {
     // install callbacks for a live SC object
     protected void onBind() {
         wrapDestroy();
+    }
+
+    // if this instance has been used to set the properties of another object, mark it as
+    // "config only" so that a warning will be generated if it's ever instantiated.
+    public void setConfigOnly(boolean configOnly) {
+        this.configOnly = configOnly;
+    }
+
+    public boolean isConfigOnly() {
+         return configOnly;
     }
 
     public String getAttribute(String attribute) {
@@ -680,9 +709,10 @@ public abstract class BaseClass {
         self.setProperty(property, value);
     }-*/;
 
-    //event handling ode
+    //event handling code
     private HandlerManager manager = null;
 
+    //@Override
     public void fireEvent(GwtEvent<?> event) {
         if (manager != null) {
             manager.fireEvent(event);

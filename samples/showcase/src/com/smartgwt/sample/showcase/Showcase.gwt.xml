@@ -11,10 +11,10 @@
     <inherits name="com.smartgwt.SmartGwtNoScript"/>
     <inherits name="com.smartgwt.DrawingNoScript"/>
     <inherits name="com.smartgwt.tools.SmartGwtTools"/>
-    <inherits name="com.smartclient.theme.enterprise.EnterpriseResources"/>
-    <inherits name="com.smartclient.theme.enterpriseblue.EnterpriseBlueResources"/>
+
     <inherits name="com.smartclient.theme.graphite.GraphiteResources"/>
     <inherits name="com.smartclient.theme.simplicity.SimplicityResources"/>
+    <inherits name="com.smartclient.theme.enterpriseblue.EnterpriseBlueResources"/>
 
     <!-- Uncomment lines below for GWT Super Dev Mode Support:
        - both lines needed for GWT < 2.6, only the first line needed for GWT < 2.7

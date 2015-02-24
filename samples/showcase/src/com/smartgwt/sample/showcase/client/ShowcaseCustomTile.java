@@ -99,7 +99,7 @@ public class ShowcaseCustomTile extends SimpleTile {
         // Some sample names can push out the <table> on mobile (e.g. the "RestDataSource" and
         // "RestDataSource Edit & Save" samples).
         nameField.setClipValue(true);
-        nameField.setReadOnlyClipValue(true);
+        nameField.setClipStaticValue(true);
 
         StaticTextItem descriptionField = new StaticTextItem("description");
         descriptionField.setVisible(false);

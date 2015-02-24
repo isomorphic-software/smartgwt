@@ -4,6 +4,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.GWT.UncaughtExceptionHandler;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.shared.UmbrellaException;
+
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
@@ -228,7 +229,7 @@ public class SampleResultsManager implements UncaughtExceptionHandler {
             parentJsObj = parent.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()(),
             viewerJsObj = $wnd.isc.AutoTest.createDetailViewerForTestResults(parentJsObj, results),
             viewer = @com.smartgwt.client.widgets.viewer.DetailViewer::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(viewerJsObj);
-        viewer.@com.smartgwt.client.widgets.viewer.DetailViewer::doInit()();
+        viewer.@com.smartgwt.client.widgets.BaseWidget::doInit()(); // protected final method
         return viewer;
     }-*/;
 

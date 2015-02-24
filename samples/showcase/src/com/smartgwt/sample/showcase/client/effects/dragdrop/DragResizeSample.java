@@ -2,6 +2,7 @@ package com.smartgwt.sample.showcase.client.effects.dragdrop;
 
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.DragAppearance;
+import com.smartgwt.client.types.EdgeName;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Label;
 import com.smartgwt.sample.showcase.client.PanelFactory;
@@ -29,9 +30,8 @@ public class DragResizeSample extends ShowcasePanel {
     }
 
     public Canvas getViewPanel() {
-        
         Canvas canvas = new Canvas();
-        
+
         DragLabel resizeAny = new DragLabel();
         resizeAny.setLeft(80);
         resizeAny.setTop(80);
@@ -39,16 +39,16 @@ public class DragResizeSample extends ShowcasePanel {
         resizeAny.setCanDragResize(true);
         resizeAny.setEdgeMarginSize(10);
         canvas.addChild(resizeAny);
-        
+
         DragLabel resizeBR = new DragLabel();
         resizeBR.setLeft(280);
         resizeBR.setTop(80);
         resizeBR.setContents("Resize from bottom or right");
         resizeBR.setCanDragResize(true);
-        resizeBR.setResizeFrom("B","R","BR");
+        resizeBR.setResizeFrom(EdgeName.B, EdgeName.R, EdgeName.BR);
         resizeBR.setEdgeMarginSize(10);
         canvas.addChild(resizeBR);
-        
+
         return canvas;
     }
 

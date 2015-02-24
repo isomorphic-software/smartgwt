@@ -106,6 +106,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String calendar_detailsButtonTitle();
 
   /**
+   * Translated "Remove Event".
+   * 
+   * @return translated "Remove Event"
+   */
+  @DefaultMessage("Remove Event")
+  @Key("calendar_removeButtonTitle")
+  String calendar_removeButtonTitle();
+
+  /**
    * Translated "Event Name".
    * 
    * @return translated "Event Name"
@@ -729,6 +738,42 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("No tiles to show.")
   @Key("tileGrid_emptyMessage")
   String tileGrid_emptyMessage();
+
+  /**
+   * Translated "checked".
+   * 
+   * @return translated "checked"
+   */
+  @DefaultMessage("checked")
+  @Key("checkboxItem_checkedDescription")
+  String checkboxItem_checkedDescription();
+
+  /**
+   * Translated "unchecked".
+   * 
+   * @return translated "unchecked"
+   */
+  @DefaultMessage("unchecked")
+  @Key("checkboxItem_uncheckedDescription")
+  String checkboxItem_uncheckedDescription();
+
+  /**
+   * Translated "partially selected".
+   * 
+   * @return translated "partially selected"
+   */
+  @DefaultMessage("partially selected")
+  @Key("checkboxItem_partialSelectedDescription")
+  String checkboxItem_partialSelectedDescription();
+
+  /**
+   * Translated "unset".
+   * 
+   * @return translated "unset"
+   */
+  @DefaultMessage("unset")
+  @Key("checkboxItem_unsetDescription")
+  String checkboxItem_unsetDescription();
 
   /**
    * Translated "Cancel".
@@ -1609,6 +1654,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Form was unable to be submitted. The most likely cause for this is an invalid value in an upload field.")
   @Key("dynamicForm_formSubmitFailedWarning")
   String dynamicForm_formSubmitFailedWarning();
+
+  /**
+   * Translated "Original value: $value".
+   * 
+   * @return translated "Original value: $value"
+   */
+  @DefaultMessage("Original value: $value")
+  @Key("dynamicForm_originalValueMessage")
+  String dynamicForm_originalValueMessage();
 
   /**
    * Translated "Add".
@@ -4762,6 +4816,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Building Summary Columns")
   @Key("summaryBuilder_helpTextIntro")
   String summaryBuilder_helpTextIntro();
+
+  /**
+   * Translated ", closeable".
+   * 
+   * @return translated ", closeable"
+   */
+  @DefaultMessage(", closeable")
+  @Key("tabSet_ariaCloseableSuffix")
+  String tabSet_ariaCloseableSuffix();
 
   /**
    * Translated "am".

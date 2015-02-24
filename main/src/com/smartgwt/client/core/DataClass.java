@@ -16,21 +16,24 @@
 
 package com.smartgwt.client.core;
 
+import java.util.Date;
+import java.util.Map;
+
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.bean.BeanFactory;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.ValueEnum;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.widgets.BaseWidget;
-import com.smartgwt.client.bean.BeanFactory;
+import com.smartgwt.client.util.ConfigUtil;
+import com.smartgwt.client.util.SC;
 
-import java.util.Date;
-import java.util.Map;
-
-public class DataClass extends JsObject {
+public class DataClass extends JsObject implements HasHandlers {
 
     // Properties stashed by BeanFactory when calling the no-arg constructor.
     // We pick them up immediately in the constructor so that they don't get
@@ -78,6 +81,17 @@ public class DataClass extends JsObject {
 
     public boolean isFactoryCreated () {
         return factoryCreated;
+    }
+
+    // if this instance has been used to set the properties of another object, mark it as
+    // read-only so that no further changes can be made (lest a warning be generated).
+    protected boolean readOnly;
+
+    public void setReadOnly() {
+        readOnly = true;
+    }
+    public boolean getReadOnly() {
+        return readOnly;
     }
 
     public DataClass() {
@@ -558,6 +572,7 @@ public class DataClass extends JsObject {
     //event handling code
     private HandlerManager manager = null;
 
+    //@Override
     public void fireEvent(GwtEvent<?> event) {
         if (manager != null) {
             manager.fireEvent(event);
@@ -586,4 +601,14 @@ public class DataClass extends JsObject {
     public int getHandlerCount(GwtEvent.Type<?> type) {
         return manager == null? 0 : manager.getHandlerCount(type);
     }
+
+    public void logConfiguration(Class callerClass, String callerMethodName) {
+        String configTypeName = ConfigUtil.getSimpleClassName(this.getClass());
+        if (readOnly) {
+            ConfigUtil.warnOfReconfiguration(callerClass, callerMethodName, configTypeName);
+        } else {
+            ConfigUtil.debugInitialConfiguration(callerClass, callerMethodName, configTypeName);
+        }            
+    }
+
 }

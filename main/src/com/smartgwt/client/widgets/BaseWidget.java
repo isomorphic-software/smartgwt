@@ -209,8 +209,15 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     }
 
     private native void wrapDestroy() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        if (self && self.__sgwtDestroy == null) self.__sgwtDestroy = function () {
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        if (self == null) {
+            var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            $wnd.isc.logWarn("wrapDestroy(): the JavaScriptObject is null unexpectedly for " +
+                $wnd.isc.echo(config) + " with " + this.@java.lang.Object::getClass()() +
+                ".  This may lead to an ID collision after the widget is destroy()ed.");
+            return;
+        }
+        if (self.__sgwtDestroy == null) self.__sgwtDestroy = function () {
             var jObj = this.__ref;
             if (jObj != null) jObj.@com.smartgwt.client.widgets.BaseWidget::destroy()();
         }
@@ -318,6 +325,9 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
      * Draws the widget on the page.&#010
      */
     public native void draw() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "draw", "");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.draw();
     }-*/;
@@ -360,7 +370,8 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     private void clearID() {
         IDManager.unregisterID(this, this.id);
         this.id = null;
-    	JSOHelper.setNullAttribute(config,      "ID");
+        JSOHelper.setNullAttribute(config, SC.AUTOIDCLASS);
+    	JSOHelper.setNullAttribute(config, "ID");
     	JSOHelper.setNullAttribute(config, SC.AUTOID);
     }
 
@@ -424,7 +435,9 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     public String getID() {
         if (id == null) {
             // Generate an ID because one was requested by the caller.
-            internalSetID(SC.generateID(getClass().getName()), true);
+            final String className = SC.getAUTOIDClass(getClass().getName());
+            setAttribute("AUTOIDClass", className, false);
+            internalSetID(SC.generateID(className), true);
         }
         assert id != null;
         return id;
@@ -438,9 +451,11 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         if (this.id != null && !this.id.equals(id) && getAttributeAsBoolean(SC.AUTOID)) {
             SC.releaseID(getClass().getName(), this.id);
         }
+        String className = JSOHelper.getAttribute(jsObj, SC.AUTOIDCLASS);
         boolean auto = JSOHelper.getAttributeAsBoolean(jsObj, SC.AUTOID);
         IDManager.registerID(this, id, true);
         if (id != null) this.id = id;
+        JSOHelper.setAttribute(config, SC.AUTOIDCLASS, className);
         JSOHelper.setAttribute(config,      "ID",   id);
         JSOHelper.setAttribute(config, SC.AUTOID, auto);
     }
@@ -464,6 +479,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         this.id = id;
         setAttribute(     "ID",           id, false);
         setAttribute(SC.AUTOID, autoAssigned, false);
+        if (!autoAssigned) setAttribute(SC.AUTOIDCLASS, (String)null, false);
     }
 
     public void setID(String id) {
@@ -505,7 +521,9 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     public JavaScriptObject getOrCreateJsObj() {
         if (!isCreated()) {
             if (id == null) {
-                internalSetID(SC.generateID(getClass().getName()), true);
+                final String className = SC.getAUTOIDClass(getClass().getName());
+                setAttribute("AUTOIDClass", className, false);
+                internalSetID(SC.generateID(className), true);
             }
             // The SC.REF property will already be set if new was called on a SmartClient
             // JS properties object; warn here if we actually attempt to create() it.

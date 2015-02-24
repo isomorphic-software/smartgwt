@@ -54,10 +54,10 @@ public class GridCustomEditorsSample extends ShowcasePanel {
 
         TextAreaItem textAreaItem = new TextAreaItem();
         textAreaItem.setHeight(70);
-        governmentField.setEditorType(textAreaItem);
+        governmentField.setEditorProperties(textAreaItem);
 
         ListGridField populationField = new ListGridField("population", "Population", 100);
-        populationField.setEditorType(new SpinnerItem());
+        populationField.setEditorProperties(new SpinnerItem());
 
         populationField.setType(ListGridFieldType.INTEGER);
         populationField.setCellFormatter(new CellFormatter() {
@@ -74,7 +74,7 @@ public class GridCustomEditorsSample extends ShowcasePanel {
         ListGridField independenceField = new ListGridField("independence", "Independence", 225);
         DateItem dateItem = new DateItem();
         dateItem.setUseTextField(false);
-        independenceField.setEditorType(dateItem);
+        independenceField.setEditorProperties(dateItem);
 
         countryGrid.setFields(nameField, governmentField, populationField, independenceField);
 

@@ -16,8 +16,8 @@
 
 package com.smartgwt.client.util;
 
-import com.smartgwt.client.i18n.SmartGwtMessages;
 import com.google.gwt.core.client.GWT;
+import com.smartgwt.client.i18n.SmartGwtMessages;
 
 public class I18nUtil {
 
@@ -303,6 +303,7 @@ public class I18nUtil {
         if($wnd.isc.DynamicForm) {
             $wnd.isc.DynamicForm.addProperties({errorsPreamble: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dynamicForm_errorsPreamble()()});
             $wnd.isc.DynamicForm.addProperties({formSubmitFailedWarning: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dynamicForm_formSubmitFailedWarning()()});
+            $wnd.isc.DynamicForm.addProperties({originalValueMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dynamicForm_originalValueMessage()()});
         }
 
         if($wnd.isc.FormItem) {
@@ -312,6 +313,13 @@ public class I18nUtil {
         if($wnd.isc.SelectItem) {
             $wnd.isc.SelectItem.addProperties({otherTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::selectOtherItem_otherTitle()()});
             $wnd.isc.SelectItem.addProperties({selectOtherPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::selectOtherItem_selectOtherPrompt()() + ' ${item.getTitle()} :'});
+        }
+
+        if($wnd.isc.CheckboxItem) {
+            $wnd.isc.CheckboxItem.addProperties({checkedDescription: messages.@com.smartgwt.client.i18n.SmartGwtMessages::checkboxItem_checkedDescription()()});
+            $wnd.isc.CheckboxItem.addProperties({uncheckedDescription: messages.@com.smartgwt.client.i18n.SmartGwtMessages::checkboxItem_uncheckedDescription()()});
+            $wnd.isc.CheckboxItem.addProperties({partialSelectedDescription: messages.@com.smartgwt.client.i18n.SmartGwtMessages::checkboxItem_partialSelectedDescription()()});
+            $wnd.isc.CheckboxItem.addProperties({unsetDescription: messages.@com.smartgwt.client.i18n.SmartGwtMessages::checkboxItem_unsetDescription()()});
         }
 
         if($wnd.isc.DateItem) {
@@ -582,6 +590,7 @@ public class I18nUtil {
             $wnd.isc.Calendar.addProperties({monthViewTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_monthViewTitle()()});
             $wnd.isc.Calendar.addProperties({nextButtonHoverText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_nextButtonHoverText()()});
             $wnd.isc.Calendar.addProperties({previousButtonHoverText: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_previousButtonHoverText()()});
+            $wnd.isc.Calendar.addProperties({removeButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_removeButtonTitle()()});
             $wnd.isc.Calendar.addProperties({saveButtonTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_saveButtonTitle()()});
             $wnd.isc.Calendar.addProperties({timelineViewTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_timelineViewTitle()()});
             $wnd.isc.Calendar.addProperties({weekViewTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::calendar_weekViewTitle()()});
@@ -759,7 +768,7 @@ public class I18nUtil {
             $wnd.isc.RelativeDateItem.addProperties({quartersFromNowTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_quartersFromNowTitle()()});
             $wnd.isc.RelativeDateItem.addProperties({yearsFromNowTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_yearsFromNowTitle()()});
             $wnd.isc.RelativeDateItem.addProperties({pickerIconPrompt: messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_pickerIconPrompt()()});
-            $wnd.isc.RelativeDateItem.addProperties({presetOptions: {"$today" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_today()(), "$yesterday" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_yesterday()(), "$tomorrow" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_tomorrow()(), "$weekAgo" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_minus_1w()(), "$weekFromNow" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_plus_1w()(), "$monthFromNow" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_plus_1m()()}});
+            $wnd.isc.RelativeDateItem.addProperties({presetOptions: {"$today" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_today()(), "$yesterday" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_yesterday()(), "$tomorrow" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_tomorrow()(), "$weekAgo" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_minus_1w()(), "$weekFromNow" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_plus_1w()(), "$monthAgo" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_minus_1m()(), "$monthFromNow" : messages.@com.smartgwt.client.i18n.SmartGwtMessages::relativeDateItem_presetOptions_plus_1m()()}});
         }
         if($wnd.isc.PickList) {
             $wnd.isc.PickList.addInterfaceProperties({emptyPickListMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::pickList_emptyPickListMessage()()});
@@ -797,6 +806,10 @@ public class I18nUtil {
             $wnd.isc.NumberUtil.addClassProperties({ groupingSymbol: messages.@com.smartgwt.client.i18n.SmartGwtMessages::numberUtil_groupingSymbol()() });
             $wnd.isc.NumberUtil.addClassProperties({ decimalSymbol: messages.@com.smartgwt.client.i18n.SmartGwtMessages::numberUtil_decimalSymbol()() });
             $wnd.isc.NumberUtil.addClassProperties({ negativeSymbol: messages.@com.smartgwt.client.i18n.SmartGwtMessages::numberUtil_negativeSymbol()() });
+        }
+
+        if($wnd.isc.TabSet) {
+            $wnd.isc.TabSet.addProperties({ariaCloseableSuffix: messages.@com.smartgwt.client.i18n.SmartGwtMessages::tabSet_ariaCloseableSuffix()()});
         }
 
 //<localeGenerator -- SC locale parser will process whatever's inside these tags
