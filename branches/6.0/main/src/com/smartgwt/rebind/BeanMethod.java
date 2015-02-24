@@ -139,7 +139,9 @@ public class BeanMethod {
     // We lowercase the first character, unless the second character is
     // uppercase.  This catches cases like ID, or HAlign and VAlign
     private String recapitalize(String propertyName) {
-        if (Character.isUpperCase(propertyName.charAt(1))) {
+        if (propertyName.length() < 2) {
+            return propertyName.toLowerCase();
+        } else if (Character.isUpperCase(propertyName.charAt(1))) {
             return propertyName;
         } else {
             return propertyName.substring(0,1).toLowerCase() + propertyName.substring(1);

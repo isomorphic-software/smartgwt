@@ -1,5 +1,6 @@
 package com.smartgwt.sample.showcase.client.forms.layout;
 
+import com.smartgwt.client.types.EdgeName;
 import com.smartgwt.client.types.TitleOrientation;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.form.DynamicForm;
@@ -45,8 +46,8 @@ public class FormSpanningSample extends ShowcasePanel {
         //form.setBorder("1px solid blue");
         form.setPadding(5);
         form.setCanDragResize(true);
-        form.setResizeFrom("R");
-        
+        form.setResizeFrom(EdgeName.R);
+
         TextItem subjectItem = new TextItem();
         subjectItem.setTitle("Subject");
         subjectItem.setWidth("*");
@@ -59,7 +60,7 @@ public class FormSpanningSample extends ShowcasePanel {
         messageItem.setHeight("*");
 
         form.setFields(subjectItem, messageItem);
-        
+
         return form;
     }
 

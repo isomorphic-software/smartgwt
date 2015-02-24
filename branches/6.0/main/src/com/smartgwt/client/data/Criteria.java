@@ -66,12 +66,12 @@ public class Criteria extends DataClass {
             return instance;
         }
     }-*/;
-    
-    public void addCriteria(String field, String value) {
-        JSOHelper.setAttribute(jsObj, field, value);
-    }
 
-    public void addCriteria(String field, Integer value) {
+    // The addCriteria() APIs are simply convenience wrappers for JSOHelper routines
+    // that take the associated type of argument.  At the JSOHelper level, there may
+    // not be an exact match, resulting in Integer, Float, or Double matching Number.
+    // However, the APIs here can't removed to match as they've already been exposed.
+    public void addCriteria(String field, String value) {
         JSOHelper.setAttribute(jsObj, field, value);
     }
 
@@ -79,11 +79,7 @@ public class Criteria extends DataClass {
         JSOHelper.setAttribute(jsObj, field, value);
     }
 
-    public void addCriteria(String field, Date value) {
-        JSOHelper.setAttribute(jsObj, field, value);
-    }
-
-    public void addCriteria(String field, Float value) {
+    public void addCriteria(String field, Integer value) {
         JSOHelper.setAttribute(jsObj, field, value);
     }
 
@@ -91,11 +87,35 @@ public class Criteria extends DataClass {
         JSOHelper.setAttribute(jsObj, field, value);
     }
 
+    public void addCriteria(String field, Float value) {
+        JSOHelper.setAttribute(jsObj, field, value);
+    }
+
+    public void addCriteria(String field, Double value) {
+        JSOHelper.setAttribute(jsObj, field, value);
+    }
+
+    public void addCriteria(String field, Date value) {
+        JSOHelper.setAttribute(jsObj, field, value);
+    }
+
     public void addCriteria(String field, String[] value) {
         JSOHelper.setAttribute(jsObj, field, value);
     }
 
+    public void addCriteria(String field, Boolean[] value) {
+        JSOHelper.setAttribute(jsObj, field, value);
+    }
+
     public void addCriteria(String field, Integer[] value) {
+        JSOHelper.setAttribute(jsObj, field, value);
+    }
+
+    public void addCriteria(String field, Long[] value) {
+        JSOHelper.setAttribute(jsObj, field, value);
+    }
+
+    public void addCriteria(String field, Float[] value) {
         JSOHelper.setAttribute(jsObj, field, value);
     }
 
@@ -104,24 +124,42 @@ public class Criteria extends DataClass {
     }
 
     public void addCriteria(String field, Object value) {
+        if (value == null) return;
+
         if (value instanceof String) {
             addCriteria(field, (String) value);
-        } else if (value instanceof Integer) {
-            addCriteria(field, (Integer) value);
+
+        } else if (value instanceof Number) {
+            if (value instanceof Integer) {
+                addCriteria(field, (Integer) value);
+            } else if (value instanceof Long) {
+                addCriteria(field, (Long) value);
+            } else if (value instanceof Float) {
+                addCriteria(field, (Float) value);
+            } else if (value instanceof Double) {            
+                addCriteria(field, (Double) value);
+            }
+
         } else if (value instanceof Boolean) {
             addCriteria(field, (Boolean) value);
+
+        } else if (value.getClass().isArray()) {
+            if (value instanceof String[]) {
+                addCriteria(field, (String[]) value);
+            } else if (value instanceof Boolean[]) {
+                addCriteria(field, (Boolean[]) value);
+            } else if (value instanceof Integer[]) {
+                addCriteria(field, (Integer[]) value);
+            } else if (value instanceof Long[]) {
+                addCriteria(field, (Long[]) value);
+            } else if (value instanceof Float[]) {
+                addCriteria(field, (Float[]) value);
+            } else if (value instanceof Double[]) {
+                addCriteria(field, (Double[]) value);
+            }
+
         } else if (value instanceof Date) {
             addCriteria(field, (Date) value);
-        } else if (value instanceof Float) {
-            addCriteria(field, (Float) value);
-        } else if (value instanceof Long) {
-            addCriteria(field, (Long) value);
-        } else if (value instanceof String[]) {
-            addCriteria(field, (String[]) value);
-        } else if (value instanceof Integer[]) {
-            addCriteria(field, (Integer[]) value);
-        } else if (value instanceof Double[]) {
-            addCriteria(field, (Double[]) value);
         }
     }
 

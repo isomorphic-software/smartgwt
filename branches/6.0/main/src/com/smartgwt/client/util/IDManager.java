@@ -52,6 +52,9 @@ import com.google.gwt.core.client.JavaScriptObject;
 
 public class IDManager {
 
+    private static int nSmartGwtCollisions;
+    private static int nSmartClientCollisions;
+
     // Test for unique IDs:
     // We need to ensure that IDs
     // - are valid JS identifiers (no dots, no spaces)
@@ -75,6 +78,7 @@ public class IDManager {
             SC.logWarn("Specified ID: " + id + " collides with the ID for an existing " +
                        "SmartGWT component or object. The existing object will be " +
                        "destroyed and the ID bound to the new object.");
+            nSmartGwtCollisions++;
 
             // The type dispatch could be eliminated by having all three of these
             // classes implement a common interface, but probably not worth it yet.
@@ -90,6 +94,7 @@ public class IDManager {
             SC.logWarn("Specified ID: " + id + " collides with the ID for an existing " +
                        collision + " The existing object will be destroyed and the ID " +
                        "bound to the new object.");
+            nSmartClientCollisions++;
             destroy(id);
         }
     }
@@ -154,5 +159,13 @@ public class IDManager {
     public static void unregisterID(RefDataClass data, String id) {
         Object value = assignedIDs.get(id);
         if (value == data) assignedIDs.remove(id);
+    }
+
+    // Track Symbol Name Collisions
+    public static int getNSmartGwtCollisions() { 
+        return nSmartGwtCollisions; 
+    }
+    public static int getNSmartClientCollisions() { 
+        return nSmartClientCollisions; 
     }
 }

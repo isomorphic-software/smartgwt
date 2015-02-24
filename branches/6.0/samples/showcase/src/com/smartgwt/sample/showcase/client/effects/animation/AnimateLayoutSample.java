@@ -36,8 +36,7 @@ public class AnimateLayoutSample extends ShowcasePanel {
 
     public Canvas getViewPanel() {
 
-        VLayout layout = new VLayout();
-        layout.setMembersMargin(10);
+        Canvas canvas = new Canvas();
 
         final HStack starsLayout = new HStack();
         starsLayout.setTop(50);
@@ -58,7 +57,6 @@ public class AnimateLayoutSample extends ShowcasePanel {
         showButton.setTitle("Show");
         showButton.setIconOrientation("right");
         showButton.setIcon("pieces/16/star_green.png");
-        showButton.setLeft(40);
 
         IButton hideButton = new IButton();
         hideButton.setTitle("Hide");
@@ -80,11 +78,11 @@ public class AnimateLayoutSample extends ShowcasePanel {
         hLayout.setMembersMargin(10);
         hLayout.addMember(hideButton);
         hLayout.addMember(showButton);
-        layout.addMember(hLayout);
-        layout.addChild(starsLayout);
+        hLayout.setHeight(1);
 
-
-        return layout;
+        canvas.addChild(hLayout);
+        canvas.addChild(starsLayout);
+        return canvas;
     }
 
     public String getIntro() {

@@ -75,6 +75,9 @@ public class FormItemMetaBeanFactoryGenerator extends Generator {
         // we don't need to generate them from here.
         if (classType.isAbstract()) return false;
 
+        // Don't try to generate for classes declared private, since it won't work
+        if (classType.isPrivate()) return false;
+        
         // We only generate factories for classes that have a no-arg constructor
         JConstructor constructor = classType.findConstructor(new JType[]{});
         if (constructor == null) return false;

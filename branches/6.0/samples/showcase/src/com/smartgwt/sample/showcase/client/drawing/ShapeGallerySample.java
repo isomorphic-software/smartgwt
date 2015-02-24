@@ -1,10 +1,10 @@
 package com.smartgwt.sample.showcase.client.drawing;
 
-import com.smartgwt.client.types.Cursor;
-import com.smartgwt.client.types.Overflow;
+import com.smartgwt.client.types.LineCap;
+import com.smartgwt.client.types.TitleRotationMode;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.drawing.DrawCurve;
-import com.smartgwt.client.widgets.drawing.DrawLabel;
+import com.smartgwt.client.widgets.drawing.DrawItem;
 import com.smartgwt.client.widgets.drawing.DrawLine;
 import com.smartgwt.client.widgets.drawing.DrawLinePath;
 import com.smartgwt.client.widgets.drawing.DrawOval;
@@ -16,11 +16,13 @@ import com.smartgwt.client.widgets.drawing.DrawTriangle;
 import com.smartgwt.client.widgets.drawing.Point;
 import com.smartgwt.client.widgets.events.DrawEvent;
 import com.smartgwt.client.widgets.events.DrawHandler;
+import com.smartgwt.client.widgets.layout.HStack;
+import com.smartgwt.client.widgets.layout.Layout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class ShapeGallerySample extends ShowcasePanel {
-    private static final String DESCRIPTION = "Below is a sampling of the shapes available in the SmartClient drawing package.";
+    private static final String DESCRIPTION = "This is a sample of the shapes available in the SmartClient drawing module.";
 
     public static class Factory implements PanelFactory {
 
@@ -41,149 +43,103 @@ public class ShapeGallerySample extends ShowcasePanel {
         }
     }
 
+    private DrawPane mainPane;
+
+    private void applyCommonProps(DrawItem item) {
+        item.setDrawPane(mainPane);
+        item.setCanDrag(true);
+        item.setTitleRotationMode(TitleRotationMode.NEVER_ROTATE);
+    }
+
     public Canvas getViewPanel() {
-        DrawPane drawPane = new DrawPane();
-        drawPane.setHeight(450);
-        drawPane.setWidth(700);
-        drawPane.setLeft(25);
-        drawPane.setShowEdges(true);
-        drawPane.setEdgeSize(4);
-        drawPane.setBackgroundColor("papayawhip");
-        drawPane.setOverflow(Overflow.HIDDEN);
-        drawPane.setCursor(Cursor.AUTO);
-        
-        drawPane.addDrawHandler(new DrawHandler() {
-            
+        mainPane = new DrawPane();
+        mainPane.setWidth(720);
+        mainPane.setHeight(475);
+        mainPane.setShowEdges(true);
+        mainPane.addDrawHandler(new DrawHandler() {
             @Override
             public void onDraw(DrawEvent event) {
-
-                DrawPane drawPane = (DrawPane) event.getSource();
-                
-                DrawLabel triangleLabel = new DrawLabel();
-                triangleLabel.setDrawPane(drawPane);
-                triangleLabel.setLeft(50);
-                triangleLabel.setTop(175);
-                triangleLabel.setContents("Triangle");
-                triangleLabel.draw();
-             
-                DrawTriangle drawTriangle = new DrawTriangle();
-                drawTriangle.setDrawPane(drawPane);
-                drawTriangle.setPoints(new Point(100,50),new Point(150,150),new Point(50,150));
+                final DrawTriangle drawTriangle = new DrawTriangle();
+                drawTriangle.setPoints(new Point(100, 50), new Point(150, 150), new Point(50, 150));
+                drawTriangle.setTitle("Triangle");
+                applyCommonProps(drawTriangle);
                 drawTriangle.draw();
 
-                DrawLabel curveLabel = new DrawLabel();
-                curveLabel.setDrawPane(drawPane);
-                curveLabel.setLeft(200);
-                curveLabel.setTop(175);
-                curveLabel.setContents("Curve");
-                curveLabel.draw();
-                
-                DrawCurve drawCurve = new DrawCurve();
-                drawCurve.setDrawPane(drawPane);
-                drawCurve.setStartPoint(new Point(200,50));
-                drawCurve.setEndPoint(new Point(300,150));
-                drawCurve.setControlPoint1(new Point(250,0));
-                drawCurve.setControlPoint2(new Point(250,200));
+                final DrawCurve drawCurve = new DrawCurve();
+                drawCurve.setStartPoint(new Point(200, 50));
+                drawCurve.setEndPoint(new Point(300, 150));
+                drawCurve.setControlPoint1(new Point(250, 0));
+                drawCurve.setControlPoint2(new Point(250, 200));
+                drawCurve.setLineCap(LineCap.ROUND);
+                drawCurve.setTitle("Curve");
+                applyCommonProps(drawCurve);
                 drawCurve.draw();
 
-                DrawLabel linePathLabel = new DrawLabel();
-                linePathLabel.setDrawPane(drawPane);
-                linePathLabel.setLeft(350);
-                linePathLabel.setTop(175);
-                linePathLabel.setContents("Line Path");
-                linePathLabel.draw();
-                
-                DrawLinePath drawLinePath = new DrawLinePath();
-                drawLinePath.setDrawPane(drawPane);
-                drawLinePath.setStartPoint(new Point(350,50));
-                drawLinePath.setEndPoint(new Point(450,150));
+                final DrawLinePath drawLinePath = new DrawLinePath();
+                drawLinePath.setStartPoint(new Point(350, 50));
+                drawLinePath.setEndPoint(new Point(450, 150));
+                drawLinePath.setTitle("LinePath");
+                applyCommonProps(drawLinePath);
                 drawLinePath.draw();
 
-                DrawLabel pathLabel = new DrawLabel();
-                pathLabel.setDrawPane(drawPane);
-                pathLabel.setLeft(500);
-                pathLabel.setTop(175);
-                pathLabel.setContents("Path");
-                pathLabel.draw();
-                
-                DrawPath drawPath = new DrawPath();
-                drawPath.setDrawPane(drawPane);
+                final DrawPath drawPath = new DrawPath();
                 drawPath.setPoints(
-                        new Point(500,50),
-                        new Point(525,50),
-                        new Point(550,75),
-                        new Point(575,75),
-                        new Point(600,75),
-                        new Point(600,125),
-                        new Point(575,125),
-                        new Point(550,125),
-                        new Point(525,150),
-                        new Point(500,150)
+                        new Point(500, 50),
+                        new Point(525, 50),
+                        new Point(550, 75),
+                        new Point(575, 75),
+                        new Point(600, 75),
+                        new Point(600, 125),
+                        new Point(575, 125),
+                        new Point(550, 125),
+                        new Point(525, 150),
+                        new Point(500, 150)
                 );
+                drawPath.setTitle("Path");
+                applyCommonProps(drawPath);
                 drawPath.draw();
 
-                DrawLabel ovalLabel = new DrawLabel();
-                ovalLabel.setDrawPane(drawPane);
-                ovalLabel.setLeft(50);
-                ovalLabel.setTop(415);
-                ovalLabel.setContents("Oval");
-                ovalLabel.draw();
-                
-                DrawOval drawOval = new DrawOval();
-                drawOval.setDrawPane(drawPane);
+                final DrawOval drawOval = new DrawOval();
                 drawOval.setLeft(50);
                 drawOval.setTop(300);
                 drawOval.setWidth(100);
                 drawOval.setHeight(100);
+                drawOval.setTitle("Oval");
+                applyCommonProps(drawOval);
                 drawOval.draw();
 
-                DrawLabel rectLabel = new DrawLabel();
-                rectLabel.setDrawPane(drawPane);
-                rectLabel.setLeft(200);
-                rectLabel.setTop(415);
-                rectLabel.setContents("Rect");
-                rectLabel.draw();
-                
-                DrawRect drawRect = new DrawRect();
-                drawRect.setDrawPane(drawPane);
+                final DrawRect drawRect = new DrawRect();
                 drawRect.setLeft(200);
                 drawRect.setTop(300);
                 drawRect.setWidth(150);
                 drawRect.setHeight(100);
+                drawRect.setTitle("Rectangle");
+                applyCommonProps(drawRect);
                 drawRect.draw();
 
-                DrawLabel lineLabel = new DrawLabel();
-                lineLabel.setDrawPane(drawPane);
-                lineLabel.setLeft(400);
-                lineLabel.setTop(415);
-                lineLabel.setContents("Line");
-                lineLabel.draw();
-                
-                DrawLine drawLine = new DrawLine();
-                drawLine.setDrawPane(drawPane);
-                drawLine.setStartPoint(new Point(400,300));
-                drawLine.setEndPoint(new Point(500,400));
+                final DrawLine drawLine = new DrawLine();
+                drawLine.setStartPoint(new Point(400, 300));
+                drawLine.setEndPoint(new Point(500, 400));
+                drawLine.setTitle("Line");
+                applyCommonProps(drawLine);
                 drawLine.draw();
 
-                DrawLabel sectorLabel = new DrawLabel();
-                sectorLabel.setDrawPane(drawPane);
-                sectorLabel.setLeft(550);
-                sectorLabel.setTop(415);
-                sectorLabel.setContents("Sector");
-                sectorLabel.draw();
-                
-                DrawSector drawSector = new DrawSector();
-                drawSector.setDrawPane(drawPane);
-                drawSector.setCenterPoint(new Point(550,300));
-                drawSector.setStartAngle(0);
-                drawSector.setEndAngle(90);
+                final DrawSector drawSector = new DrawSector();
+                drawSector.setDrawPane(mainPane);
+                drawSector.setCenterPoint(new Point(550, 300));
+                drawSector.setStartAngle(0.0);
+                drawSector.setEndAngle(90.0);
                 drawSector.setRadius(100);
+                drawSector.setTitle("Sector");
+                applyCommonProps(drawSector);
                 drawSector.draw();
-
             }
         });
 
-        return drawPane;
+        final Layout layout = new HStack();
+        layout.setWidth100();
+        layout.setMembers(mainPane);
+        return layout;
     }
 
     public String getIntro() {

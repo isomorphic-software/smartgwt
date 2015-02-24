@@ -80,7 +80,10 @@ public class AddRemoveSample extends ShowcasePanel {
         IButton removeButton = new IButton("Remove Tab");
         removeButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                tabSet.removeTab(tabSet.getTabs().length - 1);
+                final Tab[] tabs = tabSet.getTabs();
+                if (tabs.length > 0) {
+                    tabSet.removeTab(tabs[tabs.length - 1]);
+                }
             }
         });
 

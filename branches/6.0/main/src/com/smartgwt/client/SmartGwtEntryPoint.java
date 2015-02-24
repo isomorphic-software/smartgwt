@@ -54,6 +54,10 @@ public class SmartGwtEntryPoint implements EntryPoint {
             @com.google.gwt.core.client.GWT::log(Ljava/lang/String;Ljava/lang/Throwable;)(message, @com.smartgwt.client.core.JsObject.SGWT_WARN::new(Ljava/lang/String;)(message));
         }
 
+        // these must be called after we verify the SC libs are loaded
+        @com.smartgwt.client.util.LogUtil::setJSNIErrorHandler()();
+        @com.smartgwt.client.util.LogUtil::addSGWTLoggerCategories()();
+
         //pre GWT 2.0 fallback
         if(typeof $entry === "undefined") {
             $entry = function(jsFunction) {
@@ -171,7 +175,33 @@ public class SmartGwtEntryPoint implements EntryPoint {
             $wnd.isc.Canvas.validateFieldNames = true;
         }
 
-        $wnd.SmartGWT.convertToJavaType = $entry(function(obj) {
+        // helper routine for convertToJavaType(); not wrapped with $entry()
+        $wnd.SmartGWT._convertToJavaArrayType = function (obj, type) {
+            if ($wnd.isc.SimpleType.inheritsFrom(type, "text")) {
+                return @com.smartgwt.client.util.JSOHelper::convertToJavaStringArray(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
+            } else if ($wnd.isc.SimpleType.inheritsFrom(type, "date")) {
+                return @com.smartgwt.client.util.JSOHelper::convertToJavaDateArray(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
+            } else if ($wnd.isc.SimpleType.inheritsFrom(type, "boolean")) {
+                return @com.smartgwt.client.util.JSOHelper::convertToJavaBooleanArray(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
+            } else if ($wnd.isc.SimpleType.inheritsFrom(type, "integer")) {
+                return @com.smartgwt.client.util.JSOHelper::convertToJavaIntegerArray(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
+            } else if ($wnd.isc.SimpleType.inheritsFrom(type, "float")) {
+                return @com.smartgwt.client.util.JSOHelper::convertToJavaDoubleArray(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
+            } else {
+                return @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
+            }
+        };
+
+        //> @method convertToJavaType()
+        // Converts a JS object to a Java object.  The type argument is optional
+        // and only used when isc.isAn.Array(obj) is true.  The type is determined
+        // by inspecting the object in all other cases.
+        // Note: If null is explicitly passed for type, conversion to a Java array
+        // (if applicable) will be skipped and a JavaScriptObject will be returned.
+        // @param obj (object) the JS object to be converted
+        // @param [type] (String) type of the field as in +link{DataSourceField.type} (optional)
+        //<
+        $wnd.SmartGWT.convertToJavaType = $entry(function(obj, type) {
         		if(obj == null) return null;
                 
                 var objType = typeof obj;
@@ -204,11 +234,10 @@ public class SmartGwtEntryPoint implements EntryPoint {
                     return @com.smartgwt.client.util.JSOHelper::convertToJavaDate(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
                 } else if (obj._constructor && obj._constructor == 'DateRange') {
                     return @com.smartgwt.client.widgets.form.fields.DateRangeItem::convertToDateRange(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
+                } else if($wnd.isc.isA.Array(obj) && type !== null) {
+                    return this._convertToJavaArrayType(obj, type);
                 } else if(@com.smartgwt.client.util.JSOHelper::isJSO(Ljava/lang/Object;)(obj)) {
-                	
                     return obj;
-                } else if($wnd.isc.isA.Array(obj)) {
-                    return @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
                 } else {
                 	// We were unable to determine the type - return the object unmodified.
                     return obj;
@@ -290,6 +319,13 @@ public class SmartGwtEntryPoint implements EntryPoint {
                 if (object[treeProp] != null) {
 	    	 	    object = $wnd.isc.Tree.getCleanNodeData(object);
 	    	 	}
+
+                // remove SGWT backrefs if appropriate
+                // see http://forums.smartclient.com/showthread.php?p=127912
+                if (this._cleanSgwtProperties) {
+                    delete object.__ref;
+                    delete object.__module;
+                }
 	    	 	
 	    	 	for (var fieldName in object) {
 	    	 		// Not sure whether this could really happen
@@ -358,7 +394,6 @@ public class SmartGwtEntryPoint implements EntryPoint {
         // class twice in hosted mode even though it appears only once in the load
         // hierarchy. Check with GWT team.
         if (!initialized) {
-            LogUtil.setJSNIErrorHandler();
             init();
             I18nUtil.init();
 

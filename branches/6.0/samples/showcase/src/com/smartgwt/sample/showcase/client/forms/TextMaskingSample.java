@@ -10,16 +10,16 @@ import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class TextMaskingSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "<p>TextItems support a masked entry to restrict and format entry.</p>" +
+    private static final String DESCRIPTION = "<p>TextItems support a masked entry system to restrict and format data entry.</p>" +
             "<p>Overview of available mask characters <P> <table class=\"normal\"> <tr><th>Character</th><th>Description</th></tr> " +
             "<tr><td>0</td><td>Digit (0 through 9) or plus [+] or minus [-] signs</td></tr> <tr><td>9</td><td>Digit or " +
             "space</td></tr> <tr><td>#</td><td>Digit</td></tr> <tr><td>L</td><td>Letter (A through Z)</td></tr> " +
             "<tr><td>?</td><td>Letter (A through Z) or space</td></tr> <tr><td>A</td><td>Letter or digit</td></tr> " +
-            "<tr><td>a</td><td>Letter or digit</td></tr> <tr><td>C</td><td>Any character or space</td></tr> <tr><td>&nbsp;</td></tr> " +
+            "<tr><td>a</td><td>Letter or digit</td></tr> <tr><td>C</td><td>Any character or space</td></tr> <tr><td colspan='2'>&nbsp;</td></tr> " +
             "<tr><td>&lt;</td><td>Causes all characters that follow to be converted to lowercase</td></tr> <tr><td>&gt;</td><td>Causes " +
             "all characters that follow to be converted to uppercase</td></tr> </table> <P> Any character not matching one of the " +
             "above mask characters or that is escaped with a backslash (\\) is considered to be a literal. <P> Custom mask characters " +
-            "can be defined by standard regular expression character set or range. For example, a hexadecimal color code mask could " +
+            "can be defined by a standard regular expression character set or range. For example, a hexadecimal color code mask could " +
             "be: <UL> <LI>Color: \\#>[0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F]</LI> </UL></p?";
 
     public static class Factory implements PanelFactory {
@@ -63,7 +63,7 @@ public class TextMaskingSample extends ShowcasePanel {
 
         TextItem phoneNumberField = new TextItem("phoneNo", "Phone No.");
         phoneNumberField.setMask("(###) ###-####");
-        phoneNumberField.setHint("(###)&nbsp;###-####");
+        phoneNumberField.setHint("(###) ###-####");
         phoneNumberField.setShowHintInField(true);
 
         DateItem dateField = new DateItem("dateItem", "Date");

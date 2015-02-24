@@ -12,7 +12,8 @@ import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
-import com.smartgwt.client.widgets.form.fields.FilterCriteriaFunction;
+import com.smartgwt.client.widgets.form.fields.FormItemCriteriaFunction;
+import com.smartgwt.client.widgets.form.fields.FormItemFunctionContext;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
@@ -78,7 +79,7 @@ public class GridDependentSelectsSample extends ShowcasePanel {
                 localDataGrid.setValueMap("department", new LinkedHashMap());
             }
         });
-        divisionField.setEditorType(divisionSelectItem);
+        divisionField.setEditorProperties(divisionSelectItem);
 
         ListGridField departmentField = new ListGridField("department", "Department");
 
@@ -105,7 +106,7 @@ public class GridDependentSelectsSample extends ShowcasePanel {
                 return valueMap;
             }
         });
-        departmentField.setEditorType(departmentSelectItem);
+        departmentField.setEditorProperties(departmentSelectItem);
 
         localDataGrid.setFields(employeeField, divisionField, departmentField);
 
@@ -125,7 +126,7 @@ public class GridDependentSelectsSample extends ShowcasePanel {
 
         ListGridField quantityField = new ListGridField("quantity", "Qty");
         quantityField.setType(ListGridFieldType.INTEGER);
-        quantityField.setWidth(30);
+        quantityField.setWidth(50);
 
         ListGridField categoryField = new ListGridField("categoryName", "Category");
 
@@ -134,8 +135,7 @@ public class GridDependentSelectsSample extends ShowcasePanel {
 
         SelectItem categorySelectItem = new SelectItem();
         categorySelectItem.setOptionDataSource(supplyCategoryDS);
-
-        categoryField.setEditorType(categorySelectItem);
+        categoryField.setEditorProperties(categorySelectItem);
 
         categoryField.addChangedHandler(new com.smartgwt.client.widgets.grid.events.ChangedHandler() {
             public void onChanged(com.smartgwt.client.widgets.grid.events.ChangedEvent event) {
@@ -146,16 +146,15 @@ public class GridDependentSelectsSample extends ShowcasePanel {
 
         ListGridField itemField = new ListGridField("itemName", "Item");
         SelectItem itemEditor = new SelectItem();
-        itemEditor.setPickListFilterCriteriaFunction(new FilterCriteriaFunction() {
-            public Criteria getCriteria() {
+        itemEditor.setPickListFilterCriteriaFunction(new FormItemCriteriaFunction() {
+            @Override
+            public Criteria getCriteria(FormItemFunctionContext itemContext) {
                 String category = (String) remoteDataGrid.getEditedCell(remoteDataGrid.getEditRow(), "categoryName");
                 return new Criteria("category", category);
             }
         });
-
-
         itemEditor.setOptionDataSource(supplyItemDS);
-        itemField.setEditorType(itemEditor);
+        itemField.setEditorProperties(itemEditor);
 
         remoteDataGrid.setFields(quantityField, categoryField, itemField);
 

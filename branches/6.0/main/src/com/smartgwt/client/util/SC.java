@@ -26,9 +26,17 @@ public class SC {
     public static final String REF = "__ref";
     public static final String MODULE = "__module";
     public static final String AUTOID = "_autoAssignedID";
+    public static final String AUTOIDCLASS = "AUTOIDClass";
 
     public static native String getLicenseType() /*-{
         return $wnd.isc.licenseType;
+    }-*/;
+
+    public static native String getAUTOIDClass(String className) /*-{
+        var simpleName = className.substring(className.lastIndexOf(".")+1);
+        //replace any $ characters from inner class names with an underscore
+        simpleName = simpleName.replace("$", "_");
+        return simpleName;
     }-*/;
 
     public static native String generateID() /*-{        
@@ -36,10 +44,7 @@ public class SC {
     }-*/;
     
     public static native String generateID(String className) /*-{
-        var simpleName = className.substring(className.lastIndexOf(".")+1);
-        //replace any $ characters from inner class names with an underscore
-        simpleName = simpleName.replace("$", "_");
-        return $wnd.isc.ClassFactory.getNextGlobalIDForClass(simpleName);
+        return $wnd.isc.ClassFactory.getNextGlobalIDForClass(className);
     }-*/;
 
     //>IDocument One complication is that in "keep globals" mode, the SGWT wrapper's current SC
@@ -47,9 +52,7 @@ public class SC {
     // don't immediately release it but merely update the ID class to the right value.  We also
     // log a warning if we're not able to release the ID and it's not expected.//<IDocument
     public static native void releaseID(String className, String id) /*-{
-        var simpleName = className.substring(className.lastIndexOf(".")+1);
-        //replace any $ characters from inner class names with an underscore
-        simpleName = simpleName.replace("$", "_");
+        var simpleName = @com.smartgwt.client.util.SC::getAUTOIDClass(Ljava/lang/String;)(className);
         // handle "keep globals" mode where spurious $wnd bindings are present
         if (id == null || $wnd.window[id] == null) {
             $wnd.isc.ClassFactory.releaseGlobalID(simpleName, id);
@@ -714,7 +717,7 @@ public class SC {
      * @return true if Analytics module is loaded
      */
     public static native boolean hasAnalytics()/*-{
-        return $wnd.isc.CubeGrid != null;
+        return $wnd.isc.hasOptionalModule("Analytics");
     }-*/;
 
     /**
@@ -750,7 +753,7 @@ public class SC {
      * @return true if RealtimeMessaging module is loaded
      */
     public static native boolean hasRealtimeMessaging()/*-{
-        return $wnd.isc.Messaging != null;
+        return $wnd.isc.hasOptionalModule("RealtimeMessaging");
     }-*/;
 
     /**

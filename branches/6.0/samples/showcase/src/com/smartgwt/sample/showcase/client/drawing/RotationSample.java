@@ -1,7 +1,7 @@
 package com.smartgwt.sample.showcase.client.drawing;
 
-import com.smartgwt.client.types.Cursor;
-import com.smartgwt.client.types.Overflow;
+import com.smartgwt.client.types.LineCap;
+import com.smartgwt.client.types.TitleRotationMode;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Slider;
 import com.smartgwt.client.widgets.drawing.DrawCurve;
@@ -11,22 +11,19 @@ import com.smartgwt.client.widgets.drawing.DrawLine;
 import com.smartgwt.client.widgets.drawing.DrawLinePath;
 import com.smartgwt.client.widgets.drawing.DrawOval;
 import com.smartgwt.client.widgets.drawing.DrawPane;
-import com.smartgwt.client.widgets.drawing.DrawPath;
+import com.smartgwt.client.widgets.drawing.DrawPolygon;
 import com.smartgwt.client.widgets.drawing.DrawRect;
-import com.smartgwt.client.widgets.drawing.DrawSector;
 import com.smartgwt.client.widgets.drawing.DrawTriangle;
 import com.smartgwt.client.widgets.drawing.Point;
-import com.smartgwt.client.widgets.events.DrawEvent;
-import com.smartgwt.client.widgets.events.DrawHandler;
 import com.smartgwt.client.widgets.events.ValueChangedEvent;
 import com.smartgwt.client.widgets.events.ValueChangedHandler;
-import com.smartgwt.client.widgets.layout.VLayout;
+import com.smartgwt.client.widgets.layout.Layout;
+import com.smartgwt.client.widgets.layout.VStack;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class RotationSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Sample of Rotation feature of Drawing module.";
-    private DrawPane drawPane;
 
     public static class Factory implements PanelFactory {
 
@@ -47,182 +44,144 @@ public class RotationSample extends ShowcasePanel {
         }
     }
 
-    public Canvas getViewPanel() {
-        drawPane = new DrawPane();
-        drawPane.setHeight(450);
-        drawPane.setWidth(700);
-        drawPane.setLeft(25);
-        drawPane.setShowEdges(true);
-        drawPane.setEdgeSize(4);
-        drawPane.setBackgroundColor("papayawhip");
-        drawPane.setOverflow(Overflow.HIDDEN);
-        drawPane.setCursor(Cursor.AUTO);
-        
-        drawPane.addDrawHandler(new DrawHandler() {
-            
-            @Override
-            public void onDraw(DrawEvent event) {
+    private DrawPane mainPane;
 
-                DrawPane drawPane = (DrawPane) event.getSource();
-                
-                DrawLabel triangleLabel = new DrawLabel();
-                triangleLabel.setDrawPane(drawPane);
-                triangleLabel.setLeft(50);
-                triangleLabel.setTop(175);
-                triangleLabel.setContents("Triangle");
-                triangleLabel.draw();
-             
-                DrawTriangle drawTriangle = new DrawTriangle();
-                drawTriangle.setDrawPane(drawPane);
-                drawTriangle.setPoints(new Point(100,50),new Point(150,150),new Point(50,150));
-                drawTriangle.draw();
-        
-                DrawLabel curveLabel = new DrawLabel();
-                curveLabel.setDrawPane(drawPane);
-                curveLabel.setLeft(200);
-                curveLabel.setTop(175);
-                curveLabel.setContents("Curve");
-                curveLabel.draw();
-                
-                DrawCurve drawCurve = new DrawCurve();
-                drawCurve.setDrawPane(drawPane);
-                drawCurve.setStartPoint(new Point(200,50));
-                drawCurve.setEndPoint(new Point(300,150));
-                drawCurve.setControlPoint1(new Point(250,0));
-                drawCurve.setControlPoint2(new Point(250,200));
-                drawCurve.draw();
-        
-                DrawLabel linePathLabel = new DrawLabel();
-                linePathLabel.setDrawPane(drawPane);
-                linePathLabel.setLeft(350);
-                linePathLabel.setTop(175);
-                linePathLabel.setContents("Line Path");
-                linePathLabel.draw();
-                
-                DrawLinePath drawLinePath = new DrawLinePath();
-                drawLinePath.setDrawPane(drawPane);
-                drawLinePath.setStartPoint(new Point(350,50));
-                drawLinePath.setEndPoint(new Point(450,150));
-                drawLinePath.draw();
-        
-                DrawLabel pathLabel = new DrawLabel();
-                pathLabel.setDrawPane(drawPane);
-                pathLabel.setLeft(500);
-                pathLabel.setTop(175);
-                pathLabel.setContents("Path");
-                pathLabel.draw();
-                
-                DrawPath drawPath = new DrawPath();
-                drawPath.setDrawPane(drawPane);
-                drawPath.setPoints(
-                        new Point(500,50),
-                        new Point(525,50),
-                        new Point(550,75),
-                        new Point(575,75),
-                        new Point(600,75),
-                        new Point(600,125),
-                        new Point(575,125),
-                        new Point(550,125),
-                        new Point(525,150),
-                        new Point(500,150)
-                );
-                drawPath.draw();
-        
-                DrawLabel ovalLabel = new DrawLabel();
-                ovalLabel.setDrawPane(drawPane);
-                ovalLabel.setLeft(50);
-                ovalLabel.setTop(415);
-                ovalLabel.setContents("Oval");
-                ovalLabel.draw();
-                
-                DrawOval drawOval = new DrawOval();
-                drawOval.setDrawPane(drawPane);
-                drawOval.setLeft(50);
-                drawOval.setTop(300);
-                drawOval.setWidth(100);
-                drawOval.setHeight(100);
-                drawOval.draw();
-        
-                DrawLabel rectLabel = new DrawLabel();
-                rectLabel.setDrawPane(drawPane);
-                rectLabel.setLeft(200);
-                rectLabel.setTop(415);
-                rectLabel.setContents("Rect");
-                rectLabel.draw();
-                
-                DrawRect drawRect = new DrawRect();
-                drawRect.setDrawPane(drawPane);
-                drawRect.setLeft(200);
-                drawRect.setTop(300);
-                drawRect.setWidth(150);
-                drawRect.setHeight(100);
-                drawRect.draw();
-        
-                DrawLabel lineLabel = new DrawLabel();
-                lineLabel.setDrawPane(drawPane);
-                lineLabel.setLeft(400);
-                lineLabel.setTop(415);
-                lineLabel.setContents("Line");
-                lineLabel.draw();
-                
-                DrawLine drawLine = new DrawLine();
-                drawLine.setDrawPane(drawPane);
-                drawLine.setStartPoint(new Point(400,300));
-                drawLine.setEndPoint(new Point(500,400));
-                drawLine.draw();
-        
-                DrawLabel sectorLabel = new DrawLabel();
-                sectorLabel.setDrawPane(drawPane);
-                sectorLabel.setLeft(550);
-                sectorLabel.setTop(415);
-                sectorLabel.setContents("Sector");
-                sectorLabel.draw();
-                
-                DrawSector drawSector = new DrawSector();
-                drawSector.setDrawPane(drawPane);
-                drawSector.setCenterPoint(new Point(550,300));
-                drawSector.setStartAngle(0);
-                drawSector.setEndAngle(90);
-                drawSector.setRadius(100);
-                drawSector.draw();
-                
+    private DrawTriangle drawTriangle;
+    private DrawCurve drawCurve;
+    private DrawLinePath drawLinePath;
+    private DrawPolygon drawPolygon;
+    private DrawOval drawOval;
+    private DrawRect drawRect;
+    private DrawLine drawLine;
+
+    private void applyCommonProps(DrawItem item) {
+        item.setDrawPane(mainPane);
+        item.setCanDrag(true);
+        item.setTitleRotationMode(TitleRotationMode.WITH_ITEM);
+    }
+
+    public Canvas getViewPanel() {
+        mainPane = new DrawPane();
+        mainPane.setID("mainPane");
+        mainPane.setWidth(720);
+        mainPane.setHeight(475);
+        mainPane.setTop(120);
+        mainPane.setShowEdges(true);
+
+        drawTriangle = new DrawTriangle();
+        drawTriangle.setID("drawTriangle");
+        drawTriangle.setPoints(new Point(100, 50), new Point(150, 150), new Point(50, 150));
+        drawTriangle.setTitle("Triangle");
+        applyCommonProps(drawTriangle);
+        drawTriangle.draw();
+
+        drawCurve = new DrawCurve();
+        drawCurve.setID("drawCurve");
+        drawCurve.setStartPoint(new Point(200, 50));
+        drawCurve.setEndPoint(new Point(300, 150));
+        drawCurve.setControlPoint1(new Point(250, 0));
+        drawCurve.setControlPoint2(new Point(250, 200));
+        drawCurve.setLineCap(LineCap.ROUND);
+        drawCurve.setTitle("Curve");
+        applyCommonProps(drawCurve);
+        drawCurve.draw();
+
+        drawLinePath = new DrawLinePath();
+        drawLinePath.setID("drawLinePath");
+        drawLinePath.setStartPoint(new Point(350, 50));
+        drawLinePath.setEndPoint(new Point(450, 150));
+        drawLinePath.setTitle("LinePath");
+        applyCommonProps(drawLinePath);
+        drawLinePath.draw();
+
+        drawPolygon = new DrawPolygon();
+        drawPolygon.setID("drawPolygon");
+        drawPolygon.setPoints(
+                new Point(500, 50),
+                new Point(525, 50),
+                new Point(550, 75),
+                new Point(575, 75),
+                new Point(600, 75),
+                new Point(600, 125),
+                new Point(575, 125),
+                new Point(550, 125),
+                new Point(525, 150),
+                new Point(500, 150)
+        );
+        drawPolygon.setTitle("Polygon");
+        applyCommonProps(drawPolygon);
+        drawPolygon.draw();
+
+        drawOval = new DrawOval();
+        drawOval.setID("drawOval");
+        drawOval.setLeft(50);
+        drawOval.setTop(300);
+        drawOval.setWidth(100);
+        drawOval.setHeight(100);
+        drawOval.setTitle("Oval");
+        applyCommonProps(drawOval);
+        drawOval.draw();
+
+        drawRect = new DrawRect();
+        drawRect.setID("drawRect");
+        drawRect.setLeft(200);
+        drawRect.setTop(300);
+        drawRect.setWidth(150);
+        drawRect.setHeight(100);
+        drawRect.setTitle("Rect");
+        applyCommonProps(drawRect);
+        drawRect.draw();
+
+        drawLine = new DrawLine();
+        drawLine.setID("drawLine");
+        drawLine.setStartPoint(new Point(400, 300));
+        drawLine.setEndPoint(new Point(500, 400));
+        drawLine.setTitle("Line");
+        applyCommonProps(drawLine);
+        drawLine.draw();
+
+        final Slider shapesRotationSlider = new Slider();
+        shapesRotationSlider.setID("shapesRotation");
+        shapesRotationSlider.setMinValue(0.0);
+        shapesRotationSlider.setMaxValue(360.0);
+        shapesRotationSlider.setNumValues(361);
+        shapesRotationSlider.setWidth(400);
+        shapesRotationSlider.setValue(0.0);
+        shapesRotationSlider.setTitle("Rotate Shapes");
+        shapesRotationSlider.setVertical(false);
+        shapesRotationSlider.addValueChangedHandler(new ValueChangedHandler() {
+            @Override
+            public void onValueChanged(ValueChangedEvent event) {
+                final double value = event.getValue();
+                drawTriangle.rotateTo(value);
+                drawCurve.rotateTo(value);
+                drawLinePath.rotateTo(value);
+                drawPolygon.rotateTo(value);
+                drawOval.rotateTo(value);
+                drawRect.rotateTo(value);
+                drawLine.rotateTo(value);
             }
         });
 
-        ValueChangedHandler shapeRotationSliderValueChangeHandler = new ValueChangedHandler() {
+        final Slider paneRotationSlider = new Slider();
+        paneRotationSlider.setID("paneRotation");
+        paneRotationSlider.setMinValue(0.0);
+        paneRotationSlider.setMaxValue(360.0);
+        paneRotationSlider.setNumValues(361);
+        paneRotationSlider.setWidth(400);
+        paneRotationSlider.setValue(0.0);
+        paneRotationSlider.setTitle("Rotate Pane");
+        paneRotationSlider.setVertical(false);
+        paneRotationSlider.addValueChangedHandler(new ValueChangedHandler() {
             @Override
             public void onValueChanged(ValueChangedEvent event) {
-                DrawItem[] drawItems = drawPane.getDrawItems();
-                for (int i = 0; i < drawItems.length; i++) {
-                    DrawItem drawItem = drawItems[i];
-                    if(drawItem instanceof DrawLabel){
-                        continue;
-                    }
-                    drawItem.rotateTo(event.getValue());
-                }
-                drawPane.redraw();
+                mainPane.rotate(event.getValue());
             }
-        };
+        });
 
-        Slider shapesRotationSlider = new Slider();
-        shapesRotationSlider.setMinValue(0);
-        shapesRotationSlider.setMaxValue(360);
-        shapesRotationSlider.setNumValues(360);
-        shapesRotationSlider.setWidth(400);
-        shapesRotationSlider.setLeft(25);
-        shapesRotationSlider.setTop(450);
-        shapesRotationSlider.setValue(0);
-        shapesRotationSlider.setTitle("Rotate Shapes");
-        shapesRotationSlider.setVertical(false);
-        shapesRotationSlider.addValueChangedHandler(shapeRotationSliderValueChangeHandler);
-        shapesRotationSlider.draw();
-        
-        VLayout layout = new VLayout();
-        layout.addMember(drawPane);
-        layout.addMember(shapesRotationSlider);
-        layout.draw();
-        
-        
+        final Layout layout = new VStack();
+        layout.setWidth100();
+        layout.setMembers(mainPane, shapesRotationSlider, paneRotationSlider);
         return layout;
     }
 
