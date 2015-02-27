@@ -165,7 +165,7 @@
 			</targetfiles>
 			<sequential>
 				<echo>Building javadoc</echo>
-				<java classpathref="DOC_PATH" classname="com.google.doctool.custom.GWTJavaDoclet" fork="yes" failonerror="true" maxmemory="500m">
+				<java classpathref="DOC_PATH" classname="com.google.doctool.custom.GWTJavaDoclet" fork="yes" failonerror="true" maxmemory="1G">
 					<arg value="-quiet" />
 					<arg value="-source" />
 					<arg value="1.5" />
