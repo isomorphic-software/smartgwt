@@ -31,15 +31,13 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class InlinedMenuSample extends ShowcasePanel {
     private static final String DESCRIPTION = 
-        "Smart GWT's adaptive layout system allows components to react to the amount of " +
-        "available space and show a different appearance space for compact spaces.<p>" +
-        
-        "In the example to the left, a menu is shown inline in a tool strip.  Use the resize " +
-        "bar at the right end of the tool strip to reduce the available size, and note how " +
-        "a drop-down control appears that provides access to those items that no longer " +
-        "can be inlined due to the reduced available space.  At its minimum width, no " +
-        "items are inlined and access to all of them is provided via the drop-down control." +
+    	"Smart GWT's adaptive layout system makes it easy to write components that react to the " +
+    	"amount of available space, similar to the built-in AdaptiveMenu component.<p>" +
 
+    	"In the example below, a custom menu component is shown inline in a tool strip. Use the " +
+    	"resize bar at the right end of the tool strip to reduce the available size, and note how " +
+    	"the menu turns into a drop-down control that provides access to the same menu options." +
+        
         "<p>Click the Button that says \"Longer Name\" and try resizing again.  Note how the " +
         "menu switches to a drop-down sooner, because more space is taken by the name.<p>" +
 
