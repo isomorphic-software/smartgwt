@@ -70,7 +70,7 @@ public class AdaptiveMenuSample extends ShowcasePanel {
             createMenuItem("View Résumé")
         });
         
-        AdaptiveMenu adaptiveMenu = new AdaptiveMenu(menu.getItems());
+        AdaptiveMenu adaptiveMenu = new AdaptiveMenu(menu);
         adaptiveMenu.setDefaultLayoutAlign(Alignment.CENTER);
 
         ToolStrip toolStrip = new ToolStrip();
