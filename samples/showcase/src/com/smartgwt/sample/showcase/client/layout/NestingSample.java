@@ -68,6 +68,12 @@ public class NestingSample extends ShowcasePanel {
         return mainLayout;
     }
 
+    // match topology of SmartClient FE Sample
+    @Override
+    protected boolean shouldWrapViewPanel() {
+        return true;
+    }
+
     public String getIntro() {
         return DESCRIPTION;
     }
