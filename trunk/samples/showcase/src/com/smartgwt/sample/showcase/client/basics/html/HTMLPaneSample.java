@@ -5,7 +5,6 @@ import com.smartgwt.client.widgets.HTMLPane;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
-
 public class HTMLPaneSample extends ShowcasePanel {
     private static final String DESCRIPTION = "The HTMLPane component displays a chunk or page of standard HTML in a sizeable, scrollable pane.";
 
@@ -28,7 +27,6 @@ public class HTMLPaneSample extends ShowcasePanel {
     }
 
     public Canvas getViewPanel() {
-
         HTMLPane htmlPane = new HTMLPane();
         htmlPane.setWidth(230);
         htmlPane.setHeight(150);
@@ -41,6 +39,7 @@ public class HTMLPaneSample extends ShowcasePanel {
                 "the user makes a change. This is meant to increase the Web page's <b>interactivity</b>, <b>speed</b>, and " +
                 "<b>usability</b>. (Source: <a href='http://www.wikipedia.org' title='Wikipedia' target='_blank'>Wikipedia</a>)";
         htmlPane.setContents(contents);
+        htmlPane.setSelectContentOnSelectAll(true);
         return htmlPane;
     }
 
