@@ -10,6 +10,7 @@ import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Slider;
 import com.smartgwt.client.widgets.drawing.CloseCommand;
 import com.smartgwt.client.widgets.drawing.DrawCurve;
+import com.smartgwt.client.widgets.drawing.DrawGroup;
 import com.smartgwt.client.widgets.drawing.DrawImage;
 import com.smartgwt.client.widgets.drawing.DrawItem;
 import com.smartgwt.client.widgets.drawing.DrawLabel;
@@ -17,12 +18,14 @@ import com.smartgwt.client.widgets.drawing.DrawLine;
 import com.smartgwt.client.widgets.drawing.DrawLinePath;
 import com.smartgwt.client.widgets.drawing.DrawOval;
 import com.smartgwt.client.widgets.drawing.DrawPane;
+import com.smartgwt.client.widgets.drawing.DrawPolygon;
 import com.smartgwt.client.widgets.drawing.DrawRect;
 import com.smartgwt.client.widgets.drawing.DrawShape;
 import com.smartgwt.client.widgets.drawing.DrawTriangle;
 import com.smartgwt.client.widgets.drawing.LineToCommand;
 import com.smartgwt.client.widgets.drawing.MoveToCommand;
 import com.smartgwt.client.widgets.drawing.Point;
+import com.smartgwt.client.widgets.drawing.SimpleGradient;
 import com.smartgwt.client.widgets.events.ValueChangedEvent;
 import com.smartgwt.client.widgets.events.ValueChangedHandler;
 import com.smartgwt.client.widgets.form.DynamicForm;
@@ -255,6 +258,51 @@ public class DrawItemKnobsSample extends ShowcasePanel {
         drawLabel.setFontFamily("Times New Roman, serif");
         drawLabel.setKeepInParentRect(true);
 
+        DrawGroup drawGroup = new DrawGroup();
+        drawGroup.setDrawPane(createDrawPane());
+        drawGroup.setCanDrag(true);
+        drawGroup.setUseGroupRect(true);
+        drawGroup.setLeft(130);
+        drawGroup.setTop(40);
+        drawGroup.setWidth(120);
+        drawGroup.setHeight(120);
+        drawGroup.setKeepInParentRect(true);
+        SimpleGradient sg;
+        DrawTriangle groupedTriangle = new DrawTriangle();
+        groupedTriangle.setDrawGroup(drawGroup);
+        groupedTriangle.setPoints(new Point(140, 50), new Point(250, 40), new Point(260, 100));
+        groupedTriangle.setLineColor(null);
+        sg = new SimpleGradient();
+        sg.setDirection(90);
+        sg.setStartColor("#33CCCC");
+        sg.setEndColor("#3366FF");
+        groupedTriangle.setFillGradient(sg);
+        groupedTriangle.draw();
+        DrawRect groupedRect = new DrawRect();
+        groupedRect.setDrawGroup(drawGroup);
+        groupedRect.setLeft(125);
+        groupedRect.setTop(70);
+        groupedRect.setWidth(100);
+        groupedRect.setHeight(60);
+        groupedRect.setRotation(-10.0);
+        groupedRect.setLineColor(null);
+        sg = new SimpleGradient();
+        sg.setDirection(20);
+        sg.setStartColor("#993366");
+        sg.setEndColor("#CC99FF");
+        groupedRect.setFillGradient(sg);
+        groupedRect.draw();
+        DrawPolygon groupedPolygon = new DrawPolygon();
+        groupedPolygon.setDrawGroup(drawGroup);
+        groupedPolygon.setPoints(new Point(160, 110), new Point(235, 70), new Point(270, 140), new Point(200, 160));
+        groupedPolygon.setLineColor(null);
+        sg = new SimpleGradient();
+        sg.setDirection(50);
+        sg.setStartColor("#CCFFCC");
+        sg.setEndColor("#008080");
+        groupedPolygon.setFillGradient(sg);
+        groupedPolygon.draw();
+
         // Put everything together in a SectionStack.
         SectionStack sectionStack = new SectionStack();
         sectionStack.setWidth100();
@@ -275,7 +323,8 @@ public class DrawItemKnobsSample extends ShowcasePanel {
                 false,
                 new KnobType[] { KnobType.STARTPOINT, KnobType.ENDPOINT, KnobType.CONTROLPOINT1, KnobType.CONTROLPOINT2 }),
             createSection(drawImage, false, new KnobType[] { KnobType.RESIZE, KnobType.MOVE }),
-            createSection(drawLabel, false, new KnobType[] { KnobType.MOVE }));
+            createSection(drawLabel, false, new KnobType[] { KnobType.MOVE }),
+            createSection(drawGroup, true, new KnobType[] { KnobType.MOVE }));
 
         return sectionStack;
     }
