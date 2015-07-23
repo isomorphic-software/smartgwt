@@ -2,8 +2,6 @@ package com.smartgwt.client.util;
 
 import java.util.Date;
 
-import org.apache.catalina.startup.SetDocBaseRule;
-
 import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.data.RelativeDate;
 import com.smartgwt.client.types.DateDisplayFormat;
