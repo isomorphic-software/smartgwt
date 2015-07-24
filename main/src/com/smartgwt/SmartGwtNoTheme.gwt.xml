@@ -1,5 +1,0 @@
-<!--Injects the SmartClient JavaScript files without bundling / including any skins-->
-<module>
-    <inherits name="com.smartgwt.SmartGwtNoScriptNoTheme"/>
-    <inherits name="com.smartclient.SmartClientDefault"/>
-</module>
