@@ -46,8 +46,8 @@ public final class ObjectFactory {
             , "CubeGrid": @com.smartgwt.client.widgets.cube.CubeGrid::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)
             , "ToolStripResizer": @com.smartgwt.client.widgets.toolbar.ToolStripResizer::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)
             , "Window": @com.smartgwt.client.widgets.Window::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)
-            , "RangeSlider": @com.smartgwt.client.widgets.RangeSlider::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)
             , "EditTree": @com.smartgwt.client.tools.EditTree::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)
+            , "RangeSlider": @com.smartgwt.client.widgets.RangeSlider::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)
             , "StatefulCanvas": @com.smartgwt.client.widgets.StatefulCanvas::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)
             , "NavigationButton": @com.smartgwt.client.widgets.NavigationButton::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)
             , "Applet": @com.smartgwt.client.widgets.plugins.Applet::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)
@@ -628,10 +628,10 @@ public final class ObjectFactory {
 			return "com.smartgwt.client.widgets.Window";
 		} else     	if("BlurbItem"===smartClientClassName) {
 			return "com.smartgwt.client.widgets.form.fields.BlurbItem";
-		} else     	if("RangeSlider"===smartClientClassName) {
-			return "com.smartgwt.client.widgets.RangeSlider";
 		} else     	if("EditTree"===smartClientClassName) {
 			return "com.smartgwt.client.tools.EditTree";
+		} else     	if("RangeSlider"===smartClientClassName) {
+			return "com.smartgwt.client.widgets.RangeSlider";
 		} else     	if("StatefulCanvas"===smartClientClassName) {
 			return "com.smartgwt.client.widgets.StatefulCanvas";
 		} else     	if("NavigationButton"===smartClientClassName) {
@@ -953,10 +953,10 @@ public final class ObjectFactory {
 			return com.smartgwt.client.widgets.Window.class;
 		} else     	if("BlurbItem".equals(smartClientClassName)){
 			return com.smartgwt.client.widgets.form.fields.BlurbItem.class;
-		} else     	if("RangeSlider".equals(smartClientClassName)){
-			return com.smartgwt.client.widgets.RangeSlider.class;
 		} else     	if("EditTree".equals(smartClientClassName)){
 			return com.smartgwt.client.tools.EditTree.class;
+		} else     	if("RangeSlider".equals(smartClientClassName)){
+			return com.smartgwt.client.widgets.RangeSlider.class;
 		} else     	if("StatefulCanvas".equals(smartClientClassName)){
 			return com.smartgwt.client.widgets.StatefulCanvas.class;
 		} else     	if("NavigationButton".equals(smartClientClassName)){
