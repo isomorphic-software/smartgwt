@@ -885,11 +885,11 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
     
 
     /**
-     * If {@link com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors} is false we show all errors
-     * for the form item in  a single item rendered at the top of the form.<br> This attribute specifies an introductory string
-     * rendered out before the individual error messages.
+     * If {@link com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors} is <code>false</code>, all
+     * errors for the items in the form are rendered as a single item at the top of the form. This attribute specifies an
+     * introductory message rendered out before the individual error messages.
      *
-     * @param errorsPreamble  See {@link com.smartgwt.client.docs.HTMLString HTMLString} . Default value is "The following errors were found"
+     * @param errorsPreamble  See {@link com.smartgwt.client.docs.HTMLString HTMLString} . Default value is "The following errors were found:"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
@@ -898,9 +898,9 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors} is false we show all errors
-     * for the form item in  a single item rendered at the top of the form.<br> This attribute specifies an introductory string
-     * rendered out before the individual error messages.
+     * If {@link com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors} is <code>false</code>, all
+     * errors for the items in the form are rendered as a single item at the top of the form. This attribute specifies an
+     * introductory message rendered out before the individual error messages.
      *
      * @return  See {@link com.smartgwt.client.docs.HTMLString HTMLString} 
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
