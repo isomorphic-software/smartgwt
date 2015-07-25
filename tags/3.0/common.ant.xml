@@ -54,7 +54,7 @@
 
     <!-- Sanity check -->
 	<available file="${smartgwt.tools}" type="dir" property="gwt.tools.exists" />
-	<fail unless="gwt.tools.exists" message="Cannot find '${smartgwt.tools}' tools directory; perhaps you should define the GWT_TOOLS environment variable" />
+	<fail unless="gwt.tools.exists" message="Cannot find '${smartgwt.tools}' tools directory; perhaps you should define the SMARTGWT_TOOLS environment variable" />
 
 	<!-- Platform identification -->
 	<condition property="build.host.islinux">

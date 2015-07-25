@@ -13,6 +13,8 @@
 
 
 		<mkdir dir="${smartgwt.build.dist}" />
+        <mkdir dir="src" />
+
 		<zip destfile="${project.dist}">
 			<!-- jars -->
 
