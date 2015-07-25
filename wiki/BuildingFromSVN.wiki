@@ -8,9 +8,9 @@ If all you need are nightly build, then please have a look at the [NightlyBuilds
 
 Checking out the SmartGWT source is most useful if you plan to compile SmartGWT yourself. The pre-built SmartGWT distribution already contains all the Java source, so you don't actually need to check it out from the repository just to debug through it. Just tweak your IDE to read source from the SmartGWT jars.
 
-SmartGWT is hosted on [http://code.google.com/hosting/ Google Code] project hosting, so you check out the source for SmartGWT using a Subversion client as you would for any other project hosted on Google Code:
+SmartGWT is hosted on [http://code.google.com/hosting/ Google Code] project hosting, so you check out the source for SmartGWT using a Subversion client as you would for any other project hosted on Google Code.  However, daily commits to the trunk and branches subdirectories are only made for certain files, so you generally cannot build from them.  Instead, the suggested approach is to sync from the desired branch's release tag directory, such as:
 
-{{{ svn checkout http://smartgwt.googlecode.com/svn/trunk/ trunk }}}
+{{{ svn checkout http://smartgwt.googlecode.com/svn/tags/5.0 releases/5.0 }}}
 
 The [http://code.google.com/p/smartgwt/source project source code access page] has additional instructions for browsing the [http://smartgwt.googlecode.com/svn/ source online] or [http://subversion.tigris.org/links.html#clients getting a Subversion client] if you don't already have one.
 
@@ -18,27 +18,27 @@ Here's a good writeup if you're using Eclipse : [http://forums.smartclient.com/s
 
 === Compiling from Source ===
 
-Everything is Java source that can be built with the included SmartGWT [http://ant.apache.org/ Ant] build files. 
+Everything is Java source that can be built with the included SmartGWT [http://ant.apache.org/ Ant] build files. (Note that SGWT 4.0 and earlier won't compile with JDK 7 or later.)
 
  * Install [Apache Ant 1.6.5  http://ant.apache.org/bindownload.cgi] or later. We'll assume that the ant command is in your path.
 
  * Set the GWT_HOME environment variable to point to your GWT home directory. (supported versions are GWT  1.5.3 and later).
 
- * Check out the SmartGWT prerequisite tools and third-party libraries:
+ * Check out the SmartGWT prerequisite tools and third-party libraries, and set the SMARTGWT_TOOLS environment variable to it:
      {{{ ~/smartgwt$ svn checkout http://smartgwt.googlecode.com/svn/tools/ tools }}} 
 
- * Check out the SmartGWT source:
-     {{{ ~/smartgwt$ svn checkout http://smartgwt.googlecode.com/svn/trunk/ trunk }}}
+ * Check out the SmartGWT source for the desired release:
+     {{{ ~/smartgwt$ svn checkout http://smartgwt.googlecode.com/svn/tags/5.0 releases/5.0 }}}
 
- * Switch to the directory into which you checked out the SmartGWT source. Let's assume you checked it out into ~/smartgwt/trunk. Make sure you're in that directory..
-     {{{ ~/smartgwt$ cd ~/smartgwt/trunk }}}
+ * Switch to the directory into which you checked out the SmartGWT source. Let's assume you checked it out into ~/smartgwt/releases/5.0. Make sure you're in that directory.
+     {{{ ~/smartgwt$ cd releases/5.0 }}}
   then just invoke Ant
      {{{ ant  }}}
 
  * To clean invoke 
      {{{ ant  clean}}}
 
-  * The SmartGWT build creates a binary distribution in the build/dist  subdirectory of the source root directory. In this example, the distributions would be in ~/smartgwt/trunk/build.
+  * The SmartGWT build creates a binary distribution in the build/dist subdirectory of the source root directory. In this example, the distributions would be in ~/smartgwt/releases/5.0/build.
 
 
 === Ant JUnit Issues ===
