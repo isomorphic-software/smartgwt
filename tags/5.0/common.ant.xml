@@ -20,7 +20,7 @@
 		<isset property="${env.SC_VER}" />
     </condition>
 	
-    <condition property="smartgwt.version" value="${env.SMARTGWT_VERSION}" else="5.0d">
+    <condition property="smartgwt.version" value="${env.SMARTGWT_VERSION}" else="5.0">
 		<isset property="env.SMARTGWT_VERSION" />
     </condition>
     
@@ -55,7 +55,7 @@
 
     <!-- Sanity check -->
 	<available file="${smartgwt.tools}" type="dir" property="gwt.tools.exists" />
-	<fail unless="gwt.tools.exists" message="Cannot find '${smartgwt.tools}' tools directory; perhaps you should define the GWT_TOOLS environment variable" />
+	<fail unless="gwt.tools.exists" message="Cannot find '${smartgwt.tools}' tools directory; perhaps you should define the SMARTGWT_TOOLS environment variable" />
 
 	<!-- Platform identification -->
 	<condition property="build.host.islinux">
