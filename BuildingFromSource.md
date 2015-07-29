@@ -13,7 +13,7 @@ SmartGWT is hosted on [GitHub](https://github.com) project hosting, so you check
 git clone https://github.com/isomorphic-software/smartgwt release
 cd release && git checkout tags/5.0
 ```
-The [project source code access page](https://github.com/isomorphic-software/smartgwt) has additional instructions for browsing the [source online](https://github.com/isomorphic-software/smartgwt) or [getting a GitHub client](https://git-scm.com/downloads) if you don't already have one.
+Look over the SmartGWT Project [home page](https://github.com/isomorphic-software/smartgwt) and [download a GitHub client](https://git-scm.com/downloads) if you don't already have one.
 
 Here's a good writeup if you're using Eclipse : http://forums.smartclient.com/showthread.php?t=3206.
 
@@ -35,10 +35,10 @@ Everything is Java source that can be built with the included SmartGWT [Ant](htt
        ~/smartgwt$ cd release && git checkout tags/5.0
 ```
   * Make sure you're in the top-level source directory, and then just invoke Ant
-> > > ` ant  `
+> > ` ant  `
 
   * To clean invoke
-> > > ` ant  clean`
+> > ` ant  clean`
 
   * The SmartGWT build creates a binary distribution in the build/dist subdirectory of the source root directory. In this example, the distributions would be in ~/smartgwt/release/build.
 
