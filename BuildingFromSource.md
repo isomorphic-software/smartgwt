@@ -10,8 +10,8 @@ Checking out the SmartGWT source is most useful if you plan to compile SmartGWT 
 SmartGWT is hosted on [GitHub](https://github.com) project hosting, so you check out the source for SmartGWT using a git client as you would for any other project hosted on GitHub.  However, daily commits to the trunk and branches subdirectories are only made for certain files, so you generally cannot build from them.  Instead, the suggested approach is to sync from the desired branch's *release tag*, such as:
 
 ```
-git clone https://github.com/isomorphic-software/smartgwt smartgwt
-cd smartgwt && git checkout tags/5.0
+git clone https://github.com/isomorphic-software/smartgwt release
+cd release && git checkout tags/5.0
 ```
 The [project source code access page](https://github.com/isomorphic-software/smartgwt) has additional instructions for browsing the [source online](https://github.com/isomorphic-software/smartgwt) or [getting a GitHub client](https://git-scm.com/downloads) if you don't already have one.
 
