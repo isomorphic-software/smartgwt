@@ -3,15 +3,17 @@ If all you need are nightly build, then please have a look at the [NightlyBuilds
 
 ## Compiling from Source ##
 
-### Checking Out the Source from Subversion ###
+### Checking Out the Source from GitHub ###
 
 Checking out the SmartGWT source is most useful if you plan to compile SmartGWT yourself. The pre-built SmartGWT distribution already contains all the Java source, so you don't actually need to check it out from the repository just to debug through it. Just tweak your IDE to read source from the SmartGWT jars.
 
-SmartGWT is hosted on [Google Code](http://code.google.com/hosting/) project hosting, so you check out the source for SmartGWT using a Subversion client as you would for any other project hosted on Google Code.  However, daily commits to the trunk and branches subdirectories are only made for certain files, so you generally cannot build from them.  Instead, the suggested approach is to sync from the desired branch's release tag directory, such as:
+SmartGWT is hosted on [GitHub](https://github.com) project hosting, so you check out the source for SmartGWT using a git client as you would for any other project hosted on GitHub.  However, daily commits to the trunk and branches subdirectories are only made for certain files, so you generally cannot build from them.  Instead, the suggested approach is to sync from the desired branch's *release tag*, such as:
 
-` svn checkout http://smartgwt.googlecode.com/svn/tags/5.0 releases/5.0 `
-
-The [project source code access page](http://code.google.com/p/smartgwt/source) has additional instructions for browsing the [source online](http://smartgwt.googlecode.com/svn/) or [getting a Subversion client](http://subversion.tigris.org/links.html#clients) if you don't already have one.
+```
+git clone https://github.com/isomorphic-software/smartgwt smartgwt
+cd smartgwt && git checkout tags/5.0
+```
+The [project source code access page](https://github.com/isomorphic-software/smartgwt) has additional instructions for browsing the [source online](https://github.com/isomorphic-software/smartgwt) or [getting a GitHub client](https://git-scm.com/downloads) if you don't already have one.
 
 Here's a good writeup if you're using Eclipse : http://forums.smartclient.com/showthread.php?t=3206.
 
@@ -24,21 +26,21 @@ Everything is Java source that can be built with the included SmartGWT [Ant](htt
   * Set the GWT\_HOME environment variable to point to your GWT home directory. (supported versions are GWT  1.5.3 and later).
 
   * Check out the SmartGWT prerequisite tools and third-party libraries, and set the SMARTGWT\_TOOLS environment variable to it:
-> > ` ~/smartgwt$ svn checkout http://smartgwt.googlecode.com/svn/tools/ tools `
+> > ` ~/smartgwt$ git clone -b tools https://github.com/isomorphic-software/smartgwt tools `
 
   * Check out the SmartGWT source for the desired release:
-> > ` ~/smartgwt$ svn checkout http://smartgwt.googlecode.com/svn/tags/5.0 releases/5.0 `
-
-  * Switch to the directory into which you checked out the SmartGWT source. Let's assume you checked it out into ~/smartgwt/releases/5.0. Make sure you're in that directory.
-> > ` ~/smartgwt$ cd releases/5.0 `
-> > then just invoke Ant
+> > 
+```
+       ~/smartgwt$ git clone https://github.com/isomorphic-software/smartgwt release
+       ~/smartgwt$ cd release && git checkout tags/5.0
+```
+  * Make sure you're in the top-level source directory, and then just invoke Ant
 > > > ` ant  `
 
   * To clean invoke
+> > > ` ant  clean`
 
-> > ` ant  clean`
-
-  * The SmartGWT build creates a binary distribution in the build/dist subdirectory of the source root directory. In this example, the distributions would be in ~/smartgwt/releases/5.0/build.
+  * The SmartGWT build creates a binary distribution in the build/dist subdirectory of the source root directory. In this example, the distributions would be in ~/smartgwt/release/build.
 
 
 ### Ant JUnit Issues ###
