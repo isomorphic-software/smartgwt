@@ -38,15 +38,6 @@ import java.util.Map;
 public class Operator {
 
     /**
-     * The text use when using this operator as an  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getAllowExpressions expression} in a FormItem.
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
-     */
-    public String symbol;
-
-    /**
      * Whether this operator should be offered to users by default in interfaces such as the {@link
      * com.smartgwt.client.widgets.form.FilterBuilder}.   <P> Setting hidden:true means the operator
      * can be used in a programmatic search, for example, by calling {@link
@@ -75,17 +66,6 @@ public class Operator {
      * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public Identifier titleProperty;
-
-    /**
-     * Whether this operator needs to be executed on the server side. <P> This implies that if a
-     * {@link com.smartgwt.client.docs.serverds.Criterion} using this operator is either introduced
-     * into {@link com.smartgwt.client.docs.serverds.AdvancedCriteria criteria} or is changed, the
-     * server will need to be contacted to perform filtering.
-     *
-     * <p>Default value is false
-     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
-     */
-    public boolean requiresServer;
 
     /**
      * Unique id for an operator, which appears within {@link
@@ -122,6 +102,37 @@ public class Operator {
     public String title;
 
     /**
+     * For an operator with {@link com.smartgwt.client.docs.serverds.Operator#valueType
+     * valueType}:"custom", indicates what kind of FormItem to use to provide a user interface for
+     * creating a valid {@link com.smartgwt.client.docs.serverds.Criterion}.  The default of
+     * <code>null</code> means an ordinary TextItem is fine.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
+     */
+    public FormItem editorType;
+
+    /**
+     * The text use when using this operator as an  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getAllowExpressions expression} in a FormItem.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
+     */
+    public String symbol;
+
+    /**
+     * Whether this operator needs to be executed on the server side. <P> This implies that if a
+     * {@link com.smartgwt.client.docs.serverds.Criterion} using this operator is either introduced
+     * into {@link com.smartgwt.client.docs.serverds.AdvancedCriteria criteria} or is changed, the
+     * server will need to be contacted to perform filtering.
+     *
+     * <p>Default value is false
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
+     */
+    public boolean requiresServer;
+
+    /**
      * Indicates the kind of value expected in a {@link com.smartgwt.client.docs.serverds.Criterion}
      * that uses this operator. {@link com.smartgwt.client.types.OperatorValueType} lists
      * possibilities. <P> The default of <code>null</code> is equivalent to "fieldType", indicating
@@ -155,16 +166,5 @@ public class Operator {
      * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public Identifier textTitleProperty;
-
-    /**
-     * For an operator with {@link com.smartgwt.client.docs.serverds.Operator#valueType
-     * valueType}:"custom", indicates what kind of FormItem to use to provide a user interface for
-     * creating a valid {@link com.smartgwt.client.docs.serverds.Criterion}.  The default of
-     * <code>null</code> means an ordinary TextItem is fine.
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
-     */
-    public FormItem editorType;
 
 }

@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -116,7 +121,7 @@ import com.smartgwt.client.util.workflow.Process; // required to override java.l
  * href="http://www.smartclient.com/smartgwt/showcase/#pattern_reuse_grid_form_category" target="examples">Pattern Reuse
  * Example</a> custom databinding-capable components.
  * @see com.smartgwt.client.widgets.DataBoundComponent
- * @see com.smartgwt.client.docs.SqlDataSource SqlDataSource overview and related methods
+ * @see com.smartgwt.client.docs.FileSource FileSource overview and related methods
  */
 @BeanFactory.FrameworkClass
 @BeanFactory.ScClassName("DataSource")
@@ -245,7 +250,17 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
     /**
      * Whether to convert relative date values to concrete date values before sending to the  server.  Default value is true,
      * which means that the server does not need to understand  how to filter using relative dates - it receives all date
-     * values as absolute dates.
+     * values as absolute dates. <p> If the server would receive relative date values from the client, by default they would be
+     * unchanged in DMI and automatically converted during the request execution. This may be changed via
+     * <code>server.properties</code> setting <code>datasources.autoConvertRelativeDates</code> which can be set to the
+     * following values: <ul> <li/><code>postDMI</code> - the default value described above <li/><code>preDMI</code> - relative
+     * date values will be converted to absolute date values right away, so they will be already converted in DMI
+     * <li/><code>disabled</code> - relative date values will not be automatically converted, so it must be done completely
+     * manually or by calling the <code>DSRequest.convertRelativeDates()</code> server-side API. </ul> Normally there is no
+     * need to convert relative dates on the server, this is done by default on the client before the request is sent to the
+     * server. The primary purpose for converting relative dates on the server is when there is a need to store and use
+     * relative dates at a later point such as in an automated job without any involvement from the client. See more details in
+     * the javadoc for <code>DataSource.convertRelativeDates(Criterion)</code> server-side API.
      *
      * @param autoConvertRelativeDates New autoConvertRelativeDates value. Default value is true
      * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
@@ -258,7 +273,17 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
     /**
      * Whether to convert relative date values to concrete date values before sending to the  server.  Default value is true,
      * which means that the server does not need to understand  how to filter using relative dates - it receives all date
-     * values as absolute dates.
+     * values as absolute dates. <p> If the server would receive relative date values from the client, by default they would be
+     * unchanged in DMI and automatically converted during the request execution. This may be changed via
+     * <code>server.properties</code> setting <code>datasources.autoConvertRelativeDates</code> which can be set to the
+     * following values: <ul> <li/><code>postDMI</code> - the default value described above <li/><code>preDMI</code> - relative
+     * date values will be converted to absolute date values right away, so they will be already converted in DMI
+     * <li/><code>disabled</code> - relative date values will not be automatically converted, so it must be done completely
+     * manually or by calling the <code>DSRequest.convertRelativeDates()</code> server-side API. </ul> Normally there is no
+     * need to convert relative dates on the server, this is done by default on the client before the request is sent to the
+     * server. The primary purpose for converting relative dates on the server is when there is a need to store and use
+     * relative dates at a later point such as in an automated job without any involvement from the client. See more details in
+     * the javadoc for <code>DataSource.convertRelativeDates(Criterion)</code> server-side API.
      *
      * @return Current autoConvertRelativeDates value. Default value is true
      */
@@ -983,6 +1008,33 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
     
 
     /**
+     * An optional description of the DataSource's content.  Not automatically exposed on any component, but useful for
+     * developer documentation, and as such is included on any {@link com.smartgwt.client.docs.OpenapiSupport OpenAPI
+     * specification} generated by the framework.  Markdown is a commonly used syntax, but you may also embed HTML content in a
+     * CDATA tag.
+     *
+     * @param description New description value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public DataSource setDescription(String description)  throws IllegalStateException {
+        return (DataSource)setAttribute("description", description, false);
+    }
+
+    /**
+     * An optional description of the DataSource's content.  Not automatically exposed on any component, but useful for
+     * developer documentation, and as such is included on any {@link com.smartgwt.client.docs.OpenapiSupport OpenAPI
+     * specification} generated by the framework.  Markdown is a commonly used syntax, but you may also embed HTML content in a
+     * CDATA tag.
+     *
+     * @return Current description value. Default value is null
+     */
+    public String getDescription()  {
+        return getAttributeAsString("description");
+    }
+    
+
+    /**
      * Name of the field that has a long description of the record, or has the primary text data value for a record that
      * represents an email message, SMS, log or similar. <p> For example, for a DataSource representing employees, a field
      * containing the employee's "bio" might be a good choice, or for an email message, the message body. <p> If
@@ -1041,10 +1093,12 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * to declared fields should be retained; any extra fields should be discarded. <P> For {@link
      * com.smartgwt.client.data.DataSource#getDataFormat JSON} data, this means extra properties in selected objects are
      * dropped. <P> By default, for DMI DSResponses, DSResponse.data is filtered on the server to just the set of fields
-     * defined on the DataSource.  This type of filtering can also be enabled for non-DMI DSResponses (see the overview in
-     * {@link com.smartgwt.client.docs.DmiOverview DMI}).  Setting this property to <code>false</code> disables this filtering
-     * for this DataSource only.  This setting overrides the configuration in {@link com.smartgwt.client.docs.Server_properties
-     * server.properties}.  This setting can be overridden by {@link
+     * defined on the DataSource (see the overview in {@link com.smartgwt.client.docs.DmiOverview DMI}). <P> This type of
+     * filtering can also be enabled for non-DMI DSResponses. By default it is enabled for Hibernate and JPA datasources to
+     * avoid unintentional lazy loading too much of a data model. For the rest of datasources this is disabled by default. <P>
+     * Explicitly setting this property to <code>false</code> disables (or to <code>true</code> enables) this filtering for
+     * this DataSource only. This setting overrides the configuration in {@link com.smartgwt.client.docs.Server_properties
+     * server.properties}. This setting can be overridden by {@link
      * com.smartgwt.client.docs.serverds.ServerObject#dropExtraFields ServerObject.dropExtraFields}.
      *
      * @param dropExtraFields New dropExtraFields value. Default value is null
@@ -1061,10 +1115,12 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * to declared fields should be retained; any extra fields should be discarded. <P> For {@link
      * com.smartgwt.client.data.DataSource#getDataFormat JSON} data, this means extra properties in selected objects are
      * dropped. <P> By default, for DMI DSResponses, DSResponse.data is filtered on the server to just the set of fields
-     * defined on the DataSource.  This type of filtering can also be enabled for non-DMI DSResponses (see the overview in
-     * {@link com.smartgwt.client.docs.DmiOverview DMI}).  Setting this property to <code>false</code> disables this filtering
-     * for this DataSource only.  This setting overrides the configuration in {@link com.smartgwt.client.docs.Server_properties
-     * server.properties}.  This setting can be overridden by {@link
+     * defined on the DataSource (see the overview in {@link com.smartgwt.client.docs.DmiOverview DMI}). <P> This type of
+     * filtering can also be enabled for non-DMI DSResponses. By default it is enabled for Hibernate and JPA datasources to
+     * avoid unintentional lazy loading too much of a data model. For the rest of datasources this is disabled by default. <P>
+     * Explicitly setting this property to <code>false</code> disables (or to <code>true</code> enables) this filtering for
+     * this DataSource only. This setting overrides the configuration in {@link com.smartgwt.client.docs.Server_properties
+     * server.properties}. This setting can be overridden by {@link
      * com.smartgwt.client.docs.serverds.ServerObject#dropExtraFields ServerObject.dropExtraFields}.
      *
      * @return Current dropExtraFields value. Default value is null
@@ -1102,6 +1158,37 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
         return result == null ? true : result;
     }
     
+    
+
+    /**
+     * Indicates that {@link com.smartgwt.client.docs.DeclarativeSecurity} should be enforced on the client. This property only
+     * applies to {@link com.smartgwt.client.docs.ClientOnlyDataSources Client Only DataSources}. If property is unset for a
+     * clientOnly DataSource it will be set <code>true</code> automatically. Set this property to <code>false</code> to
+     * explicitly disable this feature for a  clientOnly DataSource. <P> Note that certain security features are not supported
+     * on the client like Velocity rules.
+     *
+     * @param enforceSecurityOnClient New enforceSecurityOnClient value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.DeclarativeSecurity DeclarativeSecurity overview and related methods
+     */
+    public DataSource setEnforceSecurityOnClient(Boolean enforceSecurityOnClient)  throws IllegalStateException {
+        return (DataSource)setAttribute("enforceSecurityOnClient", enforceSecurityOnClient, false);
+    }
+
+    /**
+     * Indicates that {@link com.smartgwt.client.docs.DeclarativeSecurity} should be enforced on the client. This property only
+     * applies to {@link com.smartgwt.client.docs.ClientOnlyDataSources Client Only DataSources}. If property is unset for a
+     * clientOnly DataSource it will be set <code>true</code> automatically. Set this property to <code>false</code> to
+     * explicitly disable this feature for a  clientOnly DataSource. <P> Note that certain security features are not supported
+     * on the client like Velocity rules.
+     *
+     * @return Current enforceSecurityOnClient value. Default value is null
+     * @see com.smartgwt.client.docs.DeclarativeSecurity DeclarativeSecurity overview and related methods
+     */
+    public Boolean getEnforceSecurityOnClient()  {
+        return getAttributeAsBoolean("enforceSecurityOnClient");
+    }
     
 
     /**
@@ -1413,6 +1500,29 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      */
     public String getInheritsFrom()  {
         return getAttributeAsString("inheritsFrom");
+    }
+    
+
+    /**
+     * Used by Reify to identify DataSources that are provided as samples. Reify will not automatically alter sample DataSource
+     * relations when removing DataSources from a project.
+     *
+     * @param isSampleDS New isSampleDS value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public DataSource setIsSampleDS(Boolean isSampleDS)  throws IllegalStateException {
+        return (DataSource)setAttribute("isSampleDS", isSampleDS, false);
+    }
+
+    /**
+     * Used by Reify to identify DataSources that are provided as samples. Reify will not automatically alter sample DataSource
+     * relations when removing DataSources from a project.
+     *
+     * @return Current isSampleDS value. Default value is null
+     */
+    public Boolean getIsSampleDS()  {
+        return getAttributeAsBoolean("isSampleDS");
     }
     
 
@@ -2047,7 +2157,7 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
     /**
      * See {@link com.smartgwt.client.data.OperationBinding#getRecordXPath OperationBinding.recordXPath}. 
      * <code>recordXPath</code> can be specified directly on the DataSource for a simple read-only DataSource only capable of
-     * "fetch" operations.
+     * "fetch" operations, or on clientOnly DataSources using $link{groupDef:testData}.
      *
      * @param recordXPath New recordXPath value. Default value is null
      * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
@@ -2064,7 +2174,7 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
     /**
      * See {@link com.smartgwt.client.data.OperationBinding#getRecordXPath OperationBinding.recordXPath}. 
      * <code>recordXPath</code> can be specified directly on the DataSource for a simple read-only DataSource only capable of
-     * "fetch" operations.
+     * "fetch" operations, or on clientOnly DataSources using $link{groupDef:testData}.
      *
      * @return Current recordXPath value. Default value is null
      * @see com.smartgwt.client.docs.XPathExpression XPathExpression 
@@ -2075,6 +2185,7 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
     public String getRecordXPath()  {
         return getAttributeAsString("recordXPath");
     }
+    
     
 
     /**
@@ -2541,8 +2652,13 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
     /**
      * Best field to use for a user-visible title for an individual record from this dataSource. <p> For example, for a
      * DataSource of employees, a "full name" field would probably most clearly label an employee record. <p> If not explicitly
-     * set, titleField looks for fields named "title", "label", "name", and "id" in that order.  If a field exists with one of
-     * those names, it becomes the titleField.  If not, then the first field is designated as the titleField.
+     * set, the titleField is determined by looking for fields named "name", "<i>dataSourceId</i>Name", "title",
+     * "<i>dataSourceId</i>Title", "label", "<i>dataSourceId</i>Label", "id" and "<i>dataSourceId</i>Id".  For example, for a
+     * DataSource with ID "customer", a field called <i>customerName</i> would be found if there were no "name" field.  Search
+     * is case insensitive, and an underscore is allowed after <i>dataSourceId</i> (so that, for example, "CUSTOMER_NAME" would
+     * also be found and preferred). <p> For purposes of this search, any trailing numerals in the DataSource ID are discarded,
+     * so a DataSource with ID "office2" will search for title fields as if the ID were just "office". <p> If no field is found
+     * that matches any of the names above, then the first field is designated as the titleField.
      *
      * @param titleField New titleField value. Default value is see below
      * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
@@ -2556,8 +2672,13 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
     /**
      * Best field to use for a user-visible title for an individual record from this dataSource. <p> For example, for a
      * DataSource of employees, a "full name" field would probably most clearly label an employee record. <p> If not explicitly
-     * set, titleField looks for fields named "title", "label", "name", and "id" in that order.  If a field exists with one of
-     * those names, it becomes the titleField.  If not, then the first field is designated as the titleField.
+     * set, the titleField is determined by looking for fields named "name", "<i>dataSourceId</i>Name", "title",
+     * "<i>dataSourceId</i>Title", "label", "<i>dataSourceId</i>Label", "id" and "<i>dataSourceId</i>Id".  For example, for a
+     * DataSource with ID "customer", a field called <i>customerName</i> would be found if there were no "name" field.  Search
+     * is case insensitive, and an underscore is allowed after <i>dataSourceId</i> (so that, for example, "CUSTOMER_NAME" would
+     * also be found and preferred). <p> For purposes of this search, any trailing numerals in the DataSource ID are discarded,
+     * so a DataSource with ID "office2" will search for title fields as if the ID were just "office". <p> If no field is found
+     * that matches any of the names above, then the first field is designated as the titleField.
      *
      * @return Current titleField value. Default value is see below
      * @see com.smartgwt.client.docs.DsSpecialFields DsSpecialFields overview and related methods
@@ -2791,15 +2912,16 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
         return getAttributeAsBoolean("useParentFieldOrder");
     }
     
+    
 
     /**
      * Should HTTP responses to requests by this dataSource be formatted using the strict JSON subset of the javascript
      * language? If set to true, responses returned by the server should match the format described <a
-     * href='http://www.json.org/js.html' target='_blank'>here</a>. <P> Only applies to dataSources which send requests to a
-     * server and have {@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat} set to "json" or "iscServer". <P>
-     * <b>Note:</b> using strict JSON avoids a known issue in Internet Explorer 9 where datasource transactions can leak memory
-     * due to a browser behavior where the native <code>eval()</code> method fails to clean up references when the objects go
-     * out of scope. See {@link com.smartgwt.client.rpc.RPCManager#allowIE9Leak allowIE9Leak} for more on this.
+     * href='https://www.json.org/json-en.html' target='_blank'>here</a>. <P> Only applies to dataSources which send requests
+     * to a server and have {@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat} set to "json" or "iscServer".
+     * <P> <b>Note:</b> using strict JSON avoids a known issue in Internet Explorer 9 where datasource transactions can leak
+     * memory due to a browser behavior where the native <code>eval()</code> method fails to clean up references when the
+     * objects go out of scope. See {@link com.smartgwt.client.rpc.RPCManager#allowIE9Leak allowIE9Leak} for more on this.
      *
      * @param useStrictJSON New useStrictJSON value. Default value is null
      * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
@@ -2812,11 +2934,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
     /**
      * Should HTTP responses to requests by this dataSource be formatted using the strict JSON subset of the javascript
      * language? If set to true, responses returned by the server should match the format described <a
-     * href='http://www.json.org/js.html' target='_blank'>here</a>. <P> Only applies to dataSources which send requests to a
-     * server and have {@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat} set to "json" or "iscServer". <P>
-     * <b>Note:</b> using strict JSON avoids a known issue in Internet Explorer 9 where datasource transactions can leak memory
-     * due to a browser behavior where the native <code>eval()</code> method fails to clean up references when the objects go
-     * out of scope. See {@link com.smartgwt.client.rpc.RPCManager#allowIE9Leak allowIE9Leak} for more on this.
+     * href='https://www.json.org/json-en.html' target='_blank'>here</a>. <P> Only applies to dataSources which send requests
+     * to a server and have {@link com.smartgwt.client.data.DataSource#getDataFormat dataFormat} set to "json" or "iscServer".
+     * <P> <b>Note:</b> using strict JSON avoids a known issue in Internet Explorer 9 where datasource transactions can leak
+     * memory due to a browser behavior where the native <code>eval()</code> method fails to clean up references when the
+     * objects go out of scope. See {@link com.smartgwt.client.rpc.RPCManager#allowIE9Leak allowIE9Leak} for more on this.
      *
      * @return Current useStrictJSON value. Default value is null
      */
@@ -3761,6 +3883,38 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
     }-*/;
 
 	/**
+     * Returns all known paths between this and the given targetDS.
+     * @param targetDS The DataSource at the relationship's other end.
+     *
+     * @return Array ofAll known paths between this and the given targetDS.
+     */
+    public native RelationPath getAllPathsToRelation(String targetDS) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getAllPathsToRelation", "String");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getAllPathsToRelation(targetDS);
+        if(ret == null) return null;
+        return @com.smartgwt.client.data.RelationPath::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * Returns all known paths between this and the given targetDS.
+     * @param targetDS The DataSource at the relationship's other end.
+     *
+     * @return Array ofAll known paths between this and the given targetDS.
+     */
+    public native RelationPath getAllPathsToRelation(DataSource targetDS) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getAllPathsToRelation", "DataSource");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getAllPathsToRelation(targetDS == null ? null : targetDS.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.data.RelationPath::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
      * Produces a clientOnly "copy" of a particular subset of data from a normal  DataSource, via calling fetchData() to fetch
      * matching rows, and constructing  a clientOnly DataSource that {@link com.smartgwt.client.data.DataSource#getInheritsFrom
      * inheritsFrom} the original DataSource. <P> This clientOnly "copy" can be useful in situations where you want to allow  a
@@ -3784,7 +3938,7 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
         self.getClientOnlyDataSource(criteria == null ? null : criteria.@com.smartgwt.client.core.DataClass::getJsObj()(), 
 			$entry( function(clientOnly) { 
 				if(callback!=null) callback.@com.smartgwt.client.callbacks.ClientOnlyDataSourceCallback::execute(Lcom/smartgwt/client/data/DataSource;)(
-					@com.smartgwt.client.data.DataSource::new(Lcom/google/gwt/core/client/JavaScriptObject;)(clientOnly)
+					clientOnly != null ? @com.smartgwt.client.data.DataSource::new(Lcom/google/gwt/core/client/JavaScriptObject;)(clientOnly) : null
 				);
 			}));
     }-*/;
@@ -3822,7 +3976,7 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
         self.getClientOnlyDataSource(criteria == null ? null : criteria.@com.smartgwt.client.core.DataClass::getJsObj()(), 
 			$entry( function(clientOnly) { 
 				if(callback!=null) callback.@com.smartgwt.client.callbacks.ClientOnlyDataSourceCallback::execute(Lcom/smartgwt/client/data/DataSource;)(
-					@com.smartgwt.client.data.DataSource::new(Lcom/google/gwt/core/client/JavaScriptObject;)(clientOnly)
+					clientOnly != null ? @com.smartgwt.client.data.DataSource::new(Lcom/google/gwt/core/client/JavaScriptObject;)(clientOnly) : null
 				);
 			}), requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()(), dataSourceProperties == null ? null : dataSourceProperties.@com.smartgwt.client.core.BaseClass::getConfig()());
     }-*/;
@@ -3851,6 +4005,40 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
         var ret = self.__getClientOnlyResponse(request.@com.smartgwt.client.core.DataClass::getJsObj()(), @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(serverData));
         if(ret == null) return null;
         return @com.smartgwt.client.data.DSResponse::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * Returns the path having the shortest distance between this and the given targetDS, as determined by {@link
+     * com.smartgwt.client.data.DataSource#getShortestPathToRelation getShortestPathToRelation()}.
+     * @param targetDS The DataSource at the relationship's other end.
+     *
+     * @return The path having the least number of 1:M relationships from this         to the given targetDS.
+     */
+    public native RelationPath getDefaultPathToRelation(String targetDS) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getDefaultPathToRelation", "String");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getDefaultPathToRelation(targetDS);
+        if(ret == null) return null;
+        return @com.smartgwt.client.data.RelationPath::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * Returns the path having the shortest distance between this and the given targetDS, as determined by {@link
+     * com.smartgwt.client.data.DataSource#getShortestPathToRelation getShortestPathToRelation()}.
+     * @param targetDS The DataSource at the relationship's other end.
+     *
+     * @return The path having the least number of 1:M relationships from this         to the given targetDS.
+     */
+    public native RelationPath getDefaultPathToRelation(DataSource targetDS) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getDefaultPathToRelation", "DataSource");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getDefaultPathToRelation(targetDS == null ? null : targetDS.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.data.RelationPath::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
 	/**
@@ -4240,6 +4428,40 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
     }-*/;
 
 	/**
+     * Returns the path having the shortest distance between this and the given targetDS.  In case of a tie, only the first as
+     * determined by depth-first search is returned.
+     * @param targetDS The DataSource at the relationship's other end.
+     *
+     * @return The path having the least number of 1:M relationships from this         to the given targetDS.
+     */
+    public native RelationPath getShortestPathToRelation(String targetDS) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getShortestPathToRelation", "String");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getShortestPathToRelation(targetDS);
+        if(ret == null) return null;
+        return @com.smartgwt.client.data.RelationPath::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * Returns the path having the shortest distance between this and the given targetDS.  In case of a tie, only the first as
+     * determined by depth-first search is returned.
+     * @param targetDS The DataSource at the relationship's other end.
+     *
+     * @return The path having the least number of 1:M relationships from this         to the given targetDS.
+     */
+    public native RelationPath getShortestPathToRelation(DataSource targetDS) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getShortestPathToRelation", "DataSource");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getShortestPathToRelation(targetDS == null ? null : targetDS.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.data.RelationPath::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
      * Get the list of {@link com.smartgwt.client.types.OperatorId}s available on this DataSource for the given {@link
      * com.smartgwt.client.types.FieldType}. <P> If {@link com.smartgwt.client.data.DataSource#setTypeOperators
      * setTypeOperators()} has been called for this DataSource and FieldType, returns that list, otherwise, returns the set of
@@ -4465,8 +4687,13 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
     }-*/;
 
 	/**
-     * Invalidate the cache when {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} or {@link
-     * com.smartgwt.client.data.DataSource#getClientOnly clientOnly} are true.
+     * Drop the current dataSource cache. This has two effects: <ul> <li>For DataSources {@link
+     * com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} or {@link
+     * com.smartgwt.client.data.DataSource#getClientOnly clientOnly}, discard     the current client-side cache data.</li>
+     * <li>If <code>notify</code> is passed, cause all {@link com.smartgwt.client.data.ResultSet data objects} associated with
+     * this     dataSource to drop their caches. This occurs     regardless of the dataSource type - and can be thought of as 
+     * equivalent to      processing a response with {@link com.smartgwt.client.data.DSResponse#getInvalidateCache
+     * DSResponse.invalidateCache} set.</li> </ul>
      */
     public native void invalidateCache() /*-{
         if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
@@ -4476,6 +4703,24 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
         self.invalidateCache();
     }-*/;
 
+	/**
+     * Drop the current dataSource cache. This has two effects: <ul> <li>For DataSources {@link
+     * com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} or {@link
+     * com.smartgwt.client.data.DataSource#getClientOnly clientOnly}, discard     the current client-side cache data.</li>
+     * <li>If <code>notify</code> is passed, cause all {@link com.smartgwt.client.data.ResultSet data objects} associated with
+     * this     dataSource to drop their caches. This occurs     regardless of the dataSource type - and can be thought of as 
+     * equivalent to      processing a response with {@link com.smartgwt.client.data.DSResponse#getInvalidateCache
+     * DSResponse.invalidateCache} set.</li> </ul>
+     * @param notify Should data objects associated with this dataSource have their   cache invalidated?
+     */
+    public native void invalidateCache(boolean notify) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "invalidateCache", "boolean");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.invalidateCache(notify);
+    }-*/;
+	
 	/**
      * Get a list of files from the DataSource.  Note, if  {@link com.smartgwt.client.docs.serverds.DataSource#fileVersionField
      * automatic file versioning} is switched on for the dataSource, the resulting list contains only the most recent version
@@ -5926,6 +6171,29 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      */
     public static native void setTypeOperators(String typeName, OperatorId[] operators) /*-{
         $wnd.isc.DataSource.setTypeOperators(typeName, @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(operators));
+    }-*/;
+
+
+	/**
+     * A utility that checks for discrepancies between any two DataSources, typically used to warn about issues commonly found
+     * during the Reify design / development cycle, and logs its findings to the console.  Similar to the server-side <a
+     * href='../../../../../server/javadoc/validator' target='_blank'>ReifyDataSourceValidator</a> in scope, but with no
+     * support for server-only attributes (e.g., Declarative Security). <p> INFO level messages are logged when any of the
+     * following conditions are discovered: <ul>   <li>A field defined in "live" is not also present in mock</li>   <li>A field
+     * defined in "live" has a different title than mock (fields using i18n titles are not checked) </li> </ul> WARN level
+     * messages are logged when any of the following conditions are discovered: <ul>   <li>A field defined in mock is not also
+     * present in "live"</li>   <li>A field defined in mock has a different type than in live (and the live type is a not a
+     * sub-type of the mock type)</li>   <li>Fields in mock have a different order than in "live" (after ignoring any fields
+     * that mock lacks)</li> </ul> <p>
+     * @param live DataSource to compare using 'live' rules
+     * @param mock DataSource to compare using 'mock' rules
+     *
+     * @return Each message logged, with its fieldName &amp; severity level
+     */
+    public static native Map[] verifyDataSourcePair(DataSource live, DataSource mock) /*-{
+        var ret = $wnd.isc.DataSource.verifyDataSourcePair(live == null ? null : live.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()(), mock == null ? null : mock.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.ConvertTo::arrayOfMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
 

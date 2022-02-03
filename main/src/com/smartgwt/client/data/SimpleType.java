@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -105,7 +110,7 @@ import com.smartgwt.client.util.workflow.Process; // required to override java.l
  *  the string value, and use it for sorting and other standard databinding features.
  *  <P>
  *  Note that the term "simpleType" is used in the same sense as in
- *  <a href='XML Schema' target='_blank'>http://www.w3.org/TR/xmlschema-0/</a>, and
+ *  <a href='http://www.w3.org/TR/xmlschema-0/' target='_blank'>XML Schema</a>, and
  * {@link com.smartgwt.client.data.XMLTools#loadXMLSchema XMLTools.loadXMLSchema()} will create new SimpleType definitions.
  *  <P>
  *  When using the Smart GWT Server, SimpleTypes can be defined server-side, and should
@@ -203,6 +208,60 @@ public class SimpleType extends BaseClass {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * Default value for {@link com.smartgwt.client.data.DataSourceField#getCanEdit DataSourceField.canEdit} for fields of this
+     * type. <P> This impacts client-side behavior only and is a way to simply disallow  editing of this field type by default
+     * within {@link com.smartgwt.client.widgets.form.fields.FormItem#getCanEdit editors}. <P> This property is set to false
+     * for the "sequence" SimpleType by default.
+     *
+     * @param canEdit New canEdit value. Default value is null
+     * @return {@link com.smartgwt.client.data.SimpleType SimpleType} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public SimpleType setCanEdit(Boolean canEdit)  throws IllegalStateException {
+        return (SimpleType)setAttribute("canEdit", canEdit, false);
+    }
+
+    /**
+     * Default value for {@link com.smartgwt.client.data.DataSourceField#getCanEdit DataSourceField.canEdit} for fields of this
+     * type. <P> This impacts client-side behavior only and is a way to simply disallow  editing of this field type by default
+     * within {@link com.smartgwt.client.widgets.form.fields.FormItem#getCanEdit editors}. <P> This property is set to false
+     * for the "sequence" SimpleType by default.
+     *
+     * @return Current canEdit value. Default value is null
+     */
+    public Boolean getCanEdit()  {
+        return getAttributeAsBoolean("canEdit");
+    }
+    
+
+    /**
+     * Default value for {@link com.smartgwt.client.data.DataSourceField#getCanFilter DataSourceField.canFilter} for fields of
+     * this type. <P> This impacts client-side behavior only and may be used to explicitly enable editing in filter interfaces,
+     * even if {@link com.smartgwt.client.data.SimpleType#getCanEdit editing is disabled}. <P> This property is set to true for
+     * the "sequence" SimpleType by default.
+     *
+     * @param canFilter New canFilter value. Default value is null
+     * @return {@link com.smartgwt.client.data.SimpleType SimpleType} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public SimpleType setCanFilter(Boolean canFilter)  throws IllegalStateException {
+        return (SimpleType)setAttribute("canFilter", canFilter, false);
+    }
+
+    /**
+     * Default value for {@link com.smartgwt.client.data.DataSourceField#getCanFilter DataSourceField.canFilter} for fields of
+     * this type. <P> This impacts client-side behavior only and may be used to explicitly enable editing in filter interfaces,
+     * even if {@link com.smartgwt.client.data.SimpleType#getCanEdit editing is disabled}. <P> This property is set to true for
+     * the "sequence" SimpleType by default.
+     *
+     * @return Current canFilter value. Default value is null
+     */
+    public Boolean getCanFilter()  {
+        return getAttributeAsBoolean("canFilter");
+    }
+    
+
+    /**
      * In components that support grouping, the default mode from the available  {@link
      * com.smartgwt.client.data.SimpleType#getGroupingModes groupingModes} to use when grouping values of this type.
      *
@@ -225,7 +284,7 @@ public class SimpleType extends BaseClass {
     
 
     /**
-     * The default search-operator for this data-type.
+     * The default {@link com.smartgwt.client.types.OperatorId search-operator} for this data-type.
      *
      * @param defaultOperator New defaultOperator value. Default value is null
      * @return {@link com.smartgwt.client.data.SimpleType SimpleType} instance, for chaining setter calls
@@ -237,7 +296,7 @@ public class SimpleType extends BaseClass {
     }
 
     /**
-     * The default search-operator for this data-type.
+     * The default {@link com.smartgwt.client.types.OperatorId search-operator} for this data-type.
      *
      * @return Current defaultOperator value. Default value is null
      * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
@@ -410,6 +469,31 @@ public class SimpleType extends BaseClass {
         return getAttributeAsString("name");
     }
     
+
+    /**
+     * Default {@link com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyDisplay readOnlyDisplay} for fields of this
+     * type. <P> For more sophisticated management of read-only behavior, see {@link
+     * com.smartgwt.client.data.SimpleType#getReadOnlyEditorType readOnlyEditorType}.
+     *
+     * @param readOnlyDisplay New readOnlyDisplay value. Default value is null
+     * @return {@link com.smartgwt.client.data.SimpleType SimpleType} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public SimpleType setReadOnlyDisplay(ReadOnlyDisplayAppearance readOnlyDisplay)  throws IllegalStateException {
+        return (SimpleType)setAttribute("readOnlyDisplay", readOnlyDisplay == null ? null : readOnlyDisplay.getValue(), false);
+    }
+
+    /**
+     * Default {@link com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyDisplay readOnlyDisplay} for fields of this
+     * type. <P> For more sophisticated management of read-only behavior, see {@link
+     * com.smartgwt.client.data.SimpleType#getReadOnlyEditorType readOnlyEditorType}.
+     *
+     * @return Current readOnlyDisplay value. Default value is null
+     */
+    public ReadOnlyDisplayAppearance getReadOnlyDisplay()  {
+        return EnumUtil.getEnum(ReadOnlyDisplayAppearance.values(), getAttribute("readOnlyDisplay"));
+    }
+    
     
 
     /**
@@ -426,9 +510,9 @@ public class SimpleType extends BaseClass {
     
 
     /**
-     * Set of search operators valid for this type.   <P> If not specified, the {@link
-     * com.smartgwt.client.data.SimpleType#getInheritsFrom inherited} type's operators will be used, finally defaulting to the
-     * default operators for the basic types (eg, integer).
+     * Set of {@link com.smartgwt.client.types.OperatorId search-operators} valid for this <code>SimpleType</code>.   <P> If
+     * not specified, the {@link com.smartgwt.client.data.SimpleType#getInheritsFrom inherited} type's operators will be used,
+     * finally defaulting to the default operators for the basic types (eg, integer).
      *
      * @param validOperators New validOperators value. Default value is null
      * @return {@link com.smartgwt.client.data.SimpleType SimpleType} instance, for chaining setter calls

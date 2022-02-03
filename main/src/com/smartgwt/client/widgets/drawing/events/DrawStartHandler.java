@@ -21,9 +21,9 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface DrawStartHandler extends EventHandler {
     /**
-     * Called when we start drawing to the underlying HTML5 &lt;canvas&gt; element of a DrawPane, right after the element is
-     * cleared.  Only called if the {@link com.smartgwt.client.types.DrawingType} is  {@link
-     * com.smartgwt.client.types.DrawingType#BITMAP}.
+     * Called when we start drawing for this DrawItem to the {@link com.smartgwt.client.widgets.drawing.DrawItem#getDrawPane
+     * drawPane}'s underlying HTML5 &lt;canvas&gt; element.  Only called if the {@link com.smartgwt.client.types.DrawingType}
+     * is  {@link com.smartgwt.client.types.DrawingType#BITMAP}.
      *
      * @param event the event
      */

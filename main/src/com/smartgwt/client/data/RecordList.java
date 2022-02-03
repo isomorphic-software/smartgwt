@@ -894,10 +894,10 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
      *
      * @return array of the values of property in each item of this list
      */
-    public native Record[] getProperty(String property) /*-{
+    public native Object[] getProperty(String property) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var recordsJS =  self.getProperty(property);
-        return recordsJS == null || recordsJS === undefined ? null : @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(recordsJS);
+        return recordsJS == null || recordsJS === undefined ? null : @com.smartgwt.client.util.ConvertTo::arrayOfObject(Lcom/google/gwt/core/client/JavaScriptObject;)(recordsJS);
     }-*/;
 
     /**

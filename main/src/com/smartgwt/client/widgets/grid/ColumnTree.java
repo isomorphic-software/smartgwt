@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * The Smart GWT system supports hierarchical data (also referred to as tree data due to its "branching" organization)
@@ -888,11 +894,12 @@ public class ColumnTree extends Layout implements  com.smartgwt.client.widgets.g
 
     // ********************* Methods ***********************
 	/**
-     * Process a drop of one or more nodes on a TreeGrid folder.   Add logic in your drop handler to perform custom drop
-     * behaviors; to suppress the built-in  behavior described below, use <code>event.cancel()</code>  <P> The default behavior
-     * is to simply delegate to the {@link com.smartgwt.client.widgets.grid.ColumnTree#transferNodes transferNodes()} method;
-     * thus, the  correct way to perform a programmatic folder drop, with all the built-in behaviors described below, is to
-     * call <code>transferNodes()</code> <P> If this is a self-drop, nodes are simply reordered. An "update" operation will be
+     * Process a drop of one or more nodes on a TreeGrid folder.<br> Note: See {@link com.smartgwt.client.docs.TreeGridDrop}
+     * for an overview of TreeGrid drag and drop behavior.    Add logic in your drop handler to perform custom drop behaviors;
+     * to suppress the built-in  behavior described below, use <code>event.cancel()</code>  <P> The default behavior is to
+     * simply delegate to the {@link com.smartgwt.client.widgets.grid.ColumnTree#transferNodes transferNodes()} method; thus,
+     * the  correct way to perform a programmatic folder drop, with all the built-in behaviors described below, is to call
+     * <code>transferNodes()</code> <P> If this is a self-drop, nodes are simply reordered. An "update" operation will be
      * submitted to update the {@link com.smartgwt.client.widgets.tree.Tree#getParentIdField parentId} field of the moved
      * node(s).  <P> For a drop from another widget, {@link com.smartgwt.client.widgets.tree.TreeGrid#transferDragData
      * TreeGrid.transferDragData()} is called which, depending on the {@link

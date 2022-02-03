@@ -351,6 +351,74 @@ package com.smartgwt.client.docs;
  *  similar query language, does the value in the SQL statement include an explicit timezone?
  *  If not, how will the database interpret it?
  *  </ol>
+ *  <P>
+ *  <h3>Code examples</h3>
+ * There are separate builtin {@link com.smartgwt.client.widgets.form.fields.FormItem FormItems}
+ * for working with 
+ * {@link com.smartgwt.client.widgets.form.fields.DateItem logical-dates}, where the time-portion
+ * is irrelevant, 
+ * {@link com.smartgwt.client.widgets.form.fields.TimeItem logical-times}, where the date-portion
+ * is irrelevant, and 
+ * {@link com.smartgwt.client.widgets.form.fields.DateTimeItem datetimes}, where all date-elements
+ * are relevant.  There is also
+ * an editor for working with {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem
+ * relative-dates}, where values
+ *  are calculated via offsets from a base Date.  These builtin items have 
+ * {@link com.smartgwt.client.widgets.form.fields.FormItem#setValue setValue()} and {@link
+ * com.smartgwt.client.widgets.form.fields.FormItem#getValue getValue()} methods that 
+ * work with values of the expected {@link
+ * com.smartgwt.client.widgets.form.fields.FormItem#getType date type}.
+ *  
+ * As covered earlier, the {@link com.smartgwt.client.util.DateUtil} class provides APIs for
+ * managing logical 
+ * {@link com.smartgwt.client.util.DateUtil#createLogicalDate date} and {@link
+ * com.smartgwt.client.util.DateUtil#createLogicalTime time} values,
+ * and for creating {@link com.smartgwt.client.util.DateUtil#createDatetime regular datetimes},
+ * which can be easily 
+ * split into separate logical {@link com.smartgwt.client.util.DateUtil#getLogicalDateOnly date}
+ * and 
+ *  {@link com.smartgwt.client.util.DateUtil#getLogicalTimeOnly time} values, and later 
+ *  {@link com.smartgwt.client.util.DateUtil#combineLogicalDateAndTime recombined}.
+ *  <P>
+ *  Consider a requirement where a regular datetime value on a data-record should be edited as  
+ *  separate logical date and time values, and then restored to a regular datetime for saving.
+ *  <P>
+ * At it's simplest, this use-case would use a {@link
+ * com.smartgwt.client.widgets.form.fields.DateItem dateItem} and a
+ *  {@link com.smartgwt.client.widgets.form.fields.TimeItem timeItem} in a UI.
+ *  <pre>
+ *  dateItem.setValue(isc.DateUtil.getLogicalDateOnly(record.startDate));
+ *  timeItem.setValue(isc.DateUtil.getLogicalTimeOnly(record.startDate);
+ *  
+ *  ... edits
+ * 
+ *  record.startDate = isc.DateUtil.combineLogicalDateAndTime(dateItem.getValue(), timeItem.getValue());
+ *  </pre>
+ *  Assume the use-case requires a special UI, where each element of the date and the time
+ * should be edited as numbers in separate {@link
+ * com.smartgwt.client.widgets.form.fields.SelectItem selects} or 
+ * {@link com.smartgwt.client.widgets.form.fields.SpinnerItem spinners}, named after the elements.
+ *  <pre>
+ *  var logicalDate = isc.DateUtil.getLogicalDateOnly(record.startDate);
+ *  year.setValue(logicalDate.getFullYear())
+ *  month.setValue(logicalDate.getMonth())
+ *  day.setValue(logicalDate.getDate())
+ *  
+ *  var logicalTime = isc.DateUtil.getLogicalTimeOnly(record.startDate);
+ *  hour.setValue(logicalTime.getHours())
+ *  minute.setValue(logicalTime.getMinutes())
+ * 
+ *  ... edits
+ *  
+ *  // make logical values and combine them
+ *  logicalDate = isc.DateUtil.createLogicalDate(year.getValue(), month.getValue(), day.getValue());
+ *  logicalTime = isc.DateUtil.createLogicalDate(hour.getValue(), minute.getValue())
+ *  record.startDate = isc.DateUtil.combineLogicalDateAndTime(logicalDate, logicalTime);
+ * 
+ *  // or, create directly
+ *  record.startDate = isc.DateUtil.createDatetime(year.getValue(), month.getValue(), day.getValue(), hour.getValue(), minute.getValue());
+ *  </pre>
+ *  <P>
  */
 public interface DateFormatAndStorage {
 }

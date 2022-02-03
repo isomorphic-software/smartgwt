@@ -25,6 +25,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -42,6 +43,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -55,11 +58,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -75,6 +79,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 public class DayBodyClickEvent extends BrowserEvent<DayBodyClickHandler>  implements Cancellable {
@@ -153,7 +158,7 @@ public class DayBodyClickEvent extends BrowserEvent<DayBodyClickHandler>  implem
     public boolean isCancelled() {
         return cancel;
     }
-
+    
 	/**
      * JavaScript Date object representing this day
      *
@@ -165,7 +170,7 @@ public class DayBodyClickEvent extends BrowserEvent<DayBodyClickHandler>  implem
         if(ret == null) return null;
         return @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
     }-*/;
-
+    
 	/**
      * events that fall on this day
      *
@@ -177,7 +182,7 @@ public class DayBodyClickEvent extends BrowserEvent<DayBodyClickHandler>  implem
         if(ret == null) return null;
         return @com.smartgwt.client.util.ConvertTo::arrayOfCalendarEvent(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
+    
 	/**
      * the row number to which the parameter date belongs
      *
@@ -189,7 +194,7 @@ public class DayBodyClickEvent extends BrowserEvent<DayBodyClickHandler>  implem
         if(ret == null) return null;
         return @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
     }-*/;
-
+    
 	/**
      * the column number to which the parameter date belongs
      *

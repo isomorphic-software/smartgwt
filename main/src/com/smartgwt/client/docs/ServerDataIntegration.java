@@ -97,17 +97,17 @@ package com.smartgwt.client.docs;
  * DMI scripts allow you to add business       logic just like normal DMIs, but don't require the
  * logic to be in a separate .java       file.</li> </ul><br> <li>If you need to use a Front
  * Controller servlet for some other reason than authentication - for example, you are using
- * Spring, Struts, or some other similar system which requires that  all requests go through some
- * particular servlet - just call  <code>RPCManager.processRequest()</code> within your Spring
- * Controller, Struts Action, or  whatever the equivalent is in the framework in use. <p> However,
- * note carefully that taking this approach is often a sign that the Smart GWT  architecture has
- * not been correctly understood.  Smart GWT is architected for  <em>client-server</em> data
- * communication, as opposed to early web MVC frameworks which  do everything on the server.  In
- * particular, it is absolutely incorrect to represent every  individual DataSource operation - or
- * even every DataSource - as a separate Struts Action  or Spring Controller, because this implies
- * different URLs for different operations.  All  DataSource operations should go through a single
- * URL in order to allow  {@link com.smartgwt.client.rpc.RPCManager transaction queuing} - see
- * these  @see <a href="http://www.smartclient.com/smartgwtee/showcase/#transactionsFolder"
+ * Spring some other similar system which requires that  all requests go through some particular
+ * servlet - just call  <code>RPCManager.processRequest()</code> within your Spring Controller or 
+ * whatever the equivalent is in the framework in use. <p> However, note carefully that taking
+ * this approach is often a sign that the Smart GWT  architecture has not been correctly
+ * understood.  Smart GWT is architected for  <em>client-server</em> data communication, as
+ * opposed to early web MVC frameworks which  do everything on the server.  In particular, it is
+ * absolutely incorrect to represent every  individual DataSource operation - or even every
+ * DataSource - as a separate  Spring Controller because this implies different URLs for different
+ * operations.  All  DataSource operations should go through a single URL in order to allow 
+ * {@link com.smartgwt.client.rpc.RPCManager transaction queuing} - see these  @see <a
+ * href="http://www.smartclient.com/smartgwtee/showcase/#transactionsFolder"
  * target="examples">Queuing examples</a>.</li> </ul> <P> For more information on the DMI
  * subsystem, see the {@link com.smartgwt.client.docs.DmiOverview DMI overview},  DMI class and
  * the  <a href="http://www.smartclient.com/smartgwtee/showcase/#dmi" target="examples">DMI

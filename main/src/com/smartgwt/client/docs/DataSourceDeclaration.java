@@ -52,7 +52,7 @@ package com.smartgwt.client.docs;
  *  Alternatively, in JSP environments, XML DataSources can be loaded via a special JSP tag
  *  supported by the Smart GWT Server:
  *  <pre>
- *      &lt;%&#64; taglib uri="/WEB-INF/iscTaglib.xml" prefix="isomorphic" %&gt;
+ *      &lt;%&#64; taglib uri="http://www.smartclient.com/taglib" prefix="isomorphic" %&gt;
  *      ...
  *      &lt;SCRIPT&gt;
  *      &lt;isomorphic:loadDS ID="supplyItem"/&gt;
@@ -60,10 +60,19 @@ package com.smartgwt.client.docs;
  *  </pre>
  *  <P>
  *  When loading an XML DataSource, by default, the ISC Server will look for a file named
- *  <code>&lt;dataSourceId&gt;.ds.xml</code> in the <code>/shared/ds</code> subdirectory under
- *  webroot.  The location of this directory can be changed, or individual DataSources can be
- *  placed in arbitrary locations.  For more information, see
- * {@link com.smartgwt.client.docs.Server_properties [webroot]/WEB-INF/classes/server.properties}.
+ *  <code>&lt;dataSourceId&gt;.ds.xml</code> in the <code>project.datasources</code> directory 
+ *  as configured in <code>[webroot]/WEB-INF/classes/server.properties</code> .
+ * By default this may be set to <code>/shared/ds</code> or <code>/WEB-INF/ds</code> under
+ * webroot.<br>
+ *  The location of this directory can be changed, or individual DataSources can be
+ *  placed in arbitrary locations.  For more information, see the documentation for 
+ *  {@link com.smartgwt.client.docs.Server_properties server.properties}
+ *  <P>
+ *  The directory containing dataSource defintions should not be made publicly accessible via the 
+ *  webserver. DataSource configuration files can contain sensitive data that should only be read
+ *  by the server. When loading a dataSource via the <code>loadDS</code> tag or by hitting the 
+ *  <code>DataSourceLoader</code> servlet such data will not be passed to the client.
+ *  
  *  <P>
  *  XML DataSources can also be generated on the fly in case the entire DataSource or portions
  *  of it are based on dynamic data.  See the server API

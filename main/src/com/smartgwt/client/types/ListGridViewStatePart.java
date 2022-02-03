@@ -62,7 +62,14 @@ public enum ListGridViewStatePart implements ValueEnum {
      * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
      * file or server-side DataSource descriptor (.ds.xml file), use the value "hilite".
      */
-    HILITE("hilite");
+    HILITE("hilite"),
+    /**
+     * Criteria state
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "userCriteria".
+     */
+    USERCRITERIA("userCriteria");
     private String value;
 
     ListGridViewStatePart(String value) {

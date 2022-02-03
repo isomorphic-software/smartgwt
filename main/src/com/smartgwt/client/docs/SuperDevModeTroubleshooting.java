@@ -313,6 +313,32 @@ package com.smartgwt.client.docs;
  *  available via DNS lookup on the client, even if you access the server by IP address.</td>
  *  <td>Ensure DNS lookup is available for the server on the client, or add a binding to your
  *  hosts files.</td>
+ *  </tr><tr>
+ *  <td>When SuperDevMode is run, Java exceptions are thrown and the server fails to start
+ *  (e.g. ExecutionException, ClassNotFoundException, IllegalStateException, ...).</td><td>
+ *  JARs in the <code>WEB&#8209;INF/lib</code> directory of the filesystem are interfering with
+ *  those added by the SDM server.</td><td>Remove the contents of <code>WEB&#8209;INF/lib</code>
+ *  at the filesystem level, using an OS shell or file explorer.  SDM will auomatically populate
+ *  the served content of that directory using the project classpath when it's run.</td>
+ *  </tr><tr>
+ *  <td>An exception involving org.objectweb.asm.ClassVisitor near the top frame is thrown in
+ *  Eclipse, and the project won't run.</td><td>
+ *  You have a version conflict involving the 
+ * <a href='https://asm.ow2.io/index.html' target='_blank'>asm JAR</a>.  GWT itself as well as
+ * other JARs
+ *  may depend on a specific version of the asm JAR.  In Eclipse, the classpath is distinct from
+ *  JARs copied into your WEB-INF/lib directory, so the problem might also be that the version
+ *  of asm in your classpath is right, but it should be removed from WEB-INF/lib.</td><td>
+ *  Fix your classpath in Eclipse to pick up the proper asm JAR version, based on your GWT
+ *  version, and other JAR dependencies, such as Hibernate and Spring.  If possible, Remove the
+ *  asm JAR from your WEB-INF/lib directory.  To verify your project JAR dependencies you can
+ *  manually
+ * <a href='https://mvnrepository.com/artifact/com.google.gwt/gwt-dev/2.9.0' target='_blank'>check
+ * Maven</a>,
+ * or to have Maven automatically manage your dependencies, see {@link
+ * com.smartgwt.client.docs.MavenSupport}.
+ *  To run our BuiltInDS sample project with GWT 2.9.0, ensure asm-8.x is in your classpath but
+ *  not WEB-INF/lib.</td>
  *  </tr></table>
  *  <p><b>
  *  A useful discussion of some other problems and solutions related to GWT Super Dev Mode can be

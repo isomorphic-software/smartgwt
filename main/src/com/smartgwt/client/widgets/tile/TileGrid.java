@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * A TileGrid is a {@link com.smartgwt.client.widgets.DataBoundComponent} that displays a list of objects as a set of
@@ -374,6 +380,29 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
     
 
     /**
+     * A TileGrid is a {@link com.smartgwt.client.widgets.DataBoundComponent#getDataArity dataArity}:multiple component.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param dataArity New dataArity value. Default value is "multiple"
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
+    public TileGrid setDataArity(String dataArity) {
+        return (TileGrid)setAttribute("dataArity", dataArity, true);
+    }
+
+    /**
+     * A TileGrid is a {@link com.smartgwt.client.widgets.DataBoundComponent#getDataArity dataArity}:multiple component.
+     *
+     * @return Current dataArity value. Default value is "multiple"
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
+    public String getDataArity()  {
+        return getAttributeAsString("dataArity");
+    }
+    
+
+    /**
      * How to fetch and manage records retrieve from the server.  See {@link com.smartgwt.client.types.FetchMode}. <P> This
      * setting only applies to the {@link com.smartgwt.client.data.ResultSet} automatically created by calling {@link
      * com.smartgwt.client.widgets.grid.ListGrid#fetchData fetchData()}.  If a pre-existing ResultSet is passed to setData()
@@ -523,6 +552,31 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      */
     public Integer getDrawAllMaxTiles()  {
         return getAttributeAsInt("drawAllMaxTiles");
+    }
+    
+
+    /**
+     * Default class used to construct the {@link com.smartgwt.client.tools.EditProxy} for this component when the component is
+     * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
+     *
+     * @param editProxyConstructor New editProxyConstructor value. Default value is "GridEditProxy"
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     */
+    public TileGrid setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
+        return (TileGrid)setAttribute("editProxyConstructor", editProxyConstructor, false);
+    }
+
+    /**
+     * Default class used to construct the {@link com.smartgwt.client.tools.EditProxy} for this component when the component is
+     * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
+     *
+     * @return Current editProxyConstructor value. Default value is "GridEditProxy"
+     * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     */
+    public String getEditProxyConstructor()  {
+        return getAttributeAsString("editProxyConstructor");
     }
     
 
@@ -761,12 +815,72 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
     
 
     /**
+     * If true, when an update operation occurs on a selected tile's record in a {@link
+     * com.smartgwt.client.widgets.tile.TileGrid#getDataSource databound} tileGrid, ensure the updated tile is re-selected when
+     * the operation completes. The {@link com.smartgwt.client.widgets.tile.TileGrid#getReselectOnUpdateNotifications
+     * reselectOnUpdateNotifications} attributes governs whether {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#selectionUpdated selectionUpdated()} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#addSelectionChangedHandler CubeGrid.selectionChanged()} will fire when this
+     * occurs.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param reselectOnUpdate New reselectOnUpdate value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public TileGrid setReselectOnUpdate(boolean reselectOnUpdate)  throws IllegalStateException {
+        return (TileGrid)setAttribute("reselectOnUpdate", reselectOnUpdate, false);
+    }
+
+    /**
+     * If true, when an update operation occurs on a selected tile's record in a {@link
+     * com.smartgwt.client.widgets.tile.TileGrid#getDataSource databound} tileGrid, ensure the updated tile is re-selected when
+     * the operation completes. The {@link com.smartgwt.client.widgets.tile.TileGrid#getReselectOnUpdateNotifications
+     * reselectOnUpdateNotifications} attributes governs whether {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#selectionUpdated selectionUpdated()} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#addSelectionChangedHandler CubeGrid.selectionChanged()} will fire when this
+     * occurs.
+     *
+     * @return Current reselectOnUpdate value. Default value is true
+     */
+    public boolean getReselectOnUpdate()  {
+        Boolean result = getAttributeAsBoolean("reselectOnUpdate");
+        return result == null ? true : result;
+    }
+    
+
+    /**
+     * if {@link com.smartgwt.client.widgets.tile.TileGrid#getReselectOnUpdate reselectOnUpdate} is true, this property governs
+     * what selection changed notifications should be triggered when a selected tile's record is edited then automatically
+     * reselected when the edited data is merged into the data set.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param reselectOnUpdateNotifications New reselectOnUpdateNotifications value. Default value is "selectionChanged"
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
+     */
+    public TileGrid setReselectOnUpdateNotifications(SelectionNotificationType reselectOnUpdateNotifications) {
+        return (TileGrid)setAttribute("reselectOnUpdateNotifications", reselectOnUpdateNotifications == null ? null : reselectOnUpdateNotifications.getValue(), true);
+    }
+
+    /**
+     * if {@link com.smartgwt.client.widgets.tile.TileGrid#getReselectOnUpdate reselectOnUpdate} is true, this property governs
+     * what selection changed notifications should be triggered when a selected tile's record is edited then automatically
+     * reselected when the edited data is merged into the data set.
+     *
+     * @return Current reselectOnUpdateNotifications value. Default value is "selectionChanged"
+     */
+    public SelectionNotificationType getReselectOnUpdateNotifications()  {
+        return EnumUtil.getEnum(SelectionNotificationType.values(), getAttribute("reselectOnUpdateNotifications"));
+    }
+    
+
+    /**
      * Defines a tileGrid's clickable-selection behavior.
      *
      * @param selectionType New selectionType value. Default value is Selection.MULTIPLE
      * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.types.SelectionStyle
-     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tiling_editing" target="examples">Editing Example</a>
      */
     public TileGrid setSelectionType(SelectionStyle selectionType) {
@@ -778,7 +892,7 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      *
      * @return Current selectionType value. Default value is Selection.MULTIPLE
      * @see com.smartgwt.client.types.SelectionStyle
-     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tiling_editing" target="examples">Editing Example</a>
      */
     public SelectionStyle getSelectionType()  {
@@ -1074,6 +1188,37 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
     
 
     /**
+     * Screen to create (via {@link com.smartgwt.client.rpc.RPCManager#createScreen createScreen()}) for the tile in lieu of
+     * calling {@link com.smartgwt.client.widgets.tile.TileGrid#getTile getTile()}. <P> If this grid has a {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getDataSource dataSource}, the created screen is provided with a {@link
+     * com.smartgwt.client.widgets.Canvas#getDataContext Canvas.dataContext} that includes the record being expanded. Be sure
+     * the tile screen meets these {@link com.smartgwt.client.widgets.Canvas#getAutoPopulateData requirements} to utilize the
+     * <code>dataContext</code>.
+     *
+     * @param tileScreen New tileScreen value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public TileGrid setTileScreen(String tileScreen)  throws IllegalStateException {
+        return (TileGrid)setAttribute("tileScreen", tileScreen, false);
+    }
+
+    /**
+     * Screen to create (via {@link com.smartgwt.client.rpc.RPCManager#createScreen createScreen()}) for the tile in lieu of
+     * calling {@link com.smartgwt.client.widgets.tile.TileGrid#getTile getTile()}. <P> If this grid has a {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getDataSource dataSource}, the created screen is provided with a {@link
+     * com.smartgwt.client.widgets.Canvas#getDataContext Canvas.dataContext} that includes the record being expanded. Be sure
+     * the tile screen meets these {@link com.smartgwt.client.widgets.Canvas#getAutoPopulateData requirements} to utilize the
+     * <code>dataContext</code>.
+     *
+     * @return Current tileScreen value. Default value is null
+     */
+    public String getTileScreen()  {
+        return getAttributeAsString("tileScreen");
+    }
+    
+
+    /**
      * Horizontal alignment for tile values: "left", "right" or "center".
      *
      * @param tileValueAlign New tileValueAlign value. Default value is "center"
@@ -1363,6 +1508,24 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
         }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getDragTrackerTitle(record.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum);
+        return ret;
+    }-*/;
+
+	/**
+     * Returns the record index of the tile that would currently be dropped on by the drag in process.  Returns one beyond the
+     * last valid index to indicate a drop after all records. Except for that special case, a non-null index returned by this
+     * method may be passed to {@link com.smartgwt.client.widgets.tile.TileGrid#getTile getTile()} to get the corresponding
+     * visible tile.
+     *
+     * @return record index of tile that would currently be dropped on, or the record count               for a drop after all records
+     * @see com.smartgwt.client.widgets.tile.TileLayout#transformTileRect
+     */
+    public native int getDropIndex() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getDropIndex", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getDropIndex();
         return ret;
     }-*/;
 
@@ -1871,6 +2034,63 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
         self.setFieldState(fieldState, isSparse == null ? null : isSparse.@java.lang.Boolean::booleanValue()());
     }-*/;
 	
+	/**
+     * Displays the currently selected record(s) of the selectionComponent widget (typically a listGrid) in this component. <P>
+     * For a DynamicForm the first record of the selection is shown after the form is placed into {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getCanEdit read-only mode}. A subsequent call to {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editRecord DynamicForm.editRecord()} or similar will return the form to
+     * editability. <P> Note that since field-level <code>canEdit:true</code> settings override the form-level canEdit setting
+     * the automatic change to read-only may not change every field.
+     * @param selectionComponent the ListGrid or TileGrid or ID of a {@link com.smartgwt.client.widgets.grid.ListGrid}/{@link
+     * com.smartgwt.client.widgets.tile.TileGrid} whose currently     selected record(s) is/are to be viewed
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     */
+    public native void viewSelectedData(ListGrid selectionComponent) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "viewSelectedData", "ListGrid");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.viewSelectedData(selectionComponent == null ? null : selectionComponent.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+
+	/**
+     * Displays the currently selected record(s) of the selectionComponent widget (typically a listGrid) in this component. <P>
+     * For a DynamicForm the first record of the selection is shown after the form is placed into {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getCanEdit read-only mode}. A subsequent call to {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editRecord DynamicForm.editRecord()} or similar will return the form to
+     * editability. <P> Note that since field-level <code>canEdit:true</code> settings override the form-level canEdit setting
+     * the automatic change to read-only may not change every field.
+     * @param selectionComponent the ListGrid or TileGrid or ID of a {@link com.smartgwt.client.widgets.grid.ListGrid}/{@link
+     * com.smartgwt.client.widgets.tile.TileGrid} whose currently     selected record(s) is/are to be viewed
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     */
+    public native void viewSelectedData(TileGrid selectionComponent) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "viewSelectedData", "TileGrid");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.viewSelectedData(selectionComponent == null ? null : selectionComponent.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+
+	/**
+     * Displays the currently selected record(s) of the selectionComponent widget (typically a listGrid) in this component. <P>
+     * For a DynamicForm the first record of the selection is shown after the form is placed into {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getCanEdit read-only mode}. A subsequent call to {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editRecord DynamicForm.editRecord()} or similar will return the form to
+     * editability. <P> Note that since field-level <code>canEdit:true</code> settings override the form-level canEdit setting
+     * the automatic change to read-only may not change every field.
+     * @param selectionComponent the ListGrid or TileGrid or ID of a {@link com.smartgwt.client.widgets.grid.ListGrid}/{@link
+     * com.smartgwt.client.widgets.tile.TileGrid} whose currently     selected record(s) is/are to be viewed
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     */
+    public native void viewSelectedData(String selectionComponent) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "viewSelectedData", "String");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.viewSelectedData(selectionComponent);
+    }-*/;
+
 
     // ********************* Static Methods ***********************
 
@@ -3066,6 +3286,11 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
             s.logicalStructureErrors += "TileGrid.canReorderTiles:" + t.getMessage() + "\n";
         }
         try {
+            s.dataArity = getAttributeAsString("dataArity");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.dataArity:" + t.getMessage() + "\n";
+        }
+        try {
             s.dataFetchMode = getAttributeAsString("dataFetchMode");
         } catch (Throwable t) {
             s.logicalStructureErrors += "TileGrid.dataFetchMode:" + t.getMessage() + "\n";
@@ -3074,6 +3299,11 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
             s.drawAllMaxTiles = getAttributeAsString("drawAllMaxTiles");
         } catch (Throwable t) {
             s.logicalStructureErrors += "TileGrid.drawAllMaxTiles:" + t.getMessage() + "\n";
+        }
+        try {
+            s.editProxyConstructor = getAttributeAsString("editProxyConstructor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.editProxyConstructor:" + t.getMessage() + "\n";
         }
         try {
             s.emptyMessage = getAttributeAsString("emptyMessage");
@@ -3109,6 +3339,16 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
             s.recycleTiles = getAttributeAsString("recycleTiles");
         } catch (Throwable t) {
             s.logicalStructureErrors += "TileGrid.recycleTiles:" + t.getMessage() + "\n";
+        }
+        try {
+            s.reselectOnUpdate = getAttributeAsString("reselectOnUpdate");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.reselectOnUpdate:" + t.getMessage() + "\n";
+        }
+        try {
+            s.reselectOnUpdateNotifications = getAttributeAsString("reselectOnUpdateNotifications");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.reselectOnUpdateNotifications:" + t.getMessage() + "\n";
         }
         try {
             s.selectionType = getAttributeAsString("selectionType");
@@ -3149,6 +3389,11 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
             s.tiles = getTiles();
         } catch (Throwable t) {
             s.logicalStructureErrors += "TileGrid.tilesArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.tileScreen = getAttributeAsString("tileScreen");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.tileScreen:" + t.getMessage() + "\n";
         }
         try {
             s.tileValueAlign = getAttributeAsString("tileValueAlign");

@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -405,17 +410,29 @@ public class ValuesManager extends BaseClass implements com.smartgwt.client.form
      * intended based on whether the primaryKey field is present and editable.
      *
      * @return Returns the {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData()} is called. Valid options are
-     * <code>"add"</code> or <code>"update"</code>. <P> If a {@link com.smartgwt.client.data.DSRequest} configuration object is
-     * passed in containing an explicit operationType this will be returned. Otherwise {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType DynamicForm.saveOperationType} will be returned. This
-     * attribute is automatically set via calls to data binding methods such as {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#editNewRecord DynamicForm.editNewRecord()}, or it may be set explicitly.
-     * <P> If no explicit saveOperationType is specified for this form, the system will  look at the current values for the
-     * form. If the form has no value for the {@link com.smartgwt.client.data.DataSource#getPrimaryKeyField primaryKey field},
-     * or that field is editable and has been modified we assume an add operation, otherwise an update. If the form is a member
-     * of a {@link com.smartgwt.client.widgets.form.ValuesManager}, the primary key field value will be derived from the
-     * valuesManager's values object. Default value is null
+     * com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData()} or {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#saveData saveData()} is called.<br> Valid options are <code>"add"</code>
+     * or <code>"update"</code>. <P> If a {@link com.smartgwt.client.data.DSRequest} configuration object is passed in
+     * containing an explicit operationType this will be returned. Otherwise {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType this.saveOperationType}  will be returned if set. Note
+     * that <code>saveOperationType</code> is automatically set via calls to data binding methods such as {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editNewRecord DynamicForm.editNewRecord()}, or it may be  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType set explicitly}. <P> If no explicit saveOperationType
+     * is present, the system will use the following  heuristic to determine the save operationType:  <ul> <li>If the form has
+     * no value for the {@link com.smartgwt.client.data.DataSource#getPrimaryKeyField primaryKey field}     this method will
+     * return "add". The assumption is that this is a new record, and the     field will be populated when the record is
+     * created,      (as with a "sequence" type field).</li> <li>If, {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#setValues when the form's values were populated},      the form had value
+     * for the {@link com.smartgwt.client.data.DataSource#getPrimaryKeyField primaryKey field}     but it has subsequently be
+     * changed, this method will return "add". In this case     the value has been changed, either by the user or
+     * programmatically so a different     (new) record is assumed. This is determined by looking at the     {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getOldValues oldValues} for the form.</li> <li>If the {@link
+     * com.smartgwt.client.data.DataSource#getPrimaryKeyField primaryKey field} is editable and     a value is now present for
+     * the primary key field, but was not present in the     {@link com.smartgwt.client.widgets.form.DynamicForm#getOldValues
+     * oldValues} for the form, this method will return     "add". In this case either no initial values were provided, or a
+     * 'sparse'      set of values for a new record (with no primary key) were provided to the form     and the user has
+     * subsequently explicitly entered a new primaryKey field value.</li> <li>Otherwise this method will return "update".
+     * Either the primaryKey field is non     editable, or the user has not changed it from its initial value.</li> </ul>. Default value is null
      */
     public DSOperationType getSaveOperationType()  {
         return EnumUtil.getEnum(DSOperationType.values(), getAttribute("saveOperationType"));
@@ -518,57 +535,42 @@ public class ValuesManager extends BaseClass implements com.smartgwt.client.form
 
 	/**
      * 
-     *  This method exists for clean integration with existing server frameworks that have a 'cancel'
-     *  feature which typically clears session state associated with the form.  When this method is
-     *  called, an RPC is sent to the server with a parameter named
-     *  {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName DynamicForm.cancelParamName} with the value
-     *  {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue DynamicForm.cancelParamValue}.<p>
-     * 
-     *  Note that no other form data is sent.  By default the current top-level page is replaced with the
-     *  reply.  If you wish to ignore the server reply instead, call this method like this:
+     *  This method exists for clean integration with existing server frameworks that have a
+     *  'cancel' feature which typically clears session state associated with the form.  When
+     *  this method is called, an RPC is sent to the server.  You must pass the appropriate
+     *  params property in the request properties as required by your server framework.
+     *  <P>
+     *  For example:
      *  <pre>
-     *  dynamicFormInstance.cancel({ignoreTimeout: true, target: null});
+     *  DSRequest requestProperties = new DSRequest();
+     *  Map params = new HashMap();
+     *  params.put("CANCEL", "cancel");
+     *  requestProperties.setParams(params);
      *  </pre>
      * 
-     * @see com.smartgwt.client.widgets.form.DynamicForm#cancelEditing
-     * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
-     * @deprecated Since Apache Struts will be removed from Smartclient 13.0
-     */
-    public native void cancel() /*-{
-        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "cancel", "");
-        }
-        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.cancel();
-    }-*/;
-
-	/**
-     * 
-     *  This method exists for clean integration with existing server frameworks that have a 'cancel'
-     *  feature which typically clears session state associated with the form.  When this method is
-     *  called, an RPC is sent to the server with a parameter named
-     *  {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName DynamicForm.cancelParamName} with the value
-     *  {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue DynamicForm.cancelParamValue}.<p>
-     * 
-     *  Note that no other form data is sent.  By default the current top-level page is replaced with the
-     *  reply.  If you wish to ignore the server reply instead, call this method like this:
+     *  Note that no other form data is sent.  By default the current top-level page is replaced
+     *  with the reply.  If you wish to ignore the server reply instead, include the following
+     *  request properties:
      *  <pre>
-     *  dynamicFormInstance.cancel({ignoreTimeout: true, target: null});
+     *  DSRequest requestProperties = new DSRequest();
+     *  // other request property settings ...
+     *  requestProperties.setIgnoreTimeout(true);
+     *  requestProperties.setAttribute("target", null);
      *  </pre>
      * 
-     * @param requestProperties additional properties to set on the RPCRequest                                          that will be issued
+     * @param requestProperties additional properties to set on the RPCRequest                                       that will be issued
      * @see com.smartgwt.client.widgets.form.DynamicForm#cancelEditing
      * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
-     * @deprecated Since Apache Struts will be removed from Smartclient 13.0
+     * @deprecated As of Smartclient version 13.0, due to the removal of Apache Struts.
      */
     public native void cancel(DSRequest requestProperties) /*-{
         if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
             @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "cancel", "DSRequest");
         }
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.cancel(requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+        self.cancel(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-	
+
 	/**
      * Performs silent validation of the value manager values, like {@link
      * com.smartgwt.client.widgets.form.ValuesManager#valuesAreValid valuesAreValid()}.  In contrast to {@link
@@ -589,7 +591,7 @@ public class ValuesManager extends BaseClass implements com.smartgwt.client.form
         var ret = self.checkForValidationErrors(
 			$entry( function(errorMap) { 
 				if(callback!=null) callback.@com.smartgwt.client.data.ValidationStatusCallback::execute(Ljava/util/Map;)(
-					@com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(errorMap)
+					errorMap != null ? @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(errorMap) : null
 				);
 			}));
         return @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
@@ -616,7 +618,7 @@ public class ValuesManager extends BaseClass implements com.smartgwt.client.form
         var ret = self.checkForValidationErrors(
 			$entry( function(errorMap) { 
 				if(callback!=null) callback.@com.smartgwt.client.data.ValidationStatusCallback::execute(Ljava/util/Map;)(
-					@com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(errorMap)
+					errorMap != null ? @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(errorMap) : null
 				);
 			}), skipServerValidation);
         return @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
@@ -698,12 +700,12 @@ public class ValuesManager extends BaseClass implements com.smartgwt.client.form
      * @see com.smartgwt.client.widgets.form.DynamicForm#saveData
      * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
      */
-    public native void editNewRecord(Map initialValues) /*-{
+    public native void editNewRecord(Record initialValues) /*-{
         if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "editNewRecord", "Map");
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "editNewRecord", "Record");
         }
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.editNewRecord(initialValues == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(initialValues));
+        self.editNewRecord(initialValues.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
 	/**
@@ -715,12 +717,12 @@ public class ValuesManager extends BaseClass implements com.smartgwt.client.form
      * @see com.smartgwt.client.widgets.form.DynamicForm#saveData
      * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
      */
-    public native void editNewRecord(Record initialValues) /*-{
+    public native void editNewRecord(Map initialValues) /*-{
         if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "editNewRecord", "Record");
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "editNewRecord", "Map");
         }
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.editNewRecord(initialValues.@com.smartgwt.client.core.DataClass::getJsObj()());
+        self.editNewRecord(initialValues == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(initialValues));
     }-*/;
 
 	/**

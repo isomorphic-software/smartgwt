@@ -25,6 +25,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -42,6 +43,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -55,11 +58,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -75,6 +79,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 public class EditCompleteEvent extends BrowserEvent<EditCompleteHandler>  {
@@ -139,7 +144,7 @@ public class EditCompleteEvent extends BrowserEvent<EditCompleteHandler>  {
         super(jsObj);
     }
 
-
+    
 	/**
      * current index of the row that was saved
      *
@@ -150,7 +155,7 @@ public class EditCompleteEvent extends BrowserEvent<EditCompleteHandler>  {
         var ret = self.rowNum;
         return ret;
     }-*/;
-
+    
 	/**
      * index of the column that was saved, if applicable
      *
@@ -161,7 +166,7 @@ public class EditCompleteEvent extends BrowserEvent<EditCompleteHandler>  {
         var ret = self.colNum;
         return ret;
     }-*/;
-
+    
 	/**
      * new values that were saved
      *
@@ -172,7 +177,7 @@ public class EditCompleteEvent extends BrowserEvent<EditCompleteHandler>  {
         var ret = self.newValues;
         return @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
+    
 	/**
      * new values that were saved
      *
@@ -184,7 +189,7 @@ public class EditCompleteEvent extends BrowserEvent<EditCompleteHandler>  {
         if(ret == null) return null;
         return @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
+    
 	/**
      * the complete original values from before the save occurred
      *
@@ -196,7 +201,7 @@ public class EditCompleteEvent extends BrowserEvent<EditCompleteHandler>  {
         if(ret == null) return null;
         return @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
+    
 	/**
      * Event that led to the save
      *
@@ -209,7 +214,7 @@ public class EditCompleteEvent extends BrowserEvent<EditCompleteHandler>  {
         var enumValues = @com.smartgwt.client.types.EditCompletionEvent::values()();
         return @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(enumValues, ret);
     }-*/;
-
+    
 	/**
      * for DataSource saves, DSResponse object returned
      *

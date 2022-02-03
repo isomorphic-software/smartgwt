@@ -12,29 +12,58 @@ package com.smartgwt.client.docs;
  *  refer to the plugin's documentation for usage and examples.
  *  <p />
  *  For a complete listing of artifacts installed in your environment, consult your repository
- *  manager.  Where no repository manager is in use, a directory listing can often provide all 
- *  the detail you need.  Once you've made an artifact available to your build, you can use it 
- *  just like you'd use any other dependency.
+ *  manager.  Where no repository manager is in use, a directory listing of your local
+ *  repository can often provide all the detail you need.  Once you've made an artifact
+ *  available to your build, you can use it just like you'd use any other dependency.
  *  
  * 
  *  
  *  <p/>
- *  Following execution of the plugin's install or deploy goal, your Maven repository will 
- *  include a handful of archetypes meant to jump start development with the SmartGWT framework.
- *  Most users will want to start new projects with either the 
- *  <b>archetype-smartgwt-quickstart</b> or <b>archetype-smartgwt-quickstart-relogin</b> 
- *  archetypes.  To generate a new project based on the former:
- *  
+ *  You can of course declare these dependencies in your existing project as you would any other.
+ *  Should you be working with a single-module project (as opposed to the
+ * <a href='https://maven.apache.org/guides/mini/guide-multiple-modules.html'
+ * target='_blank'>multi-module</a>
+ *  format recommended by authors of both
+ *  <a href='https://tbroyer.github.io/gwt-maven-plugin/' target='_blank'>GWT</a> and
+ * <a href='http://gwt-plugins.github.io/documentation/gwt-eclipse-plugin/maven/Maven.html'
+ * target='_blank'>Eclipse</a>
+ * plugins), you may find that you need to take steps to remove server-side dependencies from your
+ *  client-side classpath.  The older releases of the asm library, included transitively
+ *  with isomorphic-tools by way of Hibernate, has been known to cause problems for developers
+ *  working in single module projects, for example.  This really is unrelated to SmartGWT itself,
+ *  so you can work around it using standard classpath manipulation techniques.  In the case of
+ *  asm, this can be as simple as an exclusion on the tools dependency:
+ *  <pre>
+ *  &lt;dependency&gt;
+ *      &lt;groupId&gt;com.isomorphic.smartgwt.eval&lt;/groupId&gt;
+ *      &lt;artifactId&gt;isomorphic-tools&lt;/artifactId&gt;
+ *      &lt;version&gt;${smartgwt.version}&lt;/version&gt;
+ *      &lt;exclusions&gt;
+ *          &lt;exclusion&gt;
+ *              &lt;groupId&gt;asm&lt;/groupId&gt;
+ *              &lt;artifactId&gt;asm&lt;/artifactId&gt;
+ *          &lt;/exclusion&gt;
+ *      &lt;/exclusions&gt;
+ *  &lt;/dependency&gt;
+ *  </pre>
+ *  <p/>
+ *  Most users should at least consider converting existing projects to a multi-module format,
+ *  and use one of the SmartGWT archetypes for new projects.  These archetypes are available
+ *  following execution of the plugin's install or deploy goals.  To create a new project
+ *  based on the smartgwt-quickstart archetype:
  *  <ol>
  *  <li><a href="https://maven.apache.org/install.html">Install Maven</a>, if necessary.</li>
  *  
- *  <li>Install SmartGWT, if necessary.
+ *  <li>Install SmartGWT, if necessary. <i>Note that when copy/pasting commands,
+ *  you may need to substitute the backslash with the appropriate character to
+ *  escape new lines in your command-line interface 
+ *  (eg: <code>^</code> for Windows command-line, <code>`</code>
+ *   for PowerShell, etc).</i>
  *  <pre>
  *  mvn com.isomorphic:isc-maven-plugin:1.4.5:install \
- *     -Dproduct=SMARTGWT -Dlicense=EVAL -DbuildNumber=12.1p
+ *     -Dproduct=SMARTGWT -Dlicense=EVAL -DbuildNumber=13.0p
  *  </pre>
  *  </li>
- *  
  *  <li>
  *  Generate a project (using LATEST as below, or the version installed for you in step 2)
  *  <pre>
@@ -71,7 +100,7 @@ package com.smartgwt.client.docs;
  *    </li>
  *    <li><b>archetype-smartgwt-example-customds</b>:
  *        Illustrates setting up a DataSource accessing a servlet front controller (for example 
- *        Struts or Spring MVC controller) for the various DataSource operations
+ *        Spring MVC controller) for the various DataSource operations
  *    </li>
  *    <li><b>archetype-smartgwt-example-dsdmi</b>: 
  *        llustrates setting up a DataSource that calls methods on your configured server bean 

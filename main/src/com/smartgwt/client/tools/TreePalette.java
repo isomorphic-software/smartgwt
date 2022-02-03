@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * A TreeGrid that implements the Palette behavior, so it can be used as the source for  drag and drop instantiation of
@@ -175,6 +181,52 @@ public class TreePalette extends TreeGrid implements Palette {
     }-*/;
 
     // ********************* Properties / Attributes ***********************
+
+    /**
+     * Option to save searches is disabled for treePalettes
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canSaveSearches New canSaveSearches value. Default value is false
+     * @return {@link com.smartgwt.client.tools.TreePalette TreePalette} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public TreePalette setCanSaveSearches(boolean canSaveSearches)  throws IllegalStateException {
+        return (TreePalette)setAttribute("canSaveSearches", canSaveSearches, false);
+    }
+
+    /**
+     * Option to save searches is disabled for treePalettes
+     *
+     * @return Current canSaveSearches value. Default value is false
+     */
+    public boolean getCanSaveSearches()  {
+        Boolean result = getAttributeAsBoolean("canSaveSearches");
+        return result == null ? false : result;
+    }
+    
+
+    /**
+     * Option to show filter editor is disabled for treePalettes
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canShowFilterEditor New canShowFilterEditor value. Default value is false
+     * @return {@link com.smartgwt.client.tools.TreePalette TreePalette} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public TreePalette setCanShowFilterEditor(boolean canShowFilterEditor)  throws IllegalStateException {
+        return (TreePalette)setAttribute("canShowFilterEditor", canShowFilterEditor, false);
+    }
+
+    /**
+     * Option to show filter editor is disabled for treePalettes
+     *
+     * @return Current canShowFilterEditor value. Default value is false
+     */
+    public boolean getCanShowFilterEditor()  {
+        Boolean result = getAttributeAsBoolean("canShowFilterEditor");
+        return result == null ? false : result;
+    }
+    
 
     /**
      * Defaults to apply to all components originating from this palette.
@@ -399,6 +451,16 @@ public class TreePalette extends TreeGrid implements Palette {
      */
     public LogicalStructureObject setLogicalStructure(TreePaletteLogicalStructure s) {
         super.setLogicalStructure(s);
+        try {
+            s.canSaveSearches = getAttributeAsString("canSaveSearches");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreePalette.canSaveSearches:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canShowFilterEditor = getAttributeAsString("canShowFilterEditor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreePalette.canShowFilterEditor:" + t.getMessage() + "\n";
+        }
         try {
             s.componentDefaults = getComponentDefaults();
         } catch (Throwable t) {

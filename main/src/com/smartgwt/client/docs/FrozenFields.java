@@ -31,13 +31,14 @@ package com.smartgwt.client.docs;
  * thickness, and all cells in a column must have the same      horizontal border and padding
  * width, or the table is invalid,      with no clear rules for rendering it.  The HTML/CSS spec
  * doesn't say what to      do in this situation, and browser engines behave inconsistently.</li>
- * <li>For grids with  fixedRecordHeights:true, the cell contents,     inclusive of border and
- * padding, needs to be less than your configured      {@link
- * com.smartgwt.client.widgets.grid.ListGrid#getCellHeight ListGrid.cellHeight}, or you need to
- * set  FrozenFields.enforceVClipping to cause us      to clip it as necessary. Breaking this rule
- * can cause misalignment between rows in     frozen and unfrozen columns as some fields have
- * cells with taller content.     (This does not apply for grids with
- * <code>fixedRecordHeights</code> set to false). </li></ul>
+ * <li>For grids with {@link com.smartgwt.client.widgets.grid.ListGrid#getFixedRecordHeights
+ * fixedRecordHeights:true}, the cell contents,     inclusive of border and padding, needs to be
+ * less than your configured      {@link com.smartgwt.client.widgets.grid.ListGrid#getCellHeight
+ * ListGrid.cellHeight}, or you need to set {@link
+ * com.smartgwt.client.widgets.grid.ListGrid#getEnforceVClipping ListGrid.enforceVClipping} to
+ * cause us      to clip it as necessary. Breaking this rule can cause misalignment between rows
+ * in     frozen and unfrozen columns as some fields have cells with taller content.     (This
+ * does not apply for grids with <code>fixedRecordHeights</code> set to false). </li></ul>
  * @see com.smartgwt.client.widgets.grid.ListGridField#getAutoFreezePosition
  * @see com.smartgwt.client.widgets.grid.ListGrid#freezeField
  * @see com.smartgwt.client.widgets.grid.ListGrid#unfreezeField

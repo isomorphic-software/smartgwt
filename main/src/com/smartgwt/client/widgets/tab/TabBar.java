@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * Shows a set of Tabs.  TabBars are automatically created by TabSets and shouldn't be used directly.  The TabBar is
@@ -282,10 +288,7 @@ public class TabBar extends Toolbar {
      *  <p>
      *  By default, this is an array of two <code>KeyIdentifier</code>s: <code>Alt+Delete</code>,
      *  which is the keyboard command recommended by
-     *  <a href='http://www.w3.org/WAI/PF/aria-practices/#tabpanel' target='_blank'>WAI-ARIA Authoring Practices</a>
-     *  and
-     * <a href='http://access.aol.com/dhtml-style-guide-working-group/#tabpanel' target='_blank'>DHTML Style Guide Working
-     * Group</a>,
+     *  <a href='http://www.w3.org/WAI/PF/aria-practices/#tabpanel' target='_blank'>WAI-ARIA Authoring Practices</a>,
      *  and <code>Ctrl+W</code>.
      *  Notes:
      *  <ul>
@@ -331,10 +334,7 @@ public class TabBar extends Toolbar {
      *  <p>
      *  By default, this is an array of two <code>KeyIdentifier</code>s: <code>Alt+Delete</code>,
      *  which is the keyboard command recommended by
-     *  <a href='http://www.w3.org/WAI/PF/aria-practices/#tabpanel' target='_blank'>WAI-ARIA Authoring Practices</a>
-     *  and
-     * <a href='http://access.aol.com/dhtml-style-guide-working-group/#tabpanel' target='_blank'>DHTML Style Guide Working
-     * Group</a>,
+     *  <a href='http://www.w3.org/WAI/PF/aria-practices/#tabpanel' target='_blank'>WAI-ARIA Authoring Practices</a>,
      *  and <code>Ctrl+W</code>.
      *  Notes:
      *  <ul>

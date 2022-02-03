@@ -87,11 +87,11 @@ package com.smartgwt.client.docs;
  *  Using images is a less efficient approach - it leads to a more complex DOM structure and
  *  increased server load to retrieve media.
  *  <P>
- *  The most modern Smart GWT skins, <b>Tahoe</b>, <b>Obsidian</b> and <b>Stratus</b>, will 
- *  always rely on CSS3 features for certain appearance details. If loaded 
- *  in a browser with no CSS3 support (such as Internet Explorer 8), developers can expect to 
- *  see some degredation in appearance (lack of certain drop-shadows, rounded edges becoming 
- *  square, etc).
+ *  Smart GWT's most recent builtin skins (the Flat series, comprising <b>Tahoe</b>, 
+ *  <b>Stratus</b>, <b>Twilight</b> and <b>Obsidian</b>), will always rely on CSS3 features for 
+ *  certain appearance details. If loaded in a browser with no CSS3 support (such as Internet 
+ *  Explorer 8), developers can expect to see some degradation in appearance (lack of certain 
+ *  drop-shadows, rounded edges becoming square, etc).
  *  <P>
  *  Three of Smart GWT's other most commonly used skins, <b>Enterprise</b>, 
  *  <b>EnterpriseBlue</b> and <b>Graphite</b> will conditionally make use of CSS3 features.
@@ -126,6 +126,34 @@ package com.smartgwt.client.docs;
  *  For more control than the above settings provide, you can create a custom skin based on one
  *  of the above 3 skins and modify load_skin.js - whether CSS3 mode is used is controlled by a
  *  JavaScript variable <code>useCSS3</code> defined in this file.
+ *  <P>
+ *  <h4>Changing Density</h4>
+ *  <P>
+ *  Smart GWT provides APIs that allow the general spaciousness of an application 
+ *  to be increased beyond the design of the loaded skin.  You can see the feature in use in our
+ * <a href='https:\\www.smartclient.com\showcase' target='_blank'>online showcase</a>, by loading
+ * a sample 
+ *  and picking options from the <code>Density</code> picker shown above it.
+ *  <P>
+ *  The <code>Density</code> mechanism effectively zooms the application, by calling
+ * {@link com.smartgwt.client.widgets.Canvas#resizeFonts Canvas.resizeFonts()} and {@link
+ * com.smartgwt.client.widgets.Canvas#resizeControls Canvas.resizeControls()}, APIs which
+ * uniformly alter the 
+ *  sizes of fonts in the skin's CSS-styles, and the heights of most builtin widgets, by the 
+ *  pixel amounts passed to them.  These calls must be made after the skin is loaded, but before
+ *  any components have been created.
+ *  <P>
+ *  You can apply any amounts you wish, to get your desired look - the Densities available in 
+ *  the online Showcases are achieved with the following calls 
+ *  to <code>resizeFonts</code> and <code>resizeControls</code>:
+ *  <table>
+ *    <tr><th width="100px" align="left">Density</th><th align="left">Settings</th></tr>
+ *    <tr><td>Dense</td><td>resizeFonts(0) & resizeControls(0)</td></tr>
+ *    <tr><td>Compact</td><td>resizeFonts(1) & resizeControls(2)</td></tr>
+ *    <tr><td>Medium</td><td>resizeFonts(2) & resizeControls(4)</td></tr>
+ *    <tr><td>Expanded</td><td>resizeFonts(2) & resizeControls(6)</td></tr>
+ *    <tr><td>Spacious</td><td>resizeFonts(3) & resizeControls(10)</td></tr>
+ *  </table>
  *  <P>
  *  <h4>Spriting</h4>
  *  <P>
@@ -162,9 +190,9 @@ package com.smartgwt.client.docs;
  * specified, allowing the image to
  *  be rendered at various sizes.
  *  <P>
- *  The <b>Tahoe</b>, <b>Obsidian</b> and <b>Stratus</b> skins make use of the 
- *  sprite-URL capability to ensure that sprited images appear correctly regardless of the size 
- *  at which they are being drawn.<br>
+ *  Our <code>Flat series</code> of skins (<b>Tahoe</b>, <b>Stratus</b>, <b>Twilight</b>
+ *  and <b>Obsidian</b>) make use of the sprite-URL capability to ensure that sprited images 
+ *  appear correctly regardless of the size at which they are being drawn.<br>
  *  The <b>Enterprise</b>, <b>EnterpriseBlue</b>, and <b>Graphite</b> skins 
  *  also support spriting of user interface images, but do so via settings embedded in the css 
  *  applied to certain elements instead of using the sprite-URL capability. As such if certain 
@@ -183,8 +211,8 @@ package com.smartgwt.client.docs;
  *        support it</li>
  *    <li>"off" :<br>Spriting will not be used</li>
  *  </ul>
- *  <h4>Modifying Skins</h4>
- *  <h3>Skin Editor</h3>
+ *  <h3>Modifying Skins</h3>
+ *  <h4>Skin Editor</h4>
  *  To create new skins and easily make bulk changes to details like colors and fonts, see our
  * {@link com.smartgwt.client.docs.SkinEditor Skin Editor} tool, which can be accessed online, or
  * locally in your
@@ -192,7 +220,7 @@ package com.smartgwt.client.docs;
  * better</a> 
  *  license. 
  *  <p>
- *  <h3>Manually</h3>
+ *  <h4>Manually</h4>
  *  To modify a skin, first create a copy of one of the skins that comes with the Smart GWT
  *  SDK, then modify the copy.  Full instructions are provided in Chapter 9 of the
  *  
@@ -200,10 +228,11 @@ package com.smartgwt.client.docs;
  *  <a href='http://docs.smartclient.com' target='_blank'>QuickStart Guide</a>.
  *  
  *  <P>
- *  For the most modern skins, <b>Tahoe</b>, <b>Obsidian</b> and <b>Stratus</b>,
- * the recommended approach is to use the {@link com.smartgwt.client.docs.SkinEditor Skin Editor}
- * tool, which 
- *  provides UI for the majority of the skin CSS and takes advantage of the Sass templates 
+ *  For the most modern skins (<b>Tahoe</b>, <b>Stratus</b>, <b>Twilight</b> and 
+ *  <b>Obsidian</b>), the recommended approach is to use the 
+ * {@link com.smartgwt.client.docs.SkinEditor Skin Editor} tool, which provides UI for the
+ * majority of the skin 
+ *  CSS and takes advantage of the Sass templates 
  *  provided with those skins.  You can also manually affect the Sass templates - see the 
  * {@link com.smartgwt.client.docs.CustomSassSkins Custom Sass Skinning} discussion for more
  * detail on leveraging 

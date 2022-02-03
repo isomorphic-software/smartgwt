@@ -21,7 +21,7 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface ParentMovedHandler extends EventHandler {
     /**
-     * Notification method fire when an ancestor of this component's position changes.
+     * Notification method fired when an ancestor of this component's position changes.
      *
      * @param event the event
      */

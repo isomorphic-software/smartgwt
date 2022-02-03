@@ -22,9 +22,9 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 public interface HasDrawStartHandlers extends HasHandlers {
     /**
-     * Called when we start drawing to the underlying HTML5 &lt;canvas&gt; element of a DrawPane, right after the element is
-     * cleared.  Only called if the {@link com.smartgwt.client.types.DrawingType} is  {@link
-     * com.smartgwt.client.types.DrawingType#BITMAP}.
+     * Called when we start drawing for this DrawItem to the {@link com.smartgwt.client.widgets.drawing.DrawItem#getDrawPane
+     * drawPane}'s underlying HTML5 &lt;canvas&gt; element.  Only called if the {@link com.smartgwt.client.types.DrawingType}
+     * is  {@link com.smartgwt.client.types.DrawingType#BITMAP}.
      *
      * @param handler the drawStart handler
      * @return {@link HandlerRegistration} used to remove this handler

@@ -197,13 +197,11 @@ package com.smartgwt.client.docs;
  *  <ul>
  * <li>Sun's i18n tutorial: <a href='http://java.sun.com/docs/books/tutorial/i18n/'
  * target='_blank'>http://java.sun.com/docs/books/tutorial/i18n/</a>
- * <li>JSTL home page: <a href='http://java.sun.com/products/jsp/jstl/'
- * target='_blank'>http://java.sun.com/products/jsp/jstl/</a>
- *  <li>Apache JSTL "Getting Started": 
- * <a href='http://jakarta.apache.org/taglibs/doc/standard-doc/standard/GettingStarted.html'
- * target='_blank'>http://jakarta.apache.org/taglibs/doc/standard-doc/standard/GettingStarted.html</a>
- * <li>Apache taglibs: <a href='http://jakarta.apache.org/taglibs/'
- * target='_blank'>http://jakarta.apache.org/taglibs/</a>
+ * <li>JSTL documentation home page: <a
+ * href='https://www.oracle.com/java/technologies/jstl-documentation.html'
+ * target='_blank'>https://www.oracle.com/java/technologies/jstl-documentation.html</a>
+ * <li>Apache taglibs: <a href='https://tomcat.apache.org/taglibs/index.html'
+ * target='_blank'>https://tomcat.apache.org/taglibs/index.html</a>
  *  </ul>
  *  <p>
  * 
@@ -211,23 +209,17 @@ package com.smartgwt.client.docs;
  *  <ul>
  *  <li>MSDN Developer Resource: "Developing World-Ready Applications":
  * <a
- * href='http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpguide/html/cpcondesigningglobalapplications.asp'
- * target='_blank'>http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpguide/html/cpcondesigningglobalapplications.asp</a>
+ * href='https://docs.microsoft.com/en-us/dotnet/core/extensions/best-practices-for-developing-world-ready-apps'
+ * target='_blank'>https://docs.microsoft.com/en-us/dotnet/core/extensions/best-practices-for-developing-world-ready-apps</a>
  *  </ul>
  * 
  *  <b><u>PHP</u></b>
  *  <ul>
  * <li>PHP Gettext manual: <a href='http://us2.php.net/gettext'
  * target='_blank'>http://us2.php.net/gettext</a>
- * <li>O'Reilly Gettext tutorial: <a href='http://www.onlamp.com/pub/a/php/2002/06/13/php.html'
- * target='_blank'>http://www.onlamp.com/pub/a/php/2002/06/13/php.html</a>
  *  </ul>
  *  <p>
  * 
- *  <b><u>Perl</u></b>
- *  <ul>
- * <li>Perl, Unicode and i18n FAQ: <a href='http://rf.net/~james/perli18n.html'
- * target='_blank'>http://rf.net/~james/perli18n.html</a>
  *  </ul>
  */
 public interface I18n {

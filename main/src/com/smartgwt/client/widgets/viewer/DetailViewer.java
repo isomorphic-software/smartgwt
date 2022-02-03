@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * Displays one or more records "horizontally" with one property per line.
@@ -368,6 +374,33 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      */
     public RecordList getDataAsRecordList()  {
         return RecordList.getOrCreateRef(getAttributeAsJavaScriptObject("data"));
+    }
+    
+
+    /**
+     * A DetailViewer is a {@link com.smartgwt.client.widgets.DataBoundComponent#getDataArity dataArity}:either component by
+     * default which means data population from {@link com.smartgwt.client.widgets.Canvas#getDataContext Canvas.dataContext}
+     * will be treated like a DynamicForm (i.e. single). However, by explicitly marking an instance of DetailViewer as
+     * <code>dataArity:multiple</code>, <code>dataContext</code> population will be treated similarly to a ListGrid.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param dataArity New dataArity value. Default value is "either"
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
+     */
+    public DetailViewer setDataArity(String dataArity) {
+        return (DetailViewer)setAttribute("dataArity", dataArity, true);
+    }
+
+    /**
+     * A DetailViewer is a {@link com.smartgwt.client.widgets.DataBoundComponent#getDataArity dataArity}:either component by
+     * default which means data population from {@link com.smartgwt.client.widgets.Canvas#getDataContext Canvas.dataContext}
+     * will be treated like a DynamicForm (i.e. single). However, by explicitly marking an instance of DetailViewer as
+     * <code>dataArity:multiple</code>, <code>dataContext</code> population will be treated similarly to a ListGrid.
+     *
+     * @return Current dataArity value. Default value is "either"
+     */
+    public String getDataArity()  {
+        return getAttributeAsString("dataArity");
     }
     
 
@@ -2697,6 +2730,11 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
             s.configureFieldsText = getAttributeAsString("configureFieldsText");
         } catch (Throwable t) {
             s.logicalStructureErrors += "DetailViewer.configureFieldsText:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dataArity = getAttributeAsString("dataArity");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DetailViewer.dataArity:" + t.getMessage() + "\n";
         }
         try {
             s.dataFetchMode = getAttributeAsString("dataFetchMode");

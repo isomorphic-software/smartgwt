@@ -80,7 +80,7 @@ import java.util.Map;
  * href="http://www.smartclient.com/smartgwt/showcase/#pattern_reuse_grid_form_category"
  * target="examples">Pattern Reuse Example</a> custom databinding-capable components.
  * @see com.smartgwt.client.widgets.DataBoundComponent
- * @see com.smartgwt.client.docs.SqlDataSource SqlDataSource overview and related methods
+ * @see com.smartgwt.client.docs.FileSource FileSource overview and related methods
  */
 public class DataSource {
 
@@ -99,37 +99,6 @@ public class DataSource {
      * @see com.smartgwt.client.docs.serverds.OperationBinding#sqlUsePagingHint
      */
     public Boolean sqlUsePagingHint;
-
-    /**
-     * Whether a user must be authenticated in order to access this DataSource.  This establishes a
-     * default for the DataSource as a whole; individual {@link
-     * com.smartgwt.client.docs.serverds.DataSource#operationBindings operationBindings} within the
-     * DataSource may still override this setting by explicitly setting {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#requiresAuthentication
-     * OperationBinding.requiresAuthentication}. <P> Whether the user is authenticated is determined
-     * by calling <code>httpServletRequest.getRemoteUser()</code>, hence works with both simple J2EE
-     * security (realms and form-based authentication) and JAAS (Java Authentication & Authorization
-     * Service). <P> If you wish to use an authentication scheme that does not make use of the servlet
-     * API's  standards, Smart GWT Server also implements the <code>setAuthenticated</code> method on
-     * <code>RPCManager</code>.  You can use this API to tell Smart GWT that all the  requests in the
-     * queue currently being processed are associated with an authenticated user; in this case, Smart
-     * GWT will not attempt to authenticate the user via 
-     * <code>httpServletRequest.getRemoteUser()</code> <P> You can set the default value for this
-     * property via setting "authentication.defaultRequired" in {@link
-     * com.smartgwt.client.docs.Server_properties server.properties}.  This allows you to, for
-     * example, cause all DataSources to require authentication for all operations by default. <P>
-     * Note that setting this property does not automatically cause an authentication mechanism to
-     * appear - you still need to separately configure an authentication system.  Likewise, setting
-     * requiresAuthentication="false" does not automatically allow users to bypass your authentication
-     * mechanism - you need to set up a URL that will accept DSRequests and process them similar to
-     * the default "IDACall" servlet, and which is not protected by the authentication system.  See
-     * {@link com.smartgwt.client.docs.ServletDetails Deploying Smart GWT} for details on the IDACall
-     * servlet.
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.DeclarativeSecurity DeclarativeSecurity overview and related methods
-     */
-    public Boolean requiresAuthentication;
 
     /**
      * Very advanced: for servers that do not support paging, and must return large numbers of XML
@@ -179,9 +148,9 @@ public class DataSource {
      * com.smartgwt.client.docs.DmiOverview DMI} also has a built-in facility for populating a bean 
      * with the inbound {@link com.smartgwt.client.data.DSRequest#getData DSRequest.data} - just
      * declare the bean as a method argument. <p> <b>For generic DataSources (DataSources with
-     * serverType "generic")</b><br> {@link com.smartgwt.client.docs.VisualBuilder Visual Builder}
-     * sets this property when it creates a generic  DataSource using the Javabean Wizard.  It has no
-     * built-in server-side effects. <p> <b>For Hibernate DataSources (DataSources with serverType
+     * serverType "generic")</b><br> {@link com.smartgwt.client.docs.Reify Reify} sets this property
+     * when it creates a generic  DataSource using the Javabean Wizard.  It has no built-in
+     * server-side effects. <p> <b>For Hibernate DataSources (DataSources with serverType
      * "hibernate")</b><br> The name of the Java bean or POJO class that is mapped in Hibernate.  This
      * will typically  be the fully-qualified class name - eg <code>com.foo.MyClass</code> - but it
      * may be the  simple class name - just <code>MyClass</code> - or it may be some other value.  It
@@ -296,18 +265,6 @@ public class DataSource {
     public SequenceMode sequenceMode;
 
     /**
-     * Best field to use for a user-visible title for an individual record from this dataSource. <p>
-     * For example, for a DataSource of employees, a "full name" field would probably most clearly
-     * label an employee record. <p> If not explicitly set, titleField looks for fields named "title",
-     * "label", "name", and "id" in that order.  If a field exists with one of those names, it becomes
-     * the titleField.  If not, then the first field is designated as the titleField.
-     *
-     * <p>Default value is see below
-     * @see com.smartgwt.client.docs.DsSpecialFields DsSpecialFields overview and related methods
-     */
-    public String titleField;
-
-    /**
      * The paging strategy to use for this DataSource.  If this property is not set, the  default
      * paging strategy, specified with the {@link com.smartgwt.client.docs.Server_properties
      * server.properties} setting <code>sql.defaultPaging</code>, is used.   <p> This setting can be
@@ -416,35 +373,6 @@ public class DataSource {
     public String fileNameField;
 
     /**
-     * Indicates that declarative security rules are waived for rows that were created by the  current
-     * user.  Practically, this means that when a security check fails, instead of a  security
-     * exception being thrown, we alter the criteria to ensure that the request can  only return or
-     * affect rows that were created by the current authenticated user.  This  allows you to create
-     * security regimes whereby users can see and edit data they created,  but have access to other
-     * users' data forbidden or limited. <p> In order for this to work, we require two things:<ul>
-     * <li>The DataSource must specify a field of type "creator" - this field type is described     
-     * on {@link com.smartgwt.client.types.FieldType this page}</li> <li>The authentication regime in
-     * use must include the idea of a "current user".  The      authentication provided by the Servlet
-     * API is an example of such a regime.</li> </ul> This setting can be overridden at
-     * operationBinding and field level, allowing extremely fine-grained control.
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.serverds.OperationBinding#creatorOverrides
-     * @see com.smartgwt.client.docs.serverds.DataSourceField#creatorOverrides
-     * @see com.smartgwt.client.docs.FieldLevelAuth FieldLevelAuth overview and related methods
-     */
-    public Boolean creatorOverrides;
-
-    /**
-     * Class for ResultSets used by this datasource.  If null, defaults to using {@link
-     * com.smartgwt.client.data.ResultSet}. <P> This can be set to a custom subclass of ResultSet
-     * that, for example, hangs onto to extra information necessary for integration with web services.
-     *
-     * <p>Default value is null
-     */
-    public Map resultSetClass;
-
-    /**
      * For DataSources with {@link com.smartgwt.client.docs.serverds.DataSource#audit auditing
      * enabled}, specifies the field name used to store the user who performed the operation.  If
      * empty string is specified as the field name, the audit DataSource will not store this field.
@@ -546,20 +474,6 @@ public class DataSource {
     public String fileTypeField;
 
     /**
-     * Designates a field of {@link com.smartgwt.client.types.FieldType type}:"image" as the field to
-     * use when rendering a record as an image, for example, in a {@link
-     * com.smartgwt.client.widgets.tile.TileGrid}. <p> For example, for a DataSource of employees, a
-     * "photo" field of type "image" should be designated as the iconField. <p> If not explicitly set,
-     * iconField looks for fields named "picture", "thumbnail", "icon", "image" and "img", in that
-     * order, and will use any of these fields as the iconField if it exists and has type "image". 
-     * <P> To avoid any field being used as the iconField, set iconField to <code>null</code>.
-     *
-     * <p>Default value is see below
-     * @see com.smartgwt.client.docs.DsSpecialFields DsSpecialFields overview and related methods
-     */
-    public String iconField;
-
-    /**
      * Like {@link com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields
      * DataBoundComponent.useFlatFields}, but applies to all DataBound components that bind to this
      * DataSource.
@@ -641,62 +555,6 @@ public class DataSource {
     public boolean generateAuditDS;
 
     /**
-     * The list of fields that compose records from this DataSource. <P> Each DataSource field can
-     * have type, user-visible title, validators, and other metadata attached.
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.data.DataSourceField
-     */
-    public DataSourceField[] fields;
-
-    /**
-     * If we are {@link com.smartgwt.client.docs.serverds.DataSource#progressiveLoading loading
-     * progressively}, indicates the number of  extra records Smart GWT Server will advertise as being
-     * available, if it detects that  there are more records to view (see {@link
-     * com.smartgwt.client.docs.serverds.DataSource#lookAhead lookAhead}).  This property has no 
-     * effect if we are not progressive-loading.
-     *
-     * <p>Default value is 20
-     * @see com.smartgwt.client.docs.serverds.DataSource#progressiveLoading
-     * @see com.smartgwt.client.docs.serverds.DataSource#lookAhead
-     * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
-     */
-    public int endGap;
-
-    /**
-     * When true, and {@link com.smartgwt.client.docs.serverds.DataSource#noNullUpdates noNullUpdates}
-     * is also true, indicates that "add"  requests on this DataSource will have null-valued fields
-     * removed from the request  entirely before it is sent to the server, as opposed to the default
-     * behavior of  replacing such null values with defaults.
-     *
-     * <p>Default value is false
-     * @see com.smartgwt.client.docs.serverds.DataSource#noNullUpdates
-     */
-    public boolean omitNullDefaultsOnAdd;
-
-    /**
-     * If {@link com.smartgwt.client.docs.serverds.DataSource#noNullUpdates noNullUpdates} is set, the
-     * value to use for any text field that has a null value assigned on an update operation, and does
-     * not specify an explicit {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#nullReplacementValue nullReplacementValue}.
-     *
-     * <p>Default value is ""
-     * @see com.smartgwt.client.docs.serverds.DataSource#noNullUpdates
-     * @see com.smartgwt.client.docs.serverds.DataSourceField#nullReplacementValue
-     */
-    public String nullStringValue;
-
-    /**
-     * Whether we store server responses for this DataSource into  {@link
-     * com.smartgwt.client.util.Offline browser-based offline storage}, and then use those stored
-     * responses at a later time if we are offline (ie, the application cannot connect to the server).
-     *   Note that by default we do NOT use offline storage for a dataSource.
-     *
-     * <p>Default value is null
-     */
-    public Boolean useOfflineStorage;
-
-    /**
      * If a {@link com.smartgwt.client.data.DSRequest} arrives from the client that requests {@link
      * com.smartgwt.client.docs.ServerSummaries server-calculated summaries}, should it be allowed?
      * <p> Note this setting <b>only</b> affects <code>dsRequests</code> that come from the browser
@@ -714,23 +572,6 @@ public class DataSource {
      * @see com.smartgwt.client.docs.ServerSummaries ServerSummaries overview and related methods
      */
     public Boolean allowClientRequestedSummaries;
-
-    /**
-     * For DataSources with type {@link com.smartgwt.client.types.DSServerType
-     * <code>projectFile</code>}, looks up the locations to use as {@link
-     * com.smartgwt.client.docs.serverds.DataSource#projectFileLocations projectFileLocations} from
-     * the project's configuration (i.e. project.properties, {@link
-     * com.smartgwt.client.docs.Server_properties server.properties} etc.). <p>For instance, to look
-     * up the value of project.datasources and use it for <code>projectFileLocations</code>, use
-     * "datasources" as the  <code>projectFileKey</code>. <p>If you specify both
-     * <code>projectFileKey</code> and  <code>projectFileLocations</code>, then both with be used,
-     * with the <code>projectFileLocations</code> applied last.
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.serverds.DataSource#projectFileLocations
-     * @see com.smartgwt.client.docs.FileSource FileSource overview and related methods
-     */
-    public String projectFileKey;
 
     /**
      * Whether to attempt validation on the client at all for this DataSource.  If unset (the
@@ -786,41 +627,6 @@ public class DataSource {
     public Boolean clientOnly;
 
     /**
-     * For {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType:"sql"}
-     * DataSources, sets the default {@link
-     * com.smartgwt.client.data.DataSourceField#getSqlStorageStrategy sqlStorageStrategy} to use for
-     * boolean fields where no <code>sqlStorageStrategy</code> has been declared on the field. <P> Can
-     * also be set system-wide via the {@link com.smartgwt.client.docs.Server_properties} setting
-     * <code>sql.defaultBooleanStorageStrategy</code>, or for a particular database configuration by
-     * setting <code>sql.<i>dbName</i>.defaultBooleanStorageStrategy</code> (see {@link
-     * com.smartgwt.client.docs.AdminConsole Admin Console overview} for more information on SQL
-     * configuration). <p> Note that when this property is unset, the default {@link
-     * com.smartgwt.client.data.DataSourceField#getSqlStorageStrategy
-     * DataSourceField.sqlStorageStrategy} strategy is effectively "string".
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
-     */
-    public String defaultBooleanStorageStrategy;
-
-    /**
-     * Controls when primary keys are required for "update" and "remove" server operations, when
-     * allowMultiUpdate  has not been explicitly configured on either the {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#allowMultiUpdate
-     * operationBinding.allowMultiUpdate} or via the server-side API
-     * <code>DSRequest.setAllowMultiUpdate()</code>. <p> Default value of null means this DataSource
-     * will use the system-wide default, which is set via
-     * <code>datasources.defaultMultiUpdatePolicy</code> in {@link
-     * com.smartgwt.client.docs.Server_properties server.properties}, and defaults to not allowing
-     * multi updates for  requests associated with an RPCManager, see {@link
-     * com.smartgwt.client.types.MultiUpdatePolicy} for details.
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.serverds.OperationBinding#allowMultiUpdate
-     */
-    public MultiUpdatePolicy defaultMultiUpdatePolicy;
-
-    /**
      * For fields on this dataSource that specify  {@link
      * com.smartgwt.client.docs.serverds.DataSourceField#ignoreTextMatchStyle ignoreTextMatchStyle}
      * true, the prevailing textMatchStyle is ignored and Smart GWT matches exact values.  This
@@ -832,39 +638,6 @@ public class DataSource {
      * <p>Default value is false
      */
     public Boolean ignoreTextMatchStyleCaseSensitive;
-
-    /**
-     * For a DataSource that inherits {@link com.smartgwt.client.docs.serverds.DataSource#fields
-     * fields} from another DataSource  (via {@link
-     * com.smartgwt.client.docs.serverds.DataSource#inheritsFrom inheritsFrom}), indicates that the
-     * parent's field order should be used instead of the order of the fields as declared in this
-     * DataSource.  New fields, if any, are placed at the end.
-     *
-     * <p>Default value is null
-     */
-    public Boolean useParentFieldOrder;
-
-    /**
-     * For JPA and Hibernate DataSources this property indicates, that data source has composite
-     * primary key and specifies fully-qualified Java class:<ul> <li>with
-     * <b><code>@EmbeddedId</code></b> you have to specify class name of declared id</li> <li>with
-     * <b><code>@IdClass</code></b> you have to specify class specified in annotation
-     * declaration</li></ul>
-     *
-     * <p>Default value is null
-     */
-    public String idClassName;
-
-    /**
-     * For DataSources with {@link com.smartgwt.client.docs.serverds.DataSource#audit auditing
-     * enabled}, specifies the field name used to store the names of the fields which were updated. 
-     * If empty string is specified as the field name, the audit DataSource will not store this field.
-     * <P> Note that this field will only be set for {@link com.smartgwt.client.types.DSOperationType
-     * update} operations.
-     *
-     * <p>Default value is "audit_changedFields"
-     */
-    public String auditChangedFieldsFieldName;
 
     /**
      * Decides under what conditions the {@link com.smartgwt.client.data.ResultSet} cache should be
@@ -935,6 +708,848 @@ public class DataSource {
     public Boolean showLocalFieldsOnly;
 
     /**
+     * For an XML DataSource, URN of the WebService to use to invoke operations.  This URN comes from
+     * the "targetNamespace" attribute of the &lt;wsdl:definitions&gt; element in a WSDL (Web Service
+     * Description Language) document, and serves as the unique identifier of the service. <P> Having
+     * loaded a WebService using {@link com.smartgwt.client.data.XMLTools#loadWSDL
+     * XMLTools.loadWSDL()}, setting <code>serviceNamespace</code> combined with specifying  {@link
+     * com.smartgwt.client.docs.serverds.OperationBinding operationBindings} that set {@link
+     * com.smartgwt.client.data.OperationBinding#getWsOperation OperationBinding.wsOperation} will
+     * cause a DataSource to invoke web service operations to fulfill DataSource requests ({@link
+     * com.smartgwt.client.data.DSRequest DSRequests}). <P> Setting <code>serviceNamespace</code> also
+     * defaults {@link com.smartgwt.client.docs.serverds.DataSource#dataURL dataURL} to the service's
+     * location, {@link com.smartgwt.client.docs.serverds.DataSource#dataFormat dataFormat} to "xml"
+     * and {@link com.smartgwt.client.docs.serverds.OperationBinding#dataProtocol dataProtocol} to
+     * "soap".
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     */
+    public String serviceNamespace;
+
+    /**
+     * The native field name used by this DataSource on the server to represent
+     * <code>fileVersion</code> for {@link com.smartgwt.client.docs.FileSource FileSource Operations}.
+     * <p> Automatic file versioning is configured by the presence of this property: if you want
+     * automatic versioning for a FileSource DataSource, it is sufficient to simply define a 
+     * <code>fileVersionField</code>.  When automatic versioning is on:<ul> <li>Calls to {@link
+     * com.smartgwt.client.data.DataSource#saveFile saveFile()} will save a new version of the file,
+     * retaining previous  versions up to the maximum configured by {@link
+     * com.smartgwt.client.docs.serverds.DataSource#maxFileVersions maxFileVersions}; when that
+     * maximum is reached, the oldest version is overwritten</li> <li>The {@link
+     * com.smartgwt.client.data.DataSource#getFile getFile()} API always returns the most recent
+     * version</li> <li>The {@link com.smartgwt.client.data.DataSource#listFiles listFiles()} API only
+     * includes the most recent version of any file</li> <li>You can view and retrieve earlier
+     * versions of a file with the  {@link com.smartgwt.client.data.DataSource#listFileVersions
+     * listFileVersions()} and {@link com.smartgwt.client.data.DataSource#getFileVersion
+     * getFileVersion()} APIs.  Note that retrieving a previous version of a file and then calling
+     * <code>saveFile()</code> goes through the normal process of saving a new version</li> </ul> <p>
+     * The <code>fileVersion</code> field is expected to be of type "datetime", and automatic 
+     * versioning will not work otherwise.  Note, to minimize the possibility of version  timestamp
+     * collisions, we recommend that <code>fileVersion</code> fields specify  {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#storeMilliseconds storeMilliseconds}: true.
+     * <p> If the fileVersionField is not configured, no automatic file versioning will be done.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.serverds.DataSource#maxFileVersions
+     * @see com.smartgwt.client.data.DataSource#listFileVersions
+     * @see com.smartgwt.client.data.DataSource#getFileVersion
+     * @see com.smartgwt.client.data.DataSource#removeFileVersion
+     * @see com.smartgwt.client.docs.FileSource FileSource overview and related methods
+     */
+    public String fileVersionField;
+
+    /**
+     * When true, indicates that fields in this DataSource will never be positively updated to the
+     * null value; they may arrive at null values by being omitted, but we will  not send actual null
+     * values in update requests.  When false (the default), null is  not treated in any special way.
+     * <p> Setting this value causes null-assigned fields to be replaced with the field's {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#nullReplacementValue nullReplacementValue},
+     * if one is declared. If no <code>nullReplacementValue</code> is declared for the field, the null
+     * assignment is replaced with the DataSource's {@link
+     * com.smartgwt.client.docs.serverds.DataSource#nullStringValue nullStringValue},  {@link
+     * com.smartgwt.client.docs.serverds.DataSource#nullIntegerValue nullIntegerValue}, {@link
+     * com.smartgwt.client.docs.serverds.DataSource#nullFloatValue nullFloatValue}  or {@link
+     * com.smartgwt.client.docs.serverds.DataSource#nullDateValue nullDateValue}, depending on the
+     * field type. <p> For "add" operations, setting {@link
+     * com.smartgwt.client.docs.serverds.DataSource#omitNullDefaultsOnAdd omitNullDefaultsOnAdd}
+     * causes null-valued fields to be removed from the request entirely, rather than replaced with
+     * default values as described above.
+     *
+     * <p>Default value is false
+     */
+    public boolean noNullUpdates;
+
+    /**
+     * If set to "false", transformation of values for {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#multiple multiple:true} fields, normally
+     * controlled by {@link com.smartgwt.client.docs.serverds.DataSourceField#multipleStorage
+     * DataSourceField.multipleStorage}, is instead disabled for this entire DataSource.
+     *
+     * <p>Default value is null
+     */
+    public Boolean transformMultipleFields;
+
+    /**
+     * The name of the property this DataSource uses for constant name when translating Java
+     * enumerated types to and from Javascript, if the {@link
+     * com.smartgwt.client.types.EnumTranslateStrategy} is set to "bean".  Defaults to "_constant" if
+     * not set. <p>  This property is only applicable if you are using the Smart GWT server
+     *
+     * <p>Default value is null
+     */
+    public String enumConstantProperty;
+
+    /**
+     * Provides a default value for {@link
+     * com.smartgwt.client.docs.serverds.OperationBinding#recordName OperationBinding.recordName}.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     */
+    public String recordName;
+
+    /**
+     * Transport to use for all operations on this DataSource. Defaults to {@link
+     * com.smartgwt.client.rpc.RPCManager#defaultTransport defaultTransport}.  This would typically
+     * only be set to enable "scriptInclude" transport for contacting {@link
+     * com.smartgwt.client.docs.serverds.DataSource#dataFormat JSON} web services hosted on servers
+     * other than the origin server. <p> When using the "scriptInclude" transport, be sure to set
+     * {@link com.smartgwt.client.docs.serverds.DataSource#callbackParam callbackParam} or {@link
+     * com.smartgwt.client.docs.serverds.OperationBinding#callbackParam
+     * OperationBinding.callbackParam} to match the name of the query parameter name expected by your
+     * JSON service provider.
+     *
+     * <p>Default value is RPCManager.defaultTransport
+     * @see com.smartgwt.client.types.RPCTransport
+     * @see com.smartgwt.client.docs.serverds.DataSource#callbackParam
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     */
+    public RPCTransport dataTransport;
+
+    /**
+     * Indicates that for server responses, for any data being interpreted as DataSource records, 
+     * only data that corresponds to declared fields should be retained; any extra fields should be
+     * discarded. <P> For {@link com.smartgwt.client.docs.serverds.DataSource#dataFormat JSON} data,
+     * this means extra properties in selected objects are dropped. <P> By default, for DMI
+     * DSResponses, DSResponse.data is filtered on the server to just the set of fields defined on the
+     * DataSource (see the overview in {@link com.smartgwt.client.docs.DmiOverview DMI}). <P> This
+     * type of filtering can also be enabled for non-DMI DSResponses. By default it is enabled for
+     * Hibernate and JPA datasources to avoid unintentional lazy loading too much of a data model. For
+     * the rest of datasources this is disabled by default. <P> Explicitly setting this property to
+     * <code>false</code> disables (or to <code>true</code> enables) this filtering for this
+     * DataSource only. This setting overrides the configuration in {@link
+     * com.smartgwt.client.docs.Server_properties server.properties}. This setting can be overridden
+     * by {@link com.smartgwt.client.docs.serverds.ServerObject#dropExtraFields
+     * ServerObject.dropExtraFields}.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     */
+    public Boolean dropExtraFields;
+
+    /**
+     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource Smart GWT SQL engine}
+     * for persistence, which database configuration to use.  Database configurations can be created
+     * using the {@link com.smartgwt.client.docs.AdminConsole Admin Console}.  If unset, the default
+     * database configuration is used (which is also settable using the "Databases" tab).
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
+     */
+    public String dbName;
+
+    /**
+     * For SQL DataSources, tells the framework whether to surround the associated  {@link
+     * com.smartgwt.client.docs.serverds.DataSource#tableName table name} with quotation marks
+     * whenever it appears in generated queries.  This is only required if you have to connect to a
+     * table with a name that is in breach of your database product's naming conventions.  For
+     * example, some  products (eg, Oracle) internally convert all unquoted references to upper case,
+     * so if you create a table called <code><b>myTest</b></code>, the database actually calls it 
+     * <code><b>MYTEST</b></code> unless you quoted the name in the create command, like this: <p>
+     * <code><b>&nbsp;&nbsp;CREATE TABLE "myTest"</b></code> <p> If you <em>do</em> quote the name
+     * like this, or if you have to connect to a legacy table that has been named in this way, then
+     * you must set this property to tell the SQL engine  that it must quote any references to this
+     * table name (this requirement depends on the  database in use - as noted below, some are not
+     * affected by this problem).  If you do  not, you will see exceptions along the lines of "Table
+     * or view 'myTest' does not exist". <p> Note, other database products (eg, Postgres) convert
+     * unquoted names to lower case, which leads to the same issues.  Still others (eg, SQL Server)
+     * are not case sensitive and are  not affected by this issue. <p> Generally, we recommend that
+     * you avoid using this property unless you have a specific  reason to do so.  It is preferable to
+     * avoid the issue altogether by simply not quoting  table names at creation time, if you are able
+     * to do so.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.serverds.DataSource#tableName
+     * @see com.smartgwt.client.docs.serverds.DataSource#quoteColumnNames
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
+     */
+    public Boolean quoteTableName;
+
+    /**
+     * The native field name used by this DataSource on the server to represent
+     * <code>fileLastModified</code> for {@link com.smartgwt.client.docs.FileSource FileSource
+     * Operations}. <p>If the fileLastModifiedField is not configured, then a field named
+     * "fileLastModified" will be used, if it exists. <!-- TODO: Binary fields? -->  Otherwise, the
+     * server will look for a field with a "modifierTimestamp" type. If that is not found, the
+     * DataSource will not keep track of the last modified date.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.FileSource FileSource overview and related methods
+     */
+    public String fileLastModifiedField;
+
+    /**
+     * Name of the field that has a long description of the record, or has the primary text data value
+     * for a record that represents an email message, SMS, log or similar. <p> For example, for a
+     * DataSource representing employees, a field containing the employee's "bio" might be a good
+     * choice, or for an email message, the message body. <p> If descriptionField is unset, it
+     * defaults to any field named "description" or "desc" in the record, or the first long text field
+     * (greater than 255 characters) in the record, or null if no such field exists.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.DsSpecialFields DsSpecialFields overview and related methods
+     */
+    public String descriptionField;
+
+    /**
+     * For Direct Method Invocation (DMI) binding, declares the ServerObject to use as the default
+     * target for all {@link com.smartgwt.client.docs.serverds.DataSource#operationBindings
+     * operationBindings}.  Specifying this attribute in an XML DataSource stored on the server
+     * enables DMI for this DataSource. <P> <i>Note that if a dataSource configuration has both a
+     * {@link com.smartgwt.client.docs.serverds.OperationBinding#script &lt;script&gt;} block and a
+     * specified <code>serverObject</code> for some operation, the script block will be executed, and
+     * the serverObject ignored.</i>
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
+     */
+    public ServerObject serverObject;
+
+    /**
+     * If set, titles are automatically derived from {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#name field.name} for any  field that does not
+     * have a {@link com.smartgwt.client.docs.serverds.DataSourceField#title field.title} and is not
+     * marked {@link com.smartgwt.client.docs.serverds.DataSourceField#hidden hidden}:true, by calling
+     * the method {@link com.smartgwt.client.data.DataSource#getAutoTitle getAutoTitle()}.
+     *
+     * <p>Default value is true
+     */
+    public boolean autoDeriveTitles;
+
+    /**
+     * When true, indicates that any updates for this DataSource include only those fields  that have
+     * actually changed (and primaryKey fields); when false (the default), all  field values are
+     * included in updates, whether they have changed or not
+     *
+     * <p>Default value is false
+     */
+    public boolean sparseUpdates;
+
+    /**
+     * If set to true, both client and server-side advanced filtering used by Smart GWT will follow
+     *  SQL99 behavior for dealing with NULL values, which is often counter-intuitive to users.
+     *  Specifically, when a field has NULL value, all of the following expressions are false:
+     *  <pre>
+     *     field == "someValue"  (normally false)
+     *     field != "someValue"  (normally true)
+     *     not (field == "someValue")   (normally true)
+     *     not (field != "someValue")   (normally false)
+     *  </pre>
+     *  This property can be overridden per-query by specifying <code>strictSQLFiltering</code>
+     *  directly as a property on the {@link com.smartgwt.client.docs.serverds.AdvancedCriteria}.
+     *  <p>
+     *  <b>NOTE:</b> On the server side, this property is only applicable if you are using the 
+     *  SQL DataSource; the other built-in types (Hibernate and JPA/JPA2) do not offer this mode.
+     *
+     * <p>Default value is false
+     */
+    public Boolean strictSQLFiltering;
+
+    /**
+     * If true, causes Smart GWT Server to use the "progressive loading" pattern for  fetches on this
+     * dataSource, as described in the <b>Paging and total dataset length</b> section of the {@link
+     * com.smartgwt.client.data.ResultSet ResultSet documentation}.  Essentially, this means that we
+     * avoid issuing a row count query and instead advertise total rows as being slightly  more than
+     * the number of rows we have already read (see {@link
+     * com.smartgwt.client.docs.serverds.DataSource#endGap endGap}).  This  allows users to load more
+     * of a dataset by scrolling past the end of the currently-loaded rows, but it prevents them from
+     * scrolling directly to the end of the dataset. <p> Generally, progressive loading is appropriate
+     * when you have to deal with very large  datasets. Note that by default, a dataSource will switch
+     * into progressive loading mode  automatically when it detects that it is dealing with a dataset
+     * beyond a certain size -  see {@link
+     * com.smartgwt.client.docs.serverds.DataSource#progressiveLoadingThreshold
+     * progressiveLoadingThreshold}. <p> This setting can be overridden for individual fetch
+     * operations with the  {@link
+     * com.smartgwt.client.docs.serverds.OperationBinding#progressiveLoading
+     * OperationBinding.progressiveLoading} property, and also at the level of the individual {@link
+     * com.smartgwt.client.data.DSRequest#getProgressiveLoading DSRequest}.  You can also specify 
+     * <code>progressiveLoading</code> on  {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getProgressiveLoading DataBoundComponents} and
+     * certain types of  <code>FormItem</code> - {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getProgressiveLoading SelectItem} and 
+     * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getProgressiveLoading
+     * ComboBoxItem}. <p> Currently, this property only applies to users of the built-in
+     * SQLDataSource, but you  could use it in custom DataSource implementations to trigger the server
+     * behavior  described in the <code>ResultSet</code> documentation linked to above.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.serverds.OperationBinding#progressiveLoading
+     * @see com.smartgwt.client.docs.serverds.DataSource#progressiveLoadingThreshold
+     * @see com.smartgwt.client.docs.serverds.DataSource#lookAhead
+     * @see com.smartgwt.client.docs.serverds.DataSource#endGap
+     * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
+     */
+    public Boolean progressiveLoading;
+
+    /**
+     * For DataSources of {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType}
+     * "hibernate", the name of a Spring  bean to query to obtain Hibernate Configuration for this
+     * particular DataSource.  Note that this is intended for DataSource-specific configuration
+     * overrides for unusual  circumstances, such as a DataSource whose physical data store is a
+     * completely  different database to that used by other DataSources.  See the  {@link
+     * com.smartgwt.client.docs.HibernateIntegration Integration with Hibernate} article for more 
+     * information
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
+     */
+    public String configBean;
+
+    /**
+     * For DataSources that specify {@link
+     * com.smartgwt.client.docs.serverds.DataSource#autoDeriveSchema autoDeriveSchema}, this property
+     * indicates the name of the Spring bean, Hibernate mapping or fully-qualified Java class to use
+     * as parent  schema.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.serverds.DataSource#autoDeriveSchema
+     */
+    public String schemaBean;
+
+    /**
+     * For DataSources with {@link com.smartgwt.client.docs.serverds.DataSource#audit auditing
+     * enabled}, optionally specifies the {@link
+     * com.smartgwt.client.docs.serverds.DataSource#serverConstructor serverConstructor} for the
+     * automatically generated audit DataSource.  The default is to use the same
+     * <code>serverConstructor</code> as the DataSource where <code>audit="true"</code> was declared.
+     * <p> This property is primarily intended to allow the use of SQLDataSource ({@link
+     * com.smartgwt.client.docs.serverds.DataSource#serverType serverType:"sql"}) as an audit
+     * DataSource for a DataSource that might be of another type.  For example, you might have a
+     * DataSource that implements all CRUD operations via Java logic in {@link
+     * com.smartgwt.client.docs.DmiOverview DMI declaration} methods, and so doesn't provide generic
+     * storage; by using SQLDataSource as the type of your audit DataSource, you don't need to
+     * implement your own scheme for storing and querying audit data, and the necessary audit tables
+     * will be automatically generated in the database. <p> Similarly, even if you do use a reusable
+     * DataSource type such as the built-in JPADataSource, using SQLDataSource for audit DataSources
+     * means there's no need to write a JPA bean just to achieve storage of an audit trail. <p> To
+     * simplify this intended usage, the string "sql" is allowed for <code>auditDSConstructor</code>
+     * as a means of specifying that the built-in SQLDataSource class should be used.  For any other
+     * type, use the fully qualified Java classname, as is normal for <code>serverConstructor</code>.
+     *
+     * <p>Default value is null
+     */
+    public String auditDSConstructor;
+
+    /**
+     * The name of the property this DataSource uses for ordinal number when translating Java
+     * enumerated types to and from Javascript, if the {@link
+     * com.smartgwt.client.types.EnumTranslateStrategy} is set to "bean".  Defaults to "_ordinal" if
+     * not set. <p>  This property is only applicable if you are using the Smart GWT server
+     *
+     * <p>Default value is null
+     */
+    public String enumOrdinalProperty;
+
+    /**
+     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource Smart GWT SQL engine}
+     * for persistence, whether to use ANSI-style joins (ie, joins implemented with JOIN directives in
+     * the table clause, as opposed to additional join expressions in the where clause). The default
+     * value of null has the same meaning as setting this flag to false. <P> Note, outer joins (see
+     * {@link com.smartgwt.client.docs.serverds.DataSourceField#joinType joinType}) only work with
+     * certain database products if you choose not to use ANSI joins.  Other than that, the join 
+     * strategies are equivalent. <P> If you wish to switch on ANSI-style joins for every DataSource,
+     * without the need to  manually set this property on all of them, set {@link
+     * com.smartgwt.client.docs.Server_properties server.properties} flag 
+     * <code>sql.useAnsiJoins</code> to true.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.data.OperationBinding#getIncludeAnsiJoinsInTableClause
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
+     */
+    public Boolean useAnsiJoins;
+
+    /**
+     * Whether RPCRequests sent by this DataSource should enable {@link
+     * com.smartgwt.client.rpc.RPCRequest#getShowPrompt RPCRequest.showPrompt} in order to block user
+     * interactions until the request completes.   <p> DataSource requests default to blocking UI
+     * interaction because, very often, if the user continues to interact with an application that is
+     * waiting for a server response, some kind of invalid or ambiguous situation can arise. <p>
+     * Examples include pressing a "Save" button a second time before the first save completes, making
+     * further edits while edits are still being saved, or trying to initiate editing on a grid that
+     * hasn't loaded data. <p> Defaulting to blocking the UI prevents these bad interactions, or
+     * alternatively, avoids the developer having to write repetitive code to block invalid
+     * interactions on every screen. <p> If an operation should ever be non-blocking, methods that
+     * initiate DataSource requests (such as {@link com.smartgwt.client.data.DataSource#fetchData
+     * fetchData()}) will generally have a <code>requestProperties</code> argument allowing
+     * <code>showPrompt</code> to be set to false for a specific request.
+     *
+     * <p>Default value is true
+     */
+    public Boolean showPrompt;
+
+    /**
+     * The default textMatchStyle to use for {@link com.smartgwt.client.data.DSRequest}s that do not
+     * explicitly state  a {@link com.smartgwt.client.data.DSRequest#getTextMatchStyle
+     * textMatchStyle}.    Note, however, that DSRequests  issued by {@link
+     * com.smartgwt.client.widgets.grid.ListGrid}s and other {@link
+     * com.smartgwt.client.widgets.DataBoundComponent components} will  generally have a setting for
+     * textMatchStyle on the component itself (see {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle
+     * ListGrid.autoFetchTextMatchStyle}, for example).
+     *
+     * <p>Default value is "exact"
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
+     */
+    public TextMatchStyle defaultTextMatchStyle;
+
+    /**
+     * When {@link com.smartgwt.client.data.DataSource#getMockMode mockMode} is enabled, number of
+     * rows of data to retrieve via an initial "fetch" DSRequest, for use as sample data.  Set to null
+     * to retrieve all available rows.
+     *
+     * <p>Default value is 75
+     */
+    public Integer mockDataRows;
+
+    /**
+     * Whether to convert relative date values to concrete date values before sending to the  server. 
+     * Default value is true, which means that the server does not need to understand  how to filter
+     * using relative dates - it receives all date values as absolute dates. <p> If the server would
+     * receive relative date values from the client, by default they would be unchanged in DMI and
+     * automatically converted during the request execution. This may be changed via
+     * <code>server.properties</code> setting <code>datasources.autoConvertRelativeDates</code> which
+     * can be set to the following values: <ul> <li/><code>postDMI</code> - the default value
+     * described above <li/><code>preDMI</code> - relative date values will be converted to absolute
+     * date values right away, so they will be already converted in DMI <li/><code>disabled</code> -
+     * relative date values will not be automatically converted, so it must be done completely
+     * manually or by calling the <code>DSRequest.convertRelativeDates()</code> server-side API. </ul>
+     * Normally there is no need to convert relative dates on the server, this is done by default on
+     * the client before the request is sent to the server. The primary purpose for converting
+     * relative dates on the server is when there is a need to store and use relative dates at a later
+     * point such as in an automated job without any involvement from the client. See more details in
+     * the javadoc for <code>DataSource.convertRelativeDates(Criterion)</code> server-side API.
+     *
+     * <p>Default value is true
+     */
+    public Boolean autoConvertRelativeDates;
+
+    /**
+     * User-visible name for this DataSource. <P> For example, for the supplyItem DataSource, "Supply
+     * Item". <P> If is unset, <code>getAutoTitle()</code> method will be used with
+     * <code>dataSource.ID</code>. value in order to derive a default value for the title. <P> For
+     * example "employee" ID will be derived to "Employee", "team_member" ID will be  derived to "Team
+     * Member".
+     *
+     * <p>Default value is dataSource.ID
+     */
+    public String title;
+
+    /**
+     * Namespaces definitions to add to the root element of outbound XML messages sent to a web
+     *  service, as a mapping from namespace prefix to namespace URI.
+     *  <P>
+     *  The default value is:
+     *  <pre>
+     *    globalNamespaces : {
+     *       xsi: "http://www.w3.org/2001/XMLSchema-instance",
+     *       xsd: "http://www.w3.org/2001/XMLSchema"
+     *    },
+     *  </pre>
+     *  This default value allows the use of the xsi:type and xsi:nil attributes without further
+     *  declarations.
+     *  <P>
+     *  Note that some web services will only accept specific revisions of the XML Schema URI.
+     *  If xsi-namespaced attributes seem to be ignored by an older webservice, try the URI
+     *  "http://www.w3.org/1999/XMLSchema-instance" instead.
+     *
+     * <p>Default value is ...
+     */
+    public Map globalNamespaces;
+
+    /**
+     * Analogous to {@link com.smartgwt.client.docs.serverds.DataSource#dropExtraFields
+     * dropExtraFields}, for data sent to the server.  Setting this attribute to false ensures that
+     * for any records in the data object, only fields that correspond to declared dataSource fields
+     * will be present on the dsRequest data object passed to {@link
+     * com.smartgwt.client.data.DataSource#transformRequest transformRequest()} and ultimately sent to
+     * the server.
+     *
+     * <p>Default value is true
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     */
+    public Boolean sendExtraFields;
+
+    /**
+     * Criteria that are implicitly applied to all fetches made through this DataSource.  These
+     * criteria are never shown to or edited by the user and are cumulative with any other  criteria
+     * provided on the DSRequest. <P> For example, a DataSource might *always* implicitly limit its
+     * fetch results to records  owned by the current user's department.  Components and ResultSets
+     * requesting data  from the DataSource can then apply further implicitCriteria of their own,
+     * separately  from their regular, user-editable criteria. <P> For instance, a grid bound to this
+     * dataSource might be further limited to  implicitly show only the subset of records created by
+     * the current user.  See  {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getImplicitCriteria
+     * DataBoundComponent.implicitCriteria} and {@link
+     * com.smartgwt.client.data.ResultSet#getImplicitCriteria ResultSet.implicitCriteria} for  more on
+     * these localized options. <P> Note that, while <code>implicitCriteria</code> can be declared in
+     * a server DataSource  file using {@link com.smartgwt.client.docs.ComponentXML Component XML}, it
+     * is an entirely client-side  feature, added by client-side components.  So it does not affect
+     * server-side requests,  and will not be added to client-side requests that don't come from a
+     * Smart GWT UI  (eg RestHandler).
+     *
+     * <p>Default value is null
+     */
+    public Criteria implicitCriteria;
+
+    /**
+     * User-visible plural name for this DataSource. <P> For example, for the supplyItem DataSource,
+     * "Supply Items". <P> Defaults to <code>dataSource.title</code> + "s".
+     *
+     * <p>Default value is dataSource.ID
+     */
+    public String pluralTitle;
+
+    /**
+     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource Smart GWT SQL engine}
+     * for persistence, what database table name to use.  The default is to use the DataSource ID as
+     * the table name.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.serverds.DataSource#quoteTableName
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
+     */
+    public String tableName;
+
+    /**
+     * See {@link com.smartgwt.client.docs.serverds.OperationBinding#recordXPath
+     * OperationBinding.recordXPath}.  <code>recordXPath</code> can be specified directly on the
+     * DataSource for a simple read-only DataSource only capable of "fetch" operations, or on
+     * clientOnly DataSources using $link{groupDef:testData}.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     */
+    public XPathExpression recordXPath;
+
+    /**
+     * This property is only applicable to {@link
+     * com.smartgwt.client.docs.serverds.DataSource#serverType SQL} DataSources, and  only for {@link
+     * com.smartgwt.client.docs.serverds.OperationBinding operations} that express a  {@link
+     * com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} clause.  In these
+     * circumstances, we  generally switch off paging because we are unable to generate a "row count"
+     * query that tells the framework the size of the complete, unpaged resultset. <p> The
+     * <code>useSubselectForRowCount</code> flag causes the framework to derive a rowcount query by
+     * simply wrapping the entire customSQL clause in a subselect, like so:<code><br>
+     * &nbsp;&nbsp;&nbsp;&nbsp;SELECT COUNT(*) FROM ({customSQL clause here})</code> <p> However, this
+     * is not guaranteed to give good results.  Because the customSQL clause can contain anything that
+     * you can write in SQL, running it inside a subselect in order to  count the rows might not work,
+     * might have unintended side-effects (if, for example, it  is a stored procedure call that
+     * performs updates as part of its function), or it might  just be a bad idea - for example, if
+     * the customSQL query is slow-running, you'll make  it twice as slow with this flag, simply
+     * because you'll be running it twice.  We  recommend using this flag with care. <p> NOTE: This
+     * setting can be overridden per-operation - see  {@link
+     * com.smartgwt.client.docs.serverds.OperationBinding#useSubselectForRowCount
+     * OperationBinding.useSubselectForRowCount}.  You can also set a global default for this setting,
+     * so you don't have to specify it in every dataSource - define 
+     * <code>useSubselectForRowCount</code> as true in your  {@link
+     * com.smartgwt.client.docs.Server_properties server.properties} file.
+     *
+     * <p>Default value is null
+     */
+    public Boolean useSubselectForRowCount;
+
+    /**
+     * The native field name used by this DataSource on the server to represent the
+     * <code>fileContents</code> for {@link com.smartgwt.client.docs.FileSource FileSource
+     * Operations}. <p>If the fileContentsField is not configured, then a field named "fileContents"
+     * or "contents" will be used, if it exists. <!-- If not found, the first field with a "binary"
+     * type will be used. TODO: Binary field support not working yet. --> If not found, the longest
+     * text field which is not the {@link com.smartgwt.client.docs.serverds.DataSource#fileNameField
+     * fileNameField}, {@link com.smartgwt.client.docs.serverds.DataSource#fileTypeField
+     * fileTypeField} or {@link com.smartgwt.client.docs.serverds.DataSource#fileFormatField
+     * fileFormatField} will be used. <p>Note that the only method which will actually return the
+     * fileContents is {@link com.smartgwt.client.data.DataSource#getFile getFile()} -- the other
+     * {@link com.smartgwt.client.docs.FileSource FileSource} methods omit the fileContents for the
+     * sake of efficiency.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.FileSource FileSource overview and related methods
+     */
+    public String fileContentsField;
+
+    /**
+     * For a DataSource stored in .xml format on the Smart GWT server, indicates what server-side
+     * connector to use to execute requests, that is, what happens if you call dsRequest.execute() in
+     * server code.
+     *
+     * <p>Default value is "generic"
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
+     */
+    public DSServerType serverType;
+
+    /**
+     * If set, the DataSource will ensure that it never uses a cached HTTP response, even if the
+     * server marks the response as cacheable. <P> Note that this does not disable caching at higher
+     * levels in the framework, for example, the caching performed by {@link
+     * com.smartgwt.client.data.ResultSet}.
+     *
+     * <p>Default value is true
+     */
+    public Boolean preventHTTPCaching;
+
+    /**
+     * When true, indicates that this DataSource supports multi-level sorting.
+     *
+     * <p>Default value is true
+     */
+    public boolean canMultiSort;
+
+    /**
+     * Whether a user must be authenticated in order to access this DataSource.  This establishes a
+     * default for the DataSource as a whole; individual {@link
+     * com.smartgwt.client.docs.serverds.DataSource#operationBindings operationBindings} within the
+     * DataSource may still override this setting by explicitly setting {@link
+     * com.smartgwt.client.docs.serverds.OperationBinding#requiresAuthentication
+     * OperationBinding.requiresAuthentication}. <P> Whether the user is authenticated is determined
+     * by calling <code>httpServletRequest.getRemoteUser()</code>, hence works with both simple J2EE
+     * security (realms and form-based authentication) and JAAS (Java Authentication & Authorization
+     * Service). <P> If you wish to use an authentication scheme that does not make use of the servlet
+     * API's  standards, Smart GWT Server also implements the <code>setAuthenticated</code> method on
+     * <code>RPCManager</code>.  You can use this API to tell Smart GWT that all the  requests in the
+     * queue currently being processed are associated with an authenticated user; in this case, Smart
+     * GWT will not attempt to authenticate the user via 
+     * <code>httpServletRequest.getRemoteUser()</code> <P> You can set the default value for this
+     * property via setting "authentication.defaultRequired" in {@link
+     * com.smartgwt.client.docs.Server_properties server.properties}.  This allows you to, for
+     * example, cause all DataSources to require authentication for all operations by default. <P>
+     * Note that setting this property does not automatically cause an authentication mechanism to
+     * appear - you still need to separately configure an authentication system.  Likewise, setting
+     * requiresAuthentication="false" does not automatically allow users to bypass your authentication
+     * mechanism - you need to set up a URL that will accept DSRequests and process them similar to
+     * the default "IDACall" servlet, and which is not protected by the authentication system.  See
+     * {@link com.smartgwt.client.docs.ServletDetails Deploying Smart GWT} for details on the IDACall
+     * servlet.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.DeclarativeSecurity DeclarativeSecurity overview and related methods
+     */
+    public Boolean requiresAuthentication;
+
+    /**
+     * Best field to use for a user-visible title for an individual record from this dataSource. <p>
+     * For example, for a DataSource of employees, a "full name" field would probably most clearly
+     * label an employee record. <p> If not explicitly set, the titleField is determined by looking
+     * for fields named "name", "<i>dataSourceId</i>Name", "title", "<i>dataSourceId</i>Title",
+     * "label", "<i>dataSourceId</i>Label", "id" and "<i>dataSourceId</i>Id".  For example, for a
+     * DataSource with ID "customer", a field called <i>customerName</i> would be found if there were
+     * no "name" field.  Search is case insensitive, and an underscore is allowed after
+     * <i>dataSourceId</i> (so that, for example, "CUSTOMER_NAME" would also be found and preferred).
+     * <p> For purposes of this search, any trailing numerals in the DataSource ID are discarded, so a
+     * DataSource with ID "office2" will search for title fields as if the ID were just "office". <p>
+     * If no field is found that matches any of the names above, then the first field is designated as
+     * the titleField.
+     *
+     * <p>Default value is see below
+     * @see com.smartgwt.client.docs.DsSpecialFields DsSpecialFields overview and related methods
+     */
+    public String titleField;
+
+    /**
+     * Indicates that declarative security rules are waived for rows that were created by the  current
+     * user.  Practically, this means that when a security check fails, instead of a  security
+     * exception being thrown, we alter the criteria to ensure that the request can  only return or
+     * affect rows that were created by the current authenticated user.  This  allows you to create
+     * security regimes whereby users can see and edit data they created,  but have access to other
+     * users' data forbidden or limited. <p> In order for this to work, we require two things:<ul>
+     * <li>The DataSource must specify a field of type "creator" - this field type is described     
+     * on {@link com.smartgwt.client.types.FieldType this page}</li> <li>The authentication regime in
+     * use must include the idea of a "current user".  The      authentication provided by the Servlet
+     * API is an example of such a regime.</li> </ul> This setting can be overridden at
+     * operationBinding and field level, allowing extremely fine-grained control.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.serverds.OperationBinding#creatorOverrides
+     * @see com.smartgwt.client.docs.serverds.DataSourceField#creatorOverrides
+     * @see com.smartgwt.client.docs.FieldLevelAuth FieldLevelAuth overview and related methods
+     */
+    public Boolean creatorOverrides;
+
+    /**
+     * Class for ResultSets used by this datasource.  If null, defaults to using {@link
+     * com.smartgwt.client.data.ResultSet}. <P> This can be set to a custom subclass of ResultSet
+     * that, for example, hangs onto to extra information necessary for integration with web services.
+     *
+     * <p>Default value is null
+     */
+    public Map resultSetClass;
+
+    /**
+     * Designates a field of {@link com.smartgwt.client.types.FieldType type}:"image" as the field to
+     * use when rendering a record as an image, for example, in a {@link
+     * com.smartgwt.client.widgets.tile.TileGrid}. <p> For example, for a DataSource of employees, a
+     * "photo" field of type "image" should be designated as the iconField. <p> If not explicitly set,
+     * iconField looks for fields named "picture", "thumbnail", "icon", "image" and "img", in that
+     * order, and will use any of these fields as the iconField if it exists and has type "image". 
+     * <P> To avoid any field being used as the iconField, set iconField to <code>null</code>.
+     *
+     * <p>Default value is see below
+     * @see com.smartgwt.client.docs.DsSpecialFields DsSpecialFields overview and related methods
+     */
+    public String iconField;
+
+    /**
+     * The list of fields that compose records from this DataSource. <P> Each DataSource field can
+     * have type, user-visible title, validators, and other metadata attached.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.data.DataSourceField
+     */
+    public DataSourceField[] fields;
+
+    /**
+     * If we are {@link com.smartgwt.client.docs.serverds.DataSource#progressiveLoading loading
+     * progressively}, indicates the number of  extra records Smart GWT Server will advertise as being
+     * available, if it detects that  there are more records to view (see {@link
+     * com.smartgwt.client.docs.serverds.DataSource#lookAhead lookAhead}).  This property has no 
+     * effect if we are not progressive-loading.
+     *
+     * <p>Default value is 20
+     * @see com.smartgwt.client.docs.serverds.DataSource#progressiveLoading
+     * @see com.smartgwt.client.docs.serverds.DataSource#lookAhead
+     * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
+     */
+    public int endGap;
+
+    /**
+     * When true, and {@link com.smartgwt.client.docs.serverds.DataSource#noNullUpdates noNullUpdates}
+     * is also true, indicates that "add"  requests on this DataSource will have null-valued fields
+     * removed from the request  entirely before it is sent to the server, as opposed to the default
+     * behavior of  replacing such null values with defaults.
+     *
+     * <p>Default value is false
+     * @see com.smartgwt.client.docs.serverds.DataSource#noNullUpdates
+     */
+    public boolean omitNullDefaultsOnAdd;
+
+    /**
+     * If {@link com.smartgwt.client.docs.serverds.DataSource#noNullUpdates noNullUpdates} is set, the
+     * value to use for any text field that has a null value assigned on an update operation, and does
+     * not specify an explicit {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#nullReplacementValue nullReplacementValue}.
+     *
+     * <p>Default value is ""
+     * @see com.smartgwt.client.docs.serverds.DataSource#noNullUpdates
+     * @see com.smartgwt.client.docs.serverds.DataSourceField#nullReplacementValue
+     */
+    public String nullStringValue;
+
+    /**
+     * Whether we store server responses for this DataSource into  {@link
+     * com.smartgwt.client.util.Offline browser-based offline storage}, and then use those stored
+     * responses at a later time if we are offline (ie, the application cannot connect to the server).
+     *   Note that by default we do NOT use offline storage for a dataSource.
+     *
+     * <p>Default value is null
+     */
+    public Boolean useOfflineStorage;
+
+    /**
+     * For DataSources with type {@link com.smartgwt.client.types.DSServerType
+     * <code>projectFile</code>}, looks up the locations to use as {@link
+     * com.smartgwt.client.docs.serverds.DataSource#projectFileLocations projectFileLocations} from
+     * the project's configuration (i.e. project.properties, {@link
+     * com.smartgwt.client.docs.Server_properties server.properties} etc.). <p>For instance, to look
+     * up the value of project.datasources and use it for <code>projectFileLocations</code>, use
+     * "datasources" as the  <code>projectFileKey</code>. <p>If you specify both
+     * <code>projectFileKey</code> and  <code>projectFileLocations</code>, then both with be used,
+     * with the <code>projectFileLocations</code> applied last.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.serverds.DataSource#projectFileLocations
+     * @see com.smartgwt.client.docs.FileSource FileSource overview and related methods
+     */
+    public String projectFileKey;
+
+    /**
+     * For {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType:"sql"}
+     * DataSources, sets the default {@link
+     * com.smartgwt.client.data.DataSourceField#getSqlStorageStrategy sqlStorageStrategy} to use for
+     * boolean fields where no <code>sqlStorageStrategy</code> has been declared on the field. <P> Can
+     * also be set system-wide via the {@link com.smartgwt.client.docs.Server_properties} setting
+     * <code>sql.defaultBooleanStorageStrategy</code>, or for a particular database configuration by
+     * setting <code>sql.<i>dbName</i>.defaultBooleanStorageStrategy</code> (see {@link
+     * com.smartgwt.client.docs.AdminConsole Admin Console overview} for more information on SQL
+     * configuration). <p> Note that when this property is unset, the default {@link
+     * com.smartgwt.client.data.DataSourceField#getSqlStorageStrategy
+     * DataSourceField.sqlStorageStrategy} strategy is effectively "string".
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
+     */
+    public String defaultBooleanStorageStrategy;
+
+    /**
+     * Controls when primary keys are required for "update" and "remove" server operations, when
+     * allowMultiUpdate  has not been explicitly configured on either the {@link
+     * com.smartgwt.client.docs.serverds.OperationBinding#allowMultiUpdate
+     * operationBinding.allowMultiUpdate} or via the server-side API
+     * <code>DSRequest.setAllowMultiUpdate()</code>. <p> Default value of null means this DataSource
+     * will use the system-wide default, which is set via
+     * <code>datasources.defaultMultiUpdatePolicy</code> in {@link
+     * com.smartgwt.client.docs.Server_properties server.properties}, and defaults to not allowing
+     * multi updates for  requests associated with an RPCManager, see {@link
+     * com.smartgwt.client.types.MultiUpdatePolicy} for details.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.serverds.OperationBinding#allowMultiUpdate
+     */
+    public MultiUpdatePolicy defaultMultiUpdatePolicy;
+
+    /**
+     * For a DataSource that inherits {@link com.smartgwt.client.docs.serverds.DataSource#fields
+     * fields} from another DataSource  (via {@link
+     * com.smartgwt.client.docs.serverds.DataSource#inheritsFrom inheritsFrom}), indicates that the
+     * parent's field order should be used instead of the order of the fields as declared in this
+     * DataSource.  New fields, if any, are placed at the end.
+     *
+     * <p>Default value is null
+     */
+    public Boolean useParentFieldOrder;
+
+    /**
+     * For JPA and Hibernate DataSources this property indicates, that data source has composite
+     * primary key and specifies fully-qualified Java class:<ul> <li>with
+     * <b><code>@EmbeddedId</code></b> you have to specify class name of declared id</li> <li>with
+     * <b><code>@IdClass</code></b> you have to specify class specified in annotation
+     * declaration</li></ul>
+     *
+     * <p>Default value is null
+     */
+    public String idClassName;
+
+    /**
+     * For DataSources with {@link com.smartgwt.client.docs.serverds.DataSource#audit auditing
+     * enabled}, specifies the field name used to store the names of the fields which were updated. 
+     * If empty string is specified as the field name, the audit DataSource will not store this field.
+     * <P> Note that this field will only be set for {@link com.smartgwt.client.types.DSOperationType
+     * update} operations.
+     *
+     * <p>Default value is "audit_changedFields"
+     */
+    public String auditChangedFieldsFieldName;
+
+    /**
      * This property allows you to specify that your DataSource's schema (field definitions) should
      *  be automatically derived from some kind of metadata.  This causes Smart GWT to create 
      *  a special super-DataSource, which is used purely as a source of default schema for this 
@@ -942,7 +1557,12 @@ public class DataSource {
      * {@link com.smartgwt.client.docs.serverds.DataSource#inheritsFrom inherit from} the special
      * super-DataSource.  This allows you to 
      *  auto-derive schema from existing metadata, whilst still being able to override any or all
-     *  of it as required.<p>
+     *  of it as required. By default additional derived field definitions are placed at the end,
+     * but that can be changed by {@link
+     * com.smartgwt.client.docs.serverds.DataSource#useParentFieldOrder useParentFieldOrder} flag.
+     * Also, derived field
+     * definitions may be hidden using {@link
+     * com.smartgwt.client.docs.serverds.DataSource#showLocalFieldsOnly showLocalFieldsOnly}.<p>
      *  This property has a different implementation depending upon the 
      * {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType} of the
      * DataSource:<ul>
@@ -987,11 +1607,9 @@ public class DataSource {
      * com.smartgwt.client.docs.WriteCustomDataSource here}.</li>
      *  </ul>
      *  Note that when dataSource schema is derived by introspecting the Java class or Spring bean the
-     *  order of derived fields is non-deterministic, so you may find that it changes if you switch
-     * JVMs, Java compilers or other parts of your Java toolchain. This means that you need to include
-     *  the order of all fields that are ultimately client-visible.  Otherwise, if you bind a ListGrid
-     *  or DynamicForm to this DataSource without specifying the order of fields in that grid or form,
-     *  you could get fields in a different order on each application restart.
+     * derived fields are sorted alphabetically, but with {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#primaryKey primary key}
+     *  fields at the top.
      *  <h4>Field types</h4>
      *  The following table shows how SQL types are derived into 
      * {@link com.smartgwt.client.types.FieldType DataSource types} when we use an SQL table as a
@@ -1203,77 +1821,22 @@ public class DataSource {
     public Boolean autoDeriveSchema;
 
     /**
-     * For an XML DataSource, URN of the WebService to use to invoke operations.  This URN comes from
-     * the "targetNamespace" attribute of the &lt;wsdl:definitions&gt; element in a WSDL (Web Service
-     * Description Language) document, and serves as the unique identifier of the service. <P> Having
-     * loaded a WebService using {@link com.smartgwt.client.data.XMLTools#loadWSDL
-     * XMLTools.loadWSDL()}, setting <code>serviceNamespace</code> combined with specifying  {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding operationBindings} that set {@link
-     * com.smartgwt.client.data.OperationBinding#getWsOperation OperationBinding.wsOperation} will
-     * cause a DataSource to invoke web service operations to fulfill DataSource requests ({@link
-     * com.smartgwt.client.data.DSRequest DSRequests}). <P> Setting <code>serviceNamespace</code> also
-     * defaults {@link com.smartgwt.client.docs.serverds.DataSource#dataURL dataURL} to the service's
-     * location, {@link com.smartgwt.client.docs.serverds.DataSource#dataFormat dataFormat} to "xml"
-     * and {@link com.smartgwt.client.docs.serverds.OperationBinding#dataProtocol dataProtocol} to
-     * "soap".
+     * For a DataSource with {@link com.smartgwt.client.docs.serverds.DataSource#serverType
+     * serverType:"sql"}, this flag indicates  whether any fields of {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#type type} "sequence" should be backed by a 
+     * native database sequence (if the flag is true) or an auto-increment/identity column (if it is
+     * false).  It is only applicable in cases where the database in use supports both  approaches,
+     * <i>and</i> Smart GWT supports both strategies with that particular database. For most
+     * databases, even those that natively support either approach, Smart GWT uses  one or the other,
+     * and this cannot be configured. <P> Right now, the only supported database is Microsoft SQL
+     * Server.  If you specify this flag  on a non-SQL DataSource or if any database other than SQL
+     * Server is in use, the flag is simply ignored. <P> If not set, this flag defaults to the
+     * <code>server.properties</code> setting  <code>sql.{dbName}.use.sequences</code>, which in turn
+     * defaults to false.
      *
      * <p>Default value is null
-     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public String serviceNamespace;
-
-    /**
-     * The native field name used by this DataSource on the server to represent
-     * <code>fileVersion</code> for {@link com.smartgwt.client.docs.FileSource FileSource Operations}.
-     * <p> Automatic file versioning is configured by the presence of this property: if you want
-     * automatic versioning for a FileSource DataSource, it is sufficient to simply define a 
-     * <code>fileVersionField</code>.  When automatic versioning is on:<ul> <li>Calls to {@link
-     * com.smartgwt.client.data.DataSource#saveFile saveFile()} will save a new version of the file,
-     * retaining previous  versions up to the maximum configured by {@link
-     * com.smartgwt.client.docs.serverds.DataSource#maxFileVersions maxFileVersions}; when that
-     * maximum is reached, the oldest version is overwritten</li> <li>The {@link
-     * com.smartgwt.client.data.DataSource#getFile getFile()} API always returns the most recent
-     * version</li> <li>The {@link com.smartgwt.client.data.DataSource#listFiles listFiles()} API only
-     * includes the most recent version of any file</li> <li>You can view and retrieve earlier
-     * versions of a file with the  {@link com.smartgwt.client.data.DataSource#listFileVersions
-     * listFileVersions()} and {@link com.smartgwt.client.data.DataSource#getFileVersion
-     * getFileVersion()} APIs.  Note that retrieving a previous version of a file and then calling
-     * <code>saveFile()</code> goes through the normal process of saving a new version</li> </ul> <p>
-     * The <code>fileVersion</code> field is expected to be of type "datetime", and automatic 
-     * versioning will not work otherwise.  Note, to minimize the possibility of version  timestamp
-     * collisions, we recommend that <code>fileVersion</code> fields specify  {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#storeMilliseconds storeMilliseconds}: true.
-     * <p> If the fileVersionField is not configured, no automatic file versioning will be done.
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.serverds.DataSource#maxFileVersions
-     * @see com.smartgwt.client.data.DataSource#listFileVersions
-     * @see com.smartgwt.client.data.DataSource#getFileVersion
-     * @see com.smartgwt.client.data.DataSource#removeFileVersion
-     * @see com.smartgwt.client.docs.FileSource FileSource overview and related methods
-     */
-    public String fileVersionField;
-
-    /**
-     * When true, indicates that fields in this DataSource will never be positively updated to the
-     * null value; they may arrive at null values by being omitted, but we will  not send actual null
-     * values in update requests.  When false (the default), null is  not treated in any special way.
-     * <p> Setting this value causes null-assigned fields to be replaced with the field's {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#nullReplacementValue nullReplacementValue},
-     * if one is declared. If no <code>nullReplacementValue</code> is declared for the field, the null
-     * assignment is replaced with the DataSource's {@link
-     * com.smartgwt.client.docs.serverds.DataSource#nullStringValue nullStringValue},  {@link
-     * com.smartgwt.client.docs.serverds.DataSource#nullIntegerValue nullIntegerValue}, {@link
-     * com.smartgwt.client.docs.serverds.DataSource#nullFloatValue nullFloatValue}  or {@link
-     * com.smartgwt.client.docs.serverds.DataSource#nullDateValue nullDateValue}, depending on the
-     * field type. <p> For "add" operations, setting {@link
-     * com.smartgwt.client.docs.serverds.DataSource#omitNullDefaultsOnAdd omitNullDefaultsOnAdd}
-     * causes null-valued fields to be removed from the request entirely, rather than replaced with
-     * default values as described above.
-     *
-     * <p>Default value is false
-     */
-    public boolean noNullUpdates;
+    public Boolean useSequences;
 
     /**
      * By default, all DataSources are assumed to be capable of handling  {@link
@@ -1350,16 +1913,6 @@ public class DataSource {
     public String schema;
 
     /**
-     * If set to "false", transformation of values for {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#multiple multiple:true} fields, normally
-     * controlled by {@link com.smartgwt.client.docs.serverds.DataSourceField#multipleStorage
-     * DataSourceField.multipleStorage}, is instead disabled for this entire DataSource.
-     *
-     * <p>Default value is null
-     */
-    public Boolean transformMultipleFields;
-
-    /**
      * If {@link com.smartgwt.client.docs.serverds.DataSource#noNullUpdates noNullUpdates} is set, the
      * value to use for any integer field that has a null value assigned on an update operation, and
      * does not specify an explicit {@link
@@ -1370,16 +1923,6 @@ public class DataSource {
      * @see com.smartgwt.client.docs.serverds.DataSourceField#nullReplacementValue
      */
     public int nullIntegerValue;
-
-    /**
-     * The name of the property this DataSource uses for constant name when translating Java
-     * enumerated types to and from Javascript, if the {@link
-     * com.smartgwt.client.types.EnumTranslateStrategy} is set to "bean".  Defaults to "_constant" if
-     * not set. <p>  This property is only applicable if you are using the Smart GWT server
-     *
-     * <p>Default value is null
-     */
-    public String enumConstantProperty;
 
     /**
      * Enables saving of a log of changes to this DataSource in a second DataSource with the same
@@ -1411,12 +1954,15 @@ public class DataSource {
      * DataSourceField.audit} to false.  Audit can be disabled for a given DSRequest via the
      * server-side API <code>DSRequest.setSkipAudit()</code>, or for a specific operation  via the
      * {@link com.smartgwt.client.docs.serverds.OperationBinding#skipAudit operationBinding.skipAudit}
-     * setting. <p> Note: The DataSource audit feature works only with single row operations;
-     * operations with  {@link com.smartgwt.client.docs.serverds.OperationBinding#allowMultiUpdate
-     * allowMultiUpdate} enabled are not supported. <p> <h4>Auto-generated Audit DataSources</h4> <p>
-     * The audit DataSource is normally automatically generated, and unless otherwise specified with
-     * {@link com.smartgwt.client.docs.serverds.DataSource#auditDataSourceID auditDataSourceID}, the
-     * ID of the audit DataSource will be <code>audit_[OriginalDSID]</code>.   <p> By default, the
+     * setting. <p> When viewing DataSources in the {@link com.smartgwt.client.docs.DataSourcesTab
+     * DataSource Navigator}, a button will be shown at the top of a DataSource's section if it has an
+     * audit DataSource to let you conveniently open another section to view it. <p> Note: The
+     * DataSource audit feature works only with single row operations; operations with  {@link
+     * com.smartgwt.client.docs.serverds.OperationBinding#allowMultiUpdate allowMultiUpdate} enabled
+     * are not supported. <p> <h4>Auto-generated Audit DataSources</h4> <p> The audit DataSource is
+     * normally automatically generated, and unless otherwise specified with {@link
+     * com.smartgwt.client.docs.serverds.DataSource#auditDataSourceID auditDataSourceID}, the ID of
+     * the audit DataSource will be <code>audit_[OriginalDSID]</code>.   <p> By default, the
      * automatically generated audit DataSource will be of the same type as the DataSource being
      * audited, however, if the DataSource being audited is not already a SQLDataSource, we recommend
      * using {@link com.smartgwt.client.docs.serverds.DataSource#auditDSConstructor
@@ -1472,15 +2018,6 @@ public class DataSource {
     public String guestUserId;
 
     /**
-     * Provides a default value for {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#recordName OperationBinding.recordName}.
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
-     */
-    public String recordName;
-
-    /**
      * Setting <code>autoCreateAuditTable</code> to <code>true</code> indicates that audit DataSource 
      * will automatically create SQL table when {@link
      * com.smartgwt.client.docs.serverds.DataSource#audit auditing} is enabled. <p> Note, that
@@ -1493,24 +2030,6 @@ public class DataSource {
     public boolean autoCreateAuditTable;
 
     /**
-     * Transport to use for all operations on this DataSource. Defaults to {@link
-     * com.smartgwt.client.rpc.RPCManager#defaultTransport defaultTransport}.  This would typically
-     * only be set to enable "scriptInclude" transport for contacting {@link
-     * com.smartgwt.client.docs.serverds.DataSource#dataFormat JSON} web services hosted on servers
-     * other than the origin server. <p> When using the "scriptInclude" transport, be sure to set
-     * {@link com.smartgwt.client.docs.serverds.DataSource#callbackParam callbackParam} or {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#callbackParam
-     * OperationBinding.callbackParam} to match the name of the query parameter name expected by your
-     * JSON service provider.
-     *
-     * <p>Default value is RPCManager.defaultTransport
-     * @see com.smartgwt.client.types.RPCTransport
-     * @see com.smartgwt.client.docs.serverds.DataSource#callbackParam
-     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
-     */
-    public RPCTransport dataTransport;
-
-    /**
      * Setting a DataSource to be <code>serverOnly="true"</code> ensures that it will not be visible
      * to the client. Any request through IDACall to this DataSource will return a failure response.
      * Only requests which have been initiated on the server-side will be executed against this
@@ -1521,33 +2040,14 @@ public class DataSource {
     public String serverOnly;
 
     /**
-     * Indicates that for server responses, for any data being interpreted as DataSource records, 
-     * only data that corresponds to declared fields should be retained; any extra fields should be
-     * discarded. <P> For {@link com.smartgwt.client.docs.serverds.DataSource#dataFormat JSON} data,
-     * this means extra properties in selected objects are dropped. <P> By default, for DMI
-     * DSResponses, DSResponse.data is filtered on the server to just the set of fields defined on the
-     * DataSource.  This type of filtering can also be enabled for non-DMI DSResponses (see the
-     * overview in {@link com.smartgwt.client.docs.DmiOverview DMI}).  Setting this property to
-     * <code>false</code> disables this filtering for this DataSource only.  This setting overrides
-     * the configuration in {@link com.smartgwt.client.docs.Server_properties server.properties}. 
-     * This setting can be overridden by {@link
-     * com.smartgwt.client.docs.serverds.ServerObject#dropExtraFields ServerObject.dropExtraFields}.
+     * An optional description of the DataSource's content.  Not automatically exposed on any
+     * component, but useful for developer documentation, and as such is included on any {@link
+     * com.smartgwt.client.docs.OpenapiSupport OpenAPI specification} generated by the framework. 
+     * Markdown is a commonly used syntax, but you may also embed HTML content in a CDATA tag.
      *
      * <p>Default value is null
-     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public Boolean dropExtraFields;
-
-    /**
-     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource Smart GWT SQL engine}
-     * for persistence, which database configuration to use.  Database configurations can be created
-     * using the {@link com.smartgwt.client.docs.AdminConsole Admin Console}.  If unset, the default
-     * database configuration is used (which is also settable using the "Databases" tab).
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
-     */
-    public String dbName;
+    public String description;
 
     /**
      * Similar to {@link com.smartgwt.client.docs.serverds.OperationBinding#requiresRole
@@ -1557,46 +2057,6 @@ public class DataSource {
      * @see com.smartgwt.client.docs.DeclarativeSecurity DeclarativeSecurity overview and related methods
      */
     public String requiresRole;
-
-    /**
-     * For SQL DataSources, tells the framework whether to surround the associated  {@link
-     * com.smartgwt.client.docs.serverds.DataSource#tableName table name} with quotation marks
-     * whenever it appears in generated queries.  This is only required if you have to connect to a
-     * table with a name that is in breach of your database product's naming conventions.  For
-     * example, some  products (eg, Oracle) internally convert all unquoted references to upper case,
-     * so if you create a table called <code><b>myTest</b></code>, the database actually calls it 
-     * <code><b>MYTEST</b></code> unless you quoted the name in the create command, like this: <p>
-     * <code><b>&nbsp;&nbsp;CREATE TABLE "myTest"</b></code> <p> If you <em>do</em> quote the name
-     * like this, or if you have to connect to a legacy table that has been named in this way, then
-     * you must set this property to tell the SQL engine  that it must quote any references to this
-     * table name (this requirement depends on the  database in use - as noted below, some are not
-     * affected by this problem).  If you do  not, you will see exceptions along the lines of "Table
-     * or view 'myTest' does not exist". <p> Note, other database products (eg, Postgres) convert
-     * unquoted names to lower case, which leads to the same issues.  Still others (eg, SQL Server)
-     * are not case sensitive and are  not affected by this issue. <p> Generally, we recommend that
-     * you avoid using this property unless you have a specific  reason to do so.  It is preferable to
-     * avoid the issue altogether by simply not quoting  table names at creation time, if you are able
-     * to do so.
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.serverds.DataSource#tableName
-     * @see com.smartgwt.client.docs.serverds.DataSource#quoteColumnNames
-     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
-     */
-    public Boolean quoteTableName;
-
-    /**
-     * The native field name used by this DataSource on the server to represent
-     * <code>fileLastModified</code> for {@link com.smartgwt.client.docs.FileSource FileSource
-     * Operations}. <p>If the fileLastModifiedField is not configured, then a field named
-     * "fileLastModified" will be used, if it exists. <!-- TODO: Binary fields? -->  Otherwise, the
-     * server will look for a field with a "modifierTimestamp" type. If that is not found, the
-     * DataSource will not keep track of the last modified date.
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.FileSource FileSource overview and related methods
-     */
-    public String fileLastModifiedField;
 
     /**
      * Only applicable to {@link com.smartgwt.client.docs.BinaryFields binary fields} on {@link
@@ -1609,24 +2069,11 @@ public class DataSource {
      * your application, particularly if you store large  binary values. <p> Note that value
      * comparison of any kind is only performed if the field's  {@link
      * com.smartgwt.client.docs.serverds.DataSourceField#audit DataSourceField.audit} setting is
-     * "change"
+     * "change", but also note that this is the default  setting for binary fields
      *
      * <p>Default value is true
      */
     public boolean compareMetadataForAuditChangeStatus;
-
-    /**
-     * Name of the field that has a long description of the record, or has the primary text data value
-     * for a record that represents an email message, SMS, log or similar. <p> For example, for a
-     * DataSource representing employees, a field containing the employee's "bio" might be a good
-     * choice, or for an email message, the message body. <p> If descriptionField is unset, it
-     * defaults to any field named "description" or "desc" in the record, or the first long text field
-     * (greater than 255 characters) in the record, or null if no such field exists.
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.DsSpecialFields DsSpecialFields overview and related methods
-     */
-    public String descriptionField;
 
     /**
      * If set, tells the SQL engine to quote column names in all generated DML and DDL  statements for
@@ -1683,20 +2130,6 @@ public class DataSource {
     public Boolean trimMilliseconds;
 
     /**
-     * For Direct Method Invocation (DMI) binding, declares the ServerObject to use as the default
-     * target for all {@link com.smartgwt.client.docs.serverds.DataSource#operationBindings
-     * operationBindings}.  Specifying this attribute in an XML DataSource stored on the server
-     * enables DMI for this DataSource. <P> <i>Note that if a dataSource configuration has both a
-     * {@link com.smartgwt.client.docs.serverds.OperationBinding#script &lt;script&gt;} block and a
-     * specified <code>serverObject</code> for some operation, the script block will be executed, and
-     * the serverObject ignored.</i>
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
-     */
-    public ServerObject serverObject;
-
-    /**
      * Additional properties to pass through to the {@link com.smartgwt.client.data.DSRequest}s made
      * by this DataSource.  This must be set before any {@link com.smartgwt.client.data.DSRequest}s
      * are issued and before any component is bound to the DataSource. <p> These properties are
@@ -1719,107 +2152,6 @@ public class DataSource {
      * <p>Default value is "audit_operationType"
      */
     public String auditTypeFieldName;
-
-    /**
-     * If set, titles are automatically derived from {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#name field.name} for any  field that does not
-     * have a {@link com.smartgwt.client.docs.serverds.DataSourceField#title field.title} and is not
-     * marked {@link com.smartgwt.client.docs.serverds.DataSourceField#hidden hidden}:true, by calling
-     * the method {@link com.smartgwt.client.data.DataSource#getAutoTitle getAutoTitle()}.
-     *
-     * <p>Default value is true
-     */
-    public boolean autoDeriveTitles;
-
-    /**
-     * When true, indicates that any updates for this DataSource include only those fields  that have
-     * actually changed (and primaryKey fields); when false (the default), all  field values are
-     * included in updates, whether they have changed or not
-     *
-     * <p>Default value is false
-     */
-    public boolean sparseUpdates;
-
-    /**
-     * If set to true, both client and server-side advanced filtering used by Smart GWT will follow
-     *  SQL99 behavior for dealing with NULL values, which is often counter-intuitive to users.
-     *  Specifically, when a field has NULL value, all of the following expressions are false:
-     *  <pre>
-     *     field == "someValue"  (normally false)
-     *     field != "someValue"  (normally true)
-     *     not (field == "someValue")   (normally true)
-     *     not (field != "someValue")   (normally false)
-     *  </pre>
-     *  This property can be overridden per-query by specifying <code>strictSQLFiltering</code>
-     *  directly as a property on the {@link com.smartgwt.client.docs.serverds.AdvancedCriteria}.
-     *  <p>
-     *  <b>NOTE:</b> On the server side, this property is only applicable if you are using the 
-     *  SQL DataSource; the other built-in types (Hibernate and JPA/JPA2) do not offer this mode.
-     *
-     * <p>Default value is false
-     */
-    public Boolean strictSQLFiltering;
-
-    /**
-     * If true, causes Smart GWT Server to use the "progressive loading" pattern for  fetches on this
-     * dataSource, as described in the <b>Paging and total dataset length</b> section of the {@link
-     * com.smartgwt.client.data.ResultSet ResultSet documentation}.  Essentially, this means that we
-     * avoid issuing a row count query and instead advertise total rows as being slightly  more than
-     * the number of rows we have already read (see {@link
-     * com.smartgwt.client.docs.serverds.DataSource#endGap endGap}).  This  allows users to load more
-     * of a dataset by scrolling past the end of the currently-loaded rows, but it prevents them from
-     * scrolling directly to the end of the dataset. <p> Generally, progressive loading is appropriate
-     * when you have to deal with very large  datasets. Note that by default, a dataSource will switch
-     * into progressive loading mode  automatically when it detects that it is dealing with a dataset
-     * beyond a certain size -  see {@link
-     * com.smartgwt.client.docs.serverds.DataSource#progressiveLoadingThreshold
-     * progressiveLoadingThreshold}. <p> This setting can be overridden for individual fetch
-     * operations with the  {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#progressiveLoading
-     * OperationBinding.progressiveLoading} property, and also at the level of the individual {@link
-     * com.smartgwt.client.data.DSRequest#getProgressiveLoading DSRequest}.  You can also specify 
-     * <code>progressiveLoading</code> on  {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getProgressiveLoading DataBoundComponents} and
-     * certain types of  <code>FormItem</code> - {@link
-     * com.smartgwt.client.widgets.form.fields.SelectItem#getProgressiveLoading SelectItem} and 
-     * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getProgressiveLoading
-     * ComboBoxItem}. <p> Currently, this property only applies to users of the built-in
-     * SQLDataSource, but you  could use it in custom DataSource implementations to trigger the server
-     * behavior  described in the <code>ResultSet</code> documentation linked to above.
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.serverds.OperationBinding#progressiveLoading
-     * @see com.smartgwt.client.docs.serverds.DataSource#progressiveLoadingThreshold
-     * @see com.smartgwt.client.docs.serverds.DataSource#lookAhead
-     * @see com.smartgwt.client.docs.serverds.DataSource#endGap
-     * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
-     */
-    public Boolean progressiveLoading;
-
-    /**
-     * For DataSources of {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType}
-     * "hibernate", the name of a Spring  bean to query to obtain Hibernate Configuration for this
-     * particular DataSource.  Note that this is intended for DataSource-specific configuration
-     * overrides for unusual  circumstances, such as a DataSource whose physical data store is a
-     * completely  different database to that used by other DataSources.  See the  {@link
-     * com.smartgwt.client.docs.HibernateIntegration Integration with Hibernate} article for more 
-     * information
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
-     */
-    public String configBean;
-
-    /**
-     * For DataSources that specify {@link
-     * com.smartgwt.client.docs.serverds.DataSource#autoDeriveSchema autoDeriveSchema}, this property
-     * indicates the name of the Spring bean, Hibernate mapping or fully-qualified Java class to use
-     * as parent  schema.
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.serverds.DataSource#autoDeriveSchema
-     */
-    public String schemaBean;
 
     /**
      * <b>Only applicable to the built-in SQL DataSource</b> <p> <code>tableCode</code> and the
@@ -1861,30 +2193,6 @@ public class DataSource {
     public Integer auditChangedFieldsFieldLength;
 
     /**
-     * For DataSources with {@link com.smartgwt.client.docs.serverds.DataSource#audit auditing
-     * enabled}, optionally specifies the {@link
-     * com.smartgwt.client.docs.serverds.DataSource#serverConstructor serverConstructor} for the
-     * automatically generated audit DataSource.  The default is to use the same
-     * <code>serverConstructor</code> as the DataSource where <code>audit="true"</code> was declared.
-     * <p> This property is primarily intended to allow the use of SQLDataSource ({@link
-     * com.smartgwt.client.docs.serverds.DataSource#serverType serverType:"sql"}) as an audit
-     * DataSource for a DataSource that might be of another type.  For example, you might have a
-     * DataSource that implements all CRUD operations via Java logic in {@link
-     * com.smartgwt.client.docs.DmiOverview DMI declaration} methods, and so doesn't provide generic
-     * storage; by using SQLDataSource as the type of your audit DataSource, you don't need to
-     * implement your own scheme for storing and querying audit data, and the necessary audit tables
-     * will be automatically generated in the database. <p> Similarly, even if you do use a reusable
-     * DataSource type such as the built-in JPADataSource, using SQLDataSource for audit DataSources
-     * means there's no need to write a JPA bean just to achieve storage of an audit trail. <p> To
-     * simplify this intended usage, the string "sql" is allowed for <code>auditDSConstructor</code>
-     * as a means of specifying that the built-in SQLDataSource class should be used.  For any other
-     * type, use the fully qualified Java classname, as is normal for <code>serverConstructor</code>.
-     *
-     * <p>Default value is null
-     */
-    public String auditDSConstructor;
-
-    /**
      * For dataSources of {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType}
      * "sql" and "hibernate", specifies the inheritance  mode to use.  This property has no effect for
      * any other type of DataSource.
@@ -1905,16 +2213,6 @@ public class DataSource {
      * @see com.smartgwt.client.docs.serverds.DataSourceField#nullReplacementValue
      */
     public float nullFloatValue;
-
-    /**
-     * The name of the property this DataSource uses for ordinal number when translating Java
-     * enumerated types to and from Javascript, if the {@link
-     * com.smartgwt.client.types.EnumTranslateStrategy} is set to "bean".  Defaults to "_ordinal" if
-     * not set. <p>  This property is only applicable if you are using the Smart GWT server
-     *
-     * <p>Default value is null
-     */
-    public String enumOrdinalProperty;
 
     /**
      * For a DataSource derived from WSDL or XML schema, the XML namespace this schema belongs to. 
@@ -1938,24 +2236,6 @@ public class DataSource {
     public Boolean qualifyColumnNames;
 
     /**
-     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource Smart GWT SQL engine}
-     * for persistence, whether to use ANSI-style joins (ie, joins implemented with JOIN directives in
-     * the table clause, as opposed to additional join expressions in the where clause). The default
-     * value of null has the same meaning as setting this flag to false. <P> Note, outer joins (see
-     * {@link com.smartgwt.client.docs.serverds.DataSourceField#joinType joinType}) only work with
-     * certain database products if you choose not to use ANSI joins.  Other than that, the join 
-     * strategies are equivalent. <P> If you wish to switch on ANSI-style joins for every DataSource,
-     * without the need to  manually set this property on all of them, set {@link
-     * com.smartgwt.client.docs.Server_properties server.properties} flag 
-     * <code>sql.useAnsiJoins</code> to true.
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.data.OperationBinding#getIncludeAnsiJoinsInTableClause
-     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
-     */
-    public Boolean useAnsiJoins;
-
-    /**
      * For DataSources with {@link com.smartgwt.client.docs.serverds.DataSource#audit auditing
      * enabled}, specifies the field name used to store the revision number for the change (in a field
      * of type "sequence").  If empty string is specified as the field name, the audit DataSource will
@@ -1964,25 +2244,6 @@ public class DataSource {
      * <p>Default value is "audit_revision"
      */
     public String auditRevisionFieldName;
-
-    /**
-     * Whether RPCRequests sent by this DataSource should enable {@link
-     * com.smartgwt.client.rpc.RPCRequest#getShowPrompt RPCRequest.showPrompt} in order to block user
-     * interactions until the request completes.   <p> DataSource requests default to blocking UI
-     * interaction because, very often, if the user continues to interact with an application that is
-     * waiting for a server response, some kind of invalid or ambiguous situation can arise. <p>
-     * Examples include pressing a "Save" button a second time before the first save completes, making
-     * further edits while edits are still being saved, or trying to initiate editing on a grid that
-     * hasn't loaded data. <p> Defaulting to blocking the UI prevents these bad interactions, or
-     * alternatively, avoids the developer having to write repetitive code to block invalid
-     * interactions on every screen. <p> If an operation should ever be non-blocking, methods that
-     * initiate DataSource requests (such as {@link com.smartgwt.client.data.DataSource#fetchData
-     * fetchData()}) will generally have a <code>requestProperties</code> argument allowing
-     * <code>showPrompt</code> to be set to false for a specific request.
-     *
-     * <p>Default value is true
-     */
-    public Boolean showPrompt;
 
     /**
      * Default URL to contact to fulfill all DSRequests.  Can also be set on a per-operationType basis
@@ -1996,21 +2257,6 @@ public class DataSource {
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public String dataURL;
-
-    /**
-     * The default textMatchStyle to use for {@link com.smartgwt.client.data.DSRequest}s that do not
-     * explicitly state  a {@link com.smartgwt.client.data.DSRequest#getTextMatchStyle
-     * textMatchStyle}.    Note, however, that DSRequests  issued by {@link
-     * com.smartgwt.client.widgets.grid.ListGrid}s and other {@link
-     * com.smartgwt.client.widgets.DataBoundComponent components} will  generally have a setting for
-     * textMatchStyle on the component itself (see {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle
-     * ListGrid.autoFetchTextMatchStyle}, for example).
-     *
-     * <p>Default value is "exact"
-     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
-     */
-    public TextMatchStyle defaultTextMatchStyle;
 
     /**
      * Allows you to specify an arbitrary prefix string to apply to all json format responses  sent
@@ -2031,13 +2277,28 @@ public class DataSource {
     public String jsonPrefix;
 
     /**
-     * When {@link com.smartgwt.client.data.DataSource#getMockMode mockMode} is enabled, number of
-     * rows of data to retrieve via an initial "fetch" DSRequest, for use as sample data.  Set to null
-     * to retrieve all available rows.
+     * For a {@link com.smartgwt.client.docs.SqlDataSource SQL DataSource} that is referred by {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#otherFKs additional foreign keys}, this
+     * property defines the table alias name to use in generated SQL. If omitted {@link
+     * com.smartgwt.client.docs.serverds.DataSource#ID DataSource ID} will be used to construct the
+     * alias. <p> Aliasing is necessary when the same table appears more than once in a query. In
+     * addition to use cases described in {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#relatedTableAlias
+     * DataSourceField.relatedTableAlias}, this may happen when <code>includeFrom</code> field using
+     * {@link com.smartgwt.client.docs.serverds.DataSourceField#otherFKs foreign key defined in
+     * otherFKs} would be included multiple times in a related DataSource. <p> See the "Automatically
+     * generated table aliases" section of the {@link com.smartgwt.client.docs.CustomQuerying SQL
+     * Templating} for the complete set of general rules how aliases are generated. Also, see {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#otherFKs dataSourceField.otherFKs} for more
+     * details and usage samples.
      *
-     * <p>Default value is 75
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.serverds.DataSourceField#otherFKs
+     * @see com.smartgwt.client.docs.serverds.DataSourceField#includeVia
+     * @see com.smartgwt.client.docs.serverds.DataSourceField#relatedTableAlias
+     * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
      */
-    public Integer mockDataRows;
+    public String relatedTableAlias;
 
     /**
      * For DataSources with type {@link com.smartgwt.client.types.DSServerType
@@ -2170,45 +2431,61 @@ public class DataSource {
     public String[] projectFileLocations;
 
     /**
-     * Whether to convert relative date values to concrete date values before sending to the  server. 
-     * Default value is true, which means that the server does not need to understand  how to filter
-     * using relative dates - it receives all date values as absolute dates.
-     *
-     * <p>Default value is true
-     */
-    public Boolean autoConvertRelativeDates;
-
-    /**
-     * User-visible name for this DataSource. <P> For example, for the supplyItem DataSource, "Supply
-     * Item". <P> If is unset, <code>getAutoTitle()</code> method will be used with
-     * <code>dataSource.ID</code>. value in order to derive a default value for the title. <P> For
-     * example "employee" ID will be derived to "Employee", "team_member" ID will be  derived to "Team
-     * Member".
-     *
-     * <p>Default value is dataSource.ID
-     */
-    public String title;
-
-    /**
-     * Requires that the currently authenticated user match the contents of this field, for
-     * client-initiated requests (i.e., where <code>DSRequest.isClientRequest()</code> returns true on
-     * the server). <p>When a new row is added by a client-initiated {@link
-     * com.smartgwt.client.data.DSRequest}, the ownerIdField will be automatically populated with the
-     * currently authenticated user (clobbering any value supplied by the client). Client-initiated
-     * attempts to update the ownerIdField will also be prevented. <p>If you wish to set the
-     * ownerIdField to a different value via an "add" or "update" operation, you can do so in
-     * server-side DMI code (possibly consulting <code>DSRequest.getClientSuppliedValues()</code> to
-     * get the value that was clobbered). <p>For client-initiated "fetch", "update" or "remove"
-     * operations, the server will modify client-supplied criteria so that only rows whose
-     * ownerIdField matches the currently authenticated user can be read, updated or deleted.  <p>The
-     * ownerIdField setting can be overridden at the {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#ownerIdField OperationBinding.ownerIdField}
-     * level. <p>If ownerIdField is specified, {@link
-     * com.smartgwt.client.docs.serverds.DataSource#requiresAuthentication requiresAuthentication}
-     * will default to <code>true</code>. If <code>requiresAuthentication</code> is explicitly set to
-     * <code>false</code>, then unauthenticated users will be able to see all records. To avoid this,
-     * you can use {@link com.smartgwt.client.docs.serverds.DataSource#guestUserId guestUserId} to
-     * specify a default user to apply when no one has authenticated.
+     * Requires that the currently authenticated user match the contents of
+     *  this field, for client-initiated requests (i.e., where
+     *  <code>DSRequest.isClientRequest()</code> returns true on the server).
+     * 
+     * <p>When a new row is added by a client-initiated {@link com.smartgwt.client.data.DSRequest},
+     * the
+     *  ownerIdField will be automatically populated with the currently
+     *  authenticated user (clobbering any value supplied by the client).
+     *  Client-initiated attempts to update the ownerIdField will also be
+     *  prevented.
+     * 
+     *  <p>If you wish to set the ownerIdField to a different value via an "add"
+     *  or "update" operation, you can do so in server-side DMI code (possibly
+     *  consulting <code>DSRequest.getClientSuppliedValues()</code> to get the
+     *  value that was clobbered).
+     * 
+     *  <p>For client-initiated "fetch", "update" or "remove" operations, the
+     *  server will modify client-supplied criteria so that only rows whose
+     *  ownerIdField matches the currently authenticated user can be read,
+     *  updated or deleted.  For built-in DataSource types (SQL, Hibernate and 
+     *  JPA), the additional criteria required to match the <code>ownerIdField</code> 
+     *  field will ignore the prevailing
+     * {@link com.smartgwt.client.data.DSRequest#getTextMatchStyle textMatchStyle} and always use
+     * exact 
+     *  equality.  If you have a custom or generic DataSource implementation, 
+     *  you will want to do the same thing, to avoid false positives on 
+     *  partial matches (eg, a user with name "a" gets records where the owner
+     *  is any user with an "a" in the name).  You can determine when this is 
+     *  necessary by looking for a {@link com.smartgwt.client.data.DSRequest} attribute called 
+     *  "restrictedOwnerIdField".  For example, code similar to the following:<pre>
+     *  String restrictedField = (String)dsRequest.getAttribute("restrictedOwnerIdField");
+     *  if (field.getName() != null && field.getName().equals(restrictedField)) {
+     *   // Use exact matching for this field
+     *  } else {
+     *   OK to use the textMatchStyle
+     *  }
+     *  </pre>
+     *  Also note, for server-initiated requests, this  automatic criteria-narrowing is not 
+     *  applied; if your application requires server-initiated "fetch", "update" and "remove" 
+     *  requests to be limited to the currently-authenticated user, your code must add the 
+     *  necessary criteria to the request.
+     * 
+     *  <p>The ownerIdField setting can be overridden at the
+     * {@link com.smartgwt.client.docs.serverds.OperationBinding#ownerIdField
+     * OperationBinding.ownerIdField} level.
+     * 
+     *  <p>If ownerIdField is specified,
+     * {@link com.smartgwt.client.docs.serverds.DataSource#requiresAuthentication
+     * requiresAuthentication} will
+     *  default to <code>true</code>. If <code>requiresAuthentication</code> is
+     *  explicitly set to <code>false</code>, then unauthenticated users will be
+     *  able to see all records. To avoid this, you can use
+     * {@link com.smartgwt.client.docs.serverds.DataSource#guestUserId guestUserId} to specify a
+     * default user to
+     *  apply when no one has authenticated.
      *
      * <p>Default value is null
      * @see com.smartgwt.client.docs.serverds.OperationBinding#ownerIdField
@@ -2269,63 +2546,6 @@ public class DataSource {
     public String childrenField;
 
     /**
-     * Namespaces definitions to add to the root element of outbound XML messages sent to a web
-     *  service, as a mapping from namespace prefix to namespace URI.
-     *  <P>
-     *  The default value is:
-     *  <pre>
-     *    globalNamespaces : {
-     *       xsi: "http://www.w3.org/2001/XMLSchema-instance",
-     *       xsd: "http://www.w3.org/2001/XMLSchema"
-     *    },
-     *  </pre>
-     *  This default value allows the use of the xsi:type and xsi:nil attributes without further
-     *  declarations.
-     *  <P>
-     *  Note that some web services will only accept specific revisions of the XML Schema URI.
-     *  If xsi-namespaced attributes seem to be ignored by an older webservice, try the URI
-     *  "http://www.w3.org/1999/XMLSchema-instance" instead.
-     *
-     * <p>Default value is ...
-     */
-    public Map globalNamespaces;
-
-    /**
-     * Analogous to {@link com.smartgwt.client.docs.serverds.DataSource#dropExtraFields
-     * dropExtraFields}, for data sent to the server.  Setting this attribute to false ensures that
-     * for any records in the data object, only fields that correspond to declared dataSource fields
-     * will be present on the dsRequest data object passed to {@link
-     * com.smartgwt.client.data.DataSource#transformRequest transformRequest()} and ultimately sent to
-     * the server.
-     *
-     * <p>Default value is true
-     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
-     */
-    public Boolean sendExtraFields;
-
-    /**
-     * Criteria that are implicitly applied to all fetches made through this DataSource.  These
-     * criteria are never shown to or edited by the user and are cumulative with any other  criteria
-     * provided on the DSRequest. <P> For example, a DataSource might *always* implicitly limit its
-     * fetch results to records  owned by the current user's department.  Components and ResultSets
-     * requesting data  from the DataSource can then apply further implicitCriteria of their own,
-     * separately  from their regular, user-editable criteria. <P> For instance, a grid bound to this
-     * dataSource might be further limited to  implicitly show only the subset of records created by
-     * the current user.  See  {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getImplicitCriteria
-     * DataBoundComponent.implicitCriteria} and {@link
-     * com.smartgwt.client.data.ResultSet#getImplicitCriteria ResultSet.implicitCriteria} for  more on
-     * these localized options. <P> Note that, while <code>implicitCriteria</code> can be declared in
-     * a server DataSource  file using {@link com.smartgwt.client.docs.ComponentXML Component XML}, it
-     * is an entirely client-side  feature, added by client-side components.  So it does not affect
-     * server-side requests,  and will not be added to client-side requests that don't come from a
-     * Smart GWT UI  (eg RestHandler).
-     *
-     * <p>Default value is null
-     */
-    public Criteria implicitCriteria;
-
-    /**
      * ID of another DataSource this DataSource inherits its {@link
      * com.smartgwt.client.docs.serverds.DataSource#fields fields} from. <P> Local fields (fields
      * defined in this DataSource) are added to inherited fields  to form the full set of fields. 
@@ -2361,14 +2581,6 @@ public class DataSource {
     public String inheritsFrom;
 
     /**
-     * User-visible plural name for this DataSource. <P> For example, for the supplyItem DataSource,
-     * "Supply Items". <P> Defaults to <code>dataSource.title</code> + "s".
-     *
-     * <p>Default value is dataSource.ID
-     */
-    public String pluralTitle;
-
-    /**
      * For audit DataSources, this required property specifies the ID of the {@link
      * com.smartgwt.client.docs.serverds.DataSource#audit audited} DataSource.  Automatically
      * populated for {@link com.smartgwt.client.docs.serverds.DataSource#generateAuditDS
@@ -2377,17 +2589,6 @@ public class DataSource {
      * <p>Default value is varies
      */
     public String auditedDataSourceID;
-
-    /**
-     * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource Smart GWT SQL engine}
-     * for persistence, what database table name to use.  The default is to use the DataSource ID as
-     * the table name.
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.serverds.DataSource#quoteTableName
-     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
-     */
-    public String tableName;
 
     /**
      * If {@link com.smartgwt.client.docs.serverds.DataSource#noNullUpdates noNullUpdates} is set, the
@@ -2400,62 +2601,6 @@ public class DataSource {
      * @see com.smartgwt.client.docs.serverds.DataSourceField#nullReplacementValue
      */
     public boolean nullBooleanValue;
-
-    /**
-     * See {@link com.smartgwt.client.docs.serverds.OperationBinding#recordXPath
-     * OperationBinding.recordXPath}.  <code>recordXPath</code> can be specified directly on the
-     * DataSource for a simple read-only DataSource only capable of "fetch" operations.
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
-     */
-    public XPathExpression recordXPath;
-
-    /**
-     * This property is only applicable to {@link
-     * com.smartgwt.client.docs.serverds.DataSource#serverType SQL} DataSources, and  only for {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding operations} that express a  {@link
-     * com.smartgwt.client.data.OperationBinding#getCustomSQL customSQL} clause.  In these
-     * circumstances, we  generally switch off paging because we are unable to generate a "row count"
-     * query that tells the framework the size of the complete, unpaged resultset. <p> The
-     * <code>useSubselectForRowCount</code> flag causes the framework to derive a rowcount query by
-     * simply wrapping the entire customSQL clause in a subselect, like so:<code><br>
-     * &nbsp;&nbsp;&nbsp;&nbsp;SELECT COUNT(*) FROM ({customSQL clause here})</code> <p> However, this
-     * is not guaranteed to give good results.  Because the customSQL clause can contain anything that
-     * you can write in SQL, running it inside a subselect in order to  count the rows might not work,
-     * might have unintended side-effects (if, for example, it  is a stored procedure call that
-     * performs updates as part of its function), or it might  just be a bad idea - for example, if
-     * the customSQL query is slow-running, you'll make  it twice as slow with this flag, simply
-     * because you'll be running it twice.  We  recommend using this flag with care. <p> NOTE: This
-     * setting can be overridden per-operation - see  {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#useSubselectForRowCount
-     * OperationBinding.useSubselectForRowCount}.  You can also set a global default for this setting,
-     * so you don't have to specify it in every dataSource - define 
-     * <code>useSubselectForRowCount</code> as true in your  {@link
-     * com.smartgwt.client.docs.Server_properties server.properties} file.
-     *
-     * <p>Default value is null
-     */
-    public Boolean useSubselectForRowCount;
-
-    /**
-     * The native field name used by this DataSource on the server to represent the
-     * <code>fileContents</code> for {@link com.smartgwt.client.docs.FileSource FileSource
-     * Operations}. <p>If the fileContentsField is not configured, then a field named "fileContents"
-     * or "contents" will be used, if it exists. <!-- If not found, the first field with a "binary"
-     * type will be used. TODO: Binary field support not working yet. --> If not found, the longest
-     * text field which is not the {@link com.smartgwt.client.docs.serverds.DataSource#fileNameField
-     * fileNameField}, {@link com.smartgwt.client.docs.serverds.DataSource#fileTypeField
-     * fileTypeField} or {@link com.smartgwt.client.docs.serverds.DataSource#fileFormatField
-     * fileFormatField} will be used. <p>Note that the only method which will actually return the
-     * fileContents is {@link com.smartgwt.client.data.DataSource#getFile getFile()} -- the other
-     * {@link com.smartgwt.client.docs.FileSource FileSource} methods omit the fileContents for the
-     * sake of efficiency.
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.FileSource FileSource overview and related methods
-     */
-    public String fileContentsField;
 
     /**
      * If {@link com.smartgwt.client.docs.serverds.DataSource#noNullUpdates noNullUpdates} is set, the
@@ -2473,16 +2618,6 @@ public class DataSource {
     public Date nullDateValue;
 
     /**
-     * For a DataSource stored in .xml format on the Smart GWT server, indicates what server-side
-     * connector to use to execute requests, that is, what happens if you call dsRequest.execute() in
-     * server code.
-     *
-     * <p>Default value is "generic"
-     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
-     */
-    public DSServerType serverType;
-
-    /**
      * Name of the field that has the most pertinent numeric, date, or enum value, for use when a
      * {@link com.smartgwt.client.widgets.DataBoundComponent} needs to show a short summary of a
      * record. <P> For example, for a DataSource of employees, good choices might be the "salary"
@@ -2494,22 +2629,5 @@ public class DataSource {
      * @see com.smartgwt.client.docs.DsSpecialFields DsSpecialFields overview and related methods
      */
     public String dataField;
-
-    /**
-     * If set, the DataSource will ensure that it never uses a cached HTTP response, even if the
-     * server marks the response as cacheable. <P> Note that this does not disable caching at higher
-     * levels in the framework, for example, the caching performed by {@link
-     * com.smartgwt.client.data.ResultSet}.
-     *
-     * <p>Default value is true
-     */
-    public Boolean preventHTTPCaching;
-
-    /**
-     * When true, indicates that this DataSource supports multi-level sorting.
-     *
-     * <p>Default value is true
-     */
-    public boolean canMultiSort;
 
 }

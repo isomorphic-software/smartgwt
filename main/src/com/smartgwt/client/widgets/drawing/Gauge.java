@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,11 +100,12 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * The Gauge widget class implements a graphical speedometer-style gauge for displaying a measurement by means of a needle
  * on a dial. The dial is divided into sectors, each having its own color and value. <P> <b>NOTE:</b> you must load the
- * Drawing {@link com.smartgwt.client.docs.LoadingOptionalModules Optional Module} before you can use Gauge.
+ * standard Drawing module before you can use Gauge.
  */
 @BeanFactory.FrameworkClass
 @BeanFactory.ScClassName("Gauge")
@@ -370,7 +376,7 @@ public class Gauge extends DrawPane {
      * The maximum dial value.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
-     * Sets the maximum dial value, rescaling all sectors and the dial value.
+     * Sets the maximum dial value, rescaling all sectors and the dial value. <P> See {@link com.smartgwt.client.widgets.drawing.Gauge#setValueRange setValueRange} to set both minValue and maxValue together.
      *
      * @param maxValue the new maximum dial value. Must be at least 1 greater than the minimum dial value. If <code>maxValue</code> is not at
      * least 1 greater than the minimum value, then it is set to <code>1 + minValue</code>. Default value is 100
@@ -395,7 +401,7 @@ public class Gauge extends DrawPane {
      * The maximum dial value.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
-     * Sets the maximum dial value, rescaling all sectors and the dial value.
+     * Sets the maximum dial value, rescaling all sectors and the dial value. <P> See {@link com.smartgwt.client.widgets.drawing.Gauge#setValueRange setValueRange} to set both minValue and maxValue together.
      *
      * @param maxValue the new maximum dial value. Must be at least 1 greater than the minimum dial value. If <code>maxValue</code> is not at
      * least 1 greater than the minimum value, then it is set to <code>1 + minValue</code>. Default value is 100
@@ -419,7 +425,7 @@ public class Gauge extends DrawPane {
      * The minimum dial value.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
-     * Sets the minimum dial value, rescaling all sectors and the dial value.
+     * Sets the minimum dial value, rescaling all sectors and the dial value. <P> See {@link com.smartgwt.client.widgets.drawing.Gauge#setValueRange setValueRange} to set both minValue and maxValue together.
      *
      * @param minValue the new minimum dial value. Must be at least 1 less than the maximum dial value. If <code>minValue</code> is not at
      * least 1 less than the maximum value, then it is set to <code>maxValue - 1</code>. Default value is 0
@@ -444,7 +450,7 @@ public class Gauge extends DrawPane {
      * The minimum dial value.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
-     * Sets the minimum dial value, rescaling all sectors and the dial value.
+     * Sets the minimum dial value, rescaling all sectors and the dial value. <P> See {@link com.smartgwt.client.widgets.drawing.Gauge#setValueRange setValueRange} to set both minValue and maxValue together.
      *
      * @param minValue the new minimum dial value. Must be at least 1 less than the maximum dial value. If <code>minValue</code> is not at
      * least 1 less than the maximum value, then it is set to <code>maxValue - 1</code>. Default value is 0
@@ -927,6 +933,20 @@ public class Gauge extends DrawPane {
         }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setSectorFillColor(sectorIndex, fillColor);
+    }-*/;
+
+
+	/**
+     * Sets the minimum and maximum dial values, rescaling all sectors and the dial value.
+     * @param minValue the new minimum dial value
+     * @param maxValue the new maximum dial value
+     */
+    public native void setValueRange(double minValue, double maxValue) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setValueRange", "double,double");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setValueRange(minValue, maxValue);
     }-*/;
 
 

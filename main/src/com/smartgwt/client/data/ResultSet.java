@@ -408,9 +408,10 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
      *
      * @param allRows allRows Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @return {@link com.smartgwt.client.data.ResultSet ResultSet} instance, for chaining setter calls
      */
-    public void setAllRows(Record[] allRows) throws IllegalStateException {
-        setAttribute("allRows", allRows, false);
+    public ResultSet setAllRows(Record[] allRows) throws IllegalStateException {
+        return (ResultSet)setAttribute("allRows", allRows, false);
     }
 
     /**
@@ -468,9 +469,10 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
      *
      * @param dataSource dataSource Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @return {@link com.smartgwt.client.data.ResultSet ResultSet} instance, for chaining setter calls
      */
-    public void setDataSource(DataSource dataSource) throws IllegalStateException {
-        setAttribute("dataSource", dataSource.getOrCreateJsObj(), false);
+    public ResultSet setDataSource(DataSource dataSource) throws IllegalStateException {
+        return (ResultSet)setAttribute("dataSource", dataSource.getOrCreateJsObj(), false);
     }
 
     /**
@@ -1240,6 +1242,19 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
     public native Record[] findAll(String propertyName, Date value) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var recordsJS = self.findAll(propertyName, @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(value));
+        return recordsJS == null || recordsJS === undefined ? null : @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(recordsJS);
+    }-*/;
+
+    /**
+     * Filters all objects according to the AdvancedCriteria passed and will not trigger a fetch.
+     *
+     * @param adCriteria AdvancedCriteria to use to filter results
+     *
+     * @return all matching Objects or null if none found
+     */
+    public native Record[] findAll(AdvancedCriteria adCriteria) /*-{
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var recordsJS = self.findAll(adCriteria.@com.smartgwt.client.core.DataClass::getJsObj()());
         return recordsJS == null || recordsJS === undefined ? null : @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(recordsJS);
     }-*/;
 

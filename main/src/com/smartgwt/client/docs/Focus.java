@@ -22,10 +22,10 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.FormItem#blurItem
  * @see com.smartgwt.client.widgets.form.fields.FormItem#focusAfterItem
  * @see com.smartgwt.client.widgets.Canvas#TAB_INDEX_FLOOR
- * @see com.smartgwt.client.widgets.Window#getCanFocusInHeaderButtons
  * @see com.smartgwt.client.widgets.Canvas#getCanFocus
  * @see com.smartgwt.client.widgets.Canvas#getTabIndex
  * @see com.smartgwt.client.widgets.Canvas#getAccessKey
+ * @see com.smartgwt.client.widgets.Window#getCanFocusInHeaderButtons
  * @see com.smartgwt.client.widgets.form.DynamicForm#getAutoFocus
  * @see com.smartgwt.client.widgets.form.DynamicForm#getAutoFocusOnError
  * @see com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus

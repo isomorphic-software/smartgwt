@@ -41,10 +41,24 @@ package com.smartgwt.client.docs;
  * DSRequest.oldValues}. <P> Note that although it is possible to load DataSource data without
  * actually declaring a {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey
  * field}, a primaryKey must be declared for editing and saving.  The values of primaryKey fields
- * is how Smart GWT identifies the changed record to the server. <P> <b>Validation</b> <P> Any
- * time saving is attempted, validation is automatically triggered.  Values entered by the user
- * will be checked against the {@link com.smartgwt.client.widgets.grid.ListGridField#getValidators
- * ListGridField.validators} and the {@link com.smartgwt.client.data.DataSourceField#getValidators
+ * is how Smart GWT identifies the changed record to the server. <P> <b>Saving edits in a sorted
+ * data set:</b> When a user updates or adds a record in a sorted  listGrid, the data set may be
+ * automatically {@link com.smartgwt.client.widgets.grid.ListGrid#unsort unsorted}. When this
+ * happens, the sort indicator will be removed from sort field headers, and all rows will stay in
+ * their current positions, including edited records where the sort field value has been
+ * changed.<br> Note that for a databound grid with a partial data set, a "true unsort" isn't
+ * possible  without droppping the cache, as both client and server need to agree on the positions
+ * of rows. In this case the grid is marked as unsorted, and all visible rows stay in place until
+ * the next fetch occurs, at which point the cache is dropped and a truly unsorted data set
+ * retrieved from the server. Typically the next fetch would be caused by the user scrolling to a
+ * new position in the grid. Once that fetch occurs the positions of rows within the grid will be
+ * updated to match the positions of rows in the unsorted server-side data set, meaning if the
+ * user scrolled back to their previous position they may see a different set of records. (See
+ * also {@link com.smartgwt.client.data.ResultSet#getUpdatePartialCache
+ * ResultSet.updatePartialCache}). <P> <b>Validation</b> <P> Any time saving is attempted,
+ * validation is automatically triggered.  Values entered by the user will be checked against the
+ * {@link com.smartgwt.client.widgets.grid.ListGridField#getValidators ListGridField.validators}
+ * and the {@link com.smartgwt.client.data.DataSourceField#getValidators
  * DataSourceField.validators}. Any invalid values abort an attempted save. <P> Similar to editing
  * and saving, validation can be done on row transitions or on cell transitions by setting {@link
  * com.smartgwt.client.widgets.grid.ListGrid#getValidateByCell validateByCell}, or can be disabled
@@ -130,25 +144,14 @@ package com.smartgwt.client.docs;
  * com.smartgwt.client.widgets.form.fields.FormItem#getIcons FormItem icon} that pops up a
  * separate Window containing a FileItem in a DynamicForm, so long as the form in the Window saves
  * the uploaded file immediately rather than trying to have the grid perform the save.
- * @see com.smartgwt.client.types.InlineEditEvent
  * @see com.smartgwt.client.types.RowEndEditAction
  * @see com.smartgwt.client.types.EnterKeyEditAction
  * @see com.smartgwt.client.types.EscapeKeyEditAction
  * @see com.smartgwt.client.types.ArrowKeyEditAction
  * @see com.smartgwt.client.types.EditCompletionEvent
  * @see com.smartgwt.client.types.ListGridEditEvent
- * @see com.smartgwt.client.widgets.cube.CubeGrid#setEditValue
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditValue
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditedRecord
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditedCell
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditValues
- * @see com.smartgwt.client.widgets.cube.CubeGrid#clearEditValue
- * @see com.smartgwt.client.widgets.cube.CubeGrid#saveEdits
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getAllEditCells
- * @see com.smartgwt.client.widgets.cube.CubeGrid#discardAllEdits
- * @see com.smartgwt.client.widgets.cube.CubeGrid#recordHasChanges
- * @see com.smartgwt.client.widgets.cube.CubeGrid#hasChanges
- * @see com.smartgwt.client.widgets.cube.CubeGrid#saveAllEdits
+ * @see com.smartgwt.client.types.InlineEditEvent
+ * @see com.smartgwt.client.types.SearchEditorMode
  * @see com.smartgwt.client.widgets.grid.ListGridField#defaultDynamicValue
  * @see com.smartgwt.client.widgets.grid.events.EditorEnterEvent
  * @see com.smartgwt.client.widgets.grid.events.EditorExitEvent
@@ -165,6 +168,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#canEditCell
  * @see com.smartgwt.client.widgets.grid.ListGrid#fieldIsEditable
  * @see com.smartgwt.client.widgets.grid.ListGrid#startEditing
+ * @see com.smartgwt.client.widgets.grid.ListGrid#editExistingRecord
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEditorValueMap
  * @see com.smartgwt.client.widgets.grid.ListGrid#setEditorValueMap
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEditorType
@@ -199,6 +203,18 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#formatEditorValue
  * @see com.smartgwt.client.widgets.grid.ListGrid#parseEditorValue
  * @see com.smartgwt.client.widgets.tree.TreeGrid#startEditingNew
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#setEditValue
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditValue
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditedRecord
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditedCell
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditValues
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#clearEditValue
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#saveEdits
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getAllEditCells
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#discardAllEdits
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#recordHasChanges
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#hasChanges
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#saveAllEdits
  * @see com.smartgwt.client.widgets.form.DynamicForm#getEditorType
  * @see com.smartgwt.client.widgets.form.DynamicForm#fieldIsEditable
  * @see com.smartgwt.client.widgets.calendar.Calendar#getEventSnapGap
@@ -245,6 +261,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getDiscardEditsSaveButtonTitle
  * @see com.smartgwt.client.widgets.grid.ListGrid#getRowEndEditAction
  * @see com.smartgwt.client.widgets.grid.ListGrid#getListEndEditAction
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getNewRecordRowMessage
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEnterKeyEditAction
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEscapeKeyEditAction
  * @see com.smartgwt.client.widgets.grid.ListGrid#getArrowKeyEditAction

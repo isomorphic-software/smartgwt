@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * Component for editing a single record.<br>  RecordEditors are implemented as a subclass of ListGrid, showing no header
@@ -288,6 +294,28 @@ public class RecordEditor extends ListGrid {
      */
     public String getBaseStyle()  {
         return getAttributeAsString("baseStyle");
+    }
+    
+
+    /**
+     * CanSaveSearches is explicitly disabled for RecordEditors by default.
+     *
+     * @param canSaveSearches New canSaveSearches value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.grid.RecordEditor RecordEditor} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public RecordEditor setCanSaveSearches(boolean canSaveSearches)  throws IllegalStateException {
+        return (RecordEditor)setAttribute("canSaveSearches", canSaveSearches, false);
+    }
+
+    /**
+     * CanSaveSearches is explicitly disabled for RecordEditors by default.
+     *
+     * @return Current canSaveSearches value. Default value is false
+     */
+    public boolean getCanSaveSearches()  {
+        Boolean result = getAttributeAsBoolean("canSaveSearches");
+        return result == null ? false : result;
     }
     
 
@@ -510,6 +538,11 @@ public class RecordEditor extends ListGrid {
             s.baseStyle = getAttributeAsString("baseStyle");
         } catch (Throwable t) {
             s.logicalStructureErrors += "RecordEditor.baseStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canSaveSearches = getAttributeAsString("canSaveSearches");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "RecordEditor.canSaveSearches:" + t.getMessage() + "\n";
         }
         try {
             s.filterImg = getAttributeAsString("filterImg");

@@ -22,9 +22,9 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 public interface HasDrawEndHandlers extends HasHandlers {
     /**
-     * Called after we finish drawing to the underlying HTML5 &lt;canvas&gt; element of a DrawPane, after the last {@link
-     * com.smartgwt.client.widgets.drawing.DrawItem} has been drawn.  Only called if the {@link
-     * com.smartgwt.client.types.DrawingType} is  {@link com.smartgwt.client.types.DrawingType#BITMAP}.
+     * Called when we finish drawing for this DrawItem to the {@link com.smartgwt.client.widgets.drawing.DrawItem#getDrawPane
+     * drawPane}'s underlying HTML5 &lt;canvas&gt; element.  Only called if the {@link com.smartgwt.client.types.DrawingType}
+     * is  {@link com.smartgwt.client.types.DrawingType#BITMAP}.
      *
      * @param handler the drawEnd handler
      * @return {@link HandlerRegistration} used to remove this handler

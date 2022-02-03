@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,9 +100,11 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
- * A widget that groups other controls for use in {@link com.smartgwt.client.widgets.toolbar.ToolStrip tool-strips}.
+ * A simple subclass of {@link com.smartgwt.client.widgets.toolbar.RibbonGroup}, which groups other controls for use in 
+ * {@link com.smartgwt.client.widgets.toolbar.RibbonBar ribbon-bars}.
  */
 @BeanFactory.FrameworkClass
 @BeanFactory.ScClassName("ToolStripGroup")
@@ -172,490 +179,7 @@ public class ToolStripGroup extends VLayout {
 
     // ********************* Properties / Attributes ***********************
 
-    /**
-     * By default, ToolStripGroups are assigned a minimum width that allows the entire title  to be visible.  To prevent this
-     * bahavior and have group-titles cut off when they're  wider than the buttons they contain, set this attribute to false
-     *
-     * @param autoSizeToTitle New autoSizeToTitle value. Default value is true
-     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroup} instance, for chaining setter calls
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public ToolStripGroup setAutoSizeToTitle(Boolean autoSizeToTitle)  throws IllegalStateException {
-        return (ToolStripGroup)setAttribute("autoSizeToTitle", autoSizeToTitle, false);
-    }
-
-    /**
-     * By default, ToolStripGroups are assigned a minimum width that allows the entire title  to be visible.  To prevent this
-     * bahavior and have group-titles cut off when they're  wider than the buttons they contain, set this attribute to false
-     *
-     * @return Current autoSizeToTitle value. Default value is true
-     */
-    public Boolean getAutoSizeToTitle()  {
-        Boolean result = getAttributeAsBoolean("autoSizeToTitle");
-        return result == null ? true : result;
-    }
-    
-
-    /**
-     * HLayout autoChild that manages multiple {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getColumnLayout
-     * VLayouts}  containing controls.
-     * <p>
-     * This component is an AutoChild named "body".  For an overview of how to use and
-     * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
-     *
-     * @return Current body value. Default value is null
-     * @throws IllegalStateException if this widget has not yet been rendered.
-     */
-    public HLayout getBody() throws IllegalStateException {
-        errorIfNotCreated("body");
-        return (HLayout)HLayout.getByJSObject(getAttributeAsJavaScriptObject("body"));
-    }
-    
-
-    /**
-     * Smart GWT class for the body.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param bodyConstructor New bodyConstructor value. Default value is "HLayout"
-     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroup} instance, for chaining setter calls
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public ToolStripGroup setBodyConstructor(String bodyConstructor)  throws IllegalStateException {
-        return (ToolStripGroup)setAttribute("bodyConstructor", bodyConstructor, false);
-    }
-
-    /**
-     * Smart GWT class for the body.
-     *
-     * @return Current bodyConstructor value. Default value is "HLayout"
-     */
-    public String getBodyConstructor()  {
-        return getAttributeAsString("bodyConstructor");
-    }
-    
-
-    /**
-     * <b>Note :</b> This API is non-functional (always returns null) and exists only to make
-     * you aware that this MultiAutoChild exists.  See {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}
-     * for details.
-     * <p>
-     * AutoChild VLayouts created automatically by groups.  Each manages a single column of child controls in the group.  Child
-     * controls that support <code>rowSpan</code> may  specify it in order to occupy more than one row in a single column.  See
-     *  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getNumRows numRows} for related information.
-     *
-     * @return null
-     */
-    public VLayout getColumnLayout()  {
-        return null;
-    }
-    
-
-    /**
-     * The array of controls to show in this group.
-     *
-     * <br><br>If this method is called after the component has been drawn/initialized:
-     * Clears the array of controls and then adds the passed array to this toolStripGroup,  creating new {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getColumnLayout columns} as necessary, according to each control's <code>rowSpan</code> attribute and the group's  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getNumRows numRows} attribute.
-     *
-     * @param controls an array of widgets to add to this group. Default value is null
-     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroup} instance, for chaining setter calls
-     */
-    public ToolStripGroup setControls(Canvas... controls) {
-        return (ToolStripGroup)setAttribute("controls", controls, true);
-    }
-
-    /**
-     * The array of controls to show in this group.
-     *
-     * @return Current controls value. Default value is null
-     */
-    public Canvas[] getControls()  {
-        return com.smartgwt.client.util.ConvertTo.arrayOfCanvas(getAttributeAsJavaScriptObject("controls"));
-    }
-    
-
-    /**
-     * AutoChild {@link com.smartgwt.client.widgets.Label Label} used to display the  {@link
-     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#getTitle title text} for this group. <P> Can be customized via the
-     * standard {@link com.smartgwt.client.types.AutoChild} pattern, and various  convenience APIs exist for configuring it
-     * after initial draw: see  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#setShowTitle setShowTitle},  {@link
-     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#setTitle setTitle},  {@link
-     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#setTitleAlign setTitleAlign}, {@link
-     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#setTitleHeight setTitleHeight}, {@link
-     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#setTitleOrientation setTitleOrientation} and {@link
-     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#setTitleStyle setTitleStyle}.
-     * <p>
-     * This component is an AutoChild named "label".  For an overview of how to use and
-     * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
-     *
-     * @return Current label value. Default value is null
-     * @throws IllegalStateException if this widget has not yet been rendered.
-     */
-    public Label getLabel() throws IllegalStateException {
-        errorIfNotCreated("label");
-        return (Label)Label.getByJSObject(getAttributeAsJavaScriptObject("label"));
-    }
-    
-
-    /**
-     * Smart GWT class for the {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel title label} AutoChild.
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param labelConstructor New labelConstructor value. Default value is "Label"
-     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroup} instance, for chaining setter calls
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public ToolStripGroup setLabelConstructor(String labelConstructor)  throws IllegalStateException {
-        return (ToolStripGroup)setAttribute("labelConstructor", labelConstructor, false);
-    }
-
-    /**
-     * Smart GWT class for the {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel title label} AutoChild.
-     *
-     * @return Current labelConstructor value. Default value is "Label"
-     */
-    public String getLabelConstructor()  {
-        return getAttributeAsString("labelConstructor");
-    }
-    
-
-    /**
-     * HLayout autoChild that houses the {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel label}  in which
-     * the {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getTitle title text} is displayed. <P> This can be
-     * customized via the standard {@link com.smartgwt.client.types.AutoChild} pattern.
-     * <p>
-     * This component is an AutoChild named "labelLayout".  For an overview of how to use and
-     * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
-     *
-     * @return Current labelLayout value. Default value is null
-     * @throws IllegalStateException if this widget has not yet been rendered.
-     */
-    public HLayout getLabelLayout() throws IllegalStateException {
-        errorIfNotCreated("labelLayout");
-        return (HLayout)HLayout.getByJSObject(getAttributeAsJavaScriptObject("labelLayout"));
-    }
-    
-
-    /**
-     * The number of rows of controls to display in each column.  Each control will take one row in a {@link
-     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#getColumnLayout columnLayout} by default, but those that  support the
-     * feature may specify <code>rowSpan</code> to override that. <P> Note that settings like this, which affect the group's
-     * layout, are not applied directly if changed at runtime - a call to {@link
-     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#reflowControls reflowControls}  will force the group to reflow.
-     *
-     * @param numRows New numRows value. Default value is 1
-     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroup} instance, for chaining setter calls
-     */
-    public ToolStripGroup setNumRows(int numRows) {
-        return (ToolStripGroup)setAttribute("numRows", numRows, true);
-    }
-
-    /**
-     * The number of rows of controls to display in each column.  Each control will take one row in a {@link
-     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#getColumnLayout columnLayout} by default, but those that  support the
-     * feature may specify <code>rowSpan</code> to override that. <P> Note that settings like this, which affect the group's
-     * layout, are not applied directly if changed at runtime - a call to {@link
-     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#reflowControls reflowControls}  will force the group to reflow.
-     *
-     * @return Current numRows value. Default value is 1
-     */
-    public int getNumRows()  {
-        return getAttributeAsInt("numRows");
-    }
-    
-
-    /**
-     * The height of rows in each column.
-     *
-     * @param rowHeight New rowHeight value. Default value is 26
-     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroup} instance, for chaining setter calls
-     */
-    public ToolStripGroup setRowHeight(int rowHeight) {
-        return (ToolStripGroup)setAttribute("rowHeight", rowHeight, true);
-    }
-
-    /**
-     * The height of rows in each column.
-     *
-     * @return Current rowHeight value. Default value is 26
-     */
-    public int getRowHeight()  {
-        return getAttributeAsInt("rowHeight");
-    }
-    
-
-    /**
-     * CSS class applied to this ToolStripGroup.
-     *
-     * @param styleName New styleName value. Default value is "toolStripGroup"
-     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
-     */
-    public void setStyleName(String styleName) {
-        setAttribute("styleName", styleName, true);
-    }
-
-    /**
-     * CSS class applied to this ToolStripGroup.
-     *
-     * @return Current styleName value. Default value is "toolStripGroup"
-     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
-     */
-    public String getStyleName()  {
-        return getAttributeAsString("styleName");
-    }
-    
-
-    /**
-     * The title text to display in this group's  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel title
-     * label}.
-     *
-     * <br><br>If this method is called after the component has been drawn/initialized:
-     * Sets the {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getTitle text} to display in this group's {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel title label} after initial draw.
-     *
-     * @param title The new title for this group. Default value is null
-     */
-    public void setTitle(String title) {
-        setAttribute("title", title, true);
-    }
-
-    /**
-     * The title text to display in this group's  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel title
-     * label}.
-     *
-     * @return Current title value. Default value is null
-     */
-    public String getTitle()  {
-        return getAttributeAsString("title");
-    }
-    
-
-    /**
-     * Controls the horizontal alignment of the group's  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getTitle
-     * title-text}, within its  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel label}.  Setting this
-     * attribute overrides the default specified by  {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getGroupTitleAlign
-     * groupTitleAlign} on the containing  {@link com.smartgwt.client.widgets.toolbar.ToolStrip ToolStrip}.
-     *
-     * <br><br>If this method is called after the component has been drawn/initialized:
-     * This method forcibly sets the horizontal alignment of the  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getTitle title-text}, within the  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel title label}, after initial draw.
-     *
-     * @param titleAlign the new alignment for the text, left or right. Default value is "center"
-     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroup} instance, for chaining setter calls
-     */
-    public ToolStripGroup setTitleAlign(Alignment titleAlign) {
-        return (ToolStripGroup)setAttribute("titleAlign", titleAlign == null ? null : titleAlign.getValue(), true);
-    }
-
-    /**
-     * Controls the horizontal alignment of the group's  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getTitle
-     * title-text}, within its  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel label}.  Setting this
-     * attribute overrides the default specified by  {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getGroupTitleAlign
-     * groupTitleAlign} on the containing  {@link com.smartgwt.client.widgets.toolbar.ToolStrip ToolStrip}.
-     *
-     * @return Current titleAlign value. Default value is "center"
-     */
-    public Alignment getTitleAlign()  {
-        return EnumUtil.getEnum(Alignment.values(), getAttribute("titleAlign"));
-    }
-    
-
-    /**
-     * Controls the height of the {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel title label} in this
-     * group.
-     *
-     * <br><br>If this method is called after the component has been drawn/initialized:
-     * This method forcibly sets the height of this group's  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel title label} after initial draw.
-     *
-     * @param titleHeight the new height for the {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel title label}. Default value is 18
-     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroup} instance, for chaining setter calls
-     */
-    public ToolStripGroup setTitleHeight(int titleHeight) {
-        return (ToolStripGroup)setAttribute("titleHeight", titleHeight, true);
-    }
-
-    /**
-     * Controls the height of the {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel title label} in this
-     * group.
-     *
-     * @return Current titleHeight value. Default value is 18
-     */
-    public int getTitleHeight()  {
-        return getAttributeAsInt("titleHeight");
-    }
-    
-
-    /**
-     * Controls the {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getTitleOrientation vertical orientation} of 
-     * this group's {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel title label}.  Setting this attribute
-     * overrides the default specified by  {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getGroupTitleAlign
-     * groupTitleOrientation} on the containing  {@link com.smartgwt.client.widgets.toolbar.ToolStrip ToolStrip}.
-     *
-     * <br><br>If this method is called after the component has been drawn/initialized:
-     * This method forcibly sets the  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getTitleOrientation vertical orientation} of this group's  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel title label} after initial draw.
-     *
-     * @param titleOrientation the new orientation for the title, either bottom or top. Default value is "top"
-     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroup} instance, for chaining setter calls
-     */
-    public ToolStripGroup setTitleOrientation(VerticalAlignment titleOrientation) {
-        return (ToolStripGroup)setAttribute("titleOrientation", titleOrientation == null ? null : titleOrientation.getValue(), true);
-    }
-
-    /**
-     * Controls the {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getTitleOrientation vertical orientation} of 
-     * this group's {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel title label}.  Setting this attribute
-     * overrides the default specified by  {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getGroupTitleAlign
-     * groupTitleOrientation} on the containing  {@link com.smartgwt.client.widgets.toolbar.ToolStrip ToolStrip}.
-     *
-     * @return Current titleOrientation value. Default value is "top"
-     */
-    public VerticalAlignment getTitleOrientation()  {
-        return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("titleOrientation"));
-    }
-    
-
-    /**
-     * AutoChild properties for fine customization of the  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel
-     * title label}.
-     * <p>
-     * This component is an AutoChild named "titleProperties".  For an overview of how to use and
-     * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
-     *
-     * @return Current titleProperties value. Default value is null
-     * @throws IllegalStateException if this widget has not yet been rendered.
-     * @deprecated set these properties directly via the {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel label
-     * autoChild}
-     */
-    public Label getTitleProperties() throws IllegalStateException {
-        errorIfNotCreated("titleProperties");
-        return (Label)Label.getByJSObject(getAttributeAsJavaScriptObject("titleProperties"));
-    }
-    
-
-    /**
-     * CSS class applied to the {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel title label} in this group.
-     *
-     * <br><br>If this method is called after the component has been drawn/initialized:
-     * This method forcibly sets the {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getTitleStyle CSS class name}   for this group's {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel title label} after initial draw.
-     *
-     * @param titleStyle the CSS class to apply to the                                  {@link
-     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel title label}. Default value is "toolStripGroupTitle"
-     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroup} instance, for chaining setter calls
-     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
-     */
-    public ToolStripGroup setTitleStyle(String titleStyle) {
-        return (ToolStripGroup)setAttribute("titleStyle", titleStyle, true);
-    }
-
-    /**
-     * CSS class applied to the {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel title label} in this group.
-     *
-     * @return Current titleStyle value. Default value is "toolStripGroupTitle"
-     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
-     */
-    public String getTitleStyle()  {
-        return getAttributeAsString("titleStyle");
-    }
-    
-
     // ********************* Methods ***********************
-	/**
-     * Adds a control to this toolStripGroup, creating a new  {@link
-     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#getColumnLayout column} as necessary, according to the control's 
-     * <code>rowSpan</code> value and the group's  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getNumRows
-     * numRows} value.
-     * @param control a widget to add to this group
-     */
-    public native void addControl(Canvas control) /*-{
-        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "addControl", "Canvas");
-        }
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.addControl(control == null ? null : control.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
-    }-*/;
-
-	/**
-     * Adds a control to this toolStripGroup, creating a new  {@link
-     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#getColumnLayout column} as necessary, according to the control's 
-     * <code>rowSpan</code> value and the group's  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getNumRows
-     * numRows} value.
-     * @param control a widget to add to this group
-     * @param index optional insertion index for this control
-     */
-    public native void addControl(Canvas control, Integer index) /*-{
-        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "addControl", "Canvas,Integer");
-        }
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.addControl(control == null ? null : control.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), index == null ? null : index.@java.lang.Integer::intValue()());
-    }-*/;
-	
-	/**
-     * Adds an array of controls to this group, creating new  {@link
-     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#getColumnLayout columns} as necessary, according to each control's 
-     * <code>rowSpan</code> value and the group's  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getNumRows
-     * numRows} value.
-     * @param controls an array of widgets to add to this group
-     */
-    public native void addControls(Canvas... controls) /*-{
-        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "addControls", "Canvas...");
-        }
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.addControls(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(controls));
-    }-*/;
-
-	/**
-     * Return the {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getColumnLayout column widget} that contains the
-     * passed  control.
-     * @param control the control to find in this group
-     *
-     * @return the column widget containing the passed control
-     */
-    public native Layout getControlColumn(Canvas control) /*-{
-        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getControlColumn", "Canvas");
-        }
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var ret = self.getControlColumn(control == null ? null : control.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
-        return @com.smartgwt.client.widgets.Canvas::getByJSObject(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-    }-*/;
-
-	/**
-     * Forces this group to reflow following changes to attributes that affect layout, like  {@link
-     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#getNumRows numRows}.
-     */
-    public native void reflowControls() /*-{
-        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "reflowControls", "");
-        }
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.reflowControls();
-    }-*/;
-
-	/**
-     * Removes a control from this toolStripGroup, destroying an existing  {@link
-     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#getColumnLayout column} if this is the last widget in that column.
-     * @param control a widget to remove from this group
-     */
-    public native void removeControl(Canvas control) /*-{
-        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "removeControl", "Canvas");
-        }
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.removeControl(control == null ? null : control.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
-    }-*/;
-
-	/**
-     * This method forcibly shows or hides this group's  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel
-     * title label} after initial draw.
-     * @param showTitle should the title be shown or hidden?
-     */
-    public native void setShowTitle(boolean showTitle) /*-{
-        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setShowTitle", "boolean");
-        }
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setShowTitle(showTitle);
-    }-*/;
-
 
     // ********************* Static Methods ***********************
 
@@ -696,66 +220,6 @@ public class ToolStripGroup extends VLayout {
      */
     public LogicalStructureObject setLogicalStructure(ToolStripGroupLogicalStructure s) {
         super.setLogicalStructure(s);
-        try {
-            s.autoSizeToTitle = getAttributeAsString("autoSizeToTitle");
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "ToolStripGroup.autoSizeToTitle:" + t.getMessage() + "\n";
-        }
-        try {
-            s.bodyConstructor = getAttributeAsString("bodyConstructor");
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "ToolStripGroup.bodyConstructor:" + t.getMessage() + "\n";
-        }
-        try {
-            s.controls = getControls();
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "ToolStripGroup.controlsArray:" + t.getMessage() + "\n";
-        }
-        try {
-            s.labelConstructor = getAttributeAsString("labelConstructor");
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "ToolStripGroup.labelConstructor:" + t.getMessage() + "\n";
-        }
-        try {
-            s.numRows = getAttributeAsString("numRows");
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "ToolStripGroup.numRows:" + t.getMessage() + "\n";
-        }
-        try {
-            s.rowHeight = getAttributeAsString("rowHeight");
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "ToolStripGroup.rowHeight:" + t.getMessage() + "\n";
-        }
-        try {
-            s.styleName = getAttributeAsString("styleName");
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "ToolStripGroup.styleName:" + t.getMessage() + "\n";
-        }
-        try {
-            s.title = getAttributeAsString("title");
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "ToolStripGroup.title:" + t.getMessage() + "\n";
-        }
-        try {
-            s.titleAlign = getAttributeAsString("titleAlign");
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "ToolStripGroup.titleAlign:" + t.getMessage() + "\n";
-        }
-        try {
-            s.titleHeight = getAttributeAsString("titleHeight");
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "ToolStripGroup.titleHeight:" + t.getMessage() + "\n";
-        }
-        try {
-            s.titleOrientation = getAttributeAsString("titleOrientation");
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "ToolStripGroup.titleOrientation:" + t.getMessage() + "\n";
-        }
-        try {
-            s.titleStyle = getAttributeAsString("titleStyle");
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "ToolStripGroup.titleStyle:" + t.getMessage() + "\n";
-        }
         return s;
     }
 

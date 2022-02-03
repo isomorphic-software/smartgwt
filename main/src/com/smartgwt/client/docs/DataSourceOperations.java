@@ -26,20 +26,21 @@ package com.smartgwt.client.docs;
  * the {@link com.smartgwt.client.docs.ClientDataIntegration client-side data integration} topic.
  * <P> <b>fetch</b> <ul> <li>Request data: filter criteria, as an Object <li>Response data:
  * matching records, as an Array of Objects </ul> <b>add</b> <ul> <li>Request data: new record, as
- * an Object <li>Response data: new record as stored, as an Object </ul> <b>update</b> <ul>
- * <li>Request data: primary keys of record to update, and new values (or just complete updated
- * record), as an Object <li>Response data: new record as stored, as an Object </ul> <b>remove</b>
- * <ul> <li>Request data: primary keys of record to delete, as an Object <li>Response data:
- * minimally the primary keys of deleted record (can be complete record), as an Object </ul>
- * <b>custom</b> <ul> <li>Request data: whatever the custom operation requires <li>Response data:
- * custom operations can return whatever they like, including nothing.   Custom operations are
- * like RPC calls in this respect - the exchanged data is unstructured,  so it is up to you to
- * make sure the client and server agree.  Note also that, because of this unstructured data
- * exchange, cache synchronization does not work with custom operations. </ul>  If you need to do
- * a <b>remove</b> with criteria rather than a primary key, the recommended approach is to do it
- * as a <b>custom</b> operation so the intent is clear.  You can also do it as a <b>remove</b>,
- * but just use {@link com.smartgwt.client.data.DSRequest#getOldValues DSRequest.oldValues} as the
- * source for whatever criteria values you need.  That covers everything except {@link
+ * an Object <li>Response data: new record as stored, as an Object or Array of one Object </ul>
+ * <b>update</b> <ul> <li>Request data: primary keys of record to update, and new values (or just
+ * complete updated record), as an Object <li>Response data: new record as stored, as an Object or
+ * Array of one Object </ul> <b>remove</b> <ul> <li>Request data: primary keys of record to
+ * delete, as an Object <li>Response data: minimally the primary keys of deleted record (can be
+ * complete record), as an Object or Array of one Object </ul> <b>custom</b> <ul> <li>Request
+ * data: whatever the custom operation requires <li>Response data: custom operations can return
+ * whatever they like, including nothing.   Custom operations are like RPC calls in this respect -
+ * the exchanged data is unstructured,  so it is up to you to make sure the client and server
+ * agree.  Note also that, because of this unstructured data exchange, cache synchronization does
+ * not work with custom operations. </ul>  If you need to do a <b>remove</b> with criteria rather
+ * than a primary key, the recommended approach is to do it as a <b>custom</b> operation so the
+ * intent is clear.  You can also do it as a <b>remove</b>, but just use {@link
+ * com.smartgwt.client.data.DSRequest#getOldValues DSRequest.oldValues} as the source for whatever
+ * criteria values you need.  That covers everything except {@link
  * com.smartgwt.client.data.AdvancedCriteria}.
  */
 public interface DataSourceOperations {

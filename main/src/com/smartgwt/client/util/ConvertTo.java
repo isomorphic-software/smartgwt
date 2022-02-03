@@ -1,7 +1,9 @@
 
 package com.smartgwt.client.util;
 
+import java.util.Map;
 import java.util.Date;
+import java.util.HashMap;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.widgets.BaseWidget;
@@ -64,6 +66,25 @@ public final class ConvertTo {
         return JSOHelper.convertToJavaObjectArray(array);
     }
 
+    public static Map[] arrayOfMap(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new Map[0];
+        }
+        if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+            Map[] ret = new Map[1];
+            ret[0] = nativeArray == null ? null : JSOHelper.convertToMap(nativeArray);
+            return ret;
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        Map[] objects = new Map[components.length];
+        for (int i = 0; i < components.length; i++) {
+            objects[i] = components[i] == null ? null : JSOHelper.convertToMap(components[i]);
+        }
+        return objects;
+    }
+
+
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.drawing.DrawShape} objects.
@@ -89,30 +110,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.NavigationMode} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.NavigationMode[]
-	 */
-    public static com.smartgwt.client.types.NavigationMode[] arrayOfNavigationMode(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.NavigationMode[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.NavigationMode[] objects = new com.smartgwt.client.types.NavigationMode[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.NavigationMode obj = EnumUtil.getEnum(com.smartgwt.client.types.NavigationMode.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.Selected} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.Selected[]
@@ -129,29 +126,6 @@ public final class ConvertTo {
 
             String value = values[i];
             com.smartgwt.client.types.Selected obj = EnumUtil.getEnum(com.smartgwt.client.types.Selected.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.calendar.ZoneCanvas} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.calendar.ZoneCanvas[]
-	 */
-    public static com.smartgwt.client.widgets.calendar.ZoneCanvas[] arrayOfZoneCanvas(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.calendar.ZoneCanvas[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.calendar.ZoneCanvas[] objects = new com.smartgwt.client.widgets.calendar.ZoneCanvas[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.calendar.ZoneCanvas obj = (com.smartgwt.client.widgets.calendar.ZoneCanvas) com.smartgwt.client.widgets.calendar.ZoneCanvas.getByJSObject(components[i]);
 
             objects[i] = obj;
         }
@@ -213,91 +187,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.tools.SectionStackEditProxy} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.tools.SectionStackEditProxy[]
-	 */
-    public static com.smartgwt.client.tools.SectionStackEditProxy[] arrayOfSectionStackEditProxy(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.tools.SectionStackEditProxy[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.tools.SectionStackEditProxy[] objects = new com.smartgwt.client.tools.SectionStackEditProxy[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.tools.SectionStackEditProxy obj = (com.smartgwt.client.tools.SectionStackEditProxy) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.tools.SectionStackEditProxy(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.drawing.SimpleGradient} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.drawing.SimpleGradient[]
-	 */
-    public static com.smartgwt.client.widgets.drawing.SimpleGradient[] arrayOfSimpleGradient(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.drawing.SimpleGradient[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.drawing.SimpleGradient[] ret = new com.smartgwt.client.widgets.drawing.SimpleGradient[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.drawing.SimpleGradient(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.drawing.SimpleGradient[] objects = new com.smartgwt.client.widgets.drawing.SimpleGradient[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.drawing.SimpleGradient obj = (com.smartgwt.client.widgets.drawing.SimpleGradient) ((DataClass) RefDataClass.getRef(components[i]));
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.drawing.SimpleGradient(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.BlurbItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.BlurbItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.BlurbItem[] arrayOfBlurbItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.BlurbItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.BlurbItem[] objects = new com.smartgwt.client.widgets.form.fields.BlurbItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.BlurbItem obj = com.smartgwt.client.widgets.form.fields.BlurbItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.layout.HStack} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.layout.HStack[]
@@ -336,6 +225,32 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.widgets.calendar.Timeline obj = (com.smartgwt.client.widgets.calendar.Timeline) com.smartgwt.client.widgets.calendar.Timeline.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.SetTitleTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.SetTitleTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.SetTitleTask[] arrayOfSetTitleTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.SetTitleTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.SetTitleTask[] objects = new com.smartgwt.client.util.workflow.SetTitleTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.SetTitleTask obj = (com.smartgwt.client.util.workflow.SetTitleTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.SetTitleTask(components[i]));
+            }
 
             objects[i] = obj;
         }
@@ -457,25 +372,22 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.NativeCheckboxItem} objects.
+	 * {@link com.smartgwt.client.types.MockDSExportFormat} objects.
 	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.NativeCheckboxItem[]
+	 * @return com.smartgwt.client.types.MockDSExportFormat[]
 	 */
-    public static com.smartgwt.client.widgets.form.fields.NativeCheckboxItem[] arrayOfNativeCheckboxItem(JavaScriptObject nativeArray) {
+    public static com.smartgwt.client.types.MockDSExportFormat[] arrayOfMockDSExportFormat(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.NativeCheckboxItem[]{};
+            return new com.smartgwt.client.types.MockDSExportFormat[]{};
         }
 
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.NativeCheckboxItem[] objects = new com.smartgwt.client.widgets.form.fields.NativeCheckboxItem[components.length];
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.MockDSExportFormat[] objects = new com.smartgwt.client.types.MockDSExportFormat[values.length];
 
-        for (int i = 0; i < components.length; i++) {
+        for (int i = 0; i < values.length; i++) {
 
-            com.smartgwt.client.widgets.form.fields.NativeCheckboxItem obj = com.smartgwt.client.widgets.form.fields.NativeCheckboxItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
-            }
+            String value = values[i];
+            com.smartgwt.client.types.MockDSExportFormat obj = EnumUtil.getEnum(com.smartgwt.client.types.MockDSExportFormat.values(), value);
 
             objects[i] = obj;
         }
@@ -531,30 +443,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.PropertyIdentifier} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.PropertyIdentifier[]
-	 */
-    public static com.smartgwt.client.types.PropertyIdentifier[] arrayOfPropertyIdentifier(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.PropertyIdentifier[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.PropertyIdentifier[] objects = new com.smartgwt.client.types.PropertyIdentifier[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.PropertyIdentifier obj = EnumUtil.getEnum(com.smartgwt.client.types.PropertyIdentifier.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.ValidatorType} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.ValidatorType[]
@@ -595,30 +483,6 @@ public final class ConvertTo {
 
             String value = values[i];
             com.smartgwt.client.types.TextAreaWrap obj = EnumUtil.getEnum(com.smartgwt.client.types.TextAreaWrap.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.ControlName} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.ControlName[]
-	 */
-    public static com.smartgwt.client.types.ControlName[] arrayOfControlName(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.ControlName[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.ControlName[] objects = new com.smartgwt.client.types.ControlName[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.ControlName obj = EnumUtil.getEnum(com.smartgwt.client.types.ControlName.values(), value);
 
             objects[i] = obj;
         }
@@ -711,54 +575,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.ShowMessageType} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.ShowMessageType[]
-	 */
-    public static com.smartgwt.client.types.ShowMessageType[] arrayOfShowMessageType(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.ShowMessageType[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.ShowMessageType[] objects = new com.smartgwt.client.types.ShowMessageType[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.ShowMessageType obj = EnumUtil.getEnum(com.smartgwt.client.types.ShowMessageType.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.RowSpanSelectionMode} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.RowSpanSelectionMode[]
-	 */
-    public static com.smartgwt.client.types.RowSpanSelectionMode[] arrayOfRowSpanSelectionMode(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.RowSpanSelectionMode[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.RowSpanSelectionMode[] objects = new com.smartgwt.client.types.RowSpanSelectionMode[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.RowSpanSelectionMode obj = EnumUtil.getEnum(com.smartgwt.client.types.RowSpanSelectionMode.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.AutoSelectionModel} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.AutoSelectionModel[]
@@ -833,79 +649,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.DSUpdateTask} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.DSUpdateTask[]
-	 */
-    public static com.smartgwt.client.util.workflow.DSUpdateTask[] arrayOfDSUpdateTask(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.DSUpdateTask[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.DSUpdateTask[] objects = new com.smartgwt.client.util.workflow.DSUpdateTask[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.DSUpdateTask obj = (com.smartgwt.client.util.workflow.DSUpdateTask) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.DSUpdateTask(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.LinePattern} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.LinePattern[]
-	 */
-    public static com.smartgwt.client.types.LinePattern[] arrayOfLinePattern(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.LinePattern[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.LinePattern[] objects = new com.smartgwt.client.types.LinePattern[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.LinePattern obj = EnumUtil.getEnum(com.smartgwt.client.types.LinePattern.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.drawing.DrawKnob} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.drawing.DrawKnob[]
-	 */
-    public static com.smartgwt.client.widgets.drawing.DrawKnob[] arrayOfDrawKnob(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.drawing.DrawKnob[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.drawing.DrawKnob[] objects = new com.smartgwt.client.widgets.drawing.DrawKnob[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.drawing.DrawKnob obj = (com.smartgwt.client.widgets.drawing.DrawKnob) com.smartgwt.client.widgets.drawing.DrawKnob.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.DSInheritanceMode} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.DSInheritanceMode[]
@@ -922,29 +665,6 @@ public final class ConvertTo {
 
             String value = values[i];
             com.smartgwt.client.types.DSInheritanceMode obj = EnumUtil.getEnum(com.smartgwt.client.types.DSInheritanceMode.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.Label} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.Label[]
-	 */
-    public static com.smartgwt.client.widgets.Label[] arrayOfLabel(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.Label[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.Label[] objects = new com.smartgwt.client.widgets.Label[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.Label obj = (com.smartgwt.client.widgets.Label) com.smartgwt.client.widgets.Label.getByJSObject(components[i]);
 
             objects[i] = obj;
         }
@@ -1009,21 +729,24 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.menu.MenuButton} objects.
+	 * {@link com.smartgwt.client.util.workflow.GridTransferDataTask} objects.
 	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.menu.MenuButton[]
+	 * @return com.smartgwt.client.util.workflow.GridTransferDataTask[]
 	 */
-    public static com.smartgwt.client.widgets.menu.MenuButton[] arrayOfMenuButton(JavaScriptObject nativeArray) {
+    public static com.smartgwt.client.util.workflow.GridTransferDataTask[] arrayOfGridTransferDataTask(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.menu.MenuButton[]{};
+            return new com.smartgwt.client.util.workflow.GridTransferDataTask[]{};
         }
 
         JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.menu.MenuButton[] objects = new com.smartgwt.client.widgets.menu.MenuButton[components.length];
+        com.smartgwt.client.util.workflow.GridTransferDataTask[] objects = new com.smartgwt.client.util.workflow.GridTransferDataTask[components.length];
 
         for (int i = 0; i < components.length; i++) {
 
-            com.smartgwt.client.widgets.menu.MenuButton obj = (com.smartgwt.client.widgets.menu.MenuButton) com.smartgwt.client.widgets.menu.MenuButton.getByJSObject(components[i]);
+            com.smartgwt.client.util.workflow.GridTransferDataTask obj = (com.smartgwt.client.util.workflow.GridTransferDataTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.GridTransferDataTask(components[i]));
+            }
 
             objects[i] = obj;
         }
@@ -1164,30 +887,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.DSOperationType} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.DSOperationType[]
-	 */
-    public static com.smartgwt.client.types.DSOperationType[] arrayOfDSOperationType(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.DSOperationType[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.DSOperationType[] objects = new com.smartgwt.client.types.DSOperationType[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.DSOperationType obj = EnumUtil.getEnum(com.smartgwt.client.types.DSOperationType.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.form.fields.SectionItem} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.form.fields.SectionItem[]
@@ -1207,56 +906,6 @@ public final class ConvertTo {
             if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
                 obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
             }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.ResetItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.ResetItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.ResetItem[] arrayOfResetItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.ResetItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.ResetItem[] objects = new com.smartgwt.client.widgets.form.fields.ResetItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.ResetItem obj = com.smartgwt.client.widgets.form.fields.ResetItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.Window} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.Window[]
-	 */
-    public static com.smartgwt.client.widgets.Window[] arrayOfWindow(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.Window[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.Window[] objects = new com.smartgwt.client.widgets.Window[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.Window obj = (com.smartgwt.client.widgets.Window) com.smartgwt.client.widgets.Window.getByJSObject(components[i]);
 
             objects[i] = obj;
         }
@@ -1452,6 +1101,7466 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.drawing.Shadow} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.drawing.Shadow[]
+	 */
+    public static com.smartgwt.client.widgets.drawing.Shadow[] arrayOfShadow(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.drawing.Shadow[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.drawing.Shadow[] ret = new com.smartgwt.client.widgets.drawing.Shadow[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.drawing.Shadow(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.drawing.Shadow[] objects = new com.smartgwt.client.widgets.drawing.Shadow[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.drawing.Shadow obj = (com.smartgwt.client.widgets.drawing.Shadow) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.drawing.Shadow(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.StatefulCanvas} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.StatefulCanvas[]
+	 */
+    public static com.smartgwt.client.widgets.StatefulCanvas[] arrayOfStatefulCanvas(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.StatefulCanvas[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.StatefulCanvas[] objects = new com.smartgwt.client.widgets.StatefulCanvas[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.StatefulCanvas obj = (com.smartgwt.client.widgets.StatefulCanvas) com.smartgwt.client.widgets.StatefulCanvas.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.GridSelectRecordsTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.GridSelectRecordsTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.GridSelectRecordsTask[] arrayOfGridSelectRecordsTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.GridSelectRecordsTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.GridSelectRecordsTask[] objects = new com.smartgwt.client.util.workflow.GridSelectRecordsTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.GridSelectRecordsTask obj = (com.smartgwt.client.util.workflow.GridSelectRecordsTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.GridSelectRecordsTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.TableMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.TableMode[]
+	 */
+    public static com.smartgwt.client.types.TableMode[] arrayOfTableMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.TableMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.TableMode[] objects = new com.smartgwt.client.types.TableMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.TableMode obj = EnumUtil.getEnum(com.smartgwt.client.types.TableMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.plugins.BrowserPlugin} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.plugins.BrowserPlugin[]
+	 */
+    public static com.smartgwt.client.widgets.plugins.BrowserPlugin[] arrayOfBrowserPlugin(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.plugins.BrowserPlugin[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.plugins.BrowserPlugin[] objects = new com.smartgwt.client.widgets.plugins.BrowserPlugin[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.plugins.BrowserPlugin obj = (com.smartgwt.client.widgets.plugins.BrowserPlugin) com.smartgwt.client.widgets.plugins.BrowserPlugin.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.DragDataAction} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.DragDataAction[]
+	 */
+    public static com.smartgwt.client.types.DragDataAction[] arrayOfDragDataAction(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.DragDataAction[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.DragDataAction[] objects = new com.smartgwt.client.types.DragDataAction[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.DragDataAction obj = EnumUtil.getEnum(com.smartgwt.client.types.DragDataAction.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.FieldPickerWindow} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.FieldPickerWindow[]
+	 */
+    public static com.smartgwt.client.widgets.FieldPickerWindow[] arrayOfFieldPickerWindow(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.FieldPickerWindow[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.FieldPickerWindow[] objects = new com.smartgwt.client.widgets.FieldPickerWindow[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.FieldPickerWindow obj = (com.smartgwt.client.widgets.FieldPickerWindow) com.smartgwt.client.widgets.FieldPickerWindow.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.browser.window.MultiWindowSettings} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.browser.window.MultiWindowSettings[]
+	 */
+    public static com.smartgwt.client.browser.window.MultiWindowSettings[] arrayOfMultiWindowSettings(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.browser.window.MultiWindowSettings[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.browser.window.MultiWindowSettings[] ret = new com.smartgwt.client.browser.window.MultiWindowSettings[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.browser.window.MultiWindowSettings(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.browser.window.MultiWindowSettings[] objects = new com.smartgwt.client.browser.window.MultiWindowSettings[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.browser.window.MultiWindowSettings obj = (com.smartgwt.client.browser.window.MultiWindowSettings) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.browser.window.MultiWindowSettings(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.tools.FormItemEditProxy} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.tools.FormItemEditProxy[]
+	 */
+    public static com.smartgwt.client.tools.FormItemEditProxy[] arrayOfFormItemEditProxy(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.tools.FormItemEditProxy[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.tools.FormItemEditProxy[] objects = new com.smartgwt.client.tools.FormItemEditProxy[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.tools.FormItemEditProxy obj = (com.smartgwt.client.tools.FormItemEditProxy) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.tools.FormItemEditProxy(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.ClickMaskMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.ClickMaskMode[]
+	 */
+    public static com.smartgwt.client.types.ClickMaskMode[] arrayOfClickMaskMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.ClickMaskMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.ClickMaskMode[] objects = new com.smartgwt.client.types.ClickMaskMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.ClickMaskMode obj = EnumUtil.getEnum(com.smartgwt.client.types.ClickMaskMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.Overflow} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.Overflow[]
+	 */
+    public static com.smartgwt.client.types.Overflow[] arrayOfOverflow(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.Overflow[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.Overflow[] objects = new com.smartgwt.client.types.Overflow[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.Overflow obj = EnumUtil.getEnum(com.smartgwt.client.types.Overflow.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.rpc.RPCResponse} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.rpc.RPCResponse[]
+	 */
+    public static com.smartgwt.client.rpc.RPCResponse[] arrayOfRPCResponse(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.rpc.RPCResponse[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.rpc.RPCResponse[] ret = new com.smartgwt.client.rpc.RPCResponse[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.rpc.RPCResponse(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.rpc.RPCResponse[] objects = new com.smartgwt.client.rpc.RPCResponse[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.rpc.RPCResponse obj = (com.smartgwt.client.rpc.RPCResponse) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.rpc.RPCResponse(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.Button} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.Button[]
+	 */
+    public static com.smartgwt.client.widgets.Button[] arrayOfButton(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.Button[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.Button[] objects = new com.smartgwt.client.widgets.Button[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.Button obj = (com.smartgwt.client.widgets.Button) com.smartgwt.client.widgets.Button.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.TimeItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.TimeItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.TimeItem[] arrayOfTimeItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.TimeItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.TimeItem[] objects = new com.smartgwt.client.widgets.form.fields.TimeItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.TimeItem obj = com.smartgwt.client.widgets.form.fields.TimeItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.layout.ScreenLoader} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.layout.ScreenLoader[]
+	 */
+    public static com.smartgwt.client.widgets.layout.ScreenLoader[] arrayOfScreenLoader(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.layout.ScreenLoader[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.layout.ScreenLoader[] objects = new com.smartgwt.client.widgets.layout.ScreenLoader[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.layout.ScreenLoader obj = (com.smartgwt.client.widgets.layout.ScreenLoader) com.smartgwt.client.widgets.layout.ScreenLoader.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.AutoFitEvent} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.AutoFitEvent[]
+	 */
+    public static com.smartgwt.client.types.AutoFitEvent[] arrayOfAutoFitEvent(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.AutoFitEvent[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.AutoFitEvent[] objects = new com.smartgwt.client.types.AutoFitEvent[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.AutoFitEvent obj = EnumUtil.getEnum(com.smartgwt.client.types.AutoFitEvent.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.PickListItemIconPlacement} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.PickListItemIconPlacement[]
+	 */
+    public static com.smartgwt.client.types.PickListItemIconPlacement[] arrayOfPickListItemIconPlacement(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.PickListItemIconPlacement[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.PickListItemIconPlacement[] objects = new com.smartgwt.client.types.PickListItemIconPlacement[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.PickListItemIconPlacement obj = EnumUtil.getEnum(com.smartgwt.client.types.PickListItemIconPlacement.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.SelectionAppearance} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.SelectionAppearance[]
+	 */
+    public static com.smartgwt.client.types.SelectionAppearance[] arrayOfSelectionAppearance(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.SelectionAppearance[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.SelectionAppearance[] objects = new com.smartgwt.client.types.SelectionAppearance[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.SelectionAppearance obj = EnumUtil.getEnum(com.smartgwt.client.types.SelectionAppearance.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.layout.Portlet} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.layout.Portlet[]
+	 */
+    public static com.smartgwt.client.widgets.layout.Portlet[] arrayOfPortlet(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.layout.Portlet[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.layout.Portlet[] objects = new com.smartgwt.client.widgets.layout.Portlet[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.layout.Portlet obj = (com.smartgwt.client.widgets.layout.Portlet) com.smartgwt.client.widgets.layout.Portlet.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.ArrowKeyEditAction} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.ArrowKeyEditAction[]
+	 */
+    public static com.smartgwt.client.types.ArrowKeyEditAction[] arrayOfArrowKeyEditAction(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.ArrowKeyEditAction[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.ArrowKeyEditAction[] objects = new com.smartgwt.client.types.ArrowKeyEditAction[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.ArrowKeyEditAction obj = EnumUtil.getEnum(com.smartgwt.client.types.ArrowKeyEditAction.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.OperatorId} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.OperatorId[]
+	 */
+    public static com.smartgwt.client.types.OperatorId[] arrayOfOperatorId(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.OperatorId[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.OperatorId[] objects = new com.smartgwt.client.types.OperatorId[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.OperatorId obj = EnumUtil.getEnum(com.smartgwt.client.types.OperatorId.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.DataURLFormat} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.DataURLFormat[]
+	 */
+    public static com.smartgwt.client.types.DataURLFormat[] arrayOfDataURLFormat(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.DataURLFormat[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.DataURLFormat[] objects = new com.smartgwt.client.types.DataURLFormat[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.DataURLFormat obj = EnumUtil.getEnum(com.smartgwt.client.types.DataURLFormat.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.FormItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.FormItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.FormItem[] arrayOfFormItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.FormItem[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.form.fields.FormItem[] ret = new com.smartgwt.client.widgets.form.fields.FormItem[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.form.fields.FormItem(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.FormItem[] objects = new com.smartgwt.client.widgets.form.fields.FormItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.FormItem obj = FormItemFactory.getFormItem(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.tools.StyleGroup} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.tools.StyleGroup[]
+	 */
+    public static com.smartgwt.client.tools.StyleGroup[] arrayOfStyleGroup(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.tools.StyleGroup[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.tools.StyleGroup[] ret = new com.smartgwt.client.tools.StyleGroup[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.tools.StyleGroup(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.tools.StyleGroup[] objects = new com.smartgwt.client.tools.StyleGroup[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.tools.StyleGroup obj = (com.smartgwt.client.tools.StyleGroup) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.tools.StyleGroup(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.StackDirection} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.StackDirection[]
+	 */
+    public static com.smartgwt.client.types.StackDirection[] arrayOfStackDirection(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.StackDirection[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.StackDirection[] objects = new com.smartgwt.client.types.StackDirection[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.StackDirection obj = EnumUtil.getEnum(com.smartgwt.client.types.StackDirection.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.DateRangeDialog} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.DateRangeDialog[]
+	 */
+    public static com.smartgwt.client.widgets.DateRangeDialog[] arrayOfDateRangeDialog(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.DateRangeDialog[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.DateRangeDialog[] objects = new com.smartgwt.client.widgets.DateRangeDialog[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.DateRangeDialog obj = (com.smartgwt.client.widgets.DateRangeDialog) com.smartgwt.client.widgets.DateRangeDialog.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.GridRemoveSelectedDataTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.GridRemoveSelectedDataTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.GridRemoveSelectedDataTask[] arrayOfGridRemoveSelectedDataTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.GridRemoveSelectedDataTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.GridRemoveSelectedDataTask[] objects = new com.smartgwt.client.util.workflow.GridRemoveSelectedDataTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.GridRemoveSelectedDataTask obj = (com.smartgwt.client.util.workflow.GridRemoveSelectedDataTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.GridRemoveSelectedDataTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.PointShape} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.PointShape[]
+	 */
+    public static com.smartgwt.client.types.PointShape[] arrayOfPointShape(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.PointShape[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.PointShape[] objects = new com.smartgwt.client.types.PointShape[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.PointShape obj = EnumUtil.getEnum(com.smartgwt.client.types.PointShape.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.rpc.Project} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.rpc.Project[]
+	 */
+    public static com.smartgwt.client.rpc.Project[] arrayOfProject(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.rpc.Project[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.rpc.Project[] objects = new com.smartgwt.client.rpc.Project[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.rpc.Project obj = (com.smartgwt.client.rpc.Project) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.rpc.Project(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.ace.AceEditSession} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.ace.AceEditSession[]
+	 */
+    public static com.smartgwt.client.widgets.ace.AceEditSession[] arrayOfAceEditSession(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.ace.AceEditSession[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.ace.AceEditSession[] objects = new com.smartgwt.client.widgets.ace.AceEditSession[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.ace.AceEditSession obj = (com.smartgwt.client.widgets.ace.AceEditSession) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.ace.AceEditSession(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.DragTrackerMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.DragTrackerMode[]
+	 */
+    public static com.smartgwt.client.types.DragTrackerMode[] arrayOfDragTrackerMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.DragTrackerMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.DragTrackerMode[] objects = new com.smartgwt.client.types.DragTrackerMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.DragTrackerMode obj = EnumUtil.getEnum(com.smartgwt.client.types.DragTrackerMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.ImageStyle} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.ImageStyle[]
+	 */
+    public static com.smartgwt.client.types.ImageStyle[] arrayOfImageStyle(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.ImageStyle[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.ImageStyle[] objects = new com.smartgwt.client.types.ImageStyle[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.ImageStyle obj = EnumUtil.getEnum(com.smartgwt.client.types.ImageStyle.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.TitleAutoFitRotationMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.TitleAutoFitRotationMode[]
+	 */
+    public static com.smartgwt.client.types.TitleAutoFitRotationMode[] arrayOfTitleAutoFitRotationMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.TitleAutoFitRotationMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.TitleAutoFitRotationMode[] objects = new com.smartgwt.client.types.TitleAutoFitRotationMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.TitleAutoFitRotationMode obj = EnumUtil.getEnum(com.smartgwt.client.types.TitleAutoFitRotationMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.data.Record} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.data.Record[]
+	 */
+    public static com.smartgwt.client.data.Record[] arrayOfRecord(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.data.Record[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.data.Record[] ret = new com.smartgwt.client.data.Record[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.data.Record(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.data.Record[] objects = new com.smartgwt.client.data.Record[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.data.Record obj = com.smartgwt.client.data.Record.getOrCreateRef(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.TileLayoutPolicy} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.TileLayoutPolicy[]
+	 */
+    public static com.smartgwt.client.types.TileLayoutPolicy[] arrayOfTileLayoutPolicy(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.TileLayoutPolicy[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.TileLayoutPolicy[] objects = new com.smartgwt.client.types.TileLayoutPolicy[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.TileLayoutPolicy obj = EnumUtil.getEnum(com.smartgwt.client.types.TileLayoutPolicy.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.EscapingMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.EscapingMode[]
+	 */
+    public static com.smartgwt.client.types.EscapingMode[] arrayOfEscapingMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.EscapingMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.EscapingMode[] objects = new com.smartgwt.client.types.EscapingMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.EscapingMode obj = EnumUtil.getEnum(com.smartgwt.client.types.EscapingMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.JSONDateFormat} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.JSONDateFormat[]
+	 */
+    public static com.smartgwt.client.types.JSONDateFormat[] arrayOfJSONDateFormat(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.JSONDateFormat[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.JSONDateFormat[] objects = new com.smartgwt.client.types.JSONDateFormat[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.JSONDateFormat obj = EnumUtil.getEnum(com.smartgwt.client.types.JSONDateFormat.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.data.MockDataSource} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.data.MockDataSource[]
+	 */
+    public static com.smartgwt.client.data.MockDataSource[] arrayOfMockDataSource(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.data.MockDataSource[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.data.MockDataSource[] objects = new com.smartgwt.client.data.MockDataSource[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.data.MockDataSource obj = (com.smartgwt.client.data.MockDataSource) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.data.MockDataSource(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.UploadItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.UploadItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.UploadItem[] arrayOfUploadItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.UploadItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.UploadItem[] objects = new com.smartgwt.client.widgets.form.fields.UploadItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.UploadItem obj = com.smartgwt.client.widgets.form.fields.UploadItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.LinkDataFetchMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.LinkDataFetchMode[]
+	 */
+    public static com.smartgwt.client.types.LinkDataFetchMode[] arrayOfLinkDataFetchMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.LinkDataFetchMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.LinkDataFetchMode[] objects = new com.smartgwt.client.types.LinkDataFetchMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.LinkDataFetchMode obj = EnumUtil.getEnum(com.smartgwt.client.types.LinkDataFetchMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.Progressbar} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.Progressbar[]
+	 */
+    public static com.smartgwt.client.widgets.Progressbar[] arrayOfProgressbar(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.Progressbar[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.Progressbar[] objects = new com.smartgwt.client.widgets.Progressbar[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.Progressbar obj = (com.smartgwt.client.widgets.Progressbar) com.smartgwt.client.widgets.Progressbar.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.DragMaskType} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.DragMaskType[]
+	 */
+    public static com.smartgwt.client.types.DragMaskType[] arrayOfDragMaskType(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.DragMaskType[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.DragMaskType[] objects = new com.smartgwt.client.types.DragMaskType[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.DragMaskType obj = EnumUtil.getEnum(com.smartgwt.client.types.DragMaskType.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.ListGridEditEvent} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.ListGridEditEvent[]
+	 */
+    public static com.smartgwt.client.types.ListGridEditEvent[] arrayOfListGridEditEvent(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.ListGridEditEvent[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.ListGridEditEvent[] objects = new com.smartgwt.client.types.ListGridEditEvent[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.ListGridEditEvent obj = EnumUtil.getEnum(com.smartgwt.client.types.ListGridEditEvent.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.IButton} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.IButton[]
+	 */
+    public static com.smartgwt.client.widgets.IButton[] arrayOfIButton(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.IButton[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.IButton[] objects = new com.smartgwt.client.widgets.IButton[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.IButton obj = (com.smartgwt.client.widgets.IButton) com.smartgwt.client.widgets.IButton.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.toolbar.ToolStrip} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.toolbar.ToolStrip[]
+	 */
+    public static com.smartgwt.client.widgets.toolbar.ToolStrip[] arrayOfToolStrip(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.toolbar.ToolStrip[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.toolbar.ToolStrip[] objects = new com.smartgwt.client.widgets.toolbar.ToolStrip[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.toolbar.ToolStrip obj = (com.smartgwt.client.widgets.toolbar.ToolStrip) com.smartgwt.client.widgets.toolbar.ToolStrip.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.ColorPickerMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.ColorPickerMode[]
+	 */
+    public static com.smartgwt.client.types.ColorPickerMode[] arrayOfColorPickerMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.ColorPickerMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.ColorPickerMode[] objects = new com.smartgwt.client.types.ColorPickerMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.ColorPickerMode obj = EnumUtil.getEnum(com.smartgwt.client.types.ColorPickerMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.FilterClause} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.FilterClause[]
+	 */
+    public static com.smartgwt.client.widgets.form.FilterClause[] arrayOfFilterClause(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.FilterClause[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.FilterClause[] objects = new com.smartgwt.client.widgets.form.FilterClause[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.FilterClause obj = (com.smartgwt.client.widgets.form.FilterClause) com.smartgwt.client.widgets.form.FilterClause.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.DateRangeItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.DateRangeItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.DateRangeItem[] arrayOfDateRangeItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.DateRangeItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.DateRangeItem[] objects = new com.smartgwt.client.widgets.form.fields.DateRangeItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.DateRangeItem obj = com.smartgwt.client.widgets.form.fields.DateRangeItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.rpc.RPCRequest} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.rpc.RPCRequest[]
+	 */
+    public static com.smartgwt.client.rpc.RPCRequest[] arrayOfRPCRequest(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.rpc.RPCRequest[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.rpc.RPCRequest[] ret = new com.smartgwt.client.rpc.RPCRequest[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.rpc.RPCRequest(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.rpc.RPCRequest[] objects = new com.smartgwt.client.rpc.RPCRequest[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.rpc.RPCRequest obj = (com.smartgwt.client.rpc.RPCRequest) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.rpc.RPCRequest(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.tree.TreeGrid} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.tree.TreeGrid[]
+	 */
+    public static com.smartgwt.client.widgets.tree.TreeGrid[] arrayOfTreeGrid(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.tree.TreeGrid[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.tree.TreeGrid[] objects = new com.smartgwt.client.widgets.tree.TreeGrid[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.tree.TreeGrid obj = (com.smartgwt.client.widgets.tree.TreeGrid) com.smartgwt.client.widgets.tree.TreeGrid.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.MaxStackDismissMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.MaxStackDismissMode[]
+	 */
+    public static com.smartgwt.client.types.MaxStackDismissMode[] arrayOfMaxStackDismissMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.MaxStackDismissMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.MaxStackDismissMode[] objects = new com.smartgwt.client.types.MaxStackDismissMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.MaxStackDismissMode obj = EnumUtil.getEnum(com.smartgwt.client.types.MaxStackDismissMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.PageOrientation} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.PageOrientation[]
+	 */
+    public static com.smartgwt.client.types.PageOrientation[] arrayOfPageOrientation(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.PageOrientation[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.PageOrientation[] objects = new com.smartgwt.client.types.PageOrientation[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.PageOrientation obj = EnumUtil.getEnum(com.smartgwt.client.types.PageOrientation.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.tools.DetailViewerEditProxy} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.tools.DetailViewerEditProxy[]
+	 */
+    public static com.smartgwt.client.tools.DetailViewerEditProxy[] arrayOfDetailViewerEditProxy(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.tools.DetailViewerEditProxy[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.tools.DetailViewerEditProxy[] objects = new com.smartgwt.client.tools.DetailViewerEditProxy[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.tools.DetailViewerEditProxy obj = (com.smartgwt.client.tools.DetailViewerEditProxy) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.tools.DetailViewerEditProxy(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.HoverMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.HoverMode[]
+	 */
+    public static com.smartgwt.client.types.HoverMode[] arrayOfHoverMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.HoverMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.HoverMode[] objects = new com.smartgwt.client.types.HoverMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.HoverMode obj = EnumUtil.getEnum(com.smartgwt.client.types.HoverMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.PickerIconName} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.PickerIconName[]
+	 */
+    public static com.smartgwt.client.types.PickerIconName[] arrayOfPickerIconName(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.PickerIconName[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.PickerIconName[] objects = new com.smartgwt.client.types.PickerIconName[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.PickerIconName obj = EnumUtil.getEnum(com.smartgwt.client.types.PickerIconName.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.drawing.DrawShapeCommand} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.drawing.DrawShapeCommand[]
+	 */
+    public static com.smartgwt.client.widgets.drawing.DrawShapeCommand[] arrayOfDrawShapeCommand(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.drawing.DrawShapeCommand[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.drawing.DrawShapeCommand[] ret = new com.smartgwt.client.widgets.drawing.DrawShapeCommand[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.drawing.DrawShapeCommand(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.drawing.DrawShapeCommand[] objects = new com.smartgwt.client.widgets.drawing.DrawShapeCommand[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.drawing.DrawShapeCommand obj = (com.smartgwt.client.widgets.drawing.DrawShapeCommand) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.drawing.DrawShapeCommand(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.SelectItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.SelectItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.SelectItem[] arrayOfSelectItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.SelectItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.SelectItem[] objects = new com.smartgwt.client.widgets.form.fields.SelectItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.SelectItem obj = com.smartgwt.client.widgets.form.fields.SelectItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.tools.LabelEditProxy} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.tools.LabelEditProxy[]
+	 */
+    public static com.smartgwt.client.tools.LabelEditProxy[] arrayOfLabelEditProxy(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.tools.LabelEditProxy[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.tools.LabelEditProxy[] objects = new com.smartgwt.client.tools.LabelEditProxy[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.tools.LabelEditProxy obj = (com.smartgwt.client.tools.LabelEditProxy) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.tools.LabelEditProxy(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.FieldNamingStrategy} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.FieldNamingStrategy[]
+	 */
+    public static com.smartgwt.client.types.FieldNamingStrategy[] arrayOfFieldNamingStrategy(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.FieldNamingStrategy[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.FieldNamingStrategy[] objects = new com.smartgwt.client.types.FieldNamingStrategy[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.FieldNamingStrategy obj = EnumUtil.getEnum(com.smartgwt.client.types.FieldNamingStrategy.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.GetPropertiesTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.GetPropertiesTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.GetPropertiesTask[] arrayOfGetPropertiesTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.GetPropertiesTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.GetPropertiesTask[] objects = new com.smartgwt.client.util.workflow.GetPropertiesTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.GetPropertiesTask obj = (com.smartgwt.client.util.workflow.GetPropertiesTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.GetPropertiesTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.GridViewSelectedDataTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.GridViewSelectedDataTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.GridViewSelectedDataTask[] arrayOfGridViewSelectedDataTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.GridViewSelectedDataTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.GridViewSelectedDataTask[] objects = new com.smartgwt.client.util.workflow.GridViewSelectedDataTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.GridViewSelectedDataTask obj = (com.smartgwt.client.util.workflow.GridViewSelectedDataTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.GridViewSelectedDataTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.tour.TourConfirmStep} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.tour.TourConfirmStep[]
+	 */
+    public static com.smartgwt.client.util.tour.TourConfirmStep[] arrayOfTourConfirmStep(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.tour.TourConfirmStep[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.tour.TourConfirmStep[] objects = new com.smartgwt.client.util.tour.TourConfirmStep[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.tour.TourConfirmStep obj = (com.smartgwt.client.util.tour.TourConfirmStep) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.tour.TourConfirmStep(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.SliderItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.SliderItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.SliderItem[] arrayOfSliderItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.SliderItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.SliderItem[] objects = new com.smartgwt.client.widgets.form.fields.SliderItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.SliderItem obj = com.smartgwt.client.widgets.form.fields.SliderItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.Cursor} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.Cursor[]
+	 */
+    public static com.smartgwt.client.types.Cursor[] arrayOfCursor(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.Cursor[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.Cursor[] objects = new com.smartgwt.client.types.Cursor[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.Cursor obj = EnumUtil.getEnum(com.smartgwt.client.types.Cursor.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.SequenceMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.SequenceMode[]
+	 */
+    public static com.smartgwt.client.types.SequenceMode[] arrayOfSequenceMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.SequenceMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.SequenceMode[] objects = new com.smartgwt.client.types.SequenceMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.SequenceMode obj = EnumUtil.getEnum(com.smartgwt.client.types.SequenceMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.Process} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.Process[]
+	 */
+    public static com.smartgwt.client.util.workflow.Process[] arrayOfProcess(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.Process[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.Process[] objects = new com.smartgwt.client.util.workflow.Process[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.Process obj = (com.smartgwt.client.util.workflow.Process) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.Process(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.EnterKeyEditAction} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.EnterKeyEditAction[]
+	 */
+    public static com.smartgwt.client.types.EnterKeyEditAction[] arrayOfEnterKeyEditAction(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.EnterKeyEditAction[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.EnterKeyEditAction[] objects = new com.smartgwt.client.types.EnterKeyEditAction[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.EnterKeyEditAction obj = EnumUtil.getEnum(com.smartgwt.client.types.EnterKeyEditAction.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.FormItemElementType} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.FormItemElementType[]
+	 */
+    public static com.smartgwt.client.types.FormItemElementType[] arrayOfFormItemElementType(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.FormItemElementType[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.FormItemElementType[] objects = new com.smartgwt.client.types.FormItemElementType[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.FormItemElementType obj = EnumUtil.getEnum(com.smartgwt.client.types.FormItemElementType.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.ViewLoader} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.ViewLoader[]
+	 */
+    public static com.smartgwt.client.widgets.ViewLoader[] arrayOfViewLoader(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.ViewLoader[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.ViewLoader[] objects = new com.smartgwt.client.widgets.ViewLoader[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.ViewLoader obj = (com.smartgwt.client.widgets.ViewLoader) com.smartgwt.client.widgets.ViewLoader.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.Slider} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.Slider[]
+	 */
+    public static com.smartgwt.client.widgets.Slider[] arrayOfSlider(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.Slider[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.Slider[] objects = new com.smartgwt.client.widgets.Slider[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.Slider obj = (com.smartgwt.client.widgets.Slider) com.smartgwt.client.widgets.Slider.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.AnimationLayoutMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.AnimationLayoutMode[]
+	 */
+    public static com.smartgwt.client.types.AnimationLayoutMode[] arrayOfAnimationLayoutMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.AnimationLayoutMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.AnimationLayoutMode[] objects = new com.smartgwt.client.types.AnimationLayoutMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.AnimationLayoutMode obj = EnumUtil.getEnum(com.smartgwt.client.types.AnimationLayoutMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.ComboBoxItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.ComboBoxItem[] arrayOfComboBoxItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.ComboBoxItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.ComboBoxItem[] objects = new com.smartgwt.client.widgets.form.fields.ComboBoxItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.ComboBoxItem obj = com.smartgwt.client.widgets.form.fields.ComboBoxItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.SyntaxHiliter} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.SyntaxHiliter[]
+	 */
+    public static com.smartgwt.client.util.SyntaxHiliter[] arrayOfSyntaxHiliter(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.SyntaxHiliter[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.SyntaxHiliter[] objects = new com.smartgwt.client.util.SyntaxHiliter[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.SyntaxHiliter obj = (com.smartgwt.client.util.SyntaxHiliter) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.SyntaxHiliter(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.ListGridViewStatePart} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.ListGridViewStatePart[]
+	 */
+    public static com.smartgwt.client.types.ListGridViewStatePart[] arrayOfListGridViewStatePart(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.ListGridViewStatePart[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.ListGridViewStatePart[] objects = new com.smartgwt.client.types.ListGridViewStatePart[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.ListGridViewStatePart obj = EnumUtil.getEnum(com.smartgwt.client.types.ListGridViewStatePart.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.tools.EditNode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.tools.EditNode[]
+	 */
+    public static com.smartgwt.client.tools.EditNode[] arrayOfEditNode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.tools.EditNode[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.tools.EditNode[] ret = new com.smartgwt.client.tools.EditNode[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.tools.EditNode(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.tools.EditNode[] objects = new com.smartgwt.client.tools.EditNode[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.tools.EditNode obj = (com.smartgwt.client.tools.EditNode) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.tools.EditNode(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.rte.ListPropertiesDialog} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.rte.ListPropertiesDialog[]
+	 */
+    public static com.smartgwt.client.widgets.rte.ListPropertiesDialog[] arrayOfListPropertiesDialog(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.rte.ListPropertiesDialog[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.rte.ListPropertiesDialog[] objects = new com.smartgwt.client.widgets.rte.ListPropertiesDialog[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.rte.ListPropertiesDialog obj = (com.smartgwt.client.widgets.rte.ListPropertiesDialog) com.smartgwt.client.widgets.rte.ListPropertiesDialog.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.TreeFilterMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.TreeFilterMode[]
+	 */
+    public static com.smartgwt.client.types.TreeFilterMode[] arrayOfTreeFilterMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.TreeFilterMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.TreeFilterMode[] objects = new com.smartgwt.client.types.TreeFilterMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.TreeFilterMode obj = EnumUtil.getEnum(com.smartgwt.client.types.TreeFilterMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.SearchEditorMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.SearchEditorMode[]
+	 */
+    public static com.smartgwt.client.types.SearchEditorMode[] arrayOfSearchEditorMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.SearchEditorMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.SearchEditorMode[] objects = new com.smartgwt.client.types.SearchEditorMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.SearchEditorMode obj = EnumUtil.getEnum(com.smartgwt.client.types.SearchEditorMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.PickTreeItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.PickTreeItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.PickTreeItem[] arrayOfPickTreeItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.PickTreeItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.PickTreeItem[] objects = new com.smartgwt.client.widgets.form.fields.PickTreeItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.PickTreeItem obj = com.smartgwt.client.widgets.form.fields.PickTreeItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.ColorPickerItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.ColorPickerItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.ColorPickerItem[] arrayOfColorPickerItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.ColorPickerItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.ColorPickerItem[] objects = new com.smartgwt.client.widgets.form.fields.ColorPickerItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.ColorPickerItem obj = com.smartgwt.client.widgets.form.fields.ColorPickerItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.DateDisplayFormat} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.DateDisplayFormat[]
+	 */
+    public static com.smartgwt.client.types.DateDisplayFormat[] arrayOfDateDisplayFormat(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.DateDisplayFormat[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.DateDisplayFormat[] objects = new com.smartgwt.client.types.DateDisplayFormat[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.DateDisplayFormat obj = EnumUtil.getEnum(com.smartgwt.client.types.DateDisplayFormat.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.StretchImg} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.StretchImg[]
+	 */
+    public static com.smartgwt.client.widgets.StretchImg[] arrayOfStretchImg(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.StretchImg[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.StretchImg[] objects = new com.smartgwt.client.widgets.StretchImg[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.StretchImg obj = (com.smartgwt.client.widgets.StretchImg) com.smartgwt.client.widgets.StretchImg.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.data.TextSettings} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.data.TextSettings[]
+	 */
+    public static com.smartgwt.client.data.TextSettings[] arrayOfTextSettings(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.data.TextSettings[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.data.TextSettings[] objects = new com.smartgwt.client.data.TextSettings[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.data.TextSettings obj = (com.smartgwt.client.data.TextSettings) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.data.TextSettings(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.TourActionType} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.TourActionType[]
+	 */
+    public static com.smartgwt.client.types.TourActionType[] arrayOfTourActionType(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.TourActionType[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.TourActionType[] objects = new com.smartgwt.client.types.TourActionType[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.TourActionType obj = EnumUtil.getEnum(com.smartgwt.client.types.TourActionType.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.ShowComponentTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.ShowComponentTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.ShowComponentTask[] arrayOfShowComponentTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.ShowComponentTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.ShowComponentTask[] objects = new com.smartgwt.client.util.workflow.ShowComponentTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.ShowComponentTask obj = (com.smartgwt.client.util.workflow.ShowComponentTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.ShowComponentTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.AddScreenTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.AddScreenTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.AddScreenTask[] arrayOfAddScreenTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.AddScreenTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.AddScreenTask[] objects = new com.smartgwt.client.util.workflow.AddScreenTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.AddScreenTask obj = (com.smartgwt.client.util.workflow.AddScreenTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.AddScreenTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.RowEndEditAction} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.RowEndEditAction[]
+	 */
+    public static com.smartgwt.client.types.RowEndEditAction[] arrayOfRowEndEditAction(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.RowEndEditAction[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.RowEndEditAction[] objects = new com.smartgwt.client.types.RowEndEditAction[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.RowEndEditAction obj = EnumUtil.getEnum(com.smartgwt.client.types.RowEndEditAction.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.DrawShapeCommandType} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.DrawShapeCommandType[]
+	 */
+    public static com.smartgwt.client.types.DrawShapeCommandType[] arrayOfDrawShapeCommandType(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.DrawShapeCommandType[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.DrawShapeCommandType[] objects = new com.smartgwt.client.types.DrawShapeCommandType[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.DrawShapeCommandType obj = EnumUtil.getEnum(com.smartgwt.client.types.DrawShapeCommandType.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.ResizeDirection} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.ResizeDirection[]
+	 */
+    public static com.smartgwt.client.types.ResizeDirection[] arrayOfResizeDirection(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.ResizeDirection[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.ResizeDirection[] objects = new com.smartgwt.client.types.ResizeDirection[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.ResizeDirection obj = EnumUtil.getEnum(com.smartgwt.client.types.ResizeDirection.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.AnimationAcceleration} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.AnimationAcceleration[]
+	 */
+    public static com.smartgwt.client.types.AnimationAcceleration[] arrayOfAnimationAcceleration(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.AnimationAcceleration[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.AnimationAcceleration[] objects = new com.smartgwt.client.types.AnimationAcceleration[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.AnimationAcceleration obj = EnumUtil.getEnum(com.smartgwt.client.types.AnimationAcceleration.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.VisibilityMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.VisibilityMode[]
+	 */
+    public static com.smartgwt.client.types.VisibilityMode[] arrayOfVisibilityMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.VisibilityMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.VisibilityMode[] objects = new com.smartgwt.client.types.VisibilityMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.VisibilityMode obj = EnumUtil.getEnum(com.smartgwt.client.types.VisibilityMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.SetPropertiesTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.SetPropertiesTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.SetPropertiesTask[] arrayOfSetPropertiesTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.SetPropertiesTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.SetPropertiesTask[] objects = new com.smartgwt.client.util.workflow.SetPropertiesTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.SetPropertiesTask obj = (com.smartgwt.client.util.workflow.SetPropertiesTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.SetPropertiesTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.PresetDateRangeItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.PresetDateRangeItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.PresetDateRangeItem[] arrayOfPresetDateRangeItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.PresetDateRangeItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.PresetDateRangeItem[] objects = new com.smartgwt.client.widgets.form.PresetDateRangeItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.PresetDateRangeItem obj = (com.smartgwt.client.widgets.form.PresetDateRangeItem) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.form.PresetDateRangeItem(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.drawing.LinearGradient} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.drawing.LinearGradient[]
+	 */
+    public static com.smartgwt.client.widgets.drawing.LinearGradient[] arrayOfLinearGradient(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.drawing.LinearGradient[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.drawing.LinearGradient[] ret = new com.smartgwt.client.widgets.drawing.LinearGradient[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.drawing.LinearGradient(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.drawing.LinearGradient[] objects = new com.smartgwt.client.widgets.drawing.LinearGradient[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.drawing.LinearGradient obj = (com.smartgwt.client.widgets.drawing.LinearGradient) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.drawing.LinearGradient(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.cube.CellRecord} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.cube.CellRecord[]
+	 */
+    public static com.smartgwt.client.widgets.cube.CellRecord[] arrayOfCellRecord(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.cube.CellRecord[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.cube.CellRecord[] ret = new com.smartgwt.client.widgets.cube.CellRecord[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.cube.CellRecord(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.cube.CellRecord[] objects = new com.smartgwt.client.widgets.cube.CellRecord[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.cube.CellRecord obj = com.smartgwt.client.widgets.cube.CellRecord.getOrCreateRef(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.rte.ListPropertiesPane} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.rte.ListPropertiesPane[]
+	 */
+    public static com.smartgwt.client.widgets.rte.ListPropertiesPane[] arrayOfListPropertiesPane(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.rte.ListPropertiesPane[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.rte.ListPropertiesPane[] objects = new com.smartgwt.client.widgets.rte.ListPropertiesPane[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.rte.ListPropertiesPane obj = (com.smartgwt.client.widgets.rte.ListPropertiesPane) com.smartgwt.client.widgets.rte.ListPropertiesPane.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.DataContextBinding} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.DataContextBinding[]
+	 */
+    public static com.smartgwt.client.widgets.DataContextBinding[] arrayOfDataContextBinding(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.DataContextBinding[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.DataContextBinding[] ret = new com.smartgwt.client.widgets.DataContextBinding[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.DataContextBinding(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.DataContextBinding[] objects = new com.smartgwt.client.widgets.DataContextBinding[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.DataContextBinding obj = (com.smartgwt.client.widgets.DataContextBinding) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.DataContextBinding(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.ace.AceCompletionResult} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.ace.AceCompletionResult[]
+	 */
+    public static com.smartgwt.client.widgets.ace.AceCompletionResult[] arrayOfAceCompletionResult(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.ace.AceCompletionResult[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.ace.AceCompletionResult[] ret = new com.smartgwt.client.widgets.ace.AceCompletionResult[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.ace.AceCompletionResult(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.ace.AceCompletionResult[] objects = new com.smartgwt.client.widgets.ace.AceCompletionResult[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.ace.AceCompletionResult obj = (com.smartgwt.client.widgets.ace.AceCompletionResult) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.ace.AceCompletionResult(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.MultiUpdatePolicy} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.MultiUpdatePolicy[]
+	 */
+    public static com.smartgwt.client.types.MultiUpdatePolicy[] arrayOfMultiUpdatePolicy(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.MultiUpdatePolicy[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.MultiUpdatePolicy[] objects = new com.smartgwt.client.types.MultiUpdatePolicy[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.MultiUpdatePolicy obj = EnumUtil.getEnum(com.smartgwt.client.types.MultiUpdatePolicy.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.toolbar.ToolStripSpacer} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.toolbar.ToolStripSpacer[]
+	 */
+    public static com.smartgwt.client.widgets.toolbar.ToolStripSpacer[] arrayOfToolStripSpacer(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.toolbar.ToolStripSpacer[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.toolbar.ToolStripSpacer[] objects = new com.smartgwt.client.widgets.toolbar.ToolStripSpacer[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.toolbar.ToolStripSpacer obj = (com.smartgwt.client.widgets.toolbar.ToolStripSpacer) com.smartgwt.client.widgets.toolbar.ToolStripSpacer.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.layout.SectionStackSection} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.layout.SectionStackSection[]
+	 */
+    public static com.smartgwt.client.widgets.layout.SectionStackSection[] arrayOfSectionStackSection(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.layout.SectionStackSection[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.layout.SectionStackSection[] ret = new com.smartgwt.client.widgets.layout.SectionStackSection[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.layout.SectionStackSection(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.layout.SectionStackSection[] objects = new com.smartgwt.client.widgets.layout.SectionStackSection[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.layout.SectionStackSection obj = com.smartgwt.client.widgets.layout.SectionStackSection.getOrCreateRef(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.LineCap} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.LineCap[]
+	 */
+    public static com.smartgwt.client.types.LineCap[] arrayOfLineCap(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.LineCap[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.LineCap[] objects = new com.smartgwt.client.types.LineCap[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.LineCap obj = EnumUtil.getEnum(com.smartgwt.client.types.LineCap.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.SubmitItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.SubmitItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.SubmitItem[] arrayOfSubmitItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.SubmitItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.SubmitItem[] objects = new com.smartgwt.client.widgets.form.fields.SubmitItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.SubmitItem obj = com.smartgwt.client.widgets.form.fields.SubmitItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.plugins.ActiveXControl} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.plugins.ActiveXControl[]
+	 */
+    public static com.smartgwt.client.widgets.plugins.ActiveXControl[] arrayOfActiveXControl(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.plugins.ActiveXControl[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.plugins.ActiveXControl[] objects = new com.smartgwt.client.widgets.plugins.ActiveXControl[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.plugins.ActiveXControl obj = (com.smartgwt.client.widgets.plugins.ActiveXControl) com.smartgwt.client.widgets.plugins.ActiveXControl.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.DateChooser} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.DateChooser[]
+	 */
+    public static com.smartgwt.client.widgets.DateChooser[] arrayOfDateChooser(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.DateChooser[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.DateChooser[] objects = new com.smartgwt.client.widgets.DateChooser[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.DateChooser obj = (com.smartgwt.client.widgets.DateChooser) com.smartgwt.client.widgets.DateChooser.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.BatchUploader} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.BatchUploader[]
+	 */
+    public static com.smartgwt.client.widgets.BatchUploader[] arrayOfBatchUploader(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.BatchUploader[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.BatchUploader[] objects = new com.smartgwt.client.widgets.BatchUploader[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.BatchUploader obj = (com.smartgwt.client.widgets.BatchUploader) com.smartgwt.client.widgets.BatchUploader.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.tools.ImgEditProxy} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.tools.ImgEditProxy[]
+	 */
+    public static com.smartgwt.client.tools.ImgEditProxy[] arrayOfImgEditProxy(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.tools.ImgEditProxy[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.tools.ImgEditProxy[] objects = new com.smartgwt.client.tools.ImgEditProxy[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.tools.ImgEditProxy obj = (com.smartgwt.client.tools.ImgEditProxy) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.tools.ImgEditProxy(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.PercentBoxModel} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.PercentBoxModel[]
+	 */
+    public static com.smartgwt.client.types.PercentBoxModel[] arrayOfPercentBoxModel(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.PercentBoxModel[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.PercentBoxModel[] objects = new com.smartgwt.client.types.PercentBoxModel[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.PercentBoxModel obj = EnumUtil.getEnum(com.smartgwt.client.types.PercentBoxModel.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.Dialog} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.Dialog[]
+	 */
+    public static com.smartgwt.client.widgets.Dialog[] arrayOfDialog(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.Dialog[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.Dialog[] objects = new com.smartgwt.client.widgets.Dialog[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.Dialog obj = (com.smartgwt.client.widgets.Dialog) com.smartgwt.client.widgets.Dialog.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.browser.window.OpenFinWindow} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.browser.window.OpenFinWindow[]
+	 */
+    public static com.smartgwt.client.browser.window.OpenFinWindow[] arrayOfOpenFinWindow(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.browser.window.OpenFinWindow[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.browser.window.OpenFinWindow[] objects = new com.smartgwt.client.browser.window.OpenFinWindow[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.browser.window.OpenFinWindow obj = (com.smartgwt.client.browser.window.OpenFinWindow) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.browser.window.OpenFinWindow(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.data.WSDataSource} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.data.WSDataSource[]
+	 */
+    public static com.smartgwt.client.data.WSDataSource[] arrayOfWSDataSource(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.data.WSDataSource[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.data.WSDataSource[] objects = new com.smartgwt.client.data.WSDataSource[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.data.WSDataSource obj = (com.smartgwt.client.data.WSDataSource) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.data.WSDataSource(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.data.OperationBinding} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.data.OperationBinding[]
+	 */
+    public static com.smartgwt.client.data.OperationBinding[] arrayOfOperationBinding(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.data.OperationBinding[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.data.OperationBinding[] ret = new com.smartgwt.client.data.OperationBinding[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.data.OperationBinding(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.data.OperationBinding[] objects = new com.smartgwt.client.data.OperationBinding[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.data.OperationBinding obj = (com.smartgwt.client.data.OperationBinding) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.data.OperationBinding(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.tableview.TableView} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.tableview.TableView[]
+	 */
+    public static com.smartgwt.client.widgets.tableview.TableView[] arrayOfTableView(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.tableview.TableView[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.tableview.TableView[] objects = new com.smartgwt.client.widgets.tableview.TableView[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.tableview.TableView obj = (com.smartgwt.client.widgets.tableview.TableView) com.smartgwt.client.widgets.tableview.TableView.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.ChartType} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.ChartType[]
+	 */
+    public static com.smartgwt.client.types.ChartType[] arrayOfChartType(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.ChartType[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.ChartType[] objects = new com.smartgwt.client.types.ChartType[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.ChartType obj = EnumUtil.getEnum(com.smartgwt.client.types.ChartType.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.menu.IconMenuButton} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.menu.IconMenuButton[]
+	 */
+    public static com.smartgwt.client.widgets.menu.IconMenuButton[] arrayOfIconMenuButton(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.menu.IconMenuButton[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.menu.IconMenuButton[] objects = new com.smartgwt.client.widgets.menu.IconMenuButton[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.menu.IconMenuButton obj = (com.smartgwt.client.widgets.menu.IconMenuButton) com.smartgwt.client.widgets.menu.IconMenuButton.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.RecordDropPosition} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.RecordDropPosition[]
+	 */
+    public static com.smartgwt.client.types.RecordDropPosition[] arrayOfRecordDropPosition(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.RecordDropPosition[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.RecordDropPosition[] objects = new com.smartgwt.client.types.RecordDropPosition[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.RecordDropPosition obj = EnumUtil.getEnum(com.smartgwt.client.types.RecordDropPosition.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.drawing.RadialGradient} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.drawing.RadialGradient[]
+	 */
+    public static com.smartgwt.client.widgets.drawing.RadialGradient[] arrayOfRadialGradient(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.drawing.RadialGradient[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.drawing.RadialGradient[] ret = new com.smartgwt.client.widgets.drawing.RadialGradient[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.drawing.RadialGradient(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.drawing.RadialGradient[] objects = new com.smartgwt.client.widgets.drawing.RadialGradient[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.drawing.RadialGradient obj = (com.smartgwt.client.widgets.drawing.RadialGradient) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.drawing.RadialGradient(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.core.KeyIdentifier} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.core.KeyIdentifier[]
+	 */
+    public static com.smartgwt.client.core.KeyIdentifier[] arrayOfKeyIdentifier(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.core.KeyIdentifier[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.core.KeyIdentifier[] ret = new com.smartgwt.client.core.KeyIdentifier[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.core.KeyIdentifier(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.core.KeyIdentifier[] objects = new com.smartgwt.client.core.KeyIdentifier[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.core.KeyIdentifier obj = (com.smartgwt.client.core.KeyIdentifier) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.core.KeyIdentifier(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.drawing.DrawDiamond} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.drawing.DrawDiamond[]
+	 */
+    public static com.smartgwt.client.widgets.drawing.DrawDiamond[] arrayOfDrawDiamond(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.drawing.DrawDiamond[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.drawing.DrawDiamond[] objects = new com.smartgwt.client.widgets.drawing.DrawDiamond[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.drawing.DrawDiamond obj = (com.smartgwt.client.widgets.drawing.DrawDiamond) com.smartgwt.client.widgets.drawing.DrawDiamond.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.LayoutResizeBarPolicy} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.LayoutResizeBarPolicy[]
+	 */
+    public static com.smartgwt.client.types.LayoutResizeBarPolicy[] arrayOfLayoutResizeBarPolicy(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.LayoutResizeBarPolicy[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.LayoutResizeBarPolicy[] objects = new com.smartgwt.client.types.LayoutResizeBarPolicy[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.LayoutResizeBarPolicy obj = EnumUtil.getEnum(com.smartgwt.client.types.LayoutResizeBarPolicy.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.tools.Palette} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.tools.Palette[]
+	 */
+    public static com.smartgwt.client.tools.Palette[] arrayOfPalette(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.tools.Palette[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.tools.Palette[] objects = new com.smartgwt.client.tools.Palette[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            // We need to get or create the correct Java type, but we can't call
+            // getOrCreateRef on an interface. The best simple thing we can do is
+            // take advantage of ObjectFactory.createCanvas and friends to pick the
+            // right type. Note that this will work for custom developer classes
+            // so long as they descend from a SmartClient implementation of the
+            // interface. It won't work for totally custom implementations, but
+            // totally custom implementations would be hard to create properly anyway
+            // (because they won't get the default methods implemented on the
+            // SmartClient interface).
+            Object javaObj = null;
+            com.smartgwt.client.tools.Palette obj = null;
+            if (JSOHelper.isScClassInstance(components[i])) {
+                String className = JSOHelper.getClassName(components[i]);
+                javaObj = ObjectFactory.createCanvas(className, components[i]);
+                
+                // If it's not a Canvas, try the others
+                if (javaObj == null) {
+                    javaObj = ObjectFactory.createInstance(className, components[i]);
+                }
+            }
+            if (javaObj instanceof com.smartgwt.client.tools.Palette) obj = (com.smartgwt.client.tools.Palette) javaObj;  
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.MiniNavControl} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.MiniNavControl[]
+	 */
+    public static com.smartgwt.client.widgets.MiniNavControl[] arrayOfMiniNavControl(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.MiniNavControl[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.MiniNavControl[] objects = new com.smartgwt.client.widgets.MiniNavControl[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.MiniNavControl obj = (com.smartgwt.client.widgets.MiniNavControl) com.smartgwt.client.widgets.MiniNavControl.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.MultipleAppearance} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.MultipleAppearance[]
+	 */
+    public static com.smartgwt.client.types.MultipleAppearance[] arrayOfMultipleAppearance(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.MultipleAppearance[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.MultipleAppearance[] objects = new com.smartgwt.client.types.MultipleAppearance[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.MultipleAppearance obj = EnumUtil.getEnum(com.smartgwt.client.types.MultipleAppearance.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.layout.NavigationBar} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.layout.NavigationBar[]
+	 */
+    public static com.smartgwt.client.widgets.layout.NavigationBar[] arrayOfNavigationBar(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.layout.NavigationBar[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.layout.NavigationBar[] objects = new com.smartgwt.client.widgets.layout.NavigationBar[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.layout.NavigationBar obj = (com.smartgwt.client.widgets.layout.NavigationBar) com.smartgwt.client.widgets.layout.NavigationBar.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.JSONEncoder} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.JSONEncoder[]
+	 */
+    public static com.smartgwt.client.util.JSONEncoder[] arrayOfJSONEncoder(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.JSONEncoder[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.JSONEncoder[] objects = new com.smartgwt.client.util.JSONEncoder[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.JSONEncoder obj = (com.smartgwt.client.util.JSONEncoder) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.JSONEncoder(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.Sound} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.Sound[]
+	 */
+    public static com.smartgwt.client.widgets.Sound[] arrayOfSound(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.Sound[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.Sound[] objects = new com.smartgwt.client.widgets.Sound[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.Sound obj = (com.smartgwt.client.widgets.Sound) com.smartgwt.client.widgets.Sound.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.StartTransactionTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.StartTransactionTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.StartTransactionTask[] arrayOfStartTransactionTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.StartTransactionTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.StartTransactionTask[] objects = new com.smartgwt.client.util.workflow.StartTransactionTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.StartTransactionTask obj = (com.smartgwt.client.util.workflow.StartTransactionTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.StartTransactionTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.data.FacadeDataSource} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.data.FacadeDataSource[]
+	 */
+    public static com.smartgwt.client.data.FacadeDataSource[] arrayOfFacadeDataSource(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.data.FacadeDataSource[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.data.FacadeDataSource[] objects = new com.smartgwt.client.data.FacadeDataSource[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.data.FacadeDataSource obj = (com.smartgwt.client.data.FacadeDataSource) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.data.FacadeDataSource(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.ColorPicker} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.ColorPicker[]
+	 */
+    public static com.smartgwt.client.widgets.form.ColorPicker[] arrayOfColorPicker(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.ColorPicker[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.ColorPicker[] objects = new com.smartgwt.client.widgets.form.ColorPicker[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.ColorPicker obj = (com.smartgwt.client.widgets.form.ColorPicker) com.smartgwt.client.widgets.form.ColorPicker.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.NavigationDirection} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.NavigationDirection[]
+	 */
+    public static com.smartgwt.client.types.NavigationDirection[] arrayOfNavigationDirection(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.NavigationDirection[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.NavigationDirection[] objects = new com.smartgwt.client.types.NavigationDirection[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.NavigationDirection obj = EnumUtil.getEnum(com.smartgwt.client.types.NavigationDirection.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.tools.EditPane} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.tools.EditPane[]
+	 */
+    public static com.smartgwt.client.tools.EditPane[] arrayOfEditPane(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.tools.EditPane[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.tools.EditPane[] objects = new com.smartgwt.client.tools.EditPane[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.tools.EditPane obj = (com.smartgwt.client.tools.EditPane) com.smartgwt.client.tools.EditPane.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.tools.HiddenPalette} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.tools.HiddenPalette[]
+	 */
+    public static com.smartgwt.client.tools.HiddenPalette[] arrayOfHiddenPalette(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.tools.HiddenPalette[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.tools.HiddenPalette[] objects = new com.smartgwt.client.tools.HiddenPalette[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.tools.HiddenPalette obj = (com.smartgwt.client.tools.HiddenPalette) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.tools.HiddenPalette(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.ProcessElement} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.ProcessElement[]
+	 */
+    public static com.smartgwt.client.util.workflow.ProcessElement[] arrayOfProcessElement(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.ProcessElement[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.ProcessElement[] objects = new com.smartgwt.client.util.workflow.ProcessElement[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.ProcessElement obj = (com.smartgwt.client.util.workflow.ProcessElement) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.ProcessElement(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.calendar.Lane} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.calendar.Lane[]
+	 */
+    public static com.smartgwt.client.widgets.calendar.Lane[] arrayOfLane(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.calendar.Lane[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.calendar.Lane[] ret = new com.smartgwt.client.widgets.calendar.Lane[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.calendar.Lane(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.calendar.Lane[] objects = new com.smartgwt.client.widgets.calendar.Lane[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.calendar.Lane obj = com.smartgwt.client.widgets.calendar.Lane.getOrCreateRef(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.tools.TextAreaItemEditProxy} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.tools.TextAreaItemEditProxy[]
+	 */
+    public static com.smartgwt.client.tools.TextAreaItemEditProxy[] arrayOfTextAreaItemEditProxy(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.tools.TextAreaItemEditProxy[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.tools.TextAreaItemEditProxy[] objects = new com.smartgwt.client.tools.TextAreaItemEditProxy[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.tools.TextAreaItemEditProxy obj = (com.smartgwt.client.tools.TextAreaItemEditProxy) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.tools.TextAreaItemEditProxy(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.tools.DrawLabelEditProxy} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.tools.DrawLabelEditProxy[]
+	 */
+    public static com.smartgwt.client.tools.DrawLabelEditProxy[] arrayOfDrawLabelEditProxy(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.tools.DrawLabelEditProxy[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.tools.DrawLabelEditProxy[] objects = new com.smartgwt.client.tools.DrawLabelEditProxy[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.tools.DrawLabelEditProxy obj = (com.smartgwt.client.tools.DrawLabelEditProxy) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.tools.DrawLabelEditProxy(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.GroupStartOpen} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.GroupStartOpen[]
+	 */
+    public static com.smartgwt.client.types.GroupStartOpen[] arrayOfGroupStartOpen(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.GroupStartOpen[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.GroupStartOpen[] objects = new com.smartgwt.client.types.GroupStartOpen[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.GroupStartOpen obj = EnumUtil.getEnum(com.smartgwt.client.types.GroupStartOpen.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.DateEditingStyle} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.DateEditingStyle[]
+	 */
+    public static com.smartgwt.client.types.DateEditingStyle[] arrayOfDateEditingStyle(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.DateEditingStyle[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.DateEditingStyle[] objects = new com.smartgwt.client.types.DateEditingStyle[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.DateEditingStyle obj = EnumUtil.getEnum(com.smartgwt.client.types.DateEditingStyle.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.toolbar.Toolbar} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.toolbar.Toolbar[]
+	 */
+    public static com.smartgwt.client.widgets.toolbar.Toolbar[] arrayOfToolbar(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.toolbar.Toolbar[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.toolbar.Toolbar[] objects = new com.smartgwt.client.widgets.toolbar.Toolbar[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.toolbar.Toolbar obj = (com.smartgwt.client.widgets.toolbar.Toolbar) com.smartgwt.client.widgets.toolbar.Toolbar.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.tools.LayoutEditProxy} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.tools.LayoutEditProxy[]
+	 */
+    public static com.smartgwt.client.tools.LayoutEditProxy[] arrayOfLayoutEditProxy(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.tools.LayoutEditProxy[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.tools.LayoutEditProxy[] objects = new com.smartgwt.client.tools.LayoutEditProxy[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.tools.LayoutEditProxy obj = (com.smartgwt.client.tools.LayoutEditProxy) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.tools.LayoutEditProxy(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.drawing.DrawImage} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.drawing.DrawImage[]
+	 */
+    public static com.smartgwt.client.widgets.drawing.DrawImage[] arrayOfDrawImage(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.drawing.DrawImage[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.drawing.DrawImage[] objects = new com.smartgwt.client.widgets.drawing.DrawImage[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.drawing.DrawImage obj = (com.smartgwt.client.widgets.drawing.DrawImage) com.smartgwt.client.widgets.drawing.DrawImage.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.StandardControlGroup} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.StandardControlGroup[]
+	 */
+    public static com.smartgwt.client.types.StandardControlGroup[] arrayOfStandardControlGroup(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.StandardControlGroup[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.StandardControlGroup[] objects = new com.smartgwt.client.types.StandardControlGroup[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.StandardControlGroup obj = EnumUtil.getEnum(com.smartgwt.client.types.StandardControlGroup.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.data.TextExportSettings} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.data.TextExportSettings[]
+	 */
+    public static com.smartgwt.client.data.TextExportSettings[] arrayOfTextExportSettings(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.data.TextExportSettings[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.data.TextExportSettings[] objects = new com.smartgwt.client.data.TextExportSettings[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.data.TextExportSettings obj = (com.smartgwt.client.data.TextExportSettings) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.data.TextExportSettings(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.BooleanItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.BooleanItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.BooleanItem[] arrayOfBooleanItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.BooleanItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.BooleanItem[] objects = new com.smartgwt.client.widgets.form.fields.BooleanItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.BooleanItem obj = com.smartgwt.client.widgets.form.fields.BooleanItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.RadioGroupItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.RadioGroupItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.RadioGroupItem[] arrayOfRadioGroupItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.RadioGroupItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.RadioGroupItem[] objects = new com.smartgwt.client.widgets.form.fields.RadioGroupItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.RadioGroupItem obj = com.smartgwt.client.widgets.form.fields.RadioGroupItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.drawing.DrawBlockConnector} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.drawing.DrawBlockConnector[]
+	 */
+    public static com.smartgwt.client.widgets.drawing.DrawBlockConnector[] arrayOfDrawBlockConnector(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.drawing.DrawBlockConnector[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.drawing.DrawBlockConnector[] objects = new com.smartgwt.client.widgets.drawing.DrawBlockConnector[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.drawing.DrawBlockConnector obj = (com.smartgwt.client.widgets.drawing.DrawBlockConnector) com.smartgwt.client.widgets.drawing.DrawBlockConnector.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.SelectionStyle} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.SelectionStyle[]
+	 */
+    public static com.smartgwt.client.types.SelectionStyle[] arrayOfSelectionStyle(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.SelectionStyle[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.SelectionStyle[] objects = new com.smartgwt.client.types.SelectionStyle[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.SelectionStyle obj = EnumUtil.getEnum(com.smartgwt.client.types.SelectionStyle.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.TopOperatorAppearance} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.TopOperatorAppearance[]
+	 */
+    public static com.smartgwt.client.types.TopOperatorAppearance[] arrayOfTopOperatorAppearance(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.TopOperatorAppearance[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.TopOperatorAppearance[] objects = new com.smartgwt.client.types.TopOperatorAppearance[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.TopOperatorAppearance obj = EnumUtil.getEnum(com.smartgwt.client.types.TopOperatorAppearance.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.LegendAlign} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.LegendAlign[]
+	 */
+    public static com.smartgwt.client.types.LegendAlign[] arrayOfLegendAlign(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.LegendAlign[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.LegendAlign[] objects = new com.smartgwt.client.types.LegendAlign[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.LegendAlign obj = EnumUtil.getEnum(com.smartgwt.client.types.LegendAlign.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.cube.FacetValueMap} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.cube.FacetValueMap[]
+	 */
+    public static com.smartgwt.client.widgets.cube.FacetValueMap[] arrayOfFacetValueMap(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.cube.FacetValueMap[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.cube.FacetValueMap[] ret = new com.smartgwt.client.widgets.cube.FacetValueMap[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.cube.FacetValueMap(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.cube.FacetValueMap[] objects = new com.smartgwt.client.widgets.cube.FacetValueMap[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.cube.FacetValueMap obj = (com.smartgwt.client.widgets.cube.FacetValueMap) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.cube.FacetValueMap(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.RelativeDateItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.RelativeDateItem[] arrayOfRelativeDateItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.RelativeDateItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.RelativeDateItem[] objects = new com.smartgwt.client.widgets.form.fields.RelativeDateItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.RelativeDateItem obj = com.smartgwt.client.widgets.form.fields.RelativeDateItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.tools.StyleSetting} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.tools.StyleSetting[]
+	 */
+    public static com.smartgwt.client.tools.StyleSetting[] arrayOfStyleSetting(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.tools.StyleSetting[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.tools.StyleSetting[] ret = new com.smartgwt.client.tools.StyleSetting[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.tools.StyleSetting(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.tools.StyleSetting[] objects = new com.smartgwt.client.tools.StyleSetting[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.tools.StyleSetting obj = (com.smartgwt.client.tools.StyleSetting) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.tools.StyleSetting(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.calendar.Calendar} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.calendar.Calendar[]
+	 */
+    public static com.smartgwt.client.widgets.calendar.Calendar[] arrayOfCalendar(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.calendar.Calendar[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.calendar.Calendar[] objects = new com.smartgwt.client.widgets.calendar.Calendar[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.calendar.Calendar obj = (com.smartgwt.client.widgets.calendar.Calendar) com.smartgwt.client.widgets.calendar.Calendar.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.TabTitleEditEvent} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.TabTitleEditEvent[]
+	 */
+    public static com.smartgwt.client.types.TabTitleEditEvent[] arrayOfTabTitleEditEvent(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.TabTitleEditEvent[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.TabTitleEditEvent[] objects = new com.smartgwt.client.types.TabTitleEditEvent[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.TabTitleEditEvent obj = EnumUtil.getEnum(com.smartgwt.client.types.TabTitleEditEvent.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.UserFormula} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.UserFormula[]
+	 */
+    public static com.smartgwt.client.widgets.UserFormula[] arrayOfUserFormula(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.UserFormula[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.UserFormula[] ret = new com.smartgwt.client.widgets.UserFormula[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.UserFormula(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.UserFormula[] objects = new com.smartgwt.client.widgets.UserFormula[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.UserFormula obj = (com.smartgwt.client.widgets.UserFormula) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.UserFormula(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.ContentLayoutPolicy} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.ContentLayoutPolicy[]
+	 */
+    public static com.smartgwt.client.types.ContentLayoutPolicy[] arrayOfContentLayoutPolicy(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.ContentLayoutPolicy[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.ContentLayoutPolicy[] objects = new com.smartgwt.client.types.ContentLayoutPolicy[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.ContentLayoutPolicy obj = EnumUtil.getEnum(com.smartgwt.client.types.ContentLayoutPolicy.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.grid.HiliteEditor} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.grid.HiliteEditor[]
+	 */
+    public static com.smartgwt.client.widgets.grid.HiliteEditor[] arrayOfHiliteEditor(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.grid.HiliteEditor[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.grid.HiliteEditor[] objects = new com.smartgwt.client.widgets.grid.HiliteEditor[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.grid.HiliteEditor obj = (com.smartgwt.client.widgets.grid.HiliteEditor) com.smartgwt.client.widgets.grid.HiliteEditor.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.grid.ListGrid} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.grid.ListGrid[]
+	 */
+    public static com.smartgwt.client.widgets.grid.ListGrid[] arrayOfListGrid(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.grid.ListGrid[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.grid.ListGrid[] objects = new com.smartgwt.client.widgets.grid.ListGrid[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.grid.ListGrid obj = (com.smartgwt.client.widgets.grid.ListGrid) com.smartgwt.client.widgets.grid.ListGrid.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.layout.FlowLayout} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.layout.FlowLayout[]
+	 */
+    public static com.smartgwt.client.widgets.layout.FlowLayout[] arrayOfFlowLayout(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.layout.FlowLayout[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.layout.FlowLayout[] objects = new com.smartgwt.client.widgets.layout.FlowLayout[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.layout.FlowLayout obj = (com.smartgwt.client.widgets.layout.FlowLayout) com.smartgwt.client.widgets.layout.FlowLayout.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.ImgProperties} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.ImgProperties[]
+	 */
+    public static com.smartgwt.client.widgets.ImgProperties[] arrayOfImgProperties(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.ImgProperties[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.ImgProperties[] ret = new com.smartgwt.client.widgets.ImgProperties[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.ImgProperties(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.ImgProperties[] objects = new com.smartgwt.client.widgets.ImgProperties[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.ImgProperties obj = (com.smartgwt.client.widgets.ImgProperties) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.ImgProperties(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.tools.Reify} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.tools.Reify[]
+	 */
+    public static com.smartgwt.client.tools.Reify[] arrayOfReify(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.tools.Reify[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.tools.Reify[] objects = new com.smartgwt.client.tools.Reify[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.tools.Reify obj = (com.smartgwt.client.tools.Reify) com.smartgwt.client.tools.Reify.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.GridSetEditValueTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.GridSetEditValueTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.GridSetEditValueTask[] arrayOfGridSetEditValueTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.GridSetEditValueTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.GridSetEditValueTask[] objects = new com.smartgwt.client.util.workflow.GridSetEditValueTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.GridSetEditValueTask obj = (com.smartgwt.client.util.workflow.GridSetEditValueTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.GridSetEditValueTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.DSRemoveTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.DSRemoveTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.DSRemoveTask[] arrayOfDSRemoveTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.DSRemoveTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.DSRemoveTask[] objects = new com.smartgwt.client.util.workflow.DSRemoveTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.DSRemoveTask obj = (com.smartgwt.client.util.workflow.DSRemoveTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.DSRemoveTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.menu.RibbonMenuButton} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.menu.RibbonMenuButton[]
+	 */
+    public static com.smartgwt.client.widgets.menu.RibbonMenuButton[] arrayOfRibbonMenuButton(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.menu.RibbonMenuButton[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.menu.RibbonMenuButton[] objects = new com.smartgwt.client.widgets.menu.RibbonMenuButton[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.menu.RibbonMenuButton obj = (com.smartgwt.client.widgets.menu.RibbonMenuButton) com.smartgwt.client.widgets.menu.RibbonMenuButton.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.ValueItemType} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.ValueItemType[]
+	 */
+    public static com.smartgwt.client.types.ValueItemType[] arrayOfValueItemType(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.ValueItemType[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.ValueItemType[] objects = new com.smartgwt.client.types.ValueItemType[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.ValueItemType obj = EnumUtil.getEnum(com.smartgwt.client.types.ValueItemType.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.tree.ResultTree} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.tree.ResultTree[]
+	 */
+    public static com.smartgwt.client.widgets.tree.ResultTree[] arrayOfResultTree(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.tree.ResultTree[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.tree.ResultTree[] objects = new com.smartgwt.client.widgets.tree.ResultTree[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.tree.ResultTree obj = (com.smartgwt.client.widgets.tree.ResultTree) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.tree.ResultTree(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.data.TextImportSettings} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.data.TextImportSettings[]
+	 */
+    public static com.smartgwt.client.data.TextImportSettings[] arrayOfTextImportSettings(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.data.TextImportSettings[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.data.TextImportSettings[] objects = new com.smartgwt.client.data.TextImportSettings[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.data.TextImportSettings obj = (com.smartgwt.client.data.TextImportSettings) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.data.TextImportSettings(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.menu.AdaptiveMenu} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.menu.AdaptiveMenu[]
+	 */
+    public static com.smartgwt.client.widgets.menu.AdaptiveMenu[] arrayOfAdaptiveMenu(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.menu.AdaptiveMenu[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.menu.AdaptiveMenu[] objects = new com.smartgwt.client.widgets.menu.AdaptiveMenu[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.menu.AdaptiveMenu obj = (com.smartgwt.client.widgets.menu.AdaptiveMenu) com.smartgwt.client.widgets.menu.AdaptiveMenu.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.FloatItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.FloatItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.FloatItem[] arrayOfFloatItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.FloatItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.FloatItem[] objects = new com.smartgwt.client.widgets.form.fields.FloatItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.FloatItem obj = com.smartgwt.client.widgets.form.fields.FloatItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.data.RestDataSource} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.data.RestDataSource[]
+	 */
+    public static com.smartgwt.client.data.RestDataSource[] arrayOfRestDataSource(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.data.RestDataSource[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.data.RestDataSource[] objects = new com.smartgwt.client.data.RestDataSource[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.data.RestDataSource obj = (com.smartgwt.client.data.RestDataSource) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.data.RestDataSource(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.HeaderItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.HeaderItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.HeaderItem[] arrayOfHeaderItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.HeaderItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.HeaderItem[] objects = new com.smartgwt.client.widgets.form.fields.HeaderItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.HeaderItem obj = com.smartgwt.client.widgets.form.fields.HeaderItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.drawing.DrawOval} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.drawing.DrawOval[]
+	 */
+    public static com.smartgwt.client.widgets.drawing.DrawOval[] arrayOfDrawOval(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.drawing.DrawOval[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.drawing.DrawOval[] objects = new com.smartgwt.client.widgets.drawing.DrawOval[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.drawing.DrawOval obj = (com.smartgwt.client.widgets.drawing.DrawOval) com.smartgwt.client.widgets.drawing.DrawOval.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.ListGridFieldType} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.ListGridFieldType[]
+	 */
+    public static com.smartgwt.client.types.ListGridFieldType[] arrayOfListGridFieldType(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.ListGridFieldType[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.ListGridFieldType[] objects = new com.smartgwt.client.types.ListGridFieldType[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.ListGridFieldType obj = EnumUtil.getEnum(com.smartgwt.client.types.ListGridFieldType.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.tree.TreeGridField} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.tree.TreeGridField[]
+	 */
+    public static com.smartgwt.client.widgets.tree.TreeGridField[] arrayOfTreeGridField(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.tree.TreeGridField[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.tree.TreeGridField[] ret = new com.smartgwt.client.widgets.tree.TreeGridField[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.tree.TreeGridField(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.tree.TreeGridField[] objects = new com.smartgwt.client.widgets.tree.TreeGridField[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.tree.TreeGridField obj = (com.smartgwt.client.widgets.tree.TreeGridField) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.tree.TreeGridField(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.TourMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.TourMode[]
+	 */
+    public static com.smartgwt.client.types.TourMode[] arrayOfTourMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.TourMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.TourMode[] objects = new com.smartgwt.client.types.TourMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.TourMode obj = EnumUtil.getEnum(com.smartgwt.client.types.TourMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.drawing.DrawTriangle} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.drawing.DrawTriangle[]
+	 */
+    public static com.smartgwt.client.widgets.drawing.DrawTriangle[] arrayOfDrawTriangle(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.drawing.DrawTriangle[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.drawing.DrawTriangle[] objects = new com.smartgwt.client.widgets.drawing.DrawTriangle[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.drawing.DrawTriangle obj = (com.smartgwt.client.widgets.drawing.DrawTriangle) com.smartgwt.client.widgets.drawing.DrawTriangle.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.ImgButton} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.ImgButton[]
+	 */
+    public static com.smartgwt.client.widgets.ImgButton[] arrayOfImgButton(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.ImgButton[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.ImgButton[] objects = new com.smartgwt.client.widgets.ImgButton[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.ImgButton obj = (com.smartgwt.client.widgets.ImgButton) com.smartgwt.client.widgets.ImgButton.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.toolbar.ToolStripGroup[]
+	 */
+    public static com.smartgwt.client.widgets.toolbar.ToolStripGroup[] arrayOfToolStripGroup(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.toolbar.ToolStripGroup[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.toolbar.ToolStripGroup[] objects = new com.smartgwt.client.widgets.toolbar.ToolStripGroup[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.toolbar.ToolStripGroup obj = (com.smartgwt.client.widgets.toolbar.ToolStripGroup) com.smartgwt.client.widgets.toolbar.ToolStripGroup.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.data.RelationPath} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.data.RelationPath[]
+	 */
+    public static com.smartgwt.client.data.RelationPath[] arrayOfRelationPath(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.data.RelationPath[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.data.RelationPath[] ret = new com.smartgwt.client.data.RelationPath[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.data.RelationPath(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.data.RelationPath[] objects = new com.smartgwt.client.data.RelationPath[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.data.RelationPath obj = (com.smartgwt.client.data.RelationPath) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.data.RelationPath(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.PointerSettings} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.PointerSettings[]
+	 */
+    public static com.smartgwt.client.widgets.PointerSettings[] arrayOfPointerSettings(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.PointerSettings[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.PointerSettings[] objects = new com.smartgwt.client.widgets.PointerSettings[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.PointerSettings obj = (com.smartgwt.client.widgets.PointerSettings) com.smartgwt.client.widgets.PointerSettings.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.LogOutTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.LogOutTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.LogOutTask[] arrayOfLogOutTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.LogOutTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.LogOutTask[] objects = new com.smartgwt.client.util.workflow.LogOutTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.LogOutTask obj = (com.smartgwt.client.util.workflow.LogOutTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.LogOutTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.GridExportClientDataTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.GridExportClientDataTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.GridExportClientDataTask[] arrayOfGridExportClientDataTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.GridExportClientDataTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.GridExportClientDataTask[] objects = new com.smartgwt.client.util.workflow.GridExportClientDataTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.GridExportClientDataTask obj = (com.smartgwt.client.util.workflow.GridExportClientDataTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.GridExportClientDataTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.ShowMessageTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.ShowMessageTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.ShowMessageTask[] arrayOfShowMessageTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.ShowMessageTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.ShowMessageTask[] objects = new com.smartgwt.client.util.workflow.ShowMessageTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.ShowMessageTask obj = (com.smartgwt.client.util.workflow.ShowMessageTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.ShowMessageTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.data.AdvancedCriteria} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.data.AdvancedCriteria[]
+	 */
+    public static com.smartgwt.client.data.AdvancedCriteria[] arrayOfAdvancedCriteria(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.data.AdvancedCriteria[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.data.AdvancedCriteria[] ret = new com.smartgwt.client.data.AdvancedCriteria[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.data.AdvancedCriteria(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.data.AdvancedCriteria[] objects = new com.smartgwt.client.data.AdvancedCriteria[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.data.AdvancedCriteria obj = (com.smartgwt.client.data.AdvancedCriteria) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.data.AdvancedCriteria(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.drawing.DrawRect} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.drawing.DrawRect[]
+	 */
+    public static com.smartgwt.client.widgets.drawing.DrawRect[] arrayOfDrawRect(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.drawing.DrawRect[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.drawing.DrawRect[] objects = new com.smartgwt.client.widgets.drawing.DrawRect[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.drawing.DrawRect obj = (com.smartgwt.client.widgets.drawing.DrawRect) com.smartgwt.client.widgets.drawing.DrawRect.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.tools.TreePalette} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.tools.TreePalette[]
+	 */
+    public static com.smartgwt.client.tools.TreePalette[] arrayOfTreePalette(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.tools.TreePalette[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.tools.TreePalette[] objects = new com.smartgwt.client.tools.TreePalette[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.tools.TreePalette obj = (com.smartgwt.client.tools.TreePalette) com.smartgwt.client.tools.TreePalette.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.UserConfirmationGateway} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.UserConfirmationGateway[]
+	 */
+    public static com.smartgwt.client.util.workflow.UserConfirmationGateway[] arrayOfUserConfirmationGateway(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.UserConfirmationGateway[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.UserConfirmationGateway[] objects = new com.smartgwt.client.util.workflow.UserConfirmationGateway[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.UserConfirmationGateway obj = (com.smartgwt.client.util.workflow.UserConfirmationGateway) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.UserConfirmationGateway(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.ProportionalResizeMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.ProportionalResizeMode[]
+	 */
+    public static com.smartgwt.client.types.ProportionalResizeMode[] arrayOfProportionalResizeMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.ProportionalResizeMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.ProportionalResizeMode[] objects = new com.smartgwt.client.types.ProportionalResizeMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.ProportionalResizeMode obj = EnumUtil.getEnum(com.smartgwt.client.types.ProportionalResizeMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.calendar.CalendarEvent} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.calendar.CalendarEvent[]
+	 */
+    public static com.smartgwt.client.widgets.calendar.CalendarEvent[] arrayOfCalendarEvent(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.calendar.CalendarEvent[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.calendar.CalendarEvent[] ret = new com.smartgwt.client.widgets.calendar.CalendarEvent[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.calendar.CalendarEvent(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.calendar.CalendarEvent[] objects = new com.smartgwt.client.widgets.calendar.CalendarEvent[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.calendar.CalendarEvent obj = com.smartgwt.client.widgets.calendar.CalendarEvent.getOrCreateRef(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.menu.SelectionTreeMenu} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.menu.SelectionTreeMenu[]
+	 */
+    public static com.smartgwt.client.widgets.menu.SelectionTreeMenu[] arrayOfSelectionTreeMenu(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.menu.SelectionTreeMenu[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.menu.SelectionTreeMenu[] objects = new com.smartgwt.client.widgets.menu.SelectionTreeMenu[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.menu.SelectionTreeMenu obj = (com.smartgwt.client.widgets.menu.SelectionTreeMenu) com.smartgwt.client.widgets.menu.SelectionTreeMenu.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.DynamicForm} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.DynamicForm[]
+	 */
+    public static com.smartgwt.client.widgets.form.DynamicForm[] arrayOfDynamicForm(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.DynamicForm[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.DynamicForm[] objects = new com.smartgwt.client.widgets.form.DynamicForm[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.DynamicForm obj = (com.smartgwt.client.widgets.form.DynamicForm) com.smartgwt.client.widgets.form.DynamicForm.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.PasswordItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.PasswordItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.PasswordItem[] arrayOfPasswordItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.PasswordItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.PasswordItem[] objects = new com.smartgwt.client.widgets.form.fields.PasswordItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.PasswordItem obj = com.smartgwt.client.widgets.form.fields.PasswordItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.VerticalAlignment} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.VerticalAlignment[]
+	 */
+    public static com.smartgwt.client.types.VerticalAlignment[] arrayOfVerticalAlignment(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.VerticalAlignment[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.VerticalAlignment[] objects = new com.smartgwt.client.types.VerticalAlignment[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.VerticalAlignment obj = EnumUtil.getEnum(com.smartgwt.client.types.VerticalAlignment.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.tab.ImgTab} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.tab.ImgTab[]
+	 */
+    public static com.smartgwt.client.widgets.tab.ImgTab[] arrayOfImgTab(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.tab.ImgTab[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.tab.ImgTab[] objects = new com.smartgwt.client.widgets.tab.ImgTab[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.tab.ImgTab obj = (com.smartgwt.client.widgets.tab.ImgTab) com.smartgwt.client.widgets.tab.ImgTab.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.TreeModelType} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.TreeModelType[]
+	 */
+    public static com.smartgwt.client.types.TreeModelType[] arrayOfTreeModelType(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.TreeModelType[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.TreeModelType[] objects = new com.smartgwt.client.types.TreeModelType[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.TreeModelType obj = EnumUtil.getEnum(com.smartgwt.client.types.TreeModelType.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.ToolbarItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.ToolbarItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.ToolbarItem[] arrayOfToolbarItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.ToolbarItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.ToolbarItem[] objects = new com.smartgwt.client.widgets.form.fields.ToolbarItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.ToolbarItem obj = com.smartgwt.client.widgets.form.fields.ToolbarItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.LogPriority} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.LogPriority[]
+	 */
+    public static com.smartgwt.client.types.LogPriority[] arrayOfLogPriority(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.LogPriority[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.LogPriority[] objects = new com.smartgwt.client.types.LogPriority[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.LogPriority obj = EnumUtil.getEnum(com.smartgwt.client.types.LogPriority.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.SCStatefulImgConfig} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.SCStatefulImgConfig[]
+	 */
+    public static com.smartgwt.client.widgets.SCStatefulImgConfig[] arrayOfSCStatefulImgConfig(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.SCStatefulImgConfig[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.SCStatefulImgConfig[] ret = new com.smartgwt.client.widgets.SCStatefulImgConfig[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.SCStatefulImgConfig(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.SCStatefulImgConfig[] objects = new com.smartgwt.client.widgets.SCStatefulImgConfig[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.SCStatefulImgConfig obj = (com.smartgwt.client.widgets.SCStatefulImgConfig) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.SCStatefulImgConfig(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.ace.AceMarker} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.ace.AceMarker[]
+	 */
+    public static com.smartgwt.client.widgets.ace.AceMarker[] arrayOfAceMarker(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.ace.AceMarker[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.ace.AceMarker[] objects = new com.smartgwt.client.widgets.ace.AceMarker[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.ace.AceMarker obj = (com.smartgwt.client.widgets.ace.AceMarker) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.ace.AceMarker(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.tile.SimpleTile} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.tile.SimpleTile[]
+	 */
+    public static com.smartgwt.client.widgets.tile.SimpleTile[] arrayOfSimpleTile(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.tile.SimpleTile[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.tile.SimpleTile[] objects = new com.smartgwt.client.widgets.tile.SimpleTile[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.tile.SimpleTile obj = (com.smartgwt.client.widgets.tile.SimpleTile) com.smartgwt.client.widgets.tile.SimpleTile.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.tools.SplitPaneEditProxy} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.tools.SplitPaneEditProxy[]
+	 */
+    public static com.smartgwt.client.tools.SplitPaneEditProxy[] arrayOfSplitPaneEditProxy(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.tools.SplitPaneEditProxy[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.tools.SplitPaneEditProxy[] objects = new com.smartgwt.client.tools.SplitPaneEditProxy[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.tools.SplitPaneEditProxy obj = (com.smartgwt.client.tools.SplitPaneEditProxy) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.tools.SplitPaneEditProxy(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.DateItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.DateItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.DateItem[] arrayOfDateItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.DateItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.DateItem[] objects = new com.smartgwt.client.widgets.form.fields.DateItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.DateItem obj = com.smartgwt.client.widgets.form.fields.DateItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.InlineEditEvent} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.InlineEditEvent[]
+	 */
+    public static com.smartgwt.client.types.InlineEditEvent[] arrayOfInlineEditEvent(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.InlineEditEvent[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.InlineEditEvent[] objects = new com.smartgwt.client.types.InlineEditEvent[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.InlineEditEvent obj = EnumUtil.getEnum(com.smartgwt.client.types.InlineEditEvent.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.tools.FacetChartEditProxy} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.tools.FacetChartEditProxy[]
+	 */
+    public static com.smartgwt.client.tools.FacetChartEditProxy[] arrayOfFacetChartEditProxy(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.tools.FacetChartEditProxy[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.tools.FacetChartEditProxy[] objects = new com.smartgwt.client.tools.FacetChartEditProxy[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.tools.FacetChartEditProxy obj = (com.smartgwt.client.tools.FacetChartEditProxy) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.tools.FacetChartEditProxy(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.EscapeKeyEditAction} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.EscapeKeyEditAction[]
+	 */
+    public static com.smartgwt.client.types.EscapeKeyEditAction[] arrayOfEscapeKeyEditAction(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.EscapeKeyEditAction[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.EscapeKeyEditAction[] objects = new com.smartgwt.client.types.EscapeKeyEditAction[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.EscapeKeyEditAction obj = EnumUtil.getEnum(com.smartgwt.client.types.EscapeKeyEditAction.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.NotifyTransition} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.NotifyTransition[]
+	 */
+    public static com.smartgwt.client.types.NotifyTransition[] arrayOfNotifyTransition(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.NotifyTransition[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.NotifyTransition[] objects = new com.smartgwt.client.types.NotifyTransition[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.NotifyTransition obj = EnumUtil.getEnum(com.smartgwt.client.types.NotifyTransition.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.CurrentPane} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.CurrentPane[]
+	 */
+    public static com.smartgwt.client.types.CurrentPane[] arrayOfCurrentPane(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.CurrentPane[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.CurrentPane[] objects = new com.smartgwt.client.types.CurrentPane[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.CurrentPane obj = EnumUtil.getEnum(com.smartgwt.client.types.CurrentPane.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.notify.NotifySettings} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.notify.NotifySettings[]
+	 */
+    public static com.smartgwt.client.widgets.notify.NotifySettings[] arrayOfNotifySettings(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.notify.NotifySettings[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.notify.NotifySettings[] ret = new com.smartgwt.client.widgets.notify.NotifySettings[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.notify.NotifySettings(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.notify.NotifySettings[] objects = new com.smartgwt.client.widgets.notify.NotifySettings[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.notify.NotifySettings obj = (com.smartgwt.client.widgets.notify.NotifySettings) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.notify.NotifySettings(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.data.FileSpec} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.data.FileSpec[]
+	 */
+    public static com.smartgwt.client.data.FileSpec[] arrayOfFileSpec(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.data.FileSpec[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.data.FileSpec[] ret = new com.smartgwt.client.data.FileSpec[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.data.FileSpec(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.data.FileSpec[] objects = new com.smartgwt.client.data.FileSpec[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.data.FileSpec obj = (com.smartgwt.client.data.FileSpec) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.data.FileSpec(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.ace.AcePosition} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.ace.AcePosition[]
+	 */
+    public static com.smartgwt.client.widgets.ace.AcePosition[] arrayOfAcePosition(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.ace.AcePosition[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.ace.AcePosition[] ret = new com.smartgwt.client.widgets.ace.AcePosition[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.ace.AcePosition(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.ace.AcePosition[] objects = new com.smartgwt.client.widgets.ace.AcePosition[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.ace.AcePosition obj = (com.smartgwt.client.widgets.ace.AcePosition) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.ace.AcePosition(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.CharacterCasing} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.CharacterCasing[]
+	 */
+    public static com.smartgwt.client.types.CharacterCasing[] arrayOfCharacterCasing(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.CharacterCasing[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.CharacterCasing[] objects = new com.smartgwt.client.types.CharacterCasing[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.CharacterCasing obj = EnumUtil.getEnum(com.smartgwt.client.types.CharacterCasing.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.DSAddTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.DSAddTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.DSAddTask[] arrayOfDSAddTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.DSAddTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.DSAddTask[] objects = new com.smartgwt.client.util.workflow.DSAddTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.DSAddTask obj = (com.smartgwt.client.util.workflow.DSAddTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.DSAddTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.State} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.State[]
+	 */
+    public static com.smartgwt.client.types.State[] arrayOfState(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.State[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.State[] objects = new com.smartgwt.client.types.State[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.State obj = EnumUtil.getEnum(com.smartgwt.client.types.State.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.DoubleItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.DoubleItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.DoubleItem[] arrayOfDoubleItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.DoubleItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.DoubleItem[] objects = new com.smartgwt.client.widgets.form.fields.DoubleItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.DoubleItem obj = com.smartgwt.client.widgets.form.fields.DoubleItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.SendTransactionTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.SendTransactionTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.SendTransactionTask[] arrayOfSendTransactionTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.SendTransactionTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.SendTransactionTask[] objects = new com.smartgwt.client.util.workflow.SendTransactionTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.SendTransactionTask obj = (com.smartgwt.client.util.workflow.SendTransactionTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.SendTransactionTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.LocatorTypeStrategy} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.LocatorTypeStrategy[]
+	 */
+    public static com.smartgwt.client.types.LocatorTypeStrategy[] arrayOfLocatorTypeStrategy(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.LocatorTypeStrategy[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.LocatorTypeStrategy[] objects = new com.smartgwt.client.types.LocatorTypeStrategy[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.LocatorTypeStrategy obj = EnumUtil.getEnum(com.smartgwt.client.types.LocatorTypeStrategy.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.ShowDataValuesMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.ShowDataValuesMode[]
+	 */
+    public static com.smartgwt.client.types.ShowDataValuesMode[] arrayOfShowDataValuesMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.ShowDataValuesMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.ShowDataValuesMode[] objects = new com.smartgwt.client.types.ShowDataValuesMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.ShowDataValuesMode obj = EnumUtil.getEnum(com.smartgwt.client.types.ShowDataValuesMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.drawing.DrawPane} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.drawing.DrawPane[]
+	 */
+    public static com.smartgwt.client.widgets.drawing.DrawPane[] arrayOfDrawPane(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.drawing.DrawPane[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.drawing.DrawPane[] objects = new com.smartgwt.client.widgets.drawing.DrawPane[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.drawing.DrawPane obj = (com.smartgwt.client.widgets.drawing.DrawPane) com.smartgwt.client.widgets.drawing.DrawPane.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.CheckboxItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.CheckboxItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.CheckboxItem[] arrayOfCheckboxItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.CheckboxItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.CheckboxItem[] objects = new com.smartgwt.client.widgets.form.fields.CheckboxItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.CheckboxItem obj = com.smartgwt.client.widgets.form.fields.CheckboxItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.tools.SectionStackSectionEditProxy} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.tools.SectionStackSectionEditProxy[]
+	 */
+    public static com.smartgwt.client.tools.SectionStackSectionEditProxy[] arrayOfSectionStackSectionEditProxy(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.tools.SectionStackSectionEditProxy[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.tools.SectionStackSectionEditProxy[] objects = new com.smartgwt.client.tools.SectionStackSectionEditProxy[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.tools.SectionStackSectionEditProxy obj = (com.smartgwt.client.tools.SectionStackSectionEditProxy) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.tools.SectionStackSectionEditProxy(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.SelectionBoundary} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.SelectionBoundary[]
+	 */
+    public static com.smartgwt.client.types.SelectionBoundary[] arrayOfSelectionBoundary(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.SelectionBoundary[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.SelectionBoundary[] objects = new com.smartgwt.client.types.SelectionBoundary[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.SelectionBoundary obj = EnumUtil.getEnum(com.smartgwt.client.types.SelectionBoundary.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.viewer.DetailViewerField} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.viewer.DetailViewerField[]
+	 */
+    public static com.smartgwt.client.widgets.viewer.DetailViewerField[] arrayOfDetailViewerField(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.viewer.DetailViewerField[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.viewer.DetailViewerField[] ret = new com.smartgwt.client.widgets.viewer.DetailViewerField[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.viewer.DetailViewerField(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.viewer.DetailViewerField[] objects = new com.smartgwt.client.widgets.viewer.DetailViewerField[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.viewer.DetailViewerField obj = (com.smartgwt.client.widgets.viewer.DetailViewerField) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.viewer.DetailViewerField(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.ChildrenPropertyMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.ChildrenPropertyMode[]
+	 */
+    public static com.smartgwt.client.types.ChildrenPropertyMode[] arrayOfChildrenPropertyMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.ChildrenPropertyMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.ChildrenPropertyMode[] objects = new com.smartgwt.client.types.ChildrenPropertyMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.ChildrenPropertyMode obj = EnumUtil.getEnum(com.smartgwt.client.types.ChildrenPropertyMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.browser.window.BrowserWindowSettings} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.browser.window.BrowserWindowSettings[]
+	 */
+    public static com.smartgwt.client.browser.window.BrowserWindowSettings[] arrayOfBrowserWindowSettings(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.browser.window.BrowserWindowSettings[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.browser.window.BrowserWindowSettings[] ret = new com.smartgwt.client.browser.window.BrowserWindowSettings[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.browser.window.BrowserWindowSettings(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.browser.window.BrowserWindowSettings[] objects = new com.smartgwt.client.browser.window.BrowserWindowSettings[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.browser.window.BrowserWindowSettings obj = (com.smartgwt.client.browser.window.BrowserWindowSettings) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.browser.window.BrowserWindowSettings(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.Side} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.Side[]
+	 */
+    public static com.smartgwt.client.types.Side[] arrayOfSide(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.Side[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.Side[] objects = new com.smartgwt.client.types.Side[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.Side obj = EnumUtil.getEnum(com.smartgwt.client.types.Side.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.DrawingType} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.DrawingType[]
+	 */
+    public static com.smartgwt.client.types.DrawingType[] arrayOfDrawingType(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.DrawingType[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.DrawingType[] objects = new com.smartgwt.client.types.DrawingType[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.DrawingType obj = EnumUtil.getEnum(com.smartgwt.client.types.DrawingType.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.RowSpanEditMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.RowSpanEditMode[]
+	 */
+    public static com.smartgwt.client.types.RowSpanEditMode[] arrayOfRowSpanEditMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.RowSpanEditMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.RowSpanEditMode[] objects = new com.smartgwt.client.types.RowSpanEditMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.RowSpanEditMode obj = EnumUtil.getEnum(com.smartgwt.client.types.RowSpanEditMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.RPCTransport} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.RPCTransport[]
+	 */
+    public static com.smartgwt.client.types.RPCTransport[] arrayOfRPCTransport(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.RPCTransport[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.RPCTransport[] objects = new com.smartgwt.client.types.RPCTransport[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.RPCTransport obj = EnumUtil.getEnum(com.smartgwt.client.types.RPCTransport.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.MockDataType} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.MockDataType[]
+	 */
+    public static com.smartgwt.client.types.MockDataType[] arrayOfMockDataType(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.MockDataType[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.MockDataType[] objects = new com.smartgwt.client.types.MockDataType[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.MockDataType obj = EnumUtil.getEnum(com.smartgwt.client.types.MockDataType.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.ColorItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.ColorItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.ColorItem[] arrayOfColorItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.ColorItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.ColorItem[] objects = new com.smartgwt.client.widgets.form.fields.ColorItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.ColorItem obj = com.smartgwt.client.widgets.form.fields.ColorItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.tab.Tab} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.tab.Tab[]
+	 */
+    public static com.smartgwt.client.widgets.tab.Tab[] arrayOfTab(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.tab.Tab[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.tab.Tab[] ret = new com.smartgwt.client.widgets.tab.Tab[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.tab.Tab(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.tab.Tab[] objects = new com.smartgwt.client.widgets.tab.Tab[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.tab.Tab obj = com.smartgwt.client.widgets.tab.Tab.getOrCreateRef(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.FormEditRecordTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.FormEditRecordTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.FormEditRecordTask[] arrayOfFormEditRecordTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.FormEditRecordTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.FormEditRecordTask[] objects = new com.smartgwt.client.util.workflow.FormEditRecordTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.FormEditRecordTask obj = (com.smartgwt.client.util.workflow.FormEditRecordTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.FormEditRecordTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.FormClearValuesTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.FormClearValuesTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.FormClearValuesTask[] arrayOfFormClearValuesTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.FormClearValuesTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.FormClearValuesTask[] objects = new com.smartgwt.client.util.workflow.FormClearValuesTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.FormClearValuesTask obj = (com.smartgwt.client.util.workflow.FormClearValuesTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.FormClearValuesTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.FiscalYearMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.FiscalYearMode[]
+	 */
+    public static com.smartgwt.client.types.FiscalYearMode[] arrayOfFiscalYearMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.FiscalYearMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.FiscalYearMode[] objects = new com.smartgwt.client.types.FiscalYearMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.FiscalYearMode obj = EnumUtil.getEnum(com.smartgwt.client.types.FiscalYearMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.LabelCollapseMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.LabelCollapseMode[]
+	 */
+    public static com.smartgwt.client.types.LabelCollapseMode[] arrayOfLabelCollapseMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.LabelCollapseMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.LabelCollapseMode[] objects = new com.smartgwt.client.types.LabelCollapseMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.LabelCollapseMode obj = EnumUtil.getEnum(com.smartgwt.client.types.LabelCollapseMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.NavigateSplitPaneTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.NavigateSplitPaneTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.NavigateSplitPaneTask[] arrayOfNavigateSplitPaneTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.NavigateSplitPaneTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.NavigateSplitPaneTask[] objects = new com.smartgwt.client.util.workflow.NavigateSplitPaneTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.NavigateSplitPaneTask obj = (com.smartgwt.client.util.workflow.NavigateSplitPaneTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.NavigateSplitPaneTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.UserSummary} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.UserSummary[]
+	 */
+    public static com.smartgwt.client.widgets.UserSummary[] arrayOfUserSummary(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.UserSummary[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.UserSummary[] ret = new com.smartgwt.client.widgets.UserSummary[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.UserSummary(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.UserSummary[] objects = new com.smartgwt.client.widgets.UserSummary[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.UserSummary obj = (com.smartgwt.client.widgets.UserSummary) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.UserSummary(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.SelectOtherItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.SelectOtherItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.SelectOtherItem[] arrayOfSelectOtherItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.SelectOtherItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.SelectOtherItem[] objects = new com.smartgwt.client.widgets.form.fields.SelectOtherItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.SelectOtherItem obj = com.smartgwt.client.widgets.form.fields.SelectOtherItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.DecisionTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.DecisionTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.DecisionTask[] arrayOfDecisionTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.DecisionTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.DecisionTask[] objects = new com.smartgwt.client.util.workflow.DecisionTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.DecisionTask obj = (com.smartgwt.client.util.workflow.DecisionTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.DecisionTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.AutoScrollDataApproach} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.AutoScrollDataApproach[]
+	 */
+    public static com.smartgwt.client.types.AutoScrollDataApproach[] arrayOfAutoScrollDataApproach(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.AutoScrollDataApproach[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.AutoScrollDataApproach[] objects = new com.smartgwt.client.types.AutoScrollDataApproach[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.AutoScrollDataApproach obj = EnumUtil.getEnum(com.smartgwt.client.types.AutoScrollDataApproach.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.tools.PaletteNode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.tools.PaletteNode[]
+	 */
+    public static com.smartgwt.client.tools.PaletteNode[] arrayOfPaletteNode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.tools.PaletteNode[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.tools.PaletteNode[] ret = new com.smartgwt.client.tools.PaletteNode[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.tools.PaletteNode(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.tools.PaletteNode[] objects = new com.smartgwt.client.tools.PaletteNode[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.tools.PaletteNode obj = (com.smartgwt.client.tools.PaletteNode) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.tools.PaletteNode(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.layout.SectionStack} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.layout.SectionStack[]
+	 */
+    public static com.smartgwt.client.widgets.layout.SectionStack[] arrayOfSectionStack(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.layout.SectionStack[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.layout.SectionStack[] objects = new com.smartgwt.client.widgets.layout.SectionStack[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.layout.SectionStack obj = (com.smartgwt.client.widgets.layout.SectionStack) com.smartgwt.client.widgets.layout.SectionStack.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.ace.AceEditor} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.ace.AceEditor[]
+	 */
+    public static com.smartgwt.client.widgets.ace.AceEditor[] arrayOfAceEditor(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.ace.AceEditor[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.ace.AceEditor[] objects = new com.smartgwt.client.widgets.ace.AceEditor[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.ace.AceEditor obj = (com.smartgwt.client.widgets.ace.AceEditor) com.smartgwt.client.widgets.ace.AceEditor.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.layout.DataView} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.layout.DataView[]
+	 */
+    public static com.smartgwt.client.widgets.layout.DataView[] arrayOfDataView(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.layout.DataView[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.layout.DataView[] objects = new com.smartgwt.client.widgets.layout.DataView[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.layout.DataView obj = (com.smartgwt.client.widgets.layout.DataView) com.smartgwt.client.widgets.layout.DataView.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.TourInputValidationMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.TourInputValidationMode[]
+	 */
+    public static com.smartgwt.client.types.TourInputValidationMode[] arrayOfTourInputValidationMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.TourInputValidationMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.TourInputValidationMode[] objects = new com.smartgwt.client.types.TourInputValidationMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.TourInputValidationMode obj = EnumUtil.getEnum(com.smartgwt.client.types.TourInputValidationMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.menu.TreeMenuButton} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.menu.TreeMenuButton[]
+	 */
+    public static com.smartgwt.client.widgets.menu.TreeMenuButton[] arrayOfTreeMenuButton(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.menu.TreeMenuButton[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.menu.TreeMenuButton[] objects = new com.smartgwt.client.widgets.menu.TreeMenuButton[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.menu.TreeMenuButton obj = (com.smartgwt.client.widgets.menu.TreeMenuButton) com.smartgwt.client.widgets.menu.TreeMenuButton.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.SelectedAppearance} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.SelectedAppearance[]
+	 */
+    public static com.smartgwt.client.types.SelectedAppearance[] arrayOfSelectedAppearance(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.SelectedAppearance[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.SelectedAppearance[] objects = new com.smartgwt.client.types.SelectedAppearance[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.SelectedAppearance obj = EnumUtil.getEnum(com.smartgwt.client.types.SelectedAppearance.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.calendar.IndicatorCanvas} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.calendar.IndicatorCanvas[]
+	 */
+    public static com.smartgwt.client.widgets.calendar.IndicatorCanvas[] arrayOfIndicatorCanvas(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.calendar.IndicatorCanvas[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.calendar.IndicatorCanvas[] objects = new com.smartgwt.client.widgets.calendar.IndicatorCanvas[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.calendar.IndicatorCanvas obj = (com.smartgwt.client.widgets.calendar.IndicatorCanvas) com.smartgwt.client.widgets.calendar.IndicatorCanvas.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.FormItemIcon} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.FormItemIcon[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.FormItemIcon[] arrayOfFormItemIcon(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.FormItemIcon[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.form.fields.FormItemIcon[] ret = new com.smartgwt.client.widgets.form.fields.FormItemIcon[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.form.fields.FormItemIcon(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.FormItemIcon[] objects = new com.smartgwt.client.widgets.form.fields.FormItemIcon[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.FormItemIcon obj = (com.smartgwt.client.widgets.form.fields.FormItemIcon) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.form.fields.FormItemIcon(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.FormItemType} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.FormItemType[]
+	 */
+    public static com.smartgwt.client.types.FormItemType[] arrayOfFormItemType(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.FormItemType[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.FormItemType[] objects = new com.smartgwt.client.types.FormItemType[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.FormItemType obj = EnumUtil.getEnum(com.smartgwt.client.types.FormItemType.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.tile.TileRecord} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.tile.TileRecord[]
+	 */
+    public static com.smartgwt.client.widgets.tile.TileRecord[] arrayOfTileRecord(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.tile.TileRecord[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.tile.TileRecord[] ret = new com.smartgwt.client.widgets.tile.TileRecord[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.tile.TileRecord(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.tile.TileRecord[] objects = new com.smartgwt.client.widgets.tile.TileRecord[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.tile.TileRecord obj = com.smartgwt.client.widgets.tile.TileRecord.getOrCreateRef(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.PrintCanvas} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.PrintCanvas[]
+	 */
+    public static com.smartgwt.client.widgets.PrintCanvas[] arrayOfPrintCanvas(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.PrintCanvas[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.PrintCanvas[] objects = new com.smartgwt.client.widgets.PrintCanvas[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.PrintCanvas obj = (com.smartgwt.client.widgets.PrintCanvas) com.smartgwt.client.widgets.PrintCanvas.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.toolbar.RibbonGroup} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.toolbar.RibbonGroup[]
+	 */
+    public static com.smartgwt.client.widgets.toolbar.RibbonGroup[] arrayOfRibbonGroup(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.toolbar.RibbonGroup[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.toolbar.RibbonGroup[] objects = new com.smartgwt.client.widgets.toolbar.RibbonGroup[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.toolbar.RibbonGroup obj = (com.smartgwt.client.widgets.toolbar.RibbonGroup) com.smartgwt.client.widgets.toolbar.RibbonGroup.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.layout.VLayout} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.layout.VLayout[]
+	 */
+    public static com.smartgwt.client.widgets.layout.VLayout[] arrayOfVLayout(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.layout.VLayout[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.layout.VLayout[] objects = new com.smartgwt.client.widgets.layout.VLayout[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.layout.VLayout obj = (com.smartgwt.client.widgets.layout.VLayout) com.smartgwt.client.widgets.layout.VLayout.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.FormDisableFieldTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.FormDisableFieldTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.FormDisableFieldTask[] arrayOfFormDisableFieldTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.FormDisableFieldTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.FormDisableFieldTask[] objects = new com.smartgwt.client.util.workflow.FormDisableFieldTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.FormDisableFieldTask obj = (com.smartgwt.client.util.workflow.FormDisableFieldTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.FormDisableFieldTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.calendar.CalendarView} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.calendar.CalendarView[]
+	 */
+    public static com.smartgwt.client.widgets.calendar.CalendarView[] arrayOfCalendarView(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.calendar.CalendarView[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.calendar.CalendarView[] objects = new com.smartgwt.client.widgets.calendar.CalendarView[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.calendar.CalendarView obj = (com.smartgwt.client.widgets.calendar.CalendarView) com.smartgwt.client.widgets.calendar.CalendarView.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.ForceTextApproach} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.ForceTextApproach[]
+	 */
+    public static com.smartgwt.client.types.ForceTextApproach[] arrayOfForceTextApproach(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.ForceTextApproach[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.ForceTextApproach[] objects = new com.smartgwt.client.types.ForceTextApproach[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.ForceTextApproach obj = EnumUtil.getEnum(com.smartgwt.client.types.ForceTextApproach.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.FormEditSelectedTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.FormEditSelectedTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.FormEditSelectedTask[] arrayOfFormEditSelectedTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.FormEditSelectedTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.FormEditSelectedTask[] objects = new com.smartgwt.client.util.workflow.FormEditSelectedTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.FormEditSelectedTask obj = (com.smartgwt.client.util.workflow.FormEditSelectedTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.FormEditSelectedTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.DragIntersectStyle} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.DragIntersectStyle[]
+	 */
+    public static com.smartgwt.client.types.DragIntersectStyle[] arrayOfDragIntersectStyle(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.DragIntersectStyle[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.DragIntersectStyle[] objects = new com.smartgwt.client.types.DragIntersectStyle[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.DragIntersectStyle obj = EnumUtil.getEnum(com.smartgwt.client.types.DragIntersectStyle.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.toolbar.ToolStripButton} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.toolbar.ToolStripButton[]
+	 */
+    public static com.smartgwt.client.widgets.toolbar.ToolStripButton[] arrayOfToolStripButton(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.toolbar.ToolStripButton[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.toolbar.ToolStripButton[] objects = new com.smartgwt.client.widgets.toolbar.ToolStripButton[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.toolbar.ToolStripButton obj = (com.smartgwt.client.widgets.toolbar.ToolStripButton) com.smartgwt.client.widgets.toolbar.ToolStripButton.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.tour.TourStep} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.tour.TourStep[]
+	 */
+    public static com.smartgwt.client.util.tour.TourStep[] arrayOfTourStep(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.tour.TourStep[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.tour.TourStep[] objects = new com.smartgwt.client.util.tour.TourStep[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.tour.TourStep obj = (com.smartgwt.client.util.tour.TourStep) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.tour.TourStep(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.tools.EditTree} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.tools.EditTree[]
+	 */
+    public static com.smartgwt.client.tools.EditTree[] arrayOfEditTree(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.tools.EditTree[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.tools.EditTree[] objects = new com.smartgwt.client.tools.EditTree[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.tools.EditTree obj = (com.smartgwt.client.tools.EditTree) com.smartgwt.client.tools.EditTree.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.EdgeName} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.EdgeName[]
+	 */
+    public static com.smartgwt.client.types.EdgeName[] arrayOfEdgeName(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.EdgeName[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.EdgeName[] objects = new com.smartgwt.client.types.EdgeName[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.EdgeName obj = EnumUtil.getEnum(com.smartgwt.client.types.EdgeName.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.Img} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.Img[]
+	 */
+    public static com.smartgwt.client.widgets.Img[] arrayOfImg(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.Img[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.Img[] objects = new com.smartgwt.client.widgets.Img[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.Img obj = (com.smartgwt.client.widgets.Img) com.smartgwt.client.widgets.Img.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.AutoComplete} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.AutoComplete[]
+	 */
+    public static com.smartgwt.client.types.AutoComplete[] arrayOfAutoComplete(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.AutoComplete[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.AutoComplete[] objects = new com.smartgwt.client.types.AutoComplete[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.AutoComplete obj = EnumUtil.getEnum(com.smartgwt.client.types.AutoComplete.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.LineBreakStyle} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.LineBreakStyle[]
+	 */
+    public static com.smartgwt.client.types.LineBreakStyle[] arrayOfLineBreakStyle(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.LineBreakStyle[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.LineBreakStyle[] objects = new com.smartgwt.client.types.LineBreakStyle[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.LineBreakStyle obj = EnumUtil.getEnum(com.smartgwt.client.types.LineBreakStyle.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.viewer.DetailViewerRecord} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.viewer.DetailViewerRecord[]
+	 */
+    public static com.smartgwt.client.widgets.viewer.DetailViewerRecord[] arrayOfDetailViewerRecord(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.viewer.DetailViewerRecord[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.viewer.DetailViewerRecord[] ret = new com.smartgwt.client.widgets.viewer.DetailViewerRecord[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.viewer.DetailViewerRecord(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.viewer.DetailViewerRecord[] objects = new com.smartgwt.client.widgets.viewer.DetailViewerRecord[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.viewer.DetailViewerRecord obj = com.smartgwt.client.widgets.viewer.DetailViewerRecord.getOrCreateRef(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.DeviceMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.DeviceMode[]
+	 */
+    public static com.smartgwt.client.types.DeviceMode[] arrayOfDeviceMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.DeviceMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.DeviceMode[] objects = new com.smartgwt.client.types.DeviceMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.DeviceMode obj = EnumUtil.getEnum(com.smartgwt.client.types.DeviceMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.MultiDecisionTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.MultiDecisionTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.MultiDecisionTask[] arrayOfMultiDecisionTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.MultiDecisionTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.MultiDecisionTask[] objects = new com.smartgwt.client.util.workflow.MultiDecisionTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.MultiDecisionTask obj = (com.smartgwt.client.util.workflow.MultiDecisionTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.MultiDecisionTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.SnapGridStyle} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.SnapGridStyle[]
+	 */
+    public static com.smartgwt.client.types.SnapGridStyle[] arrayOfSnapGridStyle(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.SnapGridStyle[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.SnapGridStyle[] objects = new com.smartgwt.client.types.SnapGridStyle[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.SnapGridStyle obj = EnumUtil.getEnum(com.smartgwt.client.types.SnapGridStyle.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.JSSyntaxHiliter} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.JSSyntaxHiliter[]
+	 */
+    public static com.smartgwt.client.util.JSSyntaxHiliter[] arrayOfJSSyntaxHiliter(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.JSSyntaxHiliter[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.JSSyntaxHiliter[] objects = new com.smartgwt.client.util.JSSyntaxHiliter[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.JSSyntaxHiliter obj = (com.smartgwt.client.util.JSSyntaxHiliter) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.JSSyntaxHiliter(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.MultipleFieldStorage} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.MultipleFieldStorage[]
+	 */
+    public static com.smartgwt.client.types.MultipleFieldStorage[] arrayOfMultipleFieldStorage(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.MultipleFieldStorage[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.MultipleFieldStorage[] objects = new com.smartgwt.client.types.MultipleFieldStorage[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.MultipleFieldStorage obj = EnumUtil.getEnum(com.smartgwt.client.types.MultipleFieldStorage.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.grid.RecordEditor} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.grid.RecordEditor[]
+	 */
+    public static com.smartgwt.client.widgets.grid.RecordEditor[] arrayOfRecordEditor(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.grid.RecordEditor[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.grid.RecordEditor[] objects = new com.smartgwt.client.widgets.grid.RecordEditor[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.grid.RecordEditor obj = (com.smartgwt.client.widgets.grid.RecordEditor) com.smartgwt.client.widgets.grid.RecordEditor.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.UserConfirmationTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.UserConfirmationTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.UserConfirmationTask[] arrayOfUserConfirmationTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.UserConfirmationTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.UserConfirmationTask[] objects = new com.smartgwt.client.util.workflow.UserConfirmationTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.UserConfirmationTask obj = (com.smartgwt.client.util.workflow.UserConfirmationTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.UserConfirmationTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.NavigationMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.NavigationMode[]
+	 */
+    public static com.smartgwt.client.types.NavigationMode[] arrayOfNavigationMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.NavigationMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.NavigationMode[] objects = new com.smartgwt.client.types.NavigationMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.NavigationMode obj = EnumUtil.getEnum(com.smartgwt.client.types.NavigationMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.calendar.ZoneCanvas} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.calendar.ZoneCanvas[]
+	 */
+    public static com.smartgwt.client.widgets.calendar.ZoneCanvas[] arrayOfZoneCanvas(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.calendar.ZoneCanvas[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.calendar.ZoneCanvas[] objects = new com.smartgwt.client.widgets.calendar.ZoneCanvas[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.calendar.ZoneCanvas obj = (com.smartgwt.client.widgets.calendar.ZoneCanvas) com.smartgwt.client.widgets.calendar.ZoneCanvas.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.tools.SectionStackEditProxy} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.tools.SectionStackEditProxy[]
+	 */
+    public static com.smartgwt.client.tools.SectionStackEditProxy[] arrayOfSectionStackEditProxy(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.tools.SectionStackEditProxy[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.tools.SectionStackEditProxy[] objects = new com.smartgwt.client.tools.SectionStackEditProxy[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.tools.SectionStackEditProxy obj = (com.smartgwt.client.tools.SectionStackEditProxy) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.tools.SectionStackEditProxy(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.drawing.SimpleGradient} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.drawing.SimpleGradient[]
+	 */
+    public static com.smartgwt.client.widgets.drawing.SimpleGradient[] arrayOfSimpleGradient(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.drawing.SimpleGradient[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.drawing.SimpleGradient[] ret = new com.smartgwt.client.widgets.drawing.SimpleGradient[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.drawing.SimpleGradient(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.drawing.SimpleGradient[] objects = new com.smartgwt.client.widgets.drawing.SimpleGradient[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.drawing.SimpleGradient obj = (com.smartgwt.client.widgets.drawing.SimpleGradient) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.drawing.SimpleGradient(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.BlurbItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.BlurbItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.BlurbItem[] arrayOfBlurbItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.BlurbItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.BlurbItem[] objects = new com.smartgwt.client.widgets.form.fields.BlurbItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.BlurbItem obj = com.smartgwt.client.widgets.form.fields.BlurbItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.NativeCheckboxItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.NativeCheckboxItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.NativeCheckboxItem[] arrayOfNativeCheckboxItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.NativeCheckboxItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.NativeCheckboxItem[] objects = new com.smartgwt.client.widgets.form.fields.NativeCheckboxItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.NativeCheckboxItem obj = com.smartgwt.client.widgets.form.fields.NativeCheckboxItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.PropertyIdentifier} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.PropertyIdentifier[]
+	 */
+    public static com.smartgwt.client.types.PropertyIdentifier[] arrayOfPropertyIdentifier(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.PropertyIdentifier[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.PropertyIdentifier[] objects = new com.smartgwt.client.types.PropertyIdentifier[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.PropertyIdentifier obj = EnumUtil.getEnum(com.smartgwt.client.types.PropertyIdentifier.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.ControlName} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.ControlName[]
+	 */
+    public static com.smartgwt.client.types.ControlName[] arrayOfControlName(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.ControlName[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.ControlName[] objects = new com.smartgwt.client.types.ControlName[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.ControlName obj = EnumUtil.getEnum(com.smartgwt.client.types.ControlName.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.ShowMessageType} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.ShowMessageType[]
+	 */
+    public static com.smartgwt.client.types.ShowMessageType[] arrayOfShowMessageType(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.ShowMessageType[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.ShowMessageType[] objects = new com.smartgwt.client.types.ShowMessageType[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.ShowMessageType obj = EnumUtil.getEnum(com.smartgwt.client.types.ShowMessageType.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.RowSpanSelectionMode} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.RowSpanSelectionMode[]
+	 */
+    public static com.smartgwt.client.types.RowSpanSelectionMode[] arrayOfRowSpanSelectionMode(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.RowSpanSelectionMode[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.RowSpanSelectionMode[] objects = new com.smartgwt.client.types.RowSpanSelectionMode[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.RowSpanSelectionMode obj = EnumUtil.getEnum(com.smartgwt.client.types.RowSpanSelectionMode.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.DataContext} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.DataContext[]
+	 */
+    public static com.smartgwt.client.widgets.DataContext[] arrayOfDataContext(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.DataContext[]{};
+        }
+
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.widgets.DataContext[] ret = new com.smartgwt.client.widgets.DataContext[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.DataContext(nativeArray));
+	        return ret;
+		}
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.DataContext[] objects = new com.smartgwt.client.widgets.DataContext[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.DataContext obj = (com.smartgwt.client.widgets.DataContext) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.DataContext(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.DSUpdateTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.DSUpdateTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.DSUpdateTask[] arrayOfDSUpdateTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.DSUpdateTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.DSUpdateTask[] objects = new com.smartgwt.client.util.workflow.DSUpdateTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.DSUpdateTask obj = (com.smartgwt.client.util.workflow.DSUpdateTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.DSUpdateTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.LinePattern} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.LinePattern[]
+	 */
+    public static com.smartgwt.client.types.LinePattern[] arrayOfLinePattern(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.LinePattern[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.LinePattern[] objects = new com.smartgwt.client.types.LinePattern[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.LinePattern obj = EnumUtil.getEnum(com.smartgwt.client.types.LinePattern.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.drawing.DrawKnob} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.drawing.DrawKnob[]
+	 */
+    public static com.smartgwt.client.widgets.drawing.DrawKnob[] arrayOfDrawKnob(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.drawing.DrawKnob[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.drawing.DrawKnob[] objects = new com.smartgwt.client.widgets.drawing.DrawKnob[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.drawing.DrawKnob obj = (com.smartgwt.client.widgets.drawing.DrawKnob) com.smartgwt.client.widgets.drawing.DrawKnob.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.Label} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.Label[]
+	 */
+    public static com.smartgwt.client.widgets.Label[] arrayOfLabel(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.Label[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.Label[] objects = new com.smartgwt.client.widgets.Label[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.Label obj = (com.smartgwt.client.widgets.Label) com.smartgwt.client.widgets.Label.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.menu.MenuButton} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.menu.MenuButton[]
+	 */
+    public static com.smartgwt.client.widgets.menu.MenuButton[] arrayOfMenuButton(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.menu.MenuButton[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.menu.MenuButton[] objects = new com.smartgwt.client.widgets.menu.MenuButton[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.menu.MenuButton obj = (com.smartgwt.client.widgets.menu.MenuButton) com.smartgwt.client.widgets.menu.MenuButton.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.DSOperationType} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.DSOperationType[]
+	 */
+    public static com.smartgwt.client.types.DSOperationType[] arrayOfDSOperationType(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.DSOperationType[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.DSOperationType[] objects = new com.smartgwt.client.types.DSOperationType[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.DSOperationType obj = EnumUtil.getEnum(com.smartgwt.client.types.DSOperationType.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.form.fields.ResetItem} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.form.fields.ResetItem[]
+	 */
+    public static com.smartgwt.client.widgets.form.fields.ResetItem[] arrayOfResetItem(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.form.fields.ResetItem[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.form.fields.ResetItem[] objects = new com.smartgwt.client.widgets.form.fields.ResetItem[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.form.fields.ResetItem obj = com.smartgwt.client.widgets.form.fields.ResetItem.getOrCreateRef(components[i]);
+
+            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
+                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.Window} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.Window[]
+	 */
+    public static com.smartgwt.client.widgets.Window[] arrayOfWindow(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.Window[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.Window[] objects = new com.smartgwt.client.widgets.Window[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.Window obj = (com.smartgwt.client.widgets.Window) com.smartgwt.client.widgets.Window.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.TitleRotationMode} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.TitleRotationMode[]
@@ -1571,29 +8680,29 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.drawing.Shadow} objects.
+	 * {@link com.smartgwt.client.util.workflow.DecisionBranch} objects.
 	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.drawing.Shadow[]
+	 * @return com.smartgwt.client.util.workflow.DecisionBranch[]
 	 */
-    public static com.smartgwt.client.widgets.drawing.Shadow[] arrayOfShadow(JavaScriptObject nativeArray) {
+    public static com.smartgwt.client.util.workflow.DecisionBranch[] arrayOfDecisionBranch(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.drawing.Shadow[]{};
+            return new com.smartgwt.client.util.workflow.DecisionBranch[]{};
         }
 
 		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.drawing.Shadow[] ret = new com.smartgwt.client.widgets.drawing.Shadow[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.drawing.Shadow(nativeArray));
+			com.smartgwt.client.util.workflow.DecisionBranch[] ret = new com.smartgwt.client.util.workflow.DecisionBranch[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.util.workflow.DecisionBranch(nativeArray));
 	        return ret;
 		}
 
         JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.drawing.Shadow[] objects = new com.smartgwt.client.widgets.drawing.Shadow[components.length];
+        com.smartgwt.client.util.workflow.DecisionBranch[] objects = new com.smartgwt.client.util.workflow.DecisionBranch[components.length];
 
         for (int i = 0; i < components.length; i++) {
 
-            com.smartgwt.client.widgets.drawing.Shadow obj = (com.smartgwt.client.widgets.drawing.Shadow) ((DataClass) RefDataClass.getRef(components[i]));
+            com.smartgwt.client.util.workflow.DecisionBranch obj = (com.smartgwt.client.util.workflow.DecisionBranch) ((DataClass) RefDataClass.getRef(components[i]));
             if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.drawing.Shadow(components[i]));
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.DecisionBranch(components[i]));
             }
 
             objects[i] = obj;
@@ -1621,29 +8730,6 @@ public final class ConvertTo {
             if (obj == null) {
                 obj = (components[i] == null ? null : new com.smartgwt.client.tools.DrawPaneEditProxy(components[i]));
             }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.StatefulCanvas} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.StatefulCanvas[]
-	 */
-    public static com.smartgwt.client.widgets.StatefulCanvas[] arrayOfStatefulCanvas(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.StatefulCanvas[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.StatefulCanvas[] objects = new com.smartgwt.client.widgets.StatefulCanvas[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.StatefulCanvas obj = (com.smartgwt.client.widgets.StatefulCanvas) com.smartgwt.client.widgets.StatefulCanvas.getByJSObject(components[i]);
 
             objects[i] = obj;
         }
@@ -1992,92 +9078,22 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.TableMode} objects.
+	 * {@link com.smartgwt.client.types.MatchElementSizeMode} objects.
 	 * @param nativeArray
-	 * @return com.smartgwt.client.types.TableMode[]
+	 * @return com.smartgwt.client.types.MatchElementSizeMode[]
 	 */
-    public static com.smartgwt.client.types.TableMode[] arrayOfTableMode(JavaScriptObject nativeArray) {
+    public static com.smartgwt.client.types.MatchElementSizeMode[] arrayOfMatchElementSizeMode(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
-            return new com.smartgwt.client.types.TableMode[]{};
+            return new com.smartgwt.client.types.MatchElementSizeMode[]{};
         }
 
         String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.TableMode[] objects = new com.smartgwt.client.types.TableMode[values.length];
+        com.smartgwt.client.types.MatchElementSizeMode[] objects = new com.smartgwt.client.types.MatchElementSizeMode[values.length];
 
         for (int i = 0; i < values.length; i++) {
 
             String value = values[i];
-            com.smartgwt.client.types.TableMode obj = EnumUtil.getEnum(com.smartgwt.client.types.TableMode.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.plugins.BrowserPlugin} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.plugins.BrowserPlugin[]
-	 */
-    public static com.smartgwt.client.widgets.plugins.BrowserPlugin[] arrayOfBrowserPlugin(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.plugins.BrowserPlugin[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.plugins.BrowserPlugin[] objects = new com.smartgwt.client.widgets.plugins.BrowserPlugin[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.plugins.BrowserPlugin obj = (com.smartgwt.client.widgets.plugins.BrowserPlugin) com.smartgwt.client.widgets.plugins.BrowserPlugin.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.DragDataAction} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.DragDataAction[]
-	 */
-    public static com.smartgwt.client.types.DragDataAction[] arrayOfDragDataAction(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.DragDataAction[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.DragDataAction[] objects = new com.smartgwt.client.types.DragDataAction[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.DragDataAction obj = EnumUtil.getEnum(com.smartgwt.client.types.DragDataAction.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.FieldPickerWindow} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.FieldPickerWindow[]
-	 */
-    public static com.smartgwt.client.widgets.FieldPickerWindow[] arrayOfFieldPickerWindow(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.FieldPickerWindow[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.FieldPickerWindow[] objects = new com.smartgwt.client.widgets.FieldPickerWindow[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.FieldPickerWindow obj = (com.smartgwt.client.widgets.FieldPickerWindow) com.smartgwt.client.widgets.FieldPickerWindow.getByJSObject(components[i]);
+            com.smartgwt.client.types.MatchElementSizeMode obj = EnumUtil.getEnum(com.smartgwt.client.types.MatchElementSizeMode.values(), value);
 
             objects[i] = obj;
         }
@@ -2104,56 +9120,6 @@ public final class ConvertTo {
             if (obj == null) {
                 obj = (components[i] == null ? null : new com.smartgwt.client.data.DataSource(components[i]));
             }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.tools.FormItemEditProxy} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.tools.FormItemEditProxy[]
-	 */
-    public static com.smartgwt.client.tools.FormItemEditProxy[] arrayOfFormItemEditProxy(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.tools.FormItemEditProxy[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.tools.FormItemEditProxy[] objects = new com.smartgwt.client.tools.FormItemEditProxy[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.tools.FormItemEditProxy obj = (com.smartgwt.client.tools.FormItemEditProxy) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.tools.FormItemEditProxy(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.ClickMaskMode} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.ClickMaskMode[]
-	 */
-    public static com.smartgwt.client.types.ClickMaskMode[] arrayOfClickMaskMode(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.ClickMaskMode[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.ClickMaskMode[] objects = new com.smartgwt.client.types.ClickMaskMode[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.ClickMaskMode obj = EnumUtil.getEnum(com.smartgwt.client.types.ClickMaskMode.values(), value);
 
             objects[i] = obj;
         }
@@ -2296,62 +9262,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.Overflow} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.Overflow[]
-	 */
-    public static com.smartgwt.client.types.Overflow[] arrayOfOverflow(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.Overflow[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.Overflow[] objects = new com.smartgwt.client.types.Overflow[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.Overflow obj = EnumUtil.getEnum(com.smartgwt.client.types.Overflow.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.rpc.RPCResponse} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.rpc.RPCResponse[]
-	 */
-    public static com.smartgwt.client.rpc.RPCResponse[] arrayOfRPCResponse(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.rpc.RPCResponse[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.rpc.RPCResponse[] ret = new com.smartgwt.client.rpc.RPCResponse[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.rpc.RPCResponse(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.rpc.RPCResponse[] objects = new com.smartgwt.client.rpc.RPCResponse[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.rpc.RPCResponse obj = (com.smartgwt.client.rpc.RPCResponse) ((DataClass) RefDataClass.getRef(components[i]));
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.rpc.RPCResponse(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.ListGridComponent} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.ListGridComponent[]
@@ -2392,6 +9302,32 @@ public final class ConvertTo {
 
             String value = values[i];
             com.smartgwt.client.types.DataLineType obj = EnumUtil.getEnum(com.smartgwt.client.types.DataLineType.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.GridEditRecordTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.GridEditRecordTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.GridEditRecordTask[] arrayOfGridEditRecordTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.GridEditRecordTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.GridEditRecordTask[] objects = new com.smartgwt.client.util.workflow.GridEditRecordTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.GridEditRecordTask obj = (com.smartgwt.client.util.workflow.GridEditRecordTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.GridEditRecordTask(components[i]));
+            }
 
             objects[i] = obj;
         }
@@ -2506,29 +9442,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.Button} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.Button[]
-	 */
-    public static com.smartgwt.client.widgets.Button[] arrayOfButton(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.Button[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.Button[] objects = new com.smartgwt.client.widgets.Button[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.Button obj = (com.smartgwt.client.widgets.Button) com.smartgwt.client.widgets.Button.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.form.fields.RowSpacerItem} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.form.fields.RowSpacerItem[]
@@ -2544,33 +9457,6 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.widgets.form.fields.RowSpacerItem obj = com.smartgwt.client.widgets.form.fields.RowSpacerItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.TimeItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.TimeItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.TimeItem[] arrayOfTimeItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.TimeItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.TimeItem[] objects = new com.smartgwt.client.widgets.form.fields.TimeItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.TimeItem obj = com.smartgwt.client.widgets.form.fields.TimeItem.getOrCreateRef(components[i]);
 
             if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
                 obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
@@ -2609,30 +9495,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.AutoFitEvent} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.AutoFitEvent[]
-	 */
-    public static com.smartgwt.client.types.AutoFitEvent[] arrayOfAutoFitEvent(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.AutoFitEvent[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.AutoFitEvent[] objects = new com.smartgwt.client.types.AutoFitEvent[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.AutoFitEvent obj = EnumUtil.getEnum(com.smartgwt.client.types.AutoFitEvent.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.ace.AceAnchor} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.ace.AceAnchor[]
@@ -2659,30 +9521,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.PickListItemIconPlacement} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.PickListItemIconPlacement[]
-	 */
-    public static com.smartgwt.client.types.PickListItemIconPlacement[] arrayOfPickListItemIconPlacement(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.PickListItemIconPlacement[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.PickListItemIconPlacement[] objects = new com.smartgwt.client.types.PickListItemIconPlacement[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.PickListItemIconPlacement obj = EnumUtil.getEnum(com.smartgwt.client.types.PickListItemIconPlacement.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.ArrowStyle} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.ArrowStyle[]
@@ -2699,30 +9537,6 @@ public final class ConvertTo {
 
             String value = values[i];
             com.smartgwt.client.types.ArrowStyle obj = EnumUtil.getEnum(com.smartgwt.client.types.ArrowStyle.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.SelectionAppearance} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.SelectionAppearance[]
-	 */
-    public static com.smartgwt.client.types.SelectionAppearance[] arrayOfSelectionAppearance(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.SelectionAppearance[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.SelectionAppearance[] objects = new com.smartgwt.client.types.SelectionAppearance[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.SelectionAppearance obj = EnumUtil.getEnum(com.smartgwt.client.types.SelectionAppearance.values(), value);
 
             objects[i] = obj;
         }
@@ -2774,29 +9588,6 @@ public final class ConvertTo {
 
             String value = values[i];
             com.smartgwt.client.types.HashAlgorithm obj = EnumUtil.getEnum(com.smartgwt.client.types.HashAlgorithm.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.layout.Portlet} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.layout.Portlet[]
-	 */
-    public static com.smartgwt.client.widgets.layout.Portlet[] arrayOfPortlet(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.layout.Portlet[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.layout.Portlet[] objects = new com.smartgwt.client.widgets.layout.Portlet[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.layout.Portlet obj = (com.smartgwt.client.widgets.layout.Portlet) com.smartgwt.client.widgets.layout.Portlet.getByJSObject(components[i]);
 
             objects[i] = obj;
         }
@@ -2866,46 +9657,21 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.ArrowKeyEditAction} objects.
+	 * {@link com.smartgwt.client.tools.GradientEditor} objects.
 	 * @param nativeArray
-	 * @return com.smartgwt.client.types.ArrowKeyEditAction[]
+	 * @return com.smartgwt.client.tools.GradientEditor[]
 	 */
-    public static com.smartgwt.client.types.ArrowKeyEditAction[] arrayOfArrowKeyEditAction(JavaScriptObject nativeArray) {
+    public static com.smartgwt.client.tools.GradientEditor[] arrayOfGradientEditor(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
-            return new com.smartgwt.client.types.ArrowKeyEditAction[]{};
+            return new com.smartgwt.client.tools.GradientEditor[]{};
         }
 
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.ArrowKeyEditAction[] objects = new com.smartgwt.client.types.ArrowKeyEditAction[values.length];
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.tools.GradientEditor[] objects = new com.smartgwt.client.tools.GradientEditor[components.length];
 
-        for (int i = 0; i < values.length; i++) {
+        for (int i = 0; i < components.length; i++) {
 
-            String value = values[i];
-            com.smartgwt.client.types.ArrowKeyEditAction obj = EnumUtil.getEnum(com.smartgwt.client.types.ArrowKeyEditAction.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.OperatorId} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.OperatorId[]
-	 */
-    public static com.smartgwt.client.types.OperatorId[] arrayOfOperatorId(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.OperatorId[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.OperatorId[] objects = new com.smartgwt.client.types.OperatorId[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.OperatorId obj = EnumUtil.getEnum(com.smartgwt.client.types.OperatorId.values(), value);
+            com.smartgwt.client.tools.GradientEditor obj = (com.smartgwt.client.tools.GradientEditor) com.smartgwt.client.tools.GradientEditor.getByJSObject(components[i]);
 
             objects[i] = obj;
         }
@@ -2962,59 +9728,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.DataURLFormat} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.DataURLFormat[]
-	 */
-    public static com.smartgwt.client.types.DataURLFormat[] arrayOfDataURLFormat(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.DataURLFormat[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.DataURLFormat[] objects = new com.smartgwt.client.types.DataURLFormat[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.DataURLFormat obj = EnumUtil.getEnum(com.smartgwt.client.types.DataURLFormat.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.FormItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.FormItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.FormItem[] arrayOfFormItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.FormItem[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.form.fields.FormItem[] ret = new com.smartgwt.client.widgets.form.fields.FormItem[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.form.fields.FormItem(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.FormItem[] objects = new com.smartgwt.client.widgets.form.fields.FormItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.FormItem obj = FormItemFactory.getFormItem(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.Scrollbar} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.Scrollbar[]
@@ -3053,30 +9766,6 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.widgets.drawing.DrawPolygon obj = (com.smartgwt.client.widgets.drawing.DrawPolygon) com.smartgwt.client.widgets.drawing.DrawPolygon.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.StackDirection} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.StackDirection[]
-	 */
-    public static com.smartgwt.client.types.StackDirection[] arrayOfStackDirection(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.StackDirection[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.StackDirection[] objects = new com.smartgwt.client.types.StackDirection[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.StackDirection obj = EnumUtil.getEnum(com.smartgwt.client.types.StackDirection.values(), value);
 
             objects[i] = obj;
         }
@@ -3127,29 +9816,6 @@ public final class ConvertTo {
             if (obj == null) {
                 obj = (components[i] == null ? null : new com.smartgwt.client.tools.CheckboxItemEditProxy(components[i]));
             }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.DateRangeDialog} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.DateRangeDialog[]
-	 */
-    public static com.smartgwt.client.widgets.DateRangeDialog[] arrayOfDateRangeDialog(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.DateRangeDialog[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.DateRangeDialog[] objects = new com.smartgwt.client.widgets.DateRangeDialog[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.DateRangeDialog obj = (com.smartgwt.client.widgets.DateRangeDialog) com.smartgwt.client.widgets.DateRangeDialog.getByJSObject(components[i]);
 
             objects[i] = obj;
         }
@@ -3214,32 +9880,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.GridRemoveSelectedDataTask} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.GridRemoveSelectedDataTask[]
-	 */
-    public static com.smartgwt.client.util.workflow.GridRemoveSelectedDataTask[] arrayOfGridRemoveSelectedDataTask(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.GridRemoveSelectedDataTask[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.GridRemoveSelectedDataTask[] objects = new com.smartgwt.client.util.workflow.GridRemoveSelectedDataTask[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.GridRemoveSelectedDataTask obj = (com.smartgwt.client.util.workflow.GridRemoveSelectedDataTask) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.GridRemoveSelectedDataTask(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.drawing.DrawItem} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.drawing.DrawItem[]
@@ -3279,30 +9919,6 @@ public final class ConvertTo {
 
             String value = values[i];
             com.smartgwt.client.types.ContentsType obj = EnumUtil.getEnum(com.smartgwt.client.types.ContentsType.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.PointShape} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.PointShape[]
-	 */
-    public static com.smartgwt.client.types.PointShape[] arrayOfPointShape(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.PointShape[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.PointShape[] objects = new com.smartgwt.client.types.PointShape[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.PointShape obj = EnumUtil.getEnum(com.smartgwt.client.types.PointShape.values(), value);
 
             objects[i] = obj;
         }
@@ -3431,6 +10047,32 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.tour.Tutorial} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.tour.Tutorial[]
+	 */
+    public static com.smartgwt.client.util.tour.Tutorial[] arrayOfTutorial(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.tour.Tutorial[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.tour.Tutorial[] objects = new com.smartgwt.client.util.tour.Tutorial[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.tour.Tutorial obj = (com.smartgwt.client.util.tour.Tutorial) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.tour.Tutorial(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.viewer.DetailViewer} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.viewer.DetailViewer[]
@@ -3446,56 +10088,6 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.widgets.viewer.DetailViewer obj = (com.smartgwt.client.widgets.viewer.DetailViewer) com.smartgwt.client.widgets.viewer.DetailViewer.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.ace.AceEditSession} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.ace.AceEditSession[]
-	 */
-    public static com.smartgwt.client.widgets.ace.AceEditSession[] arrayOfAceEditSession(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.ace.AceEditSession[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.ace.AceEditSession[] objects = new com.smartgwt.client.widgets.ace.AceEditSession[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.ace.AceEditSession obj = (com.smartgwt.client.widgets.ace.AceEditSession) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.ace.AceEditSession(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.DragTrackerMode} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.DragTrackerMode[]
-	 */
-    public static com.smartgwt.client.types.DragTrackerMode[] arrayOfDragTrackerMode(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.DragTrackerMode[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.DragTrackerMode[] objects = new com.smartgwt.client.types.DragTrackerMode[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.DragTrackerMode obj = EnumUtil.getEnum(com.smartgwt.client.types.DragTrackerMode.values(), value);
 
             objects[i] = obj;
         }
@@ -3520,54 +10112,6 @@ public final class ConvertTo {
 
             String value = values[i];
             com.smartgwt.client.types.RecordSummaryFunctionType obj = EnumUtil.getEnum(com.smartgwt.client.types.RecordSummaryFunctionType.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.ImageStyle} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.ImageStyle[]
-	 */
-    public static com.smartgwt.client.types.ImageStyle[] arrayOfImageStyle(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.ImageStyle[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.ImageStyle[] objects = new com.smartgwt.client.types.ImageStyle[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.ImageStyle obj = EnumUtil.getEnum(com.smartgwt.client.types.ImageStyle.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.TitleAutoFitRotationMode} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.TitleAutoFitRotationMode[]
-	 */
-    public static com.smartgwt.client.types.TitleAutoFitRotationMode[] arrayOfTitleAutoFitRotationMode(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.TitleAutoFitRotationMode[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.TitleAutoFitRotationMode[] objects = new com.smartgwt.client.types.TitleAutoFitRotationMode[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.TitleAutoFitRotationMode obj = EnumUtil.getEnum(com.smartgwt.client.types.TitleAutoFitRotationMode.values(), value);
 
             objects[i] = obj;
         }
@@ -3649,83 +10193,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.data.Record} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.data.Record[]
-	 */
-    public static com.smartgwt.client.data.Record[] arrayOfRecord(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.data.Record[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.data.Record[] ret = new com.smartgwt.client.data.Record[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.data.Record(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.data.Record[] objects = new com.smartgwt.client.data.Record[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.data.Record obj = com.smartgwt.client.data.Record.getOrCreateRef(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.TileLayoutPolicy} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.TileLayoutPolicy[]
-	 */
-    public static com.smartgwt.client.types.TileLayoutPolicy[] arrayOfTileLayoutPolicy(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.TileLayoutPolicy[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.TileLayoutPolicy[] objects = new com.smartgwt.client.types.TileLayoutPolicy[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.TileLayoutPolicy obj = EnumUtil.getEnum(com.smartgwt.client.types.TileLayoutPolicy.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.EscapingMode} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.EscapingMode[]
-	 */
-    public static com.smartgwt.client.types.EscapingMode[] arrayOfEscapingMode(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.EscapingMode[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.EscapingMode[] objects = new com.smartgwt.client.types.EscapingMode[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.EscapingMode obj = EnumUtil.getEnum(com.smartgwt.client.types.EscapingMode.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.DateItemSelectorFormat} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.DateItemSelectorFormat[]
@@ -3742,56 +10209,6 @@ public final class ConvertTo {
 
             String value = values[i];
             com.smartgwt.client.types.DateItemSelectorFormat obj = EnumUtil.getEnum(com.smartgwt.client.types.DateItemSelectorFormat.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.JSONDateFormat} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.JSONDateFormat[]
-	 */
-    public static com.smartgwt.client.types.JSONDateFormat[] arrayOfJSONDateFormat(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.JSONDateFormat[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.JSONDateFormat[] objects = new com.smartgwt.client.types.JSONDateFormat[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.JSONDateFormat obj = EnumUtil.getEnum(com.smartgwt.client.types.JSONDateFormat.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.data.MockDataSource} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.data.MockDataSource[]
-	 */
-    public static com.smartgwt.client.data.MockDataSource[] arrayOfMockDataSource(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.data.MockDataSource[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.data.MockDataSource[] objects = new com.smartgwt.client.data.MockDataSource[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.data.MockDataSource obj = (com.smartgwt.client.data.MockDataSource) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.data.MockDataSource(components[i]));
-            }
 
             objects[i] = obj;
         }
@@ -3824,33 +10241,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.UploadItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.UploadItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.UploadItem[] arrayOfUploadItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.UploadItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.UploadItem[] objects = new com.smartgwt.client.widgets.form.fields.UploadItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.UploadItem obj = com.smartgwt.client.widgets.form.fields.UploadItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.SortDirection} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.SortDirection[]
@@ -3867,30 +10257,6 @@ public final class ConvertTo {
 
             String value = values[i];
             com.smartgwt.client.types.SortDirection obj = EnumUtil.getEnum(com.smartgwt.client.types.SortDirection.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.LinkDataFetchMode} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.LinkDataFetchMode[]
-	 */
-    public static com.smartgwt.client.types.LinkDataFetchMode[] arrayOfLinkDataFetchMode(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.LinkDataFetchMode[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.LinkDataFetchMode[] objects = new com.smartgwt.client.types.LinkDataFetchMode[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.LinkDataFetchMode obj = EnumUtil.getEnum(com.smartgwt.client.types.LinkDataFetchMode.values(), value);
 
             objects[i] = obj;
         }
@@ -3978,30 +10344,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.HoopSelectionStyle} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.HoopSelectionStyle[]
-	 */
-    public static com.smartgwt.client.types.HoopSelectionStyle[] arrayOfHoopSelectionStyle(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.HoopSelectionStyle[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.HoopSelectionStyle[] objects = new com.smartgwt.client.types.HoopSelectionStyle[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.HoopSelectionStyle obj = EnumUtil.getEnum(com.smartgwt.client.types.HoopSelectionStyle.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.layout.PortalLayout} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.layout.PortalLayout[]
@@ -4025,69 +10367,22 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.Progressbar} objects.
+	 * {@link com.smartgwt.client.types.HoopSelectionStyle} objects.
 	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.Progressbar[]
+	 * @return com.smartgwt.client.types.HoopSelectionStyle[]
 	 */
-    public static com.smartgwt.client.widgets.Progressbar[] arrayOfProgressbar(JavaScriptObject nativeArray) {
+    public static com.smartgwt.client.types.HoopSelectionStyle[] arrayOfHoopSelectionStyle(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.Progressbar[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.Progressbar[] objects = new com.smartgwt.client.widgets.Progressbar[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.Progressbar obj = (com.smartgwt.client.widgets.Progressbar) com.smartgwt.client.widgets.Progressbar.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.DragMaskType} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.DragMaskType[]
-	 */
-    public static com.smartgwt.client.types.DragMaskType[] arrayOfDragMaskType(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.DragMaskType[]{};
+            return new com.smartgwt.client.types.HoopSelectionStyle[]{};
         }
 
         String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.DragMaskType[] objects = new com.smartgwt.client.types.DragMaskType[values.length];
+        com.smartgwt.client.types.HoopSelectionStyle[] objects = new com.smartgwt.client.types.HoopSelectionStyle[values.length];
 
         for (int i = 0; i < values.length; i++) {
 
             String value = values[i];
-            com.smartgwt.client.types.DragMaskType obj = EnumUtil.getEnum(com.smartgwt.client.types.DragMaskType.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.ListGridEditEvent} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.ListGridEditEvent[]
-	 */
-    public static com.smartgwt.client.types.ListGridEditEvent[] arrayOfListGridEditEvent(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.ListGridEditEvent[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.ListGridEditEvent[] objects = new com.smartgwt.client.types.ListGridEditEvent[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.ListGridEditEvent obj = EnumUtil.getEnum(com.smartgwt.client.types.ListGridEditEvent.values(), value);
+            com.smartgwt.client.types.HoopSelectionStyle obj = EnumUtil.getEnum(com.smartgwt.client.types.HoopSelectionStyle.values(), value);
 
             objects[i] = obj;
         }
@@ -4123,29 +10418,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.IButton} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.IButton[]
-	 */
-    public static com.smartgwt.client.widgets.IButton[] arrayOfIButton(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.IButton[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.IButton[] objects = new com.smartgwt.client.widgets.IButton[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.IButton obj = (com.smartgwt.client.widgets.IButton) com.smartgwt.client.widgets.IButton.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.form.FilterBuilder} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.form.FilterBuilder[]
@@ -4161,53 +10433,6 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.widgets.form.FilterBuilder obj = (com.smartgwt.client.widgets.form.FilterBuilder) com.smartgwt.client.widgets.form.FilterBuilder.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.ColorPickerMode} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.ColorPickerMode[]
-	 */
-    public static com.smartgwt.client.types.ColorPickerMode[] arrayOfColorPickerMode(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.ColorPickerMode[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.ColorPickerMode[] objects = new com.smartgwt.client.types.ColorPickerMode[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.ColorPickerMode obj = EnumUtil.getEnum(com.smartgwt.client.types.ColorPickerMode.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.toolbar.ToolStrip} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.toolbar.ToolStrip[]
-	 */
-    public static com.smartgwt.client.widgets.toolbar.ToolStrip[] arrayOfToolStrip(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.toolbar.ToolStrip[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.toolbar.ToolStrip[] objects = new com.smartgwt.client.widgets.toolbar.ToolStrip[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.toolbar.ToolStrip obj = (com.smartgwt.client.widgets.toolbar.ToolStrip) com.smartgwt.client.widgets.toolbar.ToolStrip.getByJSObject(components[i]);
 
             objects[i] = obj;
         }
@@ -4263,55 +10488,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.NavigateDetailPaneTask} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.NavigateDetailPaneTask[]
-	 */
-    public static com.smartgwt.client.util.workflow.NavigateDetailPaneTask[] arrayOfNavigateDetailPaneTask(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.NavigateDetailPaneTask[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.NavigateDetailPaneTask[] objects = new com.smartgwt.client.util.workflow.NavigateDetailPaneTask[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.NavigateDetailPaneTask obj = (com.smartgwt.client.util.workflow.NavigateDetailPaneTask) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.NavigateDetailPaneTask(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.FilterClause} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.FilterClause[]
-	 */
-    public static com.smartgwt.client.widgets.form.FilterClause[] arrayOfFilterClause(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.FilterClause[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.FilterClause[] objects = new com.smartgwt.client.widgets.form.FilterClause[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.FilterClause obj = (com.smartgwt.client.widgets.form.FilterClause) com.smartgwt.client.widgets.form.FilterClause.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.FacetIndentDirection} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.FacetIndentDirection[]
@@ -4336,33 +10512,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.DateRangeItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.DateRangeItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.DateRangeItem[] arrayOfDateRangeItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.DateRangeItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.DateRangeItem[] objects = new com.smartgwt.client.widgets.form.fields.DateRangeItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.DateRangeItem obj = com.smartgwt.client.widgets.form.fields.DateRangeItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.Positioning} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.Positioning[]
@@ -4379,38 +10528,6 @@ public final class ConvertTo {
 
             String value = values[i];
             com.smartgwt.client.types.Positioning obj = EnumUtil.getEnum(com.smartgwt.client.types.Positioning.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.rpc.RPCRequest} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.rpc.RPCRequest[]
-	 */
-    public static com.smartgwt.client.rpc.RPCRequest[] arrayOfRPCRequest(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.rpc.RPCRequest[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.rpc.RPCRequest[] ret = new com.smartgwt.client.rpc.RPCRequest[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.rpc.RPCRequest(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.rpc.RPCRequest[] objects = new com.smartgwt.client.rpc.RPCRequest[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.rpc.RPCRequest obj = (com.smartgwt.client.rpc.RPCRequest) ((DataClass) RefDataClass.getRef(components[i]));
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.rpc.RPCRequest(components[i]));
-            }
 
             objects[i] = obj;
         }
@@ -4466,29 +10583,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.tree.TreeGrid} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.tree.TreeGrid[]
-	 */
-    public static com.smartgwt.client.widgets.tree.TreeGrid[] arrayOfTreeGrid(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.tree.TreeGrid[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.tree.TreeGrid[] objects = new com.smartgwt.client.widgets.tree.TreeGrid[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.tree.TreeGrid obj = (com.smartgwt.client.widgets.tree.TreeGrid) com.smartgwt.client.widgets.tree.TreeGrid.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.drawing.Gradient} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.drawing.Gradient[]
@@ -4521,22 +10615,22 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.MaxStackDismissMode} objects.
+	 * {@link com.smartgwt.client.types.MockDSExportValidatorMode} objects.
 	 * @param nativeArray
-	 * @return com.smartgwt.client.types.MaxStackDismissMode[]
+	 * @return com.smartgwt.client.types.MockDSExportValidatorMode[]
 	 */
-    public static com.smartgwt.client.types.MaxStackDismissMode[] arrayOfMaxStackDismissMode(JavaScriptObject nativeArray) {
+    public static com.smartgwt.client.types.MockDSExportValidatorMode[] arrayOfMockDSExportValidatorMode(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
-            return new com.smartgwt.client.types.MaxStackDismissMode[]{};
+            return new com.smartgwt.client.types.MockDSExportValidatorMode[]{};
         }
 
         String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.MaxStackDismissMode[] objects = new com.smartgwt.client.types.MaxStackDismissMode[values.length];
+        com.smartgwt.client.types.MockDSExportValidatorMode[] objects = new com.smartgwt.client.types.MockDSExportValidatorMode[values.length];
 
         for (int i = 0; i < values.length; i++) {
 
             String value = values[i];
-            com.smartgwt.client.types.MaxStackDismissMode obj = EnumUtil.getEnum(com.smartgwt.client.types.MaxStackDismissMode.values(), value);
+            com.smartgwt.client.types.MockDSExportValidatorMode obj = EnumUtil.getEnum(com.smartgwt.client.types.MockDSExportValidatorMode.values(), value);
 
             objects[i] = obj;
         }
@@ -4593,30 +10687,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.PageOrientation} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.PageOrientation[]
-	 */
-    public static com.smartgwt.client.types.PageOrientation[] arrayOfPageOrientation(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.PageOrientation[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.PageOrientation[] objects = new com.smartgwt.client.types.PageOrientation[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.PageOrientation obj = EnumUtil.getEnum(com.smartgwt.client.types.PageOrientation.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.LabelAlignment} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.LabelAlignment[]
@@ -4641,23 +10711,29 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.tools.DetailViewerEditProxy} objects.
+	 * {@link com.smartgwt.client.util.MockDSExportSettings} objects.
 	 * @param nativeArray
-	 * @return com.smartgwt.client.tools.DetailViewerEditProxy[]
+	 * @return com.smartgwt.client.util.MockDSExportSettings[]
 	 */
-    public static com.smartgwt.client.tools.DetailViewerEditProxy[] arrayOfDetailViewerEditProxy(JavaScriptObject nativeArray) {
+    public static com.smartgwt.client.util.MockDSExportSettings[] arrayOfMockDSExportSettings(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
-            return new com.smartgwt.client.tools.DetailViewerEditProxy[]{};
+            return new com.smartgwt.client.util.MockDSExportSettings[]{};
         }
 
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.util.MockDSExportSettings[] ret = new com.smartgwt.client.util.MockDSExportSettings[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.util.MockDSExportSettings(nativeArray));
+	        return ret;
+		}
+
         JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.tools.DetailViewerEditProxy[] objects = new com.smartgwt.client.tools.DetailViewerEditProxy[components.length];
+        com.smartgwt.client.util.MockDSExportSettings[] objects = new com.smartgwt.client.util.MockDSExportSettings[components.length];
 
         for (int i = 0; i < components.length; i++) {
 
-            com.smartgwt.client.tools.DetailViewerEditProxy obj = (com.smartgwt.client.tools.DetailViewerEditProxy) BaseClass.getRef(components[i]);
+            com.smartgwt.client.util.MockDSExportSettings obj = (com.smartgwt.client.util.MockDSExportSettings) ((DataClass) RefDataClass.getRef(components[i]));
             if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.tools.DetailViewerEditProxy(components[i]));
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.MockDSExportSettings(components[i]));
             }
 
             objects[i] = obj;
@@ -4693,30 +10769,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.HoverMode} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.HoverMode[]
-	 */
-    public static com.smartgwt.client.types.HoverMode[] arrayOfHoverMode(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.HoverMode[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.HoverMode[] objects = new com.smartgwt.client.types.HoverMode[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.HoverMode obj = EnumUtil.getEnum(com.smartgwt.client.types.HoverMode.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.CriteriaPolicy} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.CriteriaPolicy[]
@@ -4733,30 +10785,6 @@ public final class ConvertTo {
 
             String value = values[i];
             com.smartgwt.client.types.CriteriaPolicy obj = EnumUtil.getEnum(com.smartgwt.client.types.CriteriaPolicy.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.PickerIconName} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.PickerIconName[]
-	 */
-    public static com.smartgwt.client.types.PickerIconName[] arrayOfPickerIconName(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.PickerIconName[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.PickerIconName[] objects = new com.smartgwt.client.types.PickerIconName[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.PickerIconName obj = EnumUtil.getEnum(com.smartgwt.client.types.PickerIconName.values(), value);
 
             objects[i] = obj;
         }
@@ -4861,91 +10889,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.drawing.DrawShapeCommand} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.drawing.DrawShapeCommand[]
-	 */
-    public static com.smartgwt.client.widgets.drawing.DrawShapeCommand[] arrayOfDrawShapeCommand(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.drawing.DrawShapeCommand[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.drawing.DrawShapeCommand[] ret = new com.smartgwt.client.widgets.drawing.DrawShapeCommand[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.drawing.DrawShapeCommand(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.drawing.DrawShapeCommand[] objects = new com.smartgwt.client.widgets.drawing.DrawShapeCommand[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.drawing.DrawShapeCommand obj = (com.smartgwt.client.widgets.drawing.DrawShapeCommand) ((DataClass) RefDataClass.getRef(components[i]));
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.drawing.DrawShapeCommand(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.SelectItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.SelectItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.SelectItem[] arrayOfSelectItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.SelectItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.SelectItem[] objects = new com.smartgwt.client.widgets.form.fields.SelectItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.SelectItem obj = com.smartgwt.client.widgets.form.fields.SelectItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.tools.LabelEditProxy} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.tools.LabelEditProxy[]
-	 */
-    public static com.smartgwt.client.tools.LabelEditProxy[] arrayOfLabelEditProxy(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.tools.LabelEditProxy[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.tools.LabelEditProxy[] objects = new com.smartgwt.client.tools.LabelEditProxy[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.tools.LabelEditProxy obj = (com.smartgwt.client.tools.LabelEditProxy) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.tools.LabelEditProxy(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.FieldType} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.FieldType[]
@@ -4985,30 +10928,6 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.widgets.Snapbar obj = (com.smartgwt.client.widgets.Snapbar) com.smartgwt.client.widgets.Snapbar.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.FieldNamingStrategy} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.FieldNamingStrategy[]
-	 */
-    public static com.smartgwt.client.types.FieldNamingStrategy[] arrayOfFieldNamingStrategy(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.FieldNamingStrategy[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.FieldNamingStrategy[] objects = new com.smartgwt.client.types.FieldNamingStrategy[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.FieldNamingStrategy obj = EnumUtil.getEnum(com.smartgwt.client.types.FieldNamingStrategy.values(), value);
 
             objects[i] = obj;
         }
@@ -5201,81 +11120,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.SliderItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.SliderItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.SliderItem[] arrayOfSliderItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.SliderItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.SliderItem[] objects = new com.smartgwt.client.widgets.form.fields.SliderItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.SliderItem obj = com.smartgwt.client.widgets.form.fields.SliderItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.Cursor} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.Cursor[]
-	 */
-    public static com.smartgwt.client.types.Cursor[] arrayOfCursor(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.Cursor[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.Cursor[] objects = new com.smartgwt.client.types.Cursor[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.Cursor obj = EnumUtil.getEnum(com.smartgwt.client.types.Cursor.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.SequenceMode} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.SequenceMode[]
-	 */
-    public static com.smartgwt.client.types.SequenceMode[] arrayOfSequenceMode(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.SequenceMode[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.SequenceMode[] objects = new com.smartgwt.client.types.SequenceMode[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.SequenceMode obj = EnumUtil.getEnum(com.smartgwt.client.types.SequenceMode.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.ImportFormat} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.ImportFormat[]
@@ -5339,32 +11183,6 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.widgets.NavigationButton obj = (com.smartgwt.client.widgets.NavigationButton) com.smartgwt.client.widgets.NavigationButton.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.SetLabelTextTask} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.SetLabelTextTask[]
-	 */
-    public static com.smartgwt.client.util.workflow.SetLabelTextTask[] arrayOfSetLabelTextTask(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.SetLabelTextTask[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.SetLabelTextTask[] objects = new com.smartgwt.client.util.workflow.SetLabelTextTask[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.SetLabelTextTask obj = (com.smartgwt.client.util.workflow.SetLabelTextTask) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.SetLabelTextTask(components[i]));
-            }
 
             objects[i] = obj;
         }
@@ -5446,32 +11264,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.Process} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.Process[]
-	 */
-    public static com.smartgwt.client.util.workflow.Process[] arrayOfProcess(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.Process[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.Process[] objects = new com.smartgwt.client.util.workflow.Process[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.Process obj = (com.smartgwt.client.util.workflow.Process) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.Process(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.ExpansionComponentPoolingMode} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.ExpansionComponentPoolingMode[]
@@ -5488,56 +11280,6 @@ public final class ConvertTo {
 
             String value = values[i];
             com.smartgwt.client.types.ExpansionComponentPoolingMode obj = EnumUtil.getEnum(com.smartgwt.client.types.ExpansionComponentPoolingMode.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.SetButtonTitleTask} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.SetButtonTitleTask[]
-	 */
-    public static com.smartgwt.client.util.workflow.SetButtonTitleTask[] arrayOfSetButtonTitleTask(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.SetButtonTitleTask[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.SetButtonTitleTask[] objects = new com.smartgwt.client.util.workflow.SetButtonTitleTask[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.SetButtonTitleTask obj = (com.smartgwt.client.util.workflow.SetButtonTitleTask) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.SetButtonTitleTask(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.EnterKeyEditAction} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.EnterKeyEditAction[]
-	 */
-    public static com.smartgwt.client.types.EnterKeyEditAction[] arrayOfEnterKeyEditAction(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.EnterKeyEditAction[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.EnterKeyEditAction[] objects = new com.smartgwt.client.types.EnterKeyEditAction[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.EnterKeyEditAction obj = EnumUtil.getEnum(com.smartgwt.client.types.EnterKeyEditAction.values(), value);
 
             objects[i] = obj;
         }
@@ -5628,53 +11370,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.FormItemElementType} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.FormItemElementType[]
-	 */
-    public static com.smartgwt.client.types.FormItemElementType[] arrayOfFormItemElementType(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.FormItemElementType[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.FormItemElementType[] objects = new com.smartgwt.client.types.FormItemElementType[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.FormItemElementType obj = EnumUtil.getEnum(com.smartgwt.client.types.FormItemElementType.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.ViewLoader} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.ViewLoader[]
-	 */
-    public static com.smartgwt.client.widgets.ViewLoader[] arrayOfViewLoader(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.ViewLoader[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.ViewLoader[] objects = new com.smartgwt.client.widgets.ViewLoader[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.ViewLoader obj = (com.smartgwt.client.widgets.ViewLoader) com.smartgwt.client.widgets.ViewLoader.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.SendMethod} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.SendMethod[]
@@ -5726,53 +11421,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.Slider} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.Slider[]
-	 */
-    public static com.smartgwt.client.widgets.Slider[] arrayOfSlider(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.Slider[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.Slider[] objects = new com.smartgwt.client.widgets.Slider[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.Slider obj = (com.smartgwt.client.widgets.Slider) com.smartgwt.client.widgets.Slider.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.AnimationLayoutMode} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.AnimationLayoutMode[]
-	 */
-    public static com.smartgwt.client.types.AnimationLayoutMode[] arrayOfAnimationLayoutMode(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.AnimationLayoutMode[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.AnimationLayoutMode[] objects = new com.smartgwt.client.types.AnimationLayoutMode[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.AnimationLayoutMode obj = EnumUtil.getEnum(com.smartgwt.client.types.AnimationLayoutMode.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.form.fields.FileItem} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.form.fields.FileItem[]
@@ -5788,215 +11436,6 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.widgets.form.fields.FileItem obj = com.smartgwt.client.widgets.form.fields.FileItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.ComboBoxItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.ComboBoxItem[] arrayOfComboBoxItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.ComboBoxItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.ComboBoxItem[] objects = new com.smartgwt.client.widgets.form.fields.ComboBoxItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.ComboBoxItem obj = com.smartgwt.client.widgets.form.fields.ComboBoxItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.SyntaxHiliter} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.SyntaxHiliter[]
-	 */
-    public static com.smartgwt.client.util.SyntaxHiliter[] arrayOfSyntaxHiliter(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.SyntaxHiliter[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.SyntaxHiliter[] objects = new com.smartgwt.client.util.SyntaxHiliter[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.SyntaxHiliter obj = (com.smartgwt.client.util.SyntaxHiliter) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.SyntaxHiliter(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.ListGridViewStatePart} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.ListGridViewStatePart[]
-	 */
-    public static com.smartgwt.client.types.ListGridViewStatePart[] arrayOfListGridViewStatePart(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.ListGridViewStatePart[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.ListGridViewStatePart[] objects = new com.smartgwt.client.types.ListGridViewStatePart[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.ListGridViewStatePart obj = EnumUtil.getEnum(com.smartgwt.client.types.ListGridViewStatePart.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.tools.EditNode} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.tools.EditNode[]
-	 */
-    public static com.smartgwt.client.tools.EditNode[] arrayOfEditNode(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.tools.EditNode[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.tools.EditNode[] ret = new com.smartgwt.client.tools.EditNode[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.tools.EditNode(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.tools.EditNode[] objects = new com.smartgwt.client.tools.EditNode[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.tools.EditNode obj = (com.smartgwt.client.tools.EditNode) ((DataClass) RefDataClass.getRef(components[i]));
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.tools.EditNode(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.rte.ListPropertiesDialog} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.rte.ListPropertiesDialog[]
-	 */
-    public static com.smartgwt.client.widgets.rte.ListPropertiesDialog[] arrayOfListPropertiesDialog(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.rte.ListPropertiesDialog[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.rte.ListPropertiesDialog[] objects = new com.smartgwt.client.widgets.rte.ListPropertiesDialog[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.rte.ListPropertiesDialog obj = (com.smartgwt.client.widgets.rte.ListPropertiesDialog) com.smartgwt.client.widgets.rte.ListPropertiesDialog.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.FormHideFieldTask} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.FormHideFieldTask[]
-	 */
-    public static com.smartgwt.client.util.workflow.FormHideFieldTask[] arrayOfFormHideFieldTask(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.FormHideFieldTask[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.FormHideFieldTask[] objects = new com.smartgwt.client.util.workflow.FormHideFieldTask[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.FormHideFieldTask obj = (com.smartgwt.client.util.workflow.FormHideFieldTask) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.FormHideFieldTask(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.TreeFilterMode} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.TreeFilterMode[]
-	 */
-    public static com.smartgwt.client.types.TreeFilterMode[] arrayOfTreeFilterMode(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.TreeFilterMode[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.TreeFilterMode[] objects = new com.smartgwt.client.types.TreeFilterMode[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.TreeFilterMode obj = EnumUtil.getEnum(com.smartgwt.client.types.TreeFilterMode.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.PickTreeItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.PickTreeItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.PickTreeItem[] arrayOfPickTreeItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.PickTreeItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.PickTreeItem[] objects = new com.smartgwt.client.widgets.form.fields.PickTreeItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.PickTreeItem obj = com.smartgwt.client.widgets.form.fields.PickTreeItem.getOrCreateRef(components[i]);
 
             if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
                 obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
@@ -6084,57 +11523,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.ColorPickerItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.ColorPickerItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.ColorPickerItem[] arrayOfColorPickerItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.ColorPickerItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.ColorPickerItem[] objects = new com.smartgwt.client.widgets.form.fields.ColorPickerItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.ColorPickerItem obj = com.smartgwt.client.widgets.form.fields.ColorPickerItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.DateDisplayFormat} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.DateDisplayFormat[]
-	 */
-    public static com.smartgwt.client.types.DateDisplayFormat[] arrayOfDateDisplayFormat(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.DateDisplayFormat[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.DateDisplayFormat[] objects = new com.smartgwt.client.types.DateDisplayFormat[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.DateDisplayFormat obj = EnumUtil.getEnum(com.smartgwt.client.types.DateDisplayFormat.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.util.workflow.ComponentTask} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.util.workflow.ComponentTask[]
@@ -6161,29 +11549,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.StretchImg} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.StretchImg[]
-	 */
-    public static com.smartgwt.client.widgets.StretchImg[] arrayOfStretchImg(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.StretchImg[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.StretchImg[] objects = new com.smartgwt.client.widgets.StretchImg[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.StretchImg obj = (com.smartgwt.client.widgets.StretchImg) com.smartgwt.client.widgets.StretchImg.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.tools.TilePalette} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.tools.TilePalette[]
@@ -6199,32 +11564,6 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.tools.TilePalette obj = (com.smartgwt.client.tools.TilePalette) com.smartgwt.client.tools.TilePalette.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.data.TextSettings} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.data.TextSettings[]
-	 */
-    public static com.smartgwt.client.data.TextSettings[] arrayOfTextSettings(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.data.TextSettings[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.data.TextSettings[] objects = new com.smartgwt.client.data.TextSettings[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.data.TextSettings obj = (com.smartgwt.client.data.TextSettings) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.data.TextSettings(components[i]));
-            }
 
             objects[i] = obj;
         }
@@ -6296,56 +11635,6 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.widgets.MultiFilePicker obj = (com.smartgwt.client.widgets.MultiFilePicker) com.smartgwt.client.widgets.MultiFilePicker.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.ShowComponentTask} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.ShowComponentTask[]
-	 */
-    public static com.smartgwt.client.util.workflow.ShowComponentTask[] arrayOfShowComponentTask(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.ShowComponentTask[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.ShowComponentTask[] objects = new com.smartgwt.client.util.workflow.ShowComponentTask[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.ShowComponentTask obj = (com.smartgwt.client.util.workflow.ShowComponentTask) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.ShowComponentTask(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.RowEndEditAction} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.RowEndEditAction[]
-	 */
-    public static com.smartgwt.client.types.RowEndEditAction[] arrayOfRowEndEditAction(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.RowEndEditAction[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.RowEndEditAction[] objects = new com.smartgwt.client.types.RowEndEditAction[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.RowEndEditAction obj = EnumUtil.getEnum(com.smartgwt.client.types.RowEndEditAction.values(), value);
 
             objects[i] = obj;
         }
@@ -6426,46 +11715,22 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.DrawShapeCommandType} objects.
+	 * {@link com.smartgwt.client.types.HoverPersistMode} objects.
 	 * @param nativeArray
-	 * @return com.smartgwt.client.types.DrawShapeCommandType[]
+	 * @return com.smartgwt.client.types.HoverPersistMode[]
 	 */
-    public static com.smartgwt.client.types.DrawShapeCommandType[] arrayOfDrawShapeCommandType(JavaScriptObject nativeArray) {
+    public static com.smartgwt.client.types.HoverPersistMode[] arrayOfHoverPersistMode(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
-            return new com.smartgwt.client.types.DrawShapeCommandType[]{};
+            return new com.smartgwt.client.types.HoverPersistMode[]{};
         }
 
         String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.DrawShapeCommandType[] objects = new com.smartgwt.client.types.DrawShapeCommandType[values.length];
+        com.smartgwt.client.types.HoverPersistMode[] objects = new com.smartgwt.client.types.HoverPersistMode[values.length];
 
         for (int i = 0; i < values.length; i++) {
 
             String value = values[i];
-            com.smartgwt.client.types.DrawShapeCommandType obj = EnumUtil.getEnum(com.smartgwt.client.types.DrawShapeCommandType.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.ResizeDirection} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.ResizeDirection[]
-	 */
-    public static com.smartgwt.client.types.ResizeDirection[] arrayOfResizeDirection(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.ResizeDirection[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.ResizeDirection[] objects = new com.smartgwt.client.types.ResizeDirection[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.ResizeDirection obj = EnumUtil.getEnum(com.smartgwt.client.types.ResizeDirection.values(), value);
+            com.smartgwt.client.types.HoverPersistMode obj = EnumUtil.getEnum(com.smartgwt.client.types.HoverPersistMode.values(), value);
 
             objects[i] = obj;
         }
@@ -6506,30 +11771,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.AnimationAcceleration} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.AnimationAcceleration[]
-	 */
-    public static com.smartgwt.client.types.AnimationAcceleration[] arrayOfAnimationAcceleration(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.AnimationAcceleration[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.AnimationAcceleration[] objects = new com.smartgwt.client.types.AnimationAcceleration[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.AnimationAcceleration obj = EnumUtil.getEnum(com.smartgwt.client.types.AnimationAcceleration.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.data.GroupSpecifier} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.data.GroupSpecifier[]
@@ -6562,30 +11803,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.MultiComboBoxLayoutStyle} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.MultiComboBoxLayoutStyle[]
-	 */
-    public static com.smartgwt.client.types.MultiComboBoxLayoutStyle[] arrayOfMultiComboBoxLayoutStyle(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.MultiComboBoxLayoutStyle[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.MultiComboBoxLayoutStyle[] objects = new com.smartgwt.client.types.MultiComboBoxLayoutStyle[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.MultiComboBoxLayoutStyle obj = EnumUtil.getEnum(com.smartgwt.client.types.MultiComboBoxLayoutStyle.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.JSONCircularReferenceMode} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.JSONCircularReferenceMode[]
@@ -6610,6 +11827,30 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.MultiComboBoxLayoutStyle} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.MultiComboBoxLayoutStyle[]
+	 */
+    public static com.smartgwt.client.types.MultiComboBoxLayoutStyle[] arrayOfMultiComboBoxLayoutStyle(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.MultiComboBoxLayoutStyle[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.MultiComboBoxLayoutStyle[] objects = new com.smartgwt.client.types.MultiComboBoxLayoutStyle[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.MultiComboBoxLayoutStyle obj = EnumUtil.getEnum(com.smartgwt.client.types.MultiComboBoxLayoutStyle.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.SelectItemsMode} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.SelectItemsMode[]
@@ -6626,30 +11867,6 @@ public final class ConvertTo {
 
             String value = values[i];
             com.smartgwt.client.types.SelectItemsMode obj = EnumUtil.getEnum(com.smartgwt.client.types.SelectItemsMode.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.VisibilityMode} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.VisibilityMode[]
-	 */
-    public static com.smartgwt.client.types.VisibilityMode[] arrayOfVisibilityMode(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.VisibilityMode[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.VisibilityMode[] objects = new com.smartgwt.client.types.VisibilityMode[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.VisibilityMode obj = EnumUtil.getEnum(com.smartgwt.client.types.VisibilityMode.values(), value);
 
             objects[i] = obj;
         }
@@ -6706,119 +11923,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.PresetDateRangeItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.PresetDateRangeItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.PresetDateRangeItem[] arrayOfPresetDateRangeItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.PresetDateRangeItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.PresetDateRangeItem[] objects = new com.smartgwt.client.widgets.form.PresetDateRangeItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.PresetDateRangeItem obj = (com.smartgwt.client.widgets.form.PresetDateRangeItem) ((DataClass) RefDataClass.getRef(components[i]));
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.form.PresetDateRangeItem(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.drawing.LinearGradient} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.drawing.LinearGradient[]
-	 */
-    public static com.smartgwt.client.widgets.drawing.LinearGradient[] arrayOfLinearGradient(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.drawing.LinearGradient[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.drawing.LinearGradient[] ret = new com.smartgwt.client.widgets.drawing.LinearGradient[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.drawing.LinearGradient(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.drawing.LinearGradient[] objects = new com.smartgwt.client.widgets.drawing.LinearGradient[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.drawing.LinearGradient obj = (com.smartgwt.client.widgets.drawing.LinearGradient) ((DataClass) RefDataClass.getRef(components[i]));
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.drawing.LinearGradient(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.HideComponentTask} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.HideComponentTask[]
-	 */
-    public static com.smartgwt.client.util.workflow.HideComponentTask[] arrayOfHideComponentTask(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.HideComponentTask[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.HideComponentTask[] objects = new com.smartgwt.client.util.workflow.HideComponentTask[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.HideComponentTask obj = (com.smartgwt.client.util.workflow.HideComponentTask) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.HideComponentTask(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.cube.CellRecord} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.cube.CellRecord[]
-	 */
-    public static com.smartgwt.client.widgets.cube.CellRecord[] arrayOfCellRecord(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.cube.CellRecord[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.cube.CellRecord[] ret = new com.smartgwt.client.widgets.cube.CellRecord[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.cube.CellRecord(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.cube.CellRecord[] objects = new com.smartgwt.client.widgets.cube.CellRecord[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.cube.CellRecord obj = com.smartgwt.client.widgets.cube.CellRecord.getOrCreateRef(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.AnimationEffect} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.AnimationEffect[]
@@ -6835,108 +11939,6 @@ public final class ConvertTo {
 
             String value = values[i];
             com.smartgwt.client.types.AnimationEffect obj = EnumUtil.getEnum(com.smartgwt.client.types.AnimationEffect.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.rte.ListPropertiesPane} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.rte.ListPropertiesPane[]
-	 */
-    public static com.smartgwt.client.widgets.rte.ListPropertiesPane[] arrayOfListPropertiesPane(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.rte.ListPropertiesPane[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.rte.ListPropertiesPane[] objects = new com.smartgwt.client.widgets.rte.ListPropertiesPane[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.rte.ListPropertiesPane obj = (com.smartgwt.client.widgets.rte.ListPropertiesPane) com.smartgwt.client.widgets.rte.ListPropertiesPane.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.ace.AceCompletionResult} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.ace.AceCompletionResult[]
-	 */
-    public static com.smartgwt.client.widgets.ace.AceCompletionResult[] arrayOfAceCompletionResult(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.ace.AceCompletionResult[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.ace.AceCompletionResult[] ret = new com.smartgwt.client.widgets.ace.AceCompletionResult[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.ace.AceCompletionResult(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.ace.AceCompletionResult[] objects = new com.smartgwt.client.widgets.ace.AceCompletionResult[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.ace.AceCompletionResult obj = (com.smartgwt.client.widgets.ace.AceCompletionResult) ((DataClass) RefDataClass.getRef(components[i]));
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.ace.AceCompletionResult(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.MultiUpdatePolicy} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.MultiUpdatePolicy[]
-	 */
-    public static com.smartgwt.client.types.MultiUpdatePolicy[] arrayOfMultiUpdatePolicy(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.MultiUpdatePolicy[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.MultiUpdatePolicy[] objects = new com.smartgwt.client.types.MultiUpdatePolicy[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.MultiUpdatePolicy obj = EnumUtil.getEnum(com.smartgwt.client.types.MultiUpdatePolicy.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.toolbar.ToolStripSpacer} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.toolbar.ToolStripSpacer[]
-	 */
-    public static com.smartgwt.client.widgets.toolbar.ToolStripSpacer[] arrayOfToolStripSpacer(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.toolbar.ToolStripSpacer[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.toolbar.ToolStripSpacer[] objects = new com.smartgwt.client.widgets.toolbar.ToolStripSpacer[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.toolbar.ToolStripSpacer obj = (com.smartgwt.client.widgets.toolbar.ToolStripSpacer) com.smartgwt.client.widgets.toolbar.ToolStripSpacer.getByJSObject(components[i]);
 
             objects[i] = obj;
         }
@@ -6968,59 +11970,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.layout.SectionStackSection} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.layout.SectionStackSection[]
-	 */
-    public static com.smartgwt.client.widgets.layout.SectionStackSection[] arrayOfSectionStackSection(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.layout.SectionStackSection[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.layout.SectionStackSection[] ret = new com.smartgwt.client.widgets.layout.SectionStackSection[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.layout.SectionStackSection(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.layout.SectionStackSection[] objects = new com.smartgwt.client.widgets.layout.SectionStackSection[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.layout.SectionStackSection obj = com.smartgwt.client.widgets.layout.SectionStackSection.getOrCreateRef(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.LineCap} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.LineCap[]
-	 */
-    public static com.smartgwt.client.types.LineCap[] arrayOfLineCap(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.LineCap[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.LineCap[] objects = new com.smartgwt.client.types.LineCap[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.LineCap obj = EnumUtil.getEnum(com.smartgwt.client.types.LineCap.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.data.XJSONDataSource} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.data.XJSONDataSource[]
@@ -7038,33 +11987,6 @@ public final class ConvertTo {
             com.smartgwt.client.data.XJSONDataSource obj = (com.smartgwt.client.data.XJSONDataSource) BaseClass.getRef(components[i]);
             if (obj == null) {
                 obj = (components[i] == null ? null : new com.smartgwt.client.data.XJSONDataSource(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.SubmitItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.SubmitItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.SubmitItem[] arrayOfSubmitItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.SubmitItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.SubmitItem[] objects = new com.smartgwt.client.widgets.form.fields.SubmitItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.SubmitItem obj = com.smartgwt.client.widgets.form.fields.SubmitItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
             }
 
             objects[i] = obj;
@@ -7121,67 +12043,30 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.plugins.ActiveXControl} objects.
+	 * {@link com.smartgwt.client.rpc.LoadScreenSettings} objects.
 	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.plugins.ActiveXControl[]
+	 * @return com.smartgwt.client.rpc.LoadScreenSettings[]
 	 */
-    public static com.smartgwt.client.widgets.plugins.ActiveXControl[] arrayOfActiveXControl(JavaScriptObject nativeArray) {
+    public static com.smartgwt.client.rpc.LoadScreenSettings[] arrayOfLoadScreenSettings(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.plugins.ActiveXControl[]{};
+            return new com.smartgwt.client.rpc.LoadScreenSettings[]{};
         }
 
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.rpc.LoadScreenSettings[] ret = new com.smartgwt.client.rpc.LoadScreenSettings[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.rpc.LoadScreenSettings(nativeArray));
+	        return ret;
+		}
+
         JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.plugins.ActiveXControl[] objects = new com.smartgwt.client.widgets.plugins.ActiveXControl[components.length];
+        com.smartgwt.client.rpc.LoadScreenSettings[] objects = new com.smartgwt.client.rpc.LoadScreenSettings[components.length];
 
         for (int i = 0; i < components.length; i++) {
 
-            com.smartgwt.client.widgets.plugins.ActiveXControl obj = (com.smartgwt.client.widgets.plugins.ActiveXControl) com.smartgwt.client.widgets.plugins.ActiveXControl.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.DateChooser} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.DateChooser[]
-	 */
-    public static com.smartgwt.client.widgets.DateChooser[] arrayOfDateChooser(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.DateChooser[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.DateChooser[] objects = new com.smartgwt.client.widgets.DateChooser[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.DateChooser obj = (com.smartgwt.client.widgets.DateChooser) com.smartgwt.client.widgets.DateChooser.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.BatchUploader} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.BatchUploader[]
-	 */
-    public static com.smartgwt.client.widgets.BatchUploader[] arrayOfBatchUploader(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.BatchUploader[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.BatchUploader[] objects = new com.smartgwt.client.widgets.BatchUploader[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.BatchUploader obj = (com.smartgwt.client.widgets.BatchUploader) com.smartgwt.client.widgets.BatchUploader.getByJSObject(components[i]);
+            com.smartgwt.client.rpc.LoadScreenSettings obj = (com.smartgwt.client.rpc.LoadScreenSettings) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.rpc.LoadScreenSettings(components[i]));
+            }
 
             objects[i] = obj;
         }
@@ -7236,137 +12121,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.tools.ImgEditProxy} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.tools.ImgEditProxy[]
-	 */
-    public static com.smartgwt.client.tools.ImgEditProxy[] arrayOfImgEditProxy(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.tools.ImgEditProxy[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.tools.ImgEditProxy[] objects = new com.smartgwt.client.tools.ImgEditProxy[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.tools.ImgEditProxy obj = (com.smartgwt.client.tools.ImgEditProxy) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.tools.ImgEditProxy(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.PercentBoxModel} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.PercentBoxModel[]
-	 */
-    public static com.smartgwt.client.types.PercentBoxModel[] arrayOfPercentBoxModel(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.PercentBoxModel[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.PercentBoxModel[] objects = new com.smartgwt.client.types.PercentBoxModel[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.PercentBoxModel obj = EnumUtil.getEnum(com.smartgwt.client.types.PercentBoxModel.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.Dialog} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.Dialog[]
-	 */
-    public static com.smartgwt.client.widgets.Dialog[] arrayOfDialog(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.Dialog[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.Dialog[] objects = new com.smartgwt.client.widgets.Dialog[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.Dialog obj = (com.smartgwt.client.widgets.Dialog) com.smartgwt.client.widgets.Dialog.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.data.WSDataSource} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.data.WSDataSource[]
-	 */
-    public static com.smartgwt.client.data.WSDataSource[] arrayOfWSDataSource(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.data.WSDataSource[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.data.WSDataSource[] objects = new com.smartgwt.client.data.WSDataSource[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.data.WSDataSource obj = (com.smartgwt.client.data.WSDataSource) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.data.WSDataSource(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.data.OperationBinding} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.data.OperationBinding[]
-	 */
-    public static com.smartgwt.client.data.OperationBinding[] arrayOfOperationBinding(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.data.OperationBinding[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.data.OperationBinding[] ret = new com.smartgwt.client.data.OperationBinding[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.data.OperationBinding(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.data.OperationBinding[] objects = new com.smartgwt.client.data.OperationBinding[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.data.OperationBinding obj = (com.smartgwt.client.data.OperationBinding) ((DataClass) RefDataClass.getRef(components[i]));
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.data.OperationBinding(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.data.DataSourceField} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.data.DataSourceField[]
@@ -7399,29 +12153,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.tableview.TableView} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.tableview.TableView[]
-	 */
-    public static com.smartgwt.client.widgets.tableview.TableView[] arrayOfTableView(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.tableview.TableView[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.tableview.TableView[] objects = new com.smartgwt.client.widgets.tableview.TableView[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.tableview.TableView obj = (com.smartgwt.client.widgets.tableview.TableView) com.smartgwt.client.widgets.tableview.TableView.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.form.fields.StaticTextItem} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.form.fields.StaticTextItem[]
@@ -7441,30 +12172,6 @@ public final class ConvertTo {
             if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
                 obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
             }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.ChartType} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.ChartType[]
-	 */
-    public static com.smartgwt.client.types.ChartType[] arrayOfChartType(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.ChartType[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.ChartType[] objects = new com.smartgwt.client.types.ChartType[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.ChartType obj = EnumUtil.getEnum(com.smartgwt.client.types.ChartType.values(), value);
 
             objects[i] = obj;
         }
@@ -7555,163 +12262,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.menu.IconMenuButton} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.menu.IconMenuButton[]
-	 */
-    public static com.smartgwt.client.widgets.menu.IconMenuButton[] arrayOfIconMenuButton(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.menu.IconMenuButton[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.menu.IconMenuButton[] objects = new com.smartgwt.client.widgets.menu.IconMenuButton[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.menu.IconMenuButton obj = (com.smartgwt.client.widgets.menu.IconMenuButton) com.smartgwt.client.widgets.menu.IconMenuButton.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.RecordDropPosition} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.RecordDropPosition[]
-	 */
-    public static com.smartgwt.client.types.RecordDropPosition[] arrayOfRecordDropPosition(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.RecordDropPosition[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.RecordDropPosition[] objects = new com.smartgwt.client.types.RecordDropPosition[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.RecordDropPosition obj = EnumUtil.getEnum(com.smartgwt.client.types.RecordDropPosition.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.drawing.RadialGradient} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.drawing.RadialGradient[]
-	 */
-    public static com.smartgwt.client.widgets.drawing.RadialGradient[] arrayOfRadialGradient(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.drawing.RadialGradient[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.drawing.RadialGradient[] ret = new com.smartgwt.client.widgets.drawing.RadialGradient[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.drawing.RadialGradient(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.drawing.RadialGradient[] objects = new com.smartgwt.client.widgets.drawing.RadialGradient[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.drawing.RadialGradient obj = (com.smartgwt.client.widgets.drawing.RadialGradient) ((DataClass) RefDataClass.getRef(components[i]));
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.drawing.RadialGradient(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.core.KeyIdentifier} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.core.KeyIdentifier[]
-	 */
-    public static com.smartgwt.client.core.KeyIdentifier[] arrayOfKeyIdentifier(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.core.KeyIdentifier[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.core.KeyIdentifier[] ret = new com.smartgwt.client.core.KeyIdentifier[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.core.KeyIdentifier(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.core.KeyIdentifier[] objects = new com.smartgwt.client.core.KeyIdentifier[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.core.KeyIdentifier obj = (com.smartgwt.client.core.KeyIdentifier) ((DataClass) RefDataClass.getRef(components[i]));
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.core.KeyIdentifier(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.tools.VisualBuilder} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.tools.VisualBuilder[]
-	 */
-    public static com.smartgwt.client.tools.VisualBuilder[] arrayOfVisualBuilder(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.tools.VisualBuilder[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.tools.VisualBuilder[] objects = new com.smartgwt.client.tools.VisualBuilder[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.tools.VisualBuilder obj = (com.smartgwt.client.tools.VisualBuilder) com.smartgwt.client.tools.VisualBuilder.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.drawing.DrawDiamond} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.drawing.DrawDiamond[]
-	 */
-    public static com.smartgwt.client.widgets.drawing.DrawDiamond[] arrayOfDrawDiamond(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.drawing.DrawDiamond[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.drawing.DrawDiamond[] objects = new com.smartgwt.client.widgets.drawing.DrawDiamond[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.drawing.DrawDiamond obj = (com.smartgwt.client.widgets.drawing.DrawDiamond) com.smartgwt.client.widgets.drawing.DrawDiamond.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.util.workflow.GridSaveAllEditsTask} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.util.workflow.GridSaveAllEditsTask[]
@@ -7730,73 +12280,6 @@ public final class ConvertTo {
             if (obj == null) {
                 obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.GridSaveAllEditsTask(components[i]));
             }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.LayoutResizeBarPolicy} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.LayoutResizeBarPolicy[]
-	 */
-    public static com.smartgwt.client.types.LayoutResizeBarPolicy[] arrayOfLayoutResizeBarPolicy(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.LayoutResizeBarPolicy[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.LayoutResizeBarPolicy[] objects = new com.smartgwt.client.types.LayoutResizeBarPolicy[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.LayoutResizeBarPolicy obj = EnumUtil.getEnum(com.smartgwt.client.types.LayoutResizeBarPolicy.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.tools.Palette} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.tools.Palette[]
-	 */
-    public static com.smartgwt.client.tools.Palette[] arrayOfPalette(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.tools.Palette[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.tools.Palette[] objects = new com.smartgwt.client.tools.Palette[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            // We need to get or create the correct Java type, but we can't call
-            // getOrCreateRef on an interface. The best simple thing we can do is
-            // take advantage of ObjectFactory.createCanvas and friends to pick the
-            // right type. Note that this will work for custom developer classes
-            // so long as they descend from a SmartClient implementation of the
-            // interface. It won't work for totally custom implementations, but
-            // totally custom implementations would be hard to create properly anyway
-            // (because they won't get the default methods implemented on the
-            // SmartClient interface).
-            Object javaObj = null;
-            com.smartgwt.client.tools.Palette obj = null;
-            if (JSOHelper.isScClassInstance(components[i])) {
-                String className = JSOHelper.getClassName(components[i]);
-                javaObj = ObjectFactory.createCanvas(className, components[i]);
-                
-                // If it's not a Canvas, try the others
-                if (javaObj == null) {
-                    javaObj = ObjectFactory.createInstance(className, components[i]);
-                }
-            }
-            if (javaObj instanceof com.smartgwt.client.tools.Palette) obj = (com.smartgwt.client.tools.Palette) javaObj;  
 
             objects[i] = obj;
         }
@@ -7855,29 +12338,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.MiniNavControl} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.MiniNavControl[]
-	 */
-    public static com.smartgwt.client.widgets.MiniNavControl[] arrayOfMiniNavControl(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.MiniNavControl[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.MiniNavControl[] objects = new com.smartgwt.client.widgets.MiniNavControl[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.MiniNavControl obj = (com.smartgwt.client.widgets.MiniNavControl) com.smartgwt.client.widgets.MiniNavControl.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.tile.TileGrid} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.tile.TileGrid[]
@@ -7893,30 +12353,6 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.widgets.tile.TileGrid obj = (com.smartgwt.client.widgets.tile.TileGrid) com.smartgwt.client.widgets.tile.TileGrid.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.MultipleAppearance} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.MultipleAppearance[]
-	 */
-    public static com.smartgwt.client.types.MultipleAppearance[] arrayOfMultipleAppearance(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.MultipleAppearance[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.MultipleAppearance[] objects = new com.smartgwt.client.types.MultipleAppearance[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.MultipleAppearance obj = EnumUtil.getEnum(com.smartgwt.client.types.MultipleAppearance.values(), value);
 
             objects[i] = obj;
         }
@@ -7954,177 +12390,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.layout.NavigationBar} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.layout.NavigationBar[]
-	 */
-    public static com.smartgwt.client.widgets.layout.NavigationBar[] arrayOfNavigationBar(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.layout.NavigationBar[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.layout.NavigationBar[] objects = new com.smartgwt.client.widgets.layout.NavigationBar[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.layout.NavigationBar obj = (com.smartgwt.client.widgets.layout.NavigationBar) com.smartgwt.client.widgets.layout.NavigationBar.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.JSONEncoder} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.JSONEncoder[]
-	 */
-    public static com.smartgwt.client.util.JSONEncoder[] arrayOfJSONEncoder(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.JSONEncoder[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.JSONEncoder[] objects = new com.smartgwt.client.util.JSONEncoder[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.JSONEncoder obj = (com.smartgwt.client.util.JSONEncoder) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.JSONEncoder(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.Sound} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.Sound[]
-	 */
-    public static com.smartgwt.client.widgets.Sound[] arrayOfSound(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.Sound[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.Sound[] objects = new com.smartgwt.client.widgets.Sound[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.Sound obj = (com.smartgwt.client.widgets.Sound) com.smartgwt.client.widgets.Sound.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.StartTransactionTask} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.StartTransactionTask[]
-	 */
-    public static com.smartgwt.client.util.workflow.StartTransactionTask[] arrayOfStartTransactionTask(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.StartTransactionTask[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.StartTransactionTask[] objects = new com.smartgwt.client.util.workflow.StartTransactionTask[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.StartTransactionTask obj = (com.smartgwt.client.util.workflow.StartTransactionTask) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.StartTransactionTask(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.data.FacadeDataSource} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.data.FacadeDataSource[]
-	 */
-    public static com.smartgwt.client.data.FacadeDataSource[] arrayOfFacadeDataSource(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.data.FacadeDataSource[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.data.FacadeDataSource[] objects = new com.smartgwt.client.data.FacadeDataSource[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.data.FacadeDataSource obj = (com.smartgwt.client.data.FacadeDataSource) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.data.FacadeDataSource(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.ColorPicker} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.ColorPicker[]
-	 */
-    public static com.smartgwt.client.widgets.form.ColorPicker[] arrayOfColorPicker(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.ColorPicker[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.ColorPicker[] objects = new com.smartgwt.client.widgets.form.ColorPicker[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.ColorPicker obj = (com.smartgwt.client.widgets.form.ColorPicker) com.smartgwt.client.widgets.form.ColorPicker.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.NavigationDirection} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.NavigationDirection[]
-	 */
-    public static com.smartgwt.client.types.NavigationDirection[] arrayOfNavigationDirection(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.NavigationDirection[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.NavigationDirection[] objects = new com.smartgwt.client.types.NavigationDirection[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.NavigationDirection obj = EnumUtil.getEnum(com.smartgwt.client.types.NavigationDirection.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.SelectionNotificationType} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.SelectionNotificationType[]
@@ -8149,21 +12414,22 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.tools.EditPane} objects.
+	 * {@link com.smartgwt.client.types.MultiWindowEvent} objects.
 	 * @param nativeArray
-	 * @return com.smartgwt.client.tools.EditPane[]
+	 * @return com.smartgwt.client.types.MultiWindowEvent[]
 	 */
-    public static com.smartgwt.client.tools.EditPane[] arrayOfEditPane(JavaScriptObject nativeArray) {
+    public static com.smartgwt.client.types.MultiWindowEvent[] arrayOfMultiWindowEvent(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
-            return new com.smartgwt.client.tools.EditPane[]{};
+            return new com.smartgwt.client.types.MultiWindowEvent[]{};
         }
 
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.tools.EditPane[] objects = new com.smartgwt.client.tools.EditPane[components.length];
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.MultiWindowEvent[] objects = new com.smartgwt.client.types.MultiWindowEvent[values.length];
 
-        for (int i = 0; i < components.length; i++) {
+        for (int i = 0; i < values.length; i++) {
 
-            com.smartgwt.client.tools.EditPane obj = (com.smartgwt.client.tools.EditPane) com.smartgwt.client.tools.EditPane.getByJSObject(components[i]);
+            String value = values[i];
+            com.smartgwt.client.types.MultiWindowEvent obj = EnumUtil.getEnum(com.smartgwt.client.types.MultiWindowEvent.values(), value);
 
             objects[i] = obj;
         }
@@ -8310,87 +12576,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.tools.HiddenPalette} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.tools.HiddenPalette[]
-	 */
-    public static com.smartgwt.client.tools.HiddenPalette[] arrayOfHiddenPalette(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.tools.HiddenPalette[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.tools.HiddenPalette[] objects = new com.smartgwt.client.tools.HiddenPalette[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.tools.HiddenPalette obj = (com.smartgwt.client.tools.HiddenPalette) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.tools.HiddenPalette(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.ProcessElement} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.ProcessElement[]
-	 */
-    public static com.smartgwt.client.util.workflow.ProcessElement[] arrayOfProcessElement(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.ProcessElement[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.ProcessElement[] objects = new com.smartgwt.client.util.workflow.ProcessElement[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.ProcessElement obj = (com.smartgwt.client.util.workflow.ProcessElement) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.ProcessElement(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.calendar.Lane} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.calendar.Lane[]
-	 */
-    public static com.smartgwt.client.widgets.calendar.Lane[] arrayOfLane(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.calendar.Lane[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.calendar.Lane[] ret = new com.smartgwt.client.widgets.calendar.Lane[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.calendar.Lane(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.calendar.Lane[] objects = new com.smartgwt.client.widgets.calendar.Lane[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.calendar.Lane obj = com.smartgwt.client.widgets.calendar.Lane.getOrCreateRef(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.tools.DateItemEditProxy} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.tools.DateItemEditProxy[]
@@ -8409,129 +12594,6 @@ public final class ConvertTo {
             if (obj == null) {
                 obj = (components[i] == null ? null : new com.smartgwt.client.tools.DateItemEditProxy(components[i]));
             }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.tools.TextAreaItemEditProxy} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.tools.TextAreaItemEditProxy[]
-	 */
-    public static com.smartgwt.client.tools.TextAreaItemEditProxy[] arrayOfTextAreaItemEditProxy(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.tools.TextAreaItemEditProxy[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.tools.TextAreaItemEditProxy[] objects = new com.smartgwt.client.tools.TextAreaItemEditProxy[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.tools.TextAreaItemEditProxy obj = (com.smartgwt.client.tools.TextAreaItemEditProxy) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.tools.TextAreaItemEditProxy(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.tools.DrawLabelEditProxy} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.tools.DrawLabelEditProxy[]
-	 */
-    public static com.smartgwt.client.tools.DrawLabelEditProxy[] arrayOfDrawLabelEditProxy(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.tools.DrawLabelEditProxy[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.tools.DrawLabelEditProxy[] objects = new com.smartgwt.client.tools.DrawLabelEditProxy[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.tools.DrawLabelEditProxy obj = (com.smartgwt.client.tools.DrawLabelEditProxy) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.tools.DrawLabelEditProxy(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.GroupStartOpen} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.GroupStartOpen[]
-	 */
-    public static com.smartgwt.client.types.GroupStartOpen[] arrayOfGroupStartOpen(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.GroupStartOpen[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.GroupStartOpen[] objects = new com.smartgwt.client.types.GroupStartOpen[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.GroupStartOpen obj = EnumUtil.getEnum(com.smartgwt.client.types.GroupStartOpen.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.DateEditingStyle} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.DateEditingStyle[]
-	 */
-    public static com.smartgwt.client.types.DateEditingStyle[] arrayOfDateEditingStyle(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.DateEditingStyle[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.DateEditingStyle[] objects = new com.smartgwt.client.types.DateEditingStyle[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.DateEditingStyle obj = EnumUtil.getEnum(com.smartgwt.client.types.DateEditingStyle.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.toolbar.Toolbar} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.toolbar.Toolbar[]
-	 */
-    public static com.smartgwt.client.widgets.toolbar.Toolbar[] arrayOfToolbar(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.toolbar.Toolbar[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.toolbar.Toolbar[] objects = new com.smartgwt.client.widgets.toolbar.Toolbar[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.toolbar.Toolbar obj = (com.smartgwt.client.widgets.toolbar.Toolbar) com.smartgwt.client.widgets.toolbar.Toolbar.getByJSObject(components[i]);
 
             objects[i] = obj;
         }
@@ -8566,32 +12628,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.tools.LayoutEditProxy} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.tools.LayoutEditProxy[]
-	 */
-    public static com.smartgwt.client.tools.LayoutEditProxy[] arrayOfLayoutEditProxy(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.tools.LayoutEditProxy[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.tools.LayoutEditProxy[] objects = new com.smartgwt.client.tools.LayoutEditProxy[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.tools.LayoutEditProxy obj = (com.smartgwt.client.tools.LayoutEditProxy) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.tools.LayoutEditProxy(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.drawing.DrawLinePath} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.drawing.DrawLinePath[]
@@ -8607,79 +12643,6 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.widgets.drawing.DrawLinePath obj = (com.smartgwt.client.widgets.drawing.DrawLinePath) com.smartgwt.client.widgets.drawing.DrawLinePath.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.drawing.DrawImage} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.drawing.DrawImage[]
-	 */
-    public static com.smartgwt.client.widgets.drawing.DrawImage[] arrayOfDrawImage(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.drawing.DrawImage[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.drawing.DrawImage[] objects = new com.smartgwt.client.widgets.drawing.DrawImage[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.drawing.DrawImage obj = (com.smartgwt.client.widgets.drawing.DrawImage) com.smartgwt.client.widgets.drawing.DrawImage.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.StandardControlGroup} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.StandardControlGroup[]
-	 */
-    public static com.smartgwt.client.types.StandardControlGroup[] arrayOfStandardControlGroup(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.StandardControlGroup[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.StandardControlGroup[] objects = new com.smartgwt.client.types.StandardControlGroup[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.StandardControlGroup obj = EnumUtil.getEnum(com.smartgwt.client.types.StandardControlGroup.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.data.TextExportSettings} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.data.TextExportSettings[]
-	 */
-    public static com.smartgwt.client.data.TextExportSettings[] arrayOfTextExportSettings(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.data.TextExportSettings[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.data.TextExportSettings[] objects = new com.smartgwt.client.data.TextExportSettings[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.data.TextExportSettings obj = (com.smartgwt.client.data.TextExportSettings) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.data.TextExportSettings(components[i]));
-            }
 
             objects[i] = obj;
         }
@@ -8743,33 +12706,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.BooleanItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.BooleanItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.BooleanItem[] arrayOfBooleanItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.BooleanItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.BooleanItem[] objects = new com.smartgwt.client.widgets.form.fields.BooleanItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.BooleanItem obj = com.smartgwt.client.widgets.form.fields.BooleanItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.util.workflow.ProcessSequence} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.util.workflow.ProcessSequence[]
@@ -8787,33 +12723,6 @@ public final class ConvertTo {
             com.smartgwt.client.util.workflow.ProcessSequence obj = (com.smartgwt.client.util.workflow.ProcessSequence) BaseClass.getRef(components[i]);
             if (obj == null) {
                 obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.ProcessSequence(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.RadioGroupItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.RadioGroupItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.RadioGroupItem[] arrayOfRadioGroupItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.RadioGroupItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.RadioGroupItem[] objects = new com.smartgwt.client.widgets.form.fields.RadioGroupItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.RadioGroupItem obj = com.smartgwt.client.widgets.form.fields.RadioGroupItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
             }
 
             objects[i] = obj;
@@ -8841,29 +12750,6 @@ public final class ConvertTo {
             if (obj == null) {
                 obj = (components[i] == null ? null : new com.smartgwt.client.tools.FileItemEditProxy(components[i]));
             }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.drawing.DrawBlockConnector} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.drawing.DrawBlockConnector[]
-	 */
-    public static com.smartgwt.client.widgets.drawing.DrawBlockConnector[] arrayOfDrawBlockConnector(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.drawing.DrawBlockConnector[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.drawing.DrawBlockConnector[] objects = new com.smartgwt.client.widgets.drawing.DrawBlockConnector[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.drawing.DrawBlockConnector obj = (com.smartgwt.client.widgets.drawing.DrawBlockConnector) com.smartgwt.client.widgets.drawing.DrawBlockConnector.getByJSObject(components[i]);
 
             objects[i] = obj;
         }
@@ -8919,30 +12805,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.SelectionStyle} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.SelectionStyle[]
-	 */
-    public static com.smartgwt.client.types.SelectionStyle[] arrayOfSelectionStyle(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.SelectionStyle[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.SelectionStyle[] objects = new com.smartgwt.client.types.SelectionStyle[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.SelectionStyle obj = EnumUtil.getEnum(com.smartgwt.client.types.SelectionStyle.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.util.workflow.FormSetFieldValueTask} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.util.workflow.FormSetFieldValueTask[]
@@ -8961,30 +12823,6 @@ public final class ConvertTo {
             if (obj == null) {
                 obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.FormSetFieldValueTask(components[i]));
             }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.TopOperatorAppearance} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.TopOperatorAppearance[]
-	 */
-    public static com.smartgwt.client.types.TopOperatorAppearance[] arrayOfTopOperatorAppearance(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.TopOperatorAppearance[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.TopOperatorAppearance[] objects = new com.smartgwt.client.types.TopOperatorAppearance[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.TopOperatorAppearance obj = EnumUtil.getEnum(com.smartgwt.client.types.TopOperatorAppearance.values(), value);
 
             objects[i] = obj;
         }
@@ -9016,6 +12854,32 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.workflow.FetchRelatedDataTask} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.workflow.FetchRelatedDataTask[]
+	 */
+    public static com.smartgwt.client.util.workflow.FetchRelatedDataTask[] arrayOfFetchRelatedDataTask(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.workflow.FetchRelatedDataTask[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.FetchRelatedDataTask[] objects = new com.smartgwt.client.util.workflow.FetchRelatedDataTask[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.workflow.FetchRelatedDataTask obj = (com.smartgwt.client.util.workflow.FetchRelatedDataTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.FetchRelatedDataTask(components[i]));
+            }
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.toolbar.RibbonBar} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.toolbar.RibbonBar[]
@@ -9031,30 +12895,6 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.widgets.toolbar.RibbonBar obj = (com.smartgwt.client.widgets.toolbar.RibbonBar) com.smartgwt.client.widgets.toolbar.RibbonBar.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.LegendAlign} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.LegendAlign[]
-	 */
-    public static com.smartgwt.client.types.LegendAlign[] arrayOfLegendAlign(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.LegendAlign[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.LegendAlign[] objects = new com.smartgwt.client.types.LegendAlign[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.LegendAlign obj = EnumUtil.getEnum(com.smartgwt.client.types.LegendAlign.values(), value);
 
             objects[i] = obj;
         }
@@ -9079,65 +12919,6 @@ public final class ConvertTo {
 
             String value = values[i];
             com.smartgwt.client.types.ScanMode obj = EnumUtil.getEnum(com.smartgwt.client.types.ScanMode.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.cube.FacetValueMap} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.cube.FacetValueMap[]
-	 */
-    public static com.smartgwt.client.widgets.cube.FacetValueMap[] arrayOfFacetValueMap(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.cube.FacetValueMap[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.cube.FacetValueMap[] ret = new com.smartgwt.client.widgets.cube.FacetValueMap[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.cube.FacetValueMap(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.cube.FacetValueMap[] objects = new com.smartgwt.client.widgets.cube.FacetValueMap[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.cube.FacetValueMap obj = (com.smartgwt.client.widgets.cube.FacetValueMap) ((DataClass) RefDataClass.getRef(components[i]));
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.cube.FacetValueMap(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.RelativeDateItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.RelativeDateItem[] arrayOfRelativeDateItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.RelativeDateItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.RelativeDateItem[] objects = new com.smartgwt.client.widgets.form.fields.RelativeDateItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.RelativeDateItem obj = com.smartgwt.client.widgets.form.fields.RelativeDateItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
-            }
 
             objects[i] = obj;
         }
@@ -9195,21 +12976,21 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.calendar.Calendar} objects.
+	 * {@link com.smartgwt.client.widgets.tour.TourWindow} objects.
 	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.calendar.Calendar[]
+	 * @return com.smartgwt.client.widgets.tour.TourWindow[]
 	 */
-    public static com.smartgwt.client.widgets.calendar.Calendar[] arrayOfCalendar(JavaScriptObject nativeArray) {
+    public static com.smartgwt.client.widgets.tour.TourWindow[] arrayOfTourWindow(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.calendar.Calendar[]{};
+            return new com.smartgwt.client.widgets.tour.TourWindow[]{};
         }
 
         JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.calendar.Calendar[] objects = new com.smartgwt.client.widgets.calendar.Calendar[components.length];
+        com.smartgwt.client.widgets.tour.TourWindow[] objects = new com.smartgwt.client.widgets.tour.TourWindow[components.length];
 
         for (int i = 0; i < components.length; i++) {
 
-            com.smartgwt.client.widgets.calendar.Calendar obj = (com.smartgwt.client.widgets.calendar.Calendar) com.smartgwt.client.widgets.calendar.Calendar.getByJSObject(components[i]);
+            com.smartgwt.client.widgets.tour.TourWindow obj = (com.smartgwt.client.widgets.tour.TourWindow) com.smartgwt.client.widgets.tour.TourWindow.getByJSObject(components[i]);
 
             objects[i] = obj;
         }
@@ -9218,124 +12999,24 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.TabTitleEditEvent} objects.
+	 * {@link com.smartgwt.client.browser.window.RemoteWindow} objects.
 	 * @param nativeArray
-	 * @return com.smartgwt.client.types.TabTitleEditEvent[]
+	 * @return com.smartgwt.client.browser.window.RemoteWindow[]
 	 */
-    public static com.smartgwt.client.types.TabTitleEditEvent[] arrayOfTabTitleEditEvent(JavaScriptObject nativeArray) {
+    public static com.smartgwt.client.browser.window.RemoteWindow[] arrayOfRemoteWindow(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
-            return new com.smartgwt.client.types.TabTitleEditEvent[]{};
+            return new com.smartgwt.client.browser.window.RemoteWindow[]{};
         }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.TabTitleEditEvent[] objects = new com.smartgwt.client.types.TabTitleEditEvent[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.TabTitleEditEvent obj = EnumUtil.getEnum(com.smartgwt.client.types.TabTitleEditEvent.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.ContentLayoutPolicy} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.ContentLayoutPolicy[]
-	 */
-    public static com.smartgwt.client.types.ContentLayoutPolicy[] arrayOfContentLayoutPolicy(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.ContentLayoutPolicy[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.ContentLayoutPolicy[] objects = new com.smartgwt.client.types.ContentLayoutPolicy[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.ContentLayoutPolicy obj = EnumUtil.getEnum(com.smartgwt.client.types.ContentLayoutPolicy.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.UserFormula} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.UserFormula[]
-	 */
-    public static com.smartgwt.client.widgets.UserFormula[] arrayOfUserFormula(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.UserFormula[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.UserFormula[] ret = new com.smartgwt.client.widgets.UserFormula[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.UserFormula(nativeArray));
-	        return ret;
-		}
 
         JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.UserFormula[] objects = new com.smartgwt.client.widgets.UserFormula[components.length];
+        com.smartgwt.client.browser.window.RemoteWindow[] objects = new com.smartgwt.client.browser.window.RemoteWindow[components.length];
 
         for (int i = 0; i < components.length; i++) {
 
-            com.smartgwt.client.widgets.UserFormula obj = (com.smartgwt.client.widgets.UserFormula) ((DataClass) RefDataClass.getRef(components[i]));
+            com.smartgwt.client.browser.window.RemoteWindow obj = (com.smartgwt.client.browser.window.RemoteWindow) BaseClass.getRef(components[i]);
             if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.UserFormula(components[i]));
+                obj = (components[i] == null ? null : new com.smartgwt.client.browser.window.RemoteWindow(components[i]));
             }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.grid.HiliteEditor} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.grid.HiliteEditor[]
-	 */
-    public static com.smartgwt.client.widgets.grid.HiliteEditor[] arrayOfHiliteEditor(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.grid.HiliteEditor[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.grid.HiliteEditor[] objects = new com.smartgwt.client.widgets.grid.HiliteEditor[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.grid.HiliteEditor obj = (com.smartgwt.client.widgets.grid.HiliteEditor) com.smartgwt.client.widgets.grid.HiliteEditor.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.grid.ListGrid} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.grid.ListGrid[]
-	 */
-    public static com.smartgwt.client.widgets.grid.ListGrid[] arrayOfListGrid(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.grid.ListGrid[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.grid.ListGrid[] objects = new com.smartgwt.client.widgets.grid.ListGrid[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.grid.ListGrid obj = (com.smartgwt.client.widgets.grid.ListGrid) com.smartgwt.client.widgets.grid.ListGrid.getByJSObject(components[i]);
 
             objects[i] = obj;
         }
@@ -9394,29 +13075,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.layout.FlowLayout} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.layout.FlowLayout[]
-	 */
-    public static com.smartgwt.client.widgets.layout.FlowLayout[] arrayOfFlowLayout(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.layout.FlowLayout[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.layout.FlowLayout[] objects = new com.smartgwt.client.widgets.layout.FlowLayout[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.layout.FlowLayout obj = (com.smartgwt.client.widgets.layout.FlowLayout) com.smartgwt.client.widgets.layout.FlowLayout.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.layout.NavigationBarViewState} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.layout.NavigationBarViewState[]
@@ -9449,52 +13107,23 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.calendar.EventWindow} objects.
+	 * {@link com.smartgwt.client.util.workflow.ShowHideTask} objects.
 	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.calendar.EventWindow[]
+	 * @return com.smartgwt.client.util.workflow.ShowHideTask[]
 	 */
-    public static com.smartgwt.client.widgets.calendar.EventWindow[] arrayOfEventWindow(JavaScriptObject nativeArray) {
+    public static com.smartgwt.client.util.workflow.ShowHideTask[] arrayOfShowHideTask(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.calendar.EventWindow[]{};
+            return new com.smartgwt.client.util.workflow.ShowHideTask[]{};
         }
 
         JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.calendar.EventWindow[] objects = new com.smartgwt.client.widgets.calendar.EventWindow[components.length];
+        com.smartgwt.client.util.workflow.ShowHideTask[] objects = new com.smartgwt.client.util.workflow.ShowHideTask[components.length];
 
         for (int i = 0; i < components.length; i++) {
 
-            com.smartgwt.client.widgets.calendar.EventWindow obj = (com.smartgwt.client.widgets.calendar.EventWindow) com.smartgwt.client.widgets.calendar.EventWindow.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.ImgProperties} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.ImgProperties[]
-	 */
-    public static com.smartgwt.client.widgets.ImgProperties[] arrayOfImgProperties(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.ImgProperties[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.ImgProperties[] ret = new com.smartgwt.client.widgets.ImgProperties[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.ImgProperties(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.ImgProperties[] objects = new com.smartgwt.client.widgets.ImgProperties[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.ImgProperties obj = (com.smartgwt.client.widgets.ImgProperties) ((DataClass) RefDataClass.getRef(components[i]));
+            com.smartgwt.client.util.workflow.ShowHideTask obj = (com.smartgwt.client.util.workflow.ShowHideTask) BaseClass.getRef(components[i]);
             if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.ImgProperties(components[i]));
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.ShowHideTask(components[i]));
             }
 
             objects[i] = obj;
@@ -9581,32 +13210,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.GridSetEditValueTask} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.GridSetEditValueTask[]
-	 */
-    public static com.smartgwt.client.util.workflow.GridSetEditValueTask[] arrayOfGridSetEditValueTask(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.GridSetEditValueTask[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.GridSetEditValueTask[] objects = new com.smartgwt.client.util.workflow.GridSetEditValueTask[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.GridSetEditValueTask obj = (com.smartgwt.client.util.workflow.GridSetEditValueTask) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.GridSetEditValueTask(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.Orientation} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.Orientation[]
@@ -9657,56 +13260,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.DSRemoveTask} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.DSRemoveTask[]
-	 */
-    public static com.smartgwt.client.util.workflow.DSRemoveTask[] arrayOfDSRemoveTask(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.DSRemoveTask[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.DSRemoveTask[] objects = new com.smartgwt.client.util.workflow.DSRemoveTask[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.DSRemoveTask obj = (com.smartgwt.client.util.workflow.DSRemoveTask) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.DSRemoveTask(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.ValueItemType} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.ValueItemType[]
-	 */
-    public static com.smartgwt.client.types.ValueItemType[] arrayOfValueItemType(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.ValueItemType[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.ValueItemType[] objects = new com.smartgwt.client.types.ValueItemType[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.ValueItemType obj = EnumUtil.getEnum(com.smartgwt.client.types.ValueItemType.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.grid.ListGridRecord} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.grid.ListGridRecord[]
@@ -9736,105 +13289,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.ApplicationMode} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.ApplicationMode[]
-	 */
-    public static com.smartgwt.client.types.ApplicationMode[] arrayOfApplicationMode(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.ApplicationMode[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.ApplicationMode[] objects = new com.smartgwt.client.types.ApplicationMode[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.ApplicationMode obj = EnumUtil.getEnum(com.smartgwt.client.types.ApplicationMode.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.tree.ResultTree} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.tree.ResultTree[]
-	 */
-    public static com.smartgwt.client.widgets.tree.ResultTree[] arrayOfResultTree(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.tree.ResultTree[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.tree.ResultTree[] objects = new com.smartgwt.client.widgets.tree.ResultTree[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.tree.ResultTree obj = (com.smartgwt.client.widgets.tree.ResultTree) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.tree.ResultTree(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.data.TextImportSettings} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.data.TextImportSettings[]
-	 */
-    public static com.smartgwt.client.data.TextImportSettings[] arrayOfTextImportSettings(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.data.TextImportSettings[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.data.TextImportSettings[] objects = new com.smartgwt.client.data.TextImportSettings[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.data.TextImportSettings obj = (com.smartgwt.client.data.TextImportSettings) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.data.TextImportSettings(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.menu.AdaptiveMenu} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.menu.AdaptiveMenu[]
-	 */
-    public static com.smartgwt.client.widgets.menu.AdaptiveMenu[] arrayOfAdaptiveMenu(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.menu.AdaptiveMenu[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.menu.AdaptiveMenu[] objects = new com.smartgwt.client.widgets.menu.AdaptiveMenu[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.menu.AdaptiveMenu obj = (com.smartgwt.client.widgets.menu.AdaptiveMenu) com.smartgwt.client.widgets.menu.AdaptiveMenu.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.LabelRotationMode} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.LabelRotationMode[]
@@ -9851,33 +13305,6 @@ public final class ConvertTo {
 
             String value = values[i];
             com.smartgwt.client.types.LabelRotationMode obj = EnumUtil.getEnum(com.smartgwt.client.types.LabelRotationMode.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.FloatItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.FloatItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.FloatItem[] arrayOfFloatItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.FloatItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.FloatItem[] objects = new com.smartgwt.client.widgets.form.fields.FloatItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.FloatItem obj = com.smartgwt.client.widgets.form.fields.FloatItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
-            }
 
             objects[i] = obj;
         }
@@ -9930,32 +13357,6 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.widgets.drawing.Gauge obj = (com.smartgwt.client.widgets.drawing.Gauge) com.smartgwt.client.widgets.drawing.Gauge.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.data.RestDataSource} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.data.RestDataSource[]
-	 */
-    public static com.smartgwt.client.data.RestDataSource[] arrayOfRestDataSource(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.data.RestDataSource[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.data.RestDataSource[] objects = new com.smartgwt.client.data.RestDataSource[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.data.RestDataSource obj = (com.smartgwt.client.data.RestDataSource) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.data.RestDataSource(components[i]));
-            }
 
             objects[i] = obj;
         }
@@ -10046,33 +13447,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.HeaderItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.HeaderItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.HeaderItem[] arrayOfHeaderItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.HeaderItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.HeaderItem[] objects = new com.smartgwt.client.widgets.form.fields.HeaderItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.HeaderItem obj = com.smartgwt.client.widgets.form.fields.HeaderItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.RecordComponentPoolingMode} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.RecordComponentPoolingMode[]
@@ -10089,29 +13463,6 @@ public final class ConvertTo {
 
             String value = values[i];
             com.smartgwt.client.types.RecordComponentPoolingMode obj = EnumUtil.getEnum(com.smartgwt.client.types.RecordComponentPoolingMode.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.drawing.DrawOval} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.drawing.DrawOval[]
-	 */
-    public static com.smartgwt.client.widgets.drawing.DrawOval[] arrayOfDrawOval(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.drawing.DrawOval[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.drawing.DrawOval[] objects = new com.smartgwt.client.widgets.drawing.DrawOval[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.drawing.DrawOval obj = (com.smartgwt.client.widgets.drawing.DrawOval) com.smartgwt.client.widgets.drawing.DrawOval.getByJSObject(components[i]);
 
             objects[i] = obj;
         }
@@ -10172,62 +13523,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.ListGridFieldType} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.ListGridFieldType[]
-	 */
-    public static com.smartgwt.client.types.ListGridFieldType[] arrayOfListGridFieldType(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.ListGridFieldType[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.ListGridFieldType[] objects = new com.smartgwt.client.types.ListGridFieldType[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.ListGridFieldType obj = EnumUtil.getEnum(com.smartgwt.client.types.ListGridFieldType.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.tree.TreeGridField} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.tree.TreeGridField[]
-	 */
-    public static com.smartgwt.client.widgets.tree.TreeGridField[] arrayOfTreeGridField(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.tree.TreeGridField[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.tree.TreeGridField[] ret = new com.smartgwt.client.widgets.tree.TreeGridField[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.tree.TreeGridField(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.tree.TreeGridField[] objects = new com.smartgwt.client.widgets.tree.TreeGridField[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.tree.TreeGridField obj = (com.smartgwt.client.widgets.tree.TreeGridField) ((DataClass) RefDataClass.getRef(components[i]));
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.tree.TreeGridField(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.util.XMLSyntaxHiliter} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.util.XMLSyntaxHiliter[]
@@ -10246,75 +13541,6 @@ public final class ConvertTo {
             if (obj == null) {
                 obj = (components[i] == null ? null : new com.smartgwt.client.util.XMLSyntaxHiliter(components[i]));
             }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.drawing.DrawTriangle} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.drawing.DrawTriangle[]
-	 */
-    public static com.smartgwt.client.widgets.drawing.DrawTriangle[] arrayOfDrawTriangle(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.drawing.DrawTriangle[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.drawing.DrawTriangle[] objects = new com.smartgwt.client.widgets.drawing.DrawTriangle[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.drawing.DrawTriangle obj = (com.smartgwt.client.widgets.drawing.DrawTriangle) com.smartgwt.client.widgets.drawing.DrawTriangle.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.ImgButton} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.ImgButton[]
-	 */
-    public static com.smartgwt.client.widgets.ImgButton[] arrayOfImgButton(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.ImgButton[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.ImgButton[] objects = new com.smartgwt.client.widgets.ImgButton[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.ImgButton obj = (com.smartgwt.client.widgets.ImgButton) com.smartgwt.client.widgets.ImgButton.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.toolbar.ToolStripGroup[]
-	 */
-    public static com.smartgwt.client.widgets.toolbar.ToolStripGroup[] arrayOfToolStripGroup(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.toolbar.ToolStripGroup[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.toolbar.ToolStripGroup[] objects = new com.smartgwt.client.widgets.toolbar.ToolStripGroup[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.toolbar.ToolStripGroup obj = (com.smartgwt.client.widgets.toolbar.ToolStripGroup) com.smartgwt.client.widgets.toolbar.ToolStripGroup.getByJSObject(components[i]);
 
             objects[i] = obj;
         }
@@ -10401,32 +13627,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.LogOutTask} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.LogOutTask[]
-	 */
-    public static com.smartgwt.client.util.workflow.LogOutTask[] arrayOfLogOutTask(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.LogOutTask[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.LogOutTask[] objects = new com.smartgwt.client.util.workflow.LogOutTask[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.LogOutTask obj = (com.smartgwt.client.util.workflow.LogOutTask) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.LogOutTask(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.plugins.SVG} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.plugins.SVG[]
@@ -10442,32 +13642,6 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.widgets.plugins.SVG obj = (com.smartgwt.client.widgets.plugins.SVG) com.smartgwt.client.widgets.plugins.SVG.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.GridExportClientDataTask} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.GridExportClientDataTask[]
-	 */
-    public static com.smartgwt.client.util.workflow.GridExportClientDataTask[] arrayOfGridExportClientDataTask(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.GridExportClientDataTask[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.GridExportClientDataTask[] objects = new com.smartgwt.client.util.workflow.GridExportClientDataTask[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.GridExportClientDataTask obj = (com.smartgwt.client.util.workflow.GridExportClientDataTask) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.GridExportClientDataTask(components[i]));
-            }
 
             objects[i] = obj;
         }
@@ -10552,181 +13726,24 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.ShowMessageTask} objects.
+	 * {@link com.smartgwt.client.data.FilteredList} objects.
 	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.ShowMessageTask[]
+	 * @return com.smartgwt.client.data.FilteredList[]
 	 */
-    public static com.smartgwt.client.util.workflow.ShowMessageTask[] arrayOfShowMessageTask(JavaScriptObject nativeArray) {
+    public static com.smartgwt.client.data.FilteredList[] arrayOfFilteredList(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.ShowMessageTask[]{};
+            return new com.smartgwt.client.data.FilteredList[]{};
         }
 
         JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.ShowMessageTask[] objects = new com.smartgwt.client.util.workflow.ShowMessageTask[components.length];
+        com.smartgwt.client.data.FilteredList[] objects = new com.smartgwt.client.data.FilteredList[components.length];
 
         for (int i = 0; i < components.length; i++) {
 
-            com.smartgwt.client.util.workflow.ShowMessageTask obj = (com.smartgwt.client.util.workflow.ShowMessageTask) BaseClass.getRef(components[i]);
+            com.smartgwt.client.data.FilteredList obj = (com.smartgwt.client.data.FilteredList) BaseClass.getRef(components[i]);
             if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.ShowMessageTask(components[i]));
+                obj = (components[i] == null ? null : new com.smartgwt.client.data.FilteredList(components[i]));
             }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.data.AdvancedCriteria} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.data.AdvancedCriteria[]
-	 */
-    public static com.smartgwt.client.data.AdvancedCriteria[] arrayOfAdvancedCriteria(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.data.AdvancedCriteria[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.data.AdvancedCriteria[] ret = new com.smartgwt.client.data.AdvancedCriteria[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.data.AdvancedCriteria(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.data.AdvancedCriteria[] objects = new com.smartgwt.client.data.AdvancedCriteria[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.data.AdvancedCriteria obj = (com.smartgwt.client.data.AdvancedCriteria) ((DataClass) RefDataClass.getRef(components[i]));
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.data.AdvancedCriteria(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.drawing.DrawRect} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.drawing.DrawRect[]
-	 */
-    public static com.smartgwt.client.widgets.drawing.DrawRect[] arrayOfDrawRect(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.drawing.DrawRect[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.drawing.DrawRect[] objects = new com.smartgwt.client.widgets.drawing.DrawRect[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.drawing.DrawRect obj = (com.smartgwt.client.widgets.drawing.DrawRect) com.smartgwt.client.widgets.drawing.DrawRect.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.tools.TreePalette} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.tools.TreePalette[]
-	 */
-    public static com.smartgwt.client.tools.TreePalette[] arrayOfTreePalette(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.tools.TreePalette[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.tools.TreePalette[] objects = new com.smartgwt.client.tools.TreePalette[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.tools.TreePalette obj = (com.smartgwt.client.tools.TreePalette) com.smartgwt.client.tools.TreePalette.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.UserConfirmationGateway} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.UserConfirmationGateway[]
-	 */
-    public static com.smartgwt.client.util.workflow.UserConfirmationGateway[] arrayOfUserConfirmationGateway(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.UserConfirmationGateway[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.UserConfirmationGateway[] objects = new com.smartgwt.client.util.workflow.UserConfirmationGateway[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.UserConfirmationGateway obj = (com.smartgwt.client.util.workflow.UserConfirmationGateway) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.UserConfirmationGateway(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.ProportionalResizeMode} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.ProportionalResizeMode[]
-	 */
-    public static com.smartgwt.client.types.ProportionalResizeMode[] arrayOfProportionalResizeMode(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.ProportionalResizeMode[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.ProportionalResizeMode[] objects = new com.smartgwt.client.types.ProportionalResizeMode[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.ProportionalResizeMode obj = EnumUtil.getEnum(com.smartgwt.client.types.ProportionalResizeMode.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.calendar.CalendarEvent} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.calendar.CalendarEvent[]
-	 */
-    public static com.smartgwt.client.widgets.calendar.CalendarEvent[] arrayOfCalendarEvent(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.calendar.CalendarEvent[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.calendar.CalendarEvent[] ret = new com.smartgwt.client.widgets.calendar.CalendarEvent[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.calendar.CalendarEvent(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.calendar.CalendarEvent[] objects = new com.smartgwt.client.widgets.calendar.CalendarEvent[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.calendar.CalendarEvent obj = com.smartgwt.client.widgets.calendar.CalendarEvent.getOrCreateRef(components[i]);
 
             objects[i] = obj;
         }
@@ -10784,103 +13801,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.menu.SelectionTreeMenu} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.menu.SelectionTreeMenu[]
-	 */
-    public static com.smartgwt.client.widgets.menu.SelectionTreeMenu[] arrayOfSelectionTreeMenu(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.menu.SelectionTreeMenu[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.menu.SelectionTreeMenu[] objects = new com.smartgwt.client.widgets.menu.SelectionTreeMenu[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.menu.SelectionTreeMenu obj = (com.smartgwt.client.widgets.menu.SelectionTreeMenu) com.smartgwt.client.widgets.menu.SelectionTreeMenu.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.DynamicForm} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.DynamicForm[]
-	 */
-    public static com.smartgwt.client.widgets.form.DynamicForm[] arrayOfDynamicForm(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.DynamicForm[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.DynamicForm[] objects = new com.smartgwt.client.widgets.form.DynamicForm[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.DynamicForm obj = (com.smartgwt.client.widgets.form.DynamicForm) com.smartgwt.client.widgets.form.DynamicForm.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.PasswordItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.PasswordItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.PasswordItem[] arrayOfPasswordItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.PasswordItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.PasswordItem[] objects = new com.smartgwt.client.widgets.form.fields.PasswordItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.PasswordItem obj = com.smartgwt.client.widgets.form.fields.PasswordItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.VerticalAlignment} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.VerticalAlignment[]
-	 */
-    public static com.smartgwt.client.types.VerticalAlignment[] arrayOfVerticalAlignment(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.VerticalAlignment[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.VerticalAlignment[] objects = new com.smartgwt.client.types.VerticalAlignment[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.VerticalAlignment obj = EnumUtil.getEnum(com.smartgwt.client.types.VerticalAlignment.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.StretchItem} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.StretchItem[]
@@ -10913,29 +13833,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.tab.ImgTab} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.tab.ImgTab[]
-	 */
-    public static com.smartgwt.client.widgets.tab.ImgTab[] arrayOfImgTab(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.tab.ImgTab[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.tab.ImgTab[] objects = new com.smartgwt.client.widgets.tab.ImgTab[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.tab.ImgTab obj = (com.smartgwt.client.widgets.tab.ImgTab) com.smartgwt.client.widgets.tab.ImgTab.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.layout.LayoutSpacer} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.layout.LayoutSpacer[]
@@ -10951,57 +13848,6 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.widgets.layout.LayoutSpacer obj = (com.smartgwt.client.widgets.layout.LayoutSpacer) com.smartgwt.client.widgets.layout.LayoutSpacer.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.TreeModelType} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.TreeModelType[]
-	 */
-    public static com.smartgwt.client.types.TreeModelType[] arrayOfTreeModelType(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.TreeModelType[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.TreeModelType[] objects = new com.smartgwt.client.types.TreeModelType[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.TreeModelType obj = EnumUtil.getEnum(com.smartgwt.client.types.TreeModelType.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.ToolbarItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.ToolbarItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.ToolbarItem[] arrayOfToolbarItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.ToolbarItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.ToolbarItem[] objects = new com.smartgwt.client.widgets.form.fields.ToolbarItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.ToolbarItem obj = com.smartgwt.client.widgets.form.fields.ToolbarItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
-            }
 
             objects[i] = obj;
         }
@@ -11086,38 +13932,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.SCStatefulImgConfig} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.SCStatefulImgConfig[]
-	 */
-    public static com.smartgwt.client.widgets.SCStatefulImgConfig[] arrayOfSCStatefulImgConfig(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.SCStatefulImgConfig[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.SCStatefulImgConfig[] ret = new com.smartgwt.client.widgets.SCStatefulImgConfig[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.SCStatefulImgConfig(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.SCStatefulImgConfig[] objects = new com.smartgwt.client.widgets.SCStatefulImgConfig[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.SCStatefulImgConfig obj = (com.smartgwt.client.widgets.SCStatefulImgConfig) ((DataClass) RefDataClass.getRef(components[i]));
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.SCStatefulImgConfig(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.ConnectorStyle} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.ConnectorStyle[]
@@ -11134,81 +13948,6 @@ public final class ConvertTo {
 
             String value = values[i];
             com.smartgwt.client.types.ConnectorStyle obj = EnumUtil.getEnum(com.smartgwt.client.types.ConnectorStyle.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.ace.AceMarker} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.ace.AceMarker[]
-	 */
-    public static com.smartgwt.client.widgets.ace.AceMarker[] arrayOfAceMarker(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.ace.AceMarker[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.ace.AceMarker[] objects = new com.smartgwt.client.widgets.ace.AceMarker[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.ace.AceMarker obj = (com.smartgwt.client.widgets.ace.AceMarker) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.ace.AceMarker(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.tile.SimpleTile} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.tile.SimpleTile[]
-	 */
-    public static com.smartgwt.client.widgets.tile.SimpleTile[] arrayOfSimpleTile(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.tile.SimpleTile[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.tile.SimpleTile[] objects = new com.smartgwt.client.widgets.tile.SimpleTile[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.tile.SimpleTile obj = (com.smartgwt.client.widgets.tile.SimpleTile) com.smartgwt.client.widgets.tile.SimpleTile.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.tools.SplitPaneEditProxy} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.tools.SplitPaneEditProxy[]
-	 */
-    public static com.smartgwt.client.tools.SplitPaneEditProxy[] arrayOfSplitPaneEditProxy(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.tools.SplitPaneEditProxy[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.tools.SplitPaneEditProxy[] objects = new com.smartgwt.client.tools.SplitPaneEditProxy[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.tools.SplitPaneEditProxy obj = (com.smartgwt.client.tools.SplitPaneEditProxy) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.tools.SplitPaneEditProxy(components[i]));
-            }
 
             objects[i] = obj;
         }
@@ -11241,33 +13980,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.DateItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.DateItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.DateItem[] arrayOfDateItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.DateItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.DateItem[] objects = new com.smartgwt.client.widgets.form.fields.DateItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.DateItem obj = com.smartgwt.client.widgets.form.fields.DateItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.TimeUnit} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.TimeUnit[]
@@ -11284,30 +13996,6 @@ public final class ConvertTo {
 
             String value = values[i];
             com.smartgwt.client.types.TimeUnit obj = EnumUtil.getEnum(com.smartgwt.client.types.TimeUnit.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.InlineEditEvent} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.InlineEditEvent[]
-	 */
-    public static com.smartgwt.client.types.InlineEditEvent[] arrayOfInlineEditEvent(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.InlineEditEvent[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.InlineEditEvent[] objects = new com.smartgwt.client.types.InlineEditEvent[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.InlineEditEvent obj = EnumUtil.getEnum(com.smartgwt.client.types.InlineEditEvent.values(), value);
 
             objects[i] = obj;
         }
@@ -11333,32 +14021,6 @@ public final class ConvertTo {
             com.smartgwt.client.util.workflow.GridFetchDataTask obj = (com.smartgwt.client.util.workflow.GridFetchDataTask) BaseClass.getRef(components[i]);
             if (obj == null) {
                 obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.GridFetchDataTask(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.NavigateListPaneTask} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.NavigateListPaneTask[]
-	 */
-    public static com.smartgwt.client.util.workflow.NavigateListPaneTask[] arrayOfNavigateListPaneTask(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.NavigateListPaneTask[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.NavigateListPaneTask[] objects = new com.smartgwt.client.util.workflow.NavigateListPaneTask[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.NavigateListPaneTask obj = (com.smartgwt.client.util.workflow.NavigateListPaneTask) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.NavigateListPaneTask(components[i]));
             }
 
             objects[i] = obj;
@@ -11394,32 +14056,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.tools.FacetChartEditProxy} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.tools.FacetChartEditProxy[]
-	 */
-    public static com.smartgwt.client.tools.FacetChartEditProxy[] arrayOfFacetChartEditProxy(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.tools.FacetChartEditProxy[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.tools.FacetChartEditProxy[] objects = new com.smartgwt.client.tools.FacetChartEditProxy[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.tools.FacetChartEditProxy obj = (com.smartgwt.client.tools.FacetChartEditProxy) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.tools.FacetChartEditProxy(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.util.workflow.StateTask} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.util.workflow.StateTask[]
@@ -11446,6 +14082,29 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.widgets.RibbonButton} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.widgets.RibbonButton[]
+	 */
+    public static com.smartgwt.client.widgets.RibbonButton[] arrayOfRibbonButton(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.widgets.RibbonButton[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.widgets.RibbonButton[] objects = new com.smartgwt.client.widgets.RibbonButton[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.widgets.RibbonButton obj = (com.smartgwt.client.widgets.RibbonButton) com.smartgwt.client.widgets.RibbonButton.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.tools.MenuPalette} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.tools.MenuPalette[]
@@ -11461,30 +14120,6 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.tools.MenuPalette obj = (com.smartgwt.client.tools.MenuPalette) com.smartgwt.client.tools.MenuPalette.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.EscapeKeyEditAction} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.EscapeKeyEditAction[]
-	 */
-    public static com.smartgwt.client.types.EscapeKeyEditAction[] arrayOfEscapeKeyEditAction(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.EscapeKeyEditAction[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.EscapeKeyEditAction[] objects = new com.smartgwt.client.types.EscapeKeyEditAction[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.EscapeKeyEditAction obj = EnumUtil.getEnum(com.smartgwt.client.types.EscapeKeyEditAction.values(), value);
 
             objects[i] = obj;
         }
@@ -11543,30 +14178,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.NotifyTransition} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.NotifyTransition[]
-	 */
-    public static com.smartgwt.client.types.NotifyTransition[] arrayOfNotifyTransition(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.NotifyTransition[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.NotifyTransition[] objects = new com.smartgwt.client.types.NotifyTransition[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.NotifyTransition obj = EnumUtil.getEnum(com.smartgwt.client.types.NotifyTransition.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.util.workflow.ScriptTask} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.util.workflow.ScriptTask[]
@@ -11608,30 +14219,6 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.widgets.drawing.DrawGroup obj = (com.smartgwt.client.widgets.drawing.DrawGroup) com.smartgwt.client.widgets.drawing.DrawGroup.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.CurrentPane} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.CurrentPane[]
-	 */
-    public static com.smartgwt.client.types.CurrentPane[] arrayOfCurrentPane(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.CurrentPane[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.CurrentPane[] objects = new com.smartgwt.client.types.CurrentPane[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.CurrentPane obj = EnumUtil.getEnum(com.smartgwt.client.types.CurrentPane.values(), value);
 
             objects[i] = obj;
         }
@@ -11688,38 +14275,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.notify.NotifySettings} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.notify.NotifySettings[]
-	 */
-    public static com.smartgwt.client.widgets.notify.NotifySettings[] arrayOfNotifySettings(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.notify.NotifySettings[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.notify.NotifySettings[] ret = new com.smartgwt.client.widgets.notify.NotifySettings[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.notify.NotifySettings(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.notify.NotifySettings[] objects = new com.smartgwt.client.widgets.notify.NotifySettings[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.notify.NotifySettings obj = (com.smartgwt.client.widgets.notify.NotifySettings) ((DataClass) RefDataClass.getRef(components[i]));
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.notify.NotifySettings(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.ExportDisplay} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.ExportDisplay[]
@@ -11768,64 +14323,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.data.FileSpec} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.data.FileSpec[]
-	 */
-    public static com.smartgwt.client.data.FileSpec[] arrayOfFileSpec(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.data.FileSpec[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.data.FileSpec[] ret = new com.smartgwt.client.data.FileSpec[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.data.FileSpec(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.data.FileSpec[] objects = new com.smartgwt.client.data.FileSpec[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.data.FileSpec obj = (com.smartgwt.client.data.FileSpec) ((DataClass) RefDataClass.getRef(components[i]));
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.data.FileSpec(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.GridFetchRelatedDataTask} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.GridFetchRelatedDataTask[]
-	 */
-    public static com.smartgwt.client.util.workflow.GridFetchRelatedDataTask[] arrayOfGridFetchRelatedDataTask(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.GridFetchRelatedDataTask[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.GridFetchRelatedDataTask[] objects = new com.smartgwt.client.util.workflow.GridFetchRelatedDataTask[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.GridFetchRelatedDataTask obj = (com.smartgwt.client.util.workflow.GridFetchRelatedDataTask) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.GridFetchRelatedDataTask(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.FiscalYear} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.FiscalYear[]
@@ -11847,112 +14344,6 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.widgets.FiscalYear obj = com.smartgwt.client.widgets.FiscalYear.getOrCreateRef(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.ace.AcePosition} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.ace.AcePosition[]
-	 */
-    public static com.smartgwt.client.widgets.ace.AcePosition[] arrayOfAcePosition(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.ace.AcePosition[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.ace.AcePosition[] ret = new com.smartgwt.client.widgets.ace.AcePosition[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.ace.AcePosition(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.ace.AcePosition[] objects = new com.smartgwt.client.widgets.ace.AcePosition[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.ace.AcePosition obj = (com.smartgwt.client.widgets.ace.AcePosition) ((DataClass) RefDataClass.getRef(components[i]));
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.ace.AcePosition(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.CharacterCasing} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.CharacterCasing[]
-	 */
-    public static com.smartgwt.client.types.CharacterCasing[] arrayOfCharacterCasing(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.CharacterCasing[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.CharacterCasing[] objects = new com.smartgwt.client.types.CharacterCasing[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.CharacterCasing obj = EnumUtil.getEnum(com.smartgwt.client.types.CharacterCasing.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.DSAddTask} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.DSAddTask[]
-	 */
-    public static com.smartgwt.client.util.workflow.DSAddTask[] arrayOfDSAddTask(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.DSAddTask[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.DSAddTask[] objects = new com.smartgwt.client.util.workflow.DSAddTask[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.DSAddTask obj = (com.smartgwt.client.util.workflow.DSAddTask) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.DSAddTask(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.State} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.State[]
-	 */
-    public static com.smartgwt.client.types.State[] arrayOfState(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.State[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.State[] objects = new com.smartgwt.client.types.State[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.State obj = EnumUtil.getEnum(com.smartgwt.client.types.State.values(), value);
 
             objects[i] = obj;
         }
@@ -12035,85 +14426,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.SetSectionTitleTask} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.SetSectionTitleTask[]
-	 */
-    public static com.smartgwt.client.util.workflow.SetSectionTitleTask[] arrayOfSetSectionTitleTask(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.SetSectionTitleTask[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.SetSectionTitleTask[] objects = new com.smartgwt.client.util.workflow.SetSectionTitleTask[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.SetSectionTitleTask obj = (com.smartgwt.client.util.workflow.SetSectionTitleTask) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.SetSectionTitleTask(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.DoubleItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.DoubleItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.DoubleItem[] arrayOfDoubleItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.DoubleItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.DoubleItem[] objects = new com.smartgwt.client.widgets.form.fields.DoubleItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.DoubleItem obj = com.smartgwt.client.widgets.form.fields.DoubleItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.SendTransactionTask} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.SendTransactionTask[]
-	 */
-    public static com.smartgwt.client.util.workflow.SendTransactionTask[] arrayOfSendTransactionTask(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.SendTransactionTask[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.SendTransactionTask[] objects = new com.smartgwt.client.util.workflow.SendTransactionTask[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.SendTransactionTask obj = (com.smartgwt.client.util.workflow.SendTransactionTask) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.SendTransactionTask(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.DefaultSampleRecord} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.DefaultSampleRecord[]
@@ -12130,30 +14442,6 @@ public final class ConvertTo {
 
             String value = values[i];
             com.smartgwt.client.types.DefaultSampleRecord obj = EnumUtil.getEnum(com.smartgwt.client.types.DefaultSampleRecord.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.LocatorTypeStrategy} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.LocatorTypeStrategy[]
-	 */
-    public static com.smartgwt.client.types.LocatorTypeStrategy[] arrayOfLocatorTypeStrategy(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.LocatorTypeStrategy[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.LocatorTypeStrategy[] objects = new com.smartgwt.client.types.LocatorTypeStrategy[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.LocatorTypeStrategy obj = EnumUtil.getEnum(com.smartgwt.client.types.LocatorTypeStrategy.values(), value);
 
             objects[i] = obj;
         }
@@ -12210,106 +14498,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.ShowDataValuesMode} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.ShowDataValuesMode[]
-	 */
-    public static com.smartgwt.client.types.ShowDataValuesMode[] arrayOfShowDataValuesMode(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.ShowDataValuesMode[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.ShowDataValuesMode[] objects = new com.smartgwt.client.types.ShowDataValuesMode[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.ShowDataValuesMode obj = EnumUtil.getEnum(com.smartgwt.client.types.ShowDataValuesMode.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.drawing.DrawPane} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.drawing.DrawPane[]
-	 */
-    public static com.smartgwt.client.widgets.drawing.DrawPane[] arrayOfDrawPane(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.drawing.DrawPane[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.drawing.DrawPane[] objects = new com.smartgwt.client.widgets.drawing.DrawPane[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.drawing.DrawPane obj = (com.smartgwt.client.widgets.drawing.DrawPane) com.smartgwt.client.widgets.drawing.DrawPane.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.CheckboxItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.CheckboxItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.CheckboxItem[] arrayOfCheckboxItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.CheckboxItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.CheckboxItem[] objects = new com.smartgwt.client.widgets.form.fields.CheckboxItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.CheckboxItem obj = com.smartgwt.client.widgets.form.fields.CheckboxItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.tools.SectionStackSectionEditProxy} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.tools.SectionStackSectionEditProxy[]
-	 */
-    public static com.smartgwt.client.tools.SectionStackSectionEditProxy[] arrayOfSectionStackSectionEditProxy(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.tools.SectionStackSectionEditProxy[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.tools.SectionStackSectionEditProxy[] objects = new com.smartgwt.client.tools.SectionStackSectionEditProxy[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.tools.SectionStackSectionEditProxy obj = (com.smartgwt.client.tools.SectionStackSectionEditProxy) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.tools.SectionStackSectionEditProxy(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.menu.Menu} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.menu.Menu[]
@@ -12333,22 +14521,48 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.SelectionBoundary} objects.
+	 * {@link com.smartgwt.client.types.MinimalScrollbarContrastSuffix} objects.
 	 * @param nativeArray
-	 * @return com.smartgwt.client.types.SelectionBoundary[]
+	 * @return com.smartgwt.client.types.MinimalScrollbarContrastSuffix[]
 	 */
-    public static com.smartgwt.client.types.SelectionBoundary[] arrayOfSelectionBoundary(JavaScriptObject nativeArray) {
+    public static com.smartgwt.client.types.MinimalScrollbarContrastSuffix[] arrayOfMinimalScrollbarContrastSuffix(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
-            return new com.smartgwt.client.types.SelectionBoundary[]{};
+            return new com.smartgwt.client.types.MinimalScrollbarContrastSuffix[]{};
         }
 
         String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.SelectionBoundary[] objects = new com.smartgwt.client.types.SelectionBoundary[values.length];
+        com.smartgwt.client.types.MinimalScrollbarContrastSuffix[] objects = new com.smartgwt.client.types.MinimalScrollbarContrastSuffix[values.length];
 
         for (int i = 0; i < values.length; i++) {
 
             String value = values[i];
-            com.smartgwt.client.types.SelectionBoundary obj = EnumUtil.getEnum(com.smartgwt.client.types.SelectionBoundary.values(), value);
+            com.smartgwt.client.types.MinimalScrollbarContrastSuffix obj = EnumUtil.getEnum(com.smartgwt.client.types.MinimalScrollbarContrastSuffix.values(), value);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.util.tour.Tour} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.util.tour.Tour[]
+	 */
+    public static com.smartgwt.client.util.tour.Tour[] arrayOfTour(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.util.tour.Tour[]{};
+        }
+
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.tour.Tour[] objects = new com.smartgwt.client.util.tour.Tour[components.length];
+
+        for (int i = 0; i < components.length; i++) {
+
+            com.smartgwt.client.util.tour.Tour obj = (com.smartgwt.client.util.tour.Tour) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.tour.Tour(components[i]));
+            }
 
             objects[i] = obj;
         }
@@ -12372,6 +14586,30 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.widgets.layout.Layout obj = (com.smartgwt.client.widgets.layout.Layout) com.smartgwt.client.widgets.layout.Layout.getByJSObject(components[i]);
+
+            objects[i] = obj;
+        }
+        return objects;
+    }
+
+	/**
+	 * Given the nativeArray JavaScriptObject, this method will return an array of
+	 * {@link com.smartgwt.client.types.LoadProjectErrorStatus} objects.
+	 * @param nativeArray
+	 * @return com.smartgwt.client.types.LoadProjectErrorStatus[]
+	 */
+    public static com.smartgwt.client.types.LoadProjectErrorStatus[] arrayOfLoadProjectErrorStatus(JavaScriptObject nativeArray) {
+        if (nativeArray == null) {
+            return new com.smartgwt.client.types.LoadProjectErrorStatus[]{};
+        }
+
+        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
+        com.smartgwt.client.types.LoadProjectErrorStatus[] objects = new com.smartgwt.client.types.LoadProjectErrorStatus[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+
+            String value = values[i];
+            com.smartgwt.client.types.LoadProjectErrorStatus obj = EnumUtil.getEnum(com.smartgwt.client.types.LoadProjectErrorStatus.values(), value);
 
             objects[i] = obj;
         }
@@ -12427,38 +14665,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.viewer.DetailViewerField} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.viewer.DetailViewerField[]
-	 */
-    public static com.smartgwt.client.widgets.viewer.DetailViewerField[] arrayOfDetailViewerField(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.viewer.DetailViewerField[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.viewer.DetailViewerField[] ret = new com.smartgwt.client.widgets.viewer.DetailViewerField[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.viewer.DetailViewerField(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.viewer.DetailViewerField[] objects = new com.smartgwt.client.widgets.viewer.DetailViewerField[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.viewer.DetailViewerField obj = (com.smartgwt.client.widgets.viewer.DetailViewerField) ((DataClass) RefDataClass.getRef(components[i]));
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.viewer.DetailViewerField(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.toolbar.ToolStripResizer} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.toolbar.ToolStripResizer[]
@@ -12474,30 +14680,6 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.widgets.toolbar.ToolStripResizer obj = (com.smartgwt.client.widgets.toolbar.ToolStripResizer) com.smartgwt.client.widgets.toolbar.ToolStripResizer.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.ChildrenPropertyMode} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.ChildrenPropertyMode[]
-	 */
-    public static com.smartgwt.client.types.ChildrenPropertyMode[] arrayOfChildrenPropertyMode(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.ChildrenPropertyMode[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.ChildrenPropertyMode[] objects = new com.smartgwt.client.types.ChildrenPropertyMode[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.ChildrenPropertyMode obj = EnumUtil.getEnum(com.smartgwt.client.types.ChildrenPropertyMode.values(), value);
 
             objects[i] = obj;
         }
@@ -12556,30 +14738,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.Side} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.Side[]
-	 */
-    public static com.smartgwt.client.types.Side[] arrayOfSide(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.Side[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.Side[] objects = new com.smartgwt.client.types.Side[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.Side obj = EnumUtil.getEnum(com.smartgwt.client.types.Side.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.RecordDropAppearance} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.RecordDropAppearance[]
@@ -12630,22 +14788,22 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.DrawingType} objects.
+	 * {@link com.smartgwt.client.types.SavedSearchStoredState} objects.
 	 * @param nativeArray
-	 * @return com.smartgwt.client.types.DrawingType[]
+	 * @return com.smartgwt.client.types.SavedSearchStoredState[]
 	 */
-    public static com.smartgwt.client.types.DrawingType[] arrayOfDrawingType(JavaScriptObject nativeArray) {
+    public static com.smartgwt.client.types.SavedSearchStoredState[] arrayOfSavedSearchStoredState(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
-            return new com.smartgwt.client.types.DrawingType[]{};
+            return new com.smartgwt.client.types.SavedSearchStoredState[]{};
         }
 
         String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.DrawingType[] objects = new com.smartgwt.client.types.DrawingType[values.length];
+        com.smartgwt.client.types.SavedSearchStoredState[] objects = new com.smartgwt.client.types.SavedSearchStoredState[values.length];
 
         for (int i = 0; i < values.length; i++) {
 
             String value = values[i];
-            com.smartgwt.client.types.DrawingType obj = EnumUtil.getEnum(com.smartgwt.client.types.DrawingType.values(), value);
+            com.smartgwt.client.types.SavedSearchStoredState obj = EnumUtil.getEnum(com.smartgwt.client.types.SavedSearchStoredState.values(), value);
 
             objects[i] = obj;
         }
@@ -12654,22 +14812,24 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.RowSpanEditMode} objects.
+	 * {@link com.smartgwt.client.util.workflow.SetScreenDataTask} objects.
 	 * @param nativeArray
-	 * @return com.smartgwt.client.types.RowSpanEditMode[]
+	 * @return com.smartgwt.client.util.workflow.SetScreenDataTask[]
 	 */
-    public static com.smartgwt.client.types.RowSpanEditMode[] arrayOfRowSpanEditMode(JavaScriptObject nativeArray) {
+    public static com.smartgwt.client.util.workflow.SetScreenDataTask[] arrayOfSetScreenDataTask(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
-            return new com.smartgwt.client.types.RowSpanEditMode[]{};
+            return new com.smartgwt.client.util.workflow.SetScreenDataTask[]{};
         }
 
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.RowSpanEditMode[] objects = new com.smartgwt.client.types.RowSpanEditMode[values.length];
+        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
+        com.smartgwt.client.util.workflow.SetScreenDataTask[] objects = new com.smartgwt.client.util.workflow.SetScreenDataTask[components.length];
 
-        for (int i = 0; i < values.length; i++) {
+        for (int i = 0; i < components.length; i++) {
 
-            String value = values[i];
-            com.smartgwt.client.types.RowSpanEditMode obj = EnumUtil.getEnum(com.smartgwt.client.types.RowSpanEditMode.values(), value);
+            com.smartgwt.client.util.workflow.SetScreenDataTask obj = (com.smartgwt.client.util.workflow.SetScreenDataTask) BaseClass.getRef(components[i]);
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.SetScreenDataTask(components[i]));
+            }
 
             objects[i] = obj;
         }
@@ -12800,30 +14960,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.RPCTransport} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.RPCTransport[]
-	 */
-    public static com.smartgwt.client.types.RPCTransport[] arrayOfRPCTransport(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.RPCTransport[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.RPCTransport[] objects = new com.smartgwt.client.types.RPCTransport[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.RPCTransport obj = EnumUtil.getEnum(com.smartgwt.client.types.RPCTransport.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.layout.NavPanel} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.layout.NavPanel[]
@@ -12944,86 +15080,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.MockDataType} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.MockDataType[]
-	 */
-    public static com.smartgwt.client.types.MockDataType[] arrayOfMockDataType(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.MockDataType[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.MockDataType[] objects = new com.smartgwt.client.types.MockDataType[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.MockDataType obj = EnumUtil.getEnum(com.smartgwt.client.types.MockDataType.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.ColorItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.ColorItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.ColorItem[] arrayOfColorItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.ColorItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.ColorItem[] objects = new com.smartgwt.client.widgets.form.fields.ColorItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.ColorItem obj = com.smartgwt.client.widgets.form.fields.ColorItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.tab.Tab} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.tab.Tab[]
-	 */
-    public static com.smartgwt.client.widgets.tab.Tab[] arrayOfTab(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.tab.Tab[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.tab.Tab[] ret = new com.smartgwt.client.widgets.tab.Tab[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.tab.Tab(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.tab.Tab[] objects = new com.smartgwt.client.widgets.tab.Tab[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.tab.Tab obj = com.smartgwt.client.widgets.tab.Tab.getOrCreateRef(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.MockDataFormat} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.MockDataFormat[]
@@ -13040,32 +15096,6 @@ public final class ConvertTo {
 
             String value = values[i];
             com.smartgwt.client.types.MockDataFormat obj = EnumUtil.getEnum(com.smartgwt.client.types.MockDataFormat.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.FormEditRecordTask} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.FormEditRecordTask[]
-	 */
-    public static com.smartgwt.client.util.workflow.FormEditRecordTask[] arrayOfFormEditRecordTask(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.FormEditRecordTask[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.FormEditRecordTask[] objects = new com.smartgwt.client.util.workflow.FormEditRecordTask[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.FormEditRecordTask obj = (com.smartgwt.client.util.workflow.FormEditRecordTask) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.FormEditRecordTask(components[i]));
-            }
 
             objects[i] = obj;
         }
@@ -13092,80 +15122,6 @@ public final class ConvertTo {
             if (obj == null) {
                 obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.XORGateway(components[i]));
             }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.FormClearValuesTask} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.FormClearValuesTask[]
-	 */
-    public static com.smartgwt.client.util.workflow.FormClearValuesTask[] arrayOfFormClearValuesTask(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.FormClearValuesTask[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.FormClearValuesTask[] objects = new com.smartgwt.client.util.workflow.FormClearValuesTask[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.FormClearValuesTask obj = (com.smartgwt.client.util.workflow.FormClearValuesTask) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.FormClearValuesTask(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.FiscalYearMode} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.FiscalYearMode[]
-	 */
-    public static com.smartgwt.client.types.FiscalYearMode[] arrayOfFiscalYearMode(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.FiscalYearMode[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.FiscalYearMode[] objects = new com.smartgwt.client.types.FiscalYearMode[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.FiscalYearMode obj = EnumUtil.getEnum(com.smartgwt.client.types.FiscalYearMode.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.LabelCollapseMode} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.LabelCollapseMode[]
-	 */
-    public static com.smartgwt.client.types.LabelCollapseMode[] arrayOfLabelCollapseMode(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.LabelCollapseMode[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.LabelCollapseMode[] objects = new com.smartgwt.client.types.LabelCollapseMode[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.LabelCollapseMode obj = EnumUtil.getEnum(com.smartgwt.client.types.LabelCollapseMode.values(), value);
 
             objects[i] = obj;
         }
@@ -13248,91 +15204,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.UserSummary} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.UserSummary[]
-	 */
-    public static com.smartgwt.client.widgets.UserSummary[] arrayOfUserSummary(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.UserSummary[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.UserSummary[] ret = new com.smartgwt.client.widgets.UserSummary[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.UserSummary(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.UserSummary[] objects = new com.smartgwt.client.widgets.UserSummary[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.UserSummary obj = (com.smartgwt.client.widgets.UserSummary) ((DataClass) RefDataClass.getRef(components[i]));
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.UserSummary(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.SelectOtherItem} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.SelectOtherItem[]
-	 */
-    public static com.smartgwt.client.widgets.form.fields.SelectOtherItem[] arrayOfSelectOtherItem(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.SelectOtherItem[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.SelectOtherItem[] objects = new com.smartgwt.client.widgets.form.fields.SelectOtherItem[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.form.fields.SelectOtherItem obj = com.smartgwt.client.widgets.form.fields.SelectOtherItem.getOrCreateRef(components[i]);
-
-            if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
-                obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.GridStartEditingTask} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.GridStartEditingTask[]
-	 */
-    public static com.smartgwt.client.util.workflow.GridStartEditingTask[] arrayOfGridStartEditingTask(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.GridStartEditingTask[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.GridStartEditingTask[] objects = new com.smartgwt.client.util.workflow.GridStartEditingTask[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.GridStartEditingTask obj = (com.smartgwt.client.util.workflow.GridStartEditingTask) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.GridStartEditingTask(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.MultiGroupDialog} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.MultiGroupDialog[]
@@ -13371,62 +15242,6 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.widgets.toolbar.ToolStripSeparator obj = (com.smartgwt.client.widgets.toolbar.ToolStripSeparator) com.smartgwt.client.widgets.toolbar.ToolStripSeparator.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.AutoScrollDataApproach} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.AutoScrollDataApproach[]
-	 */
-    public static com.smartgwt.client.types.AutoScrollDataApproach[] arrayOfAutoScrollDataApproach(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.AutoScrollDataApproach[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.AutoScrollDataApproach[] objects = new com.smartgwt.client.types.AutoScrollDataApproach[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.AutoScrollDataApproach obj = EnumUtil.getEnum(com.smartgwt.client.types.AutoScrollDataApproach.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.tools.PaletteNode} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.tools.PaletteNode[]
-	 */
-    public static com.smartgwt.client.tools.PaletteNode[] arrayOfPaletteNode(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.tools.PaletteNode[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.tools.PaletteNode[] ret = new com.smartgwt.client.tools.PaletteNode[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.tools.PaletteNode(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.tools.PaletteNode[] objects = new com.smartgwt.client.tools.PaletteNode[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.tools.PaletteNode obj = (com.smartgwt.client.tools.PaletteNode) ((DataClass) RefDataClass.getRef(components[i]));
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.tools.PaletteNode(components[i]));
-            }
 
             objects[i] = obj;
         }
@@ -13535,52 +15350,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.layout.SectionStack} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.layout.SectionStack[]
-	 */
-    public static com.smartgwt.client.widgets.layout.SectionStack[] arrayOfSectionStack(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.layout.SectionStack[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.layout.SectionStack[] objects = new com.smartgwt.client.widgets.layout.SectionStack[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.layout.SectionStack obj = (com.smartgwt.client.widgets.layout.SectionStack) com.smartgwt.client.widgets.layout.SectionStack.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.ace.AceEditor} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.ace.AceEditor[]
-	 */
-    public static com.smartgwt.client.widgets.ace.AceEditor[] arrayOfAceEditor(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.ace.AceEditor[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.ace.AceEditor[] objects = new com.smartgwt.client.widgets.ace.AceEditor[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.ace.AceEditor obj = (com.smartgwt.client.widgets.ace.AceEditor) com.smartgwt.client.widgets.ace.AceEditor.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.types.NavigationMethod} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.types.NavigationMethod[]
@@ -13597,29 +15366,6 @@ public final class ConvertTo {
 
             String value = values[i];
             com.smartgwt.client.types.NavigationMethod obj = EnumUtil.getEnum(com.smartgwt.client.types.NavigationMethod.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.layout.DataView} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.layout.DataView[]
-	 */
-    public static com.smartgwt.client.widgets.layout.DataView[] arrayOfDataView(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.layout.DataView[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.layout.DataView[] objects = new com.smartgwt.client.widgets.layout.DataView[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.layout.DataView obj = (com.smartgwt.client.widgets.layout.DataView) com.smartgwt.client.widgets.layout.DataView.getByJSObject(components[i]);
 
             objects[i] = obj;
         }
@@ -13657,53 +15403,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.menu.TreeMenuButton} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.menu.TreeMenuButton[]
-	 */
-    public static com.smartgwt.client.widgets.menu.TreeMenuButton[] arrayOfTreeMenuButton(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.menu.TreeMenuButton[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.menu.TreeMenuButton[] objects = new com.smartgwt.client.widgets.menu.TreeMenuButton[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.menu.TreeMenuButton obj = (com.smartgwt.client.widgets.menu.TreeMenuButton) com.smartgwt.client.widgets.menu.TreeMenuButton.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.SelectedAppearance} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.SelectedAppearance[]
-	 */
-    public static com.smartgwt.client.types.SelectedAppearance[] arrayOfSelectedAppearance(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.SelectedAppearance[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.SelectedAppearance[] objects = new com.smartgwt.client.types.SelectedAppearance[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.SelectedAppearance obj = EnumUtil.getEnum(com.smartgwt.client.types.SelectedAppearance.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.drawing.DrawCurve} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.drawing.DrawCurve[]
@@ -13719,29 +15418,6 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.widgets.drawing.DrawCurve obj = (com.smartgwt.client.widgets.drawing.DrawCurve) com.smartgwt.client.widgets.drawing.DrawCurve.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.calendar.IndicatorCanvas} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.calendar.IndicatorCanvas[]
-	 */
-    public static com.smartgwt.client.widgets.calendar.IndicatorCanvas[] arrayOfIndicatorCanvas(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.calendar.IndicatorCanvas[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.calendar.IndicatorCanvas[] objects = new com.smartgwt.client.widgets.calendar.IndicatorCanvas[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.calendar.IndicatorCanvas obj = (com.smartgwt.client.widgets.calendar.IndicatorCanvas) com.smartgwt.client.widgets.calendar.IndicatorCanvas.getByJSObject(components[i]);
 
             objects[i] = obj;
         }
@@ -13773,30 +15449,21 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.form.fields.FormItemIcon} objects.
+	 * {@link com.smartgwt.client.tools.CSSEditor} objects.
 	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.form.fields.FormItemIcon[]
+	 * @return com.smartgwt.client.tools.CSSEditor[]
 	 */
-    public static com.smartgwt.client.widgets.form.fields.FormItemIcon[] arrayOfFormItemIcon(JavaScriptObject nativeArray) {
+    public static com.smartgwt.client.tools.CSSEditor[] arrayOfCSSEditor(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.form.fields.FormItemIcon[]{};
+            return new com.smartgwt.client.tools.CSSEditor[]{};
         }
 
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.form.fields.FormItemIcon[] ret = new com.smartgwt.client.widgets.form.fields.FormItemIcon[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.form.fields.FormItemIcon(nativeArray));
-	        return ret;
-		}
-
         JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.form.fields.FormItemIcon[] objects = new com.smartgwt.client.widgets.form.fields.FormItemIcon[components.length];
+        com.smartgwt.client.tools.CSSEditor[] objects = new com.smartgwt.client.tools.CSSEditor[components.length];
 
         for (int i = 0; i < components.length; i++) {
 
-            com.smartgwt.client.widgets.form.fields.FormItemIcon obj = (com.smartgwt.client.widgets.form.fields.FormItemIcon) ((DataClass) RefDataClass.getRef(components[i]));
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.widgets.form.fields.FormItemIcon(components[i]));
-            }
+            com.smartgwt.client.tools.CSSEditor obj = (com.smartgwt.client.tools.CSSEditor) com.smartgwt.client.tools.CSSEditor.getByJSObject(components[i]);
 
             objects[i] = obj;
         }
@@ -13855,82 +15522,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.FormItemType} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.FormItemType[]
-	 */
-    public static com.smartgwt.client.types.FormItemType[] arrayOfFormItemType(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.FormItemType[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.FormItemType[] objects = new com.smartgwt.client.types.FormItemType[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.FormItemType obj = EnumUtil.getEnum(com.smartgwt.client.types.FormItemType.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.tile.TileRecord} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.tile.TileRecord[]
-	 */
-    public static com.smartgwt.client.widgets.tile.TileRecord[] arrayOfTileRecord(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.tile.TileRecord[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.tile.TileRecord[] ret = new com.smartgwt.client.widgets.tile.TileRecord[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.tile.TileRecord(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.tile.TileRecord[] objects = new com.smartgwt.client.widgets.tile.TileRecord[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.tile.TileRecord obj = com.smartgwt.client.widgets.tile.TileRecord.getOrCreateRef(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.PrintCanvas} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.PrintCanvas[]
-	 */
-    public static com.smartgwt.client.widgets.PrintCanvas[] arrayOfPrintCanvas(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.PrintCanvas[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.PrintCanvas[] objects = new com.smartgwt.client.widgets.PrintCanvas[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.PrintCanvas obj = (com.smartgwt.client.widgets.PrintCanvas) com.smartgwt.client.widgets.PrintCanvas.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.tree.NodeLocator} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.tree.NodeLocator[]
@@ -13948,78 +15539,6 @@ public final class ConvertTo {
             com.smartgwt.client.widgets.tree.NodeLocator obj = (com.smartgwt.client.widgets.tree.NodeLocator) BaseClass.getRef(components[i]);
             if (obj == null) {
                 obj = (components[i] == null ? null : new com.smartgwt.client.widgets.tree.NodeLocator(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.toolbar.RibbonGroup} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.toolbar.RibbonGroup[]
-	 */
-    public static com.smartgwt.client.widgets.toolbar.RibbonGroup[] arrayOfRibbonGroup(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.toolbar.RibbonGroup[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.toolbar.RibbonGroup[] objects = new com.smartgwt.client.widgets.toolbar.RibbonGroup[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.toolbar.RibbonGroup obj = (com.smartgwt.client.widgets.toolbar.RibbonGroup) com.smartgwt.client.widgets.toolbar.RibbonGroup.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.layout.VLayout} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.layout.VLayout[]
-	 */
-    public static com.smartgwt.client.widgets.layout.VLayout[] arrayOfVLayout(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.layout.VLayout[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.layout.VLayout[] objects = new com.smartgwt.client.widgets.layout.VLayout[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.layout.VLayout obj = (com.smartgwt.client.widgets.layout.VLayout) com.smartgwt.client.widgets.layout.VLayout.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.FormDisableFieldTask} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.FormDisableFieldTask[]
-	 */
-    public static com.smartgwt.client.util.workflow.FormDisableFieldTask[] arrayOfFormDisableFieldTask(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.FormDisableFieldTask[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.FormDisableFieldTask[] objects = new com.smartgwt.client.util.workflow.FormDisableFieldTask[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.FormDisableFieldTask obj = (com.smartgwt.client.util.workflow.FormDisableFieldTask) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.FormDisableFieldTask(components[i]));
             }
 
             objects[i] = obj;
@@ -14055,103 +15574,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.calendar.CalendarView} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.calendar.CalendarView[]
-	 */
-    public static com.smartgwt.client.widgets.calendar.CalendarView[] arrayOfCalendarView(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.calendar.CalendarView[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.calendar.CalendarView[] objects = new com.smartgwt.client.widgets.calendar.CalendarView[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.calendar.CalendarView obj = (com.smartgwt.client.widgets.calendar.CalendarView) com.smartgwt.client.widgets.calendar.CalendarView.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.ForceTextApproach} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.ForceTextApproach[]
-	 */
-    public static com.smartgwt.client.types.ForceTextApproach[] arrayOfForceTextApproach(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.ForceTextApproach[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.ForceTextApproach[] objects = new com.smartgwt.client.types.ForceTextApproach[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.ForceTextApproach obj = EnumUtil.getEnum(com.smartgwt.client.types.ForceTextApproach.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.workflow.FormEditSelectedTask} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.workflow.FormEditSelectedTask[]
-	 */
-    public static com.smartgwt.client.util.workflow.FormEditSelectedTask[] arrayOfFormEditSelectedTask(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.workflow.FormEditSelectedTask[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.workflow.FormEditSelectedTask[] objects = new com.smartgwt.client.util.workflow.FormEditSelectedTask[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.workflow.FormEditSelectedTask obj = (com.smartgwt.client.util.workflow.FormEditSelectedTask) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.FormEditSelectedTask(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.DragIntersectStyle} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.DragIntersectStyle[]
-	 */
-    public static com.smartgwt.client.types.DragIntersectStyle[] arrayOfDragIntersectStyle(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.DragIntersectStyle[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.DragIntersectStyle[] objects = new com.smartgwt.client.types.DragIntersectStyle[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.DragIntersectStyle obj = EnumUtil.getEnum(com.smartgwt.client.types.DragIntersectStyle.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.Splitbar} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.Splitbar[]
@@ -14167,29 +15589,6 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.widgets.Splitbar obj = (com.smartgwt.client.widgets.Splitbar) com.smartgwt.client.widgets.Splitbar.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.toolbar.ToolStripButton} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.toolbar.ToolStripButton[]
-	 */
-    public static com.smartgwt.client.widgets.toolbar.ToolStripButton[] arrayOfToolStripButton(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.toolbar.ToolStripButton[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.toolbar.ToolStripButton[] objects = new com.smartgwt.client.widgets.toolbar.ToolStripButton[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.toolbar.ToolStripButton obj = (com.smartgwt.client.widgets.toolbar.ToolStripButton) com.smartgwt.client.widgets.toolbar.ToolStripButton.getByJSObject(components[i]);
 
             objects[i] = obj;
         }
@@ -14222,21 +15621,30 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.tools.EditTree} objects.
+	 * {@link com.smartgwt.client.util.workflow.PropertyValue} objects.
 	 * @param nativeArray
-	 * @return com.smartgwt.client.tools.EditTree[]
+	 * @return com.smartgwt.client.util.workflow.PropertyValue[]
 	 */
-    public static com.smartgwt.client.tools.EditTree[] arrayOfEditTree(JavaScriptObject nativeArray) {
+    public static com.smartgwt.client.util.workflow.PropertyValue[] arrayOfPropertyValue(JavaScriptObject nativeArray) {
         if (nativeArray == null) {
-            return new com.smartgwt.client.tools.EditTree[]{};
+            return new com.smartgwt.client.util.workflow.PropertyValue[]{};
         }
 
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.util.workflow.PropertyValue[] ret = new com.smartgwt.client.util.workflow.PropertyValue[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.util.workflow.PropertyValue(nativeArray));
+	        return ret;
+		}
+
         JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.tools.EditTree[] objects = new com.smartgwt.client.tools.EditTree[components.length];
+        com.smartgwt.client.util.workflow.PropertyValue[] objects = new com.smartgwt.client.util.workflow.PropertyValue[components.length];
 
         for (int i = 0; i < components.length; i++) {
 
-            com.smartgwt.client.tools.EditTree obj = (com.smartgwt.client.tools.EditTree) com.smartgwt.client.tools.EditTree.getByJSObject(components[i]);
+            com.smartgwt.client.util.workflow.PropertyValue obj = (com.smartgwt.client.util.workflow.PropertyValue) ((DataClass) RefDataClass.getRef(components[i]));
+            if (obj == null) {
+                obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.PropertyValue(components[i]));
+            }
 
             objects[i] = obj;
         }
@@ -14378,101 +15786,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.EdgeName} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.EdgeName[]
-	 */
-    public static com.smartgwt.client.types.EdgeName[] arrayOfEdgeName(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.EdgeName[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.EdgeName[] objects = new com.smartgwt.client.types.EdgeName[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.EdgeName obj = EnumUtil.getEnum(com.smartgwt.client.types.EdgeName.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.Img} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.Img[]
-	 */
-    public static com.smartgwt.client.widgets.Img[] arrayOfImg(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.Img[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.Img[] objects = new com.smartgwt.client.widgets.Img[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.Img obj = (com.smartgwt.client.widgets.Img) com.smartgwt.client.widgets.Img.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.AutoComplete} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.AutoComplete[]
-	 */
-    public static com.smartgwt.client.types.AutoComplete[] arrayOfAutoComplete(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.AutoComplete[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.AutoComplete[] objects = new com.smartgwt.client.types.AutoComplete[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.AutoComplete obj = EnumUtil.getEnum(com.smartgwt.client.types.AutoComplete.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.LineBreakStyle} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.LineBreakStyle[]
-	 */
-    public static com.smartgwt.client.types.LineBreakStyle[] arrayOfLineBreakStyle(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.LineBreakStyle[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.LineBreakStyle[] objects = new com.smartgwt.client.types.LineBreakStyle[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.LineBreakStyle obj = EnumUtil.getEnum(com.smartgwt.client.types.LineBreakStyle.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.form.PresetCriteriaItem} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.form.PresetCriteriaItem[]
@@ -14492,35 +15805,6 @@ public final class ConvertTo {
             if (obj != null && obj.getAttributeAsJavaScriptObject("__ref") == null) {
                 obj = com.smartgwt.client.util.ObjectFactory.createFormItem(obj.getClassName(),components[i]);
             }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.viewer.DetailViewerRecord} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.viewer.DetailViewerRecord[]
-	 */
-    public static com.smartgwt.client.widgets.viewer.DetailViewerRecord[] arrayOfDetailViewerRecord(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.viewer.DetailViewerRecord[]{};
-        }
-
-		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
-			com.smartgwt.client.widgets.viewer.DetailViewerRecord[] ret = new com.smartgwt.client.widgets.viewer.DetailViewerRecord[1];
-            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.widgets.viewer.DetailViewerRecord(nativeArray));
-	        return ret;
-		}
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.viewer.DetailViewerRecord[] objects = new com.smartgwt.client.widgets.viewer.DetailViewerRecord[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.viewer.DetailViewerRecord obj = com.smartgwt.client.widgets.viewer.DetailViewerRecord.getOrCreateRef(components[i]);
 
             objects[i] = obj;
         }
@@ -14553,30 +15837,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.DeviceMode} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.DeviceMode[]
-	 */
-    public static com.smartgwt.client.types.DeviceMode[] arrayOfDeviceMode(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.DeviceMode[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.DeviceMode[] objects = new com.smartgwt.client.types.DeviceMode[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.DeviceMode obj = EnumUtil.getEnum(com.smartgwt.client.types.DeviceMode.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.widgets.plugins.Flashlet} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.widgets.plugins.Flashlet[]
@@ -14592,30 +15852,6 @@ public final class ConvertTo {
         for (int i = 0; i < components.length; i++) {
 
             com.smartgwt.client.widgets.plugins.Flashlet obj = (com.smartgwt.client.widgets.plugins.Flashlet) com.smartgwt.client.widgets.plugins.Flashlet.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.SnapGridStyle} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.SnapGridStyle[]
-	 */
-    public static com.smartgwt.client.types.SnapGridStyle[] arrayOfSnapGridStyle(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.SnapGridStyle[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.SnapGridStyle[] objects = new com.smartgwt.client.types.SnapGridStyle[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.SnapGridStyle obj = EnumUtil.getEnum(com.smartgwt.client.types.SnapGridStyle.values(), value);
 
             objects[i] = obj;
         }
@@ -14647,79 +15883,6 @@ public final class ConvertTo {
 
 	/**
 	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.util.JSSyntaxHiliter} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.util.JSSyntaxHiliter[]
-	 */
-    public static com.smartgwt.client.util.JSSyntaxHiliter[] arrayOfJSSyntaxHiliter(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.util.JSSyntaxHiliter[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.util.JSSyntaxHiliter[] objects = new com.smartgwt.client.util.JSSyntaxHiliter[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.util.JSSyntaxHiliter obj = (com.smartgwt.client.util.JSSyntaxHiliter) BaseClass.getRef(components[i]);
-            if (obj == null) {
-                obj = (components[i] == null ? null : new com.smartgwt.client.util.JSSyntaxHiliter(components[i]));
-            }
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.types.MultipleFieldStorage} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.types.MultipleFieldStorage[]
-	 */
-    public static com.smartgwt.client.types.MultipleFieldStorage[] arrayOfMultipleFieldStorage(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.types.MultipleFieldStorage[]{};
-        }
-
-        String[] values = JSOHelper.convertToJavaStringArray(nativeArray);
-        com.smartgwt.client.types.MultipleFieldStorage[] objects = new com.smartgwt.client.types.MultipleFieldStorage[values.length];
-
-        for (int i = 0; i < values.length; i++) {
-
-            String value = values[i];
-            com.smartgwt.client.types.MultipleFieldStorage obj = EnumUtil.getEnum(com.smartgwt.client.types.MultipleFieldStorage.values(), value);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
-	 * {@link com.smartgwt.client.widgets.grid.RecordEditor} objects.
-	 * @param nativeArray
-	 * @return com.smartgwt.client.widgets.grid.RecordEditor[]
-	 */
-    public static com.smartgwt.client.widgets.grid.RecordEditor[] arrayOfRecordEditor(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new com.smartgwt.client.widgets.grid.RecordEditor[]{};
-        }
-
-        JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
-        com.smartgwt.client.widgets.grid.RecordEditor[] objects = new com.smartgwt.client.widgets.grid.RecordEditor[components.length];
-
-        for (int i = 0; i < components.length; i++) {
-
-            com.smartgwt.client.widgets.grid.RecordEditor obj = (com.smartgwt.client.widgets.grid.RecordEditor) com.smartgwt.client.widgets.grid.RecordEditor.getByJSObject(components[i]);
-
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-	/**
-	 * Given the nativeArray JavaScriptObject, this method will return an array of
 	 * {@link com.smartgwt.client.util.workflow.TaskDecision} objects.
 	 * @param nativeArray
 	 * @return com.smartgwt.client.util.workflow.TaskDecision[]
@@ -14729,12 +15892,18 @@ public final class ConvertTo {
             return new com.smartgwt.client.util.workflow.TaskDecision[]{};
         }
 
+		if (JSOHelper.isArray(nativeArray)==false && com.smartgwt.client.data.ResultSet.isResultSet(nativeArray)==false) {
+			com.smartgwt.client.util.workflow.TaskDecision[] ret = new com.smartgwt.client.util.workflow.TaskDecision[1];
+            ret[0] = (nativeArray == null ? null : new com.smartgwt.client.util.workflow.TaskDecision(nativeArray));
+	        return ret;
+		}
+
         JavaScriptObject[] components = JSOHelper.toArray(nativeArray);
         com.smartgwt.client.util.workflow.TaskDecision[] objects = new com.smartgwt.client.util.workflow.TaskDecision[components.length];
 
         for (int i = 0; i < components.length; i++) {
 
-            com.smartgwt.client.util.workflow.TaskDecision obj = (com.smartgwt.client.util.workflow.TaskDecision) BaseClass.getRef(components[i]);
+            com.smartgwt.client.util.workflow.TaskDecision obj = (com.smartgwt.client.util.workflow.TaskDecision) ((DataClass) RefDataClass.getRef(components[i]));
             if (obj == null) {
                 obj = (components[i] == null ? null : new com.smartgwt.client.util.workflow.TaskDecision(components[i]));
             }

@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * A component that has a set of possible states, and which presents itself differently according to which state it is in. 
@@ -221,11 +227,10 @@ public class StatefulCanvas extends Canvas {
     
 
     /**
-     * If specified this property returns the <code>aria-label</code> attribute to write out as part of {@link
-     * com.smartgwt.client.widgets.Canvas#getAriaState getAriaState()} in  {@link
-     * com.smartgwt.client.util.isc#setScreenReaderMode screenReaderMode}. <P> If unset, aria-label will default to {@link
-     * com.smartgwt.client.widgets.Canvas#getPrompt this.prompt} if specified, otherwise {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getTitle this.title}. <P>
+     * If specified this property returns the {@link com.smartgwt.client.widgets.StatefulCanvas#getAriaLabel aria-label} 
+     * attribute to write out in {@link com.smartgwt.client.util.isc#setScreenReaderMode screenReaderMode}. <P> If unset,
+     * aria-label will default to {@link com.smartgwt.client.widgets.Canvas#getPrompt this.prompt} if specified, otherwise
+     * {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle this.title}. <P>
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param ariaLabel New ariaLabel value. Default value is null
@@ -236,13 +241,16 @@ public class StatefulCanvas extends Canvas {
     }
 
     /**
-     * If specified this property returns the <code>aria-label</code> attribute to write out as part of {@link
-     * com.smartgwt.client.widgets.Canvas#getAriaState getAriaState()} in  {@link
-     * com.smartgwt.client.util.isc#setScreenReaderMode screenReaderMode}. <P> If unset, aria-label will default to {@link
-     * com.smartgwt.client.widgets.Canvas#getPrompt this.prompt} if specified, otherwise {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getTitle this.title}. <P>
+     * If specified this property returns the {@link com.smartgwt.client.widgets.StatefulCanvas#getAriaLabel aria-label} 
+     * attribute to write out in {@link com.smartgwt.client.util.isc#setScreenReaderMode screenReaderMode}. <P> If unset,
+     * aria-label will default to {@link com.smartgwt.client.widgets.Canvas#getPrompt this.prompt} if specified, otherwise
+     * {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle this.title}. <P>
      *
-     * @return Current ariaLabel value. Default value is null
+     * @return Method to return the <code>aria-label</code> for this component  (see {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getAriaStateDefaults getAriaStateDefaults()}). <P> Returns {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getAriaLabel ariaLabel} if specified, otherwise {@link
+     * com.smartgwt.client.widgets.Canvas#getPrompt prompt}, otherwise {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getTitle title}. Default value is null
      */
     public String getAriaLabel()  {
         return getAttributeAsString("ariaLabel");
@@ -283,7 +291,12 @@ public class StatefulCanvas extends Canvas {
     
 
     /**
-     * Base CSS style className applied to the component. 
+     * Base CSS style className applied to the component.
+     *  <P>
+     *  Note that if specified, this property takes precedence over any specified
+     * {@link com.smartgwt.client.widgets.StatefulCanvas#getStyleName styleName}. If unset, the <code>styleName</code> will be
+     * used as a 
+     *  default <code>baseStyle</code> value.
      *  <P>
      *  As the component changes {@link com.smartgwt.client.widgets.StatefulCanvas#getState state} and/or is selected, 
      *  suffixes will be added to the base style. In some cases more than one suffix will 
@@ -333,6 +346,14 @@ public class StatefulCanvas extends Canvas {
      *  <li>We've explicitly avoided describing an approach based on CSS "writing-mode", since
      *  support is incomplete and bugs are present in popular browsers such as Firefox and
      *  Safari that would prevent it from being used without Framework assistance.</ul>
+     *  <P>
+     *  Note on css-margins: Developers should be aware that the css "margin" property is unreliable for
+     *  certain subclasses of StatefulCanvas, including {@link com.smartgwt.client.widgets.Button buttons}. Developers may use 
+     * the explicit {@link com.smartgwt.client.widgets.Canvas#getMargin Canvas.margin} property to specify button margins, or
+     * for a 
+     * button within a layout, consider the layout properties {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin
+     * Layout.layoutMargin},
+     *  {@link com.smartgwt.client.widgets.layout.Layout#getMembersMargin Layout.membersMargin}
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the base CSS style.  As the component changes state and/or is selected, suffixes will be added to the base style.
@@ -346,7 +367,12 @@ public class StatefulCanvas extends Canvas {
     }
 
     /**
-     * Base CSS style className applied to the component. 
+     * Base CSS style className applied to the component.
+     *  <P>
+     *  Note that if specified, this property takes precedence over any specified
+     * {@link com.smartgwt.client.widgets.StatefulCanvas#getStyleName styleName}. If unset, the <code>styleName</code> will be
+     * used as a 
+     *  default <code>baseStyle</code> value.
      *  <P>
      *  As the component changes {@link com.smartgwt.client.widgets.StatefulCanvas#getState state} and/or is selected, 
      *  suffixes will be added to the base style. In some cases more than one suffix will 
@@ -396,6 +422,14 @@ public class StatefulCanvas extends Canvas {
      *  <li>We've explicitly avoided describing an approach based on CSS "writing-mode", since
      *  support is incomplete and bugs are present in popular browsers such as Firefox and
      *  Safari that would prevent it from being used without Framework assistance.</ul>
+     *  <P>
+     *  Note on css-margins: Developers should be aware that the css "margin" property is unreliable for
+     *  certain subclasses of StatefulCanvas, including {@link com.smartgwt.client.widgets.Button buttons}. Developers may use 
+     * the explicit {@link com.smartgwt.client.widgets.Canvas#getMargin Canvas.margin} property to specify button margins, or
+     * for a 
+     * button within a layout, consider the layout properties {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin
+     * Layout.layoutMargin},
+     *  {@link com.smartgwt.client.widgets.layout.Layout#getMembersMargin Layout.membersMargin}
      *
      * @return Current baseStyle value. Default value is null
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
@@ -1095,7 +1129,7 @@ public class StatefulCanvas extends Canvas {
      * show the {@link com.smartgwt.client.widgets.Canvas#getContextMenu context menu} if one is defined, rather than {@link
      * com.smartgwt.client.widgets.Canvas#addClickHandler click()}, when the left mouse is clicked. <P> Note that this property
      * has a different interpretation in {@link com.smartgwt.client.widgets.IconButton} as {@link
-     * com.smartgwt.client.widgets.IconButton#getShowMenuOnClick IconButton.showMenuOnClick}.
+     * com.smartgwt.client.widgets.RibbonButton#getShowMenuOnClick IconButton.showMenuOnClick}.
      *
      * @param showMenuOnClick New showMenuOnClick value. Default value is null
      * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
@@ -1109,7 +1143,7 @@ public class StatefulCanvas extends Canvas {
      * show the {@link com.smartgwt.client.widgets.Canvas#getContextMenu context menu} if one is defined, rather than {@link
      * com.smartgwt.client.widgets.Canvas#addClickHandler click()}, when the left mouse is clicked. <P> Note that this property
      * has a different interpretation in {@link com.smartgwt.client.widgets.IconButton} as {@link
-     * com.smartgwt.client.widgets.IconButton#getShowMenuOnClick IconButton.showMenuOnClick}.
+     * com.smartgwt.client.widgets.RibbonButton#getShowMenuOnClick IconButton.showMenuOnClick}.
      *
      * @return Current showMenuOnClick value. Default value is null
      */
@@ -1290,6 +1324,35 @@ public class StatefulCanvas extends Canvas {
     
 
     /**
+     * StatefulCanvases are styled by combining {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle baseStyle} with
+     * {@link com.smartgwt.client.types.State} to build a composite css style name. In most cases,
+     * <code>statefulCanvas.styleName</code> will have no effect on statefulCanvas styling and should not be used. <P> If the
+     * <code>baseStyle</code> is not explicitly specified for a class, the  <code>styleName</code> will be used as a default
+     * baseStyle. Other than that, this attribute will be ignored.
+     *
+     * @param styleName New styleName value. Default value is "normal"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public void setStyleName(String styleName) {
+        setAttribute("styleName", styleName, true);
+    }
+
+    /**
+     * StatefulCanvases are styled by combining {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle baseStyle} with
+     * {@link com.smartgwt.client.types.State} to build a composite css style name. In most cases,
+     * <code>statefulCanvas.styleName</code> will have no effect on statefulCanvas styling and should not be used. <P> If the
+     * <code>baseStyle</code> is not explicitly specified for a class, the  <code>styleName</code> will be used as a default
+     * baseStyle. Other than that, this attribute will be ignored.
+     *
+     * @return Current styleName value. Default value is "normal"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public String getStyleName()  {
+        return getAttributeAsString("styleName");
+    }
+    
+
+    /**
      * The title HTML to display in this button.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
@@ -1417,6 +1480,23 @@ public class StatefulCanvas extends Canvas {
         }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.deselect();
+    }-*/;
+
+	/**
+     * Retrieves dynamically calculated default {@link com.smartgwt.client.widgets.Canvas#getAriaState ARIA state mapping} 
+     * properties for this canvas. These will be combined with explicitly specified aria state as described in {@link
+     * com.smartgwt.client.widgets.Canvas#getAriaState Canvas.getAriaState()}. <P> Overridden by StatefulCanvas to pick up
+     * {@link com.smartgwt.client.widgets.StatefulCanvas#getAriaLabel aria-label}.
+     *
+     * @return dynamically calculated default aria state properties
+     */
+    public native Map getAriaStateDefaults() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getAriaStateDefaults", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getAriaStateDefaults();
+        return @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
 	/**
@@ -1757,6 +1837,11 @@ public class StatefulCanvas extends Canvas {
             s.state = getAttributeAsString("state");
         } catch (Throwable t) {
             s.logicalStructureErrors += "StatefulCanvas.state:" + t.getMessage() + "\n";
+        }
+        try {
+            s.styleName = getAttributeAsString("styleName");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.styleName:" + t.getMessage() + "\n";
         }
         try {
             s.title = getAttributeAsString("title");

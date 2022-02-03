@@ -5,6 +5,7 @@ package com.smartgwt.client.docs;
  * The following APIs are all related to Title.
  * @see com.smartgwt.client.data.DataSource#getAutoTitle
  * @see com.smartgwt.client.data.DataSource#getAutoTitle
+ * @see com.smartgwt.client.widgets.toolbar.RibbonGroup#getAutoSizeToTitle
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getShowTitle
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getTitleOrientation
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getTitleAlign

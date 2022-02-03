@@ -26,35 +26,35 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 public final class Version {
 
     public static String getSCVersionNumber() {
-        return "v12.1p_2022-02-03";
+        return "v13.0p_2022-02-03";
     }
 
     /**
      * @return the library version
      */
     public static String getVersion() {
-        return "12.1p";
+        return "13.0p";
     }
 
     /**
      * @return the library major version
      */
     public static String getMajor() {
-        return "12.1p.0.0".split("\\.")[0];
+        return "13.0p.0.0".split("\\.")[0];
     }
 
     /**
      * @return the library minor version
      */
     public static String getMinor() {
-        return "12.1p.0.0".split("\\.")[1];
+        return "13.0p.0.0".split("\\.")[1];
     }
 
     /**
      * @return the library patch version
      */
     public static String getPatch() {
-        return "12.1p.0.0".split("\\.")[2];
+        return "13.0p.0.0".split("\\.")[2];
     }
 
     /**

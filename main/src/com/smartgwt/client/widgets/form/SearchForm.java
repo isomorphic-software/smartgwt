@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * A SearchForm is a DynamicForm specialized for a user to enter search criteria. <P> All DynamicForm properties and
@@ -323,6 +329,37 @@ public class SearchForm extends DynamicForm implements com.smartgwt.client.widge
     }
     
 
+    /**
+     * When creating a SelectItem within a Search Form for editing criteria for a field with a ValueMap, should the SelectItem
+     * default to {@link com.smartgwt.client.widgets.form.fields.SelectItem#getMultiple multiple:true}? <P> Note that for
+     * ListGrids showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor filterEditor}, this property
+     * will be derived from {@link com.smartgwt.client.widgets.grid.ListGrid#getUseMultiSelectForFilterValueMaps
+     * ListGrid.useMultiSelectForFilterValueMaps}
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param useMultiSelectForValueMaps New useMultiSelectForValueMaps value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.SearchForm SearchForm} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public SearchForm setUseMultiSelectForValueMaps(boolean useMultiSelectForValueMaps)  throws IllegalStateException {
+        return (SearchForm)setAttribute("useMultiSelectForValueMaps", useMultiSelectForValueMaps, false);
+    }
+
+    /**
+     * When creating a SelectItem within a Search Form for editing criteria for a field with a ValueMap, should the SelectItem
+     * default to {@link com.smartgwt.client.widgets.form.fields.SelectItem#getMultiple multiple:true}? <P> Note that for
+     * ListGrids showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor filterEditor}, this property
+     * will be derived from {@link com.smartgwt.client.widgets.grid.ListGrid#getUseMultiSelectForFilterValueMaps
+     * ListGrid.useMultiSelectForFilterValueMaps}
+     *
+     * @return Current useMultiSelectForValueMaps value. Default value is true
+     */
+    public boolean getUseMultiSelectForValueMaps()  {
+        Boolean result = getAttributeAsBoolean("useMultiSelectForValueMaps");
+        return result == null ? true : result;
+    }
+    
+
     // ********************* Methods ***********************
     /**
      * Add a criteriaChanged handler.
@@ -334,8 +371,8 @@ public class SearchForm extends DynamicForm implements com.smartgwt.client.widge
      * @return {@link HandlerRegistration} used to remove this handler
      */
     public HandlerRegistration addCriteriaChangedHandler(com.smartgwt.client.widgets.form.events.CriteriaChangedHandler handler) {
-        if(getHandlerCount(com.smartgwt.client.widgets.form.events.CriteriaChangedDevent.getType()) == 0) setupCriteriaChangedEvent();
-        return doAddHandler(handler, com.smartgwt.client.widgets.form.events.CriteriaChangedDevent.getType());
+        if(getHandlerCount(com.smartgwt.client.widgets.form.events.CriteriaChangedEvent.getType()) == 0) setupCriteriaChangedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.events.CriteriaChangedEvent.getType());
     }
 
     private native void setupCriteriaChangedEvent() /*-{
@@ -344,7 +381,7 @@ public class SearchForm extends DynamicForm implements com.smartgwt.client.widge
         var hasDefaultHandler;
         var criteriaChanged = $entry(function(){
             var param = {"_this": this, "criteria" : arguments[0], "form" : arguments[1]};
-            var event = @com.smartgwt.client.widgets.form.events.CriteriaChangedDevent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            var event = @com.smartgwt.client.widgets.form.events.CriteriaChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
             selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             selfJ.@com.smartgwt.client.widgets.form.SearchForm::handleTearDownCriteriaChangedEvent()();
             if (hasDefaultHandler) this.Super("criteriaChanged", arguments);
@@ -362,7 +399,7 @@ public class SearchForm extends DynamicForm implements com.smartgwt.client.widge
     }-*/;
 
     private void handleTearDownCriteriaChangedEvent() {
-        if (getHandlerCount(com.smartgwt.client.widgets.form.events.CriteriaChangedDevent.getType()) == 0) tearDownCriteriaChangedEvent();
+        if (getHandlerCount(com.smartgwt.client.widgets.form.events.CriteriaChangedEvent.getType()) == 0) tearDownCriteriaChangedEvent();
     }
 
     private native void tearDownCriteriaChangedEvent() /*-{
@@ -439,6 +476,11 @@ public class SearchForm extends DynamicForm implements com.smartgwt.client.widge
             s.storeDisplayValues = getAttributeAsString("storeDisplayValues");
         } catch (Throwable t) {
             s.logicalStructureErrors += "SearchForm.storeDisplayValues:" + t.getMessage() + "\n";
+        }
+        try {
+            s.useMultiSelectForValueMaps = getAttributeAsString("useMultiSelectForValueMaps");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SearchForm.useMultiSelectForValueMaps:" + t.getMessage() + "\n";
         }
         return s;
     }

@@ -114,7 +114,8 @@ package com.smartgwt.client.docs;
  *  To provide a concrete example: a developer might implement a logical nested
  *  "menu" built from a set of Button instances. In that case, some button might have
  *  ariaRole set to <code>"menuitem"</code> and (if it launches a sub-menu),
- * also the <a href='http://www.w3.org/TR/wai-aria/states_and_properties#aria-haspopup'
+ * also the <a
+ * href='https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-haspopup'
  * target='_blank'>"haspopup"</a>
  *  aria state. The code for this would be something like:
  *  
@@ -133,9 +134,9 @@ package com.smartgwt.client.docs;
  * lists, and so on. To enable application mode in JAWS, it is necessary to add
  * <code>role="application"</code>
  *  to the &lt;body&gt; tag. See
- * <a href='http://www.freedomscientific.com/Support/TechnicalSupport/Bulletin/1404'
- * target='_blank'>Freedom Scientific Bulletin 1404 - In ARIA&#44; what is the difference in how
- * JAWS treats role="application" and role="document"?</a>
+ * <a href='https://support.freedomscientific.com/support/technicalsupport/bulletin/1665'
+ * target='_blank'>Freedom Scientific Bulletin - In ARIA&#44; what is the difference in how JAWS
+ * treats role="application" and role="document"?</a>
  * @see com.smartgwt.client.util.isc#setScreenReaderMode
  * @see com.smartgwt.client.widgets.Canvas#setAriaState
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCellRole
@@ -143,17 +144,17 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getRowRole
  * @see com.smartgwt.client.widgets.grid.ListGrid#getRowAriaState
  * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderButtonAriaState
- * @see com.smartgwt.client.widgets.Canvas#getAriaRole
- * @see com.smartgwt.client.widgets.Canvas#getAriaState
- * @see com.smartgwt.client.widgets.form.fields.FormItem#getAriaRole
- * @see com.smartgwt.client.widgets.form.fields.FormItem#getAriaState
- * @see com.smartgwt.client.widgets.grid.ListGrid#getAriaRole
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanTabToHeader
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanTabToSorter
  * @see com.smartgwt.client.widgets.grid.ListGrid#getScreenReaderCellSeparator
  * @see com.smartgwt.client.widgets.grid.ListGrid#getScreenReaderRowSeparator
  * @see com.smartgwt.client.widgets.grid.ListGrid#getScreenReaderIncludeFieldTitles
  * @see com.smartgwt.client.widgets.grid.ListGrid#getScreenReaderWriteRowLabelledBy
+ * @see com.smartgwt.client.widgets.Canvas#getAriaRole
+ * @see com.smartgwt.client.widgets.Canvas#getAriaState
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getAriaRole
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getAriaState
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getAriaRole
  * @see com.smartgwt.client.widgets.Img#getAltText
  */
 public interface Accessibility {

@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -294,6 +299,7 @@ public class EditProxy extends BaseClass {
      *
      * @param childrenSnapResizeToGrid New childrenSnapResizeToGrid value. Default value is null
      * @return {@link com.smartgwt.client.tools.EditProxy EditProxy} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public EditProxy setChildrenSnapResizeToGrid(Boolean childrenSnapResizeToGrid) {
         return (EditProxy)setAttribute("childrenSnapResizeToGrid", childrenSnapResizeToGrid, true);
@@ -305,6 +311,7 @@ public class EditProxy extends BaseClass {
      * snapResizeToGrid functionality to be enforced during edit mode but not when live.
      *
      * @return Current childrenSnapResizeToGrid value. Default value is null
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Boolean getChildrenSnapResizeToGrid()  {
         return getAttributeAsBoolean("childrenSnapResizeToGrid");
@@ -318,6 +325,7 @@ public class EditProxy extends BaseClass {
      *
      * @param childrenSnapToGrid New childrenSnapToGrid value. Default value is null
      * @return {@link com.smartgwt.client.tools.EditProxy EditProxy} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public EditProxy setChildrenSnapToGrid(Boolean childrenSnapToGrid) {
         return (EditProxy)setAttribute("childrenSnapToGrid", childrenSnapToGrid, true);
@@ -329,6 +337,7 @@ public class EditProxy extends BaseClass {
      * functionality to be enforced during edit mode but not when live.
      *
      * @return Current childrenSnapToGrid value. Default value is null
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Boolean getChildrenSnapToGrid()  {
         return getAttributeAsBoolean("childrenSnapToGrid");

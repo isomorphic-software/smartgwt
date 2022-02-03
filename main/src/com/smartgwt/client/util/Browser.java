@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -137,6 +142,34 @@ public class Browser {
      */
     public static native boolean getIsHandset() /*-{
         var result = $wnd.isc.Browser.isHandset;
+        if (result == null) result = false;
+        return @com.google.gwt.core.client.GWT::isScript()() ? result : result.valueOf(); 
+    }-*/;
+
+    /** 
+     * Are the {@link com.smartgwt.client.browser.window.MultiWindow} APIs supported and cross-window optimizations enabled? 
+     * By default this is true in the {@link com.smartgwt.client.browser.window.MultiWindow#isMainWindow main window} if {@link
+     * com.smartgwt.client.util.Browser#isOpenFin OpenFin} is loaded, false otherwise.  In {@link
+     * com.smartgwt.client.browser.window.MultiWindow#open child windows}, this property is read-only, and assumes the value
+     * from the main window. <p> <b>Note:</b> {@link com.smartgwt.client.browser.window.MultiWindow} is currently an
+     * experimental feature and not supported except by special arrangement
+     *
+     * @return current value of isMultiWindow
+     */
+    public static native boolean getIsMultiWindow() /*-{
+        var result = $wnd.isc.Browser.isMultiWindow;
+        if (result == null) result = false;
+        return @com.google.gwt.core.client.GWT::isScript()() ? result : result.valueOf(); 
+    }-*/;
+
+    /** 
+     * Are we in an <a href='https://developers.openfin.co/of-docs/docs' target='_blank'>OpenFin</a> environment? See class
+     * OpenFin for ways to call OpenFin methods from within Smart GWT.
+     *
+     * @return current value of isOpenFin
+     */
+    public static native boolean getIsOpenFin() /*-{
+        var result = $wnd.isc.Browser.isOpenFin;
         if (result == null) result = false;
         return @com.google.gwt.core.client.GWT::isScript()() ? result : result.valueOf(); 
     }-*/;
@@ -215,6 +248,17 @@ public class Browser {
      */
     public static native void setIsHandset(boolean isHandset) /*-{
         $wnd.isc.Browser.setIsHandset(isHandset);
+    }-*/;
+
+
+	/**
+     * Sets a non-default value for {@link com.smartgwt.client.util.Browser#isMultiWindow isMultiWindow}, such as enabling it
+     * even if {@link com.smartgwt.client.util.Browser#isOpenFin OpenFin} isn't present. <p> Note that this method may only be
+     * called from the {@link com.smartgwt.client.browser.window.MultiWindow#isMainWindow main window}, and only once.
+     * @param isMultiWindow new setting for <code>Browser.isMultiWindow</code>.
+     */
+    public static native void setIsMultiWindow(boolean isMultiWindow) /*-{
+        $wnd.isc.Browser.setIsMultiWindow(isMultiWindow);
     }-*/;
 
 

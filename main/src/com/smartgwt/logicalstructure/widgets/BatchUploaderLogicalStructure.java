@@ -6,6 +6,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
@@ -73,6 +74,7 @@ public class BatchUploaderLogicalStructure extends VStackLogicalStructure {
     public String previousButtonTitle;
     public DSRequest requestProperties;
     public String showCommitConfirmation;
+    public String showUploadForm;
     public String updatesRolledBackMessage;
     public String uploadButtonTitle;
     public DataSource uploadDataSource;

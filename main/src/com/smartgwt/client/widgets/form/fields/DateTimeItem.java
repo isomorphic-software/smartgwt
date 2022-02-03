@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,10 +78,21 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
- * Subclass of DateItem for manipulating {@link com.smartgwt.client.types.FieldType datetimes}.
+ * A simple {@link com.smartgwt.client.widgets.form.fields.DateItem DateItem subclass} for editing  {@link
+ * com.smartgwt.client.util.DateUtil#createDatetime regular datetime} values, where date and time elements are relevant.
+ * <p> The item edits datetimes directly as text-values, formatted   according to your locale and settings such as {@link
+ * com.smartgwt.client.widgets.form.fields.DateItem#getDateFormatter DateItem.dateFormatter}. <p> To edit {@link
+ * com.smartgwt.client.util.DateUtil#createLogicalDate logical-Date values}, see {@link
+ * com.smartgwt.client.widgets.form.fields.DateItem}, and to edit {@link
+ * com.smartgwt.client.util.DateUtil#createLogicalTime logical-time values}, see {@link
+ * com.smartgwt.client.widgets.form.fields.TimeItem}. For {@link com.smartgwt.client.docs.RelativeDateString relative-date
+ * features}, see {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem}. <P> For detailed information on working
+ * with dates, times and datetimes, see the  {@link com.smartgwt.client.docs.DateFormatAndStorage Date and Time Format and
+ * Storage overview}.
  */
 @BeanFactory.FrameworkClass
 public class DateTimeItem extends DateItem {
@@ -292,7 +307,8 @@ public class DateTimeItem extends DateItem {
     
 
     /**
-     * DateTimeItems show datetime values in a freeform text entry area.
+     * This property defaults to true in DateTimeItems and cannot be altered, since editing is  via {@link
+     * com.smartgwt.client.widgets.form.fields.DateTimeItem#getDisplayFormat formatted} text-entry only.
      *
      * @return Current useTextField value. Default value is true
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods

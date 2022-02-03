@@ -52,13 +52,24 @@ package com.smartgwt.client.docs;
  * the form can always render at a designed minimum size by reducing the number of cases of
  * variable-sized text, and testing remaining cases across all supported skins.  For example, move
  * help text into hovers on help icons, or clip  long text values at a maximum length and provide
- * a hover to see the rest. </ol> Several examples of Form Layout are available @see <a
+ * a hover to see the rest. </ol> <P> <b>Adaptive Layout</b> <P> To have various automatic
+ * adjustments made to render your form items in a single column, you can use {@link
+ * com.smartgwt.client.widgets.form.DynamicForm#getLinearMode linearMode}.  Importantly, you can
+ * have this mode automatically applied to a form on {@link
+ * com.smartgwt.client.util.Browser#isHandset handset devices} by setting {@link
+ * com.smartgwt.client.widgets.form.DynamicForm#getLinearOnMobile linearOnMobile} true.  For
+ * further details and the properties that are available to customize this mode, see the {@link
+ * com.smartgwt.client.widgets.form.DynamicForm#getLinearMode linearMode} documentation. <P>
+ * Several examples of Form Layout are available @see <a
  * href="http://www.smartclient.com/smartgwtee/showcase/#formsLayout" target="examples">here</a>.
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getWidth
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getHeight
      * @see com.smartgwt.client.widgets.form.DynamicForm#getItemLayout
  * @see com.smartgwt.client.widgets.form.DynamicForm#getItemLayout
+ * @see com.smartgwt.client.widgets.form.DynamicForm#getLinearMode
+ * @see com.smartgwt.client.widgets.form.DynamicForm#getLinearOnMobile
  * @see com.smartgwt.client.widgets.form.DynamicForm#getNumCols
+ * @see com.smartgwt.client.widgets.form.DynamicForm#getLinearNumCols
  * @see com.smartgwt.client.widgets.form.DynamicForm#getFixedColWidths
  * @see com.smartgwt.client.widgets.form.DynamicForm#getColWidths
  * @see com.smartgwt.client.widgets.form.DynamicForm#getMinColWidth
@@ -66,13 +77,17 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.DynamicForm#getCellBorder
  * @see com.smartgwt.client.widgets.form.DynamicForm#getSectionVisibilityMode
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getWidth
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getLinearWidth
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getHeight
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getStaticHeight
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getTitleColSpan
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getColSpan
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getLinearColSpan
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getRowSpan
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getStartRow
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getEndRow
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getLinearStartRow
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getLinearEndRow
  * @see com.smartgwt.client.widgets.form.fields.ButtonItem#getStartRow
  * @see com.smartgwt.client.widgets.form.fields.ButtonItem#getEndRow
  * @see com.smartgwt.client.widgets.form.fields.SelectItem#getHeight

@@ -6,6 +6,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
@@ -47,6 +48,8 @@ import com.smartgwt.logicalstructure.widgets.drawing.*;
 
 public class PickListMenuLogicalStructure extends ListGridLogicalStructure {
     public String bodyStyleName;
+    public String canSaveSearches;
+    public String canShowFilterEditor;
     public ResultSet dataProperties;
     public String emptyMessage;
     public String normalCellHeight;

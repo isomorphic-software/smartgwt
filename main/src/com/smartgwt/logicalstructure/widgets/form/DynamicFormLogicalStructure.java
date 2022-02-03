@@ -6,6 +6,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
@@ -52,8 +53,6 @@ public class DynamicFormLogicalStructure extends CanvasLogicalStructure {
     public String autoFocus;
     public String autoFocusOnError;
     public String browserSpellCheck;
-    public String cancelParamName;
-    public String cancelParamValue;
     public String canEdit;
     public String canEditFieldAttribute;
     public String canFocus;
@@ -65,6 +64,7 @@ public class DynamicFormLogicalStructure extends CanvasLogicalStructure {
     public String clipItemTitles;
     public String clipStaticValue;
     public String colWidths;
+    public String dataArity;
     public String dataFetchMode;
     public String dateFormatter;
     public String datetimeFormatter;
@@ -90,6 +90,9 @@ public class DynamicFormLogicalStructure extends CanvasLogicalStructure {
     public String itemHoverVAlignAsString;
     public String itemHoverWidthAsString;
     public String itemLayout;
+    public String linearMode;
+    public String linearNumCols;
+    public String linearOnMobile;
     public String longTextEditorThreshold;
     public String longTextEditorType;
     public String method;

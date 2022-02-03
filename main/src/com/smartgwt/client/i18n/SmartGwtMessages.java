@@ -33,12 +33,12 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("batchUploader_cancelButtonTitle")
   String batchUploader_cancelButtonTitle();
 
-  /* batchUploader_previousButtonTitle value changed on Fri Jan  7 06:20:39 2022
+  /* batchUploader_previousButtonTitle value changed on Thu Jan  6 09:53:31 2022
    Old value was 'Previous'.
    See definition later in this file for new value.
   */
 
-  /* batchUploader_nextButtonTitle value changed on Fri Jan  7 06:20:39 2022
+  /* batchUploader_nextButtonTitle value changed on Thu Jan  6 09:53:31 2022
    Old value was 'Next'.
    See definition later in this file for new value.
   */
@@ -143,7 +143,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("batchUploader_errorMessageUnterminatedQuote")
   String batchUploader_errorMessageUnterminatedQuote();
 
-  /* batchUploader_errorMessageRowsNotParsed value changed on Fri Jan  7 06:20:39 2022
+  /* batchUploader_errorMessageRowsNotParsed value changed on Thu Jan  6 09:53:31 2022
    Old value was 'Some rows could not be parsed; the grid below shows $goodRowCount of $totalRows. Row number $firstBadRow was the first row to fail to be parsed.'.
    See definition later in this file for new value.
   */
@@ -736,7 +736,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("dataBoundComponent_removeFormulaFieldText")
   String dataBoundComponent_removeFormulaFieldText();
 
-  /* dataBoundComponent_removeSummaryFieldText value changed on Fri Jan  7 06:20:39 2022
+  /* dataBoundComponent_removeSummaryFieldText value changed on Thu Jan  6 09:53:31 2022
    Old value was 'Remove summary column..'.
    See definition later in this file for new value.
   */
@@ -814,7 +814,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("dataSource_maxFileSizeExceededMessage")
   String dataSource_maxFileSizeExceededMessage();
 
-  /* dataSource_requiredFileMessage value changed on Fri Jan  7 06:20:39 2022
+  /* dataSource_requiredFileMessage value changed on Thu Jan  6 09:53:31 2022
    Old value was '''$uploadedFileName'' was empty, but empty files are not allowed'.
    See definition later in this file for new value.
   */
@@ -1996,7 +1996,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("dialog_YesButtonTitle")
   String dialog_YesButtonTitle();
 
-  /* dynamicForm_errorsPreamble value changed on Fri Jan  7 06:20:39 2022
+  /* dynamicForm_errorsPreamble value changed on Thu Jan  6 09:53:31 2022
    Old value was 'The following errors were found'.
    See definition later in this file for new value.
   */
@@ -2291,12 +2291,12 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String filterClause_valueItemTextHint();
   
   
-    /* filterClause_valueItemListHint value changed on Fri Jan  7 06:20:39 2022
+    /* filterClause_valueItemListHint value changed on Thu Jan  6 09:53:31 2022
    Old value was 'Choose a value'.
    See definition later in this file for new value.
   */
 
-    /* filterClause_valueItemFieldHint value changed on Fri Jan  7 06:20:39 2022
+    /* filterClause_valueItemFieldHint value changed on Thu Jan  6 09:53:31 2022
    Old value was 'Choose a field'.
    See definition later in this file for new value.
   */
@@ -2535,7 +2535,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("formulaBuilder_defaultNewFieldTitle")
   String formulaBuilder_defaultNewFieldTitle();
 
-  /* formulaBuilder_helpTextIntro value changed on Fri Jan  7 06:20:39 2022
+  /* formulaBuilder_helpTextIntro value changed on Thu Jan  6 09:53:31 2022
    Old value was 'Building Formula Columns<p>For basic arithmetic, type in symbols (+, -, *, /, %, //) directly.<p>The following functions are available:'.
    See definition later in this file for new value.
   */
@@ -2684,7 +2684,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("formulaBuilder_defaultErrorText")
   String formulaBuilder_defaultErrorText();
   
-  /* formulaBuilder_saveAddAnotherButtonTitle value changed on Fri Jan  7 06:20:39 2022
+  /* formulaBuilder_saveAddAnotherButtonTitle value changed on Thu Jan  6 09:53:31 2022
    Old value was 'Save & Add Another'.
    See definition later in this file for new value.
   */
@@ -3212,7 +3212,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("listGrid_autoFitFieldText")
   String listGrid_autoFitFieldText();
 
-  /* listGrid_cancelEditingConfirmationMessage value changed on Fri Jan  7 06:20:39 2022
+  /* listGrid_cancelEditingConfirmationMessage value changed on Thu Jan  6 09:53:31 2022
    Old value was 'Cancelling this edit will clear unsaved edit values for this record. Continue?'.
    See definition later in this file for new value.
   */
@@ -3280,7 +3280,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("listGrid_configureGroupingText")
   String listGrid_configureGroupingText();
 
-  /* listGrid_confirmDiscardEditsMessage value changed on Fri Jan  7 06:20:39 2022
+  /* listGrid_confirmDiscardEditsMessage value changed on Thu Jan  6 09:53:31 2022
    Old value was 'This action will discard all unsaved edited values for this list.'.
    See definition later in this file for new value.
   */
@@ -3366,7 +3366,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("listGrid_groupByText")
   String listGrid_groupByText();
 
-  /* listGrid_loadingDataMessage value changed on Fri Jan  7 06:20:39 2022
+  /* listGrid_loadingDataMessage value changed on Thu Jan  6 09:53:31 2022
    Old value was 'Loading data...'.
    See definition later in this file for new value.
   */
@@ -3460,11 +3460,6 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Ungroup")
   @Key("listGrid_ungroupText")
   String listGrid_ungroupText();
-
-  /* listGrid_asynchGroupingPrompt value changed on Fri Jan  7 06:20:39 2022
-   Old value was 'Grouping data...'.
-   See definition later in this file for new value.
-  */
 
   /**
    * Translated "Replace value with".
@@ -4512,23 +4507,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("operators_iEndsWithPatternTitle")
   String operators_iEndsWithPatternTitle();
   
-  /**
-   * Translated "Range-operators require distinct start and end values, separated by the range (between) symbol, ''...''.".
-   * 
-   * @return translated "Range-operators require distinct start and end values, separated by the range (between) symbol, ''...''."
-   */
-  @DefaultMessage("Range-operators require distinct start and end values, separated by the range (between) symbol, ''...''.")
-  @Key("operators_valueRangeUsageHint")
-  String operators_valueRangeUsageHint();
+  /* operators_valueRangeUsageHint value changed on Thu Jan  6 09:53:31 2022
+   Old value was 'Range-operators require distinct start and end values, separated by the range (between) symbol, \'...\'.'.
+   See definition later in this file for new value.
+  */
   
-  /**
-   * Translated "Multiple values must be separated by the valueSeparator, ''|''.".
-   * 
-   * @return translated "Multiple values must be separated by the valueSeparator, ''|''."
-   */
-  @DefaultMessage("Multiple values must be separated by the valueSeparator, ''|''.")
-  @Key("operators_valueSetUsageHint")
-  String operators_valueSetUsageHint();
+  /* operators_valueSetUsageHint value changed on Thu Jan  6 09:53:31 2022
+   Old value was 'Multiple values must be separated by the valueSeparator, \'|\'.'.
+   See definition later in this file for new value.
+  */
   
   /**
    * Translated "No Items To Show".
@@ -4971,7 +4958,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("richTextEditor_boldSelectionPrompt")
   String richTextEditor_boldSelectionPrompt();
 
-  /* richTextEditor_colorPrompt value changed on Fri Jan  7 06:20:39 2022
+  /* richTextEditor_colorPrompt value changed on Thu Jan  6 09:53:31 2022
    Old value was 'Set selection color'.
    See definition later in this file for new value.
   */
@@ -5084,7 +5071,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("richTextEditor_listPropertiesWarningText")
   String richTextEditor_listPropertiesWarningText();
 
-  /* richTextEditor_linkPrompt value changed on Fri Jan  7 06:20:39 2022
+  /* richTextEditor_linkPrompt value changed on Thu Jan  6 09:53:31 2022
    Old value was 'Edit hyperlink'.
    See definition later in this file for new value.
   */
@@ -5515,7 +5502,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("validator_notARegex")
   String validator_notARegex();
 
-  /* validator_notAString value changed on Fri Jan  7 06:20:39 2022
+  /* validator_notAString value changed on Thu Jan  6 09:53:31 2022
    Old value was 'Must be a String.'.
    See definition later in this file for new value.
   */
@@ -5566,6 +5553,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String validator_requiredField();
 
   /**
+   * Translated "Value must be unique".
+   * 
+   * @return translated "Value must be unique"
+   */
+  @DefaultMessage("Value must be unique")
+  @Key("validator_mustBeUnique")
+  String validator_mustBeUnique();
+
+  /**
    * Translated "Non-empty file required".
    * 
    * @return translated "Non-empty file required"
@@ -5612,153 +5608,199 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   
 
 
-  /*  Generated on Mon May 24 08:09:01 2021 */
+  /*  Generated on Mon May 24 00:54:06 2021 */
 
   /**
-   * Translated "Recent changes for DataSource $dsId"
+   * Translated "Deployment name"
    *
-   * @return translated "Recent changes for DataSource $dsId"
+   * @return translated "Deployment name"
    */
-   @DefaultMessage("Recent changes for DataSource $dsId")
-   @Key("dSRecordAuditPreview_recordAuditHeaderTitle")
-   String dSRecordAuditPreview_recordAuditHeaderTitle();
+   @DefaultMessage("Deployment name")
+   @Key("deploymentEditor_deploymentNameTitle")
+   String deploymentEditor_deploymentNameTitle();
+
+
+
+
+
+  /*  Generated on Mon May 24 01:48:08 2021 */
 
   /**
-   * Translated "Click to add audit information as a new section"
+   * Translated "Deployment type"
    *
-   * @return translated "Click to add audit information as a new section"
+   * @return translated "Deployment type"
    */
-   @DefaultMessage("Click to add audit information as a new section")
-   @Key("dSRecordAuditPreview_recordAuditInfoTitle")
-   String dSRecordAuditPreview_recordAuditInfoTitle();
+   @DefaultMessage("Deployment type")
+   @Key("deploymentEditor_deploymentTypeTitle")
+   String deploymentEditor_deploymentTypeTitle();
 
   /**
-   * Translated "Users & Roles"
+   * Translated "Deployment URL"
    *
-   * @return translated "Users & Roles"
+   * @return translated "Deployment URL"
    */
-   @DefaultMessage("Users & Roles")
-   @Key("deploymentManager_usersTitle")
-   String deploymentManager_usersTitle();
+   @DefaultMessage("Deployment URL")
+   @Key("deploymentEditor_deploymentURLTitle")
+   String deploymentEditor_deploymentURLTitle();
 
   /**
-   * Translated "Data"
+   * Translated "New $type deployment ''$name'' succeeded"
    *
-   * @return translated "Data"
+   * @return translated "New $type deployment ''$name'' succeeded"
    */
-   @DefaultMessage("Data")
-   @Key("deploymentManager_dataTitle")
-   String deploymentManager_dataTitle();
+   @DefaultMessage("New $type deployment ''$name'' succeeded")
+   @Key("deploymentEditor_newDeploymentSuccess")
+   String deploymentEditor_newDeploymentSuccess();
 
   /**
-   * Translated "Usage"
+   * Translated "Redeployment of ''$name'' ($type) succeeded"
    *
-   * @return translated "Usage"
+   * @return translated "Redeployment of ''$name'' ($type) succeeded"
    */
-   @DefaultMessage("Usage")
-   @Key("deploymentManager_usageTitle")
-   String deploymentManager_usageTitle();
+   @DefaultMessage("Redeployment of ''$name'' ($type) succeeded")
+   @Key("deploymentEditor_redeploymentSuccess")
+   String deploymentEditor_redeploymentSuccess();
 
   /**
-   * Translated "DataSource List"
+   * Translated "Choose DataSources to import"
    *
-   * @return translated "DataSource List"
+   * @return translated "Choose DataSources to import"
    */
-   @DefaultMessage("DataSource List")
-   @Key("deploymentDSNavigator_dsEnumerationSectionTitle")
-   String deploymentDSNavigator_dsEnumerationSectionTitle();
+   @DefaultMessage("Choose DataSources to import")
+   @Key("deploymentEditor_dsImportSelectTitle")
+   String deploymentEditor_dsImportSelectTitle();
 
   /**
-   * Translated "DataSource: $dsId"
+   * Translated "Note: all DataSources will exist and have storage.  Above, you are only choosing whether the sample data you have been using should be present in the deployment."
    *
-   * @return translated "DataSource: $dsId"
+   * @return translated "Note: all DataSources will exist and have storage.  Above, you are only choosing whether the sample data you have been using should be present in the deployment."
    */
-   @DefaultMessage("DataSource: $dsId")
-   @Key("deploymentDSNavigator_dsContentSectionTitle")
-   String deploymentDSNavigator_dsContentSectionTitle();
+   @DefaultMessage("Note: all DataSources will exist and have storage.  Above, you are only choosing whether the sample data you have been using should be present in the deployment.")
+   @Key("deploymentEditor_dsImportSelectInfo")
+   String deploymentEditor_dsImportSelectInfo();
 
   /**
-   * Translated "Audit trail for DataSource $dsId"
+   * Translated "Authentication"
    *
-   * @return translated "Audit trail for DataSource $dsId"
+   * @return translated "Authentication"
    */
-   @DefaultMessage("Audit trail for DataSource $dsId")
-   @Key("deploymentDSNavigator_dsContentAuditedSectionTitle")
-   String deploymentDSNavigator_dsContentAuditedSectionTitle();
+   @DefaultMessage("Authentication")
+   @Key("deploymentEditor_authenticationTitle")
+   String deploymentEditor_authenticationTitle();
 
   /**
-   * Translated "Audit trail for record $pkCrit from DataSource $dsId"
+   * Translated "Users & roles you used for testing inside the Reify visual environment. Enter a single password for all test users below:"
    *
-   * @return translated "Audit trail for record $pkCrit from DataSource $dsId"
+   * @return translated "Users & roles you used for testing inside the Reify visual environment. Enter a single password for all test users below:"
    */
-   @DefaultMessage("Audit trail for record $pkCrit from DataSource $dsId")
-   @Key("deploymentDSNavigator_dsContentRecordAuditSectionTitle")
-   String deploymentDSNavigator_dsContentRecordAuditSectionTitle();
+   @DefaultMessage("Users & roles you used for testing inside the Reify visual environment. Enter a single password for all test users below:")
+   @Key("deploymentEditor_sampleUsersTitle")
+   String deploymentEditor_sampleUsersTitle();
 
   /**
-   * Translated "Deployment Sessions"
+   * Translated "Note: you will be able to use the Deployment Console to add or remove users after deployment"
    *
-   * @return translated "Deployment Sessions"
+   * @return translated "Note: you will be able to use the Deployment Console to add or remove users after deployment"
    */
-   @DefaultMessage("Deployment Sessions")
-   @Key("deploymentUsageViewer_sessionsOverviewGridTitle")
-   String deploymentUsageViewer_sessionsOverviewGridTitle();
+   @DefaultMessage("Note: you will be able to use the Deployment Console to add or remove users after deployment")
+   @Key("deploymentEditor_sampleUsersInfo")
+   String deploymentEditor_sampleUsersInfo();
 
   /**
-   * Translated "Changes by user $userId during session: "
+   * Translated "Password"
    *
-   * @return translated "Changes by user $userId during session: "
+   * @return translated "Password"
    */
-   @DefaultMessage("Changes by user $userId during session: ")
-   @Key("deploymentUsageViewer_sessionAuditPickerTitle")
-   String deploymentUsageViewer_sessionAuditPickerTitle();
+   @DefaultMessage("Password")
+   @Key("deploymentEditor_passwordTitle")
+   String deploymentEditor_passwordTitle();
 
   /**
-   * Translated "Click to see related audit data"
+   * Translated "Password confirm"
    *
-   * @return translated "Click to see related audit data"
+   * @return translated "Password confirm"
    */
-   @DefaultMessage("Click to see related audit data")
-   @Key("deploymentSessionAuditGrid_relatedDataFieldPrompt")
-   String deploymentSessionAuditGrid_relatedDataFieldPrompt();
+   @DefaultMessage("Password confirm")
+   @Key("deploymentEditor_passwordConfirmTitle")
+   String deploymentEditor_passwordConfirmTitle();
 
   /**
-   * Translated "Jump to <b>Data</b> tab and view..."
+   * Translated "Share users with existing deployment?"
    *
-   * @return translated "Jump to <b>Data</b> tab and view..."
+   * @return translated "Share users with existing deployment?"
    */
-   @DefaultMessage("Jump to <b>Data</b> tab and view...")
-   @Key("deploymentSessionAuditGrid_relatedDataMenuInfoText")
-   String deploymentSessionAuditGrid_relatedDataMenuInfoText();
+   @DefaultMessage("Share users with existing deployment?")
+   @Key("deploymentEditor_authShareUsersTitle")
+   String deploymentEditor_authShareUsersTitle();
 
   /**
-   * Translated "Changes to this <b>record</b> by <b>any user</b>"
+   * Translated "If users are not shared, a copy of the user database is created at deployment"
    *
-   * @return translated "Changes to this <b>record</b> by <b>any user</b>"
+   * @return translated "If users are not shared, a copy of the user database is created at deployment"
    */
-   @DefaultMessage("Changes to this <b>record</b> by <b>any user</b>")
-   @Key("deploymentSessionAuditGrid_relatedDataMenuRecordText")
-   String deploymentSessionAuditGrid_relatedDataMenuRecordText();
+   @DefaultMessage("If users are not shared, a copy of the user database is created at deployment")
+   @Key("deploymentEditor_authShareUsersHint")
+   String deploymentEditor_authShareUsersHint();
 
   /**
-   * Translated "Changes to DataSource <b>$dsId</b> by <b>any user</b>"
+   * Translated "Deployment"
    *
-   * @return translated "Changes to DataSource <b>$dsId</b> by <b>any user</b>"
+   * @return translated "Deployment"
    */
-   @DefaultMessage("Changes to DataSource <b>$dsId</b> by <b>any user</b>")
-   @Key("deploymentSessionAuditGrid_relatedDataMenuDataSourceText")
-   String deploymentSessionAuditGrid_relatedDataMenuDataSourceText();
+   @DefaultMessage("Deployment")
+   @Key("deploymentEditor_authDeploymentTitle")
+   String deploymentEditor_authDeploymentTitle();
 
   /**
-   * Translated "&nbsp;"
+   * Translated "[pick deployment]"
    *
-   * @return translated "&nbsp;"
+   * @return translated "[pick deployment]"
    */
-   @DefaultMessage("&nbsp;")
-   @Key("gridRenderer_emptyCellValue")
-   String gridRenderer_emptyCellValue();
+   @DefaultMessage("[pick deployment]")
+   @Key("deploymentEditor_authDeploymentHint")
+   String deploymentEditor_authDeploymentHint();
+
+  /**
+   * Translated "Apply"
+   *
+   * @return translated "Apply"
+   */
+   @DefaultMessage("Apply")
+   @Key("deploymentEditor_applyButtonTitle")
+   String deploymentEditor_applyButtonTitle();
+
+  /**
+   * Translated "Cancel"
+   *
+   * @return translated "Cancel"
+   */
+   @DefaultMessage("Cancel")
+   @Key("deploymentEditor_cancelButtonTitle")
+   String deploymentEditor_cancelButtonTitle();
+
+  /**
+   * Translated "Manage"
+   *
+   * @return translated "Manage"
+   */
+   @DefaultMessage("Manage")
+   @Key("deploymentManagerLauncher_manageButtonTitle")
+   String deploymentManagerLauncher_manageButtonTitle();
+
+  /**
+   * Translated "Cancel"
+   *
+   * @return translated "Cancel"
+   */
+   @DefaultMessage("Cancel")
+   @Key("deploymentManagerLauncher_cancelButtonTitle")
+   String deploymentManagerLauncher_cancelButtonTitle();
 
 
+
+
+
+  /*  Generated on Mon May 24 05:18:46 2021 */
 
   /**
    * Translated "[long description]"
@@ -5769,25 +5811,179 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    @Key("sampleDataDSWizard_formatHelpText")
    String sampleDataDSWizard_formatHelpText();
 
-  /**
-   * Translated "Please provide a smaller sample data set. Deployed application do not have such limits on data sets."
-   *
-   * @return translated "Please provide a smaller sample data set. Deployed application do not have such limits on data sets."
-   */
-   @DefaultMessage("Please provide a smaller sample data set. Deployed application do not have such limits on data sets.")
-   @Key("sampleDataDSWizard_importFileTooLargeMessage")
-   String sampleDataDSWizard_importFileTooLargeMessage();
+
+
+
+
+  /*  Generated on Mon May 24 05:20:26 2021 */
 
   /**
-   * Translated "Edit detected fields and observe results for imported data"
+   * Translated "Add a step"
    *
-   * @return translated "Edit detected fields and observe results for imported data"
+   * @return translated "Add a step"
    */
-   @DefaultMessage("Edit detected fields and observe results for imported data")
-   @Key("parsedDataDSEditor_instructions")
-   String parsedDataDSEditor_instructions();
+   @DefaultMessage("Add a step")
+   @Key("workflowEditor_addElementTitle")
+   String workflowEditor_addElementTitle();
+
+  /**
+   * Translated "Pick a task..."
+   *
+   * @return translated "Pick a task..."
+   */
+   @DefaultMessage("Pick a task...")
+   @Key("workflowEditor_addElementHint")
+   String workflowEditor_addElementHint();
+
+  /**
+   * Translated "canceled"
+   *
+   * @return translated "canceled"
+   */
+   @DefaultMessage("canceled")
+   @Key("workflowEditor_canceledLinkPrompt")
+   String workflowEditor_canceledLinkPrompt();
+
+  /**
+   * Translated "failed"
+   *
+   * @return translated "failed"
+   */
+   @DefaultMessage("failed")
+   @Key("workflowEditor_failedLinkPrompt")
+   String workflowEditor_failedLinkPrompt();
+
+  /**
+   * Translated "continuation"
+   *
+   * @return translated "continuation"
+   */
+   @DefaultMessage("continuation")
+   @Key("workflowEditor_continuationLinkPrompt")
+   String workflowEditor_continuationLinkPrompt();
+
+  /**
+   * Translated "Initial task to be executed"
+   *
+   * @return translated "Initial task to be executed"
+   */
+   @DefaultMessage("Initial task to be executed")
+   @Key("workflowEditor_startTaskLinkPrompt")
+   String workflowEditor_startTaskLinkPrompt();
+
+  /**
+   * Translated "No other tasks currently lead to this task so it will never be executed"
+   *
+   * @return translated "No other tasks currently lead to this task so it will never be executed"
+   */
+   @DefaultMessage("No other tasks currently lead to this task so it will never be executed")
+   @Key("workflowEditor_unreferencedTaskLinkPrompt")
+   String workflowEditor_unreferencedTaskLinkPrompt();
+
+  /**
+   * Translated "Last task output: $description"
+   *
+   * @return translated "Last task output: $description"
+   */
+   @DefaultMessage("Last task output: $description")
+   @Key("workflowEditor_taskScopeLastTaskOutputNodeTitle")
+   String workflowEditor_taskScopeLastTaskOutputNodeTitle();
+
+  /**
+   * Translated "Are you sure you want to delete this element?"
+   *
+   * @return translated "Are you sure you want to delete this element?"
+   */
+   @DefaultMessage("Are you sure you want to delete this element?")
+   @Key("workflowEditor_warnOnRemovalMessage")
+   String workflowEditor_warnOnRemovalMessage();
+
+  /**
+   * Translated "Edit Task"
+   *
+   * @return translated "Edit Task"
+   */
+   @DefaultMessage("Edit Task")
+   @Key("workflowEditor_editIconPrompt")
+   String workflowEditor_editIconPrompt();
+
+  /**
+   * Translated "Overwrite all existing bindings? Otherwise, new bindings will be merged."
+   *
+   * @return translated "Overwrite all existing bindings? Otherwise, new bindings will be merged."
+   */
+   @DefaultMessage("Overwrite all existing bindings? Otherwise, new bindings will be merged.")
+   @Key("workflowValuesBindingEditor_overwriteBindingsMessage")
+   String workflowValuesBindingEditor_overwriteBindingsMessage();
+
+  /**
+   * Translated "Fixed value for field ''$fieldName''"
+   *
+   * @return translated "Fixed value for field ''$fieldName''"
+   */
+   @DefaultMessage("Fixed value for field ''$fieldName''")
+   @Key("workflowValuesBindingEditor_fixedValueWindowTitle")
+   String workflowValuesBindingEditor_fixedValueWindowTitle();
+
+  /**
+   * Translated "Dynamic value for field ''$fieldName''"
+   *
+   * @return translated "Dynamic value for field ''$fieldName''"
+   */
+   @DefaultMessage("Dynamic value for field ''$fieldName''")
+   @Key("workflowValuesBindingEditor_dynamicValueWindowTitle")
+   String workflowValuesBindingEditor_dynamicValueWindowTitle();
+
+  /**
+   * Translated "Enter a fixed value"
+   *
+   * @return translated "Enter a fixed value"
+   */
+   @DefaultMessage("Enter a fixed value")
+   @Key("workflowValuesBindingEditor_bindingFixedValuePrompt")
+   String workflowValuesBindingEditor_bindingFixedValuePrompt();
+
+  /**
+   * Translated "Define a dynamic value"
+   *
+   * @return translated "Define a dynamic value"
+   */
+   @DefaultMessage("Define a dynamic value")
+   @Key("workflowValuesBindingEditor_bindingDynamicValuePrompt")
+   String workflowValuesBindingEditor_bindingDynamicValuePrompt();
+
+  /**
+   * Translated "Dynamic: "
+   *
+   * @return translated "Dynamic: "
+   */
+   @DefaultMessage("Dynamic: ")
+   @Key("workflowDynamicValueItem_dynamicValuePrefix")
+   String workflowDynamicValueItem_dynamicValuePrefix();
+
+  /**
+   * Translated "Select dynamic value"
+   *
+   * @return translated "Select dynamic value"
+   */
+   @DefaultMessage("Select dynamic value")
+   @Key("workflowDynamicValueItem_dynamicValueButtonPrompt")
+   String workflowDynamicValueItem_dynamicValueButtonPrompt();
+
+  /**
+   * Translated "Choose dynamic value for field $fieldTitle"
+   *
+   * @return translated "Choose dynamic value for field $fieldTitle"
+   */
+   @DefaultMessage("Choose dynamic value for field $fieldTitle")
+   @Key("workflowDynamicValueItem_dynamicValueWindowTitle")
+   String workflowDynamicValueItem_dynamicValueWindowTitle();
 
 
+
+
+
+  /*  Generated on Mon May 24 05:30:31 2021 */
 
   /**
    * Translated "Name"
@@ -5933,176 +6129,170 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    @Key("ruleEditor_manualEventTitle")
    String ruleEditor_manualEventTitle();
 
-  /**
-   * Translated "Percent"
-   *
-   * @return translated "Percent"
-   */
-   @DefaultMessage("Percent")
-   @Key("facetChart_proportionalAxisLabel")
-   String facetChart_proportionalAxisLabel();
+
+
+
+
+  /*  Generated on Mon May 24 05:32:32 2021 */
 
   /**
-   * Translated "This value comes from the ''$fieldName'' field in the nearby component [$componentName]"
+   * Translated "Users & Roles"
    *
-   * @return translated "This value comes from the ''$fieldName'' field in the nearby component [$componentName]"
+   * @return translated "Users & Roles"
    */
-   @DefaultMessage("This value comes from the ''$fieldName'' field in the nearby component [$componentName]")
-   @Key("formulaBuilder_nearbyComponentFieldPrompt")
-   String formulaBuilder_nearbyComponentFieldPrompt();
+   @DefaultMessage("Users & Roles")
+   @Key("deploymentManager_usersTitle")
+   String deploymentManager_usersTitle();
 
   /**
-   * Translated "This value comes from the ''$fieldName'' field in the current component [$componentName]"
+   * Translated "Data"
    *
-   * @return translated "This value comes from the ''$fieldName'' field in the current component [$componentName]"
+   * @return translated "Data"
    */
-   @DefaultMessage("This value comes from the ''$fieldName'' field in the current component [$componentName]")
-   @Key("formulaBuilder_currentComponentFieldPrompt")
-   String formulaBuilder_currentComponentFieldPrompt();
+   @DefaultMessage("Data")
+   @Key("deploymentManager_dataTitle")
+   String deploymentManager_dataTitle();
 
   /**
-   * Translated "This value comes from the ''$fieldName'' field in any nearby component that uses DataSource ''$dataSource''. Values that are edited by end users are preferred."
+   * Translated "Usage"
    *
-   * @return translated "This value comes from the ''$fieldName'' field in any nearby component that uses DataSource ''$dataSource''. Values that are edited by end users are preferred."
+   * @return translated "Usage"
    */
-   @DefaultMessage("This value comes from the ''$fieldName'' field in any nearby component that uses DataSource ''$dataSource''. Values that are edited by end users are preferred.")
-   @Key("formulaBuilder_dataSourceFieldPrompt")
-   String formulaBuilder_dataSourceFieldPrompt();
+   @DefaultMessage("Usage")
+   @Key("deploymentManager_usageTitle")
+   String deploymentManager_usageTitle();
 
   /**
-   * Translated "Action Icons"
+   * Translated "DataSource List"
    *
-   * @return translated "Action Icons"
+   * @return translated "DataSource List"
    */
-   @DefaultMessage("Action Icons")
-   @Key("imagePicker_actionIconsTitle")
-   String imagePicker_actionIconsTitle();
+   @DefaultMessage("DataSource List")
+   @Key("deploymentDSNavigator_dsEnumerationSectionTitle")
+   String deploymentDSNavigator_dsEnumerationSectionTitle();
 
   /**
-   * Translated "Header Icons"
+   * Translated "DataSource: $dsId"
    *
-   * @return translated "Header Icons"
+   * @return translated "DataSource: $dsId"
    */
-   @DefaultMessage("Header Icons")
-   @Key("imagePicker_headerIconsTitle")
-   String imagePicker_headerIconsTitle();
+   @DefaultMessage("DataSource: $dsId")
+   @Key("deploymentDSNavigator_dsContentSectionTitle")
+   String deploymentDSNavigator_dsContentSectionTitle();
 
   /**
-   * Translated "Custom Images"
+   * Translated "Audit trail for DataSource $dsId"
    *
-   * @return translated "Custom Images"
+   * @return translated "Audit trail for DataSource $dsId"
    */
-   @DefaultMessage("Custom Images")
-   @Key("imagePicker_customImagesTitle")
-   String imagePicker_customImagesTitle();
+   @DefaultMessage("Audit trail for DataSource $dsId")
+   @Key("deploymentDSNavigator_dsContentAuditedSectionTitle")
+   String deploymentDSNavigator_dsContentAuditedSectionTitle();
 
   /**
-   * Translated "Upload images to DropBox or a similar service and enter the public URL below"
+   * Translated "Audit trail for record $pkCrit from DataSource $dsId"
    *
-   * @return translated "Upload images to DropBox or a similar service and enter the public URL below"
+   * @return translated "Audit trail for record $pkCrit from DataSource $dsId"
    */
-   @DefaultMessage("Upload images to DropBox or a similar service and enter the public URL below")
-   @Key("imagePicker_tipText")
-   String imagePicker_tipText();
+   @DefaultMessage("Audit trail for record $pkCrit from DataSource $dsId")
+   @Key("deploymentDSNavigator_dsContentRecordAuditSectionTitle")
+   String deploymentDSNavigator_dsContentRecordAuditSectionTitle();
 
   /**
-   * Translated "Ok"
+   * Translated "Deployment Sessions"
    *
-   * @return translated "Ok"
+   * @return translated "Deployment Sessions"
    */
-   @DefaultMessage("Ok")
-   @Key("imagePicker_okButtonTitle")
-   String imagePicker_okButtonTitle();
+   @DefaultMessage("Deployment Sessions")
+   @Key("deploymentUsageViewer_sessionsOverviewGridTitle")
+   String deploymentUsageViewer_sessionsOverviewGridTitle();
 
   /**
-   * Translated "Cancel"
+   * Translated "Changes by user $userId during session: "
    *
-   * @return translated "Cancel"
+   * @return translated "Changes by user $userId during session: "
    */
-   @DefaultMessage("Cancel")
-   @Key("imagePicker_cancelButtonTitle")
-   String imagePicker_cancelButtonTitle();
+   @DefaultMessage("Changes by user $userId during session: ")
+   @Key("deploymentUsageViewer_sessionAuditPickerTitle")
+   String deploymentUsageViewer_sessionAuditPickerTitle();
 
   /**
-   * Translated "Add a step"
+   * Translated "Click to see related audit data"
    *
-   * @return translated "Add a step"
+   * @return translated "Click to see related audit data"
    */
-   @DefaultMessage("Add a step")
-   @Key("workflowEditor_addElementTitle")
-   String workflowEditor_addElementTitle();
+   @DefaultMessage("Click to see related audit data")
+   @Key("deploymentSessionAuditGrid_relatedDataFieldPrompt")
+   String deploymentSessionAuditGrid_relatedDataFieldPrompt();
 
   /**
-   * Translated "Pick a task..."
+   * Translated "Jump to <b>Data</b> tab and view..."
    *
-   * @return translated "Pick a task..."
+   * @return translated "Jump to <b>Data</b> tab and view..."
    */
-   @DefaultMessage("Pick a task...")
-   @Key("workflowEditor_addElementHint")
-   String workflowEditor_addElementHint();
+   @DefaultMessage("Jump to <b>Data</b> tab and view...")
+   @Key("deploymentSessionAuditGrid_relatedDataMenuInfoText")
+   String deploymentSessionAuditGrid_relatedDataMenuInfoText();
 
   /**
-   * Translated "canceled"
+   * Translated "Changes to this <b>record</b> by <b>any user</b>"
    *
-   * @return translated "canceled"
+   * @return translated "Changes to this <b>record</b> by <b>any user</b>"
    */
-   @DefaultMessage("canceled")
-   @Key("workflowEditor_canceledLinkPrompt")
-   String workflowEditor_canceledLinkPrompt();
+   @DefaultMessage("Changes to this <b>record</b> by <b>any user</b>")
+   @Key("deploymentSessionAuditGrid_relatedDataMenuRecordText")
+   String deploymentSessionAuditGrid_relatedDataMenuRecordText();
 
   /**
-   * Translated "failed"
+   * Translated "Changes to DataSource <b>$dsId</b> by <b>any user</b>"
    *
-   * @return translated "failed"
+   * @return translated "Changes to DataSource <b>$dsId</b> by <b>any user</b>"
    */
-   @DefaultMessage("failed")
-   @Key("workflowEditor_failedLinkPrompt")
-   String workflowEditor_failedLinkPrompt();
+   @DefaultMessage("Changes to DataSource <b>$dsId</b> by <b>any user</b>")
+   @Key("deploymentSessionAuditGrid_relatedDataMenuDataSourceText")
+   String deploymentSessionAuditGrid_relatedDataMenuDataSourceText();
+
+
+
+
+
+  /*  Generated on Mon May 24 05:35:28 2021 */
 
   /**
-   * Translated "continuation"
+   * Translated "Edit detected fields and observe results for imported data"
    *
-   * @return translated "continuation"
+   * @return translated "Edit detected fields and observe results for imported data"
    */
-   @DefaultMessage("continuation")
-   @Key("workflowEditor_continuationLinkPrompt")
-   String workflowEditor_continuationLinkPrompt();
+   @DefaultMessage("Edit detected fields and observe results for imported data")
+   @Key("parsedDataDSEditor_instructions")
+   String parsedDataDSEditor_instructions();
 
   /**
-   * Translated "Initial task to be executed"
+   * Translated "Please complete existing validator definitions before adding more"
    *
-   * @return translated "Initial task to be executed"
+   * @return translated "Please complete existing validator definitions before adding more"
    */
-   @DefaultMessage("Initial task to be executed")
-   @Key("workflowEditor_startTaskLinkPrompt")
-   String workflowEditor_startTaskLinkPrompt();
+   @DefaultMessage("Please complete existing validator definitions before adding more")
+   @Key("validatorsEditor_addButtonDisabledHoverText")
+   String validatorsEditor_addButtonDisabledHoverText();
 
   /**
-   * Translated "No other tasks currently lead to this task so it will never be executed"
+   * Translated "Show Filter Row"
    *
-   * @return translated "No other tasks currently lead to this task so it will never be executed"
+   * @return translated "Show Filter Row"
    */
-   @DefaultMessage("No other tasks currently lead to this task so it will never be executed")
-   @Key("workflowEditor_unreferencedTaskLinkPrompt")
-   String workflowEditor_unreferencedTaskLinkPrompt();
+   @DefaultMessage("Show Filter Row")
+   @Key("listGrid_showFilterEditorTitle")
+   String listGrid_showFilterEditorTitle();
 
   /**
-   * Translated "Are you sure you want to delete this element?"
+   * Translated "Hide Filter Row"
    *
-   * @return translated "Are you sure you want to delete this element?"
+   * @return translated "Hide Filter Row"
    */
-   @DefaultMessage("Are you sure you want to delete this element?")
-   @Key("workflowEditor_warnOnRemovalMessage")
-   String workflowEditor_warnOnRemovalMessage();
-
-  /**
-   * Translated "Rule Scope"
-   *
-   * @return translated "Rule Scope"
-   */
-   @DefaultMessage("Rule Scope")
-   @Key("processElementEditor_taskScopeRuleScopeNodeTitle")
-   String processElementEditor_taskScopeRuleScopeNodeTitle();
+   @DefaultMessage("Hide Filter Row")
+   @Key("listGrid_hideFilterEditorTitle")
+   String listGrid_hideFilterEditorTitle();
 
   /**
    * Translated "Last task output: $description"
@@ -6227,8 +6417,8 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    * @return translated "Define criteria to choose between two possible next tasks."
    */
    @DefaultMessage("Define criteria to choose between two possible next tasks.")
-   @Key("xorGatewayEditor_instructions")
-   String xorGatewayEditor_instructions();
+   @Key("decisionTaskEditor_instructions")
+   String decisionTaskEditor_instructions();
 
   /**
    * Translated "Criteria must be selected."
@@ -6236,8 +6426,8 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    * @return translated "Criteria must be selected."
    */
    @DefaultMessage("Criteria must be selected.")
-   @Key("serviceTaskEditor_missingCriteriaMessage")
-   String serviceTaskEditor_missingCriteriaMessage();
+   @Key("decisionTaskEditor_missingCriteriaMessage")
+   String decisionTaskEditor_missingCriteriaMessage();
 
   /**
    * Translated "Pick tasks and the criteria that should cause that task to be done next. Pick a fallback task at the bottom, used if no criteria match."
@@ -6245,17 +6435,17 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    * @return translated "Pick tasks and the criteria that should cause that task to be done next. Pick a fallback task at the bottom, used if no criteria match."
    */
    @DefaultMessage("Pick tasks and the criteria that should cause that task to be done next. Pick a fallback task at the bottom, used if no criteria match.")
-   @Key("decisionGatewayEditor_instructions")
-   String decisionGatewayEditor_instructions();
+   @Key("multiDecisionTaskEditor_instructions")
+   String multiDecisionTaskEditor_instructions();
 
   /**
-   * Translated "Criteria is missing or not complete"
+   * Translated "Enter criteria to find the record to edit.  The record will automatically be scrolled into view.  If the criteria match more than one record, the first matching record will be edited."
    *
-   * @return translated "Criteria is missing or not complete"
+   * @return translated "Enter criteria to find the record to edit.  The record will automatically be scrolled into view.  If the criteria match more than one record, the first matching record will be edited."
    */
-   @DefaultMessage("Criteria is missing or not complete")
-   @Key("gridFetchDataTaskEditor_criteriaNotComplete")
-   String gridFetchDataTaskEditor_criteriaNotComplete();
+   @DefaultMessage("Enter criteria to find the record to edit.  The record will automatically be scrolled into view.  If the criteria match more than one record, the first matching record will be edited.")
+   @Key("gridEditRecordTaskEditor_criteriaInstructions")
+   String gridEditRecordTaskEditor_criteriaInstructions();
 
   /**
    * Translated "Drag available fields from the tree on the left to the grid on the right to specify what data should be stored. Or click the pencil icon to enter a fixed value."
@@ -6263,8 +6453,8 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    * @return translated "Drag available fields from the tree on the left to the grid on the right to specify what data should be stored. Or click the pencil icon to enter a fixed value."
    */
    @DefaultMessage("Drag available fields from the tree on the left to the grid on the right to specify what data should be stored. Or click the pencil icon to enter a fixed value.")
-   @Key("gridStartEditingTaskEditor_valuesInstructions")
-   String gridStartEditingTaskEditor_valuesInstructions();
+   @Key("gridEditRecordTaskEditor_valuesInstructions")
+   String gridEditRecordTaskEditor_valuesInstructions();
 
   /**
    * Translated "Overwrite all existing bindings? Otherwise, new bindings will be merged."
@@ -6272,8 +6462,8 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    * @return translated "Overwrite all existing bindings? Otherwise, new bindings will be merged."
    */
    @DefaultMessage("Overwrite all existing bindings? Otherwise, new bindings will be merged.")
-   @Key("gridStartEditingTaskEditor_overwriteBindingsMessage")
-   String gridStartEditingTaskEditor_overwriteBindingsMessage();
+   @Key("gridEditRecordTaskEditor_overwriteBindingsMessage")
+   String gridEditRecordTaskEditor_overwriteBindingsMessage();
 
   /**
    * Translated "Fixed value for field ''$fieldName''"
@@ -6281,8 +6471,8 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    * @return translated "Fixed value for field ''$fieldName''"
    */
    @DefaultMessage("Fixed value for field ''$fieldName''")
-   @Key("gridStartEditingTaskEditor_fixedValueWindowTitle")
-   String gridStartEditingTaskEditor_fixedValueWindowTitle();
+   @Key("gridEditRecordTaskEditor_fixedValueWindowTitle")
+   String gridEditRecordTaskEditor_fixedValueWindowTitle();
 
   /**
    * Translated "Dynamic value for field ''$fieldName''"
@@ -6290,8 +6480,8 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    * @return translated "Dynamic value for field ''$fieldName''"
    */
    @DefaultMessage("Dynamic value for field ''$fieldName''")
-   @Key("gridStartEditingTaskEditor_dynamicValueWindowTitle")
-   String gridStartEditingTaskEditor_dynamicValueWindowTitle();
+   @Key("gridEditRecordTaskEditor_dynamicValueWindowTitle")
+   String gridEditRecordTaskEditor_dynamicValueWindowTitle();
 
   /**
    * Translated "Enter a fixed value"
@@ -6299,8 +6489,8 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    * @return translated "Enter a fixed value"
    */
    @DefaultMessage("Enter a fixed value")
-   @Key("gridStartEditingTaskEditor_bindingFixedValuePrompt")
-   String gridStartEditingTaskEditor_bindingFixedValuePrompt();
+   @Key("gridEditRecordTaskEditor_bindingFixedValuePrompt")
+   String gridEditRecordTaskEditor_bindingFixedValuePrompt();
 
   /**
    * Translated "Define a dynamic value"
@@ -6308,8 +6498,17 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    * @return translated "Define a dynamic value"
    */
    @DefaultMessage("Define a dynamic value")
-   @Key("gridStartEditingTaskEditor_bindingDynamicValuePrompt")
-   String gridStartEditingTaskEditor_bindingDynamicValuePrompt();
+   @Key("gridEditRecordTaskEditor_bindingDynamicValuePrompt")
+   String gridEditRecordTaskEditor_bindingDynamicValuePrompt();
+
+  /**
+   * Translated "To edit an existing record Criteria must be selected."
+   *
+   * @return translated "To edit an existing record Criteria must be selected."
+   */
+   @DefaultMessage("To edit an existing record Criteria must be selected.")
+   @Key("gridEditRecordTaskEditor_missingCriteriaMessage")
+   String gridEditRecordTaskEditor_missingCriteriaMessage();
 
   /**
    * Translated "Drag available fields from the tree on the left to the grid on the right to specify what data should be stored. Or click the pencil icon to enter a fixed value."
@@ -6420,31 +6619,13 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    String formSetValuesTaskEditor_bindingDynamicValuePrompt();
 
   /**
-   * Translated "Section with title ''$title''"
-   *
-   * @return translated "Section with title ''$title''"
-   */
-   @DefaultMessage("Section with title ''$title''")
-   @Key("setSectionTitleTaskEditor_sectionPickerFormatWithTitleValue")
-   String setSectionTitleTaskEditor_sectionPickerFormatWithTitleValue();
-
-  /**
-   * Translated "Section with name ''$name''"
-   *
-   * @return translated "Section with name ''$name''"
-   */
-   @DefaultMessage("Section with name ''$name''")
-   @Key("setSectionTitleTaskEditor_sectionPickerFormatWithNameValue")
-   String setSectionTitleTaskEditor_sectionPickerFormatWithNameValue();
-
-  /**
    * Translated "Criteria is not complete"
    *
    * @return translated "Criteria is not complete"
    */
    @DefaultMessage("Criteria is not complete")
-   @Key("taskDecisionEditor_criteriaNotComplete")
-   String taskDecisionEditor_criteriaNotComplete();
+   @Key("decisionBranchEditor_criteriaNotComplete")
+   String decisionBranchEditor_criteriaNotComplete();
 
   /**
    * Translated "Target is selected but no criteria is defined"
@@ -6452,53 +6633,80 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    * @return translated "Target is selected but no criteria is defined"
    */
    @DefaultMessage("Target is selected but no criteria is defined")
-   @Key("taskDecisionEditor_criteriaMissingMessage")
-   String taskDecisionEditor_criteriaMissingMessage();
+   @Key("decisionBranchEditor_criteriaMissingMessage")
+   String decisionBranchEditor_criteriaMissingMessage();
 
   /**
-   * Translated "Dynamic: "
+   * Translated "DataSource Fields"
    *
-   * @return translated "Dynamic: "
+   * @return translated "DataSource Fields"
    */
-   @DefaultMessage("Dynamic: ")
-   @Key("dynamicValueItem_dynamicValuePrefix")
-   String dynamicValueItem_dynamicValuePrefix();
+   @DefaultMessage("DataSource Fields")
+   @Key("dsBindingEditor_availableFieldsTitle")
+   String dsBindingEditor_availableFieldsTitle();
 
   /**
-   * Translated "Select dynamic value"
+   * Translated "Component Fields"
    *
-   * @return translated "Select dynamic value"
+   * @return translated "Component Fields"
    */
-   @DefaultMessage("Select dynamic value")
-   @Key("dynamicValueItem_dynamicValueButtonPrompt")
-   String dynamicValueItem_dynamicValueButtonPrompt();
+   @DefaultMessage("Component Fields")
+   @Key("dsBindingEditor_currentFieldsTitle")
+   String dsBindingEditor_currentFieldsTitle();
 
   /**
-   * Translated "Choose dynamic value for field $fieldTitle"
+   * Translated "Name"
    *
-   * @return translated "Choose dynamic value for field $fieldTitle"
+   * @return translated "Name"
    */
-   @DefaultMessage("Choose dynamic value for field $fieldTitle")
-   @Key("dynamicValueItem_dynamicValueWindowTitle")
-   String dynamicValueItem_dynamicValueWindowTitle();
+   @DefaultMessage("Name")
+   @Key("dsBindingEditor_availableTitleTitle")
+   String dsBindingEditor_availableTitleTitle();
 
   /**
-   * Translated "&lt;Use static value instead&gt;"
+   * Translated "Field Title"
    *
-   * @return translated "&lt;Use static value instead&gt;"
+   * @return translated "Field Title"
    */
-   @DefaultMessage("&lt;Use static value instead&gt;")
-   @Key("dynamicValuePicker_clearValueText")
-   String dynamicValuePicker_clearValueText();
+   @DefaultMessage("Field Title")
+   @Key("dsBindingEditor_currentTitleTitle")
+   String dsBindingEditor_currentTitleTitle();
 
   /**
-   * Translated "Must be a whole number, percentage, ''*'' or ''auto''"
+   * Translated "Bind"
    *
-   * @return translated "Must be a whole number, percentage, ''*'' or ''auto''"
+   * @return translated "Bind"
    */
-   @DefaultMessage("Must be a whole number, percentage, ''*'' or ''auto''")
-   @Key("validator_notAMeasure")
-   String validator_notAMeasure();
+   @DefaultMessage("Bind")
+   @Key("dsBindingEditor_saveAndExitButtonTitle")
+   String dsBindingEditor_saveAndExitButtonTitle();
+
+  /**
+   * Translated "Cancel"
+   *
+   * @return translated "Cancel"
+   */
+   @DefaultMessage("Cancel")
+   @Key("dsBindingEditor_cancelButtonTitle")
+   String dsBindingEditor_cancelButtonTitle();
+
+  /**
+   * Translated "Remove"
+   *
+   * @return translated "Remove"
+   */
+   @DefaultMessage("Remove")
+   @Key("dsBindingEditor_removeItemTitle")
+   String dsBindingEditor_removeItemTitle();
+
+  /**
+   * Translated "Customize binding for $componentInfo to $dsId DataSource"
+   *
+   * @return translated "Customize binding for $componentInfo to $dsId DataSource"
+   */
+   @DefaultMessage("Customize binding for $componentInfo to $dsId DataSource")
+   @Key("dsBindingEditorWindow_title")
+   String dsBindingEditorWindow_title();
 
   /**
    * Translated "Cancel"
@@ -6517,6 +6725,426 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    @DefaultMessage("Save")
    @Key("dynamicPropertyEditorItem_saveButtonTitle")
    String dynamicPropertyEditorItem_saveButtonTitle();
+
+
+
+
+
+  /*  Generated on Mon May 24 06:02:38 2021 */
+
+  /**
+   * Translated "Sample value to format"
+   *
+   * @return translated "Sample value to format"
+   */
+   @DefaultMessage("Sample value to format")
+   @Key("datetimeFormatEditor_sampleValueTitle")
+   String datetimeFormatEditor_sampleValueTitle();
+
+  /**
+   * Translated "Formatted sample output"
+   *
+   * @return translated "Formatted sample output"
+   */
+   @DefaultMessage("Formatted sample output")
+   @Key("datetimeFormatEditor_sampleOutputTitle")
+   String datetimeFormatEditor_sampleOutputTitle();
+
+  /**
+   * Translated "Format Code"
+   *
+   * @return translated "Format Code"
+   */
+   @DefaultMessage("Format Code")
+   @Key("datetimeFormatEditor_formatCodeTitle")
+   String datetimeFormatEditor_formatCodeTitle();
+
+  /**
+   * Translated "Not a valid date/time format code"
+   *
+   * @return translated "Not a valid date/time format code"
+   */
+   @DefaultMessage("Not a valid date/time format code")
+   @Key("datetimeFormatEditor_generalFormatErrorMessage")
+   String datetimeFormatEditor_generalFormatErrorMessage();
+
+  /**
+   * Translated "This does not appear to be a valid format code.  Are you sure you want to save it?"
+   *
+   * @return translated "This does not appear to be a valid format code.  Are you sure you want to save it?"
+   */
+   @DefaultMessage("This does not appear to be a valid format code.  Are you sure you want to save it?")
+   @Key("datetimeFormatEditor_formatLooksInvalidConfirmationMessage")
+   String datetimeFormatEditor_formatLooksInvalidConfirmationMessage();
+
+  /**
+   * Translated "Sample value to format"
+   *
+   * @return translated "Sample value to format"
+   */
+   @DefaultMessage("Sample value to format")
+   @Key("numberFormatEditor_sampleValueTitle")
+   String numberFormatEditor_sampleValueTitle();
+
+  /**
+   * Translated "Formatted sample output"
+   *
+   * @return translated "Formatted sample output"
+   */
+   @DefaultMessage("Formatted sample output")
+   @Key("numberFormatEditor_sampleOutputTitle")
+   String numberFormatEditor_sampleOutputTitle();
+
+  /**
+   * Translated "Decimal places"
+   *
+   * @return translated "Decimal places"
+   */
+   @DefaultMessage("Decimal places")
+   @Key("numberFormatEditor_decimalPlacesTitle")
+   String numberFormatEditor_decimalPlacesTitle();
+
+  /**
+   * Translated "Show 1000 Separator"
+   *
+   * @return translated "Show 1000 Separator"
+   */
+   @DefaultMessage("Show 1000 Separator")
+   @Key("numberFormatEditor_showSeparatorsTitle")
+   String numberFormatEditor_showSeparatorsTitle();
+
+  /**
+   * Translated "Format for negative values"
+   *
+   * @return translated "Format for negative values"
+   */
+   @DefaultMessage("Format for negative values")
+   @Key("numberFormatEditor_negativeValuesTitle")
+   String numberFormatEditor_negativeValuesTitle();
+
+  /**
+   * Translated "Currency symbol"
+   *
+   * @return translated "Currency symbol"
+   */
+   @DefaultMessage("Currency symbol")
+   @Key("numberFormatEditor_currencySymbolTitle")
+   String numberFormatEditor_currencySymbolTitle();
+
+  /**
+   * Translated "Show currency symbol last"
+   *
+   * @return translated "Show currency symbol last"
+   */
+   @DefaultMessage("Show currency symbol last")
+   @Key("numberFormatEditor_currencySymbolLastTitle")
+   String numberFormatEditor_currencySymbolLastTitle();
+
+  /**
+   * Translated "Percentage"
+   *
+   * @return translated "Percentage"
+   */
+   @DefaultMessage("Percentage")
+   @Key("numberFormatEditor_percentageTitle")
+   String numberFormatEditor_percentageTitle();
+
+  /**
+   * Translated "Format Code"
+   *
+   * @return translated "Format Code"
+   */
+   @DefaultMessage("Format Code")
+   @Key("numberFormatEditor_formatCodeTitle")
+   String numberFormatEditor_formatCodeTitle();
+
+  /**
+   * Translated "Open format editor"
+   *
+   * @return translated "Open format editor"
+   */
+   @DefaultMessage("Open format editor")
+   @Key("numberFormatEditor_formatCodeHover")
+   String numberFormatEditor_formatCodeHover();
+
+
+  /*  Generated on Mon May 24 06:05:58 2021 */
+
+  /**
+   * Translated "US short date"
+   *
+   * @return translated "US short date"
+   */
+   @DefaultMessage("US short date")
+   @Key("baseDatetimeFormats_usShortDateTitle")
+   String baseDatetimeFormats_usShortDateTitle();
+
+  /**
+   * Translated "US short date/time"
+   *
+   * @return translated "US short date/time"
+   */
+   @DefaultMessage("US short date/time")
+   @Key("baseDatetimeFormats_usShortDatetimeTitle")
+   String baseDatetimeFormats_usShortDatetimeTitle();
+
+  /**
+   * Translated "Europe short date"
+   *
+   * @return translated "Europe short date"
+   */
+   @DefaultMessage("Europe short date")
+   @Key("baseDatetimeFormats_europeShortDateTitle")
+   String baseDatetimeFormats_europeShortDateTitle();
+
+  /**
+   * Translated "Europe short date/time"
+   *
+   * @return translated "Europe short date/time"
+   */
+   @DefaultMessage("Europe short date/time")
+   @Key("baseDatetimeFormats_europeShortDatetimeTitle")
+   String baseDatetimeFormats_europeShortDatetimeTitle();
+
+  /**
+   * Translated "China/Japan/Korea date"
+   *
+   * @return translated "China/Japan/Korea date"
+   */
+   @DefaultMessage("China/Japan/Korea date")
+   @Key("baseDatetimeFormats_asiaDateTitle")
+   String baseDatetimeFormats_asiaDateTitle();
+
+  /**
+   * Translated "China/Japan/Korea date/time"
+   *
+   * @return translated "China/Japan/Korea date/time"
+   */
+   @DefaultMessage("China/Japan/Korea date/time")
+   @Key("baseDatetimeFormats_asiaDatetimeTitle")
+   String baseDatetimeFormats_asiaDatetimeTitle();
+
+  /**
+   * Translated "Hours and minutes"
+   *
+   * @return translated "Hours and minutes"
+   */
+   @DefaultMessage("Hours and minutes")
+   @Key("baseDatetimeFormats_hoursMinutesTitle")
+   String baseDatetimeFormats_hoursMinutesTitle();
+
+  /**
+   * Translated "Hours, minutes and seconds"
+   *
+   * @return translated "Hours, minutes and seconds"
+   */
+   @DefaultMessage("Hours, minutes and seconds")
+   @Key("baseDatetimeFormats_hoursMinutesSecondsTitle")
+   String baseDatetimeFormats_hoursMinutesSecondsTitle();
+
+  /**
+   * Translated "Full time including milliseconds"
+   *
+   * @return translated "Full time including milliseconds"
+   */
+   @DefaultMessage("Full time including milliseconds")
+   @Key("baseDatetimeFormats_fullTimeTitle")
+   String baseDatetimeFormats_fullTimeTitle();
+
+  /**
+   * Translated "Date in words (short)"
+   *
+   * @return translated "Date in words (short)"
+   */
+   @DefaultMessage("Date in words (short)")
+   @Key("baseDatetimeFormats_dateShortWordsTitle")
+   String baseDatetimeFormats_dateShortWordsTitle();
+
+  /**
+   * Translated "Date in words (long)"
+   *
+   * @return translated "Date in words (long)"
+   */
+   @DefaultMessage("Date in words (long)")
+   @Key("baseDatetimeFormats_dateLongWordsTitle")
+   String baseDatetimeFormats_dateLongWordsTitle();
+
+  /**
+   * Translated "Full long-form date/time"
+   *
+   * @return translated "Full long-form date/time"
+   */
+   @DefaultMessage("Full long-form date/time")
+   @Key("baseDatetimeFormats_fullDatetimeTitle")
+   String baseDatetimeFormats_fullDatetimeTitle();
+
+  /**
+   * Translated "Custom format"
+   *
+   * @return translated "Custom format"
+   */
+   @DefaultMessage("Custom format")
+   @Key("baseDatetimeFormats_customTitle")
+   String baseDatetimeFormats_customTitle();
+
+  /**
+   * Translated "Whole number"
+   *
+   * @return translated "Whole number"
+   */
+   @DefaultMessage("Whole number")
+   @Key("baseNumberFormats_wholeNumberTitle")
+   String baseNumberFormats_wholeNumberTitle();
+
+  /**
+   * Translated "Decimal number"
+   *
+   * @return translated "Decimal number"
+   */
+   @DefaultMessage("Decimal number")
+   @Key("baseNumberFormats_decimalNumberTitle")
+   String baseNumberFormats_decimalNumberTitle();
+
+  /**
+   * Translated "Currency amount"
+   *
+   * @return translated "Currency amount"
+   */
+   @DefaultMessage("Currency amount")
+   @Key("baseNumberFormats_currencyTitle")
+   String baseNumberFormats_currencyTitle();
+
+  /**
+   * Translated "Percentage"
+   *
+   * @return translated "Percentage"
+   */
+   @DefaultMessage("Percentage")
+   @Key("baseNumberFormats_percentageTitle")
+   String baseNumberFormats_percentageTitle();
+
+  /**
+   * Translated "Custom"
+   *
+   * @return translated "Custom"
+   */
+   @DefaultMessage("Custom")
+   @Key("baseNumberFormats_customTitle")
+   String baseNumberFormats_customTitle();
+
+
+
+
+
+  /*  Generated on Mon May 24 06:31:07 2021 */
+
+  /**
+   * Translated "Action Icons"
+   *
+   * @return translated "Action Icons"
+   */
+   @DefaultMessage("Action Icons")
+   @Key("imagePicker_actionIconsTitle")
+   String imagePicker_actionIconsTitle();
+
+  /**
+   * Translated "Header Icons"
+   *
+   * @return translated "Header Icons"
+   */
+   @DefaultMessage("Header Icons")
+   @Key("imagePicker_headerIconsTitle")
+   String imagePicker_headerIconsTitle();
+
+  /**
+   * Translated "Custom Images"
+   *
+   * @return translated "Custom Images"
+   */
+   @DefaultMessage("Custom Images")
+   @Key("imagePicker_customImagesTitle")
+   String imagePicker_customImagesTitle();
+
+  /**
+   * Translated "Upload images to DropBox or a similar service and enter the public URL below"
+   *
+   * @return translated "Upload images to DropBox or a similar service and enter the public URL below"
+   */
+   @DefaultMessage("Upload images to DropBox or a similar service and enter the public URL below")
+   @Key("imagePicker_tipText")
+   String imagePicker_tipText();
+
+  /**
+   * Translated "Ok"
+   *
+   * @return translated "Ok"
+   */
+   @DefaultMessage("Ok")
+   @Key("imagePicker_okButtonTitle")
+   String imagePicker_okButtonTitle();
+
+  /**
+   * Translated "Cancel"
+   *
+   * @return translated "Cancel"
+   */
+   @DefaultMessage("Cancel")
+   @Key("imagePicker_cancelButtonTitle")
+   String imagePicker_cancelButtonTitle();
+
+
+
+
+
+  /*  Generated on Mon May 24 06:37:03 2021 */
+
+  /**
+   * Translated "Advanced filtering..."
+   *
+   * @return translated "Advanced filtering..."
+   */
+   @DefaultMessage("Advanced filtering...")
+   @Key("listGrid_advancedFilteringText")
+   String listGrid_advancedFilteringText();
+
+  /**
+   * Translated "Enter criteria below. These criteria are <i>in addition to</i> any criteria entered in the filter immediately above column headers."
+   *
+   * @return translated "Enter criteria below. These criteria are <i>in addition to</i> any criteria entered in the filter immediately above column headers."
+   */
+   @DefaultMessage("Enter criteria below. These criteria are <i>in addition to</i> any criteria entered in the filter immediately above column headers.")
+   @Key("listGrid_filterWindowInstructions")
+   String listGrid_filterWindowInstructions();
+
+  /**
+   * Translated "Field criteria: "
+   *
+   * @return translated "Field criteria: "
+   */
+   @DefaultMessage("Field criteria: ")
+   @Key("listGrid_fieldCriteriaText")
+   String listGrid_fieldCriteriaText();
+
+  /**
+   * Translated "Grid additional criteria:"
+   *
+   * @return translated "Grid additional criteria:"
+   */
+   @DefaultMessage("Grid additional criteria:")
+   @Key("listGrid_gridAdditionalCriteriaText")
+   String listGrid_gridAdditionalCriteriaText();
+
+  /**
+   * Translated "&nbsp;"
+   *
+   * @return translated "&nbsp;"
+   */
+   @DefaultMessage("&nbsp;")
+   @Key("gridRenderer_emptyCellValue")
+   String gridRenderer_emptyCellValue();
+
+
+  /*  Generated on Mon May 24 06:49:00 2021 */
 
   /**
    * Translated "Dynamic: "
@@ -6557,7 +7185,71 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
 
 
 
-  /*  Generated on Tue May 25 01:28:56 2021 */
+
+  /*  Generated on Mon May 24 07:10:33 2021 */
+
+  /**
+   * Translated "The server is unavailable right now, please try again in a while"
+   *
+   * @return translated "The server is unavailable right now, please try again in a while"
+   */
+   @DefaultMessage("The server is unavailable right now, please try again in a while")
+   @Key("rPCManager_reloginCommFailureMessage")
+   String rPCManager_reloginCommFailureMessage();
+
+  /**
+   * Translated "Recent changes for DataSource $dsId"
+   *
+   * @return translated "Recent changes for DataSource $dsId"
+   */
+   @DefaultMessage("Recent changes for DataSource $dsId")
+   @Key("dSRecordAuditPreview_recordAuditHeaderTitle")
+   String dSRecordAuditPreview_recordAuditHeaderTitle();
+
+  /**
+   * Translated "Click to add audit information as a new section"
+   *
+   * @return translated "Click to add audit information as a new section"
+   */
+   @DefaultMessage("Click to add audit information as a new section")
+   @Key("dSRecordAuditPreview_recordAuditInfoTitle")
+   String dSRecordAuditPreview_recordAuditInfoTitle();
+
+  /**
+   * Translated "Please provide a smaller sample data set. Deployed applications do not have such limits on data sets."
+   *
+   * @return translated "Please provide a smaller sample data set. Deployed applications do not have such limits on data sets."
+   */
+   @DefaultMessage("Please provide a smaller sample data set. Deployed applications do not have such limits on data sets.")
+   @Key("sampleDataDSWizard_importFileTooLargeMessage")
+   String sampleDataDSWizard_importFileTooLargeMessage();
+
+  /**
+   * Translated "Please provide a smaller DataSource definition. Deployed applications do not have such limits on definition size."
+   *
+   * @return translated "Please provide a smaller DataSource definition. Deployed applications do not have such limits on definition size."
+   */
+   @DefaultMessage("Please provide a smaller DataSource definition. Deployed applications do not have such limits on definition size.")
+   @Key("xmlCodeDSWizard_importFileTooLargeMessage")
+   String xmlCodeDSWizard_importFileTooLargeMessage();
+
+  /**
+   * Translated "Percent"
+   *
+   * @return translated "Percent"
+   */
+   @DefaultMessage("Percent")
+   @Key("facetChart_proportionalAxisLabel")
+   String facetChart_proportionalAxisLabel();
+
+  /**
+   * Translated "&lt;Use static value instead&gt;"
+   *
+   * @return translated "&lt;Use static value instead&gt;"
+   */
+   @DefaultMessage("&lt;Use static value instead&gt;")
+   @Key("dynamicValuePicker_clearValueText")
+   String dynamicValuePicker_clearValueText();
 
   /**
    * Translated "Image Picker"
@@ -6568,11 +7260,361 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    @Key("imageChooserItem_pickerTitle")
    String imageChooserItem_pickerTitle();
 
+  /**
+   * Translated "Select an Image for each state you would like to represent"
+   *
+   * @return translated "Select an Image for each state you would like to represent"
+   */
+   @DefaultMessage("Select an Image for each state you would like to represent")
+   @Key("statefulImageChooser_instructionText")
+   String statefulImageChooser_instructionText();
+
+
+
+  /*  Generated on Tue May 25 00:11:23 2021 */
+
+  /**
+   * Translated "Please enter ''$expectedValue''"
+   *
+   * @return translated "Please enter ''$expectedValue''"
+   */
+   @DefaultMessage("Please enter ''$expectedValue''")
+   @Key("tourStep_inputValidationNotifyMessage")
+   String tourStep_inputValidationNotifyMessage();
+
+  /**
+   * Translated "This value comes from the ''$fieldName'' field in the nearby component [$componentName]"
+   *
+   * @return translated "This value comes from the ''$fieldName'' field in the nearby component [$componentName]"
+   */
+   @DefaultMessage("This value comes from the ''$fieldName'' field in the nearby component [$componentName]")
+   @Key("formulaBuilder_nearbyComponentFieldPrompt")
+   String formulaBuilder_nearbyComponentFieldPrompt();
+
+  /**
+   * Translated "This value comes from the ''$fieldName'' field in the current component [$componentName]"
+   *
+   * @return translated "This value comes from the ''$fieldName'' field in the current component [$componentName]"
+   */
+   @DefaultMessage("This value comes from the ''$fieldName'' field in the current component [$componentName]")
+   @Key("formulaBuilder_currentComponentFieldPrompt")
+   String formulaBuilder_currentComponentFieldPrompt();
+
+  /**
+   * Translated "This value comes from the ''$fieldName'' field in any nearby component that uses DataSource ''$dataSource''. Values that are edited by end users are preferred."
+   *
+   * @return translated "This value comes from the ''$fieldName'' field in any nearby component that uses DataSource ''$dataSource''. Values that are edited by end users are preferred."
+   */
+   @DefaultMessage("This value comes from the ''$fieldName'' field in any nearby component that uses DataSource ''$dataSource''. Values that are edited by end users are preferred.")
+   @Key("formulaBuilder_dataSourceFieldPrompt")
+   String formulaBuilder_dataSourceFieldPrompt();
+
+  /**
+   * Translated "Format code contains date formatting, but this is a time field.  If you want to show both date and time elements, change the field type to ''datetime''"
+   *
+   * @return translated "Format code contains date formatting, but this is a time field.  If you want to show both date and time elements, change the field type to ''datetime''"
+   */
+   @DefaultMessage("Format code contains date formatting, but this is a time field.  If you want to show both date and time elements, change the field type to ''datetime''")
+   @Key("datetimeFormatEditor_timeContainsDateFormattingErrorMessage")
+   String datetimeFormatEditor_timeContainsDateFormattingErrorMessage();
+
+  /**
+   * Translated "Format code contains time formatting, but this is a date field.  If you want to show both date and time elements, change the field type to ''datetime''"
+   *
+   * @return translated "Format code contains time formatting, but this is a date field.  If you want to show both date and time elements, change the field type to ''datetime''"
+   */
+   @DefaultMessage("Format code contains time formatting, but this is a date field.  If you want to show both date and time elements, change the field type to ''datetime''")
+   @Key("datetimeFormatEditor_dateContainsTimeFormattingErrorMessage")
+   String datetimeFormatEditor_dateContainsTimeFormattingErrorMessage();
+
+  /**
+   * Translated "Symbol for user''s locale (currently $)"
+   *
+   * @return translated "Symbol for user''s locale (currently $)"
+   */
+   @DefaultMessage("Symbol for user''s locale (currently $)")
+   @Key("numberFormatEditor_userLocaleCurrencySymbolDescription")
+   String numberFormatEditor_userLocaleCurrencySymbolDescription();
+
+  /**
+   * Translated "''format'' property is not applicable to this field type"
+   *
+   * @return translated "''format'' property is not applicable to this field type"
+   */
+   @DefaultMessage("''format'' property is not applicable to this field type")
+   @Key("numberFormatEditor_formatCodeNotApplicableMessage")
+   String numberFormatEditor_formatCodeNotApplicableMessage();
+
+
+
+  /*  Generated on Tue May 25 00:47:23 2021 */
+
+  /**
+   * Translated "Must be a whole number, percentage, ''*'' or ''auto''"
+   *
+   * @return translated "Must be a whole number, percentage, ''*'' or ''auto''"
+   */
+   @DefaultMessage("Must be a whole number, percentage, ''*'' or ''auto''")
+   @Key("validator_notAMeasure")
+   String validator_notAMeasure();
 
 
 
 
-  /*  Generated on Thu Jun  3 00:17:38 2021 */
+
+  /*  Generated on Wed May 26 10:29:25 2021 */
+
+  /**
+   * Translated "Values"
+   *
+   * @return translated "Values"
+   */
+   @DefaultMessage("Values")
+   @Key("cubeGrid_fieldVisibilitySubmenuTitle")
+   String cubeGrid_fieldVisibilitySubmenuTitle();
+
+  /**
+   * Translated "Highlight Selection"
+   *
+   * @return translated "Highlight Selection"
+   */
+   @DefaultMessage("Highlight Selection")
+   @Key("cubeGrid_highlightSelectionTitle")
+   String cubeGrid_highlightSelectionTitle();
+
+  /**
+   * Translated "Highlight Cell"
+   *
+   * @return translated "Highlight Cell"
+   */
+   @DefaultMessage("Highlight Cell")
+   @Key("cubeGrid_highlightCellTitle")
+   String cubeGrid_highlightCellTitle();
+
+  /**
+   * Translated "Highlight"
+   *
+   * @return translated "Highlight"
+   */
+   @DefaultMessage("Highlight")
+   @Key("cubeGrid_highlightTitle")
+   String cubeGrid_highlightTitle();
+
+  /**
+   * Translated "None"
+   *
+   * @return translated "None"
+   */
+   @DefaultMessage("None")
+   @Key("cubeGrid_noHighlightsTitle")
+   String cubeGrid_noHighlightsTitle();
+
+  /**
+   * Translated "Show Highlights"
+   *
+   * @return translated "Show Highlights"
+   */
+   @DefaultMessage("Show Highlights")
+   @Key("cubeGrid_showHighlightsTitle")
+   String cubeGrid_showHighlightsTitle();
+
+  /**
+   * Translated "Show all"
+   *
+   * @return translated "Show all"
+   */
+   @DefaultMessage("Show all")
+   @Key("cubeGrid_showAllHighlightsTitle")
+   String cubeGrid_showAllHighlightsTitle();
+
+  /**
+   * Translated "Hide all"
+   *
+   * @return translated "Hide all"
+   */
+   @DefaultMessage("Hide all")
+   @Key("cubeGrid_hideAllHighlightsTitle")
+   String cubeGrid_hideAllHighlightsTitle();
+
+  /**
+   * Translated "Show Hover Tips"
+   *
+   * @return translated "Show Hover Tips"
+   */
+   @DefaultMessage("Show Hover Tips")
+   @Key("cubeGrid_showHoverTipsTitle")
+   String cubeGrid_showHoverTipsTitle();
+
+  /**
+   * Translated "Chart"
+   *
+   * @return translated "Chart"
+   */
+   @DefaultMessage("Chart")
+   @Key("cubeGrid_chartItemTitle")
+   String cubeGrid_chartItemTitle();
+
+  /**
+   * Translated "Chart"
+   *
+   * @return translated "Chart"
+   */
+   @DefaultMessage("Chart")
+   @Key("cubeGrid_chartDialogTitle")
+   String cubeGrid_chartDialogTitle();
+
+  /**
+   * Translated "AutoFit Column"
+   *
+   * @return translated "AutoFit Column"
+   */
+   @DefaultMessage("AutoFit Column")
+   @Key("cubeGrid_autoFitColumnTitle")
+   String cubeGrid_autoFitColumnTitle();
+
+  /**
+   * Translated "Maximize Column"
+   *
+   * @return translated "Maximize Column"
+   */
+   @DefaultMessage("Maximize Column")
+   @Key("cubeGrid_maximizeColumnTitle")
+   String cubeGrid_maximizeColumnTitle();
+
+  /**
+   * Translated "Minimize Column"
+   *
+   * @return translated "Minimize Column"
+   */
+   @DefaultMessage("Minimize Column")
+   @Key("cubeGrid_minimizeColumnTitle")
+   String cubeGrid_minimizeColumnTitle();
+
+  /**
+   * Translated "Rename..."
+   *
+   * @return translated "Rename..."
+   */
+   @DefaultMessage("Rename...")
+   @Key("cubeGrid_renameFacetValueTitle")
+   String cubeGrid_renameFacetValueTitle();
+
+  /**
+   * Translated "Move"
+   *
+   * @return translated "Move"
+   */
+   @DefaultMessage("Move")
+   @Key("cubeGrid_controlReorderHandleTitle")
+   String cubeGrid_controlReorderHandleTitle();
+
+  /**
+   * Translated "Minimize"
+   *
+   * @return translated "Minimize"
+   */
+   @DefaultMessage("Minimize")
+   @Key("cubeGrid_controlMinimizeTitle")
+   String cubeGrid_controlMinimizeTitle();
+
+  /**
+   * Translated "Maximize"
+   *
+   * @return translated "Maximize"
+   */
+   @DefaultMessage("Maximize")
+   @Key("cubeGrid_controlMaximizeTitle")
+   String cubeGrid_controlMaximizeTitle();
+
+  /**
+   * Translated "Sort Up"
+   *
+   * @return translated "Sort Up"
+   */
+   @DefaultMessage("Sort Up")
+   @Key("cubeGrid_controlSortUpTitle")
+   String cubeGrid_controlSortUpTitle();
+
+  /**
+   * Translated "Close"
+   *
+   * @return translated "Close"
+   */
+   @DefaultMessage("Close")
+   @Key("cubeGrid_controlCloseTitle")
+   String cubeGrid_controlCloseTitle();
+
+  /**
+   * Translated "Chart Type"
+   *
+   * @return translated "Chart Type"
+   */
+   @DefaultMessage("Chart Type")
+   @Key("cubeGrid_chartTypeTitle")
+   String cubeGrid_chartTypeTitle();
+
+  /**
+   * Translated "Stacked"
+   *
+   * @return translated "Stacked"
+   */
+   @DefaultMessage("Stacked")
+   @Key("cubeGrid_chartStackedTitle")
+   String cubeGrid_chartStackedTitle();
+
+
+
+
+
+  /*  Generated on Wed May 26 10:48:48 2021 */
+
+  /**
+   * Translated "Sort Down"
+   *
+   * @return translated "Sort Down"
+   */
+   @DefaultMessage("Sort Down")
+   @Key("cubeGrid_controlSortDownTitle")
+   String cubeGrid_controlSortDownTitle();
+
+
+
+
+
+  /*  Generated on Thu May 27 08:25:37 2021 */
+
+  /**
+   * Translated "Access the Learning Center"
+   *
+   * @return translated "Access the Learning Center"
+   */
+   @DefaultMessage("Access the Learning Center")
+   @Key("learningCenterDock_buttonPromptToShow")
+   String learningCenterDock_buttonPromptToShow();
+
+  /**
+   * Translated "Hide the Learning Center"
+   *
+   * @return translated "Hide the Learning Center"
+   */
+   @DefaultMessage("Hide the Learning Center")
+   @Key("learningCenterDock_buttonPromptToHide")
+   String learningCenterDock_buttonPromptToHide();
+
+  /**
+   * Translated "Enter the new name for this facet value: "
+   *
+   * @return translated "Enter the new name for this facet value: "
+   */
+   @DefaultMessage("Enter the new name for this facet value: ")
+   @Key("cubeGrid_renameFacetValueMessage")
+   String cubeGrid_renameFacetValueMessage();
+
+
+
+
+
+  /*  Generated on Wed Jun  2 12:45:10 2021 */
 
   /**
    * Translated "Previous year"
@@ -6601,6 +7643,12 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    @Key("dateChooser_nextMonthButtonAriaLabel")
    String dateChooser_nextMonthButtonAriaLabel();
 
+
+
+
+
+  /*  Generated on Wed Jun  2 22:32:46 2021 */
+
   /**
    * Translated "Next year"
    *
@@ -6610,27 +7658,27 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    @Key("dateChooser_nextYearButtonAriaLabel")
    String dateChooser_nextYearButtonAriaLabel();
 
-  /**
-   * Translated "Select an Image for each state you would like to represent"
-   *
-   * @return translated "Select an Image for each state you would like to represent"
-   */
-   @DefaultMessage("Select an Image for each state you would like to represent")
-   @Key("statefulImageChooser_instructionText")
-   String statefulImageChooser_instructionText();
 
 
 
 
-
-  /*  Generated on Thu Jun 24 00:45:34 2021 */
+  /*  Generated on Fri Jun 18 04:54:14 2021 */
 
   /**
-   * Translated "You can''t drag two occurences of the same node into a parent."
+   * Translated "New Event"
    *
-   * @return translated "You can''t drag two occurences of the same node into a parent."
+   * @return translated "New Event"
    */
-   @DefaultMessage("You can''t drag two occurences of the same node into a parent.")
+   @DefaultMessage("New Event")
+   @Key("calendar_newEventWindowTitle")
+   String calendar_newEventWindowTitle();
+
+  /**
+   * Translated "You can''t drag two occurrences of the same node into a parent."
+   *
+   * @return translated "You can''t drag two occurrences of the same node into a parent."
+   */
+   @DefaultMessage("You can''t drag two occurrences of the same node into a parent.")
    @Key("treeGrid_cantDragMultipleNodeOccurencesMessage")
    String treeGrid_cantDragMultipleNodeOccurencesMessage();
 
@@ -6638,16 +7686,274 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
 
 
 
-  /*  Generated on Fri Jan  7 06:20:39 2022 */
+  /*  Generated on Tue Sep 14 04:47:13 2021 */
 
   /**
-   * Translated "Remove summary column..."
+   * Translated "Clear binding"
    *
-   * @return translated "Remove summary column..."
+   * @return translated "Clear binding"
    */
-   @DefaultMessage("Remove summary column...")
-   @Key("dataBoundComponent_removeSummaryFieldText")
-   String dataBoundComponent_removeSummaryFieldText();
+   @DefaultMessage("Clear binding")
+   @Key("workflowValuesBindingEditor_clearBindingPrompt")
+   String workflowValuesBindingEditor_clearBindingPrompt();
+
+
+
+
+
+  /*  Generated on Thu Oct 14 21:50:37 2021 */
+
+  /**
+   * Translated "$dsTitle saved successfully"
+   *
+   * @return translated "$dsTitle saved successfully"
+   */
+   @DefaultMessage("$dsTitle saved successfully")
+   @Key("formSaveDataTask_boundNotifyMessage")
+   String formSaveDataTask_boundNotifyMessage();
+
+  /**
+   * Translated "Saved successfully"
+   *
+   * @return translated "Saved successfully"
+   */
+   @DefaultMessage("Saved successfully")
+   @Key("formSaveDataTask_unboundNotifyMessage")
+   String formSaveDataTask_unboundNotifyMessage();
+
+  /**
+   * Translated "Only one record may be removed at a time"
+   *
+   * @return translated "Only one record may be removed at a time"
+   */
+   @DefaultMessage("Only one record may be removed at a time")
+   @Key("gridRemoveSelectedDataTask_refuseMultiRemoveMessage")
+   String gridRemoveSelectedDataTask_refuseMultiRemoveMessage();
+
+  /**
+   * Translated "Delete $dsTitle $recordTitle"
+   *
+   * @return translated "Delete $dsTitle $recordTitle"
+   */
+   @DefaultMessage("Delete $dsTitle $recordTitle")
+   @Key("gridRemoveSelectedDataTask_confirmationMessage")
+   String gridRemoveSelectedDataTask_confirmationMessage();
+
+  /**
+   * Translated "Delete record?"
+   *
+   * @return translated "Delete record?"
+   */
+   @DefaultMessage("Delete record?")
+   @Key("gridRemoveSelectedDataTask_unboundConfirmationMessage")
+   String gridRemoveSelectedDataTask_unboundConfirmationMessage();
+
+  /**
+   * Translated "Delete multiple $dsPluralTitle?"
+   *
+   * @return translated "Delete multiple $dsPluralTitle?"
+   */
+   @DefaultMessage("Delete multiple $dsPluralTitle?")
+   @Key("gridRemoveSelectedDataTask_multipleConfirmationMessage")
+   String gridRemoveSelectedDataTask_multipleConfirmationMessage();
+
+  /**
+   * Translated "Delete multiple records?"
+   *
+   * @return translated "Delete multiple records?"
+   */
+   @DefaultMessage("Delete multiple records?")
+   @Key("gridRemoveSelectedDataTask_unboundMultipleConfirmationMessage")
+   String gridRemoveSelectedDataTask_unboundMultipleConfirmationMessage();
+
+  /**
+   * Translated "Mark as shared search (all users will see it)"
+   *
+   * @return translated "Mark as shared search (all users will see it)"
+   */
+   @DefaultMessage("Mark as shared search (all users will see it)")
+   @Key("savedSearchEditor_sharedSearchTitle")
+   String savedSearchEditor_sharedSearchTitle();
+
+  /**
+   * Translated "Mark as default search"
+   *
+   * @return translated "Mark as default search"
+   */
+   @DefaultMessage("Mark as default search")
+   @Key("savedSearchEditor_defaultSearchTitle")
+   String savedSearchEditor_defaultSearchTitle();
+
+  /**
+   * Translated "Enter a name for your search, then enter criteria below."
+   *
+   * @return translated "Enter a name for your search, then enter criteria below."
+   */
+   @DefaultMessage("Enter a name for your search, then enter criteria below.")
+   @Key("savedSearchEditor_addSearchText")
+   String savedSearchEditor_addSearchText();
+
+  /**
+   * Translated "Enter a name for your search.  The current configuration of the grid will be saved."
+   *
+   * @return translated "Enter a name for your search.  The current configuration of the grid will be saved."
+   */
+   @DefaultMessage("Enter a name for your search.  The current configuration of the grid will be saved.")
+   @Key("savedSearchEditor_gridAddSearchText")
+   String savedSearchEditor_gridAddSearchText();
+
+  /**
+   * Translated "Enter a new name for your search, and edit criteria below."
+   *
+   * @return translated "Enter a new name for your search, and edit criteria below."
+   */
+   @DefaultMessage("Enter a new name for your search, and edit criteria below.")
+   @Key("savedSearchEditor_editSearchText")
+   String savedSearchEditor_editSearchText();
+
+  /**
+   * Translated "Edit Search"
+   *
+   * @return translated "Edit Search"
+   */
+   @DefaultMessage("Edit Search")
+   @Key("editSearchWindow_title")
+   String editSearchWindow_title();
+
+  /**
+   * Translated "[None]"
+   *
+   * @return translated "[None]"
+   */
+   @DefaultMessage("[None]")
+   @Key("listGrid_noSavedSearchesText")
+   String listGrid_noSavedSearchesText();
+
+  /**
+   * Translated "Edit search"
+   *
+   * @return translated "Edit search"
+   */
+   @DefaultMessage("Edit search")
+   @Key("savedSearchItem_editSearchHoverText")
+   String savedSearchItem_editSearchHoverText();
+
+  /**
+   * Translated "Remove search"
+   *
+   * @return translated "Remove search"
+   */
+   @DefaultMessage("Remove search")
+   @Key("savedSearchItem_removeSearchHoverText")
+   String savedSearchItem_removeSearchHoverText();
+
+  /**
+   * Translated "Copy search"
+   *
+   * @return translated "Copy search"
+   */
+   @DefaultMessage("Copy search")
+   @Key("savedSearchItem_copySearchHoverText")
+   String savedSearchItem_copySearchHoverText();
+
+  /**
+   * Translated "Set as default search"
+   *
+   * @return translated "Set as default search"
+   */
+   @DefaultMessage("Set as default search")
+   @Key("savedSearchItem_markAsDefaultHoverText")
+   String savedSearchItem_markAsDefaultHoverText();
+
+  /* savedSearchItem_confirmRemovalMessage value changed on Thu Jan  6 09:53:31 2022
+   Old value was 'Remove saved search \"$title?\'.
+   See definition later in this file for new value.
+  */
+
+  /**
+   * Translated "Searches"
+   *
+   * @return translated "Searches"
+   */
+   @DefaultMessage("Searches")
+   @Key("savedSearchItem_title")
+   String savedSearchItem_title();
+
+  /**
+   * Translated "Saved searches..."
+   *
+   * @return translated "Saved searches..."
+   */
+   @DefaultMessage("Saved searches...")
+   @Key("savedSearchItem_hint")
+   String savedSearchItem_hint();
+
+
+
+
+
+  /*  Generated on Mon Dec  6 11:32:22 2021 */
+
+  /**
+   * Translated "Workflow Mock Mode - in live mode, would send Email<p>To: $to<br>Subject: $subject<br>Message: $message"
+   *
+   * @return translated "Workflow Mock Mode - in live mode, would send Email<p>To: $to<br>Subject: $subject<br>Message: $message"
+   */
+   @DefaultMessage("Workflow Mock Mode - in live mode, would send Email<p>To: $to<br>Subject: $subject<br>Message: $message")
+   @Key("sendEmailTask_mockModeNotifyMessage")
+   String sendEmailTask_mockModeNotifyMessage();
+
+  /**
+   * Translated "Workflow Mock Mode - in live mode, would send Email<p>To: $to<br>Subject: $subject<br>Message: $message"
+   *
+   * @return translated "Workflow Mock Mode - in live mode, would send Email<p>To: $to<br>Subject: $subject<br>Message: $message"
+   */
+   @DefaultMessage("Workflow Mock Mode - in live mode, would send Email<p>To: $to<br>Subject: $subject<br>Message: $message")
+   @Key("sendSMSTask_mockModeNotifyMessage")
+   String sendSMSTask_mockModeNotifyMessage();
+
+  /**
+   * Translated "Saved views"
+   *
+   * @return translated "Saved views"
+   */
+   @DefaultMessage("Saved views")
+   @Key("listGrid_savedSearchText")
+   String listGrid_savedSearchText();
+
+  /* listGrid_newSearchText value changed on Thu Jan  6 09:53:31 2022
+   Old value was 'Save New'.
+   See definition later in this file for new value.
+  */
+
+  /**
+   * Translated "Cancel"
+   *
+   * @return translated "Cancel"
+   */
+   @DefaultMessage("Cancel")
+   @Key("fieldValidatorsItem_cancelButtonTitle")
+   String fieldValidatorsItem_cancelButtonTitle();
+
+  /**
+   * Translated "Save"
+   *
+   * @return translated "Save"
+   */
+   @DefaultMessage("Save")
+   @Key("fieldValidatorsItem_saveButtonTitle")
+   String fieldValidatorsItem_saveButtonTitle();
+
+
+
+
+
+  /*  Generated on Thu Jan  6 09:53:31 2022 */
+
+  /* dataBoundComponent_removeSummaryFieldText value changed on Fri Jan  7 05:11:03 2022
+   Old value was 'Remove summary format...'.
+   See definition later in this file for new value.
+  */
 
   /**
    * Translated "''$uploadedFileName'' was empty, but empty files are not allowed."
@@ -6659,22 +7965,18 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    String dataSource_requiredFileMessage();
 
   /**
-   * Translated "Cancelling this edit will discard unsaved changes for this record. Continue?"
+   * Translated "Multiple values must be separated by the valueSeparator, ''|''."
    *
-   * @return translated "Cancelling this edit will discard unsaved changes for this record. Continue?"
+   * @return translated "Multiple values must be separated by the valueSeparator, ''|''."
    */
-   @DefaultMessage("Cancelling this edit will discard unsaved changes for this record. Continue?")
-   @Key("listGrid_cancelEditingConfirmationMessage")
-   String listGrid_cancelEditingConfirmationMessage();
+   @DefaultMessage("Multiple values must be separated by the valueSeparator, ''|''.")
+   @Key("operators_valueSetUsageHint")
+   String operators_valueSetUsageHint();
 
-  /**
-   * Translated "This action will discard unsaved changes for this list."
-   *
-   * @return translated "This action will discard unsaved changes for this list."
-   */
-   @DefaultMessage("This action will discard unsaved changes for this list.")
-   @Key("listGrid_confirmDiscardEditsMessage")
-   String listGrid_confirmDiscardEditsMessage();
+  /* operators_valueRangeUsageHint value changed on Fri Jan  7 05:11:03 2022
+   Old value was 'Range-values require distinct start and end values, separated by the range (between) symbol, ''...''.'.
+   See definition later in this file for new value.
+  */
 
   /**
    * Translated "Some rows could not be parsed; the grid below shows $goodRowCount of $totalRows data rows. Row number $firstBadRow was the first row to fail to be parsed."
@@ -6702,6 +8004,33 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    @DefaultMessage("Next error")
    @Key("batchUploader_nextButtonTitle")
    String batchUploader_nextButtonTitle();
+
+  /**
+   * Translated "Save View..."
+   *
+   * @return translated "Save View..."
+   */
+   @DefaultMessage("Save View...")
+   @Key("listGrid_newSearchText")
+   String listGrid_newSearchText();
+
+  /**
+   * Translated "Cancelling this edit will discard unsaved changes for this record. Continue?"
+   *
+   * @return translated "Cancelling this edit will discard unsaved changes for this record. Continue?"
+   */
+   @DefaultMessage("Cancelling this edit will discard unsaved changes for this record. Continue?")
+   @Key("listGrid_cancelEditingConfirmationMessage")
+   String listGrid_cancelEditingConfirmationMessage();
+
+  /**
+   * Translated "This action will discard unsaved changes for this list."
+   *
+   * @return translated "This action will discard unsaved changes for this list."
+   */
+   @DefaultMessage("This action will discard unsaved changes for this list.")
+   @Key("listGrid_confirmDiscardEditsMessage")
+   String listGrid_confirmDiscardEditsMessage();
 
   /**
    * Translated "Set selection text color"
@@ -6775,11 +8104,44 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    @Key("filterClause_valueItemFieldHint")
    String filterClause_valueItemFieldHint();
 
+  /**
+   * Translated "Remove saved search ''$title''?"
+   *
+   * @return translated "Remove saved search ''$title''?"
+   */
+   @DefaultMessage("Remove saved search ''$title''?")
+   @Key("savedSearchItem_confirmRemovalMessage")
+   String savedSearchItem_confirmRemovalMessage();
 
 
 
 
-  /*  Generated on Thu Jan 27 01:17:31 2022 */
+
+  /*  Generated on Fri Jan  7 05:11:03 2022 */
+
+  /**
+   * Translated "Remove summary column..."
+   *
+   * @return translated "Remove summary column..."
+   */
+   @DefaultMessage("Remove summary column...")
+   @Key("dataBoundComponent_removeSummaryFieldText")
+   String dataBoundComponent_removeSummaryFieldText();
+
+  /**
+   * Translated "Range-operators require distinct start and end values, separated by the range (between) symbol, ''...''."
+   *
+   * @return translated "Range-operators require distinct start and end values, separated by the range (between) symbol, ''...''."
+   */
+   @DefaultMessage("Range-operators require distinct start and end values, separated by the range (between) symbol, ''...''.")
+   @Key("operators_valueRangeUsageHint")
+   String operators_valueRangeUsageHint();
+
+
+
+
+
+  /*  Generated on Thu Jan 27 01:09:05 2022 */
 
   /**
    * Translated "$loadingImage&nbsp;Grouping data..."
@@ -6807,6 +8169,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    @DefaultMessage("$loadingImage&nbsp;Loading data...")
    @Key("tileGrid_loadingDataMessage")
    String tileGrid_loadingDataMessage();
+
+  /**
+   * Translated " <i>[default]</i>"
+   *
+   * @return translated " <i>[default]</i>"
+   */
+   @DefaultMessage(" <i>[default]</i>")
+   @Key("savedSearchItem_defaultSearchNameSuffix")
+   String savedSearchItem_defaultSearchNameSuffix();
 
 
 

@@ -80,7 +80,7 @@ import java.util.Map;
  *  &lt;/AdvancedCriteria&gt;
  *  </pre>
  * An AdvancedCriteria is in effect a {@link com.smartgwt.client.docs.serverds.Criterion} that has
- * been marked with 
+ * been marked with
  *  _constructor:"AdvancedCriteria" to mark it as complete criteria.
  *  <P>
  *  In addition to directly creating an AdvancedCriteria object as described above, the
@@ -88,6 +88,9 @@ import java.util.Map;
  * {@link com.smartgwt.client.data.DataSource#combineCriteria DataSource.combineCriteria()}
  * methods
  *  may be used to create and modify criteria based on simple fieldName / value mappings.
+ *  <P>
+ * {@link com.smartgwt.client.docs.XmlCriteriaShorthand Shorthand formats are allowed} when
+ * defining AdvancedCriteria.
  *  <P>
  *  When passed to the Smart GWT Server, a server-side AdvancedCriteria instance (in the
  *  package com.isomorphic.criteria) can be retrieved from a DSRequest via

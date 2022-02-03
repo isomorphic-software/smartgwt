@@ -29,7 +29,8 @@ package com.smartgwt.client.types;
  * com.smartgwt.client.docs.StringMethods StringMethod}, which will be passed <code>records</code> (an array of records)
  * and <code>field</code> (the field definition for which the summary is required).</li> <li>as a standard SummaryFunction
  * identifier</li></ul> For valid ways to configure SummaryFunctions to use server-side feature see the {@link
- * com.smartgwt.client.docs.ServerSummaries Server Summaries overview}.
+ * com.smartgwt.client.docs.ServerSummaries Server Summaries overview}, including how to implement custom summary
+ * functions, not just builtin ones listed here (look for "Custom Aggregation" section).
  */
 public enum SummaryFunctionType implements ValueEnum {
     /**

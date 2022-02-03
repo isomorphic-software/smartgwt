@@ -19,6 +19,7 @@ package com.smartgwt.client;
 import java.util.Set;
 
 import com.google.gwt.event.shared.UmbrellaException;
+import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
@@ -109,6 +110,9 @@ public class SmartGwtEntryPoint implements EntryPoint {
         if ($wnd.isc.Browser.isIE && $wnd.isc.Browser.version >= 7) {
             $wnd.isc.EventHandler._IECanSetKeyCode = {};
         }
+
+        // backref to GWT window
+        $wnd.isc.gwtWnd = window;
         
         // use a new Record as the array loading marker (this will allow new Record(...) to work with unloaded rows)
         var loadingRecord = @com.smartgwt.client.data.Record::new()();
@@ -117,7 +121,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
         
         //convert javascript data types into corresponding Java wrapper types
         //int -> Integer, float -> Float, boolean -> Boolean and date - > java.util.Date
-        $wnd.SmartGWT ={};
+        $wnd.SmartGWT = {};
         
         // In JSNI, we may be passed GWT Java Object references.
         // These typically can not be directly manipulated -- this check will test for such objects.
@@ -562,6 +566,8 @@ public class SmartGwtEntryPoint implements EntryPoint {
             // Trigger generation of BeanFactories for any classes annotated with BeanFactory.Generate
             GWT.create(BeanFactory.AnnotationMetaFactory.class);
 
+            multiWindowTypeFix();
+
             initialized = true;
         }
     }
@@ -577,4 +583,11 @@ public class SmartGwtEntryPoint implements EntryPoint {
             @com.google.gwt.core.client.GWT::log(Ljava/lang/String;Ljava/lang/Throwable;)(message, @com.smartgwt.client.core.JsObject.SGWT_WARN::new(Ljava/lang/String;)(message));
         }
     }-*/;
+
+    private volatile Object typeFixObject;
+
+    private void multiWindowTypeFix() {
+        SC.logDebug("$$$ multiWindowTypeFix: " + (typeFixObject instanceof JavaScriptObject));
+    }
+
 }

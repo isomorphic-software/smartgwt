@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,15 +78,23 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
- * FormItem for editing times in a text field or via a set of selector components.  
+ * A {@link com.smartgwt.client.widgets.form.fields.FormItem} for editing {@link
+ * com.smartgwt.client.util.DateUtil#createLogicalTime logical-time} values, which
+ *  are Date instances where only the time-portion is relevant.
  *  <P>
- * The display format for this field may be set by {@link com.smartgwt.client.widgets.form.fields.TimeItem#getTimeFormatter
- * timeFormatter}. Defaults
- * are picked up from {@link com.smartgwt.client.widgets.form.fields.TimeItem#getTimeFormatter24Hour timeFormatter24Hour}
- * and {@link com.smartgwt.client.widgets.form.fields.TimeItem#getTimeFormatter12Hour timeFormatter12Hour}.
+ *  The item renders with one of two appearances, depending on the value of 
+ * {@link com.smartgwt.client.widgets.form.fields.TimeItem#getUseTextField useTextField} - when set to true, the default
+ * appearance, times are edited 
+ *  directly as text-values.  In this mode, values are formatted according to 
+ * {@link com.smartgwt.client.widgets.form.fields.TimeItem#getTimeFormatter timeFormatter}, with defaults coming from
+ * {@link com.smartgwt.client.widgets.form.fields.TimeItem#getTimeFormatter24Hour timeFormatter24Hour} 
+ * and {@link com.smartgwt.client.widgets.form.fields.TimeItem#getTimeFormatter12Hour timeFormatter12Hour}, depending on
+ * the value of 
+ *  {@link com.smartgwt.client.widgets.form.fields.TimeItem#getUse24HourTime use24HourTime}.
  *  See also String for system-wide settings.
  *  <P>
  *  TimeItem automatically accepts both 12 and 24 hour time as well as partial times and a
@@ -99,6 +111,21 @@ import com.smartgwt.client.util.workflow.Process; // required to override java.l
  *   134   => 01:34:00
  *  </pre>
  *  <P>
+ *  When <code>useTextField</code> is set to false, the item provides separate pickers for 
+ * {@link com.smartgwt.client.widgets.form.fields.TimeItem#getHourItem hour}, {@link
+ * com.smartgwt.client.widgets.form.fields.TimeItem#getMinuteItem minute} and 
+ * {@link com.smartgwt.client.widgets.form.fields.TimeItem#getSecondItem second} values.  By default, the pickers edit
+ * times in 
+ * {@link com.smartgwt.client.widgets.form.fields.TimeItem#getUse24HourTime 24-hour format}, meaning the
+ * <code>hourItem</code> shows 
+ * values from 0-23.  When {@link com.smartgwt.client.widgets.form.fields.TimeItem#getUse24HourTime use24HourTime} is set
+ * to false, the 
+ *  <code>hourItem</code> is limited to a range of 1-12, and the 
+ *  {@link com.smartgwt.client.widgets.form.fields.TimeItem#getAmpmItem am/pm picker} is displayed.  Note that 
+ * {@link com.smartgwt.client.widgets.form.fields.FormItem#getValue getValue()} always returns a Date instance that
+ * represents a
+ *  {@link com.smartgwt.client.util.DateUtil#createLogicalTime logical-time} in 24-hour format.
+ *  <P>
  *  Values entered by the user are stored as JavaScript <code>Date</code> objects in local time.  
  *  The day, month and year values of this <code>Date</code> object are not relevant and should 
  *  be ignored.
@@ -112,6 +139,16 @@ import com.smartgwt.client.util.workflow.Process; // required to override java.l
  *  11:00:00 and 11:59:59.  If the form is databound and the DataSource is marked as being
  * {@link com.smartgwt.client.data.DataSource#getAllowAdvancedCriteria allowAdvancedCriteria}:false, the criteria generated
  *  will be simple, checking for data with logical time values equal to the displayed value.
+ *  <P>
+ * To edit {@link com.smartgwt.client.util.DateUtil#createLogicalDate logical-Date values}, see {@link
+ * com.smartgwt.client.widgets.form.fields.DateItem},
+ * and to edit {@link com.smartgwt.client.util.DateUtil#createDatetime datetime values}, see {@link
+ * com.smartgwt.client.widgets.form.fields.DateTimeItem}.
+ * For {@link com.smartgwt.client.docs.RelativeDateString relative-date features}, see {@link
+ * com.smartgwt.client.widgets.form.fields.RelativeDateItem}.
+ *  <P>
+ *  For detailed information on working with dates, times and datetimes, see the 
+ *  {@link com.smartgwt.client.docs.DateFormatAndStorage Date and Time Format and Storage overview}.
  */
 @BeanFactory.FrameworkClass
 public class TimeItem extends FormItem {
@@ -536,6 +573,70 @@ public class TimeItem extends FormItem {
      */
     public String getInvalidTimeStringMessage()  {
         return getAttributeAsString("invalidTimeStringMessage");
+    }
+    
+
+    /**
+     * When {@link com.smartgwt.client.widgets.form.fields.TimeItem#getUseTextField useTextField} is false, the default
+     * title-alignment of  child-items such as the {@link com.smartgwt.client.widgets.form.fields.TimeItem#getHourItem hour}, 
+     * {@link com.smartgwt.client.widgets.form.fields.TimeItem#getMinuteItem minute} and {@link
+     * com.smartgwt.client.widgets.form.fields.TimeItem#getSecondItem second} pickers, within their cells.
+     *
+     * @param itemTitleAlign New itemTitleAlign value. Default value is "center"
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_titles" target="examples">Titles Example</a>
+     */
+    public TimeItem setItemTitleAlign(Alignment itemTitleAlign) {
+        return (TimeItem)setAttribute("itemTitleAlign", itemTitleAlign == null ? null : itemTitleAlign.getValue());
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.form.fields.TimeItem#getUseTextField useTextField} is false, the default
+     * title-alignment of  child-items such as the {@link com.smartgwt.client.widgets.form.fields.TimeItem#getHourItem hour}, 
+     * {@link com.smartgwt.client.widgets.form.fields.TimeItem#getMinuteItem minute} and {@link
+     * com.smartgwt.client.widgets.form.fields.TimeItem#getSecondItem second} pickers, within their cells.
+     *
+     * @return Current itemTitleAlign value. Default value is "center"
+     * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_titles" target="examples">Titles Example</a>
+     */
+    public Alignment getItemTitleAlign()  {
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("itemTitleAlign"));
+    }
+    
+
+    /**
+     * When {@link com.smartgwt.client.widgets.form.fields.TimeItem#getUseTextField useTextField} is false, the default
+     * orientation of  titles for child-items, such as the {@link com.smartgwt.client.widgets.form.fields.TimeItem#getHourItem
+     * hour},  {@link com.smartgwt.client.widgets.form.fields.TimeItem#getMinuteItem minute} and {@link
+     * com.smartgwt.client.widgets.form.fields.TimeItem#getSecondItem second} pickers. {@link
+     * com.smartgwt.client.types.TitleOrientation} lists valid options. <P> Note that titles on the left or right take up a
+     * cell in tabular {@link com.smartgwt.client.docs.FormLayout form layouts}, but titles on top do not.
+     *
+     * @param itemTitleOrientation New itemTitleOrientation value. Default value is "top"
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_titles" target="examples">Titles Example</a>
+     */
+    public TimeItem setItemTitleOrientation(TitleOrientation itemTitleOrientation) {
+        return (TimeItem)setAttribute("itemTitleOrientation", itemTitleOrientation == null ? null : itemTitleOrientation.getValue());
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.form.fields.TimeItem#getUseTextField useTextField} is false, the default
+     * orientation of  titles for child-items, such as the {@link com.smartgwt.client.widgets.form.fields.TimeItem#getHourItem
+     * hour},  {@link com.smartgwt.client.widgets.form.fields.TimeItem#getMinuteItem minute} and {@link
+     * com.smartgwt.client.widgets.form.fields.TimeItem#getSecondItem second} pickers. {@link
+     * com.smartgwt.client.types.TitleOrientation} lists valid options. <P> Note that titles on the left or right take up a
+     * cell in tabular {@link com.smartgwt.client.docs.FormLayout form layouts}, but titles on top do not.
+     *
+     * @return Current itemTitleOrientation value. Default value is "top"
+     * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_titles" target="examples">Titles Example</a>
+     */
+    public TitleOrientation getItemTitleOrientation()  {
+        return EnumUtil.getEnum(TitleOrientation.values(), getAttribute("itemTitleOrientation"));
     }
     
 
@@ -1195,7 +1296,6 @@ public class TimeItem extends FormItem {
      * <em>not</em> use in-field hints in conjunction with a native HTML5 time input. <p> To change this attribute after being
      * drawn, it is necessary to call {@link com.smartgwt.client.widgets.form.fields.FormItem#redraw FormItem.redraw()} or
      * redraw the form.
-     * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showHintInField New showHintInField value. Default value is null
      * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
@@ -1246,6 +1346,35 @@ public class TimeItem extends FormItem {
      */
     public Boolean getShowHourItem()  {
         Boolean result = getAttributeAsBoolean("showHourItem", true);
+        return result == null ? true : result;
+    }
+    
+
+    /**
+     * When {@link com.smartgwt.client.widgets.form.fields.TimeItem#getUseTextField useTextField} is false, whether titles
+     * should be shown for for child-items in this TimeItem.  By default, <code>showItemTitles</code> is true, and titles are
+     * displayed {@link com.smartgwt.client.widgets.form.fields.FormItem#getTitleOrientation above the items}.
+     *
+     * @param showItemTitles New showItemTitles value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_titles" target="examples">Titles Example</a>
+     */
+    public TimeItem setShowItemTitles(Boolean showItemTitles) {
+        return (TimeItem)setAttribute("showItemTitles", showItemTitles);
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.form.fields.TimeItem#getUseTextField useTextField} is false, whether titles
+     * should be shown for for child-items in this TimeItem.  By default, <code>showItemTitles</code> is true, and titles are
+     * displayed {@link com.smartgwt.client.widgets.form.fields.FormItem#getTitleOrientation above the items}.
+     *
+     * @return Current showItemTitles value. Default value is true
+     * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_titles" target="examples">Titles Example</a>
+     */
+    public Boolean getShowItemTitles()  {
+        Boolean result = getAttributeAsBoolean("showItemTitles", true);
         return result == null ? true : result;
     }
     

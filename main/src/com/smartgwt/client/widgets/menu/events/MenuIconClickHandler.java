@@ -21,8 +21,8 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface MenuIconClickHandler extends EventHandler {
     /**
-     * Notification method fired when a user clicks on the menuIcon on this IconButton.    call <code>event.cancel()</code> to
-     * suppress the standard  click handling code.
+     * Notification method fired when a user clicks on the menuIcon on this RibbonButton.    call <code>event.cancel()</code>
+     * to suppress the standard  click handling code.
      *
      * @param event the event
      */

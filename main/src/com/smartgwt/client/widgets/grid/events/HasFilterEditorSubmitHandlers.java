@@ -23,11 +23,15 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasFilterEditorSubmitHandlers extends HasHandlers {
     /**
      * Optional notification fired when the user performs a filter using the
-     * {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor Filter Editor}.  May fire as criteria values are
-     * being edited if 
-     * {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterOnKeypress filterOnKeypress} is true, otherwise will fire when
-     * the user clicks the filter
-     *  button or presses the Enter key while focus is in the Filter Editor.
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor Filter Editor}.  Useful for applying additional
+     * criteria not 
+     *  available in the filterEditor.  Note that it is often easiest to do this with the 
+     *  {@link com.smartgwt.client.widgets.form.SearchForm} attribute, which requires no code.
+     *  <P>
+     *  May fire as criteria values are being edited if 
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterByCell filterByCell} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getFilterOnKeypress filterOnKeypress} is true, otherwise will fire when the
+     *  user clicks the filter button or presses the Enter key while focus is in the Filter Editor.
      *  <p>
      *  Use event.cancel()
      *  
@@ -37,9 +41,10 @@ public interface HasFilterEditorSubmitHandlers extends HasHandlers {
      *  affects the criteria applied to the grid.
      *  <P>
      *  The <code>criteria</code> parameter contains the current criteria applied to the
-     *  grid including edits the user has just made using the Filter Editor.  This matches
-     * what is returned if you call {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterEditorCriteria
-     * getFilterEditorCriteria()}.
+     *  grid including edits the user has just made using the Filter Editor and those applied
+     *  with the {@link com.smartgwt.client.widgets.grid.ListGrid#showFilterWindow advanced filtering dialog}. A call to
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterEditorCriteria getFilterEditorCriteria()} does not include the
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterWindowCriteria advanced filtering criteria}.
      *  <P>
      *  If you wish to access the <code>criteria</code> applied to the grid without picking
      * up any edits to the Filter Editor, use {@link com.smartgwt.client.widgets.grid.ListGrid#getCriteria getCriteria()}

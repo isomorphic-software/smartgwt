@@ -71,7 +71,7 @@ package com.smartgwt.client.docs;
  *  <li> Windows and Dialogs fill the screen by default and remove rounded edges to save space
  *  <li> many controls implement an expanded hit area for clicks or drags so that finger touches
  *       that are technically outside of the drawn area of the control still activate the
- *       control.  This accomodates the imprecision of finger touches as compared to mouse
+ *       control.  This accommodates the imprecision of finger touches as compared to mouse
  *       clicks, while still showing the same compact appearance as is used for desktop
  * interfaces.  This includes the {@link com.smartgwt.client.widgets.Slider} thumb, {@link
  * com.smartgwt.client.widgets.Window#getHeaderControls Window.headerControls},
@@ -308,11 +308,10 @@ package com.smartgwt.client.docs;
  *  &lt;/script&gt;</pre>
  *  For more information on the mobile device viewport, see:
  *  <ul>
- * <li><a
- * href='http://developer.apple.com/safari/library/documentation/AppleApplications/Reference/SafariWebContent/UsingtheViewport/UsingtheViewport.html'
- * target='_blank'>Configuring the Viewport - Safari Web Content Guide</a></li>
- * <li><a href='https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag'
- * target='_blank'>Using the viewport meta tag to control layout on mobile browsers - MDN</a></li>
+ * <li><a href='https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag'
+ * target='_blank'>Using the viewport meta tag to control layout on mobile browsers [MDN]</a></li>
+ * <li><a href='https://www.w3schools.com/css/css_rwd_viewport.asp' target='_blank'>Responsive Web
+ * Design - The Viewport [w3schools]</a></li>
  *  </ul>
  *  <p>
  *  <h3>Orientation Change &amp; Screen Size</h3>

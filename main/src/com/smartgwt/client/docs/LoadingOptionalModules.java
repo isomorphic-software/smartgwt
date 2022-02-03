@@ -5,8 +5,13 @@ package com.smartgwt.client.docs;
  * <h3>Loading Optional Modules</h3>
  * 
  *  
- * <p>If your Smart GWT install includes an optional module, it must be added as an
- * &lt;inherits&gt;
+ *  <P>
+ * <i>See the <a href='https://www.smartclient.com/product/' target='_blank'>SmartGWT product
+ * page</a> 
+ * for an overview of which optional modules are available with the various editions of
+ * SmartGWT.</i>
+ *  <p>
+ *  If your Smart GWT install includes an optional module, it must be added as an &lt;inherits&gt;
  *  tag in your <i>moduleName</i>.gwt.xml module file for it to be used. Some optional modules 
  *  require an additional .jar file (eg analytics.jar), whereas some are bundled in smartgwt.jar
  *  automatically. Where applicable, additional module .jar files are included in
@@ -26,13 +31,13 @@ package com.smartgwt.client.docs;
  *     &lt;dependency&gt;
  *         &lt;groupId&gt;com.isomorphic.smartgwt.enterprise&lt;/groupId&gt;
  *         &lt;artifactId&gt;smartgwt-enterprise&lt;/artifactId&gt;
- *         &lt;version&gt;\${smartgwt.version}&lt;/version&gt;
+ *         &lt;version&gt;&#36;{smartgwt.version}&lt;/version&gt;
  *     &lt;/dependency&gt;
  *     &lt;!-- Analytics optional module --&gt;
  *     &lt;dependency&gt;
  *          &lt;groupId&gt;com.isomorphic.smartgwt.enterprise&lt;/groupId&gt;
  *          &lt;artifactId&gt;smartgwt-analytics&lt;/artifactId&gt;
- *          &lt;version&gt;\${smartgwt.version}&lt;/version&gt;
+ *          &lt;version&gt;&#36;{smartgwt.version}&lt;/version&gt;
  *     &lt;/dependency&gt;
  *  </pre>
  *  <P>
@@ -41,13 +46,6 @@ package com.smartgwt.client.docs;
  *  <tr>
  *  <td><i><b>Module</b></i></td>
  *  <td><i><b>Add this to your .gwt.xml file</b></i></td>
- *  </tr>
- *  <tr>
- *  <td><b>Drawing</b> (included in <code>smartgwt.jar</code>)<br>
- * Required for {@link com.smartgwt.client.widgets.drawing.DrawPane} and {@link
- * com.smartgwt.client.widgets.drawing.DrawItem}.
- *  </td>
- *  <td><pre>&lt;inherits name="com.smartgwt.Drawing"/&gt;</pre></td>
  *  </tr>
  *  <tr>
  *  <td><b>PluginBridges</b> (included in <code>smartgwt.jar</code>)<br>
@@ -80,19 +78,22 @@ package com.smartgwt.client.docs;
  *  <td><pre>&lt;inherits name="com.smartgwt.RealtimeMessaging"/&gt;</pre></td>
  *  </tr>
  *  <tr>
- *  <td><b>Workflow</b> (included in <code>smartgwt.jar</code>)<br>
- * Required for {@link com.smartgwt.client.util.workflow.Process}. The ability to define a
- * workflow in XML is Pro+ only, in LGPL
- *  the workflow engine can only be used programmatically.
+ *  <td><b>Tour</b> (included in <code>smartgwt.jar</code>)<br>
+ *  Required for {@link com.smartgwt.client.util.tour.Tour}.
  *  </td>
- *  <td><pre>&lt;inherits name="com.smartgwt.Workflow"/&gt;</pre></td>
+ *  <td><pre>&lt;inherits name="com.smartgwtpower.Tour"/&gt;</pre><br>
+ *  or<br>
+ *  <pre>&lt;inherits name="com.smartgwtee.Tour"/&gt;</pre>
+ *  </td>
  *  </tr>
  *  <tr>
  *  <td><b>SmartGwtTools</b> (included in <code>smartgwt.jar</code>)<br>
- * Required for the {@link com.smartgwt.client.docs.Debugging developer console}.  Imports
- * <code>/development</code>
- *  Framework, including the tools module.  This module should always be listed <i>before</i> the
- *  SmartGwtXXX module and any other modules from above in your <i>moduleName</i>.gwt.xml file.
+ * Required for the {@link com.smartgwt.client.docs.Debugging developer console} in SGWT LGPL. 
+ * Imports
+ *  <code>/development</code> Framework, including the tools module.  This module should always
+ *  be listed <i>before</i> the SmartGwtXXX module and any other modules from above in your
+ *  <i>moduleName</i>.gwt.xml file.  Not needed for SGWT Pro/Power/Enterprise as the
+ *  <code>/development</code> Framework is present by default.
  *  <BR><BR>
  *  Note that the developer console has minor functionality issues unless Enterprise skin is
  *  used, so by default inheriting the <pre style="display:inline">SmartGwtTools</pre> module
@@ -101,7 +102,8 @@ package com.smartgwt.client.docs;
  *  </td><td>
  *  <pre style="display:inline;">&lt;inherits name="com.smartgwt.tools.SmartGwtTools"/&gt;</pre>
  *  </td><tr>
- *  <td><b>Tools</b> (included in <code>smartgwt.jar</code>)<br>
+ *  <td><b>Tools</b> (included in <code>smartgwt.jar</code> for LGPL, otherwise smartgwtee.jar)
+ *  <br>
  * Required for {@link com.smartgwt.client.docs.DevTools}. This module should always be listed
  * <i>after</i> any
  *  other modules from above in your <i>moduleName</i>.gwt.xml file.
@@ -123,7 +125,7 @@ package com.smartgwt.client.docs;
  *  >&lt;inherits name="com.smartclientee.toolskin.ToolSkinResources"/&gt;</pre>
  *  <pre>&lt;inherits name="com.smartclientee.toolskinnative.ToolSkinNativeResources"/&gt;</pre>
  *  <P>
- *  VisualBuilder requires inheriting Tahoe Resources:<P>
+ *  Reify requires inheriting Tahoe Resources:<P>
  *  <pre>&lt;inherits name="com.smartclient.theme.tahoe.TahoeResources"/&gt;</pre>
  *  See the {@link com.smartgwt.client.docs.Skinning} help topic for an overview.
  *  </td>

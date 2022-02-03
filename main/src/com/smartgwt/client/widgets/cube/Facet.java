@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -392,6 +397,8 @@ public class Facet extends RefDataClass {
      *
      * @param isTree New isTree value. Default value is false
      * @return {@link com.smartgwt.client.widgets.cube.Facet Facet} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.cube.Facet#setShowParentsLast
+     * @see com.smartgwt.client.widgets.cube.Facet#setSeparateFolders
      */
     public Facet setIsTree(Boolean isTree) {
         return (Facet)setAttribute("isTree", isTree);
@@ -410,6 +417,8 @@ public class Facet extends RefDataClass {
      * specific to {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrids}.
      *
      * @return Current isTree value. Default value is false
+     * @see com.smartgwt.client.widgets.cube.Facet#getShowParentsLast
+     * @see com.smartgwt.client.widgets.cube.Facet#getSeparateFolders
      */
     public Boolean getIsTree()  {
         Boolean result = getAttributeAsBoolean("isTree", true);
@@ -547,6 +556,33 @@ public class Facet extends RefDataClass {
     
 
     /**
+     * Should folders in the facet tree be sorted separately from leaves or should the facet values retain their data order
+     * regardless of whether a value is a leaf or folder in the tree?
+     *
+     * @param separateFolders New separateFolders value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.cube.Facet Facet} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.cube.Facet#setShowParentsLast
+     * @see com.smartgwt.client.widgets.cube.Facet#setSortFoldersBeforeLeaves
+     */
+    public Facet setSeparateFolders(Boolean separateFolders) {
+        return (Facet)setAttribute("separateFolders", separateFolders);
+    }
+
+    /**
+     * Should folders in the facet tree be sorted separately from leaves or should the facet values retain their data order
+     * regardless of whether a value is a leaf or folder in the tree?
+     *
+     * @return Current separateFolders value. Default value is false
+     * @see com.smartgwt.client.widgets.cube.Facet#getShowParentsLast
+     * @see com.smartgwt.client.widgets.cube.Facet#getSortFoldersBeforeLeaves
+     */
+    public Boolean getSeparateFolders()  {
+        Boolean result = getAttributeAsBoolean("separateFolders", true);
+        return result == null ? false : result;
+    }
+    
+
+    /**
      * Indicates internal hierarchy should be displayed in reverse of normal tree order (so that parents follow children). <P>
      * <b>Note:</b>  This property is specific to {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrids}.
      *
@@ -566,6 +602,33 @@ public class Facet extends RefDataClass {
     public Boolean getShowParentsLast()  {
         Boolean result = getAttributeAsBoolean("showParentsLast", true);
         return result == null ? false : result;
+    }
+    
+
+    /**
+     * If {@link com.smartgwt.client.widgets.cube.Facet#getSeparateFolders separateFolders} is true, should folders be
+     * displayed above or below leaves? When set to <code>true</code> folders will appear above leaves unless the data order
+     * has been reversed by setting {@link com.smartgwt.client.widgets.cube.Facet#getShowParentsLast showParentsLast} to
+     * <code>true</code>.
+     *
+     * @param sortFoldersBeforeLeaves New sortFoldersBeforeLeaves value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.cube.Facet Facet} instance, for chaining setter calls
+     */
+    public Facet setSortFoldersBeforeLeaves(Boolean sortFoldersBeforeLeaves) {
+        return (Facet)setAttribute("sortFoldersBeforeLeaves", sortFoldersBeforeLeaves);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.cube.Facet#getSeparateFolders separateFolders} is true, should folders be
+     * displayed above or below leaves? When set to <code>true</code> folders will appear above leaves unless the data order
+     * has been reversed by setting {@link com.smartgwt.client.widgets.cube.Facet#getShowParentsLast showParentsLast} to
+     * <code>true</code>.
+     *
+     * @return Current sortFoldersBeforeLeaves value. Default value is true
+     */
+    public Boolean getSortFoldersBeforeLeaves()  {
+        Boolean result = getAttributeAsBoolean("sortFoldersBeforeLeaves", true);
+        return result == null ? true : result;
     }
     
 

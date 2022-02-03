@@ -6,6 +6,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
@@ -53,7 +54,9 @@ public class MenuLogicalStructure extends ListGridLogicalStructure {
     public String baseStyle;
     public String bodyStyleName;
     public String cancelButtonTitle;
+    public String canSaveSearches;
     public String canSelectParentItems;
+    public String canShowFilterEditor;
     public String cascadeAutoDismiss;
     public String cellHeight;
     public DataSource dataSource;
@@ -64,11 +67,13 @@ public class MenuLogicalStructure extends ListGridLogicalStructure {
     public String[] fieldsAsStringArrayArray;
     public ListGridField[] fieldsAsListGridFieldArray;
     public String fillSpaceStyleName;
+    public String filterHiddenItems;
     public String iconBodyStyleName;
     public String iconFillSpaceStyleName;
     public String iconHeight;
     public String iconWidth;
     public Criteria initialCriteria;
+    public String itemHiddenProperty;
     public String menuButtonWidth;
     public String placement;
     public String showAnimationEffect;

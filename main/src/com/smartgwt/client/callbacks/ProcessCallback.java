@@ -17,19 +17,17 @@
  
 package com.smartgwt.client.callbacks;
 
-import com.smartgwt.client.data.DSResponse;
 import com.smartgwt.client.util.workflow.Process;
 
 public interface ProcessCallback {
 
     /** 
-     * A {@link com.smartgwt.client.docs.Callback} to evaluate when an {Process.loadProcess} method completes. <p> Loaded
-     * process passed as a parameter to this callback are:
+     * A {@link com.smartgwt.client.docs.Callback} to evaluate when a Process has been loaded via  {@link
+     * com.smartgwt.client.util.workflow.Process#loadProcess Process.loadProcess()}.
      *
-     * @param dsResponse a {@link com.smartgwt.client.data.DSResponse} instance with metadata about the returned data
-     * @param process 
+     * @param process the loaded Process
      * @see com.smartgwt.client.util.workflow.Process
      * @see com.smartgwt.client.rpc.RPCResponse
      */
-	public void execute(DSResponse dsResponse, Process process);
+	public void execute(Process process);
 } 

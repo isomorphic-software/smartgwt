@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -167,6 +172,28 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
 
 
     // ********************* Properties / Attributes ***********************
+
+    /**
+     * Dropping a component near the edge of another component allows the component to be dropped through an ancestor
+     * component. To suppress this action set <code>allowDropThrough</code> to false.
+     *
+     * @param allowDropThrough New allowDropThrough value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
+     */
+    public EditContext setAllowDropThrough(Boolean allowDropThrough) {
+        return (EditContext)setAttribute("allowDropThrough", allowDropThrough, true);
+    }
+
+    /**
+     * Dropping a component near the edge of another component allows the component to be dropped through an ancestor
+     * component. To suppress this action set <code>allowDropThrough</code> to false.
+     *
+     * @return Current allowDropThrough value. Default value is null
+     */
+    public Boolean getAllowDropThrough()  {
+        return getAttributeAsBoolean("allowDropThrough");
+    }
+    
 
     /**
      * Controls whether components can be dropped into other components which support child components.  <p> When enabled,
@@ -564,9 +591,9 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * calls and user interaction (drag reposition or drag resize). <p> This feature can be disabled by either setting this
      * property or {@link com.smartgwt.client.tools.EditProxy#getPersistCoordinates EditProxy.persistCoordinates} to
      * <code>false</code>. This property affects all nodes within the EditContext whereas the latter property affects children
-     * of a single node.  <p> In some use-cases, like VisualBuilder, coordinates should not be persisted except when a
-     * component explicitly enables this feature. By setting this property to <code>null</code> no component will persist
-     * coordinates of children unless <code>EditProxy.persistCoordinates</code> is explicitly set to <code>true</code>.
+     * of a single node.  <p> In some use-cases, like Reify, coordinates should not be persisted except when a component
+     * explicitly enables this feature. By setting this property to <code>null</code> no component will persist coordinates of
+     * children unless <code>EditProxy.persistCoordinates</code> is explicitly set to <code>true</code>.
      *
      * @param persistCoordinates New persistCoordinates value. Default value is true
      * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
@@ -581,9 +608,9 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * calls and user interaction (drag reposition or drag resize). <p> This feature can be disabled by either setting this
      * property or {@link com.smartgwt.client.tools.EditProxy#getPersistCoordinates EditProxy.persistCoordinates} to
      * <code>false</code>. This property affects all nodes within the EditContext whereas the latter property affects children
-     * of a single node.  <p> In some use-cases, like VisualBuilder, coordinates should not be persisted except when a
-     * component explicitly enables this feature. By setting this property to <code>null</code> no component will persist
-     * coordinates of children unless <code>EditProxy.persistCoordinates</code> is explicitly set to <code>true</code>.
+     * of a single node.  <p> In some use-cases, like Reify, coordinates should not be persisted except when a component
+     * explicitly enables this feature. By setting this property to <code>null</code> no component will persist coordinates of
+     * children unless <code>EditProxy.persistCoordinates</code> is explicitly set to <code>true</code>.
      *
      * @return Current persistCoordinates value. Default value is true
      */
@@ -1218,6 +1245,21 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
     }-*/;
 	
 	/**
+     * Notification fired when an {@link com.smartgwt.client.tools.EditNode} is converted to a different type when moved from
+     * one container to another.
+     * @param origNode node that was being moved
+     * @param newNode node that was placed into new container
+     * @param parentNode parent node of the drop
+     */
+    public native void convertedNode(EditNode origNode, EditNode newNode, EditNode parentNode) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "convertedNode", "EditNode,EditNode,EditNode");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.convertedNode(origNode.@com.smartgwt.client.core.DataClass::getJsObj()(), newNode.@com.smartgwt.client.core.DataClass::getJsObj()(), parentNode.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+	/**
      * Copies the passed editNode or editNodes to an internal "clipboard" space, for later application via {@link
      * com.smartgwt.client.tools.EditContext#pasteEditNodes pasteEditNodes()}.
      * @param editNode 
@@ -1325,6 +1367,40 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
         if (obj && obj.hasOwnProperty("editMaskClicked")) delete obj.editMaskClicked;
     }-*/;
 
+	/**
+     * Does the {@link com.smartgwt.client.tools.EditNode editNode} have a DataSource assigned?
+     * @param editNode editNode to check for a DataSource
+     *
+     * @return true if the editNode has a DataSource assigned
+     */
+    public native Boolean editNodeHasDataSource(EditNode editNode) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "editNodeHasDataSource", "EditNode");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.editNodeHasDataSource(editNode.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+	/**
+     * Does the {@link com.smartgwt.client.tools.EditNode editNode} have at least one field assigned? <P> Note that if this
+     * method is called for a component editNode that could have child components rather than fields, it will return
+     * <code>true</code> if there are any child nodes other than a DataSource.
+     * @param editNode editNode to check for fields
+     *
+     * @return true if the editNode has fields or child nodes other than a DataSource
+     */
+    public native Boolean editNodeHasFields(EditNode editNode) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "editNodeHasFields", "EditNode");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.editNodeHasFields(editNode.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
     /**
      * Add a editNodeUpdated handler.
      * <p>
@@ -1386,6 +1462,70 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
     }-*/;
 
 	/**
+     * Returns {@link com.smartgwt.client.tools.EditNode EditNodes} as an array that match the specified type or types. By
+     * default the <code>types</code> are matched against the {@link com.smartgwt.client.tools.EditNode#getType EditNode.type}
+     * or the general type of the component. By setting <code>strict</code> to <code>true</code> the match is made against the
+     * editNode type exactly. <P> For example, searching for "Canvas" nodes will return nodes for any component that derives
+     * from Canvas unless <code>strict</code> is set. In the strict case, the search will only return nodes for explict Canvas
+     * nodes.
+     * @param types type or types of nodes to find
+     *
+     * @return the filtered list of EditNodes
+     */
+    public native EditNode[] getEditNodesByType(String... types) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getEditNodesByType", "String...");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getEditNodesByType(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(types));
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.ConvertTo::arrayOfEditNode(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * Returns {@link com.smartgwt.client.tools.EditNode EditNodes} as an array that match the specified type or types. By
+     * default the <code>types</code> are matched against the {@link com.smartgwt.client.tools.EditNode#getType EditNode.type}
+     * or the general type of the component. By setting <code>strict</code> to <code>true</code> the match is made against the
+     * editNode type exactly. <P> For example, searching for "Canvas" nodes will return nodes for any component that derives
+     * from Canvas unless <code>strict</code> is set. In the strict case, the search will only return nodes for explict Canvas
+     * nodes.
+     * @param types type or types of nodes to find
+     *
+     * @return the filtered list of EditNodes
+     */
+    public native EditNode[] getEditNodesByType(String types) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getEditNodesByType", "String");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getEditNodesByType(types);
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.ConvertTo::arrayOfEditNode(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * Returns {@link com.smartgwt.client.tools.EditNode EditNodes} as an array that match the specified type or types. By
+     * default the <code>types</code> are matched against the {@link com.smartgwt.client.tools.EditNode#getType EditNode.type}
+     * or the general type of the component. By setting <code>strict</code> to <code>true</code> the match is made against the
+     * editNode type exactly. <P> For example, searching for "Canvas" nodes will return nodes for any component that derives
+     * from Canvas unless <code>strict</code> is set. In the strict case, the search will only return nodes for explict Canvas
+     * nodes.
+     * @param types type or types of nodes to find
+     * @param strict true to match the {@link com.smartgwt.client.tools.EditNode#getType EditNode.type} exactly
+     *
+     * @return the filtered list of EditNodes
+     */
+    public native EditNode[] getEditNodesByType(String[] types, boolean strict) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getEditNodesByType", "String[],boolean");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getEditNodesByType(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(types), strict);
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.ConvertTo::arrayOfEditNode(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+	
+	/**
      * Gets the tree of editNodes being edited by this editContext. Standard tree traversal methods can then be used to locate
      * desired editNodes for interaction. <P> <B>Note: the returned tree is read-only and must only be modified by calling
      * methods on EditContext like {@link com.smartgwt.client.tools.EditContext#addNode addNode()} or {@link
@@ -1404,6 +1544,20 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
     }-*/;
 
 	/**
+     * Returns the specified property from the editNode's serializable "defaults".
+     * @param editNode the editNode to query
+     * @param name the property name to query
+     * @see com.smartgwt.client.tools.EditContext#setNodeProperties
+     */
+    public native void getNodeProperty(EditNode editNode, String name) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getNodeProperty", "EditNode,String");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.getNodeProperty(editNode.@com.smartgwt.client.core.DataClass::getJsObj()(), name);
+    }-*/;
+
+	/**
      * Obtain {@link com.smartgwt.client.tools.PaletteNode PaletteNodes} from a JavaScript source representation. <P> By
      * default, components that have {@link com.smartgwt.client.widgets.Canvas#getID global IDs} will not actually be allowed
      * to take those global IDs - instead, only widgets that have one of the global IDs passed as the <code>globals</code>
@@ -1419,7 +1573,8 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.getPaletteNodesFromJS(jsCode, 
 			$entry( function(paletteNodes) { 
-				if(callback!=null) callback.@com.smartgwt.client.callbacks.PaletteNodeCallback::execute([Lcom/smartgwt/client/tools/PaletteNode;)(@com.smartgwt.client.util.ConvertTo::arrayOfPaletteNode(Lcom/google/gwt/core/client/JavaScriptObject;)(paletteNodes)
+				if(callback!=null) callback.@com.smartgwt.client.callbacks.PaletteNodeCallback::execute([Lcom/smartgwt/client/tools/PaletteNode;)(
+					paletteNodes != null ? @com.smartgwt.client.util.ConvertTo::arrayOfPaletteNode(Lcom/google/gwt/core/client/JavaScriptObject;)(paletteNodes) : null
 				);
 			}));
     }-*/;
@@ -1441,7 +1596,8 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.getPaletteNodesFromJS(jsCode, 
 			$entry( function(paletteNodes) { 
-				if(callback!=null) callback.@com.smartgwt.client.callbacks.PaletteNodeCallback::execute([Lcom/smartgwt/client/tools/PaletteNode;)(@com.smartgwt.client.util.ConvertTo::arrayOfPaletteNode(Lcom/google/gwt/core/client/JavaScriptObject;)(paletteNodes)
+				if(callback!=null) callback.@com.smartgwt.client.callbacks.PaletteNodeCallback::execute([Lcom/smartgwt/client/tools/PaletteNode;)(
+					paletteNodes != null ? @com.smartgwt.client.util.ConvertTo::arrayOfPaletteNode(Lcom/google/gwt/core/client/JavaScriptObject;)(paletteNodes) : null
 				);
 			}), @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(globals));
     }-*/;
@@ -1461,7 +1617,8 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.getPaletteNodesFromXML(xmlString, 
 			$entry( function(paletteNodes) { 
-				if(callback!=null) callback.@com.smartgwt.client.callbacks.PaletteNodeCallback::execute([Lcom/smartgwt/client/tools/PaletteNode;)(@com.smartgwt.client.util.ConvertTo::arrayOfPaletteNode(Lcom/google/gwt/core/client/JavaScriptObject;)(paletteNodes)
+				if(callback!=null) callback.@com.smartgwt.client.callbacks.PaletteNodeCallback::execute([Lcom/smartgwt/client/tools/PaletteNode;)(
+					paletteNodes != null ? @com.smartgwt.client.util.ConvertTo::arrayOfPaletteNode(Lcom/google/gwt/core/client/JavaScriptObject;)(paletteNodes) : null
 				);
 			}));
     }-*/;
@@ -1510,6 +1667,19 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
         var ret = self.getSelectedEditNodes();
         if(ret == null) return null;
         return @com.smartgwt.client.util.ConvertTo::arrayOfEditNode(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * Notification method fired when an inline title or value editor is shown or closed for a component in the designer pane.
+     * @param field the field within the inline editor when showing.                         null if the editor is closed.
+     * @param type the type of editor showing: "title" or "value"
+     */
+    public native void inlineEditorShowing(FormItem field, String type) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "inlineEditorShowing", "FormItem,String");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.inlineEditorShowing(field.@com.smartgwt.client.core.DataClass::getJsObj()(), type);
     }-*/;
 
 	/**
@@ -2004,6 +2174,7 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * @param editNode the editNode to update
      * @param properties the properties to apply
      * @see com.smartgwt.client.tools.EditContext#removeNodeProperties
+     * @see com.smartgwt.client.tools.EditContext#getNodeProperty
      */
     public native void setNodeProperties(EditNode editNode, Canvas properties) /*-{
         if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
@@ -2030,6 +2201,7 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * com.smartgwt.client.tools.EditNode#getLiveObject liveObject},                                         e.g. if you have
      * already updated the liveObject
      * @see com.smartgwt.client.tools.EditContext#removeNodeProperties
+     * @see com.smartgwt.client.tools.EditContext#getNodeProperty
      */
     public native void setNodeProperties(EditNode editNode, Canvas properties, Boolean skipLiveObjectUpdate) /*-{
         if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
@@ -2047,6 +2219,21 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
 			skipLiveObjectUpdate == null ? null : skipLiveObjectUpdate.@java.lang.Boolean::booleanValue()());
     }-*/;
 	
+	/**
+     * Notification fired when a different {@link com.smartgwt.client.tools.PaletteNode} is substituted for one being dropped
+     * into a container.
+     * @param origNode node that was originally dropped
+     * @param newNode node that was substituted
+     * @param parentNode parent node of the drop
+     */
+    public native void substitutedNode(PaletteNode origNode, PaletteNode newNode, EditNode parentNode) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "substitutedNode", "PaletteNode,PaletteNode,EditNode");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.substitutedNode(origNode.@com.smartgwt.client.core.DataClass::getJsObj()(), newNode.@com.smartgwt.client.core.DataClass::getJsObj()(), parentNode.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
 
     // ********************* Static Methods ***********************
 

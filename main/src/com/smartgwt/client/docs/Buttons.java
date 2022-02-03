@@ -14,6 +14,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Dialog#doneClick
  * @see com.smartgwt.client.widgets.Dialog#buttonClick
  * @see com.smartgwt.client.widgets.events.ButtonClickEvent
+ * @see com.smartgwt.client.widgets.tour.TourWindow#cancelClick
+ * @see com.smartgwt.client.widgets.tour.TourWindow#actionClick
  * @see com.smartgwt.client.widgets.toolbar.Toolbar#getButton
  */
 public interface Buttons {

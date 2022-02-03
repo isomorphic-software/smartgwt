@@ -21,9 +21,9 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface DrawEndHandler extends EventHandler {
     /**
-     * Called after we finish drawing to the underlying HTML5 &lt;canvas&gt; element of a DrawPane, after the last {@link
-     * com.smartgwt.client.widgets.drawing.DrawItem} has been drawn.  Only called if the {@link
-     * com.smartgwt.client.types.DrawingType} is  {@link com.smartgwt.client.types.DrawingType#BITMAP}.
+     * Called when we finish drawing for this DrawItem to the {@link com.smartgwt.client.widgets.drawing.DrawItem#getDrawPane
+     * drawPane}'s underlying HTML5 &lt;canvas&gt; element.  Only called if the {@link com.smartgwt.client.types.DrawingType}
+     * is  {@link com.smartgwt.client.types.DrawingType#BITMAP}.
      *
      * @param event the event
      */

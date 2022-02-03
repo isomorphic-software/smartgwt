@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * The CubeGrid is an interactive grid component that presents very large, multi-dimensional data sets (also known as data
@@ -281,6 +287,26 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      */
     public TextMatchStyle getAutoFetchTextMatchStyle()  {
         return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
+    }
+    
+
+    /**
+     * Title for the auto-fit column menu item.
+     *
+     * @param autoFitColumnTitle New autoFitColumnTitle value. Default value is "AutoFit Column"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setAutoFitColumnTitle(String autoFitColumnTitle) {
+        return (CubeGrid)setAttribute("autoFitColumnTitle", autoFitColumnTitle, true);
+    }
+
+    /**
+     * Title for the auto-fit column menu item.
+     *
+     * @return Current autoFitColumnTitle value. Default value is "AutoFit Column"
+     */
+    public String getAutoFitColumnTitle()  {
+        return getAttributeAsString("autoFitColumnTitle");
     }
     
 
@@ -843,6 +869,66 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     
 
     /**
+     * Title for the Chart dialog.
+     *
+     * @param chartDialogTitle New chartDialogTitle value. Default value is "Chart"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setChartDialogTitle(String chartDialogTitle) {
+        return (CubeGrid)setAttribute("chartDialogTitle", chartDialogTitle, true);
+    }
+
+    /**
+     * Title for the Chart dialog.
+     *
+     * @return Current chartDialogTitle value. Default value is "Chart"
+     */
+    public String getChartDialogTitle()  {
+        return getAttributeAsString("chartDialogTitle");
+    }
+    
+
+    /**
+     * Title for the Chart menu item.
+     *
+     * @param chartItemTitle New chartItemTitle value. Default value is "Chart"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setChartItemTitle(String chartItemTitle) {
+        return (CubeGrid)setAttribute("chartItemTitle", chartItemTitle, true);
+    }
+
+    /**
+     * Title for the Chart menu item.
+     *
+     * @return Current chartItemTitle value. Default value is "Chart"
+     */
+    public String getChartItemTitle()  {
+        return getAttributeAsString("chartItemTitle");
+    }
+    
+
+    /**
+     * Title for the stacked chart item.
+     *
+     * @param chartStackedTitle New chartStackedTitle value. Default value is "Stacked"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setChartStackedTitle(String chartStackedTitle) {
+        return (CubeGrid)setAttribute("chartStackedTitle", chartStackedTitle, true);
+    }
+
+    /**
+     * Title for the stacked chart item.
+     *
+     * @return Current chartStackedTitle value. Default value is "Stacked"
+     */
+    public String getChartStackedTitle()  {
+        return getAttributeAsString("chartStackedTitle");
+    }
+    
+
+    /**
      * Default type of chart to plot.
      *
      * @param chartType New chartType value. Default value is "Column"
@@ -859,6 +945,26 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      */
     public ChartType getChartType()  {
         return EnumUtil.getEnum(ChartType.values(), getAttribute("chartType"));
+    }
+    
+
+    /**
+     * Title for the chart-type control.
+     *
+     * @param chartTypeTitle New chartTypeTitle value. Default value is "Chart Type"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setChartTypeTitle(String chartTypeTitle) {
+        return (CubeGrid)setAttribute("chartTypeTitle", chartTypeTitle, true);
+    }
+
+    /**
+     * Title for the chart-type control.
+     *
+     * @return Current chartTypeTitle value. Default value is "Chart Type"
+     */
+    public String getChartTypeTitle()  {
+        return getAttributeAsString("chartTypeTitle");
     }
     
 
@@ -936,6 +1042,126 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      */
     public String[] getColumnFacets()  {
         return com.smartgwt.client.util.ConvertTo.arrayOfString(getAttributeAsJavaScriptObject("columnFacets"));
+    }
+    
+
+    /**
+     * Title for the close control.
+     *
+     * @param controlCloseTitle New controlCloseTitle value. Default value is "Close"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setControlCloseTitle(String controlCloseTitle) {
+        return (CubeGrid)setAttribute("controlCloseTitle", controlCloseTitle, true);
+    }
+
+    /**
+     * Title for the close control.
+     *
+     * @return Current controlCloseTitle value. Default value is "Close"
+     */
+    public String getControlCloseTitle()  {
+        return getAttributeAsString("controlCloseTitle");
+    }
+    
+
+    /**
+     * Title for the maximize control.
+     *
+     * @param controlMaximizeTitle New controlMaximizeTitle value. Default value is "Maximize"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setControlMaximizeTitle(String controlMaximizeTitle) {
+        return (CubeGrid)setAttribute("controlMaximizeTitle", controlMaximizeTitle, true);
+    }
+
+    /**
+     * Title for the maximize control.
+     *
+     * @return Current controlMaximizeTitle value. Default value is "Maximize"
+     */
+    public String getControlMaximizeTitle()  {
+        return getAttributeAsString("controlMaximizeTitle");
+    }
+    
+
+    /**
+     * Title for the minimize control.
+     *
+     * @param controlMinimizeTitle New controlMinimizeTitle value. Default value is "Minimize"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setControlMinimizeTitle(String controlMinimizeTitle) {
+        return (CubeGrid)setAttribute("controlMinimizeTitle", controlMinimizeTitle, true);
+    }
+
+    /**
+     * Title for the minimize control.
+     *
+     * @return Current controlMinimizeTitle value. Default value is "Minimize"
+     */
+    public String getControlMinimizeTitle()  {
+        return getAttributeAsString("controlMinimizeTitle");
+    }
+    
+
+    /**
+     * Title for the resizeHandle control.
+     *
+     * @param controlReorderHandleTitle New controlReorderHandleTitle value. Default value is "Move"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setControlReorderHandleTitle(String controlReorderHandleTitle) {
+        return (CubeGrid)setAttribute("controlReorderHandleTitle", controlReorderHandleTitle, true);
+    }
+
+    /**
+     * Title for the resizeHandle control.
+     *
+     * @return Current controlReorderHandleTitle value. Default value is "Move"
+     */
+    public String getControlReorderHandleTitle()  {
+        return getAttributeAsString("controlReorderHandleTitle");
+    }
+    
+
+    /**
+     * Title for the sort-down control.
+     *
+     * @param controlSortDownTitle New controlSortDownTitle value. Default value is "Sort Down"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setControlSortDownTitle(String controlSortDownTitle) {
+        return (CubeGrid)setAttribute("controlSortDownTitle", controlSortDownTitle, true);
+    }
+
+    /**
+     * Title for the sort-down control.
+     *
+     * @return Current controlSortDownTitle value. Default value is "Sort Down"
+     */
+    public String getControlSortDownTitle()  {
+        return getAttributeAsString("controlSortDownTitle");
+    }
+    
+
+    /**
+     * Title for the sort-up control.
+     *
+     * @param controlSortUpTitle New controlSortUpTitle value. Default value is "Sort Up"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setControlSortUpTitle(String controlSortUpTitle) {
+        return (CubeGrid)setAttribute("controlSortUpTitle", controlSortUpTitle, true);
+    }
+
+    /**
+     * Title for the sort-up control.
+     *
+     * @return Current controlSortUpTitle value. Default value is "Sort Up"
+     */
+    public String getControlSortUpTitle()  {
+        return getAttributeAsString("controlSortUpTitle");
     }
     
     
@@ -1593,6 +1819,26 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     
 
     /**
+     * Title for the Field-visibility submenu item.
+     *
+     * @param fieldVisibilitySubmenuTitle New fieldVisibilitySubmenuTitle value. Default value is "Values"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setFieldVisibilitySubmenuTitle(String fieldVisibilitySubmenuTitle) {
+        return (CubeGrid)setAttribute("fieldVisibilitySubmenuTitle", fieldVisibilitySubmenuTitle, true);
+    }
+
+    /**
+     * Title for the Field-visibility submenu item.
+     *
+     * @return Current fieldVisibilitySubmenuTitle value. Default value is "Values"
+     */
+    public String getFieldVisibilitySubmenuTitle()  {
+        return getAttributeAsString("fieldVisibilitySubmenuTitle");
+    }
+    
+
+    /**
      * A {@link com.smartgwt.client.widgets.cube.FacetValueMap} describing the set of facet values that should be regarded as
      * "fixed" in this cubeGrid.  These are used as fixed criteria for load on demand, and also allow using a dataset with more
      * facets in it than are currently shown in the grid.
@@ -1618,6 +1864,26 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      */
     public FacetValueMap getFixedFacetValues()  {
         return new FacetValueMap(getAttributeAsJavaScriptObject("fixedFacetValues"));
+    }
+    
+
+    /**
+     * Title for the hide all highlights menu item.
+     *
+     * @param hideAllHighlightsTitle New hideAllHighlightsTitle value. Default value is "Hide all"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setHideAllHighlightsTitle(String hideAllHighlightsTitle) {
+        return (CubeGrid)setAttribute("hideAllHighlightsTitle", hideAllHighlightsTitle, true);
+    }
+
+    /**
+     * Title for the hide all highlights menu item.
+     *
+     * @return Current hideAllHighlightsTitle value. Default value is "Hide all"
+     */
+    public String getHideAllHighlightsTitle()  {
+        return getAttributeAsString("hideAllHighlightsTitle");
     }
     
 
@@ -1680,6 +1946,66 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      */
     public Boolean getHideEmptyFacetValues()  {
         return getAttributeAsBoolean("hideEmptyFacetValues");
+    }
+    
+
+    /**
+     * Title for the cell highlight menu item.
+     *
+     * @param highlightCellTitle New highlightCellTitle value. Default value is "Highlight Cell"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setHighlightCellTitle(String highlightCellTitle) {
+        return (CubeGrid)setAttribute("highlightCellTitle", highlightCellTitle, true);
+    }
+
+    /**
+     * Title for the cell highlight menu item.
+     *
+     * @return Current highlightCellTitle value. Default value is "Highlight Cell"
+     */
+    public String getHighlightCellTitle()  {
+        return getAttributeAsString("highlightCellTitle");
+    }
+    
+
+    /**
+     * Title for the selection highlight menu item.
+     *
+     * @param highlightSelectionTitle New highlightSelectionTitle value. Default value is "Highlight Selection"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setHighlightSelectionTitle(String highlightSelectionTitle) {
+        return (CubeGrid)setAttribute("highlightSelectionTitle", highlightSelectionTitle, true);
+    }
+
+    /**
+     * Title for the selection highlight menu item.
+     *
+     * @return Current highlightSelectionTitle value. Default value is "Highlight Selection"
+     */
+    public String getHighlightSelectionTitle()  {
+        return getAttributeAsString("highlightSelectionTitle");
+    }
+    
+
+    /**
+     * Title for the highlight menu item.
+     *
+     * @param highlightTitle New highlightTitle value. Default value is "Highlight"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setHighlightTitle(String highlightTitle) {
+        return (CubeGrid)setAttribute("highlightTitle", highlightTitle, true);
+    }
+
+    /**
+     * Title for the highlight menu item.
+     *
+     * @return Current highlightTitle value. Default value is "Highlight"
+     */
+    public String getHighlightTitle()  {
+        return getAttributeAsString("highlightTitle");
     }
     
 
@@ -1777,6 +2103,26 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     
 
     /**
+     * Title for the maximize-column menu item.
+     *
+     * @param maximizeColumnTitle New maximizeColumnTitle value. Default value is "Maximize Column"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setMaximizeColumnTitle(String maximizeColumnTitle) {
+        return (CubeGrid)setAttribute("maximizeColumnTitle", maximizeColumnTitle, true);
+    }
+
+    /**
+     * Title for the maximize-column menu item.
+     *
+     * @return Current maximizeColumnTitle value. Default value is "Maximize Column"
+     */
+    public String getMaximizeColumnTitle()  {
+        return getAttributeAsString("maximizeColumnTitle");
+    }
+    
+
+    /**
      * In a CubeGrid that displays values of different types (eg "Revenue" and "Income"), the different types of values on
      * display are enumerated as the facet values of the "metric facet".   <P> The metric facet is treated identically to any
      * other facet by the CubeGrid: it can be represented as row or column headers, can be innermost or have other facets under
@@ -1810,6 +2156,46 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     
 
     /**
+     * Title for the minimize-column menu item.
+     *
+     * @param minimizeColumnTitle New minimizeColumnTitle value. Default value is "Minimize Column"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setMinimizeColumnTitle(String minimizeColumnTitle) {
+        return (CubeGrid)setAttribute("minimizeColumnTitle", minimizeColumnTitle, true);
+    }
+
+    /**
+     * Title for the minimize-column menu item.
+     *
+     * @return Current minimizeColumnTitle value. Default value is "Minimize Column"
+     */
+    public String getMinimizeColumnTitle()  {
+        return getAttributeAsString("minimizeColumnTitle");
+    }
+    
+
+    /**
+     * Title for the menu item that clears highlights.
+     *
+     * @param noHighlightsTitle New noHighlightsTitle value. Default value is "None"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setNoHighlightsTitle(String noHighlightsTitle) {
+        return (CubeGrid)setAttribute("noHighlightsTitle", noHighlightsTitle, true);
+    }
+
+    /**
+     * Title for the menu item that clears highlights.
+     *
+     * @return Current noHighlightsTitle value. Default value is "None"
+     */
+    public String getNoHighlightsTitle()  {
+        return getAttributeAsString("noHighlightsTitle");
+    }
+    
+
+    /**
      * Whether to pad titles so they aren't flush with header borders.
      *
      * @param padTitles New padTitles value. Default value is true
@@ -1827,6 +2213,46 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     public Boolean getPadTitles()  {
         Boolean result = getAttributeAsBoolean("padTitles");
         return result == null ? true : result;
+    }
+    
+
+    /**
+     * Message displayed when renaming a facet value.
+     *
+     * @param renameFacetValueMessage New renameFacetValueMessage value. Default value is "Enter the new name for this facet value: "
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setRenameFacetValueMessage(String renameFacetValueMessage) {
+        return (CubeGrid)setAttribute("renameFacetValueMessage", renameFacetValueMessage, true);
+    }
+
+    /**
+     * Message displayed when renaming a facet value.
+     *
+     * @return Current renameFacetValueMessage value. Default value is "Enter the new name for this facet value: "
+     */
+    public String getRenameFacetValueMessage()  {
+        return getAttributeAsString("renameFacetValueMessage");
+    }
+    
+
+    /**
+     * Title for the Rename menu item.
+     *
+     * @param renameFacetValueTitle New renameFacetValueTitle value. Default value is "Rename..."
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setRenameFacetValueTitle(String renameFacetValueTitle) {
+        return (CubeGrid)setAttribute("renameFacetValueTitle", renameFacetValueTitle, true);
+    }
+
+    /**
+     * Title for the Rename menu item.
+     *
+     * @return Current renameFacetValueTitle value. Default value is "Rename..."
+     */
+    public String getRenameFacetValueTitle()  {
+        return getAttributeAsString("renameFacetValueTitle");
     }
     
 
@@ -1998,6 +2424,26 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     
 
     /**
+     * Title for the show all highlights menu item.
+     *
+     * @param showAllHighlightsTitle New showAllHighlightsTitle value. Default value is "Show all"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setShowAllHighlightsTitle(String showAllHighlightsTitle) {
+        return (CubeGrid)setAttribute("showAllHighlightsTitle", showAllHighlightsTitle, true);
+    }
+
+    /**
+     * Title for the show all highlights menu item.
+     *
+     * @return Current showAllHighlightsTitle value. Default value is "Show all"
+     */
+    public String getShowAllHighlightsTitle()  {
+        return getAttributeAsString("showAllHighlightsTitle");
+    }
+    
+
+    /**
      * If true, show facet label context menus with some built-in operations. Otherwise, use generic context menu handling.
      *
      * @param showFacetContextMenus New showFacetContextMenus value. Default value is false
@@ -2042,6 +2488,46 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     public boolean getShowFacetValueContextMenus()  {
         Boolean result = getAttributeAsBoolean("showFacetValueContextMenus");
         return result == null ? true : result;
+    }
+    
+
+    /**
+     * Title for the show highlights menu item.
+     *
+     * @param showHighlightsTitle New showHighlightsTitle value. Default value is "Show Highlights"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setShowHighlightsTitle(String showHighlightsTitle) {
+        return (CubeGrid)setAttribute("showHighlightsTitle", showHighlightsTitle, true);
+    }
+
+    /**
+     * Title for the show highlights menu item.
+     *
+     * @return Current showHighlightsTitle value. Default value is "Show Highlights"
+     */
+    public String getShowHighlightsTitle()  {
+        return getAttributeAsString("showHighlightsTitle");
+    }
+    
+
+    /**
+     * Title for the show hover tips menu item.
+     *
+     * @param showHoverTipsTitle New showHoverTipsTitle value. Default value is "Show Hover Tips"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     */
+    public CubeGrid setShowHoverTipsTitle(String showHoverTipsTitle) {
+        return (CubeGrid)setAttribute("showHoverTipsTitle", showHoverTipsTitle, true);
+    }
+
+    /**
+     * Title for the show hover tips menu item.
+     *
+     * @return Current showHoverTipsTitle value. Default value is "Show Hover Tips"
+     */
+    public String getShowHoverTipsTitle()  {
+        return getAttributeAsString("showHoverTipsTitle");
     }
     
 
@@ -3585,7 +4071,9 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     }-*/;
 
 	/**
-     * Determines whether any cells in this cubeGrid have been edited but not yet saved to the underlying data set.
+     * Determines whether any cells in this cubeGrid have been edited but not yet saved to the underlying data set. Note that
+     * for asynchronous saves, this method will return false if the current edit values match any submitted (but not yet saved)
+     * values. This behavior can be turned off with the <code>ignorePendingValues</code> parameter.
      *
      * @return true if any record in the grid has been edited but not yet saved
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
@@ -3600,6 +4088,26 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
         return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
 
+	/**
+     * Determines whether any cells in this cubeGrid have been edited but not yet saved to the underlying data set. Note that
+     * for asynchronous saves, this method will return false if the current edit values match any submitted (but not yet saved)
+     * values. This behavior can be turned off with the <code>ignorePendingValues</code> parameter.
+     * @param ignorePendingValues If true, this method will compare the current edit  values against the underlying records in the dataset, not taking
+     * pending edit values into account
+     *
+     * @return true if any record in the grid has been edited but not yet saved
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
+     */
+    public native Boolean hasChanges(Boolean ignorePendingValues) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "hasChanges", "Boolean");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.hasChanges(ignorePendingValues == null ? null : ignorePendingValues.@java.lang.Boolean::booleanValue()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+	
 	/**
      * Hides the specified field if it is currently visible.  No-ops if it's already hidden.
      * @param facetValueMap field specified as a facetValueMap
@@ -3666,7 +4174,12 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
 
 	/**
      * If this cubeGrid can be edited, this method will return true if the record passed in has been edited, but the edits have
-     * not yet been saved to the CubeGrid's data object.
+     * not yet been saved to the CubeGrid's data object. <P> Note that if this grid is bound to a {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDataSource dataSource}, and  an asynchronous save has been submitted, this
+     * method will compare the local edit values  against the submitted values by default, returning false (no changes), if
+     * they match. This is useful for detecting whether the user is actively editing values and hasn't yet committed them. <P> 
+     * The <code>ignorePendingValues</code> parameter may be used by developers who want to ignore this case and simply compare
+     * edit values against the record in the local data set.
      * @param rowNum row index of record to check for changes
      * @param colNum column index of the record to check for changes
      *
@@ -3683,6 +4196,32 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
         return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
 
+	/**
+     * If this cubeGrid can be edited, this method will return true if the record passed in has been edited, but the edits have
+     * not yet been saved to the CubeGrid's data object. <P> Note that if this grid is bound to a {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDataSource dataSource}, and  an asynchronous save has been submitted, this
+     * method will compare the local edit values  against the submitted values by default, returning false (no changes), if
+     * they match. This is useful for detecting whether the user is actively editing values and hasn't yet committed them. <P> 
+     * The <code>ignorePendingValues</code> parameter may be used by developers who want to ignore this case and simply compare
+     * edit values against the record in the local data set.
+     * @param rowNum row index of record to check for changes
+     * @param colNum column index of the record to check for changes
+     * @param ignorePendingValues If true, this method will compare the current edit  values against the underlying records in the dataset, not taking
+     * pending edit values into account
+     *
+     * @return true if the record has been edited but not yet saved
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
+     */
+    public native Boolean recordHasChanges(int rowNum, int colNum, Boolean ignorePendingValues) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "recordHasChanges", "int,int,Boolean");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.recordHasChanges(rowNum, colNum, ignorePendingValues == null ? null : ignorePendingValues.@java.lang.Boolean::booleanValue()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+	
 	/**
      * Remove a facet from the current view, using a fixed value from that facet.  For example, remove the "months" facet from
      * the view, collapsing to just January, or total for all months.
@@ -4380,6 +4919,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
             s.logicalStructureErrors += "CubeGrid.autoFetchTextMatchStyle:" + t.getMessage() + "\n";
         }
         try {
+            s.autoFitColumnTitle = getAttributeAsString("autoFitColumnTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.autoFitColumnTitle:" + t.getMessage() + "\n";
+        }
+        try {
             s.autoFitFieldWidths = getAttributeAsString("autoFitFieldWidths");
         } catch (Throwable t) {
             s.logicalStructureErrors += "CubeGrid.autoFitFieldWidths:" + t.getMessage() + "\n";
@@ -4500,9 +5044,29 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
             s.logicalStructureErrors += "CubeGrid.chartConstructor:" + t.getMessage() + "\n";
         }
         try {
+            s.chartDialogTitle = getAttributeAsString("chartDialogTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.chartDialogTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.chartItemTitle = getAttributeAsString("chartItemTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.chartItemTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.chartStackedTitle = getAttributeAsString("chartStackedTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.chartStackedTitle:" + t.getMessage() + "\n";
+        }
+        try {
             s.chartType = getAttributeAsString("chartType");
         } catch (Throwable t) {
             s.logicalStructureErrors += "CubeGrid.chartType:" + t.getMessage() + "\n";
+        }
+        try {
+            s.chartTypeTitle = getAttributeAsString("chartTypeTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.chartTypeTitle:" + t.getMessage() + "\n";
         }
         try {
             s.colHeaderBaseStyle = getAttributeAsString("colHeaderBaseStyle");
@@ -4518,6 +5082,36 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
             s.columnFacets = getAttributeAsStringArray("columnFacets");
         } catch (Throwable t) {
             s.logicalStructureErrors += "CubeGrid.columnFacetsArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.controlCloseTitle = getAttributeAsString("controlCloseTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.controlCloseTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.controlMaximizeTitle = getAttributeAsString("controlMaximizeTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.controlMaximizeTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.controlMinimizeTitle = getAttributeAsString("controlMinimizeTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.controlMinimizeTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.controlReorderHandleTitle = getAttributeAsString("controlReorderHandleTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.controlReorderHandleTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.controlSortDownTitle = getAttributeAsString("controlSortDownTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.controlSortDownTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.controlSortUpTitle = getAttributeAsString("controlSortUpTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.controlSortUpTitle:" + t.getMessage() + "\n";
         }
         try {
             s.dataSource = getDataSource();
@@ -4640,9 +5234,19 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
             s.logicalStructureErrors += "CubeGrid.facetValueHoverWidthAsString:" + t.getMessage() + "\n";
         }
         try {
+            s.fieldVisibilitySubmenuTitle = getAttributeAsString("fieldVisibilitySubmenuTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.fieldVisibilitySubmenuTitle:" + t.getMessage() + "\n";
+        }
+        try {
             s.fixedFacetValues = getFixedFacetValues();
         } catch (Throwable t) {
             s.logicalStructureErrors += "CubeGrid.fixedFacetValues:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hideAllHighlightsTitle = getAttributeAsString("hideAllHighlightsTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.hideAllHighlightsTitle:" + t.getMessage() + "\n";
         }
         try {
             s.hideEmptyAxis = getAttributeAsString("hideEmptyAxis");
@@ -4653,6 +5257,21 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
             s.hideEmptyFacetValues = getAttributeAsString("hideEmptyFacetValues");
         } catch (Throwable t) {
             s.logicalStructureErrors += "CubeGrid.hideEmptyFacetValues:" + t.getMessage() + "\n";
+        }
+        try {
+            s.highlightCellTitle = getAttributeAsString("highlightCellTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.highlightCellTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.highlightSelectionTitle = getAttributeAsString("highlightSelectionTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.highlightSelectionTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.highlightTitle = getAttributeAsString("highlightTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.highlightTitle:" + t.getMessage() + "\n";
         }
         try {
             s.hilites = getHilites();
@@ -4670,14 +5289,39 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
             s.logicalStructureErrors += "CubeGrid.innerHeaderBaseStyle:" + t.getMessage() + "\n";
         }
         try {
+            s.maximizeColumnTitle = getAttributeAsString("maximizeColumnTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.maximizeColumnTitle:" + t.getMessage() + "\n";
+        }
+        try {
             s.metricFacetId = getAttributeAsString("metricFacetId");
         } catch (Throwable t) {
             s.logicalStructureErrors += "CubeGrid.metricFacetId:" + t.getMessage() + "\n";
         }
         try {
+            s.minimizeColumnTitle = getAttributeAsString("minimizeColumnTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.minimizeColumnTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.noHighlightsTitle = getAttributeAsString("noHighlightsTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.noHighlightsTitle:" + t.getMessage() + "\n";
+        }
+        try {
             s.padTitles = getAttributeAsString("padTitles");
         } catch (Throwable t) {
             s.logicalStructureErrors += "CubeGrid.padTitles:" + t.getMessage() + "\n";
+        }
+        try {
+            s.renameFacetValueMessage = getAttributeAsString("renameFacetValueMessage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.renameFacetValueMessage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.renameFacetValueTitle = getAttributeAsString("renameFacetValueTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.renameFacetValueTitle:" + t.getMessage() + "\n";
         }
         try {
             s.rollupValue = getAttributeAsString("rollupValue");
@@ -4715,6 +5359,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
             s.logicalStructureErrors += "CubeGrid.saveByCell:" + t.getMessage() + "\n";
         }
         try {
+            s.showAllHighlightsTitle = getAttributeAsString("showAllHighlightsTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.showAllHighlightsTitle:" + t.getMessage() + "\n";
+        }
+        try {
             s.showFacetContextMenus = getAttributeAsString("showFacetContextMenus");
         } catch (Throwable t) {
             s.logicalStructureErrors += "CubeGrid.showFacetContextMenus:" + t.getMessage() + "\n";
@@ -4723,6 +5372,16 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
             s.showFacetValueContextMenus = getAttributeAsString("showFacetValueContextMenus");
         } catch (Throwable t) {
             s.logicalStructureErrors += "CubeGrid.showFacetValueContextMenus:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showHighlightsTitle = getAttributeAsString("showHighlightsTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.showHighlightsTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showHoverTipsTitle = getAttributeAsString("showHoverTipsTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.showHoverTipsTitle:" + t.getMessage() + "\n";
         }
         try {
             s.simpleDeselect = getAttributeAsString("simpleDeselect");

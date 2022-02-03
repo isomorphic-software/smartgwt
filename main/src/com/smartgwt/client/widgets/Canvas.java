@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * Base class for all Smart GWT visual components (except {@link com.smartgwt.client.widgets.form.fields.FormItem
@@ -349,17 +355,21 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     
 
     /**
-     * On {@link com.smartgwt.client.util.Browser#isTouch touch devices} that support native touch scrolling, if {@link
-     * com.smartgwt.client.widgets.Canvas#getShowCustomScrollbars showCustomScrollbars} is <code>true</code> and touch
-     * scrolling has not been disabled by the {@link com.smartgwt.client.widgets.Canvas#getUseTouchScrolling useTouchScrolling}
-     * and/or {@link com.smartgwt.client.widgets.Canvas#getDisableTouchScrollingForDrag disableTouchScrollingForDrag} settings,
-     * should custom scrollbars <em>and</em> native touch scrolling be enabled for this component? If <code>false</code> or
-     * unset, then only native touch scrolling will be enabled. If <code>true</code>, then both scrolling mechanisms will be
-     * enabled. <p> <strong>NOTE:</strong> Because native touch scrolling (also called momentum scrolling) is computationally
-     * intensive, some mobile browsers implement an optimization where the state of the DOM for the element being scrolled will
-     * be frozen or partially frozen during the scroll animation. This results in a delay between when the scroll position
-     * reaches a certain point in the animation and when the positions of the custom scrollbar thumbs are updated to reflect
-     * that scroll position.
+     * Should this browser always show custom scrollbars if {@link com.smartgwt.client.widgets.Canvas#getShowCustomScrollbars
+     * showCustomScrollbars} is true? <P> On {@link com.smartgwt.client.util.Browser#isTouch touch devices} that support native
+     * touch scrolling, if {@link com.smartgwt.client.widgets.Canvas#getShowCustomScrollbars showCustomScrollbars} is
+     * <code>true</code> and touch scrolling has not been disabled by the {@link
+     * com.smartgwt.client.widgets.Canvas#getUseTouchScrolling useTouchScrolling} and/or {@link
+     * com.smartgwt.client.widgets.Canvas#getDisableTouchScrollingForDrag disableTouchScrollingForDrag} settings, should custom
+     * scrollbars <em>and</em> native touch scrolling be enabled for this component? If <code>false</code> or unset, then only
+     * native touch scrolling will be enabled. If <code>true</code>, then both scrolling mechanisms will be enabled. <p>
+     * <strong>NOTE:</strong> Because native touch scrolling (also called momentum scrolling) is computationally intensive,
+     * some mobile browsers implement an optimization where the state of the DOM for the element being scrolled will be frozen
+     * or partially frozen during the scroll animation. This results in a delay between when the scroll position reaches a
+     * certain point in the animation and when the positions of the custom scrollbar thumbs are updated to reflect that scroll
+     * position. <p> For non-touch devices, setting this property to <code>true</code> will override {@link
+     * com.smartgwt.client.widgets.Canvas#getNativeAutoHideScrollbars nativeAutoHideScrollbars}, and ensure custom scrollbars
+     * are shown for the component
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param alwaysShowScrollbars New alwaysShowScrollbars value. Default value is null
@@ -372,17 +382,21 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     }
 
     /**
-     * On {@link com.smartgwt.client.util.Browser#isTouch touch devices} that support native touch scrolling, if {@link
-     * com.smartgwt.client.widgets.Canvas#getShowCustomScrollbars showCustomScrollbars} is <code>true</code> and touch
-     * scrolling has not been disabled by the {@link com.smartgwt.client.widgets.Canvas#getUseTouchScrolling useTouchScrolling}
-     * and/or {@link com.smartgwt.client.widgets.Canvas#getDisableTouchScrollingForDrag disableTouchScrollingForDrag} settings,
-     * should custom scrollbars <em>and</em> native touch scrolling be enabled for this component? If <code>false</code> or
-     * unset, then only native touch scrolling will be enabled. If <code>true</code>, then both scrolling mechanisms will be
-     * enabled. <p> <strong>NOTE:</strong> Because native touch scrolling (also called momentum scrolling) is computationally
-     * intensive, some mobile browsers implement an optimization where the state of the DOM for the element being scrolled will
-     * be frozen or partially frozen during the scroll animation. This results in a delay between when the scroll position
-     * reaches a certain point in the animation and when the positions of the custom scrollbar thumbs are updated to reflect
-     * that scroll position.
+     * Should this browser always show custom scrollbars if {@link com.smartgwt.client.widgets.Canvas#getShowCustomScrollbars
+     * showCustomScrollbars} is true? <P> On {@link com.smartgwt.client.util.Browser#isTouch touch devices} that support native
+     * touch scrolling, if {@link com.smartgwt.client.widgets.Canvas#getShowCustomScrollbars showCustomScrollbars} is
+     * <code>true</code> and touch scrolling has not been disabled by the {@link
+     * com.smartgwt.client.widgets.Canvas#getUseTouchScrolling useTouchScrolling} and/or {@link
+     * com.smartgwt.client.widgets.Canvas#getDisableTouchScrollingForDrag disableTouchScrollingForDrag} settings, should custom
+     * scrollbars <em>and</em> native touch scrolling be enabled for this component? If <code>false</code> or unset, then only
+     * native touch scrolling will be enabled. If <code>true</code>, then both scrolling mechanisms will be enabled. <p>
+     * <strong>NOTE:</strong> Because native touch scrolling (also called momentum scrolling) is computationally intensive,
+     * some mobile browsers implement an optimization where the state of the DOM for the element being scrolled will be frozen
+     * or partially frozen during the scroll animation. This results in a delay between when the scroll position reaches a
+     * certain point in the animation and when the positions of the custom scrollbar thumbs are updated to reflect that scroll
+     * position. <p> For non-touch devices, setting this property to <code>true</code> will override {@link
+     * com.smartgwt.client.widgets.Canvas#getNativeAutoHideScrollbars nativeAutoHideScrollbars}, and ensure custom scrollbars
+     * are shown for the component
      *
      * @return Current alwaysShowScrollbars value. Default value is null
      * @see com.smartgwt.client.docs.Scrolling Scrolling overview and related methods
@@ -868,6 +882,135 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     
 
     /**
+     * If a {@link com.smartgwt.client.widgets.Canvas#getDataContext dataContext} is provided, should subcomponents
+     * automatically bind to the data? <p> In general, if you provide a {@link
+     * com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey} value for a  record, that specific record will be
+     * shown or edited, or have its related records loaded. If you provide other field values <em>without the primaryKey
+     * value</em>, those values will be treated as either criteria (for a grid) or as initial values (for a form). <p>
+     * Components will respond to <code>dataContext</code> differently depending on whether they typically work with just a
+     * single record (such as {@link com.smartgwt.client.widgets.form.DynamicForm form} or a  {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer}), or whether they usually work with lists of records (such as  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid} or {@link com.smartgwt.client.widgets.tile.TileGrid}, which have  {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getDataArity component.dataArity} set to <code>multipe</code> by
+     * default). <p> Specifically, the following rules are used: <ol>   <li> for a singular component (eg forms,
+     * detailViewers):      <ul>       <li> if only the PK (primary key) value is provided, the component will fetch the       
+     * singular record and display or edit it       <li> if the PK is provided <em>along with other values</em>, the component
+     * will            assume it has a complete record, and display or edit it       <li> if only non-PK values are provided,
+     * the component will assume these are initial            values     </ul>   <li> for a multiple component (eg listGrid,
+     * tileGrid):     <ul>       <li> if only non-PK values are provided, the component will use these as criteria.            
+     * For example, a grid bound to an <em>Orders</em> DataSource with            <code>dataContext</code> of Status:"In
+     * Process" would fetch records with that            status       <li> if the PK is provided, and the component's
+     * DataSource is <em>related</em> to            one of the DataSources in the <code>dataContext</code>, related records
+     * will be            fetched, using the PK value (similarly to if             {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchRelatedData fetchRelatedData()} had been called.            For example,
+     * if an <em>orderNumber</em> value was provided, a grid bound to            <em>OrderDetail</em> would fetch line items
+     * for that <em>orderNumber</em>.       <li> if an array of multiple records is provided, that data is used as if setData()
+     * had been called on the component     </ul> </ol>  If any of these behaviors is not desired, you can just set
+     * <code>autoPopulateData</code> to false on the specific component that should not be auto-populated. <p> Specific
+     * examples, using the <em>Order</em> and <em>OrderDetail</em> sample DataSources, where <em>OrderDetail</em> records are
+     * associated (many-to-1) with <em>Order</em> records,  and the PK of <em>Order</em> is <em>orderNumber</em>: <ol>   <li> a
+     * form or DetailViewer bound to <em>Order</em> and a ListGrid bound to        <em>OrderDetail</em>:     <ul>       <li> if
+     * an <em>orderNumber</em> is provided, the form or DetailViewer would show            that order, and the grid would show
+     * related <em>OrderDetail</em> records       <li> if <b>only</b> <em>orderNumber</em> is provided (no additional fields),
+     * the full            <em>Order</em> record is automatically fetched for the form or DetailViewer     </ul>     <p>    
+     * This fulfills a common use case of viewing or editing an <em>Order</em> and its     related <em>OrderDetail</em>
+     * records.     <p>   <li> a grid bound to <em>Order</em> and a second grid bound to <em>OrderDetail</em>     <ul>      
+     * <li> if values such as <em>orderStatus</em> : "On Hold" were provided, the             <em>Order</em> grid uses those as
+     * criteria       <li> the <em>OrderDetail</em> grid does nothing     </ul>     <p>     This fulfills a common use case of
+     * viewing <em>Order</em> records that match certain      criteria.  The <em>OrderDetail</em> grid would generally be
+     * populated only by an event     handler installed on the <em>Order</em> grid, which would call     {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchRelatedData fetchRelatedData}.     <p>   <li> a grid and form both bound
+     * to <em>Order</em>     <ul>       <li> if values such as <em>orderStatus</em> : "On Hold" were provided, the           
+     * <em>Order</em> grid uses those as criteria, and the form uses those as initial            values     </ul>     <p>    
+     * This fulfills two possible use cases:     <ul>       <li> the form is a SearchForm for searching the grid, so it should
+     * show the same            criteria as are applied to the grid       <li> the form is for editing the selected record in
+     * the grid, or adding new ones.            It is ready to either add a new record, or for the user to select a record to  
+     * show in the form, typically via logic added to the grid            (e.g. {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#recordClick recordClick} -&gt; {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editSelectedData form.editSelectedData()}.     </ul> </ol> <p> By default,
+     * <code>autoPopulateData</code> is true for any component that is contained with a "screen" {@link
+     * com.smartgwt.client.rpc.RPCManager#createScreen RPCManager.createScreen()} and false for any component that is an {@link
+     * com.smartgwt.client.types.AutoChild}. <p> Note that, if there is a non-DBC in your screen that wants to access fields in
+     * the expected dataContext, the DynamicProperty can refer to properties that auto-populated DBCs will place into the
+     * ruleContext.  For example, with a DynamicForm "itemEditor" bound to "supplyItem", a header above could use
+     * itemEditor.values.itemName to display the name of the item.  The header will then show the expected value as soon as the
+     * DynamicForm is auto-populated. <P> Similarly, the {@link com.smartgwt.client.widgets.Canvas#drawn DataView.drawn()}
+     * StringMethod fires after auto-population has occurred, so any startup actions in a screen will likewise be able to
+     * utilize data from the <code>dataContext</code> by just referring to it via <code>ruleScope</code>.
+     *
+     * @param autoPopulateData New autoPopulateData value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public Canvas setAutoPopulateData(Boolean autoPopulateData)  throws IllegalStateException {
+        return (Canvas)setAttribute("autoPopulateData", autoPopulateData, false);
+    }
+
+    /**
+     * If a {@link com.smartgwt.client.widgets.Canvas#getDataContext dataContext} is provided, should subcomponents
+     * automatically bind to the data? <p> In general, if you provide a {@link
+     * com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey} value for a  record, that specific record will be
+     * shown or edited, or have its related records loaded. If you provide other field values <em>without the primaryKey
+     * value</em>, those values will be treated as either criteria (for a grid) or as initial values (for a form). <p>
+     * Components will respond to <code>dataContext</code> differently depending on whether they typically work with just a
+     * single record (such as {@link com.smartgwt.client.widgets.form.DynamicForm form} or a  {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer}), or whether they usually work with lists of records (such as  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid} or {@link com.smartgwt.client.widgets.tile.TileGrid}, which have  {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getDataArity component.dataArity} set to <code>multipe</code> by
+     * default). <p> Specifically, the following rules are used: <ol>   <li> for a singular component (eg forms,
+     * detailViewers):      <ul>       <li> if only the PK (primary key) value is provided, the component will fetch the       
+     * singular record and display or edit it       <li> if the PK is provided <em>along with other values</em>, the component
+     * will            assume it has a complete record, and display or edit it       <li> if only non-PK values are provided,
+     * the component will assume these are initial            values     </ul>   <li> for a multiple component (eg listGrid,
+     * tileGrid):     <ul>       <li> if only non-PK values are provided, the component will use these as criteria.            
+     * For example, a grid bound to an <em>Orders</em> DataSource with            <code>dataContext</code> of Status:"In
+     * Process" would fetch records with that            status       <li> if the PK is provided, and the component's
+     * DataSource is <em>related</em> to            one of the DataSources in the <code>dataContext</code>, related records
+     * will be            fetched, using the PK value (similarly to if             {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchRelatedData fetchRelatedData()} had been called.            For example,
+     * if an <em>orderNumber</em> value was provided, a grid bound to            <em>OrderDetail</em> would fetch line items
+     * for that <em>orderNumber</em>.       <li> if an array of multiple records is provided, that data is used as if setData()
+     * had been called on the component     </ul> </ol>  If any of these behaviors is not desired, you can just set
+     * <code>autoPopulateData</code> to false on the specific component that should not be auto-populated. <p> Specific
+     * examples, using the <em>Order</em> and <em>OrderDetail</em> sample DataSources, where <em>OrderDetail</em> records are
+     * associated (many-to-1) with <em>Order</em> records,  and the PK of <em>Order</em> is <em>orderNumber</em>: <ol>   <li> a
+     * form or DetailViewer bound to <em>Order</em> and a ListGrid bound to        <em>OrderDetail</em>:     <ul>       <li> if
+     * an <em>orderNumber</em> is provided, the form or DetailViewer would show            that order, and the grid would show
+     * related <em>OrderDetail</em> records       <li> if <b>only</b> <em>orderNumber</em> is provided (no additional fields),
+     * the full            <em>Order</em> record is automatically fetched for the form or DetailViewer     </ul>     <p>    
+     * This fulfills a common use case of viewing or editing an <em>Order</em> and its     related <em>OrderDetail</em>
+     * records.     <p>   <li> a grid bound to <em>Order</em> and a second grid bound to <em>OrderDetail</em>     <ul>      
+     * <li> if values such as <em>orderStatus</em> : "On Hold" were provided, the             <em>Order</em> grid uses those as
+     * criteria       <li> the <em>OrderDetail</em> grid does nothing     </ul>     <p>     This fulfills a common use case of
+     * viewing <em>Order</em> records that match certain      criteria.  The <em>OrderDetail</em> grid would generally be
+     * populated only by an event     handler installed on the <em>Order</em> grid, which would call     {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchRelatedData fetchRelatedData}.     <p>   <li> a grid and form both bound
+     * to <em>Order</em>     <ul>       <li> if values such as <em>orderStatus</em> : "On Hold" were provided, the           
+     * <em>Order</em> grid uses those as criteria, and the form uses those as initial            values     </ul>     <p>    
+     * This fulfills two possible use cases:     <ul>       <li> the form is a SearchForm for searching the grid, so it should
+     * show the same            criteria as are applied to the grid       <li> the form is for editing the selected record in
+     * the grid, or adding new ones.            It is ready to either add a new record, or for the user to select a record to  
+     * show in the form, typically via logic added to the grid            (e.g. {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#recordClick recordClick} -&gt; {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editSelectedData form.editSelectedData()}.     </ul> </ol> <p> By default,
+     * <code>autoPopulateData</code> is true for any component that is contained with a "screen" {@link
+     * com.smartgwt.client.rpc.RPCManager#createScreen RPCManager.createScreen()} and false for any component that is an {@link
+     * com.smartgwt.client.types.AutoChild}. <p> Note that, if there is a non-DBC in your screen that wants to access fields in
+     * the expected dataContext, the DynamicProperty can refer to properties that auto-populated DBCs will place into the
+     * ruleContext.  For example, with a DynamicForm "itemEditor" bound to "supplyItem", a header above could use
+     * itemEditor.values.itemName to display the name of the item.  The header will then show the expected value as soon as the
+     * DynamicForm is auto-populated. <P> Similarly, the {@link com.smartgwt.client.widgets.Canvas#drawn DataView.drawn()}
+     * StringMethod fires after auto-population has occurred, so any startup actions in a screen will likewise be able to
+     * utilize data from the <code>dataContext</code> by just referring to it via <code>ruleScope</code>.
+     *
+     * @return Current autoPopulateData value. Default value is null
+     */
+    public Boolean getAutoPopulateData()  {
+        return getAttributeAsBoolean("autoPopulateData");
+    }
+    
+
+    /**
      * If set to true, the widget's parent (if any) will automatically be shown whenever the      widget is shown.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -1037,6 +1180,34 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      */
     public String getBorder()  {
         return getAttributeAsString("border");
+    }
+    
+
+    /**
+     * The CSS border-radius for this widget. The value can be any variant of a CSS border-radius value - that is, from 1 to 4
+     * space-separated px values, where one value affects all corners and 4 values affects individual corners.  For example
+     * "10px" applies a 10px radius to all corners, where "5px 10px 15px 20px" applies a different radius to each  corner,
+     * clockwise from Top-Left: "TL TR BR BL".
+     *
+     * @param borderRadius New borderRadius value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public Canvas setBorderRadius(String borderRadius) {
+        return (Canvas)setAttribute("borderRadius", borderRadius, true);
+    }
+
+    /**
+     * The CSS border-radius for this widget. The value can be any variant of a CSS border-radius value - that is, from 1 to 4
+     * space-separated px values, where one value affects all corners and 4 values affects individual corners.  For example
+     * "10px" applies a 10px radius to all corners, where "5px 10px 15px 20px" applies a different radius to each  corner,
+     * clockwise from Top-Left: "TL TR BR BL".
+     *
+     * @return Current borderRadius value. Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public String getBorderRadius()  {
+        return getAttributeAsString("borderRadius");
     }
     
 
@@ -1489,7 +1660,8 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     /**
      * Array of all Canvii that are immediate children of this Canvas. <P> Use {@link
      * com.smartgwt.client.widgets.Canvas#addChild addChild()} and {@link com.smartgwt.client.widgets.Canvas#removeChild
-     * removeChild()} to add and remove children after a Canvas has been created/drawn.
+     * removeChild()} to add and remove children after a Canvas has been created/drawn. <P> See {@link
+     * com.smartgwt.client.docs.Containment} for an overview of parent/child relationships.
      *
      * @return Current children value. Default value is null
      * @see com.smartgwt.client.docs.Containment Containment overview and related methods
@@ -1504,6 +1676,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *
      * @param childrenResizeSnapAlign New childrenResizeSnapAlign value. Default value is null
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setChildrenResizeSnapAlign(Boolean childrenResizeSnapAlign) {
         return (Canvas)setAttribute("childrenResizeSnapAlign", childrenResizeSnapAlign, true);
@@ -1513,6 +1686,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * Flag to disable snapping to alignment when children of this Canvas are resized
      *
      * @return Current childrenResizeSnapAlign value. Default value is null
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Boolean getChildrenResizeSnapAlign()  {
         return getAttributeAsBoolean("childrenResizeSnapAlign");
@@ -1533,6 +1707,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *
      * @param childrenSnapAlign New childrenSnapAlign value. Default value is null
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setChildrenSnapAlign(Boolean childrenSnapAlign) {
         return (Canvas)setAttribute("childrenSnapAlign", childrenSnapAlign, true);
@@ -1551,6 +1726,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * alignment or edge alignment individually.
      *
      * @return Current childrenSnapAlign value. Default value is null
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Boolean getChildrenSnapAlign()  {
         return getAttributeAsBoolean("childrenSnapAlign");
@@ -1563,6 +1739,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *
      * @param childrenSnapCenterAlign New childrenSnapCenterAlign value. Default value is null
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setChildrenSnapCenterAlign(Boolean childrenSnapCenterAlign) {
         return (Canvas)setAttribute("childrenSnapCenterAlign", childrenSnapCenterAlign, true);
@@ -1573,6 +1750,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * snapping on center alignment only.
      *
      * @return Current childrenSnapCenterAlign value. Default value is null
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Boolean getChildrenSnapCenterAlign()  {
         return getAttributeAsBoolean("childrenSnapCenterAlign");
@@ -1585,6 +1763,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *
      * @param childrenSnapEdgeAlign New childrenSnapEdgeAlign value. Default value is null
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setChildrenSnapEdgeAlign(Boolean childrenSnapEdgeAlign) {
         return (Canvas)setAttribute("childrenSnapEdgeAlign", childrenSnapEdgeAlign, true);
@@ -1595,6 +1774,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * snapping on edge alignment only.
      *
      * @return Current childrenSnapEdgeAlign value. Default value is null
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Boolean getChildrenSnapEdgeAlign()  {
         return getAttributeAsBoolean("childrenSnapEdgeAlign");
@@ -1608,7 +1788,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *
      * @param childrenSnapResizeToGrid New childrenSnapResizeToGrid value. Default value is null
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
-     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setChildrenSnapResizeToGrid(Boolean childrenSnapResizeToGrid) {
         return (Canvas)setAttribute("childrenSnapResizeToGrid", childrenSnapResizeToGrid, true);
@@ -1620,7 +1800,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * com.smartgwt.client.widgets.Canvas#getSnapResizeToGrid snapResizeToGrid} value on the child.
      *
      * @return Current childrenSnapResizeToGrid value. Default value is null
-     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Boolean getChildrenSnapResizeToGrid()  {
         return getAttributeAsBoolean("childrenSnapResizeToGrid");
@@ -1633,7 +1813,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *
      * @param childrenSnapToGrid New childrenSnapToGrid value. Default value is null
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
-     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setChildrenSnapToGrid(Boolean childrenSnapToGrid) {
         return (Canvas)setAttribute("childrenSnapToGrid", childrenSnapToGrid, true);
@@ -1644,7 +1824,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * basis by setting the {@link com.smartgwt.client.widgets.Canvas#getSnapToGrid snapToGrid} value on the child.
      *
      * @return Current childrenSnapToGrid value. Default value is null
-     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Boolean getChildrenSnapToGrid()  {
         return getAttributeAsBoolean("childrenSnapToGrid");
@@ -1843,8 +2023,53 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     
 
     /**
+     * A mapping from {@link com.smartgwt.client.data.DataSource} IDs to specific {@link com.smartgwt.client.data.Record
+     * Records} from those DataSources, that {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponents}
+     * contained within this Canvas should automatically bind to if a DataSource is provided but data is not provided (directly
+     * or indirectly, for example, indirectly via setting {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchData
+     * ListGrid.autoFetchData}. <p> See {@link com.smartgwt.client.widgets.Canvas#getAutoPopulateData autoPopulateData} for
+     * details on how this is done. <p> DataSources included in the <code>dataContext</code> are immediately provided to {@link
+     * com.smartgwt.client.widgets.Canvas#getRuleScope rule context} when used if no other component has done so already. These
+     * records are found in rule context 'dataContext' section (ex. <code>dataContext.Customer</code> for a Customer record in
+     * <code>dataContext</code>) so they do not conflict with normal DataSource records.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Provides a new {@link com.smartgwt.client.widgets.DataContext} to the Canvas. If the DataContext is new, {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponents} contained within this Canvas will be automatically bound as described in {@link com.smartgwt.client.widgets.Canvas#getDataContext dataContext}. If the DataContext replaces an existing one, any contained components that were originally bound against the DataContext will be re-bound.
+     *
+     * @param dataContext dataContext to use for automatic binding. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     */
+    public Canvas setDataContext(DataContext dataContext) {
+        return (Canvas)setAttribute("dataContext", dataContext == null ? null : dataContext.getJsObj(), true);
+    }
+
+    /**
+     * A mapping from {@link com.smartgwt.client.data.DataSource} IDs to specific {@link com.smartgwt.client.data.Record
+     * Records} from those DataSources, that {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponents}
+     * contained within this Canvas should automatically bind to if a DataSource is provided but data is not provided (directly
+     * or indirectly, for example, indirectly via setting {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchData
+     * ListGrid.autoFetchData}. <p> See {@link com.smartgwt.client.widgets.Canvas#getAutoPopulateData autoPopulateData} for
+     * details on how this is done. <p> DataSources included in the <code>dataContext</code> are immediately provided to {@link
+     * com.smartgwt.client.widgets.Canvas#getRuleScope rule context} when used if no other component has done so already. These
+     * records are found in rule context 'dataContext' section (ex. <code>dataContext.Customer</code> for a Customer record in
+     * <code>dataContext</code>) so they do not conflict with normal DataSource records.
+     *
+     * @return Current dataContext value. Default value is null
+     */
+    public DataContext getDataContext()  {
+        return new DataContext(getAttributeAsJavaScriptObject("dataContext"));
+    }
+    
+
+    /**
      * A dataPath may be specified on any canvas. This provides a straightforward way to display or
      *  edit complex nested data.
+     *  <P>
+     *  <b>NOTE: the dataPath feature is intended to help certain legacy architectures, 
+     *  such as systems that work in terms of exchanging large messages with several different 
+     *  entity types in one message, and are incapable of providing separate access to each 
+     *  entity type.<br>
+     *  See the {@link com.smartgwt.client.docs.DataPath DataPath overview} for more information.</b>
      *  <P>
      * For components which support displaying or editing data values, (such as {@link
      * com.smartgwt.client.widgets.form.DynamicForm} or
@@ -2034,6 +2259,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *
      * @param dataPath new dataPath. Default value is null
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.Canvas#setRuleScope
      * @see com.smartgwt.client.docs.DataPath DataPath 
      */
     public Canvas setDataPath(String dataPath) {
@@ -2043,6 +2269,12 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     /**
      * A dataPath may be specified on any canvas. This provides a straightforward way to display or
      *  edit complex nested data.
+     *  <P>
+     *  <b>NOTE: the dataPath feature is intended to help certain legacy architectures, 
+     *  such as systems that work in terms of exchanging large messages with several different 
+     *  entity types in one message, and are incapable of providing separate access to each 
+     *  entity type.<br>
+     *  See the {@link com.smartgwt.client.docs.DataPath DataPath overview} for more information.</b>
      *  <P>
      * For components which support displaying or editing data values, (such as {@link
      * com.smartgwt.client.widgets.form.DynamicForm} or
@@ -2227,6 +2459,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *  "/companyName" - ie, it is relative to the root.
      *
      * @return Current dataPath value. Default value is null
+     * @see com.smartgwt.client.widgets.Canvas#getRuleScope
      * @see com.smartgwt.client.docs.DataPath DataPath 
      */
     public String getDataPath()  {
@@ -2743,6 +2976,86 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
         return getAttributeAsInt("dragStartDistance");
     }
     
+
+    /**
+     * A different widget that should be actually dragged when dragging initiates on this widget. One example of this is to
+     * have a child widget that drags its parent, as with a drag box. Because the parent automatically repositions its
+     * children, setting the drag target of the child to the parent and then dragging the child will result in both widgets
+     * being moved. <p> Valid <code>dragTarget</code> values are:<ul> <li><code>null</code> (default) [this widget is its own
+     * drag target] <li>another widget, or widget ID <li><code>"parent"</code> drag target is this widget's {@link
+     * com.smartgwt.client.widgets.Canvas#getParentCanvas parentCanvas} <li><code>"top"</code> drag target is this widget's
+     * {@link com.smartgwt.client.widgets.Canvas#getTopElement topElement} </ul><p> Note that for dragging to work as intended,
+     * the {@link com.smartgwt.client.widgets.Canvas#getResizeFrom resizeFrom} setting on the <code>dragTarget</code> must be
+     * null or a superset of the {@link com.smartgwt.client.widgets.Canvas#getResizeFrom resizeFrom} on this canvas.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param dragTarget New dragTarget value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @see com.smartgwt.client.util.EventHandler#getDragTarget
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     */
+    public Canvas setDragTarget(Canvas dragTarget) {
+        return (Canvas)setAttribute("dragTarget", dragTarget == null ? null : dragTarget.getOrCreateJsObj(), true);
+    }
+
+    /**
+     * A different widget that should be actually dragged when dragging initiates on this widget. One example of this is to
+     * have a child widget that drags its parent, as with a drag box. Because the parent automatically repositions its
+     * children, setting the drag target of the child to the parent and then dragging the child will result in both widgets
+     * being moved. <p> Valid <code>dragTarget</code> values are:<ul> <li><code>null</code> (default) [this widget is its own
+     * drag target] <li>another widget, or widget ID <li><code>"parent"</code> drag target is this widget's {@link
+     * com.smartgwt.client.widgets.Canvas#getParentCanvas parentCanvas} <li><code>"top"</code> drag target is this widget's
+     * {@link com.smartgwt.client.widgets.Canvas#getTopElement topElement} </ul><p> Note that for dragging to work as intended,
+     * the {@link com.smartgwt.client.widgets.Canvas#getResizeFrom resizeFrom} setting on the <code>dragTarget</code> must be
+     * null or a superset of the {@link com.smartgwt.client.widgets.Canvas#getResizeFrom resizeFrom} on this canvas.
+     *
+     * @return Current dragTarget value. Default value is null
+     * @see com.smartgwt.client.util.EventHandler#getDragTarget
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     */
+    public Canvas getDragTarget()  {
+        return (Canvas)Canvas.getByJSObject(getAttributeAsJavaScriptObject("dragTarget"));
+    }
+
+    /**
+     * A different widget that should be actually dragged when dragging initiates on this widget. One example of this is to
+     * have a child widget that drags its parent, as with a drag box. Because the parent automatically repositions its
+     * children, setting the drag target of the child to the parent and then dragging the child will result in both widgets
+     * being moved. <p> Valid <code>dragTarget</code> values are:<ul> <li><code>null</code> (default) [this widget is its own
+     * drag target] <li>another widget, or widget ID <li><code>"parent"</code> drag target is this widget's {@link
+     * com.smartgwt.client.widgets.Canvas#getParentCanvas parentCanvas} <li><code>"top"</code> drag target is this widget's
+     * {@link com.smartgwt.client.widgets.Canvas#getTopElement topElement} </ul><p> Note that for dragging to work as intended,
+     * the {@link com.smartgwt.client.widgets.Canvas#getResizeFrom resizeFrom} setting on the <code>dragTarget</code> must be
+     * null or a superset of the {@link com.smartgwt.client.widgets.Canvas#getResizeFrom resizeFrom} on this canvas.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param dragTarget New dragTarget value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @see com.smartgwt.client.util.EventHandler#getDragTarget
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     */
+    public Canvas setDragTarget(String dragTarget) {
+        return (Canvas)setAttribute("dragTarget", dragTarget, true);
+    }
+
+    /**
+     * A different widget that should be actually dragged when dragging initiates on this widget. One example of this is to
+     * have a child widget that drags its parent, as with a drag box. Because the parent automatically repositions its
+     * children, setting the drag target of the child to the parent and then dragging the child will result in both widgets
+     * being moved. <p> Valid <code>dragTarget</code> values are:<ul> <li><code>null</code> (default) [this widget is its own
+     * drag target] <li>another widget, or widget ID <li><code>"parent"</code> drag target is this widget's {@link
+     * com.smartgwt.client.widgets.Canvas#getParentCanvas parentCanvas} <li><code>"top"</code> drag target is this widget's
+     * {@link com.smartgwt.client.widgets.Canvas#getTopElement topElement} </ul><p> Note that for dragging to work as intended,
+     * the {@link com.smartgwt.client.widgets.Canvas#getResizeFrom resizeFrom} setting on the <code>dragTarget</code> must be
+     * null or a superset of the {@link com.smartgwt.client.widgets.Canvas#getResizeFrom resizeFrom} on this canvas.
+     *
+     * @return Current dragTarget value. Default value is null
+     * @see com.smartgwt.client.util.EventHandler#getDragTarget
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     */
+    public String getDragTargetAsString()  {
+        return getAttributeAsString("dragTarget");
+    }
     
 
     /**
@@ -2769,6 +3082,67 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      */
     public String getDragType()  {
         return getAttributeAsString("dragType");
+    }
+    
+
+    /**
+     * Delegates a different widget that should actually be dropped on if the cursor is over this widget when the drop
+     * completes.  If you're building your own "drop indicator" widget, it may need this property set to the main canvas
+     * (receiving the drop) to avoid itself being considered a drop target (causing the indicator to flicker).
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param dropTarget New dropTarget value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @see com.smartgwt.client.util.EventHandler#getDragTarget
+     * @see com.smartgwt.client.widgets.Canvas#setDragTarget
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     */
+    public Canvas setDropTarget(Canvas dropTarget) {
+        return (Canvas)setAttribute("dropTarget", dropTarget == null ? null : dropTarget.getOrCreateJsObj(), true);
+    }
+
+    /**
+     * Delegates a different widget that should actually be dropped on if the cursor is over this widget when the drop
+     * completes.  If you're building your own "drop indicator" widget, it may need this property set to the main canvas
+     * (receiving the drop) to avoid itself being considered a drop target (causing the indicator to flicker).
+     *
+     * @return Current dropTarget value. Default value is null
+     * @see com.smartgwt.client.util.EventHandler#getDragTarget
+     * @see com.smartgwt.client.widgets.Canvas#getDragTarget
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     */
+    public Canvas getDropTarget()  {
+        return (Canvas)Canvas.getByJSObject(getAttributeAsJavaScriptObject("dropTarget"));
+    }
+
+    /**
+     * Delegates a different widget that should actually be dropped on if the cursor is over this widget when the drop
+     * completes.  If you're building your own "drop indicator" widget, it may need this property set to the main canvas
+     * (receiving the drop) to avoid itself being considered a drop target (causing the indicator to flicker).
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param dropTarget New dropTarget value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @see com.smartgwt.client.util.EventHandler#getDragTarget
+     * @see com.smartgwt.client.widgets.Canvas#setDragTarget
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     */
+    public Canvas setDropTarget(String dropTarget) {
+        return (Canvas)setAttribute("dropTarget", dropTarget, true);
+    }
+
+    /**
+     * Delegates a different widget that should actually be dropped on if the cursor is over this widget when the drop
+     * completes.  If you're building your own "drop indicator" widget, it may need this property set to the main canvas
+     * (receiving the drop) to avoid itself being considered a drop target (causing the indicator to flicker).
+     *
+     * @return Current dropTarget value. Default value is null
+     * @see com.smartgwt.client.util.EventHandler#getDragTarget
+     * @see com.smartgwt.client.widgets.Canvas#getDragTarget
+     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     */
+    public String getDropTargetAsString()  {
+        return getAttributeAsString("dropTarget");
     }
     
 
@@ -3252,6 +3626,39 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     
 
     /**
+     * If {@link com.smartgwt.client.widgets.Canvas#getShowCustomScrollbars showCustomScrollbars} is true, should the
+     * scrollbars be drawn floating over the component handle, or should the handle shrink to accommodate them? <P> Floating
+     * scrollbars are typically only approrpiate for scrollbars that are hidden by default and get shown as the user actively
+     * scrolls the widget handle, such as in the {@link com.smartgwt.client.widgets.Canvas#getNativeAutoHideScrollbars
+     * nativeAutoHideScrollbars} case. If floating scrollbars are permanetly visible  over the component handle, they may block
+     * some of the widget's content.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param floatingScrollbars New floatingScrollbars value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public Canvas setFloatingScrollbars(boolean floatingScrollbars)  throws IllegalStateException {
+        return (Canvas)setAttribute("floatingScrollbars", floatingScrollbars, false);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Canvas#getShowCustomScrollbars showCustomScrollbars} is true, should the
+     * scrollbars be drawn floating over the component handle, or should the handle shrink to accommodate them? <P> Floating
+     * scrollbars are typically only approrpiate for scrollbars that are hidden by default and get shown as the user actively
+     * scrolls the widget handle, such as in the {@link com.smartgwt.client.widgets.Canvas#getNativeAutoHideScrollbars
+     * nativeAutoHideScrollbars} case. If floating scrollbars are permanetly visible  over the component handle, they may block
+     * some of the widget's content.
+     *
+     * @return Current floatingScrollbars value. Default value is false
+     */
+    public boolean getFloatingScrollbars()  {
+        Boolean result = getAttributeAsBoolean("floatingScrollbars");
+        return result == null ? false : result;
+    }
+    
+
+    /**
      * If true, events sent to the SVG inside an object tag are forwarded to the object itself by Framework handlers.  If
      * false, "pointer-events:none" CSS is set on the object so that events are directly sent to the object by the browser, if
      * supported. <P> The advantage of forwarding events is that it allows hover CSS or any other event-driven logic on the SVG
@@ -3386,6 +3793,33 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     
 
     /**
+     * Padding to apply inside the border when this canvas is showing a group {@link
+     * com.smartgwt.client.widgets.Canvas#getIsGroup border and label}.
+     *
+     * @param groupPadding New groupPadding value. Default value is 10
+     * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.Canvas#setIsGroup
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public Canvas setGroupPadding(Integer groupPadding)  throws IllegalStateException {
+        return (Canvas)setAttribute("groupPadding", groupPadding, false);
+    }
+
+    /**
+     * Padding to apply inside the border when this canvas is showing a group {@link
+     * com.smartgwt.client.widgets.Canvas#getIsGroup border and label}.
+     *
+     * @return Current groupPadding value. Default value is 10
+     * @see com.smartgwt.client.widgets.Canvas#getIsGroup
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public Integer getGroupPadding()  {
+        return getAttributeAsInt("groupPadding");
+    }
+    
+
+    /**
      * The title/label for the grouping. Only applicable when {@link com.smartgwt.client.widgets.Canvas#getIsGroup isGroup} is
      * set to true.  No {@link com.smartgwt.client.widgets.Canvas#getIsGroup grouping frame} or title/label will be shown
      * unless this property is a non-empty string.
@@ -3417,12 +3851,18 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     
 
     /**
-     * Size for this component's vertical dimension. <P> Can be a number of pixels, or a percentage like "50%". See
-     * documentation for {@link com.smartgwt.client.widgets.Canvas#getWidth width} for details on how percentage values are
-     * resolved actual size. <P> Note that if {@link com.smartgwt.client.widgets.Canvas#getOverflow overflow} is set to
-     * "visible", this size is a minimum, and the component may overflow to show all content and/or children. <P> If trying to
-     * establish a default height for a custom component, set {@link com.smartgwt.client.widgets.Canvas#getDefaultHeight
-     * defaultHeight} instead.
+     * The <code>canvas.width</code> attribute specifies the size for a component's  horizontal dimension;
+     * <code>canvas.height</code> specifies the size for the vertical  dimension. <P> May be set to an integer value (a number
+     * of pixels), a percentage value like "50%", or "*".   <P> See {@link com.smartgwt.client.docs.PercentSizing} for details
+     * on how percentage or <code>"*"</code> values are resolved actual size. <P> If {@link
+     * com.smartgwt.client.widgets.Canvas#getOverflow overflow} is set to "visible", the specified size acts as a minimum, and
+     * the component may overflow to show all content and/or children. <P> Note that developers wishing to set a default width
+     * or height for a component class should set {@link com.smartgwt.client.widgets.Canvas#getDefaultWidth defaultWidth} or
+     * {@link com.smartgwt.client.widgets.Canvas#getDefaultHeight defaultHeight}  instead of specifying an explicit default
+     * <code>width</code> or <code>height</code>. This is important for components added to a {@link
+     * com.smartgwt.client.widgets.layout.Layout} as members - it allows the Layout to determine whether the canvas has an
+     * explicitly specified size that must be respected, or whether it can participate in its {@link
+     * com.smartgwt.client.types.LayoutPolicy sizing policies}.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Resizes the widget vertically to the specified height (moves the bottom side of the widget). The height parameter can be expressed as a percentage of viewport size or as the number of pixels. <P> NOTE: if you're setting multiple coordinates, use resizeTo() or setRect() instead
@@ -3436,14 +3876,20 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     }
 
     /**
-     * Size for this component's vertical dimension. <P> Can be a number of pixels, or a percentage like "50%". See
-     * documentation for {@link com.smartgwt.client.widgets.Canvas#getWidth width} for details on how percentage values are
-     * resolved actual size. <P> Note that if {@link com.smartgwt.client.widgets.Canvas#getOverflow overflow} is set to
-     * "visible", this size is a minimum, and the component may overflow to show all content and/or children. <P> If trying to
-     * establish a default height for a custom component, set {@link com.smartgwt.client.widgets.Canvas#getDefaultHeight
-     * defaultHeight} instead.
+     * The <code>canvas.width</code> attribute specifies the size for a component's  horizontal dimension;
+     * <code>canvas.height</code> specifies the size for the vertical  dimension. <P> May be set to an integer value (a number
+     * of pixels), a percentage value like "50%", or "*".   <P> See {@link com.smartgwt.client.docs.PercentSizing} for details
+     * on how percentage or <code>"*"</code> values are resolved actual size. <P> If {@link
+     * com.smartgwt.client.widgets.Canvas#getOverflow overflow} is set to "visible", the specified size acts as a minimum, and
+     * the component may overflow to show all content and/or children. <P> Note that developers wishing to set a default width
+     * or height for a component class should set {@link com.smartgwt.client.widgets.Canvas#getDefaultWidth defaultWidth} or
+     * {@link com.smartgwt.client.widgets.Canvas#getDefaultHeight defaultHeight}  instead of specifying an explicit default
+     * <code>width</code> or <code>height</code>. This is important for components added to a {@link
+     * com.smartgwt.client.widgets.layout.Layout} as members - it allows the Layout to determine whether the canvas has an
+     * explicitly specified size that must be respected, or whether it can participate in its {@link
+     * com.smartgwt.client.types.LayoutPolicy sizing policies}.
      *
-     * @return Return the height of this object, in pixels. Default value is null
+     * @return Return the height of this object, in pixels. <P> See {@link com.smartgwt.client.docs.GettingCanvasSize}. Default value is null
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public Integer getHeight()  {
@@ -3451,12 +3897,18 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     }
 
     /**
-     * Size for this component's vertical dimension. <P> Can be a number of pixels, or a percentage like "50%". See
-     * documentation for {@link com.smartgwt.client.widgets.Canvas#getWidth width} for details on how percentage values are
-     * resolved actual size. <P> Note that if {@link com.smartgwt.client.widgets.Canvas#getOverflow overflow} is set to
-     * "visible", this size is a minimum, and the component may overflow to show all content and/or children. <P> If trying to
-     * establish a default height for a custom component, set {@link com.smartgwt.client.widgets.Canvas#getDefaultHeight
-     * defaultHeight} instead.
+     * The <code>canvas.width</code> attribute specifies the size for a component's  horizontal dimension;
+     * <code>canvas.height</code> specifies the size for the vertical  dimension. <P> May be set to an integer value (a number
+     * of pixels), a percentage value like "50%", or "*".   <P> See {@link com.smartgwt.client.docs.PercentSizing} for details
+     * on how percentage or <code>"*"</code> values are resolved actual size. <P> If {@link
+     * com.smartgwt.client.widgets.Canvas#getOverflow overflow} is set to "visible", the specified size acts as a minimum, and
+     * the component may overflow to show all content and/or children. <P> Note that developers wishing to set a default width
+     * or height for a component class should set {@link com.smartgwt.client.widgets.Canvas#getDefaultWidth defaultWidth} or
+     * {@link com.smartgwt.client.widgets.Canvas#getDefaultHeight defaultHeight}  instead of specifying an explicit default
+     * <code>width</code> or <code>height</code>. This is important for components added to a {@link
+     * com.smartgwt.client.widgets.layout.Layout} as members - it allows the Layout to determine whether the canvas has an
+     * explicitly specified size that must be respected, or whether it can participate in its {@link
+     * com.smartgwt.client.types.LayoutPolicy sizing policies}.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Resizes the widget vertically to the specified height (moves the bottom side of the widget). The height parameter can be expressed as a percentage of viewport size or as the number of pixels. <P> NOTE: if you're setting multiple coordinates, use resizeTo() or setRect() instead
@@ -3604,7 +4056,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     /**
      * if {@link com.smartgwt.client.widgets.Canvas#getShowHover showHover} is true, this property will cause the specified 
      * {@link com.smartgwt.client.widgets.Canvas#getHoverWidth hoverWidth} to be treated as a minimum width for the hover. If
-     * the hover content string exceeds this, the hover will expand to accomodate it up to {@link
+     * the hover content string exceeds this, the hover will expand to accommodate it up to {@link
      * com.smartgwt.client.widgets.Canvas#getHoverAutoFitMaxWidth hoverAutoFitMaxWidth} (without the text wrapping). <P> Using
      * this settings differs from simply disabling wrapping via  {@link com.smartgwt.client.widgets.Canvas#getHoverWrap
      * hoverWrap:false} as the content will wrap if the {@link com.smartgwt.client.widgets.Canvas#getHoverAutoFitMaxWidth
@@ -3622,7 +4074,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     /**
      * if {@link com.smartgwt.client.widgets.Canvas#getShowHover showHover} is true, this property will cause the specified 
      * {@link com.smartgwt.client.widgets.Canvas#getHoverWidth hoverWidth} to be treated as a minimum width for the hover. If
-     * the hover content string exceeds this, the hover will expand to accomodate it up to {@link
+     * the hover content string exceeds this, the hover will expand to accommodate it up to {@link
      * com.smartgwt.client.widgets.Canvas#getHoverAutoFitMaxWidth hoverAutoFitMaxWidth} (without the text wrapping). <P> Using
      * this settings differs from simply disabling wrapping via  {@link com.smartgwt.client.widgets.Canvas#getHoverWrap
      * hoverWrap:false} as the content will wrap if the {@link com.smartgwt.client.widgets.Canvas#getHoverAutoFitMaxWidth
@@ -3660,6 +4112,42 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      */
     public int getHoverDelay()  {
         return getAttributeAsInt("hoverDelay");
+    }
+    
+
+    /**
+     * For canvases {@link com.smartgwt.client.widgets.Canvas#getShowHover showing a hover}, this attribute gives users a way
+     * to pin the hover in place so they can interact with it (scroll it, click embedded links, etc). Clicking outside the
+     * hover (on some other component) will still dismiss it. <P> When enabled, the standard hover canvas will display the
+     * {@link com.smartgwt.client.widgets.Hover#focusKeyHintLabel focusKeyHintLabel} to prompt the user on how to give the
+     * hover focus. This behavior may be disabled by  setting {@link com.smartgwt.client.widgets.Hover#showFocusKeyHint
+     * showFocusKeyHint} to false <P> Note that setting a hoverFocusKey also sets {@link
+     * com.smartgwt.client.widgets.Canvas#getHoverPersist hoverPersist} to "clickPin".  This makes hovers stay visible while
+     * the cursor is over them, and become pinned if clicked, the same as pressing the hoverFocusKey.
+     *
+     * @param hoverFocusKey New hoverFocusKey value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.KeyName KeyName 
+     */
+    public Canvas setHoverFocusKey(String hoverFocusKey) {
+        return (Canvas)setAttribute("hoverFocusKey", hoverFocusKey, true);
+    }
+
+    /**
+     * For canvases {@link com.smartgwt.client.widgets.Canvas#getShowHover showing a hover}, this attribute gives users a way
+     * to pin the hover in place so they can interact with it (scroll it, click embedded links, etc). Clicking outside the
+     * hover (on some other component) will still dismiss it. <P> When enabled, the standard hover canvas will display the
+     * {@link com.smartgwt.client.widgets.Hover#focusKeyHintLabel focusKeyHintLabel} to prompt the user on how to give the
+     * hover focus. This behavior may be disabled by  setting {@link com.smartgwt.client.widgets.Hover#showFocusKeyHint
+     * showFocusKeyHint} to false <P> Note that setting a hoverFocusKey also sets {@link
+     * com.smartgwt.client.widgets.Canvas#getHoverPersist hoverPersist} to "clickPin".  This makes hovers stay visible while
+     * the cursor is over them, and become pinned if clicked, the same as pressing the hoverFocusKey.
+     *
+     * @return Current hoverFocusKey value. Default value is null
+     * @see com.smartgwt.client.docs.KeyName KeyName 
+     */
+    public String getHoverFocusKey()  {
+        return getAttributeAsString("hoverFocusKey");
     }
     
 
@@ -3728,6 +4216,51 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      */
     public Integer getHoverOpacity()  {
         return getAttributeAsInt("hoverOpacity");
+    }
+    
+
+    /**
+     * Allows interaction with hovers when the cursor is positioned over them.
+     *
+     * @param hoverPersist New hoverPersist value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.Hover#persistent
+     */
+    public Canvas setHoverPersist(HoverPersistMode hoverPersist) {
+        return (Canvas)setAttribute("hoverPersist", hoverPersist == null ? null : hoverPersist.getValue(), true);
+    }
+
+    /**
+     * Allows interaction with hovers when the cursor is positioned over them.
+     *
+     * @return Current hoverPersist value. Default value is null
+     * @see com.smartgwt.client.widgets.Hover#persistent
+     */
+    public HoverPersistMode getHoverPersist()  {
+        return EnumUtil.getEnum(HoverPersistMode.values(), getAttribute("hoverPersist"));
+    }
+    
+
+    /**
+     * Screen to create (via {@link com.smartgwt.client.rpc.RPCManager#createScreen createScreen()}) in lieu of calling {@link
+     * com.smartgwt.client.widgets.Canvas#getHoverComponent getHoverComponent()}.
+     *
+     * @param hoverScreen New hoverScreen value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public Canvas setHoverScreen(String hoverScreen)  throws IllegalStateException {
+        return (Canvas)setAttribute("hoverScreen", hoverScreen, false);
+    }
+
+    /**
+     * Screen to create (via {@link com.smartgwt.client.rpc.RPCManager#createScreen createScreen()}) in lieu of calling {@link
+     * com.smartgwt.client.widgets.Canvas#getHoverComponent getHoverComponent()}.
+     *
+     * @return Current hoverScreen value. Default value is null
+     */
+    public String getHoverScreen()  {
+        return getAttributeAsString("hoverScreen");
     }
     
 
@@ -3843,23 +4376,28 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
 
     /**
      * If specified as a pointer to an HTML element present in the DOM, this canvas will be rendered inside that element on
-     * {@link com.smartgwt.client.widgets.Canvas#draw draw()}. <P> <i>NOTES:</i><br> This feature is intended for temporary
-     * integration with legacy page architectures only; the native browser's reaction to DOM insertion is unspecified and
-     * unsupported. For consistent cross-browser layout and positioning semantics, use Canvas parents (especially Layouts) and
-     * use absolute positioning at top level. <P> Persistence of htmlElement: If {@link
-     * com.smartgwt.client.widgets.Canvas#getHtmlPosition htmlPosition} is set to <code>"replace"</code> the htmlElement will
-     * be removed from the DOM when the canvas is drawn - therefore the htmlElement attribute will be cleared at this time.
-     * Otherwise if a Canvas is clear()d and then draw()n again it will be rendered inside the same htmlElement.<br> If a
-     * Canvas is added as a child to Canvas parent, its htmlElement will be dropped. <P> {@link
-     * com.smartgwt.client.widgets.Canvas#getPosition position} should typically be set to <code>"relative"</code> if the
-     * widget is to be rendered inline within a standard page.
+     * {@link com.smartgwt.client.widgets.Canvas#draw draw()}.  If provided as a String, the String will be replaced by a DOM
+     * node as returned from document.getElementById(htmlElement) on initialization. <P> <i>NOTES:</i><br> This feature is
+     * intended for integration with other JavaScript frameworks and legacy page architectures only; the native browser's
+     * reaction to DOM insertion is unspecified and unsupported. For consistent cross-browser layout and positioning semantics,
+     * use Canvas parents (especially Layouts) and use absolute positioning at top level. <P> In some cases, the target element
+     * may need a specified height to be rendered correctly.  In this cases, you can expect to find a message like the
+     * following in the JavaScript console: "isc_DataView_0:can't resize to height: 0; clamping to 1 [enable 'sizing' log for
+     * stack trace]" <p> Persistence of htmlElement: If {@link com.smartgwt.client.widgets.Canvas#getHtmlPosition htmlPosition}
+     * is set to <code>"replace"</code> the htmlElement will be removed from the DOM when the canvas is drawn - therefore the
+     * htmlElement attribute will be cleared at this time. Otherwise if a Canvas is clear()d and then draw()n again it will be
+     * rendered inside the same htmlElement.<br> If a Canvas is added as a child to Canvas parent, its htmlElement will be
+     * dropped. <P> {@link com.smartgwt.client.widgets.Canvas#getPosition position} should typically be set to
+     * <code>"relative"</code> if the widget is to be rendered inline within a standard page.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for the {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param htmlElement New htmlElement for this canvas, or Null to clear the existing                             htmlElement.   Note that you
-     * may need to set position:relative                              explicitly following a call to this function. Default value is null
+     * @param htmlElement New htmlElement for this canvas or Null        to clear the existing htmlElement.  You may also provide a string with
+     * the elements        ID, which will have the effect of setting {@link com.smartgwt.client.widgets.Canvas#getHtmlElement
+     * htmlElement} to the node        returned by document.getElementById(element).  Note that you may need to set       
+     * position:relative explicitly following a call to this function. Default value is null
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
      */
@@ -3869,22 +4407,79 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
 
     /**
      * If specified as a pointer to an HTML element present in the DOM, this canvas will be rendered inside that element on
-     * {@link com.smartgwt.client.widgets.Canvas#draw draw()}. <P> <i>NOTES:</i><br> This feature is intended for temporary
-     * integration with legacy page architectures only; the native browser's reaction to DOM insertion is unspecified and
-     * unsupported. For consistent cross-browser layout and positioning semantics, use Canvas parents (especially Layouts) and
-     * use absolute positioning at top level. <P> Persistence of htmlElement: If {@link
-     * com.smartgwt.client.widgets.Canvas#getHtmlPosition htmlPosition} is set to <code>"replace"</code> the htmlElement will
-     * be removed from the DOM when the canvas is drawn - therefore the htmlElement attribute will be cleared at this time.
-     * Otherwise if a Canvas is clear()d and then draw()n again it will be rendered inside the same htmlElement.<br> If a
-     * Canvas is added as a child to Canvas parent, its htmlElement will be dropped. <P> {@link
-     * com.smartgwt.client.widgets.Canvas#getPosition position} should typically be set to <code>"relative"</code> if the
-     * widget is to be rendered inline within a standard page.
+     * {@link com.smartgwt.client.widgets.Canvas#draw draw()}.  If provided as a String, the String will be replaced by a DOM
+     * node as returned from document.getElementById(htmlElement) on initialization. <P> <i>NOTES:</i><br> This feature is
+     * intended for integration with other JavaScript frameworks and legacy page architectures only; the native browser's
+     * reaction to DOM insertion is unspecified and unsupported. For consistent cross-browser layout and positioning semantics,
+     * use Canvas parents (especially Layouts) and use absolute positioning at top level. <P> In some cases, the target element
+     * may need a specified height to be rendered correctly.  In this cases, you can expect to find a message like the
+     * following in the JavaScript console: "isc_DataView_0:can't resize to height: 0; clamping to 1 [enable 'sizing' log for
+     * stack trace]" <p> Persistence of htmlElement: If {@link com.smartgwt.client.widgets.Canvas#getHtmlPosition htmlPosition}
+     * is set to <code>"replace"</code> the htmlElement will be removed from the DOM when the canvas is drawn - therefore the
+     * htmlElement attribute will be cleared at this time. Otherwise if a Canvas is clear()d and then draw()n again it will be
+     * rendered inside the same htmlElement.<br> If a Canvas is added as a child to Canvas parent, its htmlElement will be
+     * dropped. <P> {@link com.smartgwt.client.widgets.Canvas#getPosition position} should typically be set to
+     * <code>"relative"</code> if the widget is to be rendered inline within a standard page.
      *
      * @return Current htmlElement value. Default value is null
      * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
      */
     public Element getHtmlElement()  {
         return getAttributeAsElement("htmlElement");
+    }
+
+    /**
+     * If specified as a pointer to an HTML element present in the DOM, this canvas will be rendered inside that element on
+     * {@link com.smartgwt.client.widgets.Canvas#draw draw()}.  If provided as a String, the String will be replaced by a DOM
+     * node as returned from document.getElementById(htmlElement) on initialization. <P> <i>NOTES:</i><br> This feature is
+     * intended for integration with other JavaScript frameworks and legacy page architectures only; the native browser's
+     * reaction to DOM insertion is unspecified and unsupported. For consistent cross-browser layout and positioning semantics,
+     * use Canvas parents (especially Layouts) and use absolute positioning at top level. <P> In some cases, the target element
+     * may need a specified height to be rendered correctly.  In this cases, you can expect to find a message like the
+     * following in the JavaScript console: "isc_DataView_0:can't resize to height: 0; clamping to 1 [enable 'sizing' log for
+     * stack trace]" <p> Persistence of htmlElement: If {@link com.smartgwt.client.widgets.Canvas#getHtmlPosition htmlPosition}
+     * is set to <code>"replace"</code> the htmlElement will be removed from the DOM when the canvas is drawn - therefore the
+     * htmlElement attribute will be cleared at this time. Otherwise if a Canvas is clear()d and then draw()n again it will be
+     * rendered inside the same htmlElement.<br> If a Canvas is added as a child to Canvas parent, its htmlElement will be
+     * dropped. <P> {@link com.smartgwt.client.widgets.Canvas#getPosition position} should typically be set to
+     * <code>"relative"</code> if the widget is to be rendered inline within a standard page.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Setter for the {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param htmlElement New htmlElement for this canvas or Null        to clear the existing htmlElement.  You may also provide a string with
+     * the elements        ID, which will have the effect of setting {@link com.smartgwt.client.widgets.Canvas#getHtmlElement
+     * htmlElement} to the node        returned by document.getElementById(element).  Note that you may need to set       
+     * position:relative explicitly following a call to this function. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
+     */
+    public Canvas setHtmlElement(String htmlElement) {
+        return (Canvas)setAttribute("htmlElement", htmlElement, true);
+    }
+
+    /**
+     * If specified as a pointer to an HTML element present in the DOM, this canvas will be rendered inside that element on
+     * {@link com.smartgwt.client.widgets.Canvas#draw draw()}.  If provided as a String, the String will be replaced by a DOM
+     * node as returned from document.getElementById(htmlElement) on initialization. <P> <i>NOTES:</i><br> This feature is
+     * intended for integration with other JavaScript frameworks and legacy page architectures only; the native browser's
+     * reaction to DOM insertion is unspecified and unsupported. For consistent cross-browser layout and positioning semantics,
+     * use Canvas parents (especially Layouts) and use absolute positioning at top level. <P> In some cases, the target element
+     * may need a specified height to be rendered correctly.  In this cases, you can expect to find a message like the
+     * following in the JavaScript console: "isc_DataView_0:can't resize to height: 0; clamping to 1 [enable 'sizing' log for
+     * stack trace]" <p> Persistence of htmlElement: If {@link com.smartgwt.client.widgets.Canvas#getHtmlPosition htmlPosition}
+     * is set to <code>"replace"</code> the htmlElement will be removed from the DOM when the canvas is drawn - therefore the
+     * htmlElement attribute will be cleared at this time. Otherwise if a Canvas is clear()d and then draw()n again it will be
+     * rendered inside the same htmlElement.<br> If a Canvas is added as a child to Canvas parent, its htmlElement will be
+     * dropped. <P> {@link com.smartgwt.client.widgets.Canvas#getPosition position} should typically be set to
+     * <code>"relative"</code> if the widget is to be rendered inline within a standard page.
+     *
+     * @return Current htmlElement value. Default value is null
+     * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
+     */
+    public String getHtmlElementAsString()  {
+        return getAttributeAsString("htmlElement");
     }
     
 
@@ -3999,6 +4594,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *
      * @param isSnapAlignCandidate New isSnapAlignCandidate value. Default value is null
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setIsSnapAlignCandidate(Boolean isSnapAlignCandidate) {
         return (Canvas)setAttribute("isSnapAlignCandidate", isSnapAlignCandidate, true);
@@ -4009,6 +4605,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * {@link com.smartgwt.client.widgets.Canvas#getChildrenSnapAlign childrenSnapAlign} is enabled on this Canvas' parent.
      *
      * @return Current isSnapAlignCandidate value. Default value is null
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Boolean getIsSnapAlignCandidate()  {
         return getAttributeAsBoolean("isSnapAlignCandidate");
@@ -4355,9 +4952,13 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     
 
     /**
-     * If {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} is specified, should this canvas initially be
-     * drawn at the same dimensions as the htmlElement?<br> Note: setting this property will not force the canvas to resize if
-     * the element subsequently resizes (for example due to page reflow).
+     * If {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} is specified, should this canvas be drawn at
+     * the same dimensions as the htmlElement?<br> See also {@link com.smartgwt.client.widgets.Canvas#getMatchElementWidth
+     * matchElementWidth} and {@link com.smartgwt.client.widgets.Canvas#getMatchElementHeight matchElementHeight} <P> By
+     * default, if {@link com.smartgwt.client.widgets.Canvas#getHtmlPosition htmlPosition} is anything other than
+     * <code>"replace"</code>, setting this property will cause the canvas resize with the element if the element itself
+     * subsequently resizes (for example due to page reflow). <P> To disable this behavior for backwards compatibility or other
+     * reasons, use {@link com.smartgwt.client.widgets.Canvas#getPersistentMatchElement persistentMatchElement}
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param matchElement New matchElement value. Default value is null
@@ -4368,14 +4969,70 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} is specified, should this canvas initially be
-     * drawn at the same dimensions as the htmlElement?<br> Note: setting this property will not force the canvas to resize if
-     * the element subsequently resizes (for example due to page reflow).
+     * If {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} is specified, should this canvas be drawn at
+     * the same dimensions as the htmlElement?<br> See also {@link com.smartgwt.client.widgets.Canvas#getMatchElementWidth
+     * matchElementWidth} and {@link com.smartgwt.client.widgets.Canvas#getMatchElementHeight matchElementHeight} <P> By
+     * default, if {@link com.smartgwt.client.widgets.Canvas#getHtmlPosition htmlPosition} is anything other than
+     * <code>"replace"</code>, setting this property will cause the canvas resize with the element if the element itself
+     * subsequently resizes (for example due to page reflow). <P> To disable this behavior for backwards compatibility or other
+     * reasons, use {@link com.smartgwt.client.widgets.Canvas#getPersistentMatchElement persistentMatchElement}
      *
      * @return Current matchElement value. Default value is null
      */
     public Boolean getMatchElement()  {
         return getAttributeAsBoolean("matchElement");
+    }
+    
+
+    /**
+     * For canvases with a specified {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} where {@link
+     * com.smartgwt.client.widgets.Canvas#getPersistentMatchElement persistentMatchElement} is set to true, how should the 
+     * canvas match the element's height?
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param matchElementHeight New matchElementHeight value. Default value is "matchElement"
+     * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public Canvas setMatchElementHeight(MatchElementSizeMode matchElementHeight)  throws IllegalStateException {
+        return (Canvas)setAttribute("matchElementHeight", matchElementHeight == null ? null : matchElementHeight.getValue(), false);
+    }
+
+    /**
+     * For canvases with a specified {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} where {@link
+     * com.smartgwt.client.widgets.Canvas#getPersistentMatchElement persistentMatchElement} is set to true, how should the 
+     * canvas match the element's height?
+     *
+     * @return Current matchElementHeight value. Default value is "matchElement"
+     */
+    public MatchElementSizeMode getMatchElementHeight()  {
+        return EnumUtil.getEnum(MatchElementSizeMode.values(), getAttribute("matchElementHeight"));
+    }
+    
+
+    /**
+     * For canvases with a specified {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} where {@link
+     * com.smartgwt.client.widgets.Canvas#getPersistentMatchElement persistentMatchElement} is set to true, how should the 
+     * canvas match the element's width?
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param matchElementWidth New matchElementWidth value. Default value is "matchElement"
+     * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public Canvas setMatchElementWidth(MatchElementSizeMode matchElementWidth)  throws IllegalStateException {
+        return (Canvas)setAttribute("matchElementWidth", matchElementWidth == null ? null : matchElementWidth.getValue(), false);
+    }
+
+    /**
+     * For canvases with a specified {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} where {@link
+     * com.smartgwt.client.widgets.Canvas#getPersistentMatchElement persistentMatchElement} is set to true, how should the 
+     * canvas match the element's width?
+     *
+     * @return Current matchElementWidth value. Default value is "matchElement"
+     */
+    public MatchElementSizeMode getMatchElementWidth()  {
+        return EnumUtil.getEnum(MatchElementSizeMode.values(), getAttribute("matchElementWidth"));
     }
     
 
@@ -4719,6 +5376,57 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     
 
     /**
+     * In some platform/browser configurations, scrollable regions do not show visible scrollbars until the user attempts to
+     * interact with the region. The interaction to show the scrollbar varies by browser/OS but may include starting a trackpad
+     * scroll or simply rolling over the scrollable element. <P> If <code>nativeAutoHideScrollbars</code> is set to true, we
+     * detect platforms that show scrollbars dynamically on user interaction and for components with  {@link
+     * com.smartgwt.client.widgets.Canvas#getShowCustomScrollbars showCustomScrollbars} we ignore the specified  {@link
+     * com.smartgwt.client.widgets.Canvas#getScrollbarConstructor scrollbarConstructor}, and instead create system-managed
+     * native scrollbars via the special NativeScrollbar class, and set {@link
+     * com.smartgwt.client.widgets.Canvas#getFloatingScrollbars floatingScrollbars} to true. <P> Not applicable to {@link
+     * com.smartgwt.client.util.Browser#isTouch touch devices} <P> Has no impact if {@link
+     * com.smartgwt.client.widgets.Canvas#getAlwaysShowScrollbars alwaysShowScrollbars} is true. <P> If {@link
+     * com.smartgwt.client.widgets.Canvas#getShowCustomScrollbars showCustomScrollbars} is false this setting will have no
+     * effect (we would be showing custom scrollbars in any case)<br> <P> Also does not apply to {@link
+     * com.smartgwt.client.widgets.Canvas#getUseTouchScrolling touch scrolling interfaces} (where scrollbars are always hidden
+     * unless {@link com.smartgwt.client.widgets.Canvas#getAlwaysShowScrollbars alwaysShowScrollbars} is true).
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param nativeAutoHideScrollbars New nativeAutoHideScrollbars value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Scrolling Scrolling overview and related methods
+     */
+    public Canvas setNativeAutoHideScrollbars(Boolean nativeAutoHideScrollbars)  throws IllegalStateException {
+        return (Canvas)setAttribute("nativeAutoHideScrollbars", nativeAutoHideScrollbars, false);
+    }
+
+    /**
+     * In some platform/browser configurations, scrollable regions do not show visible scrollbars until the user attempts to
+     * interact with the region. The interaction to show the scrollbar varies by browser/OS but may include starting a trackpad
+     * scroll or simply rolling over the scrollable element. <P> If <code>nativeAutoHideScrollbars</code> is set to true, we
+     * detect platforms that show scrollbars dynamically on user interaction and for components with  {@link
+     * com.smartgwt.client.widgets.Canvas#getShowCustomScrollbars showCustomScrollbars} we ignore the specified  {@link
+     * com.smartgwt.client.widgets.Canvas#getScrollbarConstructor scrollbarConstructor}, and instead create system-managed
+     * native scrollbars via the special NativeScrollbar class, and set {@link
+     * com.smartgwt.client.widgets.Canvas#getFloatingScrollbars floatingScrollbars} to true. <P> Not applicable to {@link
+     * com.smartgwt.client.util.Browser#isTouch touch devices} <P> Has no impact if {@link
+     * com.smartgwt.client.widgets.Canvas#getAlwaysShowScrollbars alwaysShowScrollbars} is true. <P> If {@link
+     * com.smartgwt.client.widgets.Canvas#getShowCustomScrollbars showCustomScrollbars} is false this setting will have no
+     * effect (we would be showing custom scrollbars in any case)<br> <P> Also does not apply to {@link
+     * com.smartgwt.client.widgets.Canvas#getUseTouchScrolling touch scrolling interfaces} (where scrollbars are always hidden
+     * unless {@link com.smartgwt.client.widgets.Canvas#getAlwaysShowScrollbars alwaysShowScrollbars} is true).
+     *
+     * @return Current nativeAutoHideScrollbars value. Default value is false
+     * @see com.smartgwt.client.docs.Scrolling Scrolling overview and related methods
+     */
+    public Boolean getNativeAutoHideScrollbars()  {
+        Boolean result = getAttributeAsBoolean("nativeAutoHideScrollbars");
+        return result == null ? false : result;
+    }
+    
+
+    /**
      * If true, this canvas will receive all mouse-clicks as single {@link com.smartgwt.client.widgets.Canvas#addClickHandler
      * click} events rather than as {@link com.smartgwt.client.widgets.Canvas#addDoubleClickHandler doubleClick} events.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -4878,7 +5586,8 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * This Canvas's immediate parent, if any. <BR> Can be initialized, but any subsequent manipulation should be via {@link
      * com.smartgwt.client.widgets.Canvas#addChild addChild()} and {@link com.smartgwt.client.widgets.Canvas#removeChild
      * removeChild()} calls on the parent. The parent Canvas should be fetched using {@link
-     * com.smartgwt.client.widgets.Canvas#getParentCanvas getParentCanvas()}.
+     * com.smartgwt.client.widgets.Canvas#getParentCanvas getParentCanvas()}. <P> See {@link
+     * com.smartgwt.client.docs.Containment} for an overview of parent/child relationships.
      *
      * @param parentCanvas New parentCanvas value. Default value is null
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
@@ -4893,9 +5602,11 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * This Canvas's immediate parent, if any. <BR> Can be initialized, but any subsequent manipulation should be via {@link
      * com.smartgwt.client.widgets.Canvas#addChild addChild()} and {@link com.smartgwt.client.widgets.Canvas#removeChild
      * removeChild()} calls on the parent. The parent Canvas should be fetched using {@link
-     * com.smartgwt.client.widgets.Canvas#getParentCanvas getParentCanvas()}.
+     * com.smartgwt.client.widgets.Canvas#getParentCanvas getParentCanvas()}. <P> See {@link
+     * com.smartgwt.client.docs.Containment} for an overview of parent/child relationships.
      *
-     * @return Returns the parent of this canvas, if any. Default value is null
+     * @return Returns the parent of this canvas, if any. <P> See {@link com.smartgwt.client.docs.Containment} for an overview of
+     * parent/child relationships. Default value is null
      * @see com.smartgwt.client.docs.Containment Containment overview and related methods
      */
     public Canvas getParentCanvas()  {
@@ -4938,7 +5649,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     /**
      * Array of all Canvii that are peers of this Canvas. <P> Use {@link com.smartgwt.client.widgets.Canvas#addPeer addPeer()}
      * and {@link com.smartgwt.client.widgets.Canvas#removePeer removePeer()} to add and remove peers after a Canvas has been
-     * created/drawn.
+     * created/drawn. <P> See {@link com.smartgwt.client.docs.Containment} for an overview of master/peer relationships.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param peers New peers value. Default value is null
@@ -4953,7 +5664,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     /**
      * Array of all Canvii that are peers of this Canvas. <P> Use {@link com.smartgwt.client.widgets.Canvas#addPeer addPeer()}
      * and {@link com.smartgwt.client.widgets.Canvas#removePeer removePeer()} to add and remove peers after a Canvas has been
-     * created/drawn.
+     * created/drawn. <P> See {@link com.smartgwt.client.docs.Containment} for an overview of master/peer relationships.
      *
      * @return Current peers value. Default value is null
      * @see com.smartgwt.client.docs.Containment Containment overview and related methods
@@ -5034,6 +5745,104 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      */
     public Canvas getPercentSource()  {
         return (Canvas)Canvas.getByJSObject(getAttributeAsJavaScriptObject("percentSource"));
+    }
+    
+
+    /**
+     * If this canvas has a specified {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} and {@link
+     * com.smartgwt.client.widgets.Canvas#getMatchElement matchElement} is set to true, should the canvas perform a one time
+     * resize to fit the target element on draw, or should it continue to match the target element as its size changes due to
+     * page reflows?
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param persistentMatchElement New persistentMatchElement value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public Canvas setPersistentMatchElement(Boolean persistentMatchElement)  throws IllegalStateException {
+        return (Canvas)setAttribute("persistentMatchElement", persistentMatchElement, false);
+    }
+
+    /**
+     * If this canvas has a specified {@link com.smartgwt.client.widgets.Canvas#getHtmlElement htmlElement} and {@link
+     * com.smartgwt.client.widgets.Canvas#getMatchElement matchElement} is set to true, should the canvas perform a one time
+     * resize to fit the target element on draw, or should it continue to match the target element as its size changes due to
+     * page reflows?
+     *
+     * @return Current persistentMatchElement value. Default value is true
+     */
+    public Boolean getPersistentMatchElement()  {
+        Boolean result = getAttributeAsBoolean("persistentMatchElement");
+        return result == null ? true : result;
+    }
+    
+
+    /**
+     * Detail settings of the {@link com.smartgwt.client.widgets.Canvas#getShowPointer pointer} such as where it should be
+     * located along the outside of the canvas.
+     *
+     * @param pointerSettings New pointerSettings value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public Canvas setPointerSettings(PointerSettings pointerSettings)  throws IllegalStateException {
+        return (Canvas)setAttribute("pointerSettings", pointerSettings == null ? null : pointerSettings.getOrCreateJsObj(), false);
+    }
+
+    /**
+     * Detail settings of the {@link com.smartgwt.client.widgets.Canvas#getShowPointer pointer} such as where it should be
+     * located along the outside of the canvas.
+     *
+     * @return Current pointerSettings value. Default value is null
+     */
+    public PointerSettings getPointerSettings()  {
+        return (PointerSettings)PointerSettings.getByJSObject(getAttributeAsJavaScriptObject("pointerSettings"));
+    }
+    
+
+    /**
+     * This property in conjunction with the {@link com.smartgwt.client.widgets.PointerSettings pointerSettings.snapTo} places
+     * the canvas in relation to the target canvas. <P> Depending on the <code>pointerSettings.snapTo</code> and the {@link
+     * com.smartgwt.client.widgets.PointerSettings pointerSettings.targetSnapTo} the canvas will be positioned so the pointer
+     * correctly points to the target. <P> A <code>pointerTarget</code> can be specified ether as an {@link
+     * com.smartgwt.client.docs.AutoTestLocator} or a {@link com.smartgwt.client.docs.GlobalId}.
+     *
+     * @param pointerTarget New pointerTarget value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.AutoTestLocator AutoTestLocator 
+     */
+    public Canvas setPointerTarget(String pointerTarget)  throws IllegalStateException {
+        return (Canvas)setAttribute("pointerTarget", pointerTarget, false);
+    }
+
+    /**
+     * This property in conjunction with the {@link com.smartgwt.client.widgets.PointerSettings pointerSettings.snapTo} places
+     * the canvas in relation to the target canvas. <P> Depending on the <code>pointerSettings.snapTo</code> and the {@link
+     * com.smartgwt.client.widgets.PointerSettings pointerSettings.targetSnapTo} the canvas will be positioned so the pointer
+     * correctly points to the target. <P> A <code>pointerTarget</code> can be specified ether as an {@link
+     * com.smartgwt.client.docs.AutoTestLocator} or a {@link com.smartgwt.client.docs.GlobalId}.
+     *
+     * @return Current pointerTarget value. Default value is null
+     * @see com.smartgwt.client.docs.AutoTestLocator AutoTestLocator 
+     */
+    public String getPointerTarget()  {
+        return getAttributeAsString("pointerTarget");
+    }
+
+    /**
+     * This property in conjunction with the {@link com.smartgwt.client.widgets.PointerSettings pointerSettings.snapTo} places
+     * the canvas in relation to the target canvas. <P> Depending on the <code>pointerSettings.snapTo</code> and the {@link
+     * com.smartgwt.client.widgets.PointerSettings pointerSettings.targetSnapTo} the canvas will be positioned so the pointer
+     * correctly points to the target. <P> A <code>pointerTarget</code> can be specified ether as an {@link
+     * com.smartgwt.client.docs.AutoTestLocator} or a {@link com.smartgwt.client.docs.GlobalId}.
+     *
+     * @return Current pointerTarget value. Default value is null
+     * @see com.smartgwt.client.docs.AutoTestLocator AutoTestLocator 
+     * @see com.smartgwt.client.docs.GlobalId GlobalId 
+     */
+    public String getPointerTargetAsString()  {
+        return getAttributeAsString("pointerTarget");
     }
     
 
@@ -5393,7 +6202,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * criteria-based
      * rules specified by properties such as {@link com.smartgwt.client.widgets.form.fields.FormItem#getVisibleWhen
      * FormItem.visibleWhen}, 
-     *   Dynamic Properties, and {@link com.smartgwt.client.widgets.Canvas#getDynamicCriteria dynamicCriteria} such as 
+     *   Dynamic Properties, and {@link com.smartgwt.client.docs.DynamicCriteria} such as 
      *  {@link com.smartgwt.client.widgets.grid.ListGrid#getInitialCriteria ListGrid.initialCriteria}.
      *  <p>
      * If <code>ruleScope</code> is not specified, this component will search through its {@link
@@ -5424,8 +6233,9 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *    even if editable. For two editable components the first becomes the contributor.
      *  <li> any ListGrid or other component that manages a selection and has been assigned an explicit
      *    {@link com.smartgwt.client.widgets.Canvas#getID ID} will contribute the values of the selected record under
-     *    <code>&lt;componentId&gt;.selectedRecord</code>, and also contributes 3 flags for checking
-     *    for selection: <code>anySelected</code>, <code>multiSelected</code>,
+     *    <code>&lt;componentId&gt;.selectedRecord</code>, the values of the grid summary record
+     *    under <code>&lt;componentId&gt;.summaryRecord</code>, and also contributes 3 flags for
+     *    checking for selection: <code>anySelected</code>, <code>multiSelected</code>,
      *    <code>numSelected</code>.
      *  <li> any DynamicForm or other component that edits values and has been assigned an explicit
      *    {@link com.smartgwt.client.widgets.Canvas#getID ID} contributes its current values under
@@ -5437,6 +6247,12 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * <li> any ListGrid that has been assigned an explicit {@link com.smartgwt.client.widgets.Canvas#getID ID} contributes a
      * flag
      *    <code>isGrouped</code> under <code>&lt;componentId&gt;</code>.
+     * <li> any DataSource included in a {@link com.smartgwt.client.widgets.DataContext} or {@link
+     * com.smartgwt.client.widgets.Canvas#getTestDataContext testDataContext} that is
+     *    being used for this ruleScope contributes the values into the <code>dataContext</code>
+     *    section of the ruleContext (ex. <code>dataContext.Customer</code>) so the values do
+     *    not conflict with normal DataSource contributions. Note that the <code>dataContext</code>
+     *    is immutable so only the first contribution is actually saved.
      *  </ul>
      *  For example, given a screen where:
      *  <ul>
@@ -5477,6 +6293,162 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *  </pre>
      * In addition, an application can put custom data into the ruleScope via {@link
      * com.smartgwt.client.widgets.Canvas#provideRuleContext provideRuleContext()}.
+     *  <P>
+     *  <h2>Troubleshooting RuleScope issues</h2>
+     * 
+     *  The ruleScope system consists of two major parts: managing the rule context and using the rule context.
+     * The former is handled by {@link com.smartgwt.client.widgets.Canvas#provideRuleContext provideRuleContext()} and {@link
+     * com.smartgwt.client.widgets.Canvas#removeRuleContext removeRuleContext()}. Users of rule context
+     *  are the criteria-based rules noted above.
+     *  <p>
+     *  A number of Log categories are provided to make diagnosing ruleScope issues easier:
+     *  <ul>
+     *    <li> <em>ruleContext</em>
+     *    <li> <em>whenRules</em>
+     *    <li> <em>dynamicProperties</em>
+     *    <li> <em>dynamicCriteria</em>
+     *  </ul>
+     *  Except for configuration warnings, nothing is logged for these categories unless the log priority
+     *  is set to either <em>Info</em> or <em>Debug</em>. The priorities can be configured and the log messages
+     *  reviewed in {@link com.smartgwt.client.docs.Debugging Smart GWT Developer Console}. By default none of these categories
+     *  are included in the <code>Logging Preferences</code> category choices. To add one or more of these
+     *  categories, select <code>More...</code> then click <code>Add...</code>. Be sure to enter the category
+     *  with the correct capitalization.
+     *  <p>
+     *  At the <em>Info</em> log priority one or two basic log messages are generated per action.
+     *  The <em>Debug</em> priority generally includes additional information like the full criteria
+     *  or a message for each evaluation even when no change is made.
+     * 
+     *  <h3>Using and Interpreting log messages</h3>
+     * 
+     *  To address a specific issue on rules, select the <em>Info</em> priority for the target
+     *  category in the Developer Console then perform your application actions that are being
+     *  diagnosed. You may want to re-run your application to get a clean start on the changes.
+     * 
+     *  <h4>whenRules and dynamicProperties</h4>
+     * 
+     *  Both of these types of properties are triggered by a criteria that can reference the ruleContext
+     *  and/or the component's values (for forms). The criteria is re-evaluated on each rule context
+     *  change and based on the criteria being matched or not, the action is taken or property updated.
+     *  <p>
+     *  Below are some example <em>Info</em> log messages:
+     * 
+     *  <pre>
+     *  16:53:39.032:TMR8[E0]:INFO:whenRules:Hide Canvas 'isc_Canvas_1'
+     *  16:53:39.034:TMR8[E1]:INFO:whenRules:Disabling Canvas 'isc_Button_3'
+     *  16:53:39.509:TMR9[E0]:INFO:whenRules:Hide Canvas 'isc_Canvas_2'
+     *  16:53:39.510:TMR9[E1]:INFO:whenRules:Hide Canvas 'isc_Button_4'
+     *  16:53:39.527:TMR4:INFO:whenRules:Show Canvas 'isc_Canvas_2'
+     *  16:53:39.527:TMR4:INFO:whenRules:Show Canvas 'isc_Button_4'
+     *  16:53:39.528:TMR4:INFO:whenRules:Disabling Canvas 'isc_Button_4'
+     *  16:53:39.529:TMR4:INFO:whenRules:Set read-only (appearance disabled) FormItem 'itemForm3.field2'
+     *  16:53:39.974:TMR6:INFO:whenRules:Set editable (appearance disabled) FormItem 'itemForm3.field2'
+     *  16:53:40.540:TMR2:INFO:whenRules:Enabling FormItemIcon 'itemForm4.field2.remove'
+     *  16:53:40.541:TMR2:INFO:whenRules:Hide FormItemIcon 'itemForm4.field4.edit'
+     *  </pre>
+     * 
+     *  These indicate various responses to <code>visibleWhen</code>, <code>enableWhen</code>, and
+     *  <code>readOnlyWhen</code> actions.
+     *  <p>
+     *  By setting the priority to <em>Debug</em> you can see the creation of the rule for the
+     *  criteria and the evaluation of the criteria before action is taken:
+     *  
+     *  <pre>
+     *  16:53:41.569:TMR7:DEBUG:whenRules:itemForm6:Create whenRule: itemForm6_field2_readOnly, applyWhen {
+     *      "_constructor":"AdvancedCriteria", 
+     *      "operator":"and", 
+     *      "criteria":[
+     *          {
+     *              "fieldName":"layout1.date1", 
+     *              "operator":"greaterOrEqualField", 
+     *              "value":"layout1.date2"
+     *          }
+     *      ]
+     *  } to target {component: [DynamicForm ID:itemForm6], fieldName: "field2", formIconName: undef}
+     *  16:53:41.571:TMR7:DEBUG:whenRules:isc_RulesEngine_5:Applying readOnly rule 'itemForm6_field2_readOnly' for FormItem itemForm6.field2 with action result true. applyWhen criteria matched: {
+     *      "__normalized":true, 
+     *      "_constructor":"AdvancedCriteria", 
+     *      "operator":"and", 
+     *      "criteria":[
+     *          {
+     *              "__normalized":true, 
+     *              "fieldName":"layout1.date1", 
+     *              "operator":"greaterOrEqualField", 
+     *              "value":"layout1.date2"
+     *          }
+     *      ]
+     *  }
+     *  16:53:41.571:TMR7:DEBUG:whenRules:Set read-only (appearance disabled) FormItem 'itemForm6.field2'
+     *  </pre>
+     * 
+     *  dynamicProperties are similar:
+     * 
+     *  <pre>
+     *  16:59:13.588:XRP8:INFO:dynamicProperties:Set (populateFromDataPath) 'isc_Button_0.title' to [initial value]: Special Title
+     *  16:59:13.650:TMR2:WARN:Class:isc_Class_0:Attempt to evaluate formulaFunction itemForm.values.count * 2 + 10 failed. Error message:undefined is not an object (evaluating 'itemForm.values')
+     *  16:59:13.657:TMR9:INFO:dynamicProperties:Set (populate) 'isc_Class_0.contents' to [initial value]: 34
+     *  </pre>
+     * 
+     *  This example shows a failed formula indicating that the 'itemForm.values' isn't valid in the ruleContext.
+     *  In this case the form values haven't been provided to ruleContext yet. When they are the next log message
+     *  shows the result.
+     * 
+     *  <h4>dynamicCriteria</h4>
+     * 
+     *  Each time a dynamic criteria is evaluated (as triggered by a <code>ruleContextChanged</code> event)
+     *  a log entry is made:
+     *  <pre>
+     *  14:54:46.436:INP9:INFO:dynamicCriteria:isc_ListGrid_0:Evaluated dynamic criteria: filterCriteria
+     *  </pre>
+     *  This indicates that dynamicCriteria for isc_ListGrid_0 is being evaluated/re-evaluated. By changing
+     *  the priority to <em>Debug</em> the resolved criteria is also included:
+     * 
+     *  <pre>
+     *  14:55:16.231:INP9:DEBUG:dynamicCriteria:isc_ListGrid_0:Evaluated dynamic criteria: filterCriteria {
+     *      "fieldName":"orderNumber", 
+     *      "operator":"equals", 
+     *      "valuePath":"orderSearchForm.values.orderNumber", 
+     *      "value":10104, 
+     *      "_constructor":"AdvancedCriteria"
+     *  }
+     *  </pre>
+     * 
+     *  Note the valuePath of <code>orderSearchForm.values.orderNumber</code> is resolved to the value of
+     *  <code>10104</code>.
+     *  <h4>ruleContext</h4>
+     *  If none of the logging above provides details needed to understand what is going on, enabling the
+     *  <em>ruleContext</em> category can be enabled. At <em>Info</em> a single log message is reported for
+     *  each ruleContext change.
+     *  <p>
+     *  For example, below are the rule context changes that occurred to trigger the above dynamicCriteria
+     *  messages above:
+     *  <pre>
+     *  14:54:46.432:INP9:INFO:ruleContext:isc_SearchForm_0:provideRuleContext [ruleScope: isc_DataView_0, dbcID: isc_SearchForm_0]: Order.orderNumber = 10104
+     *  14:54:46.433:INP9:INFO:ruleContext:isc_SearchForm_0:provideRuleContext [ruleScope: isc_DataView_0, dbcID: isc_SearchForm_0]: orderSearchForm.values.orderNumber = 10104
+     *  14:54:46.434:INP9:INFO:ruleContext:isc_SearchForm_0:provideRuleContext [ruleScope: isc_DataView_0, dbcID: isc_SearchForm_0]: orderSearchForm.hasChanges = true
+     *  </pre>
+     *  This indicates that isc_SearchForm_0 updated rule context with three changed values. There is no
+     *  indication of when a <code>ruleContextChanged</code> event is raised. If that is important, change
+     *  the log priority to <em>Debug</em> to see more details:
+     *  <pre>
+     *  15:16:43.291:INP9:DEBUG:ruleContext:isc_SearchForm_0:provideRuleContext [ruleScope: isc_DataView_0, dbcID: isc_SearchForm_0] START TRANSACTION
+     *  15:16:43.292:INP9:DEBUG:ruleContext:isc_SearchForm_0:provideRuleContext [ruleScope: isc_DataView_0, dbcID: isc_SearchForm_0]: Order.orderNumber = 10104
+     *  15:16:43.292:INP9:DEBUG:ruleContext:isc_SearchForm_0:provideRuleContext [ruleScope: isc_DataView_0, dbcID: isc_SearchForm_0]: orderSearchForm.values.orderNumber = 10104
+     *  15:16:43.293:INP9:DEBUG:ruleContext:isc_SearchForm_0:provideRuleContext [ruleScope: isc_DataView_0, dbcID: isc_SearchForm_0]: orderSearchForm.hasChanges = true
+     *  15:16:43.294:INP9:DEBUG:ruleContext:isc_SearchForm_0:provideRuleContext [ruleScope: isc_DataView_0, dbcID: isc_SearchForm_0] END TRANSACTION
+     *  </pre>
+     *  Here the isc_SearchForm_0 provides rule context changes as part of a 'transaction'. That is, the three
+     *  values are provided separately but a single <code>ruleContextChanged</code> event is raised at the end
+     *  of the 'transaction'. If only one change is part of a 'transaction' the start/end log messages are
+     *  suppressed. For example, the isc_ListGrid_0 updates rule context as a result of the change in the
+     *  dynamic criteria. The criteria is provided to rule context separately from <code>dataLoading</code>
+     *  updates:
+     *  <pre>
+     *  15:16:43.305:INP9:DEBUG:ruleContext:isc_ListGrid_0:provideRuleContext [ruleScope: isc_DataView_0, dbcID: isc_ListGrid_0]: orderDetailGrid.criteria = {fieldName: "orderNumber",
+     *               operator: "equals", valuePath: "orderSearchForm.values.orderNumber", value: 10104, _constructor: "AdvancedCriteria"}
+     *  15:16:43.317:INP9:DEBUG:ruleContext:isc_ListGrid_0:provideRuleContext [ruleScope: isc_DataView_0, dbcID: isc_ListGrid_0]: orderDetailGrid.dataLoading = true
+     *  15:16:44.228:TMR2:DEBUG:ruleContext:isc_ListGrid_0:provideRuleContext [ruleScope: isc_DataView_0, dbcID: isc_ListGrid_0]: orderDetailGrid.dataLoading = null
+     *  </pre>
      *
      * @param ruleScope New ruleScope value. Default value is null
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
@@ -5491,7 +6463,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * criteria-based
      * rules specified by properties such as {@link com.smartgwt.client.widgets.form.fields.FormItem#getVisibleWhen
      * FormItem.visibleWhen}, 
-     *   Dynamic Properties, and {@link com.smartgwt.client.widgets.Canvas#getDynamicCriteria dynamicCriteria} such as 
+     *   Dynamic Properties, and {@link com.smartgwt.client.docs.DynamicCriteria} such as 
      *  {@link com.smartgwt.client.widgets.grid.ListGrid#getInitialCriteria ListGrid.initialCriteria}.
      *  <p>
      * If <code>ruleScope</code> is not specified, this component will search through its {@link
@@ -5522,8 +6494,9 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *    even if editable. For two editable components the first becomes the contributor.
      *  <li> any ListGrid or other component that manages a selection and has been assigned an explicit
      *    {@link com.smartgwt.client.widgets.Canvas#getID ID} will contribute the values of the selected record under
-     *    <code>&lt;componentId&gt;.selectedRecord</code>, and also contributes 3 flags for checking
-     *    for selection: <code>anySelected</code>, <code>multiSelected</code>,
+     *    <code>&lt;componentId&gt;.selectedRecord</code>, the values of the grid summary record
+     *    under <code>&lt;componentId&gt;.summaryRecord</code>, and also contributes 3 flags for
+     *    checking for selection: <code>anySelected</code>, <code>multiSelected</code>,
      *    <code>numSelected</code>.
      *  <li> any DynamicForm or other component that edits values and has been assigned an explicit
      *    {@link com.smartgwt.client.widgets.Canvas#getID ID} contributes its current values under
@@ -5535,6 +6508,12 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * <li> any ListGrid that has been assigned an explicit {@link com.smartgwt.client.widgets.Canvas#getID ID} contributes a
      * flag
      *    <code>isGrouped</code> under <code>&lt;componentId&gt;</code>.
+     * <li> any DataSource included in a {@link com.smartgwt.client.widgets.DataContext} or {@link
+     * com.smartgwt.client.widgets.Canvas#getTestDataContext testDataContext} that is
+     *    being used for this ruleScope contributes the values into the <code>dataContext</code>
+     *    section of the ruleContext (ex. <code>dataContext.Customer</code>) so the values do
+     *    not conflict with normal DataSource contributions. Note that the <code>dataContext</code>
+     *    is immutable so only the first contribution is actually saved.
      *  </ul>
      *  For example, given a screen where:
      *  <ul>
@@ -5575,6 +6554,162 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *  </pre>
      * In addition, an application can put custom data into the ruleScope via {@link
      * com.smartgwt.client.widgets.Canvas#provideRuleContext provideRuleContext()}.
+     *  <P>
+     *  <h2>Troubleshooting RuleScope issues</h2>
+     * 
+     *  The ruleScope system consists of two major parts: managing the rule context and using the rule context.
+     * The former is handled by {@link com.smartgwt.client.widgets.Canvas#provideRuleContext provideRuleContext()} and {@link
+     * com.smartgwt.client.widgets.Canvas#removeRuleContext removeRuleContext()}. Users of rule context
+     *  are the criteria-based rules noted above.
+     *  <p>
+     *  A number of Log categories are provided to make diagnosing ruleScope issues easier:
+     *  <ul>
+     *    <li> <em>ruleContext</em>
+     *    <li> <em>whenRules</em>
+     *    <li> <em>dynamicProperties</em>
+     *    <li> <em>dynamicCriteria</em>
+     *  </ul>
+     *  Except for configuration warnings, nothing is logged for these categories unless the log priority
+     *  is set to either <em>Info</em> or <em>Debug</em>. The priorities can be configured and the log messages
+     *  reviewed in {@link com.smartgwt.client.docs.Debugging Smart GWT Developer Console}. By default none of these categories
+     *  are included in the <code>Logging Preferences</code> category choices. To add one or more of these
+     *  categories, select <code>More...</code> then click <code>Add...</code>. Be sure to enter the category
+     *  with the correct capitalization.
+     *  <p>
+     *  At the <em>Info</em> log priority one or two basic log messages are generated per action.
+     *  The <em>Debug</em> priority generally includes additional information like the full criteria
+     *  or a message for each evaluation even when no change is made.
+     * 
+     *  <h3>Using and Interpreting log messages</h3>
+     * 
+     *  To address a specific issue on rules, select the <em>Info</em> priority for the target
+     *  category in the Developer Console then perform your application actions that are being
+     *  diagnosed. You may want to re-run your application to get a clean start on the changes.
+     * 
+     *  <h4>whenRules and dynamicProperties</h4>
+     * 
+     *  Both of these types of properties are triggered by a criteria that can reference the ruleContext
+     *  and/or the component's values (for forms). The criteria is re-evaluated on each rule context
+     *  change and based on the criteria being matched or not, the action is taken or property updated.
+     *  <p>
+     *  Below are some example <em>Info</em> log messages:
+     * 
+     *  <pre>
+     *  16:53:39.032:TMR8[E0]:INFO:whenRules:Hide Canvas 'isc_Canvas_1'
+     *  16:53:39.034:TMR8[E1]:INFO:whenRules:Disabling Canvas 'isc_Button_3'
+     *  16:53:39.509:TMR9[E0]:INFO:whenRules:Hide Canvas 'isc_Canvas_2'
+     *  16:53:39.510:TMR9[E1]:INFO:whenRules:Hide Canvas 'isc_Button_4'
+     *  16:53:39.527:TMR4:INFO:whenRules:Show Canvas 'isc_Canvas_2'
+     *  16:53:39.527:TMR4:INFO:whenRules:Show Canvas 'isc_Button_4'
+     *  16:53:39.528:TMR4:INFO:whenRules:Disabling Canvas 'isc_Button_4'
+     *  16:53:39.529:TMR4:INFO:whenRules:Set read-only (appearance disabled) FormItem 'itemForm3.field2'
+     *  16:53:39.974:TMR6:INFO:whenRules:Set editable (appearance disabled) FormItem 'itemForm3.field2'
+     *  16:53:40.540:TMR2:INFO:whenRules:Enabling FormItemIcon 'itemForm4.field2.remove'
+     *  16:53:40.541:TMR2:INFO:whenRules:Hide FormItemIcon 'itemForm4.field4.edit'
+     *  </pre>
+     * 
+     *  These indicate various responses to <code>visibleWhen</code>, <code>enableWhen</code>, and
+     *  <code>readOnlyWhen</code> actions.
+     *  <p>
+     *  By setting the priority to <em>Debug</em> you can see the creation of the rule for the
+     *  criteria and the evaluation of the criteria before action is taken:
+     *  
+     *  <pre>
+     *  16:53:41.569:TMR7:DEBUG:whenRules:itemForm6:Create whenRule: itemForm6_field2_readOnly, applyWhen {
+     *      "_constructor":"AdvancedCriteria", 
+     *      "operator":"and", 
+     *      "criteria":[
+     *          {
+     *              "fieldName":"layout1.date1", 
+     *              "operator":"greaterOrEqualField", 
+     *              "value":"layout1.date2"
+     *          }
+     *      ]
+     *  } to target {component: [DynamicForm ID:itemForm6], fieldName: "field2", formIconName: undef}
+     *  16:53:41.571:TMR7:DEBUG:whenRules:isc_RulesEngine_5:Applying readOnly rule 'itemForm6_field2_readOnly' for FormItem itemForm6.field2 with action result true. applyWhen criteria matched: {
+     *      "__normalized":true, 
+     *      "_constructor":"AdvancedCriteria", 
+     *      "operator":"and", 
+     *      "criteria":[
+     *          {
+     *              "__normalized":true, 
+     *              "fieldName":"layout1.date1", 
+     *              "operator":"greaterOrEqualField", 
+     *              "value":"layout1.date2"
+     *          }
+     *      ]
+     *  }
+     *  16:53:41.571:TMR7:DEBUG:whenRules:Set read-only (appearance disabled) FormItem 'itemForm6.field2'
+     *  </pre>
+     * 
+     *  dynamicProperties are similar:
+     * 
+     *  <pre>
+     *  16:59:13.588:XRP8:INFO:dynamicProperties:Set (populateFromDataPath) 'isc_Button_0.title' to [initial value]: Special Title
+     *  16:59:13.650:TMR2:WARN:Class:isc_Class_0:Attempt to evaluate formulaFunction itemForm.values.count * 2 + 10 failed. Error message:undefined is not an object (evaluating 'itemForm.values')
+     *  16:59:13.657:TMR9:INFO:dynamicProperties:Set (populate) 'isc_Class_0.contents' to [initial value]: 34
+     *  </pre>
+     * 
+     *  This example shows a failed formula indicating that the 'itemForm.values' isn't valid in the ruleContext.
+     *  In this case the form values haven't been provided to ruleContext yet. When they are the next log message
+     *  shows the result.
+     * 
+     *  <h4>dynamicCriteria</h4>
+     * 
+     *  Each time a dynamic criteria is evaluated (as triggered by a <code>ruleContextChanged</code> event)
+     *  a log entry is made:
+     *  <pre>
+     *  14:54:46.436:INP9:INFO:dynamicCriteria:isc_ListGrid_0:Evaluated dynamic criteria: filterCriteria
+     *  </pre>
+     *  This indicates that dynamicCriteria for isc_ListGrid_0 is being evaluated/re-evaluated. By changing
+     *  the priority to <em>Debug</em> the resolved criteria is also included:
+     * 
+     *  <pre>
+     *  14:55:16.231:INP9:DEBUG:dynamicCriteria:isc_ListGrid_0:Evaluated dynamic criteria: filterCriteria {
+     *      "fieldName":"orderNumber", 
+     *      "operator":"equals", 
+     *      "valuePath":"orderSearchForm.values.orderNumber", 
+     *      "value":10104, 
+     *      "_constructor":"AdvancedCriteria"
+     *  }
+     *  </pre>
+     * 
+     *  Note the valuePath of <code>orderSearchForm.values.orderNumber</code> is resolved to the value of
+     *  <code>10104</code>.
+     *  <h4>ruleContext</h4>
+     *  If none of the logging above provides details needed to understand what is going on, enabling the
+     *  <em>ruleContext</em> category can be enabled. At <em>Info</em> a single log message is reported for
+     *  each ruleContext change.
+     *  <p>
+     *  For example, below are the rule context changes that occurred to trigger the above dynamicCriteria
+     *  messages above:
+     *  <pre>
+     *  14:54:46.432:INP9:INFO:ruleContext:isc_SearchForm_0:provideRuleContext [ruleScope: isc_DataView_0, dbcID: isc_SearchForm_0]: Order.orderNumber = 10104
+     *  14:54:46.433:INP9:INFO:ruleContext:isc_SearchForm_0:provideRuleContext [ruleScope: isc_DataView_0, dbcID: isc_SearchForm_0]: orderSearchForm.values.orderNumber = 10104
+     *  14:54:46.434:INP9:INFO:ruleContext:isc_SearchForm_0:provideRuleContext [ruleScope: isc_DataView_0, dbcID: isc_SearchForm_0]: orderSearchForm.hasChanges = true
+     *  </pre>
+     *  This indicates that isc_SearchForm_0 updated rule context with three changed values. There is no
+     *  indication of when a <code>ruleContextChanged</code> event is raised. If that is important, change
+     *  the log priority to <em>Debug</em> to see more details:
+     *  <pre>
+     *  15:16:43.291:INP9:DEBUG:ruleContext:isc_SearchForm_0:provideRuleContext [ruleScope: isc_DataView_0, dbcID: isc_SearchForm_0] START TRANSACTION
+     *  15:16:43.292:INP9:DEBUG:ruleContext:isc_SearchForm_0:provideRuleContext [ruleScope: isc_DataView_0, dbcID: isc_SearchForm_0]: Order.orderNumber = 10104
+     *  15:16:43.292:INP9:DEBUG:ruleContext:isc_SearchForm_0:provideRuleContext [ruleScope: isc_DataView_0, dbcID: isc_SearchForm_0]: orderSearchForm.values.orderNumber = 10104
+     *  15:16:43.293:INP9:DEBUG:ruleContext:isc_SearchForm_0:provideRuleContext [ruleScope: isc_DataView_0, dbcID: isc_SearchForm_0]: orderSearchForm.hasChanges = true
+     *  15:16:43.294:INP9:DEBUG:ruleContext:isc_SearchForm_0:provideRuleContext [ruleScope: isc_DataView_0, dbcID: isc_SearchForm_0] END TRANSACTION
+     *  </pre>
+     *  Here the isc_SearchForm_0 provides rule context changes as part of a 'transaction'. That is, the three
+     *  values are provided separately but a single <code>ruleContextChanged</code> event is raised at the end
+     *  of the 'transaction'. If only one change is part of a 'transaction' the start/end log messages are
+     *  suppressed. For example, the isc_ListGrid_0 updates rule context as a result of the change in the
+     *  dynamic criteria. The criteria is provided to rule context separately from <code>dataLoading</code>
+     *  updates:
+     *  <pre>
+     *  15:16:43.305:INP9:DEBUG:ruleContext:isc_ListGrid_0:provideRuleContext [ruleScope: isc_DataView_0, dbcID: isc_ListGrid_0]: orderDetailGrid.criteria = {fieldName: "orderNumber",
+     *               operator: "equals", valuePath: "orderSearchForm.values.orderNumber", value: 10104, _constructor: "AdvancedCriteria"}
+     *  15:16:43.317:INP9:DEBUG:ruleContext:isc_ListGrid_0:provideRuleContext [ruleScope: isc_DataView_0, dbcID: isc_ListGrid_0]: orderDetailGrid.dataLoading = true
+     *  15:16:44.228:TMR2:DEBUG:ruleContext:isc_ListGrid_0:provideRuleContext [ruleScope: isc_DataView_0, dbcID: isc_ListGrid_0]: orderDetailGrid.dataLoading = null
+     *  </pre>
      *
      * @return Current ruleScope value. Default value is null
      */
@@ -6100,6 +7235,37 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     
 
     /**
+     * Should a pointer be shown? A pointer can be placed on the border to identify the target of the canvas contents. The
+     * default position for the pointer is top-right. The position and additional properties of the pointer is specified by
+     * {@link com.smartgwt.client.widgets.Canvas#getPointerSettings pointerSettings}. <P> If a {@link
+     * com.smartgwt.client.widgets.Canvas#getPointerTarget pointerTarget} is specified, <code>showPointer</code> will be
+     * enabled unless it is explicitly set to <code>false</code>.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Set the showPointer property.
+     *
+     * @param showPointer New showPointer value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     */
+    public Canvas setShowPointer(Boolean showPointer) {
+        return (Canvas)setAttribute("showPointer", showPointer, true);
+    }
+
+    /**
+     * Should a pointer be shown? A pointer can be placed on the border to identify the target of the canvas contents. The
+     * default position for the pointer is top-right. The position and additional properties of the pointer is specified by
+     * {@link com.smartgwt.client.widgets.Canvas#getPointerSettings pointerSettings}. <P> If a {@link
+     * com.smartgwt.client.widgets.Canvas#getPointerTarget pointerTarget} is specified, <code>showPointer</code> will be
+     * enabled unless it is explicitly set to <code>false</code>.
+     *
+     * @return Current showPointer value. Default value is null
+     */
+    public Boolean getShowPointer()  {
+        return getAttributeAsBoolean("showPointer");
+    }
+    
+
+    /**
      * When this Canvas is included as a member in a {@link com.smartgwt.client.widgets.layout.Layout}, whether a resizeBar
      * should be shown after this member in the layout, to allow it to be resized. <p> Whether a resizeBar is actually shown
      * also depends on the  {@link com.smartgwt.client.widgets.layout.Layout#getDefaultResizeBars defaultResizeBars} attribute
@@ -6203,6 +7369,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *
      * @param showSnapGrid New showSnapGrid value. Default value is null
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setShowSnapGrid(Boolean showSnapGrid) {
         return (Canvas)setAttribute("showSnapGrid", showSnapGrid, true);
@@ -6216,6 +7383,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * com.smartgwt.client.widgets.Canvas#getSnapVGap snapVGap} properties.
      *
      * @return Current showSnapGrid value. Default value is null
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Boolean getShowSnapGrid()  {
         return getAttributeAsBoolean("showSnapGrid");
@@ -6338,6 +7506,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *
      * @param snapAlignCandidates New snapAlignCandidates value. Default value is null
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setSnapAlignCandidates(Canvas... snapAlignCandidates) {
         return (Canvas)setAttribute("snapAlignCandidates", snapAlignCandidates, true);
@@ -6354,6 +7523,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * are automatically ignored.
      *
      * @return Current snapAlignCandidates value. Default value is null
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas[] getSnapAlignCandidates()  {
         return com.smartgwt.client.util.ConvertTo.arrayOfCanvas(getAttributeAsJavaScriptObject("snapAlignCandidates"));
@@ -6367,6 +7537,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @param snapAlignCenterLineStyle New snapAlignCenterLineStyle value. Default value is "1px solid blue"
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setSnapAlignCenterLineStyle(String snapAlignCenterLineStyle)  throws IllegalStateException {
         return (Canvas)setAttribute("snapAlignCenterLineStyle", snapAlignCenterLineStyle, false);
@@ -6377,6 +7548,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * com.smartgwt.client.widgets.Canvas#getChildrenSnapAlign childrenSnapAlign} is set.
      *
      * @return Current snapAlignCenterLineStyle value. Default value is "1px solid blue"
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public String getSnapAlignCenterLineStyle()  {
         return getAttributeAsString("snapAlignCenterLineStyle");
@@ -6390,6 +7562,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @param snapAlignEdgeLineStyle New snapAlignEdgeLineStyle value. Default value is "1px solid #555555"
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setSnapAlignEdgeLineStyle(String snapAlignEdgeLineStyle)  throws IllegalStateException {
         return (Canvas)setAttribute("snapAlignEdgeLineStyle", snapAlignEdgeLineStyle, false);
@@ -6400,6 +7573,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * com.smartgwt.client.widgets.Canvas#getChildrenSnapAlign childrenSnapAlign} is set.
      *
      * @return Current snapAlignEdgeLineStyle value. Default value is "1px solid #555555"
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public String getSnapAlignEdgeLineStyle()  {
         return getAttributeAsString("snapAlignEdgeLineStyle");
@@ -6415,7 +7589,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @see com.smartgwt.client.widgets.Canvas#setSnapResizeToGrid
      * @see com.smartgwt.client.widgets.Canvas#setChildrenSnapToGrid
      * @see com.smartgwt.client.widgets.Canvas#setChildrenSnapResizeToGrid
-     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setSnapAxis(String snapAxis) {
         return (Canvas)setAttribute("snapAxis", snapAxis, true);
@@ -6429,7 +7603,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @see com.smartgwt.client.widgets.Canvas#getSnapResizeToGrid
      * @see com.smartgwt.client.widgets.Canvas#getChildrenSnapToGrid
      * @see com.smartgwt.client.widgets.Canvas#getChildrenSnapResizeToGrid
-     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public String getSnapAxis()  {
         return getAttributeAsString("snapAxis");
@@ -6448,7 +7622,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @param snapEdge new snapEdge value. Default value is null
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setSnapTo
-     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     * @see com.smartgwt.client.docs.SnapPositioning SnapPositioning overview and related methods
      */
     public Canvas setSnapEdge(String snapEdge) {
         return (Canvas)setAttribute("snapEdge", snapEdge, true);
@@ -6462,7 +7636,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *
      * @return Return the snapEdge value of this object. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#getSnapTo
-     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     * @see com.smartgwt.client.docs.SnapPositioning SnapPositioning overview and related methods
      */
     public String getSnapEdge()  {
         return getAttributeAsString("snapEdge");
@@ -6476,6 +7650,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @param snapGridLineProperties New snapGridLineProperties value. Default value is null
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      * @see com.smartgwt.client.docs.SGWTProperties
      */
     public Canvas setSnapGridLineProperties(DrawLine snapGridLineProperties)  throws IllegalStateException {
@@ -6494,6 +7669,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * "lines".
      *
      * @return Current snapGridLineProperties value. Default value is null
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public DrawLine getSnapGridLineProperties()  {
         DrawLine properties = new DrawLine();
@@ -6511,6 +7687,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @param snapGridStyle New snapGridStyle value. Default value is "crosses"
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setSnapGridStyle(SnapGridStyle snapGridStyle)  throws IllegalStateException {
         return (Canvas)setAttribute("snapGridStyle", snapGridStyle == null ? null : snapGridStyle.getValue(), false);
@@ -6522,6 +7699,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * snapGridLineProperties}.
      *
      * @return Current snapGridStyle value. Default value is "crosses"
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public SnapGridStyle getSnapGridStyle()  {
         return EnumUtil.getEnum(SnapGridStyle.values(), getAttribute("snapGridStyle"));
@@ -6539,7 +7717,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @see com.smartgwt.client.widgets.Canvas#setSnapResizeToGrid
      * @see com.smartgwt.client.widgets.Canvas#setChildrenSnapToGrid
      * @see com.smartgwt.client.widgets.Canvas#setChildrenSnapResizeToGrid
-     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setSnapHDirection(String snapHDirection) {
         return (Canvas)setAttribute("snapHDirection", snapHDirection, true);
@@ -6555,7 +7733,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @see com.smartgwt.client.widgets.Canvas#getSnapResizeToGrid
      * @see com.smartgwt.client.widgets.Canvas#getChildrenSnapToGrid
      * @see com.smartgwt.client.widgets.Canvas#getChildrenSnapResizeToGrid
-     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public String getSnapHDirection()  {
         return getAttributeAsString("snapHDirection");
@@ -6571,7 +7749,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @see com.smartgwt.client.widgets.Canvas#setSnapResizeToGrid
      * @see com.smartgwt.client.widgets.Canvas#setChildrenSnapToGrid
      * @see com.smartgwt.client.widgets.Canvas#setChildrenSnapResizeToGrid
-     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setSnapHGap(int snapHGap) {
         return (Canvas)setAttribute("snapHGap", snapHGap, true);
@@ -6585,7 +7763,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @see com.smartgwt.client.widgets.Canvas#getSnapResizeToGrid
      * @see com.smartgwt.client.widgets.Canvas#getChildrenSnapToGrid
      * @see com.smartgwt.client.widgets.Canvas#getChildrenSnapResizeToGrid
-     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public int getSnapHGap()  {
         return getAttributeAsInt("snapHGap");
@@ -6606,7 +7784,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @param snapOffsetLeft new snapOffsetLeft value. Default value is null
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setSnapTo
-     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     * @see com.smartgwt.client.docs.SnapPositioning SnapPositioning overview and related methods
      */
     public Canvas setSnapOffsetLeft(Integer snapOffsetLeft) {
         return (Canvas)setAttribute("snapOffsetLeft", snapOffsetLeft, true);
@@ -6622,7 +7800,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *
      * @return Current snapOffsetLeft value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#getSnapTo
-     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     * @see com.smartgwt.client.docs.SnapPositioning SnapPositioning overview and related methods
      */
     public Integer getSnapOffsetLeft()  {
         return getAttributeAsInt("snapOffsetLeft");
@@ -6643,7 +7821,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @param snapOffsetTop new snapOffsetTop value. Default value is null
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setSnapTo
-     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     * @see com.smartgwt.client.docs.SnapPositioning SnapPositioning overview and related methods
      */
     public Canvas setSnapOffsetTop(Integer snapOffsetTop) {
         return (Canvas)setAttribute("snapOffsetTop", snapOffsetTop, true);
@@ -6659,7 +7837,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *
      * @return Current snapOffsetTop value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#getSnapTo
-     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     * @see com.smartgwt.client.docs.SnapPositioning SnapPositioning overview and related methods
      */
     public Integer getSnapOffsetTop()  {
         return getAttributeAsInt("snapOffsetTop");
@@ -6675,7 +7853,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setSnapToGrid
      * @see com.smartgwt.client.widgets.Canvas#shouldSnapOnDrop
-     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setSnapOnDrop(Boolean snapOnDrop) {
         return (Canvas)setAttribute("snapOnDrop", snapOnDrop, true);
@@ -6688,7 +7866,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @return Current snapOnDrop value. Default value is true
      * @see com.smartgwt.client.widgets.Canvas#getSnapToGrid
      * @see com.smartgwt.client.widgets.Canvas#shouldSnapOnDrop
-     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Boolean getSnapOnDrop()  {
         Boolean result = getAttributeAsBoolean("snapOnDrop");
@@ -6703,6 +7881,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *
      * @param snapResizeToAlign New snapResizeToAlign value. Default value is null
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setSnapResizeToAlign(Boolean snapResizeToAlign) {
         return (Canvas)setAttribute("snapResizeToAlign", snapResizeToAlign, true);
@@ -6714,6 +7893,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * childrenResizeSnapAlign} instead.
      *
      * @return Current snapResizeToAlign value. Default value is null
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Boolean getSnapResizeToAlign()  {
         return getAttributeAsBoolean("snapResizeToAlign");
@@ -6726,7 +7906,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *
      * @param snapResizeToGrid New snapResizeToGrid value. Default value is null
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
-     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setSnapResizeToGrid(Boolean snapResizeToGrid) {
         return (Canvas)setAttribute("snapResizeToGrid", snapResizeToGrid, true);
@@ -6737,7 +7917,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * com.smartgwt.client.widgets.Canvas#getSnapToGrid snapToGrid} value if undefined.
      *
      * @return Current snapResizeToGrid value. Default value is null
-     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Boolean getSnapResizeToGrid()  {
         return getAttributeAsBoolean("snapResizeToGrid");
@@ -6769,7 +7949,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setSnapEdge
      * @see com.smartgwt.client.widgets.Canvas#setPercentBox
-     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     * @see com.smartgwt.client.docs.SnapPositioning SnapPositioning overview and related methods
      */
     public Canvas setSnapTo(String snapTo) {
         return (Canvas)setAttribute("snapTo", snapTo, true);
@@ -6796,7 +7976,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @return Return the snapTo value of this object. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#getSnapEdge
      * @see com.smartgwt.client.widgets.Canvas#getPercentBox
-     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     * @see com.smartgwt.client.docs.SnapPositioning SnapPositioning overview and related methods
      */
     public String getSnapTo()  {
         return getAttributeAsString("snapTo");
@@ -6811,6 +7991,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *
      * @param snapToAlign New snapToAlign value. Default value is null
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setSnapToAlign(Boolean snapToAlign) {
         return (Canvas)setAttribute("snapToAlign", snapToAlign, true);
@@ -6823,6 +8004,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * com.smartgwt.client.widgets.Canvas#getChildrenSnapAlign childrenSnapAlign} instead.
      *
      * @return Current snapToAlign value. Default value is null
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Boolean getSnapToAlign()  {
         return getAttributeAsBoolean("snapToAlign");
@@ -6835,6 +8017,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *
      * @param snapToCenterAlign New snapToCenterAlign value. Default value is null
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setSnapToCenterAlign(Boolean snapToCenterAlign) {
         return (Canvas)setAttribute("snapToCenterAlign", snapToCenterAlign, true);
@@ -6845,6 +8028,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * com.smartgwt.client.widgets.Canvas#getChildrenSnapAlign childrenSnapAlign} is enabled on this Canvas' parent.
      *
      * @return Current snapToCenterAlign value. Default value is null
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Boolean getSnapToCenterAlign()  {
         return getAttributeAsBoolean("snapToCenterAlign");
@@ -6857,6 +8041,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *
      * @param snapToEdgeAlign New snapToEdgeAlign value. Default value is null
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setSnapToEdgeAlign(Boolean snapToEdgeAlign) {
         return (Canvas)setAttribute("snapToEdgeAlign", snapToEdgeAlign, true);
@@ -6867,6 +8052,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * com.smartgwt.client.widgets.Canvas#getChildrenSnapAlign childrenSnapAlign} is enabled on this Canvas' parent.
      *
      * @return Current snapToEdgeAlign value. Default value is null
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Boolean getSnapToEdgeAlign()  {
         return getAttributeAsBoolean("snapToEdgeAlign");
@@ -6879,7 +8065,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @param snapToGrid New snapToGrid value. Default value is null
      * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setChildrenSnapToGrid
-     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setSnapToGrid(Boolean snapToGrid) {
         return (Canvas)setAttribute("snapToGrid", snapToGrid, true);
@@ -6890,7 +8076,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *
      * @return Current snapToGrid value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#getChildrenSnapToGrid
-     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Boolean getSnapToGrid()  {
         return getAttributeAsBoolean("snapToGrid");
@@ -6907,7 +8093,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @see com.smartgwt.client.widgets.Canvas#setSnapResizeToGrid
      * @see com.smartgwt.client.widgets.Canvas#setChildrenSnapToGrid
      * @see com.smartgwt.client.widgets.Canvas#setChildrenSnapResizeToGrid
-     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setSnapVDirection(String snapVDirection) {
         return (Canvas)setAttribute("snapVDirection", snapVDirection, true);
@@ -6922,7 +8108,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @see com.smartgwt.client.widgets.Canvas#getSnapResizeToGrid
      * @see com.smartgwt.client.widgets.Canvas#getChildrenSnapToGrid
      * @see com.smartgwt.client.widgets.Canvas#getChildrenSnapResizeToGrid
-     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public String getSnapVDirection()  {
         return getAttributeAsString("snapVDirection");
@@ -6938,7 +8124,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @see com.smartgwt.client.widgets.Canvas#setSnapResizeToGrid
      * @see com.smartgwt.client.widgets.Canvas#setChildrenSnapToGrid
      * @see com.smartgwt.client.widgets.Canvas#setChildrenSnapResizeToGrid
-     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public Canvas setSnapVGap(int snapVGap) {
         return (Canvas)setAttribute("snapVGap", snapVGap, true);
@@ -6952,7 +8138,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @see com.smartgwt.client.widgets.Canvas#getSnapResizeToGrid
      * @see com.smartgwt.client.widgets.Canvas#getChildrenSnapToGrid
      * @see com.smartgwt.client.widgets.Canvas#getChildrenSnapResizeToGrid
-     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public int getSnapVGap()  {
         return getAttributeAsInt("snapVGap");
@@ -7063,6 +8249,41 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      */
     public Integer getTabIndex()  {
         return getAttributeAsInt("tabIndex");
+    }
+    
+
+    /**
+     * A {@link com.smartgwt.client.widgets.DataContext} to be used if no {@link
+     * com.smartgwt.client.widgets.Canvas#getDataContext dataContext} is provided (directly or indirectly via a parent). If a
+     * DataContext is provided it completely replaces the <code>testDataContext</code>. <P> DataSources included in the
+     * <code>testDataContext</code> are immediately provided to {@link com.smartgwt.client.widgets.Canvas#getRuleScope rule
+     * context} when used if no other component has done so already. These records are found in rule context 'dataContext'
+     * section (ex. <code>dataContext.Customer</code> for a Customer record in <code>testDataContext</code>) so they do not
+     * conflict with normal DataSource records.
+     *
+     * @param testDataContext New testDataContext value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.DataContext
+     */
+    public Canvas setTestDataContext(DataContext testDataContext)  throws IllegalStateException {
+        return (Canvas)setAttribute("testDataContext", testDataContext == null ? null : testDataContext.getJsObj(), false);
+    }
+
+    /**
+     * A {@link com.smartgwt.client.widgets.DataContext} to be used if no {@link
+     * com.smartgwt.client.widgets.Canvas#getDataContext dataContext} is provided (directly or indirectly via a parent). If a
+     * DataContext is provided it completely replaces the <code>testDataContext</code>. <P> DataSources included in the
+     * <code>testDataContext</code> are immediately provided to {@link com.smartgwt.client.widgets.Canvas#getRuleScope rule
+     * context} when used if no other component has done so already. These records are found in rule context 'dataContext'
+     * section (ex. <code>dataContext.Customer</code> for a Customer record in <code>testDataContext</code>) so they do not
+     * conflict with normal DataSource records.
+     *
+     * @return Current testDataContext value. Default value is null
+     * @see com.smartgwt.client.widgets.DataContext
+     */
+    public DataContext getTestDataContext()  {
+        return new DataContext(getAttributeAsJavaScriptObject("testDataContext"));
     }
     
 
@@ -7661,26 +8882,18 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     
 
     /**
-     * Size for this component's horizontal dimension. <P> Can be a number of pixels, or a percentage like "50%". Percentage
-     * sizes are resolved to pixel values as follows: <UL> <LI>If a canvas has a specified {@link
-     * com.smartgwt.client.widgets.Canvas#getPercentSource percentSource}, sizing will be     a percentage of the size of that
-     * widget (see also {@link com.smartgwt.client.widgets.Canvas#getPercentBox percentBox}).</LI> <LI>Otherwise, if a canvas
-     * has a {@link com.smartgwt.client.widgets.Canvas#getMasterCanvas master canvas}, and     {@link
-     * com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} is set for the widget, sizing will be a percentage of     the size
-     * of that widget (see also {@link com.smartgwt.client.widgets.Canvas#getPercentBox percentBox}).</LI> <LI>Otherwise if
-     * this is a child of some other canvas, percentages will be based on the     inner size of the {@link
-     * com.smartgwt.client.widgets.Canvas#getParentCanvas parent canvas}'s viewport.</LI> <LI>Otherwise, for top level widgets,
-     * sizing is calculated as a percentage of page size.</LI> </UL> Note that if a {@link
-     * com.smartgwt.client.widgets.Canvas#getMaxWidth maxWidth} or {@link com.smartgwt.client.widgets.Canvas#getMinWidth
-     * minWidth} are specified (or {@link com.smartgwt.client.widgets.Canvas#getMaxHeight maxHeight} / {@link
-     * com.smartgwt.client.widgets.Canvas#getMinHeight minHeight} for heights), these properties act as explicit pixel limits
-     * on the canvas' size. For example, a canvas with {@link com.smartgwt.client.widgets.Canvas#getMaxWidth maxWidth} set to
-     * <code>500</code>, and width specified as  "100%" will not render larger than 500 pixels in width even if there is more
-     * space available in the parent canvas or percentSource. <P> {@link com.smartgwt.client.widgets.layout.Layout Layouts} may
-     * specially interpret percentage sizes on their children, and also allow "*" as a size. <P> Note that if {@link
-     * com.smartgwt.client.widgets.Canvas#getOverflow overflow} is set to "visible", this size is a minimum, and the component
-     * may overflow to show all content and/or children. <P> If trying to establish a default width for a custom component, set
-     * {@link com.smartgwt.client.widgets.Canvas#getDefaultWidth defaultWidth} instead.
+     * The <code>canvas.width</code> attribute specifies the size for a component's  horizontal dimension;
+     * <code>canvas.height</code> specifies the size for the vertical  dimension. <P> May be set to an integer value (a number
+     * of pixels), a percentage value like "50%", or "*".   <P> See {@link com.smartgwt.client.docs.PercentSizing} for details
+     * on how percentage or <code>"*"</code> values are resolved actual size. <P> If {@link
+     * com.smartgwt.client.widgets.Canvas#getOverflow overflow} is set to "visible", the specified size acts as a minimum, and
+     * the component may overflow to show all content and/or children. <P> Note that developers wishing to set a default width
+     * or height for a component class should set {@link com.smartgwt.client.widgets.Canvas#getDefaultWidth defaultWidth} or
+     * {@link com.smartgwt.client.widgets.Canvas#getDefaultHeight defaultHeight}  instead of specifying an explicit default
+     * <code>width</code> or <code>height</code>. This is important for components added to a {@link
+     * com.smartgwt.client.widgets.layout.Layout} as members - it allows the Layout to determine whether the canvas has an
+     * explicitly specified size that must be respected, or whether it can participate in its {@link
+     * com.smartgwt.client.types.LayoutPolicy sizing policies}.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Resizes the widget horizontally to the specified width (moves the right side of the widget). The width parameter can be expressed as a percentage of viewport size or as the number of pixels. <P> NOTE: if you're setting multiple coordinates, use resizeTo() or setRect() instead
@@ -7694,28 +8907,20 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     }
 
     /**
-     * Size for this component's horizontal dimension. <P> Can be a number of pixels, or a percentage like "50%". Percentage
-     * sizes are resolved to pixel values as follows: <UL> <LI>If a canvas has a specified {@link
-     * com.smartgwt.client.widgets.Canvas#getPercentSource percentSource}, sizing will be     a percentage of the size of that
-     * widget (see also {@link com.smartgwt.client.widgets.Canvas#getPercentBox percentBox}).</LI> <LI>Otherwise, if a canvas
-     * has a {@link com.smartgwt.client.widgets.Canvas#getMasterCanvas master canvas}, and     {@link
-     * com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} is set for the widget, sizing will be a percentage of     the size
-     * of that widget (see also {@link com.smartgwt.client.widgets.Canvas#getPercentBox percentBox}).</LI> <LI>Otherwise if
-     * this is a child of some other canvas, percentages will be based on the     inner size of the {@link
-     * com.smartgwt.client.widgets.Canvas#getParentCanvas parent canvas}'s viewport.</LI> <LI>Otherwise, for top level widgets,
-     * sizing is calculated as a percentage of page size.</LI> </UL> Note that if a {@link
-     * com.smartgwt.client.widgets.Canvas#getMaxWidth maxWidth} or {@link com.smartgwt.client.widgets.Canvas#getMinWidth
-     * minWidth} are specified (or {@link com.smartgwt.client.widgets.Canvas#getMaxHeight maxHeight} / {@link
-     * com.smartgwt.client.widgets.Canvas#getMinHeight minHeight} for heights), these properties act as explicit pixel limits
-     * on the canvas' size. For example, a canvas with {@link com.smartgwt.client.widgets.Canvas#getMaxWidth maxWidth} set to
-     * <code>500</code>, and width specified as  "100%" will not render larger than 500 pixels in width even if there is more
-     * space available in the parent canvas or percentSource. <P> {@link com.smartgwt.client.widgets.layout.Layout Layouts} may
-     * specially interpret percentage sizes on their children, and also allow "*" as a size. <P> Note that if {@link
-     * com.smartgwt.client.widgets.Canvas#getOverflow overflow} is set to "visible", this size is a minimum, and the component
-     * may overflow to show all content and/or children. <P> If trying to establish a default width for a custom component, set
-     * {@link com.smartgwt.client.widgets.Canvas#getDefaultWidth defaultWidth} instead.
+     * The <code>canvas.width</code> attribute specifies the size for a component's  horizontal dimension;
+     * <code>canvas.height</code> specifies the size for the vertical  dimension. <P> May be set to an integer value (a number
+     * of pixels), a percentage value like "50%", or "*".   <P> See {@link com.smartgwt.client.docs.PercentSizing} for details
+     * on how percentage or <code>"*"</code> values are resolved actual size. <P> If {@link
+     * com.smartgwt.client.widgets.Canvas#getOverflow overflow} is set to "visible", the specified size acts as a minimum, and
+     * the component may overflow to show all content and/or children. <P> Note that developers wishing to set a default width
+     * or height for a component class should set {@link com.smartgwt.client.widgets.Canvas#getDefaultWidth defaultWidth} or
+     * {@link com.smartgwt.client.widgets.Canvas#getDefaultHeight defaultHeight}  instead of specifying an explicit default
+     * <code>width</code> or <code>height</code>. This is important for components added to a {@link
+     * com.smartgwt.client.widgets.layout.Layout} as members - it allows the Layout to determine whether the canvas has an
+     * explicitly specified size that must be respected, or whether it can participate in its {@link
+     * com.smartgwt.client.types.LayoutPolicy sizing policies}.
      *
-     * @return Return the width of this object, in pixels. Default value is null
+     * @return Return the width of this object, in pixels. <P> See {@link com.smartgwt.client.docs.GettingCanvasSize}. Default value is null
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public Integer getWidth()  {
@@ -7723,26 +8928,18 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     }
 
     /**
-     * Size for this component's horizontal dimension. <P> Can be a number of pixels, or a percentage like "50%". Percentage
-     * sizes are resolved to pixel values as follows: <UL> <LI>If a canvas has a specified {@link
-     * com.smartgwt.client.widgets.Canvas#getPercentSource percentSource}, sizing will be     a percentage of the size of that
-     * widget (see also {@link com.smartgwt.client.widgets.Canvas#getPercentBox percentBox}).</LI> <LI>Otherwise, if a canvas
-     * has a {@link com.smartgwt.client.widgets.Canvas#getMasterCanvas master canvas}, and     {@link
-     * com.smartgwt.client.widgets.Canvas#getSnapTo snapTo} is set for the widget, sizing will be a percentage of     the size
-     * of that widget (see also {@link com.smartgwt.client.widgets.Canvas#getPercentBox percentBox}).</LI> <LI>Otherwise if
-     * this is a child of some other canvas, percentages will be based on the     inner size of the {@link
-     * com.smartgwt.client.widgets.Canvas#getParentCanvas parent canvas}'s viewport.</LI> <LI>Otherwise, for top level widgets,
-     * sizing is calculated as a percentage of page size.</LI> </UL> Note that if a {@link
-     * com.smartgwt.client.widgets.Canvas#getMaxWidth maxWidth} or {@link com.smartgwt.client.widgets.Canvas#getMinWidth
-     * minWidth} are specified (or {@link com.smartgwt.client.widgets.Canvas#getMaxHeight maxHeight} / {@link
-     * com.smartgwt.client.widgets.Canvas#getMinHeight minHeight} for heights), these properties act as explicit pixel limits
-     * on the canvas' size. For example, a canvas with {@link com.smartgwt.client.widgets.Canvas#getMaxWidth maxWidth} set to
-     * <code>500</code>, and width specified as  "100%" will not render larger than 500 pixels in width even if there is more
-     * space available in the parent canvas or percentSource. <P> {@link com.smartgwt.client.widgets.layout.Layout Layouts} may
-     * specially interpret percentage sizes on their children, and also allow "*" as a size. <P> Note that if {@link
-     * com.smartgwt.client.widgets.Canvas#getOverflow overflow} is set to "visible", this size is a minimum, and the component
-     * may overflow to show all content and/or children. <P> If trying to establish a default width for a custom component, set
-     * {@link com.smartgwt.client.widgets.Canvas#getDefaultWidth defaultWidth} instead.
+     * The <code>canvas.width</code> attribute specifies the size for a component's  horizontal dimension;
+     * <code>canvas.height</code> specifies the size for the vertical  dimension. <P> May be set to an integer value (a number
+     * of pixels), a percentage value like "50%", or "*".   <P> See {@link com.smartgwt.client.docs.PercentSizing} for details
+     * on how percentage or <code>"*"</code> values are resolved actual size. <P> If {@link
+     * com.smartgwt.client.widgets.Canvas#getOverflow overflow} is set to "visible", the specified size acts as a minimum, and
+     * the component may overflow to show all content and/or children. <P> Note that developers wishing to set a default width
+     * or height for a component class should set {@link com.smartgwt.client.widgets.Canvas#getDefaultWidth defaultWidth} or
+     * {@link com.smartgwt.client.widgets.Canvas#getDefaultHeight defaultHeight}  instead of specifying an explicit default
+     * <code>width</code> or <code>height</code>. This is important for components added to a {@link
+     * com.smartgwt.client.widgets.layout.Layout} as members - it allows the Layout to determine whether the canvas has an
+     * explicitly specified size that must be respected, or whether it can participate in its {@link
+     * com.smartgwt.client.types.LayoutPolicy sizing policies}.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Resizes the widget horizontally to the specified width (moves the right side of the widget). The width parameter can be expressed as a percentage of viewport size or as the number of pixels. <P> NOTE: if you're setting multiple coordinates, use resizeTo() or setRect() instead
@@ -7843,7 +9040,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * be added as a child to the parent of this canvas (if any)
      * @param newPeer new peer widget to add
      * @param name name to assign to peer (eg: this[peer] == child)
-     * @param autoDraw if true, peer will not automatically be drawn (only                             for advanced use)
+     * @param autoDraw if false, peer will not automatically be drawn (only                             for advanced use)
      * @param preDraw if true, when draw is called on the master widget, the peer                            will be drawn before the master
      *
      * @return the new peer, or null if it couldn't be added
@@ -8458,6 +9655,22 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
         return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
 	
+	/**
+     * Notification method fired when {@link com.smartgwt.client.widgets.DataContext} is bound. This can occur on the initial
+     * draw or by an explicit call to {@link com.smartgwt.client.widgets.Canvas#setDataContext setDataContext()}. <p> This
+     * feature allows the use of the <code>dataContext</code> as a general-purpose API to the screen. For example, if you
+     * wanted your screen to support <em>dynamically</em> showing or hiding parts of itself based on a button that is external
+     * to the screen, you could do that by implementing this handler to show/hide that part of the screen based on the current
+     * state of the <code>dataContext</code>.
+     */
+    public native void dataContextChanged() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "dataContextChanged", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.dataContextChanged();
+    }-*/;
+
 	/**
      * Remove this canvas from its parent if it has one.
      * @see com.smartgwt.client.docs.Containment Containment overview and related methods
@@ -9627,6 +10840,24 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     }-*/;
 
 	/**
+     * Retrieves dynamically calculated default ARIA state properties for this canvas.  These will be combined with {@link
+     * com.smartgwt.client.widgets.Canvas#getAriaState explicitly specified aria state} and applied to the widget handle as
+     * described in {@link com.smartgwt.client.widgets.Canvas#getAriaState getAriaState()}. <P> For {@link
+     * com.smartgwt.client.widgets.Canvas#getDisabled disabled canvases}, this method returns an object with
+     * <code>disabled</code> set to true. May be overridden to apply additional  defaults in canvas subclasses.
+     *
+     * @return dynamically calculated default aria state properties
+     */
+    public native Map getAriaStateDefaults() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getAriaStateDefaults", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getAriaStateDefaults();
+        return @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
      * Return the bottom coordinate of this object as rendered, relative to its enclosing context, in pixels.
      *
      * @return bottom coordinate
@@ -9728,39 +10959,6 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     }-*/;
 
 	/**
-     * Get an offset to be used when calculating snap positioning. Returns 0 by default.
-     *
-     * @return The offset to use when snapping
-     * @see com.smartgwt.client.widgets.Canvas#getHSnapPosition
-     * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
-     */
-    public native int getHSnapOrigin() /*-{
-        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getHSnapOrigin", "");
-        }
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var ret = self.getHSnapOrigin();
-        return ret;
-    }-*/;
-
-	/**
-     * Get an offset to be used when calculating snap positioning. Returns 0 by default.
-     * @param snapChild the child that is being snapped
-     *
-     * @return The offset to use when snapping
-     * @see com.smartgwt.client.widgets.Canvas#getHSnapPosition
-     * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
-     */
-    public native int getHSnapOrigin(Canvas snapChild) /*-{
-        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getHSnapOrigin", "Canvas");
-        }
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var ret = self.getHSnapOrigin(snapChild == null ? null : snapChild.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
-        return ret;
-    }-*/;
-	
-	/**
      * Override this method to provide a custom snap-to grid.  Note that you do not need to do this if your grid is regular
      * (ie, grid points are every x pixels); regular grids should be defined using {@link
      * com.smartgwt.client.widgets.Canvas#getSnapHGap snapHGap} and {@link com.smartgwt.client.widgets.Canvas#getSnapVGap
@@ -9820,7 +11018,8 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
 	/**
      * Returns the amount of space available for interior content (or relatively positioned child widget(s)) without
      * introducing clipping, scrolling or overflow.<br> This is the space within the viewport of the widget (not including
-     * padding, and excluding margins, borders or scrollbars) rendered at its specified size.
+     * padding, and excluding margins, borders or scrollbars) rendered at its specified size. <P> See {@link
+     * com.smartgwt.client.docs.GettingCanvasSize}
      *
      * @return inner height of the widget in pixels
      * @see com.smartgwt.client.widgets.Canvas#getInnerContentWidth
@@ -9840,7 +11039,8 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
 	/**
      * Returns the amount of space available for interior content (or relatively positioned child  widget(s)) without
      * introducing clipping, scrolling or overflow.<br>  This is the space within the viewport of the widget (not including
-     * padding, and excluding  margins, borders or scrollbars) rendered at its specified size.
+     * padding, and excluding  margins, borders or scrollbars) rendered at its specified size.  <P>  See {@link
+     * com.smartgwt.client.docs.GettingCanvasSize}
      *
      * @return inner height of the widget in pixels
      * @see com.smartgwt.client.widgets.Canvas#getInnerContentHeight
@@ -9860,7 +11060,8 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
 	/**
      * Returns the amount of space available for (an) absolutely positioned child widget(s) or absolutely positioned HTML
      * content, without introducing clipping, scrolling or overflow. <P> This is the space within the viewport of the widget
-     * (including padding, but excluding margins, borders or scrollbars) rendered at its specified size.
+     * (including padding, but excluding margins, borders or scrollbars) rendered at its specified size. <P> See {@link
+     * com.smartgwt.client.docs.GettingCanvasSize}
      *
      * @return inner height of the widget in pixels
      * @see com.smartgwt.client.widgets.Canvas#getInnerWidth
@@ -9880,7 +11081,8 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
 	/**
      * Returns the amount of space available for absolutely positioned child widget(s) or absolutely positioned HTML content,
      * without introducing clipping, scrolling or overflow. <P> This is the space within the viewport of the widget (including
-     * padding, but excluding margins, borders or scrollbars) rendered at its specified size.
+     * padding, but excluding margins, borders or scrollbars) rendered at its specified size. <P> See {@link
+     * com.smartgwt.client.docs.GettingCanvasSize}
      *
      * @return inner width of the widget in pixels
      * @see com.smartgwt.client.widgets.Canvas#getInnerHeight
@@ -9918,7 +11120,8 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     }-*/;
 
 	/**
-     * Returns this canvas's "master" (the canvas to which it was added as a peer), if any.
+     * Returns this canvas's "master" (the canvas to which it was added as a peer), if any. <P> See {@link
+     * com.smartgwt.client.docs.Containment} for an overview of master/peer relationships.
      *
      * @return the master canvas, null if none exists.
      * @see com.smartgwt.client.docs.Containment Containment overview and related methods
@@ -10138,7 +11341,8 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     }-*/;
 
 	/**
-     * Returns the scrollable height of the widget's contents, including children, ignoring          clipping.
+     * Returns the scrollable height of the widget's contents, including children, ignoring clipping. <P> See {@link
+     * com.smartgwt.client.docs.GettingCanvasSize}
      *
      * @return height of the element that can scroll
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
@@ -10156,7 +11360,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * Get the number of pixels this Canvas is scrolled from its left edge.
      *
      * @return scrollLeft
-     * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
+     * @see com.smartgwt.client.docs.Scrolling Scrolling overview and related methods
      */
     public native int getScrollLeft() /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
@@ -10186,7 +11390,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * Get the number of pixels this Canvas is scrolled from its top edge.
      *
      * @return scrollTop
-     * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
+     * @see com.smartgwt.client.docs.Scrolling Scrolling overview and related methods
      */
     public native int getScrollTop() /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
@@ -10198,7 +11402,8 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     }-*/;
 
 	/**
-     * Returns the scrollable width of the widget's contents, including children, ignoring clipping.
+     * Returns the scrollable width of the widget's contents, including children, ignoring clipping. <P> See {@link
+     * com.smartgwt.client.docs.GettingCanvasSize}
      *
      * @return the scrollable width of the widget's contents
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
@@ -10213,7 +11418,8 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     }-*/;
 
 	/**
-     * Returns the height of the viewport onto the scrollable content.
+     * Returns the height of the viewport onto the scrollable content. <P> See {@link
+     * com.smartgwt.client.docs.GettingCanvasSize}
      *
      * @return height of the viewport, in pixels
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
@@ -10228,7 +11434,8 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     }-*/;
 
 	/**
-     * Returns the width of the viewport onto the scrollable content.
+     * Returns the width of the viewport onto the scrollable content. <P> See {@link
+     * com.smartgwt.client.docs.GettingCanvasSize}
      *
      * @return width of the viewport, in pixels
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
@@ -10243,7 +11450,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     }-*/;
 
 	/**
-     * Return the visible height of the Canvas.
+     * Return the visible height of the Canvas. <P> See {@link com.smartgwt.client.docs.GettingCanvasSize}
      *
      * @return visible height in pixels
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
@@ -10258,7 +11465,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     }-*/;
 
 	/**
-     * Return the visible width of the Canvas.
+     * Return the visible width of the Canvas. <P> See {@link com.smartgwt.client.docs.GettingCanvasSize}
      *
      * @return visible width in pixels
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
@@ -10273,39 +11480,6 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     }-*/;
 
 	/**
-     * Get an offset to be used when calculating snap positioning. Returns 0 by default.
-     *
-     * @return The offset to use when snapping
-     * @see com.smartgwt.client.widgets.Canvas#getVSnapPosition
-     * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
-     */
-    public native int getVSnapOrigin() /*-{
-        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getVSnapOrigin", "");
-        }
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var ret = self.getVSnapOrigin();
-        return ret;
-    }-*/;
-
-	/**
-     * Get an offset to be used when calculating snap positioning. Returns 0 by default.
-     * @param snapChild the child that is being snapped
-     *
-     * @return The offset to use when snapping
-     * @see com.smartgwt.client.widgets.Canvas#getVSnapPosition
-     * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
-     */
-    public native int getVSnapOrigin(Canvas snapChild) /*-{
-        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getVSnapOrigin", "Canvas");
-        }
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var ret = self.getVSnapOrigin(snapChild == null ? null : snapChild.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
-        return ret;
-    }-*/;
-	
-	/**
      * Override this method to provide a custom snap-to grid.  Note that you do not need to do this if your grid is regular
      * (ie, grid points are every x pixels) - regular grids should be defined using {@link
      * com.smartgwt.client.widgets.Canvas#getSnapHGap snapHGap} and {@link com.smartgwt.client.widgets.Canvas#getSnapVGap
@@ -10313,7 +11487,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @param coordinate y-coordinate of the drag event relative to the inside of this widget
      *
      * @return The vertical coordinate to snap to
-     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public native int getVSnapPosition(int coordinate) /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
@@ -10334,7 +11508,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * square. If unset {@link com.smartgwt.client.widgets.Canvas#getSnapHDirection snapHDirection} will   be used by default
      *
      * @return The vertical coordinate to snap to
-     * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public native int getVSnapPosition(int coordinate, String direction) /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
@@ -11718,7 +12892,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     /**
      * Add a parentMoved handler.
      * <p>
-     * Notification method fire when an ancestor of this component's position changes.
+     * Notification method fired when an ancestor of this component's position changes.
      *
      * @param handler the parentMoved handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -11957,6 +13131,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * Remove a candidate from {@link com.smartgwt.client.widgets.Canvas#getSnapAlignCandidates snapAlignCandidates}.  If the
      * passed widget was not actually a candidate, nothing happens and no warning is logged.
      * @param candidate 
+     * @see com.smartgwt.client.docs.SnapGridDragging SnapGridDragging overview and related methods
      */
     public native void removeSnapAlignCandidate(Canvas candidate) /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
@@ -11994,7 +13169,8 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * com.smartgwt.client.widgets.Canvas#isDirty Canvas.isDirty()}), the value for {@link
      * com.smartgwt.client.widgets.Canvas#getVisibleWidth Canvas.getVisibleWidth()} and {@link
      * com.smartgwt.client.widgets.Canvas#getVisibleHeight Canvas.getVisibleHeight()} will be unreliable until
-     * <code>redraw()</code> fires.
+     * <code>redraw()</code> fires.<br> In this case, if the delayed redraw does change the drawn size of the component,  this
+     * notification will be fired a second time when it completes.
      *
      * @param handler the resized handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -12043,7 +13219,9 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
 
 	/**
      * Resizes the widget to the specified width and height (moves the right and/ or bottom          sides of the widget). The
-     * width and height parameters can be expressed as a percentage          of viewport size or as the number of pixels.
+     * width and height parameters can be expressed as a percentage          of viewport size or as the number of pixels. See
+     * {@link com.smartgwt.client.widgets.Canvas#getWidth width} or {@link com.smartgwt.client.widgets.Canvas#getHeight height}
+     *          for more on canvas sizing.
      * @param width new width for canvas.
      * @param height new height for canvas
      *
@@ -13062,20 +14240,33 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * of this necessary uniformity, just specifying a single pixel value is enough for the framework to resize all core
      * controls, with several caveats: <ul> <li> skins that make extensive use of images (eg TreeFrog) will stretch those
      * images, which      may result in ugly artifacts in some combinations of operating system and browser, for      which no
-     * workaround is possible.  For this reason, <code>resizeControls()</code> is      only officially supported for Tahoe,
-     * Enterprise, EnterpriseBlue and Graphite skins, and only in      {@link com.smartgwt.client.docs.Skinning CSS3 Mode} <li>
-     * even in Enterprise-series skins, {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors tree connector
-     * lines}       vertically stretch, becoming obviously blurry and misshapen with an increase of 4-5px.      To avoid this,
-     * replace the tree connector media (see {@link com.smartgwt.client.widgets.tree.TreeGrid#getConnectorImage
-     * TreeGrid.connectorImage}). <li> {@link com.smartgwt.client.widgets.form.fields.FormItemIcon}s are not resized by
-     * default, because stretched icons generally look      worse than non-scaled icons that are a bit smaller than the input
-     * field <li> images that use {@link com.smartgwt.client.docs.Skinning spriting} will not be stretched because the sizes   
-     * for these controls are embedded in CSS.  In most cases, this is desirable; for example,      the downward chevron shape
-     * used for SelectItem controls doesn't stretch, and looks      better that way. </ul>
+     * workaround is possible.  For this reason, <code>resizeControls()</code> is      only officially supported in {@link
+     * com.smartgwt.client.docs.Skinning CSS3 Mode}, which includes any of the      skins in our <code>Flat series</code>
+     * (Tahoe, Stratus, Obsidian and Twilight) or       <code>Enterprise series</code> (Enterprise/Blue and Graphite), or a
+     * custom skin based       on one of those - including any skin generated by the <code>Skin Editor</code>. <li> even in
+     * Enterprise-series skins, {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors tree connector lines}      
+     * vertically stretch, becoming obviously blurry and misshapen with an increase of 4-5px.      To avoid this, replace the
+     * tree connector media (see {@link com.smartgwt.client.widgets.tree.TreeGrid#getConnectorImage TreeGrid.connectorImage}).
+     * <li> {@link com.smartgwt.client.widgets.form.fields.FormItemIcon}s are not resized by default, because stretched icons
+     * generally look      worse than non-scaled icons that are a bit smaller than the input field <li> images that use {@link
+     * com.smartgwt.client.docs.Skinning spriting} will not be stretched because the sizes      for these controls are embedded
+     * in CSS.  In most cases, this is desirable; for example,      the downward chevron shape used for SelectItem controls
+     * doesn't stretch, and looks      better that way. </ul>
      * @param delta number of pixels to increase or decrease from current size
      */
     public static native void resizeControls(int delta) /*-{
         $wnd.isc.Canvas.resizeControls(delta);
+    }-*/;
+
+
+	/**
+     * Resizes controls as if calling {@link com.smartgwt.client.widgets.Canvas#resizeControls resizeControls()}, but takes a
+     * final target size instead of a delta representing the change from a current size.  Note that all the same limitations
+     * apply.
+     * @param targetDelta the final size, expressed as a differential from the default
+     */
+    public static native void resizeControlsTo(int targetDelta) /*-{
+        $wnd.isc.Canvas.resizeControlsTo(targetDelta);
     }-*/;
 
 
@@ -13132,6 +14323,16 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
         $wnd.isc.Canvas.resizeFonts(sizeChange, styleSheets, resizeRelatedControls == null ? null : resizeRelatedControls.@java.lang.Boolean::booleanValue()());
     }-*/;
 	
+
+	/**
+     * Resizes fonts as if calling {@link com.smartgwt.client.widgets.Canvas#resizeFonts resizeFonts()}, but takes a final
+     * target size instead of a delta representing the change from a current size.  Note that all the same limitations apply.
+     * @param targetDelta the final size, expressed as a differential from the default
+     */
+    public static native void resizeFontsTo(int targetDelta) /*-{
+        $wnd.isc.Canvas.resizeFontsTo(targetDelta);
+    }-*/;
+
 
 	/**
      * Change the basic size of icons in the current skin by "delta" pixels. This method may be invoked automatically from
@@ -13816,28 +15017,6 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     public boolean getDisabled()  {
         Boolean disabled =  getAttributeAsBoolean("disabled");
         return disabled == null ? false : disabled;
-    }
-
-    /**
-     * A different widget that should be actually dragged when dragging initiates on this&#010      widget. One example of this is to have a child widget that drags its parent, as with a&#010      drag box. Because the parent automatically repositions its children, setting the drag&#010      target of the child to the parent and then dragging the child will result in both&#010      widgets being moved.<br>&#010      Valid dragTarget values are:<br>&#010      - <code>null</code> (default) [this widget is its own drag target]<br>&#010      - Pointer to another widget, or widget ID<br>&#010      - <code>"parent"</code> drag target is this widget's &#010         {@link com.smartgwt.client.widgets.Canvas#getParentCanvas parentCanvas}<br>&#010      - <code>"top"</code> drag target is this widget's &#010         {@link com.smartgwt.client.widgets.Canvas#getTopElement topElement}<br>
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param dragTarget dragTarget Default value is null
-     * @return {@link com.smartgwt.client.widgets.Canvas Canvas} instance, for chaining setter
-     * calls
-     */
-    public Canvas setDragTarget(Canvas dragTarget) {
-        return (Canvas)setAttribute("dragTarget", dragTarget.getOrCreateJsObj(), true);
-    }
-    /**
-     * A different widget that should be actually dragged when dragging initiates on this&#010      widget. One example of this is to have a child widget that drags its parent, as with a&#010      drag box. Because the parent automatically repositions its children, setting the drag&#010      target of the child to the parent and then dragging the child will result in both&#010      widgets being moved.<br>&#010      Valid dragTarget values are:<br>&#010      - <code>null</code> (default) [this widget is its own drag target]<br>&#010      - Pointer to another widget, or widget ID<br>&#010      - <code>"parent"</code> drag target is this widget's &#010         {@link com.smartgwt.client.widgets.Canvas#getParentCanvas parentCanvas}<br>&#010      - <code>"top"</code> drag target is this widget's &#010         {@link com.smartgwt.client.widgets.Canvas#getTopElement topElement}<br>
-     *
-     *
-     * @return Canvas
-     *
-     */
-    public Canvas getDragTarget()  {
-        return Canvas.getOrCreateRef(getAttributeAsJavaScriptObject("dragTarget"));
     }
 
     /**
@@ -15352,6 +16531,11 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
             s.logicalStructureErrors += "Canvas.autoParent:" + t.getMessage() + "\n";
         }
         try {
+            s.autoPopulateData = getAttributeAsString("autoPopulateData");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.autoPopulateData:" + t.getMessage() + "\n";
+        }
+        try {
             s.autoShowParent = getAttributeAsString("autoShowParent");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Canvas.autoShowParent:" + t.getMessage() + "\n";
@@ -15380,6 +16564,11 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
             s.border = getAttributeAsString("border");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Canvas.border:" + t.getMessage() + "\n";
+        }
+        try {
+            s.borderRadius = getAttributeAsString("borderRadius");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.borderRadius:" + t.getMessage() + "\n";
         }
         try {
             s.canAcceptDrop = getAttributeAsString("canAcceptDrop");
@@ -15500,6 +16689,11 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
             s.cursor = getAttributeAsString("cursor");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Canvas.cursor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dataContext = getDataContext();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.dataContext:" + t.getMessage() + "\n";
         }
         try {
             s.dataPath = getAttributeAsString("dataPath");
@@ -15627,6 +16821,16 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
             s.logicalStructureErrors += "Canvas.dragType:" + t.getMessage() + "\n";
         }
         try {
+            s.dropTargetAsCanvas = getDropTarget();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.dropTargetAsCanvas:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dropTargetAsString = getAttributeAsString("dropTarget");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.dropTargetAsString:" + t.getMessage() + "\n";
+        }
+        try {
             s.dropTypesAsStringArrayArray = getAttributeAsStringArray("dropTypes");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Canvas.dropTypesAsStringArrayArray:" + t.getMessage() + "\n";
@@ -15702,6 +16906,11 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
             s.logicalStructureErrors += "Canvas.extraSpace:" + t.getMessage() + "\n";
         }
         try {
+            s.floatingScrollbars = getAttributeAsString("floatingScrollbars");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.floatingScrollbars:" + t.getMessage() + "\n";
+        }
+        try {
             s.forwardSVGeventsToObject = getAttributeAsString("forwardSVGeventsToObject");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Canvas.forwardSVGeventsToObject:" + t.getMessage() + "\n";
@@ -15720,6 +16929,11 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
             s.groupLabelStyleName = getAttributeAsString("groupLabelStyleName");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Canvas.groupLabelStyleName:" + t.getMessage() + "\n";
+        }
+        try {
+            s.groupPadding = getAttributeAsString("groupPadding");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.groupPadding:" + t.getMessage() + "\n";
         }
         try {
             s.groupTitle = getAttributeAsString("groupTitle");
@@ -15757,6 +16971,11 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
             s.logicalStructureErrors += "Canvas.hoverDelay:" + t.getMessage() + "\n";
         }
         try {
+            s.hoverFocusKey = getAttributeAsString("hoverFocusKey");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.hoverFocusKey:" + t.getMessage() + "\n";
+        }
+        try {
             s.hoverHeight = getAttributeAsString("hoverHeight");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Canvas.hoverHeight:" + t.getMessage() + "\n";
@@ -15770,6 +16989,16 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
             s.hoverOpacity = getAttributeAsString("hoverOpacity");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Canvas.hoverOpacity:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hoverPersist = getAttributeAsString("hoverPersist");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.hoverPersist:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hoverScreen = getAttributeAsString("hoverScreen");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.hoverScreen:" + t.getMessage() + "\n";
         }
         try {
             s.hoverStyle = getAttributeAsString("hoverStyle");
@@ -15792,9 +17021,9 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
             s.logicalStructureErrors += "Canvas.hoverWrap:" + t.getMessage() + "\n";
         }
         try {
-            s.htmlElement = getAttributeAsString("htmlElement");
+            s.htmlElementAsString = getAttributeAsString("htmlElement");
         } catch (Throwable t) {
-            s.logicalStructureErrors += "Canvas.htmlElement:" + t.getMessage() + "\n";
+            s.logicalStructureErrors += "Canvas.htmlElementAsString:" + t.getMessage() + "\n";
         }
         try {
             s.htmlPosition = getAttributeAsString("htmlPosition");
@@ -15872,6 +17101,16 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
             s.logicalStructureErrors += "Canvas.matchElement:" + t.getMessage() + "\n";
         }
         try {
+            s.matchElementHeight = getAttributeAsString("matchElementHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.matchElementHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.matchElementWidth = getAttributeAsString("matchElementWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.matchElementWidth:" + t.getMessage() + "\n";
+        }
+        try {
             s.maxHeight = getAttributeAsString("maxHeight");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Canvas.maxHeight:" + t.getMessage() + "\n";
@@ -15915,6 +17154,11 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
             s.name = getAttributeAsString("name");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Canvas.name:" + t.getMessage() + "\n";
+        }
+        try {
+            s.nativeAutoHideScrollbars = getAttributeAsString("nativeAutoHideScrollbars");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.nativeAutoHideScrollbars:" + t.getMessage() + "\n";
         }
         try {
             s.noDoubleClicks = getAttributeAsString("noDoubleClicks");
@@ -15965,6 +17209,16 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
             s.percentSource = getPercentSource();
         } catch (Throwable t) {
             s.logicalStructureErrors += "Canvas.percentSource:" + t.getMessage() + "\n";
+        }
+        try {
+            s.persistentMatchElement = getAttributeAsString("persistentMatchElement");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.persistentMatchElement:" + t.getMessage() + "\n";
+        }
+        try {
+            s.pointerSettings = getPointerSettings();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.pointerSettings:" + t.getMessage() + "\n";
         }
         try {
             s.position = getAttributeAsString("position");
@@ -16095,6 +17349,11 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
             s.showHoverComponents = getAttributeAsString("showHoverComponents");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Canvas.showHoverComponents:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showPointer = getAttributeAsString("showPointer");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.showPointer:" + t.getMessage() + "\n";
         }
         try {
             s.showResizeBar = getAttributeAsString("showResizeBar");
@@ -16240,6 +17499,11 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
             s.tabIndex = getAttributeAsString("tabIndex");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Canvas.tabIndex:" + t.getMessage() + "\n";
+        }
+        try {
+            s.testDataContext = getTestDataContext();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.testDataContext:" + t.getMessage() + "\n";
         }
         try {
             s.topElement = getTopElement();

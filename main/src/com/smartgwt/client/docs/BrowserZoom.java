@@ -41,7 +41,6 @@ package com.smartgwt.client.docs;
  *  <li>Borders do not scale properly, causing layout issues, cosmetic issues where borders
  *      do not line up with background images or appear beveled, and accessibility issues where
  *      borders may be too thin. See issues
- *      <a href='http://crbug.com/257220' target='_blank'>257220</a>,
  *      <a href='http://crbug.com/382483' target='_blank'>382483</a>,
  *      <a href='http://crbug.com/388879' target='_blank'>388879</a>,
  *      <a href='http://crbug.com/406371' target='_blank'>406371</a>, and
@@ -79,25 +78,11 @@ package com.smartgwt.client.docs;
  * faint antialiasing artifacts
  *      between the images used to make up the <code>EdgedCanvas</code>. This affects
  * {@link com.smartgwt.client.widgets.Canvas#getShowShadow drop shadows} and showing edges with a
- * high {@link com.smartgwt.client.widgets.Canvas#getEdgeSize Canvas.edgeSize}.
- *      See issue
- * <a
- * href='https://connect.microsoft.com/IE/Feedback/Details/808337/IE11-still-shows-odd-lines-on-image-nine-patched-with-CSS-background-position'
- * target='_blank'>808337</a>.</li>
+ * high {@link com.smartgwt.client.widgets.Canvas#getEdgeSize Canvas.edgeSize}.</li>
  *  <li>Phantom borders may appear between table cells and other content that should be adjacent
  *      with no separation. This issue is also thought to be the cause of a line appearing below
- * a selected {@link com.smartgwt.client.widgets.tab.TabSet} tab at certain zoom levels. See
- * issues
- * <a
- * href='https://connect.microsoft.com/IE/Feedback/Details/808838/css-border-radius-and-zoom-issues'
- * target='_blank'>808838</a> and
- * <a
- * href='https://connect.microsoft.com/IE/Feedback/Details/814033/weird-lines-when-zoom-set-to-150'
- * target='_blank'>814033</a>.</li>
- *  <li>SVG content may disappear at high zoom levels. See issue
- * <a
- * href='https://connect.microsoft.com/IE/Feedback/Details/782997/svg-isnt-shown-on-high-zoom-levels-in-ie10'
- * target='_blank'>782997</a>.</li>
+ *      a selected {@link com.smartgwt.client.widgets.tab.TabSet} tab at certain zoom levels.</li>
+ *  <li>SVG content may disappear at high zoom levels.</li>
  *  </ul>
  * 
  *  <h3>Safari and WebKit</h3>
@@ -249,13 +234,26 @@ package com.smartgwt.client.docs;
  * <b>Note:</b> the framework should set {@link
  * com.smartgwt.client.widgets.Canvas#getCorrectZoomOverflow Canvas.correctZoomOverflow}
  * automatically
- *  for you where it's needed, but it's explicitly set in the sample above for completeness.
+ *  for you where it's needed, so it's set explicitly above to force it to an excessive value.
  *  <p>    
  *  If you can still reproduce the flickering scrollbar problem with our canvas default settings
  *  for your browser and OS, please contact Isomorphic and provide as much detail about your
  *  setup as possible: framework version, skin in use, whether the skin is customized, browser,
  *  browser version, OS platform and version, and any non-default visual settings for the
  *  browser or OS.
+ *  <h2>Disabling Browser-level Scrolling</h2>
+ *  If native, browser-level scrolling is introduced on the viewport, it can make flickering
+ *  more likely by creating situations in which the screen width or height may change outside
+ *  the framework's control.  For this reason we recommend disabling it by styling the document
+ *  <code>body</code> to have hidden CSS
+ * <a href='https://developer.mozilla.org/en-US/docs/Web/CSS/overflow'
+ * target='_blank'>overflow</a> via
+ *   something like:
+ *  <pre>
+ *  &lt;body style="overflow:hidden"&gt;</pre>
+ *  The framework will log a warning if overflow hasn't been properly suppressed.  To avoid it,
+ *  you can set the window property <code>isc_allowViewportScrolling</code> true before
+ *  loading the framework files in your HTML.
      * @see com.smartgwt.client.util.Page#getDevicePixelRatio
  */
 public interface BrowserZoom {

@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * HTML5-based charting engine, implementing all  chartTypes of the
@@ -104,8 +110,8 @@ import com.smartgwt.logicalstructure.widgets.tools.*;
  * ListGrid.chartConstructor} or
  *  {@link com.smartgwt.client.widgets.cube.CubeGrid#getChartConstructor CubeGrid.chartConstructor}.
  *  <P>
- *  <b>NOTE:</b> you must load the Drawing and Charts
- *  {@link com.smartgwt.client.docs.LoadingOptionalModules Optional Modules} before you can use FacetChart.   Also, 
+ *  <b>NOTE:</b> you must load the standard Drawing and 
+ *  {@link com.smartgwt.client.docs.LoadingOptionalModules Optional} Charts modules before you can use FacetChart.   Also, 
  *  the Charts Module is available in Pro Edition or better, please see 
  *  <a href='http://www.smartclient.com/product' target='_blank'>smartclient.com/product</a> for licensing 
  *  information.
@@ -139,6 +145,17 @@ import com.smartgwt.logicalstructure.widgets.tools.*;
  *  chart.setTitle("Average temperature in Las Vegas");
  *  </pre>
  *  
+ *  <p>
+ * A {@link com.smartgwt.client.data.DataSource} may be provided instead of inline {@link
+ * com.smartgwt.client.widgets.chart.FacetChart#getData data} to use the
+ * chart as a {@link com.smartgwt.client.widgets.DataBoundComponent}.  In this case, {@link
+ * com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields} may be provided instead of {@link
+ * com.smartgwt.client.widgets.chart.FacetChart#getFacets facets}, to specify which
+ *  DataSource fields to use as the facets.  If neither is set, the framework will attempt to
+ *  auto-derive the {@link com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields}.  The
+ * {@link com.smartgwt.client.widgets.chart.FacetChart#getValueProperty valueProperty} will also be auto-derived for
+ * databound charts
+ *  if it hasn't been set in the chart instance.
  *  <p>
  *  The following SDK examples demonstrate charts with a single facet:
  *  <ul>
@@ -399,7 +416,7 @@ import com.smartgwt.logicalstructure.widgets.tools.*;
  */
 @BeanFactory.FrameworkClass
 @BeanFactory.ScClassName("FacetChart")
-public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.chart.HasChartBackgroundDrawnHandlers, com.smartgwt.client.widgets.chart.HasChartDrawnHandlers, com.smartgwt.client.widgets.chart.HasDataLabelClickHandlers, com.smartgwt.client.widgets.chart.HasDataLabelHoverHandlers, com.smartgwt.client.widgets.chart.HasLegendClickHandlers, com.smartgwt.client.widgets.chart.HasLegendHoverHandlers, com.smartgwt.client.widgets.chart.HasValueClickHandlers, com.smartgwt.client.widgets.chart.HasZoomChangedHandlers {
+public class FacetChart extends DrawPane implements DataBoundComponent, com.smartgwt.client.widgets.chart.HasChartBackgroundDrawnHandlers, com.smartgwt.client.widgets.chart.HasChartDrawnHandlers, com.smartgwt.client.widgets.chart.HasDataLabelClickHandlers, com.smartgwt.client.widgets.chart.HasDataLabelHoverHandlers, com.smartgwt.client.widgets.chart.HasLegendClickHandlers, com.smartgwt.client.widgets.chart.HasLegendHoverHandlers, com.smartgwt.client.widgets.chart.HasValueClickHandlers, com.smartgwt.client.widgets.chart.HasZoomChangedHandlers {
 
     public static FacetChart getOrCreateRef(JavaScriptObject jsObj) {
         if (jsObj == null) return null;
@@ -484,6 +501,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * @param allowBubbleGradients New allowBubbleGradients value. Default value is !(isc.Browser.isIE &amp;&amp; isc.Browser.version &lt;= 8)
      * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public FacetChart setAllowBubbleGradients(boolean allowBubbleGradients)  throws IllegalStateException {
         return (FacetChart)setAttribute("allowBubbleGradients", allowBubbleGradients, false);
@@ -495,6 +513,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * data.
      *
      * @return Current allowBubbleGradients value. Default value is !(isc.Browser.isIE &amp;&amp; isc.Browser.version &lt;= 8)
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public boolean getAllowBubbleGradients()  {
         Boolean result = getAttributeAsBoolean("allowBubbleGradients");
@@ -531,6 +550,8 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
         final String[] strings = getAttributeAsStringArray("allowedChartTypes");
         return EnumUtil.getEnums(ChartType.values(), strings, strings == null ? null : new ChartType[strings.length]);
     }
+    
+    
     
 
     /**
@@ -719,6 +740,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * @param autoSortBubblePoints New autoSortBubblePoints value. Default value is true
      * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#bubbleChart" target="examples">Bubble Chart Example</a>
      */
     public FacetChart setAutoSortBubblePoints(boolean autoSortBubblePoints)  throws IllegalStateException {
@@ -732,6 +754,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * they appear in the data.
      *
      * @return Current autoSortBubblePoints value. Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#bubbleChart" target="examples">Bubble Chart Example</a>
      */
     public boolean getAutoSortBubblePoints()  {
@@ -980,6 +1003,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * @param bubbleHoverMaxDistance New bubbleHoverMaxDistance value. Default value is 50
      * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public FacetChart setBubbleHoverMaxDistance(int bubbleHoverMaxDistance)  throws IllegalStateException {
         return (FacetChart)setAttribute("bubbleHoverMaxDistance", bubbleHoverMaxDistance, false);
@@ -989,6 +1013,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Maximum distance from the *outer radius* of the nearest bubble when hover will be shown.
      *
      * @return Current bubbleHoverMaxDistance value. Default value is 50
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getBubbleHoverMaxDistance()  {
         return getAttributeAsInt("bubbleHoverMaxDistance");
@@ -1004,6 +1029,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * @param bubbleProperties New bubbleProperties value. Default value is null
      * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see com.smartgwt.client.docs.SGWTProperties
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#bubbleChart" target="examples">Bubble Chart Example</a>
      */
@@ -1025,6 +1051,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * <code>bubbleProperties</code> displays each data points with a linear gradient.
      *
      * @return Current bubbleProperties value. Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#bubbleChart" target="examples">Bubble Chart Example</a>
      */
     public DrawItem getBubbleProperties()  {
@@ -1042,6 +1069,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * @param canMoveAxes New canMoveAxes value. Default value is null
      * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public FacetChart setCanMoveAxes(Boolean canMoveAxes)  throws IllegalStateException {
         return (FacetChart)setAttribute("canMoveAxes", canMoveAxes, false);
@@ -1052,6 +1080,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * axes.
      *
      * @return Current canMoveAxes value. Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getCanMoveAxes()  {
         return getAttributeAsBoolean("canMoveAxes");
@@ -1254,6 +1283,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * @param clusterMarginRatio New clusterMarginRatio value. Default value is 4
      * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public FacetChart setClusterMarginRatio(float clusterMarginRatio)  throws IllegalStateException {
         return (FacetChart)setAttribute("clusterMarginRatio", clusterMarginRatio, false);
@@ -1263,6 +1293,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * For clustered charts, ratio between margins between individual bars and margins between clusters.
      *
      * @return Current clusterMarginRatio value. Default value is 4
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public float getClusterMarginRatio()  {
         return getAttributeAsFloat("clusterMarginRatio");
@@ -1383,6 +1414,28 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      */
     public String[] getDataColors()  {
         return com.smartgwt.client.util.ConvertTo.arrayOfString(getAttributeAsJavaScriptObject("dataColors"));
+    }
+    
+
+    /**
+     * FacetCharts do not yet support paging, and will fetch all records that meet the criteria.
+     *
+     * @param dataFetchMode New dataFetchMode value. Default value is "basic"
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
+    public FacetChart setDataFetchMode(FetchMode dataFetchMode) {
+        return (FacetChart)setAttribute("dataFetchMode", dataFetchMode == null ? null : dataFetchMode.getValue(), true);
+    }
+
+    /**
+     * FacetCharts do not yet support paging, and will fetch all records that meet the criteria.
+     *
+     * @return Current dataFetchMode value. Default value is "basic"
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
+    public FetchMode getDataFetchMode()  {
+        return EnumUtil.getEnum(FetchMode.values(), getAttribute("dataFetchMode"));
     }
     
     
@@ -1614,6 +1667,37 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
         properties.setConfigOnly(true);
         properties.setConfig(getAttributeAsJavaScriptObject("dataShapeProperties"));
         return properties;
+    }
+    
+
+    /**
+     * The DataSource that this component should bind to for default fields and for performing {@link
+     * com.smartgwt.client.data.DSRequest DataSource requests}. <P> Can be specified as either a DataSource instance or the
+     * String ID of a DataSource.
+     *
+     * @param dataSource New dataSource value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.chart.FacetChart#setFacetFields
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#chartDataBinding" target="examples">Chart DataBinding Example</a>
+     */
+    public FacetChart setDataSource(DataSource dataSource) {
+        return (FacetChart)setAttribute("dataSource", dataSource == null ? null : dataSource.getOrCreateJsObj(), true);
+    }
+
+    /**
+     * The DataSource that this component should bind to for default fields and for performing {@link
+     * com.smartgwt.client.data.DSRequest DataSource requests}. <P> Can be specified as either a DataSource instance or the
+     * String ID of a DataSource.
+     *
+     * @param dataSource New dataSource value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.chart.FacetChart#setFacetFields
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#chartDataBinding" target="examples">Chart DataBinding Example</a>
+     */
+    public FacetChart setDataSource(String dataSource) {
+        return (FacetChart)setAttribute("dataSource", dataSource, true);
     }
     
 
@@ -2010,6 +2094,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * @param extraAxisMetrics New extraAxisMetrics value. Default value is []
      * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public FacetChart setExtraAxisMetrics(String... extraAxisMetrics)  throws IllegalStateException {
         return (FacetChart)setAttribute("extraAxisMetrics", extraAxisMetrics, false);
@@ -2036,6 +2121,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * placed to the left of the main value axis (and therefore to the left of the chart rectangle).
      *
      * @return Current extraAxisMetrics value. Default value is []
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String[] getExtraAxisMetrics()  {
         return com.smartgwt.client.util.ConvertTo.arrayOfString(getAttributeAsJavaScriptObject("extraAxisMetrics"));
@@ -2057,6 +2143,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * @param extraAxisSettings New extraAxisSettings value. Default value is []
      * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public FacetChart setExtraAxisSettings(MetricSettings... extraAxisSettings)  throws IllegalStateException {
         return (FacetChart)setAttribute("extraAxisSettings", extraAxisSettings, false);
@@ -2075,9 +2162,105 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * metric will be drawn as columns and the remaining will be drawn as lines.
      *
      * @return Current extraAxisSettings value. Default value is []
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public MetricSettings[] getExtraAxisSettings()  {
         return com.smartgwt.client.util.ConvertTo.arrayOfMetricSettings(getAttributeAsJavaScriptObject("extraAxisSettings"));
+    }
+    
+
+    /**
+     * Specifies what {@link com.smartgwt.client.data.DataSource} fields to use as the chart {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacets facets} for a databound chart.  If {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacets facets} is also explicitly set, {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields} is definitive but {@link
+     * com.smartgwt.client.widgets.cube.Facet} properties will be picked up from {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacets facets} also present in the {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields}. <P> If neither this property nor {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacets facets} is set, a databound chart will attempt to auto-derive
+     * {@link com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields} from the DataSource fields.  The first
+     * two text or text-derived fields in the DataSource will be assumed to be the {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields}.
+     *
+     * @param facetFields New facetFields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.chart.FacetChart#setValueProperty
+     * @see com.smartgwt.client.docs.FieldName FieldName 
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#chartDataBinding" target="examples">Chart DataBinding Example</a>
+     */
+    public FacetChart setFacetFields(String... facetFields)  throws IllegalStateException {
+        return (FacetChart)setAttribute("facetFields", facetFields, false);
+    }
+
+    /**
+     * Specifies what {@link com.smartgwt.client.data.DataSource} fields to use as the chart {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacets facets} for a databound chart.  If {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacets facets} is also explicitly set, {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields} is definitive but {@link
+     * com.smartgwt.client.widgets.cube.Facet} properties will be picked up from {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacets facets} also present in the {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields}. <P> If neither this property nor {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacets facets} is set, a databound chart will attempt to auto-derive
+     * {@link com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields} from the DataSource fields.  The first
+     * two text or text-derived fields in the DataSource will be assumed to be the {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields}.
+     *
+     * @return Current facetFields value. Default value is null
+     * @see com.smartgwt.client.widgets.chart.FacetChart#getValueProperty
+     * @see com.smartgwt.client.docs.FieldName FieldName 
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#chartDataBinding" target="examples">Chart DataBinding Example</a>
+     */
+    public String[] getFacetFields()  {
+        return com.smartgwt.client.util.ConvertTo.arrayOfString(getAttributeAsJavaScriptObject("facetFields"));
+    }
+
+    /**
+     * Specifies what {@link com.smartgwt.client.data.DataSource} fields to use as the chart {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacets facets} for a databound chart.  If {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacets facets} is also explicitly set, {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields} is definitive but {@link
+     * com.smartgwt.client.widgets.cube.Facet} properties will be picked up from {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacets facets} also present in the {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields}. <P> If neither this property nor {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacets facets} is set, a databound chart will attempt to auto-derive
+     * {@link com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields} from the DataSource fields.  The first
+     * two text or text-derived fields in the DataSource will be assumed to be the {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields}.
+     *
+     * @param facetFields New facetFields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.chart.FacetChart#setValueProperty
+     * @see com.smartgwt.client.docs.FieldName FieldName 
+     * @see com.smartgwt.client.docs.FieldName FieldName 
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#chartDataBinding" target="examples">Chart DataBinding Example</a>
+     */
+    public FacetChart setFacetFields(String facetFields)  throws IllegalStateException {
+        return (FacetChart)setAttribute("facetFields", facetFields, false);
+    }
+
+    /**
+     * Specifies what {@link com.smartgwt.client.data.DataSource} fields to use as the chart {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacets facets} for a databound chart.  If {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacets facets} is also explicitly set, {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields} is definitive but {@link
+     * com.smartgwt.client.widgets.cube.Facet} properties will be picked up from {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacets facets} also present in the {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields}. <P> If neither this property nor {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacets facets} is set, a databound chart will attempt to auto-derive
+     * {@link com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields} from the DataSource fields.  The first
+     * two text or text-derived fields in the DataSource will be assumed to be the {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields}.
+     *
+     * @return Current facetFields value. Default value is null
+     * @see com.smartgwt.client.widgets.chart.FacetChart#getValueProperty
+     * @see com.smartgwt.client.docs.FieldName FieldName 
+     * @see com.smartgwt.client.docs.FieldName FieldName 
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#chartDataBinding" target="examples">Chart DataBinding Example</a>
+     */
+    public String getFacetFieldsAsString()  {
+        return getAttributeAsString("facetFields");
     }
     
 
@@ -2096,7 +2279,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * data label facet.  Bubble and Scatter plots may have a legend facet as the second facet, after the metric facet. <p> In
      * all multi-facet charts, the data label facet is always first and the legend facet is second.  In most chart types the
      * data label facet and the legend facet may be swapped on the fly by the user clicking on the "Swap Facets" item of the
-     * context menu.
+     * context menu. <p> For databound charts, {@link com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields}
+     * may be specified instead of this property.  If both are provided, {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields} is definitive but {@link
+     * com.smartgwt.client.widgets.cube.Facet} properties will be picked up from {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacets facets} also present in the {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields}.
      *
      * @param facets New facets value. Default value is null
      * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
@@ -2121,7 +2309,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * data label facet.  Bubble and Scatter plots may have a legend facet as the second facet, after the metric facet. <p> In
      * all multi-facet charts, the data label facet is always first and the legend facet is second.  In most chart types the
      * data label facet and the legend facet may be swapped on the fly by the user clicking on the "Swap Facets" item of the
-     * context menu.
+     * context menu. <p> For databound charts, {@link com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields}
+     * may be specified instead of this property.  If both are provided, {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields} is definitive but {@link
+     * com.smartgwt.client.widgets.cube.Facet} properties will be picked up from {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacets facets} also present in the {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields}.
      *
      * @return Current facets value. Default value is null
      */
@@ -2144,7 +2337,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * data label facet.  Bubble and Scatter plots may have a legend facet as the second facet, after the metric facet. <p> In
      * all multi-facet charts, the data label facet is always first and the legend facet is second.  In most chart types the
      * data label facet and the legend facet may be swapped on the fly by the user clicking on the "Swap Facets" item of the
-     * context menu.
+     * context menu. <p> For databound charts, {@link com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields}
+     * may be specified instead of this property.  If both are provided, {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields} is definitive but {@link
+     * com.smartgwt.client.widgets.cube.Facet} properties will be picked up from {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacets facets} also present in the {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields}.
      *
      * @param facets New facets value. Default value is null
      * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
@@ -2169,7 +2367,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * data label facet.  Bubble and Scatter plots may have a legend facet as the second facet, after the metric facet. <p> In
      * all multi-facet charts, the data label facet is always first and the legend facet is second.  In most chart types the
      * data label facet and the legend facet may be swapped on the fly by the user clicking on the "Swap Facets" item of the
-     * context menu.
+     * context menu. <p> For databound charts, {@link com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields}
+     * may be specified instead of this property.  If both are provided, {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields} is definitive but {@link
+     * com.smartgwt.client.widgets.cube.Facet} properties will be picked up from {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacets facets} also present in the {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getFacetFields facetFields}.
      *
      * @return Current facets value. Default value is null
      */
@@ -2451,6 +2654,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * @param hoverLabelPadding New hoverLabelPadding value. Default value is 4
      * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public FacetChart setHoverLabelPadding(int hoverLabelPadding)  throws IllegalStateException {
         return (FacetChart)setAttribute("hoverLabelPadding", hoverLabelPadding, false);
@@ -2462,6 +2666,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getShowValueOnHover showValueOnHover} is enabled.
      *
      * @return Current hoverLabelPadding value. Default value is 4
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getHoverLabelPadding()  {
         return getAttributeAsInt("hoverLabelPadding");
@@ -2476,6 +2681,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#setHoverLabelPadding
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see com.smartgwt.client.docs.SGWTProperties
      */
     public FacetChart setHoverLabelProperties(DrawLabel hoverLabelProperties)  throws IllegalStateException {
@@ -2495,6 +2701,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      *
      * @return Current hoverLabelProperties value. Default value is null
      * @see com.smartgwt.client.widgets.chart.FacetChart#getHoverLabelPadding
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public DrawLabel getHoverLabelProperties()  {
         DrawLabel properties = new DrawLabel();
@@ -2511,6 +2718,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * @param hoverRectProperties New hoverRectProperties value. Default value is null
      * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see com.smartgwt.client.docs.SGWTProperties
      */
     public FacetChart setHoverRectProperties(DrawRect hoverRectProperties)  throws IllegalStateException {
@@ -2529,6 +2737,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getShowValueOnHover showValueOnHover} for more details.
      *
      * @return Current hoverRectProperties value. Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public DrawRect getHoverRectProperties()  {
         DrawRect properties = new DrawRect();
@@ -2536,6 +2745,8 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
         properties.setConfig(getAttributeAsJavaScriptObject("hoverRectProperties"));
         return properties;
     }
+    
+    
     
 
     /**
@@ -4563,6 +4774,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * @param shadowProperties New shadowProperties value. Default value is null
      * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see com.smartgwt.client.docs.SGWTProperties
      */
     public FacetChart setShadowProperties(DrawOval shadowProperties)  throws IllegalStateException {
@@ -4580,6 +4792,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for shadows.
      *
      * @return Current shadowProperties value. Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public DrawOval getShadowProperties()  {
         DrawOval properties = new DrawOval();
@@ -4802,6 +5015,28 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      */
     public ShowDataValuesMode getShowDataValuesMode()  {
         return EnumUtil.getEnum(ShowDataValuesMode.values(), getAttribute("showDataValuesMode"));
+    }
+    
+
+    /**
+     * This {@link com.smartgwt.client.widgets.DataBoundComponent} property is not applicable to charts.
+     *
+     * @param showDetailFields New showDetailFields value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public FacetChart setShowDetailFields(Boolean showDetailFields)  throws IllegalStateException {
+        return (FacetChart)setAttribute("showDetailFields", showDetailFields, false);
+    }
+
+    /**
+     * This {@link com.smartgwt.client.widgets.DataBoundComponent} property is not applicable to charts.
+     *
+     * @return Current showDetailFields value. Default value is false
+     */
+    public Boolean getShowDetailFields()  {
+        Boolean result = getAttributeAsBoolean("showDetailFields");
+        return result == null ? false : result;
     }
     
 
@@ -5098,6 +5333,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * @param showShadows New showShadows value. Default value is true
      * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public FacetChart setShowShadows(Boolean showShadows)  throws IllegalStateException {
         return (FacetChart)setAttribute("showShadows", showShadows, false);
@@ -5107,6 +5343,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Whether to automatically show shadows for various charts.
      *
      * @return Current showShadows value. Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowShadows()  {
         Boolean result = getAttributeAsBoolean("showShadows");
@@ -5238,6 +5475,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * @param showValueOnHover New showValueOnHover value. Default value is null
      * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @deprecated See {@link com.smartgwt.client.widgets.chart.FacetChart#getShowDataValuesMode showDataValuesMode} for details
      */
     public FacetChart setShowValueOnHover(Boolean showValueOnHover)  throws IllegalStateException {
@@ -5254,6 +5492,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * hoverLabelProperties}.
      *
      * @return Current showValueOnHover value. Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @deprecated See {@link com.smartgwt.client.widgets.chart.FacetChart#getShowDataValuesMode showDataValuesMode} for details
      */
     public Boolean getShowValueOnHover()  {
@@ -5972,6 +6211,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * @param valueAxisMargin New valueAxisMargin value. Default value is 10
      * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public FacetChart setValueAxisMargin(int valueAxisMargin)  throws IllegalStateException {
         return (FacetChart)setAttribute("valueAxisMargin", valueAxisMargin, false);
@@ -5981,6 +6221,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Margin between {@link com.smartgwt.client.widgets.chart.FacetChart#getExtraAxisMetrics multiple value axes}.
      *
      * @return Current valueAxisMargin value. Default value is 10
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getValueAxisMargin()  {
         return getAttributeAsInt("valueAxisMargin");
@@ -6022,20 +6263,30 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
     
 
     /**
-     * Property in each record that holds a data value. <P> Not used if there is an inline facet, see  Chart.data.
+     * Property in each record that holds a data value.  For databound charts, if <code>valueProperty</code> isn't set in the
+     * chart instance, it will be auto-derived from the {@link com.smartgwt.client.data.DataSource} fields.  The first
+     * numeric-typed DataSource field will be assumed to be the <code>valueProperty</code>. <P> Not used if there is an inline
+     * facet, see  Chart.data.
      *
      * @param valueProperty New valueProperty value. Default value is "_value"
      * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.chart.FacetChart#setFacetFields
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public FacetChart setValueProperty(String valueProperty)  throws IllegalStateException {
         return (FacetChart)setAttribute("valueProperty", valueProperty, false);
     }
 
     /**
-     * Property in each record that holds a data value. <P> Not used if there is an inline facet, see  Chart.data.
+     * Property in each record that holds a data value.  For databound charts, if <code>valueProperty</code> isn't set in the
+     * chart instance, it will be auto-derived from the {@link com.smartgwt.client.data.DataSource} fields.  The first
+     * numeric-typed DataSource field will be assumed to be the <code>valueProperty</code>. <P> Not used if there is an inline
+     * facet, see  Chart.data.
      *
      * @return Current valueProperty value. Default value is "_value"
+     * @see com.smartgwt.client.widgets.chart.FacetChart#getFacetFields
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public String getValueProperty()  {
         return getAttributeAsString("valueProperty");
@@ -6830,6 +7081,66 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
         var ret = self.drawnValueContainsPoint(drawnValue.@com.smartgwt.client.core.DataClass::getJsObj()(), x == null ? null : x.@java.lang.Integer::intValue()(), y == null ? null : y.@java.lang.Integer::intValue()());
         if(ret == null) return null;
         return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+	
+	/**
+     * Based on the relationship between the DataSource this component is bound to and the DataSource specified as the "schema"
+     * argument, call fetchData() to retrieve records in this grid that are related to the passed-in record. <P> Relationships
+     * between DataSources are declared via {@link com.smartgwt.client.data.DataSourceField#getForeignKey
+     * DataSourceField.foreignKey}. <P> For example, given two related DataSources "orders" and "orderItems", where we want to
+     * fetch the "orderItems" that belong to a given "order".  "orderItems" should declare a field that is a {@link
+     * com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} to the "orders" table (for example, it might be named
+     * "orderId" with foreignKey="orders.id").  Then, to load the records related to a given "order", call fetchRelatedData()
+     * on the component bound to "orderItems", pass the "orders" DataSource as the "schema" and pass a record from the "orders"
+     * DataSource as the "record" argument. <P> Note that multiple foreign keys into the schema are supported by this method.
+     * @param record DataSource record
+     * @param schema schema of the DataSource record, or                            DataBoundComponent already bound to that schema
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     */
+    public native void fetchRelatedData(ListGridRecord record, Canvas schema) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "fetchRelatedData", "ListGridRecord,Canvas");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.fetchRelatedData(record.@com.smartgwt.client.core.DataClass::getJsObj()(), schema == null ? null : schema.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+
+    /**
+     * @see FacetChart#fetchRelatedData
+     */
+    public void fetchRelatedData(ListGridRecord record, Canvas schema, DSCallback callback){
+        fetchRelatedData(record, schema, callback, null);
+    }
+
+	/**
+     * Based on the relationship between the DataSource this component is bound to and the DataSource specified as the "schema"
+     * argument, call fetchData() to retrieve records in this grid that are related to the passed-in record. <P> Relationships
+     * between DataSources are declared via {@link com.smartgwt.client.data.DataSourceField#getForeignKey
+     * DataSourceField.foreignKey}. <P> For example, given two related DataSources "orders" and "orderItems", where we want to
+     * fetch the "orderItems" that belong to a given "order".  "orderItems" should declare a field that is a {@link
+     * com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} to the "orders" table (for example, it might be named
+     * "orderId" with foreignKey="orders.id").  Then, to load the records related to a given "order", call fetchRelatedData()
+     * on the component bound to "orderItems", pass the "orders" DataSource as the "schema" and pass a record from the "orders"
+     * DataSource as the "record" argument. <P> Note that multiple foreign keys into the schema are supported by this method.
+     * @param record DataSource record
+     * @param schema schema of the DataSource record, or                            DataBoundComponent already bound to that schema
+     * @param callback callback to invoke on completion
+     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     */
+    public native void fetchRelatedData(ListGridRecord record, Canvas schema, DSCallback callback, DSRequest requestProperties) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "fetchRelatedData", "ListGridRecord,Canvas,DSCallback,DSRequest");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.fetchRelatedData(record.@com.smartgwt.client.core.DataClass::getJsObj()(), schema == null ? null : schema.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), 
+			$entry( function(dsResponse, data, dsRequest) { 
+				if(callback!=null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(
+					@com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse), 
+					data, 
+					@com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest)
+				);
+			}), requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 	
 	/**
@@ -8980,6 +9291,920 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
     }-*/;
 
 
+
+
+    // ********************* DataBoundComponent Properties / Attributes ***********************
+
+    public FacetChart setDataPageSize(int dataPageSize) {
+        return (FacetChart)setAttribute("dataPageSize", dataPageSize, true);
+    }
+
+    public int getDataPageSize() {
+        Integer dataPageSize = getAttributeAsInt("dataPageSize");
+        return dataPageSize == null ? 0 : dataPageSize;
+    }
+
+    public FacetChart setUseAllDataSourceFields(Boolean useAllDataSourceFields) {
+        return (FacetChart)setAttribute("useAllDataSourceFields", useAllDataSourceFields, true);
+    }
+
+    public Boolean getUseAllDataSourceFields() {
+        return getAttributeAsBoolean("useAllDataSourceFields");
+    }
+
+    public FacetChart setShowHiddenFields(Boolean showHiddenFields) {
+        return (FacetChart)setAttribute("showHiddenFields", showHiddenFields, true);
+    }
+
+    public Boolean getShowHiddenFields() {
+        return getAttributeAsBoolean("showHiddenFields");
+    }
+
+    public FacetChart setShowComplexFields(Boolean showComplexFields) {
+        return (FacetChart)setAttribute("showComplexFields", showComplexFields, true);
+    }
+
+    public Boolean getShowComplexFields() {
+        return getAttributeAsBoolean("showComplexFields");
+    }
+
+    public FacetChart setFetchOperation(String fetchOperation) {
+        return (FacetChart)setAttribute("fetchOperation", fetchOperation, true);
+    }
+
+    public String getFetchOperation() {
+        return getAttributeAsString("fetchOperation");
+    }
+
+    public FacetChart setUpdateOperation(String updateOperation) {
+        return (FacetChart)setAttribute("updateOperation", updateOperation, true);
+    }
+
+    public String getUpdateOperation() {
+        return getAttributeAsString("updateOperation");
+    }
+
+    public FacetChart setAddOperation(String addOperation) {
+        return (FacetChart)setAttribute("addOperation", addOperation, true);
+    }
+
+    public String getAddOperation() {
+        return getAttributeAsString("addOperation");
+    }
+
+    public FacetChart setRemoveOperation(String removeOperation) {
+        return (FacetChart)setAttribute("removeOperation", removeOperation, true);
+    }
+
+    public String getRemoveOperation() {
+        return getAttributeAsString("removeOperation");
+    }
+
+    public FacetChart setExportFields(String[] exportFields) {
+        return (FacetChart)setAttribute("exportFields", exportFields, true);
+    }
+
+    public String[] getExportFields() {
+        return getAttributeAsStringArray("exportFields");
+    }
+
+    public FacetChart setExportAll(Boolean exportAll) {
+        return (FacetChart)setAttribute("exportAll", exportAll, true);
+    }
+
+    public Boolean getExportAll() {
+        return getAttributeAsBoolean("exportAll");
+    }
+
+    public FacetChart setExportIncludeSummaries(Boolean exportIncludeSummaries) {
+        return (FacetChart)setAttribute("exportIncludeSummaries", exportIncludeSummaries, true);
+    }
+
+    public Boolean getExportIncludeSummaries() {
+        return getAttributeAsBoolean("exportIncludeSummaries");
+    }
+
+    public FacetChart setPreventDuplicates(Boolean preventDuplicates) throws IllegalStateException {
+        return (FacetChart)setAttribute("preventDuplicates", preventDuplicates, false);
+    }
+
+    public Boolean getPreventDuplicates() {
+        return getAttributeAsBoolean("preventDuplicates");
+    }
+
+    public FacetChart setDuplicateDragMessage(String duplicateDragMessage) throws IllegalStateException {
+        return (FacetChart)setAttribute("duplicateDragMessage", duplicateDragMessage, false);
+    }
+
+    public String getDuplicateDragMessage() {
+        return getAttributeAsString("duplicateDragMessage");
+    }
+
+    public FacetChart setAddDropValues(Boolean addDropValues) {
+        return (FacetChart)setAttribute("addDropValues", addDropValues, true);
+    }
+
+    public Boolean getAddDropValues() {
+        return getAttributeAsBoolean("addDropValues");
+    }
+
+    public FacetChart setDropValues(Map dropValues) {
+        return (FacetChart)setAttribute("dropValues", dropValues, true);
+    }
+
+    public Map getDropValues() {
+        return getAttributeAsMap("dropValues");
+    }
+
+    /**
+     * Indicates whether or not this component will load its data
+     * {@link DataSource#setProgressiveLoading() progressively}
+     * 
+     * @see com.smartgwt.client.docs.ProgressiveLoading  
+     * @see com.smartgwt.client.data.DataSource#setProgressiveLoading
+     * @param progressiveLoading
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
+     */
+    public FacetChart setProgressiveLoading(Boolean progressiveLoading) {
+        return (FacetChart)setAttribute("progressiveLoading", progressiveLoading, false);
+    }
+
+    /**
+     * Indicates whether or not this component will load its data {@link DataSource#getProgressiveLoading() progressively}
+     * 
+     * @see com.smartgwt.client.docs.ProgressiveLoading
+     * @see com.smartgwt.client.data.DataSource#getProgressiveLoading
+     * @return
+     */
+    public Boolean getProgressiveLoading() {
+        return getAttributeAsBoolean("progressiveLoading");
+    }
+
+    public FacetChart setUseFlatFields(Boolean useFlatFields) throws IllegalStateException {
+        return (FacetChart)setAttribute("useFlatFields", useFlatFields, false);
+    }
+
+    public Boolean getUseFlatFields() {
+        return getAttributeAsBoolean("useFlatFields");
+    }
+
+    public FacetChart setHiliteProperty(String hiliteProperty) {
+        return (FacetChart)setAttribute("hiliteProperty", hiliteProperty, true);
+    }
+
+    public String getHiliteProperty() {
+        return getAttributeAsString("hiliteProperty");
+    }
+
+    /** 
+     * Shows a FieldPicker interface allowing end-users to rearrange the order and visibiility
+     * of the fields in the associated DataBoundComponent.
+     */
+    public native void editFields() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.editFields();
+    }-*/;
+
+    public native void editHilites() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.editHilites();
+    }-*/;
+
+    public native String getHiliteState()  /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.getHiliteState();
+    }-*/;
+
+    public native FacetChart setHiliteState(String hiliteState)  /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setHiliteState(hiliteState);
+        return this;
+    }-*/;
+
+    public native FacetChart setHilites(Hilite[] hilites)/*-{
+        var isCreated = this.@com.smartgwt.client.widgets.BaseWidget::isCreated()();
+        var hilitesJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(hilites);
+        if (isCreated) {
+            var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+            self.setHilites(hilitesJS);
+        } else {
+            var obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.hilites = hilitesJS;
+        }
+        return this;
+    }-*/;
+
+    public native Hilite[] getHilites()/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var hilitesJS = self.getHilites();
+        return @com.smartgwt.client.util.ConvertTo::arrayOfHilite(Lcom/google/gwt/core/client/JavaScriptObject;)(hilitesJS);
+    }-*/;
+
+    public FacetChart setDragDataAction(DragDataAction dragDataAction) {
+        return (FacetChart)setAttribute("dragDataAction", dragDataAction.getValue(), true);
+    }
+
+    public DragDataAction getDragDataAction() {
+        return EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
+    }
+
+    public FacetChart setDragTrackerStyle(String dragTrackerStyle) {
+        return (FacetChart)setAttribute("dragTrackerStyle", dragTrackerStyle, true);
+    }
+
+    public String getDragTrackerStyle() {
+        return getAttributeAsString("dragTrackerStyle");
+    }
+
+    public FacetChart setCanAddFormulaFields(Boolean canAddFormulaFields) {
+        return (FacetChart)setAttribute("canAddFormulaFields", canAddFormulaFields, true);
+    }
+
+    public native void addSummaryField() /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.addSummaryField();
+     }-*/;
+
+    public native void addFormulaField() /*-{
+       var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+       self.addFormulaField();
+    }-*/;
+
+    public Boolean getCanAddFormulaFields() {
+        return getAttributeAsBoolean("canAddFormulaFields");
+    }
+
+    public FacetChart setAddFormulaFieldText(String addFormulaFieldText) {
+        return (FacetChart)setAttribute("addFormulaFieldText", addFormulaFieldText, true);
+    }
+
+    public String getAddFormulaFieldText() {
+        return getAttributeAsString("addFormulaFieldText");
+    }
+
+    public FacetChart setEditFormulaFieldText(String editFormulaFieldText) {
+        return (FacetChart)setAttribute("editFormulaFieldText", editFormulaFieldText, true);
+    }
+
+    public String getEditFormulaFieldText() {
+        return getAttributeAsString("editFormulaFieldText");
+    }
+
+    public FacetChart setCanAddSummaryFields(Boolean canAddSummaryFields) {
+        return (FacetChart)setAttribute("canAddSummaryFields", canAddSummaryFields, true);
+    }
+
+    public Boolean getCanAddSummaryFields() {
+        return getAttributeAsBoolean("canAddSummaryFields");
+    }
+
+    public FacetChart setAddSummaryFieldText(String addSummaryFieldText) {
+        return (FacetChart)setAttribute("addSummaryFieldText", addSummaryFieldText, true);
+    }
+
+    public String getAddSummaryFieldText() {
+        return getAttributeAsString("addSummaryFieldText");
+    }
+
+    public FacetChart setEditSummaryFieldText(String editSummaryFieldText) {
+        return (FacetChart)setAttribute("editSummaryFieldText", editSummaryFieldText, true);
+    }
+
+    public String getEditSummaryFieldText() {
+        return getAttributeAsString("editSummaryFieldText");
+    }
+
+    // ********************* Methods ***********************
+    /**
+     * Filters all objects according to the AdvancedCriteria passed
+     *
+     * @param adCriteria AdvancedCriteria to use to filter results
+     *
+     * @return all matching Objects or null if none found
+     */
+    public native Record[] findAll(AdvancedCriteria adCriteria) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = self.findAll(adCriteria.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(@com.smartgwt.client.data.Criterion::instanceOf(Ljava/lang/Object;)(adCriteria)){
+    		var criteriaJ = adCriteria.@com.smartgwt.client.core.DataClass::getJsObj()();
+	    	@com.smartgwt.client.util.JSOHelper::setAttribute(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;Ljava/lang/String;)(criteriaJ,"_constructor","AdvancedCriteria");
+	    }
+        return recordsJS == null ? null : @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(recordsJS);
+    }-*/;
+    
+    /**
+     * Filters all objects according to the AdvancedCriteria passed and returns the first matching object or null if not found
+     *
+     * @param adCriteria AdvancedCriteria to use to filter results
+     *
+     * @return first matching object or null if not found
+     */
+    public native Record find(AdvancedCriteria adCriteria) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordJS = self.find(adCriteria.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(@com.smartgwt.client.data.Criterion::instanceOf(Ljava/lang/Object;)(adCriteria)){
+    		var criteriaJ = adCriteria.@com.smartgwt.client.core.DataClass::getJsObj()();
+	    	@com.smartgwt.client.util.JSOHelper::setAttribute(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;Ljava/lang/String;)(criteriaJ,"_constructor","AdvancedCriteria");
+	    }
+        return recordJS == null ? null : @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(recordJS);
+    }-*/;
+    
+    /**
+     * Finds the index of the first Record that matches with the AdvacendCriteria passed.
+     * @param adCriteria AdvancedCriteria to use to filter results
+     *
+     * @return index of the first matching Record or -1 if not found
+     */
+    public native int findIndex(AdvancedCriteria adCriteria) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        if(@com.smartgwt.client.data.Criterion::instanceOf(Ljava/lang/Object;)(adCriteria)){
+    		var criteriaJ = adCriteria.@com.smartgwt.client.core.DataClass::getJsObj()();
+	    	@com.smartgwt.client.util.JSOHelper::setAttribute(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;Ljava/lang/String;)(criteriaJ,"_constructor","AdvancedCriteria");
+	    }
+        return self.findIndex(adCriteria.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+    
+    /**
+     * Like {@link RecordList#findIndex}, but considering the startIndex and endIndex parameters.
+     * @param startIndex first index to consider
+     * @param adCriteria AdvancedCriteria to use to filter results
+     * @param endIndex last index to consider
+     * 
+     * @return index of the first matching Record or -1 if not found
+     */
+    public native int findNextIndex(int startIndex, AdvancedCriteria adCriteria, int endIndex) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        if(@com.smartgwt.client.data.Criterion::instanceOf(Ljava/lang/Object;)(adCriteria)){
+    		var criteriaJ = adCriteria.@com.smartgwt.client.core.DataClass::getJsObj()();
+	    	@com.smartgwt.client.util.JSOHelper::setAttribute(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;Ljava/lang/String;)(criteriaJ,"_constructor","AdvancedCriteria");
+	    }
+        return self.findNextIndex(startIndex, adCriteria.@com.smartgwt.client.core.DataClass::getJsObj()(), null, endIndex);
+    }-*/;
+    
+    /**
+     * Like {@link RecordList#findIndex}, but considering the startIndex parameter.
+     * @param startIndex first index to consider
+     * @param adCriteria AdvancedCriteria to use to filter results
+     * 
+     * @return index of the first matching Record or -1 if not found
+     */
+    public native int findNextIndex(int startIndex, AdvancedCriteria adCriteria) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        if(@com.smartgwt.client.data.Criterion::instanceOf(Ljava/lang/Object;)(adCriteria)){
+    		var criteriaJ = adCriteria.@com.smartgwt.client.core.DataClass::getJsObj()();
+	    	@com.smartgwt.client.util.JSOHelper::setAttribute(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;Ljava/lang/String;)(criteriaJ,"_constructor","AdvancedCriteria");
+	    }
+        return self.findNextIndex(startIndex, adCriteria.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+    public native void selectRecord(Record record)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
+        self.selectRecord(recordJS);
+     }-*/;
+
+    public native void selectRecord(int record)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.selectRecord(record);
+     }-*/;
+
+    public native void selectRecord(int record, boolean newState)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.selectRecord(record, newState);
+     }-*/;
+
+    public native void selectRecord(Record record, boolean newState)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
+        self.selectRecord(recordJS, newState);
+     }-*/;
+
+    public native void selectRecords(int[] records)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(records);
+        self.selectRecord(recordsJS);
+     }-*/;
+
+    public native void selectRecords(int[] records, boolean newState)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(records);
+        self.selectRecords(recordsJS, newState);
+     }-*/;
+
+    public native void selectRecords(Record[] records)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
+        self.selectRecords(recordsJS);
+     }-*/;
+
+    public native void selectRecords(Record[] records, boolean newState)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
+        self.selectRecords(recordsJS, newState);
+     }-*/;
+
+    public native void deselectRecord(Record record)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordJS = record.@com.smartgwt.client.data.Record::getJsObj()();
+        self.deselectRecord(recordJS);
+     }-*/;
+
+    public native void deselectRecord(int record)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.deselectRecord(record);
+     }-*/;
+
+    public native void deselectRecords(int[] records)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([I)(records);
+        self.deselectRecords(recordsJS);
+     }-*/;
+
+    public native void deselectRecords(Record[] records)/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
+        self.deselectRecords(recordsJS);
+     }-*/;
+
+    public native void selectAllRecords() /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.selectAllRecords();
+     }-*/;
+
+    public native void deselectAllRecords() /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.deselectAllRecords();
+     }-*/;
+
+    public native Boolean anySelected() /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         var retVal =self.anySelected();
+         if(retVal == null) {
+             return null;
+         } else {
+             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+         }
+     }-*/;
+
+    public native void enableHilite(String hiliteID) /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.enableHilite(hiliteID);
+     }-*/;
+
+    public native void enableHilite(String hiliteID, boolean enable) /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.enableHilite(hiliteID, enable);
+     }-*/;
+
+    public native void disableHilite(String hiliteID) /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.disableHilite(hiliteID);
+     }-*/;
+
+    public native void enableHiliting() /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.enableHiliting();
+     }-*/;
+
+    public native void enableHiliting(boolean enable) /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.enableHiliting(enable);
+     }-*/;
+
+    public native void disableHiliting() /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         self.disableHiliting();
+     }-*/;
+
+    public native Record[] getDragData() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = self.getDragData();
+        return @com.smartgwt.client.data.Record::convertToRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(recordsJS);
+     }-*/;
+
+    public native void transferSelectedData(DataBoundComponent source) /*-{
+         var self = this.@com.smartgwt.client.widgets.DataBoundComponent::getOrCreateJsObj()();
+         self.transferSelectedData(source.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+     }-*/;
+
+    public native void transferSelectedData(DataBoundComponent source, int index) /*-{
+         var self = this.@com.smartgwt.client.widgets.DataBoundComponent::getOrCreateJsObj()();
+         self.transferSelectedData(source.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), index);
+     }-*/;
+
+    public native int getRecordIndex(Record record) /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         return self.getRecordIndex(record.@com.smartgwt.client.core.DataClass::getJsObj()());
+     }-*/;
+
+    public native String getTitleFieldValue(Record record) /*-{
+         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+         return self.getTitleFieldValue(record);
+     }-*/;
+
+    public FacetChart setTitleField(String titleField) {
+        return (FacetChart)setAttribute("titleField", titleField, true);
+    }
+
+    public String getTitleField() {
+        return getAttributeAsString("titleField");
+    }
+
+    public native DataSource getDataSource() /*-{
+        var dataSourceJS = this.@com.smartgwt.client.widgets.grid.ListGrid::getAttributeAsJavaScriptObject(Ljava/lang/String;)("dataSource");
+        if ($wnd.isc.isA.String(dataSourceJS)) dataSourceJS = $wnd.isc.DataSource.get(dataSourceJS);
+        return @com.smartgwt.client.data.DataSource::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(dataSourceJS);
+    }-*/;
+
+    public FacetChart setAutoFetchData(Boolean autoFetchData) throws IllegalStateException {
+        return (FacetChart)setAttribute("autoFetchData", autoFetchData, false);
+    }
+
+    public Boolean getAutoFetchData() {
+        return getAttributeAsBoolean("autoFetchData");
+    }
+
+    public FacetChart setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle) throws IllegalStateException {
+        return (FacetChart)setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
+    }
+
+    public TextMatchStyle getAutoFetchTextMatchStyle() {
+        return TextMatchStyle.valueOf(getAttributeAsString("autoFetchTextMatchStyle"));
+    }
+
+    public FacetChart setAutoFetchAsFilter(Boolean autoFetchAsFilter) throws IllegalStateException {
+        return (FacetChart)setAttribute("autoFetchAsFilter", autoFetchAsFilter, false);
+    }
+
+    public Boolean getAutoFetchAsFilter() {
+        return getAttributeAsBoolean("autoFetchAsFilter");
+    }
+
+    public FacetChart setInitialCriteria(Criteria initialCriteria) throws IllegalStateException {
+        return (FacetChart)setAttribute("initialCriteria", initialCriteria.getJsObj(), false);
+    }
+
+    public Criteria getInitialCriteria() {
+        return new Criteria(getAttributeAsJavaScriptObject("initialCriteria"));
+    }
+
+    public FacetChart setImplicitCriteria(Criteria implicitCriteria) {
+        if (implicitCriteria instanceof Criterion) {
+            implicitCriteria.setAttribute("_constructor", "AdvancedCriteria");
+        }
+        return (FacetChart)setAttribute("implicitCriteria", implicitCriteria == null ?
+                            null : implicitCriteria.getJsObj(), true);
+    }
+
+    public Criteria getImplicitCriteria()  {
+        return new Criteria(getAttributeAsJavaScriptObject("implicitCriteria"));
+    }
+    
+    public native void fetchData() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.fetchData();
+    }-*/;
+
+    public native void fetchData(Criteria criteria) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        if(@com.smartgwt.client.data.Criterion::instanceOf(Ljava/lang/Object;)(criteria)){
+    		var criteriaJ = criteria.@com.smartgwt.client.core.DataClass::getJsObj()();
+	    	@com.smartgwt.client.util.JSOHelper::setAttribute(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;Ljava/lang/String;)(criteriaJ,"_constructor","AdvancedCriteria");
+	    }
+        self.fetchData(criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()());
+    }-*/;
+
+    public native void fetchData(Criteria criteria, DSCallback callback) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
+        if(@com.smartgwt.client.data.Criterion::instanceOf(Ljava/lang/Object;)(criteria)){
+    		var criteriaJ = criteria.@com.smartgwt.client.core.DataClass::getJsObj()();
+	    	@com.smartgwt.client.util.JSOHelper::setAttribute(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;Ljava/lang/String;)(criteriaJ,"_constructor","AdvancedCriteria");
+	    }
+        self.fetchData(critJS, $entry(function (dsResponse, data, dsRequest) {
+            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
+            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
+            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
+        }));
+    }-*/;
+
+    public native void fetchData(Criteria criteria, DSCallback callback, DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
+        var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
+    	if(@com.smartgwt.client.data.Criterion::instanceOf(Ljava/lang/Object;)(criteria)){
+    		var criteriaJ = criteria.@com.smartgwt.client.core.DataClass::getJsObj()();
+	    	@com.smartgwt.client.util.JSOHelper::setAttribute(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;Ljava/lang/String;)(criteriaJ,"_constructor","AdvancedCriteria");
+	    }
+        self.fetchData(critJS, $entry(function (dsResponse, data, dsRequest) {
+            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
+            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
+            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
+        }), requestPropertiesJS);
+    }-*/;
+
+    public native void filterData() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.filterData();
+    }-*/;
+
+    public native void filterData(Criteria criteria) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.filterData(criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()());
+    }-*/;
+
+    public native void filterData(Criteria criteria, DSCallback callback) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
+        if(@com.smartgwt.client.data.Criterion::instanceOf(Ljava/lang/Object;)(criteria)){
+    		var criteriaJ = criteria.@com.smartgwt.client.core.DataClass::getJsObj()();
+	    	@com.smartgwt.client.util.JSOHelper::setAttribute(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;Ljava/lang/String;)(criteriaJ,"_constructor","AdvancedCriteria");
+	    }
+        self.filterData(critJS, $entry(function (dsResponse, data, dsRequest) {
+            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
+            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
+            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
+        }));
+    }-*/;
+
+    public native void filterData(Criteria criteria, DSCallback callback, DSRequest requestProperties) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var critJS = criteria == null ? null : criteria.@com.smartgwt.client.data.Criteria::getJsObj()();
+        var requestPropertiesJS = requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()();
+        if(@com.smartgwt.client.data.Criterion::instanceOf(Ljava/lang/Object;)(criteria)){
+    		var criteriaJ = criteria.@com.smartgwt.client.core.DataClass::getJsObj()();
+	    	@com.smartgwt.client.util.JSOHelper::setAttribute(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;Ljava/lang/String;)(criteriaJ,"_constructor","AdvancedCriteria");
+	    }
+        self.filterData(critJS, $entry(function (dsResponse, data, dsRequest) {
+            var responseJ = @com.smartgwt.client.data.DSResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsResponse);
+            var requestJ = @com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest);
+            if(callback != null) callback.@com.smartgwt.client.data.DSCallback::execute(Lcom/smartgwt/client/data/DSResponse;Ljava/lang/Object;Lcom/smartgwt/client/data/DSRequest;)(responseJ, data, requestJ);
+        }), requestPropertiesJS);
+    }-*/;
+
+    public native void invalidateCache() /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.invalidateCache();
+    }-*/;
+
+    public ResultSet getResultSet() {
+        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
+        if(dataJS == null) return null;
+        if(!ResultSet.isResultSet(dataJS)) {
+            SC.logWarn("getResultSet(): data is not a ResultSet; returning null " +
+                "(if grouped, use getOriginalResultSet(); if unbound, use getRecordList(); " +
+                "can only be called on DataBoundComponents after initial data has been fetched)");
+            return null;
+        }
+        return ResultSet.getOrCreateRef(dataJS);
+    }
+
+    public native RecordList getRecordList() /*-{
+        var dataJS = this.@com.smartgwt.client.widgets.DataBoundComponent::getDataAsJSList()();
+        if (dataJS == null) return null;
+        if ($wnd.isc.isA.ResultSet(dataJS)) {
+            return this.@com.smartgwt.client.widgets.DataBoundComponent::getResultSet()();
+        } else if ($wnd.isc.isA.ResultTree(dataJS)) {
+            return @com.smartgwt.client.widgets.tree.ResultTree::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(dataJS);
+        } else if ($wnd.isc.isA.Tree(dataJS)) {
+            return @com.smartgwt.client.widgets.tree.Tree::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(dataJS);
+        }
+        return @com.smartgwt.client.data.RecordList::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dataJS);
+    }-*/;
+
+    public native JavaScriptObject getDataAsJSList() /*-{
+    	var self = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+    	if (self == null) return null;
+    	return self.getDataAsList();
+    	
+    }-*/;
+
+    public void exportData() {
+        exportData(null);
+    }
+
+    public native void exportData(DSRequest requestProperties) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "exportData", "DSRequest,RPCCallback");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportData(requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+
+    public native void exportData(DSRequest requestProperties, RPCCallback callback) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "exportData", "DSRequest,RPCCallback");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportData(requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()(),
+			$entry( function(response, rawData, request) {
+				if(callback!=null) callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(
+					@com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(response), 
+					rawData, 
+					@com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(request)
+				);
+			}));
+    }-*/;
+
+    /**
+     * Add a fetchData handler.
+     * <p>
+     * Notification function fired on fetchData() or filterData()
+     *
+     * @param handler the filterData handler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addFetchDataHandler(FetchDataHandler handler) {
+        if(getHandlerCount(FetchDataEvent.getType()) == 0) setupFetchDataEvent();
+        return doAddHandler(handler, FetchDataEvent.getType());
+    }
+
+    private native void setupFetchDataEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({onFetchData:$debox($entry(function(){
+                    var param = {"_this": this, "criteria" : arguments[0], "requestProperties" : arguments[1]};
+                    var event = @com.smartgwt.client.widgets.events.FetchDataEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                }))
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.onFetchData = $debox($entry(function(){
+                var param = {"_this": this, "criteria" : arguments[0], "requestProperties" : arguments[1]};
+                var event = @com.smartgwt.client.widgets.events.FetchDataEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            }));
+        }
+    }-*/;
+
+    /**
+     * Add a {@link com.smartgwt.client.widgets.DropCompleteHandler}.  See that class's documentation for a definition of "drop complete",
+     * and how it differs from "drag complete" ({@link com.smartgwt.client.widgets.DragCompleteHandler}).
+     *
+     * @param handler the DropCompleteHandler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDropCompleteHandler(DropCompleteHandler handler) {
+        if(getHandlerCount(DropCompleteEvent.getType()) == 0) setupDropCompleteEvent();
+        return doAddHandler(handler, DropCompleteEvent.getType());
+    }
+
+    private native void setupDropCompleteEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({dropComplete:$debox($entry(function(){
+                    var param = {"_this": this, "transferredRecords" : arguments[0]};
+                    var event = @com.smartgwt.client.widgets.events.DropCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                }))
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.dropComplete = $debox($entry(function(){
+                var param = {"_this": this, "transferredRecords" : arguments[0]};
+                var event = @com.smartgwt.client.widgets.events.DropCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            }));
+        }
+    }-*/;
+
+    /**
+     * Add a {@link com.smartgwt.client.widgets.DragCompleteHandler}.  See that class's documentation for a definition of "drag complete",
+     * and how it differs from "drop complete" ({@link com.smartgwt.client.widgets.DropCompleteHandler}).
+     *
+     * @param handler the DropCompleteHandler
+     * @return {@link com.google.gwt.event.shared.HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDragCompleteHandler(DragCompleteHandler handler) {
+        if(getHandlerCount(DragCompleteEvent.getType()) == 0) setupDragCompleteEvent();
+        return doAddHandler(handler, DragCompleteEvent.getType());
+    }
+
+    private native void setupDragCompleteEvent() /*-{
+        var obj = null;
+        var selfJ = this;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            obj.addProperties({dragComplete:$debox($entry(function(){
+                    var param = {"_this": this};
+                    var event = @com.smartgwt.client.widgets.events.DragCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                    selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                }))
+            });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            obj.dragComplete = $debox($entry(function(){
+                var param = {"_this": this, "transferredRecords" : arguments[0]};
+                var event = @com.smartgwt.client.widgets.events.DragCompleteEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            }));
+        }
+    }-*/;
+
+    public native Alignment[] getFieldAlignments()/*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var alignJS = self.getFieldAlignments();
+        return @com.smartgwt.client.util.ConvertTo::arrayOfAlignment(Lcom/google/gwt/core/client/JavaScriptObject;)(alignJS);
+    }-*/;
+
+    public Boolean getDeepCloneOnEdit() {
+        return getAttributeAsBoolean("deepCloneOnEdit");
+    }
+
+    public FacetChart setDeepCloneOnEdit(Boolean deepCloneOnEdit) {
+        return (FacetChart)setAttribute("deepCloneOnEdit", deepCloneOnEdit, true);
+    }
+
+    public FacetChart setFields(JavaScriptObject... fields) {
+        if (fields != null) for(int i = 0; i < fields.length; i++) {
+            fields[i] = duplicateFieldConfig(JSOHelper.cleanProperties(fields[i], false));
+        }
+        return (FacetChart)setAttribute("fields", fields, true);
+    }
+
+    private native JavaScriptObject duplicateFieldConfig(JavaScriptObject config) /*-{
+        return $wnd.isc.shallowClone(config);
+    }-*/;
+
+    public JavaScriptObject[] getFieldsAsJavaScriptObjects() {
+        JavaScriptObject fieldsJsArray = getAttributeAsJavaScriptObject("fields");
+        return JSOHelper.isArray(fieldsJsArray) ? JSOHelper.toArray(fieldsJsArray) : null;
+    }
+
+    public int getFieldCount() {
+        JavaScriptObject[] fields = getFieldsAsJavaScriptObjects();
+        return fields != null ? fields.length : 0;
+    }
+    
+    public native void transferRecords(Record[] records, Record targetRecord, Integer index, Canvas sourceWidget, TransferRecordsCallback callback) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
+        var targetRecordJS = targetRecord == null ? null : targetRecord.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        var indexJS = index == null ? null : index.@java.lang.Integer::intValue()();
+        var sourceWidgetJS = sourceWidget == null ? null : sourceWidget.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.transferRecords(recordsJS, targetRecordJS, indexJS, sourceWidgetJS, $entry(function(records) {
+            if(callback != null) {
+	    		var convertedArray = [];
+	    		for (var i = 0; i < records.length; i++) {
+	    			convertedArray[i] =  @com.smartgwt.client.data.Record::new(Lcom/google/gwt/core/client/JavaScriptObject;)(records[i]);
+	    		}
+                var recordsJ = @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(convertedArray);
+                callback.@com.smartgwt.client.widgets.TransferRecordsCallback::execute([Lcom/smartgwt/client/data/Record;)(recordsJ);
+            }
+        }));
+    }-*/;
+
+	/**
+     * During a drag-and-drop interaction, this method returns the set of records being dragged
+     * out of the component.  In the default implementation, this is the list of currently
+     * selected records.<p>
+     * This method is consulted by
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#willAcceptDrop willAcceptDrop()}.
+     * @param DragDataCustomizer customizer
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
+     */
+    public native FacetChart setDragDataCustomizer(DragDataCustomizer customizer) /*-{
+        var self;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            self = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        } else {
+            self = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        }
+        var componentJ = this;
+        self.getDragData = $debox($entry(function() {
+        	var returnJ = customizer.@com.smartgwt.client.widgets.DragDataCustomizer::getDragData(Lcom/smartgwt/client/widgets/DataBoundComponent;)(componentJ);
+        	return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(returnJ);
+    	}));
+        return this;
+    }-*/;
+
+    public native SortSpecifier[] getSort() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getSort", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        if(self == null) return null
+        var ret = self.getSort();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.ConvertTo::arrayOfSortSpecifier(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+    
+    public native FacetChart setSort(SortSpecifier... sortSpecifiers) /*-{
+        var sortSpecifiersJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(sortSpecifiers);
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setSort(sortSpecifiersJS);
+        return this;
+    }-*/;
+
+
     /**
      * Setter implementing the {@link com.smartgwt.client.core.LogicalStructure} interface,
      * which supports Eclipse's logical structure debugging facility.
@@ -9097,6 +10322,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             s.logicalStructureErrors += "FacetChart.dataColorsArray:" + t.getMessage() + "\n";
         }
         try {
+            s.dataFetchMode = getAttributeAsString("dataFetchMode");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FacetChart.dataFetchMode:" + t.getMessage() + "\n";
+        }
+        try {
             s.dataLineType = getAttributeAsString("dataLineType");
         } catch (Throwable t) {
             s.logicalStructureErrors += "FacetChart.dataLineType:" + t.getMessage() + "\n";
@@ -9165,6 +10395,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             s.extraAxisSettings = getExtraAxisSettings();
         } catch (Throwable t) {
             s.logicalStructureErrors += "FacetChart.extraAxisSettingsArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.facetFieldsAsStringArrayArray = getAttributeAsStringArray("facetFields");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FacetChart.facetFieldsAsStringArrayArray:" + t.getMessage() + "\n";
         }
         try {
             s.filled = getAttributeAsString("filled");
@@ -9520,6 +10755,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             s.showDataValuesMode = getAttributeAsString("showDataValuesMode");
         } catch (Throwable t) {
             s.logicalStructureErrors += "FacetChart.showDataValuesMode:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDetailFields = getAttributeAsString("showDetailFields");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FacetChart.showDetailFields:" + t.getMessage() + "\n";
         }
         try {
             s.showDoughnut = getAttributeAsString("showDoughnut");

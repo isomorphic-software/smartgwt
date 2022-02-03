@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * A device- and orientation-sensitive layout that implements the common pattern of rendering two panes side-by-side on
@@ -122,9 +128,19 @@ import com.smartgwt.logicalstructure.widgets.tools.*;
  * <code>showListPane(<em>"folder name"</em>)</code> would be called to show the <code>listPane</code> and give it a new
  * title reflecting the name of the folder. <p> Similarly, clicking on a message in the <code>listPane</code> should show
  * the message details in the <code>detailPane</code> and call <code>showDetailPane(<em>"message title"</em>)</code> to
- * reveal the <code>detailPane</code> and give it an appropriate title. <p> <h3>Automatic control placement</h3> <p> {@link
- * com.smartgwt.client.widgets.layout.SplitPane#getDetailToolButtons detailToolButtons} allows you to define a set of
- * controls that are specially placed based on the <code>deviceMode</code> and <code>pageOrientation</code>.  See {@link
+ * reveal the <code>detailPane</code> and give it an appropriate title. <p> <h3>Auto-Navigation</h3> <p> By default,
+ * SplitPane will analyze the controls placed in each pane and the DataSources they  are bound to, and automatically
+ * navigate between panes.   <p> For example, in a two-pane SplitPane with a ListGrid in the navigationPane and a
+ * DynamicForm  in the detailPane, both with the same DataSource, when a record is selected in the grid,  {@link
+ * com.smartgwt.client.widgets.form.DynamicForm#editRecord DynamicForm.editRecord()} will be called to populate the form,
+ * and the detailPane will be shown. <p> In a 3-pane SplitPane with a TreeGrid and ListGrid in the navigationPane and
+ * listPane respectively,  if there is a 1-to-Many relation from the TreeGrid's DataSource to the ListGrid's DataSource, 
+ * {@link com.smartgwt.client.widgets.grid.ListGrid#fetchRelatedData ListGrid.fetchRelatedData()} will be used to load
+ * related records when tree nodes are clicked,  and the listPane will be shown. <p> For a full description of
+ * auto-navigation, see {@link com.smartgwt.client.widgets.layout.SplitPane#getAutoNavigate autoNavigate}. Just set
+ * <code>autoNavigate</code>  to false if you don't want these behaviors. <p> <h3>Automatic control placement</h3> <p>
+ * {@link com.smartgwt.client.widgets.layout.SplitPane#getDetailToolButtons detailToolButtons} allows you to define a set
+ * of controls that are specially placed based on the <code>deviceMode</code> and <code>pageOrientation</code>.  See {@link
  * com.smartgwt.client.widgets.layout.SplitPane#getDetailToolButtons detailToolButtons} for details. <p> <h3>NavigationBar
  * and ToolStrips</h3> <p> By default, bars are created as follows: <ul> <li> in <code>deviceMode:"tablet"</code> and
  * <code>deviceMode</code> "handset", the      {@link com.smartgwt.client.widgets.layout.SplitPane#getNavigationBar
@@ -346,15 +362,15 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * com.smartgwt.client.widgets.layout.SplitPane#getNavigationPane navigationPane} or {@link
      * com.smartgwt.client.widgets.layout.SplitPane#getListPane listPane} is assigned, except when the <code>SplitPane</code>
      * is in {@link com.smartgwt.client.widgets.Canvas#setEditMode edit mode} (e.g. when using {@link
-     * com.smartgwt.client.tools.VisualBuilder}). where the component redetection logic gets run every time a pane's widget
+     * com.smartgwt.client.docs.Reify Reify}). where the component redetection logic gets run every time a pane's widget
      * hierarchy changes.
      *
-     * @param autoNavigate New autoNavigate value. Default value is null
+     * @param autoNavigate New autoNavigate value. Default value is true
      * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_splitpane" target="examples">SplitPane Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_splitpane_auto_navigate" target="examples">SplitPane Auto-Navigate Example</a>
      */
-    public SplitPane setAutoNavigate(Boolean autoNavigate)  throws IllegalStateException {
+    public SplitPane setAutoNavigate(boolean autoNavigate)  throws IllegalStateException {
         return (SplitPane)setAttribute("autoNavigate", autoNavigate, false);
     }
 
@@ -375,14 +391,15 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * com.smartgwt.client.widgets.layout.SplitPane#getNavigationPane navigationPane} or {@link
      * com.smartgwt.client.widgets.layout.SplitPane#getListPane listPane} is assigned, except when the <code>SplitPane</code>
      * is in {@link com.smartgwt.client.widgets.Canvas#setEditMode edit mode} (e.g. when using {@link
-     * com.smartgwt.client.tools.VisualBuilder}). where the component redetection logic gets run every time a pane's widget
+     * com.smartgwt.client.docs.Reify Reify}). where the component redetection logic gets run every time a pane's widget
      * hierarchy changes.
      *
-     * @return Current autoNavigate value. Default value is null
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_splitpane" target="examples">SplitPane Example</a>
+     * @return Current autoNavigate value. Default value is true
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_splitpane_auto_navigate" target="examples">SplitPane Auto-Navigate Example</a>
      */
-    public Boolean getAutoNavigate()  {
-        return getAttributeAsBoolean("autoNavigate");
+    public boolean getAutoNavigate()  {
+        Boolean result = getAttributeAsBoolean("autoNavigate");
+        return result == null ? true : result;
     }
     
 
@@ -1087,19 +1104,29 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
 
     /**
      * If set to <code>false</code>, the {@link com.smartgwt.client.widgets.layout.SplitPane#getDetailToolStrip
-     * detailToolStrip} will not be shown.
+     * detailToolStrip} will not be shown.  Otherwise, the {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#getDetailToolStrip detailToolStrip} will be shown if either the {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#getDeviceMode deviceMode} is not  {@link
+     * com.smartgwt.client.types.DeviceMode#HANDSET} or {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#getDetailToolButtons detailToolButtons} are specified.
      *
-     * @param showDetailToolStrip New showDetailToolStrip value. Default value is null
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Setter for {@link com.smartgwt.client.widgets.layout.SplitPane#getShowDetailToolStrip showDetailToolStrip}. <b>Note:</b> If the property is set <code>false</code> after the {@link com.smartgwt.client.widgets.layout.SplitPane#getDetailToolStrip detailToolStrip} autochild has already been created, it will be hidden but not destroyed.
+     *
+     * @param showDetailToolStrip new value. Default value is null
      * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
-     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public SplitPane setShowDetailToolStrip(Boolean showDetailToolStrip)  throws IllegalStateException {
-        return (SplitPane)setAttribute("showDetailToolStrip", showDetailToolStrip, false);
+    public SplitPane setShowDetailToolStrip(Boolean showDetailToolStrip) {
+        return (SplitPane)setAttribute("showDetailToolStrip", showDetailToolStrip, true);
     }
 
     /**
      * If set to <code>false</code>, the {@link com.smartgwt.client.widgets.layout.SplitPane#getDetailToolStrip
-     * detailToolStrip} will not be shown.
+     * detailToolStrip} will not be shown.  Otherwise, the {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#getDetailToolStrip detailToolStrip} will be shown if either the {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#getDeviceMode deviceMode} is not  {@link
+     * com.smartgwt.client.types.DeviceMode#HANDSET} or {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#getDetailToolButtons detailToolButtons} are specified.
      *
      * @return Current showDetailToolStrip value. Default value is null
      */
@@ -1148,19 +1175,27 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
 
     /**
      * If set to <code>false</code>, the {@link com.smartgwt.client.widgets.layout.SplitPane#getListToolStrip listToolStrip}
-     * will not be shown.
+     * will not be shown.  Otherwise, the {@link com.smartgwt.client.widgets.layout.SplitPane#getListToolStrip listToolStrip}
+     * will be shown if the {@link com.smartgwt.client.widgets.layout.SplitPane#getDeviceMode deviceMode} is  {@link
+     * com.smartgwt.client.types.DeviceMode#DESKTOP} and a {@link com.smartgwt.client.widgets.layout.SplitPane#getListPane
+     * listPane} is provided.
      *
-     * @param showListToolStrip New showListToolStrip value. Default value is null
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Setter for {@link com.smartgwt.client.widgets.layout.SplitPane#getShowListToolStrip showListToolStrip}. <b>Note:</b> If the property is set <code>false</code> after the {@link com.smartgwt.client.widgets.layout.SplitPane#getDetailToolStrip detailToolStrip} autochild has already been created, it will be hidden but not destroyed.
+     *
+     * @param showListToolStrip new value. Default value is null
      * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
-     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public SplitPane setShowListToolStrip(Boolean showListToolStrip)  throws IllegalStateException {
-        return (SplitPane)setAttribute("showListToolStrip", showListToolStrip, false);
+    public SplitPane setShowListToolStrip(Boolean showListToolStrip) {
+        return (SplitPane)setAttribute("showListToolStrip", showListToolStrip, true);
     }
 
     /**
      * If set to <code>false</code>, the {@link com.smartgwt.client.widgets.layout.SplitPane#getListToolStrip listToolStrip}
-     * will not be shown.
+     * will not be shown.  Otherwise, the {@link com.smartgwt.client.widgets.layout.SplitPane#getListToolStrip listToolStrip}
+     * will be shown if the {@link com.smartgwt.client.widgets.layout.SplitPane#getDeviceMode deviceMode} is  {@link
+     * com.smartgwt.client.types.DeviceMode#DESKTOP} and a {@link com.smartgwt.client.widgets.layout.SplitPane#getListPane
+     * listPane} is provided.
      *
      * @return Current showListToolStrip value. Default value is null
      */
@@ -1212,22 +1247,34 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
     /**
      * If set to <code>false</code>, the {@link com.smartgwt.client.widgets.layout.SplitPane#getNavigationBar navigationBar}
      * will not be shown. If set to <code>true</code>, the <code>navigationBar</code> will always be shown, even when the
-     * {@link com.smartgwt.client.widgets.layout.SplitPane#getDeviceMode deviceMode} is  {@link
-     * com.smartgwt.client.types.DeviceMode#DESKTOP} and the <code>navigationBar</code> would be empty.
+     * {@link com.smartgwt.client.widgets.layout.SplitPane#getDeviceMode deviceMode} is  <P> If this property is unset, the
+     * {@link com.smartgwt.client.widgets.layout.SplitPane#getNavigationBar navigationBar} will be shown if at least one of the
+     * following conditions holds:<ul> <li>the {@link com.smartgwt.client.widgets.layout.SplitPane#getDeviceMode deviceMode} is
+     * not  {@link com.smartgwt.client.types.DeviceMode#DESKTOP} <li>the {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#getNavigationTitle navigationTitle} is specified and non-empty <li>{@link
+     * com.smartgwt.client.widgets.layout.SplitPane#getShowRightButton showRightButton} and/or {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#getShowLeftButton showLeftButton} is <code>true</code>,</ul>
      *
-     * @param showNavigationBar New showNavigationBar value. Default value is null
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Setter for {@link com.smartgwt.client.widgets.layout.SplitPane#getShowNavigationBar showNavigationBar}. <P> <b>Note:</b> If the property is set <code>false</code> after the {@link com.smartgwt.client.widgets.layout.SplitPane#getNavigationBar navigationBar} autochild has already been created, it will be hidden but not destroyed.
+     *
+     * @param showNavigationBar new value. Default value is null
      * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
-     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public SplitPane setShowNavigationBar(Boolean showNavigationBar)  throws IllegalStateException {
-        return (SplitPane)setAttribute("showNavigationBar", showNavigationBar, false);
+    public SplitPane setShowNavigationBar(Boolean showNavigationBar) {
+        return (SplitPane)setAttribute("showNavigationBar", showNavigationBar, true);
     }
 
     /**
      * If set to <code>false</code>, the {@link com.smartgwt.client.widgets.layout.SplitPane#getNavigationBar navigationBar}
      * will not be shown. If set to <code>true</code>, the <code>navigationBar</code> will always be shown, even when the
-     * {@link com.smartgwt.client.widgets.layout.SplitPane#getDeviceMode deviceMode} is  {@link
-     * com.smartgwt.client.types.DeviceMode#DESKTOP} and the <code>navigationBar</code> would be empty.
+     * {@link com.smartgwt.client.widgets.layout.SplitPane#getDeviceMode deviceMode} is  <P> If this property is unset, the
+     * {@link com.smartgwt.client.widgets.layout.SplitPane#getNavigationBar navigationBar} will be shown if at least one of the
+     * following conditions holds:<ul> <li>the {@link com.smartgwt.client.widgets.layout.SplitPane#getDeviceMode deviceMode} is
+     * not  {@link com.smartgwt.client.types.DeviceMode#DESKTOP} <li>the {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#getNavigationTitle navigationTitle} is specified and non-empty <li>{@link
+     * com.smartgwt.client.widgets.layout.SplitPane#getShowRightButton showRightButton} and/or {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#getShowLeftButton showLeftButton} is <code>true</code>,</ul>
      *
      * @return Current showNavigationBar value. Default value is null
      */

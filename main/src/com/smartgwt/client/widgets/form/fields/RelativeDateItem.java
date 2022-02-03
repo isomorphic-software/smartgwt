@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,16 +78,20 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
- * A FormItem for entering a date relative to today or relative to some other date, or a specific date.  Typically used for
- * filtering data by date. <P> The RelativeDateItem consists of a {@link
+ * A FormItem for entering a date relative to today or relative to some other date, or a  specific absolute date. 
+ * Typically used for filtering data by date. <P> The RelativeDateItem consists of a {@link
  * com.smartgwt.client.widgets.form.fields.ComboBoxItem} where the user may directly choose  one of several {@link
  * com.smartgwt.client.widgets.form.fields.RelativeDateItem#getPresetOptions preset options}, choose to enter a  {@link
  * com.smartgwt.client.widgets.form.fields.RelativeDateItem#getQuantityField quantity} and {@link
  * com.smartgwt.client.types.TimeUnit time unit}  (eg "4 months ago" or "3 years from now") or directly type in  an
- * absolute date value (7/18/2009).
+ * absolute date value (7/18/2009). <P> This item can work with logical dates or datetimes, depending on the specified 
+ * {@link com.smartgwt.client.data.DataSourceField#getType data-type}.  For detailed information on working with dates, 
+ * times and datetimes, see the  {@link com.smartgwt.client.docs.DateFormatAndStorage Date and Time Format and Storage
+ * overview}.
  */
 @BeanFactory.FrameworkClass
 public class RelativeDateItem extends CanvasItem {
@@ -326,11 +334,10 @@ public class RelativeDateItem extends CanvasItem {
     
 
     /**
-     * Maximum date the selectors will allow the user to pick.  The default value is December  31st, 5 years after the current
-     * year. <P> See {@link com.smartgwt.client.widgets.form.fields.DateItem#getStartDate DateItem.startDate} for details on
-     * how this restriction works.
+     * Limits the range of the popup {@link com.smartgwt.client.widgets.DateChooser}.  The default of null causes the chooser's
+     * Year-picker to offer a range that ends 10 years after the  current selection.
      *
-     * @param endDate New endDate value. Default value is 12/31/2020
+     * @param endDate New endDate value. Default value is null
      * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -339,11 +346,10 @@ public class RelativeDateItem extends CanvasItem {
     }
 
     /**
-     * Maximum date the selectors will allow the user to pick.  The default value is December  31st, 5 years after the current
-     * year. <P> See {@link com.smartgwt.client.widgets.form.fields.DateItem#getStartDate DateItem.startDate} for details on
-     * how this restriction works.
+     * Limits the range of the popup {@link com.smartgwt.client.widgets.DateChooser}.  The default of null causes the chooser's
+     * Year-picker to offer a range that ends 10 years after the  current selection.
      *
-     * @return Current endDate value. Default value is 12/31/2020
+     * @return Current endDate value. Default value is null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Date getEndDate()  {
@@ -414,7 +420,7 @@ public class RelativeDateItem extends CanvasItem {
      * user are to be converted to Javascript Date objects. <P> If an explicit {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat DateItem.inputFormat} has been specified it will be
      * returned, otherwise, if a custom {@link com.smartgwt.client.widgets.form.fields.DateItem#getDateFormatter
-     * DateItem.dateFormatter} or {@link com.smartgwt.client.widgets.form.fields.FormItem#getFormat FormItem.format} are
+     * DateItem.dateFormatter} or {@link com.smartgwt.client.widgets.form.fields.FormItem#getFormat DateItem.format} are
      * specified, the input format will be automatically derived from that property. <P> Otherwise, the global {@link
      * com.smartgwt.client.util.DateUtil#setInputFormat inputFormat} is used. <P> Note that the inputFormat will ignore any
      * separator characters and padding of values. However if necessary entirely custom date formatting and parsing may be
@@ -1054,16 +1060,10 @@ public class RelativeDateItem extends CanvasItem {
     
 
     /**
-     * Minimum date the selectors will allow the user to pick.  The default value is January  1st, 10 years before the current
-     * year. <P> <b>NOTE:</b> by design, setting <code>startDate</code> and <code>endDate</code> will not always prevent the
-     * user from picking invalid values.  In particular: <ul> <li> the set of available days will only be restricted if the
-     * start and end dates fall within the same month <li> the set of available months will only be restricted if the start and
-     * end dates fall within the same year </ul> <P> This is <b>by design</b> as it allows the user to set the day, month and
-     * year in whatever order is convenient, rather than forcing them to pick in a specific order. <P> For actual enforcement
-     * of a date being in correct range before data is submitted, a {@link
-     * com.smartgwt.client.widgets.form.validator.Validator} of type "dateRange" should always be declared.
+     * Limits the range of the popup {@link com.smartgwt.client.widgets.DateChooser}.  The default of null causes the chooser's
+     * Year-picker to offer a range that starts 10 years before the current selection.
      *
-     * @param startDate New startDate value. Default value is 1/1/1995
+     * @param startDate New startDate value. Default value is null
      * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -1072,16 +1072,10 @@ public class RelativeDateItem extends CanvasItem {
     }
 
     /**
-     * Minimum date the selectors will allow the user to pick.  The default value is January  1st, 10 years before the current
-     * year. <P> <b>NOTE:</b> by design, setting <code>startDate</code> and <code>endDate</code> will not always prevent the
-     * user from picking invalid values.  In particular: <ul> <li> the set of available days will only be restricted if the
-     * start and end dates fall within the same month <li> the set of available months will only be restricted if the start and
-     * end dates fall within the same year </ul> <P> This is <b>by design</b> as it allows the user to set the day, month and
-     * year in whatever order is convenient, rather than forcing them to pick in a specific order. <P> For actual enforcement
-     * of a date being in correct range before data is submitted, a {@link
-     * com.smartgwt.client.widgets.form.validator.Validator} of type "dateRange" should always be declared.
+     * Limits the range of the popup {@link com.smartgwt.client.widgets.DateChooser}.  The default of null causes the chooser's
+     * Year-picker to offer a range that starts 10 years before the current selection.
      *
-     * @return Current startDate value. Default value is 1/1/1995
+     * @return Current startDate value. Default value is null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Date getStartDate()  {

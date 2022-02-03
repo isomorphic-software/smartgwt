@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -598,7 +603,7 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * the item, we avoid returning the specified displayField value and instead return the  title field of the option
      * DataSource. We do this to  avoid confusion for the case where the displayField is intended as a display-field  value for
      * showing another field value within the same record in the underlying  dataSource only.</li> <li>If no explicit
-     * foreignDisplayField or displayField   specification was found, and the {@link
+     * foreignDisplay or displayField   specification was found, and the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValueField FormItem.valueField} for this item is hidden in the  
      * {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource FormItem.optionDataSource}, this method will
      * return the title field for   the <code>optionDataSource</code>.</li></ul>. Default value is null
@@ -1398,6 +1403,26 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
     
 
     /**
+     * ListGrid-based AutoChild created by the system to display a list of pickable options for this item.  <P> The pickList is
+     * automatically generated and displayed by the system when necessary. It may be customized via properties such as {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getPickListConstructor pickListConstructor}, {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getPickTreeConstructor pickTreeConstructor}, {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getPickListProperties pickListProperties}  and more. See the
+     * PickList overview for more information. <P> Accessing the generated pickList at runtime is an advanced usage. In most
+     * cases developers should not modify this generated component directly but should instead use attributes on the formItem
+     * to configure it.
+     * <p>
+     * This component is an AutoChild named "pickList".  For an overview of how to use and
+     * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return Current pickList value. Default value is null
+     */
+    public ListGrid getPickList()  {
+        return (ListGrid)ListGrid.getByJSObject(getAttributeAsJavaScriptObject("pickList"));
+    }
+    
+
+    /**
      * The Class to use when creating a picker of  type "list" for  a FormItem.  Must be a subclass of the builtin default, 
      * {@link com.smartgwt.client.widgets.form.PickListMenu PickListMenu}.
      *
@@ -1478,7 +1503,7 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * Controls where the PickList is placed.   Can be specified as a {@link com.smartgwt.client.types.PanelPlacement} or a
      * specific widget that should be filled (by specifying an actual Canvas or {@link com.smartgwt.client.widgets.Canvas#getID
      * Canvas.ID}). <p> Default behavior is to <code>"fillPanel"</code> if {@link com.smartgwt.client.util.Browser#isHandset
-     * isHandset} or {@link com.smartgwt.client.util.Browser#isTablet isTablet}, to better accomodate the smaller screen real
+     * isHandset} or {@link com.smartgwt.client.util.Browser#isTablet isTablet}, to better accommodate the smaller screen real
      * estate and  less precise pointing ability on such devices. <p> When filling the whole screen, part of the screen or a
      * specific panel, the expanded interface is created as a {@link com.smartgwt.client.widgets.form.fields.FormItem#getPicker
      * standard FormItem picker}, and  incorporates a {@link
@@ -1498,7 +1523,7 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * Controls where the PickList is placed.   Can be specified as a {@link com.smartgwt.client.types.PanelPlacement} or a
      * specific widget that should be filled (by specifying an actual Canvas or {@link com.smartgwt.client.widgets.Canvas#getID
      * Canvas.ID}). <p> Default behavior is to <code>"fillPanel"</code> if {@link com.smartgwt.client.util.Browser#isHandset
-     * isHandset} or {@link com.smartgwt.client.util.Browser#isTablet isTablet}, to better accomodate the smaller screen real
+     * isHandset} or {@link com.smartgwt.client.util.Browser#isTablet isTablet}, to better accommodate the smaller screen real
      * estate and  less precise pointing ability on such devices. <p> When filling the whole screen, part of the screen or a
      * specific panel, the expanded interface is created as a {@link com.smartgwt.client.widgets.form.fields.FormItem#getPicker
      * standard FormItem picker}, and  incorporates a {@link
@@ -1517,7 +1542,7 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * Controls where the PickList is placed.   Can be specified as a {@link com.smartgwt.client.types.PanelPlacement} or a
      * specific widget that should be filled (by specifying an actual Canvas or {@link com.smartgwt.client.widgets.Canvas#getID
      * Canvas.ID}). <p> Default behavior is to <code>"fillPanel"</code> if {@link com.smartgwt.client.util.Browser#isHandset
-     * isHandset} or {@link com.smartgwt.client.util.Browser#isTablet isTablet}, to better accomodate the smaller screen real
+     * isHandset} or {@link com.smartgwt.client.util.Browser#isTablet isTablet}, to better accommodate the smaller screen real
      * estate and  less precise pointing ability on such devices. <p> When filling the whole screen, part of the screen or a
      * specific panel, the expanded interface is created as a {@link com.smartgwt.client.widgets.form.fields.FormItem#getPicker
      * standard FormItem picker}, and  incorporates a {@link
@@ -1537,7 +1562,7 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * Controls where the PickList is placed.   Can be specified as a {@link com.smartgwt.client.types.PanelPlacement} or a
      * specific widget that should be filled (by specifying an actual Canvas or {@link com.smartgwt.client.widgets.Canvas#getID
      * Canvas.ID}). <p> Default behavior is to <code>"fillPanel"</code> if {@link com.smartgwt.client.util.Browser#isHandset
-     * isHandset} or {@link com.smartgwt.client.util.Browser#isTablet isTablet}, to better accomodate the smaller screen real
+     * isHandset} or {@link com.smartgwt.client.util.Browser#isTablet isTablet}, to better accommodate the smaller screen real
      * estate and  less precise pointing ability on such devices. <p> When filling the whole screen, part of the screen or a
      * specific panel, the expanded interface is created as a {@link com.smartgwt.client.widgets.form.fields.FormItem#getPicker
      * standard FormItem picker}, and  incorporates a {@link
@@ -1556,7 +1581,7 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * Controls where the PickList is placed.   Can be specified as a {@link com.smartgwt.client.types.PanelPlacement} or a
      * specific widget that should be filled (by specifying an actual Canvas or {@link com.smartgwt.client.widgets.Canvas#getID
      * Canvas.ID}). <p> Default behavior is to <code>"fillPanel"</code> if {@link com.smartgwt.client.util.Browser#isHandset
-     * isHandset} or {@link com.smartgwt.client.util.Browser#isTablet isTablet}, to better accomodate the smaller screen real
+     * isHandset} or {@link com.smartgwt.client.util.Browser#isTablet isTablet}, to better accommodate the smaller screen real
      * estate and  less precise pointing ability on such devices. <p> When filling the whole screen, part of the screen or a
      * specific panel, the expanded interface is created as a {@link com.smartgwt.client.widgets.form.fields.FormItem#getPicker
      * standard FormItem picker}, and  incorporates a {@link
@@ -1576,7 +1601,7 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * Controls where the PickList is placed.   Can be specified as a {@link com.smartgwt.client.types.PanelPlacement} or a
      * specific widget that should be filled (by specifying an actual Canvas or {@link com.smartgwt.client.widgets.Canvas#getID
      * Canvas.ID}). <p> Default behavior is to <code>"fillPanel"</code> if {@link com.smartgwt.client.util.Browser#isHandset
-     * isHandset} or {@link com.smartgwt.client.util.Browser#isTablet isTablet}, to better accomodate the smaller screen real
+     * isHandset} or {@link com.smartgwt.client.util.Browser#isTablet isTablet}, to better accommodate the smaller screen real
      * estate and  less precise pointing ability on such devices. <p> When filling the whole screen, part of the screen or a
      * specific panel, the expanded interface is created as a {@link com.smartgwt.client.widgets.form.fields.FormItem#getPicker
      * standard FormItem picker}, and  incorporates a {@link
@@ -1826,7 +1851,6 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * If showing a hint for this form item, should it be shown within the field? <P>CSS style for the hint is {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem#getTextBoxStyle SelectItem.textBoxStyle} with the suffix "Hint"
      * appended to it.
-     * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showHintInField New showHintInField value. Default value is null
      * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
@@ -2191,10 +2215,17 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * Expression evaluated to determine the {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getDefaultValue
      * defaultValue} when no value is  provided for this item. To default to the first option use {@link
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getDefaultToFirstOption defaultToFirstOption} instead.
+     * @param item the form item itself (also available as "this")
+     * @param form the managing DynamicForm instance
+     * @param values the current set of values for the form as a whole
+     *
+     * @return dynamically calculated default value for this item
      */
-    public native void defaultDynamicValue() /*-{
+    public native Object defaultDynamicValue(FormItem item, DynamicForm form, Map values) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.defaultDynamicValue();
+        if (!this.@com.smartgwt.client.widgets.form.fields.FormItem::isCreated()()) return null;
+        var ret = self.defaultDynamicValue(item.@com.smartgwt.client.core.DataClass::getJsObj()(), form == null ? null : form.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), values == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(values));
+        return $wnd.SmartGWT.convertToJavaType(ret);
     }-*/;
 
 	/**
@@ -2305,7 +2336,7 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * the item, we avoid returning the specified displayField value and instead return the  title field of the option
      * DataSource. We do this to  avoid confusion for the case where the displayField is intended as a display-field  value for
      * showing another field value within the same record in the underlying  dataSource only.</li> <li>If no explicit
-     * foreignDisplayField or displayField   specification was found, and the {@link
+     * foreignDisplay or displayField   specification was found, and the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValueField FormItem.valueField} for this item is hidden in the  
      * {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource FormItem.optionDataSource}, this method will
      * return the title field for   the <code>optionDataSource</code>.</li></ul>

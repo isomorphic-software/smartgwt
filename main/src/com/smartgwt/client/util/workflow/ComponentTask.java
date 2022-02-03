@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -116,7 +121,7 @@ public class ComponentTask extends ProcessElement {
     /**
      * Base class of components that this task targets.
      *
-     * @param componentBaseClass New componentBaseClass value. Default value is "DataBoundComponent"
+     * @param componentBaseClass New componentBaseClass value. Default value is null
      * @return {@link com.smartgwt.client.util.workflow.ComponentTask ComponentTask} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
@@ -127,7 +132,7 @@ public class ComponentTask extends ProcessElement {
     /**
      * Base class of components that this task targets.
      *
-     * @return Current componentBaseClass value. Default value is "DataBoundComponent"
+     * @return Current componentBaseClass value. Default value is null
      */
     public String getComponentBaseClass()  {
         return getAttributeAsString("componentBaseClass");
@@ -136,7 +141,7 @@ public class ComponentTask extends ProcessElement {
     /**
      * Base class of components that this task targets.
      *
-     * @param componentBaseClass New componentBaseClass value. Default value is "DataBoundComponent"
+     * @param componentBaseClass New componentBaseClass value. Default value is null
      * @return {@link com.smartgwt.client.util.workflow.ComponentTask ComponentTask} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
@@ -147,7 +152,7 @@ public class ComponentTask extends ProcessElement {
     /**
      * Base class of components that this task targets.
      *
-     * @return Current componentBaseClass value. Default value is "DataBoundComponent"
+     * @return Current componentBaseClass value. Default value is null
      */
     public String[] getComponentBaseClassAsStringArray()  {
         return com.smartgwt.client.util.ConvertTo.arrayOfString(getAttributeAsJavaScriptObject("componentBaseClass"));
@@ -155,7 +160,7 @@ public class ComponentTask extends ProcessElement {
     
 
     /**
-     * ID of component.
+     * ID of component targeted by this task.
      *
      * @param componentId New componentId value. Default value is null
      * @return {@link com.smartgwt.client.util.workflow.ComponentTask ComponentTask} instance, for chaining setter calls
@@ -167,7 +172,7 @@ public class ComponentTask extends ProcessElement {
     }
 
     /**
-     * ID of component.
+     * ID of component targeted by this task.
      *
      * @return Current componentId value. Default value is null
      * @see com.smartgwt.client.docs.GlobalId GlobalId 
@@ -199,6 +204,37 @@ public class ComponentTask extends ProcessElement {
     
 
     // ********************* Methods ***********************
+	/**
+     * Returns the actual component specified by {@link com.smartgwt.client.util.workflow.ComponentTask#getComponentId
+     * componentId} for this task. Unless <code>skipValidation</code> is true, the component type is validated against {@link
+     * com.smartgwt.client.util.workflow.ComponentTask#getComponentBaseClass componentBaseClass} and only returned if it
+     * matches. Null is returned otherwise.
+     * @param process the process that is handling the workflow
+     */
+    public native void getTargetComponent(Process process) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getTargetComponent", "Process");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.getTargetComponent(process == null ? null : process.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()());
+    }-*/;
+
+	/**
+     * Returns the actual component specified by {@link com.smartgwt.client.util.workflow.ComponentTask#getComponentId
+     * componentId} for this task. Unless <code>skipValidation</code> is true, the component type is validated against {@link
+     * com.smartgwt.client.util.workflow.ComponentTask#getComponentBaseClass componentBaseClass} and only returned if it
+     * matches. Null is returned otherwise.
+     * @param process the process that is handling the workflow
+     * @param skipValidation skip validation against componentBaseClass?
+     */
+    public native void getTargetComponent(Process process, Boolean skipValidation) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getTargetComponent", "Process,Boolean");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.getTargetComponent(process == null ? null : process.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()(), skipValidation == null ? null : skipValidation.@java.lang.Boolean::booleanValue()());
+    }-*/;
+	
 
     // ********************* Static Methods ***********************
 

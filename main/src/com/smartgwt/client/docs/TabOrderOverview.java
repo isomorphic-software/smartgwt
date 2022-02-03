@@ -18,7 +18,7 @@ package com.smartgwt.client.docs;
  * slotted within the "auto-generated tab index" range (see Canvas.TAB_INDEX_FLOOR and
  * TAB_INDEX_CEILING). A gap will be left between the assigned tab indices to minimize needing to
  * reshuffle due to slotting elements before already assigned tab-indices, and logic is in place
- * to handle reassigning tab indices to accomodate this if it does become necessary. <P> A
+ * to handle reassigning tab indices to accommodate this if it does become necessary. <P> A
  * notification method will be fired if any calculated tab index becomes obsolete due to the tree
  * structure changing (either a parent is moved or we run out of space between elements and have
  * to reassign indices to later elements). <P> Each Smart GWT Canvas uses its own ID to register

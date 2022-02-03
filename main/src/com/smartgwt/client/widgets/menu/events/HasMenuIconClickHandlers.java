@@ -22,8 +22,8 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 public interface HasMenuIconClickHandlers extends HasHandlers {
     /**
-     * Notification method fired when a user clicks on the menuIcon on this IconButton.    call <code>event.cancel()</code> to
-     * suppress the standard  click handling code.
+     * Notification method fired when a user clicks on the menuIcon on this RibbonButton.    call <code>event.cancel()</code>
+     * to suppress the standard  click handling code.
      *
      * @param handler the menuIconClick handler
      * @return {@link HandlerRegistration} used to remove this handler

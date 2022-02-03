@@ -20,10 +20,9 @@ package com.smartgwt.client.docs;
  
 /**
  * An autoTestLocator is an xpath-like string used by the AutoTest subsystem to robustly  identify DOM elements within a
- * Smart GWT application. <P> Typically AutoTestLocators will not be hand-written - they should be retrieved by a call to
- * {@link com.smartgwt.client.util.AutoTest#getLocator AutoTest.getLocator()}. Note also that the {@link
- * com.smartgwt.client.docs.Debugging Developer Console} has built-in functionality to create and display autoTestLocators
- * for a live app.
+ * Smart GWT application. <P> Typically AutoTestLocators will not be hand-written - they can be retrieved by a call to
+ * {@link com.smartgwt.client.util.AutoTest#getLocator AutoTest.getLocator()}, or by clicking on the page after invoking
+ * the {@link com.smartgwt.client.util.AutoTest#installLocatorShortcut AutoTest.installLocatorShortcut()} method.
  */
 public interface AutoTestLocator  {
 }

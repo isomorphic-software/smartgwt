@@ -124,10 +124,7 @@ package com.smartgwt.client.docs;
  *       DSRequest orderRequestProperties = new DSRequest(DSOperationType.FETCH);
  *       orderRequestProperties.setStartRow(0);
  *       orderRequestProperties.setEndRow(1);
- * 
- *       SortSpecifier[] sortSpecifiers = new SortSpecifier[1];
- *       sortSpecifiers[0] = new SortSpecifier("orderDate", SortDirection.DESCENDING);
- *       orderRequestProperties.setSortBy(sortSpecifiers);
+ *       orderRequestProperties.setSortBy(new SortSpecifier("orderDate", SortDirection.DESCENDING));
  *  
  *       DataSource.get("Order").fetchData(null, null, orderRequestProperties);
  *  

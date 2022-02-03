@@ -37,7 +37,15 @@ public enum IconOverTrigger implements ValueEnum {
      * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
      * file or server-side DataSource descriptor (.ds.xml file), use the value "textBox".
      */
-    TEXTBOX("textBox");
+    TEXTBOX("textBox"),
+    /**
+     * Show rollover styling and media when the user is over any part of the FormItem, including the entire cell within a
+     * DynamicForm table containing the item.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "item".
+     */
+    ITEM("item");
     private String value;
 
     IconOverTrigger(String value) {

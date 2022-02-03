@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * Simple interactive calendar interface used to pick a date. Used by the {@link
@@ -735,7 +741,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Latest year that may be selected.  If this chooser was opened by a  {@link
      * com.smartgwt.client.widgets.form.fields.DateItem}, the default is inherited from {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getEndDate DateItem.endDate}. Otherwise, the default is 5 years after
-     * today.
+     * today. <P> When opened from a {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem}, this property and 
+     * {@link com.smartgwt.client.widgets.DateChooser#getStartYear startYear} are defaulted to null, and the year-picker shows
+     * years surrounding the current year, according to  {@link com.smartgwt.client.widgets.DateChooser#getStartYearRange
+     * startYearRange} and {@link com.smartgwt.client.widgets.DateChooser#getEndYearRange endYearRange}.
      *
      * @param endYear New endYear value. Default value is 2025
      * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
@@ -749,12 +758,38 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Latest year that may be selected.  If this chooser was opened by a  {@link
      * com.smartgwt.client.widgets.form.fields.DateItem}, the default is inherited from {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getEndDate DateItem.endDate}. Otherwise, the default is 5 years after
-     * today.
+     * today. <P> When opened from a {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem}, this property and 
+     * {@link com.smartgwt.client.widgets.DateChooser#getStartYear startYear} are defaulted to null, and the year-picker shows
+     * years surrounding the current year, according to  {@link com.smartgwt.client.widgets.DateChooser#getStartYearRange
+     * startYearRange} and {@link com.smartgwt.client.widgets.DateChooser#getEndYearRange endYearRange}.
      *
      * @return Current endYear value. Default value is 2025
      */
     public int getEndYear()  {
         return getAttributeAsInt("endYear");
+    }
+    
+
+    /**
+     * When {@link com.smartgwt.client.widgets.DateChooser#getEndYear endYear} is unset, this is the years after today that 
+     * will be available for selection in the year menu.
+     *
+     * @param endYearRange New endYearRange value. Default value is 10
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public DateChooser setEndYearRange(Integer endYearRange)  throws IllegalStateException {
+        return (DateChooser)setAttribute("endYearRange", endYearRange, false);
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.DateChooser#getEndYear endYear} is unset, this is the years after today that 
+     * will be available for selection in the year menu.
+     *
+     * @return Current endYearRange value. Default value is 10
+     */
+    public Integer getEndYearRange()  {
+        return getAttributeAsInt("endYearRange");
     }
     
 
@@ -1741,7 +1776,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Earliest year that may be selected.  If this chooser was opened by a  {@link
      * com.smartgwt.client.widgets.form.fields.DateItem}, the default is inherited from {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getStartDate DateItem.startDate}. Otherwise, the default is 10 years
-     * before today.
+     * before today. <P> When opened from a {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem}, this property and
+     * {@link com.smartgwt.client.widgets.DateChooser#getEndYear endYear} are defaulted to null, and the year-picker shows
+     * years surrounding the current year, according to  {@link com.smartgwt.client.widgets.DateChooser#getStartYearRange
+     * startYearRange} and {@link com.smartgwt.client.widgets.DateChooser#getEndYearRange endYearRange}.
      *
      * @param startYear New startYear value. Default value is 2010
      * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
@@ -1755,12 +1793,38 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Earliest year that may be selected.  If this chooser was opened by a  {@link
      * com.smartgwt.client.widgets.form.fields.DateItem}, the default is inherited from {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getStartDate DateItem.startDate}. Otherwise, the default is 10 years
-     * before today.
+     * before today. <P> When opened from a {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem}, this property and
+     * {@link com.smartgwt.client.widgets.DateChooser#getEndYear endYear} are defaulted to null, and the year-picker shows
+     * years surrounding the current year, according to  {@link com.smartgwt.client.widgets.DateChooser#getStartYearRange
+     * startYearRange} and {@link com.smartgwt.client.widgets.DateChooser#getEndYearRange endYearRange}.
      *
      * @return Current startYear value. Default value is 2010
      */
     public int getStartYear()  {
         return getAttributeAsInt("startYear");
+    }
+    
+
+    /**
+     * When {@link com.smartgwt.client.widgets.DateChooser#getStartYear startYear} is unset, this is the years before today 
+     * that will be available for selection in the year menu.
+     *
+     * @param startYearRange New startYearRange value. Default value is 30
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public DateChooser setStartYearRange(Integer startYearRange)  throws IllegalStateException {
+        return (DateChooser)setAttribute("startYearRange", startYearRange, false);
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.DateChooser#getStartYear startYear} is unset, this is the years before today 
+     * that will be available for selection in the year menu.
+     *
+     * @return Current startYearRange value. Default value is 30
+     */
+    public Integer getStartYearRange()  {
+        return getAttributeAsInt("startYearRange");
     }
     
 
@@ -2455,6 +2519,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
             s.logicalStructureErrors += "DateChooser.endYear:" + t.getMessage() + "\n";
         }
         try {
+            s.endYearRange = getAttributeAsString("endYearRange");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DateChooser.endYearRange:" + t.getMessage() + "\n";
+        }
+        try {
             s.firstDayOfWeek = getAttributeAsString("firstDayOfWeek");
         } catch (Throwable t) {
             s.logicalStructureErrors += "DateChooser.firstDayOfWeek:" + t.getMessage() + "\n";
@@ -2643,6 +2712,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
             s.startYear = getAttributeAsString("startYear");
         } catch (Throwable t) {
             s.logicalStructureErrors += "DateChooser.startYear:" + t.getMessage() + "\n";
+        }
+        try {
+            s.startYearRange = getAttributeAsString("startYearRange");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DateChooser.startYearRange:" + t.getMessage() + "\n";
         }
         try {
             s.timeItemTitle = getAttributeAsString("timeItemTitle");

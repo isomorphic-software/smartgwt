@@ -36,8 +36,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#neverUsePNGWorkaround
  * @see com.smartgwt.client.widgets.Canvas#neverUseFilters
  * @see com.smartgwt.client.widgets.Canvas#allowExternalFilters
- * @see com.smartgwt.client.widgets.Canvas#getUseOpacityFilter
  * @see com.smartgwt.client.widgets.drawing.DrawImage#getUseMatrixFilter
+ * @see com.smartgwt.client.widgets.Canvas#getUseOpacityFilter
  */
 public interface IEFilters {
 }

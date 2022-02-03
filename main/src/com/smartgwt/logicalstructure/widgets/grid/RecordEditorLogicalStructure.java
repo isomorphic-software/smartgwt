@@ -6,6 +6,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
@@ -48,6 +49,7 @@ import com.smartgwt.logicalstructure.widgets.drawing.*;
 public class RecordEditorLogicalStructure extends ListGridLogicalStructure {
     public String actionButtonStyle;
     public String baseStyle;
+    public String canSaveSearches;
     public String filterImg;
     public String recordSummaryBaseStyle;
     public String skinImgDir;

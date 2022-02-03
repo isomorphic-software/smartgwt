@@ -6,12 +6,12 @@ package com.smartgwt.client.docs;
  * 
  *  
  *  Component XML is an XML format for declaring Smart GWT components and screen definitions.
- *  Available with Smart GWT Pro and above, Component XML is the same format used by Visual
- *  Builder to save screens.  
+ *  Available with Smart GWT Pro and above, Component XML is the same format used by Reify
+ *  to save screens.  
  *  <P>
  *  By allowing you to keep layout information and property settings in an XML format, Component
  *  XML enables non-developers to build and maintain portions of your application, either by
- *  editing screens within Visual Builder or by directly editing the XML itself.
+ *  editing screens within Reify or by directly editing the XML itself.
  *  <P>
  *  Unlike the similar GWT "UIBinder" technology, Component XML does not require a compilation
  *  step.  XML screen definitions can be generated on the fly, modified at runtime, stored in a
@@ -177,9 +177,118 @@ package com.smartgwt.client.docs;
  *  Note that this approach requires that the referenced component has been created <b>before</b>
  *  <code>loadScreen</code> is called.
  *  <P>
+ *  <h3>Declarative Actions</h3>
+ *  <P>
+ *  Component XML files can declare <code>Action</code>s to take in response to events.  An 
+ *  <code>Action</code> is a declarative method call on this or some other component, with or 
+ *  without parameters.  Being declarative, actions have some advantages over procedural code:
+ *  they make your application easier to understand and easier to maintain, and they allow 
+ *  tools such as Reify to understand and edit your event handling logic.
+ *  <p>
+ *  To take a simple example, this is how you would declare an <code>Action</code> to display
+ * a record in a {@link com.smartgwt.client.widgets.viewer.DetailViewer} when that record is
+ * clicked in a {@link com.smartgwt.client.widgets.grid.ListGrid}.
+ *  <pre>
+ *    &lt;ListGrid dataSource="Customer" autoID="customerGrid"&gt;
+ *       ...
+ *      &lt;recordClick&gt;
+ *        <b>&lt;Action target="customerDetailGrid" name="viewSelectedData" mapping="viewer"/&gt;</b>
+ *      &lt;/recordClick&gt;
+ *    &lt;/ListGrid&gt;
+ *  </pre>
+ *  The three elements of this declaration:<ul>
+ *  <li><b>target</b> is the global ID of the component on which the action will be called</li>
+ *  <li><b>name</b> is the name of the method to call</li>
+ *  <li><b>mapping</b> is an optional definition of the parameters to pass to the method.  See 
+ *      the separate section on parameters below</li>
+ *  </ul>
+ * <code>target</code> and <code>name</code> are both required attributes of any
+ * <code>Action</code>,
+ *  and they must be valid.  If <code>target</code> does not refer to a valid component, or 
+ *  <code>name</code> is not the name of a valid method on that component, you will generate a 
+ *  runtime error.  Note, the rules around describing valid actions in the 
+ * <i><b>Declaring Events and Actions</b></i> section of the {@link
+ * com.smartgwt.client.docs.ComponentSchema} 
+ *  article apply to Reify only.  When building applications through Reify,
+ *  only methods marked <code>action="true"</code> will appear in the list of valid actions for
+ *  a given target component.  However, <i>any</i> documented method can be called as an 
+ *  <code>Action</code> in manually-created Component XML, as can any registered 
+ *  {@link com.smartgwt.client.docs.StringMethods string method},
+ *  <p>
+ * Event handlers can also invoke {@link com.smartgwt.client.util.workflow.Process workflow
+ * processes}, which are a special
+ *  kind of multi-step <code>Action</code>.  You specify a workflow process like this (see the
+ * {@link com.smartgwt.client.util.workflow.Process Process documentation} for details of what
+ * goes inside the 
+ *  <code>&lt;Process&gt;</code> tag)
+ *  <pre>
+ *    &lt;ListGrid dataSource="Customer" autoID="customerGrid"&gt;
+ *       ...
+ *      &lt;recordClick&gt;
+ *        <b>&lt;Process&gt;
+ *           ...
+ *        &lt;/Process&gt;</b>
+ *      &lt;/recordClick&gt;
+ *    &lt;/ListGrid&gt;
+ *  </pre>
+ *  <p>
+ *  Finally, you are not limited to one <code>Action</code> per event: you can declare any 
+ *  number of <code>Action</code>s and/or <code>Process</code>es inside an event handler 
+ *  declaration.
+ *  <P>
+ *  <h3>Parameters and Actions</h3>
+ *  <P>
+ *  Parameters are defined in an <code>Action</code> declaration in the <code>mapping</code>
+ *  attribute.  This attribute is optional; if the target action method does not require 
+ *  parameters, this attribute can be omitted.  If provided, <code>mapping</code> should be a
+ *  comma-separated list of values.  Each of these values is either:<ul>
+ *  <li>A variable name</li>
+ *  <li>The special variable <code>this</code>, which is a reference to the source component 
+ *      (ie, the component upon which the <code>Action</code> is being defined)</li>
+ *  <li>A literal, like 'foo' or 17.  Note, string literals must be enclosed in quotes, or they
+ *      will be interpreted as variable names</li>
+ *  <li>A valid Javascript expression, like <code>new Date()</code></li>
+ *  </ul>
+ *  Of these, the most interesting and most commonly-used are the first two. <code>Action</code>s
+ *  are declared inside event handler declarations that correspond to Smart GWT event methods.
+ *  These methods are passed parameters, and these parameters are available, 
+ *  via the <code>mapping</code>, to any contained <code>Action</code>.  Providing the correct
+ *  mapping requires that you know the name of the parameter you are interested in, and this 
+ *  information is present in the documentation.
+ *  <p>
+ *  To take the above example, we want to call <code>viewSelectedData()</code> on the
+ *  {@link com.smartgwt.client.widgets.viewer.DetailViewer}, so looking at the documentation for 
+ * {@link com.smartgwt.client.widgets.viewer.DetailViewer#viewSelectedData
+ * DetailViewer.viewSelectedData()}, we can see that it takes a single parameter of 
+ * type {@link com.smartgwt.client.widgets.grid.ListGrid} or {@link
+ * com.smartgwt.client.widgets.tile.TileGrid}, or the ID of a <code>ListGrid</code>
+ *  or <code>TileGrid</code>.  This parameter tells the <code>DetailViewer</code> which 
+ *  component's selected data to show, so we want to pass in the <code>ListGrid</code> itself,
+ *  the component we are declaring this <code>Action</code> on.
+ *  <p>
+ *  One way to do this would be to use a mapping of <code>"this"</code>.  As you can see from 
+ *  the example above, though, there is another way.  If we look at the documentation for the 
+ * event method wrapping our <code>Action</code> - {@link
+ * com.smartgwt.client.widgets.grid.ListGrid#recordClick ListGrid.recordClick()} - we will see
+ *  that it is passed a number of parameters, the first of which is a pointer to the 
+ *  <code>ListGrid</code> itself.  As the documentation shows, this parameter is called "viewer".
+ *  Therefore, we can use a <code>mapping</code> of "viewer".  If we were declaring an 
+ * <code>Action</code> to call a method that requires a {@link com.smartgwt.client.data.Record}
+ * parameter, we can
+ *  look at the documentation for <code>recordClick()</code> again and note that it is also 
+ *  passed the record just clicked, in a parameter called <code>record</code>.  So our mapping 
+ *  for that <code>Action</code> would be "record".
+ *  <!--
+ *  Note, Reify is able to wire the incoming event method params up to the outgoing 
+ *  Action method params automatically, by inspecting the parameter types declared in the JSDoc
+ *  for each method.  This happens at design time, in EditContext.createActionBinding().  It 
+ *  isn't currently done at runtime, because of the dependency on JSDoc; maybe we will extend 
+ *  this in the future?    
+ *  -->
+ *  <P>
  *  <h3>Component XML and global IDs</h3>
  *  <P>
- *  A Component XML screen created in Visual Builder or via the
+ *  A Component XML screen created in Reify or via the
  * {@link com.smartgwt.client.docs.BalsamiqImport Balsamiq importer} will assign global IDs to all
  * components
  *  generated from your mockup so that you can retrieve them by ID to add event handlers and
@@ -274,7 +383,7 @@ package com.smartgwt.client.docs;
  *  there are two additional ways to load Component XML screens - you can create a .jsp that
  *  uses the JSP tags that come with the SDK:
  *  <pre>
- *     &lt;%@ taglib uri="/WEB-INF/iscTaglib.xml" prefix="isomorphic" %&gt;
+ *     &lt;%@ taglib uri="http://www.smartclient.com/taglib" prefix="isomorphic" %&gt;
  *     &lt;isomorphic:XML&gt;
  *        ... Component XML ...
  *     &lt;/isomorphic:XML&gt;
@@ -393,7 +502,7 @@ package com.smartgwt.client.docs;
  * com.smartgwt.client.docs.ComponentSchema} that
  *  describes the custom component.  Declaring a component schema allows you to use your
  *  component just like the built-in SmartGWT components, and also allows your component to
- *  be used within {@link com.smartgwt.client.docs.VisualBuilder}.
+ *  be used within {@link com.smartgwt.client.docs.Reify Reify}.
  *  <p>
  *  <h3>Type Conversions</h3>
  *  <p>

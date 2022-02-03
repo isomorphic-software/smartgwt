@@ -6,6 +6,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
@@ -70,6 +71,7 @@ public class FacetChartLogicalStructure extends DrawPaneLogicalStructure {
     public CellRecord[] dataAsCellRecordArray;
     public CellRecord dataAsCellRecord;
     public String[] dataColors;
+    public String dataFetchMode;
     public String dataLineType;
     public String dataMargin;
     public String dataPointSize;
@@ -84,6 +86,7 @@ public class FacetChartLogicalStructure extends DrawPaneLogicalStructure {
     public String extraAxisLabelAlign;
     public String[] extraAxisMetrics;
     public MetricSettings[] extraAxisSettings;
+    public String[] facetFieldsAsStringArrayArray;
     public String filled;
     public String formatStringFacetValueIds;
     public String[] gradationGaps;
@@ -155,6 +158,7 @@ public class FacetChartLogicalStructure extends DrawPaneLogicalStructure {
     public String showDataPoints;
     public String showDataValues;
     public String showDataValuesMode;
+    public String showDetailFields;
     public String showDoughnut;
     public String showExpectedValueLine;
     public String showGradationsOverData;

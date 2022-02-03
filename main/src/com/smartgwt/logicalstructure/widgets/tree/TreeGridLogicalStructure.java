@@ -6,6 +6,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
@@ -54,10 +55,12 @@ public class TreeGridLogicalStructure extends ListGridLogicalStructure {
     public String animateFolderTime;
     public String autoAssignTreeField;
     public String autoFetchTextMatchStyle;
+    public String autoOpenTree;
     public String autoPreserveOpenState;
     public String canAcceptDroppedRecords;
     public String canDragRecordsOut;
     public String canDropOnLeaves;
+    public String canDropSiblingAfterLastNode;
     public String canReorderRecords;
     public String canReparentNodes;
     public String canSelectAll;
@@ -72,15 +75,18 @@ public class TreeGridLogicalStructure extends ListGridLogicalStructure {
     public String customIconOpenProperty;
     public String customIconProperty;
     public String customIconSelectedProperty;
+    public String dataArity;
     public String dataFetchMode;
     public Tree dataProperties;
     public DataSource dataSourceAsDataSource;
     public String dataSourceAsString;
     public String displayNodeType;
+    public String dropEndSpace;
     public String dropIconSuffix;
     public String extraIconGap;
     public String folderIcon;
     public String folderIconPadding;
+    public String groupByFieldAsString;
     public String iconPadding;
     public String iconPaddingProperty;
     public String iconSize;
@@ -98,6 +104,7 @@ public class TreeGridLogicalStructure extends ListGridLogicalStructure {
     public String openerIconSize;
     public String openerIconWidth;
     public String openerImage;
+    public String openIconPadding;
     public String openIconSuffix;
     public String parentAlreadyContainsChildMessage;
     public String recordDropAppearance;
@@ -110,6 +117,7 @@ public class TreeGridLogicalStructure extends ListGridLogicalStructure {
     public String showCustomIconOpen;
     public String showCustomIconSelected;
     public String showDisabledSelectionCheckbox;
+    public String showDropEndSpace;
     public String showDropIcons;
     public String showFolderIcons;
     public String showFullConnectors;

@@ -22,6 +22,12 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.DynamicForm#getRequiredTitleSuffix
  * @see com.smartgwt.client.widgets.form.DynamicForm#getRequiredRightTitleSuffix
  * @see com.smartgwt.client.widgets.form.DynamicForm#getRequiredMessage
+ * @see com.smartgwt.client.widgets.form.fields.DateItem#getShowItemTitles
+ * @see com.smartgwt.client.widgets.form.fields.DateItem#getItemTitleOrientation
+ * @see com.smartgwt.client.widgets.form.fields.DateItem#getItemTitleAlign
+ * @see com.smartgwt.client.widgets.form.fields.TimeItem#getShowItemTitles
+ * @see com.smartgwt.client.widgets.form.fields.TimeItem#getItemTitleOrientation
+ * @see com.smartgwt.client.widgets.form.fields.TimeItem#getItemTitleAlign
  */
 public interface FormTitles {
 }

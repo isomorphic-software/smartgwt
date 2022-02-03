@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * Lays out a series of components, called "tiles", in a grid with multiple tiles per row.
@@ -264,6 +270,49 @@ public class TileLayout extends Canvas {
     
 
     /**
+     * The CSS class applied to the {@link com.smartgwt.client.widgets.tile.TileLayout#getDragLine dragLine} autochild.
+     *
+     * @param dragLineStyle New dragLineStyle value. Default value is "layoutDropLine"
+     * @return {@link com.smartgwt.client.widgets.tile.TileLayout TileLayout} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public TileLayout setDragLineStyle(String dragLineStyle)  throws IllegalStateException {
+        return (TileLayout)setAttribute("dragLineStyle", dragLineStyle, false);
+    }
+
+    /**
+     * The CSS class applied to the {@link com.smartgwt.client.widgets.tile.TileLayout#getDragLine dragLine} autochild.
+     *
+     * @return Current dragLineStyle value. Default value is "layoutDropLine"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public String getDragLineStyle()  {
+        return getAttributeAsString("dragLineStyle");
+    }
+    
+
+    /**
+     * Thickness of the {@link com.smartgwt.client.widgets.tile.TileLayout#getDragLine dragLine} autochild.
+     *
+     * @param dragLineThickness New dragLineThickness value. Default value is 2
+     * @return {@link com.smartgwt.client.widgets.tile.TileLayout TileLayout} instance, for chaining setter calls
+     */
+    public TileLayout setDragLineThickness(int dragLineThickness) {
+        return (TileLayout)setAttribute("dragLineThickness", dragLineThickness, true);
+    }
+
+    /**
+     * Thickness of the {@link com.smartgwt.client.widgets.tile.TileLayout#getDragLine dragLine} autochild.
+     *
+     * @return Current dragLineThickness value. Default value is 2
+     */
+    public int getDragLineThickness()  {
+        return getAttributeAsInt("dragLineThickness");
+    }
+    
+
+    /**
      * With {@link com.smartgwt.client.types.LayoutPolicy}:"fit", should margins be expanded so that tiles fill the available
      * space in the TileLayout on the breadth axis? This can also affect {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth} or {@link
@@ -389,6 +438,28 @@ public class TileLayout extends Canvas {
     public Boolean getPaddingAsLayoutMargin()  {
         Boolean result = getAttributeAsBoolean("paddingAsLayoutMargin");
         return result == null ? true : result;
+    }
+    
+
+    /**
+     * Set false to prevent the {@link com.smartgwt.client.widgets.tile.TileLayout#getDragLine dragLine} autochild from showing
+     * during dragging.
+     *
+     * @param showDragLine New showDragLine value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tile.TileLayout TileLayout} instance, for chaining setter calls
+     */
+    public TileLayout setShowDragLine(Boolean showDragLine) {
+        return (TileLayout)setAttribute("showDragLine", showDragLine, true);
+    }
+
+    /**
+     * Set false to prevent the {@link com.smartgwt.client.widgets.tile.TileLayout#getDragLine dragLine} autochild from showing
+     * during dragging.
+     *
+     * @return Current showDragLine value. Default value is null
+     */
+    public Boolean getShowDragLine()  {
+        return getAttributeAsBoolean("showDragLine");
     }
     
 
@@ -636,6 +707,24 @@ public class TileLayout extends Canvas {
     }-*/;
 	
 	/**
+     * Returns the tile index of the tile that would currently be dropped on by the drag in process. Returns one beyond the
+     * last valid index to indicate a drop after all tiles.  Except for that special case, a non-null index returned by this
+     * method may be passed to {@link com.smartgwt.client.widgets.tile.TileLayout#getTile getTile()} to get the corresponding
+     * visible tile.
+     *
+     * @return tile index of tile that would currently be dropped on, or the tile count               for a drop after all tiles
+     * @see com.smartgwt.client.widgets.tile.TileLayout#transformTileRect
+     */
+    public native int getDropIndex() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getDropIndex", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getDropIndex();
+        return ret;
+    }-*/;
+
+	/**
      * Retrieve a tile by index.   <P> The TileLayout consistently uses this method to access tiles, in order to allow
      * subclasses to create tiles on demand.
      * @param index index of the tile
@@ -739,6 +828,141 @@ public class TileLayout extends Canvas {
         self.layoutTiles();
     }-*/;
 
+
+     /**
+     * Transforms the input tile {@link com.smartgwt.client.widgets.Canvas#setRect relative rect}
+     * to an absolute page rect that you can apply to your own drop indicator canvas.  The
+     * supplied rect is automatically clipped along the direction perpendicular to the layout's
+     * {@link com.smartgwt.client.widgets.tile.TileLayout#getOrientation orientation} if it
+     * extends beyond the visible edges of the layout, just like the
+     * {@link com.smartgwt.client.widgets.tile.TileLayout#getDragLine dragLine} autochild.
+     * <P>
+     * <b>Note: </b> This is an advanced setting.  Only code your own drop
+     * indicator if you can't get what you need by customizing and
+     * {@link com.smartgwt.client.widgets.tile.TileLayout#getDragLineStyle styling} the
+     * built-in
+     * {@link com.smartgwt.client.widgets.tile.TileLayout#getDragLine dragLine} autochild!
+     * <P>
+     * To build your own:<ul> <li>Create a separate indicator
+     * {@link com.smartgwt.client.widgets.Canvas}, positioned off screen with the appropriate
+     * color, opacity, and {@link com.smartgwt.client.widgets.Canvas#getStyleName style} that
+     * you want.  Set the indicator's {@link #setDropTarget dropTarget} to be the layout to so
+     * the indicator is ignored.
+     * <li>Override {@link com.smartgwt.client.widgets.Canvas#addDropMoveHandler dropMove()} to
+     * call {@link com.smartgwt.client.widgets.tile.TileLayout#getDropIndex getDropIndex()},
+     * retrieve the tile, get the
+     * {@link com.smartgwt.client.widgets.Canvas#setRect tile's relative rect}, and modify the
+     * rect as you need to size your indicator properly.
+     * <li>You'll have to manually handle the case of the drop index pointing beyond the last
+     * record, perhaps by grabbing the last tile rect, but narrowing it to the opposite side.
+     * <li>Pass the modified rect to this method to clip and transform it to an absolute rect,
+     * and then {@link com.smartgwt.client.widgets.Canvas#setRect set that new rect} into your
+     * drop indicator and {@link com.smartgwt.client.widgets.Canvas#show show()} it.
+     * <li>You will need to {@link com.smartgwt.client.widgets.Canvas#hide hide()} the drop
+     * indicator in {@link com.smartgwt.client.widgets.Canvas#addDropOutHandler dropOut()}.
+     * </ul><P>
+     * Sample code to insert into the SGWT LGPL "Basic Tiling" sample, replacing getViewPanel():
+     * <pre>    
+     *    public static class MyTileGrid extends TileGrid {
+     *        Canvas dropIndicator;
+     *
+     *        void showDropIndicator(int left, int top, int width, int height) {
+     *            // create the indicator if it doesn't exist
+     *            if (dropIndicator == null) {
+     *                dropIndicator = new Canvas();
+     *                dropIndicator.setTop(-1000);
+     *                dropIndicator.setOpacity(40);
+     *                dropIndicator.setDropTarget(this);
+     *                dropIndicator.setBackgroundColor("yellow");
+     *                dropIndicator.draw();
+     *            }
+     *            // transform the rect to a page rect and clip to grid borders
+     *            Rectangle rect = transformTileRect(left, top, width, height);
+     *            dropIndicator.setRect(rect);
+     *            dropIndicator.show();
+     *        }
+     *    }
+     *
+     *    public Canvas getViewPanel() {
+     *        TileGrid tileGrid = new MyTileGrid();
+     *
+     *        tileGrid.setTileWidth(194);
+     *        tileGrid.setTileHeight(180);
+     *        tileGrid.setHeight(400);
+     *        tileGrid.setWidth100();
+     *        tileGrid.setCanReorderTiles(true);
+     *        tileGrid.setShowAllRecords(true);
+     *        tileGrid.setData(CarData.getRecords());
+     *        tileGrid.setShowDragLine(false);
+     *        tileGrid.setCanReorderTiles(true);
+     *
+     *        tileGrid.addDropMoveHandler(new DropMoveHandler() {
+     *            \@Override
+     *            public void onDropMove(DropMoveEvent event) {
+     *                MyTileGrid tg = (MyTileGrid)event.getFiringCanvas();
+     *                int index  = tg.getDropIndex();
+     *                int length = tg.getData().length;
+     *
+     *                // you can drop after last tile (special case)
+     *                boolean after = index >= length;
+     *                if (after) index = length - 1;
+     *
+     *                // transform tile rect to indicator rect
+     *                Canvas tile = tg.getTile(index);
+     *                if (tile != null) {
+     *                    int left = tile.getLeft(),  width = tile.getVisibleWidth(),
+     *                        top  = tile.getTop(),  height = tile.getVisibleHeight()
+     *                    ;
+     *                    // to show drop after last tile, shift indicator over
+     *                    if (after) left += width - 20;
+     *
+     *                    // now show the indicator
+     *                    tg.showDropIndicator(left, top, 20, height);
+     *                }
+     *            }
+     *        });
+     *
+     *        tileGrid.addDropOutHandler(new DropOutHandler() {
+     *            \@Override
+     *            public void onDropOut(DropOutEvent event) {
+     *                MyTileGrid tg = (MyTileGrid)event.getFiringCanvas();
+     *                if (tg.dropIndicator != null) tg.dropIndicator.hide();
+     *            }
+     *        });
+     *
+     *        tileGrid.addClearHandler(new ClearHandler() {
+     *            \@Override
+     *            public void onClear(ClearEvent event) {
+     *                MyTileGrid tg = (MyTileGrid)event.getFiringCanvas();
+     *                if (tg.dropIndicator != null) {
+     *                    tg.dropIndicator.markForDestroy();
+     *                    tg.dropIndicator = null;
+     *                }
+     *            }
+     *        });
+     *
+     *        // unchanged from here and below...
+     *           :
+     * </pre>
+     * @param left new left coordinate
+     * @param top new top coordinate
+     * @param width new width
+     * @param height new height
+     *
+     * @return the Rectangle
+     */
+    public native Rectangle transformTileRect(int left, int top, int width, int height) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)
+                (this.@java.lang.Object::getClass()(), "transformTileRect", "int,int,int,int");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var rect = self.transformTileRect(left, top, width, height);
+        if(rect == null) return null;
+        return @com.smartgwt.client.core.Rectangle::new(IIII)(rect[0],rect[1],rect[2],rect[3]);
+    }-*/;
+	
+
     /**
      * Setter implementing the {@link com.smartgwt.client.core.LogicalStructure} interface,
      * which supports Eclipse's logical structure debugging facility.
@@ -759,6 +983,16 @@ public class TileLayout extends Canvas {
             s.dragDataAction = getAttributeAsString("dragDataAction");
         } catch (Throwable t) {
             s.logicalStructureErrors += "TileLayout.dragDataAction:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dragLineStyle = getAttributeAsString("dragLineStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileLayout.dragLineStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dragLineThickness = getAttributeAsString("dragLineThickness");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileLayout.dragLineThickness:" + t.getMessage() + "\n";
         }
         try {
             s.expandMargins = getAttributeAsString("expandMargins");
@@ -789,6 +1023,11 @@ public class TileLayout extends Canvas {
             s.paddingAsLayoutMargin = getAttributeAsString("paddingAsLayoutMargin");
         } catch (Throwable t) {
             s.logicalStructureErrors += "TileLayout.paddingAsLayoutMargin:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDragLine = getAttributeAsString("showDragLine");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileLayout.showDragLine:" + t.getMessage() + "\n";
         }
         try {
             s.tileHeight = getAttributeAsString("tileHeight");

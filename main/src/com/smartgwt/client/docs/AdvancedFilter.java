@@ -29,6 +29,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.data.AdvancedCriteria
  * @see com.smartgwt.client.data.Criterion
  * @see com.smartgwt.client.data.Operator
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getAllowFilterExpressions
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterExpressions
  * @see com.smartgwt.client.data.AdvancedCriteria#getStrictSQLFiltering
  * @see com.smartgwt.client.data.Criterion#getOperator
  * @see com.smartgwt.client.data.Criterion#getFieldName
@@ -50,8 +52,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.data.Operator#getSymbol
  * @see com.smartgwt.client.data.DataSourceField#getValidOperators
  * @see com.smartgwt.client.data.DataSourceField#getDefaultOperator
- * @see com.smartgwt.client.widgets.grid.ListGridField#getAllowFilterExpressions
- * @see com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterExpressions
  * @see com.smartgwt.client.data.SimpleType#getValidOperators
  * @see com.smartgwt.client.data.SimpleType#getDefaultOperator
  * @see com.smartgwt.client.widgets.form.DynamicForm#getAllowExpressions

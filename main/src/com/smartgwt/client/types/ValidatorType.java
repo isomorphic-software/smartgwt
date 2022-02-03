@@ -303,11 +303,15 @@ public enum ValidatorType implements ValueEnum {
      * com.smartgwt.client.docs.serverds.Validator#caseSensitive caseSensitive} attribute. You can specify the  {@link
      * com.smartgwt.client.data.DataSource#getOperationBindings operation} to use for the uniqueness check with the  {@link
      * com.smartgwt.client.docs.serverds.Validator#operationId operationId} attribute. <p> Validators of this type have 
-     * requiresServer  set to <code>true</code> and do not run on the client. <p> Note when isUnique validator is executed as
-     * part of validation process during update  operation, it will perform uniqueness check only for single row updates. If
-     * update targets  {@link com.smartgwt.client.docs.serverds.OperationBinding#allowMultiUpdate multiple records}, then
-     * isUnique validator will  be skipped. If uniqueness check is needed when updating multiple records, consider using 
-     * {@link com.smartgwt.client.docs.DmiOverview custom DMI} approach to add this check manually. <p>See <a
+     * requiresServer  set to <code>true</code> and do not run on the client, unless all of the following are true: <ul> <li>
+     * The validation is run in the context of a DataBoundComponent or ValuesManager bound to some DataSource. <li> The
+     * DataSource is either clientOnly:true or cacheAllData: true and all data is loaded <li> The item is made available to the
+     * validator. Note that the item is not be available during a save performed without a form (eg programmatic save), or if
+     * the field is not available in the form. </ul> <p> Note when isUnique validator is executed as part of validation process
+     * during update  operation, it will perform uniqueness check only for single row updates. If update targets  {@link
+     * com.smartgwt.client.docs.serverds.OperationBinding#allowMultiUpdate multiple records}, then isUnique validator will  be
+     * skipped. If uniqueness check is needed when updating multiple records, consider using  {@link
+     * com.smartgwt.client.docs.DmiOverview custom DMI} approach to add this check manually. <p>See <a
      * href="http://www.smartclient.com/smartgwtee/showcase/#uniqueCheckValidation"
      * target="examples">uniqueCheckValidation</a>.
      * <P>

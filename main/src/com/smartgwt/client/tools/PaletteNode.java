@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -113,6 +118,26 @@ public class PaletteNode extends TreeNode {
 
 
     // ********************* Properties / Attributes ***********************
+
+    /**
+     * If set to true, indicates that a Placeholder should always be shown in place of the actual component.
+     *
+     * @param alwaysUsePlaceholder New alwaysUsePlaceholder value. Default value is null
+     * @return {@link com.smartgwt.client.tools.PaletteNode PaletteNode} instance, for chaining setter calls
+     */
+    public PaletteNode setAlwaysUsePlaceholder(Boolean alwaysUsePlaceholder) {
+        return (PaletteNode)setAttribute("alwaysUsePlaceholder", alwaysUsePlaceholder);
+    }
+
+    /**
+     * If set to true, indicates that a Placeholder should always be shown in place of the actual component.
+     *
+     * @return Current alwaysUsePlaceholder value. Default value is null
+     */
+    public Boolean getAlwaysUsePlaceholder()  {
+        return getAttributeAsBoolean("alwaysUsePlaceholder", true);
+    }
+    
 
     /**
      * If set to false, indicates that this node cannot be  {@link com.smartgwt.client.tools.EditProxy#getUseCopyPasteShortcuts
@@ -527,6 +552,115 @@ public class PaletteNode extends TreeNode {
         return getAttributeAsString("idPrefix");
     }
     
+    
+
+    /**
+     * Image to display in lieu of the usual placeholder text.
+     *
+     * @param placeholderImage New placeholderImage value. Default value is null
+     * @return {@link com.smartgwt.client.tools.PaletteNode PaletteNode} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
+     */
+    public PaletteNode setPlaceholderImage(String placeholderImage) {
+        return (PaletteNode)setAttribute("placeholderImage", placeholderImage);
+    }
+
+    /**
+     * Image to display in lieu of the usual placeholder text.
+     *
+     * @return Current placeholderImage value. Default value is null
+     * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
+     */
+    public String getPlaceholderImage()  {
+        return getAttributeAsString("placeholderImage");
+    }
+    
+
+    /**
+     * Properties to be applied to the {@link com.smartgwt.client.tools.PaletteNode#getLiveObject liveObject} when created as a
+     * Placeholder.
+     *
+     * @param placeholderProperties New placeholderProperties value. Default value is null
+     * @return {@link com.smartgwt.client.tools.PaletteNode PaletteNode} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.SGWTProperties
+     */
+    public PaletteNode setPlaceholderProperties(Label placeholderProperties) {
+        if (placeholderProperties != null) {
+            if (placeholderProperties.isCreated()) {
+                ConfigUtil.warnOfPreConfigInstantiation(PaletteNode.class, "setPlaceholderProperties", "Label");
+            }                                                                       
+            placeholderProperties.setConfigOnly(true);
+        }
+        JavaScriptObject config = placeholderProperties == null ? null : placeholderProperties.getConfig();
+        return (PaletteNode)setAttribute("placeholderProperties", JSOHelper.cleanProperties(config, true));
+    }
+
+    /**
+     * Properties to be applied to the {@link com.smartgwt.client.tools.PaletteNode#getLiveObject liveObject} when created as a
+     * Placeholder.
+     *
+     * @return Current placeholderProperties value. Default value is null
+     */
+    public Label getPlaceholderProperties()  {
+        Label properties = new Label();
+        properties.setConfigOnly(true);
+        properties.setConfig(getAttributeAsJavaScriptObject("placeholderProperties"));
+        return properties;
+    }
+    
+
+    /**
+     * If set to true, indicates instead of updating the changed property on the target live component a new live component is
+     * created with the current configured properties. <P> This property is typically set when a custom component is being used
+     * that doesn't support setters for any or most of its properties and a change can be reflected by recreating the
+     * component. <p> Individual properties of the target component can be marked similarly on the component's schema for more
+     * fine-grained control. See {@link com.smartgwt.client.data.DataSourceField#getRecreateOnChange
+     * DataSourceField.recreateOnChange}.
+     *
+     * @param recreateOnChange New recreateOnChange value. Default value is null
+     * @return {@link com.smartgwt.client.tools.PaletteNode PaletteNode} instance, for chaining setter calls
+     */
+    public PaletteNode setRecreateOnChange(Boolean recreateOnChange) {
+        return (PaletteNode)setAttribute("recreateOnChange", recreateOnChange);
+    }
+
+    /**
+     * If set to true, indicates instead of updating the changed property on the target live component a new live component is
+     * created with the current configured properties. <P> This property is typically set when a custom component is being used
+     * that doesn't support setters for any or most of its properties and a change can be reflected by recreating the
+     * component. <p> Individual properties of the target component can be marked similarly on the component's schema for more
+     * fine-grained control. See {@link com.smartgwt.client.data.DataSourceField#getRecreateOnChange
+     * DataSourceField.recreateOnChange}.
+     *
+     * @return Current recreateOnChange value. Default value is null
+     */
+    public Boolean getRecreateOnChange()  {
+        return getAttributeAsBoolean("recreateOnChange", true);
+    }
+    
+
+    /**
+     * Comma separated list of properties for this component that must be provided in {@link
+     * com.smartgwt.client.tools.EditNode#getDefaults EditNode.defaults} before the component will be created. Otherwise a
+     * Placeholder will be used until the required properties are satisfied.
+     *
+     * @param requiredProperties New requiredProperties value. Default value is null
+     * @return {@link com.smartgwt.client.tools.PaletteNode PaletteNode} instance, for chaining setter calls
+     */
+    public PaletteNode setRequiredProperties(String requiredProperties) {
+        return (PaletteNode)setAttribute("requiredProperties", requiredProperties);
+    }
+
+    /**
+     * Comma separated list of properties for this component that must be provided in {@link
+     * com.smartgwt.client.tools.EditNode#getDefaults EditNode.defaults} before the component will be created. Otherwise a
+     * Placeholder will be used until the required properties are satisfied.
+     *
+     * @return Current requiredProperties value. Default value is null
+     */
+    public String getRequiredProperties()  {
+        return getAttributeAsString("requiredProperties");
+    }
     
 
     /**

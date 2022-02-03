@@ -17,6 +17,10 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getFetchDelay
  * @see com.smartgwt.client.widgets.grid.ListGrid#getExplicitFetchDelay
  * @see com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getCanShowFilterEditor
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditorTitle
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getHideFilterEditorTitle
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getFilterEditor
  * @see com.smartgwt.client.widgets.grid.ListGrid#getFilterEditorHeight
  * @see com.smartgwt.client.widgets.grid.ListGrid#getFilterByCell
  * @see com.smartgwt.client.widgets.grid.ListGrid#getFilterOnKeypress

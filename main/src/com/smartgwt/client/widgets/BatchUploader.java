@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * The BatchUploader handles the upload, validation, review and saving of a dataset expressed in CSV or other upload
@@ -119,7 +125,14 @@ import com.smartgwt.logicalstructure.widgets.tools.*;
  * uploadFormFields} are not provided method  httpSession.getAttribute() will not be called. <P> Because all records are
  * saved in a single HTTP request, a similar strategy of  storing data as servletRequest or session attributes allows reuse
  * of objects required to perform the "add" operations (such as field values common to all added records, or a SQL
- * connection or transaction manager).  <p> If {@link com.smartgwt.client.data.DataSourceField#getUploadFieldName
+ * connection or transaction manager).  <P> If you already have upload data available as a csv-formatted string or similar,
+ * the BatchUploader can be used without showing an upload interface. This can be valuable  if you are picking up sample
+ * data from some custom UI (a separate upload component, or TextArea for copy/pasting content, for example).<br> To
+ * suppress the upload interface, set {@link com.smartgwt.client.widgets.BatchUploader#getShowUploadForm showUploadForm} to
+ * <code>false</code> and invoke {@link com.smartgwt.client.widgets.BatchUploader#uploadData uploadData()} directly. The
+ * <code>uploadData()</code> method passes sample data to the server as <code>values.pasteData</code>. The server side 
+ * <code>batchUpload</code> dataSource has logic to extract and work with this data, exactly as if it had been directly
+ * uploaded as the content of a file. <p> If {@link com.smartgwt.client.data.DataSourceField#getUploadFieldName
  * uploadFieldName} is set on any of the  {@link com.smartgwt.client.widgets.BatchUploader#getUploadDataSource
  * uploadDataSource}'s fields, the BatchUploader will use that name to map the uploaded file's content. <p> Note, that for
  * {@link com.smartgwt.client.widgets.BatchUploader#getDataFormat CSV data format} header line is optional. If  first
@@ -962,6 +975,33 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
     
 
     /**
+     * Should the {@link com.smartgwt.client.widgets.BatchUploader#getUploadForm uploadForm} be displayed. <P> Setting this
+     * value to false will suppress the default upload interface for the BatchUploader. In this case sample data may be
+     * uploaded directly via the {@link com.smartgwt.client.widgets.BatchUploader#uploadData uploadData()} method.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showUploadForm New showUploadForm value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public BatchUploader setShowUploadForm(Boolean showUploadForm)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("showUploadForm", showUploadForm, false);
+    }
+
+    /**
+     * Should the {@link com.smartgwt.client.widgets.BatchUploader#getUploadForm uploadForm} be displayed. <P> Setting this
+     * value to false will suppress the default upload interface for the BatchUploader. In this case sample data may be
+     * uploaded directly via the {@link com.smartgwt.client.widgets.BatchUploader#uploadData uploadData()} method.
+     *
+     * @return Current showUploadForm value. Default value is true
+     */
+    public Boolean getShowUploadForm()  {
+        Boolean result = getAttributeAsBoolean("showUploadForm");
+        return result == null ? true : result;
+    }
+    
+
+    /**
      * Message to display if at least one update was rolled back due to errors in another row. See the {@link
      * com.smartgwt.client.data.DataSource#getAutoJoinTransactions transactions overview} for details of  Smart GWT's automatic
      * transactional updates feature
@@ -1398,6 +1438,22 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
         if (obj && obj.hasOwnProperty("previewShown")) delete obj.previewShown;
     }-*/;
 
+	/**
+     * This method assumes a developer has sample data in memory  (for example a csv-formatted string), and invokes the
+     * dataSource upload operation directly, bypassing the uploadForm. <P> The sample data will be available on the server via
+     * <code>values.pasteData</code>. This usage is expected and understood by the server side batchUpload dataSource. <P> This
+     * method is most commonly used in conjunction with  {@link com.smartgwt.client.widgets.BatchUploader#getShowUploadForm
+     * showUploadForm:false}.
+     * @param data formatted data to upload
+     */
+    public native void uploadData(String data) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "uploadData", "String");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.uploadData(data);
+    }-*/;
+
 
     // ********************* Static Methods ***********************
 
@@ -1581,6 +1637,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
             s.showCommitConfirmation = getAttributeAsString("showCommitConfirmation");
         } catch (Throwable t) {
             s.logicalStructureErrors += "BatchUploader.showCommitConfirmation:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showUploadForm = getAttributeAsString("showUploadForm");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "BatchUploader.showUploadForm:" + t.getMessage() + "\n";
         }
         try {
             s.updatesRolledBackMessage = getAttributeAsString("updatesRolledBackMessage");

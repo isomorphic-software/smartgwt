@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * A container that allows drag and drop instantiation of visual components from a {@link
@@ -461,9 +467,9 @@ public class EditPane extends Canvas {
      * calls and user interaction (drag reposition or drag resize). <p> This feature can be disabled by either setting this
      * property or {@link com.smartgwt.client.tools.EditProxy#getPersistCoordinates EditProxy.persistCoordinates} to
      * <code>false</code>. This property affects all nodes within the EditContext whereas the latter property affects children
-     * of a single node.  <p> In some use-cases, like VisualBuilder, coordinates should not be persisted except when a
-     * component explicitly enables this feature. By setting this property to <code>null</code> no component will persist
-     * coordinates of children unless <code>EditProxy.persistCoordinates</code> is explicitly set to <code>true</code>.
+     * of a single node.  <p> In some use-cases, like Reify, coordinates should not be persisted except when a component
+     * explicitly enables this feature. By setting this property to <code>null</code> no component will persist coordinates of
+     * children unless <code>EditProxy.persistCoordinates</code> is explicitly set to <code>true</code>.
      *
      * @param persistCoordinates New persistCoordinates value. Default value is true
      * @return {@link com.smartgwt.client.tools.EditPane EditPane} instance, for chaining setter calls
@@ -479,9 +485,9 @@ public class EditPane extends Canvas {
      * calls and user interaction (drag reposition or drag resize). <p> This feature can be disabled by either setting this
      * property or {@link com.smartgwt.client.tools.EditProxy#getPersistCoordinates EditProxy.persistCoordinates} to
      * <code>false</code>. This property affects all nodes within the EditContext whereas the latter property affects children
-     * of a single node.  <p> In some use-cases, like VisualBuilder, coordinates should not be persisted except when a
-     * component explicitly enables this feature. By setting this property to <code>null</code> no component will persist
-     * coordinates of children unless <code>EditProxy.persistCoordinates</code> is explicitly set to <code>true</code>.
+     * of a single node.  <p> In some use-cases, like Reify, coordinates should not be persisted except when a component
+     * explicitly enables this feature. By setting this property to <code>null</code> no component will persist coordinates of
+     * children unless <code>EditProxy.persistCoordinates</code> is explicitly set to <code>true</code>.
      *
      * @return Current persistCoordinates value. Default value is true
      */
@@ -1044,6 +1050,20 @@ public class EditPane extends Canvas {
     }-*/;
 
 	/**
+     * Returns the specified property from the editNode's serializable "defaults".
+     * @param editNode the editNode to query
+     * @param name the property name to query
+     * @see com.smartgwt.client.tools.EditPane#setNodeProperties
+     */
+    public native void getNodeProperty(EditNode editNode, String name) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getNodeProperty", "EditNode,String");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.getNodeProperty(editNode.@com.smartgwt.client.core.DataClass::getJsObj()(), name);
+    }-*/;
+
+	/**
      * Obtain {@link com.smartgwt.client.tools.PaletteNode PaletteNodes} from a JavaScript source representation. <P> By
      * default, components that have {@link com.smartgwt.client.widgets.Canvas#getID global IDs} will not actually be allowed
      * to take those global IDs - instead, only widgets that have one of the global IDs passed as the <code>globals</code>
@@ -1059,7 +1079,8 @@ public class EditPane extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.getPaletteNodesFromJS(jsCode, 
 			$entry( function(paletteNodes) { 
-				if(callback!=null) callback.@com.smartgwt.client.callbacks.PaletteNodeCallback::execute([Lcom/smartgwt/client/tools/PaletteNode;)(@com.smartgwt.client.util.ConvertTo::arrayOfPaletteNode(Lcom/google/gwt/core/client/JavaScriptObject;)(paletteNodes)
+				if(callback!=null) callback.@com.smartgwt.client.callbacks.PaletteNodeCallback::execute([Lcom/smartgwt/client/tools/PaletteNode;)(
+					paletteNodes != null ? @com.smartgwt.client.util.ConvertTo::arrayOfPaletteNode(Lcom/google/gwt/core/client/JavaScriptObject;)(paletteNodes) : null
 				);
 			}));
     }-*/;
@@ -1081,7 +1102,8 @@ public class EditPane extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.getPaletteNodesFromJS(jsCode, 
 			$entry( function(paletteNodes) { 
-				if(callback!=null) callback.@com.smartgwt.client.callbacks.PaletteNodeCallback::execute([Lcom/smartgwt/client/tools/PaletteNode;)(@com.smartgwt.client.util.ConvertTo::arrayOfPaletteNode(Lcom/google/gwt/core/client/JavaScriptObject;)(paletteNodes)
+				if(callback!=null) callback.@com.smartgwt.client.callbacks.PaletteNodeCallback::execute([Lcom/smartgwt/client/tools/PaletteNode;)(
+					paletteNodes != null ? @com.smartgwt.client.util.ConvertTo::arrayOfPaletteNode(Lcom/google/gwt/core/client/JavaScriptObject;)(paletteNodes) : null
 				);
 			}), @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(globals));
     }-*/;
@@ -1101,7 +1123,8 @@ public class EditPane extends Canvas {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.getPaletteNodesFromXML(xmlString, 
 			$entry( function(paletteNodes) { 
-				if(callback!=null) callback.@com.smartgwt.client.callbacks.PaletteNodeCallback::execute([Lcom/smartgwt/client/tools/PaletteNode;)(@com.smartgwt.client.util.ConvertTo::arrayOfPaletteNode(Lcom/google/gwt/core/client/JavaScriptObject;)(paletteNodes)
+				if(callback!=null) callback.@com.smartgwt.client.callbacks.PaletteNodeCallback::execute([Lcom/smartgwt/client/tools/PaletteNode;)(
+					paletteNodes != null ? @com.smartgwt.client.util.ConvertTo::arrayOfPaletteNode(Lcom/google/gwt/core/client/JavaScriptObject;)(paletteNodes) : null
 				);
 			}));
     }-*/;
@@ -1456,6 +1479,7 @@ public class EditPane extends Canvas {
      * @param editNode the editNode to update
      * @param properties the properties to apply
      * @see com.smartgwt.client.tools.EditPane#removeNodeProperties
+     * @see com.smartgwt.client.tools.EditPane#getNodeProperty
      */
     public native void setNodeProperties(EditNode editNode, Canvas properties) /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
@@ -1482,6 +1506,7 @@ public class EditPane extends Canvas {
      * com.smartgwt.client.tools.EditNode#getLiveObject liveObject},                                         e.g. if you have
      * already updated the liveObject
      * @see com.smartgwt.client.tools.EditPane#removeNodeProperties
+     * @see com.smartgwt.client.tools.EditPane#getNodeProperty
      */
     public native void setNodeProperties(EditNode editNode, Canvas properties, Boolean skipLiveObjectUpdate) /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {

@@ -6,6 +6,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
@@ -71,12 +72,14 @@ public class CanvasLogicalStructure extends BaseWidgetLogicalStructure {
     public String ariaRole;
     public String autoMaskComponents;
     public String autoParent;
+    public String autoPopulateData;
     public String autoShowParent;
     public String backgroundColor;
     public String backgroundImage;
     public String backgroundPosition;
     public String backgroundRepeat;
     public String border;
+    public String borderRadius;
     public String canAcceptDrop;
     public String canAdaptHeight;
     public String canAdaptWidth;
@@ -101,6 +104,7 @@ public class CanvasLogicalStructure extends BaseWidgetLogicalStructure {
     public Menu contextMenu;
     public String correctZoomOverflow;
     public String cursor;
+    public DataContext dataContext;
     public String dataPath;
     public String defaultHeight;
     public String defaultWidth;
@@ -126,6 +130,8 @@ public class CanvasLogicalStructure extends BaseWidgetLogicalStructure {
     public Canvas dragTargetAsCanvas;
     public String dragTargetAsString;
     public String dragType;
+    public Canvas dropTargetAsCanvas;
+    public String dropTargetAsString;
     public String[] dropTypesAsStringArrayArray;
     public String dynamicContents;
     public String edgeBackgroundColor;
@@ -141,10 +147,12 @@ public class CanvasLogicalStructure extends BaseWidgetLogicalStructure {
     public AdvancedCriteria enableWhen;
     public String endLine;
     public String extraSpace;
+    public String floatingScrollbars;
     public String forwardSVGeventsToObject;
     public String groupBorderCSS;
     public String groupLabelBackgroundColor;
     public String groupLabelStyleName;
+    public String groupPadding;
     public String groupTitle;
     public String hideUsingDisplayNone;
     public String hoverAlign;
@@ -152,14 +160,17 @@ public class CanvasLogicalStructure extends BaseWidgetLogicalStructure {
     public String hoverAutoFitMaxWidthAsString;
     public String hoverAutoFitWidth;
     public String hoverDelay;
+    public String hoverFocusKey;
     public String hoverHeight;
     public String hoverMoveWithMouse;
     public String hoverOpacity;
+    public String hoverPersist;
+    public String hoverScreen;
     public String hoverStyle;
     public String hoverVAlign;
     public String hoverWidth;
     public String hoverWrap;
-    public String htmlElement;
+    public String htmlElementAsString;
     public String htmlPosition;
     public String ID;
     public String isGroup;
@@ -175,6 +186,8 @@ public class CanvasLogicalStructure extends BaseWidgetLogicalStructure {
     public String margin;
     public Canvas masterElement;
     public String matchElement;
+    public String matchElementHeight;
+    public String matchElementWidth;
     public String maxHeight;
     public String maxWidth;
     public String maxZoomOverflowError;
@@ -184,6 +197,7 @@ public class CanvasLogicalStructure extends BaseWidgetLogicalStructure {
     public String mouseStillDownDelay;
     public String mouseStillDownInitialDelay;
     public String name;
+    public String nativeAutoHideScrollbars;
     public String noDoubleClicks;
     public String noDropCursor;
     public String opacity;
@@ -194,6 +208,8 @@ public class CanvasLogicalStructure extends BaseWidgetLogicalStructure {
     public Canvas[] peers;
     public String percentBox;
     public Canvas percentSource;
+    public String persistentMatchElement;
+    public PointerSettings pointerSettings;
     public String position;
     public String printChildrenAbsolutelyPositioned;
     public String printStyleName;
@@ -220,6 +236,7 @@ public class CanvasLogicalStructure extends BaseWidgetLogicalStructure {
     public String showEdges;
     public String showHover;
     public String showHoverComponents;
+    public String showPointer;
     public String showResizeBar;
     public String showShadow;
     public String showSnapGrid;
@@ -249,6 +266,7 @@ public class CanvasLogicalStructure extends BaseWidgetLogicalStructure {
     public String startLine;
     public String styleName;
     public String tabIndex;
+    public DataContext testDataContext;
     public Canvas topElement;
     public String updateTabPositionOnDraw;
     public String updateTabPositionOnReparent;

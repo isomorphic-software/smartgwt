@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -88,22 +93,6 @@ public class DateUtil {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-
-	/**
-     * Returns a new {@link com.smartgwt.client.util.Date} instance, representing the <code>baseDate</code> adjusted by  the
-     * relative amount of the {@link com.smartgwt.client.docs.RelativeDateString relativeDateString}.
-     * @param baseDate Date instance to apply a relative amount to - defaults to new Date()
-     * @param relativeDateString the relative amount to apply to the                            <code>baseDate</code>.
-     * See {@link com.smartgwt.client.docs.RelativeDateString RelativeDateString}
-     *
-     * @return a new Date instance representing the <code>baseDate</code> adjusted by                            the
-     * <code>relativeDateString</code>
-     */
-    public static native Date adjustDate(Date baseDate, String relativeDateString) /*-{
-        var ret = $wnd.isc.DateUtil.adjustDate(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(baseDate), relativeDateString);
-        if(ret == null) return null;
-        return @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
-    }-*/;
 
 
 	/**
@@ -164,6 +153,7 @@ public class DateUtil {
         if(ret == null) return null;
         return @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
     }-*/;
+
 
 
 
@@ -645,6 +635,14 @@ public class DateUtil {
     }-*/;
 
 
+	/**
+     * Return a <code>logicalDate</code> representing the current day in the  String.
+     */
+    public static native void today() /*-{
+        $wnd.isc.DateUtil.today();
+    }-*/;
+
+
     // ***********************************************************
 
 
@@ -1081,13 +1079,156 @@ public class DateUtil {
         $wnd.isc.DateUtil.setShortDatetimeDisplayFormat(formatterJS);
     }-*/;
 
+ 	/**
+     * Create a new Date instance representing the baseDate adjusted by the parameter relativeDateShortcut.
+     *
+     * @param baseDate base Date value to adjust.  Defaults to the current date/time.
+     * @param relativeDateShortcut the
+     * {@link com.smartgwt.client.docs.RelativeDateShortcut RelativeDateShortcut}
+     * or {@link com.smartgwt.client.docs.RelativeDateString RelativeDateString} string to convert
+     *
+     * @return resulting absolute date value
+     */
+    public static native Date adjustDate(Date baseDate, String relativeDateShortcut) /*-{
+        var ret = $wnd.isc.DateUtil.adjustDate(
+            @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(baseDate),
+            relativeDateShortcut);
+        return ret == null ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
+    }-*/;
+
+ 	/**
+     * Create a new Date instance in the current locale time.
+     * <P>
+     * See the {@link com.smartgwt.client.docs.DateFormatAndStorage docs} for a discussion of the difference between
+     * datetime field values and logical date field values, logical time field values.
+     * @param baseDate any Date instance.  Defaults to the current date/time.
+     *
+     * @return new Date instance in the current locale time
+     */
+    public static Date createDatetime(Date baseDate) {
+        return createDatetime(baseDate, null, null);
+    }
+ 	/**
+     * Create a new Date instance in the current locale time. Time elements default to those
+     * from the parameter baseDate.
+     *
+     * <P>
+     * See the {@link com.smartgwt.client.docs.DateFormatAndStorage docs} for a discussion of the difference between
+     * datetime field values and logical date field values, logical time field values.
+     * @param baseDate any Date instance.  Defaults to the current date/time.
+     * @param month Integer month-number (0-11) - defaults to baseDate month
+     * @param date Integer day of the month - defaults to baseDate date
+     *
+     * @return new Date instance in the current locale time
+     */
+    public static Date createDatetime(Date baseDate, Integer month, Integer date) {
+        return createDatetime(baseDate, month, date, null, null, null, null);
+    }
+ 	/**
+     * Create a new Date instance in the current locale time
+     *
+     * <P>
+     * See the {@link com.smartgwt.client.docs.DateFormatAndStorage docs} for a discussion of the difference between
+     * datetime field values and logical date field values, logical time field values.
+     * @param baseDate any Date instance.  Defaults to the current date/time.
+     * @param month Integer month-number (0-11) - defaults to the month from the parameter baseDate 
+     * @param date Integer day of the month - defaults to the date from the parameter baseDate 
+     * @param hour Integer hours (0-23) - defaults to the hours form the parameter baseDate
+     * @param minute Integer minutes (0-59) - defaults to the minutes form the parameter baseDate
+     * @param second Integer seconds (0-59) - defaults to the seconds form the parameter baseDate
+     * @param millisecond Integer milliseconds (0999) - defaults to the milliseconds form the parameter baseDate
+     *
+     * @return new Date instance in the current locale time
+     */
+    public static native Date createDatetime(Date baseDate, Integer month, Integer date, Integer hour, Integer minute, Integer second, Integer millisecond) /*-{
+        var ret = $wnd.isc.DateUtil.createDatetime(
+            @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(baseDate),
+            month, date, hour, minute, second, millisecond);
+        return ret == null ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
+    }-*/;
+    
+    
+ 	/**
+     * Create a new Date instance in the current locale time.  Time elements default to zero.
+     *
+     * <P>
+     * See the {@link com.smartgwt.client.docs.DateFormatAndStorage docs} for a discussion of the difference between
+     * datetime field values and logical date field values, logical time field values.
+     * @param year Integer full year 
+     * @param month Integer month-number (0-11)
+     * @param date Integer day of the month
+     *
+     * @return resulting absolute date value
+     */
+    public static Date createDatetime(Integer year, Integer month, Integer date) {
+        return createDatetime(year, month, date, null, null, null, null);
+    }
+ 	/**
+     * Create a new Date instance in the current locale time.
+     *
+     * <P>
+     * See the {@link com.smartgwt.client.docs.DateFormatAndStorage docs} for a discussion of the difference between
+     * datetime field values and logical date field values, logical time field values.
+     * @param year Integer full year 
+     * @param month Integer month-number (0-11)
+     * @param date Integer day of the month
+     * @param hour Integer hours (0-23) - defaults to zero
+     * @param minute Integer minutes (0-59) - defaults to zero
+     * @param second Integer seconds (0-59) - defaults to zero
+     * @param millisecond Integer milliseconds (0-999) - defaults to zero
+     *
+     * @return resulting absolute date value
+     */
+    public static native Date createDatetime(Integer year, Integer month, Integer date, Integer hour, Integer minute, Integer second, Integer millisecond) /*-{
+        var ret = $wnd.isc.DateUtil.createDatetime(year, month, date, hour, minute, second, millisecond);
+        return ret == null ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
+    }-*/;
+
+
+    /**
+     * Create a new Date representing a logical date value (rather than a specific datetime value),
+     *  typically for display in a +link{DataSourceField.type,date type field}.  The generated
+     *  Date value will have year, month and date set to today (in browser native local time).
+     *  <P>
+     *  See the {@link com.smartgwt.client.docs.DateFormatAndStorage docs} for a discussion of the difference between
+     *  datetime field values and logical date field values, logical time field values.
+     *
+     *  @return LogicalDate representing a logical date.
+     */
+    public static LogicalDate createLogicalDate() {
+        return createLogicalDate(null, null, null);
+    }
+    /**
+     * Create a new Date to represent a logical date value (rather than a specific datetime value),
+     *  typically for display in a +link{DataSourceField.type,date type field}.  The parameter
+     *  baseDate defaults to null if unset, and the generated
+     *  Date value will have year, month and date set from that baseDate (in browser native local time).
+     *  <P>
+     *  See the {@link com.smartgwt.client.docs.DateFormatAndStorage docs} for a discussion of the difference between
+     *  datetime field values and logical date field values, logical time field values.
+     *
+     *  @param baseDate
+     *  @return LogicalDate representing a logical date.
+     */
+    public static LogicalDate createLogicalDate(Date baseDate) {
+        return createLogicalDate(baseDate, null, null);
+    }
+    public static native LogicalDate createLogicalDate(Date baseDate, Integer month, Integer date) /*-{
+        var jsDate = $wnd.isc.DateUtil.createLogicalDate(
+            @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(baseDate),
+            month, date
+        );
+        if (jsDate == null) return null;
+        return @com.smartgwt.client.util.LogicalDate::new(D)(jsDate.getTime());
+    }-*/;
+
     /**
      * Create a new Date to represent a logical date value (rather than a specific datetime value),
      *  typically for display in a +link{DataSourceField.type,date type field}. The generated
      *  Date value will have year, month and date set to the specified values (in browser native local time).
      *  <P>
-     * See the {@link com.smartgwt.client.docs.DateFormatAndStorage docs} for a discussion of the difference between
-     * datetime field values and logical date field values, logical time field values.
+     *  See the {@link com.smartgwt.client.docs.DateFormatAndStorage docs} for a discussion of the difference between
+     *  datetime field values and logical date field values, logical time field values.
      *
      *  @param year
      *  @param month
@@ -1100,6 +1241,59 @@ public class DateUtil {
         return @com.smartgwt.client.util.LogicalDate::new(D)(jsDate.getTime());
     }-*/;
 
+
+    /**
+     * Create a new Date object to represent a logical time value (rather than a specific datetime
+     * value), typically for display in a +link{DataSourceField.type,time type field}. The generated
+     * Date value will have year, month and date set to the epoch date (Jan 1 1970), and time
+     * elements set to the current time (in browser native local time).
+     * <P>
+     * See the {@link com.smartgwt.client.docs.DateFormatAndStorage docs} for a discussion of the difference between
+     * datetime field values and logical date field values, logical time field values.
+     *
+     * @return new LogicalTime representing the time in question
+     */
+    public static LogicalTime createLogicalTime() {
+        return createLogicalTime(null, null, null);
+    }
+    /**
+     * Create a new Date object to represent a logical time value (rather than a specific datetime
+     * value), typically for display in a +link{DataSourceField.type,time type field}. The generated
+     * Date value will have year, month and date set to the epoch date (Jan 1 1970), and time
+     * elements set to those from the parameter baseDate (in browser native local time).
+     * <P>
+     * See the {@link com.smartgwt.client.docs.DateFormatAndStorage docs} for a discussion of the difference between
+     * datetime field values and logical date field values, logical time field values.
+     *
+     * @param baseDate any Date instance
+     * @return new LogicalTime representing the time in question
+     */
+    public static LogicalTime createLogicalTime(Date baseDate) {
+        return createLogicalTime(baseDate, null, null);
+    }
+    /**
+     * Create a new Date object to represent a logical time value (rather than a specific datetime
+     * value), typically for display in a +link{DataSourceField.type,time type field}. The generated
+     * Date value will have year, month and date set to the epoch date (Jan 1 1970), where the
+     * hour comes from the parameter baseDate and the minute and second values come from their
+     * respective parameters, defaulting to the values from the parameter baseDate 
+     * (in browser native local time).
+     * <P>
+     * See the {@link com.smartgwt.client.docs.DateFormatAndStorage docs} for a discussion of the difference between
+     * datetime field values and logical date field values, logical time field values.
+     *
+     * @param baseDate any Date instance
+     * @param minute Integer minutes (0-59)
+     * @param second Integer seconds (0-59)
+     * @return new LogicalTime representing the time in question
+     */
+    public static native LogicalTime createLogicalTime(Date baseDate, Integer minutes, Integer seconds) /*-{
+        var ret = $wnd.isc.DateUtil.createLogicalTime(
+            @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(baseDate),
+            minutes, seconds
+        );
+        return ret == null ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
+    }-*/;
     /**
      * Create a new Date object to represent a logical time value (rather than a specific datetime
      * value), typically for display in a +link{DataSourceField.type,time type field}. The generated
@@ -1130,7 +1324,7 @@ public class DateUtil {
      * {@link com.smartgwt.client.docs.DateFormatAndStorage this overview}.
      * @param date a Date instance representing a datetime value
      *
-     * @return a Date instance representing just the date portion of the datetime value, as                a logical date
+     * @return a Date instance representing just the date portion of the datetime value, as a logical date
      */
     public static native LogicalDate getLogicalDateOnly(Date date) /*-{
         var jsD = $wnd.isc.DateUtil.getLogicalDateOnly(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date));

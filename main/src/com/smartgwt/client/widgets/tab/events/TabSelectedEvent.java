@@ -25,6 +25,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -42,6 +43,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -55,11 +58,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -75,6 +79,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 public class TabSelectedEvent extends BrowserEvent<TabSelectedHandler>  {
@@ -139,7 +144,7 @@ public class TabSelectedEvent extends BrowserEvent<TabSelectedHandler>  {
         super(jsObj);
     }
 
-
+    
 	/**
      * the index of the newly selected tab
      *
@@ -151,7 +156,7 @@ public class TabSelectedEvent extends BrowserEvent<TabSelectedHandler>  {
         if(ret == null) return null;
         return @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
     }-*/;
-
+    
 	/**
      * the newly selected tab's pane if set
      *
@@ -162,7 +167,7 @@ public class TabSelectedEvent extends BrowserEvent<TabSelectedHandler>  {
         var ret = self.tabPane;
         return @com.smartgwt.client.widgets.Canvas::getByJSObject(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
+    
 	/**
      * the ID of the newly selected tab
      *
@@ -173,7 +178,7 @@ public class TabSelectedEvent extends BrowserEvent<TabSelectedHandler>  {
         var ret = self.ID;
         return ret;
     }-*/;
-
+    
 	/**
      * the tab object (not tab button instance)
      *
@@ -185,7 +190,7 @@ public class TabSelectedEvent extends BrowserEvent<TabSelectedHandler>  {
         if(ret == null) return null;
         return @com.smartgwt.client.widgets.tab.Tab::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
+    
 	/**
      * the name of the newly selected tab
      *

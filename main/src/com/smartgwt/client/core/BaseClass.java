@@ -36,6 +36,7 @@ import com.smartgwt.client.util.ObjectFactory;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.UserFormula;
 import com.smartgwt.client.widgets.UserSummary;
+import com.smartgwt.client.data.AdvancedCriteria;
 
 public abstract class BaseClass implements HasHandlers {
 	
@@ -862,25 +863,30 @@ public abstract class BaseClass implements HasHandlers {
     	return getAttributeAsString("ruleScope");
     }
 
-    /**
-     * Sets up the value of <code>propertyName</code> to be dynamically derived from the
-     * {@link com.smartgwt.client.widgets.Canvas#getRuleScope ruleScope}, by either a simple
-     * {@link com.smartgwt.client.docs.DataPath} into the ruleScope or via a textual
-     * or numeric formula using the ruleScope as available formula inputs.
-     * <p>
-     * The dataPath or formula is evaluated immediately when addDynamicProperty() is called, then re-evaluated
-     * every time the ruleScope changes.
-     * <p>
-     * It is invalid usage to use <code>addDynamicProperty()</code> on a property that is not runtime settable,
-     * however, <code>addDynamicProperty()</code> will not throw an error or log a warning if this is done.
-     * <p>
-     * If a property is already dynamic and addDynamicProperty() is called again, the new dynamic behavior
-     * replaces the old.  If a property should no longer be dynamic, call +link{clearDynamicProperty()}.
-     *
-     * @param propertyName name of a settable property on this instance
-     * @param source dataPath
+	/**
+     * Sets up the value of <code>propertyName</code> to be dynamically derived from the {@link
+     * com.smartgwt.client.widgets.Canvas#getRuleScope ruleScope}, by either a simple {@link com.smartgwt.client.docs.DataPath}
+     * into the ruleScope, an {@link com.smartgwt.client.data.AdvancedCriteria} built against {@link
+     * com.smartgwt.client.docs.DataPath DataPaths}, or via a textual or numeric formula using the ruleScope as available
+     * formula inputs. <p> The dataPath, criteria, or formula is evaluated immediately when addDynamicProperty() is called,
+     * then re-evaluated every time the ruleScope changes.  An {@link com.smartgwt.client.data.AdvancedCriteria} will always
+     * evaluate to boolean true or false, and a {@link com.smartgwt.client.widgets.UserSummary} to a string. <p> It is invalid
+     * usage to use <code>addDynamicProperty()</code> on a property that is not runtime settable.  However,
+     * <code>addDynamicProperty()</code> will not throw an error or log a warning if this is done. <p> If a property is already
+     * dynamic and addDynamicProperty() is called again, the new dynamic behavior replaces the old.  If a property should no
+     * longer be dynamic, call {@link com.smartgwt.client.widgets.Class#clearDynamicProperty clearDynamicProperty()}. <p>
+     * Dynamic properties can also be declared together via {@link com.smartgwt.client.widgets.Class#getDynamicProperties
+     * dynamicProperties}. <p> Note that you may convert a simple criteria to an {@link
+     * com.smartgwt.client.data.AdvancedCriteria} by calling {@link com.smartgwt.client.data.DataSource#convertCriteria
+     * DataSource.convertCriteria()}.
+     * @param propertyName name of a settable property on this instance.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
+     * @param source a {@link com.smartgwt.client.docs.DataPath DataPath}
+     * @see com.smartgwt.client.widgets.Canvas#getDataPath
+     * @see com.smartgwt.client.widgets.Class#getDynamicProperties
+     * @see com.smartgwt.client.docs.DataPath DataPath
      */
-    public native void addDynamicProperty (String propertyName, String source) /*-{
+    public native void addDynamicProperty(String propertyName, String source) /*-{
         if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
             var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
             widget.addDynamicProperty(propertyName, source);
@@ -893,67 +899,114 @@ public abstract class BaseClass implements HasHandlers {
         }
     }-*/;
 
-    /**
-     * Sets up the value of <code>propertyName</code> to be dynamically derived from the
-     * {@link com.smartgwt.client.widgets.Canvas#getRuleScope ruleScope}, by either a simple
-     * {@link com.smartgwt.client.docs.DataPath} into the ruleScope or via a textual
-     * or numeric formula using the ruleScope as available formula inputs.
-     * <p>
-     * The dataPath or formula is evaluated immediately when addDynamicProperty() is called, then re-evaluated
-     * every time the ruleScope changes.
-     * <p>
-     * It is invalid usage to use <code>addDynamicProperty()</code> on a property that is not runtime settable,
-     * however, <code>addDynamicProperty()</code> will not throw an error or log a warning if this is done.
-     * <p>
-     * If a property is already dynamic and addDynamicProperty() is called again, the new dynamic behavior
-     * replaces the old.  If a property should no longer be dynamic, call +link{clearDynamicProperty()}.
-     *
-     * @param propertyName name of a settable property on this instance
-     * @param source UserFormula
+	/**
+     * Sets up the value of <code>propertyName</code> to be dynamically derived from the {@link
+     * com.smartgwt.client.widgets.Canvas#getRuleScope ruleScope}, by either a simple {@link com.smartgwt.client.docs.DataPath}
+     * into the ruleScope, an {@link com.smartgwt.client.data.AdvancedCriteria} built against {@link
+     * com.smartgwt.client.docs.DataPath DataPaths}, or via a textual or numeric formula using the ruleScope as available
+     * formula inputs. <p> The dataPath, criteria, or formula is evaluated immediately when addDynamicProperty() is called,
+     * then re-evaluated every time the ruleScope changes.  An {@link com.smartgwt.client.data.AdvancedCriteria} will always
+     * evaluate to boolean true or false, and a {@link com.smartgwt.client.widgets.UserSummary} to a string. <p> It is invalid
+     * usage to use <code>addDynamicProperty()</code> on a property that is not runtime settable.  However,
+     * <code>addDynamicProperty()</code> will not throw an error or log a warning if this is done. <p> If a property is already
+     * dynamic and addDynamicProperty() is called again, the new dynamic behavior replaces the old.  If a property should no
+     * longer be dynamic, call {@link com.smartgwt.client.widgets.Class#clearDynamicProperty clearDynamicProperty()}. <p>
+     * Dynamic properties can also be declared together via {@link com.smartgwt.client.widgets.Class#getDynamicProperties
+     * dynamicProperties}. <p> Note that you may convert a simple criteria to an {@link
+     * com.smartgwt.client.data.AdvancedCriteria} by calling {@link com.smartgwt.client.data.DataSource#convertCriteria
+     * DataSource.convertCriteria()}.
+     * @param propertyName name of a settable property on this instance.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
+     * @param formula a {@link com.smartgwt.client.widgets.UserFormula UserForula}
+     * @see com.smartgwt.client.widgets.Canvas#getDataPath
+     * @see com.smartgwt.client.widgets.Class#getDynamicProperties
+     * @see com.smartgwt.client.docs.DataPath DataPath
      */
-    public native void addDynamicProperty (String propertyName, UserFormula source) /*-{
+    public native void addDynamicProperty(String propertyName, UserFormula formula) /*-{
+        var jsObj = (formula == null ? null : formula.@com.smartgwt.client.widgets.UserFormula::getJsObj()());
         if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
             var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-            widget.addDynamicProperty(propertyName, source);
+            widget.addDynamicProperty(propertyName, jsObj);
         } else {
             var config = this.@com.smartgwt.client.core.BaseClass::config;
             if(config["dynamicProperties"] === undefined) {
                 config["dynamicProperties"] = {};
             }
-            var jsObj = (source == null ? null : source.@com.smartgwt.client.widgets.UserFormula::getJsObj()());
-            config["dynamicProperties"][propertyName] = source;
+            config["dynamicProperties"][propertyName] = jsObj;
         }
     }-*/;
 
-    /**
-     * Sets up the value of <code>propertyName</code> to be dynamically derived from the
-     * {@link com.smartgwt.client.widgets.Canvas#getRuleScope ruleScope}, by either a simple
-     * {@link com.smartgwt.client.docs.DataPath} into the ruleScope or via a textual
-     * or numeric formula using the ruleScope as available formula inputs.
-     * <p>
-     * The dataPath or formula is evaluated immediately when addDynamicProperty() is called, then re-evaluated
-     * every time the ruleScope changes.
-     * <p>
-     * It is invalid usage to use <code>addDynamicProperty()</code> on a property that is not runtime settable,
-     * however, <code>addDynamicProperty()</code> will not throw an error or log a warning if this is done.
-     * <p>
-     * If a property is already dynamic and addDynamicProperty() is called again, the new dynamic behavior
-     * replaces the old.  If a property should no longer be dynamic, call +link{clearDynamicProperty()}.
-     *
-     * @param propertyName name of a settable property on this instance
-     * @param source UserSummary
+	/**
+     * Sets up the value of <code>propertyName</code> to be dynamically derived from the {@link
+     * com.smartgwt.client.widgets.Canvas#getRuleScope ruleScope}, by either a simple {@link com.smartgwt.client.docs.DataPath}
+     * into the ruleScope, an {@link com.smartgwt.client.data.AdvancedCriteria} built against {@link
+     * com.smartgwt.client.docs.DataPath DataPaths}, or via a textual or numeric formula using the ruleScope as available
+     * formula inputs. <p> The dataPath, criteria, or formula is evaluated immediately when addDynamicProperty() is called,
+     * then re-evaluated every time the ruleScope changes.  An {@link com.smartgwt.client.data.AdvancedCriteria} will always
+     * evaluate to boolean true or false, and a {@link com.smartgwt.client.widgets.UserSummary} to a string. <p> It is invalid
+     * usage to use <code>addDynamicProperty()</code> on a property that is not runtime settable.  However,
+     * <code>addDynamicProperty()</code> will not throw an error or log a warning if this is done. <p> If a property is already
+     * dynamic and addDynamicProperty() is called again, the new dynamic behavior replaces the old.  If a property should no
+     * longer be dynamic, call {@link com.smartgwt.client.widgets.Class#clearDynamicProperty clearDynamicProperty()}. <p>
+     * Dynamic properties can also be declared together via {@link com.smartgwt.client.widgets.Class#getDynamicProperties
+     * dynamicProperties}. <p> Note that you may convert a simple criteria to an {@link
+     * com.smartgwt.client.data.AdvancedCriteria} by calling {@link com.smartgwt.client.data.DataSource#convertCriteria
+     * DataSource.convertCriteria()}.
+     * @param propertyName name of a settable property on this instance.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
+     * @param summary a {@link com.smartgwt.client.widgets.UserSummary UserSummary}
+     * @see com.smartgwt.client.widgets.Canvas#getDataPath
+     * @see com.smartgwt.client.widgets.Class#getDynamicProperties
+     * @see com.smartgwt.client.docs.DataPath DataPath
      */
-    public native void addDynamicProperty (String propertyName, UserSummary source) /*-{
+    public native void addDynamicProperty(String propertyName, UserSummary summary) /*-{
+        var jsObj = (summary == null ? null : summary.@com.smartgwt.client.widgets.UserSummary::getJsObj()());
         if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
             var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
-            widget.addDynamicProperty(propertyName, source);
+            widget.addDynamicProperty(propertyName, jsObj);
         } else {
             var config = this.@com.smartgwt.client.core.BaseClass::config;
             if(config["dynamicProperties"] === undefined) {
                 config["dynamicProperties"] = {};
             }
-            var jsObj = (source == null ? null : source.@com.smartgwt.client.widgets.UserSummary::getJsObj()());
-            config["dynamicProperties"][propertyName] = source;
+            config["dynamicProperties"][propertyName] = jsObj;
+        }
+    }-*/;
+
+	/**
+     * Sets up the value of <code>propertyName</code> to be dynamically derived from the {@link
+     * com.smartgwt.client.widgets.Canvas#getRuleScope ruleScope}, by either a simple {@link com.smartgwt.client.docs.DataPath}
+     * into the ruleScope, an {@link com.smartgwt.client.data.AdvancedCriteria} built against {@link
+     * com.smartgwt.client.docs.DataPath DataPaths}, or via a textual or numeric formula using the ruleScope as available
+     * formula inputs. <p> The dataPath, criteria, or formula is evaluated immediately when addDynamicProperty() is called,
+     * then re-evaluated every time the ruleScope changes.  An {@link com.smartgwt.client.data.AdvancedCriteria} will always
+     * evaluate to boolean true or false, and a {@link com.smartgwt.client.widgets.UserSummary} to a string. <p> It is invalid
+     * usage to use <code>addDynamicProperty()</code> on a property that is not runtime settable.  However,
+     * <code>addDynamicProperty()</code> will not throw an error or log a warning if this is done. <p> If a property is already
+     * dynamic and addDynamicProperty() is called again, the new dynamic behavior replaces the old.  If a property should no
+     * longer be dynamic, call {@link com.smartgwt.client.widgets.Class#clearDynamicProperty clearDynamicProperty()}. <p>
+     * Dynamic properties can also be declared together via {@link com.smartgwt.client.widgets.Class#getDynamicProperties
+     * dynamicProperties}. <p> Note that you may convert a simple criteria to an {@link
+     * com.smartgwt.client.data.AdvancedCriteria} by calling {@link com.smartgwt.client.data.DataSource#convertCriteria
+     * DataSource.convertCriteria()}.
+     * @param propertyName name of a settable property on this instance.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
+     * @param criteria an {@link com.smartgwt.client.data.AdvancedCriteria AdvancedCriteria}
+     * @see com.smartgwt.client.widgets.Canvas#getDataPath
+     * @see com.smartgwt.client.widgets.Class#getDynamicProperties
+     * @see com.smartgwt.client.docs.DataPath DataPath
+     */
+    public native void addDynamicProperty(String propertyName, AdvancedCriteria criteria) /*-{
+        var jsObj = (criteria == null ? null : criteria.@com.smartgwt.client.data.AdvancedCriteria::getJsObj()());
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            widget.addDynamicProperty(propertyName, jsObj);
+        } else {
+            var config = this.@com.smartgwt.client.core.BaseClass::config;
+            if(config["dynamicProperties"] === undefined) {
+                config["dynamicProperties"] = {};
+            }
+            config["dynamicProperties"][propertyName] = jsObj;
         }
     }-*/;
 

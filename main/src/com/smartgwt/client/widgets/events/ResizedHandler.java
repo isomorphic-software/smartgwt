@@ -26,7 +26,8 @@ public interface ResizedHandler extends EventHandler {
      * com.smartgwt.client.widgets.Canvas#isDirty isDirty()}), the value for {@link
      * com.smartgwt.client.widgets.Canvas#getVisibleWidth getVisibleWidth()} and {@link
      * com.smartgwt.client.widgets.Canvas#getVisibleHeight getVisibleHeight()} will be unreliable until <code>redraw()</code>
-     * fires.
+     * fires.<br> In this case, if the delayed redraw does change the drawn size of the component,  this notification will be
+     * fired a second time when it completes.
      *
      * @param event the event
      */

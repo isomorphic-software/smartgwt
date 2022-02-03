@@ -43,6 +43,50 @@ import java.util.Map;
 public class ServerObject {
 
     /**
+     * For use when {@link com.smartgwt.client.docs.serverds.ServerObject#lookupStyle lookupStyle} is
+     * <code>"spring"</code> or <code>"cdi"</code>,  id (name) of the bean to ask Spring (CDI) to
+     * create.
+     *
+     * <p>Default value is null
+     */
+    public String bean;
+
+    /**
+     * By default, for DMI DSResponses, DSResponse.data is filtered on the server to just the set of
+     * fields defined on the DataSource.  This behavior can be overridden in several ways - see the
+     * overview in {@link com.smartgwt.client.docs.DmiOverview DMI} for details.  The value of this
+     * attribute overrides {@link com.smartgwt.client.docs.serverds.DataSource#dropExtraFields
+     * DataSource.dropExtraFields}.
+     *
+     * <p>Default value is null
+     */
+    public Boolean dropExtraFields;
+
+    /**
+     * Specifies the name of the method to call for operations using this ServerObject.  This is  a
+     * DataSource-level default; you can override it for individual operations either by  specifying
+     * the {@link com.smartgwt.client.docs.serverds.OperationBinding#serverMethod
+     * OperationBinding.serverMethod} attribute, or by declaring an  operation-level serverObject that
+     * specifies a different methodName (if you specify both  an operationBinding.serverMethod and an
+     * operation-level serverObject.methodName, the  latter takes precedence)
+     *
+     * <p>Default value is null
+     */
+    public String methodName;
+
+    /**
+     * Specifies the name of the attribute by which to look up the DMI instance.  This attribute is
+     * consulted only when the value of {@link
+     * com.smartgwt.client.docs.serverds.ServerObject#lookupStyle lookupStyle} is
+     * <code>"attribute"</code>.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.serverds.ServerObject#attributeScope
+     * @see com.smartgwt.client.docs.serverds.ServerObject#lookupStyle
+     */
+    public String attributeName;
+
+    /**
      * Specifies the fully-qualified class name that provides the server-side endpoint of the DMI
      * ({@link com.smartgwt.client.docs.serverds.ServerObject#lookupStyle lookupStyle}:"new") or the
      * class name of the factory that produces the DMI instance ({@link
@@ -62,8 +106,8 @@ public class ServerObject {
 
     /**
      * Specifies the mechanism for locating the class instance on which to invoke the method. Valid
-     * values are as follows: <ul> <li>"spring": For use with the <a href='http://springframework.com'
-     * target='_blank'>Spring framework</a>. {@link
+     * values are as follows: <ul> <li>"spring": For use with the <a
+     * href='https://spring.io/projects/spring-framework' target='_blank'>Spring framework</a>. {@link
      * com.smartgwt.client.docs.serverds.ServerObject#bean bean} contains the name of the bean to
      * invoke.  Which application context is used can be configured via web.xml (see the example
      * web.xml in the SDK).  See also {@link com.smartgwt.client.docs.ServerInit} for special concerns
@@ -100,26 +144,6 @@ public class ServerObject {
     public String lookupStyle;
 
     /**
-     * For use when {@link com.smartgwt.client.docs.serverds.ServerObject#lookupStyle lookupStyle} is
-     * <code>"spring"</code> or <code>"cdi"</code>,  id (name) of the bean to ask Spring (CDI) to
-     * create.
-     *
-     * <p>Default value is null
-     */
-    public String bean;
-
-    /**
-     * By default, for DMI DSResponses, DSResponse.data is filtered on the server to just the set of
-     * fields defined on the DataSource.  This behavior can be overridden in several ways - see the
-     * overview in {@link com.smartgwt.client.docs.DmiOverview DMI} for details.  The value of this
-     * attribute overrides {@link com.smartgwt.client.docs.serverds.DataSource#dropExtraFields
-     * DataSource.dropExtraFields}.
-     *
-     * <p>Default value is null
-     */
-    public Boolean dropExtraFields;
-
-    /**
      * When the {@link com.smartgwt.client.docs.serverds.ServerObject} appears in a .app.xml file (for
      * RPC DMI), this property specifies the list of methods on the ServerObject that are callable
      * from the client.  See the builtin.app.xml file in the /shared/app directory of the SDK for an
@@ -128,18 +152,6 @@ public class ServerObject {
      * <p>Default value is null
      */
     public String[] visibleMethods;
-
-    /**
-     * Specifies the name of the method to call for operations using this ServerObject.  This is  a
-     * DataSource-level default; you can override it for individual operations either by  specifying
-     * the {@link com.smartgwt.client.docs.serverds.OperationBinding#serverMethod
-     * OperationBinding.serverMethod} attribute, or by declaring an  operation-level serverObject that
-     * specifies a different methodName (if you specify both  an operationBinding.serverMethod and an
-     * operation-level serverObject.methodName, the  latter takes precedence)
-     *
-     * <p>Default value is null
-     */
-    public String methodName;
 
     /**
      * Specifies the scope in which the DMI instance is to be looked up.  Valid values are: 
@@ -177,18 +189,6 @@ public class ServerObject {
      * <p>Default value is null
      */
     public String targetXPath;
-
-    /**
-     * Specifies the name of the attribute by which to look up the DMI instance.  This attribute is
-     * consulted only when the value of {@link
-     * com.smartgwt.client.docs.serverds.ServerObject#lookupStyle lookupStyle} is
-     * <code>"attribute"</code>.
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.serverds.ServerObject#attributeScope
-     * @see com.smartgwt.client.docs.serverds.ServerObject#lookupStyle
-     */
-    public String attributeName;
 
     /**
      * For a ServerObject defined at the {@link

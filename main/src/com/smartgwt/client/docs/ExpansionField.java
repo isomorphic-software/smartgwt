@@ -44,6 +44,10 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionEditorSaveButtonTitle
  * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionDetailRelated
  * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionLayout
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionScreen
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getDetailDS
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getRecordDetailDSProperty
+ * @see com.smartgwt.client.widgets.grid.ListGridRecord#getDetailDS
  * @see com.smartgwt.client.widgets.grid.ListGrid#getChildExpansionMode
  * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionCanEdit
  */

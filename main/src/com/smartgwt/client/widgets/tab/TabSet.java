@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * The TabSet class allows components on several panes to share the same space. The tabs at  the top can be selected by the
@@ -2124,6 +2130,66 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
         return ret;
     }-*/;
 
+	/**
+     * Hide a tab in this tabset at runtime. If the tab is selected, it will be deselected and the tab button will be hidden
+     * from the user. <P> Note that this does not remove a tab from the tabset entirely (see {@link
+     * com.smartgwt.client.widgets.tab.TabSet#removeTab removeTab()}) The tab will no longer be visible to the user or
+     * selectable by the user, but the configuration will still existing in the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTabs tabs array} for this tabSet. Developers should particularly be aware of
+     * this when calling methods that refer to tabs by index - the index includes both hidden and visible tabs in the tabset.
+     * <P> Tabs may be marked as hidden at init-time via {@link com.smartgwt.client.widgets.tab.Tab#getHidden Tab.hidden}. <P>
+     * To test whether a tab is currently visible, use {@link com.smartgwt.client.widgets.tab.TabSet#tabIsVisible
+     * tabIsVisible()}
+     * @param tab Tab to hide
+     */
+    public native void hideTab(int tab) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "hideTab", "int");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.hideTab(tab);
+    }-*/;
+
+	/**
+     * Hide a tab in this tabset at runtime. If the tab is selected, it will be deselected and the tab button will be hidden
+     * from the user. <P> Note that this does not remove a tab from the tabset entirely (see {@link
+     * com.smartgwt.client.widgets.tab.TabSet#removeTab removeTab()}) The tab will no longer be visible to the user or
+     * selectable by the user, but the configuration will still existing in the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTabs tabs array} for this tabSet. Developers should particularly be aware of
+     * this when calling methods that refer to tabs by index - the index includes both hidden and visible tabs in the tabset.
+     * <P> Tabs may be marked as hidden at init-time via {@link com.smartgwt.client.widgets.tab.Tab#getHidden Tab.hidden}. <P>
+     * To test whether a tab is currently visible, use {@link com.smartgwt.client.widgets.tab.TabSet#tabIsVisible
+     * tabIsVisible()}
+     * @param tab Tab to hide
+     */
+    public native void hideTab(String tab) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "hideTab", "String");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.hideTab(tab);
+    }-*/;
+
+	/**
+     * Hide a tab in this tabset at runtime. If the tab is selected, it will be deselected and the tab button will be hidden
+     * from the user. <P> Note that this does not remove a tab from the tabset entirely (see {@link
+     * com.smartgwt.client.widgets.tab.TabSet#removeTab removeTab()}) The tab will no longer be visible to the user or
+     * selectable by the user, but the configuration will still existing in the {@link
+     * com.smartgwt.client.widgets.tab.TabSet#getTabs tabs array} for this tabSet. Developers should particularly be aware of
+     * this when calling methods that refer to tabs by index - the index includes both hidden and visible tabs in the tabset.
+     * <P> Tabs may be marked as hidden at init-time via {@link com.smartgwt.client.widgets.tab.Tab#getHidden Tab.hidden}. <P>
+     * To test whether a tab is currently visible, use {@link com.smartgwt.client.widgets.tab.TabSet#tabIsVisible
+     * tabIsVisible()}
+     * @param tab Tab to hide
+     */
+    public native void hideTab(Tab tab) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "hideTab", "Tab");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.hideTab(tab.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
     /**
      * Add a closeClick handler.
      * <p>
@@ -2298,6 +2364,45 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
         }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setTabPickerTitle(tab.@com.smartgwt.client.core.DataClass::getJsObj()(), pickerTitle);
+    }-*/;
+
+	/**
+     * Show a {@link com.smartgwt.client.widgets.tab.Tab#getHidden hidden tab} at runtime. <P> To test whether a tab is
+     * currently visible, use {@link com.smartgwt.client.widgets.tab.TabSet#tabIsVisible tabIsVisible()}
+     * @param tab Tab to hide
+     */
+    public native void showTab(int tab) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "showTab", "int");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.showTab(tab);
+    }-*/;
+
+	/**
+     * Show a {@link com.smartgwt.client.widgets.tab.Tab#getHidden hidden tab} at runtime. <P> To test whether a tab is
+     * currently visible, use {@link com.smartgwt.client.widgets.tab.TabSet#tabIsVisible tabIsVisible()}
+     * @param tab Tab to hide
+     */
+    public native void showTab(String tab) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "showTab", "String");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.showTab(tab);
+    }-*/;
+
+	/**
+     * Show a {@link com.smartgwt.client.widgets.tab.Tab#getHidden hidden tab} at runtime. <P> To test whether a tab is
+     * currently visible, use {@link com.smartgwt.client.widgets.tab.TabSet#tabIsVisible tabIsVisible()}
+     * @param tab Tab to hide
+     */
+    public native void showTab(Tab tab) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "showTab", "Tab");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.showTab(tab.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
     /**
@@ -2507,6 +2612,51 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
         }
         if (obj && obj.hasOwnProperty("tabIconClick")) delete obj.tabIconClick;
+    }-*/;
+
+	/**
+     * Is the tab {@link com.smartgwt.client.widgets.tab.Tab#getHidden hidden or visible}?
+     * @param tab Tab to test
+     *
+     * @return returns true if the tab has not been hidden.
+     */
+    public native boolean tabIsVisible(int tab) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "tabIsVisible", "int");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.tabIsVisible(tab);
+        return ret == null ? false : ret;
+    }-*/;
+
+	/**
+     * Is the tab {@link com.smartgwt.client.widgets.tab.Tab#getHidden hidden or visible}?
+     * @param tab Tab to test
+     *
+     * @return returns true if the tab has not been hidden.
+     */
+    public native boolean tabIsVisible(String tab) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "tabIsVisible", "String");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.tabIsVisible(tab);
+        return ret == null ? false : ret;
+    }-*/;
+
+	/**
+     * Is the tab {@link com.smartgwt.client.widgets.tab.Tab#getHidden hidden or visible}?
+     * @param tab Tab to test
+     *
+     * @return returns true if the tab has not been hidden.
+     */
+    public native boolean tabIsVisible(Tab tab) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "tabIsVisible", "Tab");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.tabIsVisible(tab.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return ret == null ? false : ret;
     }-*/;
 
     /**

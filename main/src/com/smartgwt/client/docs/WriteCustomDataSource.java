@@ -73,14 +73,13 @@ package com.smartgwt.client.docs;
  * getters and setters), Smart GWT can automatically generate basic DataSource definitions  for
  * your beans that will only need minimal change (ie, specifying a 
  * <code>serverConstructor</code>) to be fully operational.  Both the  <a
- * href="http://www.smartclient.com/smartgwtee/showcase/#javabeanWizard" target="examples">Visual
- * Builder Javabean Wizard</a> and the Batch DataSource  Generator can create DataSource
- * descriptors from existing beans. <p> <b>Server framework features relevant to custom
- * DataSources</b> <P> The vast majority of the Smart GWT Server framework's key features are not
- * specific to the built-in SQL and Hibernate connectors, and still apply even when using a custom
- * persistence mechanism.  See {@link com.smartgwt.client.docs.FeaturesCustomPersistence this
- * overview} of which features apply when using a custom persistence mechanism and how best to
- * leverage those features.
+ * href="http://www.smartclient.com/smartgwtee/showcase/#javabeanWizard" target="examples">Reify
+ * Javabean Wizard</a> and the Batch DataSource  Generator can create DataSource descriptors from
+ * existing beans. <p> <b>Server framework features relevant to custom DataSources</b> <P> The
+ * vast majority of the Smart GWT Server framework's key features are not specific to the built-in
+ * SQL and Hibernate connectors, and still apply even when using a custom persistence mechanism. 
+ * See {@link com.smartgwt.client.docs.FeaturesCustomPersistence this overview} of which features
+ * apply when using a custom persistence mechanism and how best to leverage those features.
  */
 public interface WriteCustomDataSource {
 }

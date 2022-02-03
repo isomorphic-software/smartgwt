@@ -41,7 +41,7 @@ package com.smartgwt.client.docs;
  * out of the box, codeless connectivity to various kinds of common data providers, including SQL
  * and Hibernate.  Smart GWT also provides functionality and tools for accelerated integration
  * with broad categories of data providers, such as Java Object-based persistence mechanisms (JPA,
- * EJB, Ibatis, in-house written systems), and REST  and WSDL web services in XML or JSON formats.
+ * EJB, MyBatis, in-house written systems), and REST and WSDL web services in XML or JSON formats.
  * Ultimately, a DataSource can be connected to  anything that is accessible via HTTP or HTTPS,
  * and also to in-browser persistence engines  such as <a href='http://gears.google.com'
  * target='_blank'>Google Gears</a>. <p> <b>Choosing a Data Integration Approach</b><p> This

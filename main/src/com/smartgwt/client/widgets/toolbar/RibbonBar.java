@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,10 +100,12 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * A {@link com.smartgwt.client.widgets.toolbar.ToolStrip ToolStrip-based} class for showing  {@link
- * com.smartgwt.client.widgets.toolbar.RibbonGroup groups} of related buttons and other controls.
+ * com.smartgwt.client.widgets.toolbar.RibbonGroup groups} of {@link com.smartgwt.client.widgets.RibbonButton
+ * RibbonButtons}s.
  */
 @BeanFactory.FrameworkClass
 @BeanFactory.ScClassName("RibbonBar")
@@ -173,6 +180,82 @@ public class RibbonBar extends ToolStrip {
 
     // ********************* Properties / Attributes ***********************
 
+    /**
+     * If set, this attribute affects the alignment of the titles in  {@link com.smartgwt.client.widgets.toolbar.RibbonGroup
+     * RibbonGroups} in this <code>RibbonBar</code>.  You can  override this at the {@link
+     * com.smartgwt.client.widgets.toolbar.RibbonGroup#getTitleAlign individual RibbonGroup} level.
+     *
+     * @param groupTitleAlign New groupTitleAlign value. Default value is "center"
+     * @return {@link com.smartgwt.client.widgets.toolbar.RibbonBar RibbonBar} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public RibbonBar setGroupTitleAlign(Alignment groupTitleAlign)  throws IllegalStateException {
+        return (RibbonBar)setAttribute("groupTitleAlign", groupTitleAlign == null ? null : groupTitleAlign.getValue(), false);
+    }
+
+    /**
+     * If set, this attribute affects the alignment of the titles in  {@link com.smartgwt.client.widgets.toolbar.RibbonGroup
+     * RibbonGroups} in this <code>RibbonBar</code>.  You can  override this at the {@link
+     * com.smartgwt.client.widgets.toolbar.RibbonGroup#getTitleAlign individual RibbonGroup} level.
+     *
+     * @return Current groupTitleAlign value. Default value is "center"
+     */
+    public Alignment getGroupTitleAlign()  {
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("groupTitleAlign"));
+    }
+    
+
+    /**
+     * If set, this attribute affects the orientation of the titles in  {@link com.smartgwt.client.widgets.toolbar.RibbonGroup
+     * RibbonGroups} in this <code>RibbonBar</code>.  You can  override this at the {@link
+     * com.smartgwt.client.widgets.toolbar.RibbonGroup#getTitleOrientation individual RibbonGroup} level.
+     *
+     * @param groupTitleOrientation New groupTitleOrientation value. Default value is "top"
+     * @return {@link com.smartgwt.client.widgets.toolbar.RibbonBar RibbonBar} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public RibbonBar setGroupTitleOrientation(VerticalAlignment groupTitleOrientation)  throws IllegalStateException {
+        return (RibbonBar)setAttribute("groupTitleOrientation", groupTitleOrientation == null ? null : groupTitleOrientation.getValue(), false);
+    }
+
+    /**
+     * If set, this attribute affects the orientation of the titles in  {@link com.smartgwt.client.widgets.toolbar.RibbonGroup
+     * RibbonGroups} in this <code>RibbonBar</code>.  You can  override this at the {@link
+     * com.smartgwt.client.widgets.toolbar.RibbonGroup#getTitleOrientation individual RibbonGroup} level.
+     *
+     * @return Current groupTitleOrientation value. Default value is "top"
+     */
+    public VerticalAlignment getGroupTitleOrientation()  {
+        return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("groupTitleOrientation"));
+    }
+    
+
+    /**
+     * If set, this attribute affects whether {@link com.smartgwt.client.widgets.toolbar.RibbonGroup RibbonGroups} in this
+     * <code>RibbonBar</code> show their header control.  You can override this at the  {@link
+     * com.smartgwt.client.widgets.toolbar.RibbonGroup#setShowTitle individual RibbonGroup} level.
+     *
+     * @param showGroupTitle New showGroupTitle value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.toolbar.RibbonBar RibbonBar} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public RibbonBar setShowGroupTitle(Boolean showGroupTitle)  throws IllegalStateException {
+        return (RibbonBar)setAttribute("showGroupTitle", showGroupTitle, false);
+    }
+
+    /**
+     * If set, this attribute affects whether {@link com.smartgwt.client.widgets.toolbar.RibbonGroup RibbonGroups} in this
+     * <code>RibbonBar</code> show their header control.  You can override this at the  {@link
+     * com.smartgwt.client.widgets.toolbar.RibbonGroup#setShowTitle individual RibbonGroup} level.
+     *
+     * @return Current showGroupTitle value. Default value is true
+     */
+    public Boolean getShowGroupTitle()  {
+        Boolean result = getAttributeAsBoolean("showGroupTitle");
+        return result == null ? true : result;
+    }
+    
+
     // ********************* Methods ***********************
 	/**
      * Add a new group to this RibbonBar. You can either create your group externally and pass  it in, or you can pass a
@@ -241,6 +324,21 @@ public class RibbonBar extends ToolStrip {
      */
     public LogicalStructureObject setLogicalStructure(RibbonBarLogicalStructure s) {
         super.setLogicalStructure(s);
+        try {
+            s.groupTitleAlign = getAttributeAsString("groupTitleAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "RibbonBar.groupTitleAlign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.groupTitleOrientation = getAttributeAsString("groupTitleOrientation");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "RibbonBar.groupTitleOrientation:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showGroupTitle = getAttributeAsString("showGroupTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "RibbonBar.showGroupTitle:" + t.getMessage() + "\n";
+        }
         return s;
     }
 

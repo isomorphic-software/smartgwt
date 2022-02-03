@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * Simple subclass of button associated with a menu widget (gets shown below the button).
@@ -423,12 +429,10 @@ public class MenuButton extends Button {
     /**
      * When {@link com.smartgwt.client.widgets.menu.MenuButton#getShowMenuOnRollOver showMenuOnRollOver} is true, this is the
      * delay  in milliseconds before the menu is automatically hidden following mouseOut.
-     * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param rollOverMenuHideDelay New rollOverMenuHideDelay value. Default value is 250
      * @return {@link com.smartgwt.client.widgets.menu.MenuButton MenuButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
-     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public MenuButton setRollOverMenuHideDelay(int rollOverMenuHideDelay)  throws IllegalStateException {
         return (MenuButton)setAttribute("rollOverMenuHideDelay", rollOverMenuHideDelay, false);
@@ -439,7 +443,6 @@ public class MenuButton extends Button {
      * delay  in milliseconds before the menu is automatically hidden following mouseOut.
      *
      * @return Current rollOverMenuHideDelay value. Default value is 250
-     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public int getRollOverMenuHideDelay()  {
         return getAttributeAsInt("rollOverMenuHideDelay");
@@ -447,12 +450,12 @@ public class MenuButton extends Button {
     
 
     /**
-     * The menu drops down below the menu button.   Set to false if the menu should appear above the menu button.
+     * The menu drops down below the menu button. Set to false if the menu should appear above the menu button.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
-     * Setter for the 'showMenuButtonBelow' property - determines whether the menu will be shown above or below the menubutton.
+     * Setter for the 'showMenuButtonBelow' property - determines whether the menu will be shown above or below the <code>MenuButton</code>.
      *
-     * @param showMenuBelow True if the menu should be shown below the menubutton. Default value is true
+     * @param showMenuBelow True if the menu should be shown below the <code>MenuButton</code>. Default value is true
      * @return {@link com.smartgwt.client.widgets.menu.MenuButton MenuButton} instance, for chaining setter calls
      */
     public MenuButton setShowMenuBelow(Boolean showMenuBelow) {
@@ -460,7 +463,7 @@ public class MenuButton extends Button {
     }
 
     /**
-     * The menu drops down below the menu button.   Set to false if the menu should appear above the menu button.
+     * The menu drops down below the menu button. Set to false if the menu should appear above the menu button.
      *
      * @return Current showMenuBelow value. Default value is true
      */
@@ -498,12 +501,10 @@ public class MenuButton extends Button {
     /**
      * Should the menu be shown automatically when the mouse moves over the button? <p> When enabled, menus used with this
      * <code>MenuButton</code> should not be used with any other component.
-     * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showMenuOnRollOver New showMenuOnRollOver value. Default value is false
      * @return {@link com.smartgwt.client.widgets.menu.MenuButton MenuButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
-     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public MenuButton setShowMenuOnRollOver(Boolean showMenuOnRollOver)  throws IllegalStateException {
         return (MenuButton)setAttribute("showMenuOnRollOver", showMenuOnRollOver, false);
@@ -514,7 +515,6 @@ public class MenuButton extends Button {
      * <code>MenuButton</code> should not be used with any other component.
      *
      * @return Current showMenuOnRollOver value. Default value is false
-     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowMenuOnRollOver()  {
         Boolean result = getAttributeAsBoolean("showMenuOnRollOver");
@@ -543,7 +543,7 @@ public class MenuButton extends Button {
 
     // ********************* Methods ***********************
 	/**
-     * Programmaticly forces this MenuButton to show it's menu.
+     * Programmatically forces this MenuButton to show it's menu.
      */
     public native void showMenu() /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {

@@ -106,14 +106,6 @@ public class Mail {
     public VelocityExpression subject;
 
     /**
-     * Host of the SMTP server that will send the email.  Like all other <code>String</code>
-     * properties of <code>Mail</code>, you can use Velocity substitution variables in this property.
-     *
-     * <p>Default value is null
-     */
-    public VelocityExpression host;
-
-    /**
      * Comma-separated list of recipients.  Like all other <code>String</code>  properties of
      * <code>Mail</code>, you can use Velocity substitution variables in this property. <p> If you
      * specify a "To:" line in the body of your email, recipient addresses will be parsed  and this
@@ -122,24 +114,6 @@ public class Mail {
      * <p>Default value is null
      */
     public VelocityExpression to;
-
-    /**
-     * User if authentication is required by SMTP server that will send the email. Like all other
-     * <code>String</code> properties of <code>Mail</code>, you can use Velocity substitution
-     * variables in this property.
-     *
-     * <p>Default value is null
-     */
-    public VelocityExpression user;
-
-    /**
-     * An email address to indicate as the reply-to address on the message.  Like all other 
-     * <code>String</code> properties of <code>Mail</code>, you can use Velocity substitution 
-     * variables in this property.
-     *
-     * <p>Default value is null
-     */
-    public VelocityExpression replyTo;
 
     /**
      * Defines whether authentication is required by SMTP server that will send the email. Like all
@@ -179,16 +153,6 @@ public class Mail {
     public String encoding;
 
     /**
-     * Comma-separated list of "BCC" recipients.  Like all other <code>String</code>  properties of
-     * <code>Mail</code>, you can use Velocity substitution variables in this property. <p> If you
-     * specify a "Bcc:" line in the body of your email, recipient addresses will be parsed  and this
-     * property will be ignored.
-     *
-     * <p>Default value is null
-     */
-    public VelocityExpression bcc;
-
-    /**
      * Port of the SMTP server that will send the email.  Like all other <code>String</code>
      * properties of <code>Mail</code>, you can use Velocity substitution variables in this property.
      *
@@ -208,6 +172,62 @@ public class Mail {
      * <p>Default value is null
      */
     public VelocityExpression from;
+
+    /**
+     * Qualified name of the file containing the message template, relative to webroot.  Like all the
+     * other <code>VelocityExpression</code> properties of <code>Mail</code>, you can use Velocity
+     * substitution variables in this property.  The content itself (ie, the contents of the file
+     * named in this property) can also contain Velocity substitutions, of course. <p> You must
+     * specify either this property or {@link com.smartgwt.client.docs.serverds.Mail#messageTemplate
+     * messageTemplate}, but clearly it makes no sense to specify them both.
+     *
+     * <p>Default value is null
+     */
+    public VelocityExpression templateFile;
+
+    /**
+     * Used to override the content-type header applied to the email.  Primarily used to send  HTML
+     * emails rather than plain text ones (use "text/html" to do this).
+     *
+     * <p>Default value is null
+     */
+    public String contentType;
+
+    /**
+     * Host of the SMTP server that will send the email.  Like all other <code>String</code>
+     * properties of <code>Mail</code>, you can use Velocity substitution variables in this property.
+     *
+     * <p>Default value is null
+     */
+    public VelocityExpression host;
+
+    /**
+     * User if authentication is required by SMTP server that will send the email. Like all other
+     * <code>String</code> properties of <code>Mail</code>, you can use Velocity substitution
+     * variables in this property.
+     *
+     * <p>Default value is null
+     */
+    public VelocityExpression user;
+
+    /**
+     * An email address to indicate as the reply-to address on the message.  Like all other 
+     * <code>String</code> properties of <code>Mail</code>, you can use Velocity substitution 
+     * variables in this property.
+     *
+     * <p>Default value is null
+     */
+    public VelocityExpression replyTo;
+
+    /**
+     * Comma-separated list of "BCC" recipients.  Like all other <code>String</code>  properties of
+     * <code>Mail</code>, you can use Velocity substitution variables in this property. <p> If you
+     * specify a "Bcc:" line in the body of your email, recipient addresses will be parsed  and this
+     * property will be ignored.
+     *
+     * <p>Default value is null
+     */
+    public VelocityExpression bcc;
 
     /**
      * Password if authentication is required by SMTP server that will send the email. Like all other
@@ -235,25 +255,5 @@ public class Mail {
      * <p>Default value is null
      */
     public Boolean multiple;
-
-    /**
-     * Qualified name of the file containing the message template, relative to webroot.  Like all the
-     * other <code>VelocityExpression</code> properties of <code>Mail</code>, you can use Velocity
-     * substitution variables in this property.  The content itself (ie, the contents of the file
-     * named in this property) can also contain Velocity substitutions, of course. <p> You must
-     * specify either this property or {@link com.smartgwt.client.docs.serverds.Mail#messageTemplate
-     * messageTemplate}, but clearly it makes no sense to specify them both.
-     *
-     * <p>Default value is null
-     */
-    public VelocityExpression templateFile;
-
-    /**
-     * Used to override the content-type header applied to the email.  Primarily used to send  HTML
-     * emails rather than plain text ones (use "text/html" to do this).
-     *
-     * <p>Default value is null
-     */
-    public String contentType;
 
 }

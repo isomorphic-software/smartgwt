@@ -21,11 +21,12 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface FolderDropHandler extends EventHandler {
     /**
-     * Process a drop of one or more nodes on a TreeGrid folder.   Add logic in your drop handler to perform custom drop
-     * behaviors; to suppress the built-in  behavior described below, use <code>event.cancel()</code>  <P> The default behavior
-     * is to simply delegate to the {@link com.smartgwt.client.widgets.tree.TreeGrid#transferNodes transferNodes()} method;
-     * thus, the  correct way to perform a programmatic folder drop, with all the built-in behaviors described below, is to
-     * call <code>transferNodes()</code> <P> If this is a self-drop, nodes are simply reordered. An "update" operation will be
+     * Process a drop of one or more nodes on a TreeGrid folder.<br> Note: See {@link com.smartgwt.client.docs.TreeGridDrop}
+     * for an overview of TreeGrid drag and drop behavior.    Add logic in your drop handler to perform custom drop behaviors;
+     * to suppress the built-in  behavior described below, use <code>event.cancel()</code>  <P> The default behavior is to
+     * simply delegate to the {@link com.smartgwt.client.widgets.tree.TreeGrid#transferNodes transferNodes()} method; thus, the
+     * correct way to perform a programmatic folder drop, with all the built-in behaviors described below, is to call
+     * <code>transferNodes()</code> <P> If this is a self-drop, nodes are simply reordered. An "update" operation will be
      * submitted to update the {@link com.smartgwt.client.widgets.tree.Tree#getParentIdField parentId} field of the moved
      * node(s).  <P> For a drop from another widget, {@link com.smartgwt.client.widgets.tree.TreeGrid#transferDragData
      * transferDragData()} is called which, depending on the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDragDataAction

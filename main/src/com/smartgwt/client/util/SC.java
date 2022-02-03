@@ -22,6 +22,7 @@ import com.google.gwt.user.client.Window;
 import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Dialog;
+import com.smartgwt.client.types.LogPriority;
 
 public class SC {
     public static final String REF = "__ref";
@@ -137,6 +138,7 @@ public class SC {
      * DataSources as well, however unlike the DataSource Generator Wizard, it cannot generate DataSources in batches.
      *
      * <p><em><b>Requires Smart GWT Pro or better.</b></em>
+     * @deprecated The Visual Builder tool has been superceded by Reify
      */
     public static void openVisualBuilder() {
         if ("LGPL".equals(getLicenseType())) {
@@ -144,6 +146,10 @@ public class SC {
             logWarn(errorMessage);
             throw new UnsupportedOperationException();
         }
+        
+        SC.logWarn("The Visual Builder tool has been superceded by Reify - see the documentation at " +
+                "https://www.smartclient.com/smartgwtee-latest/javadoc/com/smartgwt/client/docs/Reify.html for more information.");
+        
         Window.open(GWT.getModuleBaseURL() + "tools/visualBuilder/index.jsp", "vb_blank", null);
     }
 
@@ -219,6 +225,32 @@ public class SC {
      */
     public static native void say(String message) /*-{
         $wnd.isc.say(message);
+    }-*/;
+
+    /**
+     * Set the priority for a log category.
+     *
+     * @param category the name of the category to set the priority for
+     * @param priority the LogPriority to set for the passed category 
+     */
+    public static native void setLogPriority(String category, LogPriority priority) /*-{
+        var sPriority = priority.getValue();
+        var iPriority = 0;
+        if (sPriority == "fatal") iPriority = 1;
+        else if (sPriority == "error") iPriority = 2;
+        else if (sPriority == "warn") iPriority = 3;
+        else if (sPriority == "info") iPriority = 4;
+        else if (sPriority == "debug") iPriority = 5;
+        $wnd.isc.Log.setPriority(category, iPriority);
+    }-*/;
+
+    /**
+     * Clear the priority for a log category.
+     *
+     * @param category the name of the category to clear the log priority of
+     */
+    public static native void clearLogPriority(String category) /*-{
+        $wnd.isc.Log.clearPriority(category);
     }-*/;
 
     /**
@@ -859,6 +891,24 @@ public class SC {
         return $wnd.isc.FacetChart != null;
     }-*/;
 
+    /**
+     * Returns true if the optional Tour module has been loaded.
+     *
+     * @return true if Tour module is loaded
+     */
+    public static native boolean hasTour()/*-{
+        return $wnd.isc.Tour != null;
+    }-*/;
+    
+    /**
+     * Returns true if the optional Workflow module has been loaded.
+     *
+     * @return true if Drawing module is loaded
+     */
+    public static native boolean hasWorkflow()/*-{
+        return $wnd.isc.Process != null;
+    }-*/;
+    
     /**
      * Returns true if the optional Drawing module has been loaded.
      *

@@ -78,6 +78,53 @@ package com.smartgwt.client.docs;
  *  For example, the following XML represents a list of supply items.
  *  <p>
  *  <pre>
+ *  &lt;supplyItems&gt;
+ *   &lt;supplyItem&gt;
+ *       &lt;description&gt;A revolutionary cushion-grip ballpoint pen that reduces
+ *           required gripping power, relieving stress and alleviating writing
+ *           fatigue. Excellent for people who suffer from arthritis or carpal
+ *           tunnel syndrome. Medium point, black ink. Refillable.&lt;/description&gt;
+ *       &lt;category&gt;1&lt;/category&gt;
+ *       &lt;itemRef&gt;ODC 204-502-153&lt;/itemRef&gt;
+ *       &lt;maxQuantity&gt;5&lt;/maxQuantity&gt;
+ *       &lt;requiresJustification&gt;0&lt;/requiresJustification&gt;
+ *       &lt;itemName&gt;Dr. Grip Pens -- Blue Barrel&lt;/itemName&gt;
+ *       &lt;itemID&gt;1&lt;/itemID&gt;
+ *       &lt;unitCost&gt;4.99&lt;/unitCost&gt;
+ *   &lt;/supplyItem&gt;
+ *   &lt;supplyItem&gt;
+ *       &lt;description&gt;A revolutionary cushion-grip ballpoint pen that reduces
+ *           required gripping power, relieving stress and alleviating writing
+ *           fatigue. Excellent for people who suffer from arthritis or carpal
+ *           tunnel syndrome. Medium point, black ink. Refillable.&lt;/description&gt;
+ *       &lt;category&gt;1&lt;/category&gt;
+ *       &lt;itemRef&gt;ODC 204-708-834&lt;/itemRef&gt;
+ *       &lt;maxQuantity&gt;5&lt;/maxQuantity&gt;
+ *       &lt;requiresJustification&gt;0&lt;/requiresJustification&gt;
+ *       &lt;itemName&gt;Dr. Grip Pens -- Black Barrel&lt;/itemName&gt;
+ *       &lt;itemID&gt;2&lt;/itemID&gt;
+ *       &lt;unitCost&gt;4.99&lt;/unitCost&gt;
+ *   &lt;/supplyItem&gt;
+ *   &lt;supplyItem&gt;
+ *       &lt;description&gt;Personalized business cards for all your networking
+ *           needs.&lt;/description&gt;
+ *       &lt;category&gt;2&lt;/category&gt;
+ *       &lt;itemRef&gt;&lt;/itemRef&gt;
+ *       &lt;maxQuantity&gt;500&lt;/maxQuantity&gt;
+ *       &lt;requiresJustification&gt;1&lt;/requiresJustification&gt;
+ *       &lt;itemName&gt;Personalized business cards -- 500 count&lt;/itemName&gt;
+ *       &lt;itemID&gt;3&lt;/itemID&gt;
+ *       &lt;unitCost&gt;25.00&lt;/unitCost&gt;
+ *   &lt;/supplyItem&gt;
+ *   ...
+ *  &lt;supplyItems/&gt;
+ *  </pre>
+ *  <p>
+ *  You can name the root element anything you like when you describe its location using
+ * {@link com.smartgwt.client.data.DataSource#getRecordXPath DataSource.recordXPath}. The same
+ * sample could be written this way:
+ *  <p>
+ *  <pre>
  *  &lt;records&gt;
  *   &lt;record&gt;
  *       &lt;description&gt;A revolutionary cushion-grip ballpoint pen that reduces

@@ -26,5 +26,5 @@ public interface CriteriaChangedHandler extends EventHandler {
      *
      * @param event the event
      */
-    void onCriteriaChanged(com.smartgwt.client.widgets.form.events.CriteriaChangedDevent event);
+    void onCriteriaChanged(com.smartgwt.client.widgets.form.events.CriteriaChangedEvent event);
 }

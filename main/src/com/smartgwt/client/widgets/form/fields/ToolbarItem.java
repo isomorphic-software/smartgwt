@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -164,6 +169,30 @@ public class ToolbarItem extends CanvasItem {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * Default {@link com.smartgwt.client.widgets.Button#getAutoFit Button.autoFit} for buttons - true by default. Note that 
+     * autoFit:true buttons will fit to their title regardless of specified width.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param buttonAutoFit New buttonAutoFit value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.ToolbarItem ToolbarItem} instance, for chaining setter calls
+     */
+    public ToolbarItem setButtonAutoFit(Boolean buttonAutoFit) {
+        return (ToolbarItem)setAttribute("buttonAutoFit", buttonAutoFit);
+    }
+
+    /**
+     * Default {@link com.smartgwt.client.widgets.Button#getAutoFit Button.autoFit} for buttons - true by default. Note that 
+     * autoFit:true buttons will fit to their title regardless of specified width.
+     *
+     * @return Current buttonAutoFit value. Default value is true
+     */
+    public Boolean getButtonAutoFit()  {
+        Boolean result = getAttributeAsBoolean("buttonAutoFit", true);
+        return result == null ? true : result;
+    }
+    
+
+    /**
      * If specified this baseStyle will be applied to the buttons in this toolbar.
      *
      * @param buttonBaseStyle New buttonBaseStyle value. Default value is null
@@ -185,7 +214,6 @@ public class ToolbarItem extends CanvasItem {
     public String getButtonBaseStyle()  {
         return getAttributeAsString("buttonBaseStyle");
     }
-    
     
     
 

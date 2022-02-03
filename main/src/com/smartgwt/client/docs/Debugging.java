@@ -21,7 +21,7 @@ package com.smartgwt.client.docs;
  * <a href='http://www.gwtproject.org/articles/superdevmode.html' target='_blank'>Development
  * mode</a>
  *  (formerly referred to as Super Dev Mode), 
- * <a href='https://developer.chrome.com/devtools/docs/javascript-debugging#source-maps'
+ * <a href='https://www.html5rocks.com/en/tutorials/developertools/sourcemaps/'
  * target='_blank'>source maps</a> 
  *  provided by a GWT Code Server Java app allow breakpoints to be placed at chosen locations
  *  within the Java source code.  Running this mode in GWT 2.7.0+ is possible by just
@@ -124,25 +124,21 @@ package com.smartgwt.client.docs;
  *  4. Consider adding this to the Bookmarks Toolbar. This allows one-click access to the Console 
  *  from any Smart GWT application.
  *  <P>
- * Note: For most browsers you can evaluate javascript directly from the browser URL bar by
- * entering 
- * <code>javascript:<i>string to evaluate</i></code> directly in the URL bar, so setting up a
- * bookmark 
- * is not strictly necessary. For Firefox 6 and above, this feature has been disallowed, but the
- * bookmark 
- *  approach will still work. Alternatively developers could use 
- * <a href='http://blog.mozilla.com/devtools/2011/08/15/introducing-scratchpad/'
- * target='_blank'>Firefox Scratchpad</a> 
- *  to launch the console.
+ * Note that in most modern browsers you can also evaluate <code>isc.showConsole()</code> directly
+ * 
+ *  from your native browser developer tools / console.
  *  <P>
  *  Basic information on the features of the Developer Console can be found in the QuickStart
  *  Guide.  For information about the "RPC" tab of the Developer Console and the request 
  *  profiling information it can provide, see 
- * {@link com.smartgwt.client.docs.DevConsoleRPCTab the Developer Console RPC tab}.  The Develper
- * Console also
- *  supports debugging of remote pages (very useful for mobile devices) - see
- *  {@link com.smartgwt.client.docs.RemoteDebugging} for more information.  The remainder of this 
- *  topic focuses on use of the log system and related debugging facilities.
+ * {@link com.smartgwt.client.docs.DevConsoleRPCTab the Developer Console RPC tab}.  The Developer
+ * Console
+ * features a {@link com.smartgwt.client.docs.DataSourcesTab DataSources tab} to allow you to view
+ * and edit the available
+ *  DataSources.  The Develper Console also supports debugging of remote pages (very useful for
+ * mobile devices) - see {@link com.smartgwt.client.docs.RemoteDebugging} for more information. 
+ * The remainder
+ *  of this topic focuses on use of the log system and related debugging facilities.
  *  <P>
  *  The Developer Console contains a "Results" pane that displays a list of diagnostic
  *  messages logged by the Smart GWT framework. The "Logging Preferences" menu lets you

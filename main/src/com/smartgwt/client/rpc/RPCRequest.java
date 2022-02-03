@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -434,7 +439,7 @@ public class RPCRequest extends DataClass {
      * <ul><li>xmlHttpRequest download does not have a built-in progress bar to indicate download progress</li>     <li>The
      * browser must hold the entire XHR response in memory, whereas with normal download         data is streamed to disk or to
      * another application</li>     <li>This mode does not currently support {@link
-     * com.smartgwt.client.rpc.RPCRequest#getDownloadToNewWindow downloadToNewWindow}</li></ul>
+     * com.smartgwt.client.rpc.RPCRequest#getDownloadToNewWindow DSRequest.downloadToNewWindow}</li></ul>
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param downloadResult New downloadResult value. Default value is false
@@ -454,7 +459,7 @@ public class RPCRequest extends DataClass {
      * <ul><li>xmlHttpRequest download does not have a built-in progress bar to indicate download progress</li>     <li>The
      * browser must hold the entire XHR response in memory, whereas with normal download         data is streamed to disk or to
      * another application</li>     <li>This mode does not currently support {@link
-     * com.smartgwt.client.rpc.RPCRequest#getDownloadToNewWindow downloadToNewWindow}</li></ul>
+     * com.smartgwt.client.rpc.RPCRequest#getDownloadToNewWindow DSRequest.downloadToNewWindow}</li></ul>
      *
      * @return Current downloadResult value. Default value is false
      */
@@ -952,6 +957,30 @@ public class RPCRequest extends DataClass {
     
 
     /**
+     * Whether errors during download should be reported inside the document, rather than through the {@link
+     * com.smartgwt.client.rpc.RPCResponse#getStatus normal mechanism}.  If unset, this will be defaulted from {@link
+     * com.smartgwt.client.rpc.RPCManager#reportDownloadErrorsAsDocuments reportDownloadErrorsAsDocuments}.
+     *
+     * @param reportDownloadErrorsAsDocuments New reportDownloadErrorsAsDocuments value. Default value is null
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
+     */
+    public RPCRequest setReportDownloadErrorsAsDocuments(Boolean reportDownloadErrorsAsDocuments) {
+        return (RPCRequest)setAttribute("reportDownloadErrorsAsDocuments", reportDownloadErrorsAsDocuments);
+    }
+
+    /**
+     * Whether errors during download should be reported inside the document, rather than through the {@link
+     * com.smartgwt.client.rpc.RPCResponse#getStatus normal mechanism}.  If unset, this will be defaulted from {@link
+     * com.smartgwt.client.rpc.RPCManager#reportDownloadErrorsAsDocuments reportDownloadErrorsAsDocuments}.
+     *
+     * @return Current reportDownloadErrorsAsDocuments value. Default value is null
+     */
+    public Boolean getReportDownloadErrorsAsDocuments()  {
+        return getAttributeAsBoolean("reportDownloadErrorsAsDocuments", true);
+    }
+    
+
+    /**
      * When set to true, this request is sent to the server immediately, bypassing any current queue.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -1374,14 +1403,12 @@ public class RPCRequest extends DataClass {
     
 
     /**
-     * In browsers that support <a href='http://www.w3.org/TR/cors/' target='_blank'>Cross-Origin Resource Sharing</a> and <a
-     * href='http://caniuse.com/#feat=xhr2' target='_blank'>XMLHttpRequest 2</a>, and where the service at the {@link
-     * com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL} allows the origin to send credentials (see <a
-     * href='http://www.w3.org/TR/cors/#access-control-allow-credentials-response-header'
-     * target='_blank'><code>Access-Control-Allow-Credentials</code></a>), should <a
-     * href='http://www.w3.org/TR/cors/#user-credentials' target='_blank'>user credentials</a> such as cookies, HTTP
-     * authentication, and client-side SSL certificates be sent with the actual CORS request? <p> This setting only applies
-     * when the request {@link com.smartgwt.client.rpc.RPCRequest#getTransport transport} is  {@link
+     * In browsers that support <a href='https://fetch.spec.whatwg.org/#http-cors-protocol' target='_blank'>Cross-Origin
+     * Resource Sharing</a> and <a href='http://caniuse.com/#feat=xhr2' target='_blank'>XMLHttpRequest 2</a>, and where the
+     * service at the {@link com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL} allows the origin to send credentials
+     * (see <code>Access-Control-Allow-Credentials</code>), should user credentials such as cookies, HTTP authentication, and
+     * client-side SSL certificates be sent with the actual CORS request? <p> This setting only applies when the request {@link
+     * com.smartgwt.client.rpc.RPCRequest#getTransport transport} is  {@link
      * com.smartgwt.client.types.RPCTransport#XMLHTTPREQUEST}. <p> Note that Internet Explorer 10 and 11 do not send cookies as
      * part of user credentials: <a href='https://connect.microsoft.com/IE/Feedback/Details/759587/' target='_blank'>IE10
      * doesn't support cookies on cross origin XMLHttpRequest withCredentials=true</a>.
@@ -1395,14 +1422,12 @@ public class RPCRequest extends DataClass {
     }
 
     /**
-     * In browsers that support <a href='http://www.w3.org/TR/cors/' target='_blank'>Cross-Origin Resource Sharing</a> and <a
-     * href='http://caniuse.com/#feat=xhr2' target='_blank'>XMLHttpRequest 2</a>, and where the service at the {@link
-     * com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL} allows the origin to send credentials (see <a
-     * href='http://www.w3.org/TR/cors/#access-control-allow-credentials-response-header'
-     * target='_blank'><code>Access-Control-Allow-Credentials</code></a>), should <a
-     * href='http://www.w3.org/TR/cors/#user-credentials' target='_blank'>user credentials</a> such as cookies, HTTP
-     * authentication, and client-side SSL certificates be sent with the actual CORS request? <p> This setting only applies
-     * when the request {@link com.smartgwt.client.rpc.RPCRequest#getTransport transport} is  {@link
+     * In browsers that support <a href='https://fetch.spec.whatwg.org/#http-cors-protocol' target='_blank'>Cross-Origin
+     * Resource Sharing</a> and <a href='http://caniuse.com/#feat=xhr2' target='_blank'>XMLHttpRequest 2</a>, and where the
+     * service at the {@link com.smartgwt.client.rpc.RPCRequest#getActionURL actionURL} allows the origin to send credentials
+     * (see <code>Access-Control-Allow-Credentials</code>), should user credentials such as cookies, HTTP authentication, and
+     * client-side SSL certificates be sent with the actual CORS request? <p> This setting only applies when the request {@link
+     * com.smartgwt.client.rpc.RPCRequest#getTransport transport} is  {@link
      * com.smartgwt.client.types.RPCTransport#XMLHTTPREQUEST}. <p> Note that Internet Explorer 10 and 11 do not send cookies as
      * part of user credentials: <a href='https://connect.microsoft.com/IE/Feedback/Details/759587/' target='_blank'>IE10
      * doesn't support cookies on cross origin XMLHttpRequest withCredentials=true</a>.

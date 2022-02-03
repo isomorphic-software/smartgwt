@@ -2,32 +2,27 @@
 package com.smartgwt.client.docs;
 
 /**
- * <h3>Database Configuration Tools</h3>
- * The database configuration tool allows you to configure database access for DataSources that
- * use Smart GWT's built-in {@link com.smartgwt.client.docs.SqlDataSource SQL engine}. You can
- * either use the Database
- * Tools via the {@link com.smartgwt.client.docs.AdminConsole Admin Console UI} or directly
- * specify equivalent properties
- * in your {@link com.smartgwt.client.docs.Server_properties server.properties} file (see
- * "Manually specifying.." below).
- *  
+ * <h3>Database Configuration</h3>
+ * DataSources that use Smart GWT's built-in {@link com.smartgwt.client.docs.SqlDataSource SQL
+ * engine} refer to
+ * configuration settings from the {@link com.smartgwt.client.docs.Server_properties
+ * server.properties} file for
+ *  database access.
  *  <P>
- * These settings will be written to {@link com.smartgwt.client.docs.Server_properties
- * server.properties}
- *  in your deployment directory - use
- *  the "Download server.properties" button to download the settings and merge them to the
- *  server.properties file in your Eclipse (or other IDE) project.
- *  
+ * Developers may make use of the {@link com.smartgwt.client.docs.AdminConsole Admin Console tool}
+ * to set up
+ *  database configuration blocks, or they may add configuration settings to
+ *  <code>server.properties</code> by hand. Note that you should restart your servlet engine
+ *  after changing this file.
  *  <P>
  *  <b>Manually specifying database connection settings</b>
  *  <p>
- * The Admin Console maintains settings in the {@link com.smartgwt.client.docs.Server_properties
- * server.properties}
- *  file, found in
- *  your application's <code>WEB-INF/classes</code> directory.  If you prefer, you can maintain
- *  these settings by directly editing that file.  You should restart your servlet engine
- *  after changing this file.
+ * Within an application deployment, the {@link com.smartgwt.client.docs.Server_properties
+ * server.properties} 
+ *  file resides in the <code>WEB-INF/classes</code> directory.
  *  <p>
+ *  For each database, configuration settings within this file are prefixed with 
+ *  <code>"sql.<i>&lt;dbName&gt;</i>"</code>.<br>
  *  For example, the following settings are the defaults in a new Smart GWT installation for
  *  a MySQL server; they are approximately correct for a MySQL server running on the same
  *  machine as the servlet engine and listening on the default MySQL port.  For details of what
@@ -98,14 +93,8 @@ package com.smartgwt.client.docs;
  *    sql.myOracleConnection.database.type: oracle
  *    sql.myOracleConnection.interface.type: jndi
  *  </pre>
- * 
- *  <p>
- *  <b>Test Data</b>
- *  <p>
- *  There is an "Add Test Data" button in the tab that allows you to upload CSV, JSON or XML
- *  String, and have it permanently stored as XML.
- *  <p>
- *  For examples on how to set up test data see the String page.
+     * @see com.smartgwt.client.docs.AdminConsole
+     * @see com.smartgwt.client.docs.Server_properties
      * @see com.smartgwt.client.docs.SqlConnectionPooling
      * @see com.smartgwt.client.docs.TestData
  */

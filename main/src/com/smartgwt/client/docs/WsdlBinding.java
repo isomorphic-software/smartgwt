@@ -266,8 +266,7 @@ package com.smartgwt.client.docs;
  * <li>In Java, <a href='http://ws.apache.org/axis/' target='_blank'>Apache Axis</a> can be used
  * to generate
  *  Java stubs for implementing a web service
- * <li>In Perl, the <a href='http://soaplite.com' target='_blank'>SOAP:Lite</a> module can be used
- * to
+ *  <li>In Perl, the <code>SOAP:Lite</code> module can be used to
  *  implement web services without code generation
  *  <li>for PHP, the NuSoap module can likewise be used to implement web services without code
  *  generation

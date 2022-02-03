@@ -180,8 +180,8 @@ package com.smartgwt.client.docs;
  *  another EditNode, the EditContext will automatically try to determine how the parent and
  *  child are related and actually call APIs on the widgets to establish a relationship, such as
  *  a Tab being added to a TabSet, or a FormItem being added to a DynamicForm.  The
- *  EditContext uses the same approach as is used for Visual Builder Drag and Drop - see
- *  {@link com.smartgwt.client.docs.VisualBuilder Visual Builder overview} for details.
+ *  EditContext uses the same approach as is used for Reify Drag and Drop - see
+ *  {@link com.smartgwt.client.docs.Reify Reify overview} for details.
  *  <!-- Note that the system for discovering setter/adder methods used by the EditContext is
  *  not actually specific to visual widgets as implied above.  You could use an EditContext to
  *  manage a hierarchy of non-visual instances of Smart GWT classes which directly subclass

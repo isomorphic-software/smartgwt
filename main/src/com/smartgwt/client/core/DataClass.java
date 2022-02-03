@@ -19,6 +19,7 @@ package com.smartgwt.client.core;
 import java.util.Date;
 import java.util.Map;
 
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
@@ -618,6 +619,16 @@ public class DataClass extends JsObject implements HasHandlers {
      */
     public Record getAttributeAsRecord(String property) {
         return Record.getOrCreateRef(getAttributeAsJavaScriptObject(property));
+    }
+
+    /**
+     * Get the attribute value as an Element.
+     *
+     * @param property the property name
+     * @return the element
+     */
+    public Element getAttributeAsElement(String property) {
+        return JSOHelper.getAttributeAsElement(jsObj, property);
     }
 
     /**

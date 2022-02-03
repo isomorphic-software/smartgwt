@@ -6,6 +6,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
@@ -45,26 +46,5 @@ import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
 
-public class IconButtonLogicalStructure extends ButtonLogicalStructure {
-    public String align;
-    public String baseStyle;
-    public String icon;
-    public String iconAlign;
-    public String iconOrientation;
-    public String largeIcon;
-    public String largeIconSize;
-    public String menuIconHeight;
-    public String menuIconSrc;
-    public String menuIconWidth;
-    public String orientation;
-    public String rowSpan;
-    public String showButtonTitle;
-    public String showIcon;
-    public String showMenuIcon;
-    public String showMenuIconDisabled;
-    public String showMenuIconDown;
-    public String showMenuIconOver;
-    public String showMenuOnClick;
-    public String showTitle;
-    public String valign;
+public class IconButtonLogicalStructure extends RibbonButtonLogicalStructure {
 }

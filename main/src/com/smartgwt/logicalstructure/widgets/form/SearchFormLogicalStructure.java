@@ -6,6 +6,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
@@ -51,4 +52,5 @@ public class SearchFormLogicalStructure extends DynamicFormLogicalStructure {
     public String searchOnEnter;
     public String showFilterFieldsOnly;
     public String storeDisplayValues;
+    public String useMultiSelectForValueMaps;
 }

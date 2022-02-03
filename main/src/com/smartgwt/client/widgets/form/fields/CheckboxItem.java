@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -587,6 +592,30 @@ public class CheckboxItem extends FormItem {
     public Boolean getShowNullAsTrue()  {
         Boolean result = getAttributeAsBoolean("showNullAsTrue", true);
         return result == null ? false : result;
+    }
+    
+
+    /**
+     * Set this property to the name of another field in the same record, to have this field  be shown as checked (i.e. true)
+     * if this field is null and the other field is not null.   For example, you could use this to show a "US Citizen" field as
+     * true if a value is entered into another field "US Social Security Number"
+     *
+     * @param showNullAsTrueIf New showNullAsTrueIf value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
+     */
+    public CheckboxItem setShowNullAsTrueIf(String showNullAsTrueIf) {
+        return (CheckboxItem)setAttribute("showNullAsTrueIf", showNullAsTrueIf);
+    }
+
+    /**
+     * Set this property to the name of another field in the same record, to have this field  be shown as checked (i.e. true)
+     * if this field is null and the other field is not null.   For example, you could use this to show a "US Citizen" field as
+     * true if a value is entered into another field "US Social Security Number"
+     *
+     * @return Current showNullAsTrueIf value. Default value is null
+     */
+    public String getShowNullAsTrueIf()  {
+        return getAttributeAsString("showNullAsTrueIf");
     }
     
 

@@ -21,11 +21,12 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface HiddenValidationErrorsHandler extends EventHandler {
     /**
-     * Method to display validation error messages for fields that are not currently visible  in this form.<br> This will be
-     * called when validation fails for<br> - a hidden field in this form<br> - if this form is databound, a datasource field
-     * with specified validators, for which we   have no specified form item.<br> Implement this to provide custom validation
-     * error handling for these fields.<br> By default hidden validation errors will be logged as warnings in the
-     * developerConsole. Call {@link com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent#cancel()} from within {@link com.smartgwt.client.widgets.form.events.HiddenValidationErrorsHandler#onHiddenValidationErrors} from this method to suppress that behavior.
+     * Method to display validation error messages for a valuesManager when there is not currently visible form item displaying
+     * the errors. This will be called when validation fails for<br> - a field in a hidden or undrawn member form<br> - a
+     * hidden field in a visible member form<br> - for databound ValuesManagers, a datasource field with specified validators,
+     * but not   associated item in any member.<br> Implement this to provide custom validation error handling for these
+     * fields.<br> By default hidden validation errors will be logged as warnings in the developerConsole. Call {@link com.smartgwt.client.widgets.form.events.HiddenValidationErrorsEvent#cancel()} from within {@link com.smartgwt.client.widgets.form.events.HiddenValidationErrorsHandler#onHiddenValidationErrors} from
+     * this method to suppress that behavior.
      *
      * @param event the event
      */

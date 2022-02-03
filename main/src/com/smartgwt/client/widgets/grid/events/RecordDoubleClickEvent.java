@@ -25,6 +25,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -42,6 +43,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -55,11 +58,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -75,6 +79,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 public class RecordDoubleClickEvent extends BrowserEvent<RecordDoubleClickHandler>  implements Cancellable {
@@ -153,7 +158,7 @@ public class RecordDoubleClickEvent extends BrowserEvent<RecordDoubleClickHandle
     public boolean isCancelled() {
         return cancel;
     }
-
+    
 	/**
      * the listGrid that contains the doubleclick event
      *
@@ -164,7 +169,7 @@ public class RecordDoubleClickEvent extends BrowserEvent<RecordDoubleClickHandle
         var ret = self.viewer;
         return @com.smartgwt.client.widgets.Canvas::getByJSObject(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
+    
 	/**
      * the record that was double-clicked
      *
@@ -176,7 +181,7 @@ public class RecordDoubleClickEvent extends BrowserEvent<RecordDoubleClickHandle
         if(ret == null) return null;
         return @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
+    
 	/**
      * number of the record clicked on in the current set of                                  displayed records (starts with 0)
      *
@@ -187,7 +192,7 @@ public class RecordDoubleClickEvent extends BrowserEvent<RecordDoubleClickHandle
         var ret = self.recordNum;
         return ret;
     }-*/;
-
+    
 	/**
      * the field that was clicked on (field definition)
      *
@@ -199,7 +204,7 @@ public class RecordDoubleClickEvent extends BrowserEvent<RecordDoubleClickHandle
         if(ret == null) return null;
         return @com.smartgwt.client.widgets.grid.ListGridField::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-
+    
 	/**
      * number of the field clicked on in the listGrid.fields                                  array
      *
@@ -209,6 +214,20 @@ public class RecordDoubleClickEvent extends BrowserEvent<RecordDoubleClickHandle
         var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
         var ret = self.fieldNum;
         return ret;
+    }-*/;
+    
+	/**
+     * the clicked record with any unsaved                                   edit values overlaid (see
+     * <code>listGrid.getEditedRecord()</code>).
+     *
+     * @return the clicked record with any unsaved                                   edit values overlaid (see
+     * <code>listGrid.getEditedRecord()</code>).
+     */
+    public native ListGridRecord getEditedRecord() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.editedRecord;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
 }

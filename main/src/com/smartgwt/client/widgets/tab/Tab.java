@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -265,15 +270,15 @@ public class Tab extends RefDataClass implements com.smartgwt.client.widgets.tab
     
 
     /**
-     * Criteria to be evaluated to determine whether this Tab should be enabled.  Re-evaluated whenever data in the {@link
-     * com.smartgwt.client.widgets.Canvas#getRuleScope tab.ruleScope} changes. <P> It works the same as {@link
-     * com.smartgwt.client.widgets.Canvas#getEnableWhen Canvas.enableWhen}
+     * Criteria to be evaluated to determine whether this Tab should be enabled. <P> A basic criteria uses
+     * textMatchStyle:"exact". When specified in {@link com.smartgwt.client.docs.ComponentXML Component XML} this property
+     * allows {@link com.smartgwt.client.docs.XmlCriteriaShorthand shorthand formats} for defining criteria.
      *
      * @param enableWhen New enableWhen value. Default value is null
      * @return {@link com.smartgwt.client.widgets.tab.Tab Tab} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.RuleCriteria RuleCriteria overview and related methods
      */
-    public Tab setEnableWhen(AdvancedCriteria enableWhen) {
+    public Tab setEnableWhen(Criteria enableWhen) {
         if (enableWhen instanceof Criterion) {
             enableWhen.setAttribute("_constructor", "AdvancedCriteria");
         }
@@ -281,15 +286,39 @@ public class Tab extends RefDataClass implements com.smartgwt.client.widgets.tab
     }
 
     /**
-     * Criteria to be evaluated to determine whether this Tab should be enabled.  Re-evaluated whenever data in the {@link
-     * com.smartgwt.client.widgets.Canvas#getRuleScope tab.ruleScope} changes. <P> It works the same as {@link
-     * com.smartgwt.client.widgets.Canvas#getEnableWhen Canvas.enableWhen}
+     * Criteria to be evaluated to determine whether this Tab should be enabled. <P> A basic criteria uses
+     * textMatchStyle:"exact". When specified in {@link com.smartgwt.client.docs.ComponentXML Component XML} this property
+     * allows {@link com.smartgwt.client.docs.XmlCriteriaShorthand shorthand formats} for defining criteria.
      *
      * @return Current enableWhen value. Default value is null
      * @see com.smartgwt.client.docs.RuleCriteria RuleCriteria overview and related methods
      */
-    public AdvancedCriteria getEnableWhen()  {
-        return new AdvancedCriteria(getAttributeAsJavaScriptObject("enableWhen"));
+    public Criteria getEnableWhen()  {
+        return new Criteria(getAttributeAsJavaScriptObject("enableWhen"));
+    }
+    
+
+    /**
+     * If specified this tab will be hidden by default. To show and hide tabs at runtime use {@link
+     * com.smartgwt.client.widgets.tab.TabSet#showTab TabSet.showTab()} and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#hideTab TabSet.hideTab()}
+     *
+     * @param hidden New hidden value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.Tab Tab} instance, for chaining setter calls
+     */
+    public Tab setHidden(Boolean hidden) {
+        return (Tab)setAttribute("hidden", hidden);
+    }
+
+    /**
+     * If specified this tab will be hidden by default. To show and hide tabs at runtime use {@link
+     * com.smartgwt.client.widgets.tab.TabSet#showTab TabSet.showTab()} and {@link
+     * com.smartgwt.client.widgets.tab.TabSet#hideTab TabSet.hideTab()}
+     *
+     * @return Current hidden value. Default value is null
+     */
+    public Boolean getHidden()  {
+        return getAttributeAsBoolean("hidden", true);
     }
     
 
@@ -458,6 +487,35 @@ public class Tab extends RefDataClass implements com.smartgwt.client.widgets.tab
      */
     public String getTitle()  {
         return getAttributeAsString("title");
+    }
+    
+
+    /**
+     * Criteria to be evaluated to determine whether this Tab should be visible. <P> A basic criteria uses
+     * textMatchStyle:"exact". When specified in {@link com.smartgwt.client.docs.ComponentXML Component XML} this property
+     * allows {@link com.smartgwt.client.docs.XmlCriteriaShorthand shorthand formats} for defining criteria.
+     *
+     * @param visibleWhen New visibleWhen value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.Tab Tab} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.RuleCriteria RuleCriteria overview and related methods
+     */
+    public Tab setVisibleWhen(Criteria visibleWhen) {
+        if (visibleWhen instanceof Criterion) {
+            visibleWhen.setAttribute("_constructor", "AdvancedCriteria");
+        }
+        return (Tab)setAttribute("visibleWhen", visibleWhen == null ? null : visibleWhen.getJsObj());
+    }
+
+    /**
+     * Criteria to be evaluated to determine whether this Tab should be visible. <P> A basic criteria uses
+     * textMatchStyle:"exact". When specified in {@link com.smartgwt.client.docs.ComponentXML Component XML} this property
+     * allows {@link com.smartgwt.client.docs.XmlCriteriaShorthand shorthand formats} for defining criteria.
+     *
+     * @return Current visibleWhen value. Default value is null
+     * @see com.smartgwt.client.docs.RuleCriteria RuleCriteria overview and related methods
+     */
+    public Criteria getVisibleWhen()  {
+        return new Criteria(getAttributeAsJavaScriptObject("visibleWhen"));
     }
     
 

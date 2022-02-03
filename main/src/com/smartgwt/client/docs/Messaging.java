@@ -6,7 +6,7 @@ package com.smartgwt.client.docs;
  * The optional Real-Time Messaging (RTM) module for Smart GWT allows browser-based web
  * applications to:
  *  <ul>
- *  <li>publish and subscribe to HTTP messaging channels</li>
+ *  <li>publish and subscribe to client-server messaging channels</li>
  *  <li>send and receive messages via server push, for "real-time" updates without polling</li>
  *  </ul>
  * For examples of publish and subscribe messaging, see: @see <a
@@ -142,7 +142,49 @@ package com.smartgwt.client.docs;
  *  </table> <!-- Packages -->
  *  
  *  <p>
- *  <h3>Configuration</h3>
+ *  <h3>Data Protocols</h3>
+ * The Realtime Messaging subsystem supports real-time communication between client and server
+ * using 
+ * either <a href='https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API'
+ * target='_blank'>WebSockets</a> or
+ * <a href='https://en.wikipedia.org/wiki/Comet_(programming)' target='_blank'>Comet [HTTP Server
+ * Push]</a>.
+ *  <P>
+ * WebSockets is preferred as the non-websockets implementation requires a persistent connection
+ * to the server,
+ * and browsers are mandated by the HTTP protocol spec to limit connections to a single host to 6.
+ * 
+ * This becomes significant if an application with Messaging connections is opened in multiple
+ * browser windows or tabs.
+ *  The application can be significantly slowed down as as connections are used up by messaging,
+ * meaning the app's non-messaging operations will start slowing down and blocking as fewer
+ * connections are available
+ *  for parallel operations.
+ *  <P>
+ *  Both client and server are configured to  use WebSockets by default if supported.
+ * If the server does not respond correctly to WebSocket requests, the framework will
+ * automatically detect
+ * this and silently back off to using Comet. The Messaging APIs are not impacted in any way by
+ * the protocol being used,
+ *  so this process is invisible to end users and to application code.
+ *  <P>
+ *  Some cases that may cause WebSockets to be unavailable include:
+ *  <ul>
+ *   <li>Firewalls configured to block the webSocket connnections</li>
+ * <li>Proxies / reverse proxies that haven't been configured to handle the webSocket (wss://)
+ * protocol</li>
+ *   <li>Older servlet engines that don't support websockets</li>
+ *  </ul>
+ *  </li>
+ * If you're unsure which protocol is being used by a running application, you can use the native
+ * browser
+ *  developer tools to  watch for network requests against the  websocketURL 
+ *  and  messagingURL.<br>
+ *  If you're unsure <i>why</i> Web Sockets are not being used in your application we'd recommend 
+ * enabling DEBUG level server-side logging for com.isomorphic.messaging. This should report
+ * details on
+ *  the framework's attempts to set up a websocket listener during server startup.
+ *  <h3>Server Configuration</h3>
  *  <p>
  *  The Smart GWT message dispatcher can operate in simple mode or enterprise mode:
  *  <ul>

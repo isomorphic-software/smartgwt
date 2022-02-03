@@ -20,7 +20,9 @@ package com.smartgwt.client.types;
  
 /**
  * Enum to indicate selection change notification types. Used by {@link
- * com.smartgwt.client.widgets.grid.ListGrid#getReselectOnUpdateNotifications ListGrid.reselectOnUpdateNotifications}
+ * com.smartgwt.client.widgets.grid.ListGrid#getReselectOnUpdateNotifications ListGrid.reselectOnUpdateNotifications} and
+ * {@link com.smartgwt.client.widgets.tile.TileGrid#getReselectOnUpdateNotifications
+ * TileGrid.reselectOnUpdateNotifications}.
  */
 public enum SelectionNotificationType implements ValueEnum {
     /**
@@ -31,17 +33,16 @@ public enum SelectionNotificationType implements ValueEnum {
      */
     NONE("none"),
     /**
-     * {@link com.smartgwt.client.widgets.grid.ListGrid#addSelectionChangedHandler ListGrid.selectionChanged()} should fire but
-     * {@link com.smartgwt.client.widgets.grid.ListGrid#addSelectionUpdatedHandler ListGrid.selectionUpdated()} should not
-     * fire.
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#addSelectionChangedHandler selectionChanged()} should fire but {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#addSelectionUpdatedHandler selectionUpdated()} should not fire.
      * <P>
      * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
      * file or server-side DataSource descriptor (.ds.xml file), use the value "selectionChanged".
      */
     SELECTIONCHANGED("selectionChanged"),
     /**
-     * {@link com.smartgwt.client.widgets.grid.ListGrid#addSelectionChangedHandler ListGrid.selectionChanged()} and {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#addSelectionUpdatedHandler ListGrid.selectionUpdated()} should both fire.
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#addSelectionChangedHandler selectionChanged()} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#addSelectionUpdatedHandler selectionUpdated()} should both fire.
      * <P>
      * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
      * file or server-side DataSource descriptor (.ds.xml file), use the value "selectionUpdated".

@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -134,6 +139,34 @@ public class SectionStackSection extends RefDataClass {
 
 
     // ********************* Properties / Attributes ***********************
+
+    /**
+     * Is this section closeable? <P> Closeable sections show a {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#getCloseSectionButton SectionStack.closeSectionButton} which will invoke
+     * {@link com.smartgwt.client.widgets.layout.SectionStack#closeSection SectionStack.closeSection()} when clicked. <P> This
+     * property overrides the default {@link com.smartgwt.client.widgets.layout.SectionStack#getCanCloseSections
+     * SectionStack.canCloseSections} setting.
+     *
+     * @param canClose New canClose value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStackSection SectionStackSection} instance, for chaining setter calls
+     */
+    public SectionStackSection setCanClose(Boolean canClose) {
+        return (SectionStackSection)setAttribute("canClose", canClose);
+    }
+
+    /**
+     * Is this section closeable? <P> Closeable sections show a {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#getCloseSectionButton SectionStack.closeSectionButton} which will invoke
+     * {@link com.smartgwt.client.widgets.layout.SectionStack#closeSection SectionStack.closeSection()} when clicked. <P> This
+     * property overrides the default {@link com.smartgwt.client.widgets.layout.SectionStack#getCanCloseSections
+     * SectionStack.canCloseSections} setting.
+     *
+     * @return Current canClose value. Default value is null
+     */
+    public Boolean getCanClose()  {
+        return getAttributeAsBoolean("canClose", true);
+    }
+    
 
     /**
      * This attribute controls whether or not the expand/collapse UI control is shown on the header of this section.  Any
@@ -227,11 +260,66 @@ public class SectionStackSection extends RefDataClass {
     
 
     /**
+     * Icon src for the {@link com.smartgwt.client.widgets.layout.SectionStack#getCloseSectionButton close button} if  {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getCanClose canClose} is true. <P> If specified this takes
+     * precedence over {@link com.smartgwt.client.widgets.layout.SectionStack#getCloseSectionIcon
+     * SectionStack.closeSectionIcon}.
+     *
+     * @param closeIcon New closeIcon value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStackSection SectionStackSection} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
+     */
+    public SectionStackSection setCloseIcon(String closeIcon) {
+        return (SectionStackSection)setAttribute("closeIcon", closeIcon);
+    }
+
+    /**
+     * Icon src for the {@link com.smartgwt.client.widgets.layout.SectionStack#getCloseSectionButton close button} if  {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getCanClose canClose} is true. <P> If specified this takes
+     * precedence over {@link com.smartgwt.client.widgets.layout.SectionStack#getCloseSectionIcon
+     * SectionStack.closeSectionIcon}.
+     *
+     * @return Current closeIcon value. Default value is null
+     * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
+     */
+    public String getCloseIcon()  {
+        return getAttributeAsString("closeIcon");
+    }
+    
+
+    /**
+     * Pixel width/height for this sections {@link com.smartgwt.client.widgets.layout.SectionStackSection#getCloseIcon
+     * closeIcon}.<br> If unset {@link com.smartgwt.client.widgets.layout.SectionStack#getCloseSectionIconSize
+     * SectionStack.closeSectionIconSize} will be used.
+     *
+     * @param closeIconSize New closeIconSize value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStackSection SectionStackSection} instance, for chaining setter calls
+     */
+    public SectionStackSection setCloseIconSize(Integer closeIconSize) {
+        return (SectionStackSection)setAttribute("closeIconSize", closeIconSize);
+    }
+
+    /**
+     * Pixel width/height for this sections {@link com.smartgwt.client.widgets.layout.SectionStackSection#getCloseIcon
+     * closeIcon}.<br> If unset {@link com.smartgwt.client.widgets.layout.SectionStack#getCloseSectionIconSize
+     * SectionStack.closeSectionIconSize} will be used.
+     *
+     * @return Current closeIconSize value. Default value is null
+     */
+    public Integer getCloseIconSize()  {
+        return getAttributeAsInt("closeIconSize");
+    }
+    
+
+    /**
      * Custom controls to be shown on top of this section header. <P> These controls are shown in the {@link
      * com.smartgwt.client.widgets.layout.SectionHeader#getControlsLayout SectionHeader.controlsLayout}. <P> Note that this is
      * an init-time property. If you need to dynamically change what  controls are displayed to the user, we would recommend
      * embedding the controls in a Layout or similar container.  This will allow you to show/hide or add/remove members at
-     * runtime by manipulating the existing control(s) set up at init time.
+     * runtime by manipulating the existing control(s) set up at init time. <P> For {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getCanClose canClose:true} sections, a {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#getCloseSectionButton close icon} will be added to the section controls
+     * automatically.
      *
      * @param controls New controls value. Default value is null
      * @return {@link com.smartgwt.client.widgets.layout.SectionStackSection SectionStackSection} instance, for chaining setter calls
@@ -246,7 +334,10 @@ public class SectionStackSection extends RefDataClass {
      * com.smartgwt.client.widgets.layout.SectionHeader#getControlsLayout SectionHeader.controlsLayout}. <P> Note that this is
      * an init-time property. If you need to dynamically change what  controls are displayed to the user, we would recommend
      * embedding the controls in a Layout or similar container.  This will allow you to show/hide or add/remove members at
-     * runtime by manipulating the existing control(s) set up at init time.
+     * runtime by manipulating the existing control(s) set up at init time. <P> For {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getCanClose canClose:true} sections, a {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#getCloseSectionButton close icon} will be added to the section controls
+     * automatically.
      *
      * @return Current controls value. Default value is null
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_sections_custom_controls" target="examples">Custom Controls Example</a>
@@ -269,6 +360,79 @@ public class SectionStackSection extends RefDataClass {
         return (SectionStackSection)setAttribute("destroyOnRemove", destroyOnRemove);
     }
     
+    
+
+    /**
+     * Allows properties for the header (a {@link com.smartgwt.client.widgets.layout.SectionHeader} or {@link
+     * com.smartgwt.client.widgets.layout.ImgSectionHeader} subclass) to be set on the section before it's added to the {@link
+     * com.smartgwt.client.widgets.layout.SectionStack}.
+     *
+     * @param headerProperties New headerProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStackSection SectionStackSection} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.layout.SectionStack#setSectionHeaderClass
+     * @see com.smartgwt.client.docs.SGWTProperties
+     */
+    public SectionStackSection setHeaderProperties(SectionHeader headerProperties) {
+        if (headerProperties != null) {
+            if (headerProperties.isCreated()) {
+                ConfigUtil.warnOfPreConfigInstantiation(SectionStackSection.class, "setHeaderProperties", "SectionHeader");
+            }                                                                       
+            headerProperties.setConfigOnly(true);
+        }
+        JavaScriptObject config = headerProperties == null ? null : headerProperties.getConfig();
+        return (SectionStackSection)setAttribute("headerProperties", JSOHelper.cleanProperties(config, true));
+    }
+
+    /**
+     * Allows properties for the header (a {@link com.smartgwt.client.widgets.layout.SectionHeader} or {@link
+     * com.smartgwt.client.widgets.layout.ImgSectionHeader} subclass) to be set on the section before it's added to the {@link
+     * com.smartgwt.client.widgets.layout.SectionStack}.
+     *
+     * @return Current headerProperties value. Default value is null
+     * @see com.smartgwt.client.widgets.layout.SectionStack#getSectionHeaderClass
+     */
+    public SectionHeader getHeaderProperties()  {
+        SectionHeader properties = new SectionHeader();
+        properties.setConfigOnly(true);
+        properties.setConfig(getAttributeAsJavaScriptObject("headerProperties"));
+        return properties;
+    }
+
+    /**
+     * Allows properties for the header (a {@link com.smartgwt.client.widgets.layout.SectionHeader} or {@link
+     * com.smartgwt.client.widgets.layout.ImgSectionHeader} subclass) to be set on the section before it's added to the {@link
+     * com.smartgwt.client.widgets.layout.SectionStack}.
+     *
+     * @param headerProperties New headerProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStackSection SectionStackSection} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.layout.SectionStack#setSectionHeaderClass
+     * @see com.smartgwt.client.docs.SGWTProperties
+     */
+    public SectionStackSection setHeaderProperties(ImgSectionHeader headerProperties) {
+        if (headerProperties != null) {
+            if (headerProperties.isCreated()) {
+                ConfigUtil.warnOfPreConfigInstantiation(SectionStackSection.class, "setHeaderProperties", "ImgSectionHeader");
+            }                                                                       
+            headerProperties.setConfigOnly(true);
+        }
+        JavaScriptObject config = headerProperties == null ? null : headerProperties.getConfig();
+        return (SectionStackSection)setAttribute("headerProperties", JSOHelper.cleanProperties(config, true));
+    }
+
+    /**
+     * Allows properties for the header (a {@link com.smartgwt.client.widgets.layout.SectionHeader} or {@link
+     * com.smartgwt.client.widgets.layout.ImgSectionHeader} subclass) to be set on the section before it's added to the {@link
+     * com.smartgwt.client.widgets.layout.SectionStack}.
+     *
+     * @return Current headerProperties value. Default value is null
+     * @see com.smartgwt.client.widgets.layout.SectionStack#getSectionHeaderClass
+     */
+    public ImgSectionHeader getHeaderPropertiesAsImgSectionHeader()  {
+        ImgSectionHeader properties = new ImgSectionHeader();
+        properties.setConfigOnly(true);
+        properties.setConfig(getAttributeAsJavaScriptObject("headerProperties"));
+        return properties;
+    }
     
     
 

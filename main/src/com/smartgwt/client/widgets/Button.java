@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * The Button widget class implements interactive, style-based button widgets.
@@ -295,7 +301,12 @@ public class Button extends StatefulCanvas implements com.smartgwt.client.widget
     
 
     /**
-     * Base CSS style className applied to the component. 
+     * Base CSS style className applied to the component.
+     *  <P>
+     *  Note that if specified, this property takes precedence over any specified
+     * {@link com.smartgwt.client.widgets.StatefulCanvas#getStyleName StatefulCanvas.styleName}. If unset, the
+     * <code>styleName</code> will be used as a 
+     *  default <code>baseStyle</code> value.
      *  <P>
      * As the component changes {@link com.smartgwt.client.widgets.StatefulCanvas#getState StatefulCanvas.state} and/or is
      * selected, 
@@ -346,6 +357,14 @@ public class Button extends StatefulCanvas implements com.smartgwt.client.widget
      *  <li>We've explicitly avoided describing an approach based on CSS "writing-mode", since
      *  support is incomplete and bugs are present in popular browsers such as Firefox and
      *  Safari that would prevent it from being used without Framework assistance.</ul>
+     *  <P>
+     *  Note on css-margins: Developers should be aware that the css "margin" property is unreliable for
+     *  certain subclasses of StatefulCanvas, including {@link com.smartgwt.client.widgets.Button buttons}. Developers may use 
+     * the explicit {@link com.smartgwt.client.widgets.Canvas#getMargin Canvas.margin} property to specify button margins, or
+     * for a 
+     * button within a layout, consider the layout properties {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin
+     * Layout.layoutMargin},
+     *  {@link com.smartgwt.client.widgets.layout.Layout#getMembersMargin Layout.membersMargin}
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the base CSS style.  As the component changes state and/or is selected, suffixes will be added to the base style.
@@ -360,7 +379,12 @@ public class Button extends StatefulCanvas implements com.smartgwt.client.widget
     }
 
     /**
-     * Base CSS style className applied to the component. 
+     * Base CSS style className applied to the component.
+     *  <P>
+     *  Note that if specified, this property takes precedence over any specified
+     * {@link com.smartgwt.client.widgets.StatefulCanvas#getStyleName StatefulCanvas.styleName}. If unset, the
+     * <code>styleName</code> will be used as a 
+     *  default <code>baseStyle</code> value.
      *  <P>
      * As the component changes {@link com.smartgwt.client.widgets.StatefulCanvas#getState StatefulCanvas.state} and/or is
      * selected, 
@@ -411,6 +435,14 @@ public class Button extends StatefulCanvas implements com.smartgwt.client.widget
      *  <li>We've explicitly avoided describing an approach based on CSS "writing-mode", since
      *  support is incomplete and bugs are present in popular browsers such as Firefox and
      *  Safari that would prevent it from being used without Framework assistance.</ul>
+     *  <P>
+     *  Note on css-margins: Developers should be aware that the css "margin" property is unreliable for
+     *  certain subclasses of StatefulCanvas, including {@link com.smartgwt.client.widgets.Button buttons}. Developers may use 
+     * the explicit {@link com.smartgwt.client.widgets.Canvas#getMargin Canvas.margin} property to specify button margins, or
+     * for a 
+     * button within a layout, consider the layout properties {@link com.smartgwt.client.widgets.layout.Layout#getLayoutMargin
+     * Layout.layoutMargin},
+     *  {@link com.smartgwt.client.widgets.layout.Layout#getMembersMargin Layout.membersMargin}
      *
      * @return Current baseStyle value. Default value is "button"
      * @see com.smartgwt.client.widgets.Button#getIconOnlyBaseStyle
@@ -1272,6 +1304,35 @@ public class Button extends StatefulCanvas implements com.smartgwt.client.widget
     
 
     /**
+     * StatefulCanvases are styled by combining {@link com.smartgwt.client.widgets.Button#getBaseStyle baseStyle} with {@link
+     * com.smartgwt.client.types.State} to build a composite css style name. In most cases,
+     * <code>statefulCanvas.styleName</code> will have no effect on statefulCanvas styling and should not be used. <P> If the
+     * <code>baseStyle</code> is not explicitly specified for a class, the  <code>styleName</code> will be used as a default
+     * baseStyle. Other than that, this attribute will be ignored.
+     *
+     * @param styleName New styleName value. Default value is "normal"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public void setStyleName(String styleName) {
+        setAttribute("styleName", styleName, true);
+    }
+
+    /**
+     * StatefulCanvases are styled by combining {@link com.smartgwt.client.widgets.Button#getBaseStyle baseStyle} with {@link
+     * com.smartgwt.client.types.State} to build a composite css style name. In most cases,
+     * <code>statefulCanvas.styleName</code> will have no effect on statefulCanvas styling and should not be used. <P> If the
+     * <code>baseStyle</code> is not explicitly specified for a class, the  <code>styleName</code> will be used as a default
+     * baseStyle. Other than that, this attribute will be ignored.
+     *
+     * @return Current styleName value. Default value is "normal"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public String getStyleName()  {
+        return getAttributeAsString("styleName");
+    }
+    
+
+    /**
      * The title HTML to display in this button.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
@@ -1894,6 +1955,11 @@ public class Button extends StatefulCanvas implements com.smartgwt.client.widget
             s.state = getAttributeAsString("state");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Button.state:" + t.getMessage() + "\n";
+        }
+        try {
+            s.styleName = getAttributeAsString("styleName");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Button.styleName:" + t.getMessage() + "\n";
         }
         try {
             s.title = getAttributeAsString("title");

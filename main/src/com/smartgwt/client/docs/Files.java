@@ -3,8 +3,8 @@ package com.smartgwt.client.docs;
 
 /**
  * Referring to and loading other files. <P> The two main URL settings relevant to file loading
- * are:<br> * appDir  (where application-specific files live)<br> * isomorphicDir (where system
- * supplied files live)<br>
+ * are:<ul> <li>appDir  (where application-specific files live) <li>isomorphicDir (where system
+ * supplied files live)</ul>
  * @see com.smartgwt.client.util.Page#getAppDir
  * @see com.smartgwt.client.util.Page#setAppImgDir
  * @see com.smartgwt.client.util.Page#getAppImgDir

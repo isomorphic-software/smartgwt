@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * A TreeGrid that allows drag and drop creation and manipulation of a tree of  objects described by DataSources. <P> Nodes
@@ -296,6 +302,52 @@ public class EditTree extends TreeGrid {
     
 
     /**
+     * Option to save searches is disabled for editTree
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canSaveSearches New canSaveSearches value. Default value is false
+     * @return {@link com.smartgwt.client.tools.EditTree EditTree} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public EditTree setCanSaveSearches(boolean canSaveSearches)  throws IllegalStateException {
+        return (EditTree)setAttribute("canSaveSearches", canSaveSearches, false);
+    }
+
+    /**
+     * Option to save searches is disabled for editTree
+     *
+     * @return Current canSaveSearches value. Default value is false
+     */
+    public boolean getCanSaveSearches()  {
+        Boolean result = getAttributeAsBoolean("canSaveSearches");
+        return result == null ? false : result;
+    }
+    
+
+    /**
+     * Option to show filter editor is disabled for editTree
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canShowFilterEditor New canShowFilterEditor value. Default value is false
+     * @return {@link com.smartgwt.client.tools.EditTree EditTree} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public EditTree setCanShowFilterEditor(boolean canShowFilterEditor)  throws IllegalStateException {
+        return (EditTree)setAttribute("canShowFilterEditor", canShowFilterEditor, false);
+    }
+
+    /**
+     * Option to show filter editor is disabled for editTree
+     *
+     * @return Current canShowFilterEditor value. Default value is false
+     */
+    public boolean getCanShowFilterEditor()  {
+        Boolean result = getAttributeAsBoolean("canShowFilterEditor");
+        return result == null ? false : result;
+    }
+    
+
+    /**
      * {@link com.smartgwt.client.tools.Palette} to use when an {@link com.smartgwt.client.tools.EditNode} is being created
      * directly by this EditContext, instead of being created due to a user interaction with a palette (eg dragging from a
      * {@link com.smartgwt.client.tools.TreePalette}, or clicking on {@link com.smartgwt.client.tools.MenuPalette}). <P> If no
@@ -444,9 +496,9 @@ public class EditTree extends TreeGrid {
      * calls and user interaction (drag reposition or drag resize). <p> This feature can be disabled by either setting this
      * property or {@link com.smartgwt.client.tools.EditProxy#getPersistCoordinates EditProxy.persistCoordinates} to
      * <code>false</code>. This property affects all nodes within the EditContext whereas the latter property affects children
-     * of a single node.  <p> In some use-cases, like VisualBuilder, coordinates should not be persisted except when a
-     * component explicitly enables this feature. By setting this property to <code>null</code> no component will persist
-     * coordinates of children unless <code>EditProxy.persistCoordinates</code> is explicitly set to <code>true</code>.
+     * of a single node.  <p> In some use-cases, like Reify, coordinates should not be persisted except when a component
+     * explicitly enables this feature. By setting this property to <code>null</code> no component will persist coordinates of
+     * children unless <code>EditProxy.persistCoordinates</code> is explicitly set to <code>true</code>.
      *
      * @param persistCoordinates New persistCoordinates value. Default value is true
      * @return {@link com.smartgwt.client.tools.EditTree EditTree} instance, for chaining setter calls
@@ -462,9 +514,9 @@ public class EditTree extends TreeGrid {
      * calls and user interaction (drag reposition or drag resize). <p> This feature can be disabled by either setting this
      * property or {@link com.smartgwt.client.tools.EditProxy#getPersistCoordinates EditProxy.persistCoordinates} to
      * <code>false</code>. This property affects all nodes within the EditContext whereas the latter property affects children
-     * of a single node.  <p> In some use-cases, like VisualBuilder, coordinates should not be persisted except when a
-     * component explicitly enables this feature. By setting this property to <code>null</code> no component will persist
-     * coordinates of children unless <code>EditProxy.persistCoordinates</code> is explicitly set to <code>true</code>.
+     * of a single node.  <p> In some use-cases, like Reify, coordinates should not be persisted except when a component
+     * explicitly enables this feature. By setting this property to <code>null</code> no component will persist coordinates of
+     * children unless <code>EditProxy.persistCoordinates</code> is explicitly set to <code>true</code>.
      *
      * @return Current persistCoordinates value. Default value is true
      */
@@ -1027,6 +1079,20 @@ public class EditTree extends TreeGrid {
     }-*/;
 
 	/**
+     * Returns the specified property from the editNode's serializable "defaults".
+     * @param editNode the editNode to query
+     * @param name the property name to query
+     * @see com.smartgwt.client.tools.EditTree#setNodeProperties
+     */
+    public native void getNodeProperty(EditNode editNode, String name) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getNodeProperty", "EditNode,String");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.getNodeProperty(editNode.@com.smartgwt.client.core.DataClass::getJsObj()(), name);
+    }-*/;
+
+	/**
      * Obtain {@link com.smartgwt.client.tools.PaletteNode PaletteNodes} from a JavaScript source representation. <P> By
      * default, components that have {@link com.smartgwt.client.widgets.Canvas#getID global IDs} will not actually be allowed
      * to take those global IDs - instead, only widgets that have one of the global IDs passed as the <code>globals</code>
@@ -1042,7 +1108,8 @@ public class EditTree extends TreeGrid {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.getPaletteNodesFromJS(jsCode, 
 			$entry( function(paletteNodes) { 
-				if(callback!=null) callback.@com.smartgwt.client.callbacks.PaletteNodeCallback::execute([Lcom/smartgwt/client/tools/PaletteNode;)(@com.smartgwt.client.util.ConvertTo::arrayOfPaletteNode(Lcom/google/gwt/core/client/JavaScriptObject;)(paletteNodes)
+				if(callback!=null) callback.@com.smartgwt.client.callbacks.PaletteNodeCallback::execute([Lcom/smartgwt/client/tools/PaletteNode;)(
+					paletteNodes != null ? @com.smartgwt.client.util.ConvertTo::arrayOfPaletteNode(Lcom/google/gwt/core/client/JavaScriptObject;)(paletteNodes) : null
 				);
 			}));
     }-*/;
@@ -1064,7 +1131,8 @@ public class EditTree extends TreeGrid {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.getPaletteNodesFromJS(jsCode, 
 			$entry( function(paletteNodes) { 
-				if(callback!=null) callback.@com.smartgwt.client.callbacks.PaletteNodeCallback::execute([Lcom/smartgwt/client/tools/PaletteNode;)(@com.smartgwt.client.util.ConvertTo::arrayOfPaletteNode(Lcom/google/gwt/core/client/JavaScriptObject;)(paletteNodes)
+				if(callback!=null) callback.@com.smartgwt.client.callbacks.PaletteNodeCallback::execute([Lcom/smartgwt/client/tools/PaletteNode;)(
+					paletteNodes != null ? @com.smartgwt.client.util.ConvertTo::arrayOfPaletteNode(Lcom/google/gwt/core/client/JavaScriptObject;)(paletteNodes) : null
 				);
 			}), @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(globals));
     }-*/;
@@ -1084,7 +1152,8 @@ public class EditTree extends TreeGrid {
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.getPaletteNodesFromXML(xmlString, 
 			$entry( function(paletteNodes) { 
-				if(callback!=null) callback.@com.smartgwt.client.callbacks.PaletteNodeCallback::execute([Lcom/smartgwt/client/tools/PaletteNode;)(@com.smartgwt.client.util.ConvertTo::arrayOfPaletteNode(Lcom/google/gwt/core/client/JavaScriptObject;)(paletteNodes)
+				if(callback!=null) callback.@com.smartgwt.client.callbacks.PaletteNodeCallback::execute([Lcom/smartgwt/client/tools/PaletteNode;)(
+					paletteNodes != null ? @com.smartgwt.client.util.ConvertTo::arrayOfPaletteNode(Lcom/google/gwt/core/client/JavaScriptObject;)(paletteNodes) : null
 				);
 			}));
     }-*/;
@@ -1420,6 +1489,7 @@ public class EditTree extends TreeGrid {
      * @param editNode the editNode to update
      * @param properties the properties to apply
      * @see com.smartgwt.client.tools.EditTree#removeNodeProperties
+     * @see com.smartgwt.client.tools.EditTree#getNodeProperty
      */
     public native void setNodeProperties(EditNode editNode, Canvas properties) /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
@@ -1446,6 +1516,7 @@ public class EditTree extends TreeGrid {
      * com.smartgwt.client.tools.EditNode#getLiveObject liveObject},                                         e.g. if you have
      * already updated the liveObject
      * @see com.smartgwt.client.tools.EditTree#removeNodeProperties
+     * @see com.smartgwt.client.tools.EditTree#getNodeProperty
      */
     public native void setNodeProperties(EditNode editNode, Canvas properties, Boolean skipLiveObjectUpdate) /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
@@ -1522,6 +1593,16 @@ public class EditTree extends TreeGrid {
             s.canGroupSelect = getAttributeAsString("canGroupSelect");
         } catch (Throwable t) {
             s.logicalStructureErrors += "EditTree.canGroupSelect:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canSaveSearches = getAttributeAsString("canSaveSearches");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "EditTree.canSaveSearches:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canShowFilterEditor = getAttributeAsString("canShowFilterEditor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "EditTree.canShowFilterEditor:" + t.getMessage() + "\n";
         }
         try {
             s.defaultPalette = getAttributeAsString("defaultPalette");

@@ -6,6 +6,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
@@ -46,6 +47,8 @@ import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
 
 public class TableViewLogicalStructure extends ListGridLogicalStructure {
+    public String canSaveSearches;
+    public String canShowFilterEditor;
     public String dataField;
     public String descriptionField;
     public String iconField;

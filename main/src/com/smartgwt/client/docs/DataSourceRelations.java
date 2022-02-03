@@ -8,6 +8,7 @@ package com.smartgwt.client.docs;
  * (records can be linked by a parentId field).
      * @see com.smartgwt.client.docs.serverds.DataSourceField#foreignKey
  * @see com.smartgwt.client.types.JoinType
+ * @see com.smartgwt.client.docs.serverds.DataSource#relatedTableAlias
  * @see com.smartgwt.client.data.DataSourceField#getPrimaryKey
  * @see com.smartgwt.client.data.DataSourceField#getForeignKey
  * @see com.smartgwt.client.data.DataSourceField#getChildrenProperty
@@ -15,6 +16,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.docs.serverds.DataSourceField#includeFrom
  * @see com.smartgwt.client.docs.serverds.DataSourceField#includeVia
  * @see com.smartgwt.client.docs.serverds.DataSourceField#relatedTableAlias
+ * @see com.smartgwt.client.docs.serverds.DataSourceField#otherFKs
  * @see com.smartgwt.client.data.DataSourceField#getDisplayField
  * @see com.smartgwt.client.data.DataSourceField#getForeignDisplayField
  * @see com.smartgwt.client.docs.serverds.DataSourceField#joinType

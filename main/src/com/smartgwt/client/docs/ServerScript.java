@@ -95,19 +95,15 @@ package com.smartgwt.client.docs;
  *  <P>
  *  <h3>Available Languages</h3>
  *  <P>
- *  The Oracle JDK and JRE include support for JavaScript scripting via the Rhino engine.
- * Alternatively, you may wish to consider <a href='http://code.google.com/p/jav8/'
- * target='_blank'>jav8</a>,
- *  which is a Javascript JSR223 scripting implementation based on the V8 engine, giving 
- *  Javascript execution speeds comparable to Google Chrome.
+ * The Oracle JDK and JRE <a
+ * href='https://docs.oracle.com/javase/10/scripting/java-scripting-api.htm#JSJSG109'
+ * target='_blank'>include support for JavaScript scripting via the Nashorn engine</a>.
  *  <p>
  *  For convenience, Smart GWT also bundles a .jar providing Groovy support from 
  * <a href='http://www.groovy-lang.org/' target='_blank'>http://www.groovy-lang.org/</a>, which
  * uses the Apache license.  We also include
  *  a .jar file providing Java language support (however see below for limitations).  This
- *  implementation is based on the BSD-licensed
- * <a href='http://java.net/projects/scripting/' target='_blank'>Java.net</a> implementation, but
- * enhanced by
+ *  implementation is based on the BSD-licensed Java.net implementation, but enhanced by
  *  Isomorphic to work around container-specific classloader issues that arise when running Java
  *  language scripting inside a servlet container and trying to reference common objects of the
  *  servlet API itself.  See {@link com.smartgwt.client.docs.SunNotice} for licensing information.

@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * Provides a list or tree of {@link com.smartgwt.client.widgets.layout.NavItem navigation items}, each of which specifies
@@ -260,6 +266,29 @@ public class NavPanel extends SplitPane {
     
 
     /**
+     * CSS style for the {@link com.smartgwt.client.widgets.layout.NavPanel#getNavDeck navDeck}.
+     *
+     * @param deckStyle New deckStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavPanel NavPanel} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public NavPanel setDeckStyle(String deckStyle)  throws IllegalStateException {
+        return (NavPanel)setAttribute("deckStyle", deckStyle, false);
+    }
+
+    /**
+     * CSS style for the {@link com.smartgwt.client.widgets.layout.NavPanel#getNavDeck navDeck}.
+     *
+     * @return Current deckStyle value. Default value is null
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public String getDeckStyle()  {
+        return getAttributeAsString("deckStyle");
+    }
+    
+
+    /**
      * Select the first {@link com.smartgwt.client.widgets.layout.NavItem} on initialization if neither {@link
      * com.smartgwt.client.widgets.layout.NavPanel#getCurrentItemId currentItemId} nor {@link
      * com.smartgwt.client.widgets.layout.NavPanel#getCurrentItem currentItem} are provided.
@@ -349,6 +378,32 @@ public class NavPanel extends SplitPane {
     
 
     /**
+     * Members to add after the {@link com.smartgwt.client.widgets.layout.NavPanel#getNavGrid navGrid} in the {@link
+     * com.smartgwt.client.widgets.layout.NavPanel#getNavLayout navLayout} when the panel is first drawn.
+     *
+     * @param navAfterMembers New navAfterMembers value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavPanel NavPanel} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public NavPanel setNavAfterMembers(Canvas... navAfterMembers)  throws IllegalStateException {
+        return (NavPanel)setAttribute("navAfterMembers", navAfterMembers, false);
+    }
+    
+
+    /**
+     * Members to add before the {@link com.smartgwt.client.widgets.layout.NavPanel#getNavGrid navGrid} in the {@link
+     * com.smartgwt.client.widgets.layout.NavPanel#getNavLayout navLayout} when the panel is first drawn.
+     *
+     * @param navBeforeMembers New navBeforeMembers value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavPanel NavPanel} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public NavPanel setNavBeforeMembers(Canvas... navBeforeMembers)  throws IllegalStateException {
+        return (NavPanel)setAttribute("navBeforeMembers", navBeforeMembers, false);
+    }
+    
+
+    /**
      * The {@link com.smartgwt.client.widgets.layout.Deck} area where components specified via {@link
      * com.smartgwt.client.widgets.layout.NavItem#getPane NavItem.pane} are displayed.
      * <p>
@@ -377,6 +432,35 @@ public class NavPanel extends SplitPane {
     public TreeGrid getNavGrid() throws IllegalStateException {
         errorIfNotCreated("navGrid");
         return (TreeGrid)TreeGrid.getByJSObject(getAttributeAsJavaScriptObject("navGrid"));
+    }
+    
+
+    /**
+     * Pass through to set the {@link com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle basestyle} on the {@link
+     * com.smartgwt.client.widgets.layout.NavPanel#getNavGrid navGrid} autoChild.
+     *
+     * @param navItemBaseStyle New navItemBaseStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavPanel NavPanel} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public NavPanel setNavItemBaseStyle(String navItemBaseStyle)  throws IllegalStateException {
+        return (NavPanel)setAttribute("navItemBaseStyle", navItemBaseStyle, false);
+    }
+
+    /**
+     * Pass through to set the {@link com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle basestyle} on the {@link
+     * com.smartgwt.client.widgets.layout.NavPanel#getNavGrid navGrid} autoChild.
+     *
+     * @return Current navItemBaseStyle value. Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public String getNavItemBaseStyle()  {
+        return getAttributeAsString("navItemBaseStyle");
     }
     
 
@@ -413,6 +497,25 @@ public class NavPanel extends SplitPane {
      */
     public NavItem[] getNavItems()  {
         return com.smartgwt.client.util.ConvertTo.arrayOfNavItem(getAttributeAsJavaScriptObject("navItems"));
+    }
+    
+
+    /**
+     * The layout serving as the {@link com.smartgwt.client.widgets.layout.SplitPane#getNavigationPane navigationPane} of this
+     * panel. By default it contains only the {@link com.smartgwt.client.widgets.layout.NavPanel#getNavGrid navGrid}, but other
+     * members can be added before or after, respectively, via {@link
+     * com.smartgwt.client.widgets.layout.NavPanel#getNavBeforeMembers navBeforeMembers} and {@link
+     * com.smartgwt.client.widgets.layout.NavPanel#getNavAfterMembers navAfterMembers}.
+     * <p>
+     * This component is an AutoChild named "navLayout".  For an overview of how to use and
+     * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return Current navLayout value. Default value is null
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public VLayout getNavLayout() throws IllegalStateException {
+        errorIfNotCreated("navLayout");
+        return (VLayout)VLayout.getByJSObject(getAttributeAsJavaScriptObject("navLayout"));
     }
     
 
@@ -468,6 +571,11 @@ public class NavPanel extends SplitPane {
             s.logicalStructureErrors += "NavPanel.currentItemId:" + t.getMessage() + "\n";
         }
         try {
+            s.deckStyle = getAttributeAsString("deckStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "NavPanel.deckStyle:" + t.getMessage() + "\n";
+        }
+        try {
             s.defaultToFirstItem = getAttributeAsString("defaultToFirstItem");
         } catch (Throwable t) {
             s.logicalStructureErrors += "NavPanel.defaultToFirstItem:" + t.getMessage() + "\n";
@@ -481,6 +589,11 @@ public class NavPanel extends SplitPane {
             s.isTree = getAttributeAsString("isTree");
         } catch (Throwable t) {
             s.logicalStructureErrors += "NavPanel.isTree:" + t.getMessage() + "\n";
+        }
+        try {
+            s.navItemBaseStyle = getAttributeAsString("navItemBaseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "NavPanel.navItemBaseStyle:" + t.getMessage() + "\n";
         }
         try {
             s.navItems = getNavItems();

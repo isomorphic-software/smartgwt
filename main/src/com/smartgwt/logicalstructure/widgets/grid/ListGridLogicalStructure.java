@@ -6,6 +6,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
@@ -47,8 +48,10 @@ import com.smartgwt.logicalstructure.widgets.drawing.*;
 
 public class ListGridLogicalStructure extends VLayoutLogicalStructure {
     public String advancedFieldPickerThreshold;
+    public String advancedFilteringText;
     public String allowFilterExpressions;
     public String allowFilterOperators;
+    public String allowFilterWindow;
     public String allowRowSpanning;
     public String alternateBodyStyleName;
     public String alternateFieldFrequency;
@@ -138,9 +141,11 @@ public class ListGridLogicalStructure extends VLayoutLogicalStructure {
     public String canReorderFields;
     public String canReorderRecords;
     public String canResizeFields;
+    public String canSaveSearches;
     public String canSelectAll;
     public String canSelectCells;
     public String canSelectGroups;
+    public String canShowFilterEditor;
     public String canSort;
     public String canTabToHeader;
     public String canTabToSorter;
@@ -165,6 +170,9 @@ public class ListGridLogicalStructure extends VLayoutLogicalStructure {
     public String confirmCancelEditing;
     public String confirmDiscardEdits;
     public String confirmDiscardEditsMessage;
+    public String criteriaIndicatorColor;
+    public String criteriaIndicatorHeaderColor;
+    public String dataArity;
     public String dataFetchDelay;
     public String dataFetchMode;
     public ResultSet dataProperties;
@@ -225,6 +233,7 @@ public class ListGridLogicalStructure extends VLayoutLogicalStructure {
     public String expansionFieldTrueImage;
     public String expansionIndent;
     public String expansionMode;
+    public String expansionScreen;
     public String explicitFetchDelay;
     public String exportAlternateRowBGColor;
     public String exportDefaultBGColor;
@@ -237,6 +246,7 @@ public class ListGridLogicalStructure extends VLayoutLogicalStructure {
     public String exportWidthScale;
     public String exportWrapHeaderTitles;
     public String fetchDelay;
+    public String fieldCriteriaText;
     public String[] fieldPickerFieldProperties;
     public String fieldPickerShowSampleValues;
     public ListGridField[] fields;
@@ -248,6 +258,8 @@ public class ListGridLogicalStructure extends VLayoutLogicalStructure {
     public String filterLocalData;
     public String filterOnKeypress;
     public String filterUsingText;
+    public Criteria filterWindowCriteria;
+    public String filterWindowInstructions;
     public String fixedFieldWidths;
     public String fixedRecordHeights;
     public String formulaBuilderSpanTitleSeparator;
@@ -264,6 +276,7 @@ public class ListGridLogicalStructure extends VLayoutLogicalStructure {
     public String generateClickOnSpace;
     public String generateDoubleClickOnEnter;
     public String generateDoubleClickOnSpace;
+    public String gridAdditionalCriteriaText;
     public String gridSummaryRecordProperty;
     public String groupByAsyncThreshold;
     public String[] groupByFieldSummaries;
@@ -309,6 +322,7 @@ public class ListGridLogicalStructure extends VLayoutLogicalStructure {
     public String headerTitleStyle;
     public String headerTitleVAlign;
     public String hideEmptySummaryRow;
+    public String hideFilterEditorTitle;
     public String hiliteCanReplaceValue;
     public String hiliteEditorSpanTitleSeparator;
     public String hiliteHTMLAfterFormat;
@@ -322,6 +336,7 @@ public class ListGridLogicalStructure extends VLayoutLogicalStructure {
     public String hiliteReplaceValueFieldTitle;
     public String hiliteRowOnFocus;
     public String hoverMode;
+    public String hoverScreen;
     public String hoverStyle;
     public String iconCursor;
     public String iconPadding;
@@ -352,8 +367,11 @@ public class ListGridLogicalStructure extends VLayoutLogicalStructure {
     public String modalEditing;
     public String navigateOnTab;
     public String neverValidate;
+    public String newRecordRowMessage;
+    public String newSearchText;
     public String normalBaseStyle;
     public String normalCellHeight;
+    public String noSavedSearchesText;
     public String nullGroupTitle;
     public String offlineMessageStyle;
     public String originBaseStyle;
@@ -386,6 +404,7 @@ public class ListGridLogicalStructure extends VLayoutLogicalStructure {
     public String recordEnabledProperty;
     public String recordRowAriaStateProperty;
     public String recordRowRoleProperty;
+    public String recordScreen;
     public String recordShowRollOverProperty;
     public String recordSummaryAttributePrefix;
     public String recordSummaryBaseStyle;
@@ -408,6 +427,12 @@ public class ListGridLogicalStructure extends VLayoutLogicalStructure {
     public String rowSpanEditMode;
     public String rowSpanSelectionMode;
     public String saveByCell;
+    public String saveCriteriaInViewState;
+    public String saveDefaultSearch;
+    public String savedSearchAdminRole;
+    public String savedSearchDS;
+    public String savedSearchStoredState;
+    public String savedSearchText;
     public String saveLocally;
     public String screenReaderCellSeparator;
     public String screenReaderIncludeFieldTitles;
@@ -418,6 +443,8 @@ public class ListGridLogicalStructure extends VLayoutLogicalStructure {
     public String scrollToCellXPosition;
     public String scrollToCellYPosition;
     public String scrollWheelRedrawDelay;
+    public DynamicForm searchFormAsDynamicForm;
+    public ValuesManager searchFormAsValuesManager;
     public String selectCellTextOnClick;
     public String selectedState;
     public String selectHeaderOnSort;
@@ -440,6 +467,9 @@ public class ListGridLogicalStructure extends VLayoutLogicalStructure {
     public String showErrorIcons;
     public String showExpansionEditorSaveButton;
     public String showFilterEditor;
+    public String showFilterEditorHovers;
+    public String showFilterEditorTitle;
+    public String showFilterWindowCriteriaIndicator;
     public String showGridSummary;
     public String showGroupSummary;
     public String showGroupSummaryInHeader;
@@ -459,6 +489,7 @@ public class ListGridLogicalStructure extends VLayoutLogicalStructure {
     public String showHoverComponents;
     public String showHoverOnDisabledCells;
     public String showInitialDragHandles;
+    public String showNewRecordRow;
     public String showPartialSelection;
     public String showRecordComponents;
     public String showRollOver;
@@ -509,6 +540,7 @@ public class ListGridLogicalStructure extends VLayoutLogicalStructure {
     public String useAdvancedFieldPicker;
     public String useCellRollOvers;
     public String useCopyPasteShortcuts;
+    public String useMultiSelectForFilterValueMaps;
     public String useRemoteValidators;
     public String useRowSpanStyling;
     public String validateByCell;

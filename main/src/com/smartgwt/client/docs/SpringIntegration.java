@@ -3,7 +3,10 @@ package com.smartgwt.client.docs;
 
 /**
  * <h3>Integration with Spring</h3>
- * <b>Overview</b>
+ * {@link com.smartgwt.client.docs.Spring4limits <b>Note:</b> Java 16+ is incompatible with Spring
+ * 4.}
+ *  <P>
+ *  <b>Overview</b>
  *  <P>
  *  The Spring framework has many different parts, from integration with Object Relational
  *  Mapping (ORM) and transaction management systems, to a Model View Controller (MVC)
@@ -165,6 +168,15 @@ package com.smartgwt.client.docs;
  *  <code>&#x0040;Transactional</code> method of a Spring service bean.  This will place the 
  *  processing of the entire Smart GWT queue inside the transaction that is created by Spring
  *  to service that transactional method.
+ *  <p>
+ *  <h3><b>Using Spring DataSources with Smart GWT SQLDataSource</b></h3>
+ *  <p>
+ * Smartclient {@link com.smartgwt.client.docs.SqlDataSource SQL DataSources} may be configured to
+ * obtain JDBC
+ *  connections from the <code>javax.sql.DataSource</code> implementation provided by
+ *  Spring context. Search for <code>sql.MyDatabase.interface.type</code> in
+ * {@link com.smartgwt.client.docs.SqlSettings SQL settings} overview for the configuration
+ * details.
  */
 public interface SpringIntegration {
 }

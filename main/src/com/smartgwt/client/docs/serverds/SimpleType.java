@@ -62,7 +62,7 @@ import java.util.Map;
  *  the string value, and use it for sorting and other standard databinding features.
  *  <P>
  *  Note that the term "simpleType" is used in the same sense as in
- *  <a href='XML Schema' target='_blank'>http://www.w3.org/TR/xmlschema-0/</a>, and
+ *  <a href='http://www.w3.org/TR/xmlschema-0/' target='_blank'>XML Schema</a>, and
  * {@link com.smartgwt.client.data.XMLTools#loadXMLSchema XMLTools.loadXMLSchema()} will create
  * new SimpleType definitions.
  *  <P>
@@ -121,6 +121,16 @@ import java.util.Map;
 public class SimpleType {
 
     /**
+     * Default {@link com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyDisplay
+     * readOnlyDisplay} for fields of this type. <P> For more sophisticated management of read-only
+     * behavior, see {@link com.smartgwt.client.docs.serverds.SimpleType#readOnlyEditorType
+     * readOnlyEditorType}.
+     *
+     * <p>Default value is null
+     */
+    public ReadOnlyDisplayAppearance readOnlyDisplay;
+
+    /**
      * Name of another SimpleType from which this type should inherit. <P> Validators, if any, will be
      * combined.  All other SimpleType properties default to the inherited type's value.
      *
@@ -148,6 +158,49 @@ public class SimpleType {
     public FormItem readOnlyEditorType;
 
     /**
+     * Default value for {@link com.smartgwt.client.docs.serverds.DataSourceField#canFilter
+     * DataSourceField.canFilter} for fields of this type. <P> This impacts client-side behavior only
+     * and may be used to explicitly enable editing in filter interfaces, even if {@link
+     * com.smartgwt.client.docs.serverds.SimpleType#canEdit editing is disabled}. <P> This property is
+     * set to true for the "sequence" SimpleType by default.
+     *
+     * <p>Default value is null
+     */
+    public Boolean canFilter;
+
+    /**
+     * Classname of the FormItem that should be the default for editing values of this type (eg
+     * "SelectItem"). <P> You can create a simple custom FormItem by adding default {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getIcons FormItem.icons} that launch custom
+     * value picking dialogs (an example is in the <i>QuickStart Guide</i>, Chapter 9, <i>Extending
+     * Smart GWT</i>).  By setting simpleType.editorType to the name of your custom FormItem, forms
+     * will automatically use the custom FormItem, as will grids performing {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanEdit inline editing}.
+     *
+     * <p>Default value is null
+     */
+    public FormItem editorType;
+
+    /**
+     * List of legal values for this type, like {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#valueMap DataSourceField.valueMap}.
+     *
+     * <p>Default value is null
+     */
+    public Map valueMap;
+
+    /**
+     * Default value for {@link com.smartgwt.client.docs.serverds.DataSourceField#canEdit
+     * DataSourceField.canEdit} for fields of this type. <P> This impacts client-side behavior only
+     * and is a way to simply disallow  editing of this field type by default within {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getCanEdit editors}. <P> This property is set
+     * to false for the "sequence" SimpleType by default.
+     *
+     * <p>Default value is null
+     */
+    public Boolean canEdit;
+
+    /**
      * Classname of the FormItem that should be used to edit values of this type if it appears in a
      * filter row. <P> May be overridden by {@link
      * com.smartgwt.client.docs.serverds.DataSourceField#filterEditorType
@@ -167,32 +220,11 @@ public class SimpleType {
     public FormatString format;
 
     /**
-     * Classname of the FormItem that should be the default for editing values of this type (eg
-     * "SelectItem"). <P> You can create a simple custom FormItem by adding default {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getIcons FormItem.icons} that launch custom
-     * value picking dialogs (an example is in the <i>QuickStart Guide</i>, Chapter 9, <i>Extending
-     * Smart GWT</i>).  By setting simpleType.editorType to the name of your custom FormItem, forms
-     * will automatically use the custom FormItem, as will grids performing {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getCanEdit inline editing}.
-     *
-     * <p>Default value is null
-     */
-    public FormItem editorType;
-
-    /**
      * Validators to apply to value of this type.
      *
      * <p>Default value is null
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
     public Validator[] validators;
-
-    /**
-     * List of legal values for this type, like {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#valueMap DataSourceField.valueMap}.
-     *
-     * <p>Default value is null
-     */
-    public Map valueMap;
 
 }

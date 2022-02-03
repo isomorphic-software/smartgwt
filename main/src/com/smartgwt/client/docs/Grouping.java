@@ -14,6 +14,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.events.GroupByCompleteEvent
  * @see com.smartgwt.client.widgets.grid.events.RegroupEvent
  * @see com.smartgwt.client.widgets.grid.events.GroupTreeChangedEvent
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#groupBy
  * @see com.smartgwt.client.widgets.grid.GroupNode
  * @see com.smartgwt.client.data.GroupSpecifier
  * @see com.smartgwt.client.widgets.calendar.Calendar#getLaneGroupStartOpen
@@ -47,6 +48,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupByField
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSortByGroupFirst
  * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupSortDirection
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getGroupByField
  */
 public interface Grouping {
 }

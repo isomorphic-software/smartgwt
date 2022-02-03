@@ -6,6 +6,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
@@ -46,5 +47,18 @@ import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
 
 public class RibbonGroupLogicalStructure extends ToolStripGroupLogicalStructure {
+    public String autoSizeToTitle;
+    public String bodyConstructor;
+    public Canvas[] controls;
+    public String editProxyConstructor;
+    public String labelConstructor;
     public String newControlConstructor;
+    public String numRows;
+    public String rowHeight;
+    public String styleName;
+    public String title;
+    public String titleAlign;
+    public String titleHeight;
+    public String titleOrientation;
+    public String titleStyle;
 }

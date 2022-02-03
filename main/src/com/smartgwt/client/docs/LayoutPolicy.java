@@ -9,6 +9,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tile.TileLayout#getAutoWrapLines
  * @see com.smartgwt.client.widgets.Canvas#getStartLine
  * @see com.smartgwt.client.widgets.Canvas#getEndLine
+ * @see com.smartgwt.client.widgets.layout.DataView#getMinMemberLength
  * @see com.smartgwt.client.widgets.layout.Layout#getOverflow
  * @see com.smartgwt.client.widgets.layout.Layout#getOrientation
  * @see com.smartgwt.client.widgets.layout.Layout#getVertical

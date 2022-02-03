@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,21 +100,22 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
- * The Calendar component provides several different ways for a user to view and edit a set of events. Note that the {@link
- * com.smartgwt.client.docs.LoadingOptionalModules Calendar module}  must be loaded to make use of the Calendar class. <P>
- * <b>CalendarEvents</b> <P> Events are represented as ordinary JavaScript Objects (see {@link
- * com.smartgwt.client.widgets.calendar.CalendarEvent}).   The Calendar expects to be able to read and write a basic set of
- * properties  on events: name, startDate, endDate, description, etc, which can be stored  under configurable property
- * names (see eg {@link com.smartgwt.client.widgets.calendar.Calendar#getStartDateField startDateField}). <P> Much like a
- * {@link com.smartgwt.client.widgets.grid.ListGrid} manages it's ListGridRecords, the Calendar can  either be passed an
- * ordinary Array of CalendarEvents or can fetch data from a  DataSource.  When this is the case, if the DataSource  does
- * not contain fields with the configured property names, an attempt is made to  auto-detect likely-looking fields from
- * those that are present.  To see logs indicating that  this has happened, switch default logging preferences to INFO
- * level in the Developer Console. <P> If the calendar is bound to a DataSource, event changes by user action or by 
- * calling methods will be saved to the DataSource. <P> <b>Navigation</b> <P> The calendar supports a number of views by
- * default: {@link com.smartgwt.client.widgets.calendar.Calendar#getDayView day}, {@link
+ * The Calendar component provides several different ways for a user to view and edit a set of events. Note that the
+ * standard Calendar module must be loaded to make use of  the Calendar class. <P> <b>CalendarEvents</b> <P> Events are
+ * represented as ordinary JavaScript Objects (see {@link com.smartgwt.client.widgets.calendar.CalendarEvent}).   The
+ * Calendar expects to be able to read and write a basic set of properties  on events: name, startDate, endDate,
+ * description, etc, which can be stored  under configurable property names (see eg {@link
+ * com.smartgwt.client.widgets.calendar.Calendar#getStartDateField startDateField}). <P> Much like a {@link
+ * com.smartgwt.client.widgets.grid.ListGrid} manages it's ListGridRecords, the Calendar can  either be passed an ordinary
+ * Array of CalendarEvents or can fetch data from a  DataSource.  When this is the case, if the DataSource  does not
+ * contain fields with the configured property names, an attempt is made to  auto-detect likely-looking fields from those
+ * that are present.  To see logs indicating that  this has happened, switch default logging preferences to INFO level in
+ * the Developer Console. <P> If the calendar is bound to a DataSource, event changes by user action or by  calling methods
+ * will be saved to the DataSource. <P> <b>Navigation</b> <P> The calendar supports a number of views by default: {@link
+ * com.smartgwt.client.widgets.calendar.Calendar#getDayView day}, {@link
  * com.smartgwt.client.widgets.calendar.Calendar#getWeekView week}, {@link
  * com.smartgwt.client.widgets.calendar.Calendar#getMonthView month} and  {@link
  * com.smartgwt.client.widgets.calendar.Calendar#getTimelineView timeline}.  The user can navigate using back and forward 
@@ -129,7 +135,7 @@ import com.smartgwt.logicalstructure.widgets.tools.*;
  */
 @BeanFactory.FrameworkClass
 @BeanFactory.ScClassName("Calendar")
-public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt.client.widgets.calendar.events.HasBackgroundClickHandlers, com.smartgwt.client.widgets.calendar.events.HasBackgroundMouseDownHandlers, com.smartgwt.client.widgets.calendar.events.HasBackgroundMouseUpHandlers, com.smartgwt.client.widgets.calendar.events.HasCurrentViewChangedHandlers, com.smartgwt.client.widgets.calendar.events.HasDateChangedHandlers, com.smartgwt.client.widgets.calendar.events.HasDayBodyClickHandlers, com.smartgwt.client.widgets.calendar.events.HasDayHeaderClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventAddedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventChangedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventRemoveClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventRemovedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventRepositionMoveHandlers, com.smartgwt.client.widgets.calendar.events.HasEventRepositionStopHandlers, com.smartgwt.client.widgets.calendar.events.HasEventResizeMoveHandlers, com.smartgwt.client.widgets.calendar.events.HasEventResizeStopHandlers, com.smartgwt.client.widgets.calendar.events.HasIndicatorClickHandlers, com.smartgwt.client.widgets.calendar.events.HasZoneClickHandlers {
+public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt.client.widgets.calendar.events.HasBackgroundClickHandlers, com.smartgwt.client.widgets.calendar.events.HasBackgroundMouseDownHandlers, com.smartgwt.client.widgets.calendar.events.HasBackgroundMouseUpHandlers, com.smartgwt.client.widgets.calendar.events.HasCurrentViewChangedHandlers, com.smartgwt.client.widgets.calendar.events.HasDateChangedHandlers, com.smartgwt.client.widgets.calendar.events.HasDayBodyClickHandlers, com.smartgwt.client.widgets.calendar.events.HasDayHeaderClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventAddedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventChangedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventRemoveClickHandlers, com.smartgwt.client.widgets.calendar.events.HasEventRemovedHandlers, com.smartgwt.client.widgets.calendar.events.HasEventRepositionMoveHandlers, com.smartgwt.client.widgets.calendar.events.HasEventRepositionStopHandlers, com.smartgwt.client.widgets.calendar.events.HasEventResizeMoveHandlers, com.smartgwt.client.widgets.calendar.events.HasEventResizeStopHandlers, com.smartgwt.client.widgets.calendar.events.HasEventsRenderedHandlers, com.smartgwt.client.widgets.calendar.events.HasIndicatorClickHandlers, com.smartgwt.client.widgets.calendar.events.HasZoneClickHandlers {
 
     public static Calendar getOrCreateRef(JavaScriptObject jsObj) {
         if (jsObj == null) return null;
@@ -2179,6 +2185,37 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
     
 
     /**
+     * Screen to create (via {@link com.smartgwt.client.rpc.RPCManager#createScreen createScreen()}) in lieu of calling {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#createEventCanvasComponent createEventCanvasComponent()}. <P> If this
+     * calendar has a {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource dataSource}, the created screen is
+     * provided with a {@link com.smartgwt.client.widgets.Canvas#getDataContext Canvas.dataContext} that includes the event
+     * being shown. Be sure the event screen meets these {@link com.smartgwt.client.widgets.Canvas#getAutoPopulateData
+     * requirements} to utilize the <code>dataContext</code>.
+     *
+     * @param eventScreen New eventScreen value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public Calendar setEventScreen(String eventScreen)  throws IllegalStateException {
+        return (Calendar)setAttribute("eventScreen", eventScreen, false);
+    }
+
+    /**
+     * Screen to create (via {@link com.smartgwt.client.rpc.RPCManager#createScreen createScreen()}) in lieu of calling {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#createEventCanvasComponent createEventCanvasComponent()}. <P> If this
+     * calendar has a {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource dataSource}, the created screen is
+     * provided with a {@link com.smartgwt.client.widgets.Canvas#getDataContext Canvas.dataContext} that includes the event
+     * being shown. Be sure the event screen meets these {@link com.smartgwt.client.widgets.Canvas#getAutoPopulateData
+     * requirements} to utilize the <code>dataContext</code>.
+     *
+     * @return Current eventScreen value. Default value is null
+     */
+    public String getEventScreen()  {
+        return getAttributeAsString("eventScreen");
+    }
+    
+
+    /**
      * The number of minutes that determines the positions to which events will snap when rendered, and when moved or resized
      * with the mouse. <P> If unset (the default), all views will snap to each cell boundary; 30 minutes in a default vertical
      * view, or one {@link com.smartgwt.client.widgets.calendar.Calendar#getTimelineGranularity column} in a default Timeline.
@@ -2340,23 +2377,6 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      */
     public String getEventSublaneFieldTitle()  {
         return getAttributeAsString("eventSublaneFieldTitle");
-    }
-    
-
-    /**
-     * <b>Note :</b> This API is non-functional (always returns null) and exists only to make
-     * you aware that this MultiAutoChild exists.  See {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}
-     * for details.
-     * <p>
-     * To display events in day and week views, the Calendar creates instance of {@link
-     * com.smartgwt.client.widgets.calendar.EventWindow} for each event.  Use the {@link com.smartgwt.client.types.AutoChild}
-     * system to customize these windows.
-     *
-     * @return null
-     * @deprecated in favor of {@link com.smartgwt.client.widgets.calendar.Calendar#getEventCanvas eventCanvas}
-     */
-    public EventWindow getEventWindow()  {
-        return null;
     }
     
 
@@ -3065,6 +3085,29 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      */
     public String getNameField()  {
         return getAttributeAsString("nameField");
+    }
+    
+
+    /**
+     * The title-text displayed in the popup event dialog/editor for new events.
+     *
+     * @param newEventWindowTitle New newEventWindowTitle value. Default value is "New Event"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public Calendar setNewEventWindowTitle(String newEventWindowTitle)  throws IllegalStateException {
+        return (Calendar)setAttribute("newEventWindowTitle", newEventWindowTitle, false);
+    }
+
+    /**
+     * The title-text displayed in the popup event dialog/editor for new events.
+     *
+     * @return Current newEventWindowTitle value. Default value is "New Event"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getNewEventWindowTitle()  {
+        return getAttributeAsString("newEventWindowTitle");
     }
     
 
@@ -5425,6 +5468,7 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      *
      * @return any Canvas
      * @see com.smartgwt.client.widgets.calendar.Calendar#updateEventCanvasComponent
+     * @see com.smartgwt.client.widgets.calendar.Calendar#getEventScreen
      */
     public native Canvas createEventCanvasComponent(EventCanvas canvas) /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
@@ -6352,15 +6396,54 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
         if (obj && obj.hasOwnProperty("eventResizeStop")) delete obj.eventResizeStop;
     }-*/;
 
-	/**
+    /**
+     * Add a eventsRendered handler.
+     * <p>
      * A notification method fired when the events in the current view have been refreshed.
+     *
+     * @param handler the eventsRendered handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
-    public native void eventsRendered() /*-{
-        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "eventsRendered", "");
+    public HandlerRegistration addEventsRenderedHandler(com.smartgwt.client.widgets.calendar.events.EventsRenderedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.calendar.events.EventsRenderedEvent.getType()) == 0) setupEventsRenderedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.calendar.events.EventsRenderedEvent.getType());
+    }
+
+    private native void setupEventsRenderedEvent() /*-{
+        var obj;
+        var selfJ = this;
+        var hasDefaultHandler;
+        var eventsRendered = $entry(function(){
+            var param = {"_this": this};
+            var event = @com.smartgwt.client.widgets.calendar.events.EventsRenderedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            selfJ.@com.smartgwt.client.widgets.calendar.Calendar::handleTearDownEventsRenderedEvent()();
+            if (hasDefaultHandler) this.Super("eventsRendered", arguments);
+        });
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            hasDefaultHandler = $wnd.isc.isA.Function(obj.getProperty("eventsRendered"));
+            obj.addProperties({eventsRendered:  eventsRendered              });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+            hasDefaultHandler = $wnd.isc.isA.Function($wnd.isc[scClassName].getInstanceProperty("eventsRendered"));
+            obj.eventsRendered =  eventsRendered             ;
         }
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.eventsRendered();
+    }-*/;
+
+    private void handleTearDownEventsRenderedEvent() {
+        if (getHandlerCount(com.smartgwt.client.widgets.calendar.events.EventsRenderedEvent.getType()) == 0) tearDownEventsRenderedEvent();
+    }
+
+    private native void tearDownEventsRenderedEvent() /*-{
+        var obj;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        }
+        if (obj && obj.hasOwnProperty("eventsRendered")) delete obj.eventsRendered;
     }-*/;
 
 	/**
@@ -8051,6 +8134,23 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
     }-*/;
 
 	/**
+     * For views that support {@link com.smartgwt.client.widgets.calendar.Calendar#getLanes lanes}, updates the title for the
+     * passed lane.
+     * @param lane the name of the lane to change the title for
+     * @param title the new title to apply
+     *
+     * @return true if the title was updated, false otherwise
+     */
+    public native boolean setLaneTitle(String lane, String title) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setLaneTitle", "String,String");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.setLaneTitle(lane, title);
+        return ret == null ? false : ret;
+    }-*/;
+
+	/**
      * Reset the resolution, the header levels and scrollable range, of the timeline view. <P> <code>headerLevels</code>
      * specifies the array of {@link com.smartgwt.client.widgets.calendar.HeaderLevel headers} to show above  the timeline, and
      * the <code>unit</code> and <code>unitCount</code> parameters dictate the  scrollable range (eg, passing "week" and 6 will
@@ -9253,29 +9353,6 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
             var result = customizer.@com.smartgwt.client.widgets.calendar.ShowEventCustomizer::shouldShowEvent(Lcom/smartgwt/client/widgets/calendar/CalendarEvent;Lcom/smartgwt/client/widgets/calendar/CalendarView;)(eventJ, calendarViewJ);
             if (result == null) return null;
             return result;
-        }));
-    }-*/;
-
-    /**
-     * This method returns the hover HTML to be displayed when the user hovers over an event
-     * 
-     * @param eventHoverHTMLCustomizer the customizer to execute.
-     */
-    public native void setEventHoverHTMLCustomizer(EventHoverHTMLCustomizer eventHoverHTMLCustomizer) /*-{
-        var self;
-        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            self = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-        } else {
-            self = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-        }
-
-        self.getEventHoverHTML = $debox($entry(function(jsEvent, jsEventWindow) {
-        	
-            var calendarJ = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(this);
-            eventHoverHTMLCustomizer.@com.smartgwt.client.widgets.calendar.EventHoverHTMLCustomizer::setCalendar(Lcom/smartgwt/client/widgets/calendar/Calendar;)(calendarJ);
-        	var calendarEvent = @com.smartgwt.client.widgets.calendar.CalendarEvent::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(jsEvent);
-            var eventWindow = @com.smartgwt.client.widgets.Canvas::getByJSObject(Lcom/google/gwt/core/client/JavaScriptObject;)(jsEventWindow);
-            return eventHoverHTMLCustomizer.@com.smartgwt.client.widgets.calendar.EventHoverHTMLCustomizer::getEventHoverHTML(Lcom/smartgwt/client/widgets/calendar/CalendarEvent;Lcom/smartgwt/client/widgets/calendar/EventWindow;)(calendarEvent,eventWindow);
         }));
     }-*/;
 
@@ -10965,6 +11042,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
             s.logicalStructureErrors += "Calendar.eventOverlapPercent:" + t.getMessage() + "\n";
         }
         try {
+            s.eventScreen = getAttributeAsString("eventScreen");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.eventScreen:" + t.getMessage() + "\n";
+        }
+        try {
             s.eventSnapGap = getAttributeAsString("eventSnapGap");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Calendar.eventSnapGap:" + t.getMessage() + "\n";
@@ -11103,6 +11185,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
             s.nameField = getAttributeAsString("nameField");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Calendar.nameField:" + t.getMessage() + "\n";
+        }
+        try {
+            s.newEventWindowTitle = getAttributeAsString("newEventWindowTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.newEventWindowTitle:" + t.getMessage() + "\n";
         }
         try {
             s.nextButtonHoverText = getAttributeAsString("nextButtonHoverText");

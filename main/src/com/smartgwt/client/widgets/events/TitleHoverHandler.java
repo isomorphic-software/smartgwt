@@ -22,9 +22,10 @@ import com.google.gwt.event.shared.EventHandler;
 public interface TitleHoverHandler extends EventHandler {
     /**
      * Optional stringMethod to fire when the user hovers over this button and the title is clipped. If {@link
-     * com.smartgwt.client.widgets.ImgButton#getShowClippedTitleOnHover showClippedTitleOnHover} is true, the default behavior
-     * is to show a hover canvas containing the HTML returned by {@link com.smartgwt.client.widgets.ImgButton#titleHoverHTML
-     * titleHoverHTML()}. Call {@link com.smartgwt.client.widgets.events.TitleHoverEvent#cancel()} from within {@link com.smartgwt.client.widgets.events.TitleHoverHandler#onTitleHover} to suppress this default behavior.
+     * com.smartgwt.client.widgets.StretchImgButton#getShowClippedTitleOnHover showClippedTitleOnHover} is true, the default
+     * behavior is to show a hover canvas containing the HTML returned by {@link
+     * com.smartgwt.client.widgets.StretchImgButton#titleHoverHTML titleHoverHTML()}. Call {@link com.smartgwt.client.widgets.events.TitleHoverEvent#cancel()} from within {@link com.smartgwt.client.widgets.events.TitleHoverHandler#onTitleHover} to suppress this default
+     * behavior.
      *
      * @param event the event
      */

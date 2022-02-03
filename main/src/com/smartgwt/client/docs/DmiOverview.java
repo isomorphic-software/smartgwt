@@ -71,8 +71,10 @@ package com.smartgwt.client.docs;
  * globally by setting the config parameter
  *  <code>DMI.dropExtraFields</code> to <code>false</code> in
  * {@link com.smartgwt.client.docs.Server_properties [webroot]/WEB-INF/classes/server.properties}.
- *  
- *  Non-DMI DSResponse data is, by
+ *  <p>
+ *  Non-DMI DSResponse data for Hibernate and JPA datasources is, by default, filtered to just
+ *  the set of fields specified on the DataSource to avoid unintentional lazy loading too much
+ *  of a data model. For the rest of non-DMI operations DSResponse data is, by
  *  default, not filtered in this manner for backward compatibility reasons.  If you want to
  *  enable this type of filtering for non-DMI DSResponse data, you can do so by setting the
  *  config parameter <code>DSResponse.dropExtraFields</code> to <code>true</code> in

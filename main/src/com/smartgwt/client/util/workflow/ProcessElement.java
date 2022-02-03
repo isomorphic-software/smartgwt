@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,11 +78,12 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
  * A ProcessElement is an abstract superclass for elements involved in a {@link com.smartgwt.client.util.workflow.Process},
- * such as a {@link com.smartgwt.client.util.workflow.Task} or {@link com.smartgwt.client.util.workflow.XORGateway}.
+ * such as a {@link com.smartgwt.client.util.workflow.Task} or {@link com.smartgwt.client.util.workflow.DecisionTask}.
  */
 @BeanFactory.FrameworkClass
 @BeanFactory.ScClassName("ProcessElement")
@@ -163,12 +168,37 @@ public class ProcessElement extends BaseClass {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * When set, the output of the task will be automatically bound to the specified value in the {@link
+     * com.smartgwt.client.util.workflow.Process#getState process state}. <P> See {@link
+     * com.smartgwt.client.docs.TaskInputExpression taskInputExpressions} for details on the transient state outputs.
+     *
+     * @param bindOutput New bindOutput value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.ProcessElement ProcessElement} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public ProcessElement setBindOutput(String bindOutput)  throws IllegalStateException {
+        return (ProcessElement)setAttribute("bindOutput", bindOutput, false);
+    }
+
+    /**
+     * When set, the output of the task will be automatically bound to the specified value in the {@link
+     * com.smartgwt.client.util.workflow.Process#getState process state}. <P> See {@link
+     * com.smartgwt.client.docs.TaskInputExpression taskInputExpressions} for details on the transient state outputs.
+     *
+     * @return Current bindOutput value. Default value is null
+     */
+    public String getBindOutput()  {
+        return getAttributeAsString("bindOutput");
+    }
+    
+
+    /**
      * Optional description of the general nature of the kinds of tasks this this process element performs. Not to be confused
      * with {@link com.smartgwt.client.util.workflow.ProcessElement#getDescription description} which describes what the
      * specific instance of the process element has been configured to do. <P> For example, the <code>classDescription</code>
      * for a task to disable a field might be "disables a field" whereas the <code>description</code> for a concrete instance
      * might be "disables the 'shipTo' field in the 'ordering' form". <P> Used by editor to display additional details along
-     * with {@link com.smartgwt.client.util.workflow.ProcessElement#getTitle title}.
+     * with {@link com.smartgwt.client.util.workflow.ProcessElement#getTypeTitle typeTitle}.
      *
      * @param classDescription New classDescription value. Default value is null
      * @return {@link com.smartgwt.client.util.workflow.ProcessElement ProcessElement} instance, for chaining setter calls
@@ -184,7 +214,7 @@ public class ProcessElement extends BaseClass {
      * specific instance of the process element has been configured to do. <P> For example, the <code>classDescription</code>
      * for a task to disable a field might be "disables a field" whereas the <code>description</code> for a concrete instance
      * might be "disables the 'shipTo' field in the 'ordering' form". <P> Used by editor to display additional details along
-     * with {@link com.smartgwt.client.util.workflow.ProcessElement#getTitle title}.
+     * with {@link com.smartgwt.client.util.workflow.ProcessElement#getTypeTitle typeTitle}.
      *
      * @return Current classDescription value. Default value is null
      */
@@ -228,7 +258,9 @@ public class ProcessElement extends BaseClass {
     /**
      * Editor type used to edit instances of this type of process element.
      *
-     * @return Current editorType value. Default value is null
+     * @return Returns the workflow task editor type to be used edit instances of this type of process element. The default
+     * implementation returns <code>this.editorType</code> but a custom override could determine an editor type based on the
+     * property values. Default value is null
      */
     public String getEditorType()  {
         return getAttributeAsString("editorType");
@@ -236,9 +268,41 @@ public class ProcessElement extends BaseClass {
     
 
     /**
+     * Should {@link com.smartgwt.client.util.workflow.ProcessElement#getSupportsMultipleInputRecords multiple record
+     * processing} be suppressed for this task instance? This property can be set at any time is checked before executing the
+     * task and after each execution during processing of multiple last task output records. <p> Note that since this property
+     * applies to an instance of a task that could be used multiple times in a process (by branching) care should be taken to
+     * restore the property value after execution completes. See {@link
+     * com.smartgwt.client.util.workflow.ProcessElement#completeElement completeElement()} or {@link
+     * com.smartgwt.client.util.workflow.ProcessElement#reset reset()}.
+     *
+     * @param forceSingle New forceSingle value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.ProcessElement ProcessElement} instance, for chaining setter calls
+     */
+    public ProcessElement setForceSingle(Boolean forceSingle) {
+        return (ProcessElement)setAttribute("forceSingle", forceSingle, true);
+    }
+
+    /**
+     * Should {@link com.smartgwt.client.util.workflow.ProcessElement#getSupportsMultipleInputRecords multiple record
+     * processing} be suppressed for this task instance? This property can be set at any time is checked before executing the
+     * task and after each execution during processing of multiple last task output records. <p> Note that since this property
+     * applies to an instance of a task that could be used multiple times in a process (by branching) care should be taken to
+     * restore the property value after execution completes. See {@link
+     * com.smartgwt.client.util.workflow.ProcessElement#completeElement completeElement()} or {@link
+     * com.smartgwt.client.util.workflow.ProcessElement#reset reset()}.
+     *
+     * @return Current forceSingle value. Default value is null
+     */
+    public Boolean getForceSingle()  {
+        return getAttributeAsBoolean("forceSingle");
+    }
+    
+
+    /**
      * Optional ID for this process element, allowing it to be referred to from  {@link
-     * com.smartgwt.client.util.workflow.DecisionGateway Gateways}, or as the {@link
-     * com.smartgwt.client.util.workflow.Process#getStartElement Process.startElement}.  See {@link
+     * com.smartgwt.client.util.workflow.MultiDecisionTask Decisions}, or as the {@link
+     * com.smartgwt.client.util.workflow.Process#getStartElement Process.startElement}. See {@link
      * com.smartgwt.client.util.workflow.ProcessSequence} and {@link com.smartgwt.client.util.workflow.Process} to understand
      * when this is required or can be omitted. <P> Unlike {@link com.smartgwt.client.widgets.Canvas#getID Canvas.ID} a
      * <code>processElement</code>'s is a not a globally unique variable, it need only by unique within it's process. <P> When
@@ -255,8 +319,8 @@ public class ProcessElement extends BaseClass {
 
     /**
      * Optional ID for this process element, allowing it to be referred to from  {@link
-     * com.smartgwt.client.util.workflow.DecisionGateway Gateways}, or as the {@link
-     * com.smartgwt.client.util.workflow.Process#getStartElement Process.startElement}.  See {@link
+     * com.smartgwt.client.util.workflow.MultiDecisionTask Decisions}, or as the {@link
+     * com.smartgwt.client.util.workflow.Process#getStartElement Process.startElement}. See {@link
      * com.smartgwt.client.util.workflow.ProcessSequence} and {@link com.smartgwt.client.util.workflow.Process} to understand
      * when this is required or can be omitted. <P> Unlike {@link com.smartgwt.client.widgets.Canvas#getID Canvas.ID} a
      * <code>processElement</code>'s is a not a globally unique variable, it need only by unique within it's process. <P> When
@@ -267,6 +331,32 @@ public class ProcessElement extends BaseClass {
      */
     public String getID()  {
         return getAttributeAsString("ID");
+    }
+    
+
+    /**
+     * Enable mock mode on the task? If {@link com.smartgwt.client.util.workflow.Process#getMockMode Process.mockMode} is
+     * enabled, setting this property to <code>false</code> disables mockMode on this task only. Otherwise, mock mode can be
+     * enabled on this task by setting it to <code>true</code>. <p> Note that it is up to each task determine what effect mock
+     * mode has.
+     *
+     * @param mockMode New mockMode value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.ProcessElement ProcessElement} instance, for chaining setter calls
+     */
+    public ProcessElement setMockMode(Boolean mockMode) {
+        return (ProcessElement)setAttribute("mockMode", mockMode, true);
+    }
+
+    /**
+     * Enable mock mode on the task? If {@link com.smartgwt.client.util.workflow.Process#getMockMode Process.mockMode} is
+     * enabled, setting this property to <code>false</code> disables mockMode on this task only. Otherwise, mock mode can be
+     * enabled on this task by setting it to <code>true</code>. <p> Note that it is up to each task determine what effect mock
+     * mode has.
+     *
+     * @return Current mockMode value. Default value is null
+     */
+    public Boolean getMockMode()  {
+        return getAttributeAsBoolean("mockMode");
     }
     
 
@@ -302,8 +392,11 @@ public class ProcessElement extends BaseClass {
     
 
     /**
-     * Does this processElement pass through output from the last executed task (i.e. transient state)? See {@link
-     * com.smartgwt.client.docs.TaskInputExpression taskInputExpressions} for details on the transient state.
+     * Does this processElement pass through output from the last executed task (i.e. transient state)? <P> See {@link
+     * com.smartgwt.client.docs.TaskInputExpression taskInputExpressions} for details on the transient state outputs. <p> Note
+     * that this property does not affect the task at all but is an indicator to the user and to the workflow editor of the
+     * behavior of the task as coded (See {@link com.smartgwt.client.util.workflow.Process#passThruTaskOutput
+     * Process.passThruTaskOutput()}).
      *
      * @param passThruOutput New passThruOutput value. Default value is true
      * @return {@link com.smartgwt.client.util.workflow.ProcessElement ProcessElement} instance, for chaining setter calls
@@ -314,8 +407,11 @@ public class ProcessElement extends BaseClass {
     }
 
     /**
-     * Does this processElement pass through output from the last executed task (i.e. transient state)? See {@link
-     * com.smartgwt.client.docs.TaskInputExpression taskInputExpressions} for details on the transient state.
+     * Does this processElement pass through output from the last executed task (i.e. transient state)? <P> See {@link
+     * com.smartgwt.client.docs.TaskInputExpression taskInputExpressions} for details on the transient state outputs. <p> Note
+     * that this property does not affect the task at all but is an indicator to the user and to the workflow editor of the
+     * behavior of the task as coded (See {@link com.smartgwt.client.util.workflow.Process#passThruTaskOutput
+     * Process.passThruTaskOutput()}).
      *
      * @return Current passThruOutput value. Default value is true
      */
@@ -326,31 +422,135 @@ public class ProcessElement extends BaseClass {
     
 
     /**
-     * Optional short, descriptive title for this process element. Used by an editor a title for process elements of this type.
+     * Does this processElement support being called multiple times for multiple records in the {@link
+     * com.smartgwt.client.util.workflow.Process#setTaskOutput last task output}? <p> By default a processElement is {@link
+     * com.smartgwt.client.util.workflow.ProcessElement#executeElement executed} exactly once, however, for a task that can
+     * process records from the last task output it can be useful to handle each incoming record individually. Setting this
+     * property indicates to the {@link com.smartgwt.client.util.workflow.Process process} that if the last task output is an
+     * array, it should be executed once per value in the array. Normal processing of {@link
+     * com.smartgwt.client.docs.TaskInputExpression taskInputExpressions} or use of {@link
+     * com.smartgwt.client.util.workflow.Process#getLastTaskOutput Process.getLastTaskOutput()} will have exactly one record
+     * except uses of the output for criteria values where the full output is used at once. <p> Processing of the task can
+     * determine that multiple incoming records should not result in multiple calls and set {@link
+     * com.smartgwt.client.util.workflow.ProcessElement#getForceSingle forceSingle}. For example, a task that uses last task
+     * output for a criteria or for values should set <code>forceSingle=true</code> when a criteria is used because multiple
+     * calls do not make sense.
      *
-     * @param title New title value. Default value is null
+     * @param supportsMultipleInputRecords New supportsMultipleInputRecords value. Default value is null
      * @return {@link com.smartgwt.client.util.workflow.ProcessElement ProcessElement} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public ProcessElement setTitle(String title)  throws IllegalStateException {
-        return (ProcessElement)setAttribute("title", title, false);
+    public ProcessElement setSupportsMultipleInputRecords(Boolean supportsMultipleInputRecords)  throws IllegalStateException {
+        return (ProcessElement)setAttribute("supportsMultipleInputRecords", supportsMultipleInputRecords, false);
     }
 
     /**
-     * Optional short, descriptive title for this process element. Used by an editor a title for process elements of this type.
+     * Does this processElement support being called multiple times for multiple records in the {@link
+     * com.smartgwt.client.util.workflow.Process#setTaskOutput last task output}? <p> By default a processElement is {@link
+     * com.smartgwt.client.util.workflow.ProcessElement#executeElement executed} exactly once, however, for a task that can
+     * process records from the last task output it can be useful to handle each incoming record individually. Setting this
+     * property indicates to the {@link com.smartgwt.client.util.workflow.Process process} that if the last task output is an
+     * array, it should be executed once per value in the array. Normal processing of {@link
+     * com.smartgwt.client.docs.TaskInputExpression taskInputExpressions} or use of {@link
+     * com.smartgwt.client.util.workflow.Process#getLastTaskOutput Process.getLastTaskOutput()} will have exactly one record
+     * except uses of the output for criteria values where the full output is used at once. <p> Processing of the task can
+     * determine that multiple incoming records should not result in multiple calls and set {@link
+     * com.smartgwt.client.util.workflow.ProcessElement#getForceSingle forceSingle}. For example, a task that uses last task
+     * output for a criteria or for values should set <code>forceSingle=true</code> when a criteria is used because multiple
+     * calls do not make sense.
      *
-     * @return Current title value. Default value is null
+     * @return Current supportsMultipleInputRecords value. Default value is null
      */
-    public String getTitle()  {
-        return getAttributeAsString("title");
+    public Boolean getSupportsMultipleInputRecords()  {
+        return getAttributeAsBoolean("supportsMultipleInputRecords");
+    }
+    
+
+    /**
+     * Optional short, descriptive title for this process element. Used by an editor as a title for process elements of this
+     * type.
+     *
+     * @param typeTitle New typeTitle value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.ProcessElement ProcessElement} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public ProcessElement setTypeTitle(String typeTitle)  throws IllegalStateException {
+        return (ProcessElement)setAttribute("typeTitle", typeTitle, false);
+    }
+
+    /**
+     * Optional short, descriptive title for this process element. Used by an editor as a title for process elements of this
+     * type.
+     *
+     * @return Current typeTitle value. Default value is null
+     */
+    public String getTypeTitle()  {
+        return getAttributeAsString("typeTitle");
     }
     
 
     // ********************* Methods ***********************
 	/**
+     * StringMethod called when a processElement completes. Typically used to clear transient state applied to the task while
+     * running like {@link com.smartgwt.client.util.workflow.ProcessElement#getForceSingle forceSingle} so it can be executed
+     * again later. See also {@link com.smartgwt.client.util.workflow.ProcessElement#reset reset()}.
+     * @param process the containing process
+     */
+    public native void completeElement(Process process) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "completeElement", "Process");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.completeElement(process == null ? null : process.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()());
+    }-*/;
+
+	/**
+     * Method called by {@link com.smartgwt.client.util.workflow.Process} to have the processElement perform its work. There is
+     * no default implementation by ProcessElement, however, all of the system-provided subclasses do implement this method. An
+     * implementation or override of this method is one possible customization point. Some classes like {@link
+     * com.smartgwt.client.util.workflow.ScriptTask} perform other means to add customization. For ScriptTask, custom code is
+     * expected to handle the {@link com.smartgwt.client.util.workflow.ScriptTask#execute ScriptTask.execute()} method instead.
+     * <p> Any implementation of this method must return <code>true</code> if all the work this element needed to perform was
+     * completed. Return <code>false</code> if additional work is being performed asynchronously and the process should be
+     * paused until element restarts it. Once asynchronous work is complete the task must call {@link
+     * com.smartgwt.client.util.workflow.Process#start Process.start()} to restart the workflow with the next task.
+     * @param process the process that is handling the workflow
+     *
+     * @return return true if all the work this element needed to perform was                   completed. Return false if additional
+     * work is being performed                   asynchronously and the process should be paused until element                 
+     *  restarts it.
+     */
+    public native Boolean executeElement(Process process) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "executeElement", "Process");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.executeElement(process == null ? null : process.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+	/**
+     * Resolves a dynamic value as {@link com.smartgwt.client.docs.TaskInputExpression taskInputExpressions} or returns the
+     * value as-is.
+     * @param value the value to resolve
+     * @param process the current process
+     *
+     * @return the resolved value
+     */
+    public native String getDynamicValue(String value, Process process) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getDynamicValue", "String,Process");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getDynamicValue(value, process == null ? null : process.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()());
+        return ret;
+    }-*/;
+
+	/**
      * Returns a text description of the element derived from the configuration. <p> If no override is provided by the concrete
-     * ProcessElement implementation the {@link com.smartgwt.client.util.workflow.ProcessElement#getDescription description} or
-     * {@link com.smartgwt.client.util.workflow.ProcessElement#getID ID} is returned.
+     * ProcessElement implementation the {@link com.smartgwt.client.util.workflow.ProcessElement#getDescription description} is
+     * returned.
      *
      * @return the derived element description
      */
@@ -361,6 +561,247 @@ public class ProcessElement extends BaseClass {
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var ret = self.getElementDescription();
         return ret;
+    }-*/;
+
+	/**
+     * Resolves a {@link com.smartgwt.client.widgets.UserSummary} value against the current {@link
+     * com.smartgwt.client.widgets.Canvas#getRuleScope rule context}.
+     * @param textFormula the UserSummary value to resolve
+     * @param process the current process
+     *
+     * @return the resolved value
+     */
+    public native String getTextFormulaValue(UserSummary textFormula, Process process) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getTextFormulaValue", "UserSummary,Process");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getTextFormulaValue(textFormula.@com.smartgwt.client.core.DataClass::getJsObj()(), process == null ? null : process.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()());
+        return ret;
+    }-*/;
+
+	/**
+     * Does the object have fields that reference the last task output (i.e. $last)?
+     * @param object object to be checked
+     * @param process the enclosing process
+     *
+     * @return true if any field in the object references $last
+     */
+    public native Boolean objectReferencesLastTaskOutput(Map object, Process process) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "objectReferencesLastTaskOutput", "Map,Process");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.objectReferencesLastTaskOutput(object == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(object), process == null ? null : process.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+	/**
+     * StringMethod called during {@link com.smartgwt.client.util.workflow.Process#reset Process.reset()} giving the task a
+     * chance to reset any internal state so it can be executed later. See also {@link
+     * com.smartgwt.client.util.workflow.ProcessElement#completeElement completeElement()}.
+     */
+    public native void reset() /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "reset", "");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.reset();
+    }-*/;
+
+	/**
+     * Updates {@link com.smartgwt.client.data.AdvancedCriteria} {@link com.smartgwt.client.data.Criterion} {@link
+     * com.smartgwt.client.docs.TaskInputExpression} values containing ruleScope references. <p> This method is a helper to
+     * implement task-specific {@link com.smartgwt.client.util.workflow.ProcessElement#updateGlobalIDReferences
+     * updateGlobalIDReferences()}.
+     * @param criteria the criteria to be updated in place
+     * @param oldId the ID being renamed.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
+     * @param newId the new ID to be assigned.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
+     *
+     * @return true if any references were updated; false otherwise
+     */
+    public native Boolean updateGlobalIDInCriteria(AdvancedCriteria criteria, String oldId, String newId) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "updateGlobalIDInCriteria", "AdvancedCriteria,String,String");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+	    if(@com.smartgwt.client.data.Criterion::instanceOf(Ljava/lang/Object;)(criteria)){
+	    	@com.smartgwt.client.util.JSOHelper::setAttribute(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;Ljava/lang/String;)(criteria.@com.smartgwt.client.data.Criterion::getJsObj()(),"_constructor","AdvancedCriteria");
+	    }
+        var ret = self.updateGlobalIDInCriteria(criteria.@com.smartgwt.client.core.DataClass::getJsObj()(), oldId, newId);
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+	/**
+     * Updates a {@link com.smartgwt.client.docs.TaskInputExpression} property value containing ruleScope references. <p> This
+     * method is a helper to implement task-specific {@link
+     * com.smartgwt.client.util.workflow.ProcessElement#updateGlobalIDReferences updateGlobalIDReferences()}.
+     * @param propertyName the property name to be updated in this task
+     * @param oldId the ID being renamed.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
+     * @param newId the new ID to be assigned.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
+     *
+     * @return true if any references were updated; false otherwise
+     */
+    public native Boolean updateGlobalIDInValueProperty(String propertyName, String oldId, String newId) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "updateGlobalIDInValueProperty", "String,String,String");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.updateGlobalIDInValueProperty(propertyName, oldId, newId);
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+	/**
+     * Updates a set of {@link com.smartgwt.client.docs.TaskInputExpression} values containing ruleScope references. <p> This
+     * method is a helper to implement task-specific {@link
+     * com.smartgwt.client.util.workflow.ProcessElement#updateGlobalIDReferences updateGlobalIDReferences()}.
+     * @param values the object to be updated
+     * @param oldId the ID being renamed.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
+     * @param newId the new ID to be assigned.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
+     *
+     * @return true if any references were updated; false otherwise
+     */
+    public native Boolean updateGlobalIDInValues(Map values, String oldId, String newId) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "updateGlobalIDInValues", "Map,String,String");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.updateGlobalIDInValues(values == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(values), oldId, newId);
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+	/**
+     * Updates references to a global ID within the properties of this process element (i.e. rename). This method is not called
+     * as part of workflow execution but is used by {@link com.smartgwt.client.tools.Reify} to keep workflow event handlers in
+     * sync with ID changes within the screen. <p> Each processElement or Task that has properties that save global IDs (like a
+     * component ID or criteria referencing {@link com.smartgwt.client.widgets.Canvas#getRuleScope ruleContext}) must  be able
+     * to update its references on demand by overriding this method or defer to its superclass. <p> There are a number of
+     * helper methods to make this easier listed below.
+     * @param oldId the ID being renamed.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
+     * @param newId the new ID to be assigned.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
+     *
+     * @return true if any references were updated; false otherwise
+     * @see com.smartgwt.client.util.workflow.ProcessElement#updateGlobalIDInValueProperty
+     * @see com.smartgwt.client.util.workflow.ProcessElement#updateGlobalIDInValues
+     * @see com.smartgwt.client.util.workflow.ProcessElement#updateGlobalIDInCriteria
+     */
+    public native Boolean updateGlobalIDReferences(String oldId, String newId) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "updateGlobalIDReferences", "String,String");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.updateGlobalIDReferences(oldId, newId);
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+	/**
+     * Update references to a binding $last within properties of this processElement. This method is not called as part of
+     * workflow execution but is used by the {@link com.smartgwt.client.tools.WorkflowEditor} to adjust last task references as
+     * new tasks are inserted. <p> Each processElement or Task that has properties supporting {@link
+     * com.smartgwt.client.docs.TaskInputExpression taskInputExpressions} using the $last syntax must  be able to update its
+     * references on demand by overriding this method or defer to its superclass. <p> There are a number of helper methods to
+     * make this easier listed below.
+     * @param oldId the ID being renamed.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
+     * @param newId the new ID to be assigned.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
+     *
+     * @return true if any references were updated; false otherwise
+     * @see com.smartgwt.client.util.workflow.ProcessElement#updateLastElementInValueProperty
+     * @see com.smartgwt.client.util.workflow.ProcessElement#updateLastElementInValues
+     * @see com.smartgwt.client.util.workflow.ProcessElement#updateLastElementInCriteria
+     */
+    public native Boolean updateLastElementBindingReferences(String oldId, String newId) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "updateLastElementBindingReferences", "String,String");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.updateLastElementBindingReferences(oldId, newId);
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+	/**
+     * Updates {@link com.smartgwt.client.data.AdvancedCriteria} {@link com.smartgwt.client.data.Criterion} {@link
+     * com.smartgwt.client.docs.TaskInputExpression} values containing $last references. Any implicit reference to the last
+     * task is updated to reference a last task of a specified <code>taskType</code>. <p> For example, a value of
+     * "$last.sequenceNo" would be replaced with "$last[fetch].sequenceNo" if the taskType is "fetch". Existing "$last[...]"
+     * references are left as-is. <p> This method is a helper to implement task-specific {@link
+     * com.smartgwt.client.util.workflow.ProcessElement#updateLastElementBindingReferences
+     * updateLastElementBindingReferences()}.
+     * @param criteria the criteria to be updated in place
+     * @param taskType the taskType to be used in new reference
+     *
+     * @return true if any references were update; false otherwise
+     */
+    public native Boolean updateLastElementInCriteria(AdvancedCriteria criteria, String taskType) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "updateLastElementInCriteria", "AdvancedCriteria,String");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+	    if(@com.smartgwt.client.data.Criterion::instanceOf(Ljava/lang/Object;)(criteria)){
+	    	@com.smartgwt.client.util.JSOHelper::setAttribute(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;Ljava/lang/String;)(criteria.@com.smartgwt.client.data.Criterion::getJsObj()(),"_constructor","AdvancedCriteria");
+	    }
+        var ret = self.updateLastElementInCriteria(criteria.@com.smartgwt.client.core.DataClass::getJsObj()(), taskType);
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+	/**
+     * Updates a {@link com.smartgwt.client.docs.TaskInputExpression} property value containing $last references. Any implicit
+     * reference to the last task is updated to reference a last task of a specified <code>taskType</code>. <p> For example, a
+     * value of "$last.sequenceNo" would be replaced with "$last[fetch].sequenceNo" if the taskType is "fetch". Existing
+     * "$last[...]" references are left as-is. <p> This method is a helper to implement task-specific {@link
+     * com.smartgwt.client.util.workflow.ProcessElement#updateLastElementBindingReferences
+     * updateLastElementBindingReferences()}.
+     * @param propertyName the property name to be updated in this task
+     * @param taskType the taskType to be used in new reference
+     *
+     * @return true if any references were update; false otherwise
+     */
+    public native Boolean updateLastElementInValueProperty(String propertyName, String taskType) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "updateLastElementInValueProperty", "String,String");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.updateLastElementInValueProperty(propertyName, taskType);
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+	/**
+     * Updates a set of {@link com.smartgwt.client.docs.TaskInputExpression} values containing $last references. Any implicit
+     * reference to the last task is updated to reference a last task of a specified <code>taskType</code>. <p> For example, a
+     * value of "$last.sequenceNo" would be replaced with "$last[fetch].sequenceNo" if the taskType is "fetch". Existing
+     * "$last[...]" references are left as-is. <p> This method is a helper to implement task-specific {@link
+     * com.smartgwt.client.util.workflow.ProcessElement#updateLastElementBindingReferences
+     * updateLastElementBindingReferences()}.
+     * @param values the object to be updated
+     * @param taskType the taskType to be used in new reference
+     *
+     * @return true if any references were update; false otherwise
+     */
+    public native Boolean updateLastElementInValues(Map values, String taskType) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "updateLastElementInValues", "Map,String");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.updateLastElementInValues(values == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(values), taskType);
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
 
 
@@ -375,6 +816,7 @@ public class ProcessElement extends BaseClass {
     // IDs for elements are not unique, also all elements should be created when process
     // started, so elements don't act as BaseClass
     protected void onInit() {
+        super.onInit();
         for (String key : elementParameters.keySet()) {
             setProperty(key, ProcessElement.convertToJavaScriptArray(elementParameters.get(key)));
         }        

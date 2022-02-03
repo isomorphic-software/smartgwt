@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * The Menu widget class implements interactive menu widgets, with optional icons, submenus, and shortcut keys. <p> A Menu
@@ -373,6 +379,29 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
     
 
     /**
+     * Option to save searches is disabled for menus
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canSaveSearches New canSaveSearches value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public Menu setCanSaveSearches(boolean canSaveSearches)  throws IllegalStateException {
+        return (Menu)setAttribute("canSaveSearches", canSaveSearches, false);
+    }
+
+    /**
+     * Option to save searches is disabled for menus
+     *
+     * @return Current canSaveSearches value. Default value is false
+     */
+    public boolean getCanSaveSearches()  {
+        Boolean result = getAttributeAsBoolean("canSaveSearches");
+        return result == null ? false : result;
+    }
+    
+
+    /**
      * If true, clicking or pressing Enter on a menu item that has a submenu will select that item (with standard behavior of
      * hiding the menus, calling click handlers, etc) instead of showing the submenu.
      *
@@ -395,6 +424,29 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      */
     public Boolean getCanSelectParentItems()  {
         return getAttributeAsBoolean("canSelectParentItems");
+    }
+    
+
+    /**
+     * Option to show filter editor is disabled for menus
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canShowFilterEditor New canShowFilterEditor value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public Menu setCanShowFilterEditor(boolean canShowFilterEditor)  throws IllegalStateException {
+        return (Menu)setAttribute("canShowFilterEditor", canShowFilterEditor, false);
+    }
+
+    /**
+     * Option to show filter editor is disabled for menus
+     *
+     * @return Current canShowFilterEditor value. Default value is false
+     */
+    public boolean getCanShowFilterEditor()  {
+        Boolean result = getAttributeAsBoolean("canShowFilterEditor");
+        return result == null ? false : result;
     }
     
 
@@ -512,13 +564,16 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
     
 
     /**
-     * An array of menuItem objects, specifying the menu items this menu should show. Data may also be set to a {@link
+     * An array of menuItem objects, specifying the menu items this menu should show. <P> Data may also be set to a {@link
      * com.smartgwt.client.widgets.tree.Tree} in which case a hierarchy of menus and submenus will automatically be generated
      * to match the tree structure.  See also {@link com.smartgwt.client.widgets.menu.Menu#getDataSource dataSource} for
-     * dynamically fetching menuItems and submenus from a hierarchical DataSource.
+     * dynamically fetching menuItems and submenus from a hierarchical DataSource. <P> Note that items that are marked as
+     * {@link com.smartgwt.client.widgets.menu.MenuItem#getHidden hidden} will be automatically filtered out of the data
+     * dispayed to the user. To retrieve the full set of items at  runtime, including hidden items, use {@link
+     * com.smartgwt.client.widgets.menu.Menu#getAllItems getAllItems()}.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
-     * Change the set of items to display in this menu
+     * Change the set of items to display in this menu. Note that if  {@link com.smartgwt.client.widgets.menu.Menu#getFilterHiddenItems filterHiddenItems} is true and any items are {@link com.smartgwt.client.widgets.menu.MenuItem#getHidden hidden},  data supplied as an Array will be converted to a {@link com.smartgwt.client.data.FilteredList} in order to filter out  hidden items.  To get the full specified data set as an array, including hidden items, use {@link com.smartgwt.client.widgets.menu.Menu#getAllItems getAllItems()}.
      *
      * @param data new items for this menu. Default value is null
      * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
@@ -529,13 +584,16 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
     }
 
     /**
-     * An array of menuItem objects, specifying the menu items this menu should show. Data may also be set to a {@link
+     * An array of menuItem objects, specifying the menu items this menu should show. <P> Data may also be set to a {@link
      * com.smartgwt.client.widgets.tree.Tree} in which case a hierarchy of menus and submenus will automatically be generated
      * to match the tree structure.  See also {@link com.smartgwt.client.widgets.menu.Menu#getDataSource dataSource} for
-     * dynamically fetching menuItems and submenus from a hierarchical DataSource.
+     * dynamically fetching menuItems and submenus from a hierarchical DataSource. <P> Note that items that are marked as
+     * {@link com.smartgwt.client.widgets.menu.MenuItem#getHidden hidden} will be automatically filtered out of the data
+     * dispayed to the user. To retrieve the full set of items at  runtime, including hidden items, use {@link
+     * com.smartgwt.client.widgets.menu.Menu#getAllItems getAllItems()}.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
-     * Change the set of items to display in this menu
+     * Change the set of items to display in this menu. Note that if  {@link com.smartgwt.client.widgets.menu.Menu#getFilterHiddenItems filterHiddenItems} is true and any items are {@link com.smartgwt.client.widgets.menu.MenuItem#getHidden hidden},  data supplied as an Array will be converted to a {@link com.smartgwt.client.data.FilteredList} in order to filter out  hidden items.  To get the full specified data set as an array, including hidden items, use {@link com.smartgwt.client.widgets.menu.Menu#getAllItems getAllItems()}.
      *
      * @param data new items for this menu. Default value is null
      * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
@@ -546,13 +604,16 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
     }
 
     /**
-     * An array of menuItem objects, specifying the menu items this menu should show. Data may also be set to a {@link
+     * An array of menuItem objects, specifying the menu items this menu should show. <P> Data may also be set to a {@link
      * com.smartgwt.client.widgets.tree.Tree} in which case a hierarchy of menus and submenus will automatically be generated
      * to match the tree structure.  See also {@link com.smartgwt.client.widgets.menu.Menu#getDataSource dataSource} for
-     * dynamically fetching menuItems and submenus from a hierarchical DataSource.
+     * dynamically fetching menuItems and submenus from a hierarchical DataSource. <P> Note that items that are marked as
+     * {@link com.smartgwt.client.widgets.menu.MenuItem#getHidden hidden} will be automatically filtered out of the data
+     * dispayed to the user. To retrieve the full set of items at  runtime, including hidden items, use {@link
+     * com.smartgwt.client.widgets.menu.Menu#getAllItems getAllItems()}.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
-     * Change the set of items to display in this menu
+     * Change the set of items to display in this menu. Note that if  {@link com.smartgwt.client.widgets.menu.Menu#getFilterHiddenItems filterHiddenItems} is true and any items are {@link com.smartgwt.client.widgets.menu.MenuItem#getHidden hidden},  data supplied as an Array will be converted to a {@link com.smartgwt.client.data.FilteredList} in order to filter out  hidden items.  To get the full specified data set as an array, including hidden items, use {@link com.smartgwt.client.widgets.menu.Menu#getAllItems getAllItems()}.
      *
      * @param data new items for this menu. Default value is null
      * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
@@ -563,13 +624,16 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
     }
 
     /**
-     * An array of menuItem objects, specifying the menu items this menu should show. Data may also be set to a {@link
+     * An array of menuItem objects, specifying the menu items this menu should show. <P> Data may also be set to a {@link
      * com.smartgwt.client.widgets.tree.Tree} in which case a hierarchy of menus and submenus will automatically be generated
      * to match the tree structure.  See also {@link com.smartgwt.client.widgets.menu.Menu#getDataSource dataSource} for
-     * dynamically fetching menuItems and submenus from a hierarchical DataSource.
+     * dynamically fetching menuItems and submenus from a hierarchical DataSource. <P> Note that items that are marked as
+     * {@link com.smartgwt.client.widgets.menu.MenuItem#getHidden hidden} will be automatically filtered out of the data
+     * dispayed to the user. To retrieve the full set of items at  runtime, including hidden items, use {@link
+     * com.smartgwt.client.widgets.menu.Menu#getAllItems getAllItems()}.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
-     * Change the set of items to display in this menu
+     * Change the set of items to display in this menu. Note that if  {@link com.smartgwt.client.widgets.menu.Menu#getFilterHiddenItems filterHiddenItems} is true and any items are {@link com.smartgwt.client.widgets.menu.MenuItem#getHidden hidden},  data supplied as an Array will be converted to a {@link com.smartgwt.client.data.FilteredList} in order to filter out  hidden items.  To get the full specified data set as an array, including hidden items, use {@link com.smartgwt.client.widgets.menu.Menu#getAllItems getAllItems()}.
      *
      * @param data new items for this menu. Default value is null
      * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
@@ -753,6 +817,49 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
     
 
     /**
+     * Does this hide menu items marked as {@link com.smartgwt.client.widgets.menu.MenuItem#getHidden hidden menu items} by
+     * filtering them out of the data set? <P> In order to support hiding items marked as hidden, if any items are hidden or
+     * marked with {@link com.smartgwt.client.widgets.menu.MenuItem#getVisibleWhen visibleWhen rules}, Menus convert the
+     * specified  {@link com.smartgwt.client.widgets.menu.Menu#getData array of items} to a {@link
+     * com.smartgwt.client.data.FilteredList} with criteria set to filter out items marked with the {@link
+     * com.smartgwt.client.widgets.menu.Menu#getItemHiddenProperty itemHiddenProperty}. <P> Note that this means for
+     * <code>filterHiddenItems:true</code> menus, developers wishing to interact with the menu data set must use List APIs such
+     * as  {@link com.smartgwt.client.data.List#getLength menu.getData().getLength()} and {@link
+     * com.smartgwt.client.data.List#get menu.getData().get(<i>index</i>)}, rather than accessing simple array attributes such
+     * as <code>menu.getData().length</code> or <code>menu.getData()[<i>index</i>]</code> <P> To get the full specified data
+     * set as an array, including hidden items, use {@link com.smartgwt.client.widgets.menu.Menu#getAllItems getAllItems()}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param filterHiddenItems New filterHiddenItems value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public Menu setFilterHiddenItems(Boolean filterHiddenItems)  throws IllegalStateException {
+        return (Menu)setAttribute("filterHiddenItems", filterHiddenItems, false);
+    }
+
+    /**
+     * Does this hide menu items marked as {@link com.smartgwt.client.widgets.menu.MenuItem#getHidden hidden menu items} by
+     * filtering them out of the data set? <P> In order to support hiding items marked as hidden, if any items are hidden or
+     * marked with {@link com.smartgwt.client.widgets.menu.MenuItem#getVisibleWhen visibleWhen rules}, Menus convert the
+     * specified  {@link com.smartgwt.client.widgets.menu.Menu#getData array of items} to a {@link
+     * com.smartgwt.client.data.FilteredList} with criteria set to filter out items marked with the {@link
+     * com.smartgwt.client.widgets.menu.Menu#getItemHiddenProperty itemHiddenProperty}. <P> Note that this means for
+     * <code>filterHiddenItems:true</code> menus, developers wishing to interact with the menu data set must use List APIs such
+     * as  {@link com.smartgwt.client.data.List#getLength menu.getData().getLength()} and {@link
+     * com.smartgwt.client.data.List#get menu.getData().get(<i>index</i>)}, rather than accessing simple array attributes such
+     * as <code>menu.getData().length</code> or <code>menu.getData()[<i>index</i>]</code> <P> To get the full specified data
+     * set as an array, including hidden items, use {@link com.smartgwt.client.widgets.menu.Menu#getAllItems getAllItems()}.
+     *
+     * @return Current filterHiddenItems value. Default value is true
+     */
+    public Boolean getFilterHiddenItems()  {
+        Boolean result = getAttributeAsBoolean("filterHiddenItems");
+        return result == null ? true : result;
+    }
+    
+
+    /**
      * If set, the CSS style used for the body of this menu when there <em>is</em> an icon field. In RTL mode, the
      * <code>iconBodyStyleName</code> is suffixed with "RTL", which allows skins to apply different styles in LTR and RTL
      * modes. <p> Note: Any skin which uses <code>iconBodyStyleName</code> should add "RTL" styles as well, even if identical
@@ -917,6 +1024,29 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      */
     public Criteria getInitialCriteria()  {
         return new Criteria(getAttributeAsJavaScriptObject("initialCriteria"));
+    }
+    
+
+    /**
+     * Items with this property set to true will be hidden within the menu.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param itemHiddenProperty New itemHiddenProperty value. Default value is "hidden"
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.menu.Menu#setFilterHiddenItems
+     */
+    public Menu setItemHiddenProperty(String itemHiddenProperty) {
+        return (Menu)setAttribute("itemHiddenProperty", itemHiddenProperty, true);
+    }
+
+    /**
+     * Items with this property set to true will be hidden within the menu.
+     *
+     * @return Current itemHiddenProperty value. Default value is "hidden"
+     * @see com.smartgwt.client.widgets.menu.Menu#getFilterHiddenItems
+     */
+    public String getItemHiddenProperty()  {
+        return getAttributeAsString("itemHiddenProperty");
     }
     
 
@@ -1502,6 +1632,21 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
     }-*/;
 	
 	/**
+     * Retrieves the full set of items for this menu, including {@link com.smartgwt.client.widgets.menu.MenuItem#getHidden
+     * hidden items}
+     *
+     * @return 
+     */
+    public native List getAllItems() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getAllItems", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getAllItems();
+        return ret;
+    }-*/;
+
+	/**
      * Return the CSS class for a cell. By default this method has the following implementation:<br> - return any custom style
      * for the record ({@link com.smartgwt.client.widgets.grid.GridRenderer#getRecordCustomStyleProperty
      * GridRenderer.recordCustomStyleProperty})    if defined.<br> - create a style name based on the result of {@link
@@ -1544,6 +1689,25 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
         var ret = self.getItem(item);
         if(ret == null) return null;
         return @com.smartgwt.client.widgets.menu.MenuItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * Given a MenuItem, return its index in the currently visible set of items. <P> To get the index of the item in the {@link
+     * com.smartgwt.client.widgets.menu.Menu#getAllItems full set of items}, including {@link
+     * com.smartgwt.client.widgets.menu.MenuItem#getHidden hidden items}, use {@link
+     * com.smartgwt.client.widgets.menu.Menu#getItemNum getItemNum()} instead
+     * @param item Menu Item to find
+     *
+     * @return index of the item in the visible items, or -1 if not found.
+     * @see com.smartgwt.client.widgets.menu.Menu#getFilterHiddenItems
+     */
+    public native int getVisibleItemNum(MenuItem item) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getVisibleItemNum", "MenuItem");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getVisibleItemNum(item.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return ret;
     }-*/;
 
 	/**
@@ -1659,6 +1823,58 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
         self.setCriteria(criteria.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
+	/**
+     * Hides or shows the menu item according to the value of newState, and redraws the menu if necessary. Returns true if
+     * there's a change in the hidden state.
+     * @param item MenuItem in question, or its index
+     *
+     * @return true if the hidden state was changed
+     * @see com.smartgwt.client.widgets.menu.Menu#getFilterHiddenItems
+     */
+    public native boolean setItemHidden(MenuItem item) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setItemHidden", "MenuItem");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.setItemHidden(item.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return ret == null ? false : ret;
+    }-*/;
+
+	/**
+     * Hides or shows the menu item according to the value of newState, and redraws the menu if necessary. Returns true if
+     * there's a change in the hidden state.
+     * @param item MenuItem in question, or its index
+     *
+     * @return true if the hidden state was changed
+     * @see com.smartgwt.client.widgets.menu.Menu#getFilterHiddenItems
+     */
+    public native boolean setItemHidden(int item) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setItemHidden", "int");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.setItemHidden(item);
+        return ret == null ? false : ret;
+    }-*/;
+
+	/**
+     * Hides or shows the menu item according to the value of newState, and redraws the menu if necessary. Returns true if
+     * there's a change in the hidden state.
+     * @param item MenuItem in question, or its index
+     * @param newState true to hide the menu item, false to show it.
+     *
+     * @return true if the hidden state was changed
+     * @see com.smartgwt.client.widgets.menu.Menu#getFilterHiddenItems
+     */
+    public native boolean setItemHidden(MenuItem item, boolean newState) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setItemHidden", "MenuItem,boolean");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.setItemHidden(item.@com.smartgwt.client.core.DataClass::getJsObj()(), newState);
+        return ret == null ? false : ret;
+    }-*/;
+	
 	/**
      * Show this menu as a context menu, that is, immediately adjacent to the current mouse position.
      *
@@ -2335,9 +2551,19 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
             s.logicalStructureErrors += "Menu.cancelButtonTitle:" + t.getMessage() + "\n";
         }
         try {
+            s.canSaveSearches = getAttributeAsString("canSaveSearches");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.canSaveSearches:" + t.getMessage() + "\n";
+        }
+        try {
             s.canSelectParentItems = getAttributeAsString("canSelectParentItems");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Menu.canSelectParentItems:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canShowFilterEditor = getAttributeAsString("canShowFilterEditor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.canShowFilterEditor:" + t.getMessage() + "\n";
         }
         try {
             s.cascadeAutoDismiss = getAttributeAsString("cascadeAutoDismiss");
@@ -2390,6 +2616,11 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
             s.logicalStructureErrors += "Menu.fillSpaceStyleName:" + t.getMessage() + "\n";
         }
         try {
+            s.filterHiddenItems = getAttributeAsString("filterHiddenItems");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.filterHiddenItems:" + t.getMessage() + "\n";
+        }
+        try {
             s.iconBodyStyleName = getAttributeAsString("iconBodyStyleName");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Menu.iconBodyStyleName:" + t.getMessage() + "\n";
@@ -2413,6 +2644,11 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
             s.initialCriteria = getInitialCriteria();
         } catch (Throwable t) {
             s.logicalStructureErrors += "Menu.initialCriteria:" + t.getMessage() + "\n";
+        }
+        try {
+            s.itemHiddenProperty = getAttributeAsString("itemHiddenProperty");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.itemHiddenProperty:" + t.getMessage() + "\n";
         }
         try {
             s.menuButtonWidth = getAttributeAsString("menuButtonWidth");

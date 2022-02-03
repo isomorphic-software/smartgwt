@@ -106,7 +106,6 @@ package com.smartgwt.client.docs;
  *  <b>NOTE:</b> When setting Properties or Defaults in Smart&nbsp;GWT, attributes and event
  *  handlers can be set, but override points are not supported.
  *  
- * 
  *  <p>
  * The AutoChild system can be used to create both {@link
  * com.smartgwt.client.widgets.Canvas#getChildren direct children} 
@@ -162,6 +161,18 @@ package com.smartgwt.client.docs;
  *  simply recreating the parent component from scratch is a viable option. This approach
  *  is more than fast enough for most smaller components, and will not create a reliance on
  *  unsupported APIs.
+ *  <P>
+ *  <h4>Multi-AutoChildren</h4>
+ *  In some cases, rather than creating a single named autoChild, such as a Window header, 
+ *  a component will use the autoChild pattern to create an arbitrary number of children with
+ * common appearance and behavior. An example of this is the {@link
+ * com.smartgwt.client.widgets.tile.TileGrid} which creates
+ * multiple {@link com.smartgwt.client.widgets.tile.TileGrid#getTile tiles}. In this paradigm,
+ * each automatically generated child
+ * will pick up the appropriate constructor, properties and defaults from the documented auto
+ * child 
+ *  name but will not be available as <code>creator.[autoChildName]</code> after creation and
+ *  setting <code>show<i>AutoChildName</i></code> will typically have no effect.
  */
 public interface AutoChildUsage {
 }

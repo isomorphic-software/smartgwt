@@ -64,6 +64,13 @@ public enum DSProtocol implements ValueEnum {
      */
     POSTPARAMS("postParams"),
     /**
+     * Data is serialized as a JSON string and POST'd to the dataURL.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "postJSON".
+     */
+    POSTJSON("postJSON"),
+    /**
      * Data is serialized as XML via {@link com.smartgwt.client.data.DataSource#xmlSerialize DataSource.xmlSerialize()} and
      * POST'd as the HTTP request body with contentType "text/xml".
      * <P>

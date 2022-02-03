@@ -14,40 +14,42 @@ package com.smartgwt.client.docs;
  * development have different license (such as Eclipse - Eclipse Public License).  Also, specific
  * GWT widgets, not required by Smart GWT,  have licenses different from core GWT (such as
  * JFreeChart's LGPL license).  See  <a href='http://code.google.com/webtoolkit/terms.html'
- * target='_blank'>Google's summary of terms</a> for details.  &lt;style&gt;   .jmd-module  {    
- * width: 140px;     text-align: right;     vertical-align: top;     padding-right: 10px;   }  
+ * target='_blank'>Google's summary of terms</a> for details.  <style>   .jmd-module  {     width:
+ * 140px;     text-align: right;     vertical-align: top;     padding-right: 10px;   }  
  * .jmd-optional  {     text-decoration: underline;     margin-top: 10px; margin-bottom: 8px;   }
- * &lt;style&gt;  <table width="100%" >   <tr>     <td class="jmd-module">       <a
- * target="_blank" href="./mavendoc/isomorphic-core-rpc.html">isomorphic_core_rpc</a>     </td>   
- * <td>             This is the core Smart GWT module.  It provides the RPC, DMI, and DataSource  
- * support. Please note that both commons-collections-3.x and commons-collections4-4.x        are
- * required and safe to include side by side in the CLASSPATH (different third party        libs
- * rely on one or the other).  The same is true of commons-lang and commons-lang3.       <div
+ * </style>  <table width="100%" >   <tr>     <td class="jmd-module">       <a target="_blank"
+ * href="./mavendoc/isomorphic-core-rpc.html">isomorphic_core_rpc</a>     </td>     <td>          
+ * This is the core Smart GWT module.  It provides the RPC, DMI, and DataSource       support.
+ * Please note that both commons-collections-3.x and commons-collections4-4.x        are required
+ * and safe to include side by side in the CLASSPATH (different third party        libs rely on
+ * one or the other).  The same is true of commons-lang and commons-lang3.       <div
  * class="jmd-optional">         Optional Dependencies       </div>       <ul>        
+ * <li><i>freemarker</i>              - if you're using the built-in support for REST via the     
+ * {@link com.smartgwt.client.docs.ServletDetails RESTHandler servlet} servlet        
  * <li><i>isomorphic_js_parser</i>               - if you're using the built-in support for REST
  * via the                 {@link com.smartgwt.client.docs.ServletDetails RESTHandler servlet}
  * servlet with JSON payloads         <li><i>xercesImpl</i>               - if you're using JDK
  * &lt; 1.5         <li><i>mail</i>               - if you plan to use the Mail messaging feature 
  * <li><i>javax.persistence</i>               - if you plan to use the metadata-from-annotations
  * feature.  Note that if you                 are using JPA, or a recent version of Hibernate,
- * then you are probably                 already using this library.         <li><i>poi </i>      
- * - if you plan to export datasets in Microsoft Excel 97 (xls) or 2007 (xlsx)                
- * formats.           <li><i>poi-ooxml</i>               - also needed if you plan to export data
- * in Excel 2007 (xlsx) format         <li><i>isomorphic_contentexport</i>               - if you
- * plan to export to PDF format         <li><i>isomorphic_jpa</i>               - if you plan to
- * use BatchDS Generator (even if you are not using JPA,                 although the generated
- * DataSources will not require JPA at runtime if you                 are not using JPA).        
- * <li><i>log4j</i>               - if you plan to use log4j logging (used by default)        
- * <li><i>slf4j-log4j12</i>               - if you plan to use slf4j with log4j (for example), or
- * any other slf4j bridge                 library depending on which logging framework will be
- * used.  See                 {@link com.smartgwt.client.docs.ServerLogging} for information on
- * server-side logging and how to                 configure it.         <li><i>groovy</i>         
- * - if you plan to use Groovy with the {@link com.smartgwt.client.docs.ServerScript} feature.    
- * Note, we also recommend that you use Groovy as the evaluation engine if you                
- * intend to use Java as an inline scripting language.                  See the "Server Scripting"
- * documentation.         <li><i>commons-digester and commons-beanutils</i>               - if you
- * plan to use Velocity Tools.        </ul>      </td>   </tr>     <tr>     <td
- * class="jmd-module"><a target="_blank"         
+ * then you are probably                 already using this library.         <li><i>poi and
+ * commons-math</i>               - if you plan to export datasets in Microsoft Excel 97 (xls) or
+ * 2007 (xlsx)                 formats.           <li><i>poi-ooxml, poi-ooxml-schemas, and
+ * commons-compress</i>              - also needed if you plan to export data in Excel 2007 (xlsx)
+ * format         <li><i>isomorphic_contentexport</i>               - if you plan to export to PDF
+ * format         <li><i>isomorphic_jpa</i>               - if you plan to use BatchDS Generator
+ * (even if you are not using JPA,                 although the generated DataSources will not
+ * require JPA at runtime if you                 are not using JPA).         <li><i>log4j</i>     
+ * - if you plan to use log4j logging (used by default)         <li><i>slf4j-log4j12</i>          
+ * - if you plan to use slf4j with log4j (for example), or any other slf4j bridge                
+ * library depending on which logging framework will be used.  See                 {@link
+ * com.smartgwt.client.docs.ServerLogging} for information on server-side logging and how to      
+ * configure it.         <li><i>groovy</i>               - if you plan to use Groovy with the
+ * {@link com.smartgwt.client.docs.ServerScript} feature.                  Note, we also recommend
+ * that you use Groovy as the evaluation engine if you                 intend to use Java as an
+ * inline scripting language.                  See the "Server Scripting" documentation.        
+ * <li><i>commons-digester and commons-beanutils</i>               - if you plan to use Velocity
+ * Tools.        </ul>      </td>   </tr>     <tr>     <td class="jmd-module"><a target="_blank"  
  * href="./mavendoc/isomorphic-contentexport.html">isomorphic_contentexport</a>     </td>     <td>
  * Provides support for PDF Export.       <div class="jmd-optional">       Optional Dependencies  
  * </div>       <ul>       <li><i>batik-anim, batik-awt-util, batik-bridge, batik-css, batik-dom,
@@ -118,21 +120,14 @@ package com.smartgwt.client.docs;
  * is part of the Network Performance Module.  The isomorphic_assembly module is      required for
  * file assembly and stripping.  For more information, see:      {@link
  * com.smartgwt.client.docs.FileAssembly}.   </td> </tr> <tr>   <td class="jmd-module"><a
- * target="_blank" href="./mavendoc/isomorphic-m2pluginextras.html">    
- * isomorphic_m2pluginextras</a>   </td>   <td>     A small collection of tools / utilities for
- * use by Maven builds, Ant Scripts, and      command line invocation.   </td> </tr> <tr>   <td
- * class="jmd-module"><a target="_blank" href="./mavendoc/isomorphic-struts.html">    
- * isomorphic_struts</a>   </td>   <td>     Contains the ValidationAction and
- * ValidationFailureAction classes that implement      RPC-based validation of DynamicForms using
- * the Struts ValidatorPlugIn.       If you're not using Struts or if you don't need this
- * particular feature of Smart GWT,      you do not need this module or its dependencies (also see
- * the important note  below).       An example of this style of validation is available here:    
- * <a href='/examples/struts/forms/welcome.do'
- * target='_blank'>/examples/struts/forms/welcome.do</a> - read the info on this page, and     
- * follow  the "Dynamic Form (With RPC-based Validation)" Link for the actual example.    
- * <br><br>     <b>NOTE:</b> This support is for Struts 1.0 only, and is only intended to be used
- * in       certain edge cases of incremental migration to Smart GWT.  You should only use it if  
- *     directed to do so by Isomorphic Support.   </td> </tr> </table>
+ * target="_blank" href="./mavendoc/isomorphic-scheduler.html">     isomorphic_scheduler</a>  
+ * </td>   <td>     Server-side libraries providing {@link com.smartgwt.client.docs.QuartzAdapters
+ * DataSource adapters} for the     <a href='http://www.quartz-scheduler.org'
+ * target='_blank'>Quartz</a> API.   </td> </tr> <tr>   <td class="jmd-module"><a target="_blank"
+ * href="./mavendoc/isomorphic-m2pluginextras.html">     isomorphic_m2pluginextras</a>   </td>  
+ * <td>     A small collection of tools / utilities for use by Maven builds, Ant Scripts, and     
+ * command line invocation.   </td> </tr> </table>
+     * @see com.smartgwt.client.docs.Spring4limits
  */
 public interface JavaModuleDependencies {
 }

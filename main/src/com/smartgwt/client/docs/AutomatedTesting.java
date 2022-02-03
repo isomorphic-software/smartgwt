@@ -115,12 +115,19 @@ package com.smartgwt.client.docs;
  *  that uses Smart GWT locators and invokes the appropriate APIs on our WebDriver wrappers.
  *  <P>
  *  Once you become familiar with what code is generated for common interactions, you may want to
- *  write tests directly without using Selenium IDE.  In this case, you can use the
- * {@link com.smartgwt.client.util.AutoTest} APIs, such as {@link
- * com.smartgwt.client.util.AutoTest#getLocator AutoTest.getLocator()}, which takes a {@link
- * com.smartgwt.client.widgets.Canvas} or
- * DOM element, to get the locators you need from the {@link com.smartgwt.client.docs.Debugging
- * Developer Console}.
+ *  write tests directly without using Selenium IDE.  In this case, you can retrieve locators
+ * for specific elements in a couple of ways. The {@link
+ * com.smartgwt.client.util.AutoTest#installLocatorShortcut AutoTest.installLocatorShortcut()}
+ * method
+ *  allows developers to retieve a locator for the element under the mouse via a simple
+ * key-combo plus click. Alternatively you can use {@link com.smartgwt.client.util.AutoTest} APIs,
+ * 
+ * such as {@link com.smartgwt.client.util.AutoTest#getLocator AutoTest.getLocator()}, which takes
+ * a {@link com.smartgwt.client.widgets.Canvas} or
+ *  DOM element, to get the locators you need. These can be invoked by evaluating 
+ * script while a Smart GWT page is loaded (from the {@link com.smartgwt.client.docs.Debugging
+ * Developer Console} 
+ *  or from the native browser console).
  *  <p>
  *  <b>NOTE:</b> Selenium IDE has an option to export tests as WebDriver-compatible code.  <b>Do
  *  not use</b> this feature, it exports useless code that doesn't understand custom commands,
@@ -179,8 +186,7 @@ package com.smartgwt.client.docs;
  * target='_blank'>here</a>.
  *  Setup for WebDriver is more complex than for classic Selenium.  Drivers can be downloaded for
  *  <a href='https://github.com/mozilla/geckodriver/' target='_blank'>Firefox</a>,
- * <a href='https://sites.google.com/a/chromium.org/chromedriver/' target='_blank'>Google
- * Chrome</a>, 
+ *  <a href='https://sites.google.com/chromium.org/driver/' target='_blank'>Google Chrome</a>, 
  *  <a href='https://www.seleniumhq.org/download/' target='_blank'>Internet Explorer</a>, and
  * <a href='https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/'
  * target='_blank'>MS Edge</a>.

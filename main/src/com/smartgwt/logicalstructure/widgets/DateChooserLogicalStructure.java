@@ -6,6 +6,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
@@ -66,6 +67,7 @@ public class DateChooserLogicalStructure extends VLayoutLogicalStructure {
     public String disabledWeekendStyle;
     public String disableWeekends;
     public String endYear;
+    public String endYearRange;
     public String firstDayOfWeek;
     public String fiscalYearFieldTitle;
     public String fiscalYearHeaderStyle;
@@ -104,6 +106,7 @@ public class DateChooserLogicalStructure extends VLayoutLogicalStructure {
     public String showWeekends;
     public String skinImgDir;
     public String startYear;
+    public String startYearRange;
     public String timeItemTitle;
     public String todayButtonHeight;
     public String todayButtonTitle;

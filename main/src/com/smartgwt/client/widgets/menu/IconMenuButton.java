@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,15 +100,10 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
- * A subclass of {@link com.smartgwt.client.widgets.IconButton} that shows a menuIcon by default and implements showMenu().
- * <P> This class has {@link com.smartgwt.client.widgets.IconButton#getShowMenuIcon showMenuIcon} set to <code>true</code>
- * by default, and has a {@link com.smartgwt.client.widgets.IconButton#addMenuIconClickHandler IconButton.menuIconClick()}
- * handler which will show the specified  {@link com.smartgwt.client.widgets.menu.IconMenuButton#getMenu menu} via a call
- * to {@link com.smartgwt.client.widgets.menu.IconMenuButton#showMenu showMenu()}. This menuIconClick handler cancels
- * default click behavior, so, if a user clicks the menu  item, any specified {@link
- * com.smartgwt.client.widgets.Canvas#addClickHandler click handler} for the button as a whole will not fire.
+ * A simple subclass of {@link com.smartgwt.client.widgets.menu.RibbonMenuButton}.
  */
 @BeanFactory.FrameworkClass
 @BeanFactory.ScClassName("IconMenuButton")
@@ -191,114 +191,7 @@ public class IconMenuButton extends IconButton {
 
     // ********************* Properties / Attributes ***********************
 
-    /**
-     * The menu to show when the {@link com.smartgwt.client.widgets.IconButton#getMenuIconSrc menu-icon} is clicked. <P> For a
-     * menu button with no menu (menu: null) the up/down arrow image can be suppressed by setting {@link
-     * com.smartgwt.client.widgets.menu.MenuButton#getShowMenuButtonImage showMenuButtonImage}: <code>false</code>.
-     *
-     * @param menu New menu value. Default value is null
-     * @return {@link com.smartgwt.client.widgets.menu.IconMenuButton IconMenuButton} instance, for chaining setter calls
-     */
-    public IconMenuButton setMenu(Menu menu) {
-        return (IconMenuButton)setAttribute("menu", menu == null ? null : menu.getOrCreateJsObj(), true);
-    }
-
-    /**
-     * The menu to show when the {@link com.smartgwt.client.widgets.IconButton#getMenuIconSrc menu-icon} is clicked. <P> For a
-     * menu button with no menu (menu: null) the up/down arrow image can be suppressed by setting {@link
-     * com.smartgwt.client.widgets.menu.MenuButton#getShowMenuButtonImage showMenuButtonImage}: <code>false</code>.
-     *
-     * @return Current menu value. Default value is null
-     */
-    public Menu getMenu()  {
-        return (Menu)Menu.getByJSObject(getAttributeAsJavaScriptObject("menu"));
-    }
-    
-
-    /**
-     * The horizontal alignment of this button's menu, in relation to the button.  When unset, default behavior is to align the
-     * right edges of button and menu if the page is in RTL  mode, and the left edges otherwise.
-     *
-     * @param menuAlign New menuAlign value. Default value is null
-     * @return {@link com.smartgwt.client.widgets.menu.IconMenuButton IconMenuButton} instance, for chaining setter calls
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public IconMenuButton setMenuAlign(Alignment menuAlign)  throws IllegalStateException {
-        return (IconMenuButton)setAttribute("menuAlign", menuAlign == null ? null : menuAlign.getValue(), false);
-    }
-
-    /**
-     * The horizontal alignment of this button's menu, in relation to the button.  When unset, default behavior is to align the
-     * right edges of button and menu if the page is in RTL  mode, and the left edges otherwise.
-     *
-     * @return Current menuAlign value. Default value is null
-     */
-    public Alignment getMenuAlign()  {
-        return EnumUtil.getEnum(Alignment.values(), getAttribute("menuAlign"));
-    }
-    
-
-    /**
-     * Allows you to specify an animation effect to apply to the menu when it is being shown. Valid options are "none" (no
-     * animation), "fade", "slide" and "wipe". If unspecified falls through to <code>menu.showAnimationEffect</code>
-     * <p><b>Note : </b> This is an advanced setting</p>
-     *
-     * @param menuAnimationEffect New menuAnimationEffect value. Default value is null
-     * @return {@link com.smartgwt.client.widgets.menu.IconMenuButton IconMenuButton} instance, for chaining setter calls
-     */
-    public IconMenuButton setMenuAnimationEffect(String menuAnimationEffect) {
-        return (IconMenuButton)setAttribute("menuAnimationEffect", menuAnimationEffect, true);
-    }
-
-    /**
-     * Allows you to specify an animation effect to apply to the menu when it is being shown. Valid options are "none" (no
-     * animation), "fade", "slide" and "wipe". If unspecified falls through to <code>menu.showAnimationEffect</code>
-     *
-     * @return Current menuAnimationEffect value. Default value is null
-     */
-    public String getMenuAnimationEffect()  {
-        return getAttributeAsString("menuAnimationEffect");
-    }
-    
-
-    /**
-     * The menu drops down below the menu button. Set to false if the menu should appear above the menu button.
-     *
-     * @param showMenuBelow New showMenuBelow value. Default value is true
-     * @return {@link com.smartgwt.client.widgets.menu.IconMenuButton IconMenuButton} instance, for chaining setter calls
-     */
-    public IconMenuButton setShowMenuBelow(Boolean showMenuBelow) {
-        return (IconMenuButton)setAttribute("showMenuBelow", showMenuBelow, true);
-    }
-
-    /**
-     * The menu drops down below the menu button. Set to false if the menu should appear above the menu button.
-     *
-     * @return Current showMenuBelow value. Default value is true
-     */
-    public Boolean getShowMenuBelow()  {
-        Boolean result = getAttributeAsBoolean("showMenuBelow");
-        return result == null ? true : result;
-    }
-    
-
     // ********************* Methods ***********************
-	/**
-     * Shows this button's {@link com.smartgwt.client.widgets.menu.IconMenuButton#getMenu menu}.  Called automatically when a
-     * user clicks the  {@link com.smartgwt.client.widgets.IconButton#getMenuIconSrc menuIcon}.
-     *
-     * @return true if a menu was shown
-     */
-    public native Boolean showMenu() /*-{
-        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "showMenu", "");
-        }
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var ret = self.showMenu();
-        if(ret == null) return null;
-        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
-    }-*/;
-
 
     // ********************* Static Methods ***********************
 
@@ -339,26 +232,6 @@ public class IconMenuButton extends IconButton {
      */
     public LogicalStructureObject setLogicalStructure(IconMenuButtonLogicalStructure s) {
         super.setLogicalStructure(s);
-        try {
-            s.menu = getMenu();
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "IconMenuButton.menu:" + t.getMessage() + "\n";
-        }
-        try {
-            s.menuAlign = getAttributeAsString("menuAlign");
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "IconMenuButton.menuAlign:" + t.getMessage() + "\n";
-        }
-        try {
-            s.menuAnimationEffect = getAttributeAsString("menuAnimationEffect");
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "IconMenuButton.menuAnimationEffect:" + t.getMessage() + "\n";
-        }
-        try {
-            s.showMenuBelow = getAttributeAsString("showMenuBelow");
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "IconMenuButton.showMenuBelow:" + t.getMessage() + "\n";
-        }
         return s;
     }
 

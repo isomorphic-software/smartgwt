@@ -23,8 +23,10 @@ package com.smartgwt.client.docs;
  * the following states in the grid: <ul> <li>{@link com.smartgwt.client.docs.ListGridFieldState field state}</li>
  * <li>{@link com.smartgwt.client.docs.ListGridSortState sort state}</li> <li>{@link
  * com.smartgwt.client.docs.ListGridSelectedState selected state}</li> <li>{@link
- * com.smartgwt.client.docs.ListGridGroupState group state}</li> <li>hilite state</li> </ul> Note that this object is a
- * JavaScript string, and may be stored (for example) as a blob on the server for state persistence across sessions.
+ * com.smartgwt.client.docs.ListGridGroupState group state}</li> <li>{@link
+ * com.smartgwt.client.docs.ListGridUserCriteriaState criteria state}</li> <li>hilite state</li> <li>filterEditor
+ * visibility state</li> </ul> Note that this object is a JavaScript string, and may be stored (for example) as a blob on
+ * the server for state persistence across sessions.
  */
 public interface ListGridViewState  {
 }

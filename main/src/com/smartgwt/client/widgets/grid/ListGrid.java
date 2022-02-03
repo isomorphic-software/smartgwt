@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * A ListGrid is a {@link com.smartgwt.client.widgets.DataBoundComponent} that displays a list of objects in a grid, where
@@ -103,7 +109,7 @@ import com.smartgwt.logicalstructure.widgets.tools.*;
  */
 @BeanFactory.FrameworkClass
 @BeanFactory.ScClassName("ListGrid")
-public class ListGrid extends VLayout implements DataBoundComponent, com.smartgwt.client.widgets.grid.events.HasCellSavedHandlers, com.smartgwt.client.widgets.grid.events.HasCellClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellErrorIconHoverHandlers, com.smartgwt.client.widgets.grid.events.HasCellErrorIconOutHandlers, com.smartgwt.client.widgets.grid.events.HasCellErrorIconOverHandlers, com.smartgwt.client.widgets.grid.events.HasCellHoverHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasCellOutHandlers, com.smartgwt.client.widgets.grid.events.HasCellOverHandlers, com.smartgwt.client.widgets.grid.events.HasCellSelectionChangedHandlers, com.smartgwt.client.widgets.grid.events.HasCellValueHoverHandlers, com.smartgwt.client.widgets.grid.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.grid.events.HasDataChangedHandlers, com.smartgwt.client.widgets.grid.events.HasDrawAreaChangedHandlers, com.smartgwt.client.widgets.grid.events.HasEditCompleteHandlers, com.smartgwt.client.widgets.grid.events.HasEditFailedHandlers, com.smartgwt.client.widgets.grid.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasFieldStateChangedHandlers, com.smartgwt.client.widgets.grid.events.HasFilterEditorSubmitHandlers, com.smartgwt.client.widgets.events.HasFormulaUpdatedHandlers, com.smartgwt.client.widgets.grid.events.HasGroupByCompleteHandlers, com.smartgwt.client.widgets.grid.events.HasGroupStateChangedHandlers, com.smartgwt.client.widgets.grid.events.HasGroupTreeChangedHandlers, com.smartgwt.client.widgets.grid.events.HasGroupByHandlers, com.smartgwt.client.widgets.grid.events.HasRegroupHandlers, com.smartgwt.client.widgets.grid.events.HasHeaderDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasHeaderHoverHandlers, com.smartgwt.client.widgets.grid.events.HasHilitesChangedHandlers, com.smartgwt.client.widgets.grid.events.HasBodyKeyPressHandlers, com.smartgwt.client.widgets.grid.events.HasRecordCollapseHandlers, com.smartgwt.client.widgets.grid.events.HasRecordExpandHandlers, com.smartgwt.client.widgets.grid.events.HasHeaderClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDropHandlers, com.smartgwt.client.widgets.grid.events.HasRemoveRecordClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasRowHoverHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasRowOutHandlers, com.smartgwt.client.widgets.grid.events.HasRowOverHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionChangedHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionUpdatedHandlers, com.smartgwt.client.widgets.grid.events.HasSetSortHandlers, com.smartgwt.client.widgets.grid.events.HasSortChangedHandlers, com.smartgwt.client.widgets.grid.events.HasSorterClickHandlers, com.smartgwt.client.widgets.grid.events.HasSorterContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasViewStateChangedHandlers {
+public class ListGrid extends VLayout implements DataBoundComponent, com.smartgwt.client.widgets.grid.events.HasCellSavedHandlers, com.smartgwt.client.widgets.grid.events.HasCellClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasCellErrorIconHoverHandlers, com.smartgwt.client.widgets.grid.events.HasCellErrorIconOutHandlers, com.smartgwt.client.widgets.grid.events.HasCellErrorIconOverHandlers, com.smartgwt.client.widgets.grid.events.HasCellHoverHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasCellMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasCellOutHandlers, com.smartgwt.client.widgets.grid.events.HasCellOverHandlers, com.smartgwt.client.widgets.grid.events.HasCellSelectionChangedHandlers, com.smartgwt.client.widgets.grid.events.HasCellValueHoverHandlers, com.smartgwt.client.widgets.grid.events.HasCriteriaChangedHandlers, com.smartgwt.client.widgets.grid.events.HasDataArrivedHandlers, com.smartgwt.client.widgets.grid.events.HasDataChangedHandlers, com.smartgwt.client.widgets.grid.events.HasDrawAreaChangedHandlers, com.smartgwt.client.widgets.grid.events.HasEditCompleteHandlers, com.smartgwt.client.widgets.grid.events.HasEditFailedHandlers, com.smartgwt.client.widgets.grid.events.HasEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasFieldStateChangedHandlers, com.smartgwt.client.widgets.grid.events.HasFilterEditorSubmitHandlers, com.smartgwt.client.widgets.events.HasFormulaUpdatedHandlers, com.smartgwt.client.widgets.grid.events.HasGroupByCompleteHandlers, com.smartgwt.client.widgets.grid.events.HasGroupStateChangedHandlers, com.smartgwt.client.widgets.grid.events.HasGroupTreeChangedHandlers, com.smartgwt.client.widgets.grid.events.HasGroupByHandlers, com.smartgwt.client.widgets.grid.events.HasRegroupHandlers, com.smartgwt.client.widgets.grid.events.HasHeaderDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasHeaderHoverHandlers, com.smartgwt.client.widgets.grid.events.HasHilitesChangedHandlers, com.smartgwt.client.widgets.grid.events.HasBodyKeyPressHandlers, com.smartgwt.client.widgets.grid.events.HasRecordCollapseHandlers, com.smartgwt.client.widgets.grid.events.HasRecordExpandHandlers, com.smartgwt.client.widgets.grid.events.HasHeaderClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDropHandlers, com.smartgwt.client.widgets.grid.events.HasRemoveRecordClickHandlers, com.smartgwt.client.widgets.grid.events.HasRecordDoubleClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorEnterHandlers, com.smartgwt.client.widgets.grid.events.HasRowEditorExitHandlers, com.smartgwt.client.widgets.grid.events.HasRowHoverHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseDownHandlers, com.smartgwt.client.widgets.grid.events.HasRowMouseUpHandlers, com.smartgwt.client.widgets.grid.events.HasRowOutHandlers, com.smartgwt.client.widgets.grid.events.HasRowOverHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionChangedHandlers, com.smartgwt.client.widgets.grid.events.HasSelectionUpdatedHandlers, com.smartgwt.client.widgets.grid.events.HasSetSortHandlers, com.smartgwt.client.widgets.grid.events.HasSortChangedHandlers, com.smartgwt.client.widgets.grid.events.HasSorterClickHandlers, com.smartgwt.client.widgets.grid.events.HasSorterContextClickHandlers, com.smartgwt.client.widgets.grid.events.HasViewStateChangedHandlers {
 
     public static ListGrid getOrCreateRef(JavaScriptObject jsObj) {
         if (jsObj == null) return null;
@@ -218,6 +224,36 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     
 
     /**
+     * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu headerContextMenu} for this
+     * grid, and a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor filter-editor} is visible and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterWindow allowFilterWindow} is enabled, this attribute will be
+     * shown as the menu item title to configure advanced filtering.  This menu-item is displayed in the context menu for the
+     * sorter button and in the  {@link com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterOperators filter using}
+     * operators menu.
+     *
+     * @param advancedFilteringText New advancedFilteringText value. Default value is "Advanced filtering..."
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     */
+    public ListGrid setAdvancedFilteringText(String advancedFilteringText) {
+        return (ListGrid)setAttribute("advancedFilteringText", advancedFilteringText, true);
+    }
+
+    /**
+     * If we're showing a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu headerContextMenu} for this
+     * grid, and a {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor filter-editor} is visible and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterWindow allowFilterWindow} is enabled, this attribute will be
+     * shown as the menu item title to configure advanced filtering.  This menu-item is displayed in the context menu for the
+     * sorter button and in the  {@link com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterOperators filter using}
+     * operators menu.
+     *
+     * @return Current advancedFilteringText value. Default value is "Advanced filtering..."
+     */
+    public String getAdvancedFilteringText()  {
+        return getAttributeAsString("advancedFilteringText");
+    }
+    
+
+    /**
      * For use with {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor}:true, allows simple
      * search expressions to be entered into filter fields, as though {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getAllowExpressions DynamicForm.allowExpressions} were true. <P> This
@@ -271,11 +307,15 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * make use of certain operators that <code>allowFilterOperators</code> does  not support, such as using the
      * "betweenInclusive" operator by typing "5...10". <P> When both <code>allowfilterExpressions</code> and
      * <code>allowFilterOperators</code> are set, filter expressions entered in to the edit-area are parsed and the operator
-     * automatically  applied to the {@link com.smartgwt.client.widgets.grid.ListGrid#getOperatorIcon operatorIcon}.
+     * automatically  applied to the {@link com.smartgwt.client.widgets.grid.ListGrid#getOperatorIcon operatorIcon}. <P> If
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterWindow allowFilterWindow} is enabled another option,
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getAdvancedFilteringText "Advanced Filtering"}, is added to the "Filter
+     * using" menu.
      *
      * @param allowFilterOperators New allowFilterOperators value. Default value is null
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setAllowFilterWindow
      */
     public ListGrid setAllowFilterOperators(Boolean allowFilterOperators)  throws IllegalStateException {
         return (ListGrid)setAttribute("allowFilterOperators", allowFilterOperators, false);
@@ -304,12 +344,73 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * make use of certain operators that <code>allowFilterOperators</code> does  not support, such as using the
      * "betweenInclusive" operator by typing "5...10". <P> When both <code>allowfilterExpressions</code> and
      * <code>allowFilterOperators</code> are set, filter expressions entered in to the edit-area are parsed and the operator
-     * automatically  applied to the {@link com.smartgwt.client.widgets.grid.ListGrid#getOperatorIcon operatorIcon}.
+     * automatically  applied to the {@link com.smartgwt.client.widgets.grid.ListGrid#getOperatorIcon operatorIcon}. <P> If
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterWindow allowFilterWindow} is enabled another option,
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getAdvancedFilteringText "Advanced Filtering"}, is added to the "Filter
+     * using" menu.
      *
      * @return Current allowFilterOperators value. Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterWindow
      */
     public Boolean getAllowFilterOperators()  {
         return getAttributeAsBoolean("allowFilterOperators");
+    }
+    
+
+    /**
+     * Adds the ability for a user to define additional criteria above and beyond those expressed in the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor filter editor} via a {@link
+     * com.smartgwt.client.widgets.form.FilterBuilder} which appears in a modal Window over the grid and can be accessed by
+     * various menus within the grid or triggered by external controls. <p> Causes a menu item titled {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getAdvancedFilteringText "Advanced Filtering"} to appear in the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getFilterUsingText "Filter using"} menu show in the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu headerContextMenu} that allows the end user to
+     * configure an advanced filter on the grid that can supplement the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor filter editor}. Note that the menu option will show even
+     * if {@link com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterOperators filter operators} is disabled. <p> To use
+     * this feature, the grid must be configured with a {@link com.smartgwt.client.data.DataSource}. In fact, this feature is
+     * enabled by default if the grid has a {@link com.smartgwt.client.data.DataSource} and both {@link
+     * com.smartgwt.client.data.DataSource#supportsAdvancedCriteria DataSource.supportsAdvancedCriteria()} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterOperators allowFilterOperators} are true. This default can be
+     * disabled by setting <code>allowFilterWindow</code> to <code>false</code>.  <p> <a
+     * href='https://www.smartclient.com/smartclient-latest/showcase/?id=filterWindow' target='_blank'>This example</a> shows
+     * the <code>allowFilterWindow</code> setting in use. <p> <b>Note:</b> this feature requires <a
+     * href='https://www.smartclient.com/product/' target='_blank'>Smart GWT Pro</a> or better.
+     *
+     * @param allowFilterWindow New allowFilterWindow value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setAllowFilterOperators
+     */
+    public ListGrid setAllowFilterWindow(Boolean allowFilterWindow)  throws IllegalStateException {
+        return (ListGrid)setAttribute("allowFilterWindow", allowFilterWindow, false);
+    }
+
+    /**
+     * Adds the ability for a user to define additional criteria above and beyond those expressed in the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor filter editor} via a {@link
+     * com.smartgwt.client.widgets.form.FilterBuilder} which appears in a modal Window over the grid and can be accessed by
+     * various menus within the grid or triggered by external controls. <p> Causes a menu item titled {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getAdvancedFilteringText "Advanced Filtering"} to appear in the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getFilterUsingText "Filter using"} menu show in the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu headerContextMenu} that allows the end user to
+     * configure an advanced filter on the grid that can supplement the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor filter editor}. Note that the menu option will show even
+     * if {@link com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterOperators filter operators} is disabled. <p> To use
+     * this feature, the grid must be configured with a {@link com.smartgwt.client.data.DataSource}. In fact, this feature is
+     * enabled by default if the grid has a {@link com.smartgwt.client.data.DataSource} and both {@link
+     * com.smartgwt.client.data.DataSource#supportsAdvancedCriteria DataSource.supportsAdvancedCriteria()} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterOperators allowFilterOperators} are true. This default can be
+     * disabled by setting <code>allowFilterWindow</code> to <code>false</code>.  <p> <a
+     * href='https://www.smartclient.com/smartclient-latest/showcase/?id=filterWindow' target='_blank'>This example</a> shows
+     * the <code>allowFilterWindow</code> setting in use. <p> <b>Note:</b> this feature requires <a
+     * href='https://www.smartclient.com/product/' target='_blank'>Smart GWT Pro</a> or better.
+     *
+     * @return Current allowFilterWindow value. Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterOperators
+     */
+    public Boolean getAllowFilterWindow()  {
+        return getAttributeAsBoolean("allowFilterWindow");
     }
     
 
@@ -542,7 +643,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
 
     /**
      * When this attribute is set, editors will be appear to be present in every row of the  grid, allowing the user to
-     * immediately start editing any cell, rather thanshowing  up in a single record at a time.<br> This attribute is only
+     * immediately start editing any cell, rather than showing  up in a single record at a time.<br> This attribute is only
      * valid when {@link com.smartgwt.client.widgets.grid.ListGrid#getEditByCell editByCell} is false. <P> This setting has
      * some limitations and is typically only used for simple grids with  a limited set of fields and standard editors. <ul>
      * <li>Not all formItem types are supported. Default editors for standard data types   (text, boolean, date, datetime,
@@ -571,7 +672,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
 
     /**
      * When this attribute is set, editors will be appear to be present in every row of the  grid, allowing the user to
-     * immediately start editing any cell, rather thanshowing  up in a single record at a time.<br> This attribute is only
+     * immediately start editing any cell, rather than showing  up in a single record at a time.<br> This attribute is only
      * valid when {@link com.smartgwt.client.widgets.grid.ListGrid#getEditByCell editByCell} is false. <P> This setting has
      * some limitations and is typically only used for simple grids with  a limited set of fields and standard editors. <ul>
      * <li>Not all formItem types are supported. Default editors for standard data types   (text, boolean, date, datetime,
@@ -1155,7 +1256,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * true, navigation occurs by cell - the user can move to a new cell in any direction.<br> If {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getCanSelectCells canSelectCells} is false, navigation typically occurs by row
      * - the user can move up or down throw the rows in the grid. <P> For actions that fire events (click or doubleClick), both
-     * cell and record level events are fired (for example for arrowKeyAction <code>"activate"</code>), {@link
+     * cell and record level events are fired (for example for arrowKeyAction <code>"activate"</code>, {@link
      * com.smartgwt.client.widgets.grid.ListGrid#addCellDoubleClickHandler ListGrid.cellDoubleClick()} and {@link
      * com.smartgwt.client.widgets.grid.ListGrid#addRecordDoubleClickHandler ListGrid.recordDoubleClick()} are fired for the
      * new position.<br> Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#getCanSelectCells canSelectCells} is
@@ -1189,7 +1290,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * true, navigation occurs by cell - the user can move to a new cell in any direction.<br> If {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getCanSelectCells canSelectCells} is false, navigation typically occurs by row
      * - the user can move up or down throw the rows in the grid. <P> For actions that fire events (click or doubleClick), both
-     * cell and record level events are fired (for example for arrowKeyAction <code>"activate"</code>), {@link
+     * cell and record level events are fired (for example for arrowKeyAction <code>"activate"</code>, {@link
      * com.smartgwt.client.widgets.grid.ListGrid#addCellDoubleClickHandler ListGrid.cellDoubleClick()} and {@link
      * com.smartgwt.client.widgets.grid.ListGrid#addRecordDoubleClickHandler ListGrid.recordDoubleClick()} are fired for the
      * new position.<br> Note that if {@link com.smartgwt.client.widgets.grid.ListGrid#getCanSelectCells canSelectCells} is
@@ -1548,7 +1649,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
 
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData autoFitData} is set to <code>"vertical"</code> or
-     * <code>"both"</code>, setting this property will cause the ListGrid body to size large enough to accomodate the actual
+     * <code>"both"</code>, setting this property will cause the ListGrid body to size large enough to accommodate the actual
      * data and also leave this many extra rows' worth of blank space below the last record. If a maximum size is specified via
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxHeight autoFitMaxHeight} or {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxRecords autoFitMaxRecords}, it will still be respected. Once the
@@ -1567,7 +1668,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
 
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitData autoFitData} is set to <code>"vertical"</code> or
-     * <code>"both"</code>, setting this property will cause the ListGrid body to size large enough to accomodate the actual
+     * <code>"both"</code>, setting this property will cause the ListGrid body to size large enough to accommodate the actual
      * data and also leave this many extra rows' worth of blank space below the last record. If a maximum size is specified via
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxHeight autoFitMaxHeight} or {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxRecords autoFitMaxRecords}, it will still be respected. Once the
@@ -1678,7 +1779,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getWrapCells wrapping of cell values} is  enabled, autoFit behavior
      * based on {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitWidthApproach cell content} will render fields wide
      * enough to contain the <i>unwrapped</i> cell values. If {@link com.smartgwt.client.widgets.grid.ListGridField#getWrap
-     * wrapping of field titles} is enabled, when fitting to  a title, a field will render wide enough to accomodate the
+     * wrapping of field titles} is enabled, when fitting to  a title, a field will render wide enough to accommodate the
      * <i>wrapped</i> title without clipping (so wide enough for the natural wrap-point / longest word or unwrappable string).
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
@@ -1730,7 +1831,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getWrapCells wrapping of cell values} is  enabled, autoFit behavior
      * based on {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitWidthApproach cell content} will render fields wide
      * enough to contain the <i>unwrapped</i> cell values. If {@link com.smartgwt.client.widgets.grid.ListGridField#getWrap
-     * wrapping of field titles} is enabled, when fitting to  a title, a field will render wide enough to accomodate the
+     * wrapping of field titles} is enabled, when fitting to  a title, a field will render wide enough to accommodate the
      * <i>wrapped</i> title without clipping (so wide enough for the natural wrap-point / longest word or unwrappable string).
      *
      * @return Current autoFitFieldWidths value. Default value is null
@@ -2060,13 +2161,24 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     
 
     /**
-     * List of {@link com.smartgwt.client.docs.ListGridViewState view state} {@link
-     * com.smartgwt.client.types.ListGridViewStatePart parts} that should be automatically persisted into offline storage when
-     * changed. <P> This feature saves the derived state whenever the grid's view state changes and restores the saved state
-     * from offline storage when the grid is drawn. <P> The state is saved to offline storage using the grid's {@link
-     * com.smartgwt.client.docs.AutoTestLocator locator} as the key. See Locator setails below. <P> Note that it is not valid
-     * to turn on autoPersistViewState by changing the ListGrid defaults because this would break the framework's internal
-     * re-use of grids. <P> The current saved value can be retrieved or cleared by calling {@link
+     * Setting this property to a non-null value will enable automatic saving of  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getViewState view state} to offline storage. This saved view state will then
+     * be restored automatically when the user visits the page again. <P> <i><b>Note:</b> <a
+     * href='http://www.smartclient.com/product' target='_blank'>Smart GWT Pro users</a>,  may also be interested in the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanSaveSearches canSaveSearches} feature. This uses the  Saved Search
+     * subsystem to allow users to explicitly store and apply multiple named views or "saved searches". Each saved search
+     * includes the {@link com.smartgwt.client.widgets.grid.ListGrid#getSavedSearchStoredState full view state} for the grid by
+     * default.</i> <P> <code>autoPersistViewState</code> may be set to a list of  {@link
+     * com.smartgwt.client.docs.ListGridViewState view state} {@link com.smartgwt.client.types.ListGridViewStatePart parts}
+     * that should be automatically persisted into offline storage when changed. <P> This feature saves the derived state
+     * whenever the grid's view state changes due to user interaction (see {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#addViewStateChangedHandler ListGrid.viewStateChanged()}), and restores the
+     * saved state from offline storage when the grid is drawn. <P> The state is saved to offline storage using the grid's
+     * {@link com.smartgwt.client.docs.AutoTestLocator locator} as the key. See Locator setails below. <P> Note that
+     * <code>autoPersistViewState</code> should only be set on specific listGrid instances, and never as a default value for
+     * the class by changing the ListGrid defaults. Enabling this feature as a default would be an invalid usage as it would
+     * apply to listgrids (and subclasses of ListGrid) created and re-used internally by framework features as well as those
+     * explicitly created by application code. <P> The current saved value can be retrieved or cleared by calling {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSavedViewState getSavedViewState()} or {@link
      * com.smartgwt.client.widgets.grid.ListGrid#clearSavedViewState clearSavedViewState()} respectively. <P> <b>Locator
      * details</b> <P> The grid must have a stable locator so that previous state can be retrieved during initial draw and
@@ -2087,13 +2199,24 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * List of {@link com.smartgwt.client.docs.ListGridViewState view state} {@link
-     * com.smartgwt.client.types.ListGridViewStatePart parts} that should be automatically persisted into offline storage when
-     * changed. <P> This feature saves the derived state whenever the grid's view state changes and restores the saved state
-     * from offline storage when the grid is drawn. <P> The state is saved to offline storage using the grid's {@link
-     * com.smartgwt.client.docs.AutoTestLocator locator} as the key. See Locator setails below. <P> Note that it is not valid
-     * to turn on autoPersistViewState by changing the ListGrid defaults because this would break the framework's internal
-     * re-use of grids. <P> The current saved value can be retrieved or cleared by calling {@link
+     * Setting this property to a non-null value will enable automatic saving of  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getViewState view state} to offline storage. This saved view state will then
+     * be restored automatically when the user visits the page again. <P> <i><b>Note:</b> <a
+     * href='http://www.smartclient.com/product' target='_blank'>Smart GWT Pro users</a>,  may also be interested in the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanSaveSearches canSaveSearches} feature. This uses the  Saved Search
+     * subsystem to allow users to explicitly store and apply multiple named views or "saved searches". Each saved search
+     * includes the {@link com.smartgwt.client.widgets.grid.ListGrid#getSavedSearchStoredState full view state} for the grid by
+     * default.</i> <P> <code>autoPersistViewState</code> may be set to a list of  {@link
+     * com.smartgwt.client.docs.ListGridViewState view state} {@link com.smartgwt.client.types.ListGridViewStatePart parts}
+     * that should be automatically persisted into offline storage when changed. <P> This feature saves the derived state
+     * whenever the grid's view state changes due to user interaction (see {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#addViewStateChangedHandler ListGrid.viewStateChanged()}), and restores the
+     * saved state from offline storage when the grid is drawn. <P> The state is saved to offline storage using the grid's
+     * {@link com.smartgwt.client.docs.AutoTestLocator locator} as the key. See Locator setails below. <P> Note that
+     * <code>autoPersistViewState</code> should only be set on specific listGrid instances, and never as a default value for
+     * the class by changing the ListGrid defaults. Enabling this feature as a default would be an invalid usage as it would
+     * apply to listgrids (and subclasses of ListGrid) created and re-used internally by framework features as well as those
+     * explicitly created by application code. <P> The current saved value can be retrieved or cleared by calling {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSavedViewState getSavedViewState()} or {@link
      * com.smartgwt.client.widgets.grid.ListGrid#clearSavedViewState clearSavedViewState()} respectively. <P> <b>Locator
      * details</b> <P> The grid must have a stable locator so that previous state can be retrieved during initial draw and
@@ -2918,7 +3041,8 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * individual fields will be ignored.<br>      If 'canEdit' is set to true at the listGrid level, setting the 'canEdit'
      * property to      false at the field level will prevent the field from being edited inline unless a      custom override
      * of {@link com.smartgwt.client.widgets.grid.ListGrid#canEditCell canEditCell()} allows it.<br>      If 'canEdit' is not
-     * set at the listGrid level, setting 'canEdit' to true at the field      level enables the field to be edited inline.
+     * set at the listGrid level, setting 'canEdit' to true at the field      level enables the field to be edited inline.     
+     * <P>      For more information on editing, see the {@link com.smartgwt.client.docs.Editing editing overview}.
      *
      * @param canEdit New canEdit value. Default value is null
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
@@ -2940,7 +3064,8 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * individual fields will be ignored.<br>      If 'canEdit' is set to true at the listGrid level, setting the 'canEdit'
      * property to      false at the field level will prevent the field from being edited inline unless a      custom override
      * of {@link com.smartgwt.client.widgets.grid.ListGrid#canEditCell canEditCell()} allows it.<br>      If 'canEdit' is not
-     * set at the listGrid level, setting 'canEdit' to true at the field      level enables the field to be edited inline.
+     * set at the listGrid level, setting 'canEdit' to true at the field      level enables the field to be edited inline.     
+     * <P>      For more information on editing, see the {@link com.smartgwt.client.docs.Editing editing overview}.
      *
      * @return Current canEdit value. Default value is null
      * @see com.smartgwt.client.widgets.grid.ListGrid#startEditing
@@ -3028,7 +3153,9 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     /**
      * If set to true, the {@link com.smartgwt.client.widgets.grid.ListGrid#getUseAdvancedFieldPicker advanced field picker}
      * provides an interface allowing users to modify fields' titles. <P> Note that when enabled, the {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getFieldState field state} for this component will include field titles.
+     * com.smartgwt.client.widgets.grid.ListGrid#getFieldState field state} for this component will include field titles by
+     * default (see {@link com.smartgwt.client.widgets.DataBoundComponent#shouldIncludeTitleInFieldState
+     * DataBoundComponent.shouldIncludeTitleInFieldState()}).
      *
      * @param canEditTitles New canEditTitles value. Default value is false
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
@@ -3040,7 +3167,9 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     /**
      * If set to true, the {@link com.smartgwt.client.widgets.grid.ListGrid#getUseAdvancedFieldPicker advanced field picker}
      * provides an interface allowing users to modify fields' titles. <P> Note that when enabled, the {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getFieldState field state} for this component will include field titles.
+     * com.smartgwt.client.widgets.grid.ListGrid#getFieldState field state} for this component will include field titles by
+     * default (see {@link com.smartgwt.client.widgets.DataBoundComponent#shouldIncludeTitleInFieldState
+     * DataBoundComponent.shouldIncludeTitleInFieldState()}).
      *
      * @return Current canEditTitles value. Default value is false
      */
@@ -3054,7 +3183,6 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * When {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords} is true, this property
      * indicates whether multiple records can be expanded simultaneously.  If set to false, expanding a record will
      * automatically collapse any record which is already expanded.  The default value is <code>true</code>.
-     * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canExpandMultipleRecords New canExpandMultipleRecords value. Default value is true
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
@@ -3109,7 +3237,6 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords}
-     * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canExpandRecords new value for listGrid.canExpandRecords. Default value is false
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
@@ -3568,6 +3695,42 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     
 
     /**
+     * When enabled (the default), causes a "Saved views >" submenu to appear in the header context menu, last, allowing the
+     * user to create new saved searches, select previously saved searches, and edit or copy existing searches. <p> Note that
+     * disabling this feature does not mean that saved searches are disallowed - you can stil implement a separate UI via a
+     * SavedSearchItem that targets this component. But, when disabled, the grid-integrated menu described above will not be
+     * shown. <p> This feature uses the global settings found in SavedSearches.  Some aspects can be overridden for this
+     * component.  See {@link com.smartgwt.client.widgets.grid.ListGrid#getSavedSearchDS savedSearchDS}, {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSavedSearchAdminRole savedSearchAdminRole}. <p> <b>Note:</b> this feature
+     * requires <a href='https://www.smartclient.com/product/' target='_blank'>Smart GWT Pro</a> or better.
+     *
+     * @param canSaveSearches New canSaveSearches value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public ListGrid setCanSaveSearches(boolean canSaveSearches)  throws IllegalStateException {
+        return (ListGrid)setAttribute("canSaveSearches", canSaveSearches, false);
+    }
+
+    /**
+     * When enabled (the default), causes a "Saved views >" submenu to appear in the header context menu, last, allowing the
+     * user to create new saved searches, select previously saved searches, and edit or copy existing searches. <p> Note that
+     * disabling this feature does not mean that saved searches are disallowed - you can stil implement a separate UI via a
+     * SavedSearchItem that targets this component. But, when disabled, the grid-integrated menu described above will not be
+     * shown. <p> This feature uses the global settings found in SavedSearches.  Some aspects can be overridden for this
+     * component.  See {@link com.smartgwt.client.widgets.grid.ListGrid#getSavedSearchDS savedSearchDS}, {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSavedSearchAdminRole savedSearchAdminRole}. <p> <b>Note:</b> this feature
+     * requires <a href='https://www.smartclient.com/product/' target='_blank'>Smart GWT Pro</a> or better.
+     *
+     * @return Current canSaveSearches value. Default value is true
+     */
+    public boolean getCanSaveSearches()  {
+        Boolean result = getAttributeAsBoolean("canSaveSearches");
+        return result == null ? true : result;
+    }
+    
+
+    /**
      * Controls whether a checkbox for selecting all records appears in the header with {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance} set to "checkbox"
      *
@@ -3679,6 +3842,43 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     public boolean getCanSelectGroups()  {
         Boolean result = getAttributeAsBoolean("canSelectGroups");
         return result == null ? false : result;
+    }
+    
+
+    /**
+     * Should a menu item allowing the user to show or hide the  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor filter editor} be displayed in  the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getHeaderContextMenu headerContextmenu}? <P> Note that if this ListGrid is not
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getDataSource bound to a dataSource}  it can not be filtered. In this
+     * case the context menu option to show the filterEditor will not be displayed even if  <code>canShowFilterEditor</code> is
+     * true.
+     *
+     * @param canShowFilterEditor New canShowFilterEditor value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setShowFilterEditorTitle
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setHideFilterEditorTitle
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_sortFilter_filter" target="examples">Filter Example</a>
+     */
+    public ListGrid setCanShowFilterEditor(boolean canShowFilterEditor) {
+        return (ListGrid)setAttribute("canShowFilterEditor", canShowFilterEditor, true);
+    }
+
+    /**
+     * Should a menu item allowing the user to show or hide the  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor filter editor} be displayed in  the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getHeaderContextMenu headerContextmenu}? <P> Note that if this ListGrid is not
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getDataSource bound to a dataSource}  it can not be filtered. In this
+     * case the context menu option to show the filterEditor will not be displayed even if  <code>canShowFilterEditor</code> is
+     * true.
+     *
+     * @return Current canShowFilterEditor value. Default value is true
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditorTitle
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getHideFilterEditorTitle
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_sortFilter_filter" target="examples">Filter Example</a>
+     */
+    public boolean getCanShowFilterEditor()  {
+        Boolean result = getAttributeAsBoolean("canShowFilterEditor");
+        return result == null ? true : result;
     }
     
 
@@ -4355,6 +4555,58 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     
 
     /**
+     * The color of the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterWindowCriteriaIndicator filterWindow
+     * criteria indicator}.
+     *
+     * @param criteriaIndicatorColor New criteriaIndicatorColor value. Default value is "#0066cc"
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public ListGrid setCriteriaIndicatorColor(String criteriaIndicatorColor)  throws IllegalStateException {
+        return (ListGrid)setAttribute("criteriaIndicatorColor", criteriaIndicatorColor, false);
+    }
+
+    /**
+     * The color of the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterWindowCriteriaIndicator filterWindow
+     * criteria indicator}.
+     *
+     * @return Current criteriaIndicatorColor value. Default value is "#0066cc"
+     */
+    public String getCriteriaIndicatorColor()  {
+        return getAttributeAsString("criteriaIndicatorColor");
+    }
+    
+
+    /**
+     * The color of the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterWindowCriteriaIndicator filterWindow
+     * criteria indicator} when shown on the {@link com.smartgwt.client.widgets.grid.ListGrid#getSorterConstructor sorter
+     * button} or the last {@link com.smartgwt.client.widgets.grid.ListGrid#getHeaderButtonConstructor header button} in the
+     * grid header. The default is to use {@link com.smartgwt.client.widgets.grid.ListGrid#getCriteriaIndicatorColor
+     * criteriaIndicatorColor}.
+     *
+     * @param criteriaIndicatorHeaderColor New criteriaIndicatorHeaderColor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public ListGrid setCriteriaIndicatorHeaderColor(String criteriaIndicatorHeaderColor)  throws IllegalStateException {
+        return (ListGrid)setAttribute("criteriaIndicatorHeaderColor", criteriaIndicatorHeaderColor, false);
+    }
+
+    /**
+     * The color of the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterWindowCriteriaIndicator filterWindow
+     * criteria indicator} when shown on the {@link com.smartgwt.client.widgets.grid.ListGrid#getSorterConstructor sorter
+     * button} or the last {@link com.smartgwt.client.widgets.grid.ListGrid#getHeaderButtonConstructor header button} in the
+     * grid header. The default is to use {@link com.smartgwt.client.widgets.grid.ListGrid#getCriteriaIndicatorColor
+     * criteriaIndicatorColor}.
+     *
+     * @return Current criteriaIndicatorHeaderColor value. Default value is null
+     */
+    public String getCriteriaIndicatorHeaderColor()  {
+        return getAttributeAsString("criteriaIndicatorHeaderColor");
+    }
+    
+
+    /**
      * A list of ListGridRecord objects, specifying the data to be used to populate the ListGrid.  In ListGrids, the data array
      * specifies rows. <p> When using a {@link com.smartgwt.client.data.DataSource}, rather than directly providing
      * <code>data</code>, you will typically call {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData fetchData()}
@@ -4383,6 +4635,29 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      */
     public ListGrid setData(ListGridRecord... data) {
         return (ListGrid)setAttribute("data", data, true);
+    }
+    
+
+    /**
+     * A ListGrid is a {@link com.smartgwt.client.widgets.DataBoundComponent#getDataArity dataArity}:multiple component.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param dataArity New dataArity value. Default value is "multiple"
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
+    public ListGrid setDataArity(String dataArity) {
+        return (ListGrid)setAttribute("dataArity", dataArity, true);
+    }
+
+    /**
+     * A ListGrid is a {@link com.smartgwt.client.widgets.DataBoundComponent#getDataArity dataArity}:multiple component.
+     *
+     * @return Current dataArity value. Default value is "multiple"
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
+    public String getDataArity()  {
+        return getAttributeAsString("dataArity");
     }
     
 
@@ -4862,7 +5137,6 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * dataSource for the related records grid to be shown embedded in expanded records. <P> This property may also be
      * specified on a per-record basis - see {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordDetailDSProperty
      * recordDetailDSProperty}
-     * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param detailDS New detailDS value. Default value is null
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
@@ -4889,7 +5163,6 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * The field whose contents to show in the expanded portion of a record when {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords} is <code>true</code> and {@link
      * com.smartgwt.client.types.ExpansionMode listGrid.expansionMode} is <code>detailField</code>.
-     * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param detailField New detailField value. Default value is null
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
@@ -6308,9 +6581,10 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     
 
     /**
-     * The {@link com.smartgwt.client.types.ExpansionMode} for records in this grid. Default <code>null</code> value means no
-     * expansion.
-     * <p><b>Note : </b> This is an advanced setting</p>
+     * The {@link com.smartgwt.client.types.ExpansionMode} for records in this grid. <p> If {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords} is true but <code>expansionMode</code> 
+     * is not set, it defaults to "detailRelated" if {@link com.smartgwt.client.widgets.grid.ListGrid#getDetailDS detailDS} is
+     * set, or to  "details" otherwise.
      *
      * @param expansionMode New expansionMode value. Default value is null
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
@@ -6320,8 +6594,10 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * The {@link com.smartgwt.client.types.ExpansionMode} for records in this grid. Default <code>null</code> value means no
-     * expansion.
+     * The {@link com.smartgwt.client.types.ExpansionMode} for records in this grid. <p> If {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords} is true but <code>expansionMode</code> 
+     * is not set, it defaults to "detailRelated" if {@link com.smartgwt.client.widgets.grid.ListGrid#getDetailDS detailDS} is
+     * set, or to  "details" otherwise.
      *
      * @return Current expansionMode value. Default value is null
      */
@@ -6349,6 +6625,37 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      */
     public ListGrid getExpansionRelated()  {
         return null;
+    }
+    
+
+    /**
+     * Screen to create (via {@link com.smartgwt.client.rpc.RPCManager#createScreen createScreen()}) in lieu of calling {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getExpansionComponent getExpansionComponent()}. <P> If this grid has a {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDataSource dataSource}, the created screen is provided with a {@link
+     * com.smartgwt.client.widgets.Canvas#getDataContext Canvas.dataContext} that includes the record being expanded. Be sure
+     * the expansion screen meets these {@link com.smartgwt.client.widgets.Canvas#getAutoPopulateData requirements} to utilize
+     * the <code>dataContext</code>.
+     *
+     * @param expansionScreen New expansionScreen value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public ListGrid setExpansionScreen(String expansionScreen)  throws IllegalStateException {
+        return (ListGrid)setAttribute("expansionScreen", expansionScreen, false);
+    }
+
+    /**
+     * Screen to create (via {@link com.smartgwt.client.rpc.RPCManager#createScreen createScreen()}) in lieu of calling {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getExpansionComponent getExpansionComponent()}. <P> If this grid has a {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDataSource dataSource}, the created screen is provided with a {@link
+     * com.smartgwt.client.widgets.Canvas#getDataContext Canvas.dataContext} that includes the record being expanded. Be sure
+     * the expansion screen meets these {@link com.smartgwt.client.widgets.Canvas#getAutoPopulateData requirements} to utilize
+     * the <code>dataContext</code>.
+     *
+     * @return Current expansionScreen value. Default value is null
+     */
+    public String getExpansionScreen()  {
+        return getAttributeAsString("expansionScreen");
     }
     
 
@@ -6733,10 +7040,10 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
 
     /**
      * If we're showing the filterEditor ({@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor
-     * showFilterEditor} is true), and we're re-filtering on every keypress ({@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getFilterOnKeypress filterOnKeypress} is true), this property is the delay in
-     * milliseconds between the user changing the filter and the filter request being kicked off. If multiple changes are made
-     * to the filter within this fetch delay, only the most recent will actually cause a re-filter
+     * showFilterEditor} is true),  and {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterByCell filterByCell} or
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterOnKeypress filterOnKeypress} are enabled, this property is the
+     * delay in milliseconds between the user changing the filter and the filter request being sent to the server. If multiple
+     * changes are made to the filter within this fetch delay, only the most recent will actually cause a re-filter
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param fetchDelay New fetchDelay value. Default value is 300
@@ -6749,16 +7056,43 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
 
     /**
      * If we're showing the filterEditor ({@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor
-     * showFilterEditor} is true), and we're re-filtering on every keypress ({@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getFilterOnKeypress filterOnKeypress} is true), this property is the delay in
-     * milliseconds between the user changing the filter and the filter request being kicked off. If multiple changes are made
-     * to the filter within this fetch delay, only the most recent will actually cause a re-filter
+     * showFilterEditor} is true),  and {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterByCell filterByCell} or
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterOnKeypress filterOnKeypress} are enabled, this property is the
+     * delay in milliseconds between the user changing the filter and the filter request being sent to the server. If multiple
+     * changes are made to the filter within this fetch delay, only the most recent will actually cause a re-filter
      *
      * @return Current fetchDelay value. Default value is 300
      * @see com.smartgwt.client.widgets.grid.ListGrid#getExplicitFetchDelay
      */
     public int getFetchDelay()  {
         return getAttributeAsInt("fetchDelay");
+    }
+    
+
+    /**
+     * The field criteria prefix to show in filter editor field hover before the descriptive version of the field's criteria,
+     * if any. The descriptive text is formatted by {@link com.smartgwt.client.data.DataSource#getAdvancedCriteriaDescription
+     * DataSource.getAdvancedCriteriaDescription()}.
+     *
+     * @param fieldCriteriaText New fieldCriteriaText value. Default value is "Field criteria: "
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public ListGrid setFieldCriteriaText(String fieldCriteriaText)  throws IllegalStateException {
+        return (ListGrid)setAttribute("fieldCriteriaText", fieldCriteriaText, false);
+    }
+
+    /**
+     * The field criteria prefix to show in filter editor field hover before the descriptive version of the field's criteria,
+     * if any. The descriptive text is formatted by {@link com.smartgwt.client.data.DataSource#getAdvancedCriteriaDescription
+     * DataSource.getAdvancedCriteriaDescription()}.
+     *
+     * @return Current fieldCriteriaText value. Default value is "Field criteria: "
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getFieldCriteriaText()  {
+        return getAttributeAsString("fieldCriteriaText");
     }
     
 
@@ -6837,7 +7171,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * as explained in {@link com.smartgwt.client.widgets.DataBoundComponent#getFields DataBoundComponent.fields}.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
-     * Sets the fields array and/or field widths to newFields and sizes, respectively.<br><br> If newFields is specified, it is assumed that the new fields may have nothing in common with the old fields, and the component is substantially rebuilt.  Furthermore, it's invalid to modify any of the existing {@link com.smartgwt.client.widgets.grid.ListGridField}s after they've been passed to this function. Consider the following methods for more efficient, more incremental changes: {@link com.smartgwt.client.widgets.grid.ListGrid#resizeField resizeField()}, {@link com.smartgwt.client.widgets.grid.ListGrid#reorderField reorderField()}, {@link com.smartgwt.client.widgets.grid.ListGrid#showField showField()}, {@link com.smartgwt.client.widgets.grid.ListGrid#hideField hideField()}, or {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldProperties setFieldProperties()}.
+     * Sets the fields array and/or field widths to newFields and sizes, respectively. <p> If newFields is specified, it is assumed that the new fields may have nothing in common with the old fields, and the component is substantially rebuilt.  Furthermore, it's invalid to modify any of the existing {@link com.smartgwt.client.widgets.grid.ListGridField}s after they've been passed to this function. Consider the following methods for more efficient, more incremental changes: {@link com.smartgwt.client.widgets.grid.ListGrid#resizeField resizeField()}, {@link com.smartgwt.client.widgets.grid.ListGrid#reorderField reorderField()}, {@link com.smartgwt.client.widgets.grid.ListGrid#showField showField()}, {@link com.smartgwt.client.widgets.grid.ListGrid#hideField hideField()}, or {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldProperties setFieldProperties()}. <p> Two specific values of newFields have explicit meanings: <ul> <li>null - a newFields value of <code>null</code> indicates there are no field overrides.            All current fields are removed and, if the grid is bound to a             {@link com.smartgwt.client.data.DataSource}, the "default binding" is used. (see             {@link com.smartgwt.client.widgets.DataBoundComponent#getFields DataBoundComponent.fields}).</li> <li>empty array  - providing an empty array for the            newFields indicates that no fields are desired even if a dataSource is            provided.</li> </ul>
      *
      * @param fields array of fields to draw. Default value is null
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
@@ -7004,38 +7338,60 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     
 
     /**
-     * If we're showing the filterEditor (this.showFilterEditor is true), this property determines whether this list should be
-     * filtered every time the user puts focus in a different field in the filter editor.
+     * If we're showing the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor filterEditor}, should this
+     * list be filtered every time the user changes edit values for particular cells rather than waiting for an Enter keypress
+     * or a click on the filterEditor submit button. <P> Note that by default fields in the filter editor will be set to 
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getChangeOnKeypress changeOnKeypress:false}, so the grid will
+     * not filter as the user types in text-based items.<br> To enable filtering as the user types in text fields, we recommend
+     * the  {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterOnKeypress filterOnKeypress} attribute. Also note that
+     * <code>filterOnKeypress:true</code> implies filtering will occur on change to edit values for cells, even if
+     * <code>filterByCell</code> is not set to true.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param filterByCell New filterByCell value. Default value is null
+     * @param filterByCell New filterByCell value. Default value is true
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setFetchDelay
      */
-    public ListGrid setFilterByCell(Boolean filterByCell) {
+    public ListGrid setFilterByCell(boolean filterByCell) {
         return (ListGrid)setAttribute("filterByCell", filterByCell, true);
     }
 
     /**
-     * If we're showing the filterEditor (this.showFilterEditor is true), this property determines whether this list should be
-     * filtered every time the user puts focus in a different field in the filter editor.
+     * If we're showing the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor filterEditor}, should this
+     * list be filtered every time the user changes edit values for particular cells rather than waiting for an Enter keypress
+     * or a click on the filterEditor submit button. <P> Note that by default fields in the filter editor will be set to 
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getChangeOnKeypress changeOnKeypress:false}, so the grid will
+     * not filter as the user types in text-based items.<br> To enable filtering as the user types in text fields, we recommend
+     * the  {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterOnKeypress filterOnKeypress} attribute. Also note that
+     * <code>filterOnKeypress:true</code> implies filtering will occur on change to edit values for cells, even if
+     * <code>filterByCell</code> is not set to true.
      *
-     * @return Current filterByCell value. Default value is null
+     * @return Current filterByCell value. Default value is true
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getFetchDelay
      */
-    public Boolean getFilterByCell()  {
-        return getAttributeAsBoolean("filterByCell");
+    public boolean getFilterByCell()  {
+        Boolean result = getAttributeAsBoolean("filterByCell");
+        return result == null ? true : result;
     }
     
 
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor} is set to true, the
-     * <code>filterEditor</code> is automatically created as an AutoChild.<br> Developers may customize the AutoChild using
-     * {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterEditorProperties filterEditorProperties}.
+     * <code>filterEditor</code> is automatically created as an AutoChild. <P> The filterEditor autoChild is a {@link
+     * com.smartgwt.client.widgets.grid.RecordEditor} - essentially it is a specialized listGrid in edit mode for editing a
+     * single set of values to be used as criteria. Once created,  developers may access it and use standard listGrid APIs to
+     * interact with it. For example, given a listGrid <i><code>myListGrid</code></i>, live edit items could be accessed
+     * via<br>   <code> myListGrid.getFilterEditor().getEditFormItem(someFieldName); </code>  <P> Developers may configure the
+     * AutoChild using {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterEditorProperties filterEditorProperties}.
      * <p>
      * This component is an AutoChild named "filterEditor".  For an overview of how to use and
      * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
      *
      * @return Current filterEditor value. Default value is null
      * @throws IllegalStateException if this widget has not yet been rendered.
+     * @see com.smartgwt.client.widgets.grid.events.FilterEditorSubmitEvent
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getFilterOnKeypress
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getFilterByCell
      */
     public RecordEditor getFilterEditor() throws IllegalStateException {
         errorIfNotCreated("filterEditor");
@@ -7150,25 +7506,36 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     
 
     /**
-     * If we're showing the filterEditor (this.showFilterEditor is true), this property determines whether this list should be
-     * filtered every time the user modifies the value in a field of the filter-editor. Can also be set at the field level.
+     * If we're showing the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor filterEditor}, should this
+     * list be filtered for every keypress within the filter editor fields? <P> This is equivalent to setting {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getFilterByCell filterByCell} to true and explicitly setting {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getChangeOnKeypress FormItem.changeOnKeypress} to true for each
+     * text-based field within the {@link com.smartgwt.client.widgets.grid.ListGridField#getFilterEditorProperties
+     * ListGridField.filterEditorProperties}. <P>
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param filterOnKeypress New filterOnKeypress value. Default value is null
+     * @param filterOnKeypress New filterOnKeypress value. Default value is false
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setFetchDelay
      */
-    public ListGrid setFilterOnKeypress(Boolean filterOnKeypress) {
+    public ListGrid setFilterOnKeypress(boolean filterOnKeypress) {
         return (ListGrid)setAttribute("filterOnKeypress", filterOnKeypress, true);
     }
 
     /**
-     * If we're showing the filterEditor (this.showFilterEditor is true), this property determines whether this list should be
-     * filtered every time the user modifies the value in a field of the filter-editor. Can also be set at the field level.
+     * If we're showing the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor filterEditor}, should this
+     * list be filtered for every keypress within the filter editor fields? <P> This is equivalent to setting {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getFilterByCell filterByCell} to true and explicitly setting {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getChangeOnKeypress FormItem.changeOnKeypress} to true for each
+     * text-based field within the {@link com.smartgwt.client.widgets.grid.ListGridField#getFilterEditorProperties
+     * ListGridField.filterEditorProperties}. <P>
      *
-     * @return Current filterOnKeypress value. Default value is null
+     * @return Current filterOnKeypress value. Default value is false
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getFetchDelay
      */
-    public Boolean getFilterOnKeypress()  {
-        return getAttributeAsBoolean("filterOnKeypress");
+    public boolean getFilterOnKeypress()  {
+        Boolean result = getAttributeAsBoolean("filterOnKeypress");
+        return result == null ? false : result;
     }
     
 
@@ -7194,6 +7561,145 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      */
     public String getFilterUsingText()  {
         return getAttributeAsString("filterUsingText");
+    }
+    
+
+    /**
+     * Instance of {@link com.smartgwt.client.widgets.Window} used to {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#showFilterWindow show} the
+     *  {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterWindowFilter FilterBuilder}.
+     *  <p>
+     *  By default the <code>FilterBuilder</code> shows with the top operator selection as a
+     *  radio group and allows switching between simple and advanced modes. These defaults can
+     *  be changed using {@link com.smartgwt.client.docs.AutoChildUsage autoChild} features such as setting
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterWindowFilter filterWindowFilter} properties on a grid instance
+     * or globally
+     *  by changing the <code>ListGrid</code> defaults.
+     *  <p>
+     *  
+     *  
+     *  For example, to always use advanced mode on a single grid:
+     *  <pre>
+     *  FilterBuilder filterBuilderProperties = new FilterBuilder();          
+     *  filterBuilderProperties.setTopOperatorAppearance(TopOperatorAppearance.BRACKET);
+     *  filterBuilderProperties.setShowModeSwitcher(false);
+     * 
+     *  ListGrid listGrid = new ListGrid();
+     *  listGrid.setAutoChildProperties("filterWindowFilter", filterBuilderProperties);
+     *  </pre>
+     *  or to always use advanced mode: 
+     *  <pre>
+     *  ListGrid.changeAutoChildDefaults("filterWindowFilter", filterBuilderProperties);
+     *  </pre>
+     * 
+     * <p>
+     * This component is an AutoChild named "filterWindow".  For an overview of how to use and
+     * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return Current filterWindow value. Default value is null
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public Window getFilterWindow() throws IllegalStateException {
+        errorIfNotCreated("filterWindow");
+        return (Window)Window.getByJSObject(getAttributeAsJavaScriptObject("filterWindow"));
+    }
+    
+
+    /**
+     * Advanced filtering criteria, either {@link com.smartgwt.client.data.Criteria simple} or {@link
+     * com.smartgwt.client.data.AdvancedCriteria advanced}, that is combined with the  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getFilterEditorCriteria filter editor criteria} during filtering. <P> This
+     * criteria is normally configured via {@link com.smartgwt.client.widgets.grid.ListGrid#showFilterWindow advanced filtering
+     * dialog} shown because of the {@link com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterWindow allowFilterWindow}
+     * option but can be assigned directly as well.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Setter for {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterWindowCriteria filterWindowCriteria}
+     *
+     * @param filterWindowCriteria criteria for advanced filtering. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     */
+    public ListGrid setFilterWindowCriteria(Criteria filterWindowCriteria) {
+        if (filterWindowCriteria instanceof Criterion) {
+            filterWindowCriteria.setAttribute("_constructor", "AdvancedCriteria");
+        }
+        return (ListGrid)setAttribute("filterWindowCriteria", filterWindowCriteria == null ? null : filterWindowCriteria.getJsObj(), true);
+    }
+
+    /**
+     * Advanced filtering criteria, either {@link com.smartgwt.client.data.Criteria simple} or {@link
+     * com.smartgwt.client.data.AdvancedCriteria advanced}, that is combined with the  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getFilterEditorCriteria filter editor criteria} during filtering. <P> This
+     * criteria is normally configured via {@link com.smartgwt.client.widgets.grid.ListGrid#showFilterWindow advanced filtering
+     * dialog} shown because of the {@link com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterWindow allowFilterWindow}
+     * option but can be assigned directly as well.
+     *
+     * @return Returns the current {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterWindowCriteria filterWindowCriteria}. Default value is null
+     */
+    public Criteria getFilterWindowCriteria()  {
+        return new Criteria(getAttributeAsJavaScriptObject("filterWindowCriteria"));
+    }
+    
+
+    /**
+     * Instance of {@link com.smartgwt.client.widgets.Canvas} used to show visual indicator that {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getFilterWindowCriteria filterWindowCriteria} is configured. {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowFilterWindowCriteriaIndicator showFilterWindowCriteriaIndicator} must
+     * be enabled to show indicator.
+     * <p>
+     * This component is an AutoChild named "filterWindowCriteriaIndicator".  For an overview of how to use and
+     * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return Current filterWindowCriteriaIndicator value. Default value is null
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public Canvas getFilterWindowCriteriaIndicator() throws IllegalStateException {
+        errorIfNotCreated("filterWindowCriteriaIndicator");
+        return (Canvas)Canvas.getByJSObject(getAttributeAsJavaScriptObject("filterWindowCriteriaIndicator"));
+    }
+    
+
+    /**
+     * Instance of {@link com.smartgwt.client.widgets.form.FilterBuilder} shown in {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getFilterWindow filterWindow} by {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#showFilterWindow showFilterWindow()}. See {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getFilterWindow filterWindow} for more information on the filter defaults and
+     * changing them.
+     * <p>
+     * This component is an AutoChild named "filterWindowFilter".  For an overview of how to use and
+     * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return Current filterWindowFilter value. Default value is null
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public FilterBuilder getFilterWindowFilter() throws IllegalStateException {
+        errorIfNotCreated("filterWindowFilter");
+        return (FilterBuilder)FilterBuilder.getByJSObject(getAttributeAsJavaScriptObject("filterWindowFilter"));
+    }
+    
+
+    /**
+     * The instruction text to display at the top of the {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterWindow
+     * filterWindow}.
+     *
+     * @param filterWindowInstructions New filterWindowInstructions value. Default value is "Enter criteria below. These criteria are &lt;i&gt;in addition to&lt;/i&gt; any criteria entered in the filter immediately above column headers."
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public ListGrid setFilterWindowInstructions(String filterWindowInstructions)  throws IllegalStateException {
+        return (ListGrid)setAttribute("filterWindowInstructions", filterWindowInstructions, false);
+    }
+
+    /**
+     * The instruction text to display at the top of the {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterWindow
+     * filterWindow}.
+     *
+     * @return Current filterWindowInstructions value. Default value is "Enter criteria below. These criteria are &lt;i&gt;in addition to&lt;/i&gt; any criteria entered in the filter immediately above column headers."
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getFilterWindowInstructions()  {
+        return getAttributeAsString("filterWindowInstructions");
     }
     
 
@@ -7383,7 +7889,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#setBaseStyle
      * @see com.smartgwt.client.widgets.grid.ListGridField#setFrozen
-     * @see com.smartgwt.client.docs.FrozenFields FrozenFields overview and related methods
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public ListGrid setFrozenBaseStyle(String frozenBaseStyle) {
         return (ListGrid)setAttribute("frozenBaseStyle", frozenBaseStyle, true);
@@ -7396,7 +7902,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @return Current frozenBaseStyle value. Default value is null
      * @see com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle
      * @see com.smartgwt.client.widgets.grid.ListGridField#getFrozen
-     * @see com.smartgwt.client.docs.FrozenFields FrozenFields overview and related methods
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getFrozenBaseStyle()  {
         return getAttributeAsString("frozenBaseStyle");
@@ -7470,7 +7976,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @see com.smartgwt.client.widgets.grid.ListGrid#setHeaderBaseStyle
      * @see com.smartgwt.client.widgets.grid.ListGridField#setFrozen
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
-     * @see com.smartgwt.client.docs.FrozenFields FrozenFields overview and related methods
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public ListGrid setFrozenHeaderBaseStyle(String frozenHeaderBaseStyle)  throws IllegalStateException {
         return (ListGrid)setAttribute("frozenHeaderBaseStyle", frozenHeaderBaseStyle, false);
@@ -7484,7 +7990,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderBaseStyle
      * @see com.smartgwt.client.widgets.grid.ListGridField#getFrozen
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
-     * @see com.smartgwt.client.docs.FrozenFields FrozenFields overview and related methods
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getFrozenHeaderBaseStyle()  {
         return getAttributeAsString("frozenHeaderBaseStyle");
@@ -7501,7 +8007,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @see com.smartgwt.client.widgets.grid.ListGrid#setHeaderTitleStyle
      * @see com.smartgwt.client.widgets.grid.ListGridField#setFrozen
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
-     * @see com.smartgwt.client.docs.FrozenFields FrozenFields overview and related methods
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public ListGrid setFrozenHeaderTitleStyle(String frozenHeaderTitleStyle)  throws IllegalStateException {
         return (ListGrid)setAttribute("frozenHeaderTitleStyle", frozenHeaderTitleStyle, false);
@@ -7515,7 +8021,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderTitleStyle
      * @see com.smartgwt.client.widgets.grid.ListGridField#getFrozen
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
-     * @see com.smartgwt.client.docs.FrozenFields FrozenFields overview and related methods
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getFrozenHeaderTitleStyle()  {
         return getAttributeAsString("frozenHeaderTitleStyle");
@@ -7617,6 +8123,33 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     
 
     /**
+     * The additional criteria prefix to show in filter editor field hover, the filter action button or the sorter button
+     * before the descriptive version of the +{filterWindowCriteria}, if any. The descriptive text is formatted by {@link
+     * com.smartgwt.client.data.DataSource#getAdvancedCriteriaDescription DataSource.getAdvancedCriteriaDescription()}.
+     *
+     * @param gridAdditionalCriteriaText New gridAdditionalCriteriaText value. Default value is "Grid additional criteria:"
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public ListGrid setGridAdditionalCriteriaText(String gridAdditionalCriteriaText)  throws IllegalStateException {
+        return (ListGrid)setAttribute("gridAdditionalCriteriaText", gridAdditionalCriteriaText, false);
+    }
+
+    /**
+     * The additional criteria prefix to show in filter editor field hover, the filter action button or the sorter button
+     * before the descriptive version of the +{filterWindowCriteria}, if any. The descriptive text is formatted by {@link
+     * com.smartgwt.client.data.DataSource#getAdvancedCriteriaDescription DataSource.getAdvancedCriteriaDescription()}.
+     *
+     * @return Current gridAdditionalCriteriaText value. Default value is "Grid additional criteria:"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getGridAdditionalCriteriaText()  {
+        return getAttributeAsString("gridAdditionalCriteriaText");
+    }
+    
+
+    /**
      * Array of components that make up this grid. This array controls which standard and/or custom
      *  parts will be displayed within this ListGrid.
      *  <P>
@@ -7660,6 +8193,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      *  they should not be shown in some circumstances.
      *  <P>
      *  Tip: custom controls need to set layoutAlign:"center" to appear vertically centered.
+     *  <P>
+     * See <a href='https://www.smartclient.com/smartclient-latest/showcase/?id=customGridComponents' target='_blank'>this
+     * example</a>
+     *  of subclassing ListGrid and using gridComponents to add a tool bar with standard functions that 
+     *  you want throughout your application.
      *
      * @param gridComponents New gridComponents value. Default value is (see below)
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
@@ -7713,6 +8251,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      *  they should not be shown in some circumstances.
      *  <P>
      *  Tip: custom controls need to set layoutAlign:"center" to appear vertically centered.
+     *  <P>
+     * See <a href='https://www.smartclient.com/smartclient-latest/showcase/?id=customGridComponents' target='_blank'>this
+     * example</a>
+     *  of subclassing ListGrid and using gridComponents to add a tool bar with standard functions that 
+     *  you want throughout your application.
      *
      * @return Current gridComponents value. Default value is (see below)
      */
@@ -7765,6 +8308,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      *  they should not be shown in some circumstances.
      *  <P>
      *  Tip: custom controls need to set layoutAlign:"center" to appear vertically centered.
+     *  <P>
+     * See <a href='https://www.smartclient.com/smartclient-latest/showcase/?id=customGridComponents' target='_blank'>this
+     * example</a>
+     *  of subclassing ListGrid and using gridComponents to add a tool bar with standard functions that 
+     *  you want throughout your application.
      *
      * @param gridComponents New gridComponents value. Default value is (see below)
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
@@ -8549,7 +9097,8 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * <li><code>haspopup</code> - true if the button should show the header context menu</li> <li><code>colindex</code> -
      * index of the column if {@link com.smartgwt.client.widgets.grid.ListGrid#getAriaRole ariaRole} is
      * <code>"grid"</code></li> <li><code>sort</code> - "ascending", "descending" or "none" depending on the sort-state of the
-     * field</li> </ul>. Default value is null
+     * field</li> </ul> Also, if an explicit property is set in ariaState, it will be respected and will take precedence over 
+     * the calculated property. Default value is null
      */
     public Map getHeaderButtonAriaState()  {
         return getAttributeAsMap("headerButtonAriaState");
@@ -8619,7 +9168,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      *
      * @param headerHeight new height for the header. Default value is 22
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
-     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     * @see com.smartgwt.client.docs.GridHeader GridHeader overview and related methods
      */
     public ListGrid setHeaderHeight(int headerHeight) {
         return (ListGrid)setAttribute("headerHeight", headerHeight, true);
@@ -8629,7 +9178,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * The height of this listGrid's header, in pixels.
      *
      * @return Current headerHeight value. Default value is 22
-     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     * @see com.smartgwt.client.docs.GridHeader GridHeader overview and related methods
      */
     public int getHeaderHeight()  {
         return getAttributeAsInt("headerHeight");
@@ -9256,6 +9805,36 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     
 
     /**
+     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getCanShowFilterEditor canShowFilterEditor} is true, this is the
+     * title for the filterEditor show/hide menu-item, in the  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getHeaderContextMenu headerContextmenu}, when the filterEditor is visible. <P>
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditorTitle showFilterEditorTitle} affects the same
+     * menu-item when the filterEditor is hidden.
+     *
+     * @param hideFilterEditorTitle New hideFilterEditorTitle value. Default value is "Hide Filter Row"
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_sortFilter_filter" target="examples">Filter Example</a>
+     */
+    public ListGrid setHideFilterEditorTitle(String hideFilterEditorTitle) {
+        return (ListGrid)setAttribute("hideFilterEditorTitle", hideFilterEditorTitle, true);
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getCanShowFilterEditor canShowFilterEditor} is true, this is the
+     * title for the filterEditor show/hide menu-item, in the  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getHeaderContextMenu headerContextmenu}, when the filterEditor is visible. <P>
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditorTitle showFilterEditorTitle} affects the same
+     * menu-item when the filterEditor is hidden.
+     *
+     * @return Current hideFilterEditorTitle value. Default value is "Hide Filter Row"
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_sortFilter_filter" target="examples">Filter Example</a>
+     */
+    public String getHideFilterEditorTitle()  {
+        return getAttributeAsString("hideFilterEditorTitle");
+    }
+    
+
+    /**
      * If set, end users can create advanced hiliting rules that will use the {@link
      * com.smartgwt.client.data.Hilite#getReplacementValue Hilite.replacementValue} feature to cause values in hilited cells to
      * be replaced with a user-entered value.  For example, a user could create a hilite rule that replaces numeric values
@@ -9610,8 +10189,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * mode to use when automatically creating a hover component for rows in this grid. <P> A number of builtin modes are
      * provided - see {@link com.smartgwt.client.types.HoverMode}.  You can also override {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getCellHoverComponent getCellHoverComponent()} to provide a custom hover
-     * widget - in that case, this attribute is ignored.
-     * <p><b>Note : </b> This is an advanced setting</p>
+     * widget - in that case, this attribute is ignored. <p> If <code>showHoverComponents</code> is true but
+     * <code>hoverMode</code> is not set, it  defaults to "detailRelated" if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDetailDS detailDS} is set, or to "details" otherwise. If
+     * <code>showHoverComponents</code> is not set (ie, is null) and <code>hoverMode</code> <i>is</i> set,
+     * <code>showHoverComponents</code> defaults to true.
      *
      * @param hoverMode New hoverMode value. Default value is null
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
@@ -9625,12 +10207,45 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * mode to use when automatically creating a hover component for rows in this grid. <P> A number of builtin modes are
      * provided - see {@link com.smartgwt.client.types.HoverMode}.  You can also override {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getCellHoverComponent getCellHoverComponent()} to provide a custom hover
-     * widget - in that case, this attribute is ignored.
+     * widget - in that case, this attribute is ignored. <p> If <code>showHoverComponents</code> is true but
+     * <code>hoverMode</code> is not set, it  defaults to "detailRelated" if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDetailDS detailDS} is set, or to "details" otherwise. If
+     * <code>showHoverComponents</code> is not set (ie, is null) and <code>hoverMode</code> <i>is</i> set,
+     * <code>showHoverComponents</code> defaults to true.
      *
      * @return Current hoverMode value. Default value is null
      */
     public HoverMode getHoverMode()  {
         return EnumUtil.getEnum(HoverMode.values(), getAttribute("hoverMode"));
+    }
+    
+
+    /**
+     * Screen to create (via {@link com.smartgwt.client.rpc.RPCManager#createScreen createScreen()}) in lieu of calling {@link
+     * com.smartgwt.client.widgets.Canvas#getHoverComponent getHoverComponent()} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCellHoverComponent getCellHoverComponent()}. <P> If this grid has a {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getDataSource dataSource}, the created screen is provided with a {@link
+     * com.smartgwt.client.widgets.Canvas#getDataContext Canvas.dataContext} that includes the record being shown at the row.
+     *
+     * @param hoverScreen New hoverScreen value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public ListGrid setHoverScreen(String hoverScreen)  throws IllegalStateException {
+        return (ListGrid)setAttribute("hoverScreen", hoverScreen, false);
+    }
+
+    /**
+     * Screen to create (via {@link com.smartgwt.client.rpc.RPCManager#createScreen createScreen()}) in lieu of calling {@link
+     * com.smartgwt.client.widgets.Canvas#getHoverComponent getHoverComponent()} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCellHoverComponent getCellHoverComponent()}. <P> If this grid has a {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getDataSource dataSource}, the created screen is provided with a {@link
+     * com.smartgwt.client.widgets.Canvas#getDataContext Canvas.dataContext} that includes the record being shown at the row.
+     *
+     * @return Current hoverScreen value. Default value is null
+     */
+    public String getHoverScreen()  {
+        return getAttributeAsString("hoverScreen");
     }
     
 
@@ -10257,7 +10872,6 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * value of this property, further attempts to expand records will result in a popup warning (see {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getMaxExpandedRecordsPrompt maxExpandedRecordsPrompt}) and expansion will be
      * cancelled. <P> The default value is null, meaning there is no limit on the number of expanded records.
-     * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param maxExpandedRecords New maxExpandedRecords value. Default value is null
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
@@ -10591,6 +11205,54 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     
 
     /**
+     * If this listGrid is showing the 'newRecordRow' (used for adding new rows to the end of the data), this property
+     * determines what message should be displayed in this row.
+     *
+     * @param newRecordRowMessage New newRecordRowMessage value. Default value is "-- Add New Row --"
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
+     */
+    public ListGrid setNewRecordRowMessage(String newRecordRowMessage)  throws IllegalStateException {
+        return (ListGrid)setAttribute("newRecordRowMessage", newRecordRowMessage, false);
+    }
+
+    /**
+     * If this listGrid is showing the 'newRecordRow' (used for adding new rows to the end of the data), this property
+     * determines what message should be displayed in this row.
+     *
+     * @return Current newRecordRowMessage value. Default value is "-- Add New Row --"
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
+     */
+    public String getNewRecordRowMessage()  {
+        return getAttributeAsString("newRecordRowMessage");
+    }
+    
+
+    /**
+     * Text to show for saving the current view as a new "saved search".
+     *
+     * @param newSearchText New newSearchText value. Default value is "Save View..."
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public ListGrid setNewSearchText(String newSearchText)  throws IllegalStateException {
+        return (ListGrid)setAttribute("newSearchText", newSearchText, false);
+    }
+
+    /**
+     * Text to show for saving the current view as a new "saved search".
+     *
+     * @return Current newSearchText value. Default value is "Save View..."
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getNewSearchText()  {
+        return getAttributeAsString("newSearchText");
+    }
+    
+
+    /**
      * "Normal" baseStyle for this listGrid. Only applies if {@link com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle
      * baseStyle} is set to null. <P> If <code>baseStyle</code> is unset, this property will be used as a base cell style if
      * the grid is showing fixed height rows, and the specified cellHeight matches {@link
@@ -10657,6 +11319,29 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      */
     public int getNormalCellHeight()  {
         return getAttributeAsInt("normalCellHeight");
+    }
+    
+
+    /**
+     * Text to show in menu listing saved searches when there are no saved searches.
+     *
+     * @param noSavedSearchesText New noSavedSearchesText value. Default value is "[None]"
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public ListGrid setNoSavedSearchesText(String noSavedSearchesText)  throws IllegalStateException {
+        return (ListGrid)setAttribute("noSavedSearchesText", noSavedSearchesText, false);
+    }
+
+    /**
+     * Text to show in menu listing saved searches when there are no saved searches.
+     *
+     * @return Current noSavedSearchesText value. Default value is "[None]"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getNoSavedSearchesText()  {
+        return getAttributeAsString("noSavedSearchesText");
     }
     
 
@@ -10940,7 +11625,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.grid.ListGrid#setBooleanBaseStyle
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
-     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
+     * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public ListGrid setPrintBooleanBaseStyle(String printBooleanBaseStyle)  throws IllegalStateException {
         return (ListGrid)setAttribute("printBooleanBaseStyle", printBooleanBaseStyle, false);
@@ -10953,7 +11638,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @return Current printBooleanBaseStyle value. Default value is null
      * @see com.smartgwt.client.widgets.grid.ListGrid#getBooleanBaseStyle
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
-     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
+     * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public String getPrintBooleanBaseStyle()  {
         return getAttributeAsString("printBooleanBaseStyle");
@@ -10973,7 +11658,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#setBooleanFalseImage
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
-     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
+     * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public ListGrid setPrintBooleanFalseImage(String printBooleanFalseImage) {
         return (ListGrid)setAttribute("printBooleanFalseImage", printBooleanFalseImage, true);
@@ -10990,7 +11675,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @return Current printBooleanFalseImage value. Default value is null
      * @see com.smartgwt.client.widgets.grid.ListGrid#getBooleanFalseImage
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
-     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
+     * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public String getPrintBooleanFalseImage()  {
         return getAttributeAsString("printBooleanFalseImage");
@@ -11010,7 +11695,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#setBooleanPartialImage
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
-     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
+     * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public ListGrid setPrintBooleanPartialImage(String printBooleanPartialImage) {
         return (ListGrid)setAttribute("printBooleanPartialImage", printBooleanPartialImage, true);
@@ -11027,7 +11712,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @return Current printBooleanPartialImage value. Default value is null
      * @see com.smartgwt.client.widgets.grid.ListGrid#getBooleanPartialImage
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
-     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
+     * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public String getPrintBooleanPartialImage()  {
         return getAttributeAsString("printBooleanPartialImage");
@@ -11047,7 +11732,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#setBooleanTrueImage
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
-     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
+     * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public ListGrid setPrintBooleanTrueImage(String printBooleanTrueImage) {
         return (ListGrid)setAttribute("printBooleanTrueImage", printBooleanTrueImage, true);
@@ -11064,7 +11749,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @return Current printBooleanTrueImage value. Default value is null
      * @see com.smartgwt.client.widgets.grid.ListGrid#getBooleanTrueImage
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
-     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
+     * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
     public String getPrintBooleanTrueImage()  {
         return getAttributeAsString("printBooleanTrueImage");
@@ -11686,6 +12371,37 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      */
     public String getRecordRowRoleProperty()  {
         return getAttributeAsString("recordRowRoleProperty");
+    }
+    
+
+    /**
+     * Screen to create (via {@link com.smartgwt.client.rpc.RPCManager#createScreen createScreen()}) in lieu of calling {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getRecordComponent getRecordComponent()}. <P> If this grid has a {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDataSource dataSource}, the created screen is provided with a {@link
+     * com.smartgwt.client.widgets.Canvas#getDataContext Canvas.dataContext} that includes the record being shown at the row.
+     * Be sure the record screen meets these {@link com.smartgwt.client.widgets.Canvas#getAutoPopulateData requirements} to
+     * utilize the <code>dataContext</code>.
+     *
+     * @param recordScreen New recordScreen value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public ListGrid setRecordScreen(String recordScreen)  throws IllegalStateException {
+        return (ListGrid)setAttribute("recordScreen", recordScreen, false);
+    }
+
+    /**
+     * Screen to create (via {@link com.smartgwt.client.rpc.RPCManager#createScreen createScreen()}) in lieu of calling {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getRecordComponent getRecordComponent()}. <P> If this grid has a {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDataSource dataSource}, the created screen is provided with a {@link
+     * com.smartgwt.client.widgets.Canvas#getDataContext Canvas.dataContext} that includes the record being shown at the row.
+     * Be sure the record screen meets these {@link com.smartgwt.client.widgets.Canvas#getAutoPopulateData requirements} to
+     * utilize the <code>dataContext</code>.
+     *
+     * @return Current recordScreen value. Default value is null
+     */
+    public String getRecordScreen()  {
+        return getAttributeAsString("recordScreen");
     }
     
 
@@ -12384,6 +13100,182 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     
 
     /**
+     * Should the current {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterEditorCriteria filter-criteria} be included
+     * along with other details when saving this grid's {@link com.smartgwt.client.widgets.grid.ListGrid#getViewState
+     * view-state}? <P> If true, the current criteria will be saved when calling {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getViewState getViewState()} and will be applied to the grid via a filter when
+     * calling {@link com.smartgwt.client.widgets.grid.ListGrid#setViewState setViewState()}. <P> Notes <ul> <li>If this grid
+     * has never actually fetched data, criteria will not be included <li>If this flag is set to <code>false</code>, {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#setViewState setViewState()} will not      modify the grid's filter even if
+     * criteria were included when viewState was stored.</li> </ul>
+     *
+     * @param saveCriteriaInViewState New saveCriteriaInViewState value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getUserCriteriaState
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setUserCriteriaState
+     */
+    public ListGrid setSaveCriteriaInViewState(Boolean saveCriteriaInViewState) {
+        return (ListGrid)setAttribute("saveCriteriaInViewState", saveCriteriaInViewState, true);
+    }
+
+    /**
+     * Should the current {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterEditorCriteria filter-criteria} be included
+     * along with other details when saving this grid's {@link com.smartgwt.client.widgets.grid.ListGrid#getViewState
+     * view-state}? <P> If true, the current criteria will be saved when calling {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getViewState getViewState()} and will be applied to the grid via a filter when
+     * calling {@link com.smartgwt.client.widgets.grid.ListGrid#setViewState setViewState()}. <P> Notes <ul> <li>If this grid
+     * has never actually fetched data, criteria will not be included <li>If this flag is set to <code>false</code>, {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#setViewState setViewState()} will not      modify the grid's filter even if
+     * criteria were included when viewState was stored.</li> </ul>
+     *
+     * @return Current saveCriteriaInViewState value. Default value is true
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getUserCriteriaState
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setUserCriteriaState
+     */
+    public Boolean getSaveCriteriaInViewState()  {
+        Boolean result = getAttributeAsBoolean("saveCriteriaInViewState");
+        return result == null ? true : result;
+    }
+    
+
+    /**
+     * Saves the name of the default search to localStorage, under the key "sc_defaultSearch:" + minimal locator. <p> See
+     * SavedSearches "Default Searches" for why this is stored separately from the search itself if there is no saved default
+     * search, but there is a  SavedSearches.defaultField, the first user-specfic search marked default will be used, otherwise
+     * the first admn search marked default <p> If {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchData
+     * autoFetchData} is enabled, the autoFetch will be postponed as needed until a default search can be looked up and
+     * applied.  If anything fails in the default search lookup, an autoFetch will still be performed (without any saved search
+     * information)
+     *
+     * @param saveDefaultSearch New saveDefaultSearch value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public ListGrid setSaveDefaultSearch(boolean saveDefaultSearch)  throws IllegalStateException {
+        return (ListGrid)setAttribute("saveDefaultSearch", saveDefaultSearch, false);
+    }
+
+    /**
+     * Saves the name of the default search to localStorage, under the key "sc_defaultSearch:" + minimal locator. <p> See
+     * SavedSearches "Default Searches" for why this is stored separately from the search itself if there is no saved default
+     * search, but there is a  SavedSearches.defaultField, the first user-specfic search marked default will be used, otherwise
+     * the first admn search marked default <p> If {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchData
+     * autoFetchData} is enabled, the autoFetch will be postponed as needed until a default search can be looked up and
+     * applied.  If anything fails in the default search lookup, an autoFetch will still be performed (without any saved search
+     * information)
+     *
+     * @return Current saveDefaultSearch value. Default value is true
+     */
+    public boolean getSaveDefaultSearch()  {
+        Boolean result = getAttributeAsBoolean("saveDefaultSearch");
+        return result == null ? true : result;
+    }
+    
+
+    /**
+     * Override of  SavedSearches.adminRole for this component.
+     *
+     * @param savedSearchAdminRole New savedSearchAdminRole value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public ListGrid setSavedSearchAdminRole(String savedSearchAdminRole)  throws IllegalStateException {
+        return (ListGrid)setAttribute("savedSearchAdminRole", savedSearchAdminRole, false);
+    }
+
+    /**
+     * Override of  SavedSearches.adminRole for this component.
+     *
+     * @return Current savedSearchAdminRole value. Default value is null
+     */
+    public String getSavedSearchAdminRole()  {
+        return getAttributeAsString("savedSearchAdminRole");
+    }
+    
+
+    /**
+     * Properties for the separator record between locally saved and admin searches.
+     * <p>
+     * This component is an AutoChild named "savedSearchAdminSeparator".  For an overview of how to use and
+     * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return Current savedSearchAdminSeparator value. Default value is {isSeparator:true}
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public ListGridRecord getSavedSearchAdminSeparator() throws IllegalStateException {
+        errorIfNotCreated("savedSearchAdminSeparator");
+        return ListGridRecord.getOrCreateRef(getAttributeAsJavaScriptObject("savedSearchAdminSeparator"));
+    }
+    
+
+    /**
+     * Override of  SavedSearches.defaultDataSource for this component.
+     *
+     * @param savedSearchDS New savedSearchDS value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public ListGrid setSavedSearchDS(String savedSearchDS)  throws IllegalStateException {
+        return (ListGrid)setAttribute("savedSearchDS", savedSearchDS, false);
+    }
+
+    /**
+     * Override of  SavedSearches.defaultDataSource for this component.
+     *
+     * @return Current savedSearchDS value. Default value is null
+     */
+    public String getSavedSearchDS()  {
+        return getAttributeAsString("savedSearchDS");
+    }
+    
+
+    /**
+     * Set to "criteria" if you want only criteria to be stored for ListGrids and TreeGrids instead of the full viewState of
+     * the component.
+     *
+     * @param savedSearchStoredState New savedSearchStoredState value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public ListGrid setSavedSearchStoredState(SavedSearchStoredState savedSearchStoredState)  throws IllegalStateException {
+        return (ListGrid)setAttribute("savedSearchStoredState", savedSearchStoredState == null ? null : savedSearchStoredState.getValue(), false);
+    }
+
+    /**
+     * Set to "criteria" if you want only criteria to be stored for ListGrids and TreeGrids instead of the full viewState of
+     * the component.
+     *
+     * @return Current savedSearchStoredState value. Default value is null
+     */
+    public SavedSearchStoredState getSavedSearchStoredState()  {
+        return EnumUtil.getEnum(SavedSearchStoredState.values(), getAttribute("savedSearchStoredState"));
+    }
+    
+
+    /**
+     * Text to show for the saved searches submenu.
+     *
+     * @param savedSearchText New savedSearchText value. Default value is "Saved views"
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public ListGrid setSavedSearchText(String savedSearchText)  throws IllegalStateException {
+        return (ListGrid)setAttribute("savedSearchText", savedSearchText, false);
+    }
+
+    /**
+     * Text to show for the saved searches submenu.
+     *
+     * @return Current savedSearchText value. Default value is "Saved views"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getSavedSearchText()  {
+        return getAttributeAsString("savedSearchText");
+    }
+    
+
+    /**
      * For grids with a specified {@link com.smartgwt.client.widgets.grid.ListGrid#getDataSource dataSource}, this property can
      * be set to <code>true</code> to cause the grid directly update its local data set instead of performing an operation
      * against it's configured DataSource. <p> When using this mode, data must be provided to the grid via {@link
@@ -12458,7 +13350,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      *
      * @param saveRequestProperties New saveRequestProperties value. Default value is null
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
-     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public ListGrid setSaveRequestProperties(DSRequest saveRequestProperties) {
         JavaScriptObject config = JSOHelper.createObject();
@@ -12481,7 +13373,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * operation performed on save.
      *
      * @return Current saveRequestProperties value. Default value is null
-     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public DSRequest getSaveRequestProperties()  {
         return new DSRequest(getAttributeAsJavaScriptObject("saveRequestProperties"));
@@ -12838,6 +13730,121 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     
 
     /**
+     * When declared, the specified form is automatically used as a search form for this grid,  with criteria that are additive
+     * with any criteria shown in the FilterEditor or  {@link com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterWindow
+     * Filter Window}. <P> This is similar to the effect of adding a {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#addFilterEditorSubmitHandler ListGrid.filterEditorSubmit()} override that
+     * pulls  in criteria from the external form, and having the external form call  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#filterByEditor filterByEditor()} instead of {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchData fetchData()}, as shown in the  +exampleLink{additiveFilter} example.
+     * <P> In particular. the grid will automatically filter when the searchForm.search() or  dynamicForm.submit() event fires
+     * on the form (happens if a SubmitItem is present and is  pressed), and will automatically trigger filtering if enter is
+     * pressed in the form, as  though searchOnEnter / saveOnEnter had been set. <P> If the FilterEditor is enabled and
+     * listGrid.filterOnKeypress is set, the grid will  automatically watch for searchForm.criteriaChanged(), and filter
+     * whenever that method  fires.  For the purposes of this behavior, the FilterEditor is considered to be enabled  even if
+     * it is not currently visible but {@link com.smartgwt.client.widgets.grid.ListGrid#getCanShowFilterEditor
+     * canShowFilterEditor} is true (as  otherwise filtering behavior in the form would change when the FilterEditor appears).
+     * <P> The criteria from the specified <code>searchForm</code> will only be shown and edited in the external form; they
+     * will neither be shown nor editable in the FilterEditor, even if  the FilterEditor also allows criteria on the same
+     * fields.  That is, they are treated  much like {@link com.smartgwt.client.widgets.grid.ListGrid#getImplicitCriteria
+     * implicitCriteria}. <P> Note: when using <code>listGrid.searchForm</code> don't add your own logic to call  fetchData()
+     * or the criteria you specify will appear in the FilterEditor and be editable  there, potentially creating user confusion,
+     * especially if some of the criteria in your  form cannot be displayed and edited in the FilterEditor.
+     *
+     * @param searchForm New searchForm value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     */
+    public ListGrid setSearchForm(DynamicForm searchForm) {
+        return (ListGrid)setAttribute("searchForm", searchForm == null ? null : searchForm.getOrCreateJsObj(), true);
+    }
+
+    /**
+     * When declared, the specified form is automatically used as a search form for this grid,  with criteria that are additive
+     * with any criteria shown in the FilterEditor or  {@link com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterWindow
+     * Filter Window}. <P> This is similar to the effect of adding a {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#addFilterEditorSubmitHandler ListGrid.filterEditorSubmit()} override that
+     * pulls  in criteria from the external form, and having the external form call  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#filterByEditor filterByEditor()} instead of {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchData fetchData()}, as shown in the  +exampleLink{additiveFilter} example.
+     * <P> In particular. the grid will automatically filter when the searchForm.search() or  dynamicForm.submit() event fires
+     * on the form (happens if a SubmitItem is present and is  pressed), and will automatically trigger filtering if enter is
+     * pressed in the form, as  though searchOnEnter / saveOnEnter had been set. <P> If the FilterEditor is enabled and
+     * listGrid.filterOnKeypress is set, the grid will  automatically watch for searchForm.criteriaChanged(), and filter
+     * whenever that method  fires.  For the purposes of this behavior, the FilterEditor is considered to be enabled  even if
+     * it is not currently visible but {@link com.smartgwt.client.widgets.grid.ListGrid#getCanShowFilterEditor
+     * canShowFilterEditor} is true (as  otherwise filtering behavior in the form would change when the FilterEditor appears).
+     * <P> The criteria from the specified <code>searchForm</code> will only be shown and edited in the external form; they
+     * will neither be shown nor editable in the FilterEditor, even if  the FilterEditor also allows criteria on the same
+     * fields.  That is, they are treated  much like {@link com.smartgwt.client.widgets.grid.ListGrid#getImplicitCriteria
+     * implicitCriteria}. <P> Note: when using <code>listGrid.searchForm</code> don't add your own logic to call  fetchData()
+     * or the criteria you specify will appear in the FilterEditor and be editable  there, potentially creating user confusion,
+     * especially if some of the criteria in your  form cannot be displayed and edited in the FilterEditor.
+     *
+     * @return Current searchForm value. Default value is null
+     */
+    public DynamicForm getSearchForm()  {
+        return (DynamicForm)DynamicForm.getByJSObject(getAttributeAsJavaScriptObject("searchForm"));
+    }
+
+    /**
+     * When declared, the specified form is automatically used as a search form for this grid,  with criteria that are additive
+     * with any criteria shown in the FilterEditor or  {@link com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterWindow
+     * Filter Window}. <P> This is similar to the effect of adding a {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#addFilterEditorSubmitHandler ListGrid.filterEditorSubmit()} override that
+     * pulls  in criteria from the external form, and having the external form call  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#filterByEditor filterByEditor()} instead of {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchData fetchData()}, as shown in the  +exampleLink{additiveFilter} example.
+     * <P> In particular. the grid will automatically filter when the searchForm.search() or  dynamicForm.submit() event fires
+     * on the form (happens if a SubmitItem is present and is  pressed), and will automatically trigger filtering if enter is
+     * pressed in the form, as  though searchOnEnter / saveOnEnter had been set. <P> If the FilterEditor is enabled and
+     * listGrid.filterOnKeypress is set, the grid will  automatically watch for searchForm.criteriaChanged(), and filter
+     * whenever that method  fires.  For the purposes of this behavior, the FilterEditor is considered to be enabled  even if
+     * it is not currently visible but {@link com.smartgwt.client.widgets.grid.ListGrid#getCanShowFilterEditor
+     * canShowFilterEditor} is true (as  otherwise filtering behavior in the form would change when the FilterEditor appears).
+     * <P> The criteria from the specified <code>searchForm</code> will only be shown and edited in the external form; they
+     * will neither be shown nor editable in the FilterEditor, even if  the FilterEditor also allows criteria on the same
+     * fields.  That is, they are treated  much like {@link com.smartgwt.client.widgets.grid.ListGrid#getImplicitCriteria
+     * implicitCriteria}. <P> Note: when using <code>listGrid.searchForm</code> don't add your own logic to call  fetchData()
+     * or the criteria you specify will appear in the FilterEditor and be editable  there, potentially creating user confusion,
+     * especially if some of the criteria in your  form cannot be displayed and edited in the FilterEditor.
+     *
+     * @param searchForm New searchForm value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     */
+    public ListGrid setSearchForm(ValuesManager searchForm) {
+        return (ListGrid)setAttribute("searchForm", searchForm == null ? null : searchForm.getOrCreateJsObj(), true);
+    }
+
+    /**
+     * When declared, the specified form is automatically used as a search form for this grid,  with criteria that are additive
+     * with any criteria shown in the FilterEditor or  {@link com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterWindow
+     * Filter Window}. <P> This is similar to the effect of adding a {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#addFilterEditorSubmitHandler ListGrid.filterEditorSubmit()} override that
+     * pulls  in criteria from the external form, and having the external form call  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#filterByEditor filterByEditor()} instead of {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchData fetchData()}, as shown in the  +exampleLink{additiveFilter} example.
+     * <P> In particular. the grid will automatically filter when the searchForm.search() or  dynamicForm.submit() event fires
+     * on the form (happens if a SubmitItem is present and is  pressed), and will automatically trigger filtering if enter is
+     * pressed in the form, as  though searchOnEnter / saveOnEnter had been set. <P> If the FilterEditor is enabled and
+     * listGrid.filterOnKeypress is set, the grid will  automatically watch for searchForm.criteriaChanged(), and filter
+     * whenever that method  fires.  For the purposes of this behavior, the FilterEditor is considered to be enabled  even if
+     * it is not currently visible but {@link com.smartgwt.client.widgets.grid.ListGrid#getCanShowFilterEditor
+     * canShowFilterEditor} is true (as  otherwise filtering behavior in the form would change when the FilterEditor appears).
+     * <P> The criteria from the specified <code>searchForm</code> will only be shown and edited in the external form; they
+     * will neither be shown nor editable in the FilterEditor, even if  the FilterEditor also allows criteria on the same
+     * fields.  That is, they are treated  much like {@link com.smartgwt.client.widgets.grid.ListGrid#getImplicitCriteria
+     * implicitCriteria}. <P> Note: when using <code>listGrid.searchForm</code> don't add your own logic to call  fetchData()
+     * or the criteria you specify will appear in the FilterEditor and be editable  there, potentially creating user confusion,
+     * especially if some of the criteria in your  form cannot be displayed and edited in the FilterEditor.
+     *
+     * @return Current searchForm value. Default value is null
+     */
+    public ValuesManager getSearchFormAsValuesManager()  {
+        return ValuesManager.getOrCreateRef(getAttributeAsJavaScriptObject("searchForm"));
+    }
+    
+
+    /**
      * If this property is set to true, clicking on a cell will natively select the  cell's content, ready to be copied to the
      * browser clipboard. <P> For control of this behavior at the field level,  {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getSelectCellTextOnClick ListGridField.selectCellTextOnClick} may be
@@ -12912,10 +13919,12 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * com.smartgwt.client.widgets.grid.ListGrid#setSelectedState setSelectedState()} to reset this grid's selection the
      * current state (assuming the same data is present in the grid).<br>
      *
-     * @return Returns a snapshot of the current selection within this listGrid as a {@link
-     * com.smartgwt.client.docs.ListGridSelectedState} object.<br> This object can be passed to {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#setSelectedState setSelectedState()} to reset this grid's current selection
-     * state (assuming the same data is present in the grid).<br>. Default value is null
+     * @return For components bound to a {@link com.smartgwt.client.widgets.grid.ListGrid#getDataSource dataSource} with records
+     * identified by  unique {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKeys}, this method returns a
+     * snapshot of  the component's current selection, as a {@link com.smartgwt.client.docs.ListGridSelectedState} object.<br>
+     * This object can be passed to {@link com.smartgwt.client.widgets.grid.ListGrid#setSelectedState setSelectedState()} to
+     * reset this grid's current selection state (assuming the same data is present in the grid).<br> Selected state is not
+     * supported if the component has no dataSource, or the dataSource has no primaryKey fields. Default value is null
      * @see com.smartgwt.client.docs.ListGridSelectedState ListGridSelectedState 
      */
     public String getSelectedState()  {
@@ -13012,7 +14021,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @param selectionProperty New selectionProperty value. Default value is null
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
-     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public ListGrid setSelectionProperty(String selectionProperty)  throws IllegalStateException {
         return (ListGrid)setAttribute("selectionProperty", selectionProperty, false);
@@ -13025,7 +14034,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * has been created, this property will be set to true on the selected records.
      *
      * @return Current selectionProperty value. Default value is null
-     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getSelectionProperty()  {
         return getAttributeAsString("selectionProperty");
@@ -13043,7 +14052,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @param selectionType New selection style. Default value is null
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.types.SelectionStyle
-     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_multiselect" target="examples">Multiple select Example</a>
      */
     public ListGrid setSelectionType(SelectionStyle selectionType) {
@@ -13057,7 +14066,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      *
      * @return Current selectionType value. Default value is null
      * @see com.smartgwt.client.types.SelectionStyle
-     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_multiselect" target="examples">Multiple select Example</a>
      */
     public SelectionStyle getSelectionType()  {
@@ -13480,9 +14489,12 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * Should this listGrid display a filter row.  If true, this ListGrid
      *  will be drawn with a single editable row, (separate from the body) with a filter button.
      *  <P>
-     *  Values entered into this row are used as filter criteria to filter this List's data on
-     * enter-keypress or filter button click. {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle
-     * autoFetchTextMatchStyle} determines
+     *  Values entered into this row are used as filter criteria to filter this List's data.
+     * The {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterByCell filterByCell} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getFilterOnKeypress filterOnKeypress} attributes allow
+     *  developers to configure whether filtering occurs automatically on change or requires
+     *  an enter-keypress or filter button click.<br>
+     *  {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle autoFetchTextMatchStyle} determines
      *  the textMatchStyle for the request passed to {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData fetchData()}.
      *  <P>
      * The default {@link com.smartgwt.client.widgets.form.fields.FormItem#getOperator search operator} for an item in the
@@ -13568,9 +14580,12 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * Should this listGrid display a filter row.  If true, this ListGrid
      *  will be drawn with a single editable row, (separate from the body) with a filter button.
      *  <P>
-     *  Values entered into this row are used as filter criteria to filter this List's data on
-     * enter-keypress or filter button click. {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle
-     * autoFetchTextMatchStyle} determines
+     *  Values entered into this row are used as filter criteria to filter this List's data.
+     * The {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterByCell filterByCell} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getFilterOnKeypress filterOnKeypress} attributes allow
+     *  developers to configure whether filtering occurs automatically on change or requires
+     *  an enter-keypress or filter button click.<br>
+     *  {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle autoFetchTextMatchStyle} determines
      *  the textMatchStyle for the request passed to {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData fetchData()}.
      *  <P>
      * The default {@link com.smartgwt.client.widgets.form.fields.FormItem#getOperator search operator} for an item in the
@@ -13647,6 +14662,95 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     public boolean getShowFilterEditor()  {
         Boolean result = getAttributeAsBoolean("showFilterEditor");
         return result == null ? false : result;
+    }
+    
+
+    /**
+     * When set to false, no hover is shown for the filter editor fields. Otherwise, a hover shows the current field's criteria
+     * description along with the {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterWindowCriteria
+     * filterWindowCriteria} description if configured. <p> Hovers can also be disabled for individual fields using {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getShowFilterEditorHovers ListGridField.showFilterEditorHovers}. <p> The
+     * descriptive text for criteria is formatted by {@link com.smartgwt.client.data.DataSource#getAdvancedCriteriaDescription
+     * DataSource.getAdvancedCriteriaDescription()}.
+     *
+     * @param showFilterEditorHovers New showFilterEditorHovers value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setShowFilterEditorHovers
+     */
+    public ListGrid setShowFilterEditorHovers(Boolean showFilterEditorHovers)  throws IllegalStateException {
+        return (ListGrid)setAttribute("showFilterEditorHovers", showFilterEditorHovers, false);
+    }
+
+    /**
+     * When set to false, no hover is shown for the filter editor fields. Otherwise, a hover shows the current field's criteria
+     * description along with the {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterWindowCriteria
+     * filterWindowCriteria} description if configured. <p> Hovers can also be disabled for individual fields using {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getShowFilterEditorHovers ListGridField.showFilterEditorHovers}. <p> The
+     * descriptive text for criteria is formatted by {@link com.smartgwt.client.data.DataSource#getAdvancedCriteriaDescription
+     * DataSource.getAdvancedCriteriaDescription()}.
+     *
+     * @return Current showFilterEditorHovers value. Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getShowFilterEditorHovers
+     */
+    public Boolean getShowFilterEditorHovers()  {
+        return getAttributeAsBoolean("showFilterEditorHovers");
+    }
+    
+
+    /**
+     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getCanShowFilterEditor canShowFilterEditor} is true, this is the
+     * title for the filterEditor show/hide menu-item, in the  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getHeaderContextMenu headerContextmenu}, when the filterEditor is hidden. <P>
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getHideFilterEditorTitle hideFilterEditorTitle} affects the same
+     * menu-item when the filterEditor is visible.
+     *
+     * @param showFilterEditorTitle New showFilterEditorTitle value. Default value is "Show Filter Row"
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_sortFilter_filter" target="examples">Filter Example</a>
+     */
+    public ListGrid setShowFilterEditorTitle(String showFilterEditorTitle) {
+        return (ListGrid)setAttribute("showFilterEditorTitle", showFilterEditorTitle, true);
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getCanShowFilterEditor canShowFilterEditor} is true, this is the
+     * title for the filterEditor show/hide menu-item, in the  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getHeaderContextMenu headerContextmenu}, when the filterEditor is hidden. <P>
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getHideFilterEditorTitle hideFilterEditorTitle} affects the same
+     * menu-item when the filterEditor is visible.
+     *
+     * @return Current showFilterEditorTitle value. Default value is "Show Filter Row"
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_sortFilter_filter" target="examples">Filter Example</a>
+     */
+    public String getShowFilterEditorTitle()  {
+        return getAttributeAsString("showFilterEditorTitle");
+    }
+    
+
+    /**
+     * Should an indicator be shown to indicate that {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterWindowCriteria
+     * filterWindowCriteria} is configured? The indicator is a small triangle shown in the top-right of the grid header or
+     * filter.
+     *
+     * @param showFilterWindowCriteriaIndicator New showFilterWindowCriteriaIndicator value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public ListGrid setShowFilterWindowCriteriaIndicator(Boolean showFilterWindowCriteriaIndicator)  throws IllegalStateException {
+        return (ListGrid)setAttribute("showFilterWindowCriteriaIndicator", showFilterWindowCriteriaIndicator, false);
+    }
+
+    /**
+     * Should an indicator be shown to indicate that {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterWindowCriteria
+     * filterWindowCriteria} is configured? The indicator is a small triangle shown in the top-right of the grid header or
+     * filter.
+     *
+     * @return Current showFilterWindowCriteriaIndicator value. Default value is true
+     */
+    public Boolean getShowFilterWindowCriteriaIndicator()  {
+        Boolean result = getAttributeAsBoolean("showFilterWindowCriteriaIndicator");
+        return result == null ? true : result;
     }
     
 
@@ -14132,8 +15236,10 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     
 
     /**
-     * If true, and canHover is also true, when the user hovers over a cell, hover text will pop up next to the mouse.  The
-     * contents of the hover is determined by {@link com.smartgwt.client.widgets.grid.ListGrid#cellHoverHTML cellHoverHTML()}.
+     * If true, and {@link com.smartgwt.client.widgets.grid.ListGrid#getCanHover canHover} is also true, shows popup hover text
+     * next to the mouse when the user hovers over a cell.  The content of the hover is  determined by {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#cellHoverHTML cellHoverHTML()}. <P> This is the default setting for the grid
+     * and can be overridden on a  {@link com.smartgwt.client.widgets.grid.ListGridField#getShowHover per-field} basis.
      *
      * @param showHover New showHover value. Default value is true
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
@@ -14145,8 +15251,10 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * If true, and canHover is also true, when the user hovers over a cell, hover text will pop up next to the mouse.  The
-     * contents of the hover is determined by {@link com.smartgwt.client.widgets.grid.ListGrid#cellHoverHTML cellHoverHTML()}.
+     * If true, and {@link com.smartgwt.client.widgets.grid.ListGrid#getCanHover canHover} is also true, shows popup hover text
+     * next to the mouse when the user hovers over a cell.  The content of the hover is  determined by {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#cellHoverHTML cellHoverHTML()}. <P> This is the default setting for the grid
+     * and can be overridden on a  {@link com.smartgwt.client.widgets.grid.ListGridField#getShowHover per-field} basis.
      *
      * @return Current showHover value. Default value is true
      * @see com.smartgwt.client.widgets.grid.ListGrid#getCanHover
@@ -14160,11 +15268,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
 
     /**
      * When set to true and canHover is also true, shows a widget hovering at the mouse point. <P> A number of builtin modes
-     * are provided - see {@link com.smartgwt.client.types.HoverMode}. <P> Also supported at the {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getShowHoverComponents field-level}.
-     * <p><b>Note : </b> This is an advanced setting</p>
+     * are provided - see {@link com.smartgwt.client.widgets.grid.ListGrid#getHoverMode hoverMode}.  Note, if a 
+     * <code>hoverMode</code> is set but <code>showHoverComponents</code> is left null, it will default to true. <P> Also
+     * supported at the {@link com.smartgwt.client.widgets.grid.ListGridField#getShowHoverComponents field-level}.
      *
-     * @param showHoverComponents New showHoverComponents value. Default value is false
+     * @param showHoverComponents New showHoverComponents value. Default value is null
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
      */
     public ListGrid setShowHoverComponents(Boolean showHoverComponents) {
@@ -14173,14 +15281,14 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
 
     /**
      * When set to true and canHover is also true, shows a widget hovering at the mouse point. <P> A number of builtin modes
-     * are provided - see {@link com.smartgwt.client.types.HoverMode}. <P> Also supported at the {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getShowHoverComponents field-level}.
+     * are provided - see {@link com.smartgwt.client.widgets.grid.ListGrid#getHoverMode hoverMode}.  Note, if a 
+     * <code>hoverMode</code> is set but <code>showHoverComponents</code> is left null, it will default to true. <P> Also
+     * supported at the {@link com.smartgwt.client.widgets.grid.ListGridField#getShowHoverComponents field-level}.
      *
-     * @return Current showHoverComponents value. Default value is false
+     * @return Current showHoverComponents value. Default value is null
      */
     public Boolean getShowHoverComponents()  {
-        Boolean result = getAttributeAsBoolean("showHoverComponents");
-        return result == null ? false : result;
+        return getAttributeAsBoolean("showHoverComponents");
     }
     
 
@@ -14234,6 +15342,38 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      */
     public Boolean getShowInitialDragHandles()  {
         return getAttributeAsBoolean("showInitialDragHandles");
+    }
+    
+
+    /**
+     * If this is an editable ListGrid, setting this property to true causes an extra  row with the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getNewRecordRowMessage newRecordRowMessage} to be displayed below the last
+     * record. <P> Clicking this row will start editing a new record at the end of the data set, as if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#startEditingNew startEditingNew()} had been called. <P> Note that for {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDataSource databound grids}, the new record row will be suppressed if the
+     * grid has not {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData fetched data}, unless {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSaveLocally saveLocally} has been set.
+     *
+     * @param showNewRecordRow New showNewRecordRow value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     */
+    public ListGrid setShowNewRecordRow(Boolean showNewRecordRow) {
+        return (ListGrid)setAttribute("showNewRecordRow", showNewRecordRow, true);
+    }
+
+    /**
+     * If this is an editable ListGrid, setting this property to true causes an extra  row with the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getNewRecordRowMessage newRecordRowMessage} to be displayed below the last
+     * record. <P> Clicking this row will start editing a new record at the end of the data set, as if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#startEditingNew startEditingNew()} had been called. <P> Note that for {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDataSource databound grids}, the new record row will be suppressed if the
+     * grid has not {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData fetched data}, unless {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSaveLocally saveLocally} has been set.
+     *
+     * @return Current showNewRecordRow value. Default value is null
+     */
+    public Boolean getShowNewRecordRow()  {
+        return getAttributeAsBoolean("showNewRecordRow");
     }
     
 
@@ -14315,7 +15455,6 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents showRecordComponents} attribute
-     * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showRecordComponents new value for <code>this.showRecordComponents</code>. Default value is null
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
@@ -14932,7 +16071,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @param skinImgDir New skinImgDir value. Default value is "images/ListGrid/"
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
-     * @see com.smartgwt.client.docs.Images Images overview and related methods
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public ListGrid setSkinImgDir(String skinImgDir) {
         return (ListGrid)setAttribute("skinImgDir", skinImgDir, true);
@@ -14943,7 +16082,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      *
      * @return Current skinImgDir value. Default value is "images/ListGrid/"
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
-     * @see com.smartgwt.client.docs.Images Images overview and related methods
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getSkinImgDir()  {
         return getAttributeAsString("skinImgDir");
@@ -15165,7 +16304,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * field.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
-     * Sort this grid's data, with the option to explicitly specify a single field to sort by and sort direction. <P> If sortField is not provided and listGrid.sortField is undefined, the data will be sorted by the first sortable column according to {@link com.smartgwt.client.widgets.grid.ListGridField#getSortDirection ListGridField.sortDirection} if specified, or {@link com.smartgwt.client.widgets.grid.ListGrid#getSortDirection sortDirection}. <P> ListGrids also support multiple-field sorting. See {@link com.smartgwt.client.widgets.grid.ListGrid#setSort setSort()} for details. <P> Note that for editable grids, sorting is performed by underlying data values, not for unsaved {@link com.smartgwt.client.widgets.grid.ListGrid#getEditValues pending edit values}.
+     * Sort this grid's data, with the option to explicitly specify a single field to sort by and sort direction. <P> If sortField is not provided and listGrid.sortField is undefined, the data will be sorted by the first sortable column according to {@link com.smartgwt.client.widgets.grid.ListGridField#getSortDirection ListGridField.sortDirection} if specified, or {@link com.smartgwt.client.widgets.grid.ListGrid#getSortDirection sortDirection}. <P> ListGrids also support multiple-field sorting. See {@link com.smartgwt.client.widgets.grid.ListGrid#setSort setSort()} for details. <P> Note that for editable grids, sorting is performed by underlying data values, not for unsaved {@link com.smartgwt.client.widgets.grid.ListGrid#getEditValues pending edit values}. When the user saves edits in a sorted grid, the grid will automatically be {@link com.smartgwt.client.widgets.grid.ListGrid#unsort unsorted}. See {@link com.smartgwt.client.docs.Editing} for further details.
      *
      * @param sortDirection the field name or column number to sort by. Default value is "ascending"
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
@@ -15559,8 +16698,9 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     /**
      * Automatically generated ListGrid for displaying grid summary information (see {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary}). <P> This component is an {@link
-     * com.smartgwt.client.types.AutoChild} and as such may be customized via <code>listGrid.summaryRowProperties</code> and
-     * <code>listGrid.summaryRowDefaults</code>
+     * com.smartgwt.client.types.AutoChild} and as such may be customized   by calling
+     * <code>setAutoChildProperties("summaryRow", summaryRowProperties);</code> where <code>summaryRowProperties</code> is a
+     * ListGrid instance with the desired customizations.
      * <p>
      * This component is an AutoChild named "summaryRow".  For an overview of how to use and
      * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
@@ -16029,21 +17169,25 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     
 
     /**
-     * Enables copy/paste shortcuts, provided {@link com.smartgwt.client.widgets.grid.ListGrid#getCanSelectCells
-     * canSelectCells} is true <p> The default setting of true means that the value of {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getCanSelectCells canSelectCells} determines whether copy/paste shortcuts are
-     * enabled.  Setting this property to false disables said shortcuts unconditionally. <p> Copying is done via copying to a
-     * Smart GWT-wide "clipboard" - <b>not</b> the OS-level clipboard, which is inaccessible on some browsers - via the methods
-     * {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectedCellData getSelectedCellData()} and {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#applyCellData applyCellData()}.  To copy data to and from applications outside
-     * of the browser, use the technique shown in the @see <a
+     * For ListGrids with {@link com.smartgwt.client.widgets.grid.ListGrid#getCanSelectCells canSelectCells:true}, enabling
+     * this property will cause the listGrid to intercept standard browser copy/paste shortcut keys and perform the following
+     * behavior. <ul> <li><i>ctrl+c</i>: retrieve selected cell data      via a call to {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSelectedCellData getSelectedCellData()}, and temporarily store it      in
+     * memory in a "clipboard" variable.</li> <li><i>ctrl+v</i>: apply any previously copied data stored in the "clipboard"
+     * variable      into the current grid selection via {@link com.smartgwt.client.widgets.grid.ListGrid#applyCellData
+     * applyCellData()}.</li> <li><i>ctrl+d</i>: copy cell values from top row of selected cells down to all rows
+     * <li><i>ctrl+r</i>: copy cell values from left column of selected cells right to all columns </ul> <b>Note:</b> setting
+     * this property to true will disable standard copy and paste behavior to the native Browser or OS-level clipboard. To copy
+     * data to and from applications outside of the browser, use the technique shown in the @see <a
      * href="http://www.smartclient.com/smartgwtee/showcase/#gridToExcel" target="examples">Grid to Excel</a> and @see <a
-     * href="http://www.smartclient.com/smartgwtee/showcase/#excelToGrid" target="examples">Excel to Grid</a> samples. <p> The
-     * following shortcuts are available: <p> CTRL + D: copy cell values from top row of selected cells down to all rows <p>
-     * CTRL + R: copy cell values from left column of selected cells right to all columns <p> CTRL + C: copy selected cell
-     * values into shared clipboard <p> CTRL + V: paste from shared clipboard into current selection
+     * href="http://www.smartclient.com/smartgwtee/showcase/#excelToGrid" target="examples">Excel to Grid</a> samples. <P> If
+     * this property is unset, default behavior will enable these shortcuts if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanSelectCells canSelectCells} is true, and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanDragSelectText canDragSelectText} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSelectCellTextOnClick selectCellTextOnClick} are both false, so as to
+     * minimize the chances of interfering with native copy and paste of cell content.
      *
-     * @param useCopyPasteShortcuts New useCopyPasteShortcuts value. Default value is true
+     * @param useCopyPasteShortcuts New useCopyPasteShortcuts value. Default value is null
      * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
      */
     public ListGrid setUseCopyPasteShortcuts(Boolean useCopyPasteShortcuts) {
@@ -16051,24 +17195,57 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Enables copy/paste shortcuts, provided {@link com.smartgwt.client.widgets.grid.ListGrid#getCanSelectCells
-     * canSelectCells} is true <p> The default setting of true means that the value of {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getCanSelectCells canSelectCells} determines whether copy/paste shortcuts are
-     * enabled.  Setting this property to false disables said shortcuts unconditionally. <p> Copying is done via copying to a
-     * Smart GWT-wide "clipboard" - <b>not</b> the OS-level clipboard, which is inaccessible on some browsers - via the methods
-     * {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectedCellData getSelectedCellData()} and {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#applyCellData applyCellData()}.  To copy data to and from applications outside
-     * of the browser, use the technique shown in the @see <a
+     * For ListGrids with {@link com.smartgwt.client.widgets.grid.ListGrid#getCanSelectCells canSelectCells:true}, enabling
+     * this property will cause the listGrid to intercept standard browser copy/paste shortcut keys and perform the following
+     * behavior. <ul> <li><i>ctrl+c</i>: retrieve selected cell data      via a call to {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSelectedCellData getSelectedCellData()}, and temporarily store it      in
+     * memory in a "clipboard" variable.</li> <li><i>ctrl+v</i>: apply any previously copied data stored in the "clipboard"
+     * variable      into the current grid selection via {@link com.smartgwt.client.widgets.grid.ListGrid#applyCellData
+     * applyCellData()}.</li> <li><i>ctrl+d</i>: copy cell values from top row of selected cells down to all rows
+     * <li><i>ctrl+r</i>: copy cell values from left column of selected cells right to all columns </ul> <b>Note:</b> setting
+     * this property to true will disable standard copy and paste behavior to the native Browser or OS-level clipboard. To copy
+     * data to and from applications outside of the browser, use the technique shown in the @see <a
      * href="http://www.smartclient.com/smartgwtee/showcase/#gridToExcel" target="examples">Grid to Excel</a> and @see <a
-     * href="http://www.smartclient.com/smartgwtee/showcase/#excelToGrid" target="examples">Excel to Grid</a> samples. <p> The
-     * following shortcuts are available: <p> CTRL + D: copy cell values from top row of selected cells down to all rows <p>
-     * CTRL + R: copy cell values from left column of selected cells right to all columns <p> CTRL + C: copy selected cell
-     * values into shared clipboard <p> CTRL + V: paste from shared clipboard into current selection
+     * href="http://www.smartclient.com/smartgwtee/showcase/#excelToGrid" target="examples">Excel to Grid</a> samples. <P> If
+     * this property is unset, default behavior will enable these shortcuts if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanSelectCells canSelectCells} is true, and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanDragSelectText canDragSelectText} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSelectCellTextOnClick selectCellTextOnClick} are both false, so as to
+     * minimize the chances of interfering with native copy and paste of cell content.
      *
-     * @return Current useCopyPasteShortcuts value. Default value is true
+     * @return Current useCopyPasteShortcuts value. Default value is null
      */
     public Boolean getUseCopyPasteShortcuts()  {
-        Boolean result = getAttributeAsBoolean("useCopyPasteShortcuts");
+        return getAttributeAsBoolean("useCopyPasteShortcuts");
+    }
+    
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor} is true, when creating a
+     * SelectItem  for editing criteria for a field with a ValueMap, should the SelectItem default to {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getMultiple multiple:true}? <P> This overrides {@link
+     * com.smartgwt.client.widgets.form.SearchForm#getUseMultiSelectForValueMaps SearchForm.useMultiSelectForValueMaps} on the
+     * filterEditor's edit form.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param useMultiSelectForFilterValueMaps New useMultiSelectForFilterValueMaps value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} instance, for chaining setter calls
+     */
+    public ListGrid setUseMultiSelectForFilterValueMaps(boolean useMultiSelectForFilterValueMaps) {
+        return (ListGrid)setAttribute("useMultiSelectForFilterValueMaps", useMultiSelectForFilterValueMaps, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor} is true, when creating a
+     * SelectItem  for editing criteria for a field with a ValueMap, should the SelectItem default to {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getMultiple multiple:true}? <P> This overrides {@link
+     * com.smartgwt.client.widgets.form.SearchForm#getUseMultiSelectForValueMaps SearchForm.useMultiSelectForValueMaps} on the
+     * filterEditor's edit form.
+     *
+     * @return Current useMultiSelectForFilterValueMaps value. Default value is true
+     */
+    public boolean getUseMultiSelectForFilterValueMaps()  {
+        Boolean result = getAttributeAsBoolean("useMultiSelectForFilterValueMaps");
         return result == null ? true : result;
     }
     
@@ -16336,9 +17513,19 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     
 
     /**
-     * Initial {@link com.smartgwt.client.docs.ListGridViewState view state} for the grid. <P> Since view state contains field
-     * state it is not necessary to set {@link com.smartgwt.client.docs.FieldState fieldState} when also setting
-     * <code>viewState</code>. If both are provided, <code>fieldState</code> has priority for field state.
+     * Initial view state may be provided for the listGrid at init time. To set view state at runtime, use {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#setViewState setViewState()}.<br> See {@link
+     * com.smartgwt.client.docs.ListGridViewState} for details of what is included in the viewState for a ListGrid by default.
+     * <P> View state is a composite object containing various more granular states such as  {@link
+     * com.smartgwt.client.docs.FieldState fieldState}, {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSaveCriteriaInViewState current filter criteria}, etc. As such it is not
+     * necessary to specificify fieldState, etc. in addition to  viewState at init time, but if both are provided the specific
+     * states  (<code>fieldState</code>, etc) will have priority.  <P> <b>Note:</b> For <a
+     * href='http://www.smartclient.com/product' target='_blank'>Smart GWT Pro users</a>,  the  Saved Search subsystem provides
+     * a sophisticated, out of the box set of capabilities and user-interface components for users to store and apply multiple
+     * named views or "saved searches". See {@link com.smartgwt.client.widgets.grid.ListGrid#getCanSaveSearches
+     * canSaveSearches} for how to enable menu options to save searches in grids. Note that each saved search includes the
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getSavedSearchStoredState full view state} for the grid by default.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Reset this grid's view state to match the {@link com.smartgwt.client.docs.ListGridViewState} object passed in.<br> Used to restore previous state retrieved from the grid by a call to {@link com.smartgwt.client.widgets.grid.ListGrid#getViewState getViewState()}.
@@ -16352,14 +17539,31 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Initial {@link com.smartgwt.client.docs.ListGridViewState view state} for the grid. <P> Since view state contains field
-     * state it is not necessary to set {@link com.smartgwt.client.docs.FieldState fieldState} when also setting
-     * <code>viewState</code>. If both are provided, <code>fieldState</code> has priority for field state.
+     * Initial view state may be provided for the listGrid at init time. To set view state at runtime, use {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#setViewState setViewState()}.<br> See {@link
+     * com.smartgwt.client.docs.ListGridViewState} for details of what is included in the viewState for a ListGrid by default.
+     * <P> View state is a composite object containing various more granular states such as  {@link
+     * com.smartgwt.client.docs.FieldState fieldState}, {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getSaveCriteriaInViewState current filter criteria}, etc. As such it is not
+     * necessary to specificify fieldState, etc. in addition to  viewState at init time, but if both are provided the specific
+     * states  (<code>fieldState</code>, etc) will have priority.  <P> <b>Note:</b> For <a
+     * href='http://www.smartclient.com/product' target='_blank'>Smart GWT Pro users</a>,  the  Saved Search subsystem provides
+     * a sophisticated, out of the box set of capabilities and user-interface components for users to store and apply multiple
+     * named views or "saved searches". See {@link com.smartgwt.client.widgets.grid.ListGrid#getCanSaveSearches
+     * canSaveSearches} for how to enable menu options to save searches in grids. Note that each saved search includes the
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getSavedSearchStoredState full view state} for the grid by default.
      *
      * @return Returns a snapshot of the current view state of this ListGrid.<br> This includes the field, sort, hilite, group, and
-     * selected state of the grid, returned  as a string representation of a {@link com.smartgwt.client.docs.ListGridViewState}
-     * object.<br> This string can be passed to {@link com.smartgwt.client.widgets.grid.ListGrid#setViewState setViewState()}
-     * to reset this grid's view state to the current state (assuming the same data / fields are present in the grid).<br>. Default value is null
+     * selected state of the grid, its criteria and, when canShowFIlterEditor is true, whether the filter-editor is visible,
+     * returned as a  string representation of a {@link com.smartgwt.client.docs.ListGridViewState} object.<br> This string can
+     * be stored over page-reloads (for example, in {@link com.smartgwt.client.util.Offline#put browser local storage} or as
+     * field value in a record stored to a {@link com.smartgwt.client.data.DataSource}) and then reapplied to the grid via
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#setViewState setViewState()} later to reset the grid to  to the current
+     * state (assuming the same data / fields are present). <P> To detect when view state changes, developers may use the
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#addViewStateChangedHandler viewStateChanged event}. <P> Note that the
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoPersistViewState autoPersistViewState} feature will
+     * automatically persist the view state to Offline storage and reapply when the grid is reloaded, without the need to
+     * invoke this method explicitly. Default value is null
      * @see com.smartgwt.client.docs.ListGridViewState ListGridViewState 
      */
     public String getViewState()  {
@@ -16964,6 +18168,8 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      *  </ul>
      *  <p>
      *  <b>Note: This is an override point.</b>
+     *  <P>
+     *  For more information on editing, see the {@link com.smartgwt.client.docs.Editing editing overview}.
      * 
      * 
      * @param rowNum row number for the cell
@@ -18311,6 +19517,61 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     }-*/;
 
     /**
+     * Add a criteriaChanged handler.
+     * <p>
+     * Callback fired when the end-user changes criteria. This occurs via the +{FilterEditor} or +{showFilterWindow,advanced
+     * filtering} interface. It does not fire when a change is made via {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#setCriteria ListGrid.setCriteria()}, {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchData ListGrid.fetchData()}, {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#setFilterWindowCriteria ListGrid.setFilterWindowCriteria()} or other APIs are
+     * called to change the criteria.
+     *
+     * @param handler the criteriaChanged handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addCriteriaChangedHandler(com.smartgwt.client.widgets.grid.events.CriteriaChangedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.grid.events.CriteriaChangedEvent.getType()) == 0) setupCriteriaChangedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.grid.events.CriteriaChangedEvent.getType());
+    }
+
+    private native void setupCriteriaChangedEvent() /*-{
+        var obj;
+        var selfJ = this;
+        var hasDefaultHandler;
+        var criteriaChanged = $entry(function(){
+            var param = {"_this": this};
+            var event = @com.smartgwt.client.widgets.grid.events.CriteriaChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            selfJ.@com.smartgwt.client.widgets.grid.ListGrid::handleTearDownCriteriaChangedEvent()();
+            if (hasDefaultHandler) this.Super("criteriaChanged", arguments);
+        });
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            hasDefaultHandler = $wnd.isc.isA.Function(obj.getProperty("criteriaChanged"));
+            obj.addProperties({criteriaChanged:  criteriaChanged              });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+            hasDefaultHandler = $wnd.isc.isA.Function($wnd.isc[scClassName].getInstanceProperty("criteriaChanged"));
+            obj.criteriaChanged =  criteriaChanged             ;
+        }
+    }-*/;
+
+    private void handleTearDownCriteriaChangedEvent() {
+        if (getHandlerCount(com.smartgwt.client.widgets.grid.events.CriteriaChangedEvent.getType()) == 0) tearDownCriteriaChangedEvent();
+    }
+
+    private native void tearDownCriteriaChangedEvent() /*-{
+        var obj;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        }
+        if (obj && obj.hasOwnProperty("criteriaChanged")) delete obj.criteriaChanged;
+    }-*/;
+
+    /**
      * Add a dataArrived handler.
      * <p>
      * Notification method fired when new data arrives from the server to be displayed in this ListGrid, (for example in
@@ -18616,7 +19877,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     }-*/;
 
 	/**
-     * Handle a drop event. Default implementation supports moving data within this grid or  tranferring data into the grid
+     * Handle a drop event. Default implementation supports moving data within this grid or  transferring data into the grid
      * from some other component. <P> Developers wishing to implement custom listGrid record drag and drop behavior should
      * typically use the {@link com.smartgwt.client.widgets.grid.ListGrid#recordDrop recordDrop()} method rather than
      * overriding this method directly.
@@ -18684,6 +19945,40 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
         if (obj && obj.hasOwnProperty("editComplete")) delete obj.editComplete;
     }-*/;
 
+	/**
+     * Start inline editing at a record identified by criteria. If the criteria matches more than one record, the first matched
+     * record is edited. Additionally, if the record to be edited is  not visible, the record will be scrolled into view. <p>
+     * Note that the record to be matched must already be loaded in the grid - no fetch will be performed.
+     * @see com.smartgwt.client.widgets.grid.ListGrid#startEditing
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
+     */
+    public native void editExistingRecord() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "editExistingRecord", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.editExistingRecord();
+    }-*/;
+
+	/**
+     * Start inline editing at a record identified by criteria. If the criteria matches more than one record, the first matched
+     * record is edited. Additionally, if the record to be edited is  not visible, the record will be scrolled into view. <p>
+     * Note that the record to be matched must already be loaded in the grid - no fetch will be performed.
+     * @param criteria Criteria identifying the existing row to edit
+     * @see com.smartgwt.client.widgets.grid.ListGrid#startEditing
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
+     */
+    public native void editExistingRecord(Criteria criteria) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "editExistingRecord", "Criteria");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+	    if(@com.smartgwt.client.data.Criterion::instanceOf(Ljava/lang/Object;)(criteria)){
+	    	@com.smartgwt.client.util.JSOHelper::setAttribute(Lcom/google/gwt/core/client/JavaScriptObject;Ljava/lang/String;Ljava/lang/String;)(criteria.@com.smartgwt.client.data.Criterion::getJsObj()(),"_constructor","AdvancedCriteria");
+	    }
+        self.editExistingRecord(criteria == null ? null : criteria.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+	
     /**
      * Add a editFailed handler.
      * <p>
@@ -19214,11 +20509,16 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * Add a filterEditorSubmit handler.
      * <p>
      * Optional notification fired when the user performs a filter using the
-     * {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor Filter Editor}.  May fire as criteria values are
-     * being edited if 
-     * {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterOnKeypress ListGrid.filterOnKeypress} is true, otherwise will
-     * fire when the user clicks the filter
-     *  button or presses the Enter key while focus is in the Filter Editor.
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor Filter Editor}.  Useful for applying additional
+     * criteria not 
+     *  available in the filterEditor.  Note that it is often easiest to do this with the 
+     *  {@link com.smartgwt.client.widgets.form.SearchForm} attribute, which requires no code.
+     *  <P>
+     *  May fire as criteria values are being edited if 
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterByCell ListGrid.filterByCell} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getFilterOnKeypress ListGrid.filterOnKeypress} is true, otherwise will fire
+     * when the
+     *  user clicks the filter button or presses the Enter key while focus is in the Filter Editor.
      *  <p>
      *  Use event.cancel()
      *  
@@ -19228,9 +20528,10 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      *  affects the criteria applied to the grid.
      *  <P>
      *  The <code>criteria</code> parameter contains the current criteria applied to the
-     *  grid including edits the user has just made using the Filter Editor.  This matches
-     * what is returned if you call {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterEditorCriteria
-     * ListGrid.getFilterEditorCriteria()}.
+     *  grid including edits the user has just made using the Filter Editor and those applied
+     *  with the {@link com.smartgwt.client.widgets.grid.ListGrid#showFilterWindow advanced filtering dialog}. A call to
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterEditorCriteria ListGrid.getFilterEditorCriteria()} does not
+     * include the {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterWindowCriteria advanced filtering criteria}.
      *  <P>
      *  If you wish to access the <code>criteria</code> applied to the grid without picking
      * up any edits to the Filter Editor, use {@link com.smartgwt.client.widgets.grid.ListGrid#getCriteria
@@ -19541,6 +20842,23 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
         }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getAriaState();
+        return @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * Retrieves dynamically calculated default {@link com.smartgwt.client.widgets.Canvas#getAriaState ARIA state mapping} 
+     * properties for this listGrid. These will be combined with explicitly specified aria state as described in {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getAriaState getAriaState()}. <P> Overridden by ListGrid to pick up
+     * aria-rowcount and aria-colcount.
+     *
+     * @return dynamically calculated default aria state properties
+     */
+    public native Map getAriaStateDefaults() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getAriaStateDefaults", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getAriaStateDefaults();
         return @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
@@ -20215,7 +21533,8 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     }-*/;
 
 	/**
-     * Gets the embedded-component to show as a given record's expansionComponent.  This component is then housed in {@link
+     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords canExpandRecords} is true, gets the
+     * embedded-component to show as a given record's expansionComponent.  This component is then housed in {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getExpansionLayout a VLayout} and embedded into a record's row. <P> By
      * default, this method returns one of a set of built-in components, according to the value of {@link
      * com.smartgwt.client.types.ExpansionMode listGrid.expansionMode}.  You can override this method to return any component
@@ -20230,6 +21549,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @param record record to get the expansionComponent for
      *
      * @return the component to embed
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionScreen
      */
     protected native Canvas getExpansionComponent(ListGridRecord record) /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
@@ -20788,11 +22108,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     }-*/;
 	
 	/**
-     * Return the menus items that should be shown in a menu triggered from a {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getHeaderSpans headerSpan}.  The default  implementation returns the parent
+     * Return the menus items that should be shown in a menu triggered from a  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getHeaderSpans headerSpan}.  The default implementation returns the parent 
      * element's context menu, unless {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderSpanContextMenu
-     * showHeaderSpanContextMenu} is <code>true</code>, in which case it returns standard items for showing / hiding fields and
-     * freezing / unfreezing header spans.  Note that no column  picker will be shown unless {@link
+     * showHeaderSpanContextMenu} is  <code>true</code>, in which case it returns standard items for showing / hiding fields
+     * and  freezing / unfreezing header spans.  Note that no column picker will be shown unless  {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getShowTreeColumnPicker showTreeColumnPicker} is <code>true</code>.
      * @param headerSpan the component representing the headerSpan.  This component will                            have all the properties
      * specified via {@link com.smartgwt.client.widgets.grid.ListGrid#getHeaderSpans headerSpans}.
@@ -20845,6 +22165,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @param rowNum row number to get record component for
      *
      * @return record component, or null if none is shown at these coordintes
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getRecordScreen
      */
     public native Canvas getRecordComponent(int rowNum) /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
@@ -20873,6 +22194,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @param colNum optional column number to get the record component for
      *
      * @return record component, or null if none is shown at these coordintes
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getRecordScreen
      */
     public native Canvas getRecordComponent(int rowNum, Integer colNum) /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
@@ -21274,6 +22596,25 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     }-*/;
 
 	/**
+     * Returns a snapshot of the current user-provided criteria for this ListGrid. <P> This object can be passed to {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#setUserCriteriaState setUserCriteriaState()} to reset this grid's 
+     * user-criteria to the current state.
+     *
+     * @return current criteria state for the grid.
+     * See {@link com.smartgwt.client.docs.ListGridUserCriteriaState ListGridUserCriteriaState}
+     * @see com.smartgwt.client.docs.ListGridUserCriteriaState
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setUserCriteriaState
+     */
+    public native String getUserCriteriaState() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getUserCriteriaState", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getUserCriteriaState();
+        return ret;
+    }-*/;
+
+	/**
      * Returns the cursor to display when the mouse pointer is over a {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getValueIcons valueIcon} in a a cell. <P> Default behavior will display
      * the {@link com.smartgwt.client.widgets.grid.ListGridField#getIconCursor ListGridField.iconCursor} if specified,
@@ -21628,7 +22969,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
 	/**
      * Whether the grid as a whole has any unsaved edits, in any row. Note that this method will return true if any rows are
      * {@link com.smartgwt.client.widgets.grid.ListGrid#markRecordRemoved marked as removed} in addition to any rows that have
-     * pending unsaved edits.
+     * unsaved edits. <P> Note that if this grid is bound to a {@link com.smartgwt.client.widgets.grid.ListGrid#getDataSource
+     * dataSource}, and  an asynchronous save has been submitted, this method will compare the local edit values  against the
+     * submitted values by default, returning false (no changes), if they match. This is useful for detecting whether the user
+     * is actively editing values and hasn't yet committed them. <P>  The <code>ignorePendingValues</code> parameter may be
+     * used by developers who want to ignore this case and simply compare edit values against the record in the local data set.
      *
      * @return returns true of any unsaved edits are present
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
@@ -21643,6 +22988,30 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
         return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
 
+	/**
+     * Whether the grid as a whole has any unsaved edits, in any row. Note that this method will return true if any rows are
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#markRecordRemoved marked as removed} in addition to any rows that have
+     * unsaved edits. <P> Note that if this grid is bound to a {@link com.smartgwt.client.widgets.grid.ListGrid#getDataSource
+     * dataSource}, and  an asynchronous save has been submitted, this method will compare the local edit values  against the
+     * submitted values by default, returning false (no changes), if they match. This is useful for detecting whether the user
+     * is actively editing values and hasn't yet committed them. <P>  The <code>ignorePendingValues</code> parameter may be
+     * used by developers who want to ignore this case and simply compare edit values against the record in the local data set.
+     * @param ignorePendingValues If true, this method will compare the current edit  values against the underlying records in the dataset, not taking
+     * pending edit values into account
+     *
+     * @return returns true of any unsaved edits are present
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
+     */
+    public native Boolean hasChanges(Boolean ignorePendingValues) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "hasChanges", "Boolean");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.hasChanges(ignorePendingValues == null ? null : ignorePendingValues.@java.lang.Boolean::booleanValue()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+	
 	/**
      * Does this grid currently have errors associated with editValues for any row in the grid.
      *
@@ -22573,7 +23942,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             hasDefaultHandler = $wnd.isc.isA.Function(obj.getProperty("onRecordClick"));
             obj.addProperties({onRecordClick: 
                 function () {
-                    var param = {"_this": this, "viewer" : arguments[0], "record" : arguments[1], "recordNum" : arguments[2], "field" : arguments[3], "fieldNum" : arguments[4], "value" : arguments[5], "rawValue" : arguments[6]};
+                    var param = {"_this": this, "viewer" : arguments[0], "record" : arguments[1], "recordNum" : arguments[2], "field" : arguments[3], "fieldNum" : arguments[4], "value" : arguments[5], "rawValue" : arguments[6], "editedRecord" : arguments[7]};
                     var ret = onRecordClick(param) == true;
                     if (ret && hasDefaultHandler) {
                         ret = this.Super("onRecordClick", arguments);
@@ -22587,7 +23956,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             hasDefaultHandler = $wnd.isc.isA.Function($wnd.isc[scClassName].getInstanceProperty("onRecordClick"));
             obj.onRecordClick = 
                 function () {
-                    var param = {"_this": this, "viewer" : arguments[0], "record" : arguments[1], "recordNum" : arguments[2], "field" : arguments[3], "fieldNum" : arguments[4], "value" : arguments[5], "rawValue" : arguments[6]};
+                    var param = {"_this": this, "viewer" : arguments[0], "record" : arguments[1], "recordNum" : arguments[2], "field" : arguments[3], "fieldNum" : arguments[4], "value" : arguments[5], "rawValue" : arguments[6], "editedRecord" : arguments[7]};
                     var ret = onRecordClick(param) == true;
                     if (ret && hasDefaultHandler) {
                         ret = this.Super("onRecordClick", arguments);
@@ -22868,16 +24237,18 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @param fieldNum number of the field clicked on in the listGrid.fields                                  array
      * @param value value of the cell (after valueMap, etc. applied)
      * @param rawValue raw value of the cell (before valueMap, etc applied)
+     * @param editedRecord the clicked record with any unsaved                                   edit values overlaid (see
+     * <code>listGrid.getEditedRecord()</code>).
      *
      * @return return false to cancel default behavior
      * @see com.smartgwt.client.widgets.grid.ListGrid#rowClick
      */
-    public native boolean recordClick(ListGrid viewer, ListGridRecord record, int recordNum, ListGridField field, int fieldNum, Object value, Object rawValue) /*-{
+    public native boolean recordClick(ListGrid viewer, ListGridRecord record, int recordNum, ListGridField field, int fieldNum, Object value, Object rawValue, ListGridRecord editedRecord) /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "recordClick", "ListGrid,ListGridRecord,int,ListGridField,int,Object,Object");
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "recordClick", "ListGrid,ListGridRecord,int,ListGridField,int,Object,Object,ListGridRecord");
         }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var ret = self.recordClick(viewer == null ? null : viewer.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), record.@com.smartgwt.client.core.DataClass::getJsObj()(), recordNum, field.@com.smartgwt.client.core.DataClass::getJsObj()(), fieldNum, value, rawValue);
+        var ret = self.recordClick(viewer == null ? null : viewer.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), record.@com.smartgwt.client.core.DataClass::getJsObj()(), recordNum, field.@com.smartgwt.client.core.DataClass::getJsObj()(), fieldNum, value, rawValue, editedRecord.@com.smartgwt.client.core.DataClass::getJsObj()());
         return ret == null ? false : ret;
     }-*/;
 
@@ -22918,7 +24289,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             hasDefaultHandler = $wnd.isc.isA.Function(obj.getProperty("recordDoubleClick"));
             obj.addProperties({recordDoubleClick: 
                 function () {
-                    var param = {"_this": this, "viewer" : arguments[0], "record" : arguments[1], "recordNum" : arguments[2], "field" : arguments[3], "fieldNum" : arguments[4], "value" : arguments[5], "rawValue" : arguments[6]};
+                    var param = {"_this": this, "viewer" : arguments[0], "record" : arguments[1], "recordNum" : arguments[2], "field" : arguments[3], "fieldNum" : arguments[4], "value" : arguments[5], "rawValue" : arguments[6], "editedRecord" : arguments[7]};
                     var ret = recordDoubleClick(param) == true;
                     if (ret && hasDefaultHandler) {
                         ret = this.Super("recordDoubleClick", arguments);
@@ -22932,7 +24303,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             hasDefaultHandler = $wnd.isc.isA.Function($wnd.isc[scClassName].getInstanceProperty("recordDoubleClick"));
             obj.recordDoubleClick = 
                 function () {
-                    var param = {"_this": this, "viewer" : arguments[0], "record" : arguments[1], "recordNum" : arguments[2], "field" : arguments[3], "fieldNum" : arguments[4], "value" : arguments[5], "rawValue" : arguments[6]};
+                    var param = {"_this": this, "viewer" : arguments[0], "record" : arguments[1], "recordNum" : arguments[2], "field" : arguments[3], "fieldNum" : arguments[4], "value" : arguments[5], "rawValue" : arguments[6], "editedRecord" : arguments[7]};
                     var ret = recordDoubleClick(param) == true;
                     if (ret && hasDefaultHandler) {
                         ret = this.Super("recordDoubleClick", arguments);
@@ -23276,8 +24647,10 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
 
 	/**
      * Remove the currently selected records from this component. If this is a databound grid, the records will be removed
-     * directly from the DataSource. <P> If no records are selected, no action is taken. The grid will automatically be updated
-     * if the record deletion succeeds.
+     * directly from the DataSource. The grid will automatically be updated if the record deletion succeeds. <P> If no records
+     * are selected, no action is taken and neither callback will be called. <p> For a grid with no DataSource or where
+     * <code>saveLocally</code> is true, the data removal is performed on the client and both callbacks will fire with no
+     * arguments.
      * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#remove_grid_form_category" target="examples">Remove Example</a>
      */
@@ -23293,21 +24666,31 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @see ListGrid#removeSelectedData
      */
     public void removeSelectedData(DSCallback callback){
-        removeSelectedData(callback, null);
+        removeSelectedData(callback, null, null);
+    }
+
+    /**
+     * @see ListGrid#removeSelectedData
+     */
+    public void removeSelectedData(DSCallback callback, DSRequest requestProperties){
+        removeSelectedData(callback, requestProperties, null);
     }
 
 	/**
      * Remove the currently selected records from this component. If this is a databound grid, the records will be removed
-     * directly from the DataSource. <P> If no records are selected, no action is taken. The grid will automatically be updated
-     * if the record deletion succeeds.
-     * @param callback callback to fire when the data has been removed
+     * directly from the DataSource. The grid will automatically be updated if the record deletion succeeds. <P> If no records
+     * are selected, no action is taken and neither callback will be called. <p> For a grid with no DataSource or where
+     * <code>saveLocally</code> is true, the data removal is performed on the client and both callbacks will fire with no
+     * arguments.
+     * @param callback callback to fire when each record has been removed
      * @param requestProperties additional properties to set on the DSRequest                                          that will be issued
+     * @param queueCallback callback to fire after all selected data has                                           been removed
      * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#remove_grid_form_category" target="examples">Remove Example</a>
      */
-    public native void removeSelectedData(DSCallback callback, DSRequest requestProperties) /*-{
+    public native void removeSelectedData(DSCallback callback, DSRequest requestProperties, RPCQueueCallback queueCallback) /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "removeSelectedData", "DSCallback,DSRequest");
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "removeSelectedData", "DSCallback,DSRequest,RPCQueueCallback");
         }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeSelectedData(
@@ -23317,7 +24700,12 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
 					data, 
 					@com.smartgwt.client.data.DSRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(dsRequest)
 				);
-			}), requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+			}), requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()(), 
+			$entry( function(response) { 
+				if(queueCallback!=null) queueCallback.@com.smartgwt.client.rpc.RPCQueueCallback::execute([Lcom/smartgwt/client/rpc/RPCResponse;)(
+					@com.smartgwt.client.util.ConvertTo::arrayOfRPCResponse(Lcom/google/gwt/core/client/JavaScriptObject;)(response)
+				);
+			}));
     }-*/;
 	
 	/**
@@ -23651,7 +25039,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * not yet been saved to the ListGrid's data object. <P> Note this method will not return true if a record has been marked
      * as {@link com.smartgwt.client.widgets.grid.ListGrid#markRecordRemoved removed}, but has no other changes. Developers can
      * use {@link com.smartgwt.client.widgets.grid.ListGrid#recordMarkedAsRemoved recordMarkedAsRemoved()} to check for this
-     * case.
+     * case. <P> Note that if this grid is bound to a {@link com.smartgwt.client.widgets.grid.ListGrid#getDataSource
+     * dataSource}, and  an asynchronous save has been submitted, this method will compare the local edit values  against the
+     * submitted values by default, returning false (no changes), if they match. This is useful for detecting whether the user
+     * is actively editing values and hasn't yet committed them. <P>  The <code>ignorePendingValues</code> parameter may be
+     * used by developers who want to ignore this case and simply compare edit values against the record in the local data set.
      * @param rowNum index of row to check for changes
      *
      * @return true if the row has changes.
@@ -23667,6 +25059,33 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
         return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
 
+	/**
+     * If this listGrid can be edited, this method will return true if the row passed in has been edited, but the edits have
+     * not yet been saved to the ListGrid's data object. <P> Note this method will not return true if a record has been marked
+     * as {@link com.smartgwt.client.widgets.grid.ListGrid#markRecordRemoved removed}, but has no other changes. Developers can
+     * use {@link com.smartgwt.client.widgets.grid.ListGrid#recordMarkedAsRemoved recordMarkedAsRemoved()} to check for this
+     * case. <P> Note that if this grid is bound to a {@link com.smartgwt.client.widgets.grid.ListGrid#getDataSource
+     * dataSource}, and  an asynchronous save has been submitted, this method will compare the local edit values  against the
+     * submitted values by default, returning false (no changes), if they match. This is useful for detecting whether the user
+     * is actively editing values and hasn't yet committed them. <P>  The <code>ignorePendingValues</code> parameter may be
+     * used by developers who want to ignore this case and simply compare edit values against the record in the local data set.
+     * @param rowNum index of row to check for changes
+     * @param ignorePendingValues If true, this method will compare the current edit  values against the underlying record in the dataset, not taking
+     * pending edit values into account
+     *
+     * @return true if the row has changes.
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
+     */
+    public native Boolean rowHasChanges(int rowNum, Boolean ignorePendingValues) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "rowHasChanges", "int,Boolean");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.rowHasChanges(rowNum, ignorePendingValues == null ? null : ignorePendingValues.@java.lang.Boolean::booleanValue()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+	
 	/**
      * Does the specified row have unresolved errors?
      * @param rowNum rowNum to check for errors
@@ -24042,7 +25461,8 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * method does not hide the inline editors if they are showing - to explicitly save and end editing, use the method
      * 'endEditing()' <P> If this method is called for a row which has been marked for deletion (see {@link
      * com.smartgwt.client.widgets.grid.ListGrid#markRecordRemoved markRecordRemoved()}) it will cause the record to be removed
-     * from the data-set.
+     * from the data-set. <P> For more information on editing, see the {@link com.smartgwt.client.docs.Editing editing
+     * overview}.
      * @see com.smartgwt.client.widgets.grid.ListGrid#endEditing
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
@@ -24083,7 +25503,8 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * method does not hide the inline editors if they are showing - to explicitly save and end editing, use the method
      * 'endEditing()' <P> If this method is called for a row which has been marked for deletion (see {@link
      * com.smartgwt.client.widgets.grid.ListGrid#markRecordRemoved markRecordRemoved()}) it will cause the record to be removed
-     * from the data-set.
+     * from the data-set. <P> For more information on editing, see the {@link com.smartgwt.client.docs.Editing editing
+     * overview}.
      * @param editCompletionEvent Event used to complete cell editing.          Optional, and defaults to <code>"programmatic"</code>.  Can be used by the
      *          <code>callback</code> method to perform custom actions such as navigation when the          save completes.
      * @param callback Callback to fire on completion of the saving process.                                    If no edits were made or
@@ -24861,6 +26282,23 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     }-*/;
 
 	/**
+     * Reset this grid's user-criteria to match the {@link com.smartgwt.client.docs.ListGridUserCriteriaState} object  passed
+     * in. <P> Used to restore previous state retrieved from the grid by a call to {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getUserCriteriaState getUserCriteriaState()}.
+     * @param userCriteriaState Object describing the desired criteria.
+     * See {@link com.smartgwt.client.docs.ListGridUserCriteriaState ListGridUserCriteriaState}
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getUserCriteriaState
+     * @see com.smartgwt.client.docs.ListGridUserCriteriaState ListGridUserCriteriaState
+     */
+    public native void setUserCriteriaState(String userCriteriaState) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setUserCriteriaState", "String");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setUserCriteriaState(userCriteriaState);
+    }-*/;
+
+	/**
      * Updates the user formula of the supplied field.  This method is preferred over setting the the field property directly
      * since it allows any component dependencies to be updated.  If the formula is not passed or undefined, it is assumed it
      * has already been updated and only the dependency propagation logic will run.<P> Known component dependencies are:<ul>
@@ -25203,13 +26641,31 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     }-*/;
 	
 	/**
+     * Shows the dialog for {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterWindowCriteria filterWindowCriteria}
+     * allowing end-users to edit the advanced filter. This method can be called directly but it is also used to show the
+     * dialog when {@link com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterWindow allowFilterWindow} is enabled and the
+     * user chooses the {@link com.smartgwt.client.widgets.grid.ListGrid#getAdvancedFilteringText "Advanced Filtering"} menu
+     * option. <p> <b>Note:</b> this feature requires <a href='https://www.smartclient.com/product/' target='_blank'>Smart GWT
+     * Pro</a> or better.
+     */
+    public native void showFilterWindow() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "showFilterWindow", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.showFilterWindow();
+    }-*/;
+
+	/**
      * Sort this grid's data, with the option to explicitly specify a single field to sort by and sort direction. <P> If
      * sortField is not provided and listGrid.sortField is undefined, the data will be sorted by the first sortable column
      * according to {@link com.smartgwt.client.widgets.grid.ListGridField#getSortDirection ListGridField.sortDirection} if
      * specified, or {@link com.smartgwt.client.widgets.grid.ListGrid#getSortDirection sortDirection}. <P> ListGrids also
      * support multiple-field sorting. See {@link com.smartgwt.client.widgets.grid.ListGrid#setSort setSort()} for details. <P>
      * Note that for editable grids, sorting is performed by underlying data values, not for unsaved {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getEditValues pending edit values}.
+     * com.smartgwt.client.widgets.grid.ListGrid#getEditValues pending edit values}. When the user saves edits in a sorted
+     * grid, the grid will automatically be {@link com.smartgwt.client.widgets.grid.ListGrid#unsort unsorted}. See {@link
+     * com.smartgwt.client.docs.Editing} for further details.
      *
      * @return sorting worked
      * @see com.smartgwt.client.types.SortDirection
@@ -25238,7 +26694,9 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * specified, or {@link com.smartgwt.client.widgets.grid.ListGrid#getSortDirection sortDirection}. <P> ListGrids also
      * support multiple-field sorting. See {@link com.smartgwt.client.widgets.grid.ListGrid#setSort setSort()} for details. <P>
      * Note that for editable grids, sorting is performed by underlying data values, not for unsaved {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getEditValues pending edit values}.
+     * com.smartgwt.client.widgets.grid.ListGrid#getEditValues pending edit values}. When the user saves edits in a sorted
+     * grid, the grid will automatically be {@link com.smartgwt.client.widgets.grid.ListGrid#unsort unsorted}. See {@link
+     * com.smartgwt.client.docs.Editing} for further details.
      * @param sortField the field name or column number to sort by
      * @param sortDirection the direction to sort in
      *
@@ -25686,7 +27144,8 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * a grid viewing a paged dataset may not be able to support <code>unsort()</code> because the sort order is what
      * establishes the row numbering that allows data to be fetched in batches. <P> <code>unsort()</code> is automatically
      * called when records are dropped or the {@link com.smartgwt.client.widgets.grid.ListGrid#setSort sort-configuration} is
-     * altered.
+     * altered. Unsorting also occurs when a user saves edits within a sorted ListGrid - see {@link
+     * com.smartgwt.client.docs.Editing} for further details on this.
      */
     public native void unsort() /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
@@ -29622,6 +31081,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.logicalStructureErrors += "ListGrid.advancedFieldPickerThreshold:" + t.getMessage() + "\n";
         }
         try {
+            s.advancedFilteringText = getAttributeAsString("advancedFilteringText");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.advancedFilteringText:" + t.getMessage() + "\n";
+        }
+        try {
             s.allowFilterExpressions = getAttributeAsString("allowFilterExpressions");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.allowFilterExpressions:" + t.getMessage() + "\n";
@@ -29630,6 +31094,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.allowFilterOperators = getAttributeAsString("allowFilterOperators");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.allowFilterOperators:" + t.getMessage() + "\n";
+        }
+        try {
+            s.allowFilterWindow = getAttributeAsString("allowFilterWindow");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.allowFilterWindow:" + t.getMessage() + "\n";
         }
         try {
             s.allowRowSpanning = getAttributeAsString("allowRowSpanning");
@@ -30077,6 +31546,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.logicalStructureErrors += "ListGrid.canResizeFields:" + t.getMessage() + "\n";
         }
         try {
+            s.canSaveSearches = getAttributeAsString("canSaveSearches");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.canSaveSearches:" + t.getMessage() + "\n";
+        }
+        try {
             s.canSelectAll = getAttributeAsString("canSelectAll");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.canSelectAll:" + t.getMessage() + "\n";
@@ -30090,6 +31564,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.canSelectGroups = getAttributeAsString("canSelectGroups");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.canSelectGroups:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canShowFilterEditor = getAttributeAsString("canShowFilterEditor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.canShowFilterEditor:" + t.getMessage() + "\n";
         }
         try {
             s.canSort = getAttributeAsString("canSort");
@@ -30210,6 +31689,21 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.confirmDiscardEditsMessage = getAttributeAsString("confirmDiscardEditsMessage");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.confirmDiscardEditsMessage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.criteriaIndicatorColor = getAttributeAsString("criteriaIndicatorColor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.criteriaIndicatorColor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.criteriaIndicatorHeaderColor = getAttributeAsString("criteriaIndicatorHeaderColor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.criteriaIndicatorHeaderColor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dataArity = getAttributeAsString("dataArity");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.dataArity:" + t.getMessage() + "\n";
         }
         try {
             s.dataFetchDelay = getAttributeAsString("dataFetchDelay");
@@ -30507,6 +32001,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.logicalStructureErrors += "ListGrid.expansionMode:" + t.getMessage() + "\n";
         }
         try {
+            s.expansionScreen = getAttributeAsString("expansionScreen");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.expansionScreen:" + t.getMessage() + "\n";
+        }
+        try {
             s.explicitFetchDelay = getAttributeAsString("explicitFetchDelay");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.explicitFetchDelay:" + t.getMessage() + "\n";
@@ -30567,6 +32066,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.logicalStructureErrors += "ListGrid.fetchDelay:" + t.getMessage() + "\n";
         }
         try {
+            s.fieldCriteriaText = getAttributeAsString("fieldCriteriaText");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.fieldCriteriaText:" + t.getMessage() + "\n";
+        }
+        try {
             s.fieldPickerFieldProperties = getAttributeAsStringArray("fieldPickerFieldProperties");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.fieldPickerFieldPropertiesArray:" + t.getMessage() + "\n";
@@ -30620,6 +32124,16 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.filterUsingText = getAttributeAsString("filterUsingText");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.filterUsingText:" + t.getMessage() + "\n";
+        }
+        try {
+            s.filterWindowCriteria = getFilterWindowCriteria();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.filterWindowCriteria:" + t.getMessage() + "\n";
+        }
+        try {
+            s.filterWindowInstructions = getAttributeAsString("filterWindowInstructions");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.filterWindowInstructions:" + t.getMessage() + "\n";
         }
         try {
             s.fixedFieldWidths = getAttributeAsString("fixedFieldWidths");
@@ -30690,6 +32204,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.generateDoubleClickOnSpace = getAttributeAsString("generateDoubleClickOnSpace");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.generateDoubleClickOnSpace:" + t.getMessage() + "\n";
+        }
+        try {
+            s.gridAdditionalCriteriaText = getAttributeAsString("gridAdditionalCriteriaText");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.gridAdditionalCriteriaText:" + t.getMessage() + "\n";
         }
         try {
             s.gridSummaryRecordProperty = getAttributeAsString("gridSummaryRecordProperty");
@@ -30917,6 +32436,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.logicalStructureErrors += "ListGrid.hideEmptySummaryRow:" + t.getMessage() + "\n";
         }
         try {
+            s.hideFilterEditorTitle = getAttributeAsString("hideFilterEditorTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.hideFilterEditorTitle:" + t.getMessage() + "\n";
+        }
+        try {
             s.hiliteCanReplaceValue = getAttributeAsString("hiliteCanReplaceValue");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.hiliteCanReplaceValue:" + t.getMessage() + "\n";
@@ -30980,6 +32504,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.hoverMode = getAttributeAsString("hoverMode");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.hoverMode:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hoverScreen = getAttributeAsString("hoverScreen");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.hoverScreen:" + t.getMessage() + "\n";
         }
         try {
             s.hoverStyle = getAttributeAsString("hoverStyle");
@@ -31132,6 +32661,16 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.logicalStructureErrors += "ListGrid.neverValidate:" + t.getMessage() + "\n";
         }
         try {
+            s.newRecordRowMessage = getAttributeAsString("newRecordRowMessage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.newRecordRowMessage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.newSearchText = getAttributeAsString("newSearchText");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.newSearchText:" + t.getMessage() + "\n";
+        }
+        try {
             s.normalBaseStyle = getAttributeAsString("normalBaseStyle");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.normalBaseStyle:" + t.getMessage() + "\n";
@@ -31140,6 +32679,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.normalCellHeight = getAttributeAsString("normalCellHeight");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.normalCellHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.noSavedSearchesText = getAttributeAsString("noSavedSearchesText");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.noSavedSearchesText:" + t.getMessage() + "\n";
         }
         try {
             s.nullGroupTitle = getAttributeAsString("nullGroupTitle");
@@ -31302,6 +32846,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.logicalStructureErrors += "ListGrid.recordRowRoleProperty:" + t.getMessage() + "\n";
         }
         try {
+            s.recordScreen = getAttributeAsString("recordScreen");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.recordScreen:" + t.getMessage() + "\n";
+        }
+        try {
             s.recordShowRollOverProperty = getAttributeAsString("recordShowRollOverProperty");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.recordShowRollOverProperty:" + t.getMessage() + "\n";
@@ -31412,6 +32961,36 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.logicalStructureErrors += "ListGrid.saveByCell:" + t.getMessage() + "\n";
         }
         try {
+            s.saveCriteriaInViewState = getAttributeAsString("saveCriteriaInViewState");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.saveCriteriaInViewState:" + t.getMessage() + "\n";
+        }
+        try {
+            s.saveDefaultSearch = getAttributeAsString("saveDefaultSearch");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.saveDefaultSearch:" + t.getMessage() + "\n";
+        }
+        try {
+            s.savedSearchAdminRole = getAttributeAsString("savedSearchAdminRole");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.savedSearchAdminRole:" + t.getMessage() + "\n";
+        }
+        try {
+            s.savedSearchDS = getAttributeAsString("savedSearchDS");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.savedSearchDS:" + t.getMessage() + "\n";
+        }
+        try {
+            s.savedSearchStoredState = getAttributeAsString("savedSearchStoredState");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.savedSearchStoredState:" + t.getMessage() + "\n";
+        }
+        try {
+            s.savedSearchText = getAttributeAsString("savedSearchText");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.savedSearchText:" + t.getMessage() + "\n";
+        }
+        try {
             s.saveLocally = getAttributeAsString("saveLocally");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.saveLocally:" + t.getMessage() + "\n";
@@ -31460,6 +33039,16 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.scrollWheelRedrawDelay = getAttributeAsString("scrollWheelRedrawDelay");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.scrollWheelRedrawDelay:" + t.getMessage() + "\n";
+        }
+        try {
+            s.searchFormAsDynamicForm = getSearchForm();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.searchFormAsDynamicForm:" + t.getMessage() + "\n";
+        }
+        try {
+            s.searchFormAsValuesManager = getSearchFormAsValuesManager();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.searchFormAsValuesManager:" + t.getMessage() + "\n";
         }
         try {
             s.selectCellTextOnClick = getAttributeAsString("selectCellTextOnClick");
@@ -31572,6 +33161,21 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.logicalStructureErrors += "ListGrid.showFilterEditor:" + t.getMessage() + "\n";
         }
         try {
+            s.showFilterEditorHovers = getAttributeAsString("showFilterEditorHovers");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.showFilterEditorHovers:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showFilterEditorTitle = getAttributeAsString("showFilterEditorTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.showFilterEditorTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showFilterWindowCriteriaIndicator = getAttributeAsString("showFilterWindowCriteriaIndicator");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.showFilterWindowCriteriaIndicator:" + t.getMessage() + "\n";
+        }
+        try {
             s.showGridSummary = getAttributeAsString("showGridSummary");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.showGridSummary:" + t.getMessage() + "\n";
@@ -31665,6 +33269,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.showInitialDragHandles = getAttributeAsString("showInitialDragHandles");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.showInitialDragHandles:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showNewRecordRow = getAttributeAsString("showNewRecordRow");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.showNewRecordRow:" + t.getMessage() + "\n";
         }
         try {
             s.showPartialSelection = getAttributeAsString("showPartialSelection");
@@ -31915,6 +33524,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.useCopyPasteShortcuts = getAttributeAsString("useCopyPasteShortcuts");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.useCopyPasteShortcuts:" + t.getMessage() + "\n";
+        }
+        try {
+            s.useMultiSelectForFilterValueMaps = getAttributeAsString("useMultiSelectForFilterValueMaps");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.useMultiSelectForFilterValueMaps:" + t.getMessage() + "\n";
         }
         try {
             s.useRemoteValidators = getAttributeAsString("useRemoteValidators");

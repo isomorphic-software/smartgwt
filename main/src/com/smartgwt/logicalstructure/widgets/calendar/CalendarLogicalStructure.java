@@ -6,6 +6,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
@@ -108,6 +109,7 @@ public class CalendarLogicalStructure extends CanvasLogicalStructure {
     public String eventOverlap;
     public String eventOverlapIdenticalStartTimes;
     public String eventOverlapPercent;
+    public String eventScreen;
     public String eventSnapGap;
     public String eventStartDateFieldTitle;
     public String eventStyleName;
@@ -136,6 +138,7 @@ public class CalendarLogicalStructure extends CanvasLogicalStructure {
     public String monthMoreEventsLinkTitle;
     public String monthViewTitle;
     public String nameField;
+    public String newEventWindowTitle;
     public String nextButtonHoverText;
     public String otherDayBlankStyle;
     public String otherDayBodyBaseStyle;

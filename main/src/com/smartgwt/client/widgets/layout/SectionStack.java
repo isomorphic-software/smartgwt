@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,12 +100,15 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * A container that manages a list of sections of widgets, each with a header.  Sometimes called an "Accordion". <P>
  * SectionStack can be configured so that only one section is visible at a time (similar to MS Outlook's left-hand Nav), or
  * to allow multiple sections to be visible and share the available space.  For further details, see {@link
- * com.smartgwt.client.widgets.layout.SectionStack#getVisibilityMode visibilityMode}.
+ * com.smartgwt.client.widgets.layout.SectionStack#getVisibilityMode visibilityMode}. <P> To ensure all sections are
+ * accessible, you may need to set {@link com.smartgwt.client.widgets.layout.SectionStack#getOverflow overflow} to enable
+ * scrolling.
  */
 @BeanFactory.FrameworkClass
 @BeanFactory.ScClassName("SectionStack")
@@ -194,6 +202,34 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
      */
     public Boolean getAnimateSections()  {
         return getAttributeAsBoolean("animateSections");
+    }
+    
+
+    /**
+     * Should sections be closeable if {@link com.smartgwt.client.widgets.layout.SectionStackSection#getCanClose
+     * SectionStackSection.canClose} is not explicitly specified? <P> Closeable sections show a {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#getCloseSectionButton close icon button}  which will invoke {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#closeSection closeSection()} when clicked.
+     *
+     * @param canCloseSections New canCloseSections value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public SectionStack setCanCloseSections(boolean canCloseSections)  throws IllegalStateException {
+        return (SectionStack)setAttribute("canCloseSections", canCloseSections, false);
+    }
+
+    /**
+     * Should sections be closeable if {@link com.smartgwt.client.widgets.layout.SectionStackSection#getCanClose
+     * SectionStackSection.canClose} is not explicitly specified? <P> Closeable sections show a {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#getCloseSectionButton close icon button}  which will invoke {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#closeSection closeSection()} when clicked.
+     *
+     * @return Current canCloseSections value. Default value is false
+     */
+    public boolean getCanCloseSections()  {
+        Boolean result = getAttributeAsBoolean("canCloseSections");
+        return result == null ? false : result;
     }
     
 
@@ -344,6 +380,133 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
      */
     public Boolean getCanTabToHeaders()  {
         return getAttributeAsBoolean("canTabToHeaders");
+    }
+    
+
+    /**
+     * <b>Note :</b> This API is non-functional (always returns null) and exists only to make
+     * you aware that this MultiAutoChild exists.  See {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}
+     * for details.
+     * <p>
+     * Automatically generated close icon button to show for  {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getCanClose canClose:true} sections.<br> This component will be
+     * automatically added to the {@link com.smartgwt.client.widgets.layout.SectionStackSection#getControls controls} for
+     * {@link com.smartgwt.client.widgets.layout.SectionStackSection#getCanClose canClose:true} sections. <P> Icon source is
+     * derived from {@link com.smartgwt.client.widgets.layout.SectionStack#getCloseSectionIcon closeSectionIcon} or {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getCloseIcon SectionStackSection.closeIcon} and related
+     * properties.
+     *
+     * @return null
+     */
+    public ImgButton getCloseSectionButton()  {
+        return null;
+    }
+    
+
+    /**
+     * Constructor class for {@link com.smartgwt.client.widgets.layout.SectionStack#getCloseSectionButton closeSectionButton}
+     * autochildren.
+     *
+     * @param closeSectionButtonConstructor New closeSectionButtonConstructor value. Default value is "ImgButton"
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public SectionStack setCloseSectionButtonConstructor(String closeSectionButtonConstructor)  throws IllegalStateException {
+        return (SectionStack)setAttribute("closeSectionButtonConstructor", closeSectionButtonConstructor, false);
+    }
+
+    /**
+     * Constructor class for {@link com.smartgwt.client.widgets.layout.SectionStack#getCloseSectionButton closeSectionButton}
+     * autochildren.
+     *
+     * @return Current closeSectionButtonConstructor value. Default value is "ImgButton"
+     */
+    public String getCloseSectionButtonConstructor()  {
+        return getAttributeAsString("closeSectionButtonConstructor");
+    }
+    
+
+    /**
+     * Default properties for the {@link com.smartgwt.client.widgets.layout.SectionStack#getCloseSectionButton
+     * closeSectionButton}. <P> The default configuration includes a click handler to invoke {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#closeSection closeSection()}
+     *
+     * @param closeSectionButtonDefaults New closeSectionButtonDefaults value. Default value is {...}
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.SGWTProperties
+     */
+    public SectionStack setCloseSectionButtonDefaults(ImgButton closeSectionButtonDefaults)  throws IllegalStateException {
+        if (closeSectionButtonDefaults != null) {
+            if (closeSectionButtonDefaults.isCreated()) {
+                ConfigUtil.warnOfPreConfigInstantiation(SectionStack.class, "setCloseSectionButtonDefaults", "ImgButton");
+            }                                                                       
+            closeSectionButtonDefaults.setConfigOnly(true);
+        }
+        JavaScriptObject config = closeSectionButtonDefaults == null ? null : closeSectionButtonDefaults.getConfig();
+        return (SectionStack)setAttribute("closeSectionButtonDefaults", JSOHelper.cleanProperties(config, true), false);
+    }
+
+    /**
+     * Default properties for the {@link com.smartgwt.client.widgets.layout.SectionStack#getCloseSectionButton
+     * closeSectionButton}. <P> The default configuration includes a click handler to invoke {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#closeSection closeSection()}
+     *
+     * @return Current closeSectionButtonDefaults value. Default value is {...}
+     */
+    public ImgButton getCloseSectionButtonDefaults()  {
+        ImgButton properties = new ImgButton();
+        properties.setConfigOnly(true);
+        properties.setConfig(getAttributeAsJavaScriptObject("closeSectionButtonDefaults"));
+        return properties;
+    }
+    
+
+    /**
+     * Default icon src for the {@link com.smartgwt.client.widgets.layout.SectionStack#getCloseSectionButton close button} for
+     * {@link com.smartgwt.client.widgets.layout.SectionStackSection#getCanClose canClose:true} sections. <P> May be overridden
+     * by {@link com.smartgwt.client.widgets.layout.SectionStackSection#getCloseIcon SectionStackSection.closeIcon}.
+     *
+     * @param closeSectionIcon New closeSectionIcon value. Default value is "[SKIN]/actions/close.png"
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
+     */
+    public SectionStack setCloseSectionIcon(String closeSectionIcon)  throws IllegalStateException {
+        return (SectionStack)setAttribute("closeSectionIcon", closeSectionIcon, false);
+    }
+
+    /**
+     * Default icon src for the {@link com.smartgwt.client.widgets.layout.SectionStack#getCloseSectionButton close button} for
+     * {@link com.smartgwt.client.widgets.layout.SectionStackSection#getCanClose canClose:true} sections. <P> May be overridden
+     * by {@link com.smartgwt.client.widgets.layout.SectionStackSection#getCloseIcon SectionStackSection.closeIcon}.
+     *
+     * @return Current closeSectionIcon value. Default value is "[SKIN]/actions/close.png"
+     * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
+     */
+    public String getCloseSectionIcon()  {
+        return getAttributeAsString("closeSectionIcon");
+    }
+    
+
+    /**
+     * Pixel width/height for the {@link com.smartgwt.client.widgets.layout.SectionStack#getCloseSectionIcon closeSectionIcon}.
+     *
+     * @param closeSectionIconSize New closeSectionIconSize value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public SectionStack setCloseSectionIconSize(int closeSectionIconSize)  throws IllegalStateException {
+        return (SectionStack)setAttribute("closeSectionIconSize", closeSectionIconSize, false);
+    }
+
+    /**
+     * Pixel width/height for the {@link com.smartgwt.client.widgets.layout.SectionStack#getCloseSectionIcon closeSectionIcon}.
+     *
+     * @return Current closeSectionIconSize value. Default value is 16
+     */
+    public int getCloseSectionIconSize()  {
+        return getAttributeAsInt("closeSectionIconSize");
     }
     
 
@@ -730,6 +893,20 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
         }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addItem(section, item == null ? null : item.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), index);
+    }-*/;
+
+	/**
+     * Close a section. This method is invoked from {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#getCloseSectionButton close button click} and will {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#removeSection remove} the section by default.
+     * @param section section to close
+     */
+    public native void closeSection(SectionStackSection section) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "closeSection", "SectionStackSection");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.closeSection(section.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
 	/**
@@ -1440,6 +1617,11 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
             s.logicalStructureErrors += "SectionStack.animateSections:" + t.getMessage() + "\n";
         }
         try {
+            s.canCloseSections = getAttributeAsString("canCloseSections");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionStack.canCloseSections:" + t.getMessage() + "\n";
+        }
+        try {
             s.canCollapseAll = getAttributeAsString("canCollapseAll");
         } catch (Throwable t) {
             s.logicalStructureErrors += "SectionStack.canCollapseAll:" + t.getMessage() + "\n";
@@ -1463,6 +1645,21 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
             s.canTabToHeaders = getAttributeAsString("canTabToHeaders");
         } catch (Throwable t) {
             s.logicalStructureErrors += "SectionStack.canTabToHeaders:" + t.getMessage() + "\n";
+        }
+        try {
+            s.closeSectionButtonConstructor = getAttributeAsString("closeSectionButtonConstructor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionStack.closeSectionButtonConstructor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.closeSectionIcon = getAttributeAsString("closeSectionIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionStack.closeSectionIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.closeSectionIconSize = getAttributeAsString("closeSectionIconSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionStack.closeSectionIconSize:" + t.getMessage() + "\n";
         }
         try {
             s.editProxyConstructor = getAttributeAsString("editProxyConstructor");

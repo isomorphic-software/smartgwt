@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,11 +78,33 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
- * Item for manipulating Dates. <p> Can be rendered as a text field, or as 3 selects for day, month, year.  Includes
- * optional pop-up picker.
+ * A {@link com.smartgwt.client.widgets.form.fields.FormItem} for editing {@link
+ * com.smartgwt.client.util.DateUtil#createLogicalDate logical-Date} values, where  times are ignored. <p> The item renders
+ * with one of two appearances, depending on the value of {@link
+ * com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField}  - when set to true, dates are edited
+ * directly as text-values, and formatted  according to your locale and settings such as {@link
+ * com.smartgwt.client.widgets.form.fields.DateItem#getDateFormatter dateFormatter}. <p> When set to false, the default
+ * appearance, the item uses separate selectors for  {@link
+ * com.smartgwt.client.widgets.form.fields.DateItem#getYearSelector year}, {@link
+ * com.smartgwt.client.widgets.form.fields.DateItem#getMonthSelector month} and  {@link
+ * com.smartgwt.client.widgets.form.fields.DateItem#getDaySelector day} values.  To control which selectors are visible and
+ * in what  order, use {@link com.smartgwt.client.widgets.form.fields.DateItem#getSelectorFormat selectorFormat}.  In this
+ * mode, the selectable dates may be  limited by the item's {@link
+ * com.smartgwt.client.widgets.form.fields.DateItem#getStartDate start} and {@link
+ * com.smartgwt.client.widgets.form.fields.DateItem#getEndDate end}  dates.  See those two settings for more information.
+ * <P> In either mode, a {@link com.smartgwt.client.widgets.DateChooser popup picker} is provided assuming that the  {@link
+ * com.smartgwt.client.widgets.form.fields.DateItem#getShowPickerIcon pickerIcon} is visible.  <p> As noted, this item is
+ * for editing {@link com.smartgwt.client.util.DateUtil#createLogicalDate logical-Date values}. To edit {@link
+ * com.smartgwt.client.util.DateUtil#createLogicalTime logical-Time values}, see {@link
+ * com.smartgwt.client.widgets.form.fields.TimeItem}, and to edit {@link com.smartgwt.client.util.DateUtil#createDatetime
+ * datetime values}, see {@link com.smartgwt.client.widgets.form.fields.DateTimeItem}. For {@link
+ * com.smartgwt.client.docs.RelativeDateString relative-date features}, see {@link
+ * com.smartgwt.client.widgets.form.fields.RelativeDateItem}. <P> For detailed information on working with dates, times and
+ * datetimes, see the  {@link com.smartgwt.client.docs.DateFormatAndStorage Date and Time Format and Storage overview}.
  */
 @BeanFactory.FrameworkClass
 public class DateItem extends FormItem {
@@ -514,6 +540,62 @@ public class DateItem extends FormItem {
     
 
     /**
+     * Dictates whether values applied to this item via {@link com.smartgwt.client.widgets.form.fields.DateItem#setValue
+     * setValue()} or {@link com.smartgwt.client.widgets.form.DynamicForm#getValues form.values} will be accepted if they fall
+     * outside the range  specified by the item's {@link com.smartgwt.client.widgets.form.fields.DateItem#getStartDate start}
+     * and  {@link com.smartgwt.client.widgets.form.fields.DateItem#getEndDate end} dates. <P> When set to false, values
+     * outside the valid range will be accepted, which may result in additional entries being added to the various pickers,
+     * when  {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is false. <P> When set to
+     * true, {@link com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue()} will return false for values
+     * that fall  outside the range, the value will be rejected and the item defaulted to the start of  its defined range. 
+     * When this happens,  {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler change()} will not fire,
+     * the item will not show the  {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPending pending style}, and 
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#valuesHaveChanged valuesHaveChanged()} will return false, even 
+     * though calling {@link com.smartgwt.client.widgets.form.DynamicForm#saveData saveData()} will result in a changed record,
+     * if the {@link com.smartgwt.client.widgets.form.fields.FormItem#getForm parent form} is {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getDataSource data-bound}  and the current record came from the dataSource.
+     * <P> This attribute does not have an effect if a native HTML5 date input is being used. See {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getBrowserInputType browserInputType}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param enforceValueRange New enforceValueRange value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.DateItem DateItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.form.fields.DateItem#setStartDate
+     * @see com.smartgwt.client.widgets.form.fields.DateItem#setEndDate
+     */
+    public DateItem setEnforceValueRange(Boolean enforceValueRange) {
+        return (DateItem)setAttribute("enforceValueRange", enforceValueRange);
+    }
+
+    /**
+     * Dictates whether values applied to this item via {@link com.smartgwt.client.widgets.form.fields.DateItem#setValue
+     * setValue()} or {@link com.smartgwt.client.widgets.form.DynamicForm#getValues form.values} will be accepted if they fall
+     * outside the range  specified by the item's {@link com.smartgwt.client.widgets.form.fields.DateItem#getStartDate start}
+     * and  {@link com.smartgwt.client.widgets.form.fields.DateItem#getEndDate end} dates. <P> When set to false, values
+     * outside the valid range will be accepted, which may result in additional entries being added to the various pickers,
+     * when  {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is false. <P> When set to
+     * true, {@link com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue()} will return false for values
+     * that fall  outside the range, the value will be rejected and the item defaulted to the start of  its defined range. 
+     * When this happens,  {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler change()} will not fire,
+     * the item will not show the  {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPending pending style}, and 
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#valuesHaveChanged valuesHaveChanged()} will return false, even 
+     * though calling {@link com.smartgwt.client.widgets.form.DynamicForm#saveData saveData()} will result in a changed record,
+     * if the {@link com.smartgwt.client.widgets.form.fields.FormItem#getForm parent form} is {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getDataSource data-bound}  and the current record came from the dataSource.
+     * <P> This attribute does not have an effect if a native HTML5 date input is being used. See {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getBrowserInputType browserInputType}.
+     *
+     * @return Current enforceValueRange value. Default value is false
+     * @see com.smartgwt.client.widgets.form.fields.DateItem#getStartDate
+     * @see com.smartgwt.client.widgets.form.fields.DateItem#getEndDate
+     */
+    public Boolean getEnforceValueRange()  {
+        Boolean result = getAttributeAsBoolean("enforceValueRange", true);
+        return result == null ? false : result;
+    }
+    
+
+    /**
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is <code>true</code> this
      * property can be used to specify the input format for date strings.  If unset, the input format will be determined based
      * on the specified {@link com.smartgwt.client.widgets.form.fields.DateItem#getDateFormatter dateFormatter} if possible
@@ -581,6 +663,70 @@ public class DateItem extends FormItem {
      */
     public String getInvalidDateStringMessage()  {
         return getAttributeAsString("invalidDateStringMessage");
+    }
+    
+
+    /**
+     * When {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is false, the default
+     * alignment of  titles for the {@link com.smartgwt.client.widgets.form.fields.DateItem#getDaySelector day}, {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getMonthSelector month}  and {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getYearSelector year} selectors, within their cells.
+     *
+     * @param itemTitleAlign New itemTitleAlign value. Default value is "center"
+     * @return {@link com.smartgwt.client.widgets.form.fields.DateItem DateItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_titles" target="examples">Titles Example</a>
+     */
+    public DateItem setItemTitleAlign(Alignment itemTitleAlign) {
+        return (DateItem)setAttribute("itemTitleAlign", itemTitleAlign == null ? null : itemTitleAlign.getValue());
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is false, the default
+     * alignment of  titles for the {@link com.smartgwt.client.widgets.form.fields.DateItem#getDaySelector day}, {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getMonthSelector month}  and {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getYearSelector year} selectors, within their cells.
+     *
+     * @return Current itemTitleAlign value. Default value is "center"
+     * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_titles" target="examples">Titles Example</a>
+     */
+    public Alignment getItemTitleAlign()  {
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("itemTitleAlign"));
+    }
+    
+
+    /**
+     * When {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is false, the default
+     * orientation of  titles for the {@link com.smartgwt.client.widgets.form.fields.DateItem#getDaySelector day}, {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getMonthSelector month}  and {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getYearSelector year} selectors. {@link
+     * com.smartgwt.client.types.TitleOrientation} lists valid options. <P> Note that titles on the left or right take up a
+     * cell in tabular {@link com.smartgwt.client.docs.FormLayout form layouts}, but titles on top do not.
+     *
+     * @param itemTitleOrientation New itemTitleOrientation value. Default value is "top"
+     * @return {@link com.smartgwt.client.widgets.form.fields.DateItem DateItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_titles" target="examples">Titles Example</a>
+     */
+    public DateItem setItemTitleOrientation(TitleOrientation itemTitleOrientation) {
+        return (DateItem)setAttribute("itemTitleOrientation", itemTitleOrientation == null ? null : itemTitleOrientation.getValue());
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is false, the default
+     * orientation of  titles for the {@link com.smartgwt.client.widgets.form.fields.DateItem#getDaySelector day}, {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getMonthSelector month}  and {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getYearSelector year} selectors. {@link
+     * com.smartgwt.client.types.TitleOrientation} lists valid options. <P> Note that titles on the left or right take up a
+     * cell in tabular {@link com.smartgwt.client.docs.FormLayout form layouts}, but titles on top do not.
+     *
+     * @return Current itemTitleOrientation value. Default value is "top"
+     * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_titles" target="examples">Titles Example</a>
+     */
+    public TitleOrientation getItemTitleOrientation()  {
+        return EnumUtil.getEnum(TitleOrientation.values(), getAttribute("itemTitleOrientation"));
     }
     
 
@@ -866,7 +1012,6 @@ public class DateItem extends FormItem {
      * <em>not</em> use in-field hints in conjunction with a native HTML5 date input. <p> To change this attribute after being
      * drawn, it is necessary to call {@link com.smartgwt.client.widgets.form.fields.FormItem#redraw FormItem.redraw()} or
      * redraw the form.
-     * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showHintInField New showHintInField value. Default value is null
      * @return {@link com.smartgwt.client.widgets.form.fields.DateItem DateItem} instance, for chaining setter calls
@@ -895,6 +1040,33 @@ public class DateItem extends FormItem {
      */
     public Boolean getShowHintInField()  {
         return getAttributeAsBoolean("showHintInField", true);
+    }
+    
+
+    /**
+     * When {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is false, whether titles
+     * should be shown for for child-items in this DateItem.  By default, <code>showItemTitles</code> is false.
+     *
+     * @param showItemTitles New showItemTitles value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.DateItem DateItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_titles" target="examples">Titles Example</a>
+     */
+    public DateItem setShowItemTitles(Boolean showItemTitles) {
+        return (DateItem)setAttribute("showItemTitles", showItemTitles);
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is false, whether titles
+     * should be shown for for child-items in this DateItem.  By default, <code>showItemTitles</code> is false.
+     *
+     * @return Current showItemTitles value. Default value is false
+     * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_titles" target="examples">Titles Example</a>
+     */
+    public Boolean getShowItemTitles()  {
+        Boolean result = getAttributeAsBoolean("showItemTitles", true);
+        return result == null ? false : result;
     }
     
 

@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * The DynamicForm manages a collection of FormItems which represent user input controls.  The
@@ -409,54 +415,6 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
     
 
     /**
-     * The name of the special field sent to the server as part of {@link com.smartgwt.client.widgets.form.DynamicForm#cancel
-     * cancel()}
-     *
-     * @param cancelParamName New cancelParamName value. Default value is "org.apache.struts.taglib.html.CANCEL"
-     * @return {@link com.smartgwt.client.widgets.form.DynamicForm DynamicForm} instance, for chaining setter calls
-     * @deprecated Will be removed from Smartclient 13.0, due to the removal of Apache Struts.
-     */
-    public DynamicForm setCancelParamName(String cancelParamName) {
-        return (DynamicForm)setAttribute("cancelParamName", cancelParamName, true);
-    }
-
-    /**
-     * The name of the special field sent to the server as part of {@link com.smartgwt.client.widgets.form.DynamicForm#cancel
-     * cancel()}
-     *
-     * @return Current cancelParamName value. Default value is "org.apache.struts.taglib.html.CANCEL"
-     * @deprecated Will be removed from Smartclient 13.0, due to the removal of Apache Struts.
-     */
-    public String getCancelParamName()  {
-        return getAttributeAsString("cancelParamName");
-    }
-    
-
-    /**
-     * The value of the special field sent to the server as part of {@link com.smartgwt.client.widgets.form.DynamicForm#cancel
-     * cancel()}
-     *
-     * @param cancelParamValue New cancelParamValue value. Default value is "cancel"
-     * @return {@link com.smartgwt.client.widgets.form.DynamicForm DynamicForm} instance, for chaining setter calls
-     * @deprecated Will be removed from Smartclient 13.0, due to the removal of Apache Struts.
-     */
-    public DynamicForm setCancelParamValue(String cancelParamValue) {
-        return (DynamicForm)setAttribute("cancelParamValue", cancelParamValue, true);
-    }
-
-    /**
-     * The value of the special field sent to the server as part of {@link com.smartgwt.client.widgets.form.DynamicForm#cancel
-     * cancel()}
-     *
-     * @return Current cancelParamValue value. Default value is "cancel"
-     * @deprecated Will be removed from Smartclient 13.0, due to the removal of Apache Struts.
-     */
-    public String getCancelParamValue()  {
-        return getAttributeAsString("cancelParamValue");
-    }
-    
-
-    /**
      * If set to <code>false</code>, the form will be marked read-only. A widget on the form is editable if either (1)
      * beginning with the widget and continuing up the containment hierarchy, including the form, the first widget to have a
      * non-null <code>canEdit</code> attribute has canEdit:true, or (2) neither the widget nor any parent has a non-null
@@ -753,6 +711,29 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
         return getAttributeAsBoolean("clipStaticValue");
     }
     
+    
+
+    /**
+     * A DynamicForm is a {@link com.smartgwt.client.widgets.DataBoundComponent#getDataArity dataArity}:single component.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param dataArity New dataArity value. Default value is "single"
+     * @return {@link com.smartgwt.client.widgets.form.DynamicForm DynamicForm} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
+    public DynamicForm setDataArity(String dataArity) {
+        return (DynamicForm)setAttribute("dataArity", dataArity, true);
+    }
+
+    /**
+     * A DynamicForm is a {@link com.smartgwt.client.widgets.DataBoundComponent#getDataArity dataArity}:single component.
+     *
+     * @return Current dataArity value. Default value is "single"
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
+    public String getDataArity()  {
+        return getAttributeAsString("dataArity");
+    }
     
 
     /**
@@ -1492,6 +1473,150 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
     
 
     /**
+     * Switches the entire form to render in a style that is typical for form on a mobile device with one {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem} per row. <P> While <code>linearMode</code> is active, normal settings
+     * that control item placement for a multi-column form are ignored:<ul> <li> If {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getTitleOrientation titleOrientation} is unset, it is set to "top" and
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getNumCols numCols} is      set to 1.  Otherwise, if
+     * <code>titleOrientation</code> is left or right,      <code>numCols</code> is set to 2.  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getLinearNumCols linearNumCols} can be set to override this.      Note that
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getTitleOrientation FormItem.titleOrientation} will be ignored
+     * in      <code>linearMode</code>.</li> <li> {@link com.smartgwt.client.widgets.form.fields.FormItem#getWidth
+     * FormItem.width} is ignored and all items receive "*" width and      {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getColSpan FormItem.colSpan}:"*", unless <code>width</code> or
+     * <code>colSpan</code> is      specified via separate {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getLinearWidth FormItem.linearWidth} or {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getLinearColSpan FormItem.linearColSpan}      properties.</li> <li> All
+     * items are considered {@link com.smartgwt.client.widgets.form.fields.FormItem#getEndRow
+     * FormItem.endRow}:<code>true</code>, and      <code>startRow</code>/<code>endRow</code> settings are ignored unless
+     * specified via      {@link com.smartgwt.client.widgets.form.fields.FormItem#getLinearStartRow FormItem.linearStartRow} /
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getLinearEndRow FormItem.linearEndRow}.</li> <li> For those
+     * items with a {@link com.smartgwt.client.widgets.form.fields.FormItem#getHint hint} that support      {@link
+     * com.smartgwt.client.widgets.form.fields.TextItem#getShowHintInField showing the hint in the field},     
+     * <code>showHintInField</code> will be defaulted true if unset.</li> <li> For items showing validation errors inline, by
+     * default      {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText error text} will be displayed, and    
+     * errors will {@link com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation be rendered above the item
+     * element}.</li> </ul> Furthermore, if column widths have been specified via {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getColWidths colWidths}, but the number of columns doesn't match what we
+     * compute in the first rule above, the provided {@link com.smartgwt.client.widgets.form.DynamicForm#getColWidths
+     * colWidths} property will be ignored for this mode. <P> For the best appearance, try to get your form to horizontally
+     * fill the screen, or almost all of it, on handset-sized devices.  Any kind of fixed width on mobile is probably not going
+     * to work as well.  One way to achieve this is by using a {@link com.smartgwt.client.widgets.layout.SplitPane}.
+     *
+     * @param linearMode New linearMode value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.DynamicForm DynamicForm} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.form.DynamicForm#setLinearOnMobile
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
+     */
+    public DynamicForm setLinearMode(Boolean linearMode) {
+        return (DynamicForm)setAttribute("linearMode", linearMode, true);
+    }
+
+    /**
+     * Switches the entire form to render in a style that is typical for form on a mobile device with one {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem} per row. <P> While <code>linearMode</code> is active, normal settings
+     * that control item placement for a multi-column form are ignored:<ul> <li> If {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getTitleOrientation titleOrientation} is unset, it is set to "top" and
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getNumCols numCols} is      set to 1.  Otherwise, if
+     * <code>titleOrientation</code> is left or right,      <code>numCols</code> is set to 2.  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getLinearNumCols linearNumCols} can be set to override this.      Note that
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getTitleOrientation FormItem.titleOrientation} will be ignored
+     * in      <code>linearMode</code>.</li> <li> {@link com.smartgwt.client.widgets.form.fields.FormItem#getWidth
+     * FormItem.width} is ignored and all items receive "*" width and      {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getColSpan FormItem.colSpan}:"*", unless <code>width</code> or
+     * <code>colSpan</code> is      specified via separate {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getLinearWidth FormItem.linearWidth} or {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getLinearColSpan FormItem.linearColSpan}      properties.</li> <li> All
+     * items are considered {@link com.smartgwt.client.widgets.form.fields.FormItem#getEndRow
+     * FormItem.endRow}:<code>true</code>, and      <code>startRow</code>/<code>endRow</code> settings are ignored unless
+     * specified via      {@link com.smartgwt.client.widgets.form.fields.FormItem#getLinearStartRow FormItem.linearStartRow} /
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getLinearEndRow FormItem.linearEndRow}.</li> <li> For those
+     * items with a {@link com.smartgwt.client.widgets.form.fields.FormItem#getHint hint} that support      {@link
+     * com.smartgwt.client.widgets.form.fields.TextItem#getShowHintInField showing the hint in the field},     
+     * <code>showHintInField</code> will be defaulted true if unset.</li> <li> For items showing validation errors inline, by
+     * default      {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText error text} will be displayed, and    
+     * errors will {@link com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation be rendered above the item
+     * element}.</li> </ul> Furthermore, if column widths have been specified via {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getColWidths colWidths}, but the number of columns doesn't match what we
+     * compute in the first rule above, the provided {@link com.smartgwt.client.widgets.form.DynamicForm#getColWidths
+     * colWidths} property will be ignored for this mode. <P> For the best appearance, try to get your form to horizontally
+     * fill the screen, or almost all of it, on handset-sized devices.  Any kind of fixed width on mobile is probably not going
+     * to work as well.  One way to achieve this is by using a {@link com.smartgwt.client.widgets.layout.SplitPane}.
+     *
+     * @return Current linearMode value. Default value is null
+     * @see com.smartgwt.client.widgets.form.DynamicForm#getLinearOnMobile
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
+     */
+    public Boolean getLinearMode()  {
+        return getAttributeAsBoolean("linearMode");
+    }
+    
+
+    /**
+     * Specifies the {@link com.smartgwt.client.widgets.form.DynamicForm#getNumCols number of columns} when the form is being
+     * rendered in {@link com.smartgwt.client.widgets.form.DynamicForm#getLinearMode linearMode}, overriding any automatically
+     * derived value in that mode.
+     *
+     * @param linearNumCols New linearNumCols value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.DynamicForm DynamicForm} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
+     */
+    public DynamicForm setLinearNumCols(Integer linearNumCols) {
+        return (DynamicForm)setAttribute("linearNumCols", linearNumCols, true);
+    }
+
+    /**
+     * Specifies the {@link com.smartgwt.client.widgets.form.DynamicForm#getNumCols number of columns} when the form is being
+     * rendered in {@link com.smartgwt.client.widgets.form.DynamicForm#getLinearMode linearMode}, overriding any automatically
+     * derived value in that mode.
+     *
+     * @return Current linearNumCols value. Default value is null
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
+     */
+    public Integer getLinearNumCols()  {
+        return getAttributeAsInt("linearNumCols");
+    }
+    
+
+    /**
+     * Switches the entire form to render in a style that is typical for form on a {@link
+     * com.smartgwt.client.util.Browser#isHandset handset device} with one {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem} per row by automatically defaulting {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getLinearMode linearMode} to <code>true</code> on handsets. <P>
+     * <b>Note:</b> This property should not be changed framework-wide via  addProperties() as the framework itself assumes and
+     * relies upon normal behavior for forms.  If you want most of your forms to use {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getLinearMode linearMode} on mobile, create a subclass where
+     * <code>linearOnMobile</code> defaults to true, and pervasively use that subclass.
+     *
+     * @param linearOnMobile New linearOnMobile value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.DynamicForm DynamicForm} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
+     */
+    public DynamicForm setLinearOnMobile(boolean linearOnMobile)  throws IllegalStateException {
+        return (DynamicForm)setAttribute("linearOnMobile", linearOnMobile, false);
+    }
+
+    /**
+     * Switches the entire form to render in a style that is typical for form on a {@link
+     * com.smartgwt.client.util.Browser#isHandset handset device} with one {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem} per row by automatically defaulting {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getLinearMode linearMode} to <code>true</code> on handsets. <P>
+     * <b>Note:</b> This property should not be changed framework-wide via  addProperties() as the framework itself assumes and
+     * relies upon normal behavior for forms.  If you want most of your forms to use {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getLinearMode linearMode} on mobile, create a subclass where
+     * <code>linearOnMobile</code> defaults to true, and pervasively use that subclass.
+     *
+     * @return Current linearOnMobile value. Default value is false
+     * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
+     */
+    public boolean getLinearOnMobile()  {
+        Boolean result = getAttributeAsBoolean("linearOnMobile");
+        return result == null ? false : result;
+    }
+    
+
+    /**
      * When creating form items for fields with text type data, if the specified length of the field exceeds this threshold we
      * will create form item of type  <code>this.longTextEditorType</code> (a TextAreaItem by default), rather than a simple
      * text item.  Overridden by explicitly specifying <code>editorType</code> for the field.
@@ -2068,17 +2193,29 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
      * intended based on whether the primaryKey field is present and editable.
      *
      * @return Returns the {@link com.smartgwt.client.types.DSOperationType} to be performed when {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#saveData saveData()} is called. Valid options are <code>"add"</code> or
-     * <code>"update"</code>. <P> If a {@link com.smartgwt.client.data.DSRequest} configuration object is passed in containing
-     * an explicit operationType this will be returned. Otherwise {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType saveOperationType} will be returned. This attribute is
-     * automatically set via calls to data binding methods such as {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#editNewRecord editNewRecord()}, or it may be set explicitly. <P> If no
-     * explicit saveOperationType is specified for this form, the system will  look at the current values for the form. If the
-     * form has no value for the {@link com.smartgwt.client.data.DataSource#getPrimaryKeyField primaryKey field}, or that field
-     * is editable and has been modified we assume an add operation, otherwise an update. If the form is a member of a {@link
-     * com.smartgwt.client.widgets.form.ValuesManager}, the primary key field value will be derived from the valuesManager's
-     * values object. Default value is null
+     * com.smartgwt.client.widgets.form.DynamicForm#saveData saveData()} or {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#saveData ValuesManager.saveData()} is called.<br> Valid options are
+     * <code>"add"</code> or <code>"update"</code>. <P> If a {@link com.smartgwt.client.data.DSRequest} configuration object is
+     * passed in containing an explicit operationType this will be returned. Otherwise {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOperationType this.saveOperationType}  will be returned if set. Note
+     * that <code>saveOperationType</code> is automatically set via calls to data binding methods such as {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editNewRecord editNewRecord()}, or it may be  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#setSaveOperationType set explicitly}. <P> If no explicit saveOperationType
+     * is present, the system will use the following  heuristic to determine the save operationType:  <ul> <li>If the form has
+     * no value for the {@link com.smartgwt.client.data.DataSource#getPrimaryKeyField primaryKey field}     this method will
+     * return "add". The assumption is that this is a new record, and the     field will be populated when the record is
+     * created,      (as with a "sequence" type field).</li> <li>If, {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#setValues when the form's values were populated},      the form had value
+     * for the {@link com.smartgwt.client.data.DataSource#getPrimaryKeyField primaryKey field}     but it has subsequently be
+     * changed, this method will return "add". In this case     the value has been changed, either by the user or
+     * programmatically so a different     (new) record is assumed. This is determined by looking at the     {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getOldValues oldValues} for the form.</li> <li>If the {@link
+     * com.smartgwt.client.data.DataSource#getPrimaryKeyField primaryKey field} is editable and     a value is now present for
+     * the primary key field, but was not present in the     {@link com.smartgwt.client.widgets.form.DynamicForm#getOldValues
+     * oldValues} for the form, this method will return     "add". In this case either no initial values were provided, or a
+     * 'sparse'      set of values for a new record (with no primary key) were provided to the form     and the user has
+     * subsequently explicitly entered a new primaryKey field value.</li> <li>Otherwise this method will return "update".
+     * Either the primaryKey field is non     editable, or the user has not changed it from its initial value.</li> </ul>. Default value is null
      */
     public DSOperationType getSaveOperationType()  {
         return EnumUtil.getEnum(DSOperationType.values(), getAttribute("saveOperationType"));
@@ -2272,33 +2409,41 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
 
     /**
      * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons showErrorIcons},  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}, and {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle showErrorStyle} control how validation errors are
      * displayed when they are displayed inline in the form (next to the form item where there is a validation error).  To
      * instead display all errors at the top of the form, set {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors}:false. <P>
-     * <code>showErrorIcons</code>, <code>showErrorText</code> and <code>showErrorStyle</code> are all boolean properties, and
-     * can be set on a DynamicForm to control the behavior form-wide, or set on individual FormItems.   <P> The HTML displayed
-     * next to a form item with errors is generated by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML
-     * FormItem.getErrorHTML()}. The default implementation of that method respects <code>showErrorIcons</code> and
-     * <code>showErrorText</code> as follows: <P> <code>showErrorIcons</code>, or <code>showErrorIcon</code> at the FormItem
-     * level controls whether an error icon should appear next to fields which have validation errors.  The icon's appearance
-     * is governed by {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconSrc FormItem.errorIconSrc}, {@link
+     * <code>showErrorIcons</code>, <code>showErrorText</code>, <code>errorOrientation</code> and <code>showErrorStyle</code>
+     * are all boolean properties, and can be set on a DynamicForm to control the behavior form-wide, or set on individual
+     * FormItems.   <P> The HTML displayed next to a form item with errors is generated by  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML FormItem.getErrorHTML()}. The default implementation of
+     * that method respects <code>showErrorIcons</code> and <code>showErrorText</code> as follows: <P>
+     * <code>showErrorIcons</code>, or <code>showErrorIcon</code> at the FormItem level controls whether an error icon should
+     * appear next to fields which have validation errors.  The icon's appearance is governed by {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconSrc FormItem.errorIconSrc}, {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconWidth FormItem.errorIconWidth} and {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconHeight FormItem.errorIconHeight} <P>
      * <code>showErrorText</code> determines whether the text of the validation error should be displayed next to fields which
      * have validation errors. The attribute {@link com.smartgwt.client.widgets.form.DynamicForm#getShowTitlesWithErrorMessages
      * showTitlesWithErrorMessages} may be set to prefix error messages with the  form item's title + <code>":"</code> (may be
      * desired if the item has  {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowTitle FormItem.showTitle} set to
-     * false). <P> {@link com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation} controls where the
-     * error HTML should appear relative  to form items. Therefore the combination of {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}<code>:false</code> and {@link
+     * false).<br> If <code>showErrorText</code> is unset, the error text will be shown if {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getLinearMode linearMode} is true (or {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getLinearOnMobile linearOnMobile} is true for mobile devices), otherwise it
+     * will not be shown. <P> In addition to this: <P> {@link com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation
+     * errorOrientation} controls where the error HTML should appear relative  to form items. Therefore the combination of
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}<code>:false</code> and {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}<code>:"left"</code> creates a compact
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
-     * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
-     * determines whether fields  with validation errors should have special styling applied to them. Error styling is achieved
-     * by applying suffixes to existing styling applied to various parts of the form item. See {@link
-     * com.smartgwt.client.docs.FormItemBaseStyle} for more on this.
+     * hover (similar appearance to ListGrid validation error display).<br> If <code>errorOrientation</code> is unset, the
+     * error orientation will default to "top"  if {@link com.smartgwt.client.widgets.form.DynamicForm#getLinearMode
+     * linearMode} is enabled (or {@link com.smartgwt.client.widgets.form.DynamicForm#getLinearOnMobile linearOnMobile} is true
+     * for mobile devices) and error text is not showing, "left" otherwise. <P> <code>showErrorStyle</code> determines whether
+     * fields  with validation errors should have special styling applied to them. Error styling is achieved by applying
+     * suffixes to existing styling applied to various parts of the form item. See {@link
+     * com.smartgwt.client.docs.FormItemBaseStyle}  for more on this.
      *
      * @param showErrorIcons New showErrorIcons value. Default value is true
      * @return {@link com.smartgwt.client.widgets.form.DynamicForm DynamicForm} instance, for chaining setter calls
@@ -2310,33 +2455,41 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
 
     /**
      * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons showErrorIcons},  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}, and {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle showErrorStyle} control how validation errors are
      * displayed when they are displayed inline in the form (next to the form item where there is a validation error).  To
      * instead display all errors at the top of the form, set {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors}:false. <P>
-     * <code>showErrorIcons</code>, <code>showErrorText</code> and <code>showErrorStyle</code> are all boolean properties, and
-     * can be set on a DynamicForm to control the behavior form-wide, or set on individual FormItems.   <P> The HTML displayed
-     * next to a form item with errors is generated by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML
-     * FormItem.getErrorHTML()}. The default implementation of that method respects <code>showErrorIcons</code> and
-     * <code>showErrorText</code> as follows: <P> <code>showErrorIcons</code>, or <code>showErrorIcon</code> at the FormItem
-     * level controls whether an error icon should appear next to fields which have validation errors.  The icon's appearance
-     * is governed by {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconSrc FormItem.errorIconSrc}, {@link
+     * <code>showErrorIcons</code>, <code>showErrorText</code>, <code>errorOrientation</code> and <code>showErrorStyle</code>
+     * are all boolean properties, and can be set on a DynamicForm to control the behavior form-wide, or set on individual
+     * FormItems.   <P> The HTML displayed next to a form item with errors is generated by  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML FormItem.getErrorHTML()}. The default implementation of
+     * that method respects <code>showErrorIcons</code> and <code>showErrorText</code> as follows: <P>
+     * <code>showErrorIcons</code>, or <code>showErrorIcon</code> at the FormItem level controls whether an error icon should
+     * appear next to fields which have validation errors.  The icon's appearance is governed by {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconSrc FormItem.errorIconSrc}, {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconWidth FormItem.errorIconWidth} and {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconHeight FormItem.errorIconHeight} <P>
      * <code>showErrorText</code> determines whether the text of the validation error should be displayed next to fields which
      * have validation errors. The attribute {@link com.smartgwt.client.widgets.form.DynamicForm#getShowTitlesWithErrorMessages
      * showTitlesWithErrorMessages} may be set to prefix error messages with the  form item's title + <code>":"</code> (may be
      * desired if the item has  {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowTitle FormItem.showTitle} set to
-     * false). <P> {@link com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation} controls where the
-     * error HTML should appear relative  to form items. Therefore the combination of {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}<code>:false</code> and {@link
+     * false).<br> If <code>showErrorText</code> is unset, the error text will be shown if {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getLinearMode linearMode} is true (or {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getLinearOnMobile linearOnMobile} is true for mobile devices), otherwise it
+     * will not be shown. <P> In addition to this: <P> {@link com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation
+     * errorOrientation} controls where the error HTML should appear relative  to form items. Therefore the combination of
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}<code>:false</code> and {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}<code>:"left"</code> creates a compact
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
-     * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
-     * determines whether fields  with validation errors should have special styling applied to them. Error styling is achieved
-     * by applying suffixes to existing styling applied to various parts of the form item. See {@link
-     * com.smartgwt.client.docs.FormItemBaseStyle} for more on this.
+     * hover (similar appearance to ListGrid validation error display).<br> If <code>errorOrientation</code> is unset, the
+     * error orientation will default to "top"  if {@link com.smartgwt.client.widgets.form.DynamicForm#getLinearMode
+     * linearMode} is enabled (or {@link com.smartgwt.client.widgets.form.DynamicForm#getLinearOnMobile linearOnMobile} is true
+     * for mobile devices) and error text is not showing, "left" otherwise. <P> <code>showErrorStyle</code> determines whether
+     * fields  with validation errors should have special styling applied to them. Error styling is achieved by applying
+     * suffixes to existing styling applied to various parts of the form item. See {@link
+     * com.smartgwt.client.docs.FormItemBaseStyle}  for more on this.
      *
      * @return Current showErrorIcons value. Default value is true
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
@@ -2349,33 +2502,41 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
 
     /**
      * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons showErrorIcons},  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}, and {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle showErrorStyle} control how validation errors are
      * displayed when they are displayed inline in the form (next to the form item where there is a validation error).  To
      * instead display all errors at the top of the form, set {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors}:false. <P>
-     * <code>showErrorIcons</code>, <code>showErrorText</code> and <code>showErrorStyle</code> are all boolean properties, and
-     * can be set on a DynamicForm to control the behavior form-wide, or set on individual FormItems.   <P> The HTML displayed
-     * next to a form item with errors is generated by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML
-     * FormItem.getErrorHTML()}. The default implementation of that method respects <code>showErrorIcons</code> and
-     * <code>showErrorText</code> as follows: <P> <code>showErrorIcons</code>, or <code>showErrorIcon</code> at the FormItem
-     * level controls whether an error icon should appear next to fields which have validation errors.  The icon's appearance
-     * is governed by {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconSrc FormItem.errorIconSrc}, {@link
+     * <code>showErrorIcons</code>, <code>showErrorText</code>, <code>errorOrientation</code> and <code>showErrorStyle</code>
+     * are all boolean properties, and can be set on a DynamicForm to control the behavior form-wide, or set on individual
+     * FormItems.   <P> The HTML displayed next to a form item with errors is generated by  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML FormItem.getErrorHTML()}. The default implementation of
+     * that method respects <code>showErrorIcons</code> and <code>showErrorText</code> as follows: <P>
+     * <code>showErrorIcons</code>, or <code>showErrorIcon</code> at the FormItem level controls whether an error icon should
+     * appear next to fields which have validation errors.  The icon's appearance is governed by {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconSrc FormItem.errorIconSrc}, {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconWidth FormItem.errorIconWidth} and {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconHeight FormItem.errorIconHeight} <P>
      * <code>showErrorText</code> determines whether the text of the validation error should be displayed next to fields which
      * have validation errors. The attribute {@link com.smartgwt.client.widgets.form.DynamicForm#getShowTitlesWithErrorMessages
      * showTitlesWithErrorMessages} may be set to prefix error messages with the  form item's title + <code>":"</code> (may be
      * desired if the item has  {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowTitle FormItem.showTitle} set to
-     * false). <P> {@link com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation} controls where the
-     * error HTML should appear relative  to form items. Therefore the combination of {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}<code>:false</code> and {@link
+     * false).<br> If <code>showErrorText</code> is unset, the error text will be shown if {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getLinearMode linearMode} is true (or {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getLinearOnMobile linearOnMobile} is true for mobile devices), otherwise it
+     * will not be shown. <P> In addition to this: <P> {@link com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation
+     * errorOrientation} controls where the error HTML should appear relative  to form items. Therefore the combination of
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}<code>:false</code> and {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}<code>:"left"</code> creates a compact
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
-     * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
-     * determines whether fields  with validation errors should have special styling applied to them. Error styling is achieved
-     * by applying suffixes to existing styling applied to various parts of the form item. See {@link
-     * com.smartgwt.client.docs.FormItemBaseStyle} for more on this.
+     * hover (similar appearance to ListGrid validation error display).<br> If <code>errorOrientation</code> is unset, the
+     * error orientation will default to "top"  if {@link com.smartgwt.client.widgets.form.DynamicForm#getLinearMode
+     * linearMode} is enabled (or {@link com.smartgwt.client.widgets.form.DynamicForm#getLinearOnMobile linearOnMobile} is true
+     * for mobile devices) and error text is not showing, "left" otherwise. <P> <code>showErrorStyle</code> determines whether
+     * fields  with validation errors should have special styling applied to them. Error styling is achieved by applying
+     * suffixes to existing styling applied to various parts of the form item. See {@link
+     * com.smartgwt.client.docs.FormItemBaseStyle}  for more on this.
      *
      * @param showErrorStyle New showErrorStyle value. Default value is true
      * @return {@link com.smartgwt.client.widgets.form.DynamicForm DynamicForm} instance, for chaining setter calls
@@ -2387,33 +2548,41 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
 
     /**
      * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons showErrorIcons},  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}, and {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle showErrorStyle} control how validation errors are
      * displayed when they are displayed inline in the form (next to the form item where there is a validation error).  To
      * instead display all errors at the top of the form, set {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors}:false. <P>
-     * <code>showErrorIcons</code>, <code>showErrorText</code> and <code>showErrorStyle</code> are all boolean properties, and
-     * can be set on a DynamicForm to control the behavior form-wide, or set on individual FormItems.   <P> The HTML displayed
-     * next to a form item with errors is generated by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML
-     * FormItem.getErrorHTML()}. The default implementation of that method respects <code>showErrorIcons</code> and
-     * <code>showErrorText</code> as follows: <P> <code>showErrorIcons</code>, or <code>showErrorIcon</code> at the FormItem
-     * level controls whether an error icon should appear next to fields which have validation errors.  The icon's appearance
-     * is governed by {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconSrc FormItem.errorIconSrc}, {@link
+     * <code>showErrorIcons</code>, <code>showErrorText</code>, <code>errorOrientation</code> and <code>showErrorStyle</code>
+     * are all boolean properties, and can be set on a DynamicForm to control the behavior form-wide, or set on individual
+     * FormItems.   <P> The HTML displayed next to a form item with errors is generated by  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML FormItem.getErrorHTML()}. The default implementation of
+     * that method respects <code>showErrorIcons</code> and <code>showErrorText</code> as follows: <P>
+     * <code>showErrorIcons</code>, or <code>showErrorIcon</code> at the FormItem level controls whether an error icon should
+     * appear next to fields which have validation errors.  The icon's appearance is governed by {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconSrc FormItem.errorIconSrc}, {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconWidth FormItem.errorIconWidth} and {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconHeight FormItem.errorIconHeight} <P>
      * <code>showErrorText</code> determines whether the text of the validation error should be displayed next to fields which
      * have validation errors. The attribute {@link com.smartgwt.client.widgets.form.DynamicForm#getShowTitlesWithErrorMessages
      * showTitlesWithErrorMessages} may be set to prefix error messages with the  form item's title + <code>":"</code> (may be
      * desired if the item has  {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowTitle FormItem.showTitle} set to
-     * false). <P> {@link com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation} controls where the
-     * error HTML should appear relative  to form items. Therefore the combination of {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}<code>:false</code> and {@link
+     * false).<br> If <code>showErrorText</code> is unset, the error text will be shown if {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getLinearMode linearMode} is true (or {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getLinearOnMobile linearOnMobile} is true for mobile devices), otherwise it
+     * will not be shown. <P> In addition to this: <P> {@link com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation
+     * errorOrientation} controls where the error HTML should appear relative  to form items. Therefore the combination of
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}<code>:false</code> and {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}<code>:"left"</code> creates a compact
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
-     * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
-     * determines whether fields  with validation errors should have special styling applied to them. Error styling is achieved
-     * by applying suffixes to existing styling applied to various parts of the form item. See {@link
-     * com.smartgwt.client.docs.FormItemBaseStyle} for more on this.
+     * hover (similar appearance to ListGrid validation error display).<br> If <code>errorOrientation</code> is unset, the
+     * error orientation will default to "top"  if {@link com.smartgwt.client.widgets.form.DynamicForm#getLinearMode
+     * linearMode} is enabled (or {@link com.smartgwt.client.widgets.form.DynamicForm#getLinearOnMobile linearOnMobile} is true
+     * for mobile devices) and error text is not showing, "left" otherwise. <P> <code>showErrorStyle</code> determines whether
+     * fields  with validation errors should have special styling applied to them. Error styling is achieved by applying
+     * suffixes to existing styling applied to various parts of the form item. See {@link
+     * com.smartgwt.client.docs.FormItemBaseStyle}  for more on this.
      *
      * @return Current showErrorStyle value. Default value is true
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
@@ -2426,33 +2595,41 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
 
     /**
      * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons showErrorIcons},  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}, and {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle showErrorStyle} control how validation errors are
      * displayed when they are displayed inline in the form (next to the form item where there is a validation error).  To
      * instead display all errors at the top of the form, set {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors}:false. <P>
-     * <code>showErrorIcons</code>, <code>showErrorText</code> and <code>showErrorStyle</code> are all boolean properties, and
-     * can be set on a DynamicForm to control the behavior form-wide, or set on individual FormItems.   <P> The HTML displayed
-     * next to a form item with errors is generated by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML
-     * FormItem.getErrorHTML()}. The default implementation of that method respects <code>showErrorIcons</code> and
-     * <code>showErrorText</code> as follows: <P> <code>showErrorIcons</code>, or <code>showErrorIcon</code> at the FormItem
-     * level controls whether an error icon should appear next to fields which have validation errors.  The icon's appearance
-     * is governed by {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconSrc FormItem.errorIconSrc}, {@link
+     * <code>showErrorIcons</code>, <code>showErrorText</code>, <code>errorOrientation</code> and <code>showErrorStyle</code>
+     * are all boolean properties, and can be set on a DynamicForm to control the behavior form-wide, or set on individual
+     * FormItems.   <P> The HTML displayed next to a form item with errors is generated by  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML FormItem.getErrorHTML()}. The default implementation of
+     * that method respects <code>showErrorIcons</code> and <code>showErrorText</code> as follows: <P>
+     * <code>showErrorIcons</code>, or <code>showErrorIcon</code> at the FormItem level controls whether an error icon should
+     * appear next to fields which have validation errors.  The icon's appearance is governed by {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconSrc FormItem.errorIconSrc}, {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconWidth FormItem.errorIconWidth} and {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconHeight FormItem.errorIconHeight} <P>
      * <code>showErrorText</code> determines whether the text of the validation error should be displayed next to fields which
      * have validation errors. The attribute {@link com.smartgwt.client.widgets.form.DynamicForm#getShowTitlesWithErrorMessages
      * showTitlesWithErrorMessages} may be set to prefix error messages with the  form item's title + <code>":"</code> (may be
      * desired if the item has  {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowTitle FormItem.showTitle} set to
-     * false). <P> {@link com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation} controls where the
-     * error HTML should appear relative  to form items. Therefore the combination of {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}<code>:false</code> and {@link
+     * false).<br> If <code>showErrorText</code> is unset, the error text will be shown if {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getLinearMode linearMode} is true (or {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getLinearOnMobile linearOnMobile} is true for mobile devices), otherwise it
+     * will not be shown. <P> In addition to this: <P> {@link com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation
+     * errorOrientation} controls where the error HTML should appear relative  to form items. Therefore the combination of
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}<code>:false</code> and {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}<code>:"left"</code> creates a compact
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
-     * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
-     * determines whether fields  with validation errors should have special styling applied to them. Error styling is achieved
-     * by applying suffixes to existing styling applied to various parts of the form item. See {@link
-     * com.smartgwt.client.docs.FormItemBaseStyle} for more on this.
+     * hover (similar appearance to ListGrid validation error display).<br> If <code>errorOrientation</code> is unset, the
+     * error orientation will default to "top"  if {@link com.smartgwt.client.widgets.form.DynamicForm#getLinearMode
+     * linearMode} is enabled (or {@link com.smartgwt.client.widgets.form.DynamicForm#getLinearOnMobile linearOnMobile} is true
+     * for mobile devices) and error text is not showing, "left" otherwise. <P> <code>showErrorStyle</code> determines whether
+     * fields  with validation errors should have special styling applied to them. Error styling is achieved by applying
+     * suffixes to existing styling applied to various parts of the form item. See {@link
+     * com.smartgwt.client.docs.FormItemBaseStyle}  for more on this.
      *
      * @param showErrorText New showErrorText value. Default value is false
      * @return {@link com.smartgwt.client.widgets.form.DynamicForm DynamicForm} instance, for chaining setter calls
@@ -2464,33 +2641,41 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
 
     /**
      * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorIcons showErrorIcons},  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, and {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}, {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}, and {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorStyle showErrorStyle} control how validation errors are
      * displayed when they are displayed inline in the form (next to the form item where there is a validation error).  To
      * instead display all errors at the top of the form, set {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getShowInlineErrors showInlineErrors}:false. <P>
-     * <code>showErrorIcons</code>, <code>showErrorText</code> and <code>showErrorStyle</code> are all boolean properties, and
-     * can be set on a DynamicForm to control the behavior form-wide, or set on individual FormItems.   <P> The HTML displayed
-     * next to a form item with errors is generated by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML
-     * FormItem.getErrorHTML()}. The default implementation of that method respects <code>showErrorIcons</code> and
-     * <code>showErrorText</code> as follows: <P> <code>showErrorIcons</code>, or <code>showErrorIcon</code> at the FormItem
-     * level controls whether an error icon should appear next to fields which have validation errors.  The icon's appearance
-     * is governed by {@link com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconSrc FormItem.errorIconSrc}, {@link
+     * <code>showErrorIcons</code>, <code>showErrorText</code>, <code>errorOrientation</code> and <code>showErrorStyle</code>
+     * are all boolean properties, and can be set on a DynamicForm to control the behavior form-wide, or set on individual
+     * FormItems.   <P> The HTML displayed next to a form item with errors is generated by  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorHTML FormItem.getErrorHTML()}. The default implementation of
+     * that method respects <code>showErrorIcons</code> and <code>showErrorText</code> as follows: <P>
+     * <code>showErrorIcons</code>, or <code>showErrorIcon</code> at the FormItem level controls whether an error icon should
+     * appear next to fields which have validation errors.  The icon's appearance is governed by {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconSrc FormItem.errorIconSrc}, {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconWidth FormItem.errorIconWidth} and {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getErrorIconHeight FormItem.errorIconHeight} <P>
      * <code>showErrorText</code> determines whether the text of the validation error should be displayed next to fields which
      * have validation errors. The attribute {@link com.smartgwt.client.widgets.form.DynamicForm#getShowTitlesWithErrorMessages
      * showTitlesWithErrorMessages} may be set to prefix error messages with the  form item's title + <code>":"</code> (may be
      * desired if the item has  {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowTitle FormItem.showTitle} set to
-     * false). <P> {@link com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation} controls where the
-     * error HTML should appear relative  to form items. Therefore the combination of {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}<code>:false</code> and {@link
+     * false).<br> If <code>showErrorText</code> is unset, the error text will be shown if {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getLinearMode linearMode} is true (or {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getLinearOnMobile linearOnMobile} is true for mobile devices), otherwise it
+     * will not be shown. <P> In addition to this: <P> {@link com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation
+     * errorOrientation} controls where the error HTML should appear relative  to form items. Therefore the combination of
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowErrorText showErrorText}<code>:false</code> and {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation errorOrientation}<code>:"left"</code> creates a compact
      * validation error display consisting of just an icon, to the left of the item with the error message available via a
-     * hover (similar appearance to ListGrid validation error display).   <P> In addition to this, <code>showErrorStyle</code>
-     * determines whether fields  with validation errors should have special styling applied to them. Error styling is achieved
-     * by applying suffixes to existing styling applied to various parts of the form item. See {@link
-     * com.smartgwt.client.docs.FormItemBaseStyle} for more on this.
+     * hover (similar appearance to ListGrid validation error display).<br> If <code>errorOrientation</code> is unset, the
+     * error orientation will default to "top"  if {@link com.smartgwt.client.widgets.form.DynamicForm#getLinearMode
+     * linearMode} is enabled (or {@link com.smartgwt.client.widgets.form.DynamicForm#getLinearOnMobile linearOnMobile} is true
+     * for mobile devices) and error text is not showing, "left" otherwise. <P> <code>showErrorStyle</code> determines whether
+     * fields  with validation errors should have special styling applied to them. Error styling is achieved by applying
+     * suffixes to existing styling applied to various parts of the form item. See {@link
+     * com.smartgwt.client.docs.FormItemBaseStyle}  for more on this.
      *
      * @return Current showErrorText value. Default value is false
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
@@ -2901,10 +3086,13 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
      *
      * @return Get the alignment for the title for some item. Default implementation is as follows: <ul><li>If {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getTitleAlign FormItem.titleAlign} is specified, it will be
-     * respected</li>     <li>Otherwise if {@link com.smartgwt.client.widgets.form.DynamicForm#getTitleAlign this.titleAlign}
-     * is set, it will be         respected</li>     <li>Otherwise titles will be aligned according to {@link
-     * com.smartgwt.client.util.Page#isRTL text direction},         with this method returning <code>"right"</code> if text
-     * direction is LTR,         or <code>"left"</code> if text direction is RTL. </ul>. Default value is null
+     * respected</li>     <li>If not, and {@link com.smartgwt.client.widgets.form.DynamicForm#getTitleAlign this.titleAlign} is
+     * set, it will be         respected</li>     <li>Otherwise titles will be aligned according to {@link
+     * com.smartgwt.client.util.Page#isRTL text direction};         for {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getTitleOrientation titleOrientation} "top", this         method returns
+     * <code>"left"</code> if text direction is LTR, and         <code>"right"</code> if not; for horizontal orientations, this
+     * method returns          <code>"right"</code> if text direction is LTR, or <code>"left"</code> if text          direction
+     * is RTL.</li> </ul>. Default value is null
      */
     public Alignment getTitleAlign()  {
         return EnumUtil.getEnum(Alignment.values(), getAttribute("titleAlign"));
@@ -3104,7 +3292,7 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
 
     /**
      * validationURL can be set to do server-side validation against a different URL from where the form will ultimately save,
-     * as part of an incremental upgrade strategy for Struts and Struts-like applications.   <P> If set, calling {@link
+     * as part of an incremental upgrade strategy for Struts-like applications.   <P> If set, calling {@link
      * com.smartgwt.client.widgets.form.DynamicForm#submit submit()} causes an RPC to be sent to this URL to perform
      * server-side validation of the form values.  If the validation fails, the validation errors returned by the server are
      * rendered in the form.  If the validation succeeds, the form is submitted to the URL specified by {@link
@@ -3113,8 +3301,7 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
      * normal submit. <p> The expected response to this request is a DSResponse sent via the RPC mechanism.  If validation is
      * successful, an empty response with the STATUS_SUCCESS status code is sufficient.  If there are validation errors, the
      * DSResponse should have the status set to  STATUS_VALIDATION_ERROR and the errors should be set on the response via the
-     * addError()/setErrorReport() API on DSResponse.  See the javadoc for DSResponse for details. <P> See the Struts examples
-     * in <code>[webroot]/examples/struts</code> for usage examples.
+     * addError()/setErrorReport() API on DSResponse.  See the javadoc for DSResponse for details.
      *
      * @param validationURL New validationURL value. Default value is null
      * @return {@link com.smartgwt.client.widgets.form.DynamicForm DynamicForm} instance, for chaining setter calls
@@ -3129,7 +3316,7 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
 
     /**
      * validationURL can be set to do server-side validation against a different URL from where the form will ultimately save,
-     * as part of an incremental upgrade strategy for Struts and Struts-like applications.   <P> If set, calling {@link
+     * as part of an incremental upgrade strategy for Struts-like applications.   <P> If set, calling {@link
      * com.smartgwt.client.widgets.form.DynamicForm#submit submit()} causes an RPC to be sent to this URL to perform
      * server-side validation of the form values.  If the validation fails, the validation errors returned by the server are
      * rendered in the form.  If the validation succeeds, the form is submitted to the URL specified by {@link
@@ -3138,8 +3325,7 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
      * normal submit. <p> The expected response to this request is a DSResponse sent via the RPC mechanism.  If validation is
      * successful, an empty response with the STATUS_SUCCESS status code is sufficient.  If there are validation errors, the
      * DSResponse should have the status set to  STATUS_VALIDATION_ERROR and the errors should be set on the response via the
-     * addError()/setErrorReport() API on DSResponse.  See the javadoc for DSResponse for details. <P> See the Struts examples
-     * in <code>[webroot]/examples/struts</code> for usage examples.
+     * addError()/setErrorReport() API on DSResponse.  See the javadoc for DSResponse for details.
      *
      * @return Current validationURL value. Default value is null
      * @see com.smartgwt.client.widgets.form.DynamicForm#saveData
@@ -3279,57 +3465,42 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
 
 	/**
      * 
-     *  This method exists for clean integration with existing server frameworks that have a 'cancel'
-     *  feature which typically clears session state associated with the form.  When this method is
-     *  called, an RPC is sent to the server with a parameter named
-     *  {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with the value
-     *  {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>
-     * 
-     *  Note that no other form data is sent.  By default the current top-level page is replaced with the
-     *  reply.  If you wish to ignore the server reply instead, call this method like this:
+     *  This method exists for clean integration with existing server frameworks that have a
+     *  'cancel' feature which typically clears session state associated with the form.  When
+     *  this method is called, an RPC is sent to the server.  You must pass the appropriate
+     *  params property in the request properties as required by your server framework.
+     *  <P>
+     *  For example:
      *  <pre>
-     *  dynamicFormInstance.cancel({ignoreTimeout: true, target: null});
+     *  DSRequest requestProperties = new DSRequest();
+     *  Map params = new HashMap();
+     *  params.put("CANCEL", "cancel");
+     *  requestProperties.setParams(params);
      *  </pre>
      * 
-     * @see com.smartgwt.client.widgets.form.DynamicForm#cancelEditing
-     * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
-     * @deprecated Since Apache Struts will be removed from Smartclient 13.0
-     */
-    public native void cancel() /*-{
-        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "cancel", "");
-        }
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.cancel();
-    }-*/;
-
-	/**
-     * 
-     *  This method exists for clean integration with existing server frameworks that have a 'cancel'
-     *  feature which typically clears session state associated with the form.  When this method is
-     *  called, an RPC is sent to the server with a parameter named
-     *  {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamName cancelParamName} with the value
-     *  {@link com.smartgwt.client.widgets.form.DynamicForm#getCancelParamValue cancelParamValue}.<p>
-     * 
-     *  Note that no other form data is sent.  By default the current top-level page is replaced with the
-     *  reply.  If you wish to ignore the server reply instead, call this method like this:
+     *  Note that no other form data is sent.  By default the current top-level page is replaced
+     *  with the reply.  If you wish to ignore the server reply instead, include the following
+     *  request properties:
      *  <pre>
-     *  dynamicFormInstance.cancel({ignoreTimeout: true, target: null});
+     *  DSRequest requestProperties = new DSRequest();
+     *  // other request property settings ...
+     *  requestProperties.setIgnoreTimeout(true);
+     *  requestProperties.setAttribute("target", null);
      *  </pre>
      * 
-     * @param requestProperties additional properties to set on the RPCRequest                                          that will be issued
+     * @param requestProperties additional properties to set on the RPCRequest                                       that will be issued
      * @see com.smartgwt.client.widgets.form.DynamicForm#cancelEditing
      * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
-     * @deprecated Since Apache Struts will be removed from Smartclient 13.0
+     * @deprecated As of Smartclient version 13.0, due to the removal of Apache Struts.
      */
     public native void cancel(DSRequest requestProperties) /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
             @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "cancel", "DSRequest");
         }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.cancel(requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+        self.cancel(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-	
+
 	/**
      * If the form or valuesManager has associated userTask workflow task than notify it about cancelling the changes.
      */
@@ -3361,7 +3532,7 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
         var ret = self.checkForValidationErrors(
 			$entry( function(errorMap) { 
 				if(callback!=null) callback.@com.smartgwt.client.data.ValidationStatusCallback::execute(Ljava/util/Map;)(
-					@com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(errorMap)
+					errorMap != null ? @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(errorMap) : null
 				);
 			}));
         return @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
@@ -3397,7 +3568,7 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
         var ret = self.checkForValidationErrors(
 			$entry( function(errorMap) { 
 				if(callback!=null) callback.@com.smartgwt.client.data.ValidationStatusCallback::execute(Ljava/util/Map;)(
-					@com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(errorMap)
+					errorMap != null ? @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(errorMap) : null
 				);
 			}), validateHiddenFields, skipServerValidation);
         return @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
@@ -3493,12 +3664,12 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
      * @see com.smartgwt.client.widgets.form.DynamicForm#saveData
      * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
      */
-    public native void editNewRecord(Map initialValues) /*-{
+    public native void editNewRecord(Record initialValues) /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "editNewRecord", "Map");
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "editNewRecord", "Record");
         }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.editNewRecord(initialValues == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(initialValues));
+        self.editNewRecord(initialValues.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
 	/**
@@ -3510,12 +3681,12 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
      * @see com.smartgwt.client.widgets.form.DynamicForm#saveData
      * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
      */
-    public native void editNewRecord(Record initialValues) /*-{
+    public native void editNewRecord(Map initialValues) /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "editNewRecord", "Record");
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "editNewRecord", "Map");
         }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.editNewRecord(initialValues.@com.smartgwt.client.core.DataClass::getJsObj()());
+        self.editNewRecord(initialValues == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(initialValues));
     }-*/;
 
 	/**
@@ -4796,6 +4967,63 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
         return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
 
+	/**
+     * Displays the currently selected record(s) of the selectionComponent widget (typically a listGrid) in this component. <P>
+     * For a DynamicForm the first record of the selection is shown after the form is placed into {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getCanEdit read-only mode}. A subsequent call to {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editRecord editRecord()} or similar will return the form to editability.
+     * <P> Note that since field-level <code>canEdit:true</code> settings override the form-level canEdit setting the automatic
+     * change to read-only may not change every field.
+     * @param selectionComponent the ListGrid or TileGrid or ID of a {@link com.smartgwt.client.widgets.grid.ListGrid}/{@link
+     * com.smartgwt.client.widgets.tile.TileGrid} whose currently     selected record(s) is/are to be viewed
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     */
+    public native void viewSelectedData(ListGrid selectionComponent) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "viewSelectedData", "ListGrid");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.viewSelectedData(selectionComponent == null ? null : selectionComponent.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+
+	/**
+     * Displays the currently selected record(s) of the selectionComponent widget (typically a listGrid) in this component. <P>
+     * For a DynamicForm the first record of the selection is shown after the form is placed into {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getCanEdit read-only mode}. A subsequent call to {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editRecord editRecord()} or similar will return the form to editability.
+     * <P> Note that since field-level <code>canEdit:true</code> settings override the form-level canEdit setting the automatic
+     * change to read-only may not change every field.
+     * @param selectionComponent the ListGrid or TileGrid or ID of a {@link com.smartgwt.client.widgets.grid.ListGrid}/{@link
+     * com.smartgwt.client.widgets.tile.TileGrid} whose currently     selected record(s) is/are to be viewed
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     */
+    public native void viewSelectedData(TileGrid selectionComponent) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "viewSelectedData", "TileGrid");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.viewSelectedData(selectionComponent == null ? null : selectionComponent.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+
+	/**
+     * Displays the currently selected record(s) of the selectionComponent widget (typically a listGrid) in this component. <P>
+     * For a DynamicForm the first record of the selection is shown after the form is placed into {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getCanEdit read-only mode}. A subsequent call to {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editRecord editRecord()} or similar will return the form to editability.
+     * <P> Note that since field-level <code>canEdit:true</code> settings override the form-level canEdit setting the automatic
+     * change to read-only may not change every field.
+     * @param selectionComponent the ListGrid or TileGrid or ID of a {@link com.smartgwt.client.widgets.grid.ListGrid}/{@link
+     * com.smartgwt.client.widgets.tile.TileGrid} whose currently     selected record(s) is/are to be viewed
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     */
+    public native void viewSelectedData(String selectionComponent) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "viewSelectedData", "String");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.viewSelectedData(selectionComponent);
+    }-*/;
+
 
     // ********************* Static Methods ***********************
 
@@ -5144,8 +5372,31 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
         }
     }
 
+    
     /**
      * Return the form fields.
+     * <P>
+     * If the DynamicForm has not been {@link com.smartgwt.client.widgets.BaseWidget#isCreated created in JavaScript},
+     * this method will force it to be created. This is required to ensure that if the
+     * form has a specified {@link #setDataSource(DataSource) dataSource}, fields
+     * from the datasource are combined with fields specified explicitly on the component. It also ensures
+     * that if fields were specified explicitly as JavaScriptObjects using
+     * {@link #setFields(JavaScriptObject...) setFields()}, the returned FormItems will be of the 
+     * correct subclass.
+     * <P>
+     * To retrieve the form fields as specified without forcing creation in JavaScript, use
+     * {@link #getFields(Boolean) getFields(false)}
+     *
+     * @return the form fields
+     */
+    public FormItem[] getFields() {
+        return getFields(true);
+    }
+
+    /**
+     * Return the form fields. Passing a forceCreation parameter of <code>false</code> to this method
+     * will avoid  {@link com.smartgwt.client.widgets.BaseWidget#isCreated creating} the DynamicForm in 
+     * in JavaScript if this has not yet happened.
      * <P>
      * If you've installed the fields as JavaScriptObjects using
      * {@link #setFields(JavaScriptObject...) setFields()}, it's not recommended to call this method
@@ -5157,10 +5408,17 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
      * <P>
      * If the situation is unavoidable, you can set the "editorType" attribute of the
      * JavaScriptObject field to the desired subclass to ensure it will be used.
+     * <P>
+     * Also, prior to creation any fields derived from a {@link #setDataSource(DataSource) dataSource}
+     * will not be returned from this method.
      *
+     * @param forceCreation controls whether the DynamicForm should be created if this has not already happened
      * @return the form fields
      */
-    public FormItem[] getFields() {
+    public FormItem[] getFields(Boolean forceCreation) {
+
+        if (forceCreation && !this.isCreated()) this.getOrCreateJsObj();
+
         if(fields == null || getDataSource() != null) {
             return com.smartgwt.client.util.ConvertTo.arrayOfFormItem(getAttributeAsJavaScriptObject("fields"));
         } else {
@@ -5168,20 +5426,68 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
         }
     }
 
+    /**
+     * Synonym for {@link #getField(String)}
+     * @param name
+     * @return
+     */
     public FormItem getItem(String name) {
         return getField(name);
     }
-
+    
+    /**
+     * Retrieve a field from this form by {@link com.smartgwt.client.widgets.form.FormItem#getName name}.
+     * <P>
+     * If the DynamicForm has not been {@link com.smartgwt.client.widgets.BaseWidget#isCreated created in JavaScript},
+     * this method will force it to be created. This is required to ensure that if the
+     * form has a specified {@link #setDataSource(DataSource) dataSource}, fields
+     * from the datasource are combined with fields specified explicitly on the component. It also ensures
+     * that if fields were specified explicitly as JavaScriptObjects using
+     * {@link #setFields(JavaScriptObject...) setFields()}, the returned FormItem will be of the 
+     * correct subclass.
+     * <P>
+     * To retrieve a form field as specified without forcing creation in JavaScript, use
+     * {@link #getField(String, Boolean) getField(<i>fieldName</i>, false)}
+     * 
+     * @param name name of the field to return
+     * @return FormItem with the appropriate name
+     */
     public FormItem getField(String name) {
-        if (fields != null) {
-            for (FormItem field : fields) {
-                if (name.equals(field.getName())) {
-                    return field;
+        return getField(name, true);
+    }
+
+    /**
+     * Retrieve a field from this form by {@link com.smartgwt.client.widgets.form.FormItem#getName name}.
+     * <P>
+     * Passing a forceCreation parameter of <code>false</code> to this method
+     * will avoid  {@link com.smartgwt.client.widgets.BaseWidget#isCreated creating} the DynamicForm in 
+     * in JavaScript if this has not yet happened.
+     * <P>
+     * See {@link #getFields(Boolean)} for considerations about retrieving fields before a DynamicForm has
+     * been created in JavaScript
+     * 
+     * @param name name of the field to return
+     * @param forceCreation controls whether the DynamicForm should be created if this has not already happened
+     * @return FormItem with the appropriate name
+     */
+    public FormItem getField(String name, Boolean forceCreation) {
+
+        if (forceCreation  && !this.isCreated()) this.getOrCreateJsObj();
+
+        if (name != null) {
+
+            if (fields != null) {
+                for (FormItem field : fields) {
+                    if (name.equals(field.getName())) {
+                        return field;
+                    }
+                }
+            } else {
+                FormItem[] fields = getFields(forceCreation);
+                for (int i = 0; i < fields.length; i++) {
+                    if (name.equals(fields[i].getName())) return fields[i];
                 }
             }
-        } else {
-            JavaScriptObject fieldJS = getFieldJS(name);
-            if (fieldJS != null) return FormItemFactory.getFormItem(fieldJS, getJsObj());
         }
         return null;
     }
@@ -6530,16 +6836,6 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
             s.logicalStructureErrors += "DynamicForm.browserSpellCheck:" + t.getMessage() + "\n";
         }
         try {
-            s.cancelParamName = getAttributeAsString("cancelParamName");
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "DynamicForm.cancelParamName:" + t.getMessage() + "\n";
-        }
-        try {
-            s.cancelParamValue = getAttributeAsString("cancelParamValue");
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "DynamicForm.cancelParamValue:" + t.getMessage() + "\n";
-        }
-        try {
             s.canEdit = getAttributeAsString("canEdit");
         } catch (Throwable t) {
             s.logicalStructureErrors += "DynamicForm.canEdit:" + t.getMessage() + "\n";
@@ -6593,6 +6889,11 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
             s.colWidths = getAttributeAsString("colWidths");
         } catch (Throwable t) {
             s.logicalStructureErrors += "DynamicForm.colWidths:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dataArity = getAttributeAsString("dataArity");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.dataArity:" + t.getMessage() + "\n";
         }
         try {
             s.dataFetchMode = getAttributeAsString("dataFetchMode");
@@ -6718,6 +7019,21 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
             s.itemLayout = getAttributeAsString("itemLayout");
         } catch (Throwable t) {
             s.logicalStructureErrors += "DynamicForm.itemLayout:" + t.getMessage() + "\n";
+        }
+        try {
+            s.linearMode = getAttributeAsString("linearMode");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.linearMode:" + t.getMessage() + "\n";
+        }
+        try {
+            s.linearNumCols = getAttributeAsString("linearNumCols");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.linearNumCols:" + t.getMessage() + "\n";
+        }
+        try {
+            s.linearOnMobile = getAttributeAsString("linearOnMobile");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.linearOnMobile:" + t.getMessage() + "\n";
         }
         try {
             s.longTextEditorThreshold = getAttributeAsString("longTextEditorThreshold");

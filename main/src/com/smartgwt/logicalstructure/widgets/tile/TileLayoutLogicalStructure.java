@@ -6,6 +6,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
@@ -49,12 +50,15 @@ public class TileLayoutLogicalStructure extends CanvasLogicalStructure {
     public String animateTileChange;
     public String autoWrapLines;
     public String dragDataAction;
+    public String dragLineStyle;
+    public String dragLineThickness;
     public String expandMargins;
     public String layoutMargin;
     public String layoutPolicy;
     public String orientation;
     public String overflow;
     public String paddingAsLayoutMargin;
+    public String showDragLine;
     public String tileHeight;
     public String tileHMargin;
     public String tileMargin;

@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -114,7 +119,30 @@ public class GridFetchDataTask extends ComponentTask {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Criteria to use for fetch.
+     * Should criteria be applied to the grid as {@link com.smartgwt.client.widgets.grid.ListGrid#getImplicitCriteria implicit
+     * criteria}? When criteria is applied this way, it is not shown to the user and cannot be changed by the user.
+     *
+     * @param applyToImplicitCriteria New applyToImplicitCriteria value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.GridFetchDataTask GridFetchDataTask} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public GridFetchDataTask setApplyToImplicitCriteria(Boolean applyToImplicitCriteria)  throws IllegalStateException {
+        return (GridFetchDataTask)setAttribute("applyToImplicitCriteria", applyToImplicitCriteria, false);
+    }
+
+    /**
+     * Should criteria be applied to the grid as {@link com.smartgwt.client.widgets.grid.ListGrid#getImplicitCriteria implicit
+     * criteria}? When criteria is applied this way, it is not shown to the user and cannot be changed by the user.
+     *
+     * @return Current applyToImplicitCriteria value. Default value is null
+     */
+    public Boolean getApplyToImplicitCriteria()  {
+        return getAttributeAsBoolean("applyToImplicitCriteria");
+    }
+    
+
+    /**
+     * Criteria to use for fetch. If criteria is <code>null</code> or empty, the filter criteria of the grid will be cleared.
      *
      * @param criteria New criteria value. Default value is null
      * @return {@link com.smartgwt.client.util.workflow.GridFetchDataTask GridFetchDataTask} instance, for chaining setter calls
@@ -128,7 +156,7 @@ public class GridFetchDataTask extends ComponentTask {
     }
 
     /**
-     * Criteria to use for fetch.
+     * Criteria to use for fetch. If criteria is <code>null</code> or empty, the filter criteria of the grid will be cleared.
      *
      * @return Current criteria value. Default value is null
      */
@@ -138,7 +166,7 @@ public class GridFetchDataTask extends ComponentTask {
     
 
     /**
-     * Additional properties to set on the DSRequest that will be issued to perform the fetch.
+     * Additional properties to set on the DSRequest that will be issued to perform the fetch or clear criteria.
      *
      * @param requestProperties New requestProperties value. Default value is null
      * @return {@link com.smartgwt.client.util.workflow.GridFetchDataTask GridFetchDataTask} instance, for chaining setter calls
@@ -153,7 +181,7 @@ public class GridFetchDataTask extends ComponentTask {
     }
 
     /**
-     * Additional properties to set on the DSRequest that will be issued to perform the fetch.
+     * Additional properties to set on the DSRequest that will be issued to perform the fetch or clear criteria.
      *
      * @return Current requestProperties value. Default value is null
      */

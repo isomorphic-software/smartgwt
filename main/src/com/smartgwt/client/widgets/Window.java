@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * A general purpose Window class for implementing dialogs, portlets, alerts, prompts, wizards and desktop-like windowing
@@ -205,13 +211,17 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
     
 
     /**
-     * If true, this Window widget will automatically be centered on the page when shown.      If false, it will show up in the
-     * last position it was placed (either programmatically,      or by user interaction).      <P>      <b>Note:</b> If an
-     * auto-centering Window is either programmatically moved or dragged       by an end user, auto-centering behavior is
-     * automatically turned off. To manually center       a Window, you can use {@link
-     * com.smartgwt.client.widgets.Window#centerInPage centerInPage()}.
+     * If true, this Window widget will automatically be centered on the page when shown. If false, it will show up in the last
+     * position it was placed (either programmatically, or by user interaction). <P> <b>Note:</b> If an auto-centering Window
+     * is either programmatically moved or dragged  by an end user, auto-centering behavior is automatically turned off. To
+     * manually center  a Window, you can use {@link com.smartgwt.client.widgets.Window#centerInPage centerInPage()}. 
+     * Auto-centering will also be disabled if you pass an explicit {@link com.smartgwt.client.widgets.Canvas#getLeft left} or
+     * {@link com.smartgwt.client.widgets.Canvas#getTop top} value at  create time.
      *
-     * @param autoCenter New autoCenter value. Default value is false
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Setter for the {@link com.smartgwt.client.widgets.Window#getAutoCenter autoCenter} attribute.
+     *
+     * @param autoCenter new value for autoCenter. Default value is false
      * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -220,11 +230,12 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
     }
 
     /**
-     * If true, this Window widget will automatically be centered on the page when shown.      If false, it will show up in the
-     * last position it was placed (either programmatically,      or by user interaction).      <P>      <b>Note:</b> If an
-     * auto-centering Window is either programmatically moved or dragged       by an end user, auto-centering behavior is
-     * automatically turned off. To manually center       a Window, you can use {@link
-     * com.smartgwt.client.widgets.Window#centerInPage centerInPage()}.
+     * If true, this Window widget will automatically be centered on the page when shown. If false, it will show up in the last
+     * position it was placed (either programmatically, or by user interaction). <P> <b>Note:</b> If an auto-centering Window
+     * is either programmatically moved or dragged  by an end user, auto-centering behavior is automatically turned off. To
+     * manually center  a Window, you can use {@link com.smartgwt.client.widgets.Window#centerInPage centerInPage()}. 
+     * Auto-centering will also be disabled if you pass an explicit {@link com.smartgwt.client.widgets.Canvas#getLeft left} or
+     * {@link com.smartgwt.client.widgets.Canvas#getTop top} value at  create time.
      *
      * @return Current autoCenter value. Default value is false
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods

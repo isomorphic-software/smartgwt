@@ -42,8 +42,9 @@ package com.smartgwt.client.docs;
  * <a href='http://wiki.smartclient.com/display/Main/Integrating+with+ASP.Net+MVC'
  * target='_blank'>.NET's ASP.NET MVC</a>
  *  as well as 
- * <a href='http://wiki.smartclient.com/pages/viewpage.action?pageId=1442411' target='_blank'>PHP
- * with Doctrine</a>.
+ * <a
+ * href='https://isomorphic.atlassian.net/wiki/spaces/Main/pages/524974/Integrating+with+PHP+Doctrine'
+ * target='_blank'>PHP with Doctrine</a>.
  *  <P>
  *  <h4>Consuming Existing XML and JSON formats</h4>
  *  <p>

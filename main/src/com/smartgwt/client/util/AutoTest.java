@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -136,7 +141,45 @@ public class AutoTest {
     }-*/;
 	
 
+	/**
+     * Returns a locator that's optimized to have minimal length while still trying to robustly represent that targeted canvas.
+     * The returned locator may simply be an ID, if the target has a manually assigned ID, or it may consist of syntax starting
+     * with <code>//:</code> that will search for a widget with the specified ID or defining property (e.g. "title"). A minimal
+     * locator may also contain a second, interior search denoted by <code>//</code> that searches the hierarchy below the
+     * preceding part of the locator. <p> A minimal locator should be passed to {@link
+     * com.smartgwt.client.util.AutoTest#getObject getObject()} to retrieve the original target. <p> Note that when searching
+     * by defining property, a breadth-first search of the widget hierarchy will be run looking for the first widget of the
+     * appropriate framework class with the specified defining property.
+     * @param canvas target canvas whose locator is needed
+     *
+     * @return minimal locator to the target canvas.
+     * See {@link com.smartgwt.client.docs.AutoTestLocator AutoTestLocator}
+     */
+    public static native String getMinimalLocator(Canvas canvas) /*-{
+        var ret = $wnd.isc.AutoTest.getMinimalLocator(canvas == null ? null : canvas.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+        return ret;
+    }-*/;
 
+
+
+
+
+	/**
+     * This method allows developers to retrieve locators for elements on the page via a key-combo plus mouseDown on the
+     * element in question.<br> It may be invoked from a bookmarklet stored in the browser, giving developers a one-click way
+     * to retrieve locators for any Smart GWT application <P> When installLocatorShortcut() is invoked, it will register a
+     * Page-level <code>mouseDown</code> handler which, if the Shift+Ctrl or Shift+Meta key-combo are being held down will
+     * display the locator for the element under the mouse in a text-box and also copy it to clipboard. <P> As with the {@link
+     * com.smartgwt.client.docs.Debugging isc.showConsole()} method, developers may wish to create a  bookmark in their browser
+     * to quickly enable this functionality on any Smart GWT  application, without any changes to the application code: <ol>
+     * <li>Create a new bookmark in your browser.</li> <li>Enter url "javascript:isc.AutoTest.installLocatorShortcut()".</li>
+     * <li>Label the bookmark as "Locator Shortcut"</li> <li>Consider adding this to the Bookmarks Toolbar. This allows you to
+     * enable the  feature with a single click from any Smart GWT application.</li> </ol> <P> To uninstall the locator
+     * shortcut, call {@link com.smartgwt.client.util.AutoTest#uninstallLocatorShortcut uninstallLocatorShortcut()}
+     */
+    public static native void installLocatorShortcut() /*-{
+        $wnd.isc.AutoTest.installLocatorShortcut();
+    }-*/;
 
 
 	/**
@@ -338,12 +381,12 @@ public class AutoTest {
      * components, or if the application contains a label updated every second to show the current time, it's possible that
      * this call might always return false if includeRedraws is true.
      * @param includeRedraws whether to check for pending Canvas redraws
-     * @param allowEdits whether to allow unsaved edits for ListGrids
+     * @param includeEdits whether to check for unsaved edits for ListGrids
      *
      * @return whether loaded page is 'done' as described above
      */
-    public static native boolean isSystemDone(boolean includeRedraws, boolean allowEdits) /*-{
-        var ret = $wnd.isc.AutoTest.isSystemDone(includeRedraws, allowEdits);
+    public static native boolean isSystemDone(boolean includeRedraws, boolean includeEdits) /*-{
+        var ret = $wnd.isc.AutoTest.isSystemDone(includeRedraws, includeEdits);
         return ret == null ? false : ret;
     }-*/;
 	
@@ -402,6 +445,15 @@ public class AutoTest {
      */
     public static native void setTestRoot(Canvas canvas) /*-{
         $wnd.isc.AutoTest.setTestRoot(canvas == null ? null : canvas.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+
+
+	/**
+     * Uninstalls the locator shortcut installed by {@link com.smartgwt.client.util.AutoTest#installLocatorShortcut
+     * installLocatorShortcut()}
+     */
+    public static native void uninstallLocatorShortcut() /*-{
+        $wnd.isc.AutoTest.uninstallLocatorShortcut();
     }-*/;
 
 

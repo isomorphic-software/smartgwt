@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -156,8 +161,10 @@ public class EventHandler {
 
 
 	/**
-     * Return the character for the current key being pressed.   Note that this is only set reliably for keyPress events on
-     * character keys.
+     * Returns the character for a keypress event, derived from the {@link
+     * com.smartgwt.client.util.EventHandler#getKeyEventCharacterValue event.characterValue}. <P> Only available on keyPress
+     * events, and only for character (or ascii control) keys. <P> See the {@link com.smartgwt.client.docs.KeyboardEvents
+     * Keyboard Events Overview} for related APIs and more information on keyboard event handling in Smart GWT.
      *
      * @return Character the user entered. May be null for non-character keys.
      */
@@ -168,13 +175,53 @@ public class EventHandler {
 
 
 	/**
-     * Returns the numeric characterValue reported by the browser.          Only available on keyPress events, and only for
-     * character (or ascii control) keys
+     * Returns the numeric characterValue reported by the browser. <P> Only available on keyPress events, and only for
+     * character (or ascii control) keys. <P> See the {@link com.smartgwt.client.docs.KeyboardEvents Keyboard Events Overview}
+     * for related APIs and more information on keyboard event handling in Smart GWT.
      *
      * @return Numeric character value reported by the browser                   (ASCII value of the key pressed)
      */
     public static native int getKeyEventCharacterValue() /*-{
         var ret = $wnd.isc.EventHandler.getKeyEventCharacterValue();
+        return ret;
+    }-*/;
+
+
+	/**
+     * Return the natively reported <a href='https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code'
+     * target='_blank'>event.code</a> value for the current event (keyboard) event. <P> Note that
+     * <code>EventHandler.getReportedKey()</code> simply provides access to the <code>event.code</code> value reported by the
+     * browser. Smart GWT has no control over whether these values are accurate or vary by browser. <P> See the {@link
+     * com.smartgwt.client.docs.KeyboardEvents Keyboard Events Overview} for related APIs and more information on keyboard
+     * event handling in Smart GWT.
+     *
+     * @return Native event.code for the current keyboard event.
+     */
+    public static native String getKeyEventCode() /*-{
+        var ret = $wnd.isc.EventHandler.getKeyEventCode();
+        return ret;
+    }-*/;
+
+
+	/**
+     * Return the natively reported <a href='https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key'
+     * target='_blank'>event.key</a> value for the current event. <P> Note that this differs from {@link
+     * com.smartgwt.client.util.EventHandler#getKey getKey()} in a couple of important ways: <ul> <li>The actual key values
+     * returned for specific keys     differ in a number of ways. For example alpha characters keys are natively reported as
+     * either     upper or lower case depending on what would actually by typed,      (whereas {@link
+     * com.smartgwt.client.util.EventHandler#getKey getKey()} is always uppercase for alpha keys) and     the reported name for
+     * various 'named' keys (such as the arrow keys differ).     <br>     The full set of native key names is available     <a
+     * href='https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values' target='_blank'>here</a>,     and
+     * the Smart GWT key names is available String.</li> <li><code>EventHandler.getKeyEventKey()</code> simply provides access
+     * to the <code>event.key</code>     value. As such the reported values are generated by the browser itself and Smart GWT  
+     * has no control over whether they may vary by browser, etc.</li> </ul> <P> See the {@link
+     * com.smartgwt.client.docs.KeyboardEvents Keyboard Events Overview} for related APIs and more information on keyboard
+     * event handling in Smart GWT.
+     *
+     * @return Native event.key for the current keyboard event.
+     */
+    public static native String getKeyEventKey() /*-{
+        var ret = $wnd.isc.EventHandler.getKeyEventKey();
         return ret;
     }-*/;
 
@@ -189,6 +236,17 @@ public class EventHandler {
      */
     public static native Element getNativeMouseTarget() /*-{
         var ret = $wnd.isc.EventHandler.getNativeMouseTarget();
+        return ret;
+    }-*/;
+
+
+	/**
+     * This method is a synonym for {@link com.smartgwt.client.util.EventHandler#getKeyEventKey getKeyEventKey()}
+     *
+     * @return Native event.key for the current keyboard event.
+     */
+    public static native String getReportedKey() /*-{
+        var ret = $wnd.isc.EventHandler.getReportedKey();
         return ret;
     }-*/;
 
@@ -431,7 +489,7 @@ public class EventHandler {
 	/**
      * Return whether this Canvas is masked by a clickMask (see {@link com.smartgwt.client.widgets.Canvas#showClickMask
      * Canvas.showClickMask()}).
-     * @param target widget to check
+     * @param target widget to check.
      *
      * @return true if masked, false if not masked.
      */

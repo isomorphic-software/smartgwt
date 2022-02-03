@@ -13,6 +13,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tile.TileLayout#getDragData
  * @see com.smartgwt.client.widgets.tile.TileGrid#setData
  * @see com.smartgwt.client.widgets.tile.TileGrid#getDragData
+ * @see com.smartgwt.client.widgets.chart.FacetChart#setData
  * @see com.smartgwt.client.widgets.calendar.CalendarEvent
  * @see com.smartgwt.client.widgets.calendar.Calendar#getData
  * @see com.smartgwt.client.widgets.grid.ListGrid#getData

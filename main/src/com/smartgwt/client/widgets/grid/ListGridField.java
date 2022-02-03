@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -1608,6 +1613,33 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
     
 
     /**
+     * Criteria to be evaluated to determine whether this field should be enabled. <P> This criteria is dynamic and will be
+     * renterpreted each time the rule context changes.
+     *
+     * @param enableWhen New enableWhen value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.RuleCriteria RuleCriteria overview and related methods
+     */
+    public ListGridField setEnableWhen(Criteria enableWhen) {
+        if (enableWhen instanceof Criterion) {
+            enableWhen.setAttribute("_constructor", "AdvancedCriteria");
+        }
+        return (ListGridField)setAttribute("enableWhen", enableWhen == null ? null : enableWhen.getJsObj());
+    }
+
+    /**
+     * Criteria to be evaluated to determine whether this field should be enabled. <P> This criteria is dynamic and will be
+     * renterpreted each time the rule context changes.
+     *
+     * @return Current enableWhen value. Default value is null
+     * @see com.smartgwt.client.docs.RuleCriteria RuleCriteria overview and related methods
+     */
+    public Criteria getEnableWhen()  {
+        return new Criteria(getAttributeAsJavaScriptObject("enableWhen"));
+    }
+    
+
+    /**
      * What to do when a user hits enter while editing this field?<br> Overrides the <code>enterKeyEditAction</code> as
      * specified at the listGrid level while focus is in this field.
      *
@@ -1845,26 +1877,24 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
     
 
     /**
-     * If we're showing the filterEditor (listGrid.showFilterEditor is true), this property determines whether this list should
-     * be filtered every time the user edits the value of the filter editor for this field. <P> The {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getFetchDelay ListGrid.fetchDelay} governs the delay in milliseconds between
-     * the user editing the filter editor value, and the new filter being applied to the grid.
+     * If set this will override the  {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterOnKeypress filterOnKeypress
+     * setting at the grid level}
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param filterOnKeypress New filterOnKeypress value. Default value is null
      * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setFetchDelay
      */
     public ListGridField setFilterOnKeypress(Boolean filterOnKeypress) {
         return (ListGridField)setAttribute("filterOnKeypress", filterOnKeypress);
     }
 
     /**
-     * If we're showing the filterEditor (listGrid.showFilterEditor is true), this property determines whether this list should
-     * be filtered every time the user edits the value of the filter editor for this field. <P> The {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getFetchDelay ListGrid.fetchDelay} governs the delay in milliseconds between
-     * the user editing the filter editor value, and the new filter being applied to the grid.
+     * If set this will override the  {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterOnKeypress filterOnKeypress
+     * setting at the grid level}
      *
      * @return Current filterOnKeypress value. Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getFetchDelay
      */
     public Boolean getFilterOnKeypress()  {
         return getAttributeAsBoolean("filterOnKeypress", true);
@@ -3867,6 +3897,38 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
     
 
     /**
+     * When set to false, no hover is shown for the field editor in this field. Otherwise, a hover shows the current field's
+     * criteria description along with the {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterWindowCriteria
+     * ListGrid.filterWindowCriteria} description if configured. <p> All hovers for the filter editor can be disabled using
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditorHovers ListGrid.showFilterEditorHovers}. <p> The
+     * descriptive text for criteria is formatted by {@link com.smartgwt.client.data.DataSource#getAdvancedCriteriaDescription
+     * DataSource.getAdvancedCriteriaDescription()}.
+     *
+     * @param showFilterEditorHovers New showFilterEditorHovers value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setShowFilterEditorHovers
+     */
+    public ListGridField setShowFilterEditorHovers(Boolean showFilterEditorHovers) {
+        return (ListGridField)setAttribute("showFilterEditorHovers", showFilterEditorHovers);
+    }
+
+    /**
+     * When set to false, no hover is shown for the field editor in this field. Otherwise, a hover shows the current field's
+     * criteria description along with the {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterWindowCriteria
+     * ListGrid.filterWindowCriteria} description if configured. <p> All hovers for the filter editor can be disabled using
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditorHovers ListGrid.showFilterEditorHovers}. <p> The
+     * descriptive text for criteria is formatted by {@link com.smartgwt.client.data.DataSource#getAdvancedCriteriaDescription
+     * DataSource.getAdvancedCriteriaDescription()}.
+     *
+     * @return Current showFilterEditorHovers value. Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditorHovers
+     */
+    public Boolean getShowFilterEditorHovers()  {
+        return getAttributeAsBoolean("showFilterEditorHovers", true);
+    }
+    
+
+    /**
      * If using an icon for this button, whether to switch the icon image when the button receives focus. <P> If {@link
      * com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver StatefulCanvas.showFocusedAsOver} is true, the
      * <code>"Over"</code> icon will be displayed when the canvas has focus, otherwise a separate <code>"Focused"</code> icon
@@ -3980,10 +4042,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
     /**
      * Whether to show hovers for this field.  The default hover will be the contents of the cell the user is hovering over,
      * and can be customized via {@link com.smartgwt.client.widgets.grid.ListGridField#hoverHTML field.hoverHTML()}. <P> {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getCanHover ListGrid.canHover} can be set to true to cause hovers to be shown
-     * for all fields by default.  In this case, <code>field.showHover</code> can be set to false to suppress hovers for an
-     * individual field. <P> All hovers can be disabled, regardless of other settings, by setting {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getShowHover ListGrid.showHover} to false.
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowHover ListGrid.showHover} can be set to true to cause hovers to be
+     * shown for all fields by default.  In this case, <code>field.showHover</code> can be set to false to suppress hovers for
+     * an individual field. <P> All hovers can be disabled, regardless of other settings, by setting {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanHover ListGrid.canHover} to false.
      *
      * @param showHover New showHover value. Default value is null
      * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
@@ -3996,10 +4058,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
     /**
      * Whether to show hovers for this field.  The default hover will be the contents of the cell the user is hovering over,
      * and can be customized via {@link com.smartgwt.client.widgets.grid.ListGridField#hoverHTML field.hoverHTML()}. <P> {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getCanHover ListGrid.canHover} can be set to true to cause hovers to be shown
-     * for all fields by default.  In this case, <code>field.showHover</code> can be set to false to suppress hovers for an
-     * individual field. <P> All hovers can be disabled, regardless of other settings, by setting {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getShowHover ListGrid.showHover} to false.
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowHover ListGrid.showHover} can be set to true to cause hovers to be
+     * shown for all fields by default.  In this case, <code>field.showHover</code> can be set to false to suppress hovers for
+     * an individual field. <P> All hovers can be disabled, regardless of other settings, by setting {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanHover ListGrid.canHover} to false.
      *
      * @return Current showHover value. Default value is null
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_value_hover" target="examples">Value hover tips Example</a>
@@ -4013,7 +4075,6 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * When set to true and showHover is also true for the field, shows a widget hovering at  the mouse point. <P> A number of
      * builtin modes are provided - see {@link com.smartgwt.client.types.HoverMode}. <P> Also supported at the {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getShowHoverComponents ListGrid-level}.
-     * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showHoverComponents New showHoverComponents value. Default value is null
      * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
@@ -4978,6 +5039,39 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
         return (ListGridField)setAttribute("valueMap", valueMap);
     }
     
+
+    /**
+     * Criteria to be evaluated to determine whether this field should be visible. <P> This criteria is dynamic and will be
+     * renterpreted each time the rule context changes. Note that calling {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#showField ListGrid.showField()} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#hideField ListGrid.hideField()} explicitly will cause any visibleWhen
+     * attribute to be dropped.
+     *
+     * @param visibleWhen New visibleWhen value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.RuleCriteria RuleCriteria overview and related methods
+     */
+    public ListGridField setVisibleWhen(Criteria visibleWhen) {
+        if (visibleWhen instanceof Criterion) {
+            visibleWhen.setAttribute("_constructor", "AdvancedCriteria");
+        }
+        return (ListGridField)setAttribute("visibleWhen", visibleWhen == null ? null : visibleWhen.getJsObj());
+    }
+
+    /**
+     * Criteria to be evaluated to determine whether this field should be visible. <P> This criteria is dynamic and will be
+     * renterpreted each time the rule context changes. Note that calling {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#showField ListGrid.showField()} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#hideField ListGrid.hideField()} explicitly will cause any visibleWhen
+     * attribute to be dropped.
+     *
+     * @return Current visibleWhen value. Default value is null
+     * @see com.smartgwt.client.docs.RuleCriteria RuleCriteria overview and related methods
+     */
+    public Criteria getVisibleWhen()  {
+        return new Criteria(getAttributeAsJavaScriptObject("visibleWhen"));
+    }
+    
     
 
     /**
@@ -5197,7 +5291,7 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
             }));
         obj.recordClick = 
             function () {
-                var param = {"_this": this, "viewer" : arguments[0], "record" : arguments[1], "recordNum" : arguments[2], "field" : arguments[3], "fieldNum" : arguments[4], "value" : arguments[5], "rawValue" : arguments[6]};
+                var param = {"_this": this, "viewer" : arguments[0], "record" : arguments[1], "recordNum" : arguments[2], "field" : arguments[3], "fieldNum" : arguments[4], "value" : arguments[5], "rawValue" : arguments[6], "editedRecord" : arguments[7]};
                 return recordClick(param) == true;
             }
         ;

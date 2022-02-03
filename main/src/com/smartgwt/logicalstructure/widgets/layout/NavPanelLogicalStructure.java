@@ -6,6 +6,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
@@ -48,8 +49,10 @@ import com.smartgwt.logicalstructure.widgets.drawing.*;
 public class NavPanelLogicalStructure extends SplitPaneLogicalStructure {
     public NavItem currentItem;
     public String currentItemId;
+    public String deckStyle;
     public String defaultToFirstItem;
     public String headerStyle;
     public String isTree;
+    public String navItemBaseStyle;
     public NavItem[] navItems;
 }

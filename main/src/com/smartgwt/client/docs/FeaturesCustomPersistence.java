@@ -67,10 +67,10 @@ package com.smartgwt.client.docs;
  * operation can simply return a <code>Collection</code> of Java beans; the Smart GWT Server
  * framework would  transparently handle converting this into a matching Javascript structure. <a
  * href="http://www.smartclient.com/smartgwtee/showcase/#master_detail_batch"
- * target="examples">Saving nested objects example</a> <p> <b>Visual Builder:</b> The DataSource
- * Wizards in Visual Builder are pluggable; we provide wizards for SQL and Hibernate DataSources,
- * and it is easy to write a new wizard to integrate  your custom DataSource into Visual Builder. 
- * <a href="http://www.smartclient.com/smartgwtee/showcase/#tools_ds_wizard" target="examples">SQL
+ * target="examples">Saving nested objects example</a> <p> <b>Reify:</b> The DataSource Wizards in
+ * Reify are pluggable; we provide wizards for SQL and Hibernate DataSources, and it is easy to
+ * write a new wizard to integrate your custom DataSource into Reify.  <a
+ * href="http://www.smartclient.com/smartgwtee/showcase/#tools_ds_wizard" target="examples">SQL
  * Wizard screenshots</a>, <a
  * href="http://www.smartclient.com/smartgwtee/showcase/#hibernate_wizard"
  * target="examples">Hibernate Wizard screenshots</a> <p> <b>Batch DataSource Generator:</b> If

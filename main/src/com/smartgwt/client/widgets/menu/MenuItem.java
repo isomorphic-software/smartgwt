@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -427,6 +432,34 @@ public class MenuItem extends ListGridRecord implements com.smartgwt.client.widg
     
 
     /**
+     * Default {@link com.smartgwt.client.widgets.menu.Menu#getItemHiddenProperty Menu.itemHiddenProperty} for menu items. If
+     * true, this item will be hidden wihin the menu by default. <p> To update item visibility at runtime, call {@link
+     * com.smartgwt.client.widgets.menu.Menu#setItemHidden Menu.setItemHidden()}
+     *
+     * @param hidden New hidden value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.MenuItem MenuItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.menu.Menu#setFilterHiddenItems
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
+     */
+    public MenuItem setHidden(Boolean hidden) {
+        return (MenuItem)setAttribute("hidden", hidden);
+    }
+
+    /**
+     * Default {@link com.smartgwt.client.widgets.menu.Menu#getItemHiddenProperty Menu.itemHiddenProperty} for menu items. If
+     * true, this item will be hidden wihin the menu by default. <p> To update item visibility at runtime, call {@link
+     * com.smartgwt.client.widgets.menu.Menu#setItemHidden Menu.setItemHidden()}
+     *
+     * @return Current hidden value. Default value is null
+     * @see com.smartgwt.client.widgets.menu.Menu#getFilterHiddenItems
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
+     */
+    public Boolean getHidden()  {
+        return getAttributeAsBoolean("hidden", true);
+    }
+    
+
+    /**
      * The filename for this item's custom icon. If both this property and {@link
      * com.smartgwt.client.widgets.menu.MenuItem#getChecked checked} are both specified, only the icon specified by this
      * property will be displayed. The path to the loaded skin directory and the skinImgDir are prepended to this filename to
@@ -607,6 +640,37 @@ public class MenuItem extends ListGridRecord implements com.smartgwt.client.widg
      */
     public String getTitle()  {
         return getAttributeAsString("title");
+    }
+    
+
+    /**
+     * Criteria to be evaluated to determine whether this MenuItem should be visible.  Re-evaluated each time the menu is
+     * shown. <P> A basic criteria uses textMatchStyle:"exact". When specified in {@link com.smartgwt.client.docs.ComponentXML
+     * Component XML} this property allows {@link com.smartgwt.client.docs.XmlCriteriaShorthand shorthand formats} for defining
+     * criteria.
+     *
+     * @param visibleWhen New visibleWhen value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.MenuItem MenuItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.RuleCriteria RuleCriteria overview and related methods
+     */
+    public MenuItem setVisibleWhen(AdvancedCriteria visibleWhen) {
+        if (visibleWhen instanceof Criterion) {
+            visibleWhen.setAttribute("_constructor", "AdvancedCriteria");
+        }
+        return (MenuItem)setAttribute("visibleWhen", visibleWhen == null ? null : visibleWhen.getJsObj());
+    }
+
+    /**
+     * Criteria to be evaluated to determine whether this MenuItem should be visible.  Re-evaluated each time the menu is
+     * shown. <P> A basic criteria uses textMatchStyle:"exact". When specified in {@link com.smartgwt.client.docs.ComponentXML
+     * Component XML} this property allows {@link com.smartgwt.client.docs.XmlCriteriaShorthand shorthand formats} for defining
+     * criteria.
+     *
+     * @return Current visibleWhen value. Default value is null
+     * @see com.smartgwt.client.docs.RuleCriteria RuleCriteria overview and related methods
+     */
+    public AdvancedCriteria getVisibleWhen()  {
+        return new AdvancedCriteria(getAttributeAsJavaScriptObject("visibleWhen"));
     }
     
 

@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,11 +100,12 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * A DataView coordinates the asynchronous loading of WSDL WebService and XML Schema definitions in applications created by
- * Visual Builder. <p> For applications that do not use WSDL Web Services and were not created by Visual Builder, DataView
- * is equivalent to it's superclass {@link com.smartgwt.client.widgets.layout.VLayout}.
+ * Reify. <p> For applications that do not use WSDL Web Services and were not created by Reify, DataView is equivalent to
+ * it's superclass {@link com.smartgwt.client.widgets.layout.VLayout}.
  */
 @BeanFactory.FrameworkClass
 @BeanFactory.ScClassName("DataView")
@@ -174,6 +180,34 @@ public class DataView extends VLayout {
 
     // ********************* Properties / Attributes ***********************
 
+    /**
+     * Minimum size, in pixels, below which flexible-sized members should never be shrunk, even if this requires the Layout to
+     * overflow.  Note that this property only applies along the <i>length</i> axis of the Layout, and has no affect on
+     * <i>breadth</i>. <p> Does not apply to members given a fixed size in pixels - such members will never be shrunk below
+     * their specified size in general.
+     *
+     * @param minMemberLength New minMemberLength value. Default value is 18
+     * @return {@link com.smartgwt.client.widgets.layout.DataView DataView} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.Canvas#setMinWidth
+     */
+    public DataView setMinMemberLength(int minMemberLength) {
+        return (DataView)setAttribute("minMemberLength", minMemberLength, true);
+    }
+
+    /**
+     * Minimum size, in pixels, below which flexible-sized members should never be shrunk, even if this requires the Layout to
+     * overflow.  Note that this property only applies along the <i>length</i> axis of the Layout, and has no affect on
+     * <i>breadth</i>. <p> Does not apply to members given a fixed size in pixels - such members will never be shrunk below
+     * their specified size in general.
+     *
+     * @return Current minMemberLength value. Default value is 18
+     * @see com.smartgwt.client.widgets.Canvas#getMinWidth
+     */
+    public int getMinMemberLength()  {
+        return getAttributeAsInt("minMemberLength");
+    }
+    
+
     // ********************* Methods ***********************
 	/**
      * Executed when the dataView has loaded all dependencies (such as DataSources or WebServices). No default implementation.
@@ -226,6 +260,11 @@ public class DataView extends VLayout {
      */
     public LogicalStructureObject setLogicalStructure(DataViewLogicalStructure s) {
         super.setLogicalStructure(s);
+        try {
+            s.minMemberLength = getAttributeAsString("minMemberLength");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DataView.minMemberLength:" + t.getMessage() + "\n";
+        }
         return s;
     }
 

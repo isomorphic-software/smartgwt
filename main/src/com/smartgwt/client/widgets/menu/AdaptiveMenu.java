@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * A menu that can either show its menu options inline, or show them via a drop-down, depending on available space in the
@@ -279,7 +285,7 @@ public class AdaptiveMenu extends Layout {
      * MultiAutoChild used to create inline menu items for menu items that have a submenu. <p> The {@link
      * com.smartgwt.client.widgets.menu.MenuItem#getIcon MenuItem.icon} and {@link
      * com.smartgwt.client.widgets.menu.MenuItem#getTitle MenuItem.title} will be rendered via {@link
-     * com.smartgwt.client.widgets.IconButton#getIcon IconButton.icon} and {@link com.smartgwt.client.widgets.Button#getTitle
+     * com.smartgwt.client.widgets.RibbonButton#getIcon IconButton.icon} and {@link com.smartgwt.client.widgets.Button#getTitle
      * Button.title} respectively; other {@link com.smartgwt.client.widgets.menu.MenuItem} appearance-related properties do not
      * apply.
      *
@@ -417,8 +423,10 @@ public class AdaptiveMenu extends Layout {
     
 
     /**
-     * Whether the AdaptiveMenu should show some menu items inline as soon as there is enough space, or should strictly switch
-     * between showing
+     * If there is not enough space to show the full set of items as buttons inline, how should the Adaptive menu behave?<br>
+     * If <code>showPartialInlining</code> is true, the menu will render as many items as inline buttons as can be shown in the
+     * available space, plus the menu button to  access the remaining items.<br> If false, it will show just the menu button.
+     * <P> If there is enough space to show the full set of items inline they will be shown inline regardless of this property.
      *
      * @param partialInlining New partialInlining value. Default value is true
      * @return {@link com.smartgwt.client.widgets.menu.AdaptiveMenu AdaptiveMenu} instance, for chaining setter calls
@@ -428,8 +436,10 @@ public class AdaptiveMenu extends Layout {
     }
 
     /**
-     * Whether the AdaptiveMenu should show some menu items inline as soon as there is enough space, or should strictly switch
-     * between showing
+     * If there is not enough space to show the full set of items as buttons inline, how should the Adaptive menu behave?<br>
+     * If <code>showPartialInlining</code> is true, the menu will render as many items as inline buttons as can be shown in the
+     * available space, plus the menu button to  access the remaining items.<br> If false, it will show just the menu button.
+     * <P> If there is enough space to show the full set of items inline they will be shown inline regardless of this property.
      *
      * @return Current partialInlining value. Default value is true
      */

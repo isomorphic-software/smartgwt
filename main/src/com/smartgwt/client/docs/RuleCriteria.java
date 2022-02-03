@@ -18,10 +18,14 @@ package com.smartgwt.client.docs;
  * <li>Date values are compared as a logical date - without time part       (see {@link
  * com.smartgwt.client.util.DateUtil#compareLogicalDates DateUtil.compareLogicalDates()})  
  * <li>All other values are compared using the JavaScript <code>==</code> operator </ul>
- * @see com.smartgwt.client.widgets.tab.Tab#getEnableWhen
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getVisibleWhen
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getEnableWhen
+ * @see com.smartgwt.client.widgets.menu.MenuItem#getEnableWhen
+ * @see com.smartgwt.client.widgets.menu.MenuItem#getVisibleWhen
  * @see com.smartgwt.client.widgets.Canvas#getVisibleWhen
  * @see com.smartgwt.client.widgets.Canvas#getEnableWhen
- * @see com.smartgwt.client.widgets.menu.MenuItem#getEnableWhen
+ * @see com.smartgwt.client.widgets.tab.Tab#getVisibleWhen
+ * @see com.smartgwt.client.widgets.tab.Tab#getEnableWhen
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getRequiredWhen
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getVisibleWhen
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyWhen

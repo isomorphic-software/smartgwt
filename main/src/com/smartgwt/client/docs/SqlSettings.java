@@ -86,7 +86,13 @@ package com.smartgwt.client.docs;
  *  should be instantiated by Smart GWT Server<br>
  *  <b>driverManager</b> - the driver is an instance of <code>java.sql.DriverManager</code><br>
  *  <b>jndi</b> - the driver is an instance of <code>javax.sql.DataSource</code> and should be 
- *  looked up using JNDI<p>
+ *  looked up using JNDI<br>
+ *  <b>spring</b> - the driver is an instance of <code>javax.sql.DataSource</code> and should
+ *  be obtained from the Spring context using bean id defined in
+ *  <code>sql.MyDatabase.spring.dataSourceBean</code> setting. For example:<br>
+ *  <i>sql.MyDatabase.database.type: mysql</i><br>
+ *  <i>sql.MyDatabase.interface.type: spring</i><br>
+ *  <i>sql.MyDatabase.spring.dataSourceBean: springDataSourceBeanId</i><p>
  *  <code><b>sql.MyDatabase.driver.url</b></code><br>
  *  For configurations where <code>sql.MyDatabase.interface.type</code> is "driverManager", 
  *  this property allows you to manually enter the URL we use to connect to the database.  If 
@@ -106,7 +112,8 @@ package com.smartgwt.client.docs;
  * <code>com.mysql.jdbc.jdbc2.optional.MysqlDataSource</code>,
  *  setting <code>sql.MyDatabase.driver.useUnicode</code> to true means we'll attempt to call 
  *  <code>setUseUnicode(true)</code> on this class.  This would have exactly the same effect as
- *  defining the connection URL manually and specifying the parameter <code>useUnicode=true</code>
+ * defining the connection URL manually and specifying the parameter
+ * <code>useUnicode=true</code>.<p>
  * 
  *  Mysql vs MariaDB: there is broad compatibility between these two databases as described in
  * <a href='https://mariadb.com/kb/en/library/mariadb-vs-mysql-compatibility/'
@@ -118,13 +125,74 @@ package com.smartgwt.client.docs;
  *  that as MariaDB implements new features and backompat breaking changes, your application won't
  * run into any gotchas because the Smart GWT server logic will automatically use the right
  * feature
- *  set to accomplish documented behavior.
+ *  set to accomplish documented behavior.<p>
  * 
  *  <h4>Smartclient properties</h4><p>
+ *  <b><code>sql.mysql.optimizeCaseSensitivityCriteria</code></b><br>
+ * <i>This setting affects all <b>MySQL</b> connectors.</i> Depending on {@link
+ * com.smartgwt.client.types.TextMatchStyle textMatchStyle} case
+ * sensitivity in text criteria is achieved by using LIKE BINARY sql comparison operator, which
+ * does not
+ * use indexed search. Indexes are used with regular "=" comparison operator, which does not
+ * ensure case
+ * sensitivity. With big amounts of data indexes are critical, so in order to use them and still
+ * have
+ *  case sensitivity supported this setting must be set to <code>true</code>.
+ *  This way we would generate comparison expression like:<br>
+ *  <code>&lt;field&gt; = &lt;value&gt; AND &lt;field&gt; LIKE BINARY &lt;value&gt;</code><br>
+ * where first part ensures efficient indexed search and second part adds case sensitivity to
+ * significantly
+ * reduced amounts of data. This would be more efficient without indexes as well, cause LIKE
+ * BINARY
+ *  conversion would be performed on less rows anyway.
+ *  <p>
+ *  <b><code>sql.MyDatabase.useHavingClause</code></b><br>
+ *  By default SQL query is generated using traditional "having" clause approach:
+ *  <pre>select <i>&lt;selectClause&gt;</i> from ... where ... group by <i>&lt;groupClause&gt;</i> <b>having <i>&lt;groupWhereClause&gt;</i></b></pre>
+ * Setting <code>sql.MyDatabase.useHavingClause</code> to <code>false</code> makes SQL query use
+ * subselect approach
+ *  when main query becomes subselect and then it is filtered in outer "where" clause:
+ *  <pre><b>select * from (</b>select <i>&lt;selectClause&gt;</i> from ... where ... group by <i>&lt;groupClause&gt;</i><b>) work where <i>&lt;groupWhereClause&gt;</i></b></pre>
+ * This may be overridden by setting {@link
+ * com.smartgwt.client.docs.serverds.OperationBinding#useHavingClause
+ * OperationBinding.useHavingClause}.
+ *  <p>
+ * <b><code>sql.forceInsensitivity</code> and
+ * <code>sql.MyDatabase.forceInsensitivity</code></b><br>
+ * These properties control {@link com.smartgwt.client.types.OperatorId iContains} case
+ * insensitive operator behavior.
+ *  Set to <code>true</code> to force case insensitivity (see below) or <code>false</code> to rely
+ *  on database <code>LIKE</code> operator directly. At the database level <code>iContains</code>
+ *  comparison is performed by <code>LIKE</code> operator which may be case sensitive or case
+ *  insensitive depending on the database or its configuration. For databases with case sensitive
+ * <code>LIKE</code> operator we are forcing case insensitivity by changing case on both
+ * comparison
+ *  expression sides:
+ *  <p/>
+ *  <code> LOWER(table.column) LIKE LOWER('%Value%') </code>
+ *  <p/>
+ * This approach has a downside of not using indexes, which is not efficient with big amounts of
+ * data.
+ * So, it is recommended to use direct <code>LIKE</code> comparison when possible, which
+ * Smartclient
+ * does by default for SQL Server and MySQL drivers, since their <code>LIKE</code> is case
+ * insensitive
+ * by default. Although it may depend on DB setup, for example in SQL Server it is controlled via
+ * database
+ * collation. So, configure accordingly to the database setup you're using, which can be done via:
+ *  <ul>
+ *  <li/> system-wide <code>sql.forceInsensitive</code> property in server.properties
+ *  <li/> Database config specific <code>sql.MyDatabase.forceInsensitive</code> property in
+ *  server.properties
+ * <li/> {@link com.smartgwt.client.docs.serverds.DataSourceField#sqlForceInsensitive
+ * DataSourceField.sqlForceInsensitive} property for individual fields
+ *  </ul>
+ *  <p>
  *  <b><code>sql.aliasLengthLimit</code> and <code>sql.MyDatabase.aliasLengthLimit</code></b><br>
  *  These properties override the default table alias length limit when using features like
- * {@link com.smartgwt.client.docs.serverds.DataSourceField#includeVia
- * DataSourceField.includeVia}.
+ * {@link com.smartgwt.client.docs.serverds.DataSourceField#includeVia DataSourceField.includeVia}
+ * and {@link com.smartgwt.client.docs.serverds.DataSourceField#otherFKs
+ * DataSourceField.otherFKs}.
  *  Default alias length limit is set accordingly to the documentation for supported databases
  *  and defaults to 128 characters, except these databases:<p>
  *  <table style="font-size:10px">
@@ -139,6 +207,7 @@ package com.smartgwt.client.docs;
  * the lowest supported value. Use global setting <code>sql.aliasLengthLimit</code> to apply limit
  *  across all DB drivers, or use DB specific setting <code>sql.MyDatabase.aliasLengthLimit</code>
  *  (overrides the global one).
+ * @see com.smartgwt.client.docs.serverds.DataSourceField#sqlForceInsensitive
  */
 public interface SqlSettings {
 }

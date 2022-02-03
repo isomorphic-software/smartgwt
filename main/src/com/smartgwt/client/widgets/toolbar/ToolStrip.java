@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * Base class for creating toolstrips like those found in browsers and office applications: a mixed set of controls
@@ -204,56 +210,6 @@ public class ToolStrip extends Layout {
     
     
     
-
-    /**
-     * If set, this attribute affects the alignment of the titles in  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup
-     * ToolStripGroups}.  You can override this at the  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getTitleAlign
-     * individual ToolStripGroup} level.
-     *
-     * @param groupTitleAlign New groupTitleAlign value. Default value is "center"
-     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStrip ToolStrip} instance, for chaining setter calls
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public ToolStrip setGroupTitleAlign(Alignment groupTitleAlign)  throws IllegalStateException {
-        return (ToolStrip)setAttribute("groupTitleAlign", groupTitleAlign == null ? null : groupTitleAlign.getValue(), false);
-    }
-
-    /**
-     * If set, this attribute affects the alignment of the titles in  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup
-     * ToolStripGroups}.  You can override this at the  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getTitleAlign
-     * individual ToolStripGroup} level.
-     *
-     * @return Current groupTitleAlign value. Default value is "center"
-     */
-    public Alignment getGroupTitleAlign()  {
-        return EnumUtil.getEnum(Alignment.values(), getAttribute("groupTitleAlign"));
-    }
-    
-
-    /**
-     * If set, this attribute affects the orientation of the titles in  {@link
-     * com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroups}.  You can override this at the  {@link
-     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#getTitleAlign individual ToolStripGroup} level.
-     *
-     * @param groupTitleOrientation New groupTitleOrientation value. Default value is "top"
-     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStrip ToolStrip} instance, for chaining setter calls
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public ToolStrip setGroupTitleOrientation(VerticalAlignment groupTitleOrientation)  throws IllegalStateException {
-        return (ToolStrip)setAttribute("groupTitleOrientation", groupTitleOrientation == null ? null : groupTitleOrientation.getValue(), false);
-    }
-
-    /**
-     * If set, this attribute affects the orientation of the titles in  {@link
-     * com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroups}.  You can override this at the  {@link
-     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#getTitleAlign individual ToolStripGroup} level.
-     *
-     * @return Current groupTitleOrientation value. Default value is "top"
-     */
-    public VerticalAlignment getGroupTitleOrientation()  {
-        return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("groupTitleOrientation"));
-    }
-    
     
     
 
@@ -341,32 +297,6 @@ public class ToolStrip extends Layout {
      */
     public int getSeparatorSize()  {
         return getAttributeAsInt("separatorSize");
-    }
-    
-
-    /**
-     * If set, this attribute affects whether {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroups} in
-     * this ToolStrip show their header control.  You can override this at the  {@link
-     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#setShowTitle individual ToolStripGroup} level.
-     *
-     * @param showGroupTitle New showGroupTitle value. Default value is true
-     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStrip ToolStrip} instance, for chaining setter calls
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public ToolStrip setShowGroupTitle(Boolean showGroupTitle)  throws IllegalStateException {
-        return (ToolStrip)setAttribute("showGroupTitle", showGroupTitle, false);
-    }
-
-    /**
-     * If set, this attribute affects whether {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroups} in
-     * this ToolStrip show their header control.  You can override this at the  {@link
-     * com.smartgwt.client.widgets.toolbar.ToolStripGroup#setShowTitle individual ToolStripGroup} level.
-     *
-     * @return Current showGroupTitle value. Default value is true
-     */
-    public Boolean getShowGroupTitle()  {
-        Boolean result = getAttributeAsBoolean("showGroupTitle");
-        return result == null ? true : result;
     }
     
 
@@ -498,13 +428,16 @@ public class ToolStrip extends Layout {
      * @param formItem the formItem
      */
     public void addFormItem(FormItem formItem) {
+        addMember(createWrapperForm(formItem));
+    }
+    private DynamicForm createWrapperForm(FormItem formItem) {
         DynamicForm dynamicForm = new DynamicForm();
-        dynamicForm.setCellPadding(3);
-        dynamicForm.setMinWidth(50);
-        dynamicForm.setNumCols(1);
+        dynamicForm.setNumCols(2);
+        dynamicForm.setWidth(1);
+        dynamicForm.setHeight(1);
         dynamicForm.setFields(formItem);
-        applyWidth(dynamicForm.getConfig(), formItem.getJsObj());
-        addMember(dynamicForm);
+
+        return dynamicForm;
     }
 
     /**
@@ -515,19 +448,8 @@ public class ToolStrip extends Layout {
      *                  the last position
      */
     public void addFormItem(FormItem formItem, int position) {
-        DynamicForm dynamicForm = new DynamicForm();
-        dynamicForm.setCellPadding(3);
-        dynamicForm.setMinWidth(50);
-        dynamicForm.setNumCols(1);
-        dynamicForm.setFields(formItem);
-        applyWidth(dynamicForm.getConfig(), formItem.getJsObj());
-        addMember(dynamicForm, position);
+        addMember(createWrapperForm(formItem), position);
     }
-
-    //set the width of the form to match that of the form item. using native method because width can be int or String
-    private static native void applyWidth(JavaScriptObject formJS, JavaScriptObject itemJS)/*-{
-        formJS.width = itemJS.width;
-    }-*/;
 
     /**
      * Add a button to the ToolStrip.
@@ -649,16 +571,6 @@ public class ToolStrip extends Layout {
     public LogicalStructureObject setLogicalStructure(ToolStripLogicalStructure s) {
         super.setLogicalStructure(s);
         try {
-            s.groupTitleAlign = getAttributeAsString("groupTitleAlign");
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "ToolStrip.groupTitleAlign:" + t.getMessage() + "\n";
-        }
-        try {
-            s.groupTitleOrientation = getAttributeAsString("groupTitleOrientation");
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "ToolStrip.groupTitleOrientation:" + t.getMessage() + "\n";
-        }
-        try {
             s.resizeBarClass = getAttributeAsString("resizeBarClass");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ToolStrip.resizeBarClass:" + t.getMessage() + "\n";
@@ -677,11 +589,6 @@ public class ToolStrip extends Layout {
             s.separatorSize = getAttributeAsString("separatorSize");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ToolStrip.separatorSize:" + t.getMessage() + "\n";
-        }
-        try {
-            s.showGroupTitle = getAttributeAsString("showGroupTitle");
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "ToolStrip.showGroupTitle:" + t.getMessage() + "\n";
         }
         try {
             s.styleName = getAttributeAsString("styleName");

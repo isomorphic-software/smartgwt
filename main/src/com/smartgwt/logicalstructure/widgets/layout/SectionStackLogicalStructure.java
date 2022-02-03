@@ -6,6 +6,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
@@ -47,11 +48,15 @@ import com.smartgwt.logicalstructure.widgets.drawing.*;
 
 public class SectionStackLogicalStructure extends VLayoutLogicalStructure {
     public String animateSections;
+    public String canCloseSections;
     public String canCollapseAll;
     public String canDropComponents;
     public String canReorderSections;
     public String canResizeSections;
     public String canTabToHeaders;
+    public String closeSectionButtonConstructor;
+    public String closeSectionIcon;
+    public String closeSectionIconSize;
     public String editProxyConstructor;
     public String headerHeight;
     public String itemEndIndent;

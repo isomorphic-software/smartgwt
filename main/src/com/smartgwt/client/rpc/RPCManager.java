@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -237,12 +242,12 @@ public class RPCManager {
     /** 
      * By default Smart GWT will show a warning message on attempted requests to another domain as this is usually not
      * supported at the browser level by default due to  security considerations. <P> Some browsers now do support cross domain
-     * requests through the use of Http Access Control headers (See the <a href='http://www.w3.org/TR/cors/'
-     * target='_blank'>W3C Cross-Origin Resource Sharing recommendation</a>). If your application intends to rely on this
-     * behavior to perform cross-domain requests,  you can set <code>allowCrossDomainCalls</code> to true to disable the
-     * standard Smart GWT  warning when such calls occur. <P> Note also that this is typically not an issue if you are using
-     * the Smart GWT server  (part of Pro, Power and Enterprise editions of Smart GWT), as this includes the  {@link
-     * com.smartgwt.client.rpc.RPCManager#sendProxied HTTPProxy servlet}.
+     * requests through the use of Http Access Control headers (See the <a
+     * href='https://fetch.spec.whatwg.org/#http-cors-protocol' target='_blank'>W3C Cross-Origin Resource Sharing
+     * recommendation</a>). If your application intends to rely on this behavior to perform cross-domain requests,  you can set
+     * <code>allowCrossDomainCalls</code> to true to disable the standard Smart GWT  warning when such calls occur. <P> Note
+     * also that this is typically not an issue if you are using the Smart GWT server  (part of Pro, Power and Enterprise
+     * editions of Smart GWT), as this includes the  {@link com.smartgwt.client.rpc.RPCManager#sendProxied HTTPProxy servlet}.
      *
      * @param allowCrossDomainCalls new allowCrossDomainCalls.  Default value is false.
      */
@@ -536,12 +541,12 @@ public class RPCManager {
      * substitution configuration} to change what classes are used to construct widgets, or subsitute existing widgets for
      * those to be constructed, by widget ID.
      * @param screenName name of the screen to create
-     * @param globals widgets to allow to take their                                                      global IDs, or a widget remap config
+     * @param settings widgets to allow to take their                                                      global IDs, or a widget remap config
      *
      * @return last top-level widget in the screen definition
      */
-    public static native Canvas createScreen(String screenName, String[] globals) /*-{
-        var ret = $wnd.isc.RPCManager.createScreen(screenName, @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(globals));
+    public static native Canvas createScreen(String screenName, CreateScreenSettings settings) /*-{
+        var ret = $wnd.isc.RPCManager.createScreen(screenName, settings == null ? null : settings.@com.smartgwt.client.core.DataClass::getJsObj()());
         return @com.smartgwt.client.widgets.Canvas::getByJSObject(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 	
@@ -732,6 +737,42 @@ public class RPCManager {
 
 
 	/**
+     * Convenience method that returns a message describing the error for a failed call to {@link
+     * com.smartgwt.client.rpc.RPCManager#loadProject loadProject()}.  Calls {@link
+     * com.smartgwt.client.rpc.RPCManager#getLoadProjectErrorStatus getLoadProjectErrorStatus()}.
+     * @param rpcResponse server response
+     *
+     * @return the error message (null if no error)
+     */
+    public static native String getLoadProjectErrorMessage(RPCResponse rpcResponse) /*-{
+        var ret = $wnd.isc.RPCManager.getLoadProjectErrorMessage(rpcResponse.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return ret;
+    }-*/;
+
+
+	/**
+     * Convenience method that returns the error status for a failed call to {@link
+     * com.smartgwt.client.rpc.RPCManager#loadProject loadProject()}.  Applies the following rules:<ul> <li>reports
+     * "badCredentials" if the {@link com.smartgwt.client.rpc.RPCResponse#getStatus RPCResponse.status} is
+     * <code>STATUS_LOGIN_REQUIRED</code> or <code>STATUS_LOGIN_INCORRECT</code> <li>reports "timeout" if the {@link
+     * com.smartgwt.client.rpc.RPCResponse#getStatus RPCResponse.status} is <code>STATUS_SERVER_TIMEOUT</code> <li>reports
+     * "noResponseFromURL" if the {@link com.smartgwt.client.rpc.RPCResponse#getHttpResponseCode RPCResponse.httpResponseCode}
+     * is 0 <li>reports "badReifyServerURL" if the {@link com.smartgwt.client.rpc.RPCResponse#getHttpResponseCode
+     * RPCResponse.httpResponseCode} is 404 or another code representing a transport error, such as 408 or 503 <li>reports
+     * "projectNotFound" if the {@link com.smartgwt.client.rpc.RPCResponse#getHttpResponseCode RPCResponse.httpResponseCode} is
+     * 500 and the {@link com.smartgwt.client.rpc.RPCResponse#getHttpResponseText RPCResponse.httpResponseText} contains the
+     * string "Unable to load any of the projects" <li>otherwise reports "servletError"</ul>
+     * @param rpcResponse server response
+     *
+     * @return the error status (null if no error)
+     */
+    public static native String getLoadProjectErrorStatus(RPCResponse rpcResponse) /*-{
+        var ret = $wnd.isc.RPCManager.getLoadProjectErrorStatus(rpcResponse.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return ret;
+    }-*/;
+
+
+	/**
      * Returns the id of the current transaction (a queue of requests). <P> This method will return null if no requests are
      * currently queued, even if {@link com.smartgwt.client.rpc.RPCManager#startQueue startQueue()} has been called.
      *
@@ -804,9 +845,10 @@ public class RPCManager {
 
 	/**
      * Returns true if a screen with the given name has already been cached by a call to  {@link
-     * com.smartgwt.client.rpc.RPCManager#cacheScreens cacheScreens()} (or {@link
+     * com.smartgwt.client.rpc.RPCManager#cacheScreens cacheScreens()} or similar (e.g. {@link
      * com.smartgwt.client.rpc.RPCManager#loadProject loadProject()}), false otherwise.
      * @param screenName name of the screen
+     * @see com.smartgwt.client.rpc.LoadScreenSettings#getCacheScreen
      */
     public static native void isScreenCached(String screenName) /*-{
         $wnd.isc.RPCManager.isScreenCached(screenName);
@@ -815,16 +857,31 @@ public class RPCManager {
 
 	/**
      * Loads projects using the {@link com.smartgwt.client.docs.ServletDetails ProjectLoaderServlet}, reachable at  {@link
-     * com.smartgwt.client.rpc.RPCManager#projectLoaderURL projectLoaderURL}, and fires the given callback after screens have
-     * been   {@link com.smartgwt.client.rpc.RPCManager#cacheScreens cached}.
-     * @param projectNames Comma separated string containing the names of project/s to load.
-     * @param callback callback for notification of completion of project/s loaded and screens cached.
-     * @param settings Settings applicable to the loadProject operation.
+     * com.smartgwt.client.rpc.RPCManager#projectLoaderURL projectLoaderURL}, and fires the given callback after the project
+     * has been cached.  When a project is loaded, all of its DataSources and screens (except where explicitly overridden by
+     * settings) are also cached in the project. <p> Loading of a project merely caches DataSources and screens.  No screens
+     * are created automatically.  To create a screen, you must call {@link com.smartgwt.client.rpc.Project#createScreen
+     * Project.createScreen()} or {@link com.smartgwt.client.rpc.Project#createStartScreen Project.createStartScreen()}, which
+     * will automatically create any DataSource needed by the screen that's not already globally bound.  You can also manually
+     * instantiate and globally bind (if not already bound) a screen DataSource without creating the screen, by calling {@link
+     * com.smartgwt.client.rpc.Project#getDataSource Project.getDataSource()}. <p> Note that any screen cached in a loaded
+     * project will also be bound in the global cache if no screen of that name is present there.  You can create a screen from
+     * the global cache using {@link com.smartgwt.client.rpc.RPCManager#createScreen createScreen()}. <p> When projects are
+     * cached, they're made available via {@link com.smartgwt.client.rpc.Project#get Project.get()}.  To remove a cached
+     * project, and release storage for its cached screens and DataSources, simply call {@link
+     * com.smartgwt.client.rpc.Project#destroy Project.destroy()}.
+     * @param projectNames Comma-separated string containing the names of                                           project(s) to load.
+     * @param callback Callback for notification of completion of                                           project(s) loaded and screens
+     * cached.
+     * @param settings Settings applicable to the loadProject                                           operation.
      */
-    public static native void loadProject(String projectNames, Function callback, LoadProjectSettings settings) /*-{
+    public static native void loadProject(String projectNames, LoadProjectCallback callback, LoadProjectSettings settings) /*-{
         $wnd.isc.RPCManager.loadProject(projectNames, 
-			$entry( function() { 
-				if(callback!=null) callback.@com.smartgwt.client.core.Function::execute()(
+			$entry( function(project, projects, rpcResponse) { 
+				if(callback!=null) callback.@com.smartgwt.client.callbacks.LoadProjectCallback::execute(Lcom/smartgwt/client/rpc/Project;[Lcom/smartgwt/client/rpc/Project;Lcom/smartgwt/client/rpc/RPCResponse;)(
+					project != null ? @com.smartgwt.client.rpc.Project::new(Lcom/google/gwt/core/client/JavaScriptObject;)(project) : null, 
+					projects != null ? @com.smartgwt.client.util.ConvertTo::arrayOfProject(Lcom/google/gwt/core/client/JavaScriptObject;)(projects) : null, 
+					@com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcResponse)
 				);
 			}), settings.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
@@ -871,7 +928,8 @@ public class RPCManager {
         $wnd.isc.RPCManager.addClassProperties({
         	queueSent:
 			$entry( function(response) { 
-				if(callback!=null) callback.@com.smartgwt.client.rpc.QueueSentCallback::queueSent([Lcom/smartgwt/client/rpc/RPCRequest;)(@com.smartgwt.client.util.ConvertTo::arrayOfRPCRequest(Lcom/google/gwt/core/client/JavaScriptObject;)(response)
+				if(callback!=null) callback.@com.smartgwt.client.rpc.QueueSentCallback::queueSent([Lcom/smartgwt/client/rpc/RPCRequest;)(
+					@com.smartgwt.client.util.ConvertTo::arrayOfRPCRequest(Lcom/google/gwt/core/client/JavaScriptObject;)(response)
 				);
 			})
         });
@@ -964,7 +1022,8 @@ public class RPCManager {
     public static native void sendQueue(RPCQueueCallback callback) /*-{
         $wnd.isc.RPCManager.sendQueue(
 			$entry( function(response) { 
-				if(callback!=null) callback.@com.smartgwt.client.rpc.RPCQueueCallback::execute([Lcom/smartgwt/client/rpc/RPCResponse;)(@com.smartgwt.client.util.ConvertTo::arrayOfRPCResponse(Lcom/google/gwt/core/client/JavaScriptObject;)(response)
+				if(callback!=null) callback.@com.smartgwt.client.rpc.RPCQueueCallback::execute([Lcom/smartgwt/client/rpc/RPCResponse;)(
+					@com.smartgwt.client.util.ConvertTo::arrayOfRPCResponse(Lcom/google/gwt/core/client/JavaScriptObject;)(response)
 				);
 			}));
     }-*/;
@@ -1511,7 +1570,7 @@ public class RPCManager {
      * @param callback callback for notification of screen being loaded
      */
     public static void loadScreen(String screenName, LoadScreenCallback callback) {
-        loadScreen(screenName, callback, null, null);
+        loadScreen(screenName, callback, (String[]) null, null);
     }
 
     /**
@@ -1636,6 +1695,33 @@ public class RPCManager {
         }), globalsJ,
         locale, requestPropertiesJ);
     }-*/;
+
+    /**
+     * See {@link loadScreen(String,LoadScreenCallback,String[],String,RPCRequest)}.
+     *   
+     * @param screenName name of the screen to load
+     * @param callback callback for notification of screen being loaded
+     * @param settings customization settings for screen loading process
+     * @param locale the locale name to use to resolve i18n tags in the screen component XML
+     */
+    public static native void loadScreen(String screenName, LoadScreenCallback callback, LoadScreenSettings settings, String locale) /*-{
+        var settingsJ = settings == null ? null : settings.@com.smartgwt.client.core.DataClass::getJsObj()();
+
+        $wnd.isc.RPCManager.loadScreen(screenName, $entry(function (screen,rpcResponse,suppressedGlobals) {
+            if(callback != null) {
+                var screenJ= screen == null ? null : @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)(screen.getClassName(),screen);
+                var responseJ = @com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcResponse);
+                var suppressedGlobalsJ = @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(suppressedGlobals);
+
+				callback.@com.smartgwt.client.rpc.LoadScreenCallback::setSuppressedGlobals(Ljava/util/Map;)(suppressedGlobalsJ);
+				callback.@com.smartgwt.client.rpc.LoadScreenCallback::setRpcResponse(Lcom/smartgwt/client/rpc/RPCResponse;)(responseJ);
+				callback.@com.smartgwt.client.rpc.LoadScreenCallback::setScreen(Lcom/smartgwt/client/widgets/Canvas;)(screenJ);
+
+                callback.@com.smartgwt.client.rpc.LoadScreenCallback::execute()();
+            }
+        }), settingsJ, locale);
+    }-*/;
+
     
     /**
      * ALL_GLOBALS constant used by the {@link com.smartgwt.client.rpc.RPCManager#loadScreen(String, LoadScreenCallback, String[])} API.
@@ -1675,42 +1761,17 @@ public class RPCManager {
 
 
 	/**
-     * Creates a screen previously cached by a call to 
-     * {@link com.smartgwt.client.rpc.RPCManager#cacheScreens cacheScreens()}.
-     * <p> 
-     * As with {@link com.smartgwt.client.rpc.RPCManager#loadScreen loadScreen()}, the default
-     * behavior is to prevent any global widget IDs from being established, the returned Canvas
-     * will be the outermost component of the screen, and that Canvas will provide access to
-     * other widgets in the screen via
-     * {@link com.smartgwt.client.widgets.Canvas#getByLocalId getByLocalId()}
-     * <p> 
-     * Alternatively, as with {@link com.smartgwt.client.rpc.RPCManager#loadScreen loadScreen()},
-     * a list of IDs that should be allowed to become globals can be passed, allowing those
-     * widgets to be retrieved via a call to 
-     * {@link com.smartgwt.client.widgets.Canvas#getById Canvas.getById()} after the screen has
-     * been created. <p> If you do not pass <code>globals</code> and avoid depending on global
-     * IDs within the screen definition itself (for example, by embedding JavaScript event
-     * handlers in the screen definition that use global IDs), you can create the same screen
-     * multiple times.
-     * <p>
-     * Creating a screen may or may not cause it to draw, depending on current global autoDraw
-     * setting 
-     * ({@link com.smartgwt.client.util.isc#setAutoDraw isc.setAutoDraw()}) and any
-     * <code>autoDraw</code> settings in the screen itself.
-     * <p>
-     * Instead of <code>globals</code>, you may instead pass a 
-     * {@link com.smartgwt.client.rpc.CreateScreenSettings substitution configuration}
-     * to change what classes are used to construct widgets, or subsitute existing widgets for
-     * those to be constructed, by widget ID.
+     * See {@link #createScreen(String,com.smartgwt.client.rpc.CreateScreenSettings)}.
      *
      * @param screenName name of the screen to create
      * @param globals widgets to allow to take their global IDs, or a widget remap config
      * @return last top-level widget in the screen definition
      */
-    public static native Canvas createScreen(String screenName, CreateScreenSettings globals) /*-{
-        var ret = $wnd.isc.RPCManager.createScreen(screenName, globals == null ? null : globals.@com.smartgwt.client.core.DataClass::getJsObj()());
+    public static native Canvas createScreen(String screenName, String[] globals) /*-{
+        var ret = $wnd.isc.RPCManager.createScreen(screenName, @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(globals));
         return @com.smartgwt.client.widgets.Canvas::getByJSObject(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
+
 
     /**
      * Converts {@link com.smartgwt.client.widgets.Canvas#getPrintHTML printable HTML} generated from live UI components

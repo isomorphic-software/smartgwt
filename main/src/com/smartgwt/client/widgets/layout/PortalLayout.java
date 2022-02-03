@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
@@ -95,6 +100,7 @@ import com.smartgwt.logicalstructure.widgets.viewer.*;
 import com.smartgwt.logicalstructure.widgets.calendar.*;
 import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
+import com.smartgwt.logicalstructure.widgets.tour.*;
 
 /**
  * A PortalLayout is a special subclass of Layout designed to display {@link com.smartgwt.client.widgets.layout.Portlet}
@@ -183,11 +189,11 @@ public class PortalLayout extends Layout {
 
     /**
      * Are columns in this PortalLayout drag-resizeable? <p> Note that the <u>displayed</u> width of a column will
-     * automatically shrink and stretch to accomodate the width of {@link com.smartgwt.client.widgets.layout.Portlet Portlets}
+     * automatically shrink and stretch to accommodate the width of {@link com.smartgwt.client.widgets.layout.Portlet Portlets}
      * -- see {@link com.smartgwt.client.widgets.layout.PortalLayout#getCanStretchColumnWidths canStretchColumnWidths} and
      * {@link com.smartgwt.client.widgets.layout.PortalLayout#getCanShrinkColumnWidths canShrinkColumnWidths} for an
      * explanation.  This setting affects the <u>intrinsic</u> width of a column -- that is, the width it will try to return to
-     * when not necessary to stretch or shrink to accomodate Portlet widths.
+     * when not necessary to stretch or shrink to accommodate Portlet widths.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Set whether columns in this portalLayout are drag-resizable, and update any drawn columns to reflect this.
@@ -205,11 +211,11 @@ public class PortalLayout extends Layout {
 
     /**
      * Are columns in this PortalLayout drag-resizeable? <p> Note that the <u>displayed</u> width of a column will
-     * automatically shrink and stretch to accomodate the width of {@link com.smartgwt.client.widgets.layout.Portlet Portlets}
+     * automatically shrink and stretch to accommodate the width of {@link com.smartgwt.client.widgets.layout.Portlet Portlets}
      * -- see {@link com.smartgwt.client.widgets.layout.PortalLayout#getCanStretchColumnWidths canStretchColumnWidths} and
      * {@link com.smartgwt.client.widgets.layout.PortalLayout#getCanShrinkColumnWidths canShrinkColumnWidths} for an
      * explanation.  This setting affects the <u>intrinsic</u> width of a column -- that is, the width it will try to return to
-     * when not necessary to stretch or shrink to accomodate Portlet widths.
+     * when not necessary to stretch or shrink to accommodate Portlet widths.
      *
      * @return Current canResizeColumns value. Default value is true
      * @see com.smartgwt.client.widgets.layout.PortalLayout#getCanStretchColumnWidths
@@ -229,11 +235,11 @@ public class PortalLayout extends Layout {
      * the height of Portlets causes a column to overflow, that column will scroll vertically (independent of other columns),
      * depending on the {@link com.smartgwt.client.widgets.layout.PortalLayout#getColumnOverflow columnOverflow} setting. <p>
      * Changing the <b>width</b> of a Portlet will potentially cause columns to stretch and shrink their <u>displayed</u>
-     * widths in order to accomodate the Portlets, depending on the value of {@link
+     * widths in order to accommodate the Portlets, depending on the value of {@link
      * com.smartgwt.client.widgets.layout.PortalLayout#getCanStretchColumnWidths canStretchColumnWidths} and  {@link
      * com.smartgwt.client.widgets.layout.PortalLayout#getCanShrinkColumnWidths canShrinkColumnWidths}. <p> However, the
      * <u>instrinsic</u> width of the columns will remain the same, so that the columns will resume their former widths when no
-     * longer necessary  to stretch or shrink to accomodate the widths of Portlets.  To allow drag-resizing of the intrinsic
+     * longer necessary  to stretch or shrink to accommodate the widths of Portlets.  To allow drag-resizing of the intrinsic
      * width of columns, see {@link com.smartgwt.client.widgets.layout.PortalLayout#getCanResizeColumns canResizeColumns}. <p>
      * The net effect is that (by default) PortalLayouts behave like layouts when Portlet sizes do not cause overflow, but
      * behave more like stacks when overflow occurs.
@@ -260,11 +266,11 @@ public class PortalLayout extends Layout {
      * the height of Portlets causes a column to overflow, that column will scroll vertically (independent of other columns),
      * depending on the {@link com.smartgwt.client.widgets.layout.PortalLayout#getColumnOverflow columnOverflow} setting. <p>
      * Changing the <b>width</b> of a Portlet will potentially cause columns to stretch and shrink their <u>displayed</u>
-     * widths in order to accomodate the Portlets, depending on the value of {@link
+     * widths in order to accommodate the Portlets, depending on the value of {@link
      * com.smartgwt.client.widgets.layout.PortalLayout#getCanStretchColumnWidths canStretchColumnWidths} and  {@link
      * com.smartgwt.client.widgets.layout.PortalLayout#getCanShrinkColumnWidths canShrinkColumnWidths}. <p> However, the
      * <u>instrinsic</u> width of the columns will remain the same, so that the columns will resume their former widths when no
-     * longer necessary  to stretch or shrink to accomodate the widths of Portlets.  To allow drag-resizing of the intrinsic
+     * longer necessary  to stretch or shrink to accommodate the widths of Portlets.  To allow drag-resizing of the intrinsic
      * width of columns, see {@link com.smartgwt.client.widgets.layout.PortalLayout#getCanResizeColumns canResizeColumns}. <p>
      * The net effect is that (by default) PortalLayouts behave like layouts when Portlet sizes do not cause overflow, but
      * behave more like stacks when overflow occurs.
@@ -346,7 +352,7 @@ public class PortalLayout extends Layout {
 
     /**
      * Controls whether the PortalLayout will stretch column widths, if needed to accommodate the width of {@link
-     * com.smartgwt.client.widgets.layout.Portlet Portlets}. If set, columns will overflow their widths in order to accomodate 
+     * com.smartgwt.client.widgets.layout.Portlet Portlets}. If set, columns will overflow their widths in order to accommodate
      * the widths of their Portlets. <p> With the default setting of {@link com.smartgwt.client.types.Overflow}: auto, the
      * PortalLayout as a whole will scroll  horizontally if needed. Depending on the setting of {@link
      * com.smartgwt.client.widgets.layout.PortalLayout#getCanShrinkColumnWidths canShrinkColumnWidths},  other columns may
@@ -370,7 +376,7 @@ public class PortalLayout extends Layout {
 
     /**
      * Controls whether the PortalLayout will stretch column widths, if needed to accommodate the width of {@link
-     * com.smartgwt.client.widgets.layout.Portlet Portlets}. If set, columns will overflow their widths in order to accomodate 
+     * com.smartgwt.client.widgets.layout.Portlet Portlets}. If set, columns will overflow their widths in order to accommodate
      * the widths of their Portlets. <p> With the default setting of {@link com.smartgwt.client.types.Overflow}: auto, the
      * PortalLayout as a whole will scroll  horizontally if needed. Depending on the setting of {@link
      * com.smartgwt.client.widgets.layout.PortalLayout#getCanShrinkColumnWidths canShrinkColumnWidths},  other columns may

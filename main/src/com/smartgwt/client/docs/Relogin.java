@@ -140,6 +140,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.rpc.RPCManager#loginRequiredMarker
  * @see com.smartgwt.client.rpc.RPCManager#loginSuccessMarker
  * @see com.smartgwt.client.rpc.RPCManager#maxLoginAttemptsExceededMarker
+ * @see com.smartgwt.client.rpc.RPCManager#reloginCommFailureMessage
  * @see com.smartgwt.client.rpc.RPCRequest#getContainsCredentials
  */
 public interface Relogin {

@@ -60,80 +60,6 @@ public class Validator {
     public boolean caseSensitive;
 
     /**
-     * Indicates the minimum value for range-based validators. By default, range-validators are 
-     * inclusive, meaning that values that equal the <code>min</code> value will pass validation.   To
-     * make a validator-range exclusive, and have equal values fail validation, set  {@link
-     * com.smartgwt.client.docs.serverds.Validator#exclusive validator.exclusive} to true and provide
-     * a  {@link com.smartgwt.client.docs.serverds.Validator#errorMessage custom message}.
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.serverds.Validator#max
-     * @see com.smartgwt.client.docs.serverds.Validator#exclusive
-     */
-    public Object min;
-
-    /**
-     * For validators of type "serverCustom" only, a {@link
-     * com.smartgwt.client.docs.serverds.ServerObject} declaration that allows
-     *  the Smart GWT Server to find a Java class via a variety of possible approaches, and call a
-     *  method on it to perform validation.
-     *  <P>
-     *  The target object must implement a method whose first 4 arguments are:
-     *  <code>
-     *     Object value, Validator validator, String fieldName, Map record
-     *  </code><p>
-     *  (<code>com.isomorphic.datasource.Validator</code> is a subclass of <code>Map</code> that 
-     *  represents a validator's configuration, and also provides APIs for implementing templated
-     *  error messages).<p>
-     *  You provide the name of the method to call by specifying 
-     *  {@link com.smartgwt.client.docs.serverds.ServerObject#methodName methodName}
-     *  as part of the serverObject declaration.  If you do not specify a methodName, Smart GWT 
-     *  expects to find a compliant method called "condition".
-     *  <P>
-     *  Additional arguments may be declared and are automatically supplied based on the declared
-     * argument type, via {@link com.smartgwt.client.docs.DmiOverview DMI}.  Available objects
-     * include:
-     *  <ul>
-     *  <li><b>DataSource</b> - the DataSource where this validator is declared, an instance of
-     *                          com.isomorphic.datasource.DataSource or a subclass</li>
-     *  <li><b>HttpServletRequest</b> - from standard Java servlets API</li>
-     *  <li><b>HttpServletResponse</b> - from standard Java servlets API</li>
-     *  <li><b>ServletContext</b> - from standard Java servlets API</li>
-     *  <li><b>HttpSession</b> - from standard Java servlets API</li>
-     *  <li><b>RequestContext</b> - an instance of com.isomorphic.servlet.RequestContext</li>
-     *  <li><b>RPCManager</b> - the RPCManager associated with the transaction this validation is 
-     *                          part of; an instance of com.isomorphic.rpc.RPCManager</li>
-     * <li><b>DSRequest</b> - the DSRequest this validation is part of; an instance of
-     * com.isomorphic.datasource.DSRequest</li>
-     * <li><b>DSField</b> - the datasource field which value is validated; an instance of
-     * com.isomorphic.datasource.DSField</li>
-     * <li><b>ValidationContext</b> - the context where value is validated; an instance of
-     * com.isomorphic.datasource.ValidationContext</li>
-     *  </ul>
-     *  Note that any servlet-related objects will not be available if your validator is run outside
-     *  of the scope of an HTTP servlet request, such as a command-line process.
-     *  <p>
-     *  Note that "record" will contain only other values submitted at the same time, not the
-     *  complete DataSource record.  For most types of cross-field validation, you should fetch the
-     *  current saved record.  For example:
-     *  <pre>
-     *      final Map<String, Object> existingRecord = dataSource.fetchById(record);
-     *  </pre>
-     *
-     * <p>Default value is null
-     */
-    public ServerObject serverObject;
-
-    /**
-     * Applies only to the "isUnique" validator; allows you to name a specific  {@link
-     * com.smartgwt.client.docs.serverds.DataSource#operationBindings operation} for the uniqueness
-     * check.
-     *
-     * <p>Default value is null
-     */
-    public String operationId;
-
-    /**
      * Text to display if the value does not pass this validation check. <P> If unspecified, default
      * error messages exist for all built-in validators, and a generic message will be used for a
      * custom validator that is not passed. <P> Server-side this string evaluates in a Velocity
@@ -183,19 +109,6 @@ public class Validator {
      * <p>Default value is null
      */
     public Boolean stopOnError;
-
-    /**
-     * Indicates the maximum value for range-based validators. By default, range-validators are 
-     * inclusive, meaning that values that equal the <code>max</code> value will pass validation.   To
-     * make a validator-range exclusive, and have equal values fail validation, set  {@link
-     * com.smartgwt.client.docs.serverds.Validator#exclusive validator.exclusive} to true and provide
-     * a  {@link com.smartgwt.client.docs.serverds.Validator#errorMessage custom message}.
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.serverds.Validator#min
-     * @see com.smartgwt.client.docs.serverds.Validator#exclusive
-     */
-    public Object max;
 
     /**
      * Used to create a conditional validator based on {@link
@@ -444,5 +357,92 @@ public class Validator {
      * <p>Default value is null
      */
     public StringMethod condition;
+
+    /**
+     * Indicates the minimum value for range-based validators. By default, range-validators are 
+     * inclusive, meaning that values that equal the <code>min</code> value will pass validation.   To
+     * make a validator-range exclusive, and have equal values fail validation, set  {@link
+     * com.smartgwt.client.docs.serverds.Validator#exclusive validator.exclusive} to true and provide
+     * a  {@link com.smartgwt.client.docs.serverds.Validator#errorMessage custom message}.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.serverds.Validator#max
+     * @see com.smartgwt.client.docs.serverds.Validator#exclusive
+     */
+    public Object min;
+
+    /**
+     * For validators of type "serverCustom" only, a {@link
+     * com.smartgwt.client.docs.serverds.ServerObject} declaration that allows
+     *  the Smart GWT Server to find a Java class via a variety of possible approaches, and call a
+     *  method on it to perform validation.
+     *  <P>
+     *  The target object must implement a method whose first 4 arguments are:
+     *  <code>
+     *     Object value, Validator validator, String fieldName, Map record
+     *  </code><p>
+     *  (<code>com.isomorphic.datasource.Validator</code> is a subclass of <code>Map</code> that 
+     *  represents a validator's configuration, and also provides APIs for implementing templated
+     *  error messages).<p>
+     *  You provide the name of the method to call by specifying 
+     *  {@link com.smartgwt.client.docs.serverds.ServerObject#methodName methodName}
+     *  as part of the serverObject declaration.  If you do not specify a methodName, Smart GWT 
+     *  expects to find a compliant method called "condition".
+     *  <P>
+     *  Additional arguments may be declared and are automatically supplied based on the declared
+     * argument type, via {@link com.smartgwt.client.docs.DmiOverview DMI}.  Available objects
+     * include:
+     *  <ul>
+     *  <li><b>DataSource</b> - the DataSource where this validator is declared, an instance of
+     *                          com.isomorphic.datasource.DataSource or a subclass</li>
+     *  <li><b>HttpServletRequest</b> - from standard Java servlets API</li>
+     *  <li><b>HttpServletResponse</b> - from standard Java servlets API</li>
+     *  <li><b>ServletContext</b> - from standard Java servlets API</li>
+     *  <li><b>HttpSession</b> - from standard Java servlets API</li>
+     *  <li><b>RequestContext</b> - an instance of com.isomorphic.servlet.RequestContext</li>
+     *  <li><b>RPCManager</b> - the RPCManager associated with the transaction this validation is 
+     *                          part of; an instance of com.isomorphic.rpc.RPCManager</li>
+     * <li><b>DSRequest</b> - the DSRequest this validation is part of; an instance of
+     * com.isomorphic.datasource.DSRequest</li>
+     * <li><b>DSField</b> - the datasource field which value is validated; an instance of
+     * com.isomorphic.datasource.DSField</li>
+     * <li><b>ValidationContext</b> - the context where value is validated; an instance of
+     * com.isomorphic.datasource.ValidationContext</li>
+     *  </ul>
+     *  Note that any servlet-related objects will not be available if your validator is run outside
+     *  of the scope of an HTTP servlet request, such as a command-line process.
+     *  <p>
+     *  Note that "record" will contain only other values submitted at the same time, not the
+     *  complete DataSource record.  For most types of cross-field validation, you should fetch the
+     *  current saved record.  For example:
+     *  <pre>
+     *      final Map<String, Object> existingRecord = dataSource.fetchById(record);
+     *  </pre>
+     *
+     * <p>Default value is null
+     */
+    public ServerObject serverObject;
+
+    /**
+     * Applies only to the "isUnique" validator; allows you to name a specific  {@link
+     * com.smartgwt.client.docs.serverds.DataSource#operationBindings operation} for the server-side
+     * uniqueness check. Ignored on the client.
+     *
+     * <p>Default value is null
+     */
+    public String operationId;
+
+    /**
+     * Indicates the maximum value for range-based validators. By default, range-validators are 
+     * inclusive, meaning that values that equal the <code>max</code> value will pass validation.   To
+     * make a validator-range exclusive, and have equal values fail validation, set  {@link
+     * com.smartgwt.client.docs.serverds.Validator#exclusive validator.exclusive} to true and provide
+     * a  {@link com.smartgwt.client.docs.serverds.Validator#errorMessage custom message}.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.serverds.Validator#min
+     * @see com.smartgwt.client.docs.serverds.Validator#exclusive
+     */
+    public Object max;
 
 }

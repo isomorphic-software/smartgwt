@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -2383,6 +2388,15 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
+     * Fieldnames to sortBy.
+     *
+     * @param sortSpecifier  Default value is null
+     */
+    public void setSortBy(SortSpecifier sortSpecifier) {
+        setSortBy(new SortSpecifier[] {sortSpecifier});
+    }
+
+    /**
      * Fieldname to sortBy
      *
      * @return SortSpecifier array
@@ -2429,6 +2443,40 @@ public class DSRequest extends RPCRequest {
      * @see DSRequest2#getGroupBy() DSRequest.getGroupBy()
      */
     public Map<String,SummaryFunctionType> getSummaryFunctions() {
+        return getAttributeAsMap("summaryFunctions");
+    }
+
+    /**
+     * Same as {@link #setSummaryFunctions()}, but allowing to set <i>any</i> functions, not just ones built into the framework, 
+     * so that in combination with custom implementation on the server-side you can perform custom aggregation. See the Server 
+     * Summaries &gt; Custom Aggregation example in the Showcase.
+     * <p>
+     * <b>NOTE</b>: this feature is supported only in Power Edition or above, and only when
+     * using the built-in SQL, JPA or Hibernate connectors.
+     *
+     * @param rawSummaryFunctions <code>Map&lt;String,String&gt;</code> with field names as keys and summary functions as values.
+     *
+     * @see DSRequest#setGroupBy() DSRequest.setGroupBy()
+     * @see DSRequest#setSummaryFunctions() DSRequest.setSummaryFunctions()
+     */
+    public void setRawSummaryFunctions(Map<String, String> summaryFunctions) {
+        setAttribute("summaryFunctions", summaryFunctions);
+    }
+
+    /**
+     * Same as {@link #getSummaryFunctions()}, but allowing to get <i>any</i> functions, not just ones built into the framework, 
+     * so that in combination with custom implementation on the server-side you can perform custom aggregation. See the Server 
+     * Summaries &gt; Custom Aggregation example in the Showcase.
+     * <p>
+     * <b>NOTE</b>: this feature is supported only in Power Edition or above, and only when
+     * using the built-in SQL, JPA or Hibernate connectors.
+     *
+     * @return <code>Map&lt;String,String&gt;</code> with field names as keys and summary functions as values.
+     *
+     * @see DSRequest#setGroupBy() DSRequest.setGroupBy()
+     * @see DSRequest#setSummaryFunctions() DSRequest.setSummaryFunctions()
+     */
+    public Map<String,String> getRawSummaryFunctions() {
         return getAttributeAsMap("summaryFunctions");
     }
 

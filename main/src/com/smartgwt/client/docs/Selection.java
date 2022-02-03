@@ -9,35 +9,6 @@ package com.smartgwt.client.docs;
  * data model that can be viewed as a list (for example, the current list of visible nodes on a
  * tree can be treated as a list for selection purposes).
  * @see com.smartgwt.client.types.SelectionStyle
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getEventRow
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getEventColumn
- * @see com.smartgwt.client.widgets.cube.events.FacetValueSelectionChangedEvent
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getSelectedCells
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getSelectedCellIds
- * @see com.smartgwt.client.widgets.cube.CubeGrid#anyCellSelected
- * @see com.smartgwt.client.widgets.cube.CubeGrid#cellIsSelected
- * @see com.smartgwt.client.widgets.cube.CubeGrid#selectCell
- * @see com.smartgwt.client.widgets.cube.CubeGrid#deselectCell
- * @see com.smartgwt.client.widgets.cube.CubeGrid#selectCells
- * @see com.smartgwt.client.widgets.cube.CubeGrid#deselectCells
- * @see com.smartgwt.client.widgets.cube.CubeGrid#selectAllCells
- * @see com.smartgwt.client.widgets.cube.CubeGrid#deselectAllCells
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getSelectedFacetValues
- * @see com.smartgwt.client.widgets.cube.CubeGrid#facetValuesSelected
- * @see com.smartgwt.client.widgets.cube.CubeGrid#facetHasSelection
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getFacetsHavingSelection
- * @see com.smartgwt.client.widgets.cube.CubeGrid#selectFacetValues
- * @see com.smartgwt.client.widgets.cube.CubeGrid#deselectFacetValues
- * @see com.smartgwt.client.widgets.cube.CubeGrid#selectFacetValue
- * @see com.smartgwt.client.widgets.cube.CubeGrid#deselectFacetValue
- * @see com.smartgwt.client.widgets.cube.CubeGrid#selectAllFacetValues
- * @see com.smartgwt.client.widgets.cube.CubeGrid#deselectAllFacetValues
- * @see com.smartgwt.client.widgets.cube.CubeGrid#deselectAll
- * @see com.smartgwt.client.widgets.cube.CubeGrid#cellSelectionChanged
- * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectedRecord
- * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectedRecords
- * @see com.smartgwt.client.widgets.grid.ListGrid#isSelected
- * @see com.smartgwt.client.widgets.grid.ListGrid#isPartiallySelected
  * @see com.smartgwt.client.widgets.grid.ListGrid#selectRecord
  * @see com.smartgwt.client.widgets.grid.ListGrid#deselectRecord
  * @see com.smartgwt.client.widgets.grid.ListGrid#selectRecords
@@ -80,6 +51,35 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.CellSelection#selectCellList
  * @see com.smartgwt.client.widgets.grid.CellSelection#deselectCellList
  * @see com.smartgwt.client.widgets.grid.CellSelection#selectSingleCell
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectedRecord
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getSelectedRecords
+ * @see com.smartgwt.client.widgets.grid.ListGrid#isSelected
+ * @see com.smartgwt.client.widgets.grid.ListGrid#isPartiallySelected
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getEventRow
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getEventColumn
+ * @see com.smartgwt.client.widgets.cube.events.FacetValueSelectionChangedEvent
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getSelectedCells
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getSelectedCellIds
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#anyCellSelected
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#cellIsSelected
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#selectCell
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#deselectCell
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#selectCells
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#deselectCells
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#selectAllCells
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#deselectAllCells
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getSelectedFacetValues
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#facetValuesSelected
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#facetHasSelection
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getFacetsHavingSelection
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#selectFacetValues
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#deselectFacetValues
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#selectFacetValue
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#deselectFacetValue
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#selectAllFacetValues
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#deselectAllFacetValues
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#deselectAll
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#cellSelectionChanged
  * @see com.smartgwt.client.widgets.toolbar.Toolbar#selectButton
  * @see com.smartgwt.client.widgets.toolbar.Toolbar#deselectButton
  * @see com.smartgwt.client.widgets.calendar.Calendar#getSelectionManager

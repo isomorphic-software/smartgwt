@@ -96,6 +96,10 @@ package com.smartgwt.client.docs;
  * defined in code</td><td align="center">&#x2713;</td><td align="center">&nbsp;</td></tr> <tr
  * style="background-color:#ddd;"><td>exportData(), optionDataSource</td><td
  * align="center">&#x2713;</td><td align="center">&nbsp;</td></tr> </table>
+ * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getFormat
+ * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getExportFormat
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getFormat
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getExportFormat
  * @see com.smartgwt.client.data.DSRequest#getExportRawValues
  * @see com.smartgwt.client.data.DSRequest#getExportPropertyIdentifier
  * @see com.smartgwt.client.data.DSRequest#getExportDatesAsFormattedString
@@ -103,10 +107,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.data.DSRequest#getExportTZ
  * @see com.smartgwt.client.widgets.cube.CubeGrid#getValueFormat
  * @see com.smartgwt.client.widgets.cube.CubeGrid#getValueExportFormat
- * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getFormat
- * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getExportFormat
- * @see com.smartgwt.client.widgets.grid.ListGridField#getFormat
- * @see com.smartgwt.client.widgets.grid.ListGridField#getExportFormat
  * @see com.smartgwt.client.data.SimpleType#getFormat
  * @see com.smartgwt.client.data.SimpleType#getExportFormat
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getExportFormat

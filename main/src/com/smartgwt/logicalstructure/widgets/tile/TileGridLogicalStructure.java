@@ -6,6 +6,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
@@ -50,8 +51,10 @@ public class TileGridLogicalStructure extends TileLayoutLogicalStructure {
     public String canAcceptDroppedRecords;
     public String canDragTilesOut;
     public String canReorderTiles;
+    public String dataArity;
     public String dataFetchMode;
     public String drawAllMaxTiles;
+    public String editProxyConstructor;
     public String emptyMessage;
     public String emptyMessageStyle;
     public String loadingDataMessage;
@@ -59,6 +62,8 @@ public class TileGridLogicalStructure extends TileLayoutLogicalStructure {
     public String loadingMessage;
     public String printTilesPerLine;
     public String recycleTiles;
+    public String reselectOnUpdate;
+    public String reselectOnUpdateNotifications;
     public String selectionType;
     public String showAllRecords;
     public String showDetailFields;
@@ -67,6 +72,7 @@ public class TileGridLogicalStructure extends TileLayoutLogicalStructure {
     public String tileConstructor;
     public String tileDragAppearance;
     public Canvas[] tiles;
+    public String tileScreen;
     public String tileValueAlign;
     public String tileValueStyle;
     public String valuesShowDown;

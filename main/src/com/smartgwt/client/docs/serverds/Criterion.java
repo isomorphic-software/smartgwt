@@ -55,6 +55,18 @@ public class Criterion {
     public OperatorId operator;
 
     /**
+     * Name of the field in each {@link com.smartgwt.client.data.Record} that this criterion applies
+     * to.  Not applicable for a criterion with {@link
+     * com.smartgwt.client.docs.serverds.Criterion#criteria sub-criteria}. Can be specified as a
+     * dataPath to  allow matching nested objects. Use '/' as delimiters for dataPath. See  {@link
+     * com.smartgwt.client.docs.DataPath dataPath} for more information.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
+     */
+    public String fieldName;
+
+    /**
      * End value of a criterion with an operator of type <code>"valueRange"</code>.
      *
      * <p>Default value is null
@@ -69,18 +81,6 @@ public class Criterion {
      * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public Object start;
-
-    /**
-     * Name of the field in each {@link com.smartgwt.client.data.Record} that this criterion applies
-     * to.  Not applicable for a criterion with {@link
-     * com.smartgwt.client.docs.serverds.Criterion#criteria sub-criteria}. Can be specified as a
-     * dataPath to  allow matching nested objects. Use '/' as delimiters for dataPath. See  {@link
-     * com.smartgwt.client.docs.DataPath dataPath} for more information.
-     *
-     * <p>Default value is null
-     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
-     */
-    public String fieldName;
 
     /**
      * For a criterion with an operator that acts on other criteria (eg "and", "or"), a list of

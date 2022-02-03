@@ -24,6 +24,7 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.browser.window.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
 import com.smartgwt.client.tools.*;
@@ -41,6 +42,8 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.tour.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
 import com.smartgwt.client.widgets.ace.*;
@@ -54,11 +57,12 @@ import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.drawing.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,6 +78,7 @@ import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+import com.smartgwt.client.util.tour.*;
 
 
 /**
@@ -881,6 +886,7 @@ public class MetricSettings extends DataClass {
      *
      * @param shadowProperties New shadowProperties value. Default value is null
      * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see com.smartgwt.client.docs.SGWTProperties
      */
     public MetricSettings setShadowProperties(DrawOval shadowProperties) {
@@ -898,6 +904,7 @@ public class MetricSettings extends DataClass {
      * Properties for shadows.
      *
      * @return Current shadowProperties value. Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public DrawOval getShadowProperties()  {
         DrawOval properties = new DrawOval();
@@ -1015,6 +1022,7 @@ public class MetricSettings extends DataClass {
      *
      * @param showShadows New showShadows value. Default value is true
      * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public MetricSettings setShowShadows(Boolean showShadows) {
         return (MetricSettings)setAttribute("showShadows", showShadows);
@@ -1024,6 +1032,7 @@ public class MetricSettings extends DataClass {
      * Whether to automatically show shadows for various charts.
      *
      * @return Current showShadows value. Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getShowShadows()  {
         Boolean result = getAttributeAsBoolean("showShadows", true);
@@ -1068,6 +1077,7 @@ public class MetricSettings extends DataClass {
      *
      * @param showValueOnHover New showValueOnHover value. Default value is null
      * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @deprecated See {@link com.smartgwt.client.widgets.chart.FacetChart#getShowDataValuesMode FacetChart.showDataValuesMode} for details
      */
     public MetricSettings setShowValueOnHover(Boolean showValueOnHover) {
@@ -1084,6 +1094,7 @@ public class MetricSettings extends DataClass {
      * com.smartgwt.client.widgets.chart.FacetChart#getHoverLabelProperties FacetChart.hoverLabelProperties}.
      *
      * @return Current showValueOnHover value. Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @deprecated See {@link com.smartgwt.client.widgets.chart.FacetChart#getShowDataValuesMode FacetChart.showDataValuesMode} for details
      */
     public Boolean getShowValueOnHover()  {
