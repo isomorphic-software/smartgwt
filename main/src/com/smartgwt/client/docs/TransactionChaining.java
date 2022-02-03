@@ -10,6 +10,11 @@ package com.smartgwt.client.docs;
  *  the queue can use the results of previous requests in the queue.  This allows you to
  *  declaratively handle various situations where information only becomes available during the
  *  processing of a queue.
+ *  <P>
+ *  To see an example of server-driven transaction chaining used to commit a mixed transaction of 
+ *  an <code>Order</code> and related <code>OrderItem</code>s, see the 
+ * <a href='https://www.smartclient.com/smartclient-latest/showcase/?id=queuedAdd'
+ * target='_blank'>Master/Detail Add</a> sample.
  *  <p>
  *  Transaction Chaining is only available with Power Edition licenses or better.  See the
  * <a href='http://smartclient.com/product/' target='_blank'>Editions &amp; Pricing page</a> for
@@ -94,6 +99,48 @@ package com.smartgwt.client.docs;
  *      properties.setFieldValueExpressions(fve);
  *      myDataSource.addData(record, callback, properties);
  *  </pre>
+ *  To see an example of client-driven transaction chaining used to commit a mixed transaction 
+ *  of an <code>Order</code> and related <code>OrderItem</code>s, see the 
+ * <a href='https://www.smartclient.com/smartclient-latest/showcase/?id=queuedAdd'
+ * target='_blank'>Master/Detail Add</a> sample.
+ *  <p>
+ * As with Server-Side Transaction Chaining, <code>fieldValueExpressions</code> can be used to
+ * affect 
+ * <code>dsRequest.criteria</code> as well. For example, perhaps you are fetching the most recent
+ * Order 
+ * and its related OrderItems, by sorting the returned Orders by <code>orderDate</code> and asking
+ * for 
+ * only one record. Since you are fetching the most recent Order, you don't have the Order.orderId
+ * value 
+ * available to fetch related OrderItems by passing the <code>Order.orderId</code> value as
+ * criteria for 
+ * <code>OrderItem.orderId</code>. You need the <code>primaryKey</code> of whichever Order turns
+ * out 
+ *  to be most recent. Use <code>fieldValueExpressions</code> like so to solve this case:
+ *  
+ *  
+ *  <pre>
+ *       RPCManager.startQueue();
+ *       DSRequest orderRequestProperties = new DSRequest(DSOperationType.FETCH);
+ *       orderRequestProperties.setStartRow(0);
+ *       orderRequestProperties.setEndRow(1);
+ * 
+ *       SortSpecifier[] sortSpecifiers = new SortSpecifier[1];
+ *       sortSpecifiers[0] = new SortSpecifier("orderDate", SortDirection.DESCENDING);
+ *       orderRequestProperties.setSortBy(sortSpecifiers);
+ *  
+ *       DataSource.get("Order").fetchData(null, null, orderRequestProperties);
+ *  
+ *       DSRequest orderItemRequestProperties = new DSRequest(DSOperationType.FETCH);
+ *       orderItemRequestProperties.setFieldValueExpressions(new HashMap<String, String>() {{
+ *           put("orderId", "$responseData.first.orderId");
+ *       }});
+ *   
+ *       DataSource.get("OrderItem").fetchData(null, null, orderItemRequestProperties);
+ * 
+ *       RPCManager.sendQueue();
+ *  </pre>
+ *  
  *  <p>
  *  <h3>Stand-alone Application Transaction Chaining</h3>
  *  Transaction chaining is supported when using transactions standalone. Every request within

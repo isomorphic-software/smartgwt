@@ -36,6 +36,9 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.DynamicForm#getValues
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getShouldSaveValue
  * @see com.smartgwt.client.widgets.form.fields.TextItem#getEmptyStringValue
+ * @see com.smartgwt.client.widgets.form.fields.SelectItem#getDefaultToFirstOption
+ * @see com.smartgwt.client.widgets.form.fields.SelectItem#getMultiple
+ * @see com.smartgwt.client.widgets.form.fields.SelectItem#getAllowEmptyValue
  * @see com.smartgwt.client.widgets.form.fields.TextAreaItem#getEmptyStringValue
  * @see com.smartgwt.client.widgets.form.fields.MultiComboBoxItem#getShouldSaveValue
  * @see com.smartgwt.client.widgets.form.fields.FileItem#getShouldSaveValue

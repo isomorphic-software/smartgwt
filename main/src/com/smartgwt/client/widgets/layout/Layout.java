@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -196,10 +199,11 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * If true when members are added / removed, they should be animated as they are shown or hidden in position
      *
      * @param animateMembers New animateMembers value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_layout" target="examples">Layout Add & Remove Example</a>
      */
-    public void setAnimateMembers(Boolean animateMembers) {
-        setAttribute("animateMembers", animateMembers, true);
+    public Layout setAnimateMembers(Boolean animateMembers) {
+        return (Layout)setAttribute("animateMembers", animateMembers, true);
     }
 
     /**
@@ -219,9 +223,10 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param animateMemberTime New animateMemberTime value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      */
-    public void setAnimateMemberTime(Integer animateMemberTime) {
-        setAttribute("animateMemberTime", animateMemberTime, true);
+    public Layout setAnimateMemberTime(Integer animateMemberTime) {
+        return (Layout)setAttribute("animateMemberTime", animateMemberTime, true);
     }
 
     /**
@@ -287,11 +292,12 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canDropComponents New canDropComponents value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
-    public void setCanDropComponents(Boolean canDropComponents)  throws IllegalStateException {
-        setAttribute("canDropComponents", canDropComponents, false);
+    public Layout setCanDropComponents(Boolean canDropComponents)  throws IllegalStateException {
+        return (Layout)setAttribute("canDropComponents", canDropComponents, false);
     }
 
     /**
@@ -359,10 +365,11 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * com.smartgwt.client.widgets.Canvas#getShowResizeBar Canvas.showResizeBar} for members of this layout.
      *
      * @param defaultResizeBars New defaultResizeBars value. Default value is "marked"
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setShowResizeBar
      */
-    public void setDefaultResizeBars(LayoutResizeBarPolicy defaultResizeBars) {
-        setAttribute("defaultResizeBars", defaultResizeBars == null ? null : defaultResizeBars.getValue(), true);
+    public Layout setDefaultResizeBars(LayoutResizeBarPolicy defaultResizeBars) {
+        return (Layout)setAttribute("defaultResizeBars", defaultResizeBars == null ? null : defaultResizeBars.getValue(), true);
     }
 
     /**
@@ -401,13 +408,14 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param dropLineThickness New dropLineThickness value. Default value is 2
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.layout.Layout
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_move" target="examples">Drag move Example</a>
      */
-    public void setDropLineThickness(int dropLineThickness)  throws IllegalStateException {
-        setAttribute("dropLineThickness", dropLineThickness, false);
+    public Layout setDropLineThickness(int dropLineThickness)  throws IllegalStateException {
+        return (Layout)setAttribute("dropLineThickness", dropLineThickness, false);
     }
 
     /**
@@ -430,11 +438,12 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "LayoutEditProxy"
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
-        setAttribute("editProxyConstructor", editProxyConstructor, false);
+    public Layout setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
+        return (Layout)setAttribute("editProxyConstructor", editProxyConstructor, false);
     }
 
     /**
@@ -456,9 +465,10 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param enforcePolicy New enforcePolicy value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      */
-    public void setEnforcePolicy(Boolean enforcePolicy) {
-        setAttribute("enforcePolicy", enforcePolicy, true);
+    public Layout setEnforcePolicy(Boolean enforcePolicy) {
+        return (Layout)setAttribute("enforcePolicy", enforcePolicy, true);
     }
 
     /**
@@ -479,9 +489,10 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param hPolicy New hPolicy value. Default value is "fill"
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      */
-    public void setHPolicy(LayoutPolicy hPolicy) {
-        setAttribute("hPolicy", hPolicy == null ? null : hPolicy.getValue(), true);
+    public Layout setHPolicy(LayoutPolicy hPolicy) {
+        return (Layout)setAttribute("hPolicy", hPolicy == null ? null : hPolicy.getValue(), true);
     }
 
     /**
@@ -500,9 +511,10 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * <code>setLayoutMargin()</code> if changed on the fly.
      *
      * @param layoutBottomMargin New layoutBottomMargin value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      */
-    public void setLayoutBottomMargin(Integer layoutBottomMargin) {
-        setAttribute("layoutBottomMargin", layoutBottomMargin, true);
+    public Layout setLayoutBottomMargin(Integer layoutBottomMargin) {
+        return (Layout)setAttribute("layoutBottomMargin", layoutBottomMargin, true);
     }
 
     /**
@@ -524,9 +536,10 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * the more specific properties win.
      *
      * @param layoutEndMargin New layoutEndMargin value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      */
-    public void setLayoutEndMargin(Integer layoutEndMargin) {
-        setAttribute("layoutEndMargin", layoutEndMargin, true);
+    public Layout setLayoutEndMargin(Integer layoutEndMargin) {
+        return (Layout)setAttribute("layoutEndMargin", layoutEndMargin, true);
     }
 
     /**
@@ -548,9 +561,10 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * <code>setLayoutMargin()</code> if changed on the fly.
      *
      * @param layoutLeftMargin New layoutLeftMargin value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      */
-    public void setLayoutLeftMargin(Integer layoutLeftMargin) {
-        setAttribute("layoutLeftMargin", layoutLeftMargin, true);
+    public Layout setLayoutLeftMargin(Integer layoutLeftMargin) {
+        return (Layout)setAttribute("layoutLeftMargin", layoutLeftMargin, true);
     }
 
     /**
@@ -572,6 +586,7 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * layout and pick up changes to all of the layout*Margin properties.
      *
      * @param layoutMargin New layoutMargin value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.layout.Layout#setLayoutLeftMargin
      * @see com.smartgwt.client.widgets.layout.Layout#setLayoutRightMargin
      * @see com.smartgwt.client.widgets.layout.Layout#setLayoutBottomMargin
@@ -579,8 +594,8 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * @see com.smartgwt.client.widgets.layout.Layout#setPaddingAsLayoutMargin
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_user_sizing" target="examples">User Sizing Example</a>
      */
-    public void setLayoutMargin(Integer layoutMargin) {
-        setAttribute("layoutMargin", layoutMargin, true);
+    public Layout setLayoutMargin(Integer layoutMargin) {
+        return (Layout)setAttribute("layoutMargin", layoutMargin, true);
     }
 
     /**
@@ -608,9 +623,10 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * <code>setLayoutMargin()</code> if changed on the fly.
      *
      * @param layoutRightMargin New layoutRightMargin value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      */
-    public void setLayoutRightMargin(Integer layoutRightMargin) {
-        setAttribute("layoutRightMargin", layoutRightMargin, true);
+    public Layout setLayoutRightMargin(Integer layoutRightMargin) {
+        return (Layout)setAttribute("layoutRightMargin", layoutRightMargin, true);
     }
 
     /**
@@ -632,9 +648,10 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * specific properties win.
      *
      * @param layoutStartMargin New layoutStartMargin value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      */
-    public void setLayoutStartMargin(Integer layoutStartMargin) {
-        setAttribute("layoutStartMargin", layoutStartMargin, true);
+    public Layout setLayoutStartMargin(Integer layoutStartMargin) {
+        return (Layout)setAttribute("layoutStartMargin", layoutStartMargin, true);
     }
 
     /**
@@ -656,9 +673,10 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * <code>setLayoutMargin()</code> if changed on the fly.
      *
      * @param layoutTopMargin New layoutTopMargin value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      */
-    public void setLayoutTopMargin(Integer layoutTopMargin) {
-        setAttribute("layoutTopMargin", layoutTopMargin, true);
+    public Layout setLayoutTopMargin(Integer layoutTopMargin) {
+        return (Layout)setAttribute("layoutTopMargin", layoutTopMargin, true);
     }
 
     /**
@@ -679,10 +697,11 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * shifting and improve performance.
      *
      * @param leaveScrollbarGap New leaveScrollbarGap value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setLeaveScrollbarGap(Boolean leaveScrollbarGap)  throws IllegalStateException {
-        setAttribute("leaveScrollbarGap", leaveScrollbarGap, false);
+    public Layout setLeaveScrollbarGap(Boolean leaveScrollbarGap)  throws IllegalStateException {
+        return (Layout)setAttribute("leaveScrollbarGap", leaveScrollbarGap, false);
     }
 
     /**
@@ -704,9 +723,10 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param locateMembersBy New locateMembersBy value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      */
-    public void setLocateMembersBy(LocatorStrategy locateMembersBy) {
-        setAttribute("locateMembersBy", locateMembersBy == null ? null : locateMembersBy.getValue(), true);
+    public Layout setLocateMembersBy(LocatorStrategy locateMembersBy) {
+        return (Layout)setAttribute("locateMembersBy", locateMembersBy == null ? null : locateMembersBy.getValue(), true);
     }
 
     /**
@@ -725,9 +745,10 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param locateMembersType New locateMembersType value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      */
-    public void setLocateMembersType(LocatorTypeStrategy locateMembersType) {
-        setAttribute("locateMembersType", locateMembersType == null ? null : locateMembersType.getValue(), true);
+    public Layout setLocateMembersType(LocatorTypeStrategy locateMembersType) {
+        return (Layout)setAttribute("locateMembersType", locateMembersType == null ? null : locateMembersType.getValue(), true);
     }
 
     /**
@@ -746,10 +767,11 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * percentages work exactly as for a non-member, with layoutMargins, if any, ignored.
      *
      * @param managePercentBreadth New managePercentBreadth value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setManagePercentBreadth(Boolean managePercentBreadth)  throws IllegalStateException {
-        setAttribute("managePercentBreadth", managePercentBreadth, false);
+    public Layout setManagePercentBreadth(Boolean managePercentBreadth)  throws IllegalStateException {
+        return (Layout)setAttribute("managePercentBreadth", managePercentBreadth, false);
     }
 
     /**
@@ -773,11 +795,12 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * com.smartgwt.client.widgets.Canvas#getExtraSpace Canvas.extraSpace}.
      *
      * @param memberOverlap New memberOverlap value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.LayoutMember LayoutMember overview and related methods
      */
-    public void setMemberOverlap(int memberOverlap)  throws IllegalStateException {
-        setAttribute("memberOverlap", memberOverlap, false);
+    public Layout setMemberOverlap(int memberOverlap)  throws IllegalStateException {
+        return (Layout)setAttribute("memberOverlap", memberOverlap, false);
     }
 
     /**
@@ -813,9 +836,10 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * Display a new set of members in this layout. Equivalent to calling removeMembers() then addMembers(). Note that the new members may include members already present, in which case they will be reordered / integrated with any other new members passed into this method.
      *
      * @param members New members value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      */
-    public void setMembers(Canvas... members) {
-        setAttribute("members", members, true);
+    public Layout setMembers(Canvas... members) {
+        return (Layout)setAttribute("members", members, true);
     }
 
     /**
@@ -843,10 +867,11 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * Space between each member of the layout. <P> Requires a manual call to <code>reflow()</code> if changed on the fly.
      *
      * @param membersMargin New membersMargin value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_user_sizing" target="examples">User Sizing Example</a>
      */
-    public void setMembersMargin(int membersMargin) {
-        setAttribute("membersMargin", membersMargin, true);
+    public Layout setMembersMargin(int membersMargin) {
+        return (Layout)setAttribute("membersMargin", membersMargin, true);
     }
 
     /**
@@ -870,10 +895,11 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param minBreadthMember New minBreadthMember value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      * @see com.smartgwt.client.types.LayoutPolicy
      */
-    public void setMinBreadthMember(String minBreadthMember) {
-        setAttribute("minBreadthMember", minBreadthMember, true);
+    public Layout setMinBreadthMember(String minBreadthMember) {
+        return (Layout)setAttribute("minBreadthMember", minBreadthMember, true);
     }
 
     /**
@@ -886,10 +912,11 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param minBreadthMember New minBreadthMember value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      * @see com.smartgwt.client.types.LayoutPolicy
      */
-    public void setMinBreadthMember(int minBreadthMember) {
-        setAttribute("minBreadthMember", minBreadthMember, true);
+    public Layout setMinBreadthMember(int minBreadthMember) {
+        return (Layout)setAttribute("minBreadthMember", minBreadthMember, true);
     }
 
     /**
@@ -902,10 +929,11 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param minBreadthMember New minBreadthMember value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      * @see com.smartgwt.client.types.LayoutPolicy
      */
-    public void setMinBreadthMember(Canvas minBreadthMember) {
-        setAttribute("minBreadthMember", minBreadthMember == null ? null : minBreadthMember.getOrCreateJsObj(), true);
+    public Layout setMinBreadthMember(Canvas minBreadthMember) {
+        return (Layout)setAttribute("minBreadthMember", minBreadthMember == null ? null : minBreadthMember.getOrCreateJsObj(), true);
     }
     
 
@@ -916,10 +944,11 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * their specified size in general.
      *
      * @param minMemberLength New minMemberLength value. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setMinWidth
      */
-    public void setMinMemberLength(int minMemberLength) {
-        setAttribute("minMemberLength", minMemberLength, true);
+    public Layout setMinMemberLength(int minMemberLength) {
+        return (Layout)setAttribute("minMemberLength", minMemberLength, true);
     }
 
     /**
@@ -940,10 +969,11 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * See {@link com.smartgwt.client.widgets.layout.Layout#getMinMemberLength minMemberLength}.
      *
      * @param minMemberSize New minMemberSize value. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      * @deprecated use the more intuitively named {@link com.smartgwt.client.widgets.layout.Layout#getMinMemberLength minMemberLength}
      */
-    public void setMinMemberSize(int minMemberSize) {
-        setAttribute("minMemberSize", minMemberSize, true);
+    public Layout setMinMemberSize(int minMemberSize) {
+        return (Layout)setAttribute("minMemberSize", minMemberSize, true);
     }
 
     /**
@@ -966,11 +996,12 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * {@link com.smartgwt.client.widgets.Canvas#getLayoutAlign Canvas.layoutAlign}.
      *
      * @param overflow New overflow value. Default value is "visible"
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setOverflow
      * @see com.smartgwt.client.widgets.layout.Layout#setMinBreadthMember
      */
-    public void setOverflow(Overflow overflow) {
-        setAttribute("overflow", overflow == null ? null : overflow.getValue(), true);
+    public Layout setOverflow(Overflow overflow) {
+        return (Layout)setAttribute("overflow", overflow == null ? null : overflow.getValue(), true);
     }
 
     /**
@@ -999,9 +1030,10 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param paddingAsLayoutMargin New paddingAsLayoutMargin value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      */
-    public void setPaddingAsLayoutMargin(Boolean paddingAsLayoutMargin) {
-        setAttribute("paddingAsLayoutMargin", paddingAsLayoutMargin, true);
+    public Layout setPaddingAsLayoutMargin(Boolean paddingAsLayoutMargin) {
+        return (Layout)setAttribute("paddingAsLayoutMargin", paddingAsLayoutMargin, true);
     }
 
     /**
@@ -1027,11 +1059,12 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * styleName} to <code>"layoutPlaceHolder"</code><br> To modify this object, use  Class.changeDefaults()
      *
      * @param placeHolderDefaults New placeHolderDefaults value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setPlaceHolderDefaults(Canvas placeHolderDefaults)  throws IllegalStateException {
+    public Layout setPlaceHolderDefaults(Canvas placeHolderDefaults)  throws IllegalStateException {
         if (placeHolderDefaults != null) {
             if (placeHolderDefaults.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(Layout.class, "setPlaceHolderDefaults", "Canvas");
@@ -1039,7 +1072,7 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
             placeHolderDefaults.setConfigOnly(true);
         }
         JavaScriptObject config = placeHolderDefaults == null ? null : placeHolderDefaults.getConfig();
-        setAttribute("placeHolderDefaults", JSOHelper.cleanProperties(config, true), false);
+        return (Layout)setAttribute("placeHolderDefaults", JSOHelper.cleanProperties(config, true), false);
     }
     
 
@@ -1049,12 +1082,13 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * of this layout.
      *
      * @param placeHolderProperties New placeHolderProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      * @see com.smartgwt.client.docs.SGWTProperties
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_move" target="examples">Drag move Example</a>
      */
-    public void setPlaceHolderProperties(Canvas placeHolderProperties)  throws IllegalStateException {
+    public Layout setPlaceHolderProperties(Canvas placeHolderProperties)  throws IllegalStateException {
         if (placeHolderProperties != null) {
             if (placeHolderProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(Layout.class, "setPlaceHolderProperties", "Canvas");
@@ -1062,7 +1096,7 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
             placeHolderProperties.setConfigOnly(true);
         }
         JavaScriptObject config = placeHolderProperties == null ? null : placeHolderProperties.getConfig();
-        setAttribute("placeHolderProperties", JSOHelper.cleanProperties(config, true), false);
+        return (Layout)setAttribute("placeHolderProperties", JSOHelper.cleanProperties(config, true), false);
     }
     
 
@@ -1123,11 +1157,12 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param resizeBarClass New resizeBarClass value. Default value is "Splitbar"
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Splitbar
      * @see com.smartgwt.client.widgets.ImgSplitbar
      */
-    public void setResizeBarClass(String resizeBarClass) {
-        setAttribute("resizeBarClass", resizeBarClass, true);
+    public Layout setResizeBarClass(String resizeBarClass) {
+        return (Layout)setAttribute("resizeBarClass", resizeBarClass, true);
     }
 
     /**
@@ -1150,9 +1185,10 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param resizeBarSize New resizeBarSize value. Default value is 7
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      */
-    public void setResizeBarSize(int resizeBarSize) {
-        setAttribute("resizeBarSize", resizeBarSize, true);
+    public Layout setResizeBarSize(int resizeBarSize) {
+        return (Layout)setAttribute("resizeBarSize", resizeBarSize, true);
     }
 
     /**
@@ -1171,9 +1207,10 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * flipped during initialization.
      *
      * @param reverseOrder New reverseOrder value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      */
-    public void setReverseOrder(Boolean reverseOrder) {
-        setAttribute("reverseOrder", reverseOrder, true);
+    public Layout setReverseOrder(Boolean reverseOrder) {
+        return (Layout)setAttribute("reverseOrder", reverseOrder, true);
     }
 
     /**
@@ -1194,11 +1231,12 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * dragged widget for the duration of the drag and drop interaction.
      *
      * @param showDragPlaceHolder New showDragPlaceHolder value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_move" target="examples">Drag move Example</a>
      */
-    public void setShowDragPlaceHolder(Boolean showDragPlaceHolder) {
-        setAttribute("showDragPlaceHolder", showDragPlaceHolder, true);
+    public Layout setShowDragPlaceHolder(Boolean showDragPlaceHolder) {
+        return (Layout)setAttribute("showDragPlaceHolder", showDragPlaceHolder, true);
     }
 
     /**
@@ -1219,10 +1257,11 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * show drop-lines, or plan to create your own.
      *
      * @param showDropLines New showDropLines value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
-    public void setShowDropLines(Boolean showDropLines) {
-        setAttribute("showDropLines", showDropLines, true);
+    public Layout setShowDropLines(Boolean showDropLines) {
+        return (Layout)setAttribute("showDropLines", showDropLines, true);
     }
 
     /**
@@ -1243,10 +1282,11 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * member at top. If set to "firstOnTop", members stack from the last member at bottom to the first member at top.
      *
      * @param stackZIndex New stackZIndex value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setStackZIndex(String stackZIndex)  throws IllegalStateException {
-        setAttribute("stackZIndex", stackZIndex, false);
+    public Layout setStackZIndex(String stackZIndex)  throws IllegalStateException {
+        return (Layout)setAttribute("stackZIndex", stackZIndex, false);
     }
 
     /**
@@ -1266,9 +1306,10 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * unspecified.
      *
      * @param vertical New vertical value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      */
-    public void setVertical(Boolean vertical) {
-        setAttribute("vertical", vertical, true);
+    public Layout setVertical(Boolean vertical) {
+        return (Layout)setAttribute("vertical", vertical, true);
     }
 
     /**
@@ -1287,9 +1328,10 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param vPolicy New vPolicy value. Default value is "fill"
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining setter calls
      */
-    public void setVPolicy(LayoutPolicy vPolicy) {
-        setAttribute("vPolicy", vPolicy == null ? null : vPolicy.getValue(), true);
+    public Layout setVPolicy(LayoutPolicy vPolicy) {
+        return (Layout)setAttribute("vPolicy", vPolicy == null ? null : vPolicy.getValue(), true);
     }
 
     /**
@@ -1304,11 +1346,10 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
 
     // ********************* Methods ***********************
 	/**
-     * Layout overrides {@link com.smartgwt.client.widgets.Canvas#getChildTabPosition Canvas.getChildTabPosition()} to ensure
-     * children are ordered in the tab-sequence with members being reachable first (in member order), then any non-member
-     * children. <P> As with {@link com.smartgwt.client.widgets.Canvas#getChildTabPosition Canvas.getChildTabPosition()} if
-     * {@link com.smartgwt.client.widgets.Canvas#setRelativeTabPosition Canvas.setRelativeTabPosition()} was called explicitly
-     * called for some child, it will be respected over member order.
+     * Layouts ensure children are ordered in the tab-sequence with members being reachable first (in member order), then any
+     * non-member children. <P> As with {@link com.smartgwt.client.widgets.Canvas#getChildTabPosition
+     * Canvas.getChildTabPosition()} if {@link com.smartgwt.client.widgets.Canvas#setRelativeTabPosition
+     * Canvas.setRelativeTabPosition()} was called explicitly called for some child, it will be respected over member order.
      * @param child The child for which the tab position should be returned
      *
      * @return tab position of the child within this layout.
@@ -1647,6 +1688,22 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
     }-*/;
 
 	/**
+     * Replaces an existing member of the layout with a different widget.  The new member will be assigned the width and height
+     * of the existing member (including sizes configured via end user resize), so no reflow will occur unless the new
+     * component has visible overflow and it differs from that of the widget it replaced.
+     * @param oldMember an existing member of the layout to be replaced
+     * @param newMember a different widget that should replace <code>oldMember</code>
+     * @see com.smartgwt.client.rpc.RPCManager#createScreen
+     */
+    public native void replaceMember(Canvas oldMember, Canvas newMember) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "replaceMember", "Canvas,Canvas");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.replaceMember(oldMember == null ? null : oldMember.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), newMember == null ? null : newMember.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+
+	/**
      * Hide all other members and make the single parameter member visible.
      * @param member member to show
      */
@@ -1921,9 +1978,11 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      * {@link com.smartgwt.client.widgets.Canvas#getLayoutAlign layoutAlign}.
      *
      * @param alignment alignment Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Layout Layout} instance, for chaining
+     * setter calls
      */
-    public void setAlign(Alignment alignment) {
-        setAttribute("align", alignment.getValue(), true);
+    public Layout setAlign(Alignment alignment) {
+        return (Layout)setAttribute("align", alignment.getValue(), true);
     }
 
     /**

@@ -75,10 +75,10 @@ import java.util.Map;
  * com.smartgwt.client.docs.serverds.DataSource#operationBindings DataSource.operationBindings}
  * under  {@link com.smartgwt.client.docs.serverds.OperationBinding#mail &lt;mail&gt;} tag. This
  * allows to alter mail server settings for different operations and depending on data using
- * {@link com.smartgwt.client.docs.Velocity Velocity templates}. Same values can be provided as in
- * <code>server.properties</code> omitting "mail.system.mail.smtp" prefix, i.e. "host", "port",
- * "auth", "user" and "password". <p> Just like in <code>server.properties</code> any other
- * properties can be provided and will be passed through to the underlying Javamail
+ * {@link com.smartgwt.client.docs.VelocitySupport Velocity templates}. Same values can be
+ * provided as in <code>server.properties</code> omitting "mail.system.mail.smtp" prefix, i.e.
+ * "host", "port", "auth", "user" and "password". <p> Just like in <code>server.properties</code>
+ * any other properties can be provided and will be passed through to the underlying Javamail
  * <code>Session</code> object. Note that property names must omit "mail.smtp" prefix, for
  * example:<p> <code>&lt;starttls.enable&gt;true&lt;/starttls.enable&gt;</code>
  */

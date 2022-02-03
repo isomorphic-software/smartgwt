@@ -243,6 +243,16 @@ package com.smartgwt.client.docs;
  *  to output diagnostics to ensure your message will not be suppressed by log priority settings.
  *  <P>
  *  
+ *  <h4>Issues with the Smart GWT Server</h4>
+ * The {@link com.smartgwt.client.docs.IscServer Smart GWT Server} has extensive diagnostic
+ * logging capabilities. 
+ * See the {@link com.smartgwt.client.docs.ServerLogging Server Logging topic} for details on how
+ * to configure
+ *  logging.<br>
+ *  Developers experiencing java thread deadlocks on the server should also consult the
+ * troubleshooting steps documented {@link com.smartgwt.client.docs.TroubleshootingServerDeadlocks
+ * here}.
+ *  
  *  <h4>Issue Reports</h4>
  *  <P>
  *  If you believe you've discovered a bug in Smart GWT or you are having trouble using

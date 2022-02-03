@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -175,11 +178,12 @@ public class TabBar extends Toolbar {
      * com.smartgwt.client.docs.BaseLine} stretchImg.
      *
      * @param baseLineCapSize New baseLineCapSize value. Default value is 2
+     * @return {@link com.smartgwt.client.widgets.tab.TabBar TabBar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.BaseLine BaseLine overview and related methods
      */
-    public void setBaseLineCapSize(int baseLineCapSize)  throws IllegalStateException {
-        setAttribute("baseLineCapSize", baseLineCapSize, false);
+    public TabBar setBaseLineCapSize(int baseLineCapSize)  throws IllegalStateException {
+        return (TabBar)setAttribute("baseLineCapSize", baseLineCapSize, false);
     }
 
     /**
@@ -199,12 +203,13 @@ public class TabBar extends Toolbar {
      * com.smartgwt.client.docs.BaseLine} StretchImg.
      *
      * @param baseLineSrc New baseLineSrc value. Default value is "[SKIN]baseline.gif"
+     * @return {@link com.smartgwt.client.widgets.tab.TabBar TabBar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.BaseLine BaseLine overview and related methods
      */
-    public void setBaseLineSrc(String baseLineSrc)  throws IllegalStateException {
-        setAttribute("baseLineSrc", baseLineSrc, false);
+    public TabBar setBaseLineSrc(String baseLineSrc)  throws IllegalStateException {
+        return (TabBar)setAttribute("baseLineSrc", baseLineSrc, false);
     }
 
     /**
@@ -227,11 +232,12 @@ public class TabBar extends Toolbar {
      * com.smartgwt.client.widgets.tab.TabSet#getPaneContainer TabSet.paneContainer} for details.
      *
      * @param baseLineThickness New baseLineThickness value. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.tab.TabBar TabBar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.BaseLine BaseLine overview and related methods
      */
-    public void setBaseLineThickness(int baseLineThickness)  throws IllegalStateException {
-        setAttribute("baseLineThickness", baseLineThickness, false);
+    public TabBar setBaseLineThickness(int baseLineThickness)  throws IllegalStateException {
+        return (TabBar)setAttribute("baseLineThickness", baseLineThickness, false);
     }
 
     /**
@@ -252,9 +258,10 @@ public class TabBar extends Toolbar {
      * Breadth of the tabBar (including baseline breadth)
      *
      * @param breadth New breadth value. Default value is 21
+     * @return {@link com.smartgwt.client.widgets.tab.TabBar TabBar} instance, for chaining setter calls
      */
-    public void setBreadth(int breadth) {
-        setAttribute("breadth", breadth, true);
+    public TabBar setBreadth(int breadth) {
+        return (TabBar)setAttribute("breadth", breadth, true);
     }
 
     /**
@@ -310,10 +317,11 @@ public class TabBar extends Toolbar {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param closeTabKeys New closeTabKeys value. Default value is see below
+     * @return {@link com.smartgwt.client.widgets.tab.TabBar TabBar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCloseTabKeys(KeyIdentifier... closeTabKeys)  throws IllegalStateException {
-        setAttribute("closeTabKeys", closeTabKeys, false);
+    public TabBar setCloseTabKeys(KeyIdentifier... closeTabKeys)  throws IllegalStateException {
+        return (TabBar)setAttribute("closeTabKeys", closeTabKeys, false);
     }
 
     /**
@@ -367,10 +375,11 @@ public class TabBar extends Toolbar {
      * Default size (length) in pixels for tabs within this tabBar
      *
      * @param defaultTabSize New defaultTabSize value. Default value is 80
+     * @return {@link com.smartgwt.client.widgets.tab.TabBar TabBar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDefaultTabSize(int defaultTabSize)  throws IllegalStateException {
-        setAttribute("defaultTabSize", defaultTabSize, false);
+    public TabBar setDefaultTabSize(int defaultTabSize)  throws IllegalStateException {
+        return (TabBar)setAttribute("defaultTabSize", defaultTabSize, false);
     }
 
     /**
@@ -388,11 +397,12 @@ public class TabBar extends Toolbar {
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "TabBarEditProxy"
+     * @return {@link com.smartgwt.client.widgets.tab.TabBar TabBar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
-        setAttribute("editProxyConstructor", editProxyConstructor, false);
+    public TabBar setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
+        return (TabBar)setAttribute("editProxyConstructor", editProxyConstructor, false);
     }
 
     /**
@@ -412,10 +422,11 @@ public class TabBar extends Toolbar {
      * and the number of tabs to show exceeds {@link com.smartgwt.client.widgets.tab.TabBar#getMoreTabCount moreTabCount}.
      *
      * @param moreTab New moreTab value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.TabBar TabBar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMoreTab(Tab moreTab)  throws IllegalStateException {
-        setAttribute("moreTab", moreTab == null ? null : moreTab.getJsObj(), false);
+    public TabBar setMoreTab(Tab moreTab)  throws IllegalStateException {
+        return (TabBar)setAttribute("moreTab", moreTab == null ? null : moreTab.getJsObj(), false);
     }
 
     /**
@@ -435,10 +446,11 @@ public class TabBar extends Toolbar {
      * showMoreTab} is enabled.
      *
      * @param moreTabCount New moreTabCount value. Default value is 5
+     * @return {@link com.smartgwt.client.widgets.tab.TabBar TabBar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMoreTabCount(int moreTabCount)  throws IllegalStateException {
-        setAttribute("moreTabCount", moreTabCount, false);
+    public TabBar setMoreTabCount(int moreTabCount)  throws IllegalStateException {
+        return (TabBar)setAttribute("moreTabCount", moreTabCount, false);
     }
 
     /**
@@ -458,10 +470,11 @@ public class TabBar extends Toolbar {
      * tab? <p> This setting is used to emulate an iPhone-style tab bar "more" button.
      *
      * @param showMoreTab New showMoreTab value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.TabBar TabBar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowMoreTab(Boolean showMoreTab)  throws IllegalStateException {
-        setAttribute("showMoreTab", showMoreTab, false);
+    public TabBar setShowMoreTab(Boolean showMoreTab)  throws IllegalStateException {
+        return (TabBar)setAttribute("showMoreTab", showMoreTab, false);
     }
 
     /**

@@ -12,7 +12,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.ValuesManager#cancel
  * @see com.smartgwt.client.widgets.form.DynamicForm#submitForm
  * @see com.smartgwt.client.widgets.form.events.SubmitValuesEvent
- * @see com.smartgwt.client.widgets.form.SearchForm#search
  * @see com.smartgwt.client.widgets.form.ValuesManager#submitValues
  * @see com.smartgwt.client.widgets.form.DynamicForm#getAction
  * @see com.smartgwt.client.widgets.form.DynamicForm#getTarget

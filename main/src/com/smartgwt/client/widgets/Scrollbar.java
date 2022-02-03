@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -179,10 +182,11 @@ public class Scrollbar extends StretchImg {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param allowThumbDownState New allowThumbDownState value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAllowThumbDownState(Boolean allowThumbDownState)  throws IllegalStateException {
-        setAttribute("allowThumbDownState", allowThumbDownState, false);
+    public Scrollbar setAllowThumbDownState(Boolean allowThumbDownState)  throws IllegalStateException {
+        return (Scrollbar)setAttribute("allowThumbDownState", allowThumbDownState, false);
     }
 
     /**
@@ -201,10 +205,11 @@ public class Scrollbar extends StretchImg {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param allowThumbOverState New allowThumbOverState value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAllowThumbOverState(Boolean allowThumbOverState)  throws IllegalStateException {
-        setAttribute("allowThumbOverState", allowThumbOverState, false);
+    public Scrollbar setAllowThumbOverState(Boolean allowThumbOverState)  throws IllegalStateException {
+        return (Scrollbar)setAttribute("allowThumbOverState", allowThumbOverState, false);
     }
 
     /**
@@ -225,9 +230,10 @@ public class Scrollbar extends StretchImg {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param autoEnable New autoEnable value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      */
-    public void setAutoEnable(Boolean autoEnable) {
-        setAttribute("autoEnable", autoEnable, true);
+    public Scrollbar setAutoEnable(Boolean autoEnable) {
+        return (Scrollbar)setAttribute("autoEnable", autoEnable, true);
     }
 
     /**
@@ -250,9 +256,10 @@ public class Scrollbar extends StretchImg {
      * com.smartgwt.client.widgets.Canvas#getScrollbarSize Canvas.scrollbarSize}.
      *
      * @param btnSize New btnSize value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      */
-    public void setBtnSize(Integer btnSize) {
-        setAttribute("btnSize", btnSize, true);
+    public Scrollbar setBtnSize(Integer btnSize) {
+        return (Scrollbar)setAttribute("btnSize", btnSize, true);
     }
 
     /**
@@ -275,10 +282,11 @@ public class Scrollbar extends StretchImg {
      * default is:  <code>new StretchItem("corner", null, null)</code>
      *
      * @param cornerImg New cornerImg value. Default value is see below
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCornerImg(StretchItem cornerImg)  throws IllegalStateException {
-        setAttribute("cornerImg", cornerImg == null ? null : cornerImg.getJsObj(), false);
+    public Scrollbar setCornerImg(StretchItem cornerImg)  throws IllegalStateException {
+        return (Scrollbar)setAttribute("cornerImg", cornerImg == null ? null : cornerImg.getJsObj(), false);
     }
 
     /**
@@ -299,10 +307,11 @@ public class Scrollbar extends StretchImg {
      * com.smartgwt.client.widgets.Scrollbar#getBtnSize btnSize}.
      *
      * @param cornerSize New cornerSize value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCornerSize(Integer cornerSize)  throws IllegalStateException {
-        setAttribute("cornerSize", cornerSize, false);
+    public Scrollbar setCornerSize(Integer cornerSize)  throws IllegalStateException {
+        return (Scrollbar)setAttribute("cornerSize", cornerSize, false);
     }
 
     /**
@@ -320,12 +329,13 @@ public class Scrollbar extends StretchImg {
      * URL for the corner image, a singular image that appears in the corner when both h and v scrollbars are showing.
      *
      * @param cornerSrc New cornerSrc value. Default value is "[SKIN]corner.gif"
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
-    public void setCornerSrc(String cornerSrc)  throws IllegalStateException {
-        setAttribute("cornerSrc", cornerSrc, false);
+    public Scrollbar setCornerSrc(String cornerSrc)  throws IllegalStateException {
+        return (Scrollbar)setAttribute("cornerSrc", cornerSrc, false);
     }
 
     /**
@@ -345,10 +355,11 @@ public class Scrollbar extends StretchImg {
      * <code>new StretchItem("end", "btnSize", "btnSize")</code>
      *
      * @param endImg New endImg value. Default value is see below
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEndImg(StretchItem endImg)  throws IllegalStateException {
-        setAttribute("endImg", endImg == null ? null : endImg.getJsObj(), false);
+    public Scrollbar setEndImg(StretchItem endImg)  throws IllegalStateException {
+        return (Scrollbar)setAttribute("endImg", endImg == null ? null : endImg.getJsObj(), false);
     }
 
     /**
@@ -368,10 +379,11 @@ public class Scrollbar extends StretchImg {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param endThumbOverlap New endThumbOverlap value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEndThumbOverlap(Integer endThumbOverlap)  throws IllegalStateException {
-        setAttribute("endThumbOverlap", endThumbOverlap, false);
+    public Scrollbar setEndThumbOverlap(Integer endThumbOverlap)  throws IllegalStateException {
+        return (Scrollbar)setAttribute("endThumbOverlap", endThumbOverlap, false);
     }
 
     /**
@@ -396,12 +408,13 @@ public class Scrollbar extends StretchImg {
      * "_track", "_track_end" and "_end".
      *
      * @param hSrc New hSrc value. Default value is "[SKIN]hscroll.gif"
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
-    public void setHSrc(String hSrc)  throws IllegalStateException {
-        setAttribute("hSrc", hSrc, false);
+    public Scrollbar setHSrc(String hSrc)  throws IllegalStateException {
+        return (Scrollbar)setAttribute("hSrc", hSrc, false);
     }
 
     /**
@@ -432,9 +445,10 @@ public class Scrollbar extends StretchImg {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param scrollTarget target canvas to be scrolled. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      */
-    public void setScrollTarget(Canvas scrollTarget) {
-        setAttribute("scrollTarget", scrollTarget == null ? null : scrollTarget.getOrCreateJsObj(), true);
+    public Scrollbar setScrollTarget(Canvas scrollTarget) {
+        return (Scrollbar)setAttribute("scrollTarget", scrollTarget == null ? null : scrollTarget.getOrCreateJsObj(), true);
     }
 
     /**
@@ -454,10 +468,11 @@ public class Scrollbar extends StretchImg {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showCorner New showCorner value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowCorner(Boolean showCorner)  throws IllegalStateException {
-        setAttribute("showCorner", showCorner, false);
+    public Scrollbar setShowCorner(Boolean showCorner)  throws IllegalStateException {
+        return (Scrollbar)setAttribute("showCorner", showCorner, false);
     }
 
     /**
@@ -477,10 +492,11 @@ public class Scrollbar extends StretchImg {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showTrackButtons New showTrackButtons value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowTrackButtons(Boolean showTrackButtons)  throws IllegalStateException {
-        setAttribute("showTrackButtons", showTrackButtons, false);
+    public Scrollbar setShowTrackButtons(Boolean showTrackButtons)  throws IllegalStateException {
+        return (Scrollbar)setAttribute("showTrackButtons", showTrackButtons, false);
     }
 
     /**
@@ -503,10 +519,11 @@ public class Scrollbar extends StretchImg {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showTrackEnds New showTrackEnds value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowTrackEnds(Boolean showTrackEnds)  throws IllegalStateException {
-        setAttribute("showTrackEnds", showTrackEnds, false);
+    public Scrollbar setShowTrackEnds(Boolean showTrackEnds)  throws IllegalStateException {
+        return (Scrollbar)setAttribute("showTrackEnds", showTrackEnds, false);
     }
 
     /**
@@ -530,12 +547,13 @@ public class Scrollbar extends StretchImg {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param skinImgDir New skinImgDir value. Default value is "images/Scrollbar/"
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
-    public void setSkinImgDir(String skinImgDir)  throws IllegalStateException {
-        setAttribute("skinImgDir", skinImgDir, false);
+    public Scrollbar setSkinImgDir(String skinImgDir)  throws IllegalStateException {
+        return (Scrollbar)setAttribute("skinImgDir", skinImgDir, false);
     }
 
     /**
@@ -556,10 +574,11 @@ public class Scrollbar extends StretchImg {
      * StretchItem("start", "btnSize", "btnSize")</code>
      *
      * @param startImg New startImg value. Default value is see below
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setStartImg(StretchItem startImg)  throws IllegalStateException {
-        setAttribute("startImg", startImg == null ? null : startImg.getJsObj(), false);
+    public Scrollbar setStartImg(StretchItem startImg)  throws IllegalStateException {
+        return (Scrollbar)setAttribute("startImg", startImg == null ? null : startImg.getJsObj(), false);
     }
 
     /**
@@ -579,10 +598,11 @@ public class Scrollbar extends StretchImg {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param startThumbOverlap New startThumbOverlap value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setStartThumbOverlap(Integer startThumbOverlap)  throws IllegalStateException {
-        setAttribute("startThumbOverlap", startThumbOverlap, false);
+    public Scrollbar setStartThumbOverlap(Integer startThumbOverlap)  throws IllegalStateException {
+        return (Scrollbar)setAttribute("startThumbOverlap", startThumbOverlap, false);
     }
 
     /**
@@ -602,10 +622,11 @@ public class Scrollbar extends StretchImg {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param thumbInset New thumbInset value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setThumbInset(Integer thumbInset)  throws IllegalStateException {
-        setAttribute("thumbInset", thumbInset, false);
+    public Scrollbar setThumbInset(Integer thumbInset)  throws IllegalStateException {
+        return (Scrollbar)setAttribute("thumbInset", thumbInset, false);
     }
 
     /**
@@ -624,10 +645,11 @@ public class Scrollbar extends StretchImg {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param thumbMinSize New thumbMinSize value. Default value is 12
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setThumbMinSize(int thumbMinSize)  throws IllegalStateException {
-        setAttribute("thumbMinSize", thumbMinSize, false);
+    public Scrollbar setThumbMinSize(int thumbMinSize)  throws IllegalStateException {
+        return (Scrollbar)setAttribute("thumbMinSize", thumbMinSize, false);
     }
 
     /**
@@ -646,10 +668,11 @@ public class Scrollbar extends StretchImg {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param thumbOverlap New thumbOverlap value. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setThumbOverlap(int thumbOverlap)  throws IllegalStateException {
-        setAttribute("thumbOverlap", thumbOverlap, false);
+    public Scrollbar setThumbOverlap(int thumbOverlap)  throws IllegalStateException {
+        return (Scrollbar)setAttribute("thumbOverlap", thumbOverlap, false);
     }
 
     /**
@@ -668,10 +691,11 @@ public class Scrollbar extends StretchImg {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param trackEndHeight New trackEndHeight value. Default value is 12
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTrackEndHeight(int trackEndHeight)  throws IllegalStateException {
-        setAttribute("trackEndHeight", trackEndHeight, false);
+    public Scrollbar setTrackEndHeight(int trackEndHeight)  throws IllegalStateException {
+        return (Scrollbar)setAttribute("trackEndHeight", trackEndHeight, false);
     }
 
     /**
@@ -689,10 +713,11 @@ public class Scrollbar extends StretchImg {
      * "trackEndSize")</code>
      *
      * @param trackEndImg New trackEndImg value. Default value is see below
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTrackEndImg(StretchItem trackEndImg)  throws IllegalStateException {
-        setAttribute("trackEndImg", trackEndImg == null ? null : trackEndImg.getJsObj(), false);
+    public Scrollbar setTrackEndImg(StretchItem trackEndImg)  throws IllegalStateException {
+        return (Scrollbar)setAttribute("trackEndImg", trackEndImg == null ? null : trackEndImg.getJsObj(), false);
     }
 
     /**
@@ -711,10 +736,11 @@ public class Scrollbar extends StretchImg {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param trackEndWidth New trackEndWidth value. Default value is 12
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTrackEndWidth(int trackEndWidth)  throws IllegalStateException {
-        setAttribute("trackEndWidth", trackEndWidth, false);
+    public Scrollbar setTrackEndWidth(int trackEndWidth)  throws IllegalStateException {
+        return (Scrollbar)setAttribute("trackEndWidth", trackEndWidth, false);
     }
 
     /**
@@ -732,10 +758,11 @@ public class Scrollbar extends StretchImg {
      * the scrollbar. The default is:  <code>new StretchItem("track", "*", "*")</code>
      *
      * @param trackImg New trackImg value. Default value is see below
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTrackImg(StretchItem trackImg)  throws IllegalStateException {
-        setAttribute("trackImg", trackImg == null ? null : trackImg.getJsObj(), false);
+    public Scrollbar setTrackImg(StretchItem trackImg)  throws IllegalStateException {
+        return (Scrollbar)setAttribute("trackImg", trackImg == null ? null : trackImg.getJsObj(), false);
     }
 
     /**
@@ -754,10 +781,11 @@ public class Scrollbar extends StretchImg {
      * "trackStartSize", "trackStartSize")</code>
      *
      * @param trackStartImg New trackStartImg value. Default value is see below
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTrackStartImg(StretchItem trackStartImg)  throws IllegalStateException {
-        setAttribute("trackStartImg", trackStartImg == null ? null : trackStartImg.getJsObj(), false);
+    public Scrollbar setTrackStartImg(StretchItem trackStartImg)  throws IllegalStateException {
+        return (Scrollbar)setAttribute("trackStartImg", trackStartImg == null ? null : trackStartImg.getJsObj(), false);
     }
 
     /**
@@ -776,12 +804,13 @@ public class Scrollbar extends StretchImg {
      * com.smartgwt.client.widgets.Scrollbar#getHSrc hSrc} for usage.
      *
      * @param vSrc New vSrc value. Default value is "[SKIN]vscroll.gif"
+     * @return {@link com.smartgwt.client.widgets.Scrollbar Scrollbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
-    public void setVSrc(String vSrc)  throws IllegalStateException {
-        setAttribute("vSrc", vSrc, false);
+    public Scrollbar setVSrc(String vSrc)  throws IllegalStateException {
+        return (Scrollbar)setAttribute("vSrc", vSrc, false);
     }
 
     /**

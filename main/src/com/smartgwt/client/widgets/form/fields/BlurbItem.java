@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * FormItem intended for inserting blurbs of instructional HTML into DynamicForms. <p> Set the <code>defaultValue</code> of
@@ -158,9 +161,10 @@ public class BlurbItem extends FormItem {
      * Should the user be able to select the text in this item?
      *
      * @param canSelectText New canSelectText value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.BlurbItem BlurbItem} instance, for chaining setter calls
      */
-    public void setCanSelectText(boolean canSelectText) {
-        setAttribute("canSelectText", canSelectText);
+    public BlurbItem setCanSelectText(boolean canSelectText) {
+        return (BlurbItem)setAttribute("canSelectText", canSelectText);
     }
 
     /**
@@ -178,10 +182,11 @@ public class BlurbItem extends FormItem {
      * If true, text that exceeds the specified size of the form item will be clipped.
      *
      * @param clipValue New clipValue value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.BlurbItem BlurbItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setClipValue(Boolean clipValue) {
-        setAttribute("clipValue", clipValue);
+    public BlurbItem setClipValue(Boolean clipValue) {
+        return (BlurbItem)setAttribute("clipValue", clipValue);
     }
 
     /**
@@ -200,10 +205,11 @@ public class BlurbItem extends FormItem {
      * By default, texts span all remaining columns
      *
      * @param colSpan New colSpan value. Default value is "*"
+     * @return {@link com.smartgwt.client.widgets.form.fields.BlurbItem BlurbItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setColSpan(int colSpan) {
-        setAttribute("colSpan", colSpan);
+    public BlurbItem setColSpan(int colSpan) {
+        return (BlurbItem)setAttribute("colSpan", colSpan);
     }
 
     /**
@@ -226,10 +232,11 @@ public class BlurbItem extends FormItem {
      * By default, texts span all remaining columns
      *
      * @param colSpan New colSpan value. Default value is "*"
+     * @return {@link com.smartgwt.client.widgets.form.fields.BlurbItem BlurbItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setColSpan(String colSpan) {
-        setAttribute("colSpan", colSpan);
+    public BlurbItem setColSpan(String colSpan) {
+        return (BlurbItem)setAttribute("colSpan", colSpan);
     }
 
     /**
@@ -248,10 +255,11 @@ public class BlurbItem extends FormItem {
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "TextItemEditProxy"
+     * @return {@link com.smartgwt.client.widgets.form.fields.BlurbItem BlurbItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor) {
-        setAttribute("editProxyConstructor", editProxyConstructor);
+    public BlurbItem setEditProxyConstructor(String editProxyConstructor) {
+        return (BlurbItem)setAttribute("editProxyConstructor", editProxyConstructor);
     }
 
     /**
@@ -270,10 +278,11 @@ public class BlurbItem extends FormItem {
      * Blurb items show no title by default.
      *
      * @param showTitle New showTitle value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.BlurbItem BlurbItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle);
+    public BlurbItem setShowTitle(Boolean showTitle) {
+        return (BlurbItem)setAttribute("showTitle", showTitle);
     }
 
     /**
@@ -292,11 +301,12 @@ public class BlurbItem extends FormItem {
      * Base css style for this item.
      *
      * @param textBoxStyle New textBoxStyle value. Default value is "staticTextItem"
+     * @return {@link com.smartgwt.client.widgets.form.fields.BlurbItem BlurbItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setTextBoxStyle(String textBoxStyle) {
-        setAttribute("textBoxStyle", textBoxStyle);
+    public BlurbItem setTextBoxStyle(String textBoxStyle) {
+        return (BlurbItem)setAttribute("textBoxStyle", textBoxStyle);
     }
 
     /**
@@ -315,10 +325,11 @@ public class BlurbItem extends FormItem {
      * If true, item contents can wrap. If false, all the contents should appear on a single line.
      *
      * @param wrap New wrap value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.BlurbItem BlurbItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setWrap(Boolean wrap) {
-        setAttribute("wrap", wrap);
+    public BlurbItem setWrap(Boolean wrap) {
+        return (BlurbItem)setAttribute("wrap", wrap);
     }
 
     /**

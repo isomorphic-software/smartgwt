@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Subclass of DateItem for manipulating {@link com.smartgwt.client.types.FieldType datetimes}.
@@ -182,9 +185,10 @@ public class DateTimeItem extends DateItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param browserInputType New browserInputType value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.DateTimeItem DateTimeItem} instance, for chaining setter calls
      */
-    public void setBrowserInputType(String browserInputType) {
-        setAttribute("browserInputType", browserInputType);
+    public DateTimeItem setBrowserInputType(String browserInputType) {
+        return (DateTimeItem)setAttribute("browserInputType", browserInputType);
     }
 
     /**
@@ -220,10 +224,11 @@ public class DateTimeItem extends DateItem {
      * inputFormat} to ensure the DateItem is able to parse user-entered date strings back into Dates</B>
      *
      * @param displayFormat New displayFormat value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.DateTimeItem DateTimeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.DateTimeItem#setInputFormat
      */
-    public void setDisplayFormat(DateDisplayFormat displayFormat) {
-        setAttribute("displayFormat", displayFormat == null ? null : displayFormat.getValue());
+    public DateTimeItem setDisplayFormat(DateDisplayFormat displayFormat) {
+        return (DateTimeItem)setAttribute("displayFormat", displayFormat == null ? null : displayFormat.getValue());
     }
 
     /**
@@ -256,11 +261,12 @@ public class DateTimeItem extends DateItem {
      * DateItem.browserInputType}.
      *
      * @param inputFormat New inputFormat value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.DateTimeItem DateTimeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.DateItem#setDisplayFormat
      * @see com.smartgwt.client.docs.DateInputFormat DateInputFormat 
      */
-    public void setInputFormat(String inputFormat) {
-        setAttribute("inputFormat", inputFormat);
+    public DateTimeItem setInputFormat(String inputFormat) {
+        return (DateTimeItem)setAttribute("inputFormat", inputFormat);
     }
 
     /**

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,59 +65,96 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
- * A ListGridRecord is a JavaScript Object whose properties contain values for each
- * {@link com.smartgwt.client.widgets.grid.ListGridField}.  A ListGridRecord may have additional properties which affect
- * the
- *  record's appearance or behavior, or which hold data for use by custom logic or other,
- *  related components.
+ * 
+ *  ListGridRecord represents a JavaScript Object whose properties contain values 
+ *  for each {@link com.smartgwt.client.widgets.grid.ListGridField}. A ListGridRecord may have additional properties 
+ *  which affect the record's appearance or behavior, or which hold data for use by custom logic 
+ *  or other, related components.
  *  <p>
- *  For example a ListGrid that defines the following fields:
+ *  
+ *  
+ *  For example, if a ListGrid is getting its ListGridFields from the following DataSource definition:
  *  <pre>
- *  fields : [
- *      {name: "field1"},
- *      {name: "field2"}
- *  ],
+ *  &lt;DataSource ... &gt;
+ *       &lt;fields&gt;
+ *           &lt;field name="field1" ... /&gt;
+ *           &lt;field name="field2" ... /&gt;
+ *       &lt;/fields&gt;
+ *  &lt;/DataSource&gt;
  *  </pre>
- *  Might have the following data:
+ *  
+ *  It might have the following data:
+ *  <P>
  *  <pre>
  *  data : [
  *      {field1: "foo", field2: "bar", customProperty:5},
  *      {field1: "field1 value", field2: "field2 value", enabled:false}
  *  ]
  *  </pre>
- *  Each line of code in the <code>data</code> array above creates one JavaScript Object via
- *  JavaScript {type:ObjectLiteral,object literal} notation.  These JavaScript Objects are
- *  used as ListGridRecords.
+ *  
+ *  
+ *  The sample data shown above is in JSON format, and might be how data is returned from a REST 
+ *  web service.
+ *  
  *  <P>
  *  Both records shown above have properties whose names match the name property of a
- *  ListGridField, as well as additional properties.  The second record will be disabled due to
+ *  ListGridField, as well as additional properties. The second record will be disabled due to
  *  <code>enabled:false</code>; the first record has a property "customProperty" which will
  *  have no effect by default but which may be accessed by custom logic.
  *  <P>
+ *  
+ *  The same records could be constructed in Java like so:
+ *  <P>
+ *  <pre>
+ *  ListGridRecord records[] = new ListGridRecord[2];
+ *  records[0] = new ListGridRecord();
+ *  records[0].setAttribute("field1", "foo");
+ *  records[0].setAttribute("field2", "bar");
+ *  records[0].setAttribute("customProperty", 5);
+ * 
+ *  records[1] = new ListGridRecord();
+ *  records[1].setAttribute("field1", "field1 value");
+ *  records[1].setAttribute("field2", "field2 value");
+ *  records[1].setAttribute("enabled", false);
+ *  
+ *  RecordList recordList = new RecordList();
+ *  recordList.addList(records);
+ *  </pre>
+ *  
+ *  <P>
  *  After a ListGrid is created and has loaded data, records may be accessed via
- * {@link com.smartgwt.client.widgets.grid.ListGrid#getData ListGrid.data}, for example, listGrid.data.get(0) retrieves the
- * first record.
+ *  
+ *  {@link com.smartgwt.client.widgets.grid.ListGrid#getDataAsRecordList()},
+ *  which will return a {@link com.smartgwt.client.data.ResultSet} (a subclass of
+ *  {@link com.smartgwt.client.data.RecordList}) if the listGrid is bound to a DataSource.
+ *  
+ *  
  *  ListGridRecords are also passed to many events, such as
  *  {@link com.smartgwt.client.widgets.grid.ListGrid#addCellClickHandler cellClick()}.
  *  <P>
- *  A ListGridRecord is always an ordinary JavaScript Object regardless of how the grid's
- *  dataset is loaded (static data, java server, XML web service, etc), and so supports the
- *  normal behaviors of JavaScript Objects, including accessing and assigning to properties
- *  via dot notation:
+ *  A ListGridRecord is a wrapper around
+ *  an ordinary JavaScript Object regardless of how the grid's
+ *  dataset is loaded (static data, java server, XML web service, etc), 
+ *  
+ *  
+ *  where you have access to its properties via setAttribute() and getAttribute() methods:
  *  <pre>
- *      var fieldValue = record.<i>fieldName</i>;
- *      record.<i>fieldName</i> = newValue;
+ *  record.setAttribute("field1", "foo");
+ *  String value1 = record.getAttribute("field1");
  *  </pre>
+ *  
  *  <P>
  *  Note however that simply assigning a value to a record won't cause the display to be
  * automatically refreshed - {@link com.smartgwt.client.widgets.grid.ListGrid#refreshCell ListGrid.refreshCell()} needs to
@@ -126,7 +164,6 @@ import com.google.gwt.event.shared.HasHandlers;
  *  <P>
  *  See the attributes in the API tab for the full list of special properties on
  *  ListGridRecords that will affect the grid's behavior.
- * @see com.smartgwt.client.widgets.grid.ListGrid#getData
  */
 @BeanFactory.FrameworkClass
 public class ListGridRecord extends Record {
@@ -174,10 +211,11 @@ public class ListGridRecord extends Record {
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordBaseStyleProperty ListGrid.recordBaseStyleProperty}.
      *
      * @param _baseStyle New _baseStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridRecord ListGridRecord} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void set_baseStyle(String _baseStyle) {
-        setAttribute("_baseStyle", _baseStyle);
+    public ListGridRecord set_baseStyle(String _baseStyle) {
+        return (ListGridRecord)setAttribute("_baseStyle", _baseStyle);
     }
 
     /**
@@ -206,10 +244,11 @@ public class ListGridRecord extends Record {
      * com.smartgwt.client.widgets.grid.ListGrid#getRecordEditProperty ListGrid.recordEditProperty}.
      *
      * @param _canEdit New _canEdit value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridRecord ListGridRecord} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
-    public void set_canEdit(Boolean _canEdit) {
-        setAttribute("_canEdit", _canEdit);
+    public ListGridRecord set_canEdit(Boolean _canEdit) {
+        return (ListGridRecord)setAttribute("_canEdit", _canEdit);
     }
 
     /**
@@ -229,10 +268,11 @@ public class ListGridRecord extends Record {
      * com.smartgwt.client.widgets.grid.ListGrid#getRecordCanRemoveProperty ListGrid.recordCanRemoveProperty}.
      *
      * @param _canRemove New _canRemove value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridRecord ListGridRecord} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
-    public void set_canRemove(Boolean _canRemove) {
-        setAttribute("_canRemove", _canRemove);
+    public ListGridRecord set_canRemove(Boolean _canRemove) {
+        return (ListGridRecord)setAttribute("_canRemove", _canRemove);
     }
 
     /**
@@ -256,9 +296,10 @@ public class ListGridRecord extends Record {
      * the cell styling is transparent.
      *
      * @param backgroundComponent New backgroundComponent value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridRecord ListGridRecord} instance, for chaining setter calls
      */
-    public void setBackgroundComponent(Canvas backgroundComponent) {
-        setAttribute("backgroundComponent", backgroundComponent == null ? null : backgroundComponent.getOrCreateJsObj());
+    public ListGridRecord setBackgroundComponent(Canvas backgroundComponent) {
+        return (ListGridRecord)setAttribute("backgroundComponent", backgroundComponent == null ? null : backgroundComponent.getOrCreateJsObj());
     }
 
     /**
@@ -281,9 +322,10 @@ public class ListGridRecord extends Record {
      * this record.
      *
      * @param canAcceptDrop New canAcceptDrop value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridRecord ListGridRecord} instance, for chaining setter calls
      */
-    public void setCanAcceptDrop(Boolean canAcceptDrop) {
-        setAttribute("canAcceptDrop", canAcceptDrop);
+    public ListGridRecord setCanAcceptDrop(Boolean canAcceptDrop) {
+        return (ListGridRecord)setAttribute("canAcceptDrop", canAcceptDrop);
     }
 
     /**
@@ -302,9 +344,10 @@ public class ListGridRecord extends Record {
      * selection, none of the records will be draggable.
      *
      * @param canDrag New canDrag value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridRecord ListGridRecord} instance, for chaining setter calls
      */
-    public void setCanDrag(Boolean canDrag) {
-        setAttribute("canDrag", canDrag);
+    public ListGridRecord setCanDrag(Boolean canDrag) {
+        return (ListGridRecord)setAttribute("canDrag", canDrag);
     }
 
     /**
@@ -323,9 +366,10 @@ public class ListGridRecord extends Record {
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecordProperty ListGrid.canExpandRecordProperty}.
      *
      * @param canExpand New canExpand value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridRecord ListGridRecord} instance, for chaining setter calls
      */
-    public void setCanExpand(Boolean canExpand) {
-        setAttribute("canExpand", canExpand);
+    public ListGridRecord setCanExpand(Boolean canExpand) {
+        return (ListGridRecord)setAttribute("canExpand", canExpand);
     }
 
     /**
@@ -344,9 +388,10 @@ public class ListGridRecord extends Record {
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordCanSelectProperty ListGrid.recordCanSelectProperty}.
      *
      * @param canSelect New canSelect value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridRecord ListGridRecord} instance, for chaining setter calls
      */
-    public void setCanSelect(Boolean canSelect) {
-        setAttribute("canSelect", canSelect);
+    public ListGridRecord setCanSelect(Boolean canSelect) {
+        return (ListGridRecord)setAttribute("canSelect", canSelect);
     }
 
     /**
@@ -372,10 +417,11 @@ public class ListGridRecord extends Record {
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getRecordCustomStyleProperty ListGrid.recordCustomStyleProperty}.
      *
      * @param customStyle New customStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridRecord ListGridRecord} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setCustomStyle(String customStyle) {
-        setAttribute("customStyle", customStyle);
+    public ListGridRecord setCustomStyle(String customStyle) {
+        return (ListGridRecord)setAttribute("customStyle", customStyle);
     }
 
     /**
@@ -403,9 +449,10 @@ public class ListGridRecord extends Record {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param detailDS New detailDS value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridRecord ListGridRecord} instance, for chaining setter calls
      */
-    public void setDetailDS(DataSource detailDS) {
-        setAttribute("detailDS", detailDS == null ? null : detailDS.getOrCreateJsObj());
+    public ListGridRecord setDetailDS(DataSource detailDS) {
+        return (ListGridRecord)setAttribute("detailDS", detailDS == null ? null : detailDS.getOrCreateJsObj());
     }
 
     /**
@@ -443,10 +490,11 @@ public class ListGridRecord extends Record {
      * com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents record components} subsystem.
      *
      * @param embeddedComponent New embeddedComponent value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridRecord ListGridRecord} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setEmbeddedComponent(Canvas embeddedComponent) {
-        setAttribute("embeddedComponent", embeddedComponent == null ? null : embeddedComponent.getOrCreateJsObj());
+    public ListGridRecord setEmbeddedComponent(Canvas embeddedComponent) {
+        return (ListGridRecord)setAttribute("embeddedComponent", embeddedComponent == null ? null : embeddedComponent.getOrCreateJsObj());
     }
 
     /**
@@ -489,10 +537,11 @@ public class ListGridRecord extends Record {
      * field.  If both fields are hidden, the component will be hidden until one or more of the fields are shown.
      *
      * @param embeddedComponentFields New embeddedComponentFields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridRecord ListGridRecord} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setEmbeddedComponentFields(String... embeddedComponentFields) {
-        setAttribute("embeddedComponentFields", embeddedComponentFields);
+    public ListGridRecord setEmbeddedComponentFields(String... embeddedComponentFields) {
+        return (ListGridRecord)setAttribute("embeddedComponentFields", embeddedComponentFields);
     }
 
     /**
@@ -518,10 +567,11 @@ public class ListGridRecord extends Record {
      * specified sizes instead.
      *
      * @param embeddedComponentPosition New embeddedComponentPosition value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridRecord ListGridRecord} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setEmbeddedComponentPosition(EmbeddedPosition embeddedComponentPosition) {
-        setAttribute("embeddedComponentPosition", embeddedComponentPosition == null ? null : embeddedComponentPosition.getValue());
+    public ListGridRecord setEmbeddedComponentPosition(EmbeddedPosition embeddedComponentPosition) {
+        return (ListGridRecord)setAttribute("embeddedComponentPosition", embeddedComponentPosition == null ? null : embeddedComponentPosition.getValue());
     }
 
     /**
@@ -543,10 +593,11 @@ public class ListGridRecord extends Record {
      * com.smartgwt.client.widgets.grid.ListGrid#getRecordEnabledProperty ListGrid.recordEnabledProperty}.
      *
      * @param enabled New enabled value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridRecord ListGridRecord} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_disabled_rows" target="examples">Disabled rows Example</a>
      */
-    public void setEnabled(Boolean enabled) {
-        setAttribute("enabled", enabled);
+    public ListGridRecord setEnabled(Boolean enabled) {
+        return (ListGridRecord)setAttribute("enabled", enabled);
     }
 
     /**
@@ -568,9 +619,10 @@ public class ListGridRecord extends Record {
      * com.smartgwt.client.widgets.grid.ListGrid#getIncludeInSummaryProperty ListGrid.includeInSummaryProperty}.
      *
      * @param includeInSummary New includeInSummary value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridRecord ListGridRecord} instance, for chaining setter calls
      */
-    public void setIncludeInSummary(Boolean includeInSummary) {
-        setAttribute("includeInSummary", includeInSummary);
+    public ListGridRecord setIncludeInSummary(Boolean includeInSummary) {
+        return (ListGridRecord)setAttribute("includeInSummary", includeInSummary);
     }
 
     /**
@@ -593,9 +645,10 @@ public class ListGridRecord extends Record {
      * com.smartgwt.client.widgets.grid.ListGrid#getGridSummaryRecordProperty ListGrid.gridSummaryRecordProperty}
      *
      * @param isGridSummary New isGridSummary value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridRecord ListGridRecord} instance, for chaining setter calls
      */
-    public void setIsGridSummary(Boolean isGridSummary) {
-        setAttribute("isGridSummary", isGridSummary);
+    public ListGridRecord setIsGridSummary(Boolean isGridSummary) {
+        return (ListGridRecord)setAttribute("isGridSummary", isGridSummary);
     }
 
     /**
@@ -619,9 +672,10 @@ public class ListGridRecord extends Record {
      * com.smartgwt.client.widgets.grid.ListGrid#getGroupSummaryRecordProperty ListGrid.groupSummaryRecordProperty}
      *
      * @param isGroupSummary New isGroupSummary value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridRecord ListGridRecord} instance, for chaining setter calls
      */
-    public void setIsGroupSummary(Boolean isGroupSummary) {
-        setAttribute("isGroupSummary", isGroupSummary);
+    public ListGridRecord setIsGroupSummary(Boolean isGroupSummary) {
+        return (ListGridRecord)setAttribute("isGroupSummary", isGroupSummary);
     }
 
     /**
@@ -645,9 +699,10 @@ public class ListGridRecord extends Record {
      * com.smartgwt.client.widgets.grid.ListGrid#getIsSeparatorProperty ListGrid.isSeparatorProperty}.
      *
      * @param isSeparator New isSeparator value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridRecord ListGridRecord} instance, for chaining setter calls
      */
-    public void setIsSeparator(Boolean isSeparator) {
-        setAttribute("isSeparator", isSeparator);
+    public ListGridRecord setIsSeparator(Boolean isSeparator) {
+        return (ListGridRecord)setAttribute("isSeparator", isSeparator);
     }
 
     /**
@@ -668,13 +723,14 @@ public class ListGridRecord extends Record {
      * com.smartgwt.client.widgets.grid.ListGridField#getLinkText ListGridField.linkText}.
      *
      * @param linkText New linkText value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridRecord ListGridRecord} instance, for chaining setter calls
      * @see com.smartgwt.client.types.ListGridFieldType
      * @see com.smartgwt.client.types.FieldType
      * @see com.smartgwt.client.widgets.grid.ListGridField#setLinkText
      * @see com.smartgwt.client.widgets.grid.ListGrid#setLinkTextProperty
      */
-    public void setLinkText(String linkText) {
-        setAttribute("linkText", linkText);
+    public ListGridRecord setLinkText(String linkText) {
+        return (ListGridRecord)setAttribute("linkText", linkText);
     }
 
     /**
@@ -699,10 +755,11 @@ public class ListGridRecord extends Record {
      * com.smartgwt.client.widgets.grid.ListGrid#getRecordShowRollOverProperty ListGrid.recordShowRollOverProperty}.
      *
      * @param showRollOver New showRollOver value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridRecord ListGridRecord} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowRollOver(Boolean showRollOver) {
-        setAttribute("showRollOver", showRollOver);
+    public ListGridRecord setShowRollOver(Boolean showRollOver) {
+        return (ListGridRecord)setAttribute("showRollOver", showRollOver);
     }
 
     /**
@@ -726,10 +783,11 @@ public class ListGridRecord extends Record {
      * com.smartgwt.client.widgets.grid.ListGrid#getSingleCellValueProperty ListGrid.singleCellValueProperty}.
      *
      * @param singleCellValue New singleCellValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridRecord ListGridRecord} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setSingleCellValue(String singleCellValue) {
-        setAttribute("singleCellValue", singleCellValue);
+    public ListGridRecord setSingleCellValue(String singleCellValue) {
+        return (ListGridRecord)setAttribute("singleCellValue", singleCellValue);
     }
 
     /**

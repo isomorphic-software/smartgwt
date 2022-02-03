@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * An object representing a criterion to apply to a record.   <P> A criterion is part of the definition of an {@link
@@ -110,10 +113,11 @@ public class Criterion extends Criteria {
      * together by the operator.
      *
      * @param criteria New criteria value. Default value is null
+     * @return {@link com.smartgwt.client.data.Criterion Criterion} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
-    public void setCriteria(Criterion... criteria) {
-        setAttribute("criteria", criteria);
+    public Criterion setCriteria(Criterion... criteria) {
+        return (Criterion)setAttribute("criteria", criteria);
     }
 
     /**
@@ -136,10 +140,11 @@ public class Criterion extends Criteria {
      * dataPath} for more information.
      *
      * @param fieldName New fieldName value. Default value is null
+     * @return {@link com.smartgwt.client.data.Criterion Criterion} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
-    public void setFieldName(String fieldName) {
-        setAttribute("fieldName", fieldName);
+    public Criterion setFieldName(String fieldName) {
+        return (Criterion)setAttribute("fieldName", fieldName);
     }
 
     /**
@@ -160,10 +165,11 @@ public class Criterion extends Criteria {
      * Operator this criterion applies.
      *
      * @param operator New operator value. Default value is null
+     * @return {@link com.smartgwt.client.data.Criterion Criterion} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
-    public void setOperator(OperatorId operator) {
-        setAttribute("operator", operator == null ? null : operator.getValue());
+    public Criterion setOperator(OperatorId operator) {
+        return (Criterion)setAttribute("operator", operator == null ? null : operator.getValue());
     }
 
     /**
@@ -190,9 +196,10 @@ public class Criterion extends Criteria {
      * will be matched against a nested structure. </ul>
      *
      * @param valuePath New valuePath value. Default value is null
+     * @return {@link com.smartgwt.client.data.Criterion Criterion} instance, for chaining setter calls
      */
-    public void setValuePath(String valuePath) {
-        setAttribute("valuePath", valuePath);
+    public Criterion setValuePath(String valuePath) {
+        return (Criterion)setAttribute("valuePath", valuePath);
     }
 
     /**

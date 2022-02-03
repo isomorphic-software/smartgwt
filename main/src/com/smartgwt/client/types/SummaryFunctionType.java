@@ -52,8 +52,8 @@ public enum SummaryFunctionType implements ValueEnum {
     AVG("avg"),
     /**
      * <i>Client:</i> iterates through the set of records, picking up all values for the specified field and finding the
-     * maximum value. Handles numeric fields and date type fields only. Returns null to indicate invalid summary value if any
-     * non numeric/date field values are encountered.<br> <i>Server:</i> acts exactly like SQL MAX function.
+     * maximum value. Handles numeric fields and date/time/datetime type fields only. Returns null to indicate invalid summary
+     * value if any non numeric/date field values are encountered.<br> <i>Server:</i> acts exactly like SQL MAX function.
      * <P>
      * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
      * file or server-side DataSource descriptor (.ds.xml file), use the value "max".
@@ -61,8 +61,8 @@ public enum SummaryFunctionType implements ValueEnum {
     MAX("max"),
     /**
      * <i>Client:</i> iterates through the set of records, picking up all values for the specified field and finding the
-     * minimum value. Handles numeric fields and date type fields only. Returns null to indicate invalid summary value if any
-     * non numeric field values are encountered.<br> <i>Server:</i> acts exactly like SQL MIN function.
+     * minimum value. Handles numeric fields and date/time/datetime type fields only. Returns null to indicate invalid summary
+     * value if any non numeric field values are encountered.<br> <i>Server:</i> acts exactly like SQL MIN function.
      * <P>
      * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
      * file or server-side DataSource descriptor (.ds.xml file), use the value "min".

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * A form item that displays a URL. In the default read-only mode ({@link
@@ -167,9 +170,10 @@ public class LinkItem extends StaticTextItem {
      * FormItemIcon.disableOnReadOnly}.
      *
      * @param disableIconsOnReadOnly New disableIconsOnReadOnly value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.LinkItem LinkItem} instance, for chaining setter calls
      */
-    public void setDisableIconsOnReadOnly(Boolean disableIconsOnReadOnly) {
-        setAttribute("disableIconsOnReadOnly", disableIconsOnReadOnly);
+    public LinkItem setDisableIconsOnReadOnly(Boolean disableIconsOnReadOnly) {
+        return (LinkItem)setAttribute("disableIconsOnReadOnly", disableIconsOnReadOnly);
     }
 
     /**
@@ -191,9 +195,10 @@ public class LinkItem extends StaticTextItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param iconVAlign New iconVAlign value. Default value is "center"
+     * @return {@link com.smartgwt.client.widgets.form.fields.LinkItem LinkItem} instance, for chaining setter calls
      */
-    public void setIconVAlign(VerticalAlignment iconVAlign) {
-        setAttribute("iconVAlign", iconVAlign == null ? null : iconVAlign.getValue());
+    public LinkItem setIconVAlign(VerticalAlignment iconVAlign) {
+        return (LinkItem)setAttribute("iconVAlign", iconVAlign == null ? null : iconVAlign.getValue());
     }
 
     /**
@@ -214,10 +219,11 @@ public class LinkItem extends StaticTextItem {
      * Setter for {@link com.smartgwt.client.widgets.form.fields.LinkItem#getLinkTitle linkTitle}.
      *
      * @param linkTitle new <code>linkTitle</code> HTML. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.LinkItem LinkItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setLinkTitle(String linkTitle) {
-        setAttribute("linkTitle", linkTitle);
+    public LinkItem setLinkTitle(String linkTitle) {
+        return (LinkItem)setAttribute("linkTitle", linkTitle);
     }
 
     /**
@@ -238,10 +244,12 @@ public class LinkItem extends StaticTextItem {
      * remains active regardless of the <code>readOnlyDisplay</code> setting.
      *
      * @param readOnlyDisplay New readOnlyDisplay value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.LinkItem LinkItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.DynamicForm#setReadOnlyDisplay
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setReadOnlyDisplay(ReadOnlyDisplayAppearance readOnlyDisplay) {
-        setAttribute("readOnlyDisplay", readOnlyDisplay == null ? null : readOnlyDisplay.getValue());
+    public LinkItem setReadOnlyDisplay(ReadOnlyDisplayAppearance readOnlyDisplay) {
+        return (LinkItem)setAttribute("readOnlyDisplay", readOnlyDisplay == null ? null : readOnlyDisplay.getValue());
     }
 
     /**
@@ -251,6 +259,7 @@ public class LinkItem extends StaticTextItem {
      *
      * @return Current readOnlyDisplay value. Default value is null
      * @see com.smartgwt.client.widgets.form.DynamicForm#getReadOnlyDisplay
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public ReadOnlyDisplayAppearance getReadOnlyDisplay()  {
         return EnumUtil.getEnum(ReadOnlyDisplayAppearance.values(), getAttribute("readOnlyDisplay"));
@@ -265,9 +274,10 @@ public class LinkItem extends StaticTextItem {
      * com.smartgwt.client.widgets.form.fields.FormItem#addClickHandler FormItem.click()} event is fired.
      *
      * @param target New target value. Default value is "_blank"
+     * @return {@link com.smartgwt.client.widgets.form.fields.LinkItem LinkItem} instance, for chaining setter calls
      */
-    public void setTarget(String target) {
-        setAttribute("target", target);
+    public LinkItem setTarget(String target) {
+        return (LinkItem)setAttribute("target", target);
     }
 
     /**

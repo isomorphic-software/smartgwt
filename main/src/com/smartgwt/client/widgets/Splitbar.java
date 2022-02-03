@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -187,9 +190,10 @@ public class Splitbar extends StretchImg {
      * <code>true</code>.
      *
      * @param canCollapse New canCollapse value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Splitbar Splitbar} instance, for chaining setter calls
      */
-    public void setCanCollapse(boolean canCollapse) {
-        setAttribute("canCollapse", canCollapse, true);
+    public Splitbar setCanCollapse(boolean canCollapse) {
+        return (Splitbar)setAttribute("canCollapse", canCollapse, true);
     }
 
     /**
@@ -213,9 +217,10 @@ public class Splitbar extends StretchImg {
      * collapsing/uncollapsing the {@link com.smartgwt.client.widgets.Splitbar#getTarget target}?
      *
      * @param canCollapseOnTap New canCollapseOnTap value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Splitbar Splitbar} instance, for chaining setter calls
      */
-    public void setCanCollapseOnTap(boolean canCollapseOnTap) {
-        setAttribute("canCollapseOnTap", canCollapseOnTap, true);
+    public Splitbar setCanCollapseOnTap(boolean canCollapseOnTap) {
+        return (Splitbar)setAttribute("canCollapseOnTap", canCollapseOnTap, true);
     }
 
     /**
@@ -235,9 +240,10 @@ public class Splitbar extends StretchImg {
      * com.smartgwt.client.widgets.Splitbar#getTarget target}
      *
      * @param canDrag New canDrag value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Splitbar Splitbar} instance, for chaining setter calls
      */
-    public void setCanDrag(Boolean canDrag) {
-        setAttribute("canDrag", canDrag, true);
+    public Splitbar setCanDrag(Boolean canDrag) {
+        return (Splitbar)setAttribute("canDrag", canDrag, true);
     }
 
     /**
@@ -259,9 +265,10 @@ public class Splitbar extends StretchImg {
      * or {@link com.smartgwt.client.widgets.Splitbar#getHResizeCursor hResizeCursor} rather than this property.
      *
      * @param cursor New cursor value. Default value is "hand"
+     * @return {@link com.smartgwt.client.widgets.Splitbar Splitbar} instance, for chaining setter calls
      */
-    public void setCursor(Cursor cursor) {
-        setAttribute("cursor", cursor == null ? null : cursor.getValue(), true);
+    public Splitbar setCursor(Cursor cursor) {
+        return (Splitbar)setAttribute("cursor", cursor == null ? null : cursor.getValue(), true);
     }
 
     /**
@@ -277,14 +284,38 @@ public class Splitbar extends StretchImg {
     
 
     /**
+     * Grip breadth in pixels (the short icon axis, parallel to the Layout direction). <P> If unset, grip will assume the
+     * natural breadth of image.
+     *
+     * @param gripBreadth New gripBreadth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Splitbar Splitbar} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public Splitbar setGripBreadth(Integer gripBreadth)  throws IllegalStateException {
+        return (Splitbar)setAttribute("gripBreadth", gripBreadth, false);
+    }
+
+    /**
+     * Grip breadth in pixels (the short icon axis, parallel to the Layout direction). <P> If unset, grip will assume the
+     * natural breadth of image.
+     *
+     * @return Current gripBreadth value. Default value is null
+     */
+    public Integer getGripBreadth()  {
+        return getAttributeAsInt("gripBreadth");
+    }
+    
+
+    /**
      * Suffix used the 'grip' image if {@link com.smartgwt.client.widgets.StretchImg#getShowGrip StretchImg.showGrip} is true.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param gripImgSuffix New gripImgSuffix value. Default value is "grip"
+     * @return {@link com.smartgwt.client.widgets.Splitbar Splitbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setGripImgSuffix(String gripImgSuffix)  throws IllegalStateException {
-        setAttribute("gripImgSuffix", gripImgSuffix, false);
+    public Splitbar setGripImgSuffix(String gripImgSuffix)  throws IllegalStateException {
+        return (Splitbar)setAttribute("gripImgSuffix", gripImgSuffix, false);
     }
 
     /**
@@ -298,13 +329,37 @@ public class Splitbar extends StretchImg {
     
 
     /**
+     * Grip length in pixels (the long icon axis, perpendicular to the Layout direction). <P> If unset, grip will assume the
+     * natural length of image.
+     *
+     * @param gripLength New gripLength value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Splitbar Splitbar} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public Splitbar setGripLength(Integer gripLength)  throws IllegalStateException {
+        return (Splitbar)setAttribute("gripLength", gripLength, false);
+    }
+
+    /**
+     * Grip length in pixels (the long icon axis, perpendicular to the Layout direction). <P> If unset, grip will assume the
+     * natural length of image.
+     *
+     * @return Current gripLength value. Default value is null
+     */
+    public Integer getGripLength()  {
+        return getAttributeAsInt("gripLength");
+    }
+    
+
+    /**
      * Cursor to display if this Splitbar is to be used for horizontal resize of widgets.
      *
      * @param hResizeCursor New hResizeCursor value. Default value is "col-resize"
+     * @return {@link com.smartgwt.client.widgets.Splitbar Splitbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setHResizeCursor(Cursor hResizeCursor)  throws IllegalStateException {
-        setAttribute("hResizeCursor", hResizeCursor == null ? null : hResizeCursor.getValue(), false);
+    public Splitbar setHResizeCursor(Cursor hResizeCursor)  throws IllegalStateException {
+        return (Splitbar)setAttribute("hResizeCursor", hResizeCursor == null ? null : hResizeCursor.getValue(), false);
     }
 
     /**
@@ -322,14 +377,15 @@ public class Splitbar extends StretchImg {
      * {@link com.smartgwt.client.widgets.StretchImg#getSrc StretchImg.src} is unset.
      *
      * @param hSrc New hSrc value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Splitbar Splitbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.StretchImg#setSrc
      * @see com.smartgwt.client.widgets.StretchImg#setVSrc
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setHSrc(String hSrc)  throws IllegalStateException {
-        setAttribute("hSrc", hSrc, false);
+    public Splitbar setHSrc(String hSrc)  throws IllegalStateException {
+        return (Splitbar)setAttribute("hSrc", hSrc, false);
     }
 
     /**
@@ -356,9 +412,10 @@ public class Splitbar extends StretchImg {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param invertClosedGripIfTargetAfter New invertClosedGripIfTargetAfter value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Splitbar Splitbar} instance, for chaining setter calls
      */
-    public void setInvertClosedGripIfTargetAfter(boolean invertClosedGripIfTargetAfter) {
-        setAttribute("invertClosedGripIfTargetAfter", invertClosedGripIfTargetAfter, true);
+    public Splitbar setInvertClosedGripIfTargetAfter(boolean invertClosedGripIfTargetAfter) {
+        return (Splitbar)setAttribute("invertClosedGripIfTargetAfter", invertClosedGripIfTargetAfter, true);
     }
 
     /**
@@ -385,10 +442,11 @@ public class Splitbar extends StretchImg {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showClosedGrip New showClosedGrip value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Splitbar Splitbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowClosedGrip(Boolean showClosedGrip)  throws IllegalStateException {
-        setAttribute("showClosedGrip", showClosedGrip, false);
+    public Splitbar setShowClosedGrip(Boolean showClosedGrip)  throws IllegalStateException {
+        return (Splitbar)setAttribute("showClosedGrip", showClosedGrip, false);
     }
 
     /**
@@ -412,10 +470,11 @@ public class Splitbar extends StretchImg {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showDownGrip New showDownGrip value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Splitbar Splitbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowDownGrip(Boolean showDownGrip)  throws IllegalStateException {
-        setAttribute("showDownGrip", showDownGrip, false);
+    public Splitbar setShowDownGrip(Boolean showDownGrip)  throws IllegalStateException {
+        return (Splitbar)setAttribute("showDownGrip", showDownGrip, false);
     }
 
     /**
@@ -435,10 +494,11 @@ public class Splitbar extends StretchImg {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showGrip New showGrip value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Splitbar Splitbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowGrip(Boolean showGrip)  throws IllegalStateException {
-        setAttribute("showGrip", showGrip, false);
+    public Splitbar setShowGrip(Boolean showGrip)  throws IllegalStateException {
+        return (Splitbar)setAttribute("showGrip", showGrip, false);
     }
 
     /**
@@ -458,10 +518,11 @@ public class Splitbar extends StretchImg {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showRollOverGrip New showRollOverGrip value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Splitbar Splitbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowRollOverGrip(Boolean showRollOverGrip)  throws IllegalStateException {
-        setAttribute("showRollOverGrip", showRollOverGrip, false);
+    public Splitbar setShowRollOverGrip(Boolean showRollOverGrip)  throws IllegalStateException {
+        return (Splitbar)setAttribute("showRollOverGrip", showRollOverGrip, false);
     }
 
     /**
@@ -485,14 +546,15 @@ public class Splitbar extends StretchImg {
      * <code>src</code> of "button.png" and a segment name of "stretch", the resulting URL would be "button_Over_stretch.png".
      *
      * @param src New src value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Splitbar Splitbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.StretchImg#setHSrc
      * @see com.smartgwt.client.widgets.StretchImg#setVSrc
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setSrc(String src)  throws IllegalStateException {
-        setAttribute("src", src, false);
+    public Splitbar setSrc(String src)  throws IllegalStateException {
+        return (Splitbar)setAttribute("src", src, false);
     }
 
     /**
@@ -538,10 +600,11 @@ public class Splitbar extends StretchImg {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param targetAfter New targetAfter value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Splitbar Splitbar} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Splitbar#setInvertClosedGripIfTargetAfter
      */
-    public void setTargetAfter(Boolean targetAfter) {
-        setAttribute("targetAfter", targetAfter, true);
+    public Splitbar setTargetAfter(Boolean targetAfter) {
+        return (Splitbar)setAttribute("targetAfter", targetAfter, true);
     }
 
     /**
@@ -576,10 +639,11 @@ public class Splitbar extends StretchImg {
      * Cursor to display if this Splitbar is to be used for vertical resize of widgets.
      *
      * @param vResizeCursor New vResizeCursor value. Default value is "row-resize"
+     * @return {@link com.smartgwt.client.widgets.Splitbar Splitbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setVResizeCursor(Cursor vResizeCursor)  throws IllegalStateException {
-        setAttribute("vResizeCursor", vResizeCursor == null ? null : vResizeCursor.getValue(), false);
+    public Splitbar setVResizeCursor(Cursor vResizeCursor)  throws IllegalStateException {
+        return (Splitbar)setAttribute("vResizeCursor", vResizeCursor == null ? null : vResizeCursor.getValue(), false);
     }
 
     /**
@@ -597,14 +661,15 @@ public class Splitbar extends StretchImg {
      * {@link com.smartgwt.client.widgets.StretchImg#getSrc StretchImg.src} is unset.
      *
      * @param vSrc New vSrc value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Splitbar Splitbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.StretchImg#setSrc
      * @see com.smartgwt.client.widgets.StretchImg#setVSrc
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setVSrc(String vSrc)  throws IllegalStateException {
-        setAttribute("vSrc", vSrc, false);
+    public Splitbar setVSrc(String vSrc)  throws IllegalStateException {
+        return (Splitbar)setAttribute("vSrc", vSrc, false);
     }
 
     /**
@@ -684,9 +749,19 @@ public class Splitbar extends StretchImg {
             s.logicalStructureErrors += "Splitbar.cursor:" + t.getMessage() + "\n";
         }
         try {
+            s.gripBreadth = getAttributeAsString("gripBreadth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Splitbar.gripBreadth:" + t.getMessage() + "\n";
+        }
+        try {
             s.gripImgSuffix = getAttributeAsString("gripImgSuffix");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Splitbar.gripImgSuffix:" + t.getMessage() + "\n";
+        }
+        try {
+            s.gripLength = getAttributeAsString("gripLength");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Splitbar.gripLength:" + t.getMessage() + "\n";
         }
         try {
             s.hResizeCursor = getAttributeAsString("hResizeCursor");

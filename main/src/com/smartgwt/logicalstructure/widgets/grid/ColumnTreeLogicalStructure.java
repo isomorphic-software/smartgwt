@@ -5,8 +5,10 @@ import com.smartgwt.client.i18n.*;
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.fields.*;
 import com.smartgwt.client.tools.*;
 import com.smartgwt.client.widgets.*;
@@ -45,13 +47,18 @@ import com.smartgwt.logicalstructure.widgets.drawing.*;
 
 public class ColumnTreeLogicalStructure extends LayoutLogicalStructure {
     public String backButtonTitle;
+    public String canDragRecordsOut;
     public String closedIconSuffix;
+    public String[] columnTitles;
+    public String[] columnWidths;
     public String customIconOpenProperty;
     public String customIconProperty;
     public Tree data;
     public String dataFetchMode;
     public Tree dataProperties;
+    public String[] emptyColumnMessages;
     public String firstColumnTitle;
+    public String fixedColumns;
     public String folderIcon;
     public String loadDataOnDemand;
     public String nodeIcon;

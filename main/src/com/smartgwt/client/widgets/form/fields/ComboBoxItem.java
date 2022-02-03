@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * The Combobox is a text input field which can show a list of options via a drop-down PickList. <p> The set of options
@@ -196,9 +199,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * an entirely new value.
      *
      * @param addUnknownValues New addUnknownValues value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setAddUnknownValues(Boolean addUnknownValues) {
-        setAttribute("addUnknownValues", addUnknownValues);
+    public ComboBoxItem setAddUnknownValues(Boolean addUnknownValues) {
+        return (ComboBoxItem)setAttribute("addUnknownValues", addUnknownValues);
     }
 
     /**
@@ -238,9 +242,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * <code>specialValues</code> documentation}.
      *
      * @param allowEmptyValue New allowEmptyValue value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setAllowEmptyValue(Boolean allowEmptyValue) {
-        setAttribute("allowEmptyValue", allowEmptyValue);
+    public ComboBoxItem setAllowEmptyValue(Boolean allowEmptyValue) {
+        return (ComboBoxItem)setAttribute("allowEmptyValue", allowEmptyValue);
     }
 
     /**
@@ -272,9 +277,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * expressions.
      *
      * @param allowExpressions New allowExpressions value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setAllowExpressions(Boolean allowExpressions) {
-        setAttribute("allowExpressions", allowExpressions);
+    public ComboBoxItem setAllowExpressions(Boolean allowExpressions) {
+        return (ComboBoxItem)setAttribute("allowExpressions", allowExpressions);
     }
 
     /**
@@ -299,9 +305,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param autoFetchData New autoFetchData value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setAutoFetchData(Boolean autoFetchData) {
-        setAttribute("autoFetchData", autoFetchData);
+    public ComboBoxItem setAutoFetchData(Boolean autoFetchData) {
+        return (ComboBoxItem)setAttribute("autoFetchData", autoFetchData);
     }
 
     /**
@@ -324,9 +331,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * top-level node and all of it's direct             descendants - otherwise, opens all loaded nodes </li> </ul>
      *
      * @param autoOpenTree New autoOpenTree value. Default value is "none"
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setAutoOpenTree(String autoOpenTree) {
-        setAttribute("autoOpenTree", autoOpenTree);
+    public ComboBoxItem setAutoOpenTree(String autoOpenTree) {
+        return (ComboBoxItem)setAttribute("autoOpenTree", autoOpenTree);
     }
 
     /**
@@ -352,9 +360,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getFilterLocally filterLocally}.
      *
      * @param cachePickListResults New cachePickListResults value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setCachePickListResults(boolean cachePickListResults) {
-        setAttribute("cachePickListResults", cachePickListResults);
+    public ComboBoxItem setCachePickListResults(boolean cachePickListResults) {
+        return (ComboBoxItem)setAttribute("cachePickListResults", cachePickListResults);
     }
 
     /**
@@ -374,14 +383,39 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
     
 
     /**
+     * If true, when the pickList is showing, the user can select the current value by hitting the <code>Enter</code> key. <P>
+     * If not explicitly set, completeOnEnter will default to false for items embedded in a {@link
+     * com.smartgwt.client.widgets.form.SearchForm filtering interface}, true otherwise.
+     *
+     * @param completeOnEnter New completeOnEnter value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
+     */
+    public ComboBoxItem setCompleteOnEnter(Boolean completeOnEnter) {
+        return (ComboBoxItem)setAttribute("completeOnEnter", completeOnEnter);
+    }
+
+    /**
+     * If true, when the pickList is showing, the user can select the current value by hitting the <code>Enter</code> key. <P>
+     * If not explicitly set, completeOnEnter will default to false for items embedded in a {@link
+     * com.smartgwt.client.widgets.form.SearchForm filtering interface}, true otherwise.
+     *
+     * @return Current completeOnEnter value. Default value is null
+     */
+    public Boolean getCompleteOnEnter()  {
+        return getAttributeAsBoolean("completeOnEnter", true);
+    }
+    
+
+    /**
      * If true, when the pickList is showing, the user can select the current value by hitting the <code>Tab</code> key. <P>
      * Note that <code>completeOnTab</code> is not compatible with {@link
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getFormatOnBlur formatOnBlur}
      *
      * @param completeOnTab New completeOnTab value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setCompleteOnTab(Boolean completeOnTab) {
-        setAttribute("completeOnTab", completeOnTab);
+    public ComboBoxItem setCompleteOnTab(Boolean completeOnTab) {
+        return (ComboBoxItem)setAttribute("completeOnTab", completeOnTab);
     }
 
     /**
@@ -401,9 +435,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * the  pickListConstructor as the picker - "tree" will  show an instance of  pickTreeConstructor.
      *
      * @param dataSetType New dataSetType value. Default value is "list"
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setDataSetType(String dataSetType) {
-        setAttribute("dataSetType", dataSetType);
+    public ComboBoxItem setDataSetType(String dataSetType) {
+        return (ComboBoxItem)setAttribute("dataSetType", dataSetType);
     }
 
     /**
@@ -424,9 +459,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem#defaultDynamicValue defaultDynamicValue()}.
      *
      * @param defaultToFirstOption New defaultToFirstOption value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setDefaultToFirstOption(Boolean defaultToFirstOption) {
-        setAttribute("defaultToFirstOption", defaultToFirstOption);
+    public ComboBoxItem setDefaultToFirstOption(Boolean defaultToFirstOption) {
+        return (ComboBoxItem)setAttribute("defaultToFirstOption", defaultToFirstOption);
     }
 
     /**
@@ -482,21 +518,30 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * com.smartgwt.client.widgets.form.fields.FormItem#getForeignDisplayField FormItem.foreignDisplayField} property  in
      * addition to <code>displayField</code>. This is useful for cases where the display field name in the local dataSource
      * differs from the display field name in the optionDataSource. See the documentation for {@link
-     * com.smartgwt.client.data.DataSourceField#getForeignDisplayField DataSourceField.foreignDisplayField} for more on this.
-     * <P> Note that if <code>optionDataSource</code> is set and no valid display field is specified, {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName FormItem.getDisplayFieldName()} will return the
-     * dataSource title  field by default. <P> If a displayField is specified for a freeform text based item (such as a  {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem}), any user-entered value will be treated as a display value. In
-     * this scenario, items will derive the data value for the item from the first record where the displayField value matches
-     * the user-entered value. To avoid ambiguity, developers may wish to avoid this usage if display values are not unique.
+     * com.smartgwt.client.data.DataSourceField#getForeignDisplayField DataSourceField.foreignDisplayField} for more on
+     * this.<br> If a foreignDisplayField is specified, as with just displayField, if  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue local display values} are being used and
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getStoreDisplayValues FormItem.storeDisplayValues} is true, when
+     * the user  chooses a value the associated display-field value  on the record being edited will be updated. In this case
+     * it would be set to the  foreignDisplayField value from the related record. This means foreignDisplayField  is always
+     * expected to be set to the equivalent field in the related dataSources.<br> Developers looking to display some
+     * <i>other</i> arbitrary field(s) from the related dataSource during editing should consider using custom 
+     * PickList.pickListFields instead of setting a foreignDisplayField.  <P> Note that if <code>optionDataSource</code> is set
+     * and no valid display field is specified, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName
+     * FormItem.getDisplayFieldName()} will return the dataSource title  field by default. <P> If a displayField is specified
+     * for a freeform text based item (such as a  {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem}), any
+     * user-entered value will be treated as a display value. In this scenario, items will derive the data value for the item
+     * from the first record where the displayField value matches the user-entered value. To avoid ambiguity, developers may
+     * wish to avoid this usage if display values are not unique.
      *
      * @param displayField New displayField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName
      * @see com.smartgwt.client.widgets.form.fields.FormItem#invalidateDisplayValueCache
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
-    public void setDisplayField(String displayField) {
-        setAttribute("displayField", displayField);
+    public ComboBoxItem setDisplayField(String displayField) {
+        return (ComboBoxItem)setAttribute("displayField", displayField);
     }
 
     /**
@@ -527,13 +572,21 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * com.smartgwt.client.widgets.form.fields.FormItem#getForeignDisplayField FormItem.foreignDisplayField} property  in
      * addition to <code>displayField</code>. This is useful for cases where the display field name in the local dataSource
      * differs from the display field name in the optionDataSource. See the documentation for {@link
-     * com.smartgwt.client.data.DataSourceField#getForeignDisplayField DataSourceField.foreignDisplayField} for more on this.
-     * <P> Note that if <code>optionDataSource</code> is set and no valid display field is specified, {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName FormItem.getDisplayFieldName()} will return the
-     * dataSource title  field by default. <P> If a displayField is specified for a freeform text based item (such as a  {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem}), any user-entered value will be treated as a display value. In
-     * this scenario, items will derive the data value for the item from the first record where the displayField value matches
-     * the user-entered value. To avoid ambiguity, developers may wish to avoid this usage if display values are not unique.
+     * com.smartgwt.client.data.DataSourceField#getForeignDisplayField DataSourceField.foreignDisplayField} for more on
+     * this.<br> If a foreignDisplayField is specified, as with just displayField, if  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue local display values} are being used and
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getStoreDisplayValues FormItem.storeDisplayValues} is true, when
+     * the user  chooses a value the associated display-field value  on the record being edited will be updated. In this case
+     * it would be set to the  foreignDisplayField value from the related record. This means foreignDisplayField  is always
+     * expected to be set to the equivalent field in the related dataSources.<br> Developers looking to display some
+     * <i>other</i> arbitrary field(s) from the related dataSource during editing should consider using custom 
+     * PickList.pickListFields instead of setting a foreignDisplayField.  <P> Note that if <code>optionDataSource</code> is set
+     * and no valid display field is specified, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName
+     * FormItem.getDisplayFieldName()} will return the dataSource title  field by default. <P> If a displayField is specified
+     * for a freeform text based item (such as a  {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem}), any
+     * user-entered value will be treated as a display value. In this scenario, items will derive the data value for the item
+     * from the first record where the displayField value matches the user-entered value. To avoid ambiguity, developers may
+     * wish to avoid this usage if display values are not unique.
      *
      * @return Returns the <code>displayField</code> for this item. <P> Behavior varies based on the configuration of this item, as
      * follows: <ul><li>If this item has an {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getOptionDataSource
@@ -545,7 +598,7 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * the item, we avoid returning the specified displayField value and instead return the  title field of the option
      * DataSource. We do this to  avoid confusion for the case where the displayField is intended as a display-field  value for
      * showing another field value within the same record in the underlying  dataSource only.</li> <li>If no explicit
-     * foreignDisplay or displayField   specification was found, and the {@link
+     * foreignDisplayField or displayField   specification was found, and the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValueField FormItem.valueField} for this item is hidden in the  
      * {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource FormItem.optionDataSource}, this method will
      * return the title field for   the <code>optionDataSource</code>.</li></ul>. Default value is null
@@ -563,10 +616,11 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "SelectItemEditProxy"
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor) {
-        setAttribute("editProxyConstructor", editProxyConstructor);
+    public ComboBoxItem setEditProxyConstructor(String editProxyConstructor) {
+        return (ComboBoxItem)setAttribute("editProxyConstructor", editProxyConstructor);
     }
 
     /**
@@ -586,9 +640,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param emptyPickListMessage New emptyPickListMessage value. Default value is "No items to show"
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setEmptyPickListMessage(String emptyPickListMessage) {
-        setAttribute("emptyPickListMessage", emptyPickListMessage);
+    public ComboBoxItem setEmptyPickListMessage(String emptyPickListMessage) {
+        return (ComboBoxItem)setAttribute("emptyPickListMessage", emptyPickListMessage);
     }
 
     /**
@@ -614,9 +669,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param fetchDisplayedFieldsOnly New fetchDisplayedFieldsOnly value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setFetchDisplayedFieldsOnly(Boolean fetchDisplayedFieldsOnly) {
-        setAttribute("fetchDisplayedFieldsOnly", fetchDisplayedFieldsOnly);
+    public ComboBoxItem setFetchDisplayedFieldsOnly(Boolean fetchDisplayedFieldsOnly) {
+        return (ComboBoxItem)setAttribute("fetchDisplayedFieldsOnly", fetchDisplayedFieldsOnly);
     }
 
     /**
@@ -657,9 +713,11 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * the  comboBoxItem.setPickListFilterCriteriaFunction() may be specified.
      *
      * @param filterFields New filterFields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.PickList PickList overview and related methods
      */
-    public void setFilterFields(String... filterFields) {
-        setAttribute("filterFields", filterFields);
+    public ComboBoxItem setFilterFields(String... filterFields) {
+        return (ComboBoxItem)setAttribute("filterFields", filterFields);
     }
 
     /**
@@ -682,6 +740,7 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * the  comboBoxItem.setPickListFilterCriteriaFunction() may be specified.
      *
      * @return Current filterFields value. Default value is null
+     * @see com.smartgwt.client.docs.PickList PickList overview and related methods
      */
     public String[] getFilterFields()  {
         return com.smartgwt.client.util.ConvertTo.arrayOfString(getAttributeAsJavaScriptObject("filterFields"));
@@ -699,10 +758,11 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param filterLocally New filterLocally value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setFilterLocally
      */
-    public void setFilterLocally(Boolean filterLocally) {
-        setAttribute("filterLocally", filterLocally);
+    public ComboBoxItem setFilterLocally(Boolean filterLocally) {
+        return (ComboBoxItem)setAttribute("filterLocally", filterLocally);
     }
 
     /**
@@ -750,9 +810,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * completeOnTab}
      *
      * @param formatOnBlur New formatOnBlur value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setFormatOnBlur(Boolean formatOnBlur) {
-        setAttribute("formatOnBlur", formatOnBlur);
+    public ComboBoxItem setFormatOnBlur(Boolean formatOnBlur) {
+        return (ComboBoxItem)setAttribute("formatOnBlur", formatOnBlur);
     }
 
     /**
@@ -784,9 +845,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param generateExactMatchCriteria New generateExactMatchCriteria value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setGenerateExactMatchCriteria(Boolean generateExactMatchCriteria) {
-        setAttribute("generateExactMatchCriteria", generateExactMatchCriteria);
+    public ComboBoxItem setGenerateExactMatchCriteria(Boolean generateExactMatchCriteria) {
+        return (ComboBoxItem)setAttribute("generateExactMatchCriteria", generateExactMatchCriteria);
     }
 
     /**
@@ -815,9 +877,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * navigation bar may be easier for the user to interact with.
      *
      * @param iconPlacement New iconPlacement value. Default value is "both"
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setIconPlacement(PickListItemIconPlacement iconPlacement) {
-        setAttribute("iconPlacement", iconPlacement == null ? null : iconPlacement.getValue());
+    public ComboBoxItem setIconPlacement(PickListItemIconPlacement iconPlacement) {
+        return (ComboBoxItem)setAttribute("iconPlacement", iconPlacement == null ? null : iconPlacement.getValue());
     }
 
     /**
@@ -841,9 +904,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * this pickList. If specified, this will be used instead of any   PickList.sortField specified.
      *
      * @param initialSort New initialSort value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setInitialSort(SortSpecifier... initialSort) {
-        setAttribute("initialSort", initialSort);
+    public ComboBoxItem setInitialSort(SortSpecifier... initialSort) {
+        return (ComboBoxItem)setAttribute("initialSort", initialSort);
     }
 
     /**
@@ -862,9 +926,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param mask New mask value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setMask(String mask) {
-        setAttribute("mask", mask);
+    public ComboBoxItem setMask(String mask) {
+        return (ComboBoxItem)setAttribute("mask", mask);
     }
 
     /**
@@ -882,9 +947,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param maskOverwriteMode New maskOverwriteMode value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setMaskOverwriteMode(Boolean maskOverwriteMode) {
-        setAttribute("maskOverwriteMode", maskOverwriteMode);
+    public ComboBoxItem setMaskOverwriteMode(Boolean maskOverwriteMode) {
+        return (ComboBoxItem)setAttribute("maskOverwriteMode", maskOverwriteMode);
     }
 
     /**
@@ -902,9 +968,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param maskPadChar New maskPadChar value. Default value is " "
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setMaskPadChar(String maskPadChar) {
-        setAttribute("maskPadChar", maskPadChar);
+    public ComboBoxItem setMaskPadChar(String maskPadChar) {
+        return (ComboBoxItem)setAttribute("maskPadChar", maskPadChar);
     }
 
     /**
@@ -922,9 +989,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param maskPromptChar New maskPromptChar value. Default value is "_"
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setMaskPromptChar(String maskPromptChar) {
-        setAttribute("maskPromptChar", maskPromptChar);
+    public ComboBoxItem setMaskPromptChar(String maskPromptChar) {
+        return (ComboBoxItem)setAttribute("maskPromptChar", maskPromptChar);
     }
 
     /**
@@ -942,9 +1010,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param maskSaveLiterals New maskSaveLiterals value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setMaskSaveLiterals(Boolean maskSaveLiterals) {
-        setAttribute("maskSaveLiterals", maskSaveLiterals);
+    public ComboBoxItem setMaskSaveLiterals(Boolean maskSaveLiterals) {
+        return (ComboBoxItem)setAttribute("maskSaveLiterals", maskSaveLiterals);
     }
 
     /**
@@ -963,9 +1032,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param minimumSearchLength New minimumSearchLength value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setMinimumSearchLength(Integer minimumSearchLength) {
-        setAttribute("minimumSearchLength", minimumSearchLength);
+    public ComboBoxItem setMinimumSearchLength(Integer minimumSearchLength) {
+        return (ComboBoxItem)setAttribute("minimumSearchLength", minimumSearchLength);
     }
 
     /**
@@ -987,9 +1057,11 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * dataSource to pick up display value mapping.
      *
      * @param optionOperationId New optionOperationId value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
-    public void setOptionOperationId(String optionOperationId) {
-        setAttribute("optionOperationId", optionOperationId);
+    public ComboBoxItem setOptionOperationId(String optionOperationId) {
+        return (ComboBoxItem)setAttribute("optionOperationId", optionOperationId);
     }
 
     /**
@@ -998,6 +1070,7 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * dataSource to pick up display value mapping.
      *
      * @return Current optionOperationId value. Default value is null
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public String getOptionOperationId()  {
         return getAttributeAsString("optionOperationId");
@@ -1018,10 +1091,11 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues addUnknownValues} is true.
      *
      * @param pendingTextBoxStyle New pendingTextBoxStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setPendingTextBoxStyle(String pendingTextBoxStyle) {
-        setAttribute("pendingTextBoxStyle", pendingTextBoxStyle);
+    public ComboBoxItem setPendingTextBoxStyle(String pendingTextBoxStyle) {
+        return (ComboBoxItem)setAttribute("pendingTextBoxStyle", pendingTextBoxStyle);
     }
 
     /**
@@ -1069,10 +1143,11 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * The title for the {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getPickerClearButton pickerClearButton}.
      *
      * @param pickerClearButtonTitle New pickerClearButtonTitle value. Default value is "Clear"
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setPickerClearButtonTitle(String pickerClearButtonTitle) {
-        setAttribute("pickerClearButtonTitle", pickerClearButtonTitle);
+    public ComboBoxItem setPickerClearButtonTitle(String pickerClearButtonTitle) {
+        return (ComboBoxItem)setAttribute("pickerClearButtonTitle", pickerClearButtonTitle);
     }
 
     /**
@@ -1107,10 +1182,11 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * The title for the {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getPickerExitButton pickerExitButton}.
      *
      * @param pickerExitButtonTitle New pickerExitButtonTitle value. Default value is "Cancel"
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setPickerExitButtonTitle(String pickerExitButtonTitle) {
-        setAttribute("pickerExitButtonTitle", pickerExitButtonTitle);
+    public ComboBoxItem setPickerExitButtonTitle(String pickerExitButtonTitle) {
+        return (ComboBoxItem)setAttribute("pickerExitButtonTitle", pickerExitButtonTitle);
     }
 
     /**
@@ -1129,9 +1205,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param pickerIconHeight New pickerIconHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setPickerIconHeight(Integer pickerIconHeight) {
-        setAttribute("pickerIconHeight", pickerIconHeight);
+    public ComboBoxItem setPickerIconHeight(Integer pickerIconHeight) {
+        return (ComboBoxItem)setAttribute("pickerIconHeight", pickerIconHeight);
     }
 
     /**
@@ -1153,10 +1230,11 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param pickerIconSrc New pickerIconSrc value. Default value is "[SKIN]/DynamicForm/ComboBoxItem_PickButton_icon.gif"
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setPickerIconSrc(String pickerIconSrc) {
-        setAttribute("pickerIconSrc", pickerIconSrc);
+    public ComboBoxItem setPickerIconSrc(String pickerIconSrc) {
+        return (ComboBoxItem)setAttribute("pickerIconSrc", pickerIconSrc);
     }
 
     /**
@@ -1191,11 +1269,16 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
     
 
     /**
-     * {@link com.smartgwt.client.widgets.NavigationButton} to dismiss the picker interface and store out the value entered in
-     * the {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getPickerSearchField pickerSearchField}, created when 
-     * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getPickListPlacement pickListPlacement} indicates that the
-     * search interface takes over the entire panel or screen. <P> This button will only be shown when {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues addUnknownValues} is true. <p> The following
+     * "Accept" button for {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues
+     * addUnknownValues:true} ComboBoxItems showing the mobile interface. <P> The pickerSaveButton is an automatically created
+     * {@link com.smartgwt.client.widgets.NavigationButton} autoChild to dismiss the picker interface and store out the value
+     * entered in the {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getPickerSearchField pickerSearchField},
+     * created when  {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getPickListPlacement pickListPlacement}
+     * indicates that the search interface takes over the entire panel or screen. <P> This button will only be shown when
+     * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues addUnknownValues} is true. Note that if
+     * a user has entered a partial known value, the pickList will show a filtered list of possible matches. An "Enter"
+     * keypress (or native keyboard "Done" button click on a mobile browser keyboard) will select the first match from the 
+     * list. The pickerSaveButton provides a way for users to explicitly use the value as entered instead. <p> The following
      * {@link com.smartgwt.client.docs.AutoChildUsage passthroughs} apply: <ul> <li>{@link
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getPickerSaveButtonTitle pickerSaveButtonTitle} for {@link
      * com.smartgwt.client.widgets.Button#getTitle Button.title}</li> </ul>
@@ -1214,10 +1297,11 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * The title for the {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getPickerSaveButton pickerSaveButton}.
      *
      * @param pickerSaveButtonTitle New pickerSaveButtonTitle value. Default value is "Accept"
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setPickerSaveButtonTitle(String pickerSaveButtonTitle) {
-        setAttribute("pickerSaveButtonTitle", pickerSaveButtonTitle);
+    public ComboBoxItem setPickerSaveButtonTitle(String pickerSaveButtonTitle) {
+        return (ComboBoxItem)setAttribute("pickerSaveButtonTitle", pickerSaveButtonTitle);
     }
 
     /**
@@ -1254,10 +1338,11 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getPickerSearchField pickerSearchField}.
      *
      * @param pickerSearchFieldHint New pickerSearchFieldHint value. Default value is "Search"
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setPickerSearchFieldHint(String pickerSearchFieldHint) {
-        setAttribute("pickerSearchFieldHint", pickerSearchFieldHint);
+    public ComboBoxItem setPickerSearchFieldHint(String pickerSearchFieldHint) {
+        return (ComboBoxItem)setAttribute("pickerSearchFieldHint", pickerSearchFieldHint);
     }
 
     /**
@@ -1292,10 +1377,11 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * configured to  {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#getAddUnknownValues allow unknown values}
      *
      * @param pickerSearchOrNewValueFieldHint New pickerSearchOrNewValueFieldHint value. Default value is "Search or enter new value"
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setPickerSearchOrNewValueFieldHint(String pickerSearchOrNewValueFieldHint) {
-        setAttribute("pickerSearchOrNewValueFieldHint", pickerSearchOrNewValueFieldHint);
+    public ComboBoxItem setPickerSearchOrNewValueFieldHint(String pickerSearchOrNewValueFieldHint) {
+        return (ComboBoxItem)setAttribute("pickerSearchOrNewValueFieldHint", pickerSearchOrNewValueFieldHint);
     }
 
     /**
@@ -1316,10 +1402,12 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * {@link com.smartgwt.client.widgets.form.PickListMenu PickListMenu}.
      *
      * @param pickListConstructor New pickListConstructor value. Default value is "PickListMenu"
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     * @see com.smartgwt.client.docs.PickList PickList overview and related methods
      */
-    public void setPickListConstructor(String pickListConstructor) {
-        setAttribute("pickListConstructor", pickListConstructor);
+    public ComboBoxItem setPickListConstructor(String pickListConstructor) {
+        return (ComboBoxItem)setAttribute("pickListConstructor", pickListConstructor);
     }
 
     /**
@@ -1328,6 +1416,7 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      *
      * @return Current pickListConstructor value. Default value is "PickListMenu"
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     * @see com.smartgwt.client.docs.PickList PickList overview and related methods
      */
     public String getPickListConstructor()  {
         return getAttributeAsString("pickListConstructor");
@@ -1340,12 +1429,14 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param pickListCriteria New pickListCriteria value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.PickList PickList overview and related methods
      */
-    public void setPickListCriteria(Criteria pickListCriteria) {
+    public ComboBoxItem setPickListCriteria(Criteria pickListCriteria) {
         if (pickListCriteria instanceof Criterion) {
             pickListCriteria.setAttribute("_constructor", "AdvancedCriteria");
         }
-        setAttribute("pickListCriteria", pickListCriteria == null ? null : pickListCriteria.getJsObj());
+        return (ComboBoxItem)setAttribute("pickListCriteria", pickListCriteria == null ? null : pickListCriteria.getJsObj());
     }
 
     /**
@@ -1353,6 +1444,7 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * provide static filter criteria when retrieving the data for the pickList.
      *
      * @return Current pickListCriteria value. Default value is null
+     * @see com.smartgwt.client.docs.PickList PickList overview and related methods
      */
     public Criteria getPickListCriteria()  {
         return new Criteria(getAttributeAsJavaScriptObject("pickListCriteria"));
@@ -1373,10 +1465,12 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param pickListFields New pickListFields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.ComboBoxItem#setValueField
+     * @see com.smartgwt.client.docs.PickList PickList overview and related methods
      */
-    public void setPickListFields(ListGridField... pickListFields) {
-        setAttribute("pickListFields", pickListFields);
+    public ComboBoxItem setPickListFields(ListGridField... pickListFields) {
+        return (ComboBoxItem)setAttribute("pickListFields", pickListFields);
     }
     
 
@@ -1394,9 +1488,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * search field}.
      *
      * @param pickListPlacement New pickListPlacement value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setPickListPlacement(PanelPlacement pickListPlacement) {
-        setAttribute("pickListPlacement", pickListPlacement == null ? null : pickListPlacement.getValue());
+    public ComboBoxItem setPickListPlacement(PanelPlacement pickListPlacement) {
+        return (ComboBoxItem)setAttribute("pickListPlacement", pickListPlacement == null ? null : pickListPlacement.getValue());
     }
 
     /**
@@ -1432,9 +1527,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * search field}.
      *
      * @param pickListPlacement New pickListPlacement value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setPickListPlacement(Canvas pickListPlacement) {
-        setAttribute("pickListPlacement", pickListPlacement == null ? null : pickListPlacement.getOrCreateJsObj());
+    public ComboBoxItem setPickListPlacement(Canvas pickListPlacement) {
+        return (ComboBoxItem)setAttribute("pickListPlacement", pickListPlacement == null ? null : pickListPlacement.getOrCreateJsObj());
     }
 
     /**
@@ -1470,9 +1566,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * search field}.
      *
      * @param pickListPlacement New pickListPlacement value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setPickListPlacement(String pickListPlacement) {
-        setAttribute("pickListPlacement", pickListPlacement);
+    public ComboBoxItem setPickListPlacement(String pickListPlacement) {
+        return (ComboBoxItem)setAttribute("pickListPlacement", pickListPlacement);
     }
 
     /**
@@ -1501,10 +1598,11 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * PickTreeMenu.
      *
      * @param pickTreeConstructor New pickTreeConstructor value. Default value is "PickTreeMenu"
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setPickTreeConstructor(String pickTreeConstructor) {
-        setAttribute("pickTreeConstructor", pickTreeConstructor);
+    public ComboBoxItem setPickTreeConstructor(String pickTreeConstructor) {
+        return (ComboBoxItem)setAttribute("pickTreeConstructor", pickTreeConstructor);
     }
 
     /**
@@ -1525,11 +1623,12 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * PickList.
      *
      * @param progressiveLoading New progressiveLoading value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.data.DataSource#setProgressiveLoading
      * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
      */
-    public void setProgressiveLoading(Boolean progressiveLoading) {
-        setAttribute("progressiveLoading", progressiveLoading);
+    public ComboBoxItem setProgressiveLoading(Boolean progressiveLoading) {
+        return (ComboBoxItem)setAttribute("progressiveLoading", progressiveLoading);
     }
 
     /**
@@ -1553,9 +1652,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * com.smartgwt.client.widgets.tree.Tree#getRootValue root} node.
      *
      * @param rootNodeId New rootNodeId value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setRootNodeId(String rootNodeId) {
-        setAttribute("rootNodeId", rootNodeId);
+    public ComboBoxItem setRootNodeId(String rootNodeId) {
+        return (ComboBoxItem)setAttribute("rootNodeId", rootNodeId);
     }
 
     /**
@@ -1575,9 +1675,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * com.smartgwt.client.widgets.tree.Tree#getRootValue root} node.
      *
      * @param rootNodeId New rootNodeId value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setRootNodeId(Integer rootNodeId) {
-        setAttribute("rootNodeId", rootNodeId);
+    public ComboBoxItem setRootNodeId(Integer rootNodeId) {
+        return (ComboBoxItem)setAttribute("rootNodeId", rootNodeId);
     }
 
     /**
@@ -1600,9 +1701,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * form submission.
      *
      * @param saveOnEnter New saveOnEnter value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setSaveOnEnter(Boolean saveOnEnter) {
-        setAttribute("saveOnEnter", saveOnEnter);
+    public ComboBoxItem setSaveOnEnter(Boolean saveOnEnter) {
+        return (ComboBoxItem)setAttribute("saveOnEnter", saveOnEnter);
     }
 
     /**
@@ -1626,9 +1728,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param searchStringTooShortMessage New searchStringTooShortMessage value. Default value is "Enter a longer search string to search"
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setSearchStringTooShortMessage(String searchStringTooShortMessage) {
-        setAttribute("searchStringTooShortMessage", searchStringTooShortMessage);
+    public ComboBoxItem setSearchStringTooShortMessage(String searchStringTooShortMessage) {
+        return (ComboBoxItem)setAttribute("searchStringTooShortMessage", searchStringTooShortMessage);
     }
 
     /**
@@ -1650,9 +1753,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * separateValues are shown in the normal drop-down list along with other values.
      *
      * @param separateSpecialValues New separateSpecialValues value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setSeparateSpecialValues(Boolean separateSpecialValues) {
-        setAttribute("separateSpecialValues", separateSpecialValues);
+    public ComboBoxItem setSeparateSpecialValues(Boolean separateSpecialValues) {
+        return (ComboBoxItem)setAttribute("separateSpecialValues", separateSpecialValues);
     }
 
     /**
@@ -1687,9 +1791,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getOptionDataSource databound pickLists}.
      *
      * @param separatorRows New separatorRows value. Default value is [{isSeparator:true}]
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setSeparatorRows(ListGridRecord[] separatorRows) {
-        setAttribute("separatorRows", separatorRows);
+    public ComboBoxItem setSeparatorRows(ListGridRecord[] separatorRows) {
+        return (ComboBoxItem)setAttribute("separatorRows", separatorRows);
     }
     
 
@@ -1699,9 +1804,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getOptionDataSource databound pickLists}.
      *
      * @param showAllOptions New showAllOptions value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setShowAllOptions(Boolean showAllOptions) {
-        setAttribute("showAllOptions", showAllOptions);
+    public ComboBoxItem setShowAllOptions(Boolean showAllOptions) {
+        return (ComboBoxItem)setAttribute("showAllOptions", showAllOptions);
     }
 
     /**
@@ -1723,11 +1829,12 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showHintInField New showHintInField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setHint
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowHintInField(Boolean showHintInField) {
-        setAttribute("showHintInField", showHintInField);
+    public ComboBoxItem setShowHintInField(Boolean showHintInField) {
+        return (ComboBoxItem)setAttribute("showHintInField", showHintInField);
     }
 
     /**
@@ -1751,10 +1858,11 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showOptionsFromDataSource New showOptionsFromDataSource value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
-    public void setShowOptionsFromDataSource(Boolean showOptionsFromDataSource) {
-        setAttribute("showOptionsFromDataSource", showOptionsFromDataSource);
+    public ComboBoxItem setShowOptionsFromDataSource(Boolean showOptionsFromDataSource) {
+        return (ComboBoxItem)setAttribute("showOptionsFromDataSource", showOptionsFromDataSource);
     }
 
     /**
@@ -1778,9 +1886,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * will call {@link com.smartgwt.client.widgets.form.fields.FormItem#showPicker FormItem.showPicker()}.
      *
      * @param showPickerIcon New showPickerIcon value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setShowPickerIcon(Boolean showPickerIcon) {
-        setAttribute("showPickerIcon", showPickerIcon);
+    public ComboBoxItem setShowPickerIcon(Boolean showPickerIcon) {
+        return (ComboBoxItem)setAttribute("showPickerIcon", showPickerIcon);
     }
 
     /**
@@ -1803,9 +1912,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * clicks on the pick button or uses the  explicit <code>Alt+Arrow Down</code> key combination?
      *
      * @param showPickListOnKeypress New showPickListOnKeypress value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setShowPickListOnKeypress(Boolean showPickListOnKeypress) {
-        setAttribute("showPickListOnKeypress", showPickListOnKeypress);
+    public ComboBoxItem setShowPickListOnKeypress(Boolean showPickListOnKeypress) {
+        return (ComboBoxItem)setAttribute("showPickListOnKeypress", showPickListOnKeypress);
     }
 
     /**
@@ -1821,6 +1931,31 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
     
 
     /**
+     * When this item is showing a  tree-based picker, the default behavior is for folder open-state to be toggled by
+     * double-clicking. Set this  attribute to true to toggle folders on a single-click instead. <P> Note: when set to true,
+     * users can only choose leaf-nodes, since clicking folders would simply toggle them.
+     *
+     * @param singleClickFolderToggle New singleClickFolderToggle value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
+     */
+    public ComboBoxItem setSingleClickFolderToggle(boolean singleClickFolderToggle) {
+        return (ComboBoxItem)setAttribute("singleClickFolderToggle", singleClickFolderToggle);
+    }
+
+    /**
+     * When this item is showing a  tree-based picker, the default behavior is for folder open-state to be toggled by
+     * double-clicking. Set this  attribute to true to toggle folders on a single-click instead. <P> Note: when set to true,
+     * users can only choose leaf-nodes, since clicking folders would simply toggle them.
+     *
+     * @return Current singleClickFolderToggle value. Default value is false
+     */
+    public boolean getSingleClickFolderToggle()  {
+        Boolean result = getAttributeAsBoolean("singleClickFolderToggle", true);
+        return result == null ? false : result;
+    }
+    
+
+    /**
      * Specifies one or more fields by which this item should be initially sorted.  It can be  a {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getName field name}, or an array of field names - but note that, if
      * multiple fields are supplied, then each will be sorted in the same  {@link
@@ -1830,10 +1965,11 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * initialization.
      *
      * @param sortField New sortField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_sort_sort" target="examples">Sort Example</a>
      */
-    public void setSortField(String sortField) {
-        setAttribute("sortField", sortField);
+    public ComboBoxItem setSortField(String sortField) {
+        return (ComboBoxItem)setAttribute("sortField", sortField);
     }
 
     /**
@@ -1862,10 +1998,11 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * initialization.
      *
      * @param sortField New sortField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_sort_sort" target="examples">Sort Example</a>
      */
-    public void setSortField(String... sortField) {
-        setAttribute("sortField", sortField);
+    public ComboBoxItem setSortField(String... sortField) {
+        return (ComboBoxItem)setAttribute("sortField", sortField);
     }
 
     /**
@@ -1894,10 +2031,11 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * initialization.
      *
      * @param sortField New sortField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_sort_sort" target="examples">Sort Example</a>
      */
-    public void setSortField(Integer sortField) {
-        setAttribute("sortField", sortField);
+    public ComboBoxItem setSortField(Integer sortField) {
+        return (ComboBoxItem)setAttribute("sortField", sortField);
     }
 
     /**
@@ -1926,9 +2064,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * filterClientPickListData().
      *
      * @param textMatchStyle New textMatchStyle value. Default value is "startsWith"
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setTextMatchStyle(TextMatchStyle textMatchStyle) {
-        setAttribute("textMatchStyle", textMatchStyle == null ? null : textMatchStyle.getValue());
+    public ComboBoxItem setTextMatchStyle(TextMatchStyle textMatchStyle) {
+        return (ComboBoxItem)setAttribute("textMatchStyle", textMatchStyle == null ? null : textMatchStyle.getValue());
     }
 
     /**
@@ -1953,9 +2092,10 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param useClientFiltering New useClientFiltering value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      */
-    public void setUseClientFiltering(Boolean useClientFiltering) {
-        setAttribute("useClientFiltering", useClientFiltering);
+    public ComboBoxItem setUseClientFiltering(Boolean useClientFiltering) {
+        return (ComboBoxItem)setAttribute("useClientFiltering", useClientFiltering);
     }
 
     /**
@@ -1980,10 +2120,11 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * com.smartgwt.client.widgets.form.fields.FormItem#getValueFieldName FormItem.getValueFieldName()}.
      *
      * @param valueField New valueField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
-    public void setValueField(String valueField) {
-        setAttribute("valueField", valueField);
+    public ComboBoxItem setValueField(String valueField) {
+        return (ComboBoxItem)setAttribute("valueField", valueField);
     }
 
     /**
@@ -2164,7 +2305,7 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * the item, we avoid returning the specified displayField value and instead return the  title field of the option
      * DataSource. We do this to  avoid confusion for the case where the displayField is intended as a display-field  value for
      * showing another field value within the same record in the underlying  dataSource only.</li> <li>If no explicit
-     * foreignDisplay or displayField   specification was found, and the {@link
+     * foreignDisplayField or displayField   specification was found, and the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getValueField FormItem.valueField} for this item is hidden in the  
      * {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource FormItem.optionDataSource}, this method will
      * return the title field for   the <code>optionDataSource</code>.</li></ul>
@@ -2449,6 +2590,29 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
         return getAttributeAsInt("pickListWidth");
     }
 
+    /**
+     * Maximum width for this item's pickList. By default if the values displayed in this pickList are wider 
+     * than the specified {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#setPickListWidth setPickListWidth} 
+     * the pickList will render wide enough to accomodate them. This property 
+     * allows the developer to limit how wide the pickList will render.
+     *
+     * @param pickListMaxWidth pickListMaxWidth Default value is 400
+     */
+    public void setPickListMaxWidth(Integer pickListMaxWidth) {
+        setAttribute("pickListMaxWidth", pickListMaxWidth);
+    }
+
+    /**
+     * Maximum width for this item's pickList. By default if the values displayed in this pickList are wider 
+     * than the specified {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#setPickListWidth setPickListWidth} 
+     * the pickList will render wide enough to accomodate them. This property 
+     * allows the developer to limit how wide the pickList will render.
+     *
+     * @return Integer
+     */
+    public Integer getPickListMaxWidth() {
+        return getAttributeAsInt("pickListMaxWidth");
+    }
 
     /**
      * Base Style for pickList cells.  As with ListGrid Cells, will have 'over', 'selected' and 'disabled' appended on
@@ -2617,9 +2781,11 @@ public class ComboBoxItem extends TextItem implements PickList, com.smartgwt.cli
      * : </b> This is an advanced setting</p>
      *
      * @param dataSource optionDataSource Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItem}
+     * instance, for chaining setter calls
      */
-    public void setOptionDataSource(DataSource dataSource) {
-        setAttribute("optionDataSource", dataSource);
+    public ComboBoxItem setOptionDataSource(DataSource dataSource) {
+        return (ComboBoxItem)setAttribute("optionDataSource", dataSource);
     }
 
     public DataSource getOptionDataSource() {

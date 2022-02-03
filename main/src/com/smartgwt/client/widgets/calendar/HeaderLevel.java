@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Defines one level of headers shown above the event area in a {@link com.smartgwt.client.widgets.calendar.Timeline}.
@@ -126,9 +129,10 @@ public class HeaderLevel extends RefDataClass {
      * innermost headerLevel.
      *
      * @param headerWidth New headerWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.HeaderLevel HeaderLevel} instance, for chaining setter calls
      */
-    public void setHeaderWidth(Integer headerWidth) {
-        setAttribute("headerWidth", headerWidth);
+    public HeaderLevel setHeaderWidth(Integer headerWidth) {
+        return (HeaderLevel)setAttribute("headerWidth", headerWidth);
     }
 
     /**
@@ -150,9 +154,10 @@ public class HeaderLevel extends RefDataClass {
      * further customization.
      *
      * @param titles New titles value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.HeaderLevel HeaderLevel} instance, for chaining setter calls
      */
-    public void setTitles(String... titles) {
-        setAttribute("titles", titles);
+    public HeaderLevel setTitles(String... titles) {
+        return (HeaderLevel)setAttribute("titles", titles);
     }
 
     /**
@@ -173,9 +178,10 @@ public class HeaderLevel extends RefDataClass {
      * Unit of time shown at this level of header.
      *
      * @param unit New unit value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.HeaderLevel HeaderLevel} instance, for chaining setter calls
      */
-    public void setUnit(TimeUnit unit) {
-        setAttribute("unit", unit == null ? null : unit.getValue());
+    public HeaderLevel setUnit(TimeUnit unit) {
+        return (HeaderLevel)setAttribute("unit", unit == null ? null : unit.getValue());
     }
 
     /**

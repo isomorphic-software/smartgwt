@@ -18,7 +18,7 @@ package com.smartgwt.client.widgets.grid;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.shared.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * A FormItem for entering a date relative to today or relative to some other date, or a specific date.  Typically used for
@@ -174,9 +177,10 @@ public class RelativeDateItem extends CanvasItem {
      * com.smartgwt.client.widgets.form.fields.SelectItem} which does not.
      *
      * @param allowAbsoluteDates New allowAbsoluteDates value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setAllowAbsoluteDates(Boolean allowAbsoluteDates) {
-        setAttribute("allowAbsoluteDates", allowAbsoluteDates);
+    public RelativeDateItem setAllowAbsoluteDates(Boolean allowAbsoluteDates) {
+        return (RelativeDateItem)setAttribute("allowAbsoluteDates", allowAbsoluteDates);
     }
 
     /**
@@ -198,9 +202,10 @@ public class RelativeDateItem extends CanvasItem {
      * Base date for calculating the relative date entered by the user. <P> The default is to use the current date.
      *
      * @param baseDate New baseDate value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setBaseDate(Date baseDate) {
-        setAttribute("baseDate", baseDate);
+    public RelativeDateItem setBaseDate(Date baseDate) {
+        return (RelativeDateItem)setAttribute("baseDate", baseDate);
     }
 
     /**
@@ -234,10 +239,11 @@ public class RelativeDateItem extends CanvasItem {
      * set this attribute to  <code>null</code> to have the control retain your year-value as entered.
      *
      * @param centuryThreshold New centuryThreshold value. Default value is 25
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setCenturyThreshold(int centuryThreshold) {
-        setAttribute("centuryThreshold", centuryThreshold);
+    public RelativeDateItem setCenturyThreshold(int centuryThreshold) {
+        return (RelativeDateItem)setAttribute("centuryThreshold", centuryThreshold);
     }
 
     /**
@@ -259,9 +265,10 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "day".
      *
      * @param daysAgoTitle New daysAgoTitle value. Default value is "N days ago"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setDaysAgoTitle(String daysAgoTitle) {
-        setAttribute("daysAgoTitle", daysAgoTitle);
+    public RelativeDateItem setDaysAgoTitle(String daysAgoTitle) {
+        return (RelativeDateItem)setAttribute("daysAgoTitle", daysAgoTitle);
     }
 
     /**
@@ -278,9 +285,10 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "day".
      *
      * @param daysFromNowTitle New daysFromNowTitle value. Default value is "N days from now"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setDaysFromNowTitle(String daysFromNowTitle) {
-        setAttribute("daysFromNowTitle", daysFromNowTitle);
+    public RelativeDateItem setDaysFromNowTitle(String daysFromNowTitle) {
+        return (RelativeDateItem)setAttribute("daysFromNowTitle", daysFromNowTitle);
     }
 
     /**
@@ -298,9 +306,10 @@ public class RelativeDateItem extends CanvasItem {
      * quantityField}.
      *
      * @param defaultQuantity New defaultQuantity value. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setDefaultQuantity(int defaultQuantity) {
-        setAttribute("defaultQuantity", defaultQuantity);
+    public RelativeDateItem setDefaultQuantity(int defaultQuantity) {
+        return (RelativeDateItem)setAttribute("defaultQuantity", defaultQuantity);
     }
 
     /**
@@ -322,10 +331,11 @@ public class RelativeDateItem extends CanvasItem {
      * how this restriction works.
      *
      * @param endDate New endDate value. Default value is 12/31/2020
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setEndDate(Date endDate) {
-        setAttribute("endDate", endDate);
+    public RelativeDateItem setEndDate(Date endDate) {
+        return (RelativeDateItem)setAttribute("endDate", endDate);
     }
 
     /**
@@ -345,9 +355,10 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "hour".
      *
      * @param hoursAgoTitle New hoursAgoTitle value. Default value is "N hours ago"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setHoursAgoTitle(String hoursAgoTitle) {
-        setAttribute("hoursAgoTitle", hoursAgoTitle);
+    public RelativeDateItem setHoursAgoTitle(String hoursAgoTitle) {
+        return (RelativeDateItem)setAttribute("hoursAgoTitle", hoursAgoTitle);
     }
 
     /**
@@ -364,9 +375,10 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "hour".
      *
      * @param hoursFromNowTitle New hoursFromNowTitle value. Default value is "N hours from now"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setHoursFromNowTitle(String hoursFromNowTitle) {
-        setAttribute("hoursFromNowTitle", hoursFromNowTitle);
+    public RelativeDateItem setHoursFromNowTitle(String hoursFromNowTitle) {
+        return (RelativeDateItem)setAttribute("hoursFromNowTitle", hoursFromNowTitle);
     }
 
     /**
@@ -385,10 +397,11 @@ public class RelativeDateItem extends CanvasItem {
      * picked up from the Date class (see {@link com.smartgwt.client.util.DateUtil#setInputFormat DateUtil.setInputFormat()}).
      *
      * @param inputFormat New inputFormat value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.DateInputFormat DateInputFormat 
      */
-    public void setInputFormat(String inputFormat) {
-        setAttribute("inputFormat", inputFormat);
+    public RelativeDateItem setInputFormat(String inputFormat) {
+        return (RelativeDateItem)setAttribute("inputFormat", inputFormat);
     }
 
     /**
@@ -419,9 +432,10 @@ public class RelativeDateItem extends CanvasItem {
      * limitations.
      *
      * @param maxQuantity New maxQuantity value. Default value is 999999
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setMaxQuantity(int maxQuantity) {
-        setAttribute("maxQuantity", maxQuantity);
+    public RelativeDateItem setMaxQuantity(int maxQuantity) {
+        return (RelativeDateItem)setAttribute("maxQuantity", maxQuantity);
     }
 
     /**
@@ -440,9 +454,10 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "millisecond".
      *
      * @param millisecondsAgoTitle New millisecondsAgoTitle value. Default value is "N milliseconds ago"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setMillisecondsAgoTitle(String millisecondsAgoTitle) {
-        setAttribute("millisecondsAgoTitle", millisecondsAgoTitle);
+    public RelativeDateItem setMillisecondsAgoTitle(String millisecondsAgoTitle) {
+        return (RelativeDateItem)setAttribute("millisecondsAgoTitle", millisecondsAgoTitle);
     }
 
     /**
@@ -459,9 +474,10 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "millisecond".
      *
      * @param millisecondsFromNowTitle New millisecondsFromNowTitle value. Default value is "N milliseconds from now"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setMillisecondsFromNowTitle(String millisecondsFromNowTitle) {
-        setAttribute("millisecondsFromNowTitle", millisecondsFromNowTitle);
+    public RelativeDateItem setMillisecondsFromNowTitle(String millisecondsFromNowTitle) {
+        return (RelativeDateItem)setAttribute("millisecondsFromNowTitle", millisecondsFromNowTitle);
     }
 
     /**
@@ -479,9 +495,10 @@ public class RelativeDateItem extends CanvasItem {
      * quantityField}.
      *
      * @param minQuantity New minQuantity value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setMinQuantity(int minQuantity) {
-        setAttribute("minQuantity", minQuantity);
+    public RelativeDateItem setMinQuantity(int minQuantity) {
+        return (RelativeDateItem)setAttribute("minQuantity", minQuantity);
     }
 
     /**
@@ -499,9 +516,10 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "minute".
      *
      * @param minutesAgoTitle New minutesAgoTitle value. Default value is "N minutes ago"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setMinutesAgoTitle(String minutesAgoTitle) {
-        setAttribute("minutesAgoTitle", minutesAgoTitle);
+    public RelativeDateItem setMinutesAgoTitle(String minutesAgoTitle) {
+        return (RelativeDateItem)setAttribute("minutesAgoTitle", minutesAgoTitle);
     }
 
     /**
@@ -518,9 +536,10 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "minute".
      *
      * @param minutesFromNowTitle New minutesFromNowTitle value. Default value is "N minutes from now"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setMinutesFromNowTitle(String minutesFromNowTitle) {
-        setAttribute("minutesFromNowTitle", minutesFromNowTitle);
+    public RelativeDateItem setMinutesFromNowTitle(String minutesFromNowTitle) {
+        return (RelativeDateItem)setAttribute("minutesFromNowTitle", minutesFromNowTitle);
     }
 
     /**
@@ -537,9 +556,10 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "month".
      *
      * @param monthsAgoTitle New monthsAgoTitle value. Default value is "N months ago"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setMonthsAgoTitle(String monthsAgoTitle) {
-        setAttribute("monthsAgoTitle", monthsAgoTitle);
+    public RelativeDateItem setMonthsAgoTitle(String monthsAgoTitle) {
+        return (RelativeDateItem)setAttribute("monthsAgoTitle", monthsAgoTitle);
     }
 
     /**
@@ -556,9 +576,10 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "month".
      *
      * @param monthsFromNowTitle New monthsFromNowTitle value. Default value is "N months from now"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setMonthsFromNowTitle(String monthsFromNowTitle) {
-        setAttribute("monthsFromNowTitle", monthsFromNowTitle);
+    public RelativeDateItem setMonthsFromNowTitle(String monthsFromNowTitle) {
+        return (RelativeDateItem)setAttribute("monthsFromNowTitle", monthsFromNowTitle);
     }
 
     /**
@@ -575,9 +596,10 @@ public class RelativeDateItem extends CanvasItem {
      * What operator to use when  the <code>FormItemCriterionGetter</code>'s <code>getCriterion()</code> method is called.
      *
      * @param operator New operator value. Default value is "greaterThan"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setOperator(OperatorId operator) {
-        setAttribute("operator", operator == null ? null : operator.getValue());
+    public RelativeDateItem setOperator(OperatorId operator) {
+        return (RelativeDateItem)setAttribute("operator", operator == null ? null : operator.getValue());
     }
 
     /**
@@ -595,9 +617,10 @@ public class RelativeDateItem extends CanvasItem {
      * user to directly select dates.
      *
      * @param pickerConstructor New pickerConstructor value. Default value is "DateChooser"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setPickerConstructor(String pickerConstructor) {
-        setAttribute("pickerConstructor", pickerConstructor);
+    public RelativeDateItem setPickerConstructor(String pickerConstructor) {
+        return (RelativeDateItem)setAttribute("pickerConstructor", pickerConstructor);
     }
 
     /**
@@ -629,10 +652,11 @@ public class RelativeDateItem extends CanvasItem {
      * localization of your application.
      *
      * @param pickerIconPrompt New pickerIconPrompt value. Default value is "Show Date Chooser"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setPickerIconPrompt(String pickerIconPrompt) {
-        setAttribute("pickerIconPrompt", pickerIconPrompt);
+    public RelativeDateItem setPickerIconPrompt(String pickerIconPrompt) {
+        return (RelativeDateItem)setAttribute("pickerIconPrompt", pickerIconPrompt);
     }
 
     /**
@@ -654,13 +678,14 @@ public class RelativeDateItem extends CanvasItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param pickerTimeItemProperties New pickerTimeItemProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setPickerTimeItemProperties(TimeItem pickerTimeItemProperties) {
+    public RelativeDateItem setPickerTimeItemProperties(TimeItem pickerTimeItemProperties) {
         if (pickerTimeItemProperties.isCreated()) {
             ConfigUtil.warnOfPreConfigInstantiation(RelativeDateItem.class, "setPickerTimeItemProperties", "TimeItem");
         }                                                                       
         pickerTimeItemProperties.setConfigOnly(true);
-        setAttribute("pickerTimeItemProperties", pickerTimeItemProperties == null ? null : pickerTimeItemProperties.getEditorTypeConfig());
+        return (RelativeDateItem)setAttribute("pickerTimeItemProperties", pickerTimeItemProperties == null ? null : pickerTimeItemProperties.getEditorTypeConfig());
     }
 
     /**
@@ -693,9 +718,10 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "quarter".
      *
      * @param quartersAgoTitle New quartersAgoTitle value. Default value is "N quarters ago"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setQuartersAgoTitle(String quartersAgoTitle) {
-        setAttribute("quartersAgoTitle", quartersAgoTitle);
+    public RelativeDateItem setQuartersAgoTitle(String quartersAgoTitle) {
+        return (RelativeDateItem)setAttribute("quartersAgoTitle", quartersAgoTitle);
     }
 
     /**
@@ -712,9 +738,10 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "quarter".
      *
      * @param quartersFromNowTitle New quartersFromNowTitle value. Default value is "N quarters from now"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setQuartersFromNowTitle(String quartersFromNowTitle) {
-        setAttribute("quartersFromNowTitle", quartersFromNowTitle);
+    public RelativeDateItem setQuartersFromNowTitle(String quartersFromNowTitle) {
+        return (RelativeDateItem)setAttribute("quartersFromNowTitle", quartersFromNowTitle);
     }
 
     /**
@@ -733,11 +760,12 @@ public class RelativeDateItem extends CanvasItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param rangePosition New rangePosition value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.RelativeDateItem#setOperator
      * @see com.smartgwt.client.widgets.form.fields.RelativeDateItem#setRangeRoundingGranularity
      */
-    public void setRangePosition(RelativeDateRangePosition rangePosition) {
-        setAttribute("rangePosition", rangePosition == null ? null : rangePosition.getValue());
+    public RelativeDateItem setRangePosition(RelativeDateRangePosition rangePosition) {
+        return (RelativeDateItem)setAttribute("rangePosition", rangePosition == null ? null : rangePosition.getValue());
     }
 
     /**
@@ -758,9 +786,10 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "second".
      *
      * @param secondsAgoTitle New secondsAgoTitle value. Default value is "N seconds ago"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setSecondsAgoTitle(String secondsAgoTitle) {
-        setAttribute("secondsAgoTitle", secondsAgoTitle);
+    public RelativeDateItem setSecondsAgoTitle(String secondsAgoTitle) {
+        return (RelativeDateItem)setAttribute("secondsAgoTitle", secondsAgoTitle);
     }
 
     /**
@@ -777,9 +806,10 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "second".
      *
      * @param secondsFromNowTitle New secondsFromNowTitle value. Default value is "N seconds from now"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setSecondsFromNowTitle(String secondsFromNowTitle) {
-        setAttribute("secondsFromNowTitle", secondsFromNowTitle);
+    public RelativeDateItem setSecondsFromNowTitle(String secondsFromNowTitle) {
+        return (RelativeDateItem)setAttribute("secondsFromNowTitle", secondsFromNowTitle);
     }
 
     /**
@@ -807,9 +837,10 @@ public class RelativeDateItem extends CanvasItem {
      * is logged, and      shouldSaveValue will be set to false. </li></ul>
      *
      * @param shouldSaveValue New shouldSaveValue value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setShouldSaveValue(Boolean shouldSaveValue) {
-        setAttribute("shouldSaveValue", shouldSaveValue);
+    public RelativeDateItem setShouldSaveValue(Boolean shouldSaveValue) {
+        return (RelativeDateItem)setAttribute("shouldSaveValue", shouldSaveValue);
     }
 
     /**
@@ -839,9 +870,10 @@ public class RelativeDateItem extends CanvasItem {
      * com.smartgwt.client.widgets.form.fields.RelativeDateItem#getPickerIcon pickerIcon}.
      *
      * @param showCalculatedDateField New showCalculatedDateField value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setShowCalculatedDateField(Boolean showCalculatedDateField) {
-        setAttribute("showCalculatedDateField", showCalculatedDateField);
+    public RelativeDateItem setShowCalculatedDateField(Boolean showCalculatedDateField) {
+        return (RelativeDateItem)setAttribute("showCalculatedDateField", showCalculatedDateField);
     }
 
     /**
@@ -860,9 +892,10 @@ public class RelativeDateItem extends CanvasItem {
      * When set to true, show a button that allows the calendar to be navigated by fiscal year.
      *
      * @param showChooserFiscalYearPicker New showChooserFiscalYearPicker value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setShowChooserFiscalYearPicker(Boolean showChooserFiscalYearPicker) {
-        setAttribute("showChooserFiscalYearPicker", showChooserFiscalYearPicker);
+    public RelativeDateItem setShowChooserFiscalYearPicker(Boolean showChooserFiscalYearPicker) {
+        return (RelativeDateItem)setAttribute("showChooserFiscalYearPicker", showChooserFiscalYearPicker);
     }
 
     /**
@@ -880,9 +913,10 @@ public class RelativeDateItem extends CanvasItem {
      * Should we show the icon that displays a date-chooser?
      *
      * @param showChooserIcon New showChooserIcon value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setShowChooserIcon(Boolean showChooserIcon) {
-        setAttribute("showChooserIcon", showChooserIcon);
+    public RelativeDateItem setShowChooserIcon(Boolean showChooserIcon) {
+        return (RelativeDateItem)setAttribute("showChooserIcon", showChooserIcon);
     }
 
     /**
@@ -902,9 +936,10 @@ public class RelativeDateItem extends CanvasItem {
      * showChooserFiscalYearPicker}.
      *
      * @param showChooserWeekPicker New showChooserWeekPicker value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setShowChooserWeekPicker(Boolean showChooserWeekPicker) {
-        setAttribute("showChooserWeekPicker", showChooserWeekPicker);
+    public RelativeDateItem setShowChooserWeekPicker(Boolean showChooserWeekPicker) {
+        return (RelativeDateItem)setAttribute("showChooserWeekPicker", showChooserWeekPicker);
     }
 
     /**
@@ -929,9 +964,10 @@ public class RelativeDateItem extends CanvasItem {
      * so developers may wish to modify the presets to ensure only future options are available.
      *
      * @param showFutureOptions New showFutureOptions value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setShowFutureOptions(Boolean showFutureOptions) {
-        setAttribute("showFutureOptions", showFutureOptions);
+    public RelativeDateItem setShowFutureOptions(Boolean showFutureOptions) {
+        return (RelativeDateItem)setAttribute("showFutureOptions", showFutureOptions);
     }
 
     /**
@@ -959,9 +995,10 @@ public class RelativeDateItem extends CanvasItem {
      * so developers may wish to modify the presets to ensure only past options are available.
      *
      * @param showPastOptions New showPastOptions value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setShowPastOptions(Boolean showPastOptions) {
-        setAttribute("showPastOptions", showPastOptions);
+    public RelativeDateItem setShowPastOptions(Boolean showPastOptions) {
+        return (RelativeDateItem)setAttribute("showPastOptions", showPastOptions);
     }
 
     /**
@@ -992,9 +1029,10 @@ public class RelativeDateItem extends CanvasItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showPickerTimeItem New showPickerTimeItem value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setShowPickerTimeItem(Boolean showPickerTimeItem) {
-        setAttribute("showPickerTimeItem", showPickerTimeItem);
+    public RelativeDateItem setShowPickerTimeItem(Boolean showPickerTimeItem) {
+        return (RelativeDateItem)setAttribute("showPickerTimeItem", showPickerTimeItem);
     }
 
     /**
@@ -1026,10 +1064,11 @@ public class RelativeDateItem extends CanvasItem {
      * com.smartgwt.client.widgets.form.validator.Validator} of type "dateRange" should always be declared.
      *
      * @param startDate New startDate value. Default value is 1/1/1995
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setStartDate(Date startDate) {
-        setAttribute("startDate", startDate);
+    public RelativeDateItem setStartDate(Date startDate) {
+        return (RelativeDateItem)setAttribute("startDate", startDate);
     }
 
     /**
@@ -1058,12 +1097,13 @@ public class RelativeDateItem extends CanvasItem {
      * com.smartgwt.client.widgets.form.fields.RelativeDateItem#getDaysFromNowTitle "N days from now"}.
      *
      * @param timeUnitOptions New timeUnitOptions value. Default value is ["day", "week", "month"]
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.RelativeDateItem#setShowPastOptions
      * @see com.smartgwt.client.widgets.form.fields.RelativeDateItem#setShowFutureOptions
      * @see com.smartgwt.client.widgets.form.fields.RelativeDateItem#setRangeRoundingGranularity
      */
-    public void setTimeUnitOptions(TimeUnit... timeUnitOptions) {
-        setAttribute("timeUnitOptions", timeUnitOptions);
+    public RelativeDateItem setTimeUnitOptions(TimeUnit... timeUnitOptions) {
+        return (RelativeDateItem)setAttribute("timeUnitOptions", timeUnitOptions);
     }
 
     /**
@@ -1092,9 +1132,10 @@ public class RelativeDateItem extends CanvasItem {
      * <code>false</code>. <P> Default is true.
      *
      * @param use24HourTime New use24HourTime value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setUse24HourTime(Boolean use24HourTime) {
-        setAttribute("use24HourTime", use24HourTime);
+    public RelativeDateItem setUse24HourTime(Boolean use24HourTime) {
+        return (RelativeDateItem)setAttribute("use24HourTime", use24HourTime);
     }
 
     /**
@@ -1119,9 +1160,10 @@ public class RelativeDateItem extends CanvasItem {
      * on setting up an unshared picker.
      *
      * @param useSharedPicker New useSharedPicker value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setUseSharedPicker(Boolean useSharedPicker) {
-        setAttribute("useSharedPicker", useSharedPicker);
+    public RelativeDateItem setUseSharedPicker(Boolean useSharedPicker) {
+        return (RelativeDateItem)setAttribute("useSharedPicker", useSharedPicker);
     }
 
     /**
@@ -1149,9 +1191,10 @@ public class RelativeDateItem extends CanvasItem {
      * formatters that need differing amounts of space.
      *
      * @param valueFieldWidth New valueFieldWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setValueFieldWidth(int valueFieldWidth) {
-        setAttribute("valueFieldWidth", valueFieldWidth);
+    public RelativeDateItem setValueFieldWidth(int valueFieldWidth) {
+        return (RelativeDateItem)setAttribute("valueFieldWidth", valueFieldWidth);
     }
 
     /**
@@ -1185,9 +1228,10 @@ public class RelativeDateItem extends CanvasItem {
      * formatters that need differing amounts of space.
      *
      * @param valueFieldWidth New valueFieldWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setValueFieldWidth(String valueFieldWidth) {
-        setAttribute("valueFieldWidth", valueFieldWidth);
+    public RelativeDateItem setValueFieldWidth(String valueFieldWidth) {
+        return (RelativeDateItem)setAttribute("valueFieldWidth", valueFieldWidth);
     }
 
     /**
@@ -1210,9 +1254,10 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "week".
      *
      * @param weeksAgoTitle New weeksAgoTitle value. Default value is "N weeks ago"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setWeeksAgoTitle(String weeksAgoTitle) {
-        setAttribute("weeksAgoTitle", weeksAgoTitle);
+    public RelativeDateItem setWeeksAgoTitle(String weeksAgoTitle) {
+        return (RelativeDateItem)setAttribute("weeksAgoTitle", weeksAgoTitle);
     }
 
     /**
@@ -1229,9 +1274,10 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "week".
      *
      * @param weeksFromNowTitle New weeksFromNowTitle value. Default value is "N weeks from now"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setWeeksFromNowTitle(String weeksFromNowTitle) {
-        setAttribute("weeksFromNowTitle", weeksFromNowTitle);
+    public RelativeDateItem setWeeksFromNowTitle(String weeksFromNowTitle) {
+        return (RelativeDateItem)setAttribute("weeksFromNowTitle", weeksFromNowTitle);
     }
 
     /**
@@ -1248,9 +1294,10 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for historical periods when the {@link com.smartgwt.client.types.TimeUnit} is "year".
      *
      * @param yearsAgoTitle New yearsAgoTitle value. Default value is "N years ago"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setYearsAgoTitle(String yearsAgoTitle) {
-        setAttribute("yearsAgoTitle", yearsAgoTitle);
+    public RelativeDateItem setYearsAgoTitle(String yearsAgoTitle) {
+        return (RelativeDateItem)setAttribute("yearsAgoTitle", yearsAgoTitle);
     }
 
     /**
@@ -1267,9 +1314,10 @@ public class RelativeDateItem extends CanvasItem {
      * The title to show for future periods when the {@link com.smartgwt.client.types.TimeUnit} is "year".
      *
      * @param yearsFromNowTitle New yearsFromNowTitle value. Default value is "N years from now"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem} instance, for chaining setter calls
      */
-    public void setYearsFromNowTitle(String yearsFromNowTitle) {
-        setAttribute("yearsFromNowTitle", yearsFromNowTitle);
+    public RelativeDateItem setYearsFromNowTitle(String yearsFromNowTitle) {
+        return (RelativeDateItem)setAttribute("yearsFromNowTitle", yearsFromNowTitle);
     }
 
     /**
@@ -1537,9 +1585,11 @@ public class RelativeDateItem extends CanvasItem {
      * has its type specified as datetime,  Date.setShortDatetimeDisplayFormat.
      *
      * @param dateFormatter dateFormatter Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem}
+     * instance, for chaining setter calls
      */
-    public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter.getValue());
+    public RelativeDateItem setDateFormatter(DateDisplayFormat dateFormatter) {
+        return (RelativeDateItem)setAttribute("dateFormatter", dateFormatter.getValue());
     }
     
     
@@ -1551,8 +1601,10 @@ public class RelativeDateItem extends CanvasItem {
      * also be applied to ensure dates can be both formatted and edited date strings parsed back into actual
      * date values.
      * @param dateFormatter dateFormatter Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem RelativeDateItem}
+     * instance, for chaining setter calls
      */
-    public native void setDateFormatter(DateDisplayFormatter formatter) /*-{
+    public native RelativeDateItem setDateFormatter(DateDisplayFormatter formatter) /*-{
         var formatterFunc = function() {
             var date = this;
             var dateJ = date == null || date === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(date.getTime());
@@ -1560,6 +1612,7 @@ public class RelativeDateItem extends CanvasItem {
         }
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
         self.dateFormatter = formatterFunc;
+        return this;
     }-*/;
     
     /**

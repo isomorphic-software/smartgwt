@@ -332,6 +332,9 @@ public class I18nUtil {
             $wnd.isc.Operators.addClassProperties({iStartsWithPatternTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_iStartsWithPatternTitle()()});
             $wnd.isc.Operators.addClassProperties({endsWithPatternTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_endsWithPatternTitle()()});
             $wnd.isc.Operators.addClassProperties({iEndsWithPatternTitle: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_iEndsWithPatternTitle()()});
+            
+            $wnd.isc.Operators.addClassProperties({valueRangeUsageHint: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_valueRangeUsageHint()()});
+            $wnd.isc.Operators.addClassProperties({valueSetUsageHint: messages.@com.smartgwt.client.i18n.SmartGwtMessages::operators_valueSetUsageHint()()});
         }
 
         if($wnd.isc.GroupingMessages) {
@@ -598,6 +601,7 @@ public class I18nUtil {
         if($wnd.isc.DataSource) {
             $wnd.isc.DataSource.addClassProperties({offlineMessage: messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataSource_offlineMessage()()});
             $wnd.isc.DataSource.addClassProperties({maxFileSizeExceededMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataSource_maxFileSizeExceededMessage()()).replace(/(\$uploadedFileName)/g, '${uploadedFileName}').replace(/(\$uploadedFileSize)/g, '${uploadedFileSize}').replace(/(\$maxFileSize)/g, '${maxFileSize}')});
+            $wnd.isc.DataSource.addClassProperties({requiredCriterionMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataSource_requiredCriterionMessage()()).replace(/(\$requiredCriterion)/g, '${requiredCriterion}')});
         }
 
         if($wnd.isc.DetailViewer) {
@@ -964,8 +968,43 @@ public class I18nUtil {
 
 
 
-        //  Generated on Mon May 24 08:33:33 2021
+        //  Generated on Mon May 24 08:09:01 2021
 
+        if($wnd.isc.DSRecordAuditPreview) {
+            $wnd.isc.DSRecordAuditPreview.addProperties({recordAuditHeaderTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::dSRecordAuditPreview_recordAuditHeaderTitle()()).replace(/(\$dsId)/g, '${dsId}')});
+            $wnd.isc.DSRecordAuditPreview.addProperties({recordAuditInfoTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::dSRecordAuditPreview_recordAuditInfoTitle()())});
+        }
+        if($wnd.isc.DeploymentManager) {
+            $wnd.isc.DeploymentManager.addProperties({usersTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::deploymentManager_usersTitle()())});
+            $wnd.isc.DeploymentManager.addProperties({dataTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::deploymentManager_dataTitle()())});
+            $wnd.isc.DeploymentManager.addProperties({usageTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::deploymentManager_usageTitle()())});
+        }
+        if($wnd.isc.DeploymentDSNavigator) {
+            $wnd.isc.DeploymentDSNavigator.addProperties({dsEnumerationSectionTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::deploymentDSNavigator_dsEnumerationSectionTitle()())});
+            $wnd.isc.DeploymentDSNavigator.addProperties({dsContentSectionTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::deploymentDSNavigator_dsContentSectionTitle()()).replace(/(\$dsId)/g, '${dsId}')});
+            $wnd.isc.DeploymentDSNavigator.addProperties({dsContentAuditedSectionTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::deploymentDSNavigator_dsContentAuditedSectionTitle()()).replace(/(\$dsId)/g, '${dsId}')});
+            $wnd.isc.DeploymentDSNavigator.addProperties({dsContentRecordAuditSectionTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::deploymentDSNavigator_dsContentRecordAuditSectionTitle()()).replace(/(\$pkCrit)/g, '${pkCrit}').replace(/(\$dsId)/g, '${dsId}')});
+        }
+        if($wnd.isc.DeploymentUsageViewer) {
+            $wnd.isc.DeploymentUsageViewer.addProperties({sessionsOverviewGridTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::deploymentUsageViewer_sessionsOverviewGridTitle()())});
+            $wnd.isc.DeploymentUsageViewer.addProperties({sessionAuditPickerTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::deploymentUsageViewer_sessionAuditPickerTitle()()).replace(/(\$userId)/g, '${userId}')});
+        }
+        if($wnd.isc.DeploymentSessionAuditGrid) {
+            $wnd.isc.DeploymentSessionAuditGrid.addProperties({relatedDataFieldPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::deploymentSessionAuditGrid_relatedDataFieldPrompt()())});
+            $wnd.isc.DeploymentSessionAuditGrid.addProperties({relatedDataMenuInfoText: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::deploymentSessionAuditGrid_relatedDataMenuInfoText()())});
+            $wnd.isc.DeploymentSessionAuditGrid.addProperties({relatedDataMenuRecordText: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::deploymentSessionAuditGrid_relatedDataMenuRecordText()())});
+            $wnd.isc.DeploymentSessionAuditGrid.addProperties({relatedDataMenuDataSourceText: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::deploymentSessionAuditGrid_relatedDataMenuDataSourceText()()).replace(/(\$dsId)/g, '${dsId}')});
+        }
+        if($wnd.isc.GridRenderer) {
+            $wnd.isc.GridRenderer.addProperties({emptyCellValue: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::gridRenderer_emptyCellValue()())});
+        }
+        if($wnd.isc.SampleDataDSWizard) {
+            $wnd.isc.SampleDataDSWizard.addProperties({formatHelpText: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::sampleDataDSWizard_formatHelpText()())});
+            $wnd.isc.SampleDataDSWizard.addProperties({importFileTooLargeMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::sampleDataDSWizard_importFileTooLargeMessage()())});
+        }
+        if($wnd.isc.ParsedDataDSEditor) {
+            $wnd.isc.ParsedDataDSEditor.addProperties({instructions: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::parsedDataDSEditor_instructions()())});
+        }
         if($wnd.isc.RuleEditor) {
             $wnd.isc.RuleEditor.addProperties({nameItemTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::ruleEditor_nameItemTitle()())});
             $wnd.isc.RuleEditor.addProperties({descriptionItemTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::ruleEditor_descriptionItemTitle()())});
@@ -987,15 +1026,103 @@ public class I18nUtil {
         if($wnd.isc.FacetChart) {
             $wnd.isc.FacetChart.addProperties({proportionalAxisLabel: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::facetChart_proportionalAxisLabel()())});
         }
-        if($wnd.isc.TileGrid) {
-        }
         if($wnd.isc.FormulaBuilder) {
             $wnd.isc.FormulaBuilder.addProperties({nearbyComponentFieldPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_nearbyComponentFieldPrompt()()).replace(/(\$fieldName)/g, '${fieldName}').replace(/(\$componentName)/g, '${componentName}')});
             $wnd.isc.FormulaBuilder.addProperties({currentComponentFieldPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_currentComponentFieldPrompt()()).replace(/(\$fieldName)/g, '${fieldName}').replace(/(\$componentName)/g, '${componentName}')});
             $wnd.isc.FormulaBuilder.addProperties({dataSourceFieldPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_dataSourceFieldPrompt()()).replace(/(\$fieldName)/g, '${fieldName}').replace(/(\$dataSource)/g, '${dataSource}')});
         }
-        if($wnd.isc.GridRenderer) {
-            $wnd.isc.GridRenderer.addProperties({emptyCellValue: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::gridRenderer_emptyCellValue()())});
+        if($wnd.isc.TileGrid) {
+        }
+        if($wnd.isc.ImagePicker) {
+            $wnd.isc.ImagePicker.addProperties({actionIconsTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::imagePicker_actionIconsTitle()())});
+            $wnd.isc.ImagePicker.addProperties({headerIconsTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::imagePicker_headerIconsTitle()())});
+            $wnd.isc.ImagePicker.addProperties({customImagesTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::imagePicker_customImagesTitle()())});
+            $wnd.isc.ImagePicker.addProperties({tipText: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::imagePicker_tipText()())});
+            $wnd.isc.ImagePicker.addProperties({okButtonTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::imagePicker_okButtonTitle()())});
+            $wnd.isc.ImagePicker.addProperties({cancelButtonTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::imagePicker_cancelButtonTitle()())});
+        }
+        if($wnd.isc.WorkflowEditor) {
+            $wnd.isc.WorkflowEditor.addProperties({addElementTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::workflowEditor_addElementTitle()())});
+            $wnd.isc.WorkflowEditor.addProperties({addElementHint: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::workflowEditor_addElementHint()())});
+            $wnd.isc.WorkflowEditor.addProperties({canceledLinkPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::workflowEditor_canceledLinkPrompt()())});
+            $wnd.isc.WorkflowEditor.addProperties({failedLinkPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::workflowEditor_failedLinkPrompt()())});
+            $wnd.isc.WorkflowEditor.addProperties({continuationLinkPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::workflowEditor_continuationLinkPrompt()())});
+            $wnd.isc.WorkflowEditor.addProperties({startTaskLinkPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::workflowEditor_startTaskLinkPrompt()())});
+            $wnd.isc.WorkflowEditor.addProperties({unreferencedTaskLinkPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::workflowEditor_unreferencedTaskLinkPrompt()())});
+            $wnd.isc.WorkflowEditor.addProperties({warnOnRemovalMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::workflowEditor_warnOnRemovalMessage()())});
+        }
+        if($wnd.isc.ProcessElementEditor) {
+            $wnd.isc.ProcessElementEditor.addProperties({taskScopeRuleScopeNodeTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::processElementEditor_taskScopeRuleScopeNodeTitle()())});
+            $wnd.isc.ProcessElementEditor.addProperties({taskScopeLastTaskOutputNodeTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::processElementEditor_taskScopeLastTaskOutputNodeTitle()()).replace(/(\$description)/g, '${description}')});
+        }
+        if($wnd.isc.ServiceTaskEditor) {
+            $wnd.isc.ServiceTaskEditor.addProperties({editorTitleFixedOperationType: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::serviceTaskEditor_editorTitleFixedOperationType()()).replace(/(\$operationType)/g, '${operationType}')});
+            $wnd.isc.ServiceTaskEditor.addProperties({addInstructions: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::serviceTaskEditor_addInstructions()())});
+            $wnd.isc.ServiceTaskEditor.addProperties({removeInstructions: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::serviceTaskEditor_removeInstructions()())});
+            $wnd.isc.ServiceTaskEditor.addProperties({fetchInstructions: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::serviceTaskEditor_fetchInstructions()())});
+            $wnd.isc.ServiceTaskEditor.addProperties({exportInstructions: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::serviceTaskEditor_exportInstructions()())});
+            $wnd.isc.ServiceTaskEditor.addProperties({overwriteBindingsMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::serviceTaskEditor_overwriteBindingsMessage()())});
+            $wnd.isc.ServiceTaskEditor.addProperties({missingPrimaryKeyMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::serviceTaskEditor_missingPrimaryKeyMessage()()).replace(/(\$fieldName)/g, '${fieldName}')});
+            $wnd.isc.ServiceTaskEditor.addProperties({missingIdSourceMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::serviceTaskEditor_missingIdSourceMessage()())});
+            $wnd.isc.ServiceTaskEditor.addProperties({fixedValueWindowTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::serviceTaskEditor_fixedValueWindowTitle()()).replace(/(\$fieldName)/g, '${fieldName}')});
+            $wnd.isc.ServiceTaskEditor.addProperties({dynamicValueWindowTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::serviceTaskEditor_dynamicValueWindowTitle()()).replace(/(\$fieldName)/g, '${fieldName}')});
+            $wnd.isc.ServiceTaskEditor.addProperties({bindingFixedValuePrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::serviceTaskEditor_bindingFixedValuePrompt()())});
+            $wnd.isc.ServiceTaskEditor.addProperties({bindingDynamicValuePrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::serviceTaskEditor_bindingDynamicValuePrompt()())});
+        }
+        if($wnd.isc.XorGatewayEditor) {
+            $wnd.isc.XorGatewayEditor.addProperties({instructions: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::xorGatewayEditor_instructions()())});
+        }
+        if($wnd.isc.ServiceTaskEditor) {
+            $wnd.isc.ServiceTaskEditor.addProperties({missingCriteriaMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::serviceTaskEditor_missingCriteriaMessage()())});
+        }
+        if($wnd.isc.DecisionGatewayEditor) {
+            $wnd.isc.DecisionGatewayEditor.addProperties({instructions: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::decisionGatewayEditor_instructions()())});
+        }
+        if($wnd.isc.GridFetchDataTaskEditor) {
+            $wnd.isc.GridFetchDataTaskEditor.addProperties({criteriaNotComplete: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::gridFetchDataTaskEditor_criteriaNotComplete()())});
+        }
+        if($wnd.isc.GridStartEditingTaskEditor) {
+            $wnd.isc.GridStartEditingTaskEditor.addProperties({valuesInstructions: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::gridStartEditingTaskEditor_valuesInstructions()())});
+            $wnd.isc.GridStartEditingTaskEditor.addProperties({overwriteBindingsMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::gridStartEditingTaskEditor_overwriteBindingsMessage()())});
+            $wnd.isc.GridStartEditingTaskEditor.addProperties({fixedValueWindowTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::gridStartEditingTaskEditor_fixedValueWindowTitle()()).replace(/(\$fieldName)/g, '${fieldName}')});
+            $wnd.isc.GridStartEditingTaskEditor.addProperties({dynamicValueWindowTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::gridStartEditingTaskEditor_dynamicValueWindowTitle()()).replace(/(\$fieldName)/g, '${fieldName}')});
+            $wnd.isc.GridStartEditingTaskEditor.addProperties({bindingFixedValuePrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::gridStartEditingTaskEditor_bindingFixedValuePrompt()())});
+            $wnd.isc.GridStartEditingTaskEditor.addProperties({bindingDynamicValuePrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::gridStartEditingTaskEditor_bindingDynamicValuePrompt()())});
+        }
+        if($wnd.isc.FormEditNewRecordTaskEditor) {
+            $wnd.isc.FormEditNewRecordTaskEditor.addProperties({valuesInstructions: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formEditNewRecordTaskEditor_valuesInstructions()())});
+            $wnd.isc.FormEditNewRecordTaskEditor.addProperties({overwriteBindingsMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formEditNewRecordTaskEditor_overwriteBindingsMessage()())});
+            $wnd.isc.FormEditNewRecordTaskEditor.addProperties({fixedValueWindowTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formEditNewRecordTaskEditor_fixedValueWindowTitle()()).replace(/(\$fieldName)/g, '${fieldName}')});
+            $wnd.isc.FormEditNewRecordTaskEditor.addProperties({dynamicValueWindowTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formEditNewRecordTaskEditor_dynamicValueWindowTitle()()).replace(/(\$fieldName)/g, '${fieldName}')});
+            $wnd.isc.FormEditNewRecordTaskEditor.addProperties({bindingFixedValuePrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formEditNewRecordTaskEditor_bindingFixedValuePrompt()())});
+            $wnd.isc.FormEditNewRecordTaskEditor.addProperties({bindingDynamicValuePrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formEditNewRecordTaskEditor_bindingDynamicValuePrompt()())});
+        }
+        if($wnd.isc.FormSetValuesTaskEditor) {
+            $wnd.isc.FormSetValuesTaskEditor.addProperties({valuesInstructions: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formSetValuesTaskEditor_valuesInstructions()())});
+            $wnd.isc.FormSetValuesTaskEditor.addProperties({overwriteBindingsMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formSetValuesTaskEditor_overwriteBindingsMessage()())});
+            $wnd.isc.FormSetValuesTaskEditor.addProperties({fixedValueWindowTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formSetValuesTaskEditor_fixedValueWindowTitle()()).replace(/(\$fieldName)/g, '${fieldName}')});
+            $wnd.isc.FormSetValuesTaskEditor.addProperties({dynamicValueWindowTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formSetValuesTaskEditor_dynamicValueWindowTitle()()).replace(/(\$fieldName)/g, '${fieldName}')});
+            $wnd.isc.FormSetValuesTaskEditor.addProperties({bindingFixedValuePrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formSetValuesTaskEditor_bindingFixedValuePrompt()())});
+            $wnd.isc.FormSetValuesTaskEditor.addProperties({bindingDynamicValuePrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formSetValuesTaskEditor_bindingDynamicValuePrompt()())});
+        }
+        if($wnd.isc.SetSectionTitleTaskEditor) {
+            $wnd.isc.SetSectionTitleTaskEditor.addProperties({sectionPickerFormatWithTitleValue: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::setSectionTitleTaskEditor_sectionPickerFormatWithTitleValue()()).replace(/(\$title)/g, '${title}')});
+            $wnd.isc.SetSectionTitleTaskEditor.addProperties({sectionPickerFormatWithNameValue: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::setSectionTitleTaskEditor_sectionPickerFormatWithNameValue()()).replace(/(\$name)/g, '${name}')});
+        }
+        if($wnd.isc.TaskDecisionEditor) {
+            $wnd.isc.TaskDecisionEditor.addProperties({criteriaNotComplete: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::taskDecisionEditor_criteriaNotComplete()())});
+            $wnd.isc.TaskDecisionEditor.addProperties({criteriaMissingMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::taskDecisionEditor_criteriaMissingMessage()())});
+        }
+        if($wnd.isc.DynamicValueItem) {
+            $wnd.isc.DynamicValueItem.addProperties({dynamicValuePrefix: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::dynamicValueItem_dynamicValuePrefix()())});
+            $wnd.isc.DynamicValueItem.addProperties({dynamicValueButtonPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::dynamicValueItem_dynamicValueButtonPrompt()())});
+            $wnd.isc.DynamicValueItem.addProperties({dynamicValueWindowTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::dynamicValueItem_dynamicValueWindowTitle()()).replace(/(\$fieldTitle)/g, '${fieldTitle}')});
+        }
+        if($wnd.isc.DynamicValuePicker) {
+            $wnd.isc.DynamicValuePicker.addProperties({clearValueText: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::dynamicValuePicker_clearValueText()())});
+        }
+        if($wnd.isc.Validator) {
+            $wnd.isc.Validator.addClassProperties({notAMeasure: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_notAMeasure()())});
         }
         if($wnd.isc.DynamicPropertyEditorItem) {
             $wnd.isc.DynamicPropertyEditorItem.addProperties({cancelButtonTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::dynamicPropertyEditorItem_cancelButtonTitle()())});
@@ -1009,20 +1136,44 @@ public class I18nUtil {
         }
 
 
-        //  Generated on Tue May 25 01:48:54 2021
+        //  Generated on Tue May 25 01:28:56 2021
 
-        if($wnd.isc.Validator) {
-            $wnd.isc.Validator.addClassProperties({notAMeasure: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_notAMeasure()())});
+        if($wnd.isc.ImageChooserItem) {
+            $wnd.isc.ImageChooserItem.addProperties({pickerTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::imageChooserItem_pickerTitle()())});
         }
 
 
-        //  Generated on Fri Jan  7 07:29:39 2022
+        //  Generated on Thu Jun  3 00:17:38 2021
+
+        if($wnd.isc.DateChooser) {
+            $wnd.isc.DateChooser.addProperties({previousYearButtonAriaLabel: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateChooser_previousYearButtonAriaLabel()())});
+            $wnd.isc.DateChooser.addProperties({previousMonthButtonAriaLabel: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateChooser_previousMonthButtonAriaLabel()())});
+            $wnd.isc.DateChooser.addProperties({nextMonthButtonAriaLabel: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateChooser_nextMonthButtonAriaLabel()())});
+            $wnd.isc.DateChooser.addProperties({nextYearButtonAriaLabel: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::dateChooser_nextYearButtonAriaLabel()())});
+        }
+        if($wnd.isc.StatefulImageChooser) {
+            $wnd.isc.StatefulImageChooser.addProperties({instructionText: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::statefulImageChooser_instructionText()())});
+        }
+
+
+        //  Generated on Thu Jun 24 00:45:34 2021
+
+        if($wnd.isc.TreeGrid) {
+            $wnd.isc.TreeGrid.addProperties({cantDragMultipleNodeOccurencesMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::treeGrid_cantDragMultipleNodeOccurencesMessage()())});
+        }
+
+
+        //  Generated on Fri Jan  7 06:20:39 2022
 
         if($wnd.isc.Canvas) {
             $wnd.isc.Canvas.addProperties({removeSummaryFieldText: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataBoundComponent_removeSummaryFieldText()())});
         }
         if($wnd.isc.DataSource) {
             $wnd.isc.DataSource.addClassProperties({requiredFileMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::dataSource_requiredFileMessage()()).replace(/(\$uploadedFileName)/g, '${uploadedFileName}')});
+        }
+        if($wnd.isc.ListGrid) {
+            $wnd.isc.ListGrid.addProperties({cancelEditingConfirmationMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_cancelEditingConfirmationMessage()())});
+            $wnd.isc.ListGrid.addProperties({confirmDiscardEditsMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_confirmDiscardEditsMessage()())});
         }
         if($wnd.isc.BatchUploader) {
             $wnd.isc.BatchUploader.addProperties({errorMessageRowsNotParsed: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::batchUploader_errorMessageRowsNotParsed()()).replace(/(\$goodRowCount)/g, '${goodRowCount}').replace(/(\$totalRows)/g, '${totalRows}').replace(/(\$firstBadRow)/g, '${firstBadRow}')});
@@ -1037,9 +1188,8 @@ public class I18nUtil {
             $wnd.isc.FormulaBuilder.addProperties({helpTextIntro: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_helpTextIntro()())});
             $wnd.isc.FormulaBuilder.addProperties({saveAddAnotherButtonTitle: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::formulaBuilder_saveAddAnotherButtonTitle()())});
         }
-        if($wnd.isc.ListGrid) {
-            $wnd.isc.ListGrid.addProperties({cancelEditingConfirmationMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_cancelEditingConfirmationMessage()())});
-            $wnd.isc.ListGrid.addProperties({confirmDiscardEditsMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_confirmDiscardEditsMessage()())});
+        if($wnd.isc.Validator) {
+            $wnd.isc.Validator.addClassProperties({notAString: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_notAString()())});
         }
         if($wnd.isc.DynamicForm) {
             $wnd.isc.DynamicForm.addProperties({errorsPreamble: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::dynamicForm_errorsPreamble()())});
@@ -1048,19 +1198,16 @@ public class I18nUtil {
             $wnd.isc.FilterClause.addProperties({valueItemListHint: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterClause_valueItemListHint()())});
             $wnd.isc.FilterClause.addProperties({valueItemFieldHint: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::filterClause_valueItemFieldHint()())});
         }
-        if($wnd.isc.Validator) {
-            $wnd.isc.Validator.addClassProperties({notAString: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::validator_notAString()())});
-        }
 
 
-        //  Generated on Thu Jan 27 01:30:24 2022
+        //  Generated on Thu Jan 27 01:17:31 2022
 
-        if($wnd.isc.TileGrid) {
-            $wnd.isc.TileGrid.addProperties({loadingDataMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::tileGrid_loadingDataMessage()()).replace(/(\$loadingImage)/g, '${loadingImage}')});
-        }
         if($wnd.isc.ListGrid) {
             $wnd.isc.ListGrid.addProperties({asynchGroupingPrompt: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_asynchGroupingPrompt()()).replace(/(\$loadingImage)/g, '${loadingImage}')});
             $wnd.isc.ListGrid.addProperties({loadingDataMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::listGrid_loadingDataMessage()()).replace(/(\$loadingImage)/g, '${loadingImage}')});
+        }
+        if($wnd.isc.TileGrid) {
+            $wnd.isc.TileGrid.addProperties({loadingDataMessage: (messages.@com.smartgwt.client.i18n.SmartGwtMessages::tileGrid_loadingDataMessage()()).replace(/(\$loadingImage)/g, '${loadingImage}')});
         }
 //<localeGenerator -- SC locale parser will process whatever's inside these tags
 

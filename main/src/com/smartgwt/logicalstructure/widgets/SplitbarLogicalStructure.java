@@ -5,8 +5,10 @@ import com.smartgwt.client.i18n.*;
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.fields.*;
 import com.smartgwt.client.tools.*;
 import com.smartgwt.client.widgets.*;
@@ -48,7 +50,9 @@ public class SplitbarLogicalStructure extends StretchImgLogicalStructure {
     public String canCollapseOnTap;
     public String canDrag;
     public String cursor;
+    public String gripBreadth;
     public String gripImgSuffix;
+    public String gripLength;
     public String hResizeCursor;
     public String hSrc;
     public String invertClosedGripIfTargetAfter;

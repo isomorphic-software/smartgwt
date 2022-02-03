@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -177,10 +180,11 @@ public class VisualBuilder extends VLayout {
      * wherever Visual Builder itself was loaded from
      *
      * @param customComponentsURL New customComponentsURL value. Default value is "customComponents.xml"
+     * @return {@link com.smartgwt.client.tools.VisualBuilder VisualBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCustomComponentsURL(String customComponentsURL)  throws IllegalStateException {
-        setAttribute("customComponentsURL", customComponentsURL, false);
+    public VisualBuilder setCustomComponentsURL(String customComponentsURL)  throws IllegalStateException {
+        return (VisualBuilder)setAttribute("customComponentsURL", customComponentsURL, false);
     }
 
     /**
@@ -199,10 +203,11 @@ public class VisualBuilder extends VLayout {
      * com.smartgwt.client.tools.VisualBuilder#getShowModeSwitcher showModeSwitcher}
      *
      * @param defaultApplicationMode New defaultApplicationMode value. Default value is "edit"
+     * @return {@link com.smartgwt.client.tools.VisualBuilder VisualBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDefaultApplicationMode(ApplicationMode defaultApplicationMode)  throws IllegalStateException {
-        setAttribute("defaultApplicationMode", defaultApplicationMode == null ? null : defaultApplicationMode.getValue(), false);
+    public VisualBuilder setDefaultApplicationMode(ApplicationMode defaultApplicationMode)  throws IllegalStateException {
+        return (VisualBuilder)setAttribute("defaultApplicationMode", defaultApplicationMode == null ? null : defaultApplicationMode.getValue(), false);
     }
 
     /**
@@ -221,10 +226,11 @@ public class VisualBuilder extends VLayout {
      * wherever Visual Builder itself was loaded from
      *
      * @param defaultComponentsURL New defaultComponentsURL value. Default value is "defaultComponents.xml"
+     * @return {@link com.smartgwt.client.tools.VisualBuilder VisualBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDefaultComponentsURL(String defaultComponentsURL)  throws IllegalStateException {
-        setAttribute("defaultComponentsURL", defaultComponentsURL, false);
+    public VisualBuilder setDefaultComponentsURL(String defaultComponentsURL)  throws IllegalStateException {
+        return (VisualBuilder)setAttribute("defaultComponentsURL", defaultComponentsURL, false);
     }
 
     /**
@@ -243,10 +249,11 @@ public class VisualBuilder extends VLayout {
      * look wherever Visual Builder itself was loaded from
      *
      * @param defaultMockupComponentsURL New defaultMockupComponentsURL value. Default value is "defaultMockupComponents.xml"
+     * @return {@link com.smartgwt.client.tools.VisualBuilder VisualBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDefaultMockupComponentsURL(String defaultMockupComponentsURL)  throws IllegalStateException {
-        setAttribute("defaultMockupComponentsURL", defaultMockupComponentsURL, false);
+    public VisualBuilder setDefaultMockupComponentsURL(String defaultMockupComponentsURL)  throws IllegalStateException {
+        return (VisualBuilder)setAttribute("defaultMockupComponentsURL", defaultMockupComponentsURL, false);
     }
 
     /**
@@ -267,12 +274,13 @@ public class VisualBuilder extends VLayout {
      * to and from local  {@link com.smartgwt.client.util.Offline offline storage}.
      *
      * @param filesystemDataSourceEnabled New filesystemDataSourceEnabled value. Default value is false
+     * @return {@link com.smartgwt.client.tools.VisualBuilder VisualBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.tools.VisualBuilder#setSaveFileBuiltinIsEnabled
      * @see com.smartgwt.client.tools.VisualBuilder#setLoadFileBuiltinIsEnabled
      */
-    public void setFilesystemDataSourceEnabled(Boolean filesystemDataSourceEnabled)  throws IllegalStateException {
-        setAttribute("filesystemDataSourceEnabled", filesystemDataSourceEnabled, false);
+    public VisualBuilder setFilesystemDataSourceEnabled(Boolean filesystemDataSourceEnabled)  throws IllegalStateException {
+        return (VisualBuilder)setAttribute("filesystemDataSourceEnabled", filesystemDataSourceEnabled, false);
     }
 
     /**
@@ -296,10 +304,11 @@ public class VisualBuilder extends VLayout {
      * wherever Visual Builder itself was loaded from
      *
      * @param globalDependenciesURL New globalDependenciesURL value. Default value is "globalDependencies.xml"
+     * @return {@link com.smartgwt.client.tools.VisualBuilder VisualBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setGlobalDependenciesURL(String globalDependenciesURL)  throws IllegalStateException {
-        setAttribute("globalDependenciesURL", globalDependenciesURL, false);
+    public VisualBuilder setGlobalDependenciesURL(String globalDependenciesURL)  throws IllegalStateException {
+        return (VisualBuilder)setAttribute("globalDependenciesURL", globalDependenciesURL, false);
     }
 
     /**
@@ -317,10 +326,11 @@ public class VisualBuilder extends VLayout {
      * A PaletteNode describing a component to add to an empty screen as an initial container.
      *
      * @param initialComponent New initialComponent value. Default value is null
+     * @return {@link com.smartgwt.client.tools.VisualBuilder VisualBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setInitialComponent(PaletteNode initialComponent)  throws IllegalStateException {
-        setAttribute("initialComponent", initialComponent == null ? null : initialComponent.getJsObj(), false);
+    public VisualBuilder setInitialComponent(PaletteNode initialComponent)  throws IllegalStateException {
+        return (VisualBuilder)setAttribute("initialComponent", initialComponent == null ? null : initialComponent.getJsObj(), false);
     }
 
     /**
@@ -338,11 +348,12 @@ public class VisualBuilder extends VLayout {
      * server filesystem (if enabled)
      *
      * @param loadFileBuiltinIsEnabled New loadFileBuiltinIsEnabled value. Default value is false
+     * @return {@link com.smartgwt.client.tools.VisualBuilder VisualBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.tools.VisualBuilder#setFilesystemDataSourceEnabled
      */
-    public void setLoadFileBuiltinIsEnabled(Boolean loadFileBuiltinIsEnabled)  throws IllegalStateException {
-        setAttribute("loadFileBuiltinIsEnabled", loadFileBuiltinIsEnabled, false);
+    public VisualBuilder setLoadFileBuiltinIsEnabled(Boolean loadFileBuiltinIsEnabled)  throws IllegalStateException {
+        return (VisualBuilder)setAttribute("loadFileBuiltinIsEnabled", loadFileBuiltinIsEnabled, false);
     }
 
     /**
@@ -362,10 +373,11 @@ public class VisualBuilder extends VLayout {
      * If true, starts Visual Builder in mockup mode
      *
      * @param mockupMode New mockupMode value. Default value is false
+     * @return {@link com.smartgwt.client.tools.VisualBuilder VisualBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMockupMode(Boolean mockupMode)  throws IllegalStateException {
-        setAttribute("mockupMode", mockupMode, false);
+    public VisualBuilder setMockupMode(Boolean mockupMode)  throws IllegalStateException {
+        return (VisualBuilder)setAttribute("mockupMode", mockupMode, false);
     }
 
     /**
@@ -384,10 +396,11 @@ public class VisualBuilder extends VLayout {
      * Component XML via "Go to Visual Builder".
      *
      * @param openFullBuilderSeparately New openFullBuilderSeparately value. Default value is true
+     * @return {@link com.smartgwt.client.tools.VisualBuilder VisualBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setOpenFullBuilderSeparately(boolean openFullBuilderSeparately)  throws IllegalStateException {
-        setAttribute("openFullBuilderSeparately", openFullBuilderSeparately, false);
+    public VisualBuilder setOpenFullBuilderSeparately(boolean openFullBuilderSeparately)  throws IllegalStateException {
+        return (VisualBuilder)setAttribute("openFullBuilderSeparately", openFullBuilderSeparately, false);
     }
 
     /**
@@ -407,11 +420,12 @@ public class VisualBuilder extends VLayout {
      * filesystem (if enabled)
      *
      * @param saveFileBuiltinIsEnabled New saveFileBuiltinIsEnabled value. Default value is false
+     * @return {@link com.smartgwt.client.tools.VisualBuilder VisualBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.tools.VisualBuilder#setFilesystemDataSourceEnabled
      */
-    public void setSaveFileBuiltinIsEnabled(Boolean saveFileBuiltinIsEnabled)  throws IllegalStateException {
-        setAttribute("saveFileBuiltinIsEnabled", saveFileBuiltinIsEnabled, false);
+    public VisualBuilder setSaveFileBuiltinIsEnabled(Boolean saveFileBuiltinIsEnabled)  throws IllegalStateException {
+        return (VisualBuilder)setAttribute("saveFileBuiltinIsEnabled", saveFileBuiltinIsEnabled, false);
     }
 
     /**
@@ -432,10 +446,11 @@ public class VisualBuilder extends VLayout {
      * com.smartgwt.client.types.ApplicationMode application mode} to be toggled at runtime.
      *
      * @param showModeSwitcher New showModeSwitcher value. Default value is null
+     * @return {@link com.smartgwt.client.tools.VisualBuilder VisualBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowModeSwitcher(Boolean showModeSwitcher)  throws IllegalStateException {
-        setAttribute("showModeSwitcher", showModeSwitcher, false);
+    public VisualBuilder setShowModeSwitcher(Boolean showModeSwitcher)  throws IllegalStateException {
+        return (VisualBuilder)setAttribute("showModeSwitcher", showModeSwitcher, false);
     }
 
     /**
@@ -455,11 +470,12 @@ public class VisualBuilder extends VLayout {
      * itself.  When in "Toolskin"  mode (which is switchable at runtime through the UI), the <code>skin</code> property only
      * affects the skin used by the visual elements of the application you are building.
      *
-     * @param skin New skin value. Default value is "Graphite"
+     * @param skin New skin value. Default value is "Tahoe"
+     * @return {@link com.smartgwt.client.tools.VisualBuilder VisualBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSkin(String skin)  throws IllegalStateException {
-        setAttribute("skin", skin, false);
+    public VisualBuilder setSkin(String skin)  throws IllegalStateException {
+        return (VisualBuilder)setAttribute("skin", skin, false);
     }
 
     /**
@@ -468,7 +484,7 @@ public class VisualBuilder extends VLayout {
      * itself.  When in "Toolskin"  mode (which is switchable at runtime through the UI), the <code>skin</code> property only
      * affects the skin used by the visual elements of the application you are building.
      *
-     * @return Current skin value. Default value is "Graphite"
+     * @return Current skin value. Default value is "Tahoe"
      */
     public String getSkin()  {
         return getAttributeAsString("skin");

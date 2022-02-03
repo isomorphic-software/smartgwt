@@ -19,6 +19,7 @@ package com.smartgwt.client.util;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Window;
+import com.smartgwt.client.widgets.notify.*;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Dialog;
 
@@ -723,6 +724,44 @@ public class SC {
      */
     public static native boolean logIsDebugEnabled(String category) /*-{
         return $wnd.isc.Log.logIsDebugEnabled(category);
+    }-*/;
+
+    /**
+     * @see #notify
+     */
+    public static MessageID notify(String contents) {
+        return notify(contents, null, null);
+    }
+
+    /**
+     * @see #notify
+     */
+    public static MessageID notify(String contents, NotifyAction... actions) {
+        return notify(contents, actions, null);
+    }
+
+    /**
+     * Displays a new message that's automatically dismissed after a configurable amount of
+     * time, as an alternative to {@link #confirm,modal notification} dialogs that can lower end
+     * user productivity.
+     * <P>
+     * This method is simply a shorthand way to call
+     * {@link com.smartgwt.client.widgets.notify.Notify#addMessage Notify.addMessage()}.  For
+     * further study, see the {@link com.smartgwt.client.widgets.notify.Notify Notify} class
+     * overview, and the class methods 
+     * {@link com.smartgwt.client.widgets.notify.Notify#dismissMessage Notify.dismissMessage()}.
+     * {@link com.smartgwt.client.widgets.notify.Notify#configureMessages Notify.configureMessages()}.
+     *
+     * @param contents message to be displayed.
+     * See {@link com.smartgwt.client.docs.HTMLString HTMLString}
+     * @param actions actions (if any) for this message
+     * @param notifyType category of message; default "message".
+     * See {@link com.smartgwt.client.docs.NotifyType NotifyType}
+     *
+     * @return opaque identifier for message
+     */
+    public static native MessageID notify(String contents, NotifyAction[] actions, String notifyType) /*-{
+        return $wnd.isc.Notify.addMessage(contents, actions, notifyType);
     }-*/;
 
    /**

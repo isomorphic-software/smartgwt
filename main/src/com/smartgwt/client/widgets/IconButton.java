@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -183,10 +186,11 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
      * vertical buttons} are center-aligned and horizontal buttons left-aligned by default.
      *
      * @param align New align value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.IconButton IconButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setAlign(Alignment align) {
-        setAttribute("align", align == null ? null : align.getValue(), true);
+    public IconButton setAlign(Alignment align) {
+        return (IconButton)setAttribute("align", align == null ? null : align.getValue(), true);
     }
 
     /**
@@ -205,10 +209,11 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
      * Default CSS class for this button.
      *
      * @param baseStyle New baseStyle value. Default value is "iconButton"
+     * @return {@link com.smartgwt.client.widgets.IconButton IconButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setBaseStyle(String baseStyle) {
-        setAttribute("baseStyle", baseStyle, true);
+    public IconButton setBaseStyle(String baseStyle) {
+        return (IconButton)setAttribute("baseStyle", baseStyle, true);
     }
 
     /**
@@ -232,10 +237,11 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
      * Sets a new Icon for this button after initialization.
      *
      * @param icon New icon value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.IconButton IconButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setIcon(String icon) {
-        setAttribute("icon", icon, true);
+    public IconButton setIcon(String icon) {
+        return (IconButton)setAttribute("icon", icon, true);
     }
 
     /**
@@ -256,9 +262,10 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
      * This attribute is not supported in this subclass.  However, RTL mode is still supported.
      *
      * @param iconAlign New iconAlign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.IconButton IconButton} instance, for chaining setter calls
      */
-    public void setIconAlign(String iconAlign) {
-        setAttribute("iconAlign", iconAlign, true);
+    public IconButton setIconAlign(String iconAlign) {
+        return (IconButton)setAttribute("iconAlign", iconAlign, true);
     }
 
     /**
@@ -275,9 +282,10 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
      * This attribute is not supported in this subclass.  However, RTL mode is still supported.
      *
      * @param iconOrientation New iconOrientation value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.IconButton IconButton} instance, for chaining setter calls
      */
-    public void setIconOrientation(String iconOrientation) {
-        setAttribute("iconOrientation", iconOrientation, true);
+    public IconButton setIconOrientation(String iconOrientation) {
+        return (IconButton)setAttribute("iconOrientation", iconOrientation, true);
     }
 
     /**
@@ -300,10 +308,11 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
      * Sets a new Large-Icon for vertical buttons after initialization - synonymous with  {@link com.smartgwt.client.widgets.IconButton#setIcon setIcon} for normal horizontal buttons.
      *
      * @param largeIcon New largeIcon value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.IconButton IconButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setLargeIcon(String largeIcon) {
-        setAttribute("largeIcon", largeIcon, true);
+    public IconButton setLargeIcon(String largeIcon) {
+        return (IconButton)setAttribute("largeIcon", largeIcon, true);
     }
 
     /**
@@ -324,9 +333,10 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
      * not specified, the {@link com.smartgwt.client.widgets.IconButton#getIcon normal icon} will be stretched to this size.
      *
      * @param largeIconSize New largeIconSize value. Default value is 32
+     * @return {@link com.smartgwt.client.widgets.IconButton IconButton} instance, for chaining setter calls
      */
-    public void setLargeIconSize(int largeIconSize) {
-        setAttribute("largeIconSize", largeIconSize, true);
+    public IconButton setLargeIconSize(int largeIconSize) {
+        return (IconButton)setAttribute("largeIconSize", largeIconSize, true);
     }
 
     /**
@@ -344,9 +354,10 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
      * The height of the icon for this button.
      *
      * @param menuIconHeight New menuIconHeight value. Default value is 13
+     * @return {@link com.smartgwt.client.widgets.IconButton IconButton} instance, for chaining setter calls
      */
-    public void setMenuIconHeight(int menuIconHeight) {
-        setAttribute("menuIconHeight", menuIconHeight, true);
+    public IconButton setMenuIconHeight(int menuIconHeight) {
+        return (IconButton)setAttribute("menuIconHeight", menuIconHeight, true);
     }
 
     /**
@@ -365,10 +376,11 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
      * com.smartgwt.client.widgets.IconButton#getShowMenuIconOver showMenuIconOver}.
      *
      * @param menuIconSrc New menuIconSrc value. Default value is "[SKINIMG]/Menu/submenu_down.png"
+     * @return {@link com.smartgwt.client.widgets.IconButton IconButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setMenuIconSrc(String menuIconSrc) {
-        setAttribute("menuIconSrc", menuIconSrc, true);
+    public IconButton setMenuIconSrc(String menuIconSrc) {
+        return (IconButton)setAttribute("menuIconSrc", menuIconSrc, true);
     }
 
     /**
@@ -388,9 +400,10 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
      * The width of the icon for this button.
      *
      * @param menuIconWidth New menuIconWidth value. Default value is 14
+     * @return {@link com.smartgwt.client.widgets.IconButton IconButton} instance, for chaining setter calls
      */
-    public void setMenuIconWidth(int menuIconWidth) {
-        setAttribute("menuIconWidth", menuIconWidth, true);
+    public IconButton setMenuIconWidth(int menuIconWidth) {
+        return (IconButton)setAttribute("menuIconWidth", menuIconWidth, true);
     }
 
     /**
@@ -410,9 +423,10 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
      * "vertical" does the same from  top to bottom.
      *
      * @param orientation New orientation value. Default value is "horizontal"
+     * @return {@link com.smartgwt.client.widgets.IconButton IconButton} instance, for chaining setter calls
      */
-    public void setOrientation(String orientation) {
-        setAttribute("orientation", orientation, true);
+    public IconButton setOrientation(String orientation) {
+        return (IconButton)setAttribute("orientation", orientation, true);
     }
 
     /**
@@ -433,9 +447,10 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
      * single {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getColumnLayout column}.
      *
      * @param rowSpan New rowSpan value. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.IconButton IconButton} instance, for chaining setter calls
      */
-    public void setRowSpan(int rowSpan) {
-        setAttribute("rowSpan", rowSpan, true);
+    public IconButton setRowSpan(int rowSpan) {
+        return (IconButton)setAttribute("rowSpan", rowSpan, true);
     }
 
     /**
@@ -454,9 +469,10 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
      * is displayed.
      *
      * @param showButtonTitle New showButtonTitle value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.IconButton IconButton} instance, for chaining setter calls
      */
-    public void setShowButtonTitle(Boolean showButtonTitle) {
-        setAttribute("showButtonTitle", showButtonTitle, true);
+    public IconButton setShowButtonTitle(Boolean showButtonTitle) {
+        return (IconButton)setAttribute("showButtonTitle", showButtonTitle, true);
     }
 
     /**
@@ -475,9 +491,10 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
      * Whether to show an Icon in this IconButton.  Set to false to render a text-only button.
      *
      * @param showIcon New showIcon value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.IconButton IconButton} instance, for chaining setter calls
      */
-    public void setShowIcon(Boolean showIcon) {
-        setAttribute("showIcon", showIcon, true);
+    public IconButton setShowIcon(Boolean showIcon) {
+        return (IconButton)setAttribute("showIcon", showIcon, true);
     }
 
     /**
@@ -496,9 +513,10 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
      * clicked.
      *
      * @param showMenuIcon New showMenuIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.IconButton IconButton} instance, for chaining setter calls
      */
-    public void setShowMenuIcon(Boolean showMenuIcon) {
-        setAttribute("showMenuIcon", showMenuIcon, true);
+    public IconButton setShowMenuIcon(Boolean showMenuIcon) {
+        return (IconButton)setAttribute("showMenuIcon", showMenuIcon, true);
     }
 
     /**
@@ -518,9 +536,10 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
      * Whether to show a Disabled version of the {@link com.smartgwt.client.widgets.IconButton#getMenuIconSrc menuIcon}.
      *
      * @param showMenuIconDisabled New showMenuIconDisabled value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.IconButton IconButton} instance, for chaining setter calls
      */
-    public void setShowMenuIconDisabled(Boolean showMenuIconDisabled) {
-        setAttribute("showMenuIconDisabled", showMenuIconDisabled, true);
+    public IconButton setShowMenuIconDisabled(Boolean showMenuIconDisabled) {
+        return (IconButton)setAttribute("showMenuIconDisabled", showMenuIconDisabled, true);
     }
 
     /**
@@ -538,9 +557,10 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
      * Whether to show a Down version of the {@link com.smartgwt.client.widgets.IconButton#getMenuIconSrc menuIcon}.
      *
      * @param showMenuIconDown New showMenuIconDown value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.IconButton IconButton} instance, for chaining setter calls
      */
-    public void setShowMenuIconDown(Boolean showMenuIconDown) {
-        setAttribute("showMenuIconDown", showMenuIconDown, true);
+    public IconButton setShowMenuIconDown(Boolean showMenuIconDown) {
+        return (IconButton)setAttribute("showMenuIconDown", showMenuIconDown, true);
     }
 
     /**
@@ -558,9 +578,10 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
      * Whether to show an Over version of the {@link com.smartgwt.client.widgets.IconButton#getMenuIconSrc menuIcon}.
      *
      * @param showMenuIconOver New showMenuIconOver value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.IconButton IconButton} instance, for chaining setter calls
      */
-    public void setShowMenuIconOver(Boolean showMenuIconOver) {
-        setAttribute("showMenuIconOver", showMenuIconOver, true);
+    public IconButton setShowMenuIconOver(Boolean showMenuIconOver) {
+        return (IconButton)setAttribute("showMenuIconOver", showMenuIconOver, true);
     }
 
     /**
@@ -582,9 +603,10 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
      * com.smartgwt.client.widgets.StatefulCanvas}.
      *
      * @param showMenuOnClick New showMenuOnClick value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.IconButton IconButton} instance, for chaining setter calls
      */
-    public void setShowMenuOnClick(Boolean showMenuOnClick) {
-        setAttribute("showMenuOnClick", showMenuOnClick, true);
+    public IconButton setShowMenuOnClick(Boolean showMenuOnClick) {
+        return (IconButton)setAttribute("showMenuOnClick", showMenuOnClick, true);
     }
 
     /**
@@ -607,9 +629,10 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
      * showButtonTitle} instead.
      *
      * @param showTitle New showTitle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.IconButton IconButton} instance, for chaining setter calls
      */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle, true);
+    public IconButton setShowTitle(Boolean showTitle) {
+        return (IconButton)setAttribute("showTitle", showTitle, true);
     }
 
     /**
@@ -628,10 +651,11 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
      * vertical buttons} are top-aligned and horizontal buttons center-aligned by default.
      *
      * @param valign New valign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.IconButton IconButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setValign(VerticalAlignment valign) {
-        setAttribute("valign", valign == null ? null : valign.getValue(), true);
+    public IconButton setValign(VerticalAlignment valign) {
+        return (IconButton)setAttribute("valign", valign == null ? null : valign.getValue(), true);
     }
 
     /**

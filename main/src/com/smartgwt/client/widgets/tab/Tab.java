@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Tab instances for use with {@link com.smartgwt.client.widgets.tab.TabSet}. Tab  instances specify the appearance ({@link
@@ -136,11 +139,12 @@ public class Tab extends RefDataClass implements com.smartgwt.client.widgets.tab
      * explicit hover has been specified such as by {@link com.smartgwt.client.widgets.tab.Tab#getPrompt prompt}.
      *
      * @param canAdaptWidth New canAdaptWidth value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tab.Tab Tab} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Button#setCanAdaptWidth
      * @see com.smartgwt.client.widgets.Canvas#setCanAdaptWidth
      */
-    public void setCanAdaptWidth(Boolean canAdaptWidth) {
-        setAttribute("canAdaptWidth", canAdaptWidth);
+    public Tab setCanAdaptWidth(Boolean canAdaptWidth) {
+        return (Tab)setAttribute("canAdaptWidth", canAdaptWidth);
     }
 
     /**
@@ -202,10 +206,11 @@ public class Tab extends RefDataClass implements com.smartgwt.client.widgets.tab
      * other tabs around it which may ultimately change its position.
      *
      * @param canReorder New canReorder value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.Tab Tab} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tab.TabSet#setCanReorderTabs
      */
-    public void setCanReorder(Boolean canReorder) {
-        setAttribute("canReorder", canReorder);
+    public Tab setCanReorder(Boolean canReorder) {
+        return (Tab)setAttribute("canReorder", canReorder);
     }
 
     /**
@@ -265,13 +270,14 @@ public class Tab extends RefDataClass implements com.smartgwt.client.widgets.tab
      * com.smartgwt.client.widgets.Canvas#getEnableWhen Canvas.enableWhen}
      *
      * @param enableWhen New enableWhen value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.Tab Tab} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.RuleCriteria RuleCriteria overview and related methods
      */
-    public void setEnableWhen(AdvancedCriteria enableWhen) {
+    public Tab setEnableWhen(AdvancedCriteria enableWhen) {
         if (enableWhen instanceof Criterion) {
             enableWhen.setAttribute("_constructor", "AdvancedCriteria");
         }
-        setAttribute("enableWhen", enableWhen == null ? null : enableWhen.getJsObj());
+        return (Tab)setAttribute("enableWhen", enableWhen == null ? null : enableWhen.getJsObj());
     }
 
     /**
@@ -357,10 +363,11 @@ public class Tab extends RefDataClass implements com.smartgwt.client.widgets.tab
      * Tab.  If you want a global reference, set {@link com.smartgwt.client.widgets.tab.Tab#getID ID} instead.
      *
      * @param name New name value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.Tab Tab} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.TabName TabName 
      */
-    public void setName(String name) {
-        setAttribute("name", name);
+    public Tab setName(String name) {
+        return (Tab)setAttribute("name", name);
     }
 
     /**
@@ -382,9 +389,9 @@ public class Tab extends RefDataClass implements com.smartgwt.client.widgets.tab
     
 
     /**
-     * Specifies the pane associated with this tab.  You have two options for the value of the pane attribute: <ul>
+     * Specifies the pane associated with this tab.  You have three options for the value of the pane attribute: <ul>
      * <li><b>ID</b> - The global ID of an already created Canvas (or subclass). <li><b>Canvas</b> - A live instance of a
-     * Canvas (or subclass). </ul>
+     * Canvas (or subclass). <li><b>AutoChildShortcut</b> - String with format "autoChild:<i>autoChildName</i>" </ul>
      *
      * @return Current pane value. Default value is null
      * @see com.smartgwt.client.widgets.tab.TabSet#updateTab
@@ -399,9 +406,10 @@ public class Tab extends RefDataClass implements com.smartgwt.client.widgets.tab
      * com.smartgwt.client.widgets.tab.TabSet#getPaneMargin TabSet.paneMargin}
      *
      * @param paneMargin New paneMargin value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.Tab Tab} instance, for chaining setter calls
      */
-    public void setPaneMargin(Integer paneMargin) {
-        setAttribute("paneMargin", paneMargin);
+    public Tab setPaneMargin(Integer paneMargin) {
+        return (Tab)setAttribute("paneMargin", paneMargin);
     }
 
     /**

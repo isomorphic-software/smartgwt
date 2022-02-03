@@ -3,6 +3,7 @@ package com.smartgwt.client.widgets;
 import com.smartgwt.client.types.DragDataAction;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.rpc.*;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.widgets.events.*;
@@ -45,8 +46,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * applies.
      *
      * @param fetchMode the fetch mode
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setDataFetchMode(FetchMode fetchMode);
+    DataBoundComponent setDataFetchMode(FetchMode fetchMode);
 
     /**
      * How to fetch and manage records retrieved from the server. See {@link FetchMode}.
@@ -77,8 +80,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      *
      * @param dataPageSize dataPageSize Default value is 0
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setDataPageSize(int dataPageSize);
+    DataBoundComponent setDataPageSize(int dataPageSize);
 
     /**
      * When using {@link com.smartgwt.client.widgets.DataBoundComponent#getDataFetchMode data
@@ -105,8 +110,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * If true, the set of fields given by the "default binding" (see &#010 {@link com.smartgwt.client.widgets.DataBoundComponent#getFields fields}) is used, with any fields specified in&#010 <code>component.fields</code> acting as overrides that can suppress or modify the&#010 display of individual fields, without having to list the entire set of fields that&#010 should be shown.&#010 <P>&#010 If <code>component.fields</code> contains fields that are not found in the DataSource,&#010 they will be shown after the most recently referred to DataSource field.  If the new&#010 fields appear first, they will be shown first.
      *
      * @param useAllDataSourceFields useAllDataSourceFields Default value is false
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setUseAllDataSourceFields(Boolean useAllDataSourceFields);
+    DataBoundComponent setUseAllDataSourceFields(Boolean useAllDataSourceFields);
 
     /**
      * If true, the set of fields given by the "default binding" (see &#010 {@link com.smartgwt.client.widgets.DataBoundComponent#getFields fields}) is used, with any fields specified in&#010 <code>component.fields</code> acting as overrides that can suppress or modify the&#010 display of individual fields, without having to list the entire set of fields that&#010 should be shown.&#010 <P>&#010 If <code>component.fields</code> contains fields that are not found in the DataSource,&#010 they will be shown after the most recently referred to DataSource field.  If the new&#010 fields appear first, they will be shown first.
@@ -119,8 +126,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * Whether to show fields marked <code>hidden:true</code> when a DataBoundComponent is given a&#010 DataSource but no <code>component.fields</code>.&#010 <p>&#010 The <code>hidden</code> property is used on DataSource fields to mark fields that are&#010 never of meaning to an end user.
      *
      * @param showHiddenFields showHiddenFields Default value is false
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setShowHiddenFields(Boolean showHiddenFields);
+    DataBoundComponent setShowHiddenFields(Boolean showHiddenFields);
 
     /**
      * Whether to show fields marked <code>hidden:true</code> when a DataBoundComponent is given a&#010 DataSource but no <code>component.fields</code>.&#010 <p>&#010 The <code>hidden</code> property is used on DataSource fields to mark fields that are&#010 never of meaning to an end user.
@@ -133,8 +142,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * Whether to show fields marked <code>detail:true</code> when a DataBoundComponent is &#010 given a DataSource but no <code>component.fields</code>.&#010 <p>&#010 The <code>detail</code> property is used on DataSource fields to mark fields that &#010 shouldn't appear by default in a view that tries to show many records in a small space.
      *
      * @param showDetailFields showDetailFields Default value is false
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setShowDetailFields(Boolean showDetailFields);
+    DataBoundComponent setShowDetailFields(Boolean showDetailFields);
 
     /**
      * Whether to show fields marked <code>detail:true</code> when a DataBoundComponent is &#010 given a DataSource but no <code>component.fields</code>.&#010 <p>&#010 The <code>detail</code> property is used on DataSource fields to mark fields that &#010 shouldn't appear by default in a view that tries to show many records in a small space.
@@ -148,8 +159,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showComplexFields showComplexFields Default value is true
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setShowComplexFields(Boolean showComplexFields);
+    DataBoundComponent setShowComplexFields(Boolean showComplexFields);
 
     /**
      * Whether to show fields of non-atomic types when a DataBoundComponent is given a&#010 DataSource but no <code>component.fields</code>.&#010 <p>&#010 If true, the component will show fields that declare a complex type, for example, a&#010 field 'shippingAddress' that declares type 'Address', where 'Address' is the ID of a&#010 DataSource that declares the fields of a shipping address (city, street name, etc).&#010 <P>&#010 Such fields may need custom formatters or editors in order to create a usable interface,&#010 for example, an Address field in a ListGrid might use a custom formatter to combine the&#010 relevant fields of an address into one column, and might use a pop-up dialog for&#010 editing.
@@ -162,8 +175,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * Operation ID this component should use when performing fetch operations.
      *
      * @param fetchOperation fetchOperation Default value is null
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setFetchOperation(String fetchOperation);
+    DataBoundComponent setFetchOperation(String fetchOperation);
 
     /**
      * Operation ID this component should use when performing fetch operations.
@@ -178,8 +193,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      *
      * @param updateOperation  Default value is null
      * @see com.smartgwt.client.docs.Operations Operations overview and related methods
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setUpdateOperation(String updateOperation);
+    DataBoundComponent setUpdateOperation(String updateOperation);
 
     /**
      * {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} this component 
@@ -196,8 +213,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      *
      * @param addOperation  Default value is null
      * @see com.smartgwt.client.docs.Operations Operations overview and related methods
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setAddOperation(String addOperation);
+    DataBoundComponent setAddOperation(String addOperation);
 
     /**
      * {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} this component 
@@ -214,8 +233,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      *
      * @param removeOperation  Default value is null
      * @see com.smartgwt.client.docs.Operations Operations overview and related methods
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setRemoveOperation(String removeOperation);
+    DataBoundComponent setRemoveOperation(String removeOperation);
 
     /**
      * {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} this component 
@@ -230,8 +251,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * The list of field-names to export.  If provided, the field-list in the exported output is &#010 limited and sorted as per the list.&#010 <P>&#010 If exportFields is not provided, the exported output includes all visible fields &#010 from this component, sorted as they appear.
      *
      * @param exportFields exportFields Default value is null
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setExportFields(String[] exportFields);
+    DataBoundComponent setExportFields(String[] exportFields);
 
     /**
      * The list of field-names to export.  If provided, the field-list in the exported output is &#010 limited and sorted as per the list.&#010 <P>&#010 If exportFields is not provided, the exported output includes all visible fields &#010 from this component, sorted as they appear.
@@ -246,8 +269,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * Setting exportAll to true prevents the component from passing its list of fields to the &#010 export call.  The result is the export of all visible fields from {@link com.smartgwt.client.data.DataSource#getFields fields}.&#010 <P>&#010 If exportAll is false, an export operation will first consider &#010 {@link com.smartgwt.client.widgets.DataBoundComponent#getExportFields exportFields}, if it's set, and fall back on all visible fields from&#010 {@link com.smartgwt.client.data.DataSource#getFields fields} otherwise.
      *
      * @param exportAll exportAll Default value is false
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setExportAll(Boolean exportAll);
+    DataBoundComponent setExportAll(Boolean exportAll);
 
     /**
      * Setting exportAll to true prevents the component from passing its list of fields to the &#010 export call.  The result is the export of all visible fields from {@link com.smartgwt.client.data.DataSource#getFields fields}.&#010 <P>&#010 If exportAll is false, an export operation will first consider &#010 {@link com.smartgwt.client.widgets.DataBoundComponent#getExportFields exportFields}, if it's set, and fall back on all visible fields from&#010 {@link com.smartgwt.client.data.DataSource#getFields fields} otherwise.
@@ -260,8 +285,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * If Summary rows exist for this component, whether to include them when exporting client data.  Defaults to true if not set
      *
      * @param exportIncludeSummaries exportIncludeSummaries Default value is true
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setExportIncludeSummaries(Boolean exportIncludeSummaries);
+    DataBoundComponent setExportIncludeSummaries(Boolean exportIncludeSummaries);
 
     /**
      * If Summary rows exist for this component, whether to include them when exporting client data.  Defaults to true if not set
@@ -284,8 +311,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      *
      * @param preventDuplicates preventDuplicates Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setPreventDuplicates(Boolean preventDuplicates) throws IllegalStateException;
+    DataBoundComponent setPreventDuplicates(Boolean preventDuplicates) throws IllegalStateException;
 
     /**
      * If set, detect and prevent duplicate records from being transferred to this component, either via&#010 drag and drop or via {@link com.smartgwt.client.widgets.DataBoundComponent#transferSelectedData}.  
@@ -309,8 +338,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      *
      * @param duplicateDragMessage duplicateDragMessage Default value is "Duplicates not allowed"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setDuplicateDragMessage(String duplicateDragMessage) throws IllegalStateException;
+    DataBoundComponent setDuplicateDragMessage(String duplicateDragMessage) throws IllegalStateException;
 
     /**
      * Message to show when a user attempts to transfer duplicate records into this component, and&#010 {@link com.smartgwt.client.widgets.DataBoundComponent#getPreventDuplicates preventDuplicates} 
@@ -328,8 +359,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * dropped on this grid, and an update performed on the item
      *
      * @param addDropValues addDropValues Default value is true
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setAddDropValues(Boolean addDropValues);
+    DataBoundComponent setAddDropValues(Boolean addDropValues);
 
     /**
      * Indicates whether to add "drop values" to items dropped on this component, if both the source and target widgets are databound, either to the same DataSource or to 
@@ -351,8 +384,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param dropValues dropValues Default value is null
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setDropValues(Map dropValues);
+    DataBoundComponent setDropValues(Map dropValues);
 
     /**
      * When an item is dropped on this component, and {@link com.smartgwt.client.widgets.DataBoundComponent#getAddDropValues addDropValues} is true and both the source and 
@@ -373,8 +408,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      *
      * @param useFlatFields useFlatFields Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setUseFlatFields(Boolean useFlatFields) throws IllegalStateException;
+    DataBoundComponent setUseFlatFields(Boolean useFlatFields) throws IllegalStateException;
 
     /**
      * The <code>useFlatFields</code> flag causes all simple type fields anywhere in a nested&#010 set of DataSources to be exposed as a flat list for form binding.  &#010 <P>&#010 <code>useFlatFields</code> is typically used with imported metadata, such as &#010 {@link com.smartgwt.client.data.XMLTools#loadXMLSchema} from a &#010 {@link com.smartgwt.client.data.XMLTools#loadWSDL}, as a means of eliminating levels of XML&#010 nesting that aren't meaningful in a user interface, without the cumbersome and fragile&#010 process of mapping form fields to XML structures.&#010 <P>&#010 For example, having called {@link com.smartgwt.client.data.WebService#getInputDS} to retrieve the input message&#010 schema for a web service operation whose input message looks like this:&#010 <pre>&#010 &lt;FindServices&gt;&#010     &lt;searchFor&gt;search text&lt;/searchFor&gt;&#010     &lt;Options&gt;&#010         &lt;caseSensitive&gt;false&lt;/caseSensitive&gt;&#010     &lt;/Options&gt;&#010     &lt;IncludeInSearch&gt;&#010         &lt;serviceName&gt;true&lt;/serviceName&gt;&#010         &lt;documentation&gt;true&lt;/documentation&gt;&#010         &lt;keywords&gt;true&lt;/keywords&gt;&#010     &lt;/IncludeInSearch&gt;&#010 &lt;/FindServices&gt;&#010 </pre>&#010 Setting <code>useFlatFields</code> on a {@link com.smartgwt.client.widgets.form.DynamicForm} that is bound to this input&#010 message schema would result in 5 {@link com.smartgwt.client.widgets.form.fields.FormItem} reflecting the 5 simple type&#010 fields in the message.&#010 <P>&#010 For this form, the result of {@link com.smartgwt.client.widgets.form.DynamicForm#getValues} might look&#010 like:&#010 <P>&#010 <pre>{&#010    searchFor: "search text",&#010    caseSensitive: false,&#010    serviceName: true,&#010    documentation : true,&#010    keywords : true&#010 }</pre>&#010 When contacting a {@link com.smartgwt.client.data.WebService}, these values can be automatically&#010 mapped to the structure of the input message for a web service operation by setting&#010 {@link com.smartgwt.client..WSRequest#getUseFlatFields useFlatFields} (for use with {@link com.smartgwt.client.data.WebService#callOperation}) or by setting&#010 {@link com.smartgwt.client.data.DSRequest#getUseFlatFields useFlatFields} (for use with a {@link com.smartgwt.client.data.DataSource} that is&#010 {@link com.smartgwt.client.docs.WsdlBinding 'bound to a WSDL web service'} via&#010 {@link com.smartgwt.client.data.OperationBinding#getWsOperation wsOperation}).  &#010 <P>&#010 Using these two facilities in conjunction (component.useFlatFields and&#010 request.useFlatFields) allows gratuitous nesting to be consistently bypassed in both the user&#010 presentation and when providing the data for XML messages.&#010 <P>&#010 You can also set {@link com.smartgwt.client.data.OperationBinding#getUseFlatFields useFlatFields} to automatically enable &#010 "flattened" XML serialization (request.useFlatFields) for all DataSource requests of a&#010 particular operationType.&#010 <P>&#010 Note that <code>useFlatFields</code> is not generally recommended for use with structures&#010 where multiple simple type fields exist with the same name, however if used with such a&#010 structure, the first field to use a given name wins.  "first" means the first field&#010 encountered in a depth first search.  "wins" means only the first field will be present as a&#010 field when data binding.
@@ -387,8 +424,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * Marker that can be set on a record to flag that record as hilited.  Should be set to a value&#010 that matches {@link com.smartgwt.client..Hilite#getId id} for a hilite defined on this component.
      *
      * @param hiliteProperty hiliteProperty Default value is "_hilite"
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setHiliteProperty(String hiliteProperty);
+    DataBoundComponent setHiliteProperty(String hiliteProperty);
 
     /**
      * Marker that can be set on a record to flag that record as hilited.  Should be set to a value&#010 that matches {@link com.smartgwt.client..Hilite#getId id} for a hilite defined on this component.
@@ -401,8 +440,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * Indicates what to do with data dragged into another DataBoundComponent. See&#010          DragDataAction type for details.
      *
      * @param dragDataAction dragDataAction Default value is Canvas.MOVE
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setDragDataAction(DragDataAction dragDataAction);
+    DataBoundComponent setDragDataAction(DragDataAction dragDataAction);
 
     /**
      * Indicates what to do with data dragged into another DataBoundComponent. See&#010          DragDataAction type for details.
@@ -415,8 +456,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * CSS Style to apply to the drag tracker when dragging occurs on this component.
      *
      * @param dragTrackerStyle dragTrackerStyle Default value is "gridDragTracker"
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setDragTrackerStyle(String dragTrackerStyle);
+    DataBoundComponent setDragTrackerStyle(String dragTrackerStyle);
 
     /**
      * CSS Style to apply to the drag tracker when dragging occurs on this component.
@@ -429,8 +472,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * Adds an item to the header context menu allowing users to launch a dialog to define a new&#010 field based on values present in other fields, using the {@link com.smartgwt.client..FormulaBuilder}.&#010 <P>&#010 User-added formula fields can be persisted via {@link com.smartgwt.client.widgets.grid.ListGrid#getFieldState} and &#010 {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldState}.
      *
      * @param canAddFormulaFields canAddFormulaFields Default value is false
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setCanAddFormulaFields(Boolean canAddFormulaFields);
+    DataBoundComponent setCanAddFormulaFields(Boolean canAddFormulaFields);
 
     /**
      * Convenience method to display a {@link com.smartgwt.client..SummaryBuilder} to create a new Summary Field.  This &#010 is equivalent to calling {@link DataBoundComponentGen#editSummaryField} with &#010 no parameter.&#010&#010
@@ -453,8 +498,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * Text for a menu item allowing users to add a formula field
      *
      * @param addFormulaFieldText addFormulaFieldText Default value is "Add formula column..."
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setAddFormulaFieldText(String addFormulaFieldText);
+    DataBoundComponent setAddFormulaFieldText(String addFormulaFieldText);
 
     /**
      * Text for a menu item allowing users to add a formula field
@@ -467,8 +514,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * Text for a menu item allowing users to edit a formula field
      *
      * @param editFormulaFieldText editFormulaFieldText Default value is "Edit formula..."
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setEditFormulaFieldText(String editFormulaFieldText);
+    DataBoundComponent setEditFormulaFieldText(String editFormulaFieldText);
 
     /**
      * Text for a menu item allowing users to edit a formula field
@@ -481,8 +530,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * Adds an item to the header context menu allowing users to launch a dialog to define a new&#010 text field that can contain both user-defined text and the formatted values present in other &#010 fields, using the {@link com.smartgwt.client..SummaryBuilder}.&#010 <P>&#010 User-added summary fields can be persisted via {@link com.smartgwt.client.widgets.grid.ListGrid#getFieldState} and &#010 {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldState}.
      *
      * @param canAddSummaryFields canAddSummaryFields Default value is false
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setCanAddSummaryFields(Boolean canAddSummaryFields);
+    DataBoundComponent setCanAddSummaryFields(Boolean canAddSummaryFields);
 
     /**
      * Adds an item to the header context menu allowing users to launch a dialog to define a new&#010 text field that can contain both user-defined text and the formatted values present in other &#010 fields, using the {@link com.smartgwt.client..SummaryBuilder}.&#010 <P>&#010 User-added summary fields can be persisted via {@link com.smartgwt.client.widgets.grid.ListGrid#getFieldState} and &#010 {@link com.smartgwt.client.widgets.grid.ListGrid#setFieldState}.
@@ -495,8 +546,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * Text for a menu item allowing users to add a formula field
      *
      * @param addSummaryFieldText addSummaryFieldText Default value is "Add summary column..."
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setAddSummaryFieldText(String addSummaryFieldText);
+    DataBoundComponent setAddSummaryFieldText(String addSummaryFieldText);
 
     /**
      * Text for a menu item allowing users to add a formula field
@@ -509,8 +562,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * Text for a menu item allowing users to edit the formatter for a field
      *
      * @param editSummaryFieldText editSummaryFieldText Default value is "Edit summary format..."
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setEditSummaryFieldText(String editSummaryFieldText);
+    DataBoundComponent setEditSummaryFieldText(String editSummaryFieldText);
 
     /**
      * Text for a menu item allowing users to edit the formatter for a field
@@ -733,8 +788,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * Sets the best field to use for a user-visible title for an individual record from this component. 
      *
      * @param fieldName the title field for this component.
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setTitleField(String titleField);
+    DataBoundComponent setTitleField(String titleField);
 
     /**
      * Bind to a DataSource.  Binding to a DataSource means that the component will use the DataSource to provide default data for its fields.<P>
@@ -743,8 +800,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * still relevant, you may be able to refer to setDataSource(dataSource, fields) as an alternative method if the widget has an implementation of it.
      *
      * @param dataSource DataSource to bind to. Default value is null
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setDataSource(DataSource dataSource);
+    DataBoundComponent setDataSource(DataSource dataSource);
 
     /**
      * Bind to a DataSource.  Binding to a DataSource means that the component will use the DataSource to provide default data for its fields.<P>
@@ -753,8 +812,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * still relevant, you may be able to refer to setDataSource(dataSource, fields) as an alternative method if the widget has an implementation of it.
      *
      * @param dataSource name of DataSource to bind to
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setDataSource(String dataSource);
+    DataBoundComponent setDataSource(String dataSource);
 
     /**
      * The DataSource that this component should bind to for default fields and for performing {@link com.smartgwt.client.data.DSRequest DataSource requests}.
@@ -1022,8 +1083,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * autoFetchData if you are going to manually call fetchData() at any time.
      *
      * @param autoFetchData autoFetchData 
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setAutoFetchData(Boolean autoFetchData);
+    DataBoundComponent setAutoFetchData(Boolean autoFetchData);
 
 
     /**
@@ -1044,8 +1107,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * performed via {@link #fetchData()} or {@link #filterData()}
      *
      * @param autoFetchAsFilter autoFetchAsFilter
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setAutoFetchAsFilter(Boolean autoFetchAsFilter);
+    DataBoundComponent setAutoFetchAsFilter(Boolean autoFetchAsFilter);
 
     /**
      * If {@link #setAutoFetchData(Boolean)} is true, this attribute determines whether the initial fetch operation should be
@@ -1060,8 +1125,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * for the initial {@link #fetchData} call.
      *
      * @param autoFetchTextMatchStyle autoFetchTextMatchStyle
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchAsFilter);
+    DataBoundComponent setAutoFetchTextMatchStyle(TextMatchStyle autoFetchAsFilter);
 
     /**
      * If {@link #getAutoFetchData autoFetchData} is <code>true</code>, this attribute allows the developer to specify a textMatchStyle 
@@ -1076,8 +1143,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      *
      * @param initialCriteria the initial criteria
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setInitialCriteria(Criteria initialCriteria) throws IllegalStateException;
+    DataBoundComponent setInitialCriteria(Criteria initialCriteria) throws IllegalStateException;
 
     /**
      * Criteria to use when {@link #setAutoFetchData(Boolean)} is used.
@@ -1093,8 +1162,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * {@link com.smartgwt.client.widgets.DataBoundComponent#setCriteria DataBoundComponent.setCriteria()} etc.
      *
      * @param implicitCriteria New implicitCriteria value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    public void setImplicitCriteria(Criteria implicitCriteria);
+    public DataBoundComponent setImplicitCriteria(Criteria implicitCriteria);
 
     /**
      * Criteria that are never shown to or edited by the user and are cumulative with any
@@ -1231,16 +1302,24 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * Set the current hilites based on a hiliteState String previously returned from getHilitesState.
      *
      * @param hiliteState hilites state encoded as a String
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */    
-    void setHiliteState(String hiliteState);
+    DataBoundComponent setHiliteState(String hiliteState);
 
     /**
-     * Accepts an array of hilite objects and applies them to this DataBoundComponent. See also {@link #getHilites() getHilites} for a method of
-     * retrieving the hilite array for storage, including hilites manually added by the user.
+     * Accepts an array of hilite objects and applies them to this DataBoundComponent. See also
+     * {@link #getHilites() getHilites} for a method of retrieving the hilite array for storage,
+     * including hilites manually added by the user.
+     * <P>
+     * <strong>NOTE:</strong> This is only supported on
+     * {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid} for now.
      *
      * @param hilites array of hilite objects
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    void setHilites(Hilite[] hilites);
+    DataBoundComponent setHilites(Hilite[] hilites);
 
     /**
      * Return the set of hilite-objects currently applied to this DataBoundComponent. These can be saved for
@@ -1278,8 +1357,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * <p>
      * Like the other <code>deepCloneOnEdit</code> settings, this flag only has an effect if you are 
      * editing a values object that contains nested objects or arrays, using {@link com.smartgwt.client.widgets.Canvas#setDataPath(java.lang.String)} 
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-     void setDeepCloneOnEdit(Boolean deepCloneOnEdit);
+     DataBoundComponent setDeepCloneOnEdit(Boolean deepCloneOnEdit);
 
     /**
      * Field setter variant (alternative to
@@ -1296,8 +1377,10 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * array of JavaScriptObject if you only have the array itself as a single JavaScriptObject.
      *
      * @param fields the component fields
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    public void setFields(JavaScriptObject... fields);
+    public DataBoundComponent setFields(JavaScriptObject... fields);
 
     /**
      * Return the fields as JavaScriptObjects rather than as SmartGWT Java wrappers of the field
@@ -1353,4 +1436,32 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      */
     public void transferRecords(Record[] records, Record targetRecord, Integer index, Canvas sourceWidget, TransferRecordsCallback callback);
      
+
+	/**
+     * Returns the current {@link com.smartgwt.client.data.SortSpecifier SortSpecifiers} for
+     * this component. Will return null if this component has never been sorted, or the
+     * underlying SmartClient widget does not exist.
+     *
+     * @return current sort specifiers for this component (null if unsorted or no SC widget)
+     */
+    public SortSpecifier[] getSort();
+
+	/**
+     * Sort the component on one or more fields.
+     * <P>
+     * Pass in an array of {@link com.smartgwt.client.data.SortSpecifier}s to have the
+     * component's data sorted by the fields in each
+     * {@link com.smartgwt.client.data.SortSpecifier#getProperty specifier.property} and
+     * in the directions specified.  The component can be sorted by any combination of fields,
+     * including fields specified in the fields array and
+     * {@link com.smartgwt.client.data.DataSource#getFields unused fields from the underlying
+     * dataSource}, if there is one.
+     * <P>
+     * If setSort() is called on a component which doesn't yet have a SmartClient widget, the
+     * widget will be created.  If {@link #getAutoFetchData autoFetchData} is set and a 
+     * {@link #getDataSource DataSource} has been set, this will result in data being fetched.
+     * @param sortSpecifiers Array of {@link com.smartgwt.client.data.SortSpecifier} objects
+     */
+    public DataBoundComponent setSort(SortSpecifier... sortSpecifiers);
+
 }

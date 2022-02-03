@@ -18,6 +18,7 @@ package com.smartgwt.client.widgets.events;
 
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.shared.HasHandlers;

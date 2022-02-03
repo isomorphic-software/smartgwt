@@ -35,8 +35,9 @@ import java.util.Map;
  * <p>
  * <p> Validators are specified for DataSource fields via the {@link
  * com.smartgwt.client.docs.serverds.DataSourceField#validators DataSourceField.validators}
- * property.  Validators that need not be run on the server can also be specified for a specific
- * {@link com.smartgwt.client.widgets.form.fields.FormItem} or {@link
+ * property and {@link com.smartgwt.client.docs.ValidatorExecution are executed in the order in
+ * which they are defined}. Validators that need not be run on the server can also be specified
+ * for a specific {@link com.smartgwt.client.widgets.form.fields.FormItem} or {@link
  * com.smartgwt.client.widgets.grid.ListGridField}. <p> Smart GWT supports a powerful library of
  * {@link com.smartgwt.client.types.ValidatorType ValidatorTypes} which have identical behavior on
  * both the client and the server.   <p>  Beyond this, custom validators can be defined on the
@@ -135,7 +136,11 @@ public class Validator {
     /**
      * Text to display if the value does not pass this validation check. <P> If unspecified, default
      * error messages exist for all built-in validators, and a generic message will be used for a
-     * custom validator that is not passed.
+     * custom validator that is not passed. <P> Server-side this string evaluates in a Velocity
+     * context where the variables $value and $fieldName are available and refer to the supplied value
+     * and the field name, respectively. Note that if the validator is intended to run both on the
+     * client and server, you shouldn't use these velocity vars as they will not be expanded on the
+     * client and the user may then see raw uninterpolated strings.
      *
      * <p>Default value is null
      */
@@ -364,11 +369,12 @@ public class Validator {
     public String serverCondition;
 
     /**
-     * Normally, all validators defined for a field will be run even if one of the validators has
-     * already failed.  However, if <code>stopIfFalse</code> is set, validation will not proceed
-     * beyond this validator if the check fails. <P> This is useful to prevent expensive validators
-     * from being run unnecessarily, or to allow custom validators that don't need to be robust about
-     * handling every conceivable type of value.
+     * Normally, all validators defined for a field will be run  {@link
+     * com.smartgwt.client.docs.ValidatorExecution in the order in which they are defined}  even if
+     * one of the validators has already failed.  However, if <code>stopIfFalse</code> is set,
+     * validation will not proceed beyond this validator if the check fails. <P> This is useful to
+     * prevent expensive validators from being run unnecessarily, or to allow custom validators that
+     * don't need to be robust about handling every conceivable type of value.
      *
      * <p>Default value is false
      */

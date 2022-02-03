@@ -33,12 +33,12 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("batchUploader_cancelButtonTitle")
   String batchUploader_cancelButtonTitle();
 
-  /* batchUploader_previousButtonTitle value changed on Fri Jan  7 07:29:39 2022
+  /* batchUploader_previousButtonTitle value changed on Fri Jan  7 06:20:39 2022
    Old value was 'Previous'.
    See definition later in this file for new value.
   */
 
-  /* batchUploader_nextButtonTitle value changed on Fri Jan  7 07:29:39 2022
+  /* batchUploader_nextButtonTitle value changed on Fri Jan  7 06:20:39 2022
    Old value was 'Next'.
    See definition later in this file for new value.
   */
@@ -143,7 +143,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("batchUploader_errorMessageUnterminatedQuote")
   String batchUploader_errorMessageUnterminatedQuote();
 
-  /* batchUploader_errorMessageRowsNotParsed value changed on Fri Jan  7 07:29:39 2022
+  /* batchUploader_errorMessageRowsNotParsed value changed on Fri Jan  7 06:20:39 2022
    Old value was 'Some rows could not be parsed; the grid below shows $goodRowCount of $totalRows. Row number $firstBadRow was the first row to fail to be parsed.'.
    See definition later in this file for new value.
   */
@@ -736,7 +736,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("dataBoundComponent_removeFormulaFieldText")
   String dataBoundComponent_removeFormulaFieldText();
 
-  /* dataBoundComponent_removeSummaryFieldText value changed on Fri Jan  7 07:29:39 2022
+  /* dataBoundComponent_removeSummaryFieldText value changed on Fri Jan  7 06:20:39 2022
    Old value was 'Remove summary column..'.
    See definition later in this file for new value.
   */
@@ -814,10 +814,19 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("dataSource_maxFileSizeExceededMessage")
   String dataSource_maxFileSizeExceededMessage();
 
-  /* dataSource_requiredFileMessage value changed on Fri Jan  7 07:29:39 2022
+  /* dataSource_requiredFileMessage value changed on Fri Jan  7 06:20:39 2022
    Old value was '''$uploadedFileName'' was empty, but empty files are not allowed'.
    See definition later in this file for new value.
   */
+
+  /**
+   * Operation requires criteria for the following field(s): [$requiredCriterion]".
+   * 
+   * @return translated "Operation requires criteria for the following field(s): [$requiredCriterion]"
+   */
+  @DefaultMessage("Operation requires criteria for the following field(s): [$requiredCriterion]")
+  @Key("dataSource_requiredCriterionMessage")
+  String dataSource_requiredCriterionMessage();
 
   /**
    * Translated "Configure Fields...".
@@ -1987,7 +1996,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("dialog_YesButtonTitle")
   String dialog_YesButtonTitle();
 
-  /* dynamicForm_errorsPreamble value changed on Fri Jan  7 07:29:39 2022
+  /* dynamicForm_errorsPreamble value changed on Fri Jan  7 06:20:39 2022
    Old value was 'The following errors were found'.
    See definition later in this file for new value.
   */
@@ -2282,12 +2291,12 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String filterClause_valueItemTextHint();
   
   
-    /* filterClause_valueItemListHint value changed on Fri Jan  7 07:29:39 2022
+    /* filterClause_valueItemListHint value changed on Fri Jan  7 06:20:39 2022
    Old value was 'Choose a value'.
    See definition later in this file for new value.
   */
 
-    /* filterClause_valueItemFieldHint value changed on Fri Jan  7 07:29:39 2022
+    /* filterClause_valueItemFieldHint value changed on Fri Jan  7 06:20:39 2022
    Old value was 'Choose a field'.
    See definition later in this file for new value.
   */
@@ -2526,7 +2535,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("formulaBuilder_defaultNewFieldTitle")
   String formulaBuilder_defaultNewFieldTitle();
 
-  /* formulaBuilder_helpTextIntro value changed on Fri Jan  7 07:29:39 2022
+  /* formulaBuilder_helpTextIntro value changed on Fri Jan  7 06:20:39 2022
    Old value was 'Building Formula Columns<p>For basic arithmetic, type in symbols (+, -, *, /, %, //) directly.<p>The following functions are available:'.
    See definition later in this file for new value.
   */
@@ -2675,7 +2684,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("formulaBuilder_defaultErrorText")
   String formulaBuilder_defaultErrorText();
   
-  /* formulaBuilder_saveAddAnotherButtonTitle value changed on Fri Jan  7 07:29:39 2022
+  /* formulaBuilder_saveAddAnotherButtonTitle value changed on Fri Jan  7 06:20:39 2022
    Old value was 'Save & Add Another'.
    See definition later in this file for new value.
   */
@@ -3203,7 +3212,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("listGrid_autoFitFieldText")
   String listGrid_autoFitFieldText();
 
-  /* listGrid_cancelEditingConfirmationMessage value changed on Fri Jan  7 07:29:39 2022
+  /* listGrid_cancelEditingConfirmationMessage value changed on Fri Jan  7 06:20:39 2022
    Old value was 'Cancelling this edit will clear unsaved edit values for this record. Continue?'.
    See definition later in this file for new value.
   */
@@ -3271,7 +3280,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("listGrid_configureGroupingText")
   String listGrid_configureGroupingText();
 
-  /* listGrid_confirmDiscardEditsMessage value changed on Fri Jan  7 07:29:39 2022
+  /* listGrid_confirmDiscardEditsMessage value changed on Fri Jan  7 06:20:39 2022
    Old value was 'This action will discard all unsaved edited values for this list.'.
    See definition later in this file for new value.
   */
@@ -3357,7 +3366,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("listGrid_groupByText")
   String listGrid_groupByText();
 
-  /* listGrid_loadingDataMessage value changed on Fri Jan  7 07:29:39 2022
+  /* listGrid_loadingDataMessage value changed on Fri Jan  7 06:20:39 2022
    Old value was 'Loading data...'.
    See definition later in this file for new value.
   */
@@ -3452,7 +3461,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("listGrid_ungroupText")
   String listGrid_ungroupText();
 
-  /* listGrid_asynchGroupingPrompt value changed on Fri Jan  7 07:29:39 2022
+  /* listGrid_asynchGroupingPrompt value changed on Fri Jan  7 06:20:39 2022
    Old value was 'Grouping data...'.
    See definition later in this file for new value.
   */
@@ -4504,6 +4513,24 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String operators_iEndsWithPatternTitle();
   
   /**
+   * Translated "Range-operators require distinct start and end values, separated by the range (between) symbol, ''...''.".
+   * 
+   * @return translated "Range-operators require distinct start and end values, separated by the range (between) symbol, ''...''."
+   */
+  @DefaultMessage("Range-operators require distinct start and end values, separated by the range (between) symbol, ''...''.")
+  @Key("operators_valueRangeUsageHint")
+  String operators_valueRangeUsageHint();
+  
+  /**
+   * Translated "Multiple values must be separated by the valueSeparator, ''|''.".
+   * 
+   * @return translated "Multiple values must be separated by the valueSeparator, ''|''."
+   */
+  @DefaultMessage("Multiple values must be separated by the valueSeparator, ''|''.")
+  @Key("operators_valueSetUsageHint")
+  String operators_valueSetUsageHint();
+  
+  /**
    * Translated "No Items To Show".
    * 
    * @return translated "No Items To Show"
@@ -4944,7 +4971,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("richTextEditor_boldSelectionPrompt")
   String richTextEditor_boldSelectionPrompt();
 
-  /* richTextEditor_colorPrompt value changed on Fri Jan  7 07:29:39 2022
+  /* richTextEditor_colorPrompt value changed on Fri Jan  7 06:20:39 2022
    Old value was 'Set selection color'.
    See definition later in this file for new value.
   */
@@ -5057,7 +5084,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("richTextEditor_listPropertiesWarningText")
   String richTextEditor_listPropertiesWarningText();
 
-  /* richTextEditor_linkPrompt value changed on Fri Jan  7 07:29:39 2022
+  /* richTextEditor_linkPrompt value changed on Fri Jan  7 06:20:39 2022
    Old value was 'Edit hyperlink'.
    See definition later in this file for new value.
   */
@@ -5488,7 +5515,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("validator_notARegex")
   String validator_notARegex();
 
-  /* validator_notAString value changed on Fri Jan  7 07:29:39 2022
+  /* validator_notAString value changed on Fri Jan  7 06:20:39 2022
    Old value was 'Must be a String.'.
    See definition later in this file for new value.
   */
@@ -5585,7 +5612,182 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   
 
 
-  /*  Generated on Mon May 24 08:33:33 2021 */
+  /*  Generated on Mon May 24 08:09:01 2021 */
+
+  /**
+   * Translated "Recent changes for DataSource $dsId"
+   *
+   * @return translated "Recent changes for DataSource $dsId"
+   */
+   @DefaultMessage("Recent changes for DataSource $dsId")
+   @Key("dSRecordAuditPreview_recordAuditHeaderTitle")
+   String dSRecordAuditPreview_recordAuditHeaderTitle();
+
+  /**
+   * Translated "Click to add audit information as a new section"
+   *
+   * @return translated "Click to add audit information as a new section"
+   */
+   @DefaultMessage("Click to add audit information as a new section")
+   @Key("dSRecordAuditPreview_recordAuditInfoTitle")
+   String dSRecordAuditPreview_recordAuditInfoTitle();
+
+  /**
+   * Translated "Users & Roles"
+   *
+   * @return translated "Users & Roles"
+   */
+   @DefaultMessage("Users & Roles")
+   @Key("deploymentManager_usersTitle")
+   String deploymentManager_usersTitle();
+
+  /**
+   * Translated "Data"
+   *
+   * @return translated "Data"
+   */
+   @DefaultMessage("Data")
+   @Key("deploymentManager_dataTitle")
+   String deploymentManager_dataTitle();
+
+  /**
+   * Translated "Usage"
+   *
+   * @return translated "Usage"
+   */
+   @DefaultMessage("Usage")
+   @Key("deploymentManager_usageTitle")
+   String deploymentManager_usageTitle();
+
+  /**
+   * Translated "DataSource List"
+   *
+   * @return translated "DataSource List"
+   */
+   @DefaultMessage("DataSource List")
+   @Key("deploymentDSNavigator_dsEnumerationSectionTitle")
+   String deploymentDSNavigator_dsEnumerationSectionTitle();
+
+  /**
+   * Translated "DataSource: $dsId"
+   *
+   * @return translated "DataSource: $dsId"
+   */
+   @DefaultMessage("DataSource: $dsId")
+   @Key("deploymentDSNavigator_dsContentSectionTitle")
+   String deploymentDSNavigator_dsContentSectionTitle();
+
+  /**
+   * Translated "Audit trail for DataSource $dsId"
+   *
+   * @return translated "Audit trail for DataSource $dsId"
+   */
+   @DefaultMessage("Audit trail for DataSource $dsId")
+   @Key("deploymentDSNavigator_dsContentAuditedSectionTitle")
+   String deploymentDSNavigator_dsContentAuditedSectionTitle();
+
+  /**
+   * Translated "Audit trail for record $pkCrit from DataSource $dsId"
+   *
+   * @return translated "Audit trail for record $pkCrit from DataSource $dsId"
+   */
+   @DefaultMessage("Audit trail for record $pkCrit from DataSource $dsId")
+   @Key("deploymentDSNavigator_dsContentRecordAuditSectionTitle")
+   String deploymentDSNavigator_dsContentRecordAuditSectionTitle();
+
+  /**
+   * Translated "Deployment Sessions"
+   *
+   * @return translated "Deployment Sessions"
+   */
+   @DefaultMessage("Deployment Sessions")
+   @Key("deploymentUsageViewer_sessionsOverviewGridTitle")
+   String deploymentUsageViewer_sessionsOverviewGridTitle();
+
+  /**
+   * Translated "Changes by user $userId during session: "
+   *
+   * @return translated "Changes by user $userId during session: "
+   */
+   @DefaultMessage("Changes by user $userId during session: ")
+   @Key("deploymentUsageViewer_sessionAuditPickerTitle")
+   String deploymentUsageViewer_sessionAuditPickerTitle();
+
+  /**
+   * Translated "Click to see related audit data"
+   *
+   * @return translated "Click to see related audit data"
+   */
+   @DefaultMessage("Click to see related audit data")
+   @Key("deploymentSessionAuditGrid_relatedDataFieldPrompt")
+   String deploymentSessionAuditGrid_relatedDataFieldPrompt();
+
+  /**
+   * Translated "Jump to <b>Data</b> tab and view..."
+   *
+   * @return translated "Jump to <b>Data</b> tab and view..."
+   */
+   @DefaultMessage("Jump to <b>Data</b> tab and view...")
+   @Key("deploymentSessionAuditGrid_relatedDataMenuInfoText")
+   String deploymentSessionAuditGrid_relatedDataMenuInfoText();
+
+  /**
+   * Translated "Changes to this <b>record</b> by <b>any user</b>"
+   *
+   * @return translated "Changes to this <b>record</b> by <b>any user</b>"
+   */
+   @DefaultMessage("Changes to this <b>record</b> by <b>any user</b>")
+   @Key("deploymentSessionAuditGrid_relatedDataMenuRecordText")
+   String deploymentSessionAuditGrid_relatedDataMenuRecordText();
+
+  /**
+   * Translated "Changes to DataSource <b>$dsId</b> by <b>any user</b>"
+   *
+   * @return translated "Changes to DataSource <b>$dsId</b> by <b>any user</b>"
+   */
+   @DefaultMessage("Changes to DataSource <b>$dsId</b> by <b>any user</b>")
+   @Key("deploymentSessionAuditGrid_relatedDataMenuDataSourceText")
+   String deploymentSessionAuditGrid_relatedDataMenuDataSourceText();
+
+  /**
+   * Translated "&nbsp;"
+   *
+   * @return translated "&nbsp;"
+   */
+   @DefaultMessage("&nbsp;")
+   @Key("gridRenderer_emptyCellValue")
+   String gridRenderer_emptyCellValue();
+
+
+
+  /**
+   * Translated "[long description]"
+   *
+   * @return translated "[long description]"
+   */
+   @DefaultMessage("[long description]")
+   @Key("sampleDataDSWizard_formatHelpText")
+   String sampleDataDSWizard_formatHelpText();
+
+  /**
+   * Translated "Please provide a smaller sample data set. Deployed application do not have such limits on data sets."
+   *
+   * @return translated "Please provide a smaller sample data set. Deployed application do not have such limits on data sets."
+   */
+   @DefaultMessage("Please provide a smaller sample data set. Deployed application do not have such limits on data sets.")
+   @Key("sampleDataDSWizard_importFileTooLargeMessage")
+   String sampleDataDSWizard_importFileTooLargeMessage();
+
+  /**
+   * Translated "Edit detected fields and observe results for imported data"
+   *
+   * @return translated "Edit detected fields and observe results for imported data"
+   */
+   @DefaultMessage("Edit detected fields and observe results for imported data")
+   @Key("parsedDataDSEditor_instructions")
+   String parsedDataDSEditor_instructions();
+
+
 
   /**
    * Translated "Name"
@@ -5768,13 +5970,535 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    String formulaBuilder_dataSourceFieldPrompt();
 
   /**
-   * Translated "&nbsp;"
+   * Translated "Action Icons"
    *
-   * @return translated "&nbsp;"
+   * @return translated "Action Icons"
    */
-   @DefaultMessage("&nbsp;")
-   @Key("gridRenderer_emptyCellValue")
-   String gridRenderer_emptyCellValue();
+   @DefaultMessage("Action Icons")
+   @Key("imagePicker_actionIconsTitle")
+   String imagePicker_actionIconsTitle();
+
+  /**
+   * Translated "Header Icons"
+   *
+   * @return translated "Header Icons"
+   */
+   @DefaultMessage("Header Icons")
+   @Key("imagePicker_headerIconsTitle")
+   String imagePicker_headerIconsTitle();
+
+  /**
+   * Translated "Custom Images"
+   *
+   * @return translated "Custom Images"
+   */
+   @DefaultMessage("Custom Images")
+   @Key("imagePicker_customImagesTitle")
+   String imagePicker_customImagesTitle();
+
+  /**
+   * Translated "Upload images to DropBox or a similar service and enter the public URL below"
+   *
+   * @return translated "Upload images to DropBox or a similar service and enter the public URL below"
+   */
+   @DefaultMessage("Upload images to DropBox or a similar service and enter the public URL below")
+   @Key("imagePicker_tipText")
+   String imagePicker_tipText();
+
+  /**
+   * Translated "Ok"
+   *
+   * @return translated "Ok"
+   */
+   @DefaultMessage("Ok")
+   @Key("imagePicker_okButtonTitle")
+   String imagePicker_okButtonTitle();
+
+  /**
+   * Translated "Cancel"
+   *
+   * @return translated "Cancel"
+   */
+   @DefaultMessage("Cancel")
+   @Key("imagePicker_cancelButtonTitle")
+   String imagePicker_cancelButtonTitle();
+
+  /**
+   * Translated "Add a step"
+   *
+   * @return translated "Add a step"
+   */
+   @DefaultMessage("Add a step")
+   @Key("workflowEditor_addElementTitle")
+   String workflowEditor_addElementTitle();
+
+  /**
+   * Translated "Pick a task..."
+   *
+   * @return translated "Pick a task..."
+   */
+   @DefaultMessage("Pick a task...")
+   @Key("workflowEditor_addElementHint")
+   String workflowEditor_addElementHint();
+
+  /**
+   * Translated "canceled"
+   *
+   * @return translated "canceled"
+   */
+   @DefaultMessage("canceled")
+   @Key("workflowEditor_canceledLinkPrompt")
+   String workflowEditor_canceledLinkPrompt();
+
+  /**
+   * Translated "failed"
+   *
+   * @return translated "failed"
+   */
+   @DefaultMessage("failed")
+   @Key("workflowEditor_failedLinkPrompt")
+   String workflowEditor_failedLinkPrompt();
+
+  /**
+   * Translated "continuation"
+   *
+   * @return translated "continuation"
+   */
+   @DefaultMessage("continuation")
+   @Key("workflowEditor_continuationLinkPrompt")
+   String workflowEditor_continuationLinkPrompt();
+
+  /**
+   * Translated "Initial task to be executed"
+   *
+   * @return translated "Initial task to be executed"
+   */
+   @DefaultMessage("Initial task to be executed")
+   @Key("workflowEditor_startTaskLinkPrompt")
+   String workflowEditor_startTaskLinkPrompt();
+
+  /**
+   * Translated "No other tasks currently lead to this task so it will never be executed"
+   *
+   * @return translated "No other tasks currently lead to this task so it will never be executed"
+   */
+   @DefaultMessage("No other tasks currently lead to this task so it will never be executed")
+   @Key("workflowEditor_unreferencedTaskLinkPrompt")
+   String workflowEditor_unreferencedTaskLinkPrompt();
+
+  /**
+   * Translated "Are you sure you want to delete this element?"
+   *
+   * @return translated "Are you sure you want to delete this element?"
+   */
+   @DefaultMessage("Are you sure you want to delete this element?")
+   @Key("workflowEditor_warnOnRemovalMessage")
+   String workflowEditor_warnOnRemovalMessage();
+
+  /**
+   * Translated "Rule Scope"
+   *
+   * @return translated "Rule Scope"
+   */
+   @DefaultMessage("Rule Scope")
+   @Key("processElementEditor_taskScopeRuleScopeNodeTitle")
+   String processElementEditor_taskScopeRuleScopeNodeTitle();
+
+  /**
+   * Translated "Last task output: $description"
+   *
+   * @return translated "Last task output: $description"
+   */
+   @DefaultMessage("Last task output: $description")
+   @Key("processElementEditor_taskScopeLastTaskOutputNodeTitle")
+   String processElementEditor_taskScopeLastTaskOutputNodeTitle();
+
+  /**
+   * Translated "DataSource $operationType Task"
+   *
+   * @return translated "DataSource $operationType Task"
+   */
+   @DefaultMessage("DataSource $operationType Task")
+   @Key("serviceTaskEditor_editorTitleFixedOperationType")
+   String serviceTaskEditor_editorTitleFixedOperationType();
+
+  /**
+   * Translated "Drag available fields from the tree on the left to the grid on the right to specify what data should be stored. Or click the pencil icon to enter a fixed value."
+   *
+   * @return translated "Drag available fields from the tree on the left to the grid on the right to specify what data should be stored. Or click the pencil icon to enter a fixed value."
+   */
+   @DefaultMessage("Drag available fields from the tree on the left to the grid on the right to specify what data should be stored. Or click the pencil icon to enter a fixed value.")
+   @Key("serviceTaskEditor_addInstructions")
+   String serviceTaskEditor_addInstructions();
+
+  /**
+   * Translated "Select a source for the unique ID of the record to be deleted."
+   *
+   * @return translated "Select a source for the unique ID of the record to be deleted."
+   */
+   @DefaultMessage("Select a source for the unique ID of the record to be deleted.")
+   @Key("serviceTaskEditor_removeInstructions")
+   String serviceTaskEditor_removeInstructions();
+
+  /**
+   * Translated "Define criteria for the DataSource fetch."
+   *
+   * @return translated "Define criteria for the DataSource fetch."
+   */
+   @DefaultMessage("Define criteria for the DataSource fetch.")
+   @Key("serviceTaskEditor_fetchInstructions")
+   String serviceTaskEditor_fetchInstructions();
+
+  /**
+   * Translated "Define criteria for the DataSource export."
+   *
+   * @return translated "Define criteria for the DataSource export."
+   */
+   @DefaultMessage("Define criteria for the DataSource export.")
+   @Key("serviceTaskEditor_exportInstructions")
+   String serviceTaskEditor_exportInstructions();
+
+  /**
+   * Translated "Overwrite all existing bindings? Otherwise, new bindings will be merged."
+   *
+   * @return translated "Overwrite all existing bindings? Otherwise, new bindings will be merged."
+   */
+   @DefaultMessage("Overwrite all existing bindings? Otherwise, new bindings will be merged.")
+   @Key("serviceTaskEditor_overwriteBindingsMessage")
+   String serviceTaskEditor_overwriteBindingsMessage();
+
+  /**
+   * Translated "The field $fieldName must have a binding because it is used to determine which record to udpate."
+   *
+   * @return translated "The field $fieldName must have a binding because it is used to determine which record to udpate."
+   */
+   @DefaultMessage("The field $fieldName must have a binding because it is used to determine which record to udpate.")
+   @Key("serviceTaskEditor_missingPrimaryKeyMessage")
+   String serviceTaskEditor_missingPrimaryKeyMessage();
+
+  /**
+   * Translated "An ID source must be selected to identify the record to remove."
+   *
+   * @return translated "An ID source must be selected to identify the record to remove."
+   */
+   @DefaultMessage("An ID source must be selected to identify the record to remove.")
+   @Key("serviceTaskEditor_missingIdSourceMessage")
+   String serviceTaskEditor_missingIdSourceMessage();
+
+  /**
+   * Translated "Fixed value for field ''$fieldName''"
+   *
+   * @return translated "Fixed value for field ''$fieldName''"
+   */
+   @DefaultMessage("Fixed value for field ''$fieldName''")
+   @Key("serviceTaskEditor_fixedValueWindowTitle")
+   String serviceTaskEditor_fixedValueWindowTitle();
+
+  /**
+   * Translated "Dynamic value for field ''$fieldName''"
+   *
+   * @return translated "Dynamic value for field ''$fieldName''"
+   */
+   @DefaultMessage("Dynamic value for field ''$fieldName''")
+   @Key("serviceTaskEditor_dynamicValueWindowTitle")
+   String serviceTaskEditor_dynamicValueWindowTitle();
+
+  /**
+   * Translated "Enter a fixed value"
+   *
+   * @return translated "Enter a fixed value"
+   */
+   @DefaultMessage("Enter a fixed value")
+   @Key("serviceTaskEditor_bindingFixedValuePrompt")
+   String serviceTaskEditor_bindingFixedValuePrompt();
+
+  /**
+   * Translated "Define a dynamic value"
+   *
+   * @return translated "Define a dynamic value"
+   */
+   @DefaultMessage("Define a dynamic value")
+   @Key("serviceTaskEditor_bindingDynamicValuePrompt")
+   String serviceTaskEditor_bindingDynamicValuePrompt();
+
+  /**
+   * Translated "Define criteria to choose between two possible next tasks."
+   *
+   * @return translated "Define criteria to choose between two possible next tasks."
+   */
+   @DefaultMessage("Define criteria to choose between two possible next tasks.")
+   @Key("xorGatewayEditor_instructions")
+   String xorGatewayEditor_instructions();
+
+  /**
+   * Translated "Criteria must be selected."
+   *
+   * @return translated "Criteria must be selected."
+   */
+   @DefaultMessage("Criteria must be selected.")
+   @Key("serviceTaskEditor_missingCriteriaMessage")
+   String serviceTaskEditor_missingCriteriaMessage();
+
+  /**
+   * Translated "Pick tasks and the criteria that should cause that task to be done next. Pick a fallback task at the bottom, used if no criteria match."
+   *
+   * @return translated "Pick tasks and the criteria that should cause that task to be done next. Pick a fallback task at the bottom, used if no criteria match."
+   */
+   @DefaultMessage("Pick tasks and the criteria that should cause that task to be done next. Pick a fallback task at the bottom, used if no criteria match.")
+   @Key("decisionGatewayEditor_instructions")
+   String decisionGatewayEditor_instructions();
+
+  /**
+   * Translated "Criteria is missing or not complete"
+   *
+   * @return translated "Criteria is missing or not complete"
+   */
+   @DefaultMessage("Criteria is missing or not complete")
+   @Key("gridFetchDataTaskEditor_criteriaNotComplete")
+   String gridFetchDataTaskEditor_criteriaNotComplete();
+
+  /**
+   * Translated "Drag available fields from the tree on the left to the grid on the right to specify what data should be stored. Or click the pencil icon to enter a fixed value."
+   *
+   * @return translated "Drag available fields from the tree on the left to the grid on the right to specify what data should be stored. Or click the pencil icon to enter a fixed value."
+   */
+   @DefaultMessage("Drag available fields from the tree on the left to the grid on the right to specify what data should be stored. Or click the pencil icon to enter a fixed value.")
+   @Key("gridStartEditingTaskEditor_valuesInstructions")
+   String gridStartEditingTaskEditor_valuesInstructions();
+
+  /**
+   * Translated "Overwrite all existing bindings? Otherwise, new bindings will be merged."
+   *
+   * @return translated "Overwrite all existing bindings? Otherwise, new bindings will be merged."
+   */
+   @DefaultMessage("Overwrite all existing bindings? Otherwise, new bindings will be merged.")
+   @Key("gridStartEditingTaskEditor_overwriteBindingsMessage")
+   String gridStartEditingTaskEditor_overwriteBindingsMessage();
+
+  /**
+   * Translated "Fixed value for field ''$fieldName''"
+   *
+   * @return translated "Fixed value for field ''$fieldName''"
+   */
+   @DefaultMessage("Fixed value for field ''$fieldName''")
+   @Key("gridStartEditingTaskEditor_fixedValueWindowTitle")
+   String gridStartEditingTaskEditor_fixedValueWindowTitle();
+
+  /**
+   * Translated "Dynamic value for field ''$fieldName''"
+   *
+   * @return translated "Dynamic value for field ''$fieldName''"
+   */
+   @DefaultMessage("Dynamic value for field ''$fieldName''")
+   @Key("gridStartEditingTaskEditor_dynamicValueWindowTitle")
+   String gridStartEditingTaskEditor_dynamicValueWindowTitle();
+
+  /**
+   * Translated "Enter a fixed value"
+   *
+   * @return translated "Enter a fixed value"
+   */
+   @DefaultMessage("Enter a fixed value")
+   @Key("gridStartEditingTaskEditor_bindingFixedValuePrompt")
+   String gridStartEditingTaskEditor_bindingFixedValuePrompt();
+
+  /**
+   * Translated "Define a dynamic value"
+   *
+   * @return translated "Define a dynamic value"
+   */
+   @DefaultMessage("Define a dynamic value")
+   @Key("gridStartEditingTaskEditor_bindingDynamicValuePrompt")
+   String gridStartEditingTaskEditor_bindingDynamicValuePrompt();
+
+  /**
+   * Translated "Drag available fields from the tree on the left to the grid on the right to specify what data should be stored. Or click the pencil icon to enter a fixed value."
+   *
+   * @return translated "Drag available fields from the tree on the left to the grid on the right to specify what data should be stored. Or click the pencil icon to enter a fixed value."
+   */
+   @DefaultMessage("Drag available fields from the tree on the left to the grid on the right to specify what data should be stored. Or click the pencil icon to enter a fixed value.")
+   @Key("formEditNewRecordTaskEditor_valuesInstructions")
+   String formEditNewRecordTaskEditor_valuesInstructions();
+
+  /**
+   * Translated "Overwrite all existing bindings? Otherwise, new bindings will be merged."
+   *
+   * @return translated "Overwrite all existing bindings? Otherwise, new bindings will be merged."
+   */
+   @DefaultMessage("Overwrite all existing bindings? Otherwise, new bindings will be merged.")
+   @Key("formEditNewRecordTaskEditor_overwriteBindingsMessage")
+   String formEditNewRecordTaskEditor_overwriteBindingsMessage();
+
+  /**
+   * Translated "Fixed value for field ''$fieldName''"
+   *
+   * @return translated "Fixed value for field ''$fieldName''"
+   */
+   @DefaultMessage("Fixed value for field ''$fieldName''")
+   @Key("formEditNewRecordTaskEditor_fixedValueWindowTitle")
+   String formEditNewRecordTaskEditor_fixedValueWindowTitle();
+
+  /**
+   * Translated "Dynamic value for field ''$fieldName''"
+   *
+   * @return translated "Dynamic value for field ''$fieldName''"
+   */
+   @DefaultMessage("Dynamic value for field ''$fieldName''")
+   @Key("formEditNewRecordTaskEditor_dynamicValueWindowTitle")
+   String formEditNewRecordTaskEditor_dynamicValueWindowTitle();
+
+  /**
+   * Translated "Enter a fixed value"
+   *
+   * @return translated "Enter a fixed value"
+   */
+   @DefaultMessage("Enter a fixed value")
+   @Key("formEditNewRecordTaskEditor_bindingFixedValuePrompt")
+   String formEditNewRecordTaskEditor_bindingFixedValuePrompt();
+
+  /**
+   * Translated "Define a dynamic value"
+   *
+   * @return translated "Define a dynamic value"
+   */
+   @DefaultMessage("Define a dynamic value")
+   @Key("formEditNewRecordTaskEditor_bindingDynamicValuePrompt")
+   String formEditNewRecordTaskEditor_bindingDynamicValuePrompt();
+
+  /**
+   * Translated "Drag available fields from the tree on the left to the grid on the right to specify what data should be stored. Or click the pencil icon to enter a fixed value."
+   *
+   * @return translated "Drag available fields from the tree on the left to the grid on the right to specify what data should be stored. Or click the pencil icon to enter a fixed value."
+   */
+   @DefaultMessage("Drag available fields from the tree on the left to the grid on the right to specify what data should be stored. Or click the pencil icon to enter a fixed value.")
+   @Key("formSetValuesTaskEditor_valuesInstructions")
+   String formSetValuesTaskEditor_valuesInstructions();
+
+  /**
+   * Translated "Overwrite all existing bindings? Otherwise, new bindings will be merged."
+   *
+   * @return translated "Overwrite all existing bindings? Otherwise, new bindings will be merged."
+   */
+   @DefaultMessage("Overwrite all existing bindings? Otherwise, new bindings will be merged.")
+   @Key("formSetValuesTaskEditor_overwriteBindingsMessage")
+   String formSetValuesTaskEditor_overwriteBindingsMessage();
+
+  /**
+   * Translated "Fixed value for field ''$fieldName''"
+   *
+   * @return translated "Fixed value for field ''$fieldName''"
+   */
+   @DefaultMessage("Fixed value for field ''$fieldName''")
+   @Key("formSetValuesTaskEditor_fixedValueWindowTitle")
+   String formSetValuesTaskEditor_fixedValueWindowTitle();
+
+  /**
+   * Translated "Dynamic value for field ''$fieldName''"
+   *
+   * @return translated "Dynamic value for field ''$fieldName''"
+   */
+   @DefaultMessage("Dynamic value for field ''$fieldName''")
+   @Key("formSetValuesTaskEditor_dynamicValueWindowTitle")
+   String formSetValuesTaskEditor_dynamicValueWindowTitle();
+
+  /**
+   * Translated "Enter a fixed value"
+   *
+   * @return translated "Enter a fixed value"
+   */
+   @DefaultMessage("Enter a fixed value")
+   @Key("formSetValuesTaskEditor_bindingFixedValuePrompt")
+   String formSetValuesTaskEditor_bindingFixedValuePrompt();
+
+  /**
+   * Translated "Define a dynamic value"
+   *
+   * @return translated "Define a dynamic value"
+   */
+   @DefaultMessage("Define a dynamic value")
+   @Key("formSetValuesTaskEditor_bindingDynamicValuePrompt")
+   String formSetValuesTaskEditor_bindingDynamicValuePrompt();
+
+  /**
+   * Translated "Section with title ''$title''"
+   *
+   * @return translated "Section with title ''$title''"
+   */
+   @DefaultMessage("Section with title ''$title''")
+   @Key("setSectionTitleTaskEditor_sectionPickerFormatWithTitleValue")
+   String setSectionTitleTaskEditor_sectionPickerFormatWithTitleValue();
+
+  /**
+   * Translated "Section with name ''$name''"
+   *
+   * @return translated "Section with name ''$name''"
+   */
+   @DefaultMessage("Section with name ''$name''")
+   @Key("setSectionTitleTaskEditor_sectionPickerFormatWithNameValue")
+   String setSectionTitleTaskEditor_sectionPickerFormatWithNameValue();
+
+  /**
+   * Translated "Criteria is not complete"
+   *
+   * @return translated "Criteria is not complete"
+   */
+   @DefaultMessage("Criteria is not complete")
+   @Key("taskDecisionEditor_criteriaNotComplete")
+   String taskDecisionEditor_criteriaNotComplete();
+
+  /**
+   * Translated "Target is selected but no criteria is defined"
+   *
+   * @return translated "Target is selected but no criteria is defined"
+   */
+   @DefaultMessage("Target is selected but no criteria is defined")
+   @Key("taskDecisionEditor_criteriaMissingMessage")
+   String taskDecisionEditor_criteriaMissingMessage();
+
+  /**
+   * Translated "Dynamic: "
+   *
+   * @return translated "Dynamic: "
+   */
+   @DefaultMessage("Dynamic: ")
+   @Key("dynamicValueItem_dynamicValuePrefix")
+   String dynamicValueItem_dynamicValuePrefix();
+
+  /**
+   * Translated "Select dynamic value"
+   *
+   * @return translated "Select dynamic value"
+   */
+   @DefaultMessage("Select dynamic value")
+   @Key("dynamicValueItem_dynamicValueButtonPrompt")
+   String dynamicValueItem_dynamicValueButtonPrompt();
+
+  /**
+   * Translated "Choose dynamic value for field $fieldTitle"
+   *
+   * @return translated "Choose dynamic value for field $fieldTitle"
+   */
+   @DefaultMessage("Choose dynamic value for field $fieldTitle")
+   @Key("dynamicValueItem_dynamicValueWindowTitle")
+   String dynamicValueItem_dynamicValueWindowTitle();
+
+  /**
+   * Translated "&lt;Use static value instead&gt;"
+   *
+   * @return translated "&lt;Use static value instead&gt;"
+   */
+   @DefaultMessage("&lt;Use static value instead&gt;")
+   @Key("dynamicValuePicker_clearValueText")
+   String dynamicValuePicker_clearValueText();
+
+  /**
+   * Translated "Must be a whole number, percentage, ''*'' or ''auto''"
+   *
+   * @return translated "Must be a whole number, percentage, ''*'' or ''auto''"
+   */
+   @DefaultMessage("Must be a whole number, percentage, ''*'' or ''auto''")
+   @Key("validator_notAMeasure")
+   String validator_notAMeasure();
 
   /**
    * Translated "Cancel"
@@ -5833,23 +6557,88 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
 
 
 
-
-  /*  Generated on Tue May 25 01:48:54 2021 */
+  /*  Generated on Tue May 25 01:28:56 2021 */
 
   /**
-   * Translated "Must be a whole number, percentage, ''*'' or ''auto''"
+   * Translated "Image Picker"
    *
-   * @return translated "Must be a whole number, percentage, ''*'' or ''auto''"
+   * @return translated "Image Picker"
    */
-   @DefaultMessage("Must be a whole number, percentage, ''*'' or ''auto''")
-   @Key("validator_notAMeasure")
-   String validator_notAMeasure();
+   @DefaultMessage("Image Picker")
+   @Key("imageChooserItem_pickerTitle")
+   String imageChooserItem_pickerTitle();
 
 
 
 
 
-  /*  Generated on Fri Jan  7 07:29:39 2022 */
+  /*  Generated on Thu Jun  3 00:17:38 2021 */
+
+  /**
+   * Translated "Previous year"
+   *
+   * @return translated "Previous year"
+   */
+   @DefaultMessage("Previous year")
+   @Key("dateChooser_previousYearButtonAriaLabel")
+   String dateChooser_previousYearButtonAriaLabel();
+
+  /**
+   * Translated "Previous month"
+   *
+   * @return translated "Previous month"
+   */
+   @DefaultMessage("Previous month")
+   @Key("dateChooser_previousMonthButtonAriaLabel")
+   String dateChooser_previousMonthButtonAriaLabel();
+
+  /**
+   * Translated "Next month"
+   *
+   * @return translated "Next month"
+   */
+   @DefaultMessage("Next month")
+   @Key("dateChooser_nextMonthButtonAriaLabel")
+   String dateChooser_nextMonthButtonAriaLabel();
+
+  /**
+   * Translated "Next year"
+   *
+   * @return translated "Next year"
+   */
+   @DefaultMessage("Next year")
+   @Key("dateChooser_nextYearButtonAriaLabel")
+   String dateChooser_nextYearButtonAriaLabel();
+
+  /**
+   * Translated "Select an Image for each state you would like to represent"
+   *
+   * @return translated "Select an Image for each state you would like to represent"
+   */
+   @DefaultMessage("Select an Image for each state you would like to represent")
+   @Key("statefulImageChooser_instructionText")
+   String statefulImageChooser_instructionText();
+
+
+
+
+
+  /*  Generated on Thu Jun 24 00:45:34 2021 */
+
+  /**
+   * Translated "You can''t drag two occurences of the same node into a parent."
+   *
+   * @return translated "You can''t drag two occurences of the same node into a parent."
+   */
+   @DefaultMessage("You can''t drag two occurences of the same node into a parent.")
+   @Key("treeGrid_cantDragMultipleNodeOccurencesMessage")
+   String treeGrid_cantDragMultipleNodeOccurencesMessage();
+
+
+
+
+
+  /*  Generated on Fri Jan  7 06:20:39 2022 */
 
   /**
    * Translated "Remove summary column..."
@@ -5868,6 +6657,24 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    @DefaultMessage("''$uploadedFileName'' was empty, but empty files are not allowed.")
    @Key("dataSource_requiredFileMessage")
    String dataSource_requiredFileMessage();
+
+  /**
+   * Translated "Cancelling this edit will discard unsaved changes for this record. Continue?"
+   *
+   * @return translated "Cancelling this edit will discard unsaved changes for this record. Continue?"
+   */
+   @DefaultMessage("Cancelling this edit will discard unsaved changes for this record. Continue?")
+   @Key("listGrid_cancelEditingConfirmationMessage")
+   String listGrid_cancelEditingConfirmationMessage();
+
+  /**
+   * Translated "This action will discard unsaved changes for this list."
+   *
+   * @return translated "This action will discard unsaved changes for this list."
+   */
+   @DefaultMessage("This action will discard unsaved changes for this list.")
+   @Key("listGrid_confirmDiscardEditsMessage")
+   String listGrid_confirmDiscardEditsMessage();
 
   /**
    * Translated "Some rows could not be parsed; the grid below shows $goodRowCount of $totalRows data rows. Row number $firstBadRow was the first row to fail to be parsed."
@@ -5933,22 +6740,13 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    String formulaBuilder_saveAddAnotherButtonTitle();
 
   /**
-   * Translated "Cancelling this edit will discard unsaved changes for this record. Continue?"
+   * Translated "Must be a string."
    *
-   * @return translated "Cancelling this edit will discard unsaved changes for this record. Continue?"
+   * @return translated "Must be a string."
    */
-   @DefaultMessage("Cancelling this edit will discard unsaved changes for this record. Continue?")
-   @Key("listGrid_cancelEditingConfirmationMessage")
-   String listGrid_cancelEditingConfirmationMessage();
-
-  /**
-   * Translated "This action will discard unsaved changes for this list."
-   *
-   * @return translated "This action will discard unsaved changes for this list."
-   */
-   @DefaultMessage("This action will discard unsaved changes for this list.")
-   @Key("listGrid_confirmDiscardEditsMessage")
-   String listGrid_confirmDiscardEditsMessage();
+   @DefaultMessage("Must be a string.")
+   @Key("validator_notAString")
+   String validator_notAString();
 
   /**
    * Translated "The following errors were found:"
@@ -5977,29 +6775,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    @Key("filterClause_valueItemFieldHint")
    String filterClause_valueItemFieldHint();
 
-  /**
-   * Translated "Must be a string."
-   *
-   * @return translated "Must be a string."
-   */
-   @DefaultMessage("Must be a string.")
-   @Key("validator_notAString")
-   String validator_notAString();
 
 
 
 
-
-  /*  Generated on Thu Jan 27 01:30:24 2022 */
-
-  /**
-   * Translated "$loadingImage&nbsp;Loading data..."
-   *
-   * @return translated "$loadingImage&nbsp;Loading data..."
-   */
-   @DefaultMessage("$loadingImage&nbsp;Loading data...")
-   @Key("tileGrid_loadingDataMessage")
-   String tileGrid_loadingDataMessage();
+  /*  Generated on Thu Jan 27 01:17:31 2022 */
 
   /**
    * Translated "$loadingImage&nbsp;Grouping data..."
@@ -6018,6 +6798,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    @DefaultMessage("$loadingImage&nbsp;Loading data...")
    @Key("listGrid_loadingDataMessage")
    String listGrid_loadingDataMessage();
+
+  /**
+   * Translated "$loadingImage&nbsp;Loading data..."
+   *
+   * @return translated "$loadingImage&nbsp;Loading data..."
+   */
+   @DefaultMessage("$loadingImage&nbsp;Loading data...")
+   @Key("tileGrid_loadingDataMessage")
+   String tileGrid_loadingDataMessage();
 
 
 

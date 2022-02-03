@@ -23,7 +23,7 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasTabSelectedHandlers extends HasHandlers {
     /**
      * Notification fired when a tab is selected. Note that this will only fire if  this tabSet is drawn. If a tab is selected
-     * before {@link com.smartgwt.client.widgets.Canvas#draw draw}  is called,  {@link
+     * before {@link com.smartgwt.client.widgets.Canvas#draw draw()}  is called,  {@link
      * com.smartgwt.client.widgets.tab.events.TabSelectedEventl} will fire on <code>draw()</code>.
      *
      * @param handler the tabSelected handler

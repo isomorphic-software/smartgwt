@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -174,9 +177,10 @@ public class Sound extends BaseWidget implements com.smartgwt.client.widgets.dat
      * <code>false</code> developers may load the audio explicitly via  {@link com.smartgwt.client.widgets.Sound#load load()}
      *
      * @param autoLoad New autoLoad value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Sound Sound} instance, for chaining setter calls
      */
-    public void setAutoLoad(boolean autoLoad) {
-        setAttribute("autoLoad", autoLoad, true);
+    public Sound setAutoLoad(boolean autoLoad) {
+        return (Sound)setAttribute("autoLoad", autoLoad, true);
     }
 
     /**
@@ -196,9 +200,10 @@ public class Sound extends BaseWidget implements com.smartgwt.client.widgets.dat
      * <code>false</code> developers may play the audio explicitly via  {@link com.smartgwt.client.widgets.Sound#play play()}.
      *
      * @param autoPlay New autoPlay value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Sound Sound} instance, for chaining setter calls
      */
-    public void setAutoPlay(boolean autoPlay) {
-        setAttribute("autoPlay", autoPlay, true);
+    public Sound setAutoPlay(boolean autoPlay) {
+        return (Sound)setAttribute("autoPlay", autoPlay, true);
     }
 
     /**
@@ -221,9 +226,10 @@ public class Sound extends BaseWidget implements com.smartgwt.client.widgets.dat
      * Update the {@link com.smartgwt.client.widgets.Sound#getSrc src} of this sound instance at runtime. Note that  {@link com.smartgwt.client.widgets.Sound#getAutoLoad autoLoad} and {@link com.smartgwt.client.widgets.Sound#getAutoPlay autoPlay} govern whether this media will be loaded or played immediately when the src value is changed.
      *
      * @param src URL of new audio file to be played by this sound instance. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Sound Sound} instance, for chaining setter calls
      */
-    public void setSrc(String src) {
-        setAttribute("src", src, true);
+    public Sound setSrc(String src) {
+        return (Sound)setAttribute("src", src, true);
     }
 
     /**
@@ -244,9 +250,10 @@ public class Sound extends BaseWidget implements com.smartgwt.client.widgets.dat
      * Update the {@link com.smartgwt.client.widgets.Sound#getSrc src} of this sound instance at runtime. Note that  {@link com.smartgwt.client.widgets.Sound#getAutoLoad autoLoad} and {@link com.smartgwt.client.widgets.Sound#getAutoPlay autoPlay} govern whether this media will be loaded or played immediately when the src value is changed.
      *
      * @param src URL of new audio file to be played by this sound instance. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Sound Sound} instance, for chaining setter calls
      */
-    public void setSrc(String... src) {
-        setAttribute("src", src, true);
+    public Sound setSrc(String... src) {
+        return (Sound)setAttribute("src", src, true);
     }
 
     /**

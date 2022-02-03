@@ -103,9 +103,12 @@ public class DataClass extends JsObject implements HasHandlers {
      * Set attribute value to a String
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, String value) {
+    public DataClass setAttribute(String property, String value) {
         JSOHelper.setAttribute(jsObj, property, value);
+        return this;
     }
 
     /**
@@ -200,9 +203,12 @@ public class DataClass extends JsObject implements HasHandlers {
      * Value will be stored as a JavaScript Array of the underlying JavaScript objects for each entry.
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, DataClass[] value) {
+    public DataClass setAttribute(String property, DataClass[] value) {
         JSOHelper.setAttribute(jsObj, property, JSOHelper.convertToJavaScriptArray(value));
+        return this;
     }
 
     /**
@@ -210,9 +216,12 @@ public class DataClass extends JsObject implements HasHandlers {
      * Value will be stored as a JavaScript Array of the underlying JavaScript objects for each entry.
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, BaseClass[] value) {
+    public DataClass setAttribute(String property, BaseClass[] value) {
         JSOHelper.setAttribute(jsObj, property, JSOHelper.convertToJavaScriptArray(value));
+        return this;
     }
 
     /**
@@ -220,9 +229,12 @@ public class DataClass extends JsObject implements HasHandlers {
      * Value will be stored as a JavaScript Array of the underlying JavaScript objects for each entry.
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, BaseWidget[] value) {
+    public DataClass setAttribute(String property, BaseWidget[] value) {
         JSOHelper.setAttribute(jsObj, property, JSOHelper.convertToJavaScriptArray(value));
+        return this;
     }
 
     /**
@@ -240,9 +252,12 @@ public class DataClass extends JsObject implements HasHandlers {
      * Value will be stored as a JavaScript Array of Strings on the underlying data object.
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, String[] value) {
+    public DataClass setAttribute(String property, String[] value) {
         JSOHelper.setAttribute(jsObj, property, value);
+        return this;
     }
 
     /**
@@ -262,9 +277,12 @@ public class DataClass extends JsObject implements HasHandlers {
      * 
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, DataClass value) {
+    public DataClass setAttribute(String property, DataClass value) {
         JSOHelper.setAttribute(jsObj, property, value == null ? null : value.getJsObj());
+        return this;
     }
 
     /**
@@ -274,9 +292,12 @@ public class DataClass extends JsObject implements HasHandlers {
      * 
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, BaseClass value) {
+    public DataClass setAttribute(String property, BaseClass value) {
         JSOHelper.setAttribute(jsObj, property, value == null ? null : value.getOrCreateJsObj());
+        return this;
     }
 
     /**
@@ -284,9 +305,12 @@ public class DataClass extends JsObject implements HasHandlers {
      * 
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, JavaScriptObject value) {
+    public DataClass setAttribute(String property, JavaScriptObject value) {
         JSOHelper.setAttribute(jsObj, property, value);
+        return this;
     }
 
     /**
@@ -295,9 +319,12 @@ public class DataClass extends JsObject implements HasHandlers {
      * 
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, Date value) {
+    public DataClass setAttribute(String property, Date value) {
         JSOHelper.setAttribute(jsObj, property, value);
+        return this;
     }
 
     /**
@@ -309,9 +336,12 @@ public class DataClass extends JsObject implements HasHandlers {
      * 
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, Map value) {
+    public DataClass setAttribute(String property, Map value) {
         JSOHelper.setAttribute(jsObj, property, value);
+        return this;
     }
     
     /**
@@ -320,9 +350,12 @@ public class DataClass extends JsObject implements HasHandlers {
      * 
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, ValueEnum[] value) {
+    public DataClass setAttribute(String property, ValueEnum[] value) {
         JSOHelper.setAttribute(jsObj, property, value);
+        return this;
     }
 
     /**
@@ -331,9 +364,12 @@ public class DataClass extends JsObject implements HasHandlers {
      * 
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, ValueEnum value) {
+    public DataClass setAttribute(String property, ValueEnum value) {
         JSOHelper.setAttribute(jsObj, property, value == null ? null : value.getValue());
+        return this;
     }
     
     /**
@@ -362,9 +398,12 @@ public class DataClass extends JsObject implements HasHandlers {
      *
      * @param property the attribute name
      * @param value the attribute value.
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, Object value) {
+    public DataClass setAttribute(String property, Object value) {
         JSOHelper.setAttribute(jsObj, property, value);
+        return this;
     }
 
     /**
@@ -375,18 +414,24 @@ public class DataClass extends JsObject implements HasHandlers {
      * 
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttributeAsJavaObject(String property, Object value) {
+    public DataClass setAttributeAsJavaObject(String property, Object value) {
     	JSOHelper.setObjectAttribute(jsObj, property, value);
+        return this;
     }
 
     /**
      * Set attribute value to a boolean.
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, boolean value) {
+    public DataClass setAttribute(String property, boolean value) {
         JSOHelper.setAttribute(jsObj, property, value);
+        return this;
     }
 
     /**
@@ -394,9 +439,12 @@ public class DataClass extends JsObject implements HasHandlers {
      * 
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, Boolean value) {
+    public DataClass setAttribute(String property, Boolean value) {
         JSOHelper.setAttribute(jsObj, property, value);
+        return this;
     }
 
     /**
@@ -404,9 +452,12 @@ public class DataClass extends JsObject implements HasHandlers {
      * Value will be stored as a JavaScript Number on the underlying data object
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, int value) {
+    public DataClass setAttribute(String property, int value) {
         JSOHelper.setAttribute(jsObj, property, value);
+        return this;
     }
 
     /**
@@ -414,9 +465,12 @@ public class DataClass extends JsObject implements HasHandlers {
      * Value will be stored as a JavaScript Number on the underlying data object
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, Integer value) {
+    public DataClass setAttribute(String property, Integer value) {
         JSOHelper.setAttribute(jsObj, property, value);
+        return this;
     }
 
     /**
@@ -424,9 +478,12 @@ public class DataClass extends JsObject implements HasHandlers {
      * Value will be stored as a JavaScript Number on the underlying data object.
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, long value) {
+    public DataClass setAttribute(String property, long value) {
         JSOHelper.setAttribute(jsObj, property, value);
+        return this;
     }
 
     /**
@@ -434,9 +491,12 @@ public class DataClass extends JsObject implements HasHandlers {
      * Value will be stored as a JavaScript Number on the underlying data object
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, Float value) {
+    public DataClass setAttribute(String property, Float value) {
         JSOHelper.setAttribute(jsObj, property, value);
+        return this;
     }
 
     /**
@@ -444,9 +504,12 @@ public class DataClass extends JsObject implements HasHandlers {
      * Value will be stored as a JavaScript Number on the underlying data object
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, double value) {
+    public DataClass setAttribute(String property, double value) {
         JSOHelper.setAttribute(jsObj, property, value);
+        return this;
     }
 
     /**
@@ -454,9 +517,12 @@ public class DataClass extends JsObject implements HasHandlers {
      * Value will be stored as a JavaScript Number on the underlying data object
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, Double value) {
+    public DataClass setAttribute(String property, Double value) {
         JSOHelper.setAttribute(jsObj, property, value);
+        return this;
     }
 
     /**
@@ -464,9 +530,12 @@ public class DataClass extends JsObject implements HasHandlers {
      * Value will be stored as a JavaScript Array of Numbers on the underlying data object.
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, int[] value) {
+    public DataClass setAttribute(String property, int[] value) {
         JSOHelper.setAttribute(jsObj, property, value);
+        return this;
     }
 
     /**
@@ -474,9 +543,12 @@ public class DataClass extends JsObject implements HasHandlers {
      * Value will be stored as a JavaScript Array of Numbers on the underlying data object.
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, Integer[] value) {
+    public DataClass setAttribute(String property, Integer[] value) {
         JSOHelper.setAttribute(jsObj, property, value);
+        return this;
     }
 
     /**
@@ -485,9 +557,12 @@ public class DataClass extends JsObject implements HasHandlers {
      * 
      * @param property
      * @param value
+     * @return {@link com.smartgwt.client.core.DataClass DataClass} instance, for chaining
+     * setter calls
      */
-    public void setAttribute(String property, double[] value) {
+    public DataClass setAttribute(String property, double[] value) {
     	JSOHelper.setAttribute(jsObj, property, value);
+        return this;
     }
 
     /**

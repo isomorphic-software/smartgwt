@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -178,10 +181,11 @@ public class AdvancedHiliteEditor extends VLayout {
      * The title for the Appearance group.
      *
      * @param appearanceGroupTitle New appearanceGroupTitle value. Default value is "Appearance"
+     * @return {@link com.smartgwt.client.widgets.grid.AdvancedHiliteEditor AdvancedHiliteEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAppearanceGroupTitle(String appearanceGroupTitle)  throws IllegalStateException {
-        setAttribute("appearanceGroupTitle", appearanceGroupTitle, false);
+    public AdvancedHiliteEditor setAppearanceGroupTitle(String appearanceGroupTitle)  throws IllegalStateException {
+        return (AdvancedHiliteEditor)setAttribute("appearanceGroupTitle", appearanceGroupTitle, false);
     }
 
     /**
@@ -199,11 +203,12 @@ public class AdvancedHiliteEditor extends VLayout {
      * clicked.
      *
      * @param callback New callback value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.AdvancedHiliteEditor AdvancedHiliteEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Callback Callback 
      */
-    public void setCallback(String callback)  throws IllegalStateException {
-        setAttribute("callback", callback, false);
+    public AdvancedHiliteEditor setCallback(String callback)  throws IllegalStateException {
+        return (AdvancedHiliteEditor)setAttribute("callback", callback, false);
     }
 
     /**
@@ -223,10 +228,11 @@ public class AdvancedHiliteEditor extends VLayout {
      * The title text for the {@link com.smartgwt.client.widgets.grid.AdvancedHiliteEditor#getCancelButton cancelButton}.
      *
      * @param cancelButtonTitle New cancelButtonTitle value. Default value is "Cancel"
+     * @return {@link com.smartgwt.client.widgets.grid.AdvancedHiliteEditor AdvancedHiliteEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
-        setAttribute("cancelButtonTitle", cancelButtonTitle, false);
+    public AdvancedHiliteEditor setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
+        return (AdvancedHiliteEditor)setAttribute("cancelButtonTitle", cancelButtonTitle, false);
     }
 
     /**
@@ -244,10 +250,11 @@ public class AdvancedHiliteEditor extends VLayout {
      * The title for the Filter group.
      *
      * @param filterGroupTitle New filterGroupTitle value. Default value is "Filter"
+     * @return {@link com.smartgwt.client.widgets.grid.AdvancedHiliteEditor AdvancedHiliteEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setFilterGroupTitle(String filterGroupTitle)  throws IllegalStateException {
-        setAttribute("filterGroupTitle", filterGroupTitle, false);
+    public AdvancedHiliteEditor setFilterGroupTitle(String filterGroupTitle)  throws IllegalStateException {
+        return (AdvancedHiliteEditor)setAttribute("filterGroupTitle", filterGroupTitle, false);
     }
 
     /**
@@ -270,10 +277,11 @@ public class AdvancedHiliteEditor extends VLayout {
      * the icon will  appear for that field -- the default is that it appears in front of the normal cell content.
      *
      * @param hiliteIcons New hiliteIcons value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.AdvancedHiliteEditor AdvancedHiliteEditor} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setHiliteIcons(String... hiliteIcons) {
-        setAttribute("hiliteIcons", hiliteIcons, true);
+    public AdvancedHiliteEditor setHiliteIcons(String... hiliteIcons) {
+        return (AdvancedHiliteEditor)setAttribute("hiliteIcons", hiliteIcons, true);
     }
 
     /**
@@ -296,10 +304,11 @@ public class AdvancedHiliteEditor extends VLayout {
      * The message to show when the user clicks "Save" without entering any criteria.
      *
      * @param invalidHilitePrompt New invalidHilitePrompt value. Default value is "Enter at least one rule, a color or icon, and a target field, or press 'Cancel' to abandon changes."
+     * @return {@link com.smartgwt.client.widgets.grid.AdvancedHiliteEditor AdvancedHiliteEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setInvalidHilitePrompt(String invalidHilitePrompt)  throws IllegalStateException {
-        setAttribute("invalidHilitePrompt", invalidHilitePrompt, false);
+    public AdvancedHiliteEditor setInvalidHilitePrompt(String invalidHilitePrompt)  throws IllegalStateException {
+        return (AdvancedHiliteEditor)setAttribute("invalidHilitePrompt", invalidHilitePrompt, false);
     }
 
     /**
@@ -317,10 +326,11 @@ public class AdvancedHiliteEditor extends VLayout {
      * The title text for the {@link com.smartgwt.client.widgets.grid.AdvancedHiliteEditor#getSaveButton saveButton}.
      *
      * @param saveButtonTitle New saveButtonTitle value. Default value is "Save"
+     * @return {@link com.smartgwt.client.widgets.grid.AdvancedHiliteEditor AdvancedHiliteEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSaveButtonTitle(String saveButtonTitle)  throws IllegalStateException {
-        setAttribute("saveButtonTitle", saveButtonTitle, false);
+    public AdvancedHiliteEditor setSaveButtonTitle(String saveButtonTitle)  throws IllegalStateException {
+        return (AdvancedHiliteEditor)setAttribute("saveButtonTitle", saveButtonTitle, false);
     }
 
     /**
@@ -337,10 +347,11 @@ public class AdvancedHiliteEditor extends VLayout {
      * The title for the Target Field(s) picker.
      *
      * @param targetFieldsItemTitle New targetFieldsItemTitle value. Default value is "Target Field(s)"
+     * @return {@link com.smartgwt.client.widgets.grid.AdvancedHiliteEditor AdvancedHiliteEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTargetFieldsItemTitle(String targetFieldsItemTitle)  throws IllegalStateException {
-        setAttribute("targetFieldsItemTitle", targetFieldsItemTitle, false);
+    public AdvancedHiliteEditor setTargetFieldsItemTitle(String targetFieldsItemTitle)  throws IllegalStateException {
+        return (AdvancedHiliteEditor)setAttribute("targetFieldsItemTitle", targetFieldsItemTitle, false);
     }
 
     /**

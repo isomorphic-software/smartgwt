@@ -5,8 +5,10 @@ import com.smartgwt.client.i18n.*;
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.fields.*;
 import com.smartgwt.client.tools.*;
 import com.smartgwt.client.widgets.*;
@@ -47,6 +49,7 @@ public class CanvasLogicalStructure extends BaseWidgetLogicalStructure {
     public String accessKey;
     public String adaptiveHeightPriority;
     public String adaptiveWidthPriority;
+    public String alwaysManageFocusNavigation;
     public String alwaysShowScrollbars;
     public String animateAcceleration;
     public String animateFadeTime;
@@ -138,6 +141,7 @@ public class CanvasLogicalStructure extends BaseWidgetLogicalStructure {
     public AdvancedCriteria enableWhen;
     public String endLine;
     public String extraSpace;
+    public String forwardSVGeventsToObject;
     public String groupBorderCSS;
     public String groupLabelBackgroundColor;
     public String groupLabelStyleName;
@@ -167,6 +171,7 @@ public class CanvasLogicalStructure extends BaseWidgetLogicalStructure {
     public String locateChildrenType;
     public String locatePeersBy;
     public String locatePeersType;
+    public String locatorName;
     public String margin;
     public Canvas masterElement;
     public String matchElement;
@@ -191,6 +196,7 @@ public class CanvasLogicalStructure extends BaseWidgetLogicalStructure {
     public Canvas percentSource;
     public String position;
     public String printChildrenAbsolutelyPositioned;
+    public String printStyleName;
     public String prompt;
     public String[] proportionalResizeModifiers;
     public String proportionalResizing;
@@ -225,6 +231,7 @@ public class CanvasLogicalStructure extends BaseWidgetLogicalStructure {
     public String snapAlignEdgeLineStyle;
     public String snapAxis;
     public String snapEdge;
+    public String snapGridStyle;
     public String snapHDirection;
     public String snapHGap;
     public String snapOffsetLeft;

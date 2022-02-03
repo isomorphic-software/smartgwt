@@ -21,7 +21,10 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface MouseOutHandler extends EventHandler {
     /**
-     * Executed when the mouse leaves this widget.  No default implementation.
+     * Executed when the mouse leaves this widget.  No default implementation. <P> Note that if the mouse goes over a child of
+     * this canvas, the mouseOut event will fire as it would if the user rolled entirely off the canvas. Developers may
+     * determine whether the mouse is still over a descendant of this component via {@link
+     * com.smartgwt.client.widgets.Canvas#containsEventTarget containsEventTarget()}.
      *
      * @param event the event
      */

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -188,9 +191,10 @@ public class Deck extends Layout {
      * Change the {@link com.smartgwt.client.types.CurrentPane}. <p> If the passed pane is not contained in this <code>Deck</code>, logs a warning and does nothing.
      *
      * @param currentPane the pane to show, as either a <code>Canvas</code> or the {@link com.smartgwt.client.widgets.Canvas#getID Canvas.ID}. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Deck Deck} instance, for chaining setter calls
      */
-    public void setCurrentPane(Canvas currentPane) {
-        setAttribute("currentPane", currentPane == null ? null : currentPane.getOrCreateJsObj(), true);
+    public Deck setCurrentPane(Canvas currentPane) {
+        return (Deck)setAttribute("currentPane", currentPane == null ? null : currentPane.getOrCreateJsObj(), true);
     }
 
     /**
@@ -209,9 +213,10 @@ public class Deck extends Layout {
      * drawn, the first pane in this array becomes the <code>currentPane</code>.
      *
      * @param panes New panes value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Deck Deck} instance, for chaining setter calls
      */
-    public void setPanes(Canvas... panes) {
-        setAttribute("panes", panes, true);
+    public Deck setPanes(Canvas... panes) {
+        return (Deck)setAttribute("panes", panes, true);
     }
 
     /**

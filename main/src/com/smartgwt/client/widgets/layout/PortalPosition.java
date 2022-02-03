@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Represents the position of a {@link com.smartgwt.client.widgets.layout.Portlet} within a {@link
@@ -104,9 +107,10 @@ public class PortalPosition extends DataClass {
      * com.smartgwt.client.widgets.layout.PortalLayout}.
      *
      * @param colNum New colNum value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.layout.PortalPosition PortalPosition} instance, for chaining setter calls
      */
-    public void setColNum(int colNum) {
-        setAttribute("colNum", colNum);
+    public PortalPosition setColNum(int colNum) {
+        return (PortalPosition)setAttribute("colNum", colNum);
     }
 
     /**
@@ -125,9 +129,10 @@ public class PortalPosition extends DataClass {
      * com.smartgwt.client.widgets.layout.PortalLayout} row (generally 0, unless there is more than one Portlet in the row).
      *
      * @param position New position value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.layout.PortalPosition PortalPosition} instance, for chaining setter calls
      */
-    public void setPosition(int position) {
-        setAttribute("position", position);
+    public PortalPosition setPosition(int position) {
+        return (PortalPosition)setAttribute("position", position);
     }
 
     /**
@@ -146,9 +151,10 @@ public class PortalPosition extends DataClass {
      * com.smartgwt.client.widgets.layout.PortalLayout} column.
      *
      * @param rowNum New rowNum value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.layout.PortalPosition PortalPosition} instance, for chaining setter calls
      */
-    public void setRowNum(int rowNum) {
-        setAttribute("rowNum", rowNum);
+    public PortalPosition setRowNum(int rowNum) {
+        return (PortalPosition)setAttribute("rowNum", rowNum);
     }
 
     /**

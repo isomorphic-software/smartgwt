@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Settings to control {@link com.smartgwt.client.tools.EditContext} serialization.
@@ -103,9 +106,10 @@ public class SerializationSettings extends DataClass {
      * non-indented.
      *
      * @param indent New indent value. Default value is null
+     * @return {@link com.smartgwt.client.tools.SerializationSettings SerializationSettings} instance, for chaining setter calls
      */
-    public void setIndent(Boolean indent) {
-        setAttribute("indent", indent);
+    public SerializationSettings setIndent(Boolean indent) {
+        return (SerializationSettings)setAttribute("indent", indent);
     }
 
     /**
@@ -124,9 +128,10 @@ public class SerializationSettings extends DataClass {
      * serialized individually and referenced by their containers.
      *
      * @param outputComponentsIndividually New outputComponentsIndividually value. Default value is true
+     * @return {@link com.smartgwt.client.tools.SerializationSettings SerializationSettings} instance, for chaining setter calls
      */
-    public void setOutputComponentsIndividually(Boolean outputComponentsIndividually) {
-        setAttribute("outputComponentsIndividually", outputComponentsIndividually);
+    public SerializationSettings setOutputComponentsIndividually(Boolean outputComponentsIndividually) {
+        return (SerializationSettings)setAttribute("outputComponentsIndividually", outputComponentsIndividually);
     }
 
     /**
@@ -145,9 +150,10 @@ public class SerializationSettings extends DataClass {
      * When true specify DataSources in full rather than assuming they can be downloaded from the server.
      *
      * @param serverless New serverless value. Default value is null
+     * @return {@link com.smartgwt.client.tools.SerializationSettings SerializationSettings} instance, for chaining setter calls
      */
-    public void setServerless(Boolean serverless) {
-        setAttribute("serverless", serverless);
+    public SerializationSettings setServerless(Boolean serverless) {
+        return (SerializationSettings)setAttribute("serverless", serverless);
     }
 
     /**

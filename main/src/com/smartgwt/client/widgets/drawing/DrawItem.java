@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -222,9 +225,10 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canDrag new value for <code>this.canDrag</code>. Default value is false
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      */
-    public void setCanDrag(Boolean canDrag) {
-        setAttribute("canDrag", canDrag, true);
+    public DrawItem setCanDrag(Boolean canDrag) {
+        return (DrawItem)setAttribute("canDrag", canDrag, true);
     }
 
     /**
@@ -242,10 +246,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * Will this DrawItem fire hover events when the user hovers over it?
      *
      * @param canHover New canHover value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setShowHover
      */
-    public void setCanHover(Boolean canHover) {
-        setAttribute("canHover", canHover, true);
+    public DrawItem setCanHover(Boolean canHover) {
+        return (DrawItem)setAttribute("canHover", canHover, true);
     }
 
     /**
@@ -267,12 +272,13 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * default. The behavior is intentional as context menus are commonly reused across components.
      *
      * @param contextMenu New contextMenu value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.events.ShowContextMenuEvent
      * @see com.smartgwt.client.docs.Cues Cues overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_contextmenu" target="examples">Context menus Example</a>
      */
-    public void setContextMenu(Menu contextMenu) {
-        setAttribute("contextMenu", contextMenu == null ? null : contextMenu.getOrCreateJsObj(), true);
+    public DrawItem setContextMenu(Menu contextMenu) {
+        return (DrawItem)setAttribute("contextMenu", contextMenu == null ? null : contextMenu.getOrCreateJsObj(), true);
     }
 
     /**
@@ -314,9 +320,10 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param cursor new cursor. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      */
-    public void setCursor(Cursor cursor) {
-        setAttribute("cursor", cursor == null ? null : cursor.getValue(), true);
+    public DrawItem setCursor(Cursor cursor) {
+        return (DrawItem)setAttribute("cursor", cursor == null ? null : cursor.getValue(), true);
     }
 
     /**
@@ -364,10 +371,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param dragStartDistance New dragStartDistance value. Default value is 5
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
-    public void setDragStartDistance(int dragStartDistance) {
-        setAttribute("dragStartDistance", dragStartDistance, true);
+    public DrawItem setDragStartDistance(int dragStartDistance) {
+        return (DrawItem)setAttribute("dragStartDistance", dragStartDistance, true);
     }
 
     /**
@@ -385,10 +393,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * {@link com.smartgwt.client.widgets.drawing.DrawGroup} this drawItem is a member of.
      *
      * @param drawGroup New drawGroup value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDrawGroup(DrawGroup drawGroup)  throws IllegalStateException {
-        setAttribute("drawGroup", drawGroup == null ? null : drawGroup.getOrCreateJsObj(), false);
+    public DrawItem setDrawGroup(DrawGroup drawGroup)  throws IllegalStateException {
+        return (DrawItem)setAttribute("drawGroup", drawGroup == null ? null : drawGroup.getOrCreateJsObj(), false);
     }
 
     /**
@@ -409,9 +418,10 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * Setter for {@link com.smartgwt.client.widgets.drawing.DrawItem#getDrawPane drawPane}.
      *
      * @param drawPane new value for <code>this.drawPane</code>. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      */
-    public void setDrawPane(DrawPane drawPane) {
-        setAttribute("drawPane", drawPane == null ? null : drawPane.getOrCreateJsObj(), true);
+    public DrawItem setDrawPane(DrawPane drawPane) {
+        return (DrawItem)setAttribute("drawPane", drawPane == null ? null : drawPane.getOrCreateJsObj(), true);
     }
 
     /**
@@ -430,11 +440,12 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "DrawItemEditProxy"
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
-        setAttribute("editProxyConstructor", editProxyConstructor, false);
+    public DrawItem setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
+        return (DrawItem)setAttribute("editProxyConstructor", editProxyConstructor, false);
     }
 
     /**
@@ -456,10 +467,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * Set the arrowhead at the end of this path. <p> <b>NOTE:</b> Not all DrawItem classes support arrowheads. You can use {@link com.smartgwt.client.widgets.drawing.DrawItem#supportsEndArrow supportsEndArrow()} to dynamically check whether a DrawItem instance supports this method.
      *
      * @param endArrow style of arrow to use. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#lines_and_arrowheads" target="examples">Lines & Arrowheads Example</a>
      */
-    public void setEndArrow(ArrowStyle endArrow) {
-        setAttribute("endArrow", endArrow == null ? null : endArrow.getValue(), true);
+    public DrawItem setEndArrow(ArrowStyle endArrow) {
+        return (DrawItem)setAttribute("endArrow", endArrow == null ? null : endArrow.getValue(), true);
     }
 
     /**
@@ -499,13 +511,14 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param eventOpaque New eventOpaque value. Default value is varies
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setFillColor
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setFillOpacity
      * @see com.smartgwt.client.widgets.drawing.DrawPane#getBitmap
      */
-    public void setEventOpaque(boolean eventOpaque)  throws IllegalStateException {
-        setAttribute("eventOpaque", eventOpaque, false);
+    public DrawItem setEventOpaque(boolean eventOpaque)  throws IllegalStateException {
+        return (DrawItem)setAttribute("eventOpaque", eventOpaque, false);
     }
 
     /**
@@ -533,10 +546,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * Update fillColor for this drawItem.
      *
      * @param fillColor new fillColor to use.  Pass null for transparent. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      */
-    public void setFillColor(String fillColor) {
-        setAttribute("fillColor", fillColor, true);
+    public DrawItem setFillColor(String fillColor) {
+        return (DrawItem)setAttribute("fillColor", fillColor, true);
     }
 
     /**
@@ -561,10 +575,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * Update fillGradient for this drawItem.
      *
      * @param fillGradient new gradient to use.  Pass null for transparent. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.drawing.Gradient
      */
-    public void setFillGradient(Gradient fillGradient) {
-        setAttribute("fillGradient", fillGradient == null ? null : fillGradient.getJsObj(), true);
+    public DrawItem setFillGradient(Gradient fillGradient) {
+        return (DrawItem)setAttribute("fillGradient", fillGradient == null ? null : fillGradient.getJsObj(), true);
     }
 
     /**
@@ -592,10 +607,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * Update fillGradient for this drawItem.
      *
      * @param fillGradient new gradient to use.  Pass null for transparent. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.drawing.Gradient
      */
-    public void setFillGradient(String fillGradient) {
-        setAttribute("fillGradient", fillGradient, true);
+    public DrawItem setFillGradient(String fillGradient) {
+        return (DrawItem)setAttribute("fillGradient", fillGradient, true);
     }
 
     /**
@@ -620,9 +636,10 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * Update fillOpacity for this drawItem.
      *
      * @param fillOpacity new opacity, as a number between 0 (transparent) and 1 (opaque). Default value is 1.0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      */
-    public void setFillOpacity(float fillOpacity) {
-        setAttribute("fillOpacity", fillOpacity, true);
+    public DrawItem setFillOpacity(float fillOpacity) {
+        return (DrawItem)setAttribute("fillOpacity", fillOpacity, true);
     }
 
     /**
@@ -640,11 +657,12 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * fired
      *
      * @param hoverDelay New hoverDelay value. Default value is 300
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setCanHover
      * @see com.smartgwt.client.widgets.drawing.DrawItem#hover
      */
-    public void setHoverDelay(int hoverDelay) {
-        setAttribute("hoverDelay", hoverDelay, true);
+    public DrawItem setHoverDelay(int hoverDelay) {
+        return (DrawItem)setAttribute("hoverDelay", hoverDelay, true);
     }
 
     /**
@@ -670,9 +688,10 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param keepInParentRect New keepInParentRect value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      */
-    public void setKeepInParentRect(Boolean keepInParentRect) {
-        setAttribute("keepInParentRect", keepInParentRect, true);
+    public DrawItem setKeepInParentRect(Boolean keepInParentRect) {
+        return (DrawItem)setAttribute("keepInParentRect", keepInParentRect, true);
     }
 
     /**
@@ -699,9 +718,10 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param keepInParentRect New keepInParentRect value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      */
-    public void setKeepInParentRect(float... keepInParentRect) {
-        setAttribute("keepInParentRect", keepInParentRect, true);
+    public DrawItem setKeepInParentRect(float... keepInParentRect) {
+        return (DrawItem)setAttribute("keepInParentRect", keepInParentRect, true);
     }
     
 
@@ -714,12 +734,13 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * com.smartgwt.client.types.KnobType#MOVE} knobs.
      *
      * @param knobs New knobs value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * 
      * 
      */
-    public void setKnobs(KnobType... knobs)  throws IllegalStateException {
-        setAttribute("knobs", knobs, false);
+    public DrawItem setKnobs(KnobType... knobs)  throws IllegalStateException {
+        return (DrawItem)setAttribute("knobs", knobs, false);
     }
 
     /**
@@ -748,9 +769,10 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * Update lineCap for this drawItem.
      *
      * @param lineCap new lineCap to use. Default value is "round"
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      */
-    public void setLineCap(LineCap lineCap) {
-        setAttribute("lineCap", lineCap == null ? null : lineCap.getValue(), true);
+    public DrawItem setLineCap(LineCap lineCap) {
+        return (DrawItem)setAttribute("lineCap", lineCap == null ? null : lineCap.getValue(), true);
     }
 
     /**
@@ -771,10 +793,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * Update lineColor for this drawItem.
      *
      * @param lineColor new line color.  Pass null for transparent. Default value is "#808080"
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      */
-    public void setLineColor(String lineColor) {
-        setAttribute("lineColor", lineColor, true);
+    public DrawItem setLineColor(String lineColor) {
+        return (DrawItem)setAttribute("lineColor", lineColor, true);
     }
 
     /**
@@ -795,9 +818,10 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * Update lineOpacity for this drawItem.
      *
      * @param lineOpacity new opacity, as a number between 0 (transparent) and 1 (opaque). Default value is 1.0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      */
-    public void setLineOpacity(float lineOpacity) {
-        setAttribute("lineOpacity", lineOpacity, true);
+    public DrawItem setLineOpacity(float lineOpacity) {
+        return (DrawItem)setAttribute("lineOpacity", lineOpacity, true);
     }
 
     /**
@@ -821,9 +845,10 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * Update linePattern for this drawItem.
      *
      * @param linePattern new linePattern to use. Default value is "solid"
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      */
-    public void setLinePattern(LinePattern linePattern) {
-        setAttribute("linePattern", linePattern == null ? null : linePattern.getValue(), true);
+    public DrawItem setLinePattern(LinePattern linePattern) {
+        return (DrawItem)setAttribute("linePattern", linePattern == null ? null : linePattern.getValue(), true);
     }
 
     /**
@@ -847,9 +872,10 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * Update lineWidth for this drawItem.
      *
      * @param lineWidth new pixel lineWidth. Default value is 3
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      */
-    public void setLineWidth(int lineWidth) {
-        setAttribute("lineWidth", lineWidth, true);
+    public DrawItem setLineWidth(int lineWidth) {
+        return (DrawItem)setAttribute("lineWidth", lineWidth, true);
     }
 
     /**
@@ -894,10 +920,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      *
      * @param moveKnobOffset the new move knob offset. This is a 2-element array of [left offset, top offset]. If null, then  <code>new int[] {0,
      * 0}</code> is assumed. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setMoveKnobPoint
      */
-    public void setMoveKnobOffset(int[] moveKnobOffset) {
-        setAttribute("moveKnobOffset", moveKnobOffset, true);
+    public DrawItem setMoveKnobOffset(int[] moveKnobOffset) {
+        return (DrawItem)setAttribute("moveKnobOffset", moveKnobOffset, true);
     }
 
     /**
@@ -923,11 +950,12 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * with {@link com.smartgwt.client.widgets.drawing.DrawItem#getMoveKnobOffset moveKnobOffset}.
      *
      * @param moveKnobPoint New moveKnobPoint value. Default value is "TL"
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setMoveKnobOffset
      */
-    public void setMoveKnobPoint(MoveKnobPoint moveKnobPoint)  throws IllegalStateException {
-        setAttribute("moveKnobPoint", moveKnobPoint == null ? null : moveKnobPoint.getValue(), false);
+    public DrawItem setMoveKnobPoint(MoveKnobPoint moveKnobPoint)  throws IllegalStateException {
+        return (DrawItem)setAttribute("moveKnobPoint", moveKnobPoint == null ? null : moveKnobPoint.getValue(), false);
     }
 
     /**
@@ -951,10 +979,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * showHover} is true.
      *
      * @param prompt New prompt value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setPrompt(String prompt) {
-        setAttribute("prompt", prompt, true);
+    public DrawItem setPrompt(String prompt) {
+        return (DrawItem)setAttribute("prompt", prompt, true);
     }
 
     /**
@@ -980,10 +1009,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * com.smartgwt.client.types.KnobType#RESIZE} {@link com.smartgwt.client.widgets.drawing.DrawItem#getKnobs control knobs}.
      *
      * @param proportionalResizing New proportionalResizing value. Default value is "modifier"
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setProportionalResizing(ProportionalResizeMode proportionalResizing)  throws IllegalStateException {
-        setAttribute("proportionalResizing", proportionalResizing == null ? null : proportionalResizing.getValue(), false);
+    public DrawItem setProportionalResizing(ProportionalResizeMode proportionalResizing)  throws IllegalStateException {
+        return (DrawItem)setAttribute("proportionalResizing", proportionalResizing == null ? null : proportionalResizing.getValue(), false);
     }
 
     /**
@@ -1007,10 +1037,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * to the draw item where resize knobs should appear.
      *
      * @param resizeKnobPoints New resizeKnobPoints value. Default value is ["TL","TR","BL","BR","T","R","B","L"]
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setResizeKnobPoints(ResizeKnobPoint... resizeKnobPoints)  throws IllegalStateException {
-        setAttribute("resizeKnobPoints", resizeKnobPoints, false);
+    public DrawItem setResizeKnobPoints(ResizeKnobPoint... resizeKnobPoints)  throws IllegalStateException {
+        return (DrawItem)setAttribute("resizeKnobPoints", resizeKnobPoints, false);
     }
 
     /**
@@ -1060,10 +1091,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * magnified or reduced during resizes as if the DrawItem were placed under a lens.
      *
      * @param resizeViaLocalTransformOnly New resizeViaLocalTransformOnly value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setResizeViaLocalTransformOnly(boolean resizeViaLocalTransformOnly)  throws IllegalStateException {
-        setAttribute("resizeViaLocalTransformOnly", resizeViaLocalTransformOnly, false);
+    public DrawItem setResizeViaLocalTransformOnly(boolean resizeViaLocalTransformOnly)  throws IllegalStateException {
+        return (DrawItem)setAttribute("resizeViaLocalTransformOnly", resizeViaLocalTransformOnly, false);
     }
 
     /**
@@ -1112,11 +1144,12 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * direction is clockwise.
      *
      * @param rotation New rotation value. Default value is 0.0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setRotation(float rotation)  throws IllegalStateException {
-        setAttribute("rotation", rotation, false);
+    public DrawItem setRotation(float rotation)  throws IllegalStateException {
+        return (DrawItem)setAttribute("rotation", rotation, false);
     }
 
     /**
@@ -1135,10 +1168,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * direction is clockwise.
      *
      * @param rotation New rotation value. Default value is 0.0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setRotation(double rotation)  throws IllegalStateException {
-        setAttribute("rotation", rotation, false);
+    public DrawItem setRotation(double rotation)  throws IllegalStateException {
+        return (DrawItem)setAttribute("rotation", rotation, false);
     }
 
     /**
@@ -1157,10 +1191,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param scale New scale value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setScale(float[] scale)  throws IllegalStateException {
-        setAttribute("scale", scale, false);
+    public DrawItem setScale(float[] scale)  throws IllegalStateException {
+        return (DrawItem)setAttribute("scale", scale, false);
     }
 
     /**
@@ -1180,10 +1215,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * Update shadow for this drawItem.
      *
      * @param shadow new shadow. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * 
      */
-    public void setShadow(Shadow shadow) {
-        setAttribute("shadow", shadow == null ? null : shadow.getJsObj(), true);
+    public DrawItem setShadow(Shadow shadow) {
+        return (DrawItem)setAttribute("shadow", shadow == null ? null : shadow.getJsObj(), true);
     }
 
     /**
@@ -1208,10 +1244,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.drawing.DrawItem#getRotation rotation}.
      *
      * @param shapeData New shapeData value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShapeData(Map shapeData)  throws IllegalStateException {
-        setAttribute("shapeData", shapeData, false);
+    public DrawItem setShapeData(Map shapeData)  throws IllegalStateException {
+        return (DrawItem)setAttribute("shapeData", shapeData, false);
     }
     
 
@@ -1220,10 +1257,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * canvas by default when the user hovers over this DrawItem?
      *
      * @param showHover New showHover value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.drawing.DrawItem#getHoverHTML
      */
-    public void setShowHover(boolean showHover) {
-        setAttribute("showHover", showHover, true);
+    public DrawItem setShowHover(boolean showHover) {
+        return (DrawItem)setAttribute("showHover", showHover, true);
     }
 
     /**
@@ -1244,10 +1282,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.drawing.DrawItem#getKnobs control knobs} will the resize outline be shown or not.
      *
      * @param showResizeOutline New showResizeOutline value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setResizeOutline
      */
-    public void setShowResizeOutline(boolean showResizeOutline) {
-        setAttribute("showResizeOutline", showResizeOutline, true);
+    public DrawItem setShowResizeOutline(boolean showResizeOutline) {
+        return (DrawItem)setAttribute("showResizeOutline", showResizeOutline, true);
     }
 
     /**
@@ -1271,10 +1310,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showTitleLabelBackground New showTitleLabelBackground value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowTitleLabelBackground(boolean showTitleLabelBackground)  throws IllegalStateException {
-        setAttribute("showTitleLabelBackground", showTitleLabelBackground, false);
+    public DrawItem setShowTitleLabelBackground(boolean showTitleLabelBackground)  throws IllegalStateException {
+        return (DrawItem)setAttribute("showTitleLabelBackground", showTitleLabelBackground, false);
     }
 
     /**
@@ -1315,10 +1355,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * Set the arrowhead at the beginning of this path. <p> <b>NOTE:</b> Not all DrawItem classes support arrowheads. You can use {@link com.smartgwt.client.widgets.drawing.DrawItem#supportsStartArrow supportsStartArrow()} to dynamically check whether a DrawItem instance supports this method.
      *
      * @param startArrow style of arrow to use. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#lines_and_arrowheads" target="examples">Lines & Arrowheads Example</a>
      */
-    public void setStartArrow(ArrowStyle startArrow) {
-        setAttribute("startArrow", startArrow == null ? null : startArrow.getValue(), true);
+    public DrawItem setStartArrow(ArrowStyle startArrow) {
+        return (DrawItem)setAttribute("startArrow", startArrow == null ? null : startArrow.getValue(), true);
     }
 
     /**
@@ -1394,11 +1435,12 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * titleAutoFitRotationMode}.
      *
      * @param titleAutoFit New titleAutoFit value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setTitleLabel
      */
-    public void setTitleAutoFit(boolean titleAutoFit)  throws IllegalStateException {
-        setAttribute("titleAutoFit", titleAutoFit, false);
+    public DrawItem setTitleAutoFit(boolean titleAutoFit)  throws IllegalStateException {
+        return (DrawItem)setAttribute("titleAutoFit", titleAutoFit, false);
     }
 
     /**
@@ -1426,11 +1468,12 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.drawing.DrawItem#getTitleAutoFit titleAutoFit}.
      *
      * @param titleAutoFitMargin New titleAutoFitMargin value. Default value is 2
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setTitleLabel
      */
-    public void setTitleAutoFitMargin(int titleAutoFitMargin)  throws IllegalStateException {
-        setAttribute("titleAutoFitMargin", titleAutoFitMargin, false);
+    public DrawItem setTitleAutoFitMargin(int titleAutoFitMargin)  throws IllegalStateException {
+        return (DrawItem)setAttribute("titleAutoFitMargin", titleAutoFitMargin, false);
     }
 
     /**
@@ -1452,12 +1495,13 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * label to become larger.
      *
      * @param titleAutoFitRotationMode New titleAutoFitRotationMode value. Default value is "auto"
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setTitleLabel
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setTitleAutoFit
      */
-    public void setTitleAutoFitRotationMode(TitleAutoFitRotationMode titleAutoFitRotationMode)  throws IllegalStateException {
-        setAttribute("titleAutoFitRotationMode", titleAutoFitRotationMode == null ? null : titleAutoFitRotationMode.getValue(), false);
+    public DrawItem setTitleAutoFitRotationMode(TitleAutoFitRotationMode titleAutoFitRotationMode)  throws IllegalStateException {
+        return (DrawItem)setAttribute("titleAutoFitRotationMode", titleAutoFitRotationMode == null ? null : titleAutoFitRotationMode.getValue(), false);
     }
 
     /**
@@ -1528,10 +1572,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param titleLabelPadding New titleLabelPadding value. Default value is 2
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTitleLabelPadding(int titleLabelPadding)  throws IllegalStateException {
-        setAttribute("titleLabelPadding", titleLabelPadding, false);
+    public DrawItem setTitleLabelPadding(int titleLabelPadding)  throws IllegalStateException {
+        return (DrawItem)setAttribute("titleLabelPadding", titleLabelPadding, false);
     }
 
     /**
@@ -1552,12 +1597,13 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param titleRotationMode New titleRotationMode value. Default value is "neverRotate"
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setTitle
      * 
      */
-    public void setTitleRotationMode(TitleRotationMode titleRotationMode)  throws IllegalStateException {
-        setAttribute("titleRotationMode", titleRotationMode == null ? null : titleRotationMode.getValue(), false);
+    public DrawItem setTitleRotationMode(TitleRotationMode titleRotationMode)  throws IllegalStateException {
+        return (DrawItem)setAttribute("titleRotationMode", titleRotationMode == null ? null : titleRotationMode.getValue(), false);
     }
 
     /**
@@ -1578,10 +1624,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param translate New translate value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTranslate(float[] translate)  throws IllegalStateException {
-        setAttribute("translate", translate, false);
+    public DrawItem setTranslate(float[] translate)  throws IllegalStateException {
+        return (DrawItem)setAttribute("translate", translate, false);
     }
 
     /**
@@ -1612,13 +1659,14 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param useSimpleTransform New useSimpleTransform value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.drawing.DrawItem#moveTo
      * @see com.smartgwt.client.widgets.drawing.DrawItem#moveBy
      * @see com.smartgwt.client.widgets.drawing.DrawItem#resizeTo
      * @see com.smartgwt.client.widgets.drawing.DrawItem#resizeBy
      */
-    public void setUseSimpleTransform(boolean useSimpleTransform) {
-        setAttribute("useSimpleTransform", useSimpleTransform, true);
+    public DrawItem setUseSimpleTransform(boolean useSimpleTransform) {
+        return (DrawItem)setAttribute("useSimpleTransform", useSimpleTransform, true);
     }
 
     /**
@@ -1655,10 +1703,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param xShearFactor New xShearFactor value. Default value is 0.0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setXShearFactor(double xShearFactor)  throws IllegalStateException {
-        setAttribute("xShearFactor", xShearFactor, false);
+    public DrawItem setXShearFactor(double xShearFactor)  throws IllegalStateException {
+        return (DrawItem)setAttribute("xShearFactor", xShearFactor, false);
     }
 
     /**
@@ -1678,10 +1727,11 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param yShearFactor New yShearFactor value. Default value is 0.0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setYShearFactor(double yShearFactor)  throws IllegalStateException {
-        setAttribute("yShearFactor", yShearFactor, false);
+    public DrawItem setYShearFactor(double yShearFactor)  throws IllegalStateException {
+        return (DrawItem)setAttribute("yShearFactor", yShearFactor, false);
     }
 
     /**
@@ -1717,11 +1767,12 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.drawing.DrawItem#bringToFront bringToFront()} / {@link
      * com.smartgwt.client.widgets.drawing.DrawItem#sendToBack sendToBack()} should not be used, as those APIs assume automatic
      * management of zIndexes. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawItem DrawItem} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ZIndex ZIndex overview and related methods
      */
-    public void setZIndex(Integer zIndex)  throws IllegalStateException {
-        setAttribute("zIndex", zIndex, false);
+    public DrawItem setZIndex(Integer zIndex)  throws IllegalStateException {
+        return (DrawItem)setAttribute("zIndex", zIndex, false);
     }
 
     /**
@@ -3006,7 +3057,7 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
     /**
      * Add a resized handler.
      * <p>
-     * Observable method called whenever a DrawItem changes size.
+     * Method called whenever  a DrawItem changes size.
      *
      * @param handler the resized handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -3696,44 +3747,44 @@ public class DrawItem extends BaseWidget implements com.smartgwt.client.widgets.
 
     /** Expose as public the setAttribute() methods of BaseWidget **/
 
-    public void setAttribute(String attribute, String value, boolean allowPostCreate) {
-        super.setAttribute(attribute, value, allowPostCreate);
+    public DrawItem setAttribute(String attribute, String value, boolean allowPostCreate) {
+        return (DrawItem)super.setAttribute(attribute, value, allowPostCreate);
     }
-    public void setAttribute(String attribute, Boolean value, boolean allowPostCreate) {
-        super.setAttribute(attribute, value, allowPostCreate);
+    public DrawItem setAttribute(String attribute, Boolean value, boolean allowPostCreate) {
+        return (DrawItem)super.setAttribute(attribute, value, allowPostCreate);
     }
-    public void setAttribute(String attribute, Map value, boolean allowPostCreate) {
-        super.setAttribute(attribute, value, allowPostCreate);
+    public DrawItem setAttribute(String attribute, Map value, boolean allowPostCreate) {
+        return (DrawItem)super.setAttribute(attribute, value, allowPostCreate);
     }
-    public void setAttribute(String attribute, int[] value, boolean allowPostCreate) {
-        super.setAttribute(attribute, value, allowPostCreate);
+    public DrawItem setAttribute(String attribute, int[] value, boolean allowPostCreate) {
+        return (DrawItem)super.setAttribute(attribute, value, allowPostCreate);
     }
-    public void setAttribute(String attribute, BaseClass[] value, boolean allowPostCreate) {
-        super.setAttribute(attribute, value, allowPostCreate);
+    public DrawItem setAttribute(String attribute, BaseClass[] value, boolean allowPostCreate) {
+        return (DrawItem)super.setAttribute(attribute, value, allowPostCreate);
     }
-    public void setAttribute(String attribute, DataClass[] value, boolean allowPostCreate) {
-        super.setAttribute(attribute, value, allowPostCreate);
+    public DrawItem setAttribute(String attribute, DataClass[] value, boolean allowPostCreate) {
+        return (DrawItem)super.setAttribute(attribute, value, allowPostCreate);
     }
-    public void setAttribute(String attribute, double value, boolean allowPostCreate) {
-        super.setAttribute(attribute, value, allowPostCreate);
+    public DrawItem setAttribute(String attribute, double value, boolean allowPostCreate) {
+        return (DrawItem)super.setAttribute(attribute, value, allowPostCreate);
     }
-    public void setAttribute(String attribute, Date value, boolean allowPostCreate) {
-        super.setAttribute(attribute, value, allowPostCreate);
+    public DrawItem setAttribute(String attribute, Date value, boolean allowPostCreate) {
+        return (DrawItem)super.setAttribute(attribute, value, allowPostCreate);
     }
-    public void setAttribute(String attribute, ValueEnum[] value, boolean allowPostCreate) {
-        super.setAttribute(attribute, value, allowPostCreate);
+    public DrawItem setAttribute(String attribute, ValueEnum[] value, boolean allowPostCreate) {
+        return (DrawItem)super.setAttribute(attribute, value, allowPostCreate);
     }
-    public void setAttribute(String attribute, DataClass value, boolean allowPostCreate) {
-        super.setAttribute(attribute, value, allowPostCreate);
+    public DrawItem setAttribute(String attribute, DataClass value, boolean allowPostCreate) {
+        return (DrawItem)super.setAttribute(attribute, value, allowPostCreate);
     }
-    public void setAttribute(String attribute, JavaScriptObject value, boolean allowPostCreate) {
-        super.setAttribute(attribute, value, allowPostCreate);
+    public DrawItem setAttribute(String attribute, JavaScriptObject value, boolean allowPostCreate) {
+        return (DrawItem)super.setAttribute(attribute, value, allowPostCreate);
     }
-    public void setAttribute(String attribute, String[] value, boolean allowPostCreate) {
-        super.setAttribute(attribute, value, allowPostCreate);
+    public DrawItem setAttribute(String attribute, String[] value, boolean allowPostCreate) {
+        return (DrawItem)super.setAttribute(attribute, value, allowPostCreate);
     }
-    public void setAttribute(String attribute, Element value, boolean allowPostCreate) {
-        super.setAttribute(attribute, value, allowPostCreate);
+    public DrawItem setAttribute(String attribute, Element value, boolean allowPostCreate) {
+        return (DrawItem)super.setAttribute(attribute, value, allowPostCreate);
     }
 
     /** Expose as public the getAttributeAsXXX() methods of BaseWidget **/

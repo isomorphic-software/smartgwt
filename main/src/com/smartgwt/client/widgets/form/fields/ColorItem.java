@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Form item for selecting a color via a pop-up {@link com.smartgwt.client.widgets.form.ColorPicker}.
@@ -168,9 +171,10 @@ public class ColorItem extends TextItem implements com.smartgwt.client.widgets.f
      * this ColorItem?<p> If false, no "More" button is shown on the simple picker
      *
      * @param allowComplexMode New allowComplexMode value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.ColorItem ColorItem} instance, for chaining setter calls
      */
-    public void setAllowComplexMode(Boolean allowComplexMode) {
-        setAttribute("allowComplexMode", allowComplexMode);
+    public ColorItem setAllowComplexMode(Boolean allowComplexMode) {
+        return (ColorItem)setAttribute("allowComplexMode", allowComplexMode);
     }
 
     /**
@@ -190,10 +194,11 @@ public class ColorItem extends TextItem implements com.smartgwt.client.widgets.f
      * com.smartgwt.client.widgets.form.ColorPicker} associated with this <code>ColorItem</code>.
      *
      * @param defaultPickerMode New defaultPickerMode value. Default value is "simple"
+     * @return {@link com.smartgwt.client.widgets.form.fields.ColorItem ColorItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.ColorPicker#setDefaultPickMode
      */
-    public void setDefaultPickerMode(ColorPickerMode defaultPickerMode) {
-        setAttribute("defaultPickerMode", defaultPickerMode == null ? null : defaultPickerMode.getValue());
+    public ColorItem setDefaultPickerMode(ColorPickerMode defaultPickerMode) {
+        return (ColorItem)setAttribute("defaultPickerMode", defaultPickerMode == null ? null : defaultPickerMode.getValue());
     }
 
     /**
@@ -218,9 +223,10 @@ public class ColorItem extends TextItem implements com.smartgwt.client.widgets.f
      * com.smartgwt.client.docs.Skinning skinning overview} for  further information.
      *
      * @param pickerIconHeight New pickerIconHeight value. Default value is 18
+     * @return {@link com.smartgwt.client.widgets.form.fields.ColorItem ColorItem} instance, for chaining setter calls
      */
-    public void setPickerIconHeight(Integer pickerIconHeight) {
-        setAttribute("pickerIconHeight", pickerIconHeight);
+    public ColorItem setPickerIconHeight(Integer pickerIconHeight) {
+        return (ColorItem)setAttribute("pickerIconHeight", pickerIconHeight);
     }
 
     /**
@@ -243,10 +249,11 @@ public class ColorItem extends TextItem implements com.smartgwt.client.widgets.f
      * Prompt to show when the user hovers the mouse over the picker icon.
      *
      * @param pickerIconPrompt New pickerIconPrompt value. Default value is "Click to select a new color"
+     * @return {@link com.smartgwt.client.widgets.form.fields.ColorItem ColorItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setPickerIconPrompt(String pickerIconPrompt) {
-        setAttribute("pickerIconPrompt", pickerIconPrompt);
+    public ColorItem setPickerIconPrompt(String pickerIconPrompt) {
+        return (ColorItem)setAttribute("pickerIconPrompt", pickerIconPrompt);
     }
 
     /**
@@ -267,10 +274,11 @@ public class ColorItem extends TextItem implements com.smartgwt.client.widgets.f
      * this property to a {@link com.smartgwt.client.docs.SCSpriteConfig} formatted string.
      *
      * @param pickerIconSrc New pickerIconSrc value. Default value is "[SKIN]/DynamicForm/ColorPicker_icon.png"
+     * @return {@link com.smartgwt.client.widgets.form.fields.ColorItem ColorItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setPickerIconSrc(String pickerIconSrc) {
-        setAttribute("pickerIconSrc", pickerIconSrc);
+    public ColorItem setPickerIconSrc(String pickerIconSrc) {
+        return (ColorItem)setAttribute("pickerIconSrc", pickerIconSrc);
     }
 
     /**
@@ -297,9 +305,10 @@ public class ColorItem extends TextItem implements com.smartgwt.client.widgets.f
      * com.smartgwt.client.docs.Skinning skinning overview} for  further information.
      *
      * @param pickerIconWidth New pickerIconWidth value. Default value is 18
+     * @return {@link com.smartgwt.client.widgets.form.fields.ColorItem ColorItem} instance, for chaining setter calls
      */
-    public void setPickerIconWidth(Integer pickerIconWidth) {
-        setAttribute("pickerIconWidth", pickerIconWidth);
+    public ColorItem setPickerIconWidth(Integer pickerIconWidth) {
+        return (ColorItem)setAttribute("pickerIconWidth", pickerIconWidth);
     }
 
     /**
@@ -322,9 +331,10 @@ public class ColorItem extends TextItem implements com.smartgwt.client.widgets.f
      * Should the pick button icon be shown for choosing colors from a ColorPicker
      *
      * @param showPickerIcon New showPickerIcon value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.ColorItem ColorItem} instance, for chaining setter calls
      */
-    public void setShowPickerIcon(Boolean showPickerIcon) {
-        setAttribute("showPickerIcon", showPickerIcon);
+    public ColorItem setShowPickerIcon(Boolean showPickerIcon) {
+        return (ColorItem)setAttribute("showPickerIcon", showPickerIcon);
     }
 
     /**
@@ -341,24 +351,25 @@ public class ColorItem extends TextItem implements com.smartgwt.client.widgets.f
     /**
      * Determines whether the {@link com.smartgwt.client.widgets.form.ColorPicker} associated with this ColorItem allows the
      * user  to set transparency/opacity information whilst selecting a color. If false, no opacity slider is shown and all
-     * colors are 100% opaque.<p> <b>Note</b> ColorItems are representations of HTML color strings, they do not implicitly
-     * support transparency.  Setting supportsTransparency to true just allows the user to  set opacity with the picker; if you
-     * actually want to capture that information,  you will also need to override {@link
-     * com.smartgwt.client.widgets.form.fields.ColorItem#addPickerColorSelectedHandler ColorItem.pickerColorSelected()}.
+     * colors are 100% opaque.<p> When an opacity value is selected, the HTML color string produced is 8 characters long
+     * because the opacity setting is included. You can also capture the the separate color and opacity information by
+     * overriding  {@link com.smartgwt.client.widgets.form.fields.ColorItem#addPickerColorSelectedHandler
+     * ColorItem.pickerColorSelected()}.
      *
      * @param supportsTransparency New supportsTransparency value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.ColorItem ColorItem} instance, for chaining setter calls
      */
-    public void setSupportsTransparency(Boolean supportsTransparency) {
-        setAttribute("supportsTransparency", supportsTransparency);
+    public ColorItem setSupportsTransparency(Boolean supportsTransparency) {
+        return (ColorItem)setAttribute("supportsTransparency", supportsTransparency);
     }
 
     /**
      * Determines whether the {@link com.smartgwt.client.widgets.form.ColorPicker} associated with this ColorItem allows the
      * user  to set transparency/opacity information whilst selecting a color. If false, no opacity slider is shown and all
-     * colors are 100% opaque.<p> <b>Note</b> ColorItems are representations of HTML color strings, they do not implicitly
-     * support transparency.  Setting supportsTransparency to true just allows the user to  set opacity with the picker; if you
-     * actually want to capture that information,  you will also need to override {@link
-     * com.smartgwt.client.widgets.form.fields.ColorItem#addPickerColorSelectedHandler ColorItem.pickerColorSelected()}.
+     * colors are 100% opaque.<p> When an opacity value is selected, the HTML color string produced is 8 characters long
+     * because the opacity setting is included. You can also capture the the separate color and opacity information by
+     * overriding  {@link com.smartgwt.client.widgets.form.fields.ColorItem#addPickerColorSelectedHandler
+     * ColorItem.pickerColorSelected()}.
      *
      * @return Current supportsTransparency value. Default value is false
      */

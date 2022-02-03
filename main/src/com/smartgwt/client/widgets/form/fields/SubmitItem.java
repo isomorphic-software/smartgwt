@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Button that saves the data in the form, by calling {@link com.smartgwt.client.widgets.form.DynamicForm#submit
@@ -166,9 +169,10 @@ public class SubmitItem extends ButtonItem {
      * SubmitItems show a title of <code>"Submit"</code> by default. May be overridden.
      *
      * @param title New title value. Default value is "Submit"
+     * @return {@link com.smartgwt.client.widgets.form.fields.SubmitItem SubmitItem} instance, for chaining setter calls
      */
-    public void setTitle(String title) {
-        setAttribute("title", title);
+    public SubmitItem setTitle(String title) {
+        return (SubmitItem)setAttribute("title", title);
     }
 
     /**

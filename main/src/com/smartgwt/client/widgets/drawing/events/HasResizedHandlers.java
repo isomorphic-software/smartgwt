@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 public interface HasResizedHandlers extends HasHandlers {
     /**
-     * Observable method called whenever a DrawItem changes size.
+     * Method called whenever  a DrawItem changes size.
      *
      * @param handler the resized handler
      * @return {@link HandlerRegistration} used to remove this handler

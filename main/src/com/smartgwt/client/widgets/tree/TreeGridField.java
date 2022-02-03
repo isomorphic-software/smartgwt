@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * An object literal with a particular set of properties used to configure the display of and interaction with the columns
@@ -138,9 +141,10 @@ public class TreeGridField extends ListGridField {
      * canExport: false.
      *
      * @param canExport New canExport value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGridField TreeGridField} instance, for chaining setter calls
      */
-    public void setCanExport(Boolean canExport) {
-        setAttribute("canExport", canExport);
+    public TreeGridField setCanExport(Boolean canExport) {
+        return (TreeGridField)setAttribute("canExport", canExport);
     }
 
     /**
@@ -166,9 +170,10 @@ public class TreeGridField extends ListGridField {
      * com.smartgwt.client.widgets.tree.Tree}.
      *
      * @param treeField New treeField value. Default value is see below
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGridField TreeGridField} instance, for chaining setter calls
      */
-    public void setTreeField(Boolean treeField) {
-        setAttribute("treeField", treeField);
+    public TreeGridField setTreeField(Boolean treeField) {
+        return (TreeGridField)setAttribute("treeField", treeField);
     }
 
     /**

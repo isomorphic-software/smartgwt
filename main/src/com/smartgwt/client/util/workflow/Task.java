@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * A Task is an abstract superclass for {@link com.smartgwt.client.util.workflow.Process} and for all Task types that can
@@ -112,20 +115,23 @@ public class Task extends ProcessElement {
 
     /**
      * Field in the {@link com.smartgwt.client.util.workflow.Process#getState process state} which is provided as input data to
-     * this task.   See {@link com.smartgwt.client.docs.TaskIO}.
+     * this task. See {@link com.smartgwt.client.docs.TaskIO}.
      *
      * @param inputField New inputField value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.Task Task} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.TaskIO TaskIO overview and related methods
      */
-    public void setInputField(String inputField)  throws IllegalStateException {
-        setAttribute("inputField", inputField, false);
+    public Task setInputField(String inputField)  throws IllegalStateException {
+        return (Task)setAttribute("inputField", inputField, false);
     }
 
     /**
      * Field in the {@link com.smartgwt.client.util.workflow.Process#getState process state} which is provided as input data to
-     * this task.   See {@link com.smartgwt.client.docs.TaskIO}.
+     * this task. See {@link com.smartgwt.client.docs.TaskIO}.
      *
      * @return Current inputField value. Default value is null
+     * @see com.smartgwt.client.docs.TaskIO TaskIO overview and related methods
      */
     public String getInputField()  {
         return getAttributeAsString("inputField");
@@ -139,10 +145,12 @@ public class Task extends ProcessElement {
      * <code>inputFieldList</code> if it is not already present.
      *
      * @param inputFieldList New inputFieldList value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.Task Task} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.TaskIO TaskIO overview and related methods
      */
-    public void setInputFieldList(String... inputFieldList)  throws IllegalStateException {
-        setAttribute("inputFieldList", inputFieldList, false);
+    public Task setInputFieldList(String... inputFieldList)  throws IllegalStateException {
+        return (Task)setAttribute("inputFieldList", inputFieldList, false);
     }
 
     /**
@@ -152,6 +160,7 @@ public class Task extends ProcessElement {
      * <code>inputFieldList</code> if it is not already present.
      *
      * @return Current inputFieldList value. Default value is null
+     * @see com.smartgwt.client.docs.TaskIO TaskIO overview and related methods
      */
     public String[] getInputFieldList()  {
         return com.smartgwt.client.util.ConvertTo.arrayOfString(getAttributeAsJavaScriptObject("inputFieldList"));
@@ -159,21 +168,49 @@ public class Task extends ProcessElement {
     
 
     /**
-     * Field in the {@link com.smartgwt.client.util.workflow.Process#getState process state} which this task writes outputs to.
-     * See {@link com.smartgwt.client.docs.TaskIO}.
+     * Special expression to write task output directly into a {@link com.smartgwt.client.widgets.DataBoundComponent}. See
+     * {@link com.smartgwt.client.docs.TaskIO}.
      *
-     * @param outputField New outputField value. Default value is null
+     * @param outputExpression New outputExpression value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.Task Task} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.TaskIO TaskIO overview and related methods
      */
-    public void setOutputField(String outputField)  throws IllegalStateException {
-        setAttribute("outputField", outputField, false);
+    public Task setOutputExpression(String outputExpression)  throws IllegalStateException {
+        return (Task)setAttribute("outputExpression", outputExpression, false);
     }
 
     /**
-     * Field in the {@link com.smartgwt.client.util.workflow.Process#getState process state} which this task writes outputs to.
+     * Special expression to write task output directly into a {@link com.smartgwt.client.widgets.DataBoundComponent}. See
+     * {@link com.smartgwt.client.docs.TaskIO}.
+     *
+     * @return Current outputExpression value. Default value is null
+     * @see com.smartgwt.client.docs.TaskIO TaskIO overview and related methods
+     */
+    public String getOutputExpression()  {
+        return getAttributeAsString("outputExpression");
+    }
+    
+
+    /**
+     * Field in the {@link com.smartgwt.client.util.workflow.Process#getState process state} where this task writes outputs.
+     * See {@link com.smartgwt.client.docs.TaskIO}.
+     *
+     * @param outputField New outputField value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.Task Task} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.TaskIO TaskIO overview and related methods
+     */
+    public Task setOutputField(String outputField)  throws IllegalStateException {
+        return (Task)setAttribute("outputField", outputField, false);
+    }
+
+    /**
+     * Field in the {@link com.smartgwt.client.util.workflow.Process#getState process state} where this task writes outputs.
      * See {@link com.smartgwt.client.docs.TaskIO}.
      *
      * @return Current outputField value. Default value is null
+     * @see com.smartgwt.client.docs.TaskIO TaskIO overview and related methods
      */
     public String getOutputField()  {
         return getAttributeAsString("outputField");
@@ -181,25 +218,28 @@ public class Task extends ProcessElement {
     
 
     /**
-     * List of multiple fields from the {@link com.smartgwt.client.util.workflow.Process#getState process state} which this
-     * task will write to. See {@link com.smartgwt.client.docs.TaskIO}.   <P> If {@link
+     * List of multiple fields in the {@link com.smartgwt.client.util.workflow.Process#getState process state} where this task
+     * will write outputs. See {@link com.smartgwt.client.docs.TaskIO}.   <P> If {@link
      * com.smartgwt.client.util.workflow.Task#getOutputField outputField} is also specified, it will be implicitly added to the
      * <code>outputFieldList</code> if it is not already present.
      *
      * @param outputFieldList New outputFieldList value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.Task Task} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.TaskIO TaskIO overview and related methods
      */
-    public void setOutputFieldList(String... outputFieldList)  throws IllegalStateException {
-        setAttribute("outputFieldList", outputFieldList, false);
+    public Task setOutputFieldList(String... outputFieldList)  throws IllegalStateException {
+        return (Task)setAttribute("outputFieldList", outputFieldList, false);
     }
 
     /**
-     * List of multiple fields from the {@link com.smartgwt.client.util.workflow.Process#getState process state} which this
-     * task will write to. See {@link com.smartgwt.client.docs.TaskIO}.   <P> If {@link
+     * List of multiple fields in the {@link com.smartgwt.client.util.workflow.Process#getState process state} where this task
+     * will write outputs. See {@link com.smartgwt.client.docs.TaskIO}.   <P> If {@link
      * com.smartgwt.client.util.workflow.Task#getOutputField outputField} is also specified, it will be implicitly added to the
      * <code>outputFieldList</code> if it is not already present.
      *
      * @return Current outputFieldList value. Default value is null
+     * @see com.smartgwt.client.docs.TaskIO TaskIO overview and related methods
      */
     public String[] getOutputFieldList()  {
         return com.smartgwt.client.util.ConvertTo.arrayOfString(getAttributeAsJavaScriptObject("outputFieldList"));

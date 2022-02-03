@@ -3,11 +3,11 @@ package com.smartgwt.client.docs;
 
 /**
  * Basic definition of a DataSource field
- * @see com.smartgwt.client.widgets.viewer.DetailViewer#getData
- * @see com.smartgwt.client.widgets.tile.TileGrid#getShowAllRecords
  * @see com.smartgwt.client.data.DataSourceField#getName
  * @see com.smartgwt.client.data.DataSourceField#getType
  * @see com.smartgwt.client.widgets.Canvas#getID
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#getData
+ * @see com.smartgwt.client.widgets.tile.TileGrid#getShowAllRecords
  * @see com.smartgwt.client.widgets.StatefulCanvas#getTitle
  * @see com.smartgwt.client.widgets.Button#getTitle
  * @see com.smartgwt.client.widgets.Button#getWrap

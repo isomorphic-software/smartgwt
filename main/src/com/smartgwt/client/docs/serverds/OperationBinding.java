@@ -39,6 +39,17 @@ import java.util.Map;
 public class OperationBinding {
 
     /**
+     * A comma-separated list of field names that must be present in criteria / advancedCriteria
+     * provided by the caller. Failure to provide any one of these will yield a {@link
+     * com.smartgwt.client.rpc.RPCResponse#STATUS_CRITERIA_REQUIRED_ERROR
+     * STATUS_CRITERIA_REQUIRED_ERROR} from the server.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     */
+    public String requiredCriterion;
+
+    /**
      * If set, every invocation of this operationBinding will invalidate the local cache, forcing a
      * server visit to refresh the data.
      *
@@ -753,7 +764,9 @@ public class OperationBinding {
      * operations.  Therefore, the recommended pattern is to use a  {@link
      * com.smartgwt.client.data.DataSource#performCustomOperation custom operation} from the client to
      * invoke a DMI on the server which performs the multi-update operation via a second, server-side
-     * DSRequest.
+     * DSRequest.   <p> In any case, it's normally a good idea to set {@link
+     * com.smartgwt.client.docs.serverds.OperationBinding#requiredCriterion requiredCriterion}  on the
+     * multi-update operation to ensure that the alternative criteria is present as expected.
      *
      * <p>Default value is null
      * @see com.smartgwt.client.docs.serverds.OperationBinding#providesMissingKeys

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -215,11 +218,12 @@ public class CalendarView extends ListGrid {
      * CSS class applied to the {@link com.smartgwt.client.widgets.calendar.CalendarView#getEventDragCanvas eventDragCanvas}.
      *
      * @param eventDragCanvasStyleName New eventDragCanvasStyleName value. Default value is "eventDragCanvas"
+     * @return {@link com.smartgwt.client.widgets.calendar.CalendarView CalendarView} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setEventDragCanvasStyleName(String eventDragCanvasStyleName)  throws IllegalStateException {
-        setAttribute("eventDragCanvasStyleName", eventDragCanvasStyleName, false);
+    public CalendarView setEventDragCanvasStyleName(String eventDragCanvasStyleName)  throws IllegalStateException {
+        return (CalendarView)setAttribute("eventDragCanvasStyleName", eventDragCanvasStyleName, false);
     }
 
     /**
@@ -239,11 +243,12 @@ public class CalendarView extends ListGrid {
      * {@link com.smartgwt.client.widgets.calendar.CalendarEvent#getStyleName style specified}.
      *
      * @param eventStyleName New eventStyleName value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.CalendarView CalendarView} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setEventStyleName(String eventStyleName) {
-        setAttribute("eventStyleName", eventStyleName, true);
+    public CalendarView setEventStyleName(String eventStyleName) {
+        return (CalendarView)setAttribute("eventStyleName", eventStyleName, true);
     }
 
     /**
@@ -265,9 +270,10 @@ public class CalendarView extends ListGrid {
      * change?
      *
      * @param useEventCanvasPool New useEventCanvasPool value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.CalendarView CalendarView} instance, for chaining setter calls
      */
-    public void setUseEventCanvasPool(Boolean useEventCanvasPool) {
-        setAttribute("useEventCanvasPool", useEventCanvasPool, true);
+    public CalendarView setUseEventCanvasPool(Boolean useEventCanvasPool) {
+        return (CalendarView)setAttribute("useEventCanvasPool", useEventCanvasPool, true);
     }
 
     /**

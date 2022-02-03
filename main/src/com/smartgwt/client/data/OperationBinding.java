@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * An operationBinding tells a DataSource how to execute one of the basic DS operations: fetch, add, update, remove.  See
@@ -116,10 +119,11 @@ public class OperationBinding extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param allowAdvancedCriteria New allowAdvancedCriteria value. Default value is null
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      * @see com.smartgwt.client.data.DataSource#setAllowAdvancedCriteria
      */
-    public void setAllowAdvancedCriteria(Boolean allowAdvancedCriteria) {
-        setAttribute("allowAdvancedCriteria", allowAdvancedCriteria);
+    public OperationBinding setAllowAdvancedCriteria(Boolean allowAdvancedCriteria) {
+        return (OperationBinding)setAttribute("allowAdvancedCriteria", allowAdvancedCriteria);
     }
 
     /**
@@ -143,11 +147,12 @@ public class OperationBinding extends DataClass {
      * A per-operationBinding setting for beanClassName, otherwise also settable at the top-level DataSource configuration.
      *
      * @param beanClassName New beanClassName value. Default value is null
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.serverds.DataSource#beanClassName
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public void setBeanClassName(String beanClassName) {
-        setAttribute("beanClassName", beanClassName);
+    public OperationBinding setBeanClassName(String beanClassName) {
+        return (OperationBinding)setAttribute("beanClassName", beanClassName);
     }
 
     /**
@@ -168,11 +173,12 @@ public class OperationBinding extends DataClass {
      * {@link com.smartgwt.client.data.DataSource#getCallbackParam DataSource.callbackParam}.
      *
      * @param callbackParam New callbackParam value. Default value is "callback"
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      * @see com.smartgwt.client.data.DataSource#setCallbackParam
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public void setCallbackParam(String callbackParam) {
-        setAttribute("callbackParam", callbackParam);
+    public OperationBinding setCallbackParam(String callbackParam) {
+        return (OperationBinding)setAttribute("callbackParam", callbackParam);
     }
 
     /**
@@ -196,10 +202,11 @@ public class OperationBinding extends DataClass {
      * com.smartgwt.client.data.DataSource#getDataFormat DataSource.dataFormat}.
      *
      * @param dataFormat New dataFormat value. Default value is "iscServer"
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public void setDataFormat(DSDataFormat dataFormat) {
-        setAttribute("dataFormat", dataFormat == null ? null : dataFormat.getValue());
+    public OperationBinding setDataFormat(DSDataFormat dataFormat) {
+        return (OperationBinding)setAttribute("dataFormat", dataFormat == null ? null : dataFormat.getValue());
     }
 
     /**
@@ -233,11 +240,12 @@ public class OperationBinding extends DataClass {
      * access request data and form responses.
      *
      * @param dataProtocol New dataProtocol value. Default value is "getParams"
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      * @see com.smartgwt.client.types.DSProtocol
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public void setDataProtocol(DSProtocol dataProtocol) {
-        setAttribute("dataProtocol", dataProtocol == null ? null : dataProtocol.getValue());
+    public OperationBinding setDataProtocol(DSProtocol dataProtocol) {
+        return (OperationBinding)setAttribute("dataProtocol", dataProtocol == null ? null : dataProtocol.getValue());
     }
 
     /**
@@ -277,12 +285,13 @@ public class OperationBinding extends DataClass {
      * the name of the query parameter name expected by your JSON service provider.
      *
      * @param dataTransport New dataTransport value. Default value is RPCManager.defaultTransport
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      * @see com.smartgwt.client.types.RPCTransport
      * @see com.smartgwt.client.data.DataSource#setCallbackParam
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public void setDataTransport(RPCTransport dataTransport) {
-        setAttribute("dataTransport", dataTransport == null ? null : dataTransport.getValue());
+    public OperationBinding setDataTransport(RPCTransport dataTransport) {
+        return (OperationBinding)setAttribute("dataTransport", dataTransport == null ? null : dataTransport.getValue());
     }
 
     /**
@@ -311,11 +320,12 @@ public class OperationBinding extends DataClass {
      * DataSource.serviceNamespace} is set).
      *
      * @param dataURL New dataURL value. Default value is null
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.URL URL 
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public void setDataURL(String dataURL) {
-        setAttribute("dataURL", dataURL);
+    public OperationBinding setDataURL(String dataURL) {
+        return (OperationBinding)setAttribute("dataURL", dataURL);
     }
 
     /**
@@ -339,10 +349,11 @@ public class OperationBinding extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param defaultParams New defaultParams value. Default value is null
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public void setDefaultParams(Map defaultParams) {
-        setAttribute("defaultParams", defaultParams);
+    public OperationBinding setDefaultParams(Map defaultParams) {
+        return (OperationBinding)setAttribute("defaultParams", defaultParams);
     }
 
     /**
@@ -362,9 +373,10 @@ public class OperationBinding extends DataClass {
      * for more information.
      *
      * @param exportAs New exportAs value. Default value is "csv"
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      */
-    public void setExportAs(ExportFormat exportAs) {
-        setAttribute("exportAs", exportAs == null ? null : exportAs.getValue());
+    public OperationBinding setExportAs(ExportFormat exportAs) {
+        return (OperationBinding)setAttribute("exportAs", exportAs == null ? null : exportAs.getValue());
     }
 
     /**
@@ -384,9 +396,10 @@ public class OperationBinding extends DataClass {
      * (field.hidden=false), sorted in the order they're defined.
      *
      * @param exportFields New exportFields value. Default value is null
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      */
-    public void setExportFields(String... exportFields) {
-        setAttribute("exportFields", exportFields);
+    public OperationBinding setExportFields(String... exportFields) {
+        return (OperationBinding)setAttribute("exportFields", exportFields);
     }
 
     /**
@@ -405,9 +418,10 @@ public class OperationBinding extends DataClass {
      * The name of the file to save the exported data into.
      *
      * @param exportFilename New exportFilename value. Default value is null
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      */
-    public void setExportFilename(String exportFilename) {
-        setAttribute("exportFilename", exportFilename);
+    public OperationBinding setExportFilename(String exportFilename) {
+        return (OperationBinding)setAttribute("exportFilename", exportFilename);
     }
 
     /**
@@ -470,9 +484,10 @@ public class OperationBinding extends DataClass {
      *  </pre>
      *
      * @param exportResults New exportResults value. Default value is false
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      */
-    public void setExportResults(boolean exportResults) {
-        setAttribute("exportResults", exportResults);
+    public OperationBinding setExportResults(boolean exportResults) {
+        return (OperationBinding)setAttribute("exportResults", exportResults);
     }
 
     /**
@@ -539,9 +554,10 @@ public class OperationBinding extends DataClass {
      * data.
      *
      * @param invalidateCache New invalidateCache value. Default value is null
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      */
-    public void setInvalidateCache(Boolean invalidateCache) {
-        setAttribute("invalidateCache", invalidateCache);
+    public OperationBinding setInvalidateCache(Boolean invalidateCache) {
+        return (OperationBinding)setAttribute("invalidateCache", invalidateCache);
     }
 
     /**
@@ -560,9 +576,10 @@ public class OperationBinding extends DataClass {
      * information.
      *
      * @param lineBreakStyle New lineBreakStyle value. Default value is null
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      */
-    public void setLineBreakStyle(String lineBreakStyle) {
-        setAttribute("lineBreakStyle", lineBreakStyle);
+    public OperationBinding setLineBreakStyle(String lineBreakStyle) {
+        return (OperationBinding)setAttribute("lineBreakStyle", lineBreakStyle);
     }
 
     /**
@@ -584,10 +601,11 @@ public class OperationBinding extends DataClass {
      * com.smartgwt.client.data.DSRequest#getOperationId DSRequest.operationId} for usage.
      *
      * @param operationId New operationId value. Default value is null
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public void setOperationId(String operationId) {
-        setAttribute("operationId", operationId);
+    public OperationBinding setOperationId(String operationId) {
+        return (OperationBinding)setAttribute("operationId", operationId);
     }
 
     /**
@@ -608,10 +626,11 @@ public class OperationBinding extends DataClass {
      * DataSource as a whole.
      *
      * @param operationType New operationType value. Default value is null
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public void setOperationType(DSOperationType operationType) {
-        setAttribute("operationType", operationType == null ? null : operationType.getValue());
+    public OperationBinding setOperationType(DSOperationType operationType) {
+        return (OperationBinding)setAttribute("operationType", operationType == null ? null : operationType.getValue());
     }
 
     /**
@@ -633,9 +652,10 @@ public class OperationBinding extends DataClass {
      * per-operationType basis.
      *
      * @param preventHTTPCaching New preventHTTPCaching value. Default value is null
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      */
-    public void setPreventHTTPCaching(Boolean preventHTTPCaching) {
-        setAttribute("preventHTTPCaching", preventHTTPCaching);
+    public OperationBinding setPreventHTTPCaching(Boolean preventHTTPCaching) {
+        return (OperationBinding)setAttribute("preventHTTPCaching", preventHTTPCaching);
     }
 
     /**
@@ -659,11 +679,11 @@ public class OperationBinding extends DataClass {
      * <code>complexType</code> declared within the WebService's WSDL file.
      *
      * @param recordName New recordName value. Default value is null
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
-     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_weather" target="examples">Weather SOAP Search Example</a>
      */
-    public void setRecordName(String recordName) {
-        setAttribute("recordName", recordName);
+    public OperationBinding setRecordName(String recordName) {
+        return (OperationBinding)setAttribute("recordName", recordName);
     }
 
     /**
@@ -674,7 +694,6 @@ public class OperationBinding extends DataClass {
      *
      * @return Current recordName value. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
-     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_weather" target="examples">Weather SOAP Search Example</a>
      */
     public String getRecordName()  {
         return getAttributeAsString("recordName");
@@ -696,11 +715,12 @@ public class OperationBinding extends DataClass {
      * >http://www.google.com/search?q=xpath+tutorial</a>
      *
      * @param recordXPath New recordXPath value. Default value is null
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.XPathExpression XPathExpression 
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public void setRecordXPath(String recordXPath) {
-        setAttribute("recordXPath", recordXPath);
+    public OperationBinding setRecordXPath(String recordXPath) {
+        return (OperationBinding)setAttribute("recordXPath", recordXPath);
     }
 
     /**
@@ -733,16 +753,17 @@ public class OperationBinding extends DataClass {
      * before {@link com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest()} is called.
      *
      * @param requestProperties New requestProperties value. Default value is null
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      * @see com.smartgwt.client.data.DSRequest
      * @see com.smartgwt.client.data.DataSource#setRequestProperties
      * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
      */
-    public void setRequestProperties(DSRequest requestProperties) {
+    public OperationBinding setRequestProperties(DSRequest requestProperties) {
         JavaScriptObject config = JSOHelper.createObject();
         if (requestProperties != null) {
             JSOHelper.addProperties(config, requestProperties.getJsObj());
         }
-        setAttribute("requestProperties", requestProperties == null ? null : config);
+        return (OperationBinding)setAttribute("requestProperties", requestProperties == null ? null : config);
     }
 
     /**
@@ -760,6 +781,34 @@ public class OperationBinding extends DataClass {
         return new DSRequest(getAttributeAsJavaScriptObject("requestProperties"));
     }
     
+
+    /**
+     * A comma-separated list of field names that must be present in criteria / advancedCriteria provided by the caller.
+     * Failure to provide any one of these will yield a {@link
+     * com.smartgwt.client.rpc.RPCResponse#STATUS_CRITERIA_REQUIRED_ERROR STATUS_CRITERIA_REQUIRED_ERROR} from the server.
+     *
+     * @param requiredCriterion New requiredCriterion value. Default value is null
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#required-criteria" target="examples">Required Criteria Example</a>
+     */
+    public OperationBinding setRequiredCriterion(String requiredCriterion) {
+        return (OperationBinding)setAttribute("requiredCriterion", requiredCriterion);
+    }
+
+    /**
+     * A comma-separated list of field names that must be present in criteria / advancedCriteria provided by the caller.
+     * Failure to provide any one of these will yield a {@link
+     * com.smartgwt.client.rpc.RPCResponse#STATUS_CRITERIA_REQUIRED_ERROR STATUS_CRITERIA_REQUIRED_ERROR} from the server.
+     *
+     * @return Current requiredCriterion value. Default value is null
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#required-criteria" target="examples">Required Criteria Example</a>
+     */
+    public String getRequiredCriterion()  {
+        return getAttributeAsString("requiredCriterion");
+    }
+    
     
     
     
@@ -774,10 +823,11 @@ public class OperationBinding extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param responseDataSchema New responseDataSchema value. Default value is null
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public void setResponseDataSchema(DataSource responseDataSchema) {
-        setAttribute("responseDataSchema", responseDataSchema == null ? null : responseDataSchema.getOrCreateJsObj());
+    public OperationBinding setResponseDataSchema(DataSource responseDataSchema) {
+        return (OperationBinding)setAttribute("responseDataSchema", responseDataSchema == null ? null : responseDataSchema.getOrCreateJsObj());
     }
 
     /**
@@ -811,10 +861,11 @@ public class OperationBinding extends DataClass {
      * com.smartgwt.client.data.OperationBinding#getDataURL dataURL} setting to point to it.
      *
      * @param spoofResponses New spoofResponses value. Default value is false
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public void setSpoofResponses(boolean spoofResponses) {
-        setAttribute("spoofResponses", spoofResponses);
+    public OperationBinding setSpoofResponses(boolean spoofResponses) {
+        return (OperationBinding)setAttribute("spoofResponses", spoofResponses);
     }
 
     /**
@@ -855,10 +906,11 @@ public class OperationBinding extends DataClass {
      * be available in data binding, and only the first field will be populated in the generated XML message.
      *
      * @param useFlatFields New useFlatFields value. Default value is false
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public void setUseFlatFields(boolean useFlatFields) {
-        setAttribute("useFlatFields", useFlatFields);
+    public OperationBinding setUseFlatFields(boolean useFlatFields) {
+        return (OperationBinding)setAttribute("useFlatFields", useFlatFields);
     }
 
     /**
@@ -891,10 +943,11 @@ public class OperationBinding extends DataClass {
      * settings other than ISCServer.
      *
      * @param useHttpProxy New useHttpProxy value. Default value is null
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public void setUseHttpProxy(Boolean useHttpProxy) {
-        setAttribute("useHttpProxy", useHttpProxy);
+    public OperationBinding setUseHttpProxy(Boolean useHttpProxy) {
+        return (OperationBinding)setAttribute("useHttpProxy", useHttpProxy);
     }
 
     /**
@@ -923,11 +976,11 @@ public class OperationBinding extends DataClass {
      * DataSource.transformRequest()} for how to customize what data is sent to the server.
      *
      * @param wsOperation New wsOperation value. Default value is null
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
-     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_weather" target="examples">Weather SOAP Search Example</a>
      */
-    public void setWsOperation(String wsOperation) {
-        setAttribute("wsOperation", wsOperation);
+    public OperationBinding setWsOperation(String wsOperation) {
+        return (OperationBinding)setAttribute("wsOperation", wsOperation);
     }
 
     /**
@@ -941,7 +994,6 @@ public class OperationBinding extends DataClass {
      *
      * @return Current wsOperation value. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
-     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_weather" target="examples">Weather SOAP Search Example</a>
      */
     public String getWsOperation()  {
         return getAttributeAsString("wsOperation");
@@ -977,11 +1029,12 @@ public class OperationBinding extends DataClass {
      *  >http://www.google.com/search?q=XPath+xml+namespaces</a>
      *
      * @param xmlNamespaces New xmlNamespaces value. Default value is null
+     * @return {@link com.smartgwt.client.data.OperationBinding OperationBinding} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#yahoo_xml_integration_category" target="examples">Yahoo! XML Services Example</a>
      */
-    public void setXmlNamespaces(XmlNamespaces xmlNamespaces) {
-        setAttribute("xmlNamespaces", xmlNamespaces == null ? null : xmlNamespaces.getJsObj());
+    public OperationBinding setXmlNamespaces(XmlNamespaces xmlNamespaces) {
+        return (OperationBinding)setAttribute("xmlNamespaces", xmlNamespaces == null ? null : xmlNamespaces.getJsObj());
     }
 
     /**

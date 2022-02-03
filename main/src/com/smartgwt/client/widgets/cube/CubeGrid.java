@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -233,10 +236,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      *  If enabled, the cell style for alternate rows will have "Dark" appended to it.
      *
      * @param alternateRecordStyles New alternateRecordStyles value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setAlternateRecordStyles(Boolean alternateRecordStyles) {
-        setAttribute("alternateRecordStyles", alternateRecordStyles, true);
+    public CubeGrid setAlternateRecordStyles(Boolean alternateRecordStyles) {
+        return (CubeGrid)setAttribute("alternateRecordStyles", alternateRecordStyles, true);
     }
 
     /**
@@ -259,11 +263,12 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * com.smartgwt.client.widgets.grid.ListGrid#fetchData fetchData()} call.
      *
      * @param autoFetchTextMatchStyle New autoFetchTextMatchStyle value. Default value is "exact"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
-    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
-        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle == null ? null : autoFetchTextMatchStyle.getValue(), false);
+    public CubeGrid setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle == null ? null : autoFetchTextMatchStyle.getValue(), false);
     }
 
     /**
@@ -285,10 +290,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * com.smartgwt.client.widgets.cube.CubeGrid#getDefaultFacetWidth defaultFacetWidth}.
      *
      * @param autoFitFieldWidths New autoFitFieldWidths value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAutoFitFieldWidths(Boolean autoFitFieldWidths)  throws IllegalStateException {
-        setAttribute("autoFitFieldWidths", autoFitFieldWidths, false);
+    public CubeGrid setAutoFitFieldWidths(Boolean autoFitFieldWidths)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("autoFitFieldWidths", autoFitFieldWidths, false);
     }
 
     /**
@@ -308,9 +314,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * headers are automatically kept in sync.
      *
      * @param autoSelectHeaders New autoSelectHeaders value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setAutoSelectHeaders(Boolean autoSelectHeaders) {
-        setAttribute("autoSelectHeaders", autoSelectHeaders, true);
+    public CubeGrid setAutoSelectHeaders(Boolean autoSelectHeaders) {
+        return (CubeGrid)setAttribute("autoSelectHeaders", autoSelectHeaders, true);
     }
 
     /**
@@ -329,10 +336,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Whether to select cells in the body when row or column headers are selected.
      *
      * @param autoSelectValues New autoSelectValues value. Default value is "both"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAutoSelectValues(AutoSelectionModel autoSelectValues)  throws IllegalStateException {
-        setAttribute("autoSelectValues", autoSelectValues == null ? null : autoSelectValues.getValue(), false);
+    public CubeGrid setAutoSelectValues(AutoSelectionModel autoSelectValues)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("autoSelectValues", autoSelectValues == null ? null : autoSelectValues.getValue(), false);
     }
 
     /**
@@ -349,9 +357,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Automatically size row headers to fit wrapped text.
      *
      * @param autoSizeHeaders New autoSizeHeaders value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setAutoSizeHeaders(Boolean autoSizeHeaders) {
-        setAttribute("autoSizeHeaders", autoSizeHeaders, true);
+    public CubeGrid setAutoSizeHeaders(Boolean autoSizeHeaders) {
+        return (CubeGrid)setAttribute("autoSizeHeaders", autoSizeHeaders, true);
     }
 
     /**
@@ -374,12 +383,13 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * generate stateful cell styles.
      *
      * @param baseStyle New baseStyle value. Default value is "cubeCell"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setBaseStyle(String baseStyle)  throws IllegalStateException {
-        setAttribute("baseStyle", baseStyle, false);
+    public CubeGrid setBaseStyle(String baseStyle)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("baseStyle", baseStyle, false);
     }
 
     /**
@@ -405,9 +415,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param bodyMinHeight New bodyMinHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setBodyMinHeight(Integer bodyMinHeight) {
-        setAttribute("bodyMinHeight", bodyMinHeight, true);
+    public CubeGrid setBodyMinHeight(Integer bodyMinHeight) {
+        return (CubeGrid)setAttribute("bodyMinHeight", bodyMinHeight, true);
     }
 
     /**
@@ -425,9 +436,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param bodyMinWidth New bodyMinWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setBodyMinWidth(Integer bodyMinWidth) {
-        setAttribute("bodyMinWidth", bodyMinWidth, true);
+    public CubeGrid setBodyMinWidth(Integer bodyMinWidth) {
+        return (CubeGrid)setAttribute("bodyMinWidth", bodyMinWidth, true);
     }
 
     /**
@@ -444,11 +456,12 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * CSS class for the CubeGrid body
      *
      * @param bodyStyleName New bodyStyleName value. Default value is "cubeGridBody"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setBodyStyleName(String bodyStyleName) {
-        setAttribute("bodyStyleName", bodyStyleName, true);
+    public CubeGrid setBodyStyleName(String bodyStyleName) {
+        return (CubeGrid)setAttribute("bodyStyleName", bodyStyleName, true);
     }
 
     /**
@@ -468,10 +481,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * facetValues for that facet.
      *
      * @param canCollapseFacets New canCollapseFacets value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.cube.CubeGrid#setRowHeaderGridMode
      */
-    public void setCanCollapseFacets(Boolean canCollapseFacets) {
-        setAttribute("canCollapseFacets", canCollapseFacets, true);
+    public CubeGrid setCanCollapseFacets(Boolean canCollapseFacets) {
+        return (CubeGrid)setAttribute("canCollapseFacets", canCollapseFacets, true);
     }
 
     /**
@@ -498,10 +512,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * scrolling enabled and provide an alternative set of controls that can be used to perform drag-selection.
      *
      * @param canDragSelect New canDragSelect value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanDragSelect(Boolean canDragSelect)  throws IllegalStateException {
-        setAttribute("canDragSelect", canDragSelect, false);
+    public CubeGrid setCanDragSelect(Boolean canDragSelect)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("canDragSelect", canDragSelect, false);
     }
 
     /**
@@ -525,9 +540,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Whether cells can be edited in this grid.  Can be overridden on a per-facetValue basis.
      *
      * @param canEdit New canEdit value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setCanEdit(Boolean canEdit) {
-        setAttribute("canEdit", canEdit, true);
+    public CubeGrid setCanEdit(Boolean canEdit) {
+        return (CubeGrid)setAttribute("canEdit", canEdit, true);
     }
 
     /**
@@ -546,9 +562,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * minimize control in the innermost column headers.
      *
      * @param canMinimizeColumns New canMinimizeColumns value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setCanMinimizeColumns(Boolean canMinimizeColumns) {
-        setAttribute("canMinimizeColumns", canMinimizeColumns, true);
+    public CubeGrid setCanMinimizeColumns(Boolean canMinimizeColumns) {
+        return (CubeGrid)setAttribute("canMinimizeColumns", canMinimizeColumns, true);
     }
 
     /**
@@ -569,9 +586,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * indicate which facetValues should be shown when a facet is minimized.
      *
      * @param canMinimizeFacets New canMinimizeFacets value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setCanMinimizeFacets(Boolean canMinimizeFacets) {
-        setAttribute("canMinimizeFacets", canMinimizeFacets, true);
+    public CubeGrid setCanMinimizeFacets(Boolean canMinimizeFacets) {
+        return (CubeGrid)setAttribute("canMinimizeFacets", canMinimizeFacets, true);
     }
 
     /**
@@ -592,9 +610,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Whether row and column facets can be rearranged by the user, by dragging and dropping the facet labels.
      *
      * @param canMoveFacets New canMoveFacets value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setCanMoveFacets(Boolean canMoveFacets) {
-        setAttribute("canMoveFacets", canMoveFacets, true);
+    public CubeGrid setCanMoveFacets(Boolean canMoveFacets) {
+        return (CubeGrid)setAttribute("canMoveFacets", canMoveFacets, true);
     }
 
     /**
@@ -612,9 +631,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * If true, body columns can be reordered via the innermost column headers.
      *
      * @param canReorderColumns New canReorderColumns value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setCanReorderColumns(Boolean canReorderColumns) {
-        setAttribute("canReorderColumns", canReorderColumns, true);
+    public CubeGrid setCanReorderColumns(Boolean canReorderColumns) {
+        return (CubeGrid)setAttribute("canReorderColumns", canReorderColumns, true);
     }
 
     /**
@@ -631,9 +651,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * If true, body columns can be resized via the innermost column headers.
      *
      * @param canResizeColumns New canResizeColumns value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setCanResizeColumns(Boolean canResizeColumns) {
-        setAttribute("canResizeColumns", canResizeColumns, true);
+    public CubeGrid setCanResizeColumns(Boolean canResizeColumns) {
+        return (CubeGrid)setAttribute("canResizeColumns", canResizeColumns, true);
     }
 
     /**
@@ -650,9 +671,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Determines whether row or column facetValue headers can be selected.
      *
      * @param canSelectHeaders New canSelectHeaders value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setCanSelectHeaders(Boolean canSelectHeaders) {
-        setAttribute("canSelectHeaders", canSelectHeaders, true);
+    public CubeGrid setCanSelectHeaders(Boolean canSelectHeaders) {
+        return (CubeGrid)setAttribute("canSelectHeaders", canSelectHeaders, true);
     }
 
     /**
@@ -670,9 +692,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Determines whether cell values in the body can be selected.
      *
      * @param canSelectValues New canSelectValues value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setCanSelectValues(Boolean canSelectValues) {
-        setAttribute("canSelectValues", canSelectValues, true);
+    public CubeGrid setCanSelectValues(Boolean canSelectValues) {
+        return (CubeGrid)setAttribute("canSelectValues", canSelectValues, true);
     }
 
     /**
@@ -691,9 +714,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * com.smartgwt.client.widgets.cube.CubeGrid#addSortByFacetValuesHandler CubeGrid.sortByFacetValues()}.
      *
      * @param canSortData New canSortData value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setCanSortData(Boolean canSortData) {
-        setAttribute("canSortData", canSortData, true);
+    public CubeGrid setCanSortData(Boolean canSortData) {
+        return (CubeGrid)setAttribute("canSortData", canSortData, true);
     }
 
     /**
@@ -712,9 +736,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * com.smartgwt.client.widgets.cube.CubeGrid#addSortByFacetIdHandler CubeGrid.sortByFacetId()}.
      *
      * @param canSortFacets New canSortFacets value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setCanSortFacets(Boolean canSortFacets) {
-        setAttribute("canSortFacets", canSortFacets, true);
+    public CubeGrid setCanSortFacets(Boolean canSortFacets) {
+        return (CubeGrid)setAttribute("canSortFacets", canSortFacets, true);
     }
 
     /**
@@ -732,9 +757,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Default align for cell values (in body).
      *
      * @param cellAlign New cellAlign value. Default value is "center"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setCellAlign(Alignment cellAlign) {
-        setAttribute("cellAlign", cellAlign == null ? null : cellAlign.getValue(), true);
+    public CubeGrid setCellAlign(Alignment cellAlign) {
+        return (CubeGrid)setAttribute("cellAlign", cellAlign == null ? null : cellAlign.getValue(), true);
     }
 
     /**
@@ -751,11 +777,12 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Name of the property in a cell record that holds it's unique ID.  Note cell record IDs are optional.
      *
      * @param cellIdProperty New cellIdProperty value. Default value is "ID"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Identifier Identifier 
      */
-    public void setCellIdProperty(String cellIdProperty)  throws IllegalStateException {
-        setAttribute("cellIdProperty", cellIdProperty, false);
+    public CubeGrid setCellIdProperty(String cellIdProperty)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("cellIdProperty", cellIdProperty, false);
     }
 
     /**
@@ -775,10 +802,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * com.smartgwt.client.util.isc#confirm confirmation dialog}. <P> Set to 0 to disable this confirmation.
      *
      * @param chartConfirmThreshold New chartConfirmThreshold value. Default value is 2000
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setChartConfirmThreshold(int chartConfirmThreshold)  throws IllegalStateException {
-        setAttribute("chartConfirmThreshold", chartConfirmThreshold, false);
+    public CubeGrid setChartConfirmThreshold(int chartConfirmThreshold)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("chartConfirmThreshold", chartConfirmThreshold, false);
     }
 
     /**
@@ -797,10 +825,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Name of the Smart GWT Class to be used when creating charts.  Must support the Chart interface.
      *
      * @param chartConstructor New chartConstructor value. Default value is "FacetChart"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setChartConstructor(String chartConstructor)  throws IllegalStateException {
-        setAttribute("chartConstructor", chartConstructor, false);
+    public CubeGrid setChartConstructor(String chartConstructor)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("chartConstructor", chartConstructor, false);
     }
 
     /**
@@ -817,9 +846,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Default type of chart to plot.
      *
      * @param chartType New chartType value. Default value is "Column"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setChartType(ChartType chartType) {
-        setAttribute("chartType", chartType == null ? null : chartType.getValue(), true);
+    public CubeGrid setChartType(ChartType chartType) {
+        return (CubeGrid)setAttribute("chartType", chartType == null ? null : chartType.getValue(), true);
     }
 
     /**
@@ -837,13 +867,14 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Exception: The innermost column header will always be styled using {@link
      * com.smartgwt.client.widgets.cube.CubeGrid#getInnerHeaderBaseStyle innerHeaderBaseStyle}.
      *
-     * @param colHeaderBaseStyle New colHeaderBaseStyle value. Default value is colHeader
+     * @param colHeaderBaseStyle New colHeaderBaseStyle value. Default value is "colHeader"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setColHeaderBaseStyle(String colHeaderBaseStyle)  throws IllegalStateException {
-        setAttribute("colHeaderBaseStyle", colHeaderBaseStyle, false);
+    public CubeGrid setColHeaderBaseStyle(String colHeaderBaseStyle)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("colHeaderBaseStyle", colHeaderBaseStyle, false);
     }
 
     /**
@@ -851,7 +882,7 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Exception: The innermost column header will always be styled using {@link
      * com.smartgwt.client.widgets.cube.CubeGrid#getInnerHeaderBaseStyle innerHeaderBaseStyle}.
      *
-     * @return Current colHeaderBaseStyle value. Default value is colHeader
+     * @return Current colHeaderBaseStyle value. Default value is "colHeader"
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -861,13 +892,41 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     
 
     /**
+     * {@link com.smartgwt.client.widgets.Button#getBaseStyle baseStyle} for the facet-label buttons above this grid's  column
+     * headers.
+     *
+     * @param colHeaderLabelBaseStyle New colHeaderLabelBaseStyle value. Default value is "colHeaderLabel"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public CubeGrid setColHeaderLabelBaseStyle(String colHeaderLabelBaseStyle)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("colHeaderLabelBaseStyle", colHeaderLabelBaseStyle, false);
+    }
+
+    /**
+     * {@link com.smartgwt.client.widgets.Button#getBaseStyle baseStyle} for the facet-label buttons above this grid's  column
+     * headers.
+     *
+     * @return Current colHeaderLabelBaseStyle value. Default value is "colHeaderLabel"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public String getColHeaderLabelBaseStyle()  {
+        return getAttributeAsString("colHeaderLabelBaseStyle");
+    }
+    
+
+    /**
      * The list of {@link com.smartgwt.client.widgets.cube.Facet#getId ids} for facets that will appear on top of the body.
      *
      * @param columnFacets New columnFacets value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setColumnFacets(String... columnFacets)  throws IllegalStateException {
-        setAttribute("columnFacets", columnFacets, false);
+    public CubeGrid setColumnFacets(String... columnFacets)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("columnFacets", columnFacets, false);
     }
 
     /**
@@ -886,9 +945,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Default width of inner column headers.
      *
      * @param defaultFacetWidth New defaultFacetWidth value. Default value is 100
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setDefaultFacetWidth(int defaultFacetWidth) {
-        setAttribute("defaultFacetWidth", defaultFacetWidth, true);
+    public CubeGrid setDefaultFacetWidth(int defaultFacetWidth) {
+        return (CubeGrid)setAttribute("defaultFacetWidth", defaultFacetWidth, true);
     }
 
     /**
@@ -921,11 +981,12 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Sets the background color for the column headers of the cube. See also {@link com.smartgwt.client.docs.ExportBGColor}.
      *
      * @param exportColumnFacetBGColor New exportColumnFacetBGColor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      */
-    public void setExportColumnFacetBGColor(String exportColumnFacetBGColor)  throws IllegalStateException {
-        setAttribute("exportColumnFacetBGColor", exportColumnFacetBGColor, false);
+    public CubeGrid setExportColumnFacetBGColor(String exportColumnFacetBGColor)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("exportColumnFacetBGColor", exportColumnFacetBGColor, false);
     }
 
     /**
@@ -943,11 +1004,12 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Sets the text color for the column headers of the cube.
      *
      * @param exportColumnFacetTextColor New exportColumnFacetTextColor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      */
-    public void setExportColumnFacetTextColor(String exportColumnFacetTextColor)  throws IllegalStateException {
-        setAttribute("exportColumnFacetTextColor", exportColumnFacetTextColor, false);
+    public CubeGrid setExportColumnFacetTextColor(String exportColumnFacetTextColor)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("exportColumnFacetTextColor", exportColumnFacetTextColor, false);
     }
 
     /**
@@ -968,11 +1030,12 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * com.smartgwt.client.docs.ExportBGColor}.
      *
      * @param exportFacetBGColor New exportFacetBGColor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      */
-    public void setExportFacetBGColor(String exportFacetBGColor)  throws IllegalStateException {
-        setAttribute("exportFacetBGColor", exportFacetBGColor, false);
+    public CubeGrid setExportFacetBGColor(String exportFacetBGColor)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("exportFacetBGColor", exportFacetBGColor, false);
     }
 
     /**
@@ -995,9 +1058,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param exportFacetSeparatorString New exportFacetSeparatorString value. Default value is " - "
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setExportFacetSeparatorString(String exportFacetSeparatorString) {
-        setAttribute("exportFacetSeparatorString", exportFacetSeparatorString, true);
+    public CubeGrid setExportFacetSeparatorString(String exportFacetSeparatorString) {
+        return (CubeGrid)setAttribute("exportFacetSeparatorString", exportFacetSeparatorString, true);
     }
 
     /**
@@ -1017,11 +1081,12 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * com.smartgwt.client.widgets.cube.CubeGrid#getExportColumnFacetTextColor exportColumnFacetTextColor()}).
      *
      * @param exportFacetTextColor New exportFacetTextColor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      */
-    public void setExportFacetTextColor(String exportFacetTextColor)  throws IllegalStateException {
-        setAttribute("exportFacetTextColor", exportFacetTextColor, false);
+    public CubeGrid setExportFacetTextColor(String exportFacetTextColor)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("exportFacetTextColor", exportFacetTextColor, false);
     }
 
     /**
@@ -1041,11 +1106,12 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Sets the background color for the row headers of the cube. See also {@link com.smartgwt.client.docs.ExportBGColor}.
      *
      * @param exportRowFacetBGColor New exportRowFacetBGColor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      */
-    public void setExportRowFacetBGColor(String exportRowFacetBGColor)  throws IllegalStateException {
-        setAttribute("exportRowFacetBGColor", exportRowFacetBGColor, false);
+    public CubeGrid setExportRowFacetBGColor(String exportRowFacetBGColor)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("exportRowFacetBGColor", exportRowFacetBGColor, false);
     }
 
     /**
@@ -1063,11 +1129,12 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Sets the text color for the row headers of the cube.
      *
      * @param exportRowFacetTextColor New exportRowFacetTextColor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      */
-    public void setExportRowFacetTextColor(String exportRowFacetTextColor)  throws IllegalStateException {
-        setAttribute("exportRowFacetTextColor", exportRowFacetTextColor, false);
+    public CubeGrid setExportRowFacetTextColor(String exportRowFacetTextColor)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("exportRowFacetTextColor", exportRowFacetTextColor, false);
     }
 
     /**
@@ -1087,10 +1154,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param facetLabelHoverAlign New facetLabelHoverAlign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setHoverAlign
      */
-    public void setFacetLabelHoverAlign(Alignment facetLabelHoverAlign) {
-        setAttribute("facetLabelHoverAlign", facetLabelHoverAlign == null ? null : facetLabelHoverAlign.getValue(), true);
+    public CubeGrid setFacetLabelHoverAlign(Alignment facetLabelHoverAlign) {
+        return (CubeGrid)setAttribute("facetLabelHoverAlign", facetLabelHoverAlign == null ? null : facetLabelHoverAlign.getValue(), true);
     }
 
     /**
@@ -1111,10 +1179,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param facetLabelHoverHeight New facetLabelHoverHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setHoverHeight
      */
-    public void setFacetLabelHoverHeight(Integer facetLabelHoverHeight) {
-        setAttribute("facetLabelHoverHeight", facetLabelHoverHeight, true);
+    public CubeGrid setFacetLabelHoverHeight(Integer facetLabelHoverHeight) {
+        return (CubeGrid)setAttribute("facetLabelHoverHeight", facetLabelHoverHeight, true);
     }
 
     /**
@@ -1127,6 +1196,30 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     public Integer getFacetLabelHoverHeight()  {
         return getAttributeAsInt("facetLabelHoverHeight");
     }
+
+    /**
+     * If specified and <code>this.showHover</code> is true, this is the default height to apply to hover tips shown for
+     * facetLabels. If unset, the hover canvas will be sized to  <code>this.hoverHeight</code> if specified instead.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param facetLabelHoverHeight New facetLabelHoverHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.Canvas#setHoverHeight
+     */
+    public CubeGrid setFacetLabelHoverHeight(String facetLabelHoverHeight) {
+        return (CubeGrid)setAttribute("facetLabelHoverHeight", facetLabelHoverHeight, true);
+    }
+
+    /**
+     * If specified and <code>this.showHover</code> is true, this is the default height to apply to hover tips shown for
+     * facetLabels. If unset, the hover canvas will be sized to  <code>this.hoverHeight</code> if specified instead.
+     *
+     * @return Current facetLabelHoverHeight value. Default value is null
+     * @see com.smartgwt.client.widgets.Canvas#getHoverHeight
+     */
+    public String getFacetLabelHoverHeightAsString()  {
+        return getAttributeAsString("facetLabelHoverHeight");
+    }
     
 
     /**
@@ -1135,11 +1228,12 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param facetLabelHoverStyle New facetLabelHoverStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setHoverStyle
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setFacetLabelHoverStyle(String facetLabelHoverStyle) {
-        setAttribute("facetLabelHoverStyle", facetLabelHoverStyle, true);
+    public CubeGrid setFacetLabelHoverStyle(String facetLabelHoverStyle) {
+        return (CubeGrid)setAttribute("facetLabelHoverStyle", facetLabelHoverStyle, true);
     }
 
     /**
@@ -1161,10 +1255,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param facetLabelHoverVAlign New facetLabelHoverVAlign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setHoverVAlign
      */
-    public void setFacetLabelHoverVAlign(VerticalAlignment facetLabelHoverVAlign) {
-        setAttribute("facetLabelHoverVAlign", facetLabelHoverVAlign == null ? null : facetLabelHoverVAlign.getValue(), true);
+    public CubeGrid setFacetLabelHoverVAlign(VerticalAlignment facetLabelHoverVAlign) {
+        return (CubeGrid)setAttribute("facetLabelHoverVAlign", facetLabelHoverVAlign == null ? null : facetLabelHoverVAlign.getValue(), true);
     }
 
     /**
@@ -1185,10 +1280,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param facetLabelHoverWidth New facetLabelHoverWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setHoverWidth
      */
-    public void setFacetLabelHoverWidth(Integer facetLabelHoverWidth) {
-        setAttribute("facetLabelHoverWidth", facetLabelHoverWidth, true);
+    public CubeGrid setFacetLabelHoverWidth(Integer facetLabelHoverWidth) {
+        return (CubeGrid)setAttribute("facetLabelHoverWidth", facetLabelHoverWidth, true);
     }
 
     /**
@@ -1200,6 +1296,30 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      */
     public Integer getFacetLabelHoverWidth()  {
         return getAttributeAsInt("facetLabelHoverWidth");
+    }
+
+    /**
+     * If specified and <code>this.showHover</code> is true, this is the default width to apply to hover tips shown for
+     * facetLabels. If unset, the hover canvas will be sized to  <code>this.hoverWidth</code> if specified instead.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param facetLabelHoverWidth New facetLabelHoverWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.Canvas#setHoverWidth
+     */
+    public CubeGrid setFacetLabelHoverWidth(String facetLabelHoverWidth) {
+        return (CubeGrid)setAttribute("facetLabelHoverWidth", facetLabelHoverWidth, true);
+    }
+
+    /**
+     * If specified and <code>this.showHover</code> is true, this is the default width to apply to hover tips shown for
+     * facetLabels. If unset, the hover canvas will be sized to  <code>this.hoverWidth</code> if specified instead.
+     *
+     * @return Current facetLabelHoverWidth value. Default value is null
+     * @see com.smartgwt.client.widgets.Canvas#getHoverWidth
+     */
+    public String getFacetLabelHoverWidthAsString()  {
+        return getAttributeAsString("facetLabelHoverWidth");
     }
     
 
@@ -1218,14 +1338,15 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * com.smartgwt.client.widgets.cube.CubeGrid#getFacets facets} to be resolved.
      *
      * @param facets New facets value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.cube.CubeGrid#getFacet
      * @see com.smartgwt.client.widgets.cube.Facet
      * @see com.smartgwt.client.widgets.cube.CubeGrid#getFacetValue
      * @see com.smartgwt.client.widgets.cube.FacetValue
      */
-    public void setFacets(Facet... facets)  throws IllegalStateException {
-        setAttribute("facets", facets, false);
+    public CubeGrid setFacets(Facet... facets)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("facets", facets, false);
     }
     
 
@@ -1236,9 +1357,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Set the align of a facet title (appears in facet label).
      *
      * @param facetTitleAlign facet to update. Default value is "center"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setFacetTitleAlign(Alignment facetTitleAlign) {
-        setAttribute("facetTitleAlign", facetTitleAlign == null ? null : facetTitleAlign.getValue(), true);
+    public CubeGrid setFacetTitleAlign(Alignment facetTitleAlign) {
+        return (CubeGrid)setAttribute("facetTitleAlign", facetTitleAlign == null ? null : facetTitleAlign.getValue(), true);
     }
 
     /**
@@ -1255,9 +1377,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Default alignment for facet values (in headers).
      *
      * @param facetValueAlign New facetValueAlign value. Default value is "center"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setFacetValueAlign(Alignment facetValueAlign) {
-        setAttribute("facetValueAlign", facetValueAlign == null ? null : facetValueAlign.getValue(), true);
+    public CubeGrid setFacetValueAlign(Alignment facetValueAlign) {
+        return (CubeGrid)setAttribute("facetValueAlign", facetValueAlign == null ? null : facetValueAlign.getValue(), true);
     }
 
     /**
@@ -1276,9 +1399,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * default set of items to start with.
      *
      * @param facetValueContextItems New facetValueContextItems value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setFacetValueContextItems(MenuItem... facetValueContextItems) {
-        setAttribute("facetValueContextItems", facetValueContextItems, true);
+    public CubeGrid setFacetValueContextItems(MenuItem... facetValueContextItems) {
+        return (CubeGrid)setAttribute("facetValueContextItems", facetValueContextItems, true);
     }
 
     /**
@@ -1299,10 +1423,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param facetValueHoverAlign New facetValueHoverAlign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setHoverAlign
      */
-    public void setFacetValueHoverAlign(Alignment facetValueHoverAlign) {
-        setAttribute("facetValueHoverAlign", facetValueHoverAlign == null ? null : facetValueHoverAlign.getValue(), true);
+    public CubeGrid setFacetValueHoverAlign(Alignment facetValueHoverAlign) {
+        return (CubeGrid)setAttribute("facetValueHoverAlign", facetValueHoverAlign == null ? null : facetValueHoverAlign.getValue(), true);
     }
 
     /**
@@ -1323,10 +1448,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param facetValueHoverHeight New facetValueHoverHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setHoverHeight
      */
-    public void setFacetValueHoverHeight(Integer facetValueHoverHeight) {
-        setAttribute("facetValueHoverHeight", facetValueHoverHeight, true);
+    public CubeGrid setFacetValueHoverHeight(Integer facetValueHoverHeight) {
+        return (CubeGrid)setAttribute("facetValueHoverHeight", facetValueHoverHeight, true);
     }
 
     /**
@@ -1339,6 +1465,30 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     public Integer getFacetValueHoverHeight()  {
         return getAttributeAsInt("facetValueHoverHeight");
     }
+
+    /**
+     * If specified and <code>this.showHover</code> is true, this is the default height to apply to hover tips shown for
+     * facetValues. If unset, the hover canvas will be sized to  <code>this.hoverHeight</code> if specified instead.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param facetValueHoverHeight New facetValueHoverHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.Canvas#setHoverHeight
+     */
+    public CubeGrid setFacetValueHoverHeight(String facetValueHoverHeight) {
+        return (CubeGrid)setAttribute("facetValueHoverHeight", facetValueHoverHeight, true);
+    }
+
+    /**
+     * If specified and <code>this.showHover</code> is true, this is the default height to apply to hover tips shown for
+     * facetValues. If unset, the hover canvas will be sized to  <code>this.hoverHeight</code> if specified instead.
+     *
+     * @return Current facetValueHoverHeight value. Default value is null
+     * @see com.smartgwt.client.widgets.Canvas#getHoverHeight
+     */
+    public String getFacetValueHoverHeightAsString()  {
+        return getAttributeAsString("facetValueHoverHeight");
+    }
     
 
     /**
@@ -1347,11 +1497,12 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param facetValueHoverStyle New facetValueHoverStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setHoverStyle
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setFacetValueHoverStyle(String facetValueHoverStyle) {
-        setAttribute("facetValueHoverStyle", facetValueHoverStyle, true);
+    public CubeGrid setFacetValueHoverStyle(String facetValueHoverStyle) {
+        return (CubeGrid)setAttribute("facetValueHoverStyle", facetValueHoverStyle, true);
     }
 
     /**
@@ -1373,10 +1524,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param facetValueHoverVAlign New facetValueHoverVAlign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setHoverVAlign
      */
-    public void setFacetValueHoverVAlign(VerticalAlignment facetValueHoverVAlign) {
-        setAttribute("facetValueHoverVAlign", facetValueHoverVAlign == null ? null : facetValueHoverVAlign.getValue(), true);
+    public CubeGrid setFacetValueHoverVAlign(VerticalAlignment facetValueHoverVAlign) {
+        return (CubeGrid)setAttribute("facetValueHoverVAlign", facetValueHoverVAlign == null ? null : facetValueHoverVAlign.getValue(), true);
     }
 
     /**
@@ -1397,10 +1549,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param facetValueHoverWidth New facetValueHoverWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setHoverWidth
      */
-    public void setFacetValueHoverWidth(Integer facetValueHoverWidth) {
-        setAttribute("facetValueHoverWidth", facetValueHoverWidth, true);
+    public CubeGrid setFacetValueHoverWidth(Integer facetValueHoverWidth) {
+        return (CubeGrid)setAttribute("facetValueHoverWidth", facetValueHoverWidth, true);
     }
 
     /**
@@ -1413,6 +1566,30 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     public Integer getFacetValueHoverWidth()  {
         return getAttributeAsInt("facetValueHoverWidth");
     }
+
+    /**
+     * If specified and <code>this.showHover</code> is true, this is the default width to apply to hover tips shown for
+     * facetValues. If unset, the hover canvas will be sized to  <code>this.hoverWidth</code> if specified instead.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param facetValueHoverWidth New facetValueHoverWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.Canvas#setHoverWidth
+     */
+    public CubeGrid setFacetValueHoverWidth(String facetValueHoverWidth) {
+        return (CubeGrid)setAttribute("facetValueHoverWidth", facetValueHoverWidth, true);
+    }
+
+    /**
+     * If specified and <code>this.showHover</code> is true, this is the default width to apply to hover tips shown for
+     * facetValues. If unset, the hover canvas will be sized to  <code>this.hoverWidth</code> if specified instead.
+     *
+     * @return Current facetValueHoverWidth value. Default value is null
+     * @see com.smartgwt.client.widgets.Canvas#getHoverWidth
+     */
+    public String getFacetValueHoverWidthAsString()  {
+        return getAttributeAsString("facetValueHoverWidth");
+    }
     
 
     /**
@@ -1421,12 +1598,13 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * facets in it than are currently shown in the grid.
      *
      * @param fixedFacetValues New fixedFacetValues value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.cube.CubeGrid#addFacet
      * @see com.smartgwt.client.widgets.cube.CubeGrid#removeFacet
      */
-    public void setFixedFacetValues(FacetValueMap fixedFacetValues)  throws IllegalStateException {
-        setAttribute("fixedFacetValues", fixedFacetValues == null ? null : fixedFacetValues.getJsObj(), false);
+    public CubeGrid setFixedFacetValues(FacetValueMap fixedFacetValues)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("fixedFacetValues", fixedFacetValues == null ? null : fixedFacetValues.getJsObj(), false);
     }
 
     /**
@@ -1449,10 +1627,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * both (the default).
      *
      * @param hideEmptyAxis New hideEmptyAxis value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setHideEmptyAxis(Axis hideEmptyAxis)  throws IllegalStateException {
-        setAttribute("hideEmptyAxis", hideEmptyAxis == null ? null : hideEmptyAxis.getValue(), false);
+    public CubeGrid setHideEmptyAxis(Axis hideEmptyAxis)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("hideEmptyAxis", hideEmptyAxis == null ? null : hideEmptyAxis.getValue(), false);
     }
 
     /**
@@ -1479,10 +1658,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * com.smartgwt.client.widgets.cube.CubeGrid#getFixedFacetValues fixedFacetValues} will be sent as criteria.
      *
      * @param hideEmptyFacetValues New hideEmptyFacetValues value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setHideEmptyFacetValues(Boolean hideEmptyFacetValues)  throws IllegalStateException {
-        setAttribute("hideEmptyFacetValues", hideEmptyFacetValues, false);
+    public CubeGrid setHideEmptyFacetValues(Boolean hideEmptyFacetValues)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("hideEmptyFacetValues", hideEmptyFacetValues, false);
     }
 
     /**
@@ -1507,10 +1687,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Hilites to be applied to the data for this component.  See {@link com.smartgwt.client.docs.Hiliting}.
      *
      * @param hilites New hilites value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setHilites(Hilite... hilites) {
-        setAttribute("hilites", hilites, true);
+    public CubeGrid setHilites(Hilite... hilites) {
+        return (CubeGrid)setAttribute("hilites", hilites, true);
     }
 
     /**
@@ -1536,13 +1717,14 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * that or the space required to accommodate the fully expanded facet will determine the actual height used.
      *
      * @param indentVTreeFacets New indentVTreeFacets value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.cube.Facet#setIndentVTree
      * @see com.smartgwt.client.widgets.cube.CubeGrid#setVTreeFacetIndent
      * @see com.smartgwt.client.widgets.cube.CubeGrid#setVTreeFacetIndentDirection
      */
-    public void setIndentVTreeFacets(boolean indentVTreeFacets)  throws IllegalStateException {
-        setAttribute("indentVTreeFacets", indentVTreeFacets, false);
+    public CubeGrid setIndentVTreeFacets(boolean indentVTreeFacets)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("indentVTreeFacets", indentVTreeFacets, false);
     }
 
     /**
@@ -1571,20 +1753,21 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * {@link com.smartgwt.client.widgets.Button#getBaseStyle baseStyle} for the buttons in the innermost column header for 
      * this cubeGrid.
      *
-     * @param innerHeaderBaseStyle New innerHeaderBaseStyle value. Default value is innerHeader
+     * @param innerHeaderBaseStyle New innerHeaderBaseStyle value. Default value is "innerHeader"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setInnerHeaderBaseStyle(String innerHeaderBaseStyle)  throws IllegalStateException {
-        setAttribute("innerHeaderBaseStyle", innerHeaderBaseStyle, false);
+    public CubeGrid setInnerHeaderBaseStyle(String innerHeaderBaseStyle)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("innerHeaderBaseStyle", innerHeaderBaseStyle, false);
     }
 
     /**
      * {@link com.smartgwt.client.widgets.Button#getBaseStyle baseStyle} for the buttons in the innermost column header for 
      * this cubeGrid.
      *
-     * @return Current innerHeaderBaseStyle value. Default value is innerHeader
+     * @return Current innerHeaderBaseStyle value. Default value is "innerHeader"
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -1603,10 +1786,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * com.smartgwt.client.widgets.cube.CubeGrid#getValueTitle valueTitle} for a full explanation.
      *
      * @param metricFacetId New metricFacetId value. Default value is "metric"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMetricFacetId(String metricFacetId)  throws IllegalStateException {
-        setAttribute("metricFacetId", metricFacetId, false);
+    public CubeGrid setMetricFacetId(String metricFacetId)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("metricFacetId", metricFacetId, false);
     }
 
     /**
@@ -1629,9 +1813,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Whether to pad titles so they aren't flush with header borders.
      *
      * @param padTitles New padTitles value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setPadTitles(Boolean padTitles) {
-        setAttribute("padTitles", padTitles, true);
+    public CubeGrid setPadTitles(Boolean padTitles) {
+        return (CubeGrid)setAttribute("padTitles", padTitles, true);
     }
 
     /**
@@ -1649,10 +1834,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * facetValueId of the default rollupValue for each facet.  Can be overridden per facet via facet.rollupValue.
      *
      * @param rollupValue New rollupValue value. Default value is "sum"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setRollupValue(String rollupValue)  throws IllegalStateException {
-        setAttribute("rollupValue", rollupValue, false);
+    public CubeGrid setRollupValue(String rollupValue)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("rollupValue", rollupValue, false);
     }
 
     /**
@@ -1671,10 +1857,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * This property is not supported for <code>CubeGrid</code>.
      *
      * @param rotateHeaderTitles New rotateHeaderTitles value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setRotateHeaderTitles(Boolean rotateHeaderTitles)  throws IllegalStateException {
-        setAttribute("rotateHeaderTitles", rotateHeaderTitles, false);
+    public CubeGrid setRotateHeaderTitles(Boolean rotateHeaderTitles)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("rotateHeaderTitles", rotateHeaderTitles, false);
     }
 
     /**
@@ -1692,11 +1879,12 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * body.
      *
      * @param rowFacets New rowFacets value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.cube.CubeGrid#setRowHeaderGridMode
      */
-    public void setRowFacets(String... rowFacets)  throws IllegalStateException {
-        setAttribute("rowFacets", rowFacets, false);
+    public CubeGrid setRowFacets(String... rowFacets)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("rowFacets", rowFacets, false);
     }
 
     /**
@@ -1714,19 +1902,20 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     /**
      * {@link com.smartgwt.client.widgets.Button#getBaseStyle baseStyle} for the buttons in this grid's row headers.
      *
-     * @param rowHeaderBaseStyle New rowHeaderBaseStyle value. Default value is rowHeader
+     * @param rowHeaderBaseStyle New rowHeaderBaseStyle value. Default value is "rowHeader"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setRowHeaderBaseStyle(String rowHeaderBaseStyle)  throws IllegalStateException {
-        setAttribute("rowHeaderBaseStyle", rowHeaderBaseStyle, false);
+    public CubeGrid setRowHeaderBaseStyle(String rowHeaderBaseStyle)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("rowHeaderBaseStyle", rowHeaderBaseStyle, false);
     }
 
     /**
      * {@link com.smartgwt.client.widgets.Button#getBaseStyle baseStyle} for the buttons in this grid's row headers.
      *
-     * @return Current rowHeaderBaseStyle value. Default value is rowHeader
+     * @return Current rowHeaderBaseStyle value. Default value is "rowHeader"
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
@@ -1742,12 +1931,13 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param rowHeaderGridMode New rowHeaderGridMode value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.cube.CubeGrid#setRowFacets
      * @see com.smartgwt.client.widgets.cube.CubeGrid#setCanCollapseFacets
      */
-    public void setRowHeaderGridMode(Boolean rowHeaderGridMode)  throws IllegalStateException {
-        setAttribute("rowHeaderGridMode", rowHeaderGridMode, false);
+    public CubeGrid setRowHeaderGridMode(Boolean rowHeaderGridMode)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("rowHeaderGridMode", rowHeaderGridMode, false);
     }
 
     /**
@@ -1762,6 +1952,33 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     public Boolean getRowHeaderGridMode()  {
         Boolean result = getAttributeAsBoolean("rowHeaderGridMode");
         return result == null ? false : result;
+    }
+    
+
+    /**
+     * {@link com.smartgwt.client.widgets.Button#getBaseStyle baseStyle} for the facet-label buttons above the grid's  row
+     * headers.
+     *
+     * @param rowHeaderLabelBaseStyle New rowHeaderLabelBaseStyle value. Default value is "rowHeaderLabel"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public CubeGrid setRowHeaderLabelBaseStyle(String rowHeaderLabelBaseStyle)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("rowHeaderLabelBaseStyle", rowHeaderLabelBaseStyle, false);
+    }
+
+    /**
+     * {@link com.smartgwt.client.widgets.Button#getBaseStyle baseStyle} for the facet-label buttons above the grid's  row
+     * headers.
+     *
+     * @return Current rowHeaderLabelBaseStyle value. Default value is "rowHeaderLabel"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public String getRowHeaderLabelBaseStyle()  {
+        return getAttributeAsString("rowHeaderLabelBaseStyle");
     }
     
 
@@ -1784,9 +2001,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * If true, show facet label context menus with some built-in operations. Otherwise, use generic context menu handling.
      *
      * @param showFacetContextMenus New showFacetContextMenus value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setShowFacetContextMenus(boolean showFacetContextMenus) {
-        setAttribute("showFacetContextMenus", showFacetContextMenus, true);
+    public CubeGrid setShowFacetContextMenus(boolean showFacetContextMenus) {
+        return (CubeGrid)setAttribute("showFacetContextMenus", showFacetContextMenus, true);
     }
 
     /**
@@ -1807,9 +2025,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * ListGrid.showHeaderMenuButton} for CubeGrids.
      *
      * @param showFacetValueContextMenus New showFacetValueContextMenus value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setShowFacetValueContextMenus(boolean showFacetValueContextMenus) {
-        setAttribute("showFacetValueContextMenus", showFacetValueContextMenus, true);
+    public CubeGrid setShowFacetValueContextMenus(boolean showFacetValueContextMenus) {
+        return (CubeGrid)setAttribute("showFacetValueContextMenus", showFacetValueContextMenus, true);
     }
 
     /**
@@ -1830,9 +2049,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * If true, clicking on the existing selection causes it to be entirely deselected.
      *
      * @param simpleDeselect New simpleDeselect value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setSimpleDeselect(Boolean simpleDeselect) {
-        setAttribute("simpleDeselect", simpleDeselect, true);
+    public CubeGrid setSimpleDeselect(Boolean simpleDeselect) {
+        return (CubeGrid)setAttribute("simpleDeselect", simpleDeselect, true);
     }
 
     /**
@@ -1851,12 +2071,13 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * com.smartgwt.client.util.Page#getSkinDir skinDir}.
      *
      * @param skinImgDir New skinImgDir value. Default value is "images/CubeGrid/"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
-    public void setSkinImgDir(String skinImgDir)  throws IllegalStateException {
-        setAttribute("skinImgDir", skinImgDir, false);
+    public CubeGrid setSkinImgDir(String skinImgDir)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("skinImgDir", skinImgDir, false);
     }
 
     /**
@@ -1876,9 +2097,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Direction of sorting if sortedFacet or sortedFacetValues is specified.
      *
      * @param sortDirection New sortDirection value. Default value is "ascending"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setSortDirection(SortDirection sortDirection) {
-        setAttribute("sortDirection", sortDirection == null ? null : sortDirection.getValue(), true);
+    public CubeGrid setSortDirection(SortDirection sortDirection) {
+        return (CubeGrid)setAttribute("sortDirection", sortDirection == null ? null : sortDirection.getValue(), true);
     }
 
     /**
@@ -1896,9 +2118,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * cubeGrid data is sorted.
      *
      * @param sortedFacetValues New sortedFacetValues value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setSortedFacetValues(FacetValueMap sortedFacetValues) {
-        setAttribute("sortedFacetValues", sortedFacetValues == null ? null : sortedFacetValues.getJsObj(), true);
+    public CubeGrid setSortedFacetValues(FacetValueMap sortedFacetValues) {
+        return (CubeGrid)setAttribute("sortedFacetValues", sortedFacetValues == null ? null : sortedFacetValues.getJsObj(), true);
     }
 
     /**
@@ -1940,12 +2163,13 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * com.smartgwt.client.data.DataSourceField#getExportFormat DataSourceField.exportFormat}.
      *
      * @param valueExportFormat New valueExportFormat value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.FormatString FormatString 
      * @see com.smartgwt.client.docs.ExportFormatting ExportFormatting overview and related methods
      */
-    public void setValueExportFormat(String valueExportFormat)  throws IllegalStateException {
-        setAttribute("valueExportFormat", valueExportFormat, false);
+    public CubeGrid setValueExportFormat(String valueExportFormat)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("valueExportFormat", valueExportFormat, false);
     }
 
     /**
@@ -1966,12 +2190,13 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * com.smartgwt.client.data.DataSourceField#getFormat DataSourceField.format}.
      *
      * @param valueFormat New valueFormat value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.FormatString FormatString 
      * @see com.smartgwt.client.docs.ExportFormatting ExportFormatting overview and related methods
      */
-    public void setValueFormat(String valueFormat)  throws IllegalStateException {
-        setAttribute("valueFormat", valueFormat, false);
+    public CubeGrid setValueFormat(String valueFormat)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("valueFormat", valueFormat, false);
     }
 
     /**
@@ -1991,11 +2216,12 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Name of the property in a cell record that holds the cell value.
      *
      * @param valueProperty New valueProperty value. Default value is "_value"
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Identifier Identifier 
      */
-    public void setValueProperty(String valueProperty)  throws IllegalStateException {
-        setAttribute("valueProperty", valueProperty, false);
+    public CubeGrid setValueProperty(String valueProperty)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("valueProperty", valueProperty, false);
     }
 
     /**
@@ -2025,10 +2251,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      *  "Income") see {@link com.smartgwt.client.widgets.cube.CubeGrid#getMetricFacetId metricFacetId}.
      *
      * @param valueTitle New valueTitle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setValueTitle(String valueTitle)  throws IllegalStateException {
-        setAttribute("valueTitle", valueTitle, false);
+    public CubeGrid setValueTitle(String valueTitle)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("valueTitle", valueTitle, false);
     }
 
     /**
@@ -2058,11 +2285,12 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * hierarchical} column facets are being {@link com.smartgwt.client.widgets.cube.CubeGrid#getIndentVTreeFacets indented}.
      *
      * @param vTreeFacetIndent New vTreeFacetIndent value. Default value is 8
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.cube.CubeGrid#setIndentVTreeFacets
      */
-    public void setVTreeFacetIndent(int vTreeFacetIndent)  throws IllegalStateException {
-        setAttribute("vTreeFacetIndent", vTreeFacetIndent, false);
+    public CubeGrid setVTreeFacetIndent(int vTreeFacetIndent)  throws IllegalStateException {
+        return (CubeGrid)setAttribute("vTreeFacetIndent", vTreeFacetIndent, false);
     }
 
     /**
@@ -2082,10 +2310,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * com.smartgwt.client.widgets.cube.CubeGrid#getIndentVTreeFacets indented}.
      *
      * @param vTreeFacetIndentDirection New vTreeFacetIndentDirection value. Default value is CubeGrid.DESCENDING
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.cube.CubeGrid#setIndentVTreeFacets
      */
-    public void setVTreeFacetIndentDirection(FacetIndentDirection vTreeFacetIndentDirection) {
-        setAttribute("vTreeFacetIndentDirection", vTreeFacetIndentDirection == null ? null : vTreeFacetIndentDirection.getValue(), true);
+    public CubeGrid setVTreeFacetIndentDirection(FacetIndentDirection vTreeFacetIndentDirection) {
+        return (CubeGrid)setAttribute("vTreeFacetIndentDirection", vTreeFacetIndentDirection == null ? null : vTreeFacetIndentDirection.getValue(), true);
     }
 
     /**
@@ -2104,9 +2333,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * Whether to allow text wrapping on facet titles.
      *
      * @param wrapFacetTitles New wrapFacetTitles value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setWrapFacetTitles(Boolean wrapFacetTitles) {
-        setAttribute("wrapFacetTitles", wrapFacetTitles, true);
+    public CubeGrid setWrapFacetTitles(Boolean wrapFacetTitles) {
+        return (CubeGrid)setAttribute("wrapFacetTitles", wrapFacetTitles, true);
     }
 
     /**
@@ -2125,9 +2355,10 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * com.smartgwt.client.widgets.cube.CubeGrid#getIndentVTreeFacets indented} column facets.
      *
      * @param wrapFacetValueTitles New wrapFacetValueTitles value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining setter calls
      */
-    public void setWrapFacetValueTitles(Boolean wrapFacetValueTitles) {
-        setAttribute("wrapFacetValueTitles", wrapFacetValueTitles, true);
+    public CubeGrid setWrapFacetValueTitles(Boolean wrapFacetValueTitles) {
+        return (CubeGrid)setAttribute("wrapFacetValueTitles", wrapFacetValueTitles, true);
     }
 
     /**
@@ -2966,7 +3197,8 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      * @param rowNum row index of the cell
      * @param colNum column index of the cell
      *
-     * @return facet values for the specified cell. Returns null if the specified cell    is not present in the grid.
+     * @return facet values for the specified cell. Returns null if the specified                         cell is not present in the
+     * grid.
      */
     public native FacetValueMap getCellFacetValues(int rowNum, int colNum) /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
@@ -3716,21 +3948,6 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     }-*/;
 
 	/**
-     * <b>Note</b>: This is a ListGrid feature which is inapplicable on this class.
-     * @param viewState Object describing the desired view state for the grid.
-     * See {@link com.smartgwt.client.docs.ListGridViewState ListGridViewState}
-     * @see com.smartgwt.client.widgets.grid.ListGrid#getViewState
-     * @see com.smartgwt.client.docs.ListGridViewState ListGridViewState
-     */
-    public native void setViewState(String viewState) /*-{
-        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setViewState", "String");
-        }
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.setViewState(viewState);
-    }-*/;
-
-	/**
      * Shows the specified field if it was previsouly hidden.  No-ops if it's already showing.
      * @param facetValueMap field specified as a facetValueMap
      *
@@ -4132,6 +4349,19 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
         return @com.smartgwt.client.widgets.chart.FacetChart::new(Lcom/google/gwt/core/client/JavaScriptObject;)(facetChartJS);
     }-*/;
 
+	/**
+     * <b>Note</b>: This is a ListGrid feature which is inapplicable on this class.
+     * @param viewState Object describing the desired view state for the grid.
+     * @return {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} instance, for chaining
+     * setter calls
+     * See {@link com.smartgwt.client.docs.ListGridViewState ListGridViewState}
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getViewState
+     * @see com.smartgwt.client.docs.ListGridViewState ListGridViewState
+     */
+    public CubeGrid setViewState(String viewState) {
+        return (CubeGrid)super.setViewState(viewState);
+    }
+
 
     /**
      * Setter implementing the {@link com.smartgwt.client.core.LogicalStructure} interface,
@@ -4280,6 +4510,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
             s.logicalStructureErrors += "CubeGrid.colHeaderBaseStyle:" + t.getMessage() + "\n";
         }
         try {
+            s.colHeaderLabelBaseStyle = getAttributeAsString("colHeaderLabelBaseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.colHeaderLabelBaseStyle:" + t.getMessage() + "\n";
+        }
+        try {
             s.columnFacets = getAttributeAsStringArray("columnFacets");
         } catch (Throwable t) {
             s.logicalStructureErrors += "CubeGrid.columnFacetsArray:" + t.getMessage() + "\n";
@@ -4345,9 +4580,9 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
             s.logicalStructureErrors += "CubeGrid.facetLabelHoverAlign:" + t.getMessage() + "\n";
         }
         try {
-            s.facetLabelHoverHeight = getAttributeAsString("facetLabelHoverHeight");
+            s.facetLabelHoverHeightAsString = getAttributeAsString("facetLabelHoverHeight");
         } catch (Throwable t) {
-            s.logicalStructureErrors += "CubeGrid.facetLabelHoverHeight:" + t.getMessage() + "\n";
+            s.logicalStructureErrors += "CubeGrid.facetLabelHoverHeightAsString:" + t.getMessage() + "\n";
         }
         try {
             s.facetLabelHoverStyle = getAttributeAsString("facetLabelHoverStyle");
@@ -4360,9 +4595,9 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
             s.logicalStructureErrors += "CubeGrid.facetLabelHoverVAlign:" + t.getMessage() + "\n";
         }
         try {
-            s.facetLabelHoverWidth = getAttributeAsString("facetLabelHoverWidth");
+            s.facetLabelHoverWidthAsString = getAttributeAsString("facetLabelHoverWidth");
         } catch (Throwable t) {
-            s.logicalStructureErrors += "CubeGrid.facetLabelHoverWidth:" + t.getMessage() + "\n";
+            s.logicalStructureErrors += "CubeGrid.facetLabelHoverWidthAsString:" + t.getMessage() + "\n";
         }
         try {
             s.facetTitleAlign = getAttributeAsString("facetTitleAlign");
@@ -4385,9 +4620,9 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
             s.logicalStructureErrors += "CubeGrid.facetValueHoverAlign:" + t.getMessage() + "\n";
         }
         try {
-            s.facetValueHoverHeight = getAttributeAsString("facetValueHoverHeight");
+            s.facetValueHoverHeightAsString = getAttributeAsString("facetValueHoverHeight");
         } catch (Throwable t) {
-            s.logicalStructureErrors += "CubeGrid.facetValueHoverHeight:" + t.getMessage() + "\n";
+            s.logicalStructureErrors += "CubeGrid.facetValueHoverHeightAsString:" + t.getMessage() + "\n";
         }
         try {
             s.facetValueHoverStyle = getAttributeAsString("facetValueHoverStyle");
@@ -4400,9 +4635,9 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
             s.logicalStructureErrors += "CubeGrid.facetValueHoverVAlign:" + t.getMessage() + "\n";
         }
         try {
-            s.facetValueHoverWidth = getAttributeAsString("facetValueHoverWidth");
+            s.facetValueHoverWidthAsString = getAttributeAsString("facetValueHoverWidth");
         } catch (Throwable t) {
-            s.logicalStructureErrors += "CubeGrid.facetValueHoverWidth:" + t.getMessage() + "\n";
+            s.logicalStructureErrors += "CubeGrid.facetValueHoverWidthAsString:" + t.getMessage() + "\n";
         }
         try {
             s.fixedFacetValues = getFixedFacetValues();
@@ -4468,6 +4703,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
             s.rowHeaderGridMode = getAttributeAsString("rowHeaderGridMode");
         } catch (Throwable t) {
             s.logicalStructureErrors += "CubeGrid.rowHeaderGridMode:" + t.getMessage() + "\n";
+        }
+        try {
+            s.rowHeaderLabelBaseStyle = getAttributeAsString("rowHeaderLabelBaseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.rowHeaderLabelBaseStyle:" + t.getMessage() + "\n";
         }
         try {
             s.saveByCell = getAttributeAsString("saveByCell");

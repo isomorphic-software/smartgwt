@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -190,10 +193,11 @@ public class ImgSectionHeader extends HLayout implements com.smartgwt.client.wid
      * 9+).
      *
      * @param clipTitle New clipTitle value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.ImgSectionHeader ImgSectionHeader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setClipTitle(Boolean clipTitle)  throws IllegalStateException {
-        setAttribute("clipTitle", clipTitle, false);
+    public ImgSectionHeader setClipTitle(Boolean clipTitle)  throws IllegalStateException {
+        return (ImgSectionHeader)setAttribute("clipTitle", clipTitle, false);
     }
 
     /**
@@ -217,11 +221,12 @@ public class ImgSectionHeader extends HLayout implements com.smartgwt.client.wid
      * runtime by manipulating the existing control(s) set up at init time.
      *
      * @param controls New controls value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.ImgSectionHeader ImgSectionHeader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_sections_custom_controls" target="examples">Custom Controls Example</a>
      */
-    public void setControls(Canvas... controls)  throws IllegalStateException {
-        setAttribute("controls", controls, false);
+    public ImgSectionHeader setControls(Canvas... controls)  throws IllegalStateException {
+        return (ImgSectionHeader)setAttribute("controls", controls, false);
     }
     
 
@@ -255,11 +260,12 @@ public class ImgSectionHeader extends HLayout implements com.smartgwt.client.wid
      * Change the icon being shown for the header.
      *
      * @param icon URL of new icon. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.ImgSectionHeader ImgSectionHeader} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIcon(String icon) {
-        setAttribute("icon", icon, true);
+    public ImgSectionHeader setIcon(String icon) {
+        return (ImgSectionHeader)setAttribute("icon", icon, true);
     }
 
     /**
@@ -282,11 +288,12 @@ public class ImgSectionHeader extends HLayout implements com.smartgwt.client.wid
      * If this button is showing an icon should it be right or left aligned?
      *
      * @param iconAlign New iconAlign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.ImgSectionHeader ImgSectionHeader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconAlign(String iconAlign)  throws IllegalStateException {
-        setAttribute("iconAlign", iconAlign, false);
+    public ImgSectionHeader setIconAlign(String iconAlign)  throws IllegalStateException {
+        return (ImgSectionHeader)setAttribute("iconAlign", iconAlign, false);
     }
 
     /**
@@ -305,11 +312,12 @@ public class ImgSectionHeader extends HLayout implements com.smartgwt.client.wid
      * com.smartgwt.client.widgets.StatefulCanvas#getIconSize iconSize}.
      *
      * @param iconHeight New iconHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.ImgSectionHeader ImgSectionHeader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconHeight(Integer iconHeight)  throws IllegalStateException {
-        setAttribute("iconHeight", iconHeight, false);
+    public ImgSectionHeader setIconHeight(Integer iconHeight)  throws IllegalStateException {
+        return (ImgSectionHeader)setAttribute("iconHeight", iconHeight, false);
     }
 
     /**
@@ -332,11 +340,12 @@ public class ImgSectionHeader extends HLayout implements com.smartgwt.client.wid
      * If this header is showing an icon should it appear to the left or right of the title? Valid options are "left" and "right".
      *
      * @param iconOrientation the new orientation. Default value is "left"
+     * @return {@link com.smartgwt.client.widgets.layout.ImgSectionHeader ImgSectionHeader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconOrientation(String iconOrientation)  throws IllegalStateException {
-        setAttribute("iconOrientation", iconOrientation, false);
+    public ImgSectionHeader setIconOrientation(String iconOrientation)  throws IllegalStateException {
+        return (ImgSectionHeader)setAttribute("iconOrientation", iconOrientation, false);
     }
 
     /**
@@ -361,11 +370,12 @@ public class ImgSectionHeader extends HLayout implements com.smartgwt.client.wid
      * <code>iconSize</code> ineffective.
      *
      * @param iconSize New iconSize value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.layout.ImgSectionHeader ImgSectionHeader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconSize(int iconSize)  throws IllegalStateException {
-        setAttribute("iconSize", iconSize, false);
+    public ImgSectionHeader setIconSize(int iconSize)  throws IllegalStateException {
+        return (ImgSectionHeader)setAttribute("iconSize", iconSize, false);
     }
 
     /**
@@ -390,11 +400,12 @@ public class ImgSectionHeader extends HLayout implements com.smartgwt.client.wid
      * com.smartgwt.client.widgets.StatefulCanvas#getIconSize iconSize}.
      *
      * @param iconWidth New iconWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.ImgSectionHeader ImgSectionHeader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconWidth(Integer iconWidth)  throws IllegalStateException {
-        setAttribute("iconWidth", iconWidth, false);
+    public ImgSectionHeader setIconWidth(Integer iconWidth)  throws IllegalStateException {
+        return (ImgSectionHeader)setAttribute("iconWidth", iconWidth, false);
     }
 
     /**
@@ -415,10 +426,11 @@ public class ImgSectionHeader extends HLayout implements com.smartgwt.client.wid
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param noDoubleClicks New noDoubleClicks value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.ImgSectionHeader ImgSectionHeader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setNoDoubleClicks(Boolean noDoubleClicks)  throws IllegalStateException {
-        setAttribute("noDoubleClicks", noDoubleClicks, false);
+    public ImgSectionHeader setNoDoubleClicks(Boolean noDoubleClicks)  throws IllegalStateException {
+        return (ImgSectionHeader)setAttribute("noDoubleClicks", noDoubleClicks, false);
     }
 
     /**
@@ -440,11 +452,12 @@ public class ImgSectionHeader extends HLayout implements com.smartgwt.client.wid
      * Sets the text shown as a tooltip for the header.
      *
      * @param prompt the new tooltip. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.ImgSectionHeader ImgSectionHeader} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_hovers" target="examples">Hovers / Tooltips Example</a>
      */
-    public void setPrompt(String prompt) {
-        setAttribute("prompt", prompt, true);
+    public ImgSectionHeader setPrompt(String prompt) {
+        return (ImgSectionHeader)setAttribute("prompt", prompt, true);
     }
 
     /**
@@ -463,9 +476,10 @@ public class ImgSectionHeader extends HLayout implements com.smartgwt.client.wid
      * If true and the title is clipped, then a hover containing the full title of this section header is enabled.
      *
      * @param showClippedTitleOnHover New showClippedTitleOnHover value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.ImgSectionHeader ImgSectionHeader} instance, for chaining setter calls
      */
-    public void setShowClippedTitleOnHover(Boolean showClippedTitleOnHover) {
-        setAttribute("showClippedTitleOnHover", showClippedTitleOnHover, true);
+    public ImgSectionHeader setShowClippedTitleOnHover(Boolean showClippedTitleOnHover) {
+        return (ImgSectionHeader)setAttribute("showClippedTitleOnHover", showClippedTitleOnHover, true);
     }
 
     /**

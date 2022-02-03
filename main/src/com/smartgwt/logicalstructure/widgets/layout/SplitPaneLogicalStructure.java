@@ -5,8 +5,10 @@ import com.smartgwt.client.i18n.*;
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.fields.*;
 import com.smartgwt.client.tools.*;
 import com.smartgwt.client.widgets.*;
@@ -59,10 +61,11 @@ public class SplitPaneLogicalStructure extends LayoutLogicalStructure {
     public String listPaneTitleTemplate;
     public String listTitle;
     public Canvas navigationPane;
-    public String navigationPaneWidth;
+    public String navigationPaneWidthAsString;
     public String navigationTitle;
     public String notifyAfterNavigationClick;
     public String pageOrientation;
+    public String reverseOrder;
     public String showDetailToolStrip;
     public String showLeftButton;
     public String showListToolStrip;
@@ -70,4 +73,5 @@ public class SplitPaneLogicalStructure extends LayoutLogicalStructure {
     public String showNavigationBar;
     public String showResizeBars;
     public String showRightButton;
+    public String vertical;
 }

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * A MultiComboBoxItem is a combo box that allows the user to select multiple options.  Each selected option is represented
@@ -179,9 +182,10 @@ public class MultiComboBoxItem extends CanvasItem {
      * {@link com.smartgwt.client.widgets.form.fields.FormItem#getDefaultValue FormItem.defaultValue} array) are removed.
      *
      * @param addUnknownValues New addUnknownValues value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiComboBoxItem MultiComboBoxItem} instance, for chaining setter calls
      */
-    public void setAddUnknownValues(Boolean addUnknownValues) {
-        setAttribute("addUnknownValues", addUnknownValues);
+    public MultiComboBoxItem setAddUnknownValues(Boolean addUnknownValues) {
+        return (MultiComboBoxItem)setAttribute("addUnknownValues", addUnknownValues);
     }
 
     /**
@@ -207,9 +211,10 @@ public class MultiComboBoxItem extends CanvasItem {
      * true, a value will be added. Otherwise, the input cursor remains at the end of the entered value.
      *
      * @param alwaysExitOnTab New alwaysExitOnTab value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiComboBoxItem MultiComboBoxItem} instance, for chaining setter calls
      */
-    public void setAlwaysExitOnTab(Boolean alwaysExitOnTab) {
-        setAttribute("alwaysExitOnTab", alwaysExitOnTab);
+    public MultiComboBoxItem setAlwaysExitOnTab(Boolean alwaysExitOnTab) {
+        return (MultiComboBoxItem)setAttribute("alwaysExitOnTab", alwaysExitOnTab);
     }
 
     /**
@@ -233,10 +238,11 @@ public class MultiComboBoxItem extends CanvasItem {
      * user first opens the pickList.
      *
      * @param autoFetchData New autoFetchData value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiComboBoxItem MultiComboBoxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.ComboBoxItem#setAutoFetchData
      */
-    public void setAutoFetchData(Boolean autoFetchData) {
-        setAttribute("autoFetchData", autoFetchData);
+    public MultiComboBoxItem setAutoFetchData(Boolean autoFetchData) {
+        return (MultiComboBoxItem)setAttribute("autoFetchData", autoFetchData);
     }
 
     /**
@@ -263,9 +269,10 @@ public class MultiComboBoxItem extends CanvasItem {
      * Sets the {@link com.smartgwt.client.widgets.form.fields.MultiComboBoxItem#getAutoFitButtons autoFitButtons} property.
      *
      * @param autoFitButtons whether to autofit the buttons. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiComboBoxItem MultiComboBoxItem} instance, for chaining setter calls
      */
-    public void setAutoFitButtons(Boolean autoFitButtons) {
-        setAttribute("autoFitButtons", autoFitButtons);
+    public MultiComboBoxItem setAutoFitButtons(Boolean autoFitButtons) {
+        return (MultiComboBoxItem)setAttribute("autoFitButtons", autoFitButtons);
     }
 
     /**
@@ -278,6 +285,34 @@ public class MultiComboBoxItem extends CanvasItem {
      */
     public Boolean getAutoFitButtons()  {
         return getAttributeAsBoolean("autoFitButtons", true);
+    }
+    
+
+    /**
+     * When this item is showing a  tree-based picker, which  nodes should be opened automatically.  Options are: <ul>
+     * <li>"none" - no nodes are opened automatically</li> <li>"root" - opens the  top-level node - in databound              
+     * tree-pickers, this node is always hidden</li> <li>"all" - when {@link
+     * com.smartgwt.client.widgets.tree.ResultTree#getLoadDataOnDemand loading data on demand}, opens the             
+     * top-level node and all of it's direct             descendants - otherwise, opens all loaded nodes </li> </ul>
+     *
+     * @param autoOpenTree New autoOpenTree value. Default value is "none"
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiComboBoxItem MultiComboBoxItem} instance, for chaining setter calls
+     */
+    public MultiComboBoxItem setAutoOpenTree(String autoOpenTree) {
+        return (MultiComboBoxItem)setAttribute("autoOpenTree", autoOpenTree);
+    }
+
+    /**
+     * When this item is showing a  tree-based picker, which  nodes should be opened automatically.  Options are: <ul>
+     * <li>"none" - no nodes are opened automatically</li> <li>"root" - opens the  top-level node - in databound              
+     * tree-pickers, this node is always hidden</li> <li>"all" - when {@link
+     * com.smartgwt.client.widgets.tree.ResultTree#getLoadDataOnDemand loading data on demand}, opens the             
+     * top-level node and all of it's direct             descendants - otherwise, opens all loaded nodes </li> </ul>
+     *
+     * @return Current autoOpenTree value. Default value is "none"
+     */
+    public String getAutoOpenTree()  {
+        return getAttributeAsString("autoOpenTree");
     }
     
 
@@ -314,9 +349,10 @@ public class MultiComboBoxItem extends CanvasItem {
      * other modes, the combo box is as wide as the overall MultiComboBoxItem.
      *
      * @param comboBoxWidth New comboBoxWidth value. Default value is 130
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiComboBoxItem MultiComboBoxItem} instance, for chaining setter calls
      */
-    public void setComboBoxWidth(int comboBoxWidth) {
-        setAttribute("comboBoxWidth", comboBoxWidth);
+    public MultiComboBoxItem setComboBoxWidth(int comboBoxWidth) {
+        return (MultiComboBoxItem)setAttribute("comboBoxWidth", comboBoxWidth);
     }
 
     /**
@@ -346,6 +382,28 @@ public class MultiComboBoxItem extends CanvasItem {
     
 
     /**
+     * Whether to show the picker as a flat list, or a collapsible tree. <p> The default value, "list", will use an instance of
+     * the  pickListConstructor as the picker - "tree" will  show an instance of  pickTreeConstructor.
+     *
+     * @param dataSetType New dataSetType value. Default value is "list"
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiComboBoxItem MultiComboBoxItem} instance, for chaining setter calls
+     */
+    public MultiComboBoxItem setDataSetType(String dataSetType) {
+        return (MultiComboBoxItem)setAttribute("dataSetType", dataSetType);
+    }
+
+    /**
+     * Whether to show the picker as a flat list, or a collapsible tree. <p> The default value, "list", will use an instance of
+     * the  pickListConstructor as the picker - "tree" will  show an instance of  pickTreeConstructor.
+     *
+     * @return Current dataSetType value. Default value is "list"
+     */
+    public String getDataSetType()  {
+        return getAttributeAsString("dataSetType");
+    }
+    
+
+    /**
      * When {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowDeletions showDeletions} is <code>true</code>, the
      * {@link com.smartgwt.client.widgets.Button#getBaseStyle Button.baseStyle} used on {@link
      * com.smartgwt.client.widgets.form.fields.MultiComboBoxItem#getButton buttons} for values that have been deleted (also
@@ -354,11 +412,12 @@ public class MultiComboBoxItem extends CanvasItem {
      * <code>deselectedButtonStyle</code>&nbsp;+&nbsp;"Disabled" style name.
      *
      * @param deselectedButtonStyle New deselectedButtonStyle value. Default value is "buttonDeselected"
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiComboBoxItem MultiComboBoxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.MultiComboBoxItem#setPendingButtonStyle
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setDeselectedButtonStyle(String deselectedButtonStyle) {
-        setAttribute("deselectedButtonStyle", deselectedButtonStyle);
+    public MultiComboBoxItem setDeselectedButtonStyle(String deselectedButtonStyle) {
+        return (MultiComboBoxItem)setAttribute("deselectedButtonStyle", deselectedButtonStyle);
     }
 
     /**
@@ -383,10 +442,11 @@ public class MultiComboBoxItem extends CanvasItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param displayField New displayField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiComboBoxItem MultiComboBoxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.ComboBoxItem#setDisplayField
      */
-    public void setDisplayField(String displayField) {
-        setAttribute("displayField", displayField);
+    public MultiComboBoxItem setDisplayField(String displayField) {
+        return (MultiComboBoxItem)setAttribute("displayField", displayField);
     }
 
     /**
@@ -412,9 +472,10 @@ public class MultiComboBoxItem extends CanvasItem {
      * default.</li> </ul>
      *
      * @param layoutStyle the new layout style. Default value is "flow"
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiComboBoxItem MultiComboBoxItem} instance, for chaining setter calls
      */
-    public void setLayoutStyle(MultiComboBoxLayoutStyle layoutStyle) {
-        setAttribute("layoutStyle", layoutStyle == null ? null : layoutStyle.getValue());
+    public MultiComboBoxItem setLayoutStyle(MultiComboBoxLayoutStyle layoutStyle) {
+        return (MultiComboBoxItem)setAttribute("layoutStyle", layoutStyle == null ? null : layoutStyle.getValue());
     }
 
     /**
@@ -442,9 +503,11 @@ public class MultiComboBoxItem extends CanvasItem {
      * dataSource to pick up display value mapping.
      *
      * @param optionOperationId New optionOperationId value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiComboBoxItem MultiComboBoxItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
-    public void setOptionOperationId(String optionOperationId) {
-        setAttribute("optionOperationId", optionOperationId);
+    public MultiComboBoxItem setOptionOperationId(String optionOperationId) {
+        return (MultiComboBoxItem)setAttribute("optionOperationId", optionOperationId);
     }
 
     /**
@@ -453,6 +516,7 @@ public class MultiComboBoxItem extends CanvasItem {
      * dataSource to pick up display value mapping.
      *
      * @return Current optionOperationId value. Default value is null
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public String getOptionOperationId()  {
         return getAttributeAsString("optionOperationId");
@@ -466,11 +530,12 @@ public class MultiComboBoxItem extends CanvasItem {
      * If unset, then the <code>baseStyle</code> of pending buttons is not changed.
      *
      * @param pendingButtonStyle New pendingButtonStyle value. Default value is "buttonPending"
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiComboBoxItem MultiComboBoxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.MultiComboBoxItem#setDeselectedButtonStyle
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setPendingButtonStyle(String pendingButtonStyle) {
-        setAttribute("pendingButtonStyle", pendingButtonStyle);
+    public MultiComboBoxItem setPendingButtonStyle(String pendingButtonStyle) {
+        return (MultiComboBoxItem)setAttribute("pendingButtonStyle", pendingButtonStyle);
     }
 
     /**
@@ -489,6 +554,103 @@ public class MultiComboBoxItem extends CanvasItem {
     
 
     /**
+     * The Class to use when creating a picker of  type "list" for  a FormItem.  Must be a subclass of the builtin default, 
+     * {@link com.smartgwt.client.widgets.form.PickListMenu PickListMenu}.
+     *
+     * @param pickListConstructor New pickListConstructor value. Default value is "PickListMenu"
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiComboBoxItem MultiComboBoxItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     * @see com.smartgwt.client.docs.PickList PickList overview and related methods
+     */
+    public MultiComboBoxItem setPickListConstructor(String pickListConstructor) {
+        return (MultiComboBoxItem)setAttribute("pickListConstructor", pickListConstructor);
+    }
+
+    /**
+     * The Class to use when creating a picker of  type "list" for  a FormItem.  Must be a subclass of the builtin default, 
+     * {@link com.smartgwt.client.widgets.form.PickListMenu PickListMenu}.
+     *
+     * @return Current pickListConstructor value. Default value is "PickListMenu"
+     * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     * @see com.smartgwt.client.docs.PickList PickList overview and related methods
+     */
+    public String getPickListConstructor()  {
+        return getAttributeAsString("pickListConstructor");
+    }
+    
+
+    /**
+     * The Class to use when creating a picker of  type "tree" for  a FormItem.  Must be a subclass of the builtin default,  
+     * PickTreeMenu.
+     *
+     * @param pickTreeConstructor New pickTreeConstructor value. Default value is "PickTreeMenu"
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiComboBoxItem MultiComboBoxItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     */
+    public MultiComboBoxItem setPickTreeConstructor(String pickTreeConstructor) {
+        return (MultiComboBoxItem)setAttribute("pickTreeConstructor", pickTreeConstructor);
+    }
+
+    /**
+     * The Class to use when creating a picker of  type "tree" for  a FormItem.  Must be a subclass of the builtin default,  
+     * PickTreeMenu.
+     *
+     * @return Current pickTreeConstructor value. Default value is "PickTreeMenu"
+     * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     */
+    public String getPickTreeConstructor()  {
+        return getAttributeAsString("pickTreeConstructor");
+    }
+    
+
+    /**
+     * When this item is showing a  tree-based picker, this is  the {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getValueField id} of the record to use as the  {@link
+     * com.smartgwt.client.widgets.tree.Tree#getRootValue root} node.
+     *
+     * @param rootNodeId New rootNodeId value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiComboBoxItem MultiComboBoxItem} instance, for chaining setter calls
+     */
+    public MultiComboBoxItem setRootNodeId(String rootNodeId) {
+        return (MultiComboBoxItem)setAttribute("rootNodeId", rootNodeId);
+    }
+
+    /**
+     * When this item is showing a  tree-based picker, this is  the {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getValueField id} of the record to use as the  {@link
+     * com.smartgwt.client.widgets.tree.Tree#getRootValue root} node.
+     *
+     * @return Current rootNodeId value. Default value is null
+     */
+    public String getRootNodeId()  {
+        return getAttributeAsString("rootNodeId");
+    }
+
+    /**
+     * When this item is showing a  tree-based picker, this is  the {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getValueField id} of the record to use as the  {@link
+     * com.smartgwt.client.widgets.tree.Tree#getRootValue root} node.
+     *
+     * @param rootNodeId New rootNodeId value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiComboBoxItem MultiComboBoxItem} instance, for chaining setter calls
+     */
+    public MultiComboBoxItem setRootNodeId(Integer rootNodeId) {
+        return (MultiComboBoxItem)setAttribute("rootNodeId", rootNodeId);
+    }
+
+    /**
+     * When this item is showing a  tree-based picker, this is  the {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getValueField id} of the record to use as the  {@link
+     * com.smartgwt.client.widgets.tree.Tree#getRootValue root} node.
+     *
+     * @return Current rootNodeId value. Default value is null
+     */
+    public Integer getRootNodeIdAsInt()  {
+        return getAttributeAsInt("rootNodeId");
+    }
+    
+
+    /**
      * Should this item's value be saved in the form's values and hence returned from {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getValues form.getValues()}? <p> <code>shouldSaveValue:false</code> is used
      * to mark formItems which do not correspond to the underlying data model and should not save a value into the form's
@@ -503,9 +665,10 @@ public class MultiComboBoxItem extends CanvasItem {
      * is logged, and      shouldSaveValue will be set to false. </li></ul>
      *
      * @param shouldSaveValue New shouldSaveValue value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiComboBoxItem MultiComboBoxItem} instance, for chaining setter calls
      */
-    public void setShouldSaveValue(Boolean shouldSaveValue) {
-        setAttribute("shouldSaveValue", shouldSaveValue);
+    public MultiComboBoxItem setShouldSaveValue(Boolean shouldSaveValue) {
+        return (MultiComboBoxItem)setAttribute("shouldSaveValue", shouldSaveValue);
     }
 
     /**
@@ -535,9 +698,10 @@ public class MultiComboBoxItem extends CanvasItem {
      * to sort the buttons by {@link com.smartgwt.client.widgets.form.fields.MultiComboBoxItem#getDisplayField displayField}.
      *
      * @param useInsertionOrder New useInsertionOrder value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiComboBoxItem MultiComboBoxItem} instance, for chaining setter calls
      */
-    public void setUseInsertionOrder(Boolean useInsertionOrder) {
-        setAttribute("useInsertionOrder", useInsertionOrder);
+    public MultiComboBoxItem setUseInsertionOrder(Boolean useInsertionOrder) {
+        return (MultiComboBoxItem)setAttribute("useInsertionOrder", useInsertionOrder);
     }
 
     /**
@@ -556,10 +720,11 @@ public class MultiComboBoxItem extends CanvasItem {
      * The <code>valueField</code> of the combo box.
      *
      * @param valueField New valueField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiComboBoxItem MultiComboBoxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.ComboBoxItem#setValueField
      */
-    public void setValueField(String valueField) {
-        setAttribute("valueField", valueField);
+    public MultiComboBoxItem setValueField(String valueField) {
+        return (MultiComboBoxItem)setAttribute("valueField", valueField);
     }
 
     /**
@@ -740,10 +905,12 @@ public class MultiComboBoxItem extends CanvasItem {
      * The <code>optionDataSource</code> of the combo box.
      *
      * @param optionDataSource optionDataSource Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiComboBoxItem MultiComboBoxItem}
+     * instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.ComboBoxItem#setOptionDataSource
      */
-    public void setOptionDataSource(DataSource optionDataSource) {
-        setAttribute("optionDataSource", optionDataSource);
+    public MultiComboBoxItem setOptionDataSource(DataSource optionDataSource) {
+        return (MultiComboBoxItem)setAttribute("optionDataSource", optionDataSource);
     }
 
     /**

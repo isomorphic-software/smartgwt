@@ -107,15 +107,48 @@ public enum ValidatorType implements ValueEnum {
      */
     MATCHESFIELD("matchesField"),
     /**
+     * Tests whether the value for this field matches some value specified via <code>value</code>.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "equals".
+     */
+    EQUALS("equals"),
+    /**
+     * Tests whether the value for this field does not match some value specified via <code>value</code>.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "notEqual".
+     */
+    NOTEQUAL("notEqual"),
+    /**
+     * [deprecated in favor of <code>inSet</code>] Tests whether the value for this field matches any value from an arbitrary
+     * list of acceptable values. The set of acceptable values is specified via the <code>list</code> property on the
+     * validator, which should be set to an array of values. If validator.list is not supplied, the valueMap for the field will
+     * be used. If there is no valueMap, not providing validator.list is an error.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "isOneOf".
+     */
+    ISONEOF("isOneOf"),
+    /**
      * Tests whether the value for this field matches any value from an arbitrary list of acceptable values. The set of
      * acceptable values is specified via the <code>list</code> property on the validator, which should be set to an array of
      * values. If validator.list is not supplied, the valueMap for the field will be used. If there is no valueMap, not
      * providing validator.list is an error.
      * <P>
      * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
-     * file or server-side DataSource descriptor (.ds.xml file), use the value "isOneOf".
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "inSet".
      */
-    ISONEOF("isOneOf"),
+    INSET("inSet"),
+    /**
+     * Tests whether the value for this field does not match any value from an arbitrary list of unacceptable values. The set
+     * of unacceptable values is specified via the <code>list</code> property on the validator, which should be set to an array
+     * of values. Not providing validator.list is an error.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "notInSet".
+     */
+    NOTINSET("notInSet"),
     /**
      * Tests whether the value for this field is a whole number within the range  specified. The <code>max</code> and
      * <code>min</code> properties on the validator are used to determine the acceptable range, inclusive. To specify the range

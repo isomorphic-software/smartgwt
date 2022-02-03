@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * FormItem that creates an HTML &lt;input type="file"&gt; control, with an interface that allows a user to pick a file
@@ -191,9 +194,10 @@ public class UploadItem extends TextItem {
      * 'accept' attribute - is it useful?</a> </ul>
      *
      * @param accept New accept value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.UploadItem UploadItem} instance, for chaining setter calls
      */
-    public void setAccept(String accept) {
-        setAttribute("accept", accept);
+    public UploadItem setAccept(String accept) {
+        return (UploadItem)setAttribute("accept", accept);
     }
 
     /**
@@ -213,14 +217,39 @@ public class UploadItem extends TextItem {
     
 
     /**
+     * Default class used to construct the {@link com.smartgwt.client.tools.EditProxy} for this component when the component is
+     * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
+     *
+     * @param editProxyConstructor New editProxyConstructor value. Default value is "FileItemEditProxy"
+     * @return {@link com.smartgwt.client.widgets.form.fields.UploadItem UploadItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     */
+    public UploadItem setEditProxyConstructor(String editProxyConstructor) {
+        return (UploadItem)setAttribute("editProxyConstructor", editProxyConstructor);
+    }
+
+    /**
+     * Default class used to construct the {@link com.smartgwt.client.tools.EditProxy} for this component when the component is
+     * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
+     *
+     * @return Current editProxyConstructor value. Default value is "FileItemEditProxy"
+     * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     */
+    public String getEditProxyConstructor()  {
+        return getAttributeAsString("editProxyConstructor");
+    }
+    
+
+    /**
      * Height for this uploadItem. Note that Smart GWT will not apply this size to the native HTML &lt;input ...&gt; element
      * written out by this formItem as this leads to inconsistent appearance across different browsers. The specified height
      * acts as a minimum cell width for the item.
      *
      * @param height New height value. Default value is 19
+     * @return {@link com.smartgwt.client.widgets.form.fields.UploadItem UploadItem} instance, for chaining setter calls
      */
-    public void setHeight(int height) {
-        setAttribute("height", height);
+    public UploadItem setHeight(int height) {
+        return (UploadItem)setAttribute("height", height);
     }
 
     /**
@@ -274,9 +303,10 @@ public class UploadItem extends TextItem {
      *  </pre>
      *
      * @param multiple New multiple value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.UploadItem UploadItem} instance, for chaining setter calls
      */
-    public void setMultiple(Boolean multiple) {
-        setAttribute("multiple", multiple);
+    public UploadItem setMultiple(Boolean multiple) {
+        return (UploadItem)setAttribute("multiple", multiple);
     }
 
     /**
@@ -334,12 +364,13 @@ public class UploadItem extends TextItem {
      * state. However, calling updateState() will clear any file selected by the user to be uploaded.
      *
      * @param textBoxStyle New textBoxStyle value. Default value is "uploadItem"
+     * @return {@link com.smartgwt.client.widgets.form.fields.UploadItem UploadItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
      * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
-    public void setTextBoxStyle(String textBoxStyle) {
-        setAttribute("textBoxStyle", textBoxStyle);
+    public UploadItem setTextBoxStyle(String textBoxStyle) {
+        return (UploadItem)setAttribute("textBoxStyle", textBoxStyle);
     }
 
     /**
@@ -366,9 +397,10 @@ public class UploadItem extends TextItem {
      * acts as a minimum cell width for the item.
      *
      * @param width New width value. Default value is 150
+     * @return {@link com.smartgwt.client.widgets.form.fields.UploadItem UploadItem} instance, for chaining setter calls
      */
-    public void setWidth(int width) {
-        setAttribute("width", width);
+    public UploadItem setWidth(int width) {
+        return (UploadItem)setAttribute("width", width);
     }
 
     /**

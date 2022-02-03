@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Class for encoding objects as JSON strings.
@@ -150,10 +153,11 @@ public class JSONEncoder extends BaseClass {
      * com.smartgwt.client.util.JSONEncoder#getCircularReferenceMode circularReferenceMode}.
      *
      * @param circularReferenceMarker New circularReferenceMarker value. Default value is "$$BACKREF$$"
+     * @return {@link com.smartgwt.client.util.JSONEncoder JSONEncoder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setCircularReferenceMarker(String circularReferenceMarker)  throws IllegalStateException {
-        setAttribute("circularReferenceMarker", circularReferenceMarker, false);
+    public JSONEncoder setCircularReferenceMarker(String circularReferenceMarker)  throws IllegalStateException {
+        return (JSONEncoder)setAttribute("circularReferenceMarker", circularReferenceMarker, false);
     }
 
     /**
@@ -171,10 +175,11 @@ public class JSONEncoder extends BaseClass {
      * What the JSONEncoder should do if it encounters a circular reference.
      *
      * @param circularReferenceMode New circularReferenceMode value. Default value is "path"
+     * @return {@link com.smartgwt.client.util.JSONEncoder JSONEncoder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setCircularReferenceMode(JSONCircularReferenceMode circularReferenceMode)  throws IllegalStateException {
-        setAttribute("circularReferenceMode", circularReferenceMode == null ? null : circularReferenceMode.getValue(), false);
+    public JSONEncoder setCircularReferenceMode(JSONCircularReferenceMode circularReferenceMode)  throws IllegalStateException {
+        return (JSONEncoder)setAttribute("circularReferenceMode", circularReferenceMode == null ? null : circularReferenceMode.getValue(), false);
     }
 
     /**
@@ -192,10 +197,11 @@ public class JSONEncoder extends BaseClass {
      * options, or override {@link com.smartgwt.client.util.JSONEncoder#encodeDate encodeDate()} to do something custom.
      *
      * @param dateFormat New dateFormat value. Default value is "xmlSchema"
+     * @return {@link com.smartgwt.client.util.JSONEncoder JSONEncoder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setDateFormat(JSONDateFormat dateFormat)  throws IllegalStateException {
-        setAttribute("dateFormat", dateFormat == null ? null : dateFormat.getValue(), false);
+    public JSONEncoder setDateFormat(JSONDateFormat dateFormat)  throws IllegalStateException {
+        return (JSONEncoder)setAttribute("dateFormat", dateFormat == null ? null : dateFormat.getValue(), false);
     }
 
     /**
@@ -219,9 +225,10 @@ public class JSONEncoder extends BaseClass {
      * older browsers that do not provide native support (for example, Internet Explorer 8).
      *
      * @param escapeNonPrintable New escapeNonPrintable value. Default value is true
+     * @return {@link com.smartgwt.client.util.JSONEncoder JSONEncoder} instance, for chaining setter calls
      */
-    public void setEscapeNonPrintable(Boolean escapeNonPrintable) {
-        setAttribute("escapeNonPrintable", escapeNonPrintable, true);
+    public JSONEncoder setEscapeNonPrintable(Boolean escapeNonPrintable) {
+        return (JSONEncoder)setAttribute("escapeNonPrintable", escapeNonPrintable, true);
     }
 
     /**
@@ -247,10 +254,11 @@ public class JSONEncoder extends BaseClass {
      * negligible.
      *
      * @param prettyPrint New prettyPrint value. Default value is true
+     * @return {@link com.smartgwt.client.util.JSONEncoder JSONEncoder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setPrettyPrint(Boolean prettyPrint)  throws IllegalStateException {
-        setAttribute("prettyPrint", prettyPrint, false);
+    public JSONEncoder setPrettyPrint(Boolean prettyPrint)  throws IllegalStateException {
+        return (JSONEncoder)setAttribute("prettyPrint", prettyPrint, false);
     }
 
     /**
@@ -272,10 +280,11 @@ public class JSONEncoder extends BaseClass {
      * not support a format that will recreate the instance if passed to decode() or eval().
      *
      * @param serializeInstances New serializeInstances value. Default value is "long"
+     * @return {@link com.smartgwt.client.util.JSONEncoder JSONEncoder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setSerializeInstances(JSONInstanceSerializationMode serializeInstances)  throws IllegalStateException {
-        setAttribute("serializeInstances", serializeInstances == null ? null : serializeInstances.getValue(), false);
+    public JSONEncoder setSerializeInstances(JSONInstanceSerializationMode serializeInstances)  throws IllegalStateException {
+        return (JSONEncoder)setAttribute("serializeInstances", serializeInstances == null ? null : serializeInstances.getValue(), false);
     }
 
     /**
@@ -295,10 +304,11 @@ public class JSONEncoder extends BaseClass {
      * omitting them.  <P> The resulting String will not be valid JSON and so cannot be decoded/eval()'d
      *
      * @param showDebugOutput New showDebugOutput value. Default value is false
+     * @return {@link com.smartgwt.client.util.JSONEncoder JSONEncoder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setShowDebugOutput(Boolean showDebugOutput)  throws IllegalStateException {
-        setAttribute("showDebugOutput", showDebugOutput, false);
+    public JSONEncoder setShowDebugOutput(Boolean showDebugOutput)  throws IllegalStateException {
+        return (JSONEncoder)setAttribute("showDebugOutput", showDebugOutput, false);
     }
 
     /**
@@ -317,10 +327,11 @@ public class JSONEncoder extends BaseClass {
      * If true, don't show Smart GWT internal properties when encoding and object.
      *
      * @param skipInternalProperties New skipInternalProperties value. Default value is false
+     * @return {@link com.smartgwt.client.util.JSONEncoder JSONEncoder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setSkipInternalProperties(Boolean skipInternalProperties)  throws IllegalStateException {
-        setAttribute("skipInternalProperties", skipInternalProperties, false);
+    public JSONEncoder setSkipInternalProperties(Boolean skipInternalProperties)  throws IllegalStateException {
+        return (JSONEncoder)setAttribute("skipInternalProperties", skipInternalProperties, false);
     }
 
     /**
@@ -350,10 +361,11 @@ public class JSONEncoder extends BaseClass {
      *  .. but is not understood by many server-side JSON parser implementations.
      *
      * @param strictQuoting New strictQuoting value. Default value is true
+     * @return {@link com.smartgwt.client.util.JSONEncoder JSONEncoder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setStrictQuoting(Boolean strictQuoting)  throws IllegalStateException {
-        setAttribute("strictQuoting", strictQuoting, false);
+    public JSONEncoder setStrictQuoting(Boolean strictQuoting)  throws IllegalStateException {
+        return (JSONEncoder)setAttribute("strictQuoting", strictQuoting, false);
     }
 
     /**

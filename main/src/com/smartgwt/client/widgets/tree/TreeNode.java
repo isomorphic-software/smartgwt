@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Every node in the tree is represented by a TreeNode object which is an object literal with a set of properties that
@@ -121,9 +124,10 @@ public class TreeNode extends ListGridRecord {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canAcceptDrop New canAcceptDrop value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeNode TreeNode} instance, for chaining setter calls
      */
-    public void setCanAcceptDrop(Boolean canAcceptDrop) {
-        setAttribute("canAcceptDrop", canAcceptDrop);
+    public TreeNode setCanAcceptDrop(Boolean canAcceptDrop) {
+        return (TreeNode)setAttribute("canAcceptDrop", canAcceptDrop);
     }
 
     /**
@@ -149,9 +153,10 @@ public class TreeNode extends ListGridRecord {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canDrag New canDrag value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeNode TreeNode} instance, for chaining setter calls
      */
-    public void setCanDrag(Boolean canDrag) {
-        setAttribute("canDrag", canDrag);
+    public TreeNode setCanDrag(Boolean canDrag) {
+        return (TreeNode)setAttribute("canDrag", canDrag);
     }
 
     /**
@@ -174,10 +179,11 @@ public class TreeNode extends ListGridRecord {
      * com.smartgwt.client.widgets.grid.ListGrid#getRecordEnabledProperty ListGrid.recordEnabledProperty}.
      *
      * @param enabled New enabled value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeNode TreeNode} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_disabled_rows" target="examples">Disabled rows Example</a>
      */
-    public void setEnabled(Boolean enabled) {
-        setAttribute("enabled", enabled);
+    public TreeNode setEnabled(Boolean enabled) {
+        return (TreeNode)setAttribute("enabled", enabled);
     }
 
     /**
@@ -207,10 +213,11 @@ public class TreeNode extends ListGridRecord {
      * TreeGrid.customIconProperty}.
      *
      * @param icon New icon value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeNode TreeNode} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setIcon(String icon) {
-        setAttribute("icon", icon);
+    public TreeNode setIcon(String icon) {
+        return (TreeNode)setAttribute("icon", icon);
     }
 
     /**
@@ -242,9 +249,10 @@ public class TreeNode extends ListGridRecord {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param iconPadding New iconPadding value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeNode TreeNode} instance, for chaining setter calls
      */
-    public void setIconPadding(Integer iconPadding) {
-        setAttribute("iconPadding", iconPadding);
+    public TreeNode setIconPadding(Integer iconPadding) {
+        return (TreeNode)setAttribute("iconPadding", iconPadding);
     }
 
     /**
@@ -324,11 +332,12 @@ public class TreeNode extends ListGridRecord {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showDropIcon New showDropIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.TreeNode TreeNode} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCustomIconProperty
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setShowCustomIconDrop
      */
-    public void setShowDropIcon(Boolean showDropIcon) {
-        setAttribute("showDropIcon", showDropIcon);
+    public TreeNode setShowDropIcon(Boolean showDropIcon) {
+        return (TreeNode)setAttribute("showDropIcon", showDropIcon);
     }
 
     /**
@@ -360,11 +369,12 @@ public class TreeNode extends ListGridRecord {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showOpenIcon New showOpenIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.TreeNode TreeNode} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCustomIconProperty
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setShowCustomIconOpen
      */
-    public void setShowOpenIcon(Boolean showOpenIcon) {
-        setAttribute("showOpenIcon", showOpenIcon);
+    public TreeNode setShowOpenIcon(Boolean showOpenIcon) {
+        return (TreeNode)setAttribute("showOpenIcon", showOpenIcon);
     }
 
     /**
@@ -396,11 +406,12 @@ public class TreeNode extends ListGridRecord {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showSelectedIcon New showSelectedIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.TreeNode TreeNode} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCustomIconProperty
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setShowCustomIconSelected
      */
-    public void setShowSelectedIcon(Boolean showSelectedIcon) {
-        setAttribute("showSelectedIcon", showSelectedIcon);
+    public TreeNode setShowSelectedIcon(Boolean showSelectedIcon) {
+        return (TreeNode)setAttribute("showSelectedIcon", showSelectedIcon);
     }
 
     /**
@@ -430,12 +441,13 @@ public class TreeNode extends ListGridRecord {
      * Tree.titleProperty}.
      *
      * @param title New title value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeNode TreeNode} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.Tree#setTitleProperty
      * @see com.smartgwt.client.widgets.tree.Tree#getTitle
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setTitle(String title) {
-        setAttribute("title", title);
+    public TreeNode setTitle(String title) {
+        return (TreeNode)setAttribute("title", title);
     }
 
     /**

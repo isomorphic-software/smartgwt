@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * An object representing one of the image segments displayed by a {@link com.smartgwt.client.widgets.StretchImg}. Each
@@ -139,9 +142,10 @@ public class StretchItem extends DataClass {
      * com.smartgwt.client.widgets.StretchImg#getVertical StretchImg.vertical} is true).
      *
      * @param height New height value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchItem StretchItem} instance, for chaining setter calls
      */
-    public void setHeight(int height) {
-        setAttribute("height", height);
+    public StretchItem setHeight(int height) {
+        return (StretchItem)setAttribute("height", height);
     }
 
     /**
@@ -152,9 +156,10 @@ public class StretchItem extends DataClass {
      * com.smartgwt.client.widgets.StretchImg#getVertical StretchImg.vertical} is true).
      *
      * @param height New height value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchItem StretchItem} instance, for chaining setter calls
      */
-    public void setHeight(String height) {
-        setAttribute("height", height);
+    public StretchItem setHeight(String height) {
+        return (StretchItem)setAttribute("height", height);
     }
     
 
@@ -168,9 +173,10 @@ public class StretchItem extends DataClass {
      * would be "button_Over_stretch.png".
      *
      * @param name New name value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchItem StretchItem} instance, for chaining setter calls
      */
-    public void setName(String name) {
-        setAttribute("name", name);
+    public StretchItem setName(String name) {
+        return (StretchItem)setAttribute("name", name);
     }
 
     /**
@@ -193,10 +199,11 @@ public class StretchItem extends DataClass {
      * The URL of the media file for this StretchItem.
      *
      * @param src New src value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchItem StretchItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setSrc(String src) {
-        setAttribute("src", src);
+    public StretchItem setSrc(String src) {
+        return (StretchItem)setAttribute("src", src);
     }
 
     /**
@@ -218,9 +225,10 @@ public class StretchItem extends DataClass {
      * com.smartgwt.client.widgets.StretchImg#getVertical StretchImg.vertical} is false).
      *
      * @param width New width value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchItem StretchItem} instance, for chaining setter calls
      */
-    public void setWidth(int width) {
-        setAttribute("width", width);
+    public StretchItem setWidth(int width) {
+        return (StretchItem)setAttribute("width", width);
     }
 
     /**
@@ -231,9 +239,10 @@ public class StretchItem extends DataClass {
      * com.smartgwt.client.widgets.StretchImg#getVertical StretchImg.vertical} is false).
      *
      * @param width New width value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchItem StretchItem} instance, for chaining setter calls
      */
-    public void setWidth(String width) {
-        setAttribute("width", width);
+    public StretchItem setWidth(String width) {
+        return (StretchItem)setAttribute("width", width);
     }
     
 

@@ -20,6 +20,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.layout.Layout#getDefaultLayoutAlign
  * @see com.smartgwt.client.widgets.layout.Layout#getAlign
  * @see com.smartgwt.client.widgets.layout.Layout#getReverseOrder
+ * @see com.smartgwt.client.widgets.layout.SplitPane#getVertical
+ * @see com.smartgwt.client.widgets.layout.SplitPane#getReverseOrder
  */
 public interface LayoutPolicy {
 }

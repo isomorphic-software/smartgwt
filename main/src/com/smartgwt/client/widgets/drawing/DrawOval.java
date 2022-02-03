@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -193,9 +196,10 @@ public class DrawOval extends DrawItem {
      * Change the center point for this oval.
      *
      * @param centerPoint left coordinate (in the global coordinate system). Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawOval DrawOval} instance, for chaining setter calls
      */
-    public void setCenterPoint(Point centerPoint) {
-        setAttribute("centerPoint", centerPoint == null ? null : centerPoint.getJsObj(), true);
+    public DrawOval setCenterPoint(Point centerPoint) {
+        return (DrawOval)setAttribute("centerPoint", centerPoint == null ? null : centerPoint.getJsObj(), true);
     }
 
     /**
@@ -215,9 +219,10 @@ public class DrawOval extends DrawItem {
      * Set the height of the drawOval
      *
      * @param height new height. Default value is 100
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawOval DrawOval} instance, for chaining setter calls
      */
-    public void setHeight(int height) {
-        setAttribute("height", height, true);
+    public DrawOval setHeight(int height) {
+        return (DrawOval)setAttribute("height", height, true);
     }
 
     /**
@@ -246,9 +251,10 @@ public class DrawOval extends DrawItem {
      * Set the left coordinate of the drawOval
      *
      * @param left new left coordinate. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawOval DrawOval} instance, for chaining setter calls
      */
-    public void setLeft(int left) {
-        setAttribute("left", left, true);
+    public DrawOval setLeft(int left) {
+        return (DrawOval)setAttribute("left", left, true);
     }
 
     /**
@@ -282,11 +288,12 @@ public class DrawOval extends DrawItem {
      *
      * @param radius new radius. This will be applied on both axes, meaning calling this method will always result in the DrawOval being a
      * circle. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawOval DrawOval} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.drawing.DrawOval#getRadiusX
      * @see com.smartgwt.client.widgets.drawing.DrawOval#getRadiusY
      */
-    public void setRadius(Integer radius) {
-        setAttribute("radius", radius, true);
+    public DrawOval setRadius(Integer radius) {
+        return (DrawOval)setAttribute("radius", radius, true);
     }
     
 
@@ -296,12 +303,13 @@ public class DrawOval extends DrawItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param titleRotationMode New titleRotationMode value. Default value is "withItemAlwaysUp"
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawOval DrawOval} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setTitle
      * 
      */
-    public void setTitleRotationMode(TitleRotationMode titleRotationMode)  throws IllegalStateException {
-        setAttribute("titleRotationMode", titleRotationMode == null ? null : titleRotationMode.getValue(), false);
+    public DrawOval setTitleRotationMode(TitleRotationMode titleRotationMode)  throws IllegalStateException {
+        return (DrawOval)setAttribute("titleRotationMode", titleRotationMode == null ? null : titleRotationMode.getValue(), false);
     }
 
     /**
@@ -324,9 +332,10 @@ public class DrawOval extends DrawItem {
      * Set the top coordinate of the drawOval
      *
      * @param top new top coordinate. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawOval DrawOval} instance, for chaining setter calls
      */
-    public void setTop(int top) {
-        setAttribute("top", top, true);
+    public DrawOval setTop(int top) {
+        return (DrawOval)setAttribute("top", top, true);
     }
 
     /**
@@ -355,9 +364,10 @@ public class DrawOval extends DrawItem {
      * Set the width of the drawOval
      *
      * @param width new width. Default value is 100
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawOval DrawOval} instance, for chaining setter calls
      */
-    public void setWidth(int width) {
-        setAttribute("width", width, true);
+    public DrawOval setWidth(int width) {
+        return (DrawOval)setAttribute("width", width, true);
     }
 
     /**

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * A special kind of {@link com.smartgwt.client.data.DataSource#getClientOnly client-only DataSource} that can be
@@ -83,7 +86,15 @@ import com.google.gwt.event.shared.HasHandlers;
  * application.  Generally, if creating a client-only DataSource in  Java, there is no reason to use the mock data format,
  * as the mock data is not especially readable when written as a String literal.  The mock data format <i>can</i> be a
  * slightly more compact and readable as compared to declaring {@link com.smartgwt.client.data.DataSource#getCacheData
- * DataSource.cacheData} in XML.
+ * DataSource.cacheData} in XML. <p> Note: If a MockDataSource has {@link
+ * com.smartgwt.client.data.DataSource#getAddGlobalId addGlobalId} set to true, it will be made available in global scope.
+ * <P> Unlike other DataSources, if a MockDataSource is created with an ID that is already in use by another DataSource,
+ * the existing DataSource will not be <code>destroy()</code>'d  and the new MockDataSource will not be available by
+ * ID.<br> Similarly, if a MockDataSource exists and a new DataSource is created with the same ID the MockDataSource will
+ * be <code>destroy()</code>'d automatically without logging a warning to the developer console.<br> This means if
+ * application code changes to replace a MockDataSource with a "real"  dataSource it will function as expected, without
+ * warnings, even if the MockDataSource  creation code was not removed, regardless of the order in which the MockDataSource
+ * and "real" dataSource are created.
  */
 @BeanFactory.FrameworkClass
 @BeanFactory.ScClassName("MockDataSource")
@@ -121,31 +132,34 @@ public class MockDataSource extends DataSource {
     /**
      * Data intended for a {@link com.smartgwt.client.widgets.grid.ListGrid} or {@link
      * com.smartgwt.client.widgets.tree.TreeGrid}, expressed in a simple text format popularized by mockup tools such as <a
-     * href='http://balsamiq.com' target='_blank'>http://balsamiq.com</a> and now commonly supported in a variety of mockup
-     * tools. <p> Balsamiq publishes documentation of the grid format  <a
-     * href='http://support.balsamiq.com/customer/portal/articles/110188-working-with-data-grids-tables'
-     * target='_blank'>here</a>, with a simple example of using tree-specific formatting <a
-     * href='https://support.mybalsamiq.com/projects/uilibrary/Tree%20Pane' target='_blank'>here</a>. <p> An alternative format
-     * of data consisting of an array of {@link com.smartgwt.client.data.Record Records} can also be provided. In this case the
-     * records are converted to "grid" {@link com.smartgwt.client.types.MockDataType format}.
+     * href='http://balsamiq.com' target='_blank'>balsamiq</a> and now commonly supported in a variety of mockup tools. <p>
+     * Balsamiq publishes documentation of the grid format  <a
+     * href='https://docs.balsamiq.com/cloud/editing-controls/#the-data-grid-table-control' target='_blank'>here</a>, with a
+     * simple example of using tree-specific formatting <a
+     * href='https://docs.balsamiq.com/cloud/editing-controls/#the-tree-pane' target='_blank'>here</a>. <p> MockData can also
+     * be provided as XML, CSV or JSON text by setting {@link com.smartgwt.client.types.MockDataFormat} to the correct format.
+     * <p> An alternative format of data consisting of an array of {@link com.smartgwt.client.data.Record Records} can also be
+     * provided. In this case the records are converted to "grid" {@link com.smartgwt.client.types.MockDataType format}.
      *
      * @param mockData New mockData value. Default value is "md"
+     * @return {@link com.smartgwt.client.data.MockDataSource MockDataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setMockData(String mockData)  throws IllegalStateException {
-        setAttribute("mockData", mockData, false);
+    public MockDataSource setMockData(String mockData)  throws IllegalStateException {
+        return (MockDataSource)setAttribute("mockData", mockData, false);
     }
 
     /**
      * Data intended for a {@link com.smartgwt.client.widgets.grid.ListGrid} or {@link
      * com.smartgwt.client.widgets.tree.TreeGrid}, expressed in a simple text format popularized by mockup tools such as <a
-     * href='http://balsamiq.com' target='_blank'>http://balsamiq.com</a> and now commonly supported in a variety of mockup
-     * tools. <p> Balsamiq publishes documentation of the grid format  <a
-     * href='http://support.balsamiq.com/customer/portal/articles/110188-working-with-data-grids-tables'
-     * target='_blank'>here</a>, with a simple example of using tree-specific formatting <a
-     * href='https://support.mybalsamiq.com/projects/uilibrary/Tree%20Pane' target='_blank'>here</a>. <p> An alternative format
-     * of data consisting of an array of {@link com.smartgwt.client.data.Record Records} can also be provided. In this case the
-     * records are converted to "grid" {@link com.smartgwt.client.types.MockDataType format}.
+     * href='http://balsamiq.com' target='_blank'>balsamiq</a> and now commonly supported in a variety of mockup tools. <p>
+     * Balsamiq publishes documentation of the grid format  <a
+     * href='https://docs.balsamiq.com/cloud/editing-controls/#the-data-grid-table-control' target='_blank'>here</a>, with a
+     * simple example of using tree-specific formatting <a
+     * href='https://docs.balsamiq.com/cloud/editing-controls/#the-tree-pane' target='_blank'>here</a>. <p> MockData can also
+     * be provided as XML, CSV or JSON text by setting {@link com.smartgwt.client.types.MockDataFormat} to the correct format.
+     * <p> An alternative format of data consisting of an array of {@link com.smartgwt.client.data.Record Records} can also be
+     * provided. In this case the records are converted to "grid" {@link com.smartgwt.client.types.MockDataType format}.
      *
      * @return Current mockData value. Default value is "md"
      */
@@ -156,31 +170,34 @@ public class MockDataSource extends DataSource {
     /**
      * Data intended for a {@link com.smartgwt.client.widgets.grid.ListGrid} or {@link
      * com.smartgwt.client.widgets.tree.TreeGrid}, expressed in a simple text format popularized by mockup tools such as <a
-     * href='http://balsamiq.com' target='_blank'>http://balsamiq.com</a> and now commonly supported in a variety of mockup
-     * tools. <p> Balsamiq publishes documentation of the grid format  <a
-     * href='http://support.balsamiq.com/customer/portal/articles/110188-working-with-data-grids-tables'
-     * target='_blank'>here</a>, with a simple example of using tree-specific formatting <a
-     * href='https://support.mybalsamiq.com/projects/uilibrary/Tree%20Pane' target='_blank'>here</a>. <p> An alternative format
-     * of data consisting of an array of {@link com.smartgwt.client.data.Record Records} can also be provided. In this case the
-     * records are converted to "grid" {@link com.smartgwt.client.types.MockDataType format}.
+     * href='http://balsamiq.com' target='_blank'>balsamiq</a> and now commonly supported in a variety of mockup tools. <p>
+     * Balsamiq publishes documentation of the grid format  <a
+     * href='https://docs.balsamiq.com/cloud/editing-controls/#the-data-grid-table-control' target='_blank'>here</a>, with a
+     * simple example of using tree-specific formatting <a
+     * href='https://docs.balsamiq.com/cloud/editing-controls/#the-tree-pane' target='_blank'>here</a>. <p> MockData can also
+     * be provided as XML, CSV or JSON text by setting {@link com.smartgwt.client.types.MockDataFormat} to the correct format.
+     * <p> An alternative format of data consisting of an array of {@link com.smartgwt.client.data.Record Records} can also be
+     * provided. In this case the records are converted to "grid" {@link com.smartgwt.client.types.MockDataType format}.
      *
      * @param mockData New mockData value. Default value is "md"
+     * @return {@link com.smartgwt.client.data.MockDataSource MockDataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setMockData(Record... mockData)  throws IllegalStateException {
-        setAttribute("mockData", mockData, false);
+    public MockDataSource setMockData(Record... mockData)  throws IllegalStateException {
+        return (MockDataSource)setAttribute("mockData", mockData, false);
     }
 
     /**
      * Data intended for a {@link com.smartgwt.client.widgets.grid.ListGrid} or {@link
      * com.smartgwt.client.widgets.tree.TreeGrid}, expressed in a simple text format popularized by mockup tools such as <a
-     * href='http://balsamiq.com' target='_blank'>http://balsamiq.com</a> and now commonly supported in a variety of mockup
-     * tools. <p> Balsamiq publishes documentation of the grid format  <a
-     * href='http://support.balsamiq.com/customer/portal/articles/110188-working-with-data-grids-tables'
-     * target='_blank'>here</a>, with a simple example of using tree-specific formatting <a
-     * href='https://support.mybalsamiq.com/projects/uilibrary/Tree%20Pane' target='_blank'>here</a>. <p> An alternative format
-     * of data consisting of an array of {@link com.smartgwt.client.data.Record Records} can also be provided. In this case the
-     * records are converted to "grid" {@link com.smartgwt.client.types.MockDataType format}.
+     * href='http://balsamiq.com' target='_blank'>balsamiq</a> and now commonly supported in a variety of mockup tools. <p>
+     * Balsamiq publishes documentation of the grid format  <a
+     * href='https://docs.balsamiq.com/cloud/editing-controls/#the-data-grid-table-control' target='_blank'>here</a>, with a
+     * simple example of using tree-specific formatting <a
+     * href='https://docs.balsamiq.com/cloud/editing-controls/#the-tree-pane' target='_blank'>here</a>. <p> MockData can also
+     * be provided as XML, CSV or JSON text by setting {@link com.smartgwt.client.types.MockDataFormat} to the correct format.
+     * <p> An alternative format of data consisting of an array of {@link com.smartgwt.client.data.Record Records} can also be
+     * provided. In this case the records are converted to "grid" {@link com.smartgwt.client.types.MockDataType format}.
      *
      * @return Current mockData value. Default value is "md"
      */
@@ -190,21 +207,47 @@ public class MockDataSource extends DataSource {
     
 
     /**
-     * Whether {@link com.smartgwt.client.data.MockDataSource#getMockData mockData} is in the "grid" or "tree" format.  See
-     * {@link com.smartgwt.client.types.MockDataType}.
+     * Format of data provided in {@link com.smartgwt.client.data.MockDataSource#getMockData mockData}. See {@link
+     * com.smartgwt.client.types.MockDataFormat}.
      *
-     * @param mockDataType New mockDataType value. Default value is "grid"
+     * @param mockDataFormat New mockDataFormat value. Default value is "mock"
+     * @return {@link com.smartgwt.client.data.MockDataSource MockDataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setMockDataType(MockDataType mockDataType)  throws IllegalStateException {
-        setAttribute("mockDataType", mockDataType == null ? null : mockDataType.getValue(), false);
+    public MockDataSource setMockDataFormat(MockDataFormat mockDataFormat)  throws IllegalStateException {
+        return (MockDataSource)setAttribute("mockDataFormat", mockDataFormat == null ? null : mockDataFormat.getValue(), false);
     }
 
     /**
-     * Whether {@link com.smartgwt.client.data.MockDataSource#getMockData mockData} is in the "grid" or "tree" format.  See
-     * {@link com.smartgwt.client.types.MockDataType}.
+     * Format of data provided in {@link com.smartgwt.client.data.MockDataSource#getMockData mockData}. See {@link
+     * com.smartgwt.client.types.MockDataFormat}.
      *
-     * @return Current mockDataType value. Default value is "grid"
+     * @return Current mockDataFormat value. Default value is "mock"
+     */
+    public MockDataFormat getMockDataFormat()  {
+        return EnumUtil.getEnum(MockDataFormat.values(), getAttribute("mockDataFormat"));
+    }
+    
+
+    /**
+     * When {@link com.smartgwt.client.data.MockDataSource#getMockDataFormat mockDataFormat} is "mock", whether {@link
+     * com.smartgwt.client.data.MockDataSource#getMockData mockData}  is in the "grid" or "tree" format. See {@link
+     * com.smartgwt.client.types.MockDataType}. <p> If not specified, the type will be detected from the data.
+     *
+     * @param mockDataType New mockDataType value. Default value is null
+     * @return {@link com.smartgwt.client.data.MockDataSource MockDataSource} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public MockDataSource setMockDataType(MockDataType mockDataType)  throws IllegalStateException {
+        return (MockDataSource)setAttribute("mockDataType", mockDataType == null ? null : mockDataType.getValue(), false);
+    }
+
+    /**
+     * When {@link com.smartgwt.client.data.MockDataSource#getMockDataFormat mockDataFormat} is "mock", whether {@link
+     * com.smartgwt.client.data.MockDataSource#getMockData mockData}  is in the "grid" or "tree" format. See {@link
+     * com.smartgwt.client.types.MockDataType}. <p> If not specified, the type will be detected from the data.
+     *
+     * @return Current mockDataType value. Default value is null
      */
     public MockDataType getMockDataType()  {
         return EnumUtil.getEnum(MockDataType.values(), getAttribute("mockDataType"));

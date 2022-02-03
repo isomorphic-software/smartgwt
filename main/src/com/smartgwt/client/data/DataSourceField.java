@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Metadata about a DataSourceField, including its type and validators.
@@ -144,9 +147,10 @@ public class DataSourceField extends DataClass {
      * fields}.
      *
      * @param canExport New canExport value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      */
-    public void setCanExport(Boolean canExport) {
-        setAttribute("canExport", canExport);
+    public DataSourceField setCanExport(Boolean canExport) {
+        return (DataSourceField)setAttribute("canExport", canExport);
     }
 
     /**
@@ -163,19 +167,32 @@ public class DataSourceField extends DataClass {
 
     /**
      * Should the user be able to filter data by this field? Affects whether this field will show up in dataBoundComponents
-     * with UI for filtering data. <P>
+     * with UI for filtering data. <P> Note that setting <code>canFilter:false</code> only affects UI and is not a security
+     * feature.  Enforcing that filtering cannot be performed server side does not meaningfully increase security, since as
+     * long as a field can be viewed by an end user, they can effectively search the field themselves even if the UI doesn't
+     * offer a means to do so. If a field should be unable to be viewed entirely by some users, use  {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#viewRequiresRole viewRequiresRole} and related settings. <P> Rather
+     * than a security setting, <code>canFilter:false</code> is intended for situations where it would be redundant or
+     * nonsensical to be able to search on a field, or where searching isn't implemented for that field.
      *
      * @param canFilter New canFilter value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.SearchForm#setShowFilterFieldsOnly
      * @see com.smartgwt.client.widgets.form.SearchForm#setCanEditFieldAttribute
      */
-    public void setCanFilter(Boolean canFilter) {
-        setAttribute("canFilter", canFilter);
+    public DataSourceField setCanFilter(Boolean canFilter) {
+        return (DataSourceField)setAttribute("canFilter", canFilter);
     }
 
     /**
      * Should the user be able to filter data by this field? Affects whether this field will show up in dataBoundComponents
-     * with UI for filtering data. <P>
+     * with UI for filtering data. <P> Note that setting <code>canFilter:false</code> only affects UI and is not a security
+     * feature.  Enforcing that filtering cannot be performed server side does not meaningfully increase security, since as
+     * long as a field can be viewed by an end user, they can effectively search the field themselves even if the UI doesn't
+     * offer a means to do so. If a field should be unable to be viewed entirely by some users, use  {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#viewRequiresRole viewRequiresRole} and related settings. <P> Rather
+     * than a security setting, <code>canFilter:false</code> is intended for situations where it would be redundant or
+     * nonsensical to be able to search on a field, or where searching isn't implemented for that field.
      *
      * @return Current canFilter value. Default value is null
      * @see com.smartgwt.client.widgets.form.SearchForm#getShowFilterFieldsOnly
@@ -201,10 +218,11 @@ public class DataSourceField extends DataClass {
      * fails.
      *
      * @param canSave New canSave value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
      */
-    public void setCanSave(Boolean canSave) {
-        setAttribute("canSave", canSave);
+    public DataSourceField setCanSave(Boolean canSave) {
+        return (DataSourceField)setAttribute("canSave", canSave);
     }
 
     /**
@@ -233,9 +251,10 @@ public class DataSourceField extends DataClass {
      * When true, this field can only be used for sorting if the data is entirely client-side.
      *
      * @param canSortClientOnly New canSortClientOnly value. Default value is false
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      */
-    public void setCanSortClientOnly(boolean canSortClientOnly) {
-        setAttribute("canSortClientOnly", canSortClientOnly);
+    public DataSourceField setCanSortClientOnly(boolean canSortClientOnly) {
+        return (DataSourceField)setAttribute("canSortClientOnly", canSortClientOnly);
     }
 
     /**
@@ -271,10 +290,11 @@ public class DataSourceField extends DataClass {
      * <code>canView:false</code> set).
      *
      * @param canView New canView value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
      */
-    public void setCanView(Boolean canView) {
-        setAttribute("canView", canView);
+    public DataSourceField setCanView(Boolean canView) {
+        return (DataSourceField)setAttribute("canView", canView);
     }
 
     /**
@@ -312,12 +332,13 @@ public class DataSourceField extends DataClass {
      * to this field's  name.
      *
      * @param childrenProperty New childrenProperty value. Default value is false
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.data.DataSource#setChildrenField
      * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
      * 
      */
-    public void setChildrenProperty(Boolean childrenProperty) {
-        setAttribute("childrenProperty", childrenProperty);
+    public DataSourceField setChildrenProperty(Boolean childrenProperty) {
+        return (DataSourceField)setAttribute("childrenProperty", childrenProperty);
     }
 
     /**
@@ -344,10 +365,11 @@ public class DataSourceField extends DataClass {
      * DataSource).
      *
      * @param childTagName New childTagName value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ComponentSchema ComponentSchema overview and related methods
      */
-    public void setChildTagName(String childTagName) {
-        setAttribute("childTagName", childTagName);
+    public DataSourceField setChildTagName(String childTagName) {
+        return (DataSourceField)setAttribute("childTagName", childTagName);
     }
 
     /**
@@ -379,10 +401,11 @@ public class DataSourceField extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param dateFormatter New dateFormatter value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue());
+    public DataSourceField setDateFormatter(DateDisplayFormat dateFormatter) {
+        return (DataSourceField)setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue());
     }
 
     /**
@@ -409,10 +432,11 @@ public class DataSourceField extends DataClass {
      * original unpadded value is always shown when the value is edited.
      *
      * @param decimalPad New decimalPad value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setDecimalPad(Integer decimalPad) {
-        setAttribute("decimalPad", decimalPad);
+    public DataSourceField setDecimalPad(Integer decimalPad) {
+        return (DataSourceField)setAttribute("decimalPad", decimalPad);
     }
 
     /**
@@ -436,10 +460,11 @@ public class DataSourceField extends DataClass {
      * original precision when edited.
      *
      * @param decimalPrecision New decimalPrecision value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setDecimalPrecision(Integer decimalPrecision) {
-        setAttribute("decimalPrecision", decimalPrecision);
+    public DataSourceField setDecimalPrecision(Integer decimalPrecision) {
+        return (DataSourceField)setAttribute("decimalPrecision", decimalPrecision);
     }
 
     /**
@@ -468,12 +493,13 @@ public class DataSourceField extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param deepCloneOnEdit New deepCloneOnEdit value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setDataPath
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setDataPath
      * @see com.smartgwt.client.data.DataSource#setDeepCloneOnEdit
      */
-    public void setDeepCloneOnEdit(Boolean deepCloneOnEdit) {
-        setAttribute("deepCloneOnEdit", deepCloneOnEdit);
+    public DataSourceField setDeepCloneOnEdit(Boolean deepCloneOnEdit) {
+        return (DataSourceField)setAttribute("deepCloneOnEdit", deepCloneOnEdit);
     }
 
     /**
@@ -500,10 +526,11 @@ public class DataSourceField extends DataClass {
      * {@link com.smartgwt.client.data.SimpleType#getDefaultOperator data-type}.
      *
      * @param defaultOperator New defaultOperator value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
-    public void setDefaultOperator(OperatorId defaultOperator) {
-        setAttribute("defaultOperator", defaultOperator == null ? null : defaultOperator.getValue());
+    public DataSourceField setDefaultOperator(OperatorId defaultOperator) {
+        return (DataSourceField)setAttribute("defaultOperator", defaultOperator == null ? null : defaultOperator.getValue());
     }
 
     /**
@@ -530,10 +557,11 @@ public class DataSourceField extends DataClass {
      * ListGridField.showIf()} and {@link com.smartgwt.client.widgets.form.fields.FormItem#showIf FormItem.showIf()}).
      *
      * @param detail New detail value. Default value is false
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
      */
-    public void setDetail(boolean detail) {
-        setAttribute("detail", detail);
+    public DataSourceField setDetail(boolean detail) {
+        return (DataSourceField)setAttribute("detail", detail);
     }
 
     /**
@@ -573,9 +601,10 @@ public class DataSourceField extends DataClass {
      * com.smartgwt.client.widgets.form.fields.SelectItem}  or {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem}. In
      * this case, in addition to identifying the field to use as a static display value within the record being edited,
      * <code>displayField</code> will also identify which field on the related dataSource to use as a display field when
-     * showing a set of options to the user. This behavior may be modified in a couple of ways: <ul>  <li>A separate field name
-     * can be specified to identify the display field on the      related dataSource using the {@link
-     * com.smartgwt.client.data.DataSourceField#getForeignDisplayField foreignDisplayField} attribute</li>  <li>The {@link
+     * showing a set of options to the user. This behavior may be modified in a couple of ways: <ul>  <li>The {@link
+     * com.smartgwt.client.data.DataSourceField#getForeignDisplayField foreignDisplayField} attribute may be used to handle the
+     * case where the name of the field used as a displayField within the dataSource is      different from the name of the
+     * included/equivalent field in the related dataSource.</li>  <li>The {@link
      * com.smartgwt.client.data.DataSourceField#getUseLocalDisplayFieldValue useLocalDisplayFieldValue} attribute may be
      * explicitly      set to false to avoid picking up a display value from the local record altogether.      Instead the
      * displayField will be used only to derive the display value from      a related record from the optionDataSource</li>
@@ -583,10 +612,11 @@ public class DataSourceField extends DataClass {
      * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField FormItem.displayField}.
      *
      * @param displayField New displayField value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
      */
-    public void setDisplayField(String displayField) {
-        setAttribute("displayField", displayField);
+    public DataSourceField setDisplayField(String displayField) {
+        return (DataSourceField)setAttribute("displayField", displayField);
     }
 
     /**
@@ -606,9 +636,10 @@ public class DataSourceField extends DataClass {
      * com.smartgwt.client.widgets.form.fields.SelectItem}  or {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem}. In
      * this case, in addition to identifying the field to use as a static display value within the record being edited,
      * <code>displayField</code> will also identify which field on the related dataSource to use as a display field when
-     * showing a set of options to the user. This behavior may be modified in a couple of ways: <ul>  <li>A separate field name
-     * can be specified to identify the display field on the      related dataSource using the {@link
-     * com.smartgwt.client.data.DataSourceField#getForeignDisplayField foreignDisplayField} attribute</li>  <li>The {@link
+     * showing a set of options to the user. This behavior may be modified in a couple of ways: <ul>  <li>The {@link
+     * com.smartgwt.client.data.DataSourceField#getForeignDisplayField foreignDisplayField} attribute may be used to handle the
+     * case where the name of the field used as a displayField within the dataSource is      different from the name of the
+     * included/equivalent field in the related dataSource.</li>  <li>The {@link
      * com.smartgwt.client.data.DataSourceField#getUseLocalDisplayFieldValue useLocalDisplayFieldValue} attribute may be
      * explicitly      set to false to avoid picking up a display value from the local record altogether.      Instead the
      * displayField will be used only to derive the display value from      a related record from the optionDataSource</li>
@@ -633,14 +664,15 @@ public class DataSourceField extends DataClass {
      * be overridden by a component's emptyCellValue, if set.
      *
      * @param emptyDisplayValue New emptyDisplayValue value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setEmptyDisplayValue
      * @see com.smartgwt.client.widgets.grid.ListGridField#setEmptyCellValue
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setEmptyCellValue
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setEmptyDisplayValue(String emptyDisplayValue) {
-        setAttribute("emptyDisplayValue", emptyDisplayValue);
+    public DataSourceField setEmptyDisplayValue(String emptyDisplayValue) {
+        return (DataSourceField)setAttribute("emptyDisplayValue", emptyDisplayValue);
     }
 
     /**
@@ -666,10 +698,11 @@ public class DataSourceField extends DataClass {
      * HTML characters should be escaped when displaying values for this field.
      *
      * @param escapeHTML New escapeHTML value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setEscapeHTML
      */
-    public void setEscapeHTML(Boolean escapeHTML) {
-        setAttribute("escapeHTML", escapeHTML);
+    public DataSourceField setEscapeHTML(Boolean escapeHTML) {
+        return (DataSourceField)setAttribute("escapeHTML", escapeHTML);
     }
 
     /**
@@ -692,9 +725,10 @@ public class DataSourceField extends DataClass {
      * DataBoundComponent.titleField} is not provided.
      *
      * @param excludeFromState New excludeFromState value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      */
-    public void setExcludeFromState(Boolean excludeFromState) {
-        setAttribute("excludeFromState", excludeFromState);
+    public DataSourceField setExcludeFromState(Boolean excludeFromState) {
+        return (DataSourceField)setAttribute("excludeFromState", excludeFromState);
     }
 
     /**
@@ -716,10 +750,11 @@ public class DataSourceField extends DataClass {
      * times or other structured types.
      *
      * @param exportForceText New exportForceText value. Default value is false
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.data.TextExportSettings#setForceText
      */
-    public void setExportForceText(boolean exportForceText) {
-        setAttribute("exportForceText", exportForceText);
+    public DataSourceField setExportForceText(boolean exportForceText) {
+        return (DataSourceField)setAttribute("exportForceText", exportForceText);
     }
 
     /**
@@ -819,11 +854,12 @@ public class DataSourceField extends DataClass {
      * for that property for the drawbacks of doing this.
      *
      * @param exportFormat New exportFormat value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.data.DataSourceField#setFormat
      * @see com.smartgwt.client.docs.FormatString FormatString 
      */
-    public void setExportFormat(String exportFormat) {
-        setAttribute("exportFormat", exportFormat);
+    public DataSourceField setExportFormat(String exportFormat) {
+        return (DataSourceField)setAttribute("exportFormat", exportFormat);
     }
 
     /**
@@ -921,9 +957,10 @@ public class DataSourceField extends DataClass {
      * Optional different field-title used for exports.
      *
      * @param exportTitle New exportTitle value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      */
-    public void setExportTitle(String exportTitle) {
-        setAttribute("exportTitle", exportTitle);
+    public DataSourceField setExportTitle(String exportTitle) {
+        return (DataSourceField)setAttribute("exportTitle", exportTitle);
     }
 
     /**
@@ -972,12 +1009,21 @@ public class DataSourceField extends DataClass {
      *  If the user showed the drop-down list of options for this field, the display values
      *  within that list would be picked up from the "name" field values for the related
      *  "countryDS" records.
+     *  <P>
+     *  Note that when specified, <code>foreignDisplayField</code> is always expected to be set to 
+     *  the related dataSource field containing equivalent values to the <code>displayField</code>
+     *  in the local dataSource. This is important as, when editing the field, foreignDisplayField values from 
+     *  the related dataSource will be displayed to the user, and when a value is selected
+     *  the local record's <code>displayField</code> value will be updated to match the selected
+     *  <code>foreignDisplayField</code> value from the related dataSource's record. This behavior
+     *  is documented under {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField FormItem.displayField}.
      *
      * @param foreignDisplayField New foreignDisplayField value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
      */
-    public void setForeignDisplayField(String foreignDisplayField) {
-        setAttribute("foreignDisplayField", foreignDisplayField);
+    public DataSourceField setForeignDisplayField(String foreignDisplayField) {
+        return (DataSourceField)setAttribute("foreignDisplayField", foreignDisplayField);
     }
 
     /**
@@ -1013,6 +1059,14 @@ public class DataSourceField extends DataClass {
      *  If the user showed the drop-down list of options for this field, the display values
      *  within that list would be picked up from the "name" field values for the related
      *  "countryDS" records.
+     *  <P>
+     *  Note that when specified, <code>foreignDisplayField</code> is always expected to be set to 
+     *  the related dataSource field containing equivalent values to the <code>displayField</code>
+     *  in the local dataSource. This is important as, when editing the field, foreignDisplayField values from 
+     *  the related dataSource will be displayed to the user, and when a value is selected
+     *  the local record's <code>displayField</code> value will be updated to match the selected
+     *  <code>foreignDisplayField</code> value from the related dataSource's record. This behavior
+     *  is documented under {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField FormItem.displayField}.
      *
      * @return Current foreignDisplayField value. Default value is null
      * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
@@ -1055,11 +1109,12 @@ public class DataSourceField extends DataClass {
      *  {@link com.smartgwt.client.docs.serverds.DataSource#autoDeriveSchema autoDeriveSchema} is set.
      *
      * @param foreignKey New foreignKey value. Default value is false
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.serverds.DataSourceField#joinType
      * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
      */
-    public void setForeignKey(String foreignKey) {
-        setAttribute("foreignKey", foreignKey);
+    public DataSourceField setForeignKey(String foreignKey) {
+        return (DataSourceField)setAttribute("foreignKey", foreignKey);
     }
 
     /**
@@ -1121,11 +1176,12 @@ public class DataSourceField extends DataClass {
      * com.smartgwt.client.widgets.form.fields.FormItem#formatValue FormItem.formatValue()}.
      *
      * @param format New format value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.data.DataSourceField#setExportFormat
      * @see com.smartgwt.client.docs.FormatString FormatString 
      */
-    public void setFormat(String format) {
-        setAttribute("format", format);
+    public DataSourceField setFormat(String format) {
+        return (DataSourceField)setAttribute("format", format);
     }
 
     /**
@@ -1160,10 +1216,11 @@ public class DataSourceField extends DataClass {
      * in Visual Builder.
      *
      * @param group New group value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ComponentSchema ComponentSchema overview and related methods
      */
-    public void setGroup(String group) {
-        setAttribute("group", group);
+    public DataSourceField setGroup(String group) {
+        return (DataSourceField)setAttribute("group", group);
     }
 
     /**
@@ -1190,10 +1247,11 @@ public class DataSourceField extends DataClass {
      * viewRequiresRole}.
      *
      * @param hidden New hidden value. Default value is false
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
      */
-    public void setHidden(boolean hidden) {
-        setAttribute("hidden", hidden);
+    public DataSourceField setHidden(boolean hidden) {
+        return (DataSourceField)setAttribute("hidden", hidden);
     }
 
     /**
@@ -1228,9 +1286,10 @@ public class DataSourceField extends DataClass {
      * com.smartgwt.client.data.DataSource#getIgnoreTextMatchStyleCaseSensitive ignoreTextMatchStyleCaseSensitive} setting.
      *
      * @param ignoreTextMatchStyle New ignoreTextMatchStyle value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      */
-    public void setIgnoreTextMatchStyle(Boolean ignoreTextMatchStyle) {
-        setAttribute("ignoreTextMatchStyle", ignoreTextMatchStyle);
+    public DataSourceField setIgnoreTextMatchStyle(Boolean ignoreTextMatchStyle) {
+        return (DataSourceField)setAttribute("ignoreTextMatchStyle", ignoreTextMatchStyle);
     }
 
     /**
@@ -1254,6 +1313,7 @@ public class DataSourceField extends DataClass {
     
     
     
+    
 
     /**
      * For use in {@link com.smartgwt.client.docs.ComponentSchema}, a field {@link
@@ -1267,10 +1327,11 @@ public class DataSourceField extends DataClass {
      * <code>MyDialog</code> instance.
      *
      * @param inapplicable New inapplicable value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ComponentSchema ComponentSchema overview and related methods
      */
-    public void setInapplicable(Boolean inapplicable) {
-        setAttribute("inapplicable", inapplicable);
+    public DataSourceField setInapplicable(Boolean inapplicable) {
+        return (DataSourceField)setAttribute("inapplicable", inapplicable);
     }
 
     /**
@@ -1306,13 +1367,14 @@ public class DataSourceField extends DataClass {
      * summaries} feature and the  {@link com.smartgwt.client.types.SummaryFunctionType summary function} is "concat".
      *
      * @param joinPrefix New joinPrefix value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.data.DataSourceField#setJoinString
      * @see com.smartgwt.client.data.DataSourceField#setJoinSuffix
      * @see com.smartgwt.client.types.SummaryFunction
      * @see com.smartgwt.client.docs.ServerSummaries ServerSummaries overview and related methods
      */
-    public void setJoinPrefix(String joinPrefix) {
-        setAttribute("joinPrefix", joinPrefix);
+    public DataSourceField setJoinPrefix(String joinPrefix) {
+        return (DataSourceField)setAttribute("joinPrefix", joinPrefix);
     }
 
     /**
@@ -1336,13 +1398,14 @@ public class DataSourceField extends DataClass {
      * The default  value is ", ".
      *
      * @param joinString New joinString value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.data.DataSourceField#setJoinPrefix
      * @see com.smartgwt.client.data.DataSourceField#setJoinSuffix
      * @see com.smartgwt.client.types.SummaryFunction
      * @see com.smartgwt.client.docs.ServerSummaries ServerSummaries overview and related methods
      */
-    public void setJoinString(String joinString) {
-        setAttribute("joinString", joinString);
+    public DataSourceField setJoinString(String joinString) {
+        return (DataSourceField)setAttribute("joinString", joinString);
     }
 
     /**
@@ -1366,13 +1429,14 @@ public class DataSourceField extends DataClass {
      * summaries} feature and the  {@link com.smartgwt.client.types.SummaryFunctionType summary function} is "concat".
      *
      * @param joinSuffix New joinSuffix value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.data.DataSourceField#setJoinPrefix
      * @see com.smartgwt.client.data.DataSourceField#setJoinString
      * @see com.smartgwt.client.types.SummaryFunction
      * @see com.smartgwt.client.docs.ServerSummaries ServerSummaries overview and related methods
      */
-    public void setJoinSuffix(String joinSuffix) {
-        setAttribute("joinSuffix", joinSuffix);
+    public DataSourceField setJoinSuffix(String joinSuffix) {
+        return (DataSourceField)setAttribute("joinSuffix", joinSuffix);
     }
 
     /**
@@ -1412,7 +1476,8 @@ public class DataSourceField extends DataClass {
      * <tr><td>HSQLDB</td><td>None</td><td>-</td></tr> <tr><td>IBM DB2</td><td>4000</td><td>CLOB</td></tr>
      * <tr><td>Firebird</td><td>32767</td><td>BLOB with subtype 1</td></tr> <tr><td>Informix</td><td>255 /
      * 32739</td><td>LVARCHAR / TEXT ** </td></tr> <tr><td> Microsoft SQL Server </td><td>8000</td><td>TEXT</td></tr>
-     * <tr><td>MySQL</td><td> 255 / 65535 / 16M </td><td> TEXT / MEDIUMTEXT / LONGTEXT *** </td></tr>
+     * <tr><td>MySQL</td><td> 255 / 65535 / 16M </td><td> TEXT / MEDIUMTEXT / LONGTEXT *** </td></tr> <tr><td>MariaDB</td><td>
+     * 255 / 65535 / 16M </td><td> TEXT / MEDIUMTEXT / LONGTEXT *** </td></tr>
      * <tr><td>Oracle</td><td>4000</td><td>CLOB</td></tr> <tr><td>PostgreSQL</td><td>4000</td><td>TEXT</td></tr> </table><br>
      * <b>*</b> The "VARCHAR limit" referred to here is a limit used by the Smart GWT Server; it is not necessarily imposed by
      * the database.  For example, DB2's VARCHAR limit is not 4000 characters; it actually varies from about 4K to about 32K,
@@ -1423,11 +1488,12 @@ public class DataSourceField extends DataClass {
      * product, we have three thresholds for a  change in storage type.
      *
      * @param length New length value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setWidth
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_datatypes_longtext" target="examples">Long Text Example</a>
      */
-    public void setLength(Integer length) {
-        setAttribute("length", length);
+    public DataSourceField setLength(Integer length) {
+        return (DataSourceField)setAttribute("length", length);
     }
 
     /**
@@ -1451,7 +1517,8 @@ public class DataSourceField extends DataClass {
      * <tr><td>HSQLDB</td><td>None</td><td>-</td></tr> <tr><td>IBM DB2</td><td>4000</td><td>CLOB</td></tr>
      * <tr><td>Firebird</td><td>32767</td><td>BLOB with subtype 1</td></tr> <tr><td>Informix</td><td>255 /
      * 32739</td><td>LVARCHAR / TEXT ** </td></tr> <tr><td> Microsoft SQL Server </td><td>8000</td><td>TEXT</td></tr>
-     * <tr><td>MySQL</td><td> 255 / 65535 / 16M </td><td> TEXT / MEDIUMTEXT / LONGTEXT *** </td></tr>
+     * <tr><td>MySQL</td><td> 255 / 65535 / 16M </td><td> TEXT / MEDIUMTEXT / LONGTEXT *** </td></tr> <tr><td>MariaDB</td><td>
+     * 255 / 65535 / 16M </td><td> TEXT / MEDIUMTEXT / LONGTEXT *** </td></tr>
      * <tr><td>Oracle</td><td>4000</td><td>CLOB</td></tr> <tr><td>PostgreSQL</td><td>4000</td><td>TEXT</td></tr> </table><br>
      * <b>*</b> The "VARCHAR limit" referred to here is a limit used by the Smart GWT Server; it is not necessarily imposed by
      * the database.  For example, DB2's VARCHAR limit is not 4000 characters; it actually varies from about 4K to about 32K,
@@ -1477,11 +1544,12 @@ public class DataSourceField extends DataClass {
      * valueXPath only.
      *
      * @param lenientXPath New lenientXPath value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @deprecated No longer needs to be set since the framework now defaults to suppressing errors  for null values in the middle of
      * Xpath, and only invalid XPath will cause warning be logged.
      */
-    public void setLenientXPath(Boolean lenientXPath) {
-        setAttribute("lenientXPath", lenientXPath);
+    public DataSourceField setLenientXPath(Boolean lenientXPath) {
+        return (DataSourceField)setAttribute("lenientXPath", lenientXPath);
     }
 
     /**
@@ -1513,7 +1581,7 @@ public class DataSourceField extends DataClass {
      *  For simple Criteria, the criteria value is compared to <i>each</i> field value in the
      *  <code>multiple:true</code> field, according to the
      *  {@link com.smartgwt.client.data.DSRequest#getTextMatchStyle textMatchStyle}.  If <i>any</i> field value matches the
-     *  filter value, the field is considered to match the criteria.
+     * j filter value, the field is considered to match the criteria.
      *  <p>
      * For {@link com.smartgwt.client.data.AdvancedCriteria}, for normal {@link com.smartgwt.client.types.OperatorId search
      * operators} the field
@@ -1591,10 +1659,11 @@ public class DataSourceField extends DataClass {
      * subelements.
      *
      * @param multiple New multiple value. Default value is false
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ComponentSchema ComponentSchema overview and related methods
      */
-    public void setMultiple(Boolean multiple) {
-        setAttribute("multiple", multiple);
+    public DataSourceField setMultiple(Boolean multiple) {
+        return (DataSourceField)setAttribute("multiple", multiple);
     }
 
     /**
@@ -1609,7 +1678,7 @@ public class DataSourceField extends DataClass {
      *  For simple Criteria, the criteria value is compared to <i>each</i> field value in the
      *  <code>multiple:true</code> field, according to the
      *  {@link com.smartgwt.client.data.DSRequest#getTextMatchStyle textMatchStyle}.  If <i>any</i> field value matches the
-     *  filter value, the field is considered to match the criteria.
+     * j filter value, the field is considered to match the criteria.
      *  <p>
      * For {@link com.smartgwt.client.data.AdvancedCriteria}, for normal {@link com.smartgwt.client.types.OperatorId search
      * operators} the field
@@ -1702,9 +1771,10 @@ public class DataSourceField extends DataClass {
      * between values when they are displayed.
      *
      * @param multipleValueSeparator New multipleValueSeparator value. Default value is ", "
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      */
-    public void setMultipleValueSeparator(String multipleValueSeparator) {
-        setAttribute("multipleValueSeparator", multipleValueSeparator);
+    public DataSourceField setMultipleValueSeparator(String multipleValueSeparator) {
+        return (DataSourceField)setAttribute("multipleValueSeparator", multipleValueSeparator);
     }
 
     /**
@@ -1724,11 +1794,12 @@ public class DataSourceField extends DataClass {
      * name is also the property in each DataSource record which holds the value for this field.
      *
      * @param name New name value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FieldName FieldName 
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
-    public void setName(String name) {
-        setAttribute("name", name);
+    public DataSourceField setName(String name) {
+        return (DataSourceField)setAttribute("name", name);
     }
 
     /**
@@ -1759,9 +1830,10 @@ public class DataSourceField extends DataClass {
      *  the explicit null value.
      *
      * @param nillable New nillable value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      */
-    public void setNillable(Boolean nillable) {
-        setAttribute("nillable", nillable);
+    public DataSourceField setNillable(Boolean nillable) {
+        return (DataSourceField)setAttribute("nillable", nillable);
     }
 
     /**
@@ -1791,10 +1863,11 @@ public class DataSourceField extends DataClass {
      * is always shown when the value is edited.
      *
      * @param precision New precision value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setPrecision(Integer precision) {
-        setAttribute("precision", precision);
+    public DataSourceField setPrecision(Integer precision) {
+        return (DataSourceField)setAttribute("precision", precision);
     }
 
     /**
@@ -1844,10 +1917,11 @@ public class DataSourceField extends DataClass {
      * databases that implement sequence-type handling with identity columns.
      *
      * @param primaryKey New primaryKey value. Default value is false
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
      */
-    public void setPrimaryKey(boolean primaryKey) {
-        setAttribute("primaryKey", primaryKey);
+    public DataSourceField setPrimaryKey(boolean primaryKey) {
+        return (DataSourceField)setAttribute("primaryKey", primaryKey);
     }
 
     /**
@@ -1913,10 +1987,11 @@ public class DataSourceField extends DataClass {
      *  constructed.
      *
      * @param propertiesOnly New propertiesOnly value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ComponentSchema ComponentSchema overview and related methods
      */
-    public void setPropertiesOnly(Boolean propertiesOnly) {
-        setAttribute("propertiesOnly", propertiesOnly);
+    public DataSourceField setPropertiesOnly(Boolean propertiesOnly) {
+        return (DataSourceField)setAttribute("propertiesOnly", propertiesOnly);
     }
 
     /**
@@ -2017,10 +2092,11 @@ public class DataSourceField extends DataClass {
      *  roundtrip and a database fetch.
      *
      * @param required New required value. Default value is false
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.validator.Validator#setApplyWhen
      */
-    public void setRequired(boolean required) {
-        setAttribute("required", required);
+    public DataSourceField setRequired(boolean required) {
+        return (DataSourceField)setAttribute("required", required);
     }
 
     /**
@@ -2105,10 +2181,11 @@ public class DataSourceField extends DataClass {
      * com.smartgwt.client.data.DataSource#getRequiredMessage DataSource.requiredMessage} if both are set.
      *
      * @param requiredMessage New requiredMessage value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
-    public void setRequiredMessage(String requiredMessage) {
-        setAttribute("requiredMessage", requiredMessage);
+    public DataSourceField setRequiredMessage(String requiredMessage) {
+        return (DataSourceField)setAttribute("requiredMessage", requiredMessage);
     }
 
     /**
@@ -2133,11 +2210,12 @@ public class DataSourceField extends DataClass {
      * a subtree of the hierarchical data from this dataSource starting at a particular node.
      *
      * @param rootValue New rootValue value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
      * 
      */
-    public void setRootValue(Object rootValue) {
-        setAttribute("rootValue", rootValue);
+    public DataSourceField setRootValue(Object rootValue) {
+        return (DataSourceField)setAttribute("rootValue", rootValue);
     }
 
     /**
@@ -2182,10 +2260,11 @@ public class DataSourceField extends DataClass {
      *  </pre>
      *
      * @param sequenceName New sequenceName value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SqlDataSource SqlDataSource overview and related methods
      */
-    public void setSequenceName(String sequenceName) {
-        setAttribute("sequenceName", sequenceName);
+    public DataSourceField setSequenceName(String sequenceName) {
+        return (DataSourceField)setAttribute("sequenceName", sequenceName);
     }
 
     /**
@@ -2225,9 +2304,10 @@ public class DataSourceField extends DataClass {
      * Download icons.
      *
      * @param showFileInline New showFileInline value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      */
-    public void setShowFileInline(Boolean showFileInline) {
-        setAttribute("showFileInline", showFileInline);
+    public DataSourceField setShowFileInline(Boolean showFileInline) {
+        return (DataSourceField)setAttribute("showFileInline", showFileInline);
     }
 
     /**
@@ -2250,9 +2330,10 @@ public class DataSourceField extends DataClass {
      * populate the <code>sortByField</code> with the results of a SQL expression.
      *
      * @param sortByField New sortByField value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      */
-    public void setSortByField(String sortByField) {
-        setAttribute("sortByField", sortByField);
+    public DataSourceField setSortByField(String sortByField) {
+        return (DataSourceField)setAttribute("sortByField", sortByField);
     }
 
     /**
@@ -2325,9 +2406,10 @@ public class DataSourceField extends DataClass {
      * above instead.
      *
      * @param stringInBrowser New stringInBrowser value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      */
-    public void setStringInBrowser(Boolean stringInBrowser) {
-        setAttribute("stringInBrowser", stringInBrowser);
+    public DataSourceField setStringInBrowser(Boolean stringInBrowser) {
+        return (DataSourceField)setAttribute("stringInBrowser", stringInBrowser);
     }
 
     /**
@@ -2396,9 +2478,10 @@ public class DataSourceField extends DataClass {
      * for the field.
      *
      * @param summaryValueTitle New summaryValueTitle value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      */
-    public void setSummaryValueTitle(String summaryValueTitle) {
-        setAttribute("summaryValueTitle", summaryValueTitle);
+    public DataSourceField setSummaryValueTitle(String summaryValueTitle) {
+        return (DataSourceField)setAttribute("summaryValueTitle", summaryValueTitle);
     }
 
     /**
@@ -2425,10 +2508,11 @@ public class DataSourceField extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param timeFormatter New timeFormatter value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setTimeFormatter(TimeDisplayFormat timeFormatter) {
-        setAttribute("timeFormatter", timeFormatter == null ? null : timeFormatter.getValue());
+    public DataSourceField setTimeFormatter(TimeDisplayFormat timeFormatter) {
+        return (DataSourceField)setAttribute("timeFormatter", timeFormatter == null ? null : timeFormatter.getValue());
     }
 
     /**
@@ -2459,10 +2543,11 @@ public class DataSourceField extends DataClass {
      * specify a different string for display in the listGrid column header.
      *
      * @param title New title value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ComponentBinding ComponentBinding overview and related methods
      */
-    public void setTitle(String title) {
-        setAttribute("title", title);
+    public DataSourceField setTitle(String title) {
+        return (DataSourceField)setAttribute("title", title);
     }
 
     /**
@@ -2489,10 +2574,11 @@ public class DataSourceField extends DataClass {
      * date-editing interface with pop-up date picker.
      *
      * @param type New type value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
-    public void setType(FieldType type) {
-        setAttribute("type", type == null ? null : type.getValue());
+    public DataSourceField setType(FieldType type) {
+        return (DataSourceField)setAttribute("type", type == null ? null : type.getValue());
     }
     
     
@@ -2506,9 +2592,10 @@ public class DataSourceField extends DataClass {
      * direct match  on field name).
      *
      * @param uploadFieldName New uploadFieldName value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      */
-    public void setUploadFieldName(String uploadFieldName) {
-        setAttribute("uploadFieldName", uploadFieldName);
+    public DataSourceField setUploadFieldName(String uploadFieldName) {
+        return (DataSourceField)setAttribute("uploadFieldName", uploadFieldName);
     }
 
     /**
@@ -2538,9 +2625,10 @@ public class DataSourceField extends DataClass {
      * feature.
      *
      * @param useLocalDisplayFieldValue New useLocalDisplayFieldValue value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      */
-    public void setUseLocalDisplayFieldValue(Boolean useLocalDisplayFieldValue) {
-        setAttribute("useLocalDisplayFieldValue", useLocalDisplayFieldValue);
+    public DataSourceField setUseLocalDisplayFieldValue(Boolean useLocalDisplayFieldValue) {
+        return (DataSourceField)setAttribute("useLocalDisplayFieldValue", useLocalDisplayFieldValue);
     }
 
     /**
@@ -2569,11 +2657,12 @@ public class DataSourceField extends DataClass {
      * com.smartgwt.client.widgets.form.validator.Validator} class.
      *
      * @param validators New validators value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.validator.Validator
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
-    public void setValidators(Validator... validators) {
-        setAttribute("validators", validators);
+    public DataSourceField setValidators(Validator... validators) {
+        return (DataSourceField)setAttribute("validators", validators);
     }
 
     /**
@@ -2595,10 +2684,11 @@ public class DataSourceField extends DataClass {
      * are allowed.
      *
      * @param validOperators New validOperators value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
-    public void setValidOperators(OperatorId... validOperators) {
-        setAttribute("validOperators", validOperators);
+    public DataSourceField setValidOperators(OperatorId... validOperators) {
+        return (DataSourceField)setAttribute("validOperators", validOperators);
     }
 
     /**
@@ -2652,9 +2742,10 @@ public class DataSourceField extends DataClass {
      *  </pre>
      *
      * @param valueMap New valueMap value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      */
-    public void setValueMap(Map valueMap) {
-        setAttribute("valueMap", valueMap);
+    public DataSourceField setValueMap(Map valueMap) {
+        return (DataSourceField)setAttribute("valueMap", valueMap);
     }
 
     /**
@@ -2741,7 +2832,9 @@ public class DataSourceField extends DataClass {
      *  If you're using the Smart GWT server to return data via the DSResponse object (or
      *  indirectly doing so using DataSource DMI), the valueXPath you specify on the DataSource
      *  fields will be applied to the data you return via the 
-     *  <a href='http://commons.apache.org/jxpath/' target='_blank'>JXPath</a> library.
+     *  <a href='http://commons.apache.org/jxpath/' target='_blank'>JXPath</a> library.<br>
+     *  See also the server side Java APIs <code>DataSource.setProperties()</code> and 
+     *  <code>DSResponse.setData()</code>.
      *  <P>
      *  If you are returning Java Beans as your DSResponse data, normally each dataSource field
      *  receives the value of the same-named Java Bean property, that is, a field "zipCode" is
@@ -2766,12 +2859,13 @@ public class DataSourceField extends DataClass {
      *  server-side XML.
      *
      * @param valueXPath New valueXPath value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.XPathExpression XPathExpression 
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#xpath_xml_integration_category" target="examples">XPath Binding Example</a>
      */
-    public void setValueXPath(String valueXPath) {
-        setAttribute("valueXPath", valueXPath);
+    public DataSourceField setValueXPath(String valueXPath) {
+        return (DataSourceField)setAttribute("valueXPath", valueXPath);
     }
 
     /**
@@ -2812,7 +2906,9 @@ public class DataSourceField extends DataClass {
      *  If you're using the Smart GWT server to return data via the DSResponse object (or
      *  indirectly doing so using DataSource DMI), the valueXPath you specify on the DataSource
      *  fields will be applied to the data you return via the 
-     *  <a href='http://commons.apache.org/jxpath/' target='_blank'>JXPath</a> library.
+     *  <a href='http://commons.apache.org/jxpath/' target='_blank'>JXPath</a> library.<br>
+     *  See also the server side Java APIs <code>DataSource.setProperties()</code> and 
+     *  <code>DSResponse.setData()</code>.
      *  <P>
      *  If you are returning Java Beans as your DSResponse data, normally each dataSource field
      *  receives the value of the same-named Java Bean property, that is, a field "zipCode" is
@@ -2855,10 +2951,11 @@ public class DataSourceField extends DataClass {
      * XML data: a field will be populated with either an attribute or subelement with matching name.
      *
      * @param xmlAttribute New xmlAttribute value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSourceField DataSourceField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ComponentSchema ComponentSchema overview and related methods
      */
-    public void setXmlAttribute(Boolean xmlAttribute) {
-        setAttribute("xmlAttribute", xmlAttribute);
+    public DataSourceField setXmlAttribute(Boolean xmlAttribute) {
+        return (DataSourceField)setAttribute("xmlAttribute", xmlAttribute);
     }
 
     /**
@@ -2916,7 +3013,7 @@ public class DataSourceField extends DataClass {
      * values, or as an&#010 Object where each property maps a stored value to a user-displayable value.&#010 <p>&#010 To
      * enforce that a field should be constrained to only the values in the valueMap, either&#010 declare {@link
      * com.smartgwt.client.data.DataSourceField#getType field.type} as "enum", or use a&#010 {@link
-     * com.smartgwt.client.types.ValidatorType} of "isOneOf" with explicitly listed values.  Otherwise,&#010 although a normal
+     * com.smartgwt.client.types.ValidatorType} of "inSet" with explicitly listed values.  Otherwise,&#010 although a normal
      * {@link com.smartgwt.client.widgets.form.fields.SelectItem} control will only allow values from the valueMap to be&#010
      * entered, other controls such as a {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBox} will allow other
      * values &#010 to be entered.&#010 <p>&#010 In XML, a valueMap that specifies only a list of legal values is specified as

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * A Tree is a data model representing a set of objects linked into a hierarchy. <P> A Tree has no visual presentation, it
@@ -133,13 +136,51 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
     // ********************* Properties / Attributes ***********************
 
     /**
+     * For a {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}, indicates whether client-side
+     * filtering is allowed on the fields of the {@link com.smartgwt.client.widgets.tree.ResultTree#getLinkDataSource
+     * linkDataSource}.  When this  property is true, filtering operations involving link fields work as expected (ie, as if
+     * those  fields were present on the main {@link com.smartgwt.client.widgets.tree.ResultTree#getDataSource dataSource});
+     * when this value is not true, criterions involving link fields are simply ignored. <p> Note, setting this property true
+     * causes filtering operations to perform an additional record duplication per node in the dataset to be filtered.  This
+     * adds some overhead, so you should consider likely data volumes before enabling it (though in fact, client-side filtering
+     * of  trees is relatively expensive anyway, so acceptable use cases probably already involve quite low data volumes) <p>
+     * This property has no effect for regular, non-multiLink trees.
+     *
+     * @param allowFilterOnLinkFields New allowFilterOnLinkFields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.Tree Tree} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public Tree setAllowFilterOnLinkFields(Boolean allowFilterOnLinkFields)  throws IllegalStateException {
+        return (Tree)setAttribute("allowFilterOnLinkFields", allowFilterOnLinkFields, false);
+    }
+
+    /**
+     * For a {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}, indicates whether client-side
+     * filtering is allowed on the fields of the {@link com.smartgwt.client.widgets.tree.ResultTree#getLinkDataSource
+     * linkDataSource}.  When this  property is true, filtering operations involving link fields work as expected (ie, as if
+     * those  fields were present on the main {@link com.smartgwt.client.widgets.tree.ResultTree#getDataSource dataSource});
+     * when this value is not true, criterions involving link fields are simply ignored. <p> Note, setting this property true
+     * causes filtering operations to perform an additional record duplication per node in the dataset to be filtered.  This
+     * adds some overhead, so you should consider likely data volumes before enabling it (though in fact, client-side filtering
+     * of  trees is relatively expensive anyway, so acceptable use cases probably already involve quite low data volumes) <p>
+     * This property has no effect for regular, non-multiLink trees.
+     *
+     * @return Current allowFilterOnLinkFields value. Default value is null
+     */
+    public Boolean getAllowFilterOnLinkFields()  {
+        return getAttributeAsBoolean("allowFilterOnLinkFields");
+    }
+    
+
+    /**
      * If true, the root node is automatically opened when the tree is created or {@link
      * com.smartgwt.client.widgets.tree.Tree#setRoot setRoot()} is called.
      *
      * @param autoOpenRoot New autoOpenRoot value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tree.Tree Tree} instance, for chaining setter calls
      */
-    public void setAutoOpenRoot(Boolean autoOpenRoot) {
-        setAttribute("autoOpenRoot", autoOpenRoot, true);
+    public Tree setAutoOpenRoot(Boolean autoOpenRoot) {
+        return (Tree)setAttribute("autoOpenRoot", autoOpenRoot, true);
     }
 
     /**
@@ -159,11 +200,12 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      * children for a node.
      *
      * @param childrenProperty New childrenProperty value. Default value is "children"
+     * @return {@link com.smartgwt.client.widgets.tree.Tree Tree} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.Tree#setModelType
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_databinding_children_arrays" target="examples">Children Arrays Example</a>
      */
-    public void setChildrenProperty(String childrenProperty) {
-        setAttribute("childrenProperty", childrenProperty, true);
+    public Tree setChildrenProperty(String childrenProperty) {
+        return (Tree)setAttribute("childrenProperty", childrenProperty, true);
     }
 
     /**
@@ -189,10 +231,11 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      * tree is set as {@link com.smartgwt.client.widgets.tree.TreeGrid#getData TreeGrid.data}.
      *
      * @param dataSource New dataSource value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.Tree Tree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setDataSource(DataSource dataSource)  throws IllegalStateException {
-        setAttribute("dataSource", dataSource == null ? null : dataSource.getOrCreateJsObj(), false);
+    public Tree setDataSource(DataSource dataSource)  throws IllegalStateException {
+        return (Tree)setAttribute("dataSource", dataSource == null ? null : dataSource.getOrCreateJsObj(), false);
     }
 
     /**
@@ -218,10 +261,11 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      * tree is set as {@link com.smartgwt.client.widgets.tree.TreeGrid#getData TreeGrid.data}.
      *
      * @param dataSource New dataSource value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.Tree Tree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setDataSource(String dataSource)  throws IllegalStateException {
-        setAttribute("dataSource", dataSource, false);
+    public Tree setDataSource(String dataSource)  throws IllegalStateException {
+        return (Tree)setAttribute("dataSource", dataSource, false);
     }
 
     /**
@@ -248,10 +292,11 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      * loading data on demand}.
      *
      * @param defaultIsFolder New defaultIsFolder value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.Tree Tree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setDefaultIsFolder(Boolean defaultIsFolder)  throws IllegalStateException {
-        setAttribute("defaultIsFolder", defaultIsFolder, false);
+    public Tree setDefaultIsFolder(Boolean defaultIsFolder)  throws IllegalStateException {
+        return (Tree)setAttribute("defaultIsFolder", defaultIsFolder, false);
     }
 
     /**
@@ -274,9 +319,10 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      * a {@link com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty} value.
      *
      * @param defaultNodeTitle New defaultNodeTitle value. Default value is "Untitled"
+     * @return {@link com.smartgwt.client.widgets.tree.Tree Tree} instance, for chaining setter calls
      */
-    public void setDefaultNodeTitle(String defaultNodeTitle) {
-        setAttribute("defaultNodeTitle", defaultNodeTitle, true);
+    public Tree setDefaultNodeTitle(String defaultNodeTitle) {
+        return (Tree)setAttribute("defaultNodeTitle", defaultNodeTitle, true);
     }
 
     /**
@@ -298,10 +344,11 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param discardParentlessNodes New discardParentlessNodes value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.Tree Tree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setDiscardParentlessNodes(Boolean discardParentlessNodes)  throws IllegalStateException {
-        setAttribute("discardParentlessNodes", discardParentlessNodes, false);
+    public Tree setDiscardParentlessNodes(Boolean discardParentlessNodes)  throws IllegalStateException {
+        return (Tree)setAttribute("discardParentlessNodes", discardParentlessNodes, false);
     }
 
     /**
@@ -325,12 +372,13 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param idField New idField value. Default value is "id"
+     * @return {@link com.smartgwt.client.widgets.tree.Tree Tree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.widgets.tree.TreeNode#setId
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
-    public void setIdField(String idField)  throws IllegalStateException {
-        setAttribute("idField", idField, false);
+    public Tree setIdField(String idField)  throws IllegalStateException {
+        return (Tree)setAttribute("idField", idField, false);
     }
 
     /**
@@ -352,10 +400,11 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      * com.smartgwt.client.widgets.tree.TreeNode#getIsFolder TreeNode.isFolder}.
      *
      * @param isFolderProperty New isFolderProperty value. Default value is "isFolder"
+     * @return {@link com.smartgwt.client.widgets.tree.Tree Tree} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.TreeNode#setIsFolder
      */
-    public void setIsFolderProperty(String isFolderProperty) {
-        setAttribute("isFolderProperty", isFolderProperty, true);
+    public Tree setIsFolderProperty(String isFolderProperty) {
+        return (Tree)setAttribute("isFolderProperty", isFolderProperty, true);
     }
 
     /**
@@ -369,6 +418,30 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
         return getAttributeAsString("isFolderProperty");
     }
     
+    
+
+    /**
+     * The name of the "position" field in this {@link com.smartgwt.client.widgets.tree.Tree#getLinkData multi-link tree}'s
+     * link data. Ignored if this tree is not a multi-link tree
+     *
+     * @param linkPositionField New linkPositionField value. Default value is "position"
+     * @return {@link com.smartgwt.client.widgets.tree.Tree Tree} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public Tree setLinkPositionField(String linkPositionField)  throws IllegalStateException {
+        return (Tree)setAttribute("linkPositionField", linkPositionField, false);
+    }
+
+    /**
+     * The name of the "position" field in this {@link com.smartgwt.client.widgets.tree.Tree#getLinkData multi-link tree}'s
+     * link data. Ignored if this tree is not a multi-link tree
+     *
+     * @return Current linkPositionField value. Default value is "position"
+     */
+    public String getLinkPositionField()  {
+        return getAttributeAsString("linkPositionField");
+    }
+    
 
     /**
      * Selects the model used to construct the tree representation.  See {@link com.smartgwt.client.types.TreeModelType} for
@@ -379,12 +452,13 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param modelType New modelType value. Default value is "children"
+     * @return {@link com.smartgwt.client.widgets.tree.Tree Tree} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.Tree#setData
      * @see com.smartgwt.client.widgets.tree.Tree#setRoot
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
-    public void setModelType(TreeModelType modelType) {
-        setAttribute("modelType", modelType == null ? null : modelType.getValue(), true);
+    public Tree setModelType(TreeModelType modelType) {
+        return (Tree)setAttribute("modelType", modelType == null ? null : modelType.getValue(), true);
     }
 
     /**
@@ -403,6 +477,7 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
         return EnumUtil.getEnum(TreeModelType.values(), getAttribute("modelType"));
     }
     
+    
 
     /**
      * Name of the property on a {@link com.smartgwt.client.widgets.tree.TreeNode} that holds a name for the node that is
@@ -411,11 +486,12 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      * usage.
      *
      * @param nameProperty New nameProperty value. Default value is "name"
+     * @return {@link com.smartgwt.client.widgets.tree.Tree Tree} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.TreeNode#setName
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
-    public void setNameProperty(String nameProperty) {
-        setAttribute("nameProperty", nameProperty, true);
+    public Tree setNameProperty(String nameProperty) {
+        return (Tree)setAttribute("nameProperty", nameProperty, true);
     }
 
     /**
@@ -438,14 +514,18 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      * determine if the node is open or not.  By default, this property is auto-generated for you, but you can set it to a
      * custom value if you want to declaratively specify this state, but be careful - if you display this Tree in multiple
      * TreeGrids at the same time, the open state will not be tracked independently - see {@link
-     * com.smartgwt.client.docs.SharingNodes} for more info on this.
+     * com.smartgwt.client.docs.SharingNodes} for more info on this. <p> For {@link
+     * com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}s, we do not track open state on the nodes 
+     * themselves, because this would mean that multiple instances of a node in the tree would open and close in lockstep. 
+     * Instead, open state is tracked in an internal index structure, and the <code>openProperty</code> is not used at all.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param openProperty New openProperty value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.Tree Tree} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_databinding_init_ondemand" target="examples">Initial Data & Load on Demand Example</a>
      */
-    public void setOpenProperty(String openProperty) {
-        setAttribute("openProperty", openProperty, true);
+    public Tree setOpenProperty(String openProperty) {
+        return (Tree)setAttribute("openProperty", openProperty, true);
     }
 
     /**
@@ -453,7 +533,10 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      * determine if the node is open or not.  By default, this property is auto-generated for you, but you can set it to a
      * custom value if you want to declaratively specify this state, but be careful - if you display this Tree in multiple
      * TreeGrids at the same time, the open state will not be tracked independently - see {@link
-     * com.smartgwt.client.docs.SharingNodes} for more info on this.
+     * com.smartgwt.client.docs.SharingNodes} for more info on this. <p> For {@link
+     * com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}s, we do not track open state on the nodes 
+     * themselves, because this would mean that multiple instances of a node in the tree would open and close in lockstep. 
+     * Instead, open state is tracked in an internal index structure, and the <code>openProperty</code> is not used at all.
      *
      * @return Current openProperty value. Default value is null
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_databinding_init_ondemand" target="examples">Initial Data & Load on Demand Example</a>
@@ -470,12 +553,13 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param parentIdField New parentIdField value. Default value is "parentId"
+     * @return {@link com.smartgwt.client.widgets.tree.Tree Tree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.widgets.tree.TreeNode#setParentId
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
-    public void setParentIdField(String parentIdField)  throws IllegalStateException {
-        setAttribute("parentIdField", parentIdField, false);
+    public Tree setParentIdField(String parentIdField)  throws IllegalStateException {
+        return (Tree)setAttribute("parentIdField", parentIdField, false);
     }
 
     /**
@@ -523,11 +607,12 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param pathDelim New pathDelim value. Default value is "/"
+     * @return {@link com.smartgwt.client.widgets.tree.Tree Tree} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.Tree#setNameProperty
      * @see com.smartgwt.client.widgets.tree.Tree#find
      */
-    public void setPathDelim(String pathDelim) {
-        setAttribute("pathDelim", pathDelim, true);
+    public Tree setPathDelim(String pathDelim) {
+        return (Tree)setAttribute("pathDelim", pathDelim, true);
     }
 
     /**
@@ -576,10 +661,11 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      * new node will not be added to the tree.
      *
      * @param reportCollisions New reportCollisions value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tree.Tree Tree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setReportCollisions(Boolean reportCollisions)  throws IllegalStateException {
-        setAttribute("reportCollisions", reportCollisions, false);
+    public Tree setReportCollisions(Boolean reportCollisions)  throws IllegalStateException {
+        return (Tree)setAttribute("reportCollisions", reportCollisions, false);
     }
 
     /**
@@ -632,12 +718,13 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      * Set the root node of the tree.  Called automatically on this Tree during initialization and on the Tree returned from a call to {@link com.smartgwt.client.widgets.tree.Tree#duplicate duplicate()}.
      *
      * @param root new root node. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.Tree Tree} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.Tree#setModelType
      * @see com.smartgwt.client.widgets.tree.Tree#setRoot
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_databinding_children_arrays" target="examples">Children Arrays Example</a>
      */
-    public void setRoot(TreeNode root) {
-        setAttribute("root", root == null ? null : root.getJsObj(), true);
+    public Tree setRoot(TreeNode root) {
+        return (Tree)setAttribute("root", root == null ? null : root.getJsObj(), true);
     }
 
     /**
@@ -690,10 +777,11 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      * Setter for {@link com.smartgwt.client.widgets.tree.Tree#getSeparateFolders separateFolders}.
      *
      * @param separateFolders new <code>separateFolders</code> value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.Tree Tree} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.Tree#setSortFoldersBeforeLeaves
      */
-    public void setSeparateFolders(Boolean separateFolders) {
-        setAttribute("separateFolders", separateFolders, true);
+    public Tree setSeparateFolders(Boolean separateFolders) {
+        return (Tree)setAttribute("separateFolders", separateFolders, true);
     }
 
     /**
@@ -723,9 +811,10 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      * Setter for {@link com.smartgwt.client.widgets.tree.Tree#getShowRoot showRoot}.
      *
      * @param showRoot new <code>showRoot</code> value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.Tree Tree} instance, for chaining setter calls
      */
-    public void setShowRoot(Boolean showRoot) {
-        setAttribute("showRoot", showRoot, true);
+    public Tree setShowRoot(Boolean showRoot) {
+        return (Tree)setAttribute("showRoot", showRoot, true);
     }
 
     /**
@@ -755,9 +844,10 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      * Setter for {@link com.smartgwt.client.widgets.tree.Tree#getSortFoldersBeforeLeaves sortFoldersBeforeLeaves}.
      *
      * @param sortFoldersBeforeLeaves new <code>sortFoldersBeforeLeaves</code> value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tree.Tree Tree} instance, for chaining setter calls
      */
-    public void setSortFoldersBeforeLeaves(Boolean sortFoldersBeforeLeaves) {
-        setAttribute("sortFoldersBeforeLeaves", sortFoldersBeforeLeaves, true);
+    public Tree setSortFoldersBeforeLeaves(Boolean sortFoldersBeforeLeaves) {
+        return (Tree)setAttribute("sortFoldersBeforeLeaves", sortFoldersBeforeLeaves, true);
     }
 
     /**
@@ -779,9 +869,10 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      * TreeNode.title} for usage.
      *
      * @param titleProperty New titleProperty value. Default value is "title"
+     * @return {@link com.smartgwt.client.widgets.tree.Tree Tree} instance, for chaining setter calls
      */
-    public void setTitleProperty(String titleProperty) {
-        setAttribute("titleProperty", titleProperty, true);
+    public Tree setTitleProperty(String titleProperty) {
+        return (Tree)setAttribute("titleProperty", titleProperty, true);
     }
 
     /**
@@ -828,19 +919,40 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
 
 	/**
      * Close all nodes under a particular node
-     * @param node node from which to close folders (if not specified, the root                              node is used)
+     * @param node node from which to close folders (if not specified,                                            the root node is used). 
+     * If this is a                                            {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree
+     * multi-link tree}, you must                                            provide a {@link
+     * com.smartgwt.client.widgets.tree.NodeLocator} for any node other                                           than the root
+     * node
      */
     public native void closeAll(TreeNode node) /*-{
         if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
             @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "closeAll", "TreeNode");
         }
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.closeAll(node == null ? null : node.@com.smartgwt.client.core.DataClass::getJsObj()());
+        self.closeAll(node.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-	
+
 	/**
-     * Closes a folder
-     * @param node folder to close
+     * Close all nodes under a particular node
+     * @param node node from which to close folders (if not specified,                                            the root node is used). 
+     * If this is a                                            {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree
+     * multi-link tree}, you must                                            provide a {@link
+     * com.smartgwt.client.widgets.tree.NodeLocator} for any node other                                           than the root
+     * node
+     */
+    public native void closeAll(NodeLocator node) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "closeAll", "NodeLocator");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.closeAll(node == null ? null : node.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()());
+    }-*/;
+
+	/**
+     * Closes a folder.  Note, for {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}s, passing a 
+     * <code>NodeLocator</code> is the only unambiguous way to specify the node.
+     * @param node the node to open, or its                                                                  ID, or a NodeLocator object
      */
     public native void closeFolder(TreeNode node) /*-{
         if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
@@ -850,11 +962,89 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
         self.closeFolder(node.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
+	/**
+     * Closes a folder.  Note, for {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}s, passing a 
+     * <code>NodeLocator</code> is the only unambiguous way to specify the node.
+     * @param node the node to open, or its                                                                  ID, or a NodeLocator object
+     */
+    public native void closeFolder(String node) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "closeFolder", "String");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.closeFolder(node);
+    }-*/;
+
+	/**
+     * Closes a folder.  Note, for {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}s, passing a 
+     * <code>NodeLocator</code> is the only unambiguous way to specify the node.
+     * @param node the node to open, or its                                                                  ID, or a NodeLocator object
+     */
+    public native void closeFolder(Integer node) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "closeFolder", "Integer");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.closeFolder(node == null ? null : node.@java.lang.Integer::intValue()());
+    }-*/;
+
+	/**
+     * Closes a folder.  Note, for {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}s, passing a 
+     * <code>NodeLocator</code> is the only unambiguous way to specify the node.
+     * @param node the node to open, or its                                                                  ID, or a NodeLocator object
+     */
+    public native void closeFolder(NodeLocator node) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "closeFolder", "NodeLocator");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.closeFolder(node == null ? null : node.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()());
+    }-*/;
+
+	/**
+     * Returns a {@link com.smartgwt.client.widgets.tree.NodeLocator} object suitable for passing to methods, such as {@link
+     * com.smartgwt.client.widgets.tree.Tree#getParent getParent()}, which require a <code>NodeLocator</code> when the tree is 
+     * {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-linked}.  Note, <code>NodeLocator</code>s are
+     * specific to multiLink trees; they are never required for regular trees.
+     * @param node the child node
+     * @param parent the parent node
+     * @param position the child node's position within the parent
+     * @param path the full path to the child node
+     */
+    public native void createNodeLocator(TreeNode node, TreeNode parent, Integer position, String path) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "createNodeLocator", "TreeNode,TreeNode,Integer,String");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.createNodeLocator(node.@com.smartgwt.client.core.DataClass::getJsObj()(), parent.@com.smartgwt.client.core.DataClass::getJsObj()(), position == null ? null : position.@java.lang.Integer::intValue()(), path);
+    }-*/;
+
+	/**
+     * Returns a {@link com.smartgwt.client.widgets.tree.NodeLocator} object suitable for passing to methods, such as {@link
+     * com.smartgwt.client.widgets.tree.Tree#getParent getParent()}, which require a <code>NodeLocator</code> when the tree is 
+     * {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-linked}.  Note, <code>NodeLocator</code>s are
+     * specific to multiLink trees; they are never required for regular trees.
+     * @param node the child node
+     * @param parent the parent node
+     * @param position the child node's position within the parent
+     * @param path the full path to the child node
+     * @param openListIndex the index of the node occurence in the tree's current openList.                                This is the same as the
+     * record index of the node in an                                 associated {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid}
+     */
+    public native void createNodeLocator(TreeNode node, TreeNode parent, Integer position, String path, Integer openListIndex) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "createNodeLocator", "TreeNode,TreeNode,Integer,String,Integer");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.createNodeLocator(node.@com.smartgwt.client.core.DataClass::getJsObj()(), parent.@com.smartgwt.client.core.DataClass::getJsObj()(), position == null ? null : position.@java.lang.Integer::intValue()(), path, openListIndex == null ? null : openListIndex.@java.lang.Integer::intValue()());
+    }-*/;
+	
     /**
      * Add a dataChanged handler.
      * <p>
-     * Called when the structure of this tree is changed in any way.  Intended to be observed. <br><br> Note that on a big
-     * change (many items being added or deleted) this may be called multiple times
+     * Called when the structure of this tree is changed in any way. <br><br> Note that on a big change (many items being added
+     * or deleted) this may be called multiple times
      *
      * @param handler the dataChanged handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -1148,6 +1338,47 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
     }-*/;
 
 	/**
+     * Returns a list of link{type:NodeLocator)s identifying all descendants of a node (identified by the parameter
+     * <code>NodeLocator</code>).  This method is the equivalent of {@link com.smartgwt.client.widgets.tree.Tree#getDescendants
+     * getDescendants()}, but for  {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link trees}.  The list of
+     * descendant nodes returned from both methods is identical - a node's descendants are the same regardless of where or how 
+     * many times that node appears in the tree - but the <code>NodeLocator</code>s returned by this method provide additional
+     * context that allows you to determine particular occurences of descendant nodes.  This is necessary for some use cases -
+     * for example, when trying to  determine if a particular node occurence is open, or selected.
+     *
+     * @return List of descendants of the node.
+     */
+    public native List getDescendantNodeLocators() /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getDescendantNodeLocators", "");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getDescendantNodeLocators();
+        return ret;
+    }-*/;
+
+	/**
+     * Returns a list of link{type:NodeLocator)s identifying all descendants of a node (identified by the parameter
+     * <code>NodeLocator</code>).  This method is the equivalent of {@link com.smartgwt.client.widgets.tree.Tree#getDescendants
+     * getDescendants()}, but for  {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link trees}.  The list of
+     * descendant nodes returned from both methods is identical - a node's descendants are the same regardless of where or how 
+     * many times that node appears in the tree - but the <code>NodeLocator</code>s returned by this method provide additional
+     * context that allows you to determine particular occurences of descendant nodes.  This is necessary for some use cases -
+     * for example, when trying to  determine if a particular node occurence is open, or selected.
+     * @param node node in question (the root node is assumed if none is specified)
+     *
+     * @return List of descendants of the node.
+     */
+    public native List getDescendantNodeLocators(TreeNode node) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getDescendantNodeLocators", "TreeNode");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getDescendantNodeLocators(node == null ? null : node.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return ret;
+    }-*/;
+	
+	/**
      * Returns the number of items in the current open list.
      *
      * @return number of items in open list
@@ -1176,9 +1407,16 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      * shown at top level.  In
      *  this case, the top-level nodes still have root as a parent, so have level 1, even though
      *  they have no visible parents.
+     *  <p>
+     * For {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link trees}, passing a <code>TreeNode</code> to
+     * this 
+     *  method will return the level of one of that node's occurences; it is not predictable which
+     *  occurence will be used.  For multi-link trees, therefore, you should pass a 
+     *  {@link com.smartgwt.client.widgets.tree.NodeLocator} with a path that unambiguously identifies the node occurence you 
+     *  are interested in
      * 
      * 
-     * @param node node in question
+     * @param node node in question, or a suitable                                               <code>NodeLocator</code>
      *
      * @return number of parents the node has
      */
@@ -1188,6 +1426,42 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
         }
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var ret = self.getLevel(node.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return ret;
+    }-*/;
+
+	/**
+     * 
+     *  Return the number of levels deep this node is in the tree.  For example, for this tree:
+     *  <pre>
+     *  root
+     *    foo
+     *      bar
+     *  </pre>
+     *  Calling <code>tree.getLevel(bar)</code> will return <code>2</code>. 
+     *  <P>
+     * Note {@link com.smartgwt.client.widgets.tree.Tree#getShowRoot showRoot} defaults to false so that multiple nodes can be
+     * shown at top level.  In
+     *  this case, the top-level nodes still have root as a parent, so have level 1, even though
+     *  they have no visible parents.
+     *  <p>
+     * For {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link trees}, passing a <code>TreeNode</code> to
+     * this 
+     *  method will return the level of one of that node's occurences; it is not predictable which
+     *  occurence will be used.  For multi-link trees, therefore, you should pass a 
+     *  {@link com.smartgwt.client.widgets.tree.NodeLocator} with a path that unambiguously identifies the node occurence you 
+     *  are interested in
+     * 
+     * 
+     * @param node node in question, or a suitable                                               <code>NodeLocator</code>
+     *
+     * @return number of parents the node has
+     */
+    public native int getLevel(NodeLocator node) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getLevel", "NodeLocator");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getLevel(node == null ? null : node.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()());
         return ret;
     }-*/;
 
@@ -1209,9 +1483,30 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
     }-*/;
 
 	/**
-     * Get the 'name' of a node.  This is node[{@link com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty}].  If
-     * that value has not been set on the node, a unique value (within this parent) will be auto-generated and returned.
+     * For {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multiLink trees}, returns the array of this node's
+     * direct parents (the actual node objects, not the IDs).  For non-multiLink trees, returns an array  containing the single
+     * parent of this node.  See also {@link com.smartgwt.client.widgets.tree.Tree#getParentsAndPositions
+     * getParentsAndPositions()}.
      * @param node node in question
+     *
+     * @return the parents of this node
+     */
+    public native TreeNode[] getMultiLinkParents(TreeNode node) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getMultiLinkParents", "TreeNode");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getMultiLinkParents(node.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.ConvertTo::arrayOfTreeNode(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * Get the 'name' of a node.  This is node[{@link com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty}].  If
+     * that value has not been set on the node, the node's 'ID' value will be tried (this is  node[{@link
+     * com.smartgwt.client.widgets.tree.Tree#getIdField idField}]).  If that value is not present on the node, a unique value 
+     * (within this parent) will be auto-generated and returned.
+     * @param node node in question, or a suitable {@link com.smartgwt.client.widgets.tree.NodeLocator}
      *
      * @return name of the node
      */
@@ -1222,6 +1517,43 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var ret = self.getName(node.@com.smartgwt.client.core.DataClass::getJsObj()());
         return ret;
+    }-*/;
+
+	/**
+     * Get the 'name' of a node.  This is node[{@link com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty}].  If
+     * that value has not been set on the node, the node's 'ID' value will be tried (this is  node[{@link
+     * com.smartgwt.client.widgets.tree.Tree#getIdField idField}]).  If that value is not present on the node, a unique value 
+     * (within this parent) will be auto-generated and returned.
+     * @param node node in question, or a suitable {@link com.smartgwt.client.widgets.tree.NodeLocator}
+     *
+     * @return name of the node
+     */
+    public native String getName(NodeLocator node) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getName", "NodeLocator");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getName(node == null ? null : node.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()());
+        return ret;
+    }-*/;
+
+	/**
+     * For a {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}, this method returns the {@link
+     * com.smartgwt.client.widgets.tree.NodeLocator nodeLocator} associated with the particular occurence of the node at the
+     * specified index within the current {@link com.smartgwt.client.widgets.tree.Tree#getOpenList open list} of nodes in the
+     * tree.  Not applicable to non-multilink trees (always returns null)
+     * @param recordIndex position of a node occurence within the open list of the tree
+     *
+     * @return NodeLocator unambiguously identifying the specific node occurence
+     */
+    public native NodeLocator getNodeLocator(Integer recordIndex) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getNodeLocator", "Integer");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getNodeLocator(recordIndex == null ? null : recordIndex.@java.lang.Integer::intValue()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.tree.NodeLocator::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
 	/**
@@ -1243,6 +1575,35 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
 
 	/**
      * 
+     * For {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multiLink trees}, returns the array of this node's
+     * direct
+     *  parents and the node's position within each parent.  Each entry is a record like this:
+     *  <pre>
+     *  [
+     *      {parent: [reference-to-parent-node], position: [this-node's-position-within-the-parent]},
+     *      {parent: [reference-to-parent-node], position: [this-node's-position-within-the-parent]}
+     *  ]
+     *  </pre>
+     *  For non-multiLink trees, returns null (calling this method makes no sense for non-multiLink
+     *  trees).
+     * 
+     * 
+     * @param node node in question
+     *
+     * @return the parents and positions of this node
+     */
+    public native Record[] getParentsAndPositions(TreeNode node) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getParentsAndPositions", "TreeNode");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getParentsAndPositions(node.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.ConvertTo::arrayOfRecord(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * 
      *  Returns the path of a node - a path has the following format:
      *  <code>([name][pathDelim]?)*</code>
      *  <br><br>
@@ -1259,6 +1620,22 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      *  <br><br>
      *  Once you have a path to a node, you can call find(path) to retrieve a reference to the node
      *  later.
+     *  <p>
+     * <b>Note: </b>Nodes in {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link trees} do not have a
+     * single path, 
+     *  because a given node can occur in multiple places in the tree.  Therefore, if you pass a
+     *  <code>TreeNode</code> instance to this method, it returns the path to one occurence of the 
+     *  node; which particular occurence it chooses is not predictable, and there may be other paths
+     *  to other occurences of the same node in the tree.  The only way to obtain an unambiguous 
+     * path for a particular occurence of a node is to call {@link
+     * com.smartgwt.client.widgets.tree.Tree#getPathForOpenListIndex getPathForOpenListIndex()}, 
+     *  passing in the position of the node occurence in the tree's openList (which will be the same 
+     * as the record number of the node's visual occurence in a {@link com.smartgwt.client.widgets.tree.TreeGrid treeGrid}); if
+     *  the node occurence is not yet in the tree's openList - either because its parent has not yet
+     *  been opened, or because the tree is in the process of being built - the tree is not able to 
+     *  provide a path to the node occurence.  In this case, you would have to obtain the path 
+     * in application code, by reference to the original {@link com.smartgwt.client.widgets.tree.Tree#getData data} and {@link
+     * com.smartgwt.client.widgets.tree.Tree#getLinkData linkData} 
      * 
      * 
      * @param node node in question
@@ -1272,6 +1649,24 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
         }
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var ret = self.getPath(node.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return ret;
+    }-*/;
+
+	/**
+     * This method returns the path to the node at the specified index within the current open list of nodes in this tree. Note
+     * that for a node that appears in more than one place in a {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree
+     * multi-link tree}, the returned path will be the visible path to the node in the specified index. <P> See {@link
+     * com.smartgwt.client.widgets.tree.Tree#getPath getPath()} for more information on paths for TreeNodes.
+     * @param recordIndex position of a node within the open list of the tree
+     *
+     * @return path to the node
+     */
+    public native String getPathForOpenListIndex(Integer recordIndex) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getPathForOpenListIndex", "Integer");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getPathForOpenListIndex(recordIndex == null ? null : recordIndex.@java.lang.Integer::intValue()());
         return ret;
     }-*/;
 
@@ -1421,8 +1816,25 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
     }-*/;
 
 	/**
-     * Whether a particular node is open or closed (works for leaves and folders).
-     * @param node node in question
+     * Returns true if this is a <i>multi-link</i> tree - ie, one that can contain the same node in more than one place. 
+     * Otherwise, returns false.  <p> See {@link com.smartgwt.client.widgets.tree.Tree#getLinkData linkData} and {@link
+     * com.smartgwt.client.widgets.tree.ResultTree#getLinkDataSource ResultTree.linkDataSource} for further details of 
+     * multiLink trees.
+     */
+    public native void isMultiLinkTree() /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "isMultiLinkTree", "");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.isMultiLinkTree();
+    }-*/;
+
+	/**
+     * Whether a particular node is open or closed (works for leaves and folders).  Note, for {@link
+     * com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}s, passing a <code>NodeLocator</code> is the only
+     * unambiguous way to specify the node.
+     * @param node the node in question, or the                                                               the node's ID, or a
+     * NodeLocator                                                              object
      *
      * @return true if the node is open
      */
@@ -1432,6 +1844,83 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
         }
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var ret = self.isOpen(node.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+	/**
+     * Whether a particular node is open or closed (works for leaves and folders).  Note, for {@link
+     * com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}s, passing a <code>NodeLocator</code> is the only
+     * unambiguous way to specify the node.
+     * @param node the node in question, or the                                                               the node's ID, or a
+     * NodeLocator                                                              object
+     *
+     * @return true if the node is open
+     */
+    public native Boolean isOpen(String node) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "isOpen", "String");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.isOpen(node);
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+	/**
+     * Whether a particular node is open or closed (works for leaves and folders).  Note, for {@link
+     * com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}s, passing a <code>NodeLocator</code> is the only
+     * unambiguous way to specify the node.
+     * @param node the node in question, or the                                                               the node's ID, or a
+     * NodeLocator                                                              object
+     *
+     * @return true if the node is open
+     */
+    public native Boolean isOpen(Integer node) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "isOpen", "Integer");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.isOpen(node == null ? null : node.@java.lang.Integer::intValue()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+	/**
+     * Whether a particular node is open or closed (works for leaves and folders).  Note, for {@link
+     * com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}s, passing a <code>NodeLocator</code> is the only
+     * unambiguous way to specify the node.
+     * @param node the node in question, or the                                                               the node's ID, or a
+     * NodeLocator                                                              object
+     *
+     * @return true if the node is open
+     */
+    public native Boolean isOpen(NodeLocator node) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "isOpen", "NodeLocator");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.isOpen(node == null ? null : node.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+	/**
+     * Returns true if "parent" is the parent of "node".  This is straightforward and definitive  for ordinary trees, because
+     * nodes can only have one parent.  In {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multiLink trees},
+     * however, nodes can have multiple parents, so this method returning true only means that "parent" is <i>a</i> parent of
+     * "node" - there may or may not be others.
+     * @param node the node in question
+     * @param parent the node to query to see if is a parent of the other node
+     *
+     * @return true if "parent" is a parent of "node"; otherwise false
+     */
+    public native Boolean isParent(TreeNode node, TreeNode parent) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "isParent", "TreeNode,TreeNode");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.isParent(node.@com.smartgwt.client.core.DataClass::getJsObj()(), parent.@com.smartgwt.client.core.DataClass::getJsObj()());
         if(ret == null) return null;
         return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
@@ -1450,6 +1939,19 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
         var ret = self.isRoot(node.@com.smartgwt.client.core.DataClass::getJsObj()());
         if(ret == null) return null;
         return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+	/**
+     * For {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}s only, called when links are added to
+     * or removed form the tree.  <br><br> Note that on a big change (many items being added or deleted) this may be called
+     * multiple times
+     */
+    public native void linkDataChanged() /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "linkDataChanged", "");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.linkDataChanged();
     }-*/;
 
 	/**
@@ -1528,7 +2030,9 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
 
 	/**
      * Open all nodes under a particular node.
-     * @param node node from which to open folders (if not specified, the root                              node is used)
+     * @param node node from which to open folders,                                                               or the node's ID, or a   
+     * NodeLocator object (if not                                                               specified, the root node is
+     * used)
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_databinding_parentlinking" target="examples">Parent Linking Example</a>
      */
     public native void openAll(TreeNode node) /*-{
@@ -1536,9 +2040,54 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
             @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "openAll", "TreeNode");
         }
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
-        self.openAll(node == null ? null : node.@com.smartgwt.client.core.DataClass::getJsObj()());
+        self.openAll(node.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
-	
+
+	/**
+     * Open all nodes under a particular node.
+     * @param node node from which to open folders,                                                               or the node's ID, or a   
+     * NodeLocator object (if not                                                               specified, the root node is
+     * used)
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_databinding_parentlinking" target="examples">Parent Linking Example</a>
+     */
+    public native void openAll(String node) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "openAll", "String");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.openAll(node);
+    }-*/;
+
+	/**
+     * Open all nodes under a particular node.
+     * @param node node from which to open folders,                                                               or the node's ID, or a   
+     * NodeLocator object (if not                                                               specified, the root node is
+     * used)
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_databinding_parentlinking" target="examples">Parent Linking Example</a>
+     */
+    public native void openAll(Integer node) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "openAll", "Integer");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.openAll(node == null ? null : node.@java.lang.Integer::intValue()());
+    }-*/;
+
+	/**
+     * Open all nodes under a particular node.
+     * @param node node from which to open folders,                                                               or the node's ID, or a   
+     * NodeLocator object (if not                                                               specified, the root node is
+     * used)
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_databinding_parentlinking" target="examples">Parent Linking Example</a>
+     */
+    public native void openAll(NodeLocator node) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "openAll", "NodeLocator");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.openAll(node == null ? null : node.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()());
+    }-*/;
+
 	/**
      * Reload the children of a folder.
      * @param node node in question
@@ -1554,8 +2103,10 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
 
 	/**
      * Removes a node, along with all its children.  See {@link com.smartgwt.client.widgets.tree.ResultTree "Modifying
-     * ResultTrees"} when working with a <code>ResultTree</code> for limitations.
-     * @param node node to remove
+     * ResultTrees"} when working with a <code>ResultTree</code> for limitations.  Note, if this is a  {@link
+     * com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}, you must pass in a {@link
+     * com.smartgwt.client.widgets.tree.NodeLocator} rather than a node or id.
+     * @param node node to remove, or the node's ID,                                                              or a NodeLocator
      *
      * @return true if the tree was changed as a result of this call
      */
@@ -1565,6 +2116,63 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
         }
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         var ret = self.remove(node.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+	/**
+     * Removes a node, along with all its children.  See {@link com.smartgwt.client.widgets.tree.ResultTree "Modifying
+     * ResultTrees"} when working with a <code>ResultTree</code> for limitations.  Note, if this is a  {@link
+     * com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}, you must pass in a {@link
+     * com.smartgwt.client.widgets.tree.NodeLocator} rather than a node or id.
+     * @param node node to remove, or the node's ID,                                                              or a NodeLocator
+     *
+     * @return true if the tree was changed as a result of this call
+     */
+    public native Boolean remove(String node) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "remove", "String");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.remove(node);
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+	/**
+     * Removes a node, along with all its children.  See {@link com.smartgwt.client.widgets.tree.ResultTree "Modifying
+     * ResultTrees"} when working with a <code>ResultTree</code> for limitations.  Note, if this is a  {@link
+     * com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}, you must pass in a {@link
+     * com.smartgwt.client.widgets.tree.NodeLocator} rather than a node or id.
+     * @param node node to remove, or the node's ID,                                                              or a NodeLocator
+     *
+     * @return true if the tree was changed as a result of this call
+     */
+    public native Boolean remove(Integer node) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "remove", "Integer");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.remove(node == null ? null : node.@java.lang.Integer::intValue()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+	/**
+     * Removes a node, along with all its children.  See {@link com.smartgwt.client.widgets.tree.ResultTree "Modifying
+     * ResultTrees"} when working with a <code>ResultTree</code> for limitations.  Note, if this is a  {@link
+     * com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}, you must pass in a {@link
+     * com.smartgwt.client.widgets.tree.NodeLocator} rather than a node or id.
+     * @param node node to remove, or the node's ID,                                                              or a NodeLocator
+     *
+     * @return true if the tree was changed as a result of this call
+     */
+    public native Boolean remove(NodeLocator node) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "remove", "NodeLocator");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.remove(node == null ? null : node.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()());
         if(ret == null) return null;
         return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
@@ -1720,15 +2328,91 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      * be an  array of children of the tree's root node.
      *
      * @param nodes data
+     * @return {@link com.smartgwt.client.widgets.tree.Tree Tree} instance, for chaining setter
+     * calls
      */
-    public void setData(TreeNode[] nodes) {
-        setAttribute("data", nodes, false);
+    public Tree setData(TreeNode[] nodes) {
+        return (Tree)setAttribute("data", nodes, false);
     }
 
     public ListGridRecord[] getData() {
         JavaScriptObject dataJS = getAttributeAsJavaScriptObject("data");
         ListGridRecord[] data   = com.smartgwt.client.util.ConvertTo.arrayOfListGridRecord(dataJS);
         return data;
+    }
+
+    /**
+     * For a {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}, this property specifies the parent-child 
+     * relationships between the nodes.  The nodes themselves are provided in {@link com.smartgwt.client.widgets.tree.Tree#getData the regular tree data}.
+	 * Note that multi-link trees must specify a {@link com.smartgwt.client.widgets.tree.Tree#getModelType modelType} of "parent".
+	 * <p>
+	 * For a regular, non-multiLink tree, <code>linkData</code> is ignored.
+	 * <p>
+	 * Minimally, the link data should include a node id, parent id and optionally the position of 
+	 * the child within that parent (only required if {@link com.smartgwt.client.widgets.tree.Tree#getAllowDuplicateChildren allowDuplicateChildren} is set). To
+	 * describe this multi-link tree:<pre>
+	 *   foo
+	 *     bar
+	 *       baz
+	 *     zoo
+	 *       bar
+	 *         baz
+	 * </pre>
+	 * you would provide node information in the tree's <code>data</code> like this:<pre>
+     *
+     *  TreeNode data[] = new TreeNode[4];
+     *  data[0] = new TreeNode("foo");
+     *  data[0].setID("foo");
+     *  data[1] = new TreeNode("bar");
+     *  data[1].setID("bar");
+     *  data[2] = new TreeNode("baz");
+     *  data[2].setID("baz");
+     *  data[3] = new TreeNode("zoo");
+     *  data[3].setID("zoo");
+     *  tree.setData(data);
+	 * </pre>
+	 * and link information in <code>linkData</code> like this:<pre>
+     *
+     *  Record linkData[] = new Record[4];
+     *  linkData[0] = new Record();
+     *  linkData[0].setAttribute("id", "bar");
+     *  linkData[0].setAttribute("parentId", "foo");
+     *  linkData[1] = new Record();
+     *  linkData[1].setAttribute("id", "baz");
+     *  linkData[1].setAttribute("parentId", "bar");
+     *  linkData[2] = new Record();
+     *  linkData[2].setAttribute("id", "zoo");
+     *  linkData[2].setAttribute("parentId", "foo");
+     *  linkData[3] = new Record();
+     *  linkData[3].setAttribute("id", "bar");
+     *  linkData[3].setAttribute("parentId", "zoo");
+     *  tree.setLinkData(linkData);
+	 * </pre>
+	 * For information on databinding multi-link trees, and further discussion on multi-link trees
+	 * generally, see {@link com.smartgwt.client.widgets.tree.ResultTree#getLinkDataSource ResultTree.linkDataSource}
+	 *
+     * @param linkData The link data
+     */
+    public void setLinkData(Record[] linkData) {
+        setAttribute("linkData", linkData, false);
+    }
+
+    public Record[] getLinkData() {
+        JavaScriptObject dataJS = getAttributeAsJavaScriptObject("linkData");
+        Record[] data = com.smartgwt.client.util.ConvertTo.arrayOfRecord(dataJS);
+        return data;
+    }
+
+    /**
+     * Set to true to indicate that this is a <i>multi-link</i> tree - ie, one that can contain the same node in more than one place.
+     *
+	 * See {@link com.smartgwt.client.widgets.tree.Tree#setLinkData Tree.linkData} and
+     *{@link com.smartgwt.client.widgets.tree.ResultTree#getLinkDataSource ResultTree.linkDataSource} for more information on multi-link trees
+     * @param multiLinkTree True indicates that this will be a multi-link tree
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setMultiLinkTree(Boolean multiLinkTree) {
+        setAttribute("multiLinkTree", multiLinkTree, false);
     }
 
     /**

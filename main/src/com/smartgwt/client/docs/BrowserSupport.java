@@ -9,7 +9,7 @@ package com.smartgwt.client.docs;
  * corporate policies on browser usage  for intranet applications, or general browser usage for
  * customer facing applications). <P> The Smart GWT framework supports all major browsers, and
  * will always support the current versions at release-time. <P> The full list of Smart GWT
- * browser support (at the time of the initial 12.0p release)  is listed below. Note that support
+ * browser support (at the time of the initial 12.1p release)  is listed below. Note that support
  * for some framework features may be implemented using different native approaches - or in rare
  * cases, may be unavailable - in some older browser  versions. Such cases are covered in
  * documentation where they occur. For example, see the {@link com.smartgwt.client.docs.Skinning
@@ -25,17 +25,17 @@ package com.smartgwt.client.docs;
  * around any newly introduced browser bugs on these older branches. <P> <h4>Unsupported browser
  * handling</h4> Every distributed Smart GWT skin contains an "Unsupported Browser" page. This is
  * an optional placeholder for an application to state its browser support policies. <P> <b>The
- * following browser versions were supported as of the original 12.0p release</b>:    <table
+ * following browser versions were supported as of the original 12.1p release</b>:    <table
  * class="normal" cellPadding=5>    <tr><td width=40></td><td width=200>    <b>Browser/Version</b>
  * </td><td width=240>    <b>Operating System(s)</b>    </td></tr>    <tr><td></td><td>   
  * <i>Internet Explorer 6.0-11.x</i>    </td><td>    Windows    </td></tr>    <tr><td></td><td>   
  * <i>Edge 20.10240.16384.0+</i>    </td><td>    Windows    </td></tr>    <tr><td></td><td>   
- * <i>Firefox 3.6.x-59.x</i>    </td><td>    Windows/MacOS/Linux    </td></tr>   
- * <tr><td></td><td>    <i>Safari 5.0-11.x</i>    </td><td>    MacOS/Windows    </td></tr>   
- * <tr><td></td><td>    <i>Chrome 10.x-65.x</i>    </td><td>    Windows/MacOS/Linux/ChromeOS   
- * </td></tr>    <tr><td></td><td>    <i>Opera 11.x-52.x</i>    </td><td>    Windows/MacOS   
- * </td></tr>    <tr><td></td><td>    <i>Safari (mobile)</i>    </td><td>    iOS 6+    </td></tr> 
- * <tr><td></td><td>    <i>Android browser</i>    </td><td>    Android 3.2+    </td></tr>   
+ * <i>Firefox 4.x-69.x</i>    </td><td>    Windows/MacOS/Linux    </td></tr>    <tr><td></td><td> 
+ * <i>Safari 5.0-12.x</i>    </td><td>    MacOS/Windows    </td></tr>    <tr><td></td><td>   
+ * <i>Chrome 10.x-77.x</i>    </td><td>    Windows/MacOS/Linux/ChromeOS    </td></tr>   
+ * <tr><td></td><td>    <i>Opera 11.x-63.x</i>    </td><td>    Windows/MacOS    </td></tr>   
+ * <tr><td></td><td>    <i>Safari (mobile)</i>    </td><td>    iOS 10+    </td></tr>   
+ * <tr><td></td><td>    <i>Android browser</i>    </td><td>    Android 4.4+    </td></tr>   
  * </table>
  * @see com.smartgwt.client.util.Page#checkBrowserAndRedirect
  * @see com.smartgwt.client.util.Page#getUnsupportedBrowserPromptString

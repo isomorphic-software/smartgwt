@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * A DetailViewerRecord is an object literal with properties that define the values for the
@@ -131,12 +134,13 @@ public class DetailViewerRecord extends Record {
      * com.smartgwt.client.widgets.viewer.DetailViewerField#getLinkText DetailViewerField.linkText}.
      *
      * @param linkText New linkText value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerRecord DetailViewerRecord} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setType
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setLinkText
      * @see com.smartgwt.client.widgets.viewer.DetailViewer#setLinkTextProperty
      */
-    public void setLinkText(String linkText) {
-        setAttribute("linkText", linkText);
+    public DetailViewerRecord setLinkText(String linkText) {
+        return (DetailViewerRecord)setAttribute("linkText", linkText);
     }
 
     /**

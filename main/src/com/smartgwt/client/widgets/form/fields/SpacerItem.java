@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * A SpacerItem takes up a single cell in the FormLayout, of arbitrary size.
@@ -157,10 +160,11 @@ public class SpacerItem extends FormItem {
      * default height for the spacer
      *
      * @param height New height value. Default value is 20
+     * @return {@link com.smartgwt.client.widgets.form.fields.SpacerItem SpacerItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setHeight(int height) {
-        setAttribute("height", height);
+    public SpacerItem setHeight(int height) {
+        return (SpacerItem)setAttribute("height", height);
     }
 
     /**
@@ -178,10 +182,11 @@ public class SpacerItem extends FormItem {
      * we never show a separate title cell for spacers
      *
      * @param showTitle New showTitle value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.SpacerItem SpacerItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle);
+    public SpacerItem setShowTitle(Boolean showTitle) {
+        return (SpacerItem)setAttribute("showTitle", showTitle);
     }
 
     /**
@@ -200,10 +205,11 @@ public class SpacerItem extends FormItem {
      * default width for the spacer
      *
      * @param width New width value. Default value is 20
+     * @return {@link com.smartgwt.client.widgets.form.fields.SpacerItem SpacerItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setWidth(int width) {
-        setAttribute("width", width);
+    public SpacerItem setWidth(int width) {
+        return (SpacerItem)setAttribute("width", width);
     }
 
     /**

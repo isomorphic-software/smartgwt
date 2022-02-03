@@ -19,11 +19,12 @@ package com.smartgwt.client.docs;
 /* sgwtgen */
  
 /**
- * An object containing the "view state" information for a listGrid.<br> This object contains state information
- * reflecting<br> - {@link com.smartgwt.client.docs.ListGridFieldState}<br> - {@link
- * com.smartgwt.client.docs.ListGridSortState}<br> - {@link com.smartgwt.client.docs.ListGridSelectedState}<br> for the
- * grid.<br> Note that this object is a JavaScript string, and may be stored (for example) as a blob on the server for
- * state persistence across sessions.
+ * An object containing the "view state" information for a listGrid. <P> This object contains state information reflecting
+ * the following states in the grid: <ul> <li>{@link com.smartgwt.client.docs.ListGridFieldState field state}</li>
+ * <li>{@link com.smartgwt.client.docs.ListGridSortState sort state}</li> <li>{@link
+ * com.smartgwt.client.docs.ListGridSelectedState selected state}</li> <li>{@link
+ * com.smartgwt.client.docs.ListGridGroupState group state}</li> <li>hilite state</li> </ul> Note that this object is a
+ * JavaScript string, and may be stored (for example) as a blob on the server for state persistence across sessions.
  */
 public interface ListGridViewState  {
 }

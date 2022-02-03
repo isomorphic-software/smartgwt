@@ -122,7 +122,7 @@ public class BeanClass {
 
         // Iterate through our methods, and create properties from them
         for (JMethod method : beanClassType.getMethods()) {
-            BeanMethod beanMethod = new BeanMethod(method, typeOracle);
+            BeanMethod beanMethod = new BeanMethod(method, typeOracle, beanClassType);
             String propertyName = beanMethod.getName();
 
             if (beanMethod.isStaticInitMethod()) hasStaticInitMethod = true;

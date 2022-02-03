@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * A FormItem that displays an uneditable value.
@@ -167,10 +170,11 @@ public class StaticTextItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param applyAlignToText New applyAlignToText value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.StaticTextItem StaticTextItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setApplyAlignToText(boolean applyAlignToText) {
-        setAttribute("applyAlignToText", applyAlignToText);
+    public StaticTextItem setApplyAlignToText(boolean applyAlignToText) {
+        return (StaticTextItem)setAttribute("applyAlignToText", applyAlignToText);
     }
 
     /**
@@ -195,9 +199,10 @@ public class StaticTextItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param applyHeightToTextBox New applyHeightToTextBox value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.StaticTextItem StaticTextItem} instance, for chaining setter calls
      */
-    public void setApplyHeightToTextBox(Boolean applyHeightToTextBox) {
-        setAttribute("applyHeightToTextBox", applyHeightToTextBox);
+    public StaticTextItem setApplyHeightToTextBox(Boolean applyHeightToTextBox) {
+        return (StaticTextItem)setAttribute("applyHeightToTextBox", applyHeightToTextBox);
     }
 
     /**
@@ -218,9 +223,10 @@ public class StaticTextItem extends FormItem {
      * Should the user be able to select the text in this item?
      *
      * @param canSelectText New canSelectText value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.StaticTextItem StaticTextItem} instance, for chaining setter calls
      */
-    public void setCanSelectText(boolean canSelectText) {
-        setAttribute("canSelectText", canSelectText);
+    public StaticTextItem setCanSelectText(boolean canSelectText) {
+        return (StaticTextItem)setAttribute("canSelectText", canSelectText);
     }
 
     /**
@@ -235,17 +241,26 @@ public class StaticTextItem extends FormItem {
     
 
     /**
-     * If true, text that exceeds the specified size of the form item will be clipped.
+     * If true, text that exceeds the specified size of the form item will be clipped. Note that for horizontal clipping to
+     * occur, {@link com.smartgwt.client.widgets.form.fields.StaticTextItem#getWrap wrap} should be set to false - otherwise
+     * the text will typically wrap at the specified width. For vertical clipping to occur, {@link
+     * com.smartgwt.client.widgets.form.fields.StaticTextItem#getApplyHeightToTextBox applyHeightToTextBox} should be
+     * explicitly set to <code>true</code> as the Text Box element is responsible for clipping the content.
      *
      * @param clipValue New clipValue value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.StaticTextItem StaticTextItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setClipValue(Boolean clipValue) {
-        setAttribute("clipValue", clipValue);
+    public StaticTextItem setClipValue(Boolean clipValue) {
+        return (StaticTextItem)setAttribute("clipValue", clipValue);
     }
 
     /**
-     * If true, text that exceeds the specified size of the form item will be clipped.
+     * If true, text that exceeds the specified size of the form item will be clipped. Note that for horizontal clipping to
+     * occur, {@link com.smartgwt.client.widgets.form.fields.StaticTextItem#getWrap wrap} should be set to false - otherwise
+     * the text will typically wrap at the specified width. For vertical clipping to occur, {@link
+     * com.smartgwt.client.widgets.form.fields.StaticTextItem#getApplyHeightToTextBox applyHeightToTextBox} should be
+     * explicitly set to <code>true</code> as the Text Box element is responsible for clipping the content.
      *
      * @return Current clipValue value. Default value is false
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -283,11 +298,12 @@ public class StaticTextItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param dateFormatter New dateFormatter value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.StaticTextItem StaticTextItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setTimeFormatter
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue());
+    public StaticTextItem setDateFormatter(DateDisplayFormat dateFormatter) {
+        return (StaticTextItem)setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue());
     }
 
     /**
@@ -329,10 +345,11 @@ public class StaticTextItem extends FormItem {
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "TextItemEditProxy"
+     * @return {@link com.smartgwt.client.widgets.form.fields.StaticTextItem StaticTextItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor) {
-        setAttribute("editProxyConstructor", editProxyConstructor);
+    public StaticTextItem setEditProxyConstructor(String editProxyConstructor) {
+        return (StaticTextItem)setAttribute("editProxyConstructor", editProxyConstructor);
     }
 
     /**
@@ -353,10 +370,11 @@ public class StaticTextItem extends FormItem {
      * displayed to the user rather than the interpreted HTML (for example <code>"<b>AAA</b>"</code>)
      *
      * @param escapeHTML New escapeHTML value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.StaticTextItem StaticTextItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setEscapeHTML(Boolean escapeHTML) {
-        setAttribute("escapeHTML", escapeHTML);
+    public StaticTextItem setEscapeHTML(Boolean escapeHTML) {
+        return (StaticTextItem)setAttribute("escapeHTML", escapeHTML);
     }
 
     /**
@@ -378,11 +396,12 @@ public class StaticTextItem extends FormItem {
      * Base CSS class for this item
      *
      * @param textBoxStyle New textBoxStyle value. Default value is "staticTextItem"
+     * @return {@link com.smartgwt.client.widgets.form.fields.StaticTextItem StaticTextItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setTextBoxStyle(String textBoxStyle) {
-        setAttribute("textBoxStyle", textBoxStyle);
+    public StaticTextItem setTextBoxStyle(String textBoxStyle) {
+        return (StaticTextItem)setAttribute("textBoxStyle", textBoxStyle);
     }
 
     /**
@@ -401,10 +420,11 @@ public class StaticTextItem extends FormItem {
      * If true, item contents can wrap. If false, all the contents should appear on a single line.
      *
      * @param wrap New wrap value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.StaticTextItem StaticTextItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setWrap(Boolean wrap) {
-        setAttribute("wrap", wrap);
+    public StaticTextItem setWrap(Boolean wrap) {
+        return (StaticTextItem)setAttribute("wrap", wrap);
     }
 
     /**

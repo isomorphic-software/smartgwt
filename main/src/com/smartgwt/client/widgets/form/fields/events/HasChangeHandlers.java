@@ -30,7 +30,14 @@ public interface HasChangeHandlers extends HasHandlers {
      * change() and setValue() to accomplish the same thing.  Returning false from <code>change</code> is intended for
      * rejecting input entirely, such as typing invalid characters. <p> Note that if you ask the form for the current value in
      * this handler, you will get the old value because the change has not yet been committed.  The new value is available as a
-     * parameter to this method.
+     * parameter to this method. <p> Change/Changed notifications vs <i>"...When"</i> rules: the <code>change</code> and
+     * <code>changed</code> events only fire when an end user modifies a field value.  If you are trying to dynamically control
+     * the visibility or enabled state of other  components in response to these events, consider instead using properties 
+     * such as {@link com.smartgwt.client.widgets.Canvas#getVisibleWhen Canvas.visibleWhen}, {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyWhen item.readOnlyWhen}, {@link
+     * com.smartgwt.client.widgets.Canvas#getEnableWhen Canvas.enableWhen} on the target component. (Similar properties are 
+     * available on {@link com.smartgwt.client.widgets.form.fields.FormItem}, {@link com.smartgwt.client.widgets.Canvas},
+     * {@link com.smartgwt.client.widgets.menu.MenuItem} and other components).
      *
      * @param handler the change handler
      * @return {@link HandlerRegistration} used to remove this handler

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * FormItem for editing times in a text field or via a set of selector components.  
@@ -214,13 +217,14 @@ public class TimeItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param ampmItemProperties New ampmItemProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setAmpmItemProperties(SelectItem ampmItemProperties) {
+    public TimeItem setAmpmItemProperties(SelectItem ampmItemProperties) {
         if (ampmItemProperties.isCreated()) {
             ConfigUtil.warnOfPreConfigInstantiation(TimeItem.class, "setAmpmItemProperties", "SelectItem");
         }                                                                       
         ampmItemProperties.setConfigOnly(true);
-        setAttribute("ampmItemProperties", ampmItemProperties == null ? null : ampmItemProperties.getEditorTypeConfig());
+        return (TimeItem)setAttribute("ampmItemProperties", ampmItemProperties == null ? null : ampmItemProperties.getEditorTypeConfig());
     }
 
     /**
@@ -238,10 +242,11 @@ public class TimeItem extends FormItem {
      * Title to show for the {@link com.smartgwt.client.widgets.form.fields.TimeItem#getAmpmItem AM/PM picker}.
      *
      * @param ampmItemTitle New ampmItemTitle value. Default value is "AM/PM"
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setAmpmItemTitle(String ampmItemTitle) {
-        setAttribute("ampmItemTitle", ampmItemTitle);
+    public TimeItem setAmpmItemTitle(String ampmItemTitle) {
+        return (TimeItem)setAttribute("ampmItemTitle", ampmItemTitle);
     }
 
     /**
@@ -268,9 +273,10 @@ public class TimeItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param browserInputType New browserInputType value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setBrowserInputType(String browserInputType) {
-        setAttribute("browserInputType", browserInputType);
+    public TimeItem setBrowserInputType(String browserInputType) {
+        return (TimeItem)setAttribute("browserInputType", browserInputType);
     }
 
     /**
@@ -301,9 +307,10 @@ public class TimeItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.TimeItem#getHourMaxValue hourMaxValue}.
      *
      * @param hourIncrement New hourIncrement value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setHourIncrement(Integer hourIncrement) {
-        setAttribute("hourIncrement", hourIncrement);
+    public TimeItem setHourIncrement(Integer hourIncrement) {
+        return (TimeItem)setAttribute("hourIncrement", hourIncrement);
     }
 
     /**
@@ -340,10 +347,11 @@ public class TimeItem extends FormItem {
      * The hover prompt to show for the {@link com.smartgwt.client.widgets.form.fields.TimeItem#getHourItem hour picker}.
      *
      * @param hourItemPrompt New hourItemPrompt value. Default value is "Choose hours"
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setHourItemPrompt(String hourItemPrompt) {
-        setAttribute("hourItemPrompt", hourItemPrompt);
+    public TimeItem setHourItemPrompt(String hourItemPrompt) {
+        return (TimeItem)setAttribute("hourItemPrompt", hourItemPrompt);
     }
 
     /**
@@ -363,13 +371,14 @@ public class TimeItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param hourItemProperties New hourItemProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setHourItemProperties(SelectItem hourItemProperties) {
+    public TimeItem setHourItemProperties(SelectItem hourItemProperties) {
         if (hourItemProperties.isCreated()) {
             ConfigUtil.warnOfPreConfigInstantiation(TimeItem.class, "setHourItemProperties", "SelectItem");
         }                                                                       
         hourItemProperties.setConfigOnly(true);
-        setAttribute("hourItemProperties", hourItemProperties == null ? null : hourItemProperties.getEditorTypeConfig());
+        return (TimeItem)setAttribute("hourItemProperties", hourItemProperties == null ? null : hourItemProperties.getEditorTypeConfig());
     }
 
     /**
@@ -387,10 +396,11 @@ public class TimeItem extends FormItem {
      * Title to show for the {@link com.smartgwt.client.widgets.form.fields.TimeItem#getHourItem hour picker}.
      *
      * @param hourItemTitle New hourItemTitle value. Default value is "Hour"
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setHourItemTitle(String hourItemTitle) {
-        setAttribute("hourItemTitle", hourItemTitle);
+    public TimeItem setHourItemTitle(String hourItemTitle) {
+        return (TimeItem)setAttribute("hourItemTitle", hourItemTitle);
     }
 
     /**
@@ -415,9 +425,10 @@ public class TimeItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.TimeItem#getHourIncrement hourIncrement}.
      *
      * @param hourMaxValue New hourMaxValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setHourMaxValue(Integer hourMaxValue) {
-        setAttribute("hourMaxValue", hourMaxValue);
+    public TimeItem setHourMaxValue(Integer hourMaxValue) {
+        return (TimeItem)setAttribute("hourMaxValue", hourMaxValue);
     }
 
     /**
@@ -446,9 +457,10 @@ public class TimeItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.TimeItem#getHourIncrement hourIncrement}.
      *
      * @param hourMinValue New hourMinValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setHourMinValue(Integer hourMinValue) {
-        setAttribute("hourMinValue", hourMinValue);
+    public TimeItem setHourMinValue(Integer hourMinValue) {
+        return (TimeItem)setAttribute("hourMinValue", hourMinValue);
     }
 
     /**
@@ -479,9 +491,10 @@ public class TimeItem extends FormItem {
      * Sets the array of valid {@link com.smartgwt.client.widgets.form.fields.TimeItem#getHourValues hour values} to use when {@link com.smartgwt.client.widgets.form.fields.TimeItem#getUseTextField useTextField} is false. <P>Used for limiting available valid Hour values, or when using the TimeItem to record duration, rather than time per-se. <P> See {@link com.smartgwt.client.widgets.form.fields.TimeItem#getHourMinValue hourMinValue},  {@link com.smartgwt.client.widgets.form.fields.TimeItem#getHourMaxValue hourMaxValue} and  {@link com.smartgwt.client.widgets.form.fields.TimeItem#getHourIncrement hourIncrement} for another method of controlling the  content in the hour picker.
      *
      * @param hourValues array of available Hour values. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setHourValues(int... hourValues) {
-        setAttribute("hourValues", hourValues);
+    public TimeItem setHourValues(int... hourValues) {
+        return (TimeItem)setAttribute("hourValues", hourValues);
     }
 
     /**
@@ -508,10 +521,11 @@ public class TimeItem extends FormItem {
      * Validation error message to display if the user enters an invalid time string.
      *
      * @param invalidTimeStringMessage New invalidTimeStringMessage value. Default value is "Invalid time"
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setInvalidTimeStringMessage(String invalidTimeStringMessage) {
-        setAttribute("invalidTimeStringMessage", invalidTimeStringMessage);
+    public TimeItem setInvalidTimeStringMessage(String invalidTimeStringMessage) {
+        return (TimeItem)setAttribute("invalidTimeStringMessage", invalidTimeStringMessage);
     }
 
     /**
@@ -534,9 +548,10 @@ public class TimeItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.TimeItem#getMillisecondMaxValue millisecondMaxValue}.
      *
      * @param millisecondIncrement New millisecondIncrement value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setMillisecondIncrement(Integer millisecondIncrement) {
-        setAttribute("millisecondIncrement", millisecondIncrement);
+    public TimeItem setMillisecondIncrement(Integer millisecondIncrement) {
+        return (TimeItem)setAttribute("millisecondIncrement", millisecondIncrement);
     }
 
     /**
@@ -574,10 +589,11 @@ public class TimeItem extends FormItem {
      * picker}.
      *
      * @param millisecondItemPrompt New millisecondItemPrompt value. Default value is "Choose milliseconds"
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setMillisecondItemPrompt(String millisecondItemPrompt) {
-        setAttribute("millisecondItemPrompt", millisecondItemPrompt);
+    public TimeItem setMillisecondItemPrompt(String millisecondItemPrompt) {
+        return (TimeItem)setAttribute("millisecondItemPrompt", millisecondItemPrompt);
     }
 
     /**
@@ -598,13 +614,14 @@ public class TimeItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param millisecondItemProperties New millisecondItemProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setMillisecondItemProperties(SelectItem millisecondItemProperties) {
+    public TimeItem setMillisecondItemProperties(SelectItem millisecondItemProperties) {
         if (millisecondItemProperties.isCreated()) {
             ConfigUtil.warnOfPreConfigInstantiation(TimeItem.class, "setMillisecondItemProperties", "SelectItem");
         }                                                                       
         millisecondItemProperties.setConfigOnly(true);
-        setAttribute("millisecondItemProperties", millisecondItemProperties == null ? null : millisecondItemProperties.getEditorTypeConfig());
+        return (TimeItem)setAttribute("millisecondItemProperties", millisecondItemProperties == null ? null : millisecondItemProperties.getEditorTypeConfig());
     }
 
     /**
@@ -622,10 +639,11 @@ public class TimeItem extends FormItem {
      * Title to show for the {@link com.smartgwt.client.widgets.form.fields.TimeItem#getMillisecondItem millisecond picker}.
      *
      * @param millisecondItemTitle New millisecondItemTitle value. Default value is "Ms"
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setMillisecondItemTitle(String millisecondItemTitle) {
-        setAttribute("millisecondItemTitle", millisecondItemTitle);
+    public TimeItem setMillisecondItemTitle(String millisecondItemTitle) {
+        return (TimeItem)setAttribute("millisecondItemTitle", millisecondItemTitle);
     }
 
     /**
@@ -648,9 +666,10 @@ public class TimeItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.TimeItem#getMillisecondIncrement millisecondIncrement}.
      *
      * @param millisecondMaxValue New millisecondMaxValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setMillisecondMaxValue(Integer millisecondMaxValue) {
-        setAttribute("millisecondMaxValue", millisecondMaxValue);
+    public TimeItem setMillisecondMaxValue(Integer millisecondMaxValue) {
+        return (TimeItem)setAttribute("millisecondMaxValue", millisecondMaxValue);
     }
 
     /**
@@ -677,9 +696,10 @@ public class TimeItem extends FormItem {
      * and  {@link com.smartgwt.client.widgets.form.fields.TimeItem#getMillisecondIncrement millisecondIncrement}.
      *
      * @param millisecondMinValue New millisecondMinValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setMillisecondMinValue(Integer millisecondMinValue) {
-        setAttribute("millisecondMinValue", millisecondMinValue);
+    public TimeItem setMillisecondMinValue(Integer millisecondMinValue) {
+        return (TimeItem)setAttribute("millisecondMinValue", millisecondMinValue);
     }
 
     /**
@@ -710,9 +730,10 @@ public class TimeItem extends FormItem {
      * Sets the array of valid {@link com.smartgwt.client.widgets.form.fields.TimeItem#getMillisecondValues millisecond values} to use when {@link com.smartgwt.client.widgets.form.fields.TimeItem#getUseTextField useTextField} is false. <P>Used for limiting available valid Millisecond values, or when using the TimeItem to record duration, rather than time per-se. <P> See {@link com.smartgwt.client.widgets.form.fields.TimeItem#getMillisecondMinValue millisecondMinValue},  {@link com.smartgwt.client.widgets.form.fields.TimeItem#getMillisecondMaxValue millisecondMaxValue} and  {@link com.smartgwt.client.widgets.form.fields.TimeItem#getMillisecondIncrement millisecondIncrement} for another method of controlling the  content in the millisecond picker.
      *
      * @param millisecondValues array of available Millisecond values. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setMillisecondValues(int... millisecondValues) {
-        setAttribute("millisecondValues", millisecondValues);
+    public TimeItem setMillisecondValues(int... millisecondValues) {
+        return (TimeItem)setAttribute("millisecondValues", millisecondValues);
     }
 
     /**
@@ -744,9 +765,10 @@ public class TimeItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.TimeItem#getMinuteMaxValue minuteMaxValue}.
      *
      * @param minuteIncrement New minuteIncrement value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setMinuteIncrement(Integer minuteIncrement) {
-        setAttribute("minuteIncrement", minuteIncrement);
+    public TimeItem setMinuteIncrement(Integer minuteIncrement) {
+        return (TimeItem)setAttribute("minuteIncrement", minuteIncrement);
     }
 
     /**
@@ -783,10 +805,11 @@ public class TimeItem extends FormItem {
      * The hover prompt to show for the {@link com.smartgwt.client.widgets.form.fields.TimeItem#getMinuteItem minute picker}.
      *
      * @param minuteItemPrompt New minuteItemPrompt value. Default value is "Choose minutes"
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setMinuteItemPrompt(String minuteItemPrompt) {
-        setAttribute("minuteItemPrompt", minuteItemPrompt);
+    public TimeItem setMinuteItemPrompt(String minuteItemPrompt) {
+        return (TimeItem)setAttribute("minuteItemPrompt", minuteItemPrompt);
     }
 
     /**
@@ -806,13 +829,14 @@ public class TimeItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param minuteItemProperties New minuteItemProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setMinuteItemProperties(SelectItem minuteItemProperties) {
+    public TimeItem setMinuteItemProperties(SelectItem minuteItemProperties) {
         if (minuteItemProperties.isCreated()) {
             ConfigUtil.warnOfPreConfigInstantiation(TimeItem.class, "setMinuteItemProperties", "SelectItem");
         }                                                                       
         minuteItemProperties.setConfigOnly(true);
-        setAttribute("minuteItemProperties", minuteItemProperties == null ? null : minuteItemProperties.getEditorTypeConfig());
+        return (TimeItem)setAttribute("minuteItemProperties", minuteItemProperties == null ? null : minuteItemProperties.getEditorTypeConfig());
     }
 
     /**
@@ -830,10 +854,11 @@ public class TimeItem extends FormItem {
      * Title to show for the {@link com.smartgwt.client.widgets.form.fields.TimeItem#getMinuteItem minute picker}.
      *
      * @param minuteItemTitle New minuteItemTitle value. Default value is "Min"
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setMinuteItemTitle(String minuteItemTitle) {
-        setAttribute("minuteItemTitle", minuteItemTitle);
+    public TimeItem setMinuteItemTitle(String minuteItemTitle) {
+        return (TimeItem)setAttribute("minuteItemTitle", minuteItemTitle);
     }
 
     /**
@@ -856,9 +881,10 @@ public class TimeItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.TimeItem#getMinuteIncrement minuteIncrement}.
      *
      * @param minuteMaxValue New minuteMaxValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setMinuteMaxValue(Integer minuteMaxValue) {
-        setAttribute("minuteMaxValue", minuteMaxValue);
+    public TimeItem setMinuteMaxValue(Integer minuteMaxValue) {
+        return (TimeItem)setAttribute("minuteMaxValue", minuteMaxValue);
     }
 
     /**
@@ -885,9 +911,10 @@ public class TimeItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.TimeItem#getMinuteIncrement minuteIncrement}.
      *
      * @param minuteMinValue New minuteMinValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setMinuteMinValue(Integer minuteMinValue) {
-        setAttribute("minuteMinValue", minuteMinValue);
+    public TimeItem setMinuteMinValue(Integer minuteMinValue) {
+        return (TimeItem)setAttribute("minuteMinValue", minuteMinValue);
     }
 
     /**
@@ -918,9 +945,10 @@ public class TimeItem extends FormItem {
      * Sets the array of valid {@link com.smartgwt.client.widgets.form.fields.TimeItem#getMinuteValues minute values} to use when {@link com.smartgwt.client.widgets.form.fields.TimeItem#getUseTextField useTextField} is false. <P>Used for limiting available valid Minute values, or when using the TimeItem to record duration, rather than time per-se. <P> See {@link com.smartgwt.client.widgets.form.fields.TimeItem#getMinuteMinValue minuteMinValue},  {@link com.smartgwt.client.widgets.form.fields.TimeItem#getMinuteMaxValue minuteMaxValue} and  {@link com.smartgwt.client.widgets.form.fields.TimeItem#getMinuteIncrement minuteIncrement} for another method of controlling the  content in the minute picker.
      *
      * @param minuteValues array of available Minute values. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setMinuteValues(int... minuteValues) {
-        setAttribute("minuteValues", minuteValues);
+    public TimeItem setMinuteValues(int... minuteValues) {
+        return (TimeItem)setAttribute("minuteValues", minuteValues);
     }
 
     /**
@@ -952,9 +980,10 @@ public class TimeItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.TimeItem#getSecondMaxValue secondMaxValue}.
      *
      * @param secondIncrement New secondIncrement value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setSecondIncrement(Integer secondIncrement) {
-        setAttribute("secondIncrement", secondIncrement);
+    public TimeItem setSecondIncrement(Integer secondIncrement) {
+        return (TimeItem)setAttribute("secondIncrement", secondIncrement);
     }
 
     /**
@@ -991,10 +1020,11 @@ public class TimeItem extends FormItem {
      * The hover prompt to show for the {@link com.smartgwt.client.widgets.form.fields.TimeItem#getSecondItem second picker}.
      *
      * @param secondItemPrompt New secondItemPrompt value. Default value is "Choose seconds"
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setSecondItemPrompt(String secondItemPrompt) {
-        setAttribute("secondItemPrompt", secondItemPrompt);
+    public TimeItem setSecondItemPrompt(String secondItemPrompt) {
+        return (TimeItem)setAttribute("secondItemPrompt", secondItemPrompt);
     }
 
     /**
@@ -1014,13 +1044,14 @@ public class TimeItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param secondItemProperties New secondItemProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setSecondItemProperties(SelectItem secondItemProperties) {
+    public TimeItem setSecondItemProperties(SelectItem secondItemProperties) {
         if (secondItemProperties.isCreated()) {
             ConfigUtil.warnOfPreConfigInstantiation(TimeItem.class, "setSecondItemProperties", "SelectItem");
         }                                                                       
         secondItemProperties.setConfigOnly(true);
-        setAttribute("secondItemProperties", secondItemProperties == null ? null : secondItemProperties.getEditorTypeConfig());
+        return (TimeItem)setAttribute("secondItemProperties", secondItemProperties == null ? null : secondItemProperties.getEditorTypeConfig());
     }
 
     /**
@@ -1038,10 +1069,11 @@ public class TimeItem extends FormItem {
      * Title to show for the {@link com.smartgwt.client.widgets.form.fields.TimeItem#getSecondItem second picker}.
      *
      * @param secondItemTitle New secondItemTitle value. Default value is "Sec"
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setSecondItemTitle(String secondItemTitle) {
-        setAttribute("secondItemTitle", secondItemTitle);
+    public TimeItem setSecondItemTitle(String secondItemTitle) {
+        return (TimeItem)setAttribute("secondItemTitle", secondItemTitle);
     }
 
     /**
@@ -1064,9 +1096,10 @@ public class TimeItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.TimeItem#getSecondIncrement secondIncrement}.
      *
      * @param secondMaxValue New secondMaxValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setSecondMaxValue(Integer secondMaxValue) {
-        setAttribute("secondMaxValue", secondMaxValue);
+    public TimeItem setSecondMaxValue(Integer secondMaxValue) {
+        return (TimeItem)setAttribute("secondMaxValue", secondMaxValue);
     }
 
     /**
@@ -1093,9 +1126,10 @@ public class TimeItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.TimeItem#getSecondIncrement secondIncrement}.
      *
      * @param secondMinValue New secondMinValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setSecondMinValue(Integer secondMinValue) {
-        setAttribute("secondMinValue", secondMinValue);
+    public TimeItem setSecondMinValue(Integer secondMinValue) {
+        return (TimeItem)setAttribute("secondMinValue", secondMinValue);
     }
 
     /**
@@ -1126,9 +1160,10 @@ public class TimeItem extends FormItem {
      * Sets the array of valid {@link com.smartgwt.client.widgets.form.fields.TimeItem#getSecondValues second values} to use when {@link com.smartgwt.client.widgets.form.fields.TimeItem#getUseTextField useTextField} is false. <P>Used for limiting available valid Second values, or when using the TimeItem to record duration, rather than time per-se. <P> See {@link com.smartgwt.client.widgets.form.fields.TimeItem#getSecondMinValue secondMinValue},  {@link com.smartgwt.client.widgets.form.fields.TimeItem#getSecondMaxValue secondMaxValue} and  {@link com.smartgwt.client.widgets.form.fields.TimeItem#getSecondIncrement secondIncrement} for another method of controlling the  content in the second picker.
      *
      * @param secondValues array of available Second values. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setSecondValues(int... secondValues) {
-        setAttribute("secondValues", secondValues);
+    public TimeItem setSecondValues(int... secondValues) {
+        return (TimeItem)setAttribute("secondValues", secondValues);
     }
 
     /**
@@ -1163,12 +1198,13 @@ public class TimeItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showHintInField New showHintInField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setHint
      * @see com.smartgwt.client.widgets.form.fields.TimeItem#setUsePlaceholderForHint
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowHintInField(Boolean showHintInField) {
-        setAttribute("showHintInField", showHintInField);
+    public TimeItem setShowHintInField(Boolean showHintInField) {
+        return (TimeItem)setAttribute("showHintInField", showHintInField);
     }
 
     /**
@@ -1196,9 +1232,10 @@ public class TimeItem extends FormItem {
      * {@link com.smartgwt.client.widgets.form.fields.TimeItem#getUseTextField useTextField} is false.
      *
      * @param showHourItem New showHourItem value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setShowHourItem(Boolean showHourItem) {
-        setAttribute("showHourItem", showHourItem);
+    public TimeItem setShowHourItem(Boolean showHourItem) {
+        return (TimeItem)setAttribute("showHourItem", showHourItem);
     }
 
     /**
@@ -1218,9 +1255,10 @@ public class TimeItem extends FormItem {
      * millisecondItem} when {@link com.smartgwt.client.widgets.form.fields.TimeItem#getUseTextField useTextField} is false.
      *
      * @param showMillisecondItem New showMillisecondItem value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setShowMillisecondItem(Boolean showMillisecondItem) {
-        setAttribute("showMillisecondItem", showMillisecondItem);
+    public TimeItem setShowMillisecondItem(Boolean showMillisecondItem) {
+        return (TimeItem)setAttribute("showMillisecondItem", showMillisecondItem);
     }
 
     /**
@@ -1240,9 +1278,10 @@ public class TimeItem extends FormItem {
      * {@link com.smartgwt.client.widgets.form.fields.TimeItem#getUseTextField useTextField} is false.
      *
      * @param showMinuteItem New showMinuteItem value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setShowMinuteItem(Boolean showMinuteItem) {
-        setAttribute("showMinuteItem", showMinuteItem);
+    public TimeItem setShowMinuteItem(Boolean showMinuteItem) {
+        return (TimeItem)setAttribute("showMinuteItem", showMinuteItem);
     }
 
     /**
@@ -1262,9 +1301,10 @@ public class TimeItem extends FormItem {
      * {@link com.smartgwt.client.widgets.form.fields.TimeItem#getUseTextField useTextField} is false.
      *
      * @param showSecondItem New showSecondItem value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setShowSecondItem(Boolean showSecondItem) {
-        setAttribute("showSecondItem", showSecondItem);
+    public TimeItem setShowSecondItem(Boolean showSecondItem) {
+        return (TimeItem)setAttribute("showSecondItem", showSecondItem);
     }
 
     /**
@@ -1287,9 +1327,10 @@ public class TimeItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.TimeItem#getBrowserInputType browserInputType}.
      *
      * @param textAlign New textAlign value. Default value is varies
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setTextAlign(Alignment textAlign) {
-        setAttribute("textAlign", textAlign == null ? null : textAlign.getValue());
+    public TimeItem setTextAlign(Alignment textAlign) {
+        return (TimeItem)setAttribute("textAlign", textAlign == null ? null : textAlign.getValue());
     }
 
     /**
@@ -1312,10 +1353,11 @@ public class TimeItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.TimeItem#getUseTextField useTextField} is set to <code>true</code>.
      *
      * @param textBoxStyle New textBoxStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setTextBoxStyle(String textBoxStyle) {
-        setAttribute("textBoxStyle", textBoxStyle);
+    public TimeItem setTextBoxStyle(String textBoxStyle) {
+        return (TimeItem)setAttribute("textBoxStyle", textBoxStyle);
     }
 
     /**
@@ -1352,13 +1394,14 @@ public class TimeItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param textFieldProperties New textFieldProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setTextFieldProperties(TextItem textFieldProperties) {
+    public TimeItem setTextFieldProperties(TextItem textFieldProperties) {
         if (textFieldProperties.isCreated()) {
             ConfigUtil.warnOfPreConfigInstantiation(TimeItem.class, "setTextFieldProperties", "TextItem");
         }                                                                       
         textFieldProperties.setConfigOnly(true);
-        setAttribute("textFieldProperties", textFieldProperties == null ? null : textFieldProperties.getEditorTypeConfig());
+        return (TimeItem)setAttribute("textFieldProperties", textFieldProperties == null ? null : textFieldProperties.getEditorTypeConfig());
     }
 
     /**
@@ -1385,9 +1428,10 @@ public class TimeItem extends FormItem {
      * being used. See {@link com.smartgwt.client.widgets.form.fields.TimeItem#getBrowserInputType browserInputType}.
      *
      * @param timeFormatter New timeFormatter value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setTimeFormatter(TimeDisplayFormat timeFormatter) {
-        setAttribute("timeFormatter", timeFormatter == null ? null : timeFormatter.getValue());
+    public TimeItem setTimeFormatter(TimeDisplayFormat timeFormatter) {
+        return (TimeItem)setAttribute("timeFormatter", timeFormatter == null ? null : timeFormatter.getValue());
     }
 
     /**
@@ -1417,9 +1461,10 @@ public class TimeItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.TimeItem#getBrowserInputType browserInputType}.
      *
      * @param timeFormatter12Hour New timeFormatter12Hour value. Default value is "toShortTime"
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setTimeFormatter12Hour(TimeDisplayFormat timeFormatter12Hour) {
-        setAttribute("timeFormatter12Hour", timeFormatter12Hour == null ? null : timeFormatter12Hour.getValue());
+    public TimeItem setTimeFormatter12Hour(TimeDisplayFormat timeFormatter12Hour) {
+        return (TimeItem)setAttribute("timeFormatter12Hour", timeFormatter12Hour == null ? null : timeFormatter12Hour.getValue());
     }
 
     /**
@@ -1446,9 +1491,10 @@ public class TimeItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.TimeItem#getBrowserInputType browserInputType}.
      *
      * @param timeFormatter24Hour New timeFormatter24Hour value. Default value is "toShort24HourTime"
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setTimeFormatter24Hour(TimeDisplayFormat timeFormatter24Hour) {
-        setAttribute("timeFormatter24Hour", timeFormatter24Hour == null ? null : timeFormatter24Hour.getValue());
+    public TimeItem setTimeFormatter24Hour(TimeDisplayFormat timeFormatter24Hour) {
+        return (TimeItem)setAttribute("timeFormatter24Hour", timeFormatter24Hour == null ? null : timeFormatter24Hour.getValue());
     }
 
     /**
@@ -1470,9 +1516,10 @@ public class TimeItem extends FormItem {
      * Whether to enforce 24-hour time in the UI.  If unset, assumes to the  String.
      *
      * @param use24HourTime New use24HourTime value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setUse24HourTime(Boolean use24HourTime) {
-        setAttribute("use24HourTime", use24HourTime);
+    public TimeItem setUse24HourTime(Boolean use24HourTime) {
+        return (TimeItem)setAttribute("use24HourTime", use24HourTime);
     }
 
     /**
@@ -1495,9 +1542,10 @@ public class TimeItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param useMask New useMask value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setUseMask(Boolean useMask) {
-        setAttribute("useMask", useMask);
+    public TimeItem setUseMask(Boolean useMask) {
+        return (TimeItem)setAttribute("useMask", useMask);
     }
 
     /**
@@ -1665,11 +1713,12 @@ public class TimeItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param usePlaceholderForHint New usePlaceholderForHint value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setHint
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setUsePlaceholderForHint(boolean usePlaceholderForHint) {
-        setAttribute("usePlaceholderForHint", usePlaceholderForHint);
+    public TimeItem setUsePlaceholderForHint(boolean usePlaceholderForHint) {
+        return (TimeItem)setAttribute("usePlaceholderForHint", usePlaceholderForHint);
     }
 
     /**
@@ -1834,9 +1883,10 @@ public class TimeItem extends FormItem {
      * Should we show the time in a text field, or as a number of SelectItems?
      *
      * @param useTextField New useTextField value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      */
-    public void setUseTextField(Boolean useTextField) {
-        setAttribute("useTextField", useTextField);
+    public TimeItem setUseTextField(Boolean useTextField) {
+        return (TimeItem)setAttribute("useTextField", useTextField);
     }
 
     /**
@@ -1859,10 +1909,11 @@ public class TimeItem extends FormItem {
      * shown in field}.
      *
      * @param wrapHintText New wrapHintText value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setMinHintWidth
      */
-    public void setWrapHintText(Boolean wrapHintText) {
-        setAttribute("wrapHintText", wrapHintText);
+    public TimeItem setWrapHintText(Boolean wrapHintText) {
+        return (TimeItem)setAttribute("wrapHintText", wrapHintText);
     }
 
     /**

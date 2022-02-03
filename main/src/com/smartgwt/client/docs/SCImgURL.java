@@ -53,7 +53,12 @@ package com.smartgwt.client.docs;
  * URLs in Smart GWT are "stateful", meaning that the actual URL used to fetch an image will vary according to the
  * component's state (eg, "Disabled"), generally, by adding a suffix to the image URL.  See the {@link
  * com.smartgwt.client.docs.Skinning Skinning Overview} for more information on statefulness and the {@link
- * com.smartgwt.client.widgets.Img#getSrc Img.src} documentation for information on how stateful image URLs are formed.
+ * com.smartgwt.client.widgets.Img#getSrc Img.src} documentation for information on how stateful image URLs are formed. <P>
+ * <b>SVG Images</b> <P> If the URL represents an SVG image, you may specify <code>tag</code> as a query param to control
+ * whether it's rendered in an object or image tag, provided {@link com.smartgwt.client.widgets.Canvas#getUseImageForSVG
+ * Canvas.useImageForSVG} isn't set.  If that query param is present and has any value other than <code>object</code>, then
+ * the SVG image will be rendered in an image tag. Otherwise, it will be rendered in an object tag.  For example, an
+ * <code>SCImgURL</code> of "circle.svg?tag=image" will render in an image tag.
  */
 public interface SCImgURL extends URL {
 }

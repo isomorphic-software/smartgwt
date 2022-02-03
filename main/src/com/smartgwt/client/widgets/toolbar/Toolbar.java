@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -182,9 +185,10 @@ public class Toolbar extends Layout implements com.smartgwt.client.widgets.toolb
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canAcceptDrop New canAcceptDrop value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.toolbar.Toolbar Toolbar} instance, for chaining setter calls
      */
-    public void setCanAcceptDrop(Boolean canAcceptDrop) {
-        setAttribute("canAcceptDrop", canAcceptDrop, true);
+    public Toolbar setCanAcceptDrop(Boolean canAcceptDrop) {
+        return (Toolbar)setAttribute("canAcceptDrop", canAcceptDrop, true);
     }
 
     /**
@@ -204,9 +208,10 @@ public class Toolbar extends Layout implements com.smartgwt.client.widgets.toolb
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canReorderItems New canReorderItems value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.toolbar.Toolbar Toolbar} instance, for chaining setter calls
      */
-    public void setCanReorderItems(Boolean canReorderItems) {
-        setAttribute("canReorderItems", canReorderItems, true);
+    public Toolbar setCanReorderItems(Boolean canReorderItems) {
+        return (Toolbar)setAttribute("canReorderItems", canReorderItems, true);
     }
 
     /**
@@ -228,9 +233,10 @@ public class Toolbar extends Layout implements com.smartgwt.client.widgets.toolb
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canResizeItems New value for this.canResizeItems. Default value is false
+     * @return {@link com.smartgwt.client.widgets.toolbar.Toolbar Toolbar} instance, for chaining setter calls
      */
-    public void setCanResizeItems(Boolean canResizeItems) {
-        setAttribute("canResizeItems", canResizeItems, true);
+    public Toolbar setCanResizeItems(Boolean canResizeItems) {
+        return (Toolbar)setAttribute("canResizeItems", canResizeItems, true);
     }
 
     /**
@@ -252,10 +258,11 @@ public class Toolbar extends Layout implements com.smartgwt.client.widgets.toolb
      * continue working, with a minor performance penalty.
      *
      * @param createButtonsOnInit New createButtonsOnInit value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.toolbar.Toolbar Toolbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCreateButtonsOnInit(Boolean createButtonsOnInit)  throws IllegalStateException {
-        setAttribute("createButtonsOnInit", createButtonsOnInit, false);
+    public Toolbar setCreateButtonsOnInit(Boolean createButtonsOnInit)  throws IllegalStateException {
+        return (Toolbar)setAttribute("createButtonsOnInit", createButtonsOnInit, false);
     }
 
     /**
@@ -277,10 +284,11 @@ public class Toolbar extends Layout implements com.smartgwt.client.widgets.toolb
      * (true).
      *
      * @param vertical New vertical value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.toolbar.Toolbar Toolbar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setVertical(Boolean vertical) {
-        setAttribute("vertical", vertical, true);
+    public Toolbar setVertical(Boolean vertical) {
+        return (Toolbar)setAttribute("vertical", vertical, true);
     }
 
     /**
@@ -313,7 +321,7 @@ public class Toolbar extends Layout implements com.smartgwt.client.widgets.toolb
     /**
      * Add a itemDragResized handler.
      * <p>
-     * Observable, overrideable method - called when one of the Toolbar buttons is drag resized.
+     * Called when one of the Toolbar buttons is drag resized.
      *
      * @param handler the itemDragResized handler
      * @return {@link HandlerRegistration} used to remove this handler

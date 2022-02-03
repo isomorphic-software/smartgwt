@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -173,13 +176,14 @@ public class DrawPolygon extends DrawPath {
      * DrawPolygon only supports the  {@link com.smartgwt.client.types.KnobType#MOVE} knob type.
      *
      * @param knobs New knobs value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawPolygon DrawPolygon} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setKnobs
      * 
      * 
      */
-    public void setKnobs(KnobType... knobs)  throws IllegalStateException {
-        setAttribute("knobs", knobs, false);
+    public DrawPolygon setKnobs(KnobType... knobs)  throws IllegalStateException {
+        return (DrawPolygon)setAttribute("knobs", knobs, false);
     }
 
     /**
@@ -200,9 +204,10 @@ public class DrawPolygon extends DrawPath {
      * Style of drawing the corners of the polygon.
      *
      * @param lineCap New lineCap value. Default value is "butt"
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawPolygon DrawPolygon} instance, for chaining setter calls
      */
-    public void setLineCap(LineCap lineCap) {
-        setAttribute("lineCap", lineCap == null ? null : lineCap.getValue(), true);
+    public DrawPolygon setLineCap(LineCap lineCap) {
+        return (DrawPolygon)setAttribute("lineCap", lineCap == null ? null : lineCap.getValue(), true);
     }
 
     /**
@@ -220,9 +225,10 @@ public class DrawPolygon extends DrawPath {
      * system}.
      *
      * @param points New points value. Default value is [[0,0], [50,50], [100,0]]
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawPolygon DrawPolygon} instance, for chaining setter calls
      */
-    public void setPoints(Point... points) {
-        setAttribute("points", points, true);
+    public DrawPolygon setPoints(Point... points) {
+        return (DrawPolygon)setAttribute("points", points, true);
     }
 
     /**
@@ -244,10 +250,11 @@ public class DrawPolygon extends DrawPath {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showTitleLabelBackground New showTitleLabelBackground value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawPolygon DrawPolygon} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowTitleLabelBackground(boolean showTitleLabelBackground)  throws IllegalStateException {
-        setAttribute("showTitleLabelBackground", showTitleLabelBackground, false);
+    public DrawPolygon setShowTitleLabelBackground(boolean showTitleLabelBackground)  throws IllegalStateException {
+        return (DrawPolygon)setAttribute("showTitleLabelBackground", showTitleLabelBackground, false);
     }
 
     /**
@@ -270,12 +277,13 @@ public class DrawPolygon extends DrawPath {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param titleRotationMode New titleRotationMode value. Default value is "withItemAlwaysUp"
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawPolygon DrawPolygon} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setTitle
      * 
      */
-    public void setTitleRotationMode(TitleRotationMode titleRotationMode)  throws IllegalStateException {
-        setAttribute("titleRotationMode", titleRotationMode == null ? null : titleRotationMode.getValue(), false);
+    public DrawPolygon setTitleRotationMode(TitleRotationMode titleRotationMode)  throws IllegalStateException {
+        return (DrawPolygon)setAttribute("titleRotationMode", titleRotationMode == null ? null : titleRotationMode.getValue(), false);
     }
 
     /**

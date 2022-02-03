@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * An object representing a component that is currently being edited within an {@link
@@ -111,9 +114,10 @@ public class EditNode extends PaletteNode {
      * See {@link com.smartgwt.client.tools.PaletteNode#getCanDuplicate PaletteNode.canDuplicate}.
      *
      * @param canDuplicate New canDuplicate value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditNode EditNode} instance, for chaining setter calls
      */
-    public void setCanDuplicate(Boolean canDuplicate) {
-        setAttribute("canDuplicate", canDuplicate);
+    public EditNode setCanDuplicate(Boolean canDuplicate) {
+        return (EditNode)setAttribute("canDuplicate", canDuplicate);
     }
 
     /**
@@ -130,9 +134,10 @@ public class EditNode extends PaletteNode {
      * Properties required to recreate the current {@link com.smartgwt.client.tools.EditNode#getLiveObject liveObject}.
      *
      * @param defaults New defaults value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditNode EditNode} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setCanvasDefaults(Canvas defaults) {
+    public EditNode setCanvasDefaults(Canvas defaults) {
         if (defaults != null) {
             if (defaults.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(EditNode.class, "setCanvasDefaults", "Canvas");
@@ -140,7 +145,7 @@ public class EditNode extends PaletteNode {
             defaults.setConfigOnly(true);
         }
         JavaScriptObject config = defaults == null ? null : defaults.getConfig();
-        setAttribute("defaults", JSOHelper.cleanProperties(config, true));
+        return (EditNode)setAttribute("defaults", JSOHelper.cleanProperties(config, true));
     }
 
     /**
@@ -162,9 +167,10 @@ public class EditNode extends PaletteNode {
      * ListGrid.
      *
      * @param liveObject New liveObject value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditNode EditNode} instance, for chaining setter calls
      */
-    public void setCanvasLiveObject(Canvas liveObject) {
-        setAttribute("liveObject", liveObject == null ? null : liveObject.getOrCreateJsObj());
+    public EditNode setCanvasLiveObject(Canvas liveObject) {
+        return (EditNode)setAttribute("liveObject", liveObject == null ? null : liveObject.getOrCreateJsObj());
     }
 
     /**
@@ -184,9 +190,10 @@ public class EditNode extends PaletteNode {
      * Properties required to recreate the current {@link com.smartgwt.client.tools.EditNode#getLiveObject liveObject}.
      *
      * @param defaults New defaults value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditNode EditNode} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setDrawItemDefaults(DrawItem defaults) {
+    public EditNode setDrawItemDefaults(DrawItem defaults) {
         if (defaults != null) {
             if (defaults.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(EditNode.class, "setDrawItemDefaults", "DrawItem");
@@ -194,7 +201,7 @@ public class EditNode extends PaletteNode {
             defaults.setConfigOnly(true);
         }
         JavaScriptObject config = defaults == null ? null : defaults.getConfig();
-        setAttribute("defaults", JSOHelper.cleanProperties(config, true));
+        return (EditNode)setAttribute("defaults", JSOHelper.cleanProperties(config, true));
     }
 
     /**
@@ -216,9 +223,10 @@ public class EditNode extends PaletteNode {
      * ListGrid.
      *
      * @param liveObject New liveObject value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditNode EditNode} instance, for chaining setter calls
      */
-    public void setDrawItemLiveObject(DrawItem liveObject) {
-        setAttribute("liveObject", liveObject == null ? null : liveObject.getOrCreateJsObj());
+    public EditNode setDrawItemLiveObject(DrawItem liveObject) {
+        return (EditNode)setAttribute("liveObject", liveObject == null ? null : liveObject.getOrCreateJsObj());
     }
 
     /**
@@ -237,9 +245,10 @@ public class EditNode extends PaletteNode {
      * Properties required to recreate the current {@link com.smartgwt.client.tools.EditNode#getLiveObject liveObject}.
      *
      * @param defaults New defaults value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditNode EditNode} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setDrawPaneDefaults(DrawPane defaults) {
+    public EditNode setDrawPaneDefaults(DrawPane defaults) {
         if (defaults != null) {
             if (defaults.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(EditNode.class, "setDrawPaneDefaults", "DrawPane");
@@ -247,7 +256,7 @@ public class EditNode extends PaletteNode {
             defaults.setConfigOnly(true);
         }
         JavaScriptObject config = defaults == null ? null : defaults.getConfig();
-        setAttribute("defaults", JSOHelper.cleanProperties(config, true));
+        return (EditNode)setAttribute("defaults", JSOHelper.cleanProperties(config, true));
     }
 
     /**
@@ -269,9 +278,10 @@ public class EditNode extends PaletteNode {
      * ListGrid.
      *
      * @param liveObject New liveObject value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditNode EditNode} instance, for chaining setter calls
      */
-    public void setDrawPaneLiveObject(DrawPane liveObject) {
-        setAttribute("liveObject", liveObject == null ? null : liveObject.getOrCreateJsObj());
+    public EditNode setDrawPaneLiveObject(DrawPane liveObject) {
+        return (EditNode)setAttribute("liveObject", liveObject == null ? null : liveObject.getOrCreateJsObj());
     }
 
     /**
@@ -293,9 +303,10 @@ public class EditNode extends PaletteNode {
      * then.
      *
      * @param editProxyProperties New editProxyProperties value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditNode EditNode} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setEditProxyProperties(EditProxy editProxyProperties) {
+    public EditNode setEditProxyProperties(EditProxy editProxyProperties) {
         if (editProxyProperties != null) {
             if (editProxyProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(EditNode.class, "setEditProxyProperties", "EditProxy");
@@ -303,7 +314,7 @@ public class EditNode extends PaletteNode {
             editProxyProperties.setConfigOnly(true);
         }
         JavaScriptObject config = editProxyProperties == null ? null : editProxyProperties.getConfig();
-        setAttribute("editProxyProperties", JSOHelper.cleanProperties(config, true));
+        return (EditNode)setAttribute("editProxyProperties", JSOHelper.cleanProperties(config, true));
     }
 
     /**
@@ -323,9 +334,10 @@ public class EditNode extends PaletteNode {
      * Properties required to recreate the current {@link com.smartgwt.client.tools.EditNode#getLiveObject liveObject}.
      *
      * @param defaults New defaults value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditNode EditNode} instance, for chaining setter calls
      */
-    public void setFormItemDefaults(FormItem defaults) {
-        setAttribute("defaults", defaults == null ? null : defaults.getJsObj());
+    public EditNode setFormItemDefaults(FormItem defaults) {
+        return (EditNode)setAttribute("defaults", defaults == null ? null : defaults.getJsObj());
     }
 
     /**
@@ -344,9 +356,10 @@ public class EditNode extends PaletteNode {
      * ListGrid.
      *
      * @param liveObject New liveObject value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditNode EditNode} instance, for chaining setter calls
      */
-    public void setFormItemLiveObject(FormItem liveObject) {
-        setAttribute("liveObject", liveObject == null ? null : liveObject.getJsObj());
+    public EditNode setFormItemLiveObject(FormItem liveObject) {
+        return (EditNode)setAttribute("liveObject", liveObject == null ? null : liveObject.getJsObj());
     }
 
     /**
@@ -366,10 +379,11 @@ public class EditNode extends PaletteNode {
      * String of the  {@link com.smartgwt.client.tools.EditNode#getCanvasLiveObject canvasLiveObject}, for example, "ListGrid".
      *
      * @param type New type value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditNode EditNode} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setType(String type) {
-        setAttribute("type", type);
+    public EditNode setType(String type) {
+        return (EditNode)setAttribute("type", type);
     }
 
     /**
@@ -388,9 +402,10 @@ public class EditNode extends PaletteNode {
      * com.smartgwt.client.widgets.Canvas#getEditProxy editProxy} when created.
      *
      * @param useEditMask New useEditMask value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditNode EditNode} instance, for chaining setter calls
      */
-    public void setUseEditMask(Boolean useEditMask) {
-        setAttribute("useEditMask", useEditMask);
+    public EditNode setUseEditMask(Boolean useEditMask) {
+        return (EditNode)setAttribute("useEditMask", useEditMask);
     }
 
     /**

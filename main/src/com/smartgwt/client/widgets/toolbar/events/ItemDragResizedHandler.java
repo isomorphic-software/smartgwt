@@ -21,7 +21,7 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface ItemDragResizedHandler extends EventHandler {
     /**
-     * Observable, overrideable method - called when one of the Toolbar buttons is drag resized.
+     * Called when one of the Toolbar buttons is drag resized.
      *
      * @param event the event
      */

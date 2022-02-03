@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,19 +65,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * StateTask can either copy fields of {@link com.smartgwt.client.util.workflow.Process#getState Process.state} to other
  * fields, or apply hardcoded values to {@link com.smartgwt.client.util.workflow.Process#getState Process.state} via {@link
- * com.smartgwt.client.util.workflow.StateTask#getValue value}.
+ * com.smartgwt.client.util.workflow.StateTask#getValue value}. <p> Some examples: <ul> <li>inputField: "a", outputField:
+ * "b" - copies "a" to "b" <li>inputField: "a", outputField: "b", type: "integer" - copies "a" to "b" converting "a" to an
+ * integer <li>inputFieldList: ["a","b"], outputField: ["c","d"] - copies "a" and "b" to "c" and "d" respectively. </ul>
  */
 @BeanFactory.FrameworkClass
 @BeanFactory.ScClassName("StateTask")
@@ -116,10 +121,11 @@ public class StateTask extends Task {
      * convertible to the target {@link com.smartgwt.client.util.workflow.StateTask#getType type}.
      *
      * @param failureElement New failureElement value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.StateTask StateTask} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setFailureElement(String failureElement)  throws IllegalStateException {
-        setAttribute("failureElement", failureElement, false);
+    public StateTask setFailureElement(String failureElement)  throws IllegalStateException {
+        return (StateTask)setAttribute("failureElement", failureElement, false);
     }
 
     /**
@@ -132,30 +138,29 @@ public class StateTask extends Task {
         return getAttributeAsString("failureElement");
     }
     
+    
 
     /**
-     * ID of the next {@link com.smartgwt.client.util.workflow.Process#getSequences sequence} or {process.elements,element} to
-     * procede to if no error condition arises. <p> If this <code>stateTask</code> is part of a {@link
-     * com.smartgwt.client.util.workflow.Process#getSequences sequence} and has a next element in the sequence,
-     * <code>nextElement</code> does not need to be specified.
+     * Does this processElement pass through output from the last executed task (i.e. transient state)? See {@link
+     * com.smartgwt.client.docs.TaskInputExpression taskInputExpressions} for details on the transient state.
      *
-     * @param nextElement New nextElement value. Default value is null
+     * @param passThruOutput New passThruOutput value. Default value is false
+     * @return {@link com.smartgwt.client.util.workflow.StateTask StateTask} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setNextElement(String nextElement)  throws IllegalStateException {
-        setAttribute("nextElement", nextElement, false);
+    public StateTask setPassThruOutput(Boolean passThruOutput)  throws IllegalStateException {
+        return (StateTask)setAttribute("passThruOutput", passThruOutput, false);
     }
 
     /**
-     * ID of the next {@link com.smartgwt.client.util.workflow.Process#getSequences sequence} or {process.elements,element} to
-     * procede to if no error condition arises. <p> If this <code>stateTask</code> is part of a {@link
-     * com.smartgwt.client.util.workflow.Process#getSequences sequence} and has a next element in the sequence,
-     * <code>nextElement</code> does not need to be specified.
+     * Does this processElement pass through output from the last executed task (i.e. transient state)? See {@link
+     * com.smartgwt.client.docs.TaskInputExpression taskInputExpressions} for details on the transient state.
      *
-     * @return Current nextElement value. Default value is null
+     * @return Current passThruOutput value. Default value is false
      */
-    public String getNextElement()  {
-        return getAttributeAsString("nextElement");
+    public Boolean getPassThruOutput()  {
+        Boolean result = getAttributeAsBoolean("passThruOutput");
+        return result == null ? false : result;
     }
     
     

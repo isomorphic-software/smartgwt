@@ -118,11 +118,12 @@ public class BeanMethod {
 
     // Determines whether the method might be a custom setter, considering
     // everything but name
-    private boolean couldBeCustomSetter () {
+    private boolean couldBeCustomSetter (JClassType beanClassType) {
+        JType retType = method.getReturnType();
         // We may be able to optimize later in various ways to avoid calling
         // setters or getters that ultimately just set or get a value on the
         // underlying JSO (which is what we will do by default anyway).
-        return method.getReturnType() == JPrimitiveType.VOID &&
+        return (retType == JPrimitiveType.VOID || retType == beanClassType) &&
                method.isPublic() &&
                !method.isAbstract() &&
                !method.isStatic() &&
@@ -152,10 +153,10 @@ public class BeanMethod {
     final static Pattern getterPattern = Pattern.compile("^(get|is)([A-Z].*)");
     final static Pattern setterPattern = Pattern.compile("^set([A-Z].*)");
 
-    public BeanMethod (JMethod method, TypeOracle typeOracle) {
+    public BeanMethod (JMethod method, TypeOracle typeOracle, JClassType beanClassType) {
         this.method = method;
 
-        if (couldBeCustomSetter()) {
+        if (couldBeCustomSetter(beanClassType)) {
             Matcher matcher = setterPattern.matcher(method.getName());
             if (matcher.matches()) {
                 valueType = method.getParameters()[0].getType();

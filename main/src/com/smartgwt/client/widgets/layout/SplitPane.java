@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -265,9 +268,10 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * Setter for {@link com.smartgwt.client.widgets.layout.SplitPane#getAddHistoryEntries addHistoryEntries}.
      *
      * @param addHistoryEntries the new setting. Default value is false
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      */
-    public void setAddHistoryEntries(boolean addHistoryEntries) {
-        setAttribute("addHistoryEntries", addHistoryEntries, true);
+    public SplitPane setAddHistoryEntries(boolean addHistoryEntries) {
+        return (SplitPane)setAttribute("addHistoryEntries", addHistoryEntries, true);
     }
 
     /**
@@ -304,11 +308,12 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * navigationBar}. Enabled by default except when the browser is known to have poor animation performance.
      *
      * @param animateNavigationBarStateChanges New animateNavigationBarStateChanges value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.layout.NavigationBar#setAnimateStateChanges
      */
-    public void setAnimateNavigationBarStateChanges(boolean animateNavigationBarStateChanges)  throws IllegalStateException {
-        setAttribute("animateNavigationBarStateChanges", animateNavigationBarStateChanges, false);
+    public SplitPane setAnimateNavigationBarStateChanges(boolean animateNavigationBarStateChanges)  throws IllegalStateException {
+        return (SplitPane)setAttribute("animateNavigationBarStateChanges", animateNavigationBarStateChanges, false);
     }
 
     /**
@@ -330,15 +335,27 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * com.smartgwt.client.widgets.layout.SplitPane#getListPane listPane}, and call {@link
      * com.smartgwt.client.widgets.layout.SplitPane#navigateListPane navigateListPane()} or {@link
      * com.smartgwt.client.widgets.layout.SplitPane#navigateDetailPane navigateDetailPane()} when selections are changed. <p>
-     * If any configured panes lack DataSources or there is no DataSource relationship declared between panes,
-     * <code>autoNavigate</code> does nothing.
+     * If a pane is not a {@link com.smartgwt.client.widgets.DataBoundComponent}, but contains a component (selected via a
+     * breadth-first search), then that inner component will be monitored for selection changes instead.  In either case,
+     * <code>autoNavigate</code> does nothing unless the monitored component has a valid {@link
+     * com.smartgwt.client.data.DataSource} and there is a DataSource relationship declared between panes.  Note that for
+     * {@link com.smartgwt.client.widgets.layout.Layout}s, the {@link com.smartgwt.client.widgets.layout.Layout#getMembers
+     * members} will be searched when looking for a component rather than the {@link
+     * com.smartgwt.client.widgets.Canvas#getChildren children}. <p> The selection of the pane or pane inner component for
+     * monitoring is done only when the <code>SplitPane</code> is created, and when a new {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#getNavigationPane navigationPane} or {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#getListPane listPane} is assigned, except when the <code>SplitPane</code>
+     * is in {@link com.smartgwt.client.widgets.Canvas#setEditMode edit mode} (e.g. when using {@link
+     * com.smartgwt.client.tools.VisualBuilder}). where the component redetection logic gets run every time a pane's widget
+     * hierarchy changes.
      *
      * @param autoNavigate New autoNavigate value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_splitpane" target="examples">SplitPane Example</a>
      */
-    public void setAutoNavigate(Boolean autoNavigate)  throws IllegalStateException {
-        setAttribute("autoNavigate", autoNavigate, false);
+    public SplitPane setAutoNavigate(Boolean autoNavigate)  throws IllegalStateException {
+        return (SplitPane)setAttribute("autoNavigate", autoNavigate, false);
     }
 
     /**
@@ -347,8 +364,19 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * com.smartgwt.client.widgets.layout.SplitPane#getListPane listPane}, and call {@link
      * com.smartgwt.client.widgets.layout.SplitPane#navigateListPane navigateListPane()} or {@link
      * com.smartgwt.client.widgets.layout.SplitPane#navigateDetailPane navigateDetailPane()} when selections are changed. <p>
-     * If any configured panes lack DataSources or there is no DataSource relationship declared between panes,
-     * <code>autoNavigate</code> does nothing.
+     * If a pane is not a {@link com.smartgwt.client.widgets.DataBoundComponent}, but contains a component (selected via a
+     * breadth-first search), then that inner component will be monitored for selection changes instead.  In either case,
+     * <code>autoNavigate</code> does nothing unless the monitored component has a valid {@link
+     * com.smartgwt.client.data.DataSource} and there is a DataSource relationship declared between panes.  Note that for
+     * {@link com.smartgwt.client.widgets.layout.Layout}s, the {@link com.smartgwt.client.widgets.layout.Layout#getMembers
+     * members} will be searched when looking for a component rather than the {@link
+     * com.smartgwt.client.widgets.Canvas#getChildren children}. <p> The selection of the pane or pane inner component for
+     * monitoring is done only when the <code>SplitPane</code> is created, and when a new {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#getNavigationPane navigationPane} or {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#getListPane listPane} is assigned, except when the <code>SplitPane</code>
+     * is in {@link com.smartgwt.client.widgets.Canvas#setEditMode edit mode} (e.g. when using {@link
+     * com.smartgwt.client.tools.VisualBuilder}). where the component redetection logic gets run every time a pane's widget
+     * hierarchy changes.
      *
      * @return Current autoNavigate value. Default value is null
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_splitpane" target="examples">SplitPane Example</a>
@@ -400,9 +428,10 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * Reveals the pane indicated by the <code>newPane</code> parameter. <p> This has different effects based on the {@link com.smartgwt.client.types.DeviceMode} and {@link com.smartgwt.client.types.PageOrientation}.  For example, in "handset" mode, the new pane will be the only one showing.  In other modes such as "desktop", this method may do nothing, but should still be called in order to ensure correct behavior with other {@link com.smartgwt.client.types.DeviceMode} settings.
      *
      * @param currentPane new pane to show. Default value is "navigation"
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      */
-    public void setCurrentPane(CurrentPane currentPane) {
-        setAttribute("currentPane", currentPane == null ? null : currentPane.getValue(), true);
+    public SplitPane setCurrentPane(CurrentPane currentPane) {
+        return (SplitPane)setAttribute("currentPane", currentPane == null ? null : currentPane.getValue(), true);
     }
 
     /**
@@ -430,9 +459,10 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param detailNavigationControl New detailNavigationControl value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      */
-    public void setDetailNavigationControl(Canvas detailNavigationControl) {
-        setAttribute("detailNavigationControl", detailNavigationControl == null ? null : detailNavigationControl.getOrCreateJsObj(), true);
+    public SplitPane setDetailNavigationControl(Canvas detailNavigationControl) {
+        return (SplitPane)setAttribute("detailNavigationControl", detailNavigationControl == null ? null : detailNavigationControl.getOrCreateJsObj(), true);
     }
 
     /**
@@ -454,9 +484,10 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * Sets a new {@link com.smartgwt.client.widgets.layout.SplitPane#getDetailPane detailPane} at runtime.
      *
      * @param detailPane new detail pane for this widget. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      */
-    public void setDetailPane(Canvas detailPane) {
-        setAttribute("detailPane", detailPane == null ? null : detailPane.getOrCreateJsObj(), true);
+    public SplitPane setDetailPane(Canvas detailPane) {
+        return (SplitPane)setAttribute("detailPane", detailPane == null ? null : detailPane.getOrCreateJsObj(), true);
     }
 
     /**
@@ -478,12 +509,13 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * Sets a new {@link com.smartgwt.client.widgets.layout.SplitPane#getDetailPaneTitleTemplate detailPaneTitleTemplate} at runtime. <p> By calling this method it is assumed you want the detail pane title to change to the new template.
      *
      * @param detailPaneTitleTemplate new template, can use HTML to be styled. Default value is "${titleField}"
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.layout.SplitPane#setListPaneTitleTemplate
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_splitpane" target="examples">SplitPane Example</a>
      */
-    public void setDetailPaneTitleTemplate(String detailPaneTitleTemplate) {
-        setAttribute("detailPaneTitleTemplate", detailPaneTitleTemplate, true);
+    public SplitPane setDetailPaneTitleTemplate(String detailPaneTitleTemplate) {
+        return (SplitPane)setAttribute("detailPaneTitleTemplate", detailPaneTitleTemplate, true);
     }
 
     /**
@@ -508,10 +540,11 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * Sets the title for the {@link com.smartgwt.client.widgets.layout.SplitPane#getDetailPane detailPane}.
      *
      * @param detailTitle new title for the detail pane. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setDetailTitle(String detailTitle) {
-        setAttribute("detailTitle", detailTitle, true);
+    public SplitPane setDetailTitle(String detailTitle) {
+        return (SplitPane)setAttribute("detailTitle", detailTitle, true);
     }
 
     /**
@@ -544,9 +577,10 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * Updates the {@link com.smartgwt.client.widgets.layout.SplitPane#getDetailToolButtons detailToolButtons} at runtime.
      *
      * @param detailToolButtons new controls for the toolstrip. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      */
-    public void setDetailToolButtons(Canvas... detailToolButtons) {
-        setAttribute("detailToolButtons", detailToolButtons, true);
+    public SplitPane setDetailToolButtons(Canvas... detailToolButtons) {
+        return (SplitPane)setAttribute("detailToolButtons", detailToolButtons, true);
     }
 
     /**
@@ -610,11 +644,12 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * <code>navigationPane</code> is shown instead.
      *
      * @param deviceMode New deviceMode value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_splitpane" target="examples">SplitPane Example</a>
      */
-    public void setDeviceMode(DeviceMode deviceMode)  throws IllegalStateException {
-        setAttribute("deviceMode", deviceMode == null ? null : deviceMode.getValue(), false);
+    public SplitPane setDeviceMode(DeviceMode deviceMode)  throws IllegalStateException {
+        return (SplitPane)setAttribute("deviceMode", deviceMode == null ? null : deviceMode.getValue(), false);
     }
 
     /**
@@ -646,11 +681,12 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "SplitPaneEditProxy"
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
-        setAttribute("editProxyConstructor", editProxyConstructor, false);
+    public SplitPane setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
+        return (SplitPane)setAttribute("editProxyConstructor", editProxyConstructor, false);
     }
 
     /**
@@ -694,9 +730,10 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * Sets a new {@link com.smartgwt.client.widgets.layout.SplitPane#getListPane listPane} at runtime.
      *
      * @param listPane new list pane for this widget. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      */
-    public void setListPane(Canvas listPane) {
-        setAttribute("listPane", listPane == null ? null : listPane.getOrCreateJsObj(), true);
+    public SplitPane setListPane(Canvas listPane) {
+        return (SplitPane)setAttribute("listPane", listPane == null ? null : listPane.getOrCreateJsObj(), true);
     }
 
     /**
@@ -722,12 +759,13 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * Sets a new {@link com.smartgwt.client.widgets.layout.SplitPane#getListPaneTitleTemplate listPaneTitleTemplate} at runtime. <p> By calling this method it is assumed you want the list pane title to change to the new template.
      *
      * @param listPaneTitleTemplate new template, can use HTML to be styled. Default value is "${titleField}"
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.layout.SplitPane#setDetailPaneTitleTemplate
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_splitpane" target="examples">SplitPane Example</a>
      */
-    public void setListPaneTitleTemplate(String listPaneTitleTemplate) {
-        setAttribute("listPaneTitleTemplate", listPaneTitleTemplate, true);
+    public SplitPane setListPaneTitleTemplate(String listPaneTitleTemplate) {
+        return (SplitPane)setAttribute("listPaneTitleTemplate", listPaneTitleTemplate, true);
     }
 
     /**
@@ -756,10 +794,11 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * Sets the title for the {@link com.smartgwt.client.widgets.layout.SplitPane#getListPane listPane}.
      *
      * @param listTitle new title for the list pane. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setListTitle(String listTitle) {
-        setAttribute("listTitle", listTitle, true);
+    public SplitPane setListTitle(String listTitle) {
+        return (SplitPane)setAttribute("listTitle", listTitle, true);
     }
 
     /**
@@ -836,9 +875,10 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * Update the {@link com.smartgwt.client.widgets.layout.SplitPane#getNavigationPane navigationPane} at runtime.
      *
      * @param navigationPane new navigation pane for this widget. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      */
-    public void setNavigationPane(Canvas navigationPane) {
-        setAttribute("navigationPane", navigationPane == null ? null : navigationPane.getOrCreateJsObj(), true);
+    public SplitPane setNavigationPane(Canvas navigationPane) {
+        return (SplitPane)setAttribute("navigationPane", navigationPane == null ? null : navigationPane.getOrCreateJsObj(), true);
     }
 
     /**
@@ -860,22 +900,71 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
     
 
     /**
-     * LeftLayout?s initial size
+     * Sets a size for the navigation pane. <p> This size is active only on platforms where multiple panes are showing at once;
+     * if a single pane is showing, <code>navigationPaneWidth</code> is ignored. <p> Note that setting a
+     * <code>navigationPaneWidth</code> which creates more size in one of the panes may backfire on mobile, where all panes end
+     * up having the same width (the device width).  If you make one pane larger to accommodate more controls or content, make
+     * sure you use techniques such as showing fewer columns on mobile, or using adaptive components such as {@link
+     * com.smartgwt.client.widgets.menu.AdaptiveMenu}. <p> If you simply want side-by-side display with arbitrary proportions,
+     * and don't care about tablet and mobile adaptation, use {@link com.smartgwt.client.widgets.layout.HLayout} instead.
      *
      * @param navigationPaneWidth New navigationPaneWidth value. Default value is 320
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.Canvas#setWidth
      */
-    public void setNavigationPaneWidth(int navigationPaneWidth)  throws IllegalStateException {
-        setAttribute("navigationPaneWidth", navigationPaneWidth, false);
+    public SplitPane setNavigationPaneWidth(int navigationPaneWidth)  throws IllegalStateException {
+        return (SplitPane)setAttribute("navigationPaneWidth", navigationPaneWidth, false);
     }
 
     /**
-     * LeftLayout?s initial size
+     * Sets a size for the navigation pane. <p> This size is active only on platforms where multiple panes are showing at once;
+     * if a single pane is showing, <code>navigationPaneWidth</code> is ignored. <p> Note that setting a
+     * <code>navigationPaneWidth</code> which creates more size in one of the panes may backfire on mobile, where all panes end
+     * up having the same width (the device width).  If you make one pane larger to accommodate more controls or content, make
+     * sure you use techniques such as showing fewer columns on mobile, or using adaptive components such as {@link
+     * com.smartgwt.client.widgets.menu.AdaptiveMenu}. <p> If you simply want side-by-side display with arbitrary proportions,
+     * and don't care about tablet and mobile adaptation, use {@link com.smartgwt.client.widgets.layout.HLayout} instead.
      *
      * @return Current navigationPaneWidth value. Default value is 320
+     * @see com.smartgwt.client.widgets.Canvas#getWidth
      */
     public int getNavigationPaneWidth()  {
         return getAttributeAsInt("navigationPaneWidth");
+    }
+
+    /**
+     * Sets a size for the navigation pane. <p> This size is active only on platforms where multiple panes are showing at once;
+     * if a single pane is showing, <code>navigationPaneWidth</code> is ignored. <p> Note that setting a
+     * <code>navigationPaneWidth</code> which creates more size in one of the panes may backfire on mobile, where all panes end
+     * up having the same width (the device width).  If you make one pane larger to accommodate more controls or content, make
+     * sure you use techniques such as showing fewer columns on mobile, or using adaptive components such as {@link
+     * com.smartgwt.client.widgets.menu.AdaptiveMenu}. <p> If you simply want side-by-side display with arbitrary proportions,
+     * and don't care about tablet and mobile adaptation, use {@link com.smartgwt.client.widgets.layout.HLayout} instead.
+     *
+     * @param navigationPaneWidth New navigationPaneWidth value. Default value is 320
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.Canvas#setWidth
+     */
+    public SplitPane setNavigationPaneWidth(String navigationPaneWidth)  throws IllegalStateException {
+        return (SplitPane)setAttribute("navigationPaneWidth", navigationPaneWidth, false);
+    }
+
+    /**
+     * Sets a size for the navigation pane. <p> This size is active only on platforms where multiple panes are showing at once;
+     * if a single pane is showing, <code>navigationPaneWidth</code> is ignored. <p> Note that setting a
+     * <code>navigationPaneWidth</code> which creates more size in one of the panes may backfire on mobile, where all panes end
+     * up having the same width (the device width).  If you make one pane larger to accommodate more controls or content, make
+     * sure you use techniques such as showing fewer columns on mobile, or using adaptive components such as {@link
+     * com.smartgwt.client.widgets.menu.AdaptiveMenu}. <p> If you simply want side-by-side display with arbitrary proportions,
+     * and don't care about tablet and mobile adaptation, use {@link com.smartgwt.client.widgets.layout.HLayout} instead.
+     *
+     * @return Current navigationPaneWidth value. Default value is 320
+     * @see com.smartgwt.client.widgets.Canvas#getWidth
+     */
+    public String getNavigationPaneWidthAsString()  {
+        return getAttributeAsString("navigationPaneWidth");
     }
     
 
@@ -888,10 +977,11 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * Sets the title for the {@link com.smartgwt.client.widgets.layout.SplitPane#getNavigationPane navigationPane}.
      *
      * @param navigationTitle new title for the navigation pane. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setNavigationTitle(String navigationTitle) {
-        setAttribute("navigationTitle", navigationTitle, true);
+    public SplitPane setNavigationTitle(String navigationTitle) {
+        return (SplitPane)setAttribute("navigationTitle", navigationTitle, true);
     }
 
     /**
@@ -909,29 +999,36 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
 
     /**
      * Whether or not to call {@link com.smartgwt.client.widgets.layout.SplitPane#addNavigationClickHandler
-     * SplitPane.navigationClick()}, if present, after navigation has already occurred.  This may be set false to allow {@link
-     * com.smartgwt.client.widgets.layout.SplitPane#addNavigationClickHandler SplitPane.navigationClick()} to be canceled.
+     * SplitPane.navigationClick()}, if present, after navigation has already occurred.  This may be set to provide backcompat
+     * with legacy code, as by default the Framework will call {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#addNavigationClickHandler SplitPane.navigationClick()} before navigation to
+     * allow cancelation. <P> Note that if this property is set, {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#addNavigationClickHandler SplitPane.navigationClick()} cannot be canceled.
      *
-     * @param notifyAfterNavigationClick New notifyAfterNavigationClick value. Default value is true
+     * @param notifyAfterNavigationClick New notifyAfterNavigationClick value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.layout.events.PaneChangedEvent
      * @see com.smartgwt.client.widgets.layout.events.NavigationClickEvent
      */
-    public void setNotifyAfterNavigationClick(boolean notifyAfterNavigationClick) {
-        setAttribute("notifyAfterNavigationClick", notifyAfterNavigationClick, true);
+    public SplitPane setNotifyAfterNavigationClick(boolean notifyAfterNavigationClick) {
+        return (SplitPane)setAttribute("notifyAfterNavigationClick", notifyAfterNavigationClick, true);
     }
 
     /**
      * Whether or not to call {@link com.smartgwt.client.widgets.layout.SplitPane#addNavigationClickHandler
-     * SplitPane.navigationClick()}, if present, after navigation has already occurred.  This may be set false to allow {@link
-     * com.smartgwt.client.widgets.layout.SplitPane#addNavigationClickHandler SplitPane.navigationClick()} to be canceled.
+     * SplitPane.navigationClick()}, if present, after navigation has already occurred.  This may be set to provide backcompat
+     * with legacy code, as by default the Framework will call {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#addNavigationClickHandler SplitPane.navigationClick()} before navigation to
+     * allow cancelation. <P> Note that if this property is set, {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#addNavigationClickHandler SplitPane.navigationClick()} cannot be canceled.
      *
-     * @return Current notifyAfterNavigationClick value. Default value is true
+     * @return Current notifyAfterNavigationClick value. Default value is false
      * @see com.smartgwt.client.widgets.layout.events.PaneChangedEvent
      * @see com.smartgwt.client.widgets.layout.events.NavigationClickEvent
      */
     public boolean getNotifyAfterNavigationClick()  {
         Boolean result = getAttributeAsBoolean("notifyAfterNavigationClick");
-        return result == null ? true : result;
+        return result == null ? false : result;
     }
     
 
@@ -947,9 +1044,10 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * Explicitly sets the page orientation to a fixed value instead of being responsive to device orientation changes.  Pass <code>null</code> to return to responding automatically to device orientation. <p> See {@link com.smartgwt.client.types.PageOrientation} for details of how page orientation affects layout.
      *
      * @param pageOrientation new orientation to use. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      */
-    public void setPageOrientation(PageOrientation pageOrientation) {
-        setAttribute("pageOrientation", pageOrientation == null ? null : pageOrientation.getValue(), true);
+    public SplitPane setPageOrientation(PageOrientation pageOrientation) {
+        return (SplitPane)setAttribute("pageOrientation", pageOrientation == null ? null : pageOrientation.getValue(), true);
     }
 
     /**
@@ -968,14 +1066,35 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
     
 
     /**
+     * <b>Note</b>: This is a Layout property which is inapplicable on this class. A SplitPane always works from left to right.
+     *
+     * @param reverseOrder New reverseOrder value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
+     */
+    public SplitPane setReverseOrder(Boolean reverseOrder) {
+        return (SplitPane)setAttribute("reverseOrder", reverseOrder, true);
+    }
+
+    /**
+     * <b>Note</b>: This is a Layout property which is inapplicable on this class. A SplitPane always works from left to right.
+     *
+     * @return Current reverseOrder value. Default value is null
+     */
+    public Boolean getReverseOrder()  {
+        return getAttributeAsBoolean("reverseOrder");
+    }
+    
+
+    /**
      * If set to <code>false</code>, the {@link com.smartgwt.client.widgets.layout.SplitPane#getDetailToolStrip
      * detailToolStrip} will not be shown.
      *
      * @param showDetailToolStrip New showDetailToolStrip value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowDetailToolStrip(Boolean showDetailToolStrip)  throws IllegalStateException {
-        setAttribute("showDetailToolStrip", showDetailToolStrip, false);
+    public SplitPane setShowDetailToolStrip(Boolean showDetailToolStrip)  throws IllegalStateException {
+        return (SplitPane)setAttribute("showDetailToolStrip", showDetailToolStrip, false);
     }
 
     /**
@@ -1001,11 +1120,12 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * Show or hide the {@link com.smartgwt.client.widgets.layout.SplitPane#getLeftButton leftButton} in the navigation bar.
      *
      * @param showLeftButton if <code>true</code>, the <code>leftButton</code> will be shown, otherwise hidden. Default value is false
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.layout.SplitPane#setLeftButton
      * @see com.smartgwt.client.widgets.layout.SplitPane#setBackButton
      */
-    public void setShowLeftButton(boolean showLeftButton) {
-        setAttribute("showLeftButton", showLeftButton, true);
+    public SplitPane setShowLeftButton(boolean showLeftButton) {
+        return (SplitPane)setAttribute("showLeftButton", showLeftButton, true);
     }
 
     /**
@@ -1031,10 +1151,11 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * will not be shown.
      *
      * @param showListToolStrip New showListToolStrip value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowListToolStrip(Boolean showListToolStrip)  throws IllegalStateException {
-        setAttribute("showListToolStrip", showListToolStrip, false);
+    public SplitPane setShowListToolStrip(Boolean showListToolStrip)  throws IllegalStateException {
+        return (SplitPane)setAttribute("showListToolStrip", showListToolStrip, false);
     }
 
     /**
@@ -1060,11 +1181,12 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * com.smartgwt.client.types.PageOrientation#PORTRAIT}. </ul> <p>
      *
      * @param showMiniNav New showMiniNav value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.layout.SplitPane#setDetailNavigationControl
      */
-    public void setShowMiniNav(Boolean showMiniNav)  throws IllegalStateException {
-        setAttribute("showMiniNav", showMiniNav, false);
+    public SplitPane setShowMiniNav(Boolean showMiniNav)  throws IllegalStateException {
+        return (SplitPane)setAttribute("showMiniNav", showMiniNav, false);
     }
 
     /**
@@ -1094,10 +1216,11 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * com.smartgwt.client.types.DeviceMode#DESKTOP} and the <code>navigationBar</code> would be empty.
      *
      * @param showNavigationBar New showNavigationBar value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowNavigationBar(Boolean showNavigationBar)  throws IllegalStateException {
-        setAttribute("showNavigationBar", showNavigationBar, false);
+    public SplitPane setShowNavigationBar(Boolean showNavigationBar)  throws IllegalStateException {
+        return (SplitPane)setAttribute("showNavigationBar", showNavigationBar, false);
     }
 
     /**
@@ -1122,10 +1245,11 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * com.smartgwt.client.widgets.layout.SplitPane#getDeviceMode deviceMode:"desktop"}.
      *
      * @param showResizeBars New showResizeBars value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowResizeBars(boolean showResizeBars)  throws IllegalStateException {
-        setAttribute("showResizeBars", showResizeBars, false);
+    public SplitPane setShowResizeBars(boolean showResizeBars)  throws IllegalStateException {
+        return (SplitPane)setAttribute("showResizeBars", showResizeBars, false);
     }
 
     /**
@@ -1152,9 +1276,10 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * Show or hide the {@link com.smartgwt.client.widgets.layout.NavigationBar#getRightButton rightButton} of the {@link com.smartgwt.client.widgets.layout.SplitPane#getNavigationBar navigationBar}.
      *
      * @param showRightButton if <code>true</code>, the button will be shown, otherwise hidden. Default value is false
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
      */
-    public void setShowRightButton(boolean showRightButton) {
-        setAttribute("showRightButton", showRightButton, true);
+    public SplitPane setShowRightButton(boolean showRightButton) {
+        return (SplitPane)setAttribute("showRightButton", showRightButton, true);
     }
 
     /**
@@ -1166,6 +1291,26 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
     public boolean getShowRightButton()  {
         Boolean result = getAttributeAsBoolean("showRightButton");
         return result == null ? false : result;
+    }
+    
+
+    /**
+     * <b>Note</b>: This is a Layout property which is inapplicable on this class.
+     *
+     * @param vertical New vertical value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SplitPane SplitPane} instance, for chaining setter calls
+     */
+    public SplitPane setVertical(Boolean vertical) {
+        return (SplitPane)setAttribute("vertical", vertical, true);
+    }
+
+    /**
+     * <b>Note</b>: This is a Layout property which is inapplicable on this class.
+     *
+     * @return Current vertical value. Default value is null
+     */
+    public Boolean getVertical()  {
+        return getAttributeAsBoolean("vertical");
     }
     
 
@@ -1275,14 +1420,26 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
     }-*/;
 	
 	/**
-     * Causes the target pane component to load data and update its title based on the current selection in the source pane.
-     * <p> Both the source pane and target pane must have a {@link com.smartgwt.client.data.DataSource}, and either: <ul> <li>
-     * the two DataSources must have a Many-To-One relationship declared via {@link
-     * com.smartgwt.client.data.DataSourceField#getForeignKey DataSourceField.foreignKey}, so that {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#fetchRelatedData ListGrid.fetchRelatedData()} can be used on the target pane.
-     * <li> the two DataSources must be the same, so that the record selected in the source pane can be displayed in the target
-     * pane via simply calling {@link com.smartgwt.client.widgets.viewer.DetailViewer#setData setData()}. </ul> The default
-     * <code>target</code> is  {@link com.smartgwt.client.types.CurrentPane#LIST} if the {@link
+     * Causes the target pane component to load data and update its title based on the current selection in the source pane. 
+     * Also shows the target pane if it's not already visible. <p> For the target pane to load data, both the source pane and
+     * target pane must be {@link com.smartgwt.client.widgets.DataBoundComponent}s or contain a component as a descendant
+     * widget, and have a {@link com.smartgwt.client.data.DataSource}, and either: <ul> <li> The two DataSources must have a
+     * Many-To-One relationship declared via {@link com.smartgwt.client.data.DataSourceField#getForeignKey
+     * DataSourceField.foreignKey}, so that {@link com.smartgwt.client.widgets.grid.ListGrid#fetchRelatedData
+     * ListGrid.fetchRelatedData()} can be used on the target pane.  A common example of this would be navigation from a source
+     * pane that's a {@link com.smartgwt.client.widgets.tree.TreeGrid} to a {@link com.smartgwt.client.widgets.grid.ListGrid}
+     * target. <li> The two DataSources must be the same, so that the record selected in the source pane can be displayed in
+     * the target pane via simply calling {@link com.smartgwt.client.widgets.viewer.DetailViewer#setData setData()}.  This
+     * would apply, for example, if the source pane is a {@link com.smartgwt.client.widgets.grid.ListGrid} and the target is a
+     * {@link com.smartgwt.client.widgets.form.DynamicForm}, so that {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editRecord editRecord()} gets called, or if the target is a {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer}. </ul> For purposes of this check, if the pane is not itself a
+     * component, we will use the first component we can find in a breath-first search of the hierarchy underneath it.  Note
+     * that one or more records must be selected in the source component for related data to be loaded (which should be
+     * automatically true for {@link com.smartgwt.client.widgets.layout.SplitPane#getAutoNavigate auto-navigation}). <P> Even
+     * if we can't load related data into the target pane by the above rules, we'll still show the target pane if it's not
+     * already visible, except during {@link com.smartgwt.client.widgets.layout.SplitPane#getAutoNavigate auto-navigation}. <P>
+     * The default <code>target</code> is  {@link com.smartgwt.client.types.CurrentPane#LIST} if the {@link
      * com.smartgwt.client.widgets.layout.SplitPane#getListPane listPane} is present, otherwise  {@link
      * com.smartgwt.client.types.CurrentPane#DETAIL}. <p> The title applied to the target pane is based on {@link
      * com.smartgwt.client.widgets.layout.SplitPane#getListPaneTitleTemplate listPaneTitleTemplate} if the target pane is the
@@ -1315,14 +1472,26 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
     }
 
 	/**
-     * Causes the target pane component to load data and update its title based on the current selection in the source pane.
-     * <p> Both the source pane and target pane must have a {@link com.smartgwt.client.data.DataSource}, and either: <ul> <li>
-     * the two DataSources must have a Many-To-One relationship declared via {@link
-     * com.smartgwt.client.data.DataSourceField#getForeignKey DataSourceField.foreignKey}, so that {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#fetchRelatedData ListGrid.fetchRelatedData()} can be used on the target pane.
-     * <li> the two DataSources must be the same, so that the record selected in the source pane can be displayed in the target
-     * pane via simply calling {@link com.smartgwt.client.widgets.viewer.DetailViewer#setData setData()}. </ul> The default
-     * <code>target</code> is  {@link com.smartgwt.client.types.CurrentPane#LIST} if the {@link
+     * Causes the target pane component to load data and update its title based on the current selection in the source pane. 
+     * Also shows the target pane if it's not already visible. <p> For the target pane to load data, both the source pane and
+     * target pane must be {@link com.smartgwt.client.widgets.DataBoundComponent}s or contain a component as a descendant
+     * widget, and have a {@link com.smartgwt.client.data.DataSource}, and either: <ul> <li> The two DataSources must have a
+     * Many-To-One relationship declared via {@link com.smartgwt.client.data.DataSourceField#getForeignKey
+     * DataSourceField.foreignKey}, so that {@link com.smartgwt.client.widgets.grid.ListGrid#fetchRelatedData
+     * ListGrid.fetchRelatedData()} can be used on the target pane.  A common example of this would be navigation from a source
+     * pane that's a {@link com.smartgwt.client.widgets.tree.TreeGrid} to a {@link com.smartgwt.client.widgets.grid.ListGrid}
+     * target. <li> The two DataSources must be the same, so that the record selected in the source pane can be displayed in
+     * the target pane via simply calling {@link com.smartgwt.client.widgets.viewer.DetailViewer#setData setData()}.  This
+     * would apply, for example, if the source pane is a {@link com.smartgwt.client.widgets.grid.ListGrid} and the target is a
+     * {@link com.smartgwt.client.widgets.form.DynamicForm}, so that {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#editRecord editRecord()} gets called, or if the target is a {@link
+     * com.smartgwt.client.widgets.viewer.DetailViewer}. </ul> For purposes of this check, if the pane is not itself a
+     * component, we will use the first component we can find in a breath-first search of the hierarchy underneath it.  Note
+     * that one or more records must be selected in the source component for related data to be loaded (which should be
+     * automatically true for {@link com.smartgwt.client.widgets.layout.SplitPane#getAutoNavigate auto-navigation}). <P> Even
+     * if we can't load related data into the target pane by the above rules, we'll still show the target pane if it's not
+     * already visible, except during {@link com.smartgwt.client.widgets.layout.SplitPane#getAutoNavigate auto-navigation}. <P>
+     * The default <code>target</code> is  {@link com.smartgwt.client.types.CurrentPane#LIST} if the {@link
      * com.smartgwt.client.widgets.layout.SplitPane#getListPane listPane} is present, otherwise  {@link
      * com.smartgwt.client.types.CurrentPane#DETAIL}. <p> The title applied to the target pane is based on {@link
      * com.smartgwt.client.widgets.layout.SplitPane#getListPaneTitleTemplate listPaneTitleTemplate} if the target pane is the
@@ -1351,9 +1520,9 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * Add a navigationClick handler.
      * <p>
      * Notification method fired when the user clicks the default back / forward buttons on the navigation bar for this
-     * <code>SplitPane</code>. <P> Note that the return value will be ignored and cancelation won't be possible unless {@link
+     * <code>SplitPane</code>. <P> Note that the return value will be ignored and cancelation won't be possible if {@link
      * com.smartgwt.client.widgets.layout.SplitPane#getNotifyAfterNavigationClick SplitPane.notifyAfterNavigationClick} has
-     * been set false so that the notification occurs <i>before</i> navigation.
+     * been set true, since that forces this method to run after we've already navigated to the new pane.
      *
      * @param handler the navigationClick handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -1822,9 +1991,9 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
             s.logicalStructureErrors += "SplitPane.navigationPane:" + t.getMessage() + "\n";
         }
         try {
-            s.navigationPaneWidth = getAttributeAsString("navigationPaneWidth");
+            s.navigationPaneWidthAsString = getAttributeAsString("navigationPaneWidth");
         } catch (Throwable t) {
-            s.logicalStructureErrors += "SplitPane.navigationPaneWidth:" + t.getMessage() + "\n";
+            s.logicalStructureErrors += "SplitPane.navigationPaneWidthAsString:" + t.getMessage() + "\n";
         }
         try {
             s.navigationTitle = getAttributeAsString("navigationTitle");
@@ -1840,6 +2009,11 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
             s.pageOrientation = getAttributeAsString("pageOrientation");
         } catch (Throwable t) {
             s.logicalStructureErrors += "SplitPane.pageOrientation:" + t.getMessage() + "\n";
+        }
+        try {
+            s.reverseOrder = getAttributeAsString("reverseOrder");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SplitPane.reverseOrder:" + t.getMessage() + "\n";
         }
         try {
             s.showDetailToolStrip = getAttributeAsString("showDetailToolStrip");
@@ -1875,6 +2049,11 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
             s.showRightButton = getAttributeAsString("showRightButton");
         } catch (Throwable t) {
             s.logicalStructureErrors += "SplitPane.showRightButton:" + t.getMessage() + "\n";
+        }
+        try {
+            s.vertical = getAttributeAsString("vertical");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SplitPane.vertical:" + t.getMessage() + "\n";
         }
         return s;
     }

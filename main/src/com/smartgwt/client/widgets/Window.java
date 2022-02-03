@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -181,11 +184,12 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param animateMinimize New animateMinimize value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_minimize" target="examples">Window Minimize Example</a>
      */
-    public void setAnimateMinimize(Boolean animateMinimize) {
-        setAttribute("animateMinimize", animateMinimize, true);
+    public Window setAnimateMinimize(Boolean animateMinimize) {
+        return (Window)setAttribute("animateMinimize", animateMinimize, true);
     }
 
     /**
@@ -208,10 +212,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * com.smartgwt.client.widgets.Window#centerInPage centerInPage()}.
      *
      * @param autoCenter New autoCenter value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setAutoCenter(Boolean autoCenter) {
-        setAttribute("autoCenter", autoCenter, true);
+    public Window setAutoCenter(Boolean autoCenter) {
+        return (Window)setAttribute("autoCenter", autoCenter, true);
     }
 
     /**
@@ -238,11 +243,12 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * Setter for {@link com.smartgwt.client.widgets.Window#getAutoSize autoSize}
      *
      * @param autoSize true if the window should auto-size to its content. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_windows_autosize" target="examples">Auto Size Example</a>
      */
-    public void setAutoSize(Boolean autoSize) {
-        setAttribute("autoSize", autoSize, true);
+    public Window setAutoSize(Boolean autoSize) {
+        return (Window)setAttribute("autoSize", autoSize, true);
     }
 
     /**
@@ -290,12 +296,13 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      *
      * @param bodyColor new {@link com.smartgwt.client.widgets.Canvas#getBackgroundColor backgroundColor} for the {@link
      * com.smartgwt.client.widgets.Window#getBody body}. Default value is "#FFFFFF"
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Window#flash
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setBodyColor(String bodyColor) {
-        setAttribute("bodyColor", bodyColor, true);
+    public Window setBodyColor(String bodyColor) {
+        return (Window)setAttribute("bodyColor", bodyColor, true);
     }
 
     /**
@@ -318,10 +325,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param bodyDefaults New bodyDefaults value. Default value is ...
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setBodyDefaults(Map bodyDefaults) {
-        setAttribute("bodyDefaults", bodyDefaults, true);
+    public Window setBodyDefaults(Map bodyDefaults) {
+        return (Window)setAttribute("bodyDefaults", bodyDefaults, true);
     }
     
 
@@ -333,11 +341,12 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      *
      * @param bodyStyle new {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName} for the {@link
      * com.smartgwt.client.widgets.Window#getBody body}. Default value is "windowBody"
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setBodyStyle(String bodyStyle) {
-        setAttribute("bodyStyle", bodyStyle, true);
+    public Window setBodyStyle(String bodyStyle) {
+        return (Window)setAttribute("bodyStyle", bodyStyle, true);
     }
 
     /**
@@ -362,9 +371,10 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * <code>false</code>
      *
      * @param bringToFrontOnMouseUp New bringToFrontOnMouseUp value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      */
-    public void setBringToFrontOnMouseUp(boolean bringToFrontOnMouseUp) {
-        setAttribute("bringToFrontOnMouseUp", bringToFrontOnMouseUp, true);
+    public Window setBringToFrontOnMouseUp(boolean bringToFrontOnMouseUp) {
+        return (Window)setAttribute("bringToFrontOnMouseUp", bringToFrontOnMouseUp, true);
     }
 
     /**
@@ -389,10 +399,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * showing, the Window can't be drag-repositioned regardless of this setting.
      *
      * @param canDragReposition New canDragReposition value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Window#setShowHeader
      */
-    public void setCanDragReposition(Boolean canDragReposition) {
-        setAttribute("canDragReposition", canDragReposition, true);
+    public Window setCanDragReposition(Boolean canDragReposition) {
+        return (Window)setAttribute("canDragReposition", canDragReposition, true);
     }
 
     /**
@@ -413,10 +424,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * icon in the footer.
      *
      * @param canDragResize New canDragResize value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Window#setShowResizer
      */
-    public void setCanDragResize(Boolean canDragResize) {
-        setAttribute("canDragResize", canDragResize, true);
+    public Window setCanDragResize(Boolean canDragResize) {
+        return (Window)setAttribute("canDragResize", canDragResize, true);
     }
 
     /**
@@ -440,10 +452,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canFocusInHeaderButtons New canFocusInHeaderButtons value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
      */
-    public void setCanFocusInHeaderButtons(Boolean canFocusInHeaderButtons) {
-        setAttribute("canFocusInHeaderButtons", canFocusInHeaderButtons, true);
+    public Window setCanFocusInHeaderButtons(Boolean canFocusInHeaderButtons) {
+        return (Window)setAttribute("canFocusInHeaderButtons", canFocusInHeaderButtons, true);
     }
 
     /**
@@ -484,10 +497,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param contentLayout New contentLayout value. Default value is "vertical"
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setContentLayout(ContentLayoutPolicy contentLayout) {
-        setAttribute("contentLayout", contentLayout == null ? null : contentLayout.getValue(), true);
+    public Window setContentLayout(ContentLayoutPolicy contentLayout) {
+        return (Window)setAttribute("contentLayout", contentLayout == null ? null : contentLayout.getValue(), true);
     }
 
     /**
@@ -510,12 +524,13 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * documentation to understand circumstances where contentsType:"page" is <b>unsafe and not recommended</b>.
      *
      * @param contentsType New contentsType value. Default value is "page"
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.Window#setSrc
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setContentsType(String contentsType)  throws IllegalStateException {
-        setAttribute("contentsType", contentsType, false);
+    public Window setContentsType(String contentsType)  throws IllegalStateException {
+        return (Window)setAttribute("contentsType", contentsType, false);
     }
 
     /**
@@ -540,10 +555,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param defaultMinimizeHeight New defaultMinimizeHeight value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setDefaultMinimizeHeight(int defaultMinimizeHeight) {
-        setAttribute("defaultMinimizeHeight", defaultMinimizeHeight, true);
+    public Window setDefaultMinimizeHeight(int defaultMinimizeHeight) {
+        return (Window)setAttribute("defaultMinimizeHeight", defaultMinimizeHeight, true);
     }
 
     /**
@@ -560,21 +576,28 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
     
 
     /**
-     * Should this window be dismissed (same effect as pressing the "Cancel" button) when the  user presses the "Escape" key?
-     * Behavior will only occur while the window or one of its descendants has focus, and does not cancel the Escape keypress.
-     * <P> If unset default behavior depends on whether a close / cancel button is visible for this item.
+     * Should this window be dismissed (same effect as pressing the "Cancel" button) when the  user presses the "Escape"
+     * key?<br> Windows with this setting will dismiss on Escape keypresses in any of the following cases: <ul> <li>The window
+     * or one of its descendants has focus (and does not cancel the Escape      keypress)</li> <li>The window is {@link
+     * com.smartgwt.client.widgets.Window#getIsModal modal}, and not itself masked. This ensures     that focus is not on some
+     * unrelated element on the page.</li> </ul> <P> If unset default behavior depends on whether a close / cancel button is
+     * visible for this item.
      *
      * @param dismissOnEscape New dismissOnEscape value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Window#shouldDismissOnEscape
      */
-    public void setDismissOnEscape(Boolean dismissOnEscape) {
-        setAttribute("dismissOnEscape", dismissOnEscape, true);
+    public Window setDismissOnEscape(Boolean dismissOnEscape) {
+        return (Window)setAttribute("dismissOnEscape", dismissOnEscape, true);
     }
 
     /**
-     * Should this window be dismissed (same effect as pressing the "Cancel" button) when the  user presses the "Escape" key?
-     * Behavior will only occur while the window or one of its descendants has focus, and does not cancel the Escape keypress.
-     * <P> If unset default behavior depends on whether a close / cancel button is visible for this item.
+     * Should this window be dismissed (same effect as pressing the "Cancel" button) when the  user presses the "Escape"
+     * key?<br> Windows with this setting will dismiss on Escape keypresses in any of the following cases: <ul> <li>The window
+     * or one of its descendants has focus (and does not cancel the Escape      keypress)</li> <li>The window is {@link
+     * com.smartgwt.client.widgets.Window#getIsModal modal}, and not itself masked. This ensures     that focus is not on some
+     * unrelated element on the page.</li> </ul> <P> If unset default behavior depends on whether a close / cancel button is
+     * visible for this item.
      *
      * @return Current dismissOnEscape value. Default value is null
      * @see com.smartgwt.client.widgets.Window#shouldDismissOnEscape
@@ -589,10 +612,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * <b>Note:</b> Applies only to modal windows.
      *
      * @param dismissOnOutsideClick New dismissOnOutsideClick value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Window#setIsModal
      */
-    public void setDismissOnOutsideClick(Boolean dismissOnOutsideClick) {
-        setAttribute("dismissOnOutsideClick", dismissOnOutsideClick, true);
+    public Window setDismissOnOutsideClick(Boolean dismissOnOutsideClick) {
+        return (Window)setAttribute("dismissOnOutsideClick", dismissOnOutsideClick, true);
     }
 
     /**
@@ -613,11 +637,12 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "WindowEditProxy"
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
-        setAttribute("editProxyConstructor", editProxyConstructor, false);
+    public Window setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
+        return (Window)setAttribute("editProxyConstructor", editProxyConstructor, false);
     }
 
     /**
@@ -638,11 +663,12 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * not have rounded or excessively large edges.
      *
      * @param fillSpaceStyleName New fillSpaceStyleName value. Default value is "windowBackgroundFill"
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setFillSpaceStyleName(String fillSpaceStyleName)  throws IllegalStateException {
-        setAttribute("fillSpaceStyleName", fillSpaceStyleName, false);
+    public Window setFillSpaceStyleName(String fillSpaceStyleName)  throws IllegalStateException {
+        return (Window)setAttribute("fillSpaceStyleName", fillSpaceStyleName, false);
     }
 
     /**
@@ -678,11 +704,12 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * The height of the footer, in pixels.
      *
      * @param footerHeight New footerHeight value. Default value is 18
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setFooterHeight(int footerHeight)  throws IllegalStateException {
-        setAttribute("footerHeight", footerHeight, false);
+    public Window setFooterHeight(int footerHeight)  throws IllegalStateException {
+        return (Window)setAttribute("footerHeight", footerHeight, false);
     }
 
     /**
@@ -757,10 +784,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param headerIconDefaults New headerIconDefaults value. Default value is ...
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setHeaderIconDefaults(Map headerIconDefaults) {
-        setAttribute("headerIconDefaults", headerIconDefaults, true);
+    public Window setHeaderIconDefaults(Map headerIconDefaults) {
+        return (Window)setAttribute("headerIconDefaults", headerIconDefaults, true);
     }
     
 
@@ -788,11 +816,12 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param headerSrc New headerSrc value. Default value is "[SKIN]Window/headerGradient.gif" | null
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setHeaderSrc(String headerSrc) {
-        setAttribute("headerSrc", headerSrc, true);
+    public Window setHeaderSrc(String headerSrc) {
+        return (Window)setAttribute("headerSrc", headerSrc, true);
     }
 
     /**
@@ -817,11 +846,12 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      *
      * @param headerStyle new {@link com.smartgwt.client.widgets.Canvas#getStyleName styleName} for the {@link
      * com.smartgwt.client.widgets.Window#getHeader header}. Default value is "WindowHeader"
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setHeaderStyle(String headerStyle) {
-        setAttribute("headerStyle", headerStyle, true);
+    public Window setHeaderStyle(String headerStyle) {
+        return (Window)setAttribute("headerStyle", headerStyle, true);
     }
 
     /**
@@ -843,12 +873,13 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * Setter for {@link com.smartgwt.client.widgets.Window#getHiliteBodyColor hiliteBodyColor}.
      *
      * @param hiliteBodyColor new <code>hiliteBodyColor</code>. Default value is "#EEEEEE"
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Window#flash
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setHiliteBodyColor(String hiliteBodyColor) {
-        setAttribute("hiliteBodyColor", hiliteBodyColor, true);
+    public Window setHiliteBodyColor(String hiliteBodyColor) {
+        return (Window)setAttribute("hiliteBodyColor", hiliteBodyColor, true);
     }
 
     /**
@@ -871,11 +902,12 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param hiliteHeaderSrc New hiliteHeaderSrc value. Default value is "[SKIN]Window/headerGradient_hilite.gif" | null
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setHiliteHeaderSrc(String hiliteHeaderSrc) {
-        setAttribute("hiliteHeaderSrc", hiliteHeaderSrc, true);
+    public Window setHiliteHeaderSrc(String hiliteHeaderSrc) {
+        return (Window)setAttribute("hiliteHeaderSrc", hiliteHeaderSrc, true);
     }
 
     /**
@@ -898,11 +930,12 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param hiliteHeaderStyle New hiliteHeaderStyle value. Default value is "WindowHeader"
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setHiliteHeaderStyle(String hiliteHeaderStyle) {
-        setAttribute("hiliteHeaderStyle", hiliteHeaderStyle, true);
+    public Window setHiliteHeaderStyle(String hiliteHeaderStyle) {
+        return (Window)setAttribute("hiliteHeaderStyle", hiliteHeaderStyle, true);
     }
 
     /**
@@ -926,10 +959,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * only top-level Windows (Windows without parents) can be modal.
      *
      * @param isModal New isModal value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_windows_modality" target="examples">Modality Example</a>
      */
-    public void setIsModal(Boolean isModal) {
-        setAttribute("isModal", isModal, true);
+    public Window setIsModal(Boolean isModal) {
+        return (Window)setAttribute("isModal", isModal, true);
     }
 
     /**
@@ -971,10 +1005,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * restore()}.
      *
      * @param maximized New maximized value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setMaximized(Boolean maximized) {
-        setAttribute("maximized", maximized, true);
+    public Window setMaximized(Boolean maximized) {
+        return (Window)setAttribute("maximized", maximized, true);
     }
 
     /**
@@ -997,10 +1032,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param minimizeAcceleration New minimizeAcceleration value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setMinimizeAcceleration(AnimationAcceleration minimizeAcceleration) {
-        setAttribute("minimizeAcceleration", minimizeAcceleration == null ? null : minimizeAcceleration.getValue(), true);
+    public Window setMinimizeAcceleration(AnimationAcceleration minimizeAcceleration) {
+        return (Window)setAttribute("minimizeAcceleration", minimizeAcceleration == null ? null : minimizeAcceleration.getValue(), true);
     }
 
     /**
@@ -1037,10 +1073,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * restore()}.
      *
      * @param minimized New minimized value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setMinimized(Boolean minimized) {
-        setAttribute("minimized", minimized, true);
+    public Window setMinimized(Boolean minimized) {
+        return (Window)setAttribute("minimized", minimized, true);
     }
 
     /**
@@ -1063,10 +1100,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param minimizeHeight New minimizeHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setMinimizeHeight(Integer minimizeHeight) {
-        setAttribute("minimizeHeight", minimizeHeight, true);
+    public Window setMinimizeHeight(Integer minimizeHeight) {
+        return (Window)setAttribute("minimizeHeight", minimizeHeight, true);
     }
 
     /**
@@ -1087,11 +1125,12 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param minimizeTime New minimizeTime value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_minimize" target="examples">Window Minimize Example</a>
      */
-    public void setMinimizeTime(Integer minimizeTime) {
-        setAttribute("minimizeTime", minimizeTime, true);
+    public Window setMinimizeTime(Integer minimizeTime) {
+        return (Window)setAttribute("minimizeTime", minimizeTime, true);
     }
 
     /**
@@ -1130,12 +1169,13 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * Controls the opacity of the modal mask displayed behind modal windows.
      *
      * @param modalMaskOpacity New modalMaskOpacity value. Default value is 50
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.Window#setModalMask
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setModalMaskOpacity(int modalMaskOpacity)  throws IllegalStateException {
-        setAttribute("modalMaskOpacity", modalMaskOpacity, false);
+    public Window setModalMaskOpacity(int modalMaskOpacity)  throws IllegalStateException {
+        return (Window)setAttribute("modalMaskOpacity", modalMaskOpacity, false);
     }
 
     /**
@@ -1154,12 +1194,13 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * Specifies the CSS style for the modal mask.
      *
      * @param modalMaskStyle New modalMaskStyle value. Default value is "modalMask"
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.Window#setModalMask
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setModalMaskStyle(String modalMaskStyle)  throws IllegalStateException {
-        setAttribute("modalMaskStyle", modalMaskStyle, false);
+    public Window setModalMaskStyle(String modalMaskStyle)  throws IllegalStateException {
+        return (Window)setAttribute("modalMaskStyle", modalMaskStyle, false);
     }
 
     /**
@@ -1187,9 +1228,10 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param opacity New opacity value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      */
-    public void setOpacity(Integer opacity) {
-        setAttribute("opacity", opacity, true);
+    public Window setOpacity(Integer opacity) {
+        return (Window)setAttribute("opacity", opacity, true);
     }
 
     /**
@@ -1220,10 +1262,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * and {@link com.smartgwt.client.widgets.Window#getAutoSize autoSize} features) will have no effect.
      *
      * @param placement New placement value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPlacement(PanelPlacement placement)  throws IllegalStateException {
-        setAttribute("placement", placement == null ? null : placement.getValue(), false);
+    public Window setPlacement(PanelPlacement placement)  throws IllegalStateException {
+        return (Window)setAttribute("placement", placement == null ? null : placement.getValue(), false);
     }
 
     /**
@@ -1246,11 +1289,12 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * Style for the Window body in printed output.
      *
      * @param printBodyStyle New printBodyStyle value. Default value is "printHeader"
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setPrintBodyStyle(String printBodyStyle)  throws IllegalStateException {
-        setAttribute("printBodyStyle", printBodyStyle, false);
+    public Window setPrintBodyStyle(String printBodyStyle)  throws IllegalStateException {
+        return (Window)setAttribute("printBodyStyle", printBodyStyle, false);
     }
 
     /**
@@ -1268,11 +1312,12 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * CSS Style for header in printed output
      *
      * @param printHeaderStyle New printHeaderStyle value. Default value is "printHeader"
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setPrintHeaderStyle(String printHeaderStyle)  throws IllegalStateException {
-        setAttribute("printHeaderStyle", printHeaderStyle, false);
+    public Window setPrintHeaderStyle(String printHeaderStyle)  throws IllegalStateException {
+        return (Window)setAttribute("printHeaderStyle", printHeaderStyle, false);
     }
 
     /**
@@ -1293,10 +1338,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param resizeFrom New resizeFrom value. Default value is ["R","B","BR"]
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
-    public void setResizeFrom(EdgeName... resizeFrom) {
-        setAttribute("resizeFrom", resizeFrom, true);
+    public Window setResizeFrom(EdgeName... resizeFrom) {
+        return (Window)setAttribute("resizeFrom", resizeFrom, true);
     }
 
     /**
@@ -1348,10 +1394,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showBody New showBody value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowBody(Boolean showBody) {
-        setAttribute("showBody", showBody, true);
+    public Window setShowBody(Boolean showBody) {
+        return (Window)setAttribute("showBody", showBody, true);
     }
 
     /**
@@ -1374,10 +1421,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * Dynamically update {@link com.smartgwt.client.widgets.Window#getShowCloseButton showCloseButton} to show / hide the closeButton
      *
      * @param showCloseButton New showCloseButton value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowCloseButton(Boolean showCloseButton) {
-        setAttribute("showCloseButton", showCloseButton, true);
+    public Window setShowCloseButton(Boolean showCloseButton) {
+        return (Window)setAttribute("showCloseButton", showCloseButton, true);
     }
 
     /**
@@ -1398,10 +1446,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * placement} setting indicates the Window will be filling a portion of the screen or a panel.
      *
      * @param showEdges New showEdges value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowEdges(Boolean showEdges)  throws IllegalStateException {
-        setAttribute("showEdges", showEdges, false);
+    public Window setShowEdges(Boolean showEdges)  throws IllegalStateException {
+        return (Window)setAttribute("showEdges", showEdges, false);
     }
 
     /**
@@ -1420,11 +1469,12 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * skinning purposes.
      *
      * @param showFooter New showFooter value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_windows_footer" target="examples">Footer Example</a>
      */
-    public void setShowFooter(Boolean showFooter) {
-        setAttribute("showFooter", showFooter, true);
+    public Window setShowFooter(Boolean showFooter) {
+        return (Window)setAttribute("showFooter", showFooter, true);
     }
 
     /**
@@ -1460,11 +1510,12 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      *  </pre>
      *
      * @param showHeader New showHeader value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowHeader(Boolean showHeader)  throws IllegalStateException {
-        setAttribute("showHeader", showHeader, false);
+    public Window setShowHeader(Boolean showHeader)  throws IllegalStateException {
+        return (Window)setAttribute("showHeader", showHeader, false);
     }
 
     /**
@@ -1503,11 +1554,12 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showHeaderBackground New showHeaderBackground value. Default value is varies
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowHeaderBackground(Boolean showHeaderBackground)  throws IllegalStateException {
-        setAttribute("showHeaderBackground", showHeaderBackground, false);
+    public Window setShowHeaderBackground(Boolean showHeaderBackground)  throws IllegalStateException {
+        return (Window)setAttribute("showHeaderBackground", showHeaderBackground, false);
     }
 
     /**
@@ -1532,10 +1584,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * Dynamically update {@link com.smartgwt.client.widgets.Window#getShowHeaderIcon showHeaderIcon} to show / hide the headerIcon
      *
      * @param showHeaderIcon New showHeaderIcon value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowHeaderIcon(Boolean showHeaderIcon) {
-        setAttribute("showHeaderIcon", showHeaderIcon, true);
+    public Window setShowHeaderIcon(Boolean showHeaderIcon) {
+        return (Window)setAttribute("showHeaderIcon", showHeaderIcon, true);
     }
 
     /**
@@ -1557,10 +1610,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * Dynamically update {@link com.smartgwt.client.widgets.Window#getShowMaximizeButton showMaximizeButton} to show / hide the maximizeButton
      *
      * @param showMaximizeButton New showMaximizeButton value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowMaximizeButton(Boolean showMaximizeButton) {
-        setAttribute("showMaximizeButton", showMaximizeButton, true);
+    public Window setShowMaximizeButton(Boolean showMaximizeButton) {
+        return (Window)setAttribute("showMaximizeButton", showMaximizeButton, true);
     }
 
     /**
@@ -1582,10 +1636,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * Dynamically update {@link com.smartgwt.client.widgets.Window#getShowMinimizeButton showMinimizeButton} to show / hide the minimizeButton
      *
      * @param showMinimizeButton New showMinimizeButton value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowMinimizeButton(Boolean showMinimizeButton) {
-        setAttribute("showMinimizeButton", showMinimizeButton, true);
+    public Window setShowMinimizeButton(Boolean showMinimizeButton) {
+        return (Window)setAttribute("showMinimizeButton", showMinimizeButton, true);
     }
 
     /**
@@ -1604,12 +1659,13 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * If true, displays a translucent mask over the rest of the page when a modal window is displayed.
      *
      * @param showModalMask New showModalMask value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.Window#setModalMask
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowModalMask(Boolean showModalMask)  throws IllegalStateException {
-        setAttribute("showModalMask", showModalMask, false);
+    public Window setShowModalMask(Boolean showModalMask)  throws IllegalStateException {
+        return (Window)setAttribute("showModalMask", showModalMask, false);
     }
 
     /**
@@ -1630,10 +1686,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * showFooter}) and {@link com.smartgwt.client.widgets.Window#getCanDragResize canDragResize} is true.
      *
      * @param showResizer New showResizer value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowResizer(Boolean showResizer) {
-        setAttribute("showResizer", showResizer, true);
+    public Window setShowResizer(Boolean showResizer) {
+        return (Window)setAttribute("showResizer", showResizer, true);
     }
 
     /**
@@ -1660,10 +1717,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * indicates the Window will be filling a portion of the screen or a panel.
      *
      * @param showShadow New showShadow value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowShadow(Boolean showShadow)  throws IllegalStateException {
-        setAttribute("showShadow", showShadow, false);
+    public Window setShowShadow(Boolean showShadow)  throws IllegalStateException {
+        return (Window)setAttribute("showShadow", showShadow, false);
     }
 
     /**
@@ -1683,17 +1741,20 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
     
 
     /**
-     * If true, show a statusBar for this Window, including resizer.
+     * If true, show a statusBar for this Window, including resizer. Note that the status bar will only be displayed if the
+     * footer is showing for the window ({@link com.smartgwt.client.widgets.Window#getShowFooter showFooter}).
      *
      * @param showStatusBar New showStatusBar value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowStatusBar(Boolean showStatusBar) {
-        setAttribute("showStatusBar", showStatusBar, true);
+    public Window setShowStatusBar(Boolean showStatusBar) {
+        return (Window)setAttribute("showStatusBar", showStatusBar, true);
     }
 
     /**
-     * If true, show a statusBar for this Window, including resizer.
+     * If true, show a statusBar for this Window, including resizer. Note that the status bar will only be displayed if the
+     * footer is showing for the window ({@link com.smartgwt.client.widgets.Window#getShowFooter showFooter}).
      *
      * @return Current showStatusBar value. Default value is true
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -1711,10 +1772,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * Updates whether the {@link com.smartgwt.client.widgets.Window#getTitle title} is shown in the {@link com.smartgwt.client.widgets.Window#getHeader header}. No impact unless the header is being shown.  The header will be redrawn if necessary.
      *
      * @param showTitle new showTitle. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle, true);
+    public Window setShowTitle(Boolean showTitle) {
+        return (Window)setAttribute("showTitle", showTitle, true);
     }
 
     /**
@@ -1739,11 +1801,12 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * Sets the URL of the contents to display in the body of the window, redrawing if necessary.
      *
      * @param src URL of new contents to be displayed in the window body. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Window#setContentsType
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setSrc(String src) {
-        setAttribute("src", src, true);
+    public Window setSrc(String src) {
+        return (Window)setAttribute("src", src, true);
     }
 
     /**
@@ -1768,10 +1831,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * Sets the text in the status bar of the window, redrawing if necessary.
      *
      * @param status new text for the status bar. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setStatus(String status) {
-        setAttribute("status", status, true);
+    public Window setStatus(String status) {
+        return (Window)setAttribute("status", status, true);
     }
 
     /**
@@ -1841,10 +1905,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param useBackMask New useBackMask value. Default value is varies
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setUseBackMask(Boolean useBackMask)  throws IllegalStateException {
-        setAttribute("useBackMask", useBackMask, false);
+    public Window setUseBackMask(Boolean useBackMask)  throws IllegalStateException {
+        return (Window)setAttribute("useBackMask", useBackMask, false);
     }
 
     /**
@@ -2372,9 +2437,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * <br> Note: keepInParentRect affects only user drag interactions, not programmatic moves.
      *
      * @param keepInParentRect true to keepInParentRect
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter
+     * calls
      */
-    public void setKeepInParentRect(Boolean keepInParentRect) {
-        setAttribute("keepInParentRect", keepInParentRect, true);
+    public Window setKeepInParentRect(Boolean keepInParentRect) {
+        return (Window)setAttribute("keepInParentRect", keepInParentRect, true);
     }
 
     public void setHeaderIconProperties(Map headerIconProperties) {
@@ -2453,9 +2520,11 @@ public class Window extends VLayout implements com.smartgwt.client.widgets.event
      * window cannot be moved. <br> Note: keepInParentRect affects only user drag interactions, not programmatic moves.
      *
      * @param rectangle the rectangle bounds
+     * @return {@link com.smartgwt.client.widgets.Window Window} instance, for chaining setter
+     * calls
      */
-    public void setKeepInParentRect(Rectangle rectangle) {
-        setAttribute("keepInParentRect", rectangle.getAsJSArray(), true);
+    public Window setKeepInParentRect(Rectangle rectangle) {
+        return (Window)setAttribute("keepInParentRect", rectangle.getAsJSArray(), true);
     }
 
     /**

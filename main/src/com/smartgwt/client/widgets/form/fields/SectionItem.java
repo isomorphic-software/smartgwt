@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Header item for a collapsible section in a {@link com.smartgwt.client.widgets.form.DynamicForm}.  Each
@@ -169,9 +172,10 @@ public class SectionItem extends CanvasItem {
      * Whether this section header can be collapsed.  If set false, suppresses open/close state icon
      *
      * @param canCollapse New canCollapse value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.SectionItem SectionItem} instance, for chaining setter calls
      */
-    public void setCanCollapse(Boolean canCollapse) {
-        setAttribute("canCollapse", canCollapse);
+    public SectionItem setCanCollapse(Boolean canCollapse) {
+        return (SectionItem)setAttribute("canCollapse", canCollapse);
     }
 
     /**
@@ -192,9 +196,10 @@ public class SectionItem extends CanvasItem {
      * {@link com.smartgwt.client.docs.Accessibility}.
      *
      * @param canTabToHeader New canTabToHeader value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SectionItem SectionItem} instance, for chaining setter calls
      */
-    public void setCanTabToHeader(Boolean canTabToHeader) {
-        setAttribute("canTabToHeader", canTabToHeader);
+    public SectionItem setCanTabToHeader(Boolean canTabToHeader) {
+        return (SectionItem)setAttribute("canTabToHeader", canTabToHeader);
     }
 
     /**
@@ -215,9 +220,10 @@ public class SectionItem extends CanvasItem {
      * IDs of the items that should be considered a member of this section.
      *
      * @param itemIds New itemIds value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SectionItem SectionItem} instance, for chaining setter calls
      */
-    public void setItemIds(String... itemIds) {
-        setAttribute("itemIds", itemIds);
+    public SectionItem setItemIds(String... itemIds) {
+        return (SectionItem)setAttribute("itemIds", itemIds);
     }
     
 
@@ -227,10 +233,11 @@ public class SectionItem extends CanvasItem {
      * com.smartgwt.client.widgets.form.fields.SectionItem#collapseSection collapseSection()}.
      *
      * @param sectionExpanded New sectionExpanded value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.SectionItem SectionItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_sections" target="examples">Sections Example</a>
      */
-    public void setSectionExpanded(Boolean sectionExpanded) {
-        setAttribute("sectionExpanded", sectionExpanded);
+    public SectionItem setSectionExpanded(Boolean sectionExpanded) {
+        return (SectionItem)setAttribute("sectionExpanded", sectionExpanded);
     }
 
     /**
@@ -254,9 +261,10 @@ public class SectionItem extends CanvasItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param sectionHeaderClass New sectionHeaderClass value. Default value is "SectionHeader"
+     * @return {@link com.smartgwt.client.widgets.form.fields.SectionItem SectionItem} instance, for chaining setter calls
      */
-    public void setSectionHeaderClass(String sectionHeaderClass) {
-        setAttribute("sectionHeaderClass", sectionHeaderClass);
+    public SectionItem setSectionHeaderClass(String sectionHeaderClass) {
+        return (SectionItem)setAttribute("sectionHeaderClass", sectionHeaderClass);
     }
 
     /**

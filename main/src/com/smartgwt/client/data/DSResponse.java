@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Response sent by the server in response to a {@link com.smartgwt.client.data.DSRequest DataSource request}.  Contains
@@ -147,9 +150,10 @@ public class DSResponse extends RPCResponse {
      * The DataSource of this DSResponse.
      *
      * @param dataSource New dataSource value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSResponse DSResponse} instance, for chaining setter calls
      */
-    public void setDataSource(String dataSource) {
-        setAttribute("dataSource", dataSource);
+    public DSResponse setDataSource(String dataSource) {
+        return (DSResponse)setAttribute("dataSource", dataSource);
     }
 
     /**
@@ -224,9 +228,10 @@ public class DSResponse extends RPCResponse {
      * The operation ID of the request corresponding to this DSResponse.
      *
      * @param operationId New operationId value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSResponse DSResponse} instance, for chaining setter calls
      */
-    public void setOperationId(String operationId) {
-        setAttribute("operationId", operationId);
+    public DSResponse setOperationId(String operationId) {
+        return (DSResponse)setAttribute("operationId", operationId);
     }
 
     /**
@@ -243,9 +248,10 @@ public class DSResponse extends RPCResponse {
      * The operation type of the request corresponding to this DSResponse.
      *
      * @param operationType New operationType value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSResponse DSResponse} instance, for chaining setter calls
      */
-    public void setOperationType(DSOperationType operationType) {
-        setAttribute("operationType", operationType == null ? null : operationType.getValue());
+    public DSResponse setOperationType(DSOperationType operationType) {
+        return (DSResponse)setAttribute("operationType", operationType == null ? null : operationType.getValue());
     }
 
     /**
@@ -269,10 +275,11 @@ public class DSResponse extends RPCResponse {
      * such as {@link com.smartgwt.client.rpc.RPCResponse#STATUS_VALIDATION_ERROR STATUS_VALIDATION_ERROR}.
      *
      * @param queueStatus New queueStatus value. Default value is see below
+     * @return {@link com.smartgwt.client.data.DSResponse DSResponse} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ErrorHandling ErrorHandling overview and related methods
      */
-    public void setQueueStatus(int queueStatus) {
-        setAttribute("queueStatus", queueStatus);
+    public DSResponse setQueueStatus(int queueStatus) {
+        return (DSResponse)setAttribute("queueStatus", queueStatus);
     }
 
     /**
@@ -310,10 +317,11 @@ public class DSResponse extends RPCResponse {
      * additional error codes, such as {@link com.smartgwt.client.rpc.RPCResponse#STATUS_VALIDATION_ERROR validation failure}.
      *
      * @param status New status value. Default value is see below
+     * @return {@link com.smartgwt.client.data.DSResponse DSResponse} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ErrorHandling ErrorHandling overview and related methods
      */
-    public void setStatus(int status) {
-        setAttribute("status", status);
+    public DSResponse setStatus(int status) {
+        return (DSResponse)setAttribute("status", status);
     }
 
     /**

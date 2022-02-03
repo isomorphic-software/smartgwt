@@ -10,12 +10,17 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupMembers
  * @see com.smartgwt.client.widgets.grid.ListGrid#groupBy
  * @see com.smartgwt.client.widgets.grid.ListGrid#getOriginalData
+ * @see com.smartgwt.client.widgets.grid.events.GroupByEvent
+ * @see com.smartgwt.client.widgets.grid.events.GroupByCompleteEvent
+ * @see com.smartgwt.client.widgets.grid.events.RegroupEvent
+ * @see com.smartgwt.client.widgets.grid.events.GroupTreeChangedEvent
  * @see com.smartgwt.client.widgets.grid.GroupNode
  * @see com.smartgwt.client.data.GroupSpecifier
  * @see com.smartgwt.client.widgets.calendar.Calendar#getLaneGroupStartOpen
  * @see com.smartgwt.client.widgets.grid.GroupNode#getGroupMembers
  * @see com.smartgwt.client.widgets.grid.GroupNode#getGroupTitle
  * @see com.smartgwt.client.widgets.grid.GroupNode#getGroupValue
+ * @see com.smartgwt.client.widgets.grid.GroupNode#getGroupName
  * @see com.smartgwt.client.widgets.grid.ListGrid#getOriginalData
  * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupTree
  * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupStartOpen

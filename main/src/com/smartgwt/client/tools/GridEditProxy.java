@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * {@link com.smartgwt.client.tools.EditProxy} that handles {@link com.smartgwt.client.widgets.grid.ListGrid} and {@link
@@ -116,10 +119,11 @@ public class GridEditProxy extends LayoutEditProxy {
      * com.smartgwt.client.widgets.grid.ListGrid#getCanAddFormulaFields ListGrid.canAddFormulaFields} when in edit mode.
      *
      * @param canAddFormulaFields New canAddFormulaFields value. Default value is true
+     * @return {@link com.smartgwt.client.tools.GridEditProxy GridEditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setCanAddFormulaFields(Boolean canAddFormulaFields)  throws IllegalStateException {
-        setAttribute("canAddFormulaFields", canAddFormulaFields, false);
+    public GridEditProxy setCanAddFormulaFields(Boolean canAddFormulaFields)  throws IllegalStateException {
+        return (GridEditProxy)setAttribute("canAddFormulaFields", canAddFormulaFields, false);
     }
 
     /**
@@ -139,10 +143,11 @@ public class GridEditProxy extends LayoutEditProxy {
      * com.smartgwt.client.widgets.grid.ListGrid#getCanAddSummaryFields ListGrid.canAddSummaryFields} when in edit mode.
      *
      * @param canAddSummaryFields New canAddSummaryFields value. Default value is true
+     * @return {@link com.smartgwt.client.tools.GridEditProxy GridEditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setCanAddSummaryFields(Boolean canAddSummaryFields)  throws IllegalStateException {
-        setAttribute("canAddSummaryFields", canAddSummaryFields, false);
+    public GridEditProxy setCanAddSummaryFields(Boolean canAddSummaryFields)  throws IllegalStateException {
+        return (GridEditProxy)setAttribute("canAddSummaryFields", canAddSummaryFields, false);
     }
 
     /**
@@ -162,10 +167,11 @@ public class GridEditProxy extends LayoutEditProxy {
      * com.smartgwt.client.widgets.grid.ListGrid#getCanEditHilites ListGrid.canEditHilites} when in edit mode.
      *
      * @param canEditHilites New canEditHilites value. Default value is true
+     * @return {@link com.smartgwt.client.tools.GridEditProxy GridEditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setCanEditHilites(Boolean canEditHilites)  throws IllegalStateException {
-        setAttribute("canEditHilites", canEditHilites, false);
+    public GridEditProxy setCanEditHilites(Boolean canEditHilites)  throws IllegalStateException {
+        return (GridEditProxy)setAttribute("canEditHilites", canEditHilites, false);
     }
 
     /**
@@ -185,10 +191,11 @@ public class GridEditProxy extends LayoutEditProxy {
      * com.smartgwt.client.widgets.grid.ListGrid#getCanGroupBy ListGrid.canGroupBy} when in edit mode.
      *
      * @param canGroupBy New canGroupBy value. Default value is true
+     * @return {@link com.smartgwt.client.tools.GridEditProxy GridEditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setCanGroupBy(Boolean canGroupBy)  throws IllegalStateException {
-        setAttribute("canGroupBy", canGroupBy, false);
+    public GridEditProxy setCanGroupBy(Boolean canGroupBy)  throws IllegalStateException {
+        return (GridEditProxy)setAttribute("canGroupBy", canGroupBy, false);
     }
 
     /**
@@ -208,10 +215,11 @@ public class GridEditProxy extends LayoutEditProxy {
      * com.smartgwt.client.widgets.grid.ListGrid#getCanReorderFields ListGrid.canReorderFields} when in edit mode.
      *
      * @param canReorderFields New canReorderFields value. Default value is true
+     * @return {@link com.smartgwt.client.tools.GridEditProxy GridEditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setCanReorderFields(Boolean canReorderFields)  throws IllegalStateException {
-        setAttribute("canReorderFields", canReorderFields, false);
+    public GridEditProxy setCanReorderFields(Boolean canReorderFields)  throws IllegalStateException {
+        return (GridEditProxy)setAttribute("canReorderFields", canReorderFields, false);
     }
 
     /**
@@ -231,10 +239,11 @@ public class GridEditProxy extends LayoutEditProxy {
      * com.smartgwt.client.widgets.grid.ListGrid#getCanResizeFields ListGrid.canResizeFields} when in edit mode.
      *
      * @param canResizeFields New canResizeFields value. Default value is true
+     * @return {@link com.smartgwt.client.tools.GridEditProxy GridEditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setCanResizeFields(Boolean canResizeFields)  throws IllegalStateException {
-        setAttribute("canResizeFields", canResizeFields, false);
+    public GridEditProxy setCanResizeFields(Boolean canResizeFields)  throws IllegalStateException {
+        return (GridEditProxy)setAttribute("canResizeFields", canResizeFields, false);
     }
 
     /**
@@ -255,10 +264,11 @@ public class GridEditProxy extends LayoutEditProxy {
      * ListGridField.canEditFormula}.
      *
      * @param generateEditableFormulas New generateEditableFormulas value. Default value is true
+     * @return {@link com.smartgwt.client.tools.GridEditProxy GridEditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setGenerateEditableFormulas(Boolean generateEditableFormulas)  throws IllegalStateException {
-        setAttribute("generateEditableFormulas", generateEditableFormulas, false);
+    public GridEditProxy setGenerateEditableFormulas(Boolean generateEditableFormulas)  throws IllegalStateException {
+        return (GridEditProxy)setAttribute("generateEditableFormulas", generateEditableFormulas, false);
     }
 
     /**
@@ -279,10 +289,11 @@ public class GridEditProxy extends LayoutEditProxy {
      * in edit mode).  See {@link com.smartgwt.client.data.Hilite#getCanEdit Hilite.canEdit}.
      *
      * @param generateEditableHilites New generateEditableHilites value. Default value is true
+     * @return {@link com.smartgwt.client.tools.GridEditProxy GridEditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setGenerateEditableHilites(Boolean generateEditableHilites)  throws IllegalStateException {
-        setAttribute("generateEditableHilites", generateEditableHilites, false);
+    public GridEditProxy setGenerateEditableHilites(Boolean generateEditableHilites)  throws IllegalStateException {
+        return (GridEditProxy)setAttribute("generateEditableHilites", generateEditableHilites, false);
     }
 
     /**
@@ -303,10 +314,11 @@ public class GridEditProxy extends LayoutEditProxy {
      * ListGridField.canEditSummary}.
      *
      * @param generateEditableSummaries New generateEditableSummaries value. Default value is true
+     * @return {@link com.smartgwt.client.tools.GridEditProxy GridEditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setGenerateEditableSummaries(Boolean generateEditableSummaries)  throws IllegalStateException {
-        setAttribute("generateEditableSummaries", generateEditableSummaries, false);
+    public GridEditProxy setGenerateEditableSummaries(Boolean generateEditableSummaries)  throws IllegalStateException {
+        return (GridEditProxy)setAttribute("generateEditableSummaries", generateEditableSummaries, false);
     }
 
     /**
@@ -329,10 +341,11 @@ public class GridEditProxy extends LayoutEditProxy {
      * com.smartgwt.client.types.SelectedAppearance} settings that allow direct interactivity (such as "outlineEdges").
      *
      * @param saveFieldFrozenState New saveFieldFrozenState value. Default value is true
+     * @return {@link com.smartgwt.client.tools.GridEditProxy GridEditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setSaveFieldFrozenState(Boolean saveFieldFrozenState)  throws IllegalStateException {
-        setAttribute("saveFieldFrozenState", saveFieldFrozenState, false);
+    public GridEditProxy setSaveFieldFrozenState(Boolean saveFieldFrozenState)  throws IllegalStateException {
+        return (GridEditProxy)setAttribute("saveFieldFrozenState", saveFieldFrozenState, false);
     }
 
     /**
@@ -356,10 +369,11 @@ public class GridEditProxy extends LayoutEditProxy {
      * (such as "outlineEdges").
      *
      * @param saveFieldOrder New saveFieldOrder value. Default value is true
+     * @return {@link com.smartgwt.client.tools.GridEditProxy GridEditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setSaveFieldOrder(Boolean saveFieldOrder)  throws IllegalStateException {
-        setAttribute("saveFieldOrder", saveFieldOrder, false);
+    public GridEditProxy setSaveFieldOrder(Boolean saveFieldOrder)  throws IllegalStateException {
+        return (GridEditProxy)setAttribute("saveFieldOrder", saveFieldOrder, false);
     }
 
     /**
@@ -383,10 +397,11 @@ public class GridEditProxy extends LayoutEditProxy {
      * (such as "outlineEdges").
      *
      * @param saveFieldVisibility New saveFieldVisibility value. Default value is true
+     * @return {@link com.smartgwt.client.tools.GridEditProxy GridEditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setSaveFieldVisibility(Boolean saveFieldVisibility)  throws IllegalStateException {
-        setAttribute("saveFieldVisibility", saveFieldVisibility, false);
+    public GridEditProxy setSaveFieldVisibility(Boolean saveFieldVisibility)  throws IllegalStateException {
+        return (GridEditProxy)setAttribute("saveFieldVisibility", saveFieldVisibility, false);
     }
 
     /**
@@ -409,10 +424,11 @@ public class GridEditProxy extends LayoutEditProxy {
      * com.smartgwt.client.types.SelectedAppearance} settings that allow direct interactivity (such as "outlineEdges").
      *
      * @param saveFilterCriteria New saveFilterCriteria value. Default value is true
+     * @return {@link com.smartgwt.client.tools.GridEditProxy GridEditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setSaveFilterCriteria(Boolean saveFilterCriteria)  throws IllegalStateException {
-        setAttribute("saveFilterCriteria", saveFilterCriteria, false);
+    public GridEditProxy setSaveFilterCriteria(Boolean saveFilterCriteria)  throws IllegalStateException {
+        return (GridEditProxy)setAttribute("saveFilterCriteria", saveFilterCriteria, false);
     }
 
     /**
@@ -433,10 +449,11 @@ public class GridEditProxy extends LayoutEditProxy {
      * {@link com.smartgwt.client.types.SelectedAppearance} settings that allow direct interactivity (such as "outlineEdges").
      *
      * @param saveGroupBy New saveGroupBy value. Default value is true
+     * @return {@link com.smartgwt.client.tools.GridEditProxy GridEditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setSaveGroupBy(Boolean saveGroupBy)  throws IllegalStateException {
-        setAttribute("saveGroupBy", saveGroupBy, false);
+    public GridEditProxy setSaveGroupBy(Boolean saveGroupBy)  throws IllegalStateException {
+        return (GridEditProxy)setAttribute("saveGroupBy", saveGroupBy, false);
     }
 
     /**
@@ -456,10 +473,11 @@ public class GridEditProxy extends LayoutEditProxy {
      * com.smartgwt.client.types.SelectedAppearance} settings that allow direct interactivity (such as "outlineEdges").
      *
      * @param saveSort New saveSort value. Default value is true
+     * @return {@link com.smartgwt.client.tools.GridEditProxy GridEditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setSaveSort(Boolean saveSort)  throws IllegalStateException {
-        setAttribute("saveSort", saveSort, false);
+    public GridEditProxy setSaveSort(Boolean saveSort)  throws IllegalStateException {
+        return (GridEditProxy)setAttribute("saveSort", saveSort, false);
     }
 
     /**

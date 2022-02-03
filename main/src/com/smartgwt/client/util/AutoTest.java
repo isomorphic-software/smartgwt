@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Standalone class providing a general interface for integration with Automated Testing Tools <p>
@@ -87,6 +90,51 @@ public class AutoTest {
     // ********************* Static Methods ***********************
 
 
+
+	/**
+     * Returns the {@link com.smartgwt.client.util.QualityIndicatedLocator} associated with some DOM element in a Smart GWT
+     * application page.  If coords, representing the page position, is passed in, the locator may be generated with a specific
+     * trailing "target area" identifer that will map back to the appropriate, potentially different, physical coordinates,
+     * even if the widget is moved.  The coords argument will only have an effect in cases where the mouse position over the
+     * target could potentially change behavior.
+     * @param DOMElement DOM element within in the page. If null the locator for  the last mouse event target will be generated
+     *
+     * @return Locator details allowing the AutoTest subsystem to find   an equivalent DOM element on subsequent page loads.
+     */
+    public static native QualityIndicatedLocator getLocatorWithIndicators(Element DOMElement) /*-{
+        var ret = $wnd.isc.AutoTest.getLocatorWithIndicators(DOMElement);
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.QualityIndicatedLocator::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+    /**
+     * @see AutoTest#getLocatorWithIndicators
+     */
+    public static QualityIndicatedLocator getLocatorWithIndicators(Element DOMElement, boolean checkForNativeHandling){
+        return getLocatorWithIndicators(DOMElement, checkForNativeHandling, null);
+    }
+
+	/**
+     * Returns the {@link com.smartgwt.client.util.QualityIndicatedLocator} associated with some DOM element in a Smart GWT
+     * application page.  If coords, representing the page position, is passed in, the locator may be generated with a specific
+     * trailing "target area" identifer that will map back to the appropriate, potentially different, physical coordinates,
+     * even if the widget is moved.  The coords argument will only have an effect in cases where the mouse position over the
+     * target could potentially change behavior.
+     * @param DOMElement DOM element within in the page. If null the locator for  the last mouse event target will be generated
+     * @param checkForNativeHandling If this parameter is passed in, check whether  the target element responds to native browser events directly rather than
+     * going through  the Smart GWT widget/event handling model. If we detect this case, return null rather  than a live
+     * locator.  This allows us to differentiate between (for example) an event on  a Canvas handle, and an event occurring
+     * directly on a simple   <code>&lt;a href=...&gt;</code> tag written inside a Canvas handle.
+     * @param coords X, Y page position
+     *
+     * @return Locator details allowing the AutoTest subsystem to find   an equivalent DOM element on subsequent page loads.
+     */
+    public static native QualityIndicatedLocator getLocatorWithIndicators(Element DOMElement, boolean checkForNativeHandling, String[] coords) /*-{
+        var ret = $wnd.isc.AutoTest.getLocatorWithIndicators(DOMElement, checkForNativeHandling, coords);
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.QualityIndicatedLocator::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+	
 
 
 
@@ -249,7 +297,7 @@ public class AutoTest {
 
 
 	/**
-     * Returns whether the loaded page is in a consistent state with no pending operations. Specifically, returns true of false
+     * Returns whether the loaded page is in a consistent state with no pending operations. Specifically, returns true or false
      * according as the conditions below are all satisfied: <ul>     <li> page has finished loading     <li> all ListGrids (as
      * defined by isc.isA.ListGrid) satisfy {@link com.smartgwt.client.util.AutoTest#isGridDone isGridDone()}     <li> all
      * TileGrids that are drawn satisfy {@link com.smartgwt.client.util.AutoTest#isTileGridDone isTileGridDone()}     <li> all
@@ -277,7 +325,7 @@ public class AutoTest {
     }
 
 	/**
-     * Returns whether the loaded page is in a consistent state with no pending operations. Specifically, returns true of false
+     * Returns whether the loaded page is in a consistent state with no pending operations. Specifically, returns true or false
      * according as the conditions below are all satisfied: <ul>     <li> page has finished loading     <li> all ListGrids (as
      * defined by isc.isA.ListGrid) satisfy {@link com.smartgwt.client.util.AutoTest#isGridDone isGridDone()}     <li> all
      * TileGrids that are drawn satisfy {@link com.smartgwt.client.util.AutoTest#isTileGridDone isTileGridDone()}     <li> all

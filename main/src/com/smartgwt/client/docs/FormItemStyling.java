@@ -60,17 +60,18 @@ package com.smartgwt.client.docs;
  * position of these error indicators is controlled by {@link
  * com.smartgwt.client.widgets.form.DynamicForm#getErrorOrientation DynamicForm.errorOrientation}.
  * <P> Most formItem user-interface elements support stateful styling - showing a different
- * apperance for {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowFocused focused},
+ * appearance for {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowFocused focused},
  * {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowOver over}, {@link
- * com.smartgwt.client.widgets.form.fields.FormItem#getShowDisabled FormItem.showDisabled} and
- * {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowErrorStyle error} state. <P>
- * Default styling for items will vary by skin, and note that subclasses of  FormItem may have
- * additional styling properties not explicitly called out here.<br> Developers performing global
- * styling modifications for formItems should also be aware of compound items (such as {@link
+ * com.smartgwt.client.widgets.form.fields.FormItem#getShowDisabled disabled} and {@link
+ * com.smartgwt.client.widgets.form.fields.FormItem#getShowErrorStyle error} states. <P> Default
+ * styling for items will vary by skin, and note that subclasses of  FormItem may have additional
+ * styling properties not explicitly called out here.<br> Developers performing global styling
+ * modifications for formItems should also be aware of compound items (such as {@link
  * com.smartgwt.client.widgets.form.fields.DateItem}) which achieve their user interface by
  * embedding simpler items in an outer structure. See {@link
  * com.smartgwt.client.docs.CompoundFormItem_skinning}.
  * @see com.smartgwt.client.docs.FormItemBaseStyle
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getCellHeight
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getShowFocused
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getShowOver
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getUpdateTextBoxOnOver
@@ -79,8 +80,10 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getShowDisabled
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getCellStyle
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getHintStyle
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getTitleStyle
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getTextBoxStyle
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getPrintTextBoxStyle
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getPrintReadOnlyTextBoxStyle
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getPickerIconStyle
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getControlStyle
  * @see com.smartgwt.client.widgets.form.fields.SelectItem#getPickerIconStyle

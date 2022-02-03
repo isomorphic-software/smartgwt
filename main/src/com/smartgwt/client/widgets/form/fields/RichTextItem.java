@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * FormItem for rich text (HTML) editing. Makes use of a {@link com.smartgwt.client.widgets.RichTextEditor} as the  editing
@@ -169,9 +172,10 @@ public class RichTextItem extends CanvasItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param controlGroups New controlGroups value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.RichTextItem RichTextItem} instance, for chaining setter calls
      */
-    public void setControlGroups(String... controlGroups) {
-        setAttribute("controlGroups", controlGroups);
+    public RichTextItem setControlGroups(String... controlGroups) {
+        return (RichTextItem)setAttribute("controlGroups", controlGroups);
     }
     
 
@@ -179,9 +183,10 @@ public class RichTextItem extends CanvasItem {
      * By default RichTextItems take up an entire row
      *
      * @param endRow New endRow value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.RichTextItem RichTextItem} instance, for chaining setter calls
      */
-    public void setEndRow(Boolean endRow) {
-        setAttribute("endRow", endRow);
+    public RichTextItem setEndRow(Boolean endRow) {
+        return (RichTextItem)setAttribute("endRow", endRow);
     }
 
     /**
@@ -203,9 +208,10 @@ public class RichTextItem extends CanvasItem {
      * Setter for {@link com.smartgwt.client.widgets.form.fields.RichTextItem#getMoveFocusOnTab moveFocusOnTab}.
      *
      * @param moveFocusOnTab new value for moveFocusOnTab. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.RichTextItem RichTextItem} instance, for chaining setter calls
      */
-    public void setMoveFocusOnTab(boolean moveFocusOnTab) {
-        setAttribute("moveFocusOnTab", moveFocusOnTab);
+    public RichTextItem setMoveFocusOnTab(boolean moveFocusOnTab) {
+        return (RichTextItem)setAttribute("moveFocusOnTab", moveFocusOnTab);
     }
 
     /**
@@ -235,9 +241,10 @@ public class RichTextItem extends CanvasItem {
      * is logged, and      shouldSaveValue will be set to false. </li></ul>
      *
      * @param shouldSaveValue New shouldSaveValue value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.RichTextItem RichTextItem} instance, for chaining setter calls
      */
-    public void setShouldSaveValue(Boolean shouldSaveValue) {
-        setAttribute("shouldSaveValue", shouldSaveValue);
+    public RichTextItem setShouldSaveValue(Boolean shouldSaveValue) {
+        return (RichTextItem)setAttribute("shouldSaveValue", shouldSaveValue);
     }
 
     /**
@@ -266,9 +273,10 @@ public class RichTextItem extends CanvasItem {
      * Don't show the title for rich text items by default
      *
      * @param showTitle New showTitle value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.RichTextItem RichTextItem} instance, for chaining setter calls
      */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle);
+    public RichTextItem setShowTitle(Boolean showTitle) {
+        return (RichTextItem)setAttribute("showTitle", showTitle);
     }
 
     /**
@@ -286,9 +294,10 @@ public class RichTextItem extends CanvasItem {
      * By default RichTextItems take up an entire row
      *
      * @param startRow New startRow value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.RichTextItem RichTextItem} instance, for chaining setter calls
      */
-    public void setStartRow(Boolean startRow) {
-        setAttribute("startRow", startRow);
+    public RichTextItem setStartRow(Boolean startRow) {
+        return (RichTextItem)setAttribute("startRow", startRow);
     }
 
     /**

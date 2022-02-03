@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * A type of {@link com.smartgwt.client.data.Record} which represents an event to occur at a specific time, displayed
@@ -238,9 +241,10 @@ public class CalendarEvent extends Record {
      * customization of both header and body portions.
      *
      * @param backgroundColor New backgroundColor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.CalendarEvent CalendarEvent} instance, for chaining setter calls
      */
-    public void setBackgroundColor(String backgroundColor) {
-        setAttribute("backgroundColor", backgroundColor);
+    public CalendarEvent setBackgroundColor(String backgroundColor) {
+        return (CalendarEvent)setAttribute("backgroundColor", backgroundColor);
     }
 
     /**
@@ -265,9 +269,10 @@ public class CalendarEvent extends Record {
      * customization of both header and body portions.
      *
      * @param borderColor New borderColor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.CalendarEvent CalendarEvent} instance, for chaining setter calls
      */
-    public void setBorderColor(String borderColor) {
-        setAttribute("borderColor", borderColor);
+    public CalendarEvent setBorderColor(String borderColor) {
+        return (CalendarEvent)setAttribute("borderColor", borderColor);
     }
 
     /**
@@ -292,9 +297,10 @@ public class CalendarEvent extends Record {
      * drag-resize via {@link com.smartgwt.client.widgets.calendar.CalendarEvent#getCanResize canResize}.
      *
      * @param canDrag New canDrag value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.CalendarEvent CalendarEvent} instance, for chaining setter calls
      */
-    public void setCanDrag(Boolean canDrag) {
-        setAttribute("canDrag", canDrag);
+    public CalendarEvent setCanDrag(Boolean canDrag) {
+        return (CalendarEvent)setAttribute("canDrag", canDrag);
     }
 
     /**
@@ -319,9 +325,10 @@ public class CalendarEvent extends Record {
      * Calendar.canEditLaneField}.
      *
      * @param canEditLane New canEditLane value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.CalendarEvent CalendarEvent} instance, for chaining setter calls
      */
-    public void setCanEditLane(Boolean canEditLane) {
-        setAttribute("canEditLane", canEditLane);
+    public CalendarEvent setCanEditLane(Boolean canEditLane) {
+        return (CalendarEvent)setAttribute("canEditLane", canEditLane);
     }
 
     /**
@@ -344,9 +351,10 @@ public class CalendarEvent extends Record {
      * Calendar.canEditSublaneField}.
      *
      * @param canEditSublane New canEditSublane value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.CalendarEvent CalendarEvent} instance, for chaining setter calls
      */
-    public void setCanEditSublane(Boolean canEditSublane) {
-        setAttribute("canEditSublane", canEditSublane);
+    public CalendarEvent setCanEditSublane(Boolean canEditSublane) {
+        return (CalendarEvent)setAttribute("canEditSublane", canEditSublane);
     }
 
     /**
@@ -370,9 +378,10 @@ public class CalendarEvent extends Record {
      * com.smartgwt.client.widgets.calendar.Calendar#getCanDragEvents dragging} are also enabled.
      *
      * @param canResize New canResize value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.CalendarEvent CalendarEvent} instance, for chaining setter calls
      */
-    public void setCanResize(Boolean canResize) {
-        setAttribute("canResize", canResize);
+    public CalendarEvent setCanResize(Boolean canResize) {
+        return (CalendarEvent)setAttribute("canResize", canResize);
     }
 
     /**
@@ -395,9 +404,10 @@ public class CalendarEvent extends Record {
      * com.smartgwt.client.widgets.calendar.Calendar#getDescriptionField Calendar.descriptionField}
      *
      * @param description New description value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.CalendarEvent CalendarEvent} instance, for chaining setter calls
      */
-    public void setDescription(String description) {
-        setAttribute("description", description);
+    public CalendarEvent setDescription(String description) {
+        return (CalendarEvent)setAttribute("description", description);
     }
 
     /**
@@ -418,9 +428,10 @@ public class CalendarEvent extends Record {
      * If set to zero, implies an "Instant" type event - an event with a start date but no length.
      *
      * @param duration New duration value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.CalendarEvent CalendarEvent} instance, for chaining setter calls
      */
-    public void setDuration(Integer duration) {
-        setAttribute("duration", duration);
+    public CalendarEvent setDuration(Integer duration) {
+        return (CalendarEvent)setAttribute("duration", duration);
     }
 
     /**
@@ -440,9 +451,10 @@ public class CalendarEvent extends Record {
      * the unit of that duration.  The default is minutes.
      *
      * @param durationUnit New durationUnit value. Default value is "minute"
+     * @return {@link com.smartgwt.client.widgets.calendar.CalendarEvent CalendarEvent} instance, for chaining setter calls
      */
-    public void setDurationUnit(TimeUnit durationUnit) {
-        setAttribute("durationUnit", durationUnit == null ? null : durationUnit.getValue());
+    public CalendarEvent setDurationUnit(TimeUnit durationUnit) {
+        return (CalendarEvent)setAttribute("durationUnit", durationUnit == null ? null : durationUnit.getValue());
     }
 
     /**
@@ -462,9 +474,10 @@ public class CalendarEvent extends Record {
      * com.smartgwt.client.widgets.calendar.Calendar#getEndDateField Calendar.endDateField}
      *
      * @param endDate New endDate value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.CalendarEvent CalendarEvent} instance, for chaining setter calls
      */
-    public void setEndDate(Date endDate) {
-        setAttribute("endDate", endDate);
+    public CalendarEvent setEndDate(Date endDate) {
+        return (CalendarEvent)setAttribute("endDate", endDate);
     }
 
     /**
@@ -486,11 +499,12 @@ public class CalendarEvent extends Record {
      * com.smartgwt.client.widgets.calendar.Calendar#getEventWindowStyleField Calendar.eventWindowStyleField}
      *
      * @param eventWindowStyle New eventWindowStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.CalendarEvent CalendarEvent} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @deprecated in favor of {@link com.smartgwt.client.widgets.calendar.CalendarEvent#getStyleName styleName}
      */
-    public void setEventWindowStyle(String eventWindowStyle) {
-        setAttribute("eventWindowStyle", eventWindowStyle);
+    public CalendarEvent setEventWindowStyle(String eventWindowStyle) {
+        return (CalendarEvent)setAttribute("eventWindowStyle", eventWindowStyle);
     }
 
     /**
@@ -516,9 +530,10 @@ public class CalendarEvent extends Record {
      * customization of both header and body portions.
      *
      * @param headerBackgroundColor New headerBackgroundColor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.CalendarEvent CalendarEvent} instance, for chaining setter calls
      */
-    public void setHeaderBackgroundColor(String headerBackgroundColor) {
-        setAttribute("headerBackgroundColor", headerBackgroundColor);
+    public CalendarEvent setHeaderBackgroundColor(String headerBackgroundColor) {
+        return (CalendarEvent)setAttribute("headerBackgroundColor", headerBackgroundColor);
     }
 
     /**
@@ -543,9 +558,10 @@ public class CalendarEvent extends Record {
      * customization of both header and body portions.
      *
      * @param headerBorderColor New headerBorderColor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.CalendarEvent CalendarEvent} instance, for chaining setter calls
      */
-    public void setHeaderBorderColor(String headerBorderColor) {
-        setAttribute("headerBorderColor", headerBorderColor);
+    public CalendarEvent setHeaderBorderColor(String headerBorderColor) {
+        return (CalendarEvent)setAttribute("headerBorderColor", headerBorderColor);
     }
 
     /**
@@ -570,9 +586,10 @@ public class CalendarEvent extends Record {
      * customization of both header and body portions.
      *
      * @param headerTextColor New headerTextColor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.CalendarEvent CalendarEvent} instance, for chaining setter calls
      */
-    public void setHeaderTextColor(String headerTextColor) {
-        setAttribute("headerTextColor", headerTextColor);
+    public CalendarEvent setHeaderTextColor(String headerTextColor) {
+        return (CalendarEvent)setAttribute("headerTextColor", headerTextColor);
     }
 
     /**
@@ -597,9 +614,10 @@ public class CalendarEvent extends Record {
      * be changed via {@link com.smartgwt.client.widgets.calendar.Calendar#getLaneNameField Calendar.laneNameField}.
      *
      * @param lane New lane value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.CalendarEvent CalendarEvent} instance, for chaining setter calls
      */
-    public void setLane(String lane) {
-        setAttribute("lane", lane);
+    public CalendarEvent setLane(String lane) {
+        return (CalendarEvent)setAttribute("lane", lane);
     }
 
     /**
@@ -622,9 +640,10 @@ public class CalendarEvent extends Record {
      * Calendar.nameField}
      *
      * @param name New name value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.CalendarEvent CalendarEvent} instance, for chaining setter calls
      */
-    public void setName(String name) {
-        setAttribute("name", name);
+    public CalendarEvent setName(String name) {
+        return (CalendarEvent)setAttribute("name", name);
     }
 
     /**
@@ -645,9 +664,10 @@ public class CalendarEvent extends Record {
      * com.smartgwt.client.widgets.calendar.Calendar#getStartDateField Calendar.startDateField}
      *
      * @param startDate New startDate value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.CalendarEvent CalendarEvent} instance, for chaining setter calls
      */
-    public void setStartDate(Date startDate) {
-        setAttribute("startDate", startDate);
+    public CalendarEvent setStartDate(Date startDate) {
+        return (CalendarEvent)setAttribute("startDate", startDate);
     }
 
     /**
@@ -673,10 +693,11 @@ public class CalendarEvent extends Record {
      * be changed via {@link com.smartgwt.client.widgets.calendar.Calendar#getEventStyleNameField Calendar.eventStyleNameField}
      *
      * @param styleName New styleName value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.CalendarEvent CalendarEvent} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setStyleName(String styleName) {
-        setAttribute("styleName", styleName);
+    public CalendarEvent setStyleName(String styleName) {
+        return (CalendarEvent)setAttribute("styleName", styleName);
     }
 
     /**
@@ -705,9 +726,10 @@ public class CalendarEvent extends Record {
      * be changed via {@link com.smartgwt.client.widgets.calendar.Calendar#getSublaneNameField Calendar.sublaneNameField}.
      *
      * @param sublane New sublane value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.CalendarEvent CalendarEvent} instance, for chaining setter calls
      */
-    public void setSublane(String sublane) {
-        setAttribute("sublane", sublane);
+    public CalendarEvent setSublane(String sublane) {
+        return (CalendarEvent)setAttribute("sublane", sublane);
     }
 
     /**
@@ -732,9 +754,10 @@ public class CalendarEvent extends Record {
      * customization of both header and body portions.
      *
      * @param textColor New textColor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.CalendarEvent CalendarEvent} instance, for chaining setter calls
      */
-    public void setTextColor(String textColor) {
-        setAttribute("textColor", textColor);
+    public CalendarEvent setTextColor(String textColor) {
+        return (CalendarEvent)setAttribute("textColor", textColor);
     }
 
     /**

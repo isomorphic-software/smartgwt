@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -195,10 +198,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * The hover prompt text for the add button.
      *
      * @param addButtonPrompt New addButtonPrompt value. Default value is "Add"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAddButtonPrompt(String addButtonPrompt)  throws IllegalStateException {
-        setAttribute("addButtonPrompt", addButtonPrompt, false);
+    public FilterBuilder setAddButtonPrompt(String addButtonPrompt)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("addButtonPrompt", addButtonPrompt, false);
     }
 
     /**
@@ -212,13 +216,43 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
     
 
     /**
+     * List of explicit fields for user field selection. If not specified, the list of fields is derived from the {@link
+     * com.smartgwt.client.widgets.form.FilterBuilder#getDataSource dataSource}. <P> Note: this property is not a security
+     * feature as it only controls the UI. To consistently limit searchability for certain fields use {@link
+     * com.smartgwt.client.data.DataSourceField#getCanFilter canFilter}.
+     *
+     * @param allowedFields New allowedFields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.form.FilterBuilder#setShowHiddenFields
+     */
+    public FilterBuilder setAllowedFields(String... allowedFields)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("allowedFields", allowedFields, false);
+    }
+
+    /**
+     * List of explicit fields for user field selection. If not specified, the list of fields is derived from the {@link
+     * com.smartgwt.client.widgets.form.FilterBuilder#getDataSource dataSource}. <P> Note: this property is not a security
+     * feature as it only controls the UI. To consistently limit searchability for certain fields use {@link
+     * com.smartgwt.client.data.DataSourceField#getCanFilter canFilter}.
+     *
+     * @return Current allowedFields value. Default value is null
+     * @see com.smartgwt.client.widgets.form.FilterBuilder#getShowHiddenFields
+     */
+    public String[] getAllowedFields()  {
+        return com.smartgwt.client.util.ConvertTo.arrayOfString(getAttributeAsJavaScriptObject("allowedFields"));
+    }
+    
+
+    /**
      * If set to false, the last clause cannot be removed.
      *
      * @param allowEmpty New allowEmpty value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAllowEmpty(Boolean allowEmpty)  throws IllegalStateException {
-        setAttribute("allowEmpty", allowEmpty, false);
+    public FilterBuilder setAllowEmpty(Boolean allowEmpty)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("allowEmpty", allowEmpty, false);
     }
 
     /**
@@ -275,12 +309,13 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      *
      * @param criteria new criteria.  Pass null or {} to effectively reset the                                    filterBuilder to it's initial
      * state when no criteria are                                    specified. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      */
-    public void setCriteria(AdvancedCriteria criteria) {
+    public FilterBuilder setCriteria(AdvancedCriteria criteria) {
         if (criteria instanceof Criterion) {
             criteria.setAttribute("_constructor", "AdvancedCriteria");
         }
-        setAttribute("criteria", criteria == null ? null : criteria.getJsObj(), true);
+        return (FilterBuilder)setAttribute("criteria", criteria == null ? null : criteria.getJsObj(), true);
     }
 
     /**
@@ -333,10 +368,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * field.
      *
      * @param fieldDataSource New fieldDataSource value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setFieldDataSource(DataSource fieldDataSource)  throws IllegalStateException {
-        setAttribute("fieldDataSource", fieldDataSource == null ? null : fieldDataSource.getOrCreateJsObj(), false);
+    public FilterBuilder setFieldDataSource(DataSource fieldDataSource)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("fieldDataSource", fieldDataSource == null ? null : fieldDataSource.getOrCreateJsObj(), false);
     }
 
     /**
@@ -366,14 +402,15 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * Properties to combine with the {@link com.smartgwt.client.widgets.FieldPicker} autoChild FormItem.
      *
      * @param fieldPickerProperties New fieldPickerProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setFieldPickerProperties(FormItem fieldPickerProperties)  throws IllegalStateException {
+    public FilterBuilder setFieldPickerProperties(FormItem fieldPickerProperties)  throws IllegalStateException {
         if (fieldPickerProperties.isCreated()) {
             ConfigUtil.warnOfPreConfigInstantiation(FilterBuilder.class, "setFieldPickerProperties", "FormItem");
         }                                                                       
         fieldPickerProperties.setConfigOnly(true);
-        setAttribute("fieldPickerProperties", fieldPickerProperties == null ? null : fieldPickerProperties.getEditorTypeConfig(), false);
+        return (FilterBuilder)setAttribute("fieldPickerProperties", fieldPickerProperties == null ? null : fieldPickerProperties.getEditorTypeConfig(), false);
     }
 
     /**
@@ -390,10 +427,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * The title for the {@link com.smartgwt.client.widgets.form.FilterBuilder#getFieldPicker field-picker} select-item.
      *
      * @param fieldPickerTitle New fieldPickerTitle value. Default value is "Field Name"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setFieldPickerTitle(String fieldPickerTitle)  throws IllegalStateException {
-        setAttribute("fieldPickerTitle", fieldPickerTitle, false);
+    public FilterBuilder setFieldPickerTitle(String fieldPickerTitle)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("fieldPickerTitle", fieldPickerTitle, false);
     }
 
     /**
@@ -410,10 +448,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * Width for the field picker formItem displayed in clauses within this FilterBuilder.
      *
      * @param fieldPickerWidth New fieldPickerWidth value. Default value is "*"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setFieldPickerWidth(Integer fieldPickerWidth)  throws IllegalStateException {
-        setAttribute("fieldPickerWidth", fieldPickerWidth, false);
+    public FilterBuilder setFieldPickerWidth(Integer fieldPickerWidth)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("fieldPickerWidth", fieldPickerWidth, false);
     }
 
     /**
@@ -429,10 +468,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * Width for the field picker formItem displayed in clauses within this FilterBuilder.
      *
      * @param fieldPickerWidth New fieldPickerWidth value. Default value is "*"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setFieldPickerWidth(String fieldPickerWidth)  throws IllegalStateException {
-        setAttribute("fieldPickerWidth", fieldPickerWidth, false);
+    public FilterBuilder setFieldPickerWidth(String fieldPickerWidth)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("fieldPickerWidth", fieldPickerWidth, false);
     }
 
     /**
@@ -449,10 +489,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * Title for the "And Not" operator (only applicable to the "inline" appearance)
      *
      * @param inlineAndNotTitle New inlineAndNotTitle value. Default value is "and not"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setInlineAndNotTitle(String inlineAndNotTitle)  throws IllegalStateException {
-        setAttribute("inlineAndNotTitle", inlineAndNotTitle, false);
+    public FilterBuilder setInlineAndNotTitle(String inlineAndNotTitle)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("inlineAndNotTitle", inlineAndNotTitle, false);
     }
 
     /**
@@ -469,10 +510,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * Title for the "And" operator (only applicable to the "inline" appearance)
      *
      * @param inlineAndTitle New inlineAndTitle value. Default value is "and"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setInlineAndTitle(String inlineAndTitle)  throws IllegalStateException {
-        setAttribute("inlineAndTitle", inlineAndTitle, false);
+    public FilterBuilder setInlineAndTitle(String inlineAndTitle)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("inlineAndTitle", inlineAndTitle, false);
     }
 
     /**
@@ -489,10 +531,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * Title for the "Or" operator (only applicable to the "inline" appearance)
      *
      * @param inlineOrTitle New inlineOrTitle value. Default value is "or"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setInlineOrTitle(String inlineOrTitle)  throws IllegalStateException {
-        setAttribute("inlineOrTitle", inlineOrTitle, false);
+    public FilterBuilder setInlineOrTitle(String inlineOrTitle)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("inlineOrTitle", inlineOrTitle, false);
     }
 
     /**
@@ -510,9 +553,10 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * com.smartgwt.client.widgets.form.FilterBuilder#getAllowEmpty allowEmpty} is false.
      *
      * @param lastClausePrompt New lastClausePrompt value. Default value is "The last clause cannot be removed"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      */
-    public void setLastClausePrompt(String lastClausePrompt) {
-        setAttribute("lastClausePrompt", lastClausePrompt, true);
+    public FilterBuilder setLastClausePrompt(String lastClausePrompt) {
+        return (FilterBuilder)setAttribute("lastClausePrompt", lastClausePrompt, true);
     }
 
     /**
@@ -531,10 +575,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * topOperatorAppearance}:"radio".
      *
      * @param matchAllTitle New matchAllTitle value. Default value is "Match All"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMatchAllTitle(String matchAllTitle)  throws IllegalStateException {
-        setAttribute("matchAllTitle", matchAllTitle, false);
+    public FilterBuilder setMatchAllTitle(String matchAllTitle)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("matchAllTitle", matchAllTitle, false);
     }
 
     /**
@@ -553,10 +598,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * topOperatorAppearance}:"radio".
      *
      * @param matchAnyTitle New matchAnyTitle value. Default value is "Match Any"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMatchAnyTitle(String matchAnyTitle)  throws IllegalStateException {
-        setAttribute("matchAnyTitle", matchAnyTitle, false);
+    public FilterBuilder setMatchAnyTitle(String matchAnyTitle)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("matchAnyTitle", matchAnyTitle, false);
     }
 
     /**
@@ -575,10 +621,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * topOperatorAppearance}:"radio".
      *
      * @param matchNoneTitle New matchNoneTitle value. Default value is "Match None"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMatchNoneTitle(String matchNoneTitle)  throws IllegalStateException {
-        setAttribute("matchNoneTitle", matchNoneTitle, false);
+    public FilterBuilder setMatchNoneTitle(String matchNoneTitle)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("matchNoneTitle", matchNoneTitle, false);
     }
 
     /**
@@ -596,10 +643,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * The message to display next to fieldNames that do not exist in the available dataSource.
      *
      * @param missingFieldPrompt New missingFieldPrompt value. Default value is "[missing field definition]"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMissingFieldPrompt(String missingFieldPrompt)  throws IllegalStateException {
-        setAttribute("missingFieldPrompt", missingFieldPrompt, false);
+    public FilterBuilder setMissingFieldPrompt(String missingFieldPrompt)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("missingFieldPrompt", missingFieldPrompt, false);
     }
 
     /**
@@ -635,10 +683,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * Title for the "Advanced.." mode switcher label (only applicable to the "radio" appearance).
      *
      * @param modeSwitcherAdvancedMessage New modeSwitcherAdvancedMessage value. Default value is "Advanced.."
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setModeSwitcherAdvancedMessage(String modeSwitcherAdvancedMessage)  throws IllegalStateException {
-        setAttribute("modeSwitcherAdvancedMessage", modeSwitcherAdvancedMessage, false);
+    public FilterBuilder setModeSwitcherAdvancedMessage(String modeSwitcherAdvancedMessage)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("modeSwitcherAdvancedMessage", modeSwitcherAdvancedMessage, false);
     }
 
     /**
@@ -655,10 +704,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * Message displayed when switching to "radio" mode if the criteria will be logically changed.
      *
      * @param modeSwitcherFlattenWarningMessage New modeSwitcherFlattenWarningMessage value. Default value is "Criteria will be modified to fit in simpler editing interface"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setModeSwitcherFlattenWarningMessage(String modeSwitcherFlattenWarningMessage)  throws IllegalStateException {
-        setAttribute("modeSwitcherFlattenWarningMessage", modeSwitcherFlattenWarningMessage, false);
+    public FilterBuilder setModeSwitcherFlattenWarningMessage(String modeSwitcherFlattenWarningMessage)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("modeSwitcherFlattenWarningMessage", modeSwitcherFlattenWarningMessage, false);
     }
 
     /**
@@ -675,10 +725,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * Title for the "Simple Mode.." mode switcher label (only applicable to the "bracket" appearance).
      *
      * @param modeSwitcherSimpleMessage New modeSwitcherSimpleMessage value. Default value is "Simple Mode.."
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setModeSwitcherSimpleMessage(String modeSwitcherSimpleMessage)  throws IllegalStateException {
-        setAttribute("modeSwitcherSimpleMessage", modeSwitcherSimpleMessage, false);
+    public FilterBuilder setModeSwitcherSimpleMessage(String modeSwitcherSimpleMessage)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("modeSwitcherSimpleMessage", modeSwitcherSimpleMessage, false);
     }
 
     /**
@@ -712,14 +763,15 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * autoChild FormItem.
      *
      * @param operatorPickerProperties New operatorPickerProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setOperatorPickerProperties(FormItem operatorPickerProperties)  throws IllegalStateException {
+    public FilterBuilder setOperatorPickerProperties(FormItem operatorPickerProperties)  throws IllegalStateException {
         if (operatorPickerProperties.isCreated()) {
             ConfigUtil.warnOfPreConfigInstantiation(FilterBuilder.class, "setOperatorPickerProperties", "FormItem");
         }                                                                       
         operatorPickerProperties.setConfigOnly(true);
-        setAttribute("operatorPickerProperties", operatorPickerProperties == null ? null : operatorPickerProperties.getEditorTypeConfig(), false);
+        return (FilterBuilder)setAttribute("operatorPickerProperties", operatorPickerProperties == null ? null : operatorPickerProperties.getEditorTypeConfig(), false);
     }
 
     /**
@@ -737,10 +789,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * The title for the operator-picker select-item.
      *
      * @param operatorPickerTitle New operatorPickerTitle value. Default value is "Operator"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setOperatorPickerTitle(String operatorPickerTitle)  throws IllegalStateException {
-        setAttribute("operatorPickerTitle", operatorPickerTitle, false);
+    public FilterBuilder setOperatorPickerTitle(String operatorPickerTitle)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("operatorPickerTitle", operatorPickerTitle, false);
     }
 
     /**
@@ -757,10 +810,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * Width for the operator picker formItem displayed in clauses within this FilterBuilder.
      *
      * @param operatorPickerWidth New operatorPickerWidth value. Default value is 150
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setOperatorPickerWidth(Integer operatorPickerWidth)  throws IllegalStateException {
-        setAttribute("operatorPickerWidth", operatorPickerWidth, false);
+    public FilterBuilder setOperatorPickerWidth(Integer operatorPickerWidth)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("operatorPickerWidth", operatorPickerWidth, false);
     }
 
     /**
@@ -776,10 +830,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * Width for the operator picker formItem displayed in clauses within this FilterBuilder.
      *
      * @param operatorPickerWidth New operatorPickerWidth value. Default value is 150
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setOperatorPickerWidth(String operatorPickerWidth)  throws IllegalStateException {
-        setAttribute("operatorPickerWidth", operatorPickerWidth, false);
+    public FilterBuilder setOperatorPickerWidth(String operatorPickerWidth)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("operatorPickerWidth", operatorPickerWidth, false);
     }
 
     /**
@@ -829,10 +884,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * com.smartgwt.client.widgets.form.FilterBuilder#getRadioOperatorForm radioOperatorForm}.
      *
      * @param radioOperatorTitle New radioOperatorTitle value. Default value is "Overall Operator"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setRadioOperatorTitle(String radioOperatorTitle)  throws IllegalStateException {
-        setAttribute("radioOperatorTitle", radioOperatorTitle, false);
+    public FilterBuilder setRadioOperatorTitle(String radioOperatorTitle)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("radioOperatorTitle", radioOperatorTitle, false);
     }
 
     /**
@@ -852,10 +908,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * specifying the limits of the range.
      *
      * @param rangeSeparator New rangeSeparator value. Default value is "and"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setRangeSeparator(String rangeSeparator)  throws IllegalStateException {
-        setAttribute("rangeSeparator", rangeSeparator, false);
+    public FilterBuilder setRangeSeparator(String rangeSeparator)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("rangeSeparator", rangeSeparator, false);
     }
 
     /**
@@ -889,10 +946,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * The hover prompt text for the remove button.
      *
      * @param removeButtonPrompt New removeButtonPrompt value. Default value is "Remove"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setRemoveButtonPrompt(String removeButtonPrompt)  throws IllegalStateException {
-        setAttribute("removeButtonPrompt", removeButtonPrompt, false);
+    public FilterBuilder setRemoveButtonPrompt(String removeButtonPrompt)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("removeButtonPrompt", removeButtonPrompt, false);
     }
 
     /**
@@ -911,9 +969,10 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * property is ignored and the values are never retained.
      *
      * @param retainValuesAcrossFields New retainValuesAcrossFields value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      */
-    public void setRetainValuesAcrossFields(Boolean retainValuesAcrossFields) {
-        setAttribute("retainValuesAcrossFields", retainValuesAcrossFields, true);
+    public FilterBuilder setRetainValuesAcrossFields(Boolean retainValuesAcrossFields) {
+        return (FilterBuilder)setAttribute("retainValuesAcrossFields", retainValuesAcrossFields, true);
     }
 
     /**
@@ -934,10 +993,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * the user-supplied {@link com.smartgwt.client.widgets.form.FilterBuilder#addSearchHandler FilterBuilder.search()} method.
      *
      * @param saveOnEnter New saveOnEnter value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSaveOnEnter(Boolean saveOnEnter)  throws IllegalStateException {
-        setAttribute("saveOnEnter", saveOnEnter, false);
+    public FilterBuilder setSaveOnEnter(Boolean saveOnEnter)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("saveOnEnter", saveOnEnter, false);
     }
 
     /**
@@ -955,10 +1015,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * If set, a button will be shown underneath all current clauses allowing a new clause to be added.
      *
      * @param showAddButton New showAddButton value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowAddButton(Boolean showAddButton)  throws IllegalStateException {
-        setAttribute("showAddButton", showAddButton, false);
+    public FilterBuilder setShowAddButton(Boolean showAddButton)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("showAddButton", showAddButton, false);
     }
 
     /**
@@ -974,28 +1035,73 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
 
     /**
      * If true (the default), show field titles in the drop-down box used to select a field for querying. If false, show actual
-     * field names instead. When {@link com.smartgwt.client.widgets.form.FilterBuilder#getDataSources multiple DataSources} are
-     * configured, {@link com.smartgwt.client.widgets.form.FilterBuilder#getMultiDSFieldFormat multiDSFieldFormat} controls how
-     * field names appear in the field drop-down.
+     * field names instead.
      *
      * @param showFieldTitles New showFieldTitles value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowFieldTitles(Boolean showFieldTitles)  throws IllegalStateException {
-        setAttribute("showFieldTitles", showFieldTitles, false);
+    public FilterBuilder setShowFieldTitles(Boolean showFieldTitles)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("showFieldTitles", showFieldTitles, false);
     }
 
     /**
      * If true (the default), show field titles in the drop-down box used to select a field for querying. If false, show actual
-     * field names instead. When {@link com.smartgwt.client.widgets.form.FilterBuilder#getDataSources multiple DataSources} are
-     * configured, {@link com.smartgwt.client.widgets.form.FilterBuilder#getMultiDSFieldFormat multiDSFieldFormat} controls how
-     * field names appear in the field drop-down.
+     * field names instead.
      *
      * @return Current showFieldTitles value. Default value is true
      */
     public Boolean getShowFieldTitles()  {
         Boolean result = getAttributeAsBoolean("showFieldTitles");
         return result == null ? true : result;
+    }
+    
+
+    /**
+     * By default only non-hidden fields are shown for selection. To include hidden fields for selection set this property to
+     * <code>true</code>.
+     *
+     * @param showHiddenFields New showHiddenFields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public FilterBuilder setShowHiddenFields(Boolean showHiddenFields)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("showHiddenFields", showHiddenFields, false);
+    }
+
+    /**
+     * By default only non-hidden fields are shown for selection. To include hidden fields for selection set this property to
+     * <code>true</code>.
+     *
+     * @return Current showHiddenFields value. Default value is null
+     */
+    public Boolean getShowHiddenFields()  {
+        return getAttributeAsBoolean("showHiddenFields");
+    }
+    
+
+    /**
+     * If set to false and showing clause {@link com.smartgwt.client.widgets.form.FilterBuilder#getShowRemoveButton remove
+     * buttons} and {@link com.smartgwt.client.widgets.form.FilterBuilder#getAllowEmpty the last clause cannot be removed} the
+     * remove clause button will be hidden.
+     *
+     * @param showLastRemoveButton New showLastRemoveButton value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public FilterBuilder setShowLastRemoveButton(Boolean showLastRemoveButton)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("showLastRemoveButton", showLastRemoveButton, false);
+    }
+
+    /**
+     * If set to false and showing clause {@link com.smartgwt.client.widgets.form.FilterBuilder#getShowRemoveButton remove
+     * buttons} and {@link com.smartgwt.client.widgets.form.FilterBuilder#getAllowEmpty the last clause cannot be removed} the
+     * remove clause button will be hidden.
+     *
+     * @return Current showLastRemoveButton value. Default value is null
+     */
+    public Boolean getShowLastRemoveButton()  {
+        return getAttributeAsBoolean("showLastRemoveButton");
     }
     
 
@@ -1018,13 +1124,14 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * used to do so. </ul>
      *
      * @param showModeSwitcher New showModeSwitcher value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.form.FilterBuilder#setModeSwitcherSimpleMessage
      * @see com.smartgwt.client.widgets.form.FilterBuilder#setModeSwitcherAdvancedMessage
      * @see com.smartgwt.client.widgets.form.FilterBuilder#setModeSwitcherFlattenWarningMessage
      */
-    public void setShowModeSwitcher(Boolean showModeSwitcher)  throws IllegalStateException {
-        setAttribute("showModeSwitcher", showModeSwitcher, false);
+    public FilterBuilder setShowModeSwitcher(Boolean showModeSwitcher)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("showModeSwitcher", showModeSwitcher, false);
     }
 
     /**
@@ -1059,10 +1166,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * If set, a button will be shown for each clause allowing it to be removed.
      *
      * @param showRemoveButton New showRemoveButton value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowRemoveButton(Boolean showRemoveButton)  throws IllegalStateException {
-        setAttribute("showRemoveButton", showRemoveButton, false);
+    public FilterBuilder setShowRemoveButton(Boolean showRemoveButton)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("showRemoveButton", showRemoveButton, false);
     }
 
     /**
@@ -1083,10 +1191,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * ignored for appearances other than "inline".
      *
      * @param showSelectionCheckbox New showSelectionCheckbox value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowSelectionCheckbox(Boolean showSelectionCheckbox)  throws IllegalStateException {
-        setAttribute("showSelectionCheckbox", showSelectionCheckbox, false);
+    public FilterBuilder setShowSelectionCheckbox(Boolean showSelectionCheckbox)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("showSelectionCheckbox", showSelectionCheckbox, false);
     }
 
     /**
@@ -1108,10 +1217,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * com.smartgwt.client.types.TopOperatorAppearance} is "radio" or "inline", true in all other cases.
      *
      * @param showSubClauseButton New showSubClauseButton value. Default value is See Description
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowSubClauseButton(Boolean showSubClauseButton)  throws IllegalStateException {
-        setAttribute("showSubClauseButton", showSubClauseButton, false);
+    public FilterBuilder setShowSubClauseButton(Boolean showSubClauseButton)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("showSubClauseButton", showSubClauseButton, false);
     }
 
     /**
@@ -1129,10 +1239,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * Should the {@link com.smartgwt.client.widgets.FieldPicker} items be sorted alphabetically in the drop down list.
      *
      * @param sortFields New sortFields value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSortFields(Boolean sortFields)  throws IllegalStateException {
-        setAttribute("sortFields", sortFields, false);
+    public FilterBuilder setSortFields(Boolean sortFields)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("sortFields", sortFields, false);
     }
 
     /**
@@ -1165,10 +1276,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * The hover prompt text for the subClauseButton.
      *
      * @param subClauseButtonPrompt New subClauseButtonPrompt value. Default value is "Add Subclause"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSubClauseButtonPrompt(String subClauseButtonPrompt)  throws IllegalStateException {
-        setAttribute("subClauseButtonPrompt", subClauseButtonPrompt, false);
+    public FilterBuilder setSubClauseButtonPrompt(String subClauseButtonPrompt)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("subClauseButtonPrompt", subClauseButtonPrompt, false);
     }
 
     /**
@@ -1185,10 +1297,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * The title of the subClauseButton
      *
      * @param subClauseButtonTitle New subClauseButtonTitle value. Default value is "+()"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSubClauseButtonTitle(String subClauseButtonTitle)  throws IllegalStateException {
-        setAttribute("subClauseButtonTitle", subClauseButtonTitle, false);
+    public FilterBuilder setSubClauseButtonTitle(String subClauseButtonTitle)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("subClauseButtonTitle", subClauseButtonTitle, false);
     }
 
     /**
@@ -1209,9 +1322,10 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * Programmatically change the {@link com.smartgwt.client.widgets.form.FilterBuilder#getTopOperator topOperator} for this FilterBuilder.
      *
      * @param topOperator new top-level operator. Default value is "and"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      */
-    public void setTopOperator(LogicalOperator topOperator) {
-        setAttribute("topOperator", topOperator == null ? null : topOperator.getValue(), true);
+    public FilterBuilder setTopOperator(LogicalOperator topOperator) {
+        return (FilterBuilder)setAttribute("topOperator", topOperator == null ? null : topOperator.getValue(), true);
     }
 
     /**
@@ -1233,9 +1347,10 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * Modify {@link com.smartgwt.client.types.TopOperatorAppearance} at runtime. <P> Note that when changing from "bracket" to "radio" mode the criteria will be flattened by calling {@link com.smartgwt.client.data.DataSource#flattenCriteria DataSource.flattenCriteria()} which could result in a logical change to the criteria.
      *
      * @param topOperatorAppearance new topOperatorAppearance. Default value is "bracket"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      */
-    public void setTopOperatorAppearance(TopOperatorAppearance topOperatorAppearance) {
-        setAttribute("topOperatorAppearance", topOperatorAppearance == null ? null : topOperatorAppearance.getValue(), true);
+    public FilterBuilder setTopOperatorAppearance(TopOperatorAppearance topOperatorAppearance) {
+        return (FilterBuilder)setAttribute("topOperatorAppearance", topOperatorAppearance == null ? null : topOperatorAppearance.getValue(), true);
     }
 
     /**
@@ -1292,10 +1407,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * Width for the {@link com.smartgwt.client.widgets.form.FilterBuilder#getTopOperatorItem topOperatorItem} autoChild.
      *
      * @param topOperatorItemWidth New topOperatorItemWidth value. Default value is "*"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTopOperatorItemWidth(int topOperatorItemWidth)  throws IllegalStateException {
-        setAttribute("topOperatorItemWidth", topOperatorItemWidth, false);
+    public FilterBuilder setTopOperatorItemWidth(int topOperatorItemWidth)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("topOperatorItemWidth", topOperatorItemWidth, false);
     }
 
     /**
@@ -1311,10 +1427,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * Width for the {@link com.smartgwt.client.widgets.form.FilterBuilder#getTopOperatorItem topOperatorItem} autoChild.
      *
      * @param topOperatorItemWidth New topOperatorItemWidth value. Default value is "*"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTopOperatorItemWidth(String topOperatorItemWidth)  throws IllegalStateException {
-        setAttribute("topOperatorItemWidth", topOperatorItemWidth, false);
+    public FilterBuilder setTopOperatorItemWidth(String topOperatorItemWidth)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("topOperatorItemWidth", topOperatorItemWidth, false);
     }
 
     /**
@@ -1334,10 +1451,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * com.smartgwt.client.data.DataSource}.
      *
      * @param topOperatorOptions New topOperatorOptions value. Default value is ["and", "or", "not"]
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTopOperatorOptions(OperatorId... topOperatorOptions)  throws IllegalStateException {
-        setAttribute("topOperatorOptions", topOperatorOptions, false);
+    public FilterBuilder setTopOperatorOptions(OperatorId... topOperatorOptions)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("topOperatorOptions", topOperatorOptions, false);
     }
 
     /**
@@ -1359,10 +1477,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * com.smartgwt.client.widgets.form.FilterBuilder#getTopOperatorForm topOperatorForm}.
      *
      * @param topOperatorTitle New topOperatorTitle value. Default value is "Clause Operator"
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTopOperatorTitle(String topOperatorTitle)  throws IllegalStateException {
-        setAttribute("topOperatorTitle", topOperatorTitle, false);
+    public FilterBuilder setTopOperatorTitle(String topOperatorTitle)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("topOperatorTitle", topOperatorTitle, false);
     }
 
     /**
@@ -1383,10 +1502,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * com.smartgwt.client.widgets.form.FilterBuilder#validate validate()} from your own code.
      *
      * @param validateOnChange New validateOnChange value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setValidateOnChange(Boolean validateOnChange)  throws IllegalStateException {
-        setAttribute("validateOnChange", validateOnChange, false);
+    public FilterBuilder setValidateOnChange(Boolean validateOnChange)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("validateOnChange", validateOnChange, false);
     }
 
     /**
@@ -1410,10 +1530,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * customizing the value item.
      *
      * @param valueItemWidth New valueItemWidth value. Default value is 150
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setValueItemWidth(Integer valueItemWidth)  throws IllegalStateException {
-        setAttribute("valueItemWidth", valueItemWidth, false);
+    public FilterBuilder setValueItemWidth(Integer valueItemWidth)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("valueItemWidth", valueItemWidth, false);
     }
 
     /**
@@ -1435,10 +1556,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
      * customizing the value item.
      *
      * @param valueItemWidth New valueItemWidth value. Default value is 150
+     * @return {@link com.smartgwt.client.widgets.form.FilterBuilder FilterBuilder} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setValueItemWidth(String valueItemWidth)  throws IllegalStateException {
-        setAttribute("valueItemWidth", valueItemWidth, false);
+    public FilterBuilder setValueItemWidth(String valueItemWidth)  throws IllegalStateException {
+        return (FilterBuilder)setAttribute("valueItemWidth", valueItemWidth, false);
     }
 
     /**
@@ -1860,6 +1982,11 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
             s.logicalStructureErrors += "FilterBuilder.addButtonPrompt:" + t.getMessage() + "\n";
         }
         try {
+            s.allowedFields = getAttributeAsStringArray("allowedFields");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.allowedFieldsArray:" + t.getMessage() + "\n";
+        }
+        try {
             s.allowEmpty = getAttributeAsString("allowEmpty");
         } catch (Throwable t) {
             s.logicalStructureErrors += "FilterBuilder.allowEmpty:" + t.getMessage() + "\n";
@@ -1993,6 +2120,16 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
             s.showFieldTitles = getAttributeAsString("showFieldTitles");
         } catch (Throwable t) {
             s.logicalStructureErrors += "FilterBuilder.showFieldTitles:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showHiddenFields = getAttributeAsString("showHiddenFields");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.showHiddenFields:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showLastRemoveButton = getAttributeAsString("showLastRemoveButton");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FilterBuilder.showLastRemoveButton:" + t.getMessage() + "\n";
         }
         try {
             s.showModeSwitcher = getAttributeAsString("showModeSwitcher");

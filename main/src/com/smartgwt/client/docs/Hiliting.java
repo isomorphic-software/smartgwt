@@ -26,11 +26,26 @@ package com.smartgwt.client.docs;
  * used, for example, to hilite the record with the maximum value for a dataset that the
  * application will load incrementally.
  * @see com.smartgwt.client.types.HiliteIconPosition
- * @see com.smartgwt.client.widgets.grid.events.HilitesChangedEvent
  * @see com.smartgwt.client.widgets.cube.CubeGrid#hiliteCell
  * @see com.smartgwt.client.widgets.cube.CubeGrid#hiliteCellList
  * @see com.smartgwt.client.widgets.cube.CubeGrid#hiliteFacetValue
+ * @see com.smartgwt.client.widgets.grid.events.HilitesChangedEvent
  * @see com.smartgwt.client.data.Hilite
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getHilites
+ * @see com.smartgwt.client.data.Hilite#getId
+ * @see com.smartgwt.client.data.Hilite#getCssText
+ * @see com.smartgwt.client.data.Hilite#getFieldName
+ * @see com.smartgwt.client.data.Hilite#getCriteria
+ * @see com.smartgwt.client.data.Hilite#getHtmlBefore
+ * @see com.smartgwt.client.data.Hilite#getHtmlAfter
+ * @see com.smartgwt.client.data.Hilite#getHtmlValue
+ * @see com.smartgwt.client.data.Hilite#getDisabled
+ * @see com.smartgwt.client.data.Hilite#getCanEdit
+ * @see com.smartgwt.client.data.Hilite#getTitle
+ * @see com.smartgwt.client.data.Hilite#getTextColor
+ * @see com.smartgwt.client.data.Hilite#getBackgroundColor
+ * @see com.smartgwt.client.data.Hilite#getIcon
+ * @see com.smartgwt.client.data.Hilite#getReplacementValue
  * @see com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIcons
  * @see com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconPosition
  * @see com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconSize
@@ -60,21 +75,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconRightPadding
  * @see com.smartgwt.client.widgets.grid.ListGrid#getHiliteCanReplaceValue
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanEditHilites
- * @see com.smartgwt.client.data.Hilite#getId
- * @see com.smartgwt.client.data.Hilite#getCssText
- * @see com.smartgwt.client.data.Hilite#getFieldName
- * @see com.smartgwt.client.data.Hilite#getCriteria
- * @see com.smartgwt.client.data.Hilite#getHtmlBefore
- * @see com.smartgwt.client.data.Hilite#getHtmlAfter
- * @see com.smartgwt.client.data.Hilite#getHtmlValue
- * @see com.smartgwt.client.data.Hilite#getDisabled
- * @see com.smartgwt.client.data.Hilite#getCanEdit
- * @see com.smartgwt.client.data.Hilite#getTitle
- * @see com.smartgwt.client.data.Hilite#getTextColor
- * @see com.smartgwt.client.data.Hilite#getBackgroundColor
- * @see com.smartgwt.client.data.Hilite#getIcon
- * @see com.smartgwt.client.data.Hilite#getReplacementValue
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getHilites
  */
 public interface Hiliting {
 }

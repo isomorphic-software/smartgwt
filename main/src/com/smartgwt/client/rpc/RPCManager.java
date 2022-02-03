@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * RPCManager is a static singleton class that manages transparent client/server RPC (remote
@@ -493,6 +496,55 @@ public class RPCManager {
     }-*/;
 
 
+	/**
+     * Creates a screen previously cached by a call to {@link com.smartgwt.client.rpc.RPCManager#cacheScreens cacheScreens()}.
+     * <p> As with {@link com.smartgwt.client.rpc.RPCManager#loadScreen loadScreen()}, the default behavior is to prevent any
+     * global widget IDs from being established, the returned Canvas will be the outermost component of the screen, and that
+     * Canvas will provide access to other widgets in the screen via {@link com.smartgwt.client.widgets.Canvas#getByLocalId
+     * getByLocalId()} <p> Alternatively, as with {@link com.smartgwt.client.rpc.RPCManager#loadScreen loadScreen()}, a list of
+     * IDs that should be allowed to become globals can be passed, allowing those widgets to be retrieved via a call to {@link
+     * com.smartgwt.client.widgets.Canvas#getById Canvas.getById()} after the screen has been created. <p> If you do not pass
+     * <code>globals</code> and avoid depending on global IDs within the screen definition itself (for example, by embedding
+     * JavaScript event handlers in the screen definition that use global IDs), you can create the same screen multiple times.
+     * <p> Creating a screen may or may not cause it to draw, depending on current global autoDraw setting ({@link
+     * com.smartgwt.client.util.isc#setAutoDraw isc.setAutoDraw()}) and any <code>autoDraw</code> settings in the screen
+     * itself. <p> Instead of <code>globals</code>, you may instead pass a {@link com.smartgwt.client.rpc.CreateScreenSettings
+     * substitution configuration} to change what classes are used to construct widgets, or subsitute existing widgets for
+     * those to be constructed, by widget ID.
+     * @param screenName name of the screen to create
+     *
+     * @return last top-level widget in the screen definition
+     */
+    public static native Canvas createScreen(String screenName) /*-{
+        var ret = $wnd.isc.RPCManager.createScreen(screenName);
+        return @com.smartgwt.client.widgets.Canvas::getByJSObject(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * Creates a screen previously cached by a call to {@link com.smartgwt.client.rpc.RPCManager#cacheScreens cacheScreens()}.
+     * <p> As with {@link com.smartgwt.client.rpc.RPCManager#loadScreen loadScreen()}, the default behavior is to prevent any
+     * global widget IDs from being established, the returned Canvas will be the outermost component of the screen, and that
+     * Canvas will provide access to other widgets in the screen via {@link com.smartgwt.client.widgets.Canvas#getByLocalId
+     * getByLocalId()} <p> Alternatively, as with {@link com.smartgwt.client.rpc.RPCManager#loadScreen loadScreen()}, a list of
+     * IDs that should be allowed to become globals can be passed, allowing those widgets to be retrieved via a call to {@link
+     * com.smartgwt.client.widgets.Canvas#getById Canvas.getById()} after the screen has been created. <p> If you do not pass
+     * <code>globals</code> and avoid depending on global IDs within the screen definition itself (for example, by embedding
+     * JavaScript event handlers in the screen definition that use global IDs), you can create the same screen multiple times.
+     * <p> Creating a screen may or may not cause it to draw, depending on current global autoDraw setting ({@link
+     * com.smartgwt.client.util.isc#setAutoDraw isc.setAutoDraw()}) and any <code>autoDraw</code> settings in the screen
+     * itself. <p> Instead of <code>globals</code>, you may instead pass a {@link com.smartgwt.client.rpc.CreateScreenSettings
+     * substitution configuration} to change what classes are used to construct widgets, or subsitute existing widgets for
+     * those to be constructed, by widget ID.
+     * @param screenName name of the screen to create
+     * @param globals widgets to allow to take their                                                      global IDs, or a widget remap config
+     *
+     * @return last top-level widget in the screen definition
+     */
+    public static native Canvas createScreen(String screenName, String[] globals) /*-{
+        var ret = $wnd.isc.RPCManager.createScreen(screenName, @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(globals));
+        return @com.smartgwt.client.widgets.Canvas::getByJSObject(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+	
 
 	/**
      * Exports the printable representation of a set of widgets as a .pdf that is then
@@ -750,6 +802,34 @@ public class RPCManager {
     }-*/;
 
 
+	/**
+     * Returns true if a screen with the given name has already been cached by a call to  {@link
+     * com.smartgwt.client.rpc.RPCManager#cacheScreens cacheScreens()} (or {@link
+     * com.smartgwt.client.rpc.RPCManager#loadProject loadProject()}), false otherwise.
+     * @param screenName name of the screen
+     */
+    public static native void isScreenCached(String screenName) /*-{
+        $wnd.isc.RPCManager.isScreenCached(screenName);
+    }-*/;
+
+
+	/**
+     * Loads projects using the {@link com.smartgwt.client.docs.ServletDetails ProjectLoaderServlet}, reachable at  {@link
+     * com.smartgwt.client.rpc.RPCManager#projectLoaderURL projectLoaderURL}, and fires the given callback after screens have
+     * been   {@link com.smartgwt.client.rpc.RPCManager#cacheScreens cached}.
+     * @param projectNames Comma separated string containing the names of project/s to load.
+     * @param callback callback for notification of completion of project/s loaded and screens cached.
+     * @param settings Settings applicable to the loadProject operation.
+     */
+    public static native void loadProject(String projectNames, Function callback, LoadProjectSettings settings) /*-{
+        $wnd.isc.RPCManager.loadProject(projectNames, 
+			$entry( function() { 
+				if(callback!=null) callback.@com.smartgwt.client.core.Function::execute()(
+				);
+			}), settings.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+
 
 
     /**
@@ -929,30 +1009,30 @@ public class RPCManager {
      * com.smartgwt.client.rpc.RPCRequest#getActionURL RPCRequest.actionURL} and use the same transport (XMLHttp or frames). 
      * If a request specifies a different actionURL or transport than that of the requests currently on the queue, it will be
      * sent to the server separately, ahead of the queue, and a warning will be logged to the Developer Console. <p> Due to
-     * browser security restrictions, at most one request with a {@link com.smartgwt.client.rpc.RPCManager#getUpload file\n
-     * upload} can be sent in a queue.  If you attempt to add another, the existing queue will be sent immediately, logging a
-     * warning, and queueing restarted for the new request. <p> Note that whenever requests are not sent in a single queue,
-     * order is not guaranteed, and the callback provided to {@link com.smartgwt.client.rpc.RPCManager#sendQueue sendQueue()}
-     * at the end of your transaction may fire before requests not sent in the final queue have completed. <p> <b>Implementing
-     * your own Queuing</b> <p> If you are in the rare situation that: <ul> <li> you can't use the Smart GWT Server framework
-     * <li> the server you are integrating with some pre-existing support for combining      operations in a flexible way,
-     * similar to queuing <li> you are totally unable to implement the RestDataSource protocol for this server,      even
-     * through approaches such as adding it as an additional service while leaving      the original services unchanged, or
-     * going through an intermediate server </ul> .. then you can implement a crude version of the built-in queuing feature by
-     * using {@link com.smartgwt.client.data.DataSource#getDataProtocol dataProtocol:"clientCustom"} to avoid HTTP requests
-     * being immediately sent when a DataSource executes.  In outline: <ul> <li> create an API similar to
-     * <code>startQueue()</code> for managing a global setting      reflecting whether your special queuing system is active. 
-     * Your DataSources should      check for this global setting in {@link
-     * com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest()}, and, if      queuing is active,
-     * store the request you received in      {@link com.smartgwt.client.data.DataSource#transformRequest
-     * DataSource.transformRequest()} in memory, for example in an Array <li> implement your own equivalent of
-     * <code>RPCManager.sendQueue()</code> which sends an      HTTP request representing your combined requests, then once you
-     * receive your      combined response, call {@link com.smartgwt.client.data.DataSource#processResponse
-     * DataSource.processResponse()} for each request. </ul> Note that attempting to integrate with <code>RPCManager</code>'s
-     * queuing system doesn't really make sense - <code>RPCManager</code> won't be aware of your separate, special queue of
-     * requests, so will reject calls to <code>sendQueue()</code> since RPCManager's queue is empty.  Similarly, enabling
-     * queuing on <code>RPCManager</code> may cause inadvertent queuing of unrelated requests you did not intend to queue. 
-     * Maintaining your own separate notion of whether queuing is active is simpler and less error prone.
+     * browser security restrictions, at most one request with a {@link com.smartgwt.client.docs.Upload file\n upload} can be
+     * sent in a queue.  If you attempt to add another, the existing queue will be sent immediately, logging a warning, and
+     * queueing restarted for the new request. <p> Note that whenever requests are not sent in a single queue, order is not
+     * guaranteed, and the callback provided to {@link com.smartgwt.client.rpc.RPCManager#sendQueue sendQueue()} at the end of
+     * your transaction may fire before requests not sent in the final queue have completed. <p> <b>Implementing your own
+     * Queuing</b> <p> If you are in the rare situation that: <ul> <li> you can't use the Smart GWT Server framework <li> the
+     * server you are integrating with some pre-existing support for combining      operations in a flexible way, similar to
+     * queuing <li> you are totally unable to implement the RestDataSource protocol for this server,      even through
+     * approaches such as adding it as an additional service while leaving      the original services unchanged, or going
+     * through an intermediate server </ul> .. then you can implement a crude version of the built-in queuing feature by using
+     * {@link com.smartgwt.client.data.DataSource#getDataProtocol dataProtocol:"clientCustom"} to avoid HTTP requests being
+     * immediately sent when a DataSource executes.  In outline: <ul> <li> create an API similar to <code>startQueue()</code>
+     * for managing a global setting      reflecting whether your special queuing system is active.  Your DataSources should   
+     * check for this global setting in {@link com.smartgwt.client.data.DataSource#transformRequest
+     * DataSource.transformRequest()}, and, if      queuing is active, store the request you received in      {@link
+     * com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest()} in memory, for example in an Array
+     * <li> implement your own equivalent of <code>RPCManager.sendQueue()</code> which sends an      HTTP request representing
+     * your combined requests, then once you receive your      combined response, call {@link
+     * com.smartgwt.client.data.DataSource#processResponse DataSource.processResponse()} for each request. </ul> Note that
+     * attempting to integrate with <code>RPCManager</code>'s queuing system doesn't really make sense -
+     * <code>RPCManager</code> won't be aware of your separate, special queue of requests, so will reject calls to
+     * <code>sendQueue()</code> since RPCManager's queue is empty.  Similarly, enabling queuing on <code>RPCManager</code> may
+     * cause inadvertent queuing of unrelated requests you did not intend to queue.  Maintaining your own separate notion of
+     * whether queuing is active is simpler and less error prone.
      *
      * @return whether queuing was already enabled before we called.
      * @see com.smartgwt.client.rpc.RPCManager#sendQueue
@@ -999,30 +1079,30 @@ public class RPCManager {
      * com.smartgwt.client.rpc.RPCRequest#getActionURL RPCRequest.actionURL} and use the same transport (XMLHttp or frames). 
      * If a request specifies a different actionURL or transport than that of the requests currently on the queue, it will be
      * sent to the server separately, ahead of the queue, and a warning will be logged to the Developer Console. <p> Due to
-     * browser security restrictions, at most one request with a {@link com.smartgwt.client.rpc.RPCManager#getUpload file\n
-     * upload} can be sent in a queue.  If you attempt to add another, the existing queue will be sent immediately, logging a
-     * warning, and queueing restarted for the new request. <p> Note that whenever requests are not sent in a single queue,
-     * order is not guaranteed, and the callback provided to {@link com.smartgwt.client.rpc.RPCManager#sendQueue sendQueue()}
-     * at the end of your transaction may fire before requests not sent in the final queue have completed. <p> <b>Implementing
-     * your own Queuing</b> <p> If you are in the rare situation that: <ul> <li> you can't use the Smart GWT Server framework
-     * <li> the server you are integrating with some pre-existing support for combining      operations in a flexible way,
-     * similar to queuing <li> you are totally unable to implement the RestDataSource protocol for this server,      even
-     * through approaches such as adding it as an additional service while leaving      the original services unchanged, or
-     * going through an intermediate server </ul> .. then you can implement a crude version of the built-in queuing feature by
-     * using {@link com.smartgwt.client.data.DataSource#getDataProtocol dataProtocol:"clientCustom"} to avoid HTTP requests
-     * being immediately sent when a DataSource executes.  In outline: <ul> <li> create an API similar to
-     * <code>startQueue()</code> for managing a global setting      reflecting whether your special queuing system is active. 
-     * Your DataSources should      check for this global setting in {@link
-     * com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest()}, and, if      queuing is active,
-     * store the request you received in      {@link com.smartgwt.client.data.DataSource#transformRequest
-     * DataSource.transformRequest()} in memory, for example in an Array <li> implement your own equivalent of
-     * <code>RPCManager.sendQueue()</code> which sends an      HTTP request representing your combined requests, then once you
-     * receive your      combined response, call {@link com.smartgwt.client.data.DataSource#processResponse
-     * DataSource.processResponse()} for each request. </ul> Note that attempting to integrate with <code>RPCManager</code>'s
-     * queuing system doesn't really make sense - <code>RPCManager</code> won't be aware of your separate, special queue of
-     * requests, so will reject calls to <code>sendQueue()</code> since RPCManager's queue is empty.  Similarly, enabling
-     * queuing on <code>RPCManager</code> may cause inadvertent queuing of unrelated requests you did not intend to queue. 
-     * Maintaining your own separate notion of whether queuing is active is simpler and less error prone.
+     * browser security restrictions, at most one request with a {@link com.smartgwt.client.docs.Upload file\n upload} can be
+     * sent in a queue.  If you attempt to add another, the existing queue will be sent immediately, logging a warning, and
+     * queueing restarted for the new request. <p> Note that whenever requests are not sent in a single queue, order is not
+     * guaranteed, and the callback provided to {@link com.smartgwt.client.rpc.RPCManager#sendQueue sendQueue()} at the end of
+     * your transaction may fire before requests not sent in the final queue have completed. <p> <b>Implementing your own
+     * Queuing</b> <p> If you are in the rare situation that: <ul> <li> you can't use the Smart GWT Server framework <li> the
+     * server you are integrating with some pre-existing support for combining      operations in a flexible way, similar to
+     * queuing <li> you are totally unable to implement the RestDataSource protocol for this server,      even through
+     * approaches such as adding it as an additional service while leaving      the original services unchanged, or going
+     * through an intermediate server </ul> .. then you can implement a crude version of the built-in queuing feature by using
+     * {@link com.smartgwt.client.data.DataSource#getDataProtocol dataProtocol:"clientCustom"} to avoid HTTP requests being
+     * immediately sent when a DataSource executes.  In outline: <ul> <li> create an API similar to <code>startQueue()</code>
+     * for managing a global setting      reflecting whether your special queuing system is active.  Your DataSources should   
+     * check for this global setting in {@link com.smartgwt.client.data.DataSource#transformRequest
+     * DataSource.transformRequest()}, and, if      queuing is active, store the request you received in      {@link
+     * com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest()} in memory, for example in an Array
+     * <li> implement your own equivalent of <code>RPCManager.sendQueue()</code> which sends an      HTTP request representing
+     * your combined requests, then once you receive your      combined response, call {@link
+     * com.smartgwt.client.data.DataSource#processResponse DataSource.processResponse()} for each request. </ul> Note that
+     * attempting to integrate with <code>RPCManager</code>'s queuing system doesn't really make sense -
+     * <code>RPCManager</code> won't be aware of your separate, special queue of requests, so will reject calls to
+     * <code>sendQueue()</code> since RPCManager's queue is empty.  Similarly, enabling queuing on <code>RPCManager</code> may
+     * cause inadvertent queuing of unrelated requests you did not intend to queue.  Maintaining your own separate notion of
+     * whether queuing is active is simpler and less error prone.
      * @param shouldQueue whether queuing should be enabled, default true.  Passing false                      will disable queuing but not send
      * the queue yet, so that any                      queued requests will be sent along with the next                     
      * send()/sendRequest()
@@ -1035,6 +1115,22 @@ public class RPCManager {
         return ret == null ? false : ret;
     }-*/;
 	
+
+
+	/**
+     * Returns the data that should be sent to the {@link com.smartgwt.client.rpc.RPCManager#actionURL actionURL}. <P> In a
+     * manner analogous to {@link com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest()}, this
+     * method allows you to transform an {@link com.smartgwt.client.rpc.RPCRequest}, such as by adding {@link
+     * com.smartgwt.client.rpc.RPCRequest#getHttpHeaders HTTP headers}, to ensure proper handling on the server. <P> This is
+     * not an override point.  See {@link RPCManager#customizeTransforms(RequestTransformer)}.
+     * @param rpcRequest the RPCRequest being processed
+     *
+     * @return data to be sent to the actionURL
+     */
+    public static native Object transformRequest(RPCRequest rpcRequest) /*-{
+        var ret = $wnd.isc.RPCManager.transformRequest(rpcRequest.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return $wnd.SmartGWT.convertToJavaType(ret);
+    }-*/;
 
 
 	/**
@@ -1577,60 +1673,42 @@ public class RPCManager {
         $wnd.isc.RPCManager.allowIE9Leak = allowLeak;
     }-*/;
 
-    /** Creates a screen previously cached by a call to {@link RPCManager#cacheScreens(String[], Function, String, RPCRequest)}.
+
+	/**
+     * Creates a screen previously cached by a call to 
+     * {@link com.smartgwt.client.rpc.RPCManager#cacheScreens cacheScreens()}.
+     * <p> 
+     * As with {@link com.smartgwt.client.rpc.RPCManager#loadScreen loadScreen()}, the default
+     * behavior is to prevent any global widget IDs from being established, the returned Canvas
+     * will be the outermost component of the screen, and that Canvas will provide access to
+     * other widgets in the screen via
+     * {@link com.smartgwt.client.widgets.Canvas#getByLocalId getByLocalId()}
+     * <p> 
+     * Alternatively, as with {@link com.smartgwt.client.rpc.RPCManager#loadScreen loadScreen()},
+     * a list of IDs that should be allowed to become globals can be passed, allowing those
+     * widgets to be retrieved via a call to 
+     * {@link com.smartgwt.client.widgets.Canvas#getById Canvas.getById()} after the screen has
+     * been created. <p> If you do not pass <code>globals</code> and avoid depending on global
+     * IDs within the screen definition itself (for example, by embedding JavaScript event
+     * handlers in the screen definition that use global IDs), you can create the same screen
+     * multiple times.
      * <p>
-     * As with {@link RPCManager#loadScreen(String, LoadScreenCallback, String[])}, the default 
-     * behavior is to prevent any global widget IDs from
-     * being established, the returned Canvas will be the outermost component of the screen,
-     * and that Canvas will provide access to other widgets in the screen via {@link Canvas#getByLocalId(String)}
+     * Creating a screen may or may not cause it to draw, depending on current global autoDraw
+     * setting 
+     * ({@link com.smartgwt.client.util.isc#setAutoDraw isc.setAutoDraw()}) and any
+     * <code>autoDraw</code> settings in the screen itself.
      * <p>
-     * Alternatively, as with {@link RPCManager#loadScreen(String, LoadScreenCallback, String[])}, 
-     * a list of IDs that should be allowed to become
-     * globals can be passed, allowing those widgets to be retrieved via a call to
-     * {@link Canvas#getById(String)} after the screen has been created.
-     * <p>
-     * If you do not pass <code>globals</code> and avoid depending on global IDs within the screen
-     * definition itself (for example, by embedding JavaScript event handlers in the screen definition
-     * that use global IDs), you can create the same screen multiple times.
-     * 
-     * @param screenName name of the screen to create
+     * Instead of <code>globals</code>, you may instead pass a 
+     * {@link com.smartgwt.client.rpc.CreateScreenSettings substitution configuration}
+     * to change what classes are used to construct widgets, or subsitute existing widgets for
+     * those to be constructed, by widget ID.
      *
+     * @param screenName name of the screen to create
+     * @param globals widgets to allow to take their global IDs, or a widget remap config
      * @return last top-level widget in the screen definition
      */
-    public static Canvas createScreen(String screenName) {
-        return createScreen(screenName, null);
-    }
-
-    /** Creates a screen previously cached by a call to {@link RPCManager#cacheScreens(String[], Function, String, RPCRequest)}.
-     * <p>
-     * As with {@link RPCManager#loadScreen(String, LoadScreenCallback, String[])}, 
-     * the default behavior is to prevent any global widget IDs from
-     * being established, the returned Canvas will be the outermost component of the screen,
-     * and that Canvas will provide access to other widgets in the screen via {@link Canvas#getByLocalId(String)}
-     * <p>
-     * Alternatively, as with {@link RPCManager#loadScreen(String, LoadScreenCallback, String[])}, 
-     * a list of IDs that should be allowed to become
-     * globals can be passed, allowing those widgets to be retrieved via a call to
-     * {@link Canvas#getById(String)} after the screen has been created.
-     * <p>
-     * If you do not pass <code>globals</code> and avoid depending on global IDs within the screen
-     * definition itself (for example, by embedding JavaScript event handlers in the screen definition
-     * that use global IDs), you can create the same screen multiple times.
-     * 
-     * @param screenName name of the screen to create
-     * @param globals widgets to allow to take their global IDs
-     *
-     * @return last top-level widget in the screen definition
-     */
-    // Note: In order to return the correct SGWT wrapper type (Canvas, ListGrid, etc.), this
-    // function needs directly or indirectly call ObjectFactory::createCanvas(), which it
-    // currently achieves through the call to Canvas::getByJSObject().  It is not sufficient to
-    // call Canvas.getOrCreateRef(), which always creates a SGWT wrapper of type Canvas.
-    public static native Canvas createScreen(String screenName, String[] globals) /*-{
-        var globalsJ = globals == null ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(globals);
-        var ret = $wnd.isc.RPCManager.createScreen(screenName, globalsJ);
-
-        if(ret == null) return null;
+    public static native Canvas createScreen(String screenName, CreateScreenSettings globals) /*-{
+        var ret = $wnd.isc.RPCManager.createScreen(screenName, globals == null ? null : globals.@com.smartgwt.client.core.DataClass::getJsObj()());
         return @com.smartgwt.client.widgets.Canvas::getByJSObject(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
@@ -1814,5 +1892,31 @@ public class RPCManager {
             transaction = $wnd.isc.RPCManager.getTransaction(transactionNum);
         $wnd.isc.RPCManager.cancelDefaultErrorHandling(transaction);
     }-*/;
+
+    /**
+     * Apply the specified {@link RequestTransformer} to override the default behavior of
+     * {@link RPCManager#transformRequest(RPCRequest)}.
+     * 
+     * @param requestTransformer the request transformer.
+     */
+    public static native void customizeTransforms(RequestTransformer requestTransformer) /*-{
+        if (requestTransformer == null) return;
+
+        var self = $wnd.isc.RPCManager;
+        if (self.__transformRequest == null) self.__transformRequest = self.transformRequest;
+
+        // replace JS method RPCManager.transformRequest() with a call into Java to run RequestTransformer.transformRequest()
+        self.transformRequest = $entry(function(rpcRequest) {
+            var rpcRequestJ = @com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(rpcRequest);
+            var data = requestTransformer.@com.smartgwt.client.rpc.RequestTransformer::transformRequest(Lcom/smartgwt/client/rpc/RPCRequest;)(rpcRequestJ);
+            if(@com.smartgwt.client.data.DataSource::isRecord(Ljava/lang/Object;)(data)) {
+                data = data.@com.smartgwt.client.data.Record::getJsObj()();
+            } else if (@com.smartgwt.client.data.DataSource::isRecordArray(Ljava/lang/Object;)(data)) {
+                data = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(data);
+            }
+            return data;
+        });
+    }-*/;
+
 
 }

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Properties for a navigation item in a {@link com.smartgwt.client.widgets.layout.NavPanel}.
@@ -104,10 +107,11 @@ public class NavItem extends TreeNode {
      * com.smartgwt.client.widgets.layout.NavPanel#getHeaderStyle NavPanel.headerStyle}.
      *
      * @param customStyle New customStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavItem NavItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setCustomStyle(String customStyle) {
-        setAttribute("customStyle", customStyle);
+    public NavItem setCustomStyle(String customStyle) {
+        return (NavItem)setAttribute("customStyle", customStyle);
     }
 
     /**
@@ -128,10 +132,11 @@ public class NavItem extends TreeNode {
      * com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon navGrid's folderIcon} is used.
      *
      * @param icon New icon value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavItem NavItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setIcon(String icon) {
-        setAttribute("icon", icon);
+    public NavItem setIcon(String icon) {
+        return (NavItem)setAttribute("icon", icon);
     }
 
     /**
@@ -150,10 +155,11 @@ public class NavItem extends TreeNode {
      * An optional ID for this <code>NavItem</code>.  If specified, this must be unique within the <code>NavPanel</code>.
      *
      * @param id New id value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavItem NavItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Identifier Identifier 
      */
-    public void setId(String id) {
-        setAttribute("id", id);
+    public NavItem setId(String id) {
+        return (NavItem)setAttribute("id", id);
     }
 
     /**
@@ -174,9 +180,10 @@ public class NavItem extends TreeNode {
      * hierarchically under the header.
      *
      * @param isHeader New isHeader value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavItem NavItem} instance, for chaining setter calls
      */
-    public void setIsHeader(Boolean isHeader) {
-        setAttribute("isHeader", isHeader);
+    public NavItem setIsHeader(Boolean isHeader) {
+        return (NavItem)setAttribute("isHeader", isHeader);
     }
 
     /**
@@ -197,9 +204,10 @@ public class NavItem extends TreeNode {
      * com.smartgwt.client.widgets.layout.NavItem#getPane pane} and nothing happens when the separator is clicked.
      *
      * @param isSeparator New isSeparator value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavItem NavItem} instance, for chaining setter calls
      */
-    public void setIsSeparator(Boolean isSeparator) {
-        setAttribute("isSeparator", isSeparator);
+    public NavItem setIsSeparator(Boolean isSeparator) {
+        return (NavItem)setAttribute("isSeparator", isSeparator);
     }
 
     /**
@@ -217,9 +225,10 @@ public class NavItem extends TreeNode {
      * Optional subitems of this <code>NavItem</code>.
      *
      * @param items New items value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavItem NavItem} instance, for chaining setter calls
      */
-    public void setItems(NavItem... items) {
-        setAttribute("items", items);
+    public NavItem setItems(NavItem... items) {
+        return (NavItem)setAttribute("items", items);
     }
 
     /**
@@ -237,9 +246,10 @@ public class NavItem extends TreeNode {
      * <code>NavItem</code> is selected. <p> A component can be provided directly, or its ID can be provided.
      *
      * @param pane New pane value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavItem NavItem} instance, for chaining setter calls
      */
-    public void setPane(Canvas pane) {
-        setAttribute("pane", pane == null ? null : pane.getOrCreateJsObj());
+    public NavItem setPane(Canvas pane) {
+        return (NavItem)setAttribute("pane", pane == null ? null : pane.getOrCreateJsObj());
     }
 
     /**
@@ -257,10 +267,11 @@ public class NavItem extends TreeNode {
      * <code>NavItem</code> is selected. <p> A component can be provided directly, or its ID can be provided.
      *
      * @param pane New pane value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavItem NavItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Identifier Identifier 
      */
-    public void setPane(String pane) {
-        setAttribute("pane", pane);
+    public NavItem setPane(String pane) {
+        return (NavItem)setAttribute("pane", pane);
     }
 
     /**
@@ -279,10 +290,11 @@ public class NavItem extends TreeNode {
      * Title to show for this <code>NavItem</code>.
      *
      * @param title New title value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavItem NavItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setTitle(String title) {
-        setAttribute("title", title);
+    public NavItem setTitle(String title) {
+        return (NavItem)setAttribute("title", title);
     }
 
     /**

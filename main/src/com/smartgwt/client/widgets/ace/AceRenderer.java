@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Internal use only.
@@ -148,8 +151,8 @@ public class AceRenderer extends BaseClass {
     /**
      * Internal use only.
      */
-    public void setShowGutter(Boolean showGutter) {
-        setAttribute("showGutter", showGutter, true);
+    public AceRenderer setShowGutter(Boolean showGutter) {
+        return (AceRenderer)setAttribute("showGutter", showGutter, true);
     }
 
     /**
@@ -164,8 +167,8 @@ public class AceRenderer extends BaseClass {
     /**
      * Internal use only.
      */
-    public void setShowPrintMargin(Boolean showPrintMargin) {
-        setAttribute("showPrintMargin", showPrintMargin, true);
+    public AceRenderer setShowPrintMargin(Boolean showPrintMargin) {
+        return (AceRenderer)setAttribute("showPrintMargin", showPrintMargin, true);
     }
 
     /**
@@ -180,8 +183,8 @@ public class AceRenderer extends BaseClass {
     /**
      * Internal use only.
      */
-    public void setTheme(String theme) {
-        setAttribute("theme", theme, true);
+    public AceRenderer setTheme(String theme) {
+        return (AceRenderer)setAttribute("theme", theme, true);
     }
 
     /**

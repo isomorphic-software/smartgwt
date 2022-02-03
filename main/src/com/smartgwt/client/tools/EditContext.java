@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * An EditContext provides an editing environment for a set of components. <P> An EditContext is typically populated by
@@ -177,10 +180,11 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * property to false.
      *
      * @param allowNestedDrops New allowNestedDrops value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setAllowNestedDrops(Boolean allowNestedDrops)  throws IllegalStateException {
-        setAttribute("allowNestedDrops", allowNestedDrops, false);
+    public EditContext setAllowNestedDrops(Boolean allowNestedDrops)  throws IllegalStateException {
+        return (EditContext)setAttribute("allowNestedDrops", allowNestedDrops, false);
     }
 
     /**
@@ -206,9 +210,10 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * suppress this action set <code>autoEditNewNodes</code> to false.
      *
      * @param autoEditNewNodes New autoEditNewNodes value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      */
-    public void setAutoEditNewNodes(Boolean autoEditNewNodes) {
-        setAttribute("autoEditNewNodes", autoEditNewNodes, true);
+    public EditContext setAutoEditNewNodes(Boolean autoEditNewNodes) {
+        return (EditContext)setAttribute("autoEditNewNodes", autoEditNewNodes, true);
     }
 
     /**
@@ -228,10 +233,11 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * com.smartgwt.client.tools.EditContext#getCanGroupSelect canGroupSelect} is true.
      *
      * @param canDragGroup New canDragGroup value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setCanDragGroup(Boolean canDragGroup)  throws IllegalStateException {
-        setAttribute("canDragGroup", canDragGroup, false);
+    public EditContext setCanDragGroup(Boolean canDragGroup)  throws IllegalStateException {
+        return (EditContext)setAttribute("canDragGroup", canDragGroup, false);
     }
 
     /**
@@ -253,10 +259,11 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * com.smartgwt.client.tools.EditContext#getSelectionType selectionType}.
      *
      * @param canGroupSelect New canGroupSelect value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setCanGroupSelect(Boolean canGroupSelect)  throws IllegalStateException {
-        setAttribute("canGroupSelect", canGroupSelect, false);
+    public EditContext setCanGroupSelect(Boolean canGroupSelect)  throws IllegalStateException {
+        return (EditContext)setAttribute("canGroupSelect", canGroupSelect, false);
     }
 
     /**
@@ -278,10 +285,11 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * explicitly set to <code>false</code>. This allows an individual component to override this setting.
      *
      * @param canSelectEditNodes New canSelectEditNodes value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setCanSelectEditNodes(Boolean canSelectEditNodes)  throws IllegalStateException {
-        setAttribute("canSelectEditNodes", canSelectEditNodes, false);
+    public EditContext setCanSelectEditNodes(Boolean canSelectEditNodes)  throws IllegalStateException {
+        return (EditContext)setAttribute("canSelectEditNodes", canSelectEditNodes, false);
     }
 
     /**
@@ -307,14 +315,15 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * {@link com.smartgwt.client.tools.Palette} to use when an {@link com.smartgwt.client.tools.EditNode} is being created directly by this EditContext, instead of being created due to a user interaction with a palette (eg dragging from a {@link com.smartgwt.client.tools.TreePalette}, or clicking on {@link com.smartgwt.client.tools.MenuPalette}). <P> If no defaultPalette is provided, the EditContext uses an automatically created {@link com.smartgwt.client.tools.HiddenPalette}.
      *
      * @param defaultPalette the default Palette. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      */
-    public void setDefaultPalette(Palette defaultPalette) {
+    public EditContext setDefaultPalette(Palette defaultPalette) {
         // Since Palette is an interface, we need to convert it to a
         // JavaScriptObject dynamically at run-time -- we don't know what class
         // is implementing the interface.
         JavaScriptObject jsoArray = JSOHelper.convertToJavaScriptArray(new Object[] {defaultPalette});
         JavaScriptObject jso = JSOHelper.getValueFromJavaScriptObjectArray(jsoArray, 0);
-        setAttribute("defaultPalette", jso == null ? null : jso, true);
+        return (EditContext)setAttribute("defaultPalette", jso == null ? null : jso, true);
     }
 
     /**
@@ -368,9 +377,10 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * com.smartgwt.client.tools.EditContext#removeNode removeNode()}.
      *
      * @param defaultParent New defaultParent value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      */
-    public void setDefaultParent(EditNode defaultParent) {
-        setAttribute("defaultParent", defaultParent == null ? null : defaultParent.getJsObj(), true);
+    public EditContext setDefaultParent(EditNode defaultParent) {
+        return (EditContext)setAttribute("defaultParent", defaultParent == null ? null : defaultParent.getJsObj(), true);
     }
 
     /**
@@ -397,10 +407,11 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * com.smartgwt.client.tools.EditContext#getSelectedAppearance selectedAppearance} setting.
      *
      * @param editMaskProperties New editMaskProperties value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setEditMaskProperties(Map editMaskProperties)  throws IllegalStateException {
-        setAttribute("editMaskProperties", editMaskProperties, false);
+    public EditContext setEditMaskProperties(Map editMaskProperties)  throws IllegalStateException {
+        return (EditContext)setAttribute("editMaskProperties", editMaskProperties, false);
     }
 
     /**
@@ -424,10 +435,11 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * EditProxy.supportsInlineEdit} is true.
      *
      * @param enableInlineEdit New enableInlineEdit value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setEnableInlineEdit(Boolean enableInlineEdit)  throws IllegalStateException {
-        setAttribute("enableInlineEdit", enableInlineEdit, false);
+    public EditContext setEnableInlineEdit(Boolean enableInlineEdit)  throws IllegalStateException {
+        return (EditContext)setAttribute("enableInlineEdit", enableInlineEdit, false);
     }
 
     /**
@@ -449,14 +461,15 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * again here.
      *
      * @param extraPalettes New extraPalettes value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      */
-    public void setExtraPalettes(Palette... extraPalettes) {
+    public EditContext setExtraPalettes(Palette... extraPalettes) {
         // Since Palette... is an interface, we need to convert it to a
         // JavaScriptObject dynamically at run-time -- we don't know what class
         // is implementing the interface.
         JavaScriptObject jsoArray = JSOHelper.convertToJavaScriptArray(new Object[] {extraPalettes});
         JavaScriptObject jso = JSOHelper.getValueFromJavaScriptObjectArray(jsoArray, 0);
-        setAttribute("extraPalettes", jso == null ? null : jso, true);
+        return (EditContext)setAttribute("extraPalettes", jso == null ? null : jso, true);
     }
 
     /**
@@ -477,10 +490,11 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * is true be hidden during drag? <P> Treated as <code>true</code> if not explicitly set to false.
      *
      * @param hideGroupBorderOnDrag New hideGroupBorderOnDrag value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setHideGroupBorderOnDrag(Boolean hideGroupBorderOnDrag)  throws IllegalStateException {
-        setAttribute("hideGroupBorderOnDrag", hideGroupBorderOnDrag, false);
+    public EditContext setHideGroupBorderOnDrag(Boolean hideGroupBorderOnDrag)  throws IllegalStateException {
+        return (EditContext)setAttribute("hideGroupBorderOnDrag", hideGroupBorderOnDrag, false);
     }
 
     /**
@@ -501,11 +515,12 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * components that come into contact with the hoop.
      *
      * @param hoopSelectionMode New hoopSelectionMode value. Default value is "encloses"
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.types.HoopSelectionStyle
      */
-    public void setHoopSelectionMode(HoopSelectionStyle hoopSelectionMode)  throws IllegalStateException {
-        setAttribute("hoopSelectionMode", hoopSelectionMode == null ? null : hoopSelectionMode.getValue(), false);
+    public EditContext setHoopSelectionMode(HoopSelectionStyle hoopSelectionMode)  throws IllegalStateException {
+        return (EditContext)setAttribute("hoopSelectionMode", hoopSelectionMode == null ? null : hoopSelectionMode.getValue(), false);
     }
 
     /**
@@ -526,10 +541,11 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * Properties to apply to {@link com.smartgwt.client.tools.EditProxy#getHoopSelector EditProxy.hoopSelector}.
      *
      * @param hoopSelectorProperties New hoopSelectorProperties value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setHoopSelectorProperties(Map hoopSelectorProperties)  throws IllegalStateException {
-        setAttribute("hoopSelectorProperties", hoopSelectorProperties, false);
+    public EditContext setHoopSelectorProperties(Map hoopSelectorProperties)  throws IllegalStateException {
+        return (EditContext)setAttribute("hoopSelectorProperties", hoopSelectorProperties, false);
     }
 
     /**
@@ -553,9 +569,10 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * coordinates of children unless <code>EditProxy.persistCoordinates</code> is explicitly set to <code>true</code>.
      *
      * @param persistCoordinates New persistCoordinates value. Default value is true
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      */
-    public void setPersistCoordinates(Boolean persistCoordinates) {
-        setAttribute("persistCoordinates", persistCoordinates, true);
+    public EditContext setPersistCoordinates(Boolean persistCoordinates) {
+        return (EditContext)setAttribute("persistCoordinates", persistCoordinates, true);
     }
 
     /**
@@ -584,11 +601,12 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * getRootEditNode()} to retrieve the {@link com.smartgwt.client.tools.EditNode} created from the rootComponent.
      *
      * @param rootComponent New rootComponent value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.DevTools DevTools overview and related methods
      */
-    public void setRootComponent(PaletteNode rootComponent)  throws IllegalStateException {
-        setAttribute("rootComponent", rootComponent == null ? null : rootComponent.getJsObj(), false);
+    public EditContext setRootComponent(PaletteNode rootComponent)  throws IllegalStateException {
+        return (EditContext)setAttribute("rootComponent", rootComponent == null ? null : rootComponent.getJsObj(), false);
     }
 
     /**
@@ -611,13 +629,14 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * com.smartgwt.client.tools.EditProxy#getSelectedAppearance EditProxy.selectedAppearance}.
      *
      * @param selectedAppearance New selectedAppearance value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.tools.EditContext#setSelectedBorder
      * @see com.smartgwt.client.tools.EditContext#setSelectedTintColor
      * @see com.smartgwt.client.tools.EditContext#setSelectedTintOpacity
      */
-    public void setSelectedAppearance(SelectedAppearance selectedAppearance)  throws IllegalStateException {
-        setAttribute("selectedAppearance", selectedAppearance == null ? null : selectedAppearance.getValue(), false);
+    public EditContext setSelectedAppearance(SelectedAppearance selectedAppearance)  throws IllegalStateException {
+        return (EditContext)setAttribute("selectedAppearance", selectedAppearance == null ? null : selectedAppearance.getValue(), false);
     }
 
     /**
@@ -641,10 +660,11 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * com.smartgwt.client.tools.EditProxy#getSelectedBorder EditProxy.selectedBorder}.
      *
      * @param selectedBorder New selectedBorder value. Default value is "1px dashed #44ff44"
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setSelectedBorder(String selectedBorder)  throws IllegalStateException {
-        setAttribute("selectedBorder", selectedBorder, false);
+    public EditContext setSelectedBorder(String selectedBorder)  throws IllegalStateException {
+        return (EditContext)setAttribute("selectedBorder", selectedBorder, false);
     }
 
     /**
@@ -668,11 +688,12 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * EditProxy.selectedAppearance} is "outlineEdges".
      *
      * @param selectedLabelBackgroundColor New selectedLabelBackgroundColor value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.tools.EditContext#setShowSelectedLabel
      */
-    public void setSelectedLabelBackgroundColor(String selectedLabelBackgroundColor)  throws IllegalStateException {
-        setAttribute("selectedLabelBackgroundColor", selectedLabelBackgroundColor, false);
+    public EditContext setSelectedLabelBackgroundColor(String selectedLabelBackgroundColor)  throws IllegalStateException {
+        return (EditContext)setAttribute("selectedLabelBackgroundColor", selectedLabelBackgroundColor, false);
     }
 
     /**
@@ -696,12 +717,13 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * applied as a default to {@link com.smartgwt.client.tools.EditProxy#getSelectedTintColor EditProxy.selectedTintColor}.
      *
      * @param selectedTintColor New selectedTintColor value. Default value is "#cccccc"
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.tools.EditContext#setSelectedTintOpacity
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      */
-    public void setSelectedTintColor(String selectedTintColor)  throws IllegalStateException {
-        setAttribute("selectedTintColor", selectedTintColor, false);
+    public EditContext setSelectedTintColor(String selectedTintColor)  throws IllegalStateException {
+        return (EditContext)setAttribute("selectedTintColor", selectedTintColor, false);
     }
 
     /**
@@ -725,11 +747,12 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * EditProxy.selectedTintOpacity}.
      *
      * @param selectedTintOpacity New selectedTintOpacity value. Default value is 25
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.tools.EditContext#setSelectedTintColor
      */
-    public void setSelectedTintOpacity(int selectedTintOpacity)  throws IllegalStateException {
-        setAttribute("selectedTintOpacity", selectedTintOpacity, false);
+    public EditContext setSelectedTintOpacity(int selectedTintOpacity)  throws IllegalStateException {
+        return (EditContext)setAttribute("selectedTintOpacity", selectedTintOpacity, false);
     }
 
     /**
@@ -751,10 +774,11 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * hoop selection.
      *
      * @param selectionType New selectionType value. Default value is "multiple"
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      * @see com.smartgwt.client.types.SelectionStyle
      */
-    public void setSelectionType(SelectionStyle selectionType) {
-        setAttribute("selectionType", selectionType == null ? null : selectionType.getValue(), true);
+    public EditContext setSelectionType(SelectionStyle selectionType) {
+        return (EditContext)setAttribute("selectionType", selectionType == null ? null : selectionType.getValue(), true);
     }
 
     /**
@@ -778,10 +802,11 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * EditProxy.selectedAppearance} is "outlineEdges".
      *
      * @param showSelectedLabel New showSelectedLabel value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setShowSelectedLabel(Boolean showSelectedLabel)  throws IllegalStateException {
-        setAttribute("showSelectedLabel", showSelectedLabel, false);
+    public EditContext setShowSelectedLabel(Boolean showSelectedLabel)  throws IllegalStateException {
+        return (EditContext)setAttribute("showSelectedLabel", showSelectedLabel, false);
     }
 
     /**
@@ -809,10 +834,11 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * com.smartgwt.client.tools.EditProxy#getSelectedAppearance EditProxy.selectedAppearance} is "outlineEdges".
      *
      * @param showSelectedLabelOnSelect New showSelectedLabelOnSelect value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setShowSelectedLabelOnSelect(Boolean showSelectedLabelOnSelect)  throws IllegalStateException {
-        setAttribute("showSelectedLabelOnSelect", showSelectedLabelOnSelect, false);
+    public EditContext setShowSelectedLabelOnSelect(Boolean showSelectedLabelOnSelect)  throws IllegalStateException {
+        return (EditContext)setAttribute("showSelectedLabelOnSelect", showSelectedLabelOnSelect, false);
     }
 
     /**
@@ -838,10 +864,11 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
      * editNode or one is added later.
      *
      * @param useCopyPasteShortcuts New useCopyPasteShortcuts value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditContext EditContext} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setUseCopyPasteShortcuts(Boolean useCopyPasteShortcuts)  throws IllegalStateException {
-        setAttribute("useCopyPasteShortcuts", useCopyPasteShortcuts, false);
+    public EditContext setUseCopyPasteShortcuts(Boolean useCopyPasteShortcuts)  throws IllegalStateException {
+        return (EditContext)setAttribute("useCopyPasteShortcuts", useCopyPasteShortcuts, false);
     }
 
     /**
@@ -1621,6 +1648,37 @@ public class EditContext extends BaseClass implements com.smartgwt.client.tools.
             obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
         }
         if (obj && obj.hasOwnProperty("nodeAdded")) delete obj.nodeAdded;
+    }-*/;
+
+	/**
+     * Notification fired when an {@link com.smartgwt.client.tools.EditNode} has been moved to a new position in the component
+     * tree.
+     * @param oldNode node that was removed
+     * @param oldParentNode parent node of the node that was removed
+     * @param newNode node that was added
+     * @param newParentNode parent node of the node that was added
+     * @param rootNode root node of the edit context
+     */
+    public native void nodeMoved(EditNode oldNode, EditNode oldParentNode, EditNode newNode, EditNode newParentNode, EditNode rootNode) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "nodeMoved", "EditNode,EditNode,EditNode,EditNode,EditNode");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.nodeMoved(oldNode.@com.smartgwt.client.core.DataClass::getJsObj()(), oldParentNode.@com.smartgwt.client.core.DataClass::getJsObj()(), newNode.@com.smartgwt.client.core.DataClass::getJsObj()(), newParentNode.@com.smartgwt.client.core.DataClass::getJsObj()(), rootNode.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+	/**
+     * Notification fired when an {@link com.smartgwt.client.tools.EditNode} has been removed from the EditContext
+     * @param removedNode node that was removed
+     * @param parentNode parent node of the node that was removed
+     * @param rootNode root node of the edit context
+     */
+    public native void nodeRemoved(EditNode removedNode, EditNode parentNode, EditNode rootNode) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "nodeRemoved", "EditNode,EditNode,EditNode");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.nodeRemoved(removedNode.@com.smartgwt.client.core.DataClass::getJsObj()(), parentNode.@com.smartgwt.client.core.DataClass::getJsObj()(), rootNode.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
 	/**

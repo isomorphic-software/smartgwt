@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Configuration object for effect to apply during an animated show or hide.
@@ -102,9 +105,10 @@ public class AnimateShowEffect extends DataClass {
      * Effect to apply
      *
      * @param effect New effect value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.AnimateShowEffect AnimateShowEffect} instance, for chaining setter calls
      */
-    public void setEffect(AnimationEffect effect) {
-        setAttribute("effect", effect == null ? null : effect.getValue());
+    public AnimateShowEffect setEffect(AnimationEffect effect) {
+        return (AnimateShowEffect)setAttribute("effect", effect == null ? null : effect.getValue());
     }
 
     /**
@@ -123,9 +127,10 @@ public class AnimateShowEffect extends DataClass {
      * default behavior) and <code>"L"</code> (horizontal animation to the left of the   canvas).
      *
      * @param endAt New endAt value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.AnimateShowEffect AnimateShowEffect} instance, for chaining setter calls
      */
-    public void setEndAt(String endAt) {
-        setAttribute("endAt", endAt);
+    public AnimateShowEffect setEndAt(String endAt) {
+        return (AnimateShowEffect)setAttribute("endAt", endAt);
     }
 
     /**
@@ -144,10 +149,11 @@ public class AnimateShowEffect extends DataClass {
      * Use {@link com.smartgwt.client.widgets.drawing.AnimateShowEffect#getEndAt endAt} instead.
      *
      * @param endsAt New endsAt value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.AnimateShowEffect AnimateShowEffect} instance, for chaining setter calls
      * @deprecated This property was misnamed.
      */
-    public void setEndsAt(String endsAt) {
-        setAttribute("endsAt", endsAt);
+    public AnimateShowEffect setEndsAt(String endsAt) {
+        return (AnimateShowEffect)setAttribute("endsAt", endsAt);
     }
 
     /**
@@ -167,9 +173,10 @@ public class AnimateShowEffect extends DataClass {
      * behavior), and <code>"L"</code> (horizontal animation from the left side).
      *
      * @param startFrom New startFrom value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.AnimateShowEffect AnimateShowEffect} instance, for chaining setter calls
      */
-    public void setStartFrom(String startFrom) {
-        setAttribute("startFrom", startFrom);
+    public AnimateShowEffect setStartFrom(String startFrom) {
+        return (AnimateShowEffect)setAttribute("startFrom", startFrom);
     }
 
     /**

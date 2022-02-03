@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -203,11 +206,12 @@ public class Dialog extends Window implements com.smartgwt.client.widgets.events
      * Icon to show in the  {@link com.smartgwt.client.util.SC#ask SC.ask()} dialog.
      *
      * @param askIcon New askIcon value. Default value is "[SKIN]ask.png"
+     * @return {@link com.smartgwt.client.widgets.Dialog Dialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setAskIcon(String askIcon)  throws IllegalStateException {
-        setAttribute("askIcon", askIcon, false);
+    public Dialog setAskIcon(String askIcon)  throws IllegalStateException {
+        return (Dialog)setAttribute("askIcon", askIcon, false);
     }
 
     /**
@@ -222,18 +226,21 @@ public class Dialog extends Window implements com.smartgwt.client.widgets.events
     
 
     /**
-     * If a toolbar is showing, automatically place keyboard focus in the first button.
+     * If a toolbar is showing, automatically place keyboard focus in the first button. <p> An alternative button can be
+     * specified by {@link com.smartgwt.client.widgets.Dialog#getAutoFocusButton autoFocusButton}.
      *
      * @param autoFocus New autoFocus value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Dialog Dialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setAutoFocus(Boolean autoFocus)  throws IllegalStateException {
-        setAttribute("autoFocus", autoFocus, false);
+    public Dialog setAutoFocus(Boolean autoFocus)  throws IllegalStateException {
+        return (Dialog)setAttribute("autoFocus", autoFocus, false);
     }
 
     /**
-     * If a toolbar is showing, automatically place keyboard focus in the first button.
+     * If a toolbar is showing, automatically place keyboard focus in the first button. <p> An alternative button can be
+     * specified by {@link com.smartgwt.client.widgets.Dialog#getAutoFocusButton autoFocusButton}.
      *
      * @return Current autoFocus value. Default value is true
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -243,17 +250,97 @@ public class Dialog extends Window implements com.smartgwt.client.widgets.events
         return result == null ? true : result;
     }
     
+
+    /**
+     * If a toolbar is showing and {@link com.smartgwt.client.widgets.Dialog#getAutoFocus autoFocus} is enabled, which button
+     * should receive initial focus.
+     *
+     * @param autoFocusButton New autoFocusButton value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Dialog Dialog} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public Dialog setAutoFocusButton(Canvas autoFocusButton)  throws IllegalStateException {
+        return (Dialog)setAttribute("autoFocusButton", autoFocusButton == null ? null : autoFocusButton.getOrCreateJsObj(), false);
+    }
+
+    /**
+     * If a toolbar is showing and {@link com.smartgwt.client.widgets.Dialog#getAutoFocus autoFocus} is enabled, which button
+     * should receive initial focus.
+     *
+     * @return Current autoFocusButton value. Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public Canvas getAutoFocusButton()  {
+        return (Canvas)Canvas.getByJSObject(getAttributeAsJavaScriptObject("autoFocusButton"));
+    }
+
+    /**
+     * If a toolbar is showing and {@link com.smartgwt.client.widgets.Dialog#getAutoFocus autoFocus} is enabled, which button
+     * should receive initial focus.
+     *
+     * @param autoFocusButton New autoFocusButton value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Dialog Dialog} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public Dialog setAutoFocusButton(String autoFocusButton)  throws IllegalStateException {
+        return (Dialog)setAttribute("autoFocusButton", autoFocusButton, false);
+    }
+
+    /**
+     * If a toolbar is showing and {@link com.smartgwt.client.widgets.Dialog#getAutoFocus autoFocus} is enabled, which button
+     * should receive initial focus.
+     *
+     * @return Current autoFocusButton value. Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public String getAutoFocusButtonAsString()  {
+        return getAttributeAsString("autoFocusButton");
+    }
+
+    /**
+     * If a toolbar is showing and {@link com.smartgwt.client.widgets.Dialog#getAutoFocus autoFocus} is enabled, which button
+     * should receive initial focus.
+     *
+     * @param autoFocusButton New autoFocusButton value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Dialog Dialog} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public Dialog setAutoFocusButton(int autoFocusButton)  throws IllegalStateException {
+        return (Dialog)setAttribute("autoFocusButton", autoFocusButton, false);
+    }
+
+    /**
+     * If a toolbar is showing and {@link com.smartgwt.client.widgets.Dialog#getAutoFocus autoFocus} is enabled, which button
+     * should receive initial focus.
+     *
+     * <p><b>Note :</b> This method will return -1 if the underlying SmartClient JavaScript
+     * attribute value cannot be expressed as a(n) int.  In that case, other
+     * getters,  similarly-named but ending in <code>AsString</code>, <code>AsCanvas</code>,
+     * etc., may be provided.
+     *
+     * @return Current autoFocusButton value. Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public int getAutoFocusButtonAsInt()  {
+        if (!(getAttributeAsObject("autoFocusButton") instanceof Integer)) { return -1; }
+        return getAttributeAsInt("autoFocusButton");
+    }
+    
     
 
     /**
      * Icon to show in the  {@link com.smartgwt.client.util.SC#confirm SC.confirm()} dialog.
      *
      * @param confirmIcon New confirmIcon value. Default value is "[SKIN]confirm.png"
+     * @return {@link com.smartgwt.client.widgets.Dialog Dialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setConfirmIcon(String confirmIcon)  throws IllegalStateException {
-        setAttribute("confirmIcon", confirmIcon, false);
+    public Dialog setConfirmIcon(String confirmIcon)  throws IllegalStateException {
+        return (Dialog)setAttribute("confirmIcon", confirmIcon, false);
     }
 
     /**
@@ -271,11 +358,12 @@ public class Dialog extends Window implements com.smartgwt.client.widgets.events
      * 
      *
      * @param defaultWidth New defaultWidth value. Default value is 360
+     * @return {@link com.smartgwt.client.widgets.Dialog Dialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setDefaultWidth(int defaultWidth)  throws IllegalStateException {
-        setAttribute("defaultWidth", defaultWidth, false);
+    public Dialog setDefaultWidth(int defaultWidth)  throws IllegalStateException {
+        return (Dialog)setAttribute("defaultWidth", defaultWidth, false);
     }
 
     /**
@@ -293,11 +381,12 @@ public class Dialog extends Window implements com.smartgwt.client.widgets.events
      * Icon to show in this dialog - see {@link com.smartgwt.client.widgets.Dialog#getMessage message}.
      *
      * @param icon New icon value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Dialog Dialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setIcon(String icon)  throws IllegalStateException {
-        setAttribute("icon", icon, false);
+    public Dialog setIcon(String icon)  throws IllegalStateException {
+        return (Dialog)setAttribute("icon", icon, false);
     }
 
     /**
@@ -315,10 +404,11 @@ public class Dialog extends Window implements com.smartgwt.client.widgets.events
      * Size of the icon to show in this dialog.
      *
      * @param iconSize New iconSize value. Default value is 32
+     * @return {@link com.smartgwt.client.widgets.Dialog Dialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setIconSize(int iconSize)  throws IllegalStateException {
-        setAttribute("iconSize", iconSize, false);
+    public Dialog setIconSize(int iconSize)  throws IllegalStateException {
+        return (Dialog)setAttribute("iconSize", iconSize, false);
     }
 
     /**
@@ -346,11 +436,12 @@ public class Dialog extends Window implements com.smartgwt.client.widgets.events
      * com.smartgwt.client.widgets.Dialog#getMessageStyle messageStyle}.
      *
      * @param message New message value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Dialog Dialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setMessage(String message)  throws IllegalStateException {
-        setAttribute("message", message, false);
+    public Dialog setMessage(String message)  throws IllegalStateException {
+        return (Dialog)setAttribute("message", message, false);
     }
 
     /**
@@ -426,11 +517,12 @@ public class Dialog extends Window implements com.smartgwt.client.widgets.events
      * Icon to show in the  {@link com.smartgwt.client.util.SC#say SC.say()} dialog.
      *
      * @param sayIcon New sayIcon value. Default value is "[SKIN]say.png"
+     * @return {@link com.smartgwt.client.widgets.Dialog Dialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setSayIcon(String sayIcon)  throws IllegalStateException {
-        setAttribute("sayIcon", sayIcon, false);
+    public Dialog setSayIcon(String sayIcon)  throws IllegalStateException {
+        return (Dialog)setAttribute("sayIcon", sayIcon, false);
     }
 
     /**
@@ -450,11 +542,12 @@ public class Dialog extends Window implements com.smartgwt.client.widgets.events
      * com.smartgwt.client.widgets.Dialog#getToolbarButtons toolbarButtons} contains buttons or not.
      *
      * @param showToolbar New showToolbar value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Dialog Dialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowToolbar(Boolean showToolbar)  throws IllegalStateException {
-        setAttribute("showToolbar", showToolbar, false);
+    public Dialog setShowToolbar(Boolean showToolbar)  throws IllegalStateException {
+        return (Dialog)setAttribute("showToolbar", showToolbar, false);
     }
 
     /**
@@ -514,11 +607,12 @@ public class Dialog extends Window implements com.smartgwt.client.widgets.events
      * Icon to show in the  {@link com.smartgwt.client.util.SC#warn SC.warn()} dialog.
      *
      * @param warnIcon New warnIcon value. Default value is "[SKIN]warn.png"
+     * @return {@link com.smartgwt.client.widgets.Dialog Dialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setWarnIcon(String warnIcon)  throws IllegalStateException {
-        setAttribute("warnIcon", warnIcon, false);
+    public Dialog setWarnIcon(String warnIcon)  throws IllegalStateException {
+        return (Dialog)setAttribute("warnIcon", warnIcon, false);
     }
 
     /**
@@ -533,6 +627,19 @@ public class Dialog extends Window implements com.smartgwt.client.widgets.events
     
 
     // ********************* Methods ***********************
+	/**
+     * Fires when any button in this Dialog's toolbar is clicked.  Default implementation does nothing.
+     * @param button button that was clicked
+     * @param index index of the button that was clicked
+     */
+    public native void buttonClick(StatefulCanvas button, int index) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "buttonClick", "StatefulCanvas,int");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.buttonClick(button == null ? null : button.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), index);
+    }-*/;
+
     /**
      * Add a buttonClick handler.
      * <p>
@@ -772,6 +879,16 @@ public class Dialog extends Window implements com.smartgwt.client.widgets.events
             s.autoFocus = getAttributeAsString("autoFocus");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Dialog.autoFocus:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoFocusButtonAsCanvas = getAutoFocusButton();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Dialog.autoFocusButtonAsCanvas:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoFocusButtonAsString = getAttributeAsString("autoFocusButton");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Dialog.autoFocusButtonAsString:" + t.getMessage() + "\n";
         }
         try {
             s.confirmIcon = getAttributeAsString("confirmIcon");

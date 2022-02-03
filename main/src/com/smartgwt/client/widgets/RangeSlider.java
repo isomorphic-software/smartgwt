@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -198,11 +201,12 @@ public class RangeSlider extends Canvas implements com.smartgwt.client.widgets.e
      * before the start thumb, that area will have the CSS style "rangeSliderStartDown".
      *
      * @param baseStyle New baseStyle value. Default value is "rangeSlider"
+     * @return {@link com.smartgwt.client.widgets.RangeSlider RangeSlider} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setBaseStyle(String baseStyle)  throws IllegalStateException {
-        setAttribute("baseStyle", baseStyle, false);
+    public RangeSlider setBaseStyle(String baseStyle)  throws IllegalStateException {
+        return (RangeSlider)setAttribute("baseStyle", baseStyle, false);
     }
 
     /**
@@ -240,10 +244,11 @@ public class RangeSlider extends Canvas implements com.smartgwt.client.widgets.e
      * The end of the selected range.
      *
      * @param endValue New endValue value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.RangeSlider RangeSlider} instance, for chaining setter calls
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setEndValue(float endValue) {
-        setAttribute("endValue", endValue, true);
+    public RangeSlider setEndValue(float endValue) {
+        return (RangeSlider)setAttribute("endValue", endValue, true);
     }
 
     /**
@@ -260,9 +265,10 @@ public class RangeSlider extends Canvas implements com.smartgwt.client.widgets.e
      * The end of the selected range.
      *
      * @param endValue New endValue value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.RangeSlider RangeSlider} instance, for chaining setter calls
      */
-    public void setEndValue(double endValue) {
-        setAttribute("endValue", endValue, true);
+    public RangeSlider setEndValue(double endValue) {
+        return (RangeSlider)setAttribute("endValue", endValue, true);
     }
 
     /**
@@ -279,10 +285,11 @@ public class RangeSlider extends Canvas implements com.smartgwt.client.widgets.e
      * Set the maximum value (right/bottom of slider).
      *
      * @param maxValue New maxValue value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.RangeSlider RangeSlider} instance, for chaining setter calls
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setMaxValue(float maxValue) {
-        setAttribute("maxValue", maxValue, true);
+    public RangeSlider setMaxValue(float maxValue) {
+        return (RangeSlider)setAttribute("maxValue", maxValue, true);
     }
 
     /**
@@ -299,9 +306,10 @@ public class RangeSlider extends Canvas implements com.smartgwt.client.widgets.e
      * Set the maximum value (right/bottom of slider).
      *
      * @param maxValue New maxValue value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.RangeSlider RangeSlider} instance, for chaining setter calls
      */
-    public void setMaxValue(double maxValue) {
-        setAttribute("maxValue", maxValue, true);
+    public RangeSlider setMaxValue(double maxValue) {
+        return (RangeSlider)setAttribute("maxValue", maxValue, true);
     }
 
     /**
@@ -318,10 +326,11 @@ public class RangeSlider extends Canvas implements com.smartgwt.client.widgets.e
      * Set the minimum value (left/top of slider).
      *
      * @param minValue New minValue value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.RangeSlider RangeSlider} instance, for chaining setter calls
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setMinValue(float minValue) {
-        setAttribute("minValue", minValue, true);
+    public RangeSlider setMinValue(float minValue) {
+        return (RangeSlider)setAttribute("minValue", minValue, true);
     }
 
     /**
@@ -338,9 +347,10 @@ public class RangeSlider extends Canvas implements com.smartgwt.client.widgets.e
      * Set the minimum value (left/top of slider).
      *
      * @param minValue New minValue value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.RangeSlider RangeSlider} instance, for chaining setter calls
      */
-    public void setMinValue(double minValue) {
-        setAttribute("minValue", minValue, true);
+    public RangeSlider setMinValue(double minValue) {
+        return (RangeSlider)setAttribute("minValue", minValue, true);
     }
 
     /**
@@ -387,10 +397,11 @@ public class RangeSlider extends Canvas implements com.smartgwt.client.widgets.e
      * The beginning of the selected range.
      *
      * @param startValue New startValue value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.RangeSlider RangeSlider} instance, for chaining setter calls
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setStartValue(float startValue) {
-        setAttribute("startValue", startValue, true);
+    public RangeSlider setStartValue(float startValue) {
+        return (RangeSlider)setAttribute("startValue", startValue, true);
     }
 
     /**
@@ -407,9 +418,10 @@ public class RangeSlider extends Canvas implements com.smartgwt.client.widgets.e
      * The beginning of the selected range.
      *
      * @param startValue New startValue value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.RangeSlider RangeSlider} instance, for chaining setter calls
      */
-    public void setStartValue(double startValue) {
-        setAttribute("startValue", startValue, true);
+    public RangeSlider setStartValue(double startValue) {
+        return (RangeSlider)setAttribute("startValue", startValue, true);
     }
 
     /**
@@ -442,10 +454,11 @@ public class RangeSlider extends Canvas implements com.smartgwt.client.widgets.e
      * Whether the rangeSlider should be vertical or horizontal.  Default is horizontal.
      *
      * @param vertical New vertical value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.RangeSlider RangeSlider} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setVertical(boolean vertical)  throws IllegalStateException {
-        setAttribute("vertical", vertical, false);
+    public RangeSlider setVertical(boolean vertical)  throws IllegalStateException {
+        return (RangeSlider)setAttribute("vertical", vertical, false);
     }
 
     /**

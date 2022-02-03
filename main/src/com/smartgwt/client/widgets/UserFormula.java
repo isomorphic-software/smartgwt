@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,19 +65,28 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * An object representing a user-created and user-modifiable formula, which can be created and edited with a FormulaBuilder
  * either directly or via the {@link com.smartgwt.client.widgets.grid.ListGrid#getCanAddFormulaFields
- * ListGrid.canAddFormulaFields} behavior.
+ * ListGrid.canAddFormulaFields} behavior. <p> Note that the current implementation of UserFormula simply executes {@link
+ * com.smartgwt.client.widgets.UserFormula#getText text} as a JavaScript string after making special variables and methods
+ * available to the formula. It is safe to allow users to define formulas for themselves (since an end user can always
+ * execute whatever JavaScript they want via the browser's built-in developer tools), and is safe to allow formulas to be
+ * shared between trusted users.  However it would not be safe to allow an untrusted user to create formulas that are
+ * shared to other users. <p> Also, while the current implementation would allow creation of a formula that calls
+ * JavaScript functions that are not part of the standard or custom  MathFunctions, this should not be relied upon, as
+ * future versions of the formula engine may prohibit such calls.
  */
 @BeanFactory.FrameworkClass
 public class UserFormula extends DataClass {
@@ -136,9 +146,10 @@ public class UserFormula extends DataClass {
      *  current {@link com.smartgwt.client.widgets.Canvas#getRuleScope rule context}.
      *
      * @param formulaVars New formulaVars value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.UserFormula UserFormula} instance, for chaining setter calls
      */
-    public void setFormulaVars(Map formulaVars) {
-        setAttribute("formulaVars", formulaVars);
+    public UserFormula setFormulaVars(Map formulaVars) {
+        return (UserFormula)setAttribute("formulaVars", formulaVars);
     }
 
     /**
@@ -180,12 +191,14 @@ public class UserFormula extends DataClass {
      * addition to these variables, the keyword <code>record</code> may be used to refer directly to the record for which the
      * formula is being displayed. <P> In the second usage context variables are dot-separated (.) names representing the
      * nested hierarchy path to the desired value within the {@link com.smartgwt.client.widgets.Canvas#getRuleScope rule
-     * context}. No mapping with {@link com.smartgwt.client.widgets.UserFormula#getFormulaVars formulaVars} is needed.
+     * context}. No mapping with {@link com.smartgwt.client.widgets.UserFormula#getFormulaVars formulaVars} is needed. <P> The
+     * formula text must be valid JavaScript code and may only call either the built-in  MathFunctions or a  custom\n function.
      *
      * @param text New text value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.UserFormula UserFormula} instance, for chaining setter calls
      */
-    public void setText(String text) {
-        setAttribute("text", text);
+    public UserFormula setText(String text) {
+        return (UserFormula)setAttribute("text", text);
     }
 
     /**
@@ -198,7 +211,8 @@ public class UserFormula extends DataClass {
      * addition to these variables, the keyword <code>record</code> may be used to refer directly to the record for which the
      * formula is being displayed. <P> In the second usage context variables are dot-separated (.) names representing the
      * nested hierarchy path to the desired value within the {@link com.smartgwt.client.widgets.Canvas#getRuleScope rule
-     * context}. No mapping with {@link com.smartgwt.client.widgets.UserFormula#getFormulaVars formulaVars} is needed.
+     * context}. No mapping with {@link com.smartgwt.client.widgets.UserFormula#getFormulaVars formulaVars} is needed. <P> The
+     * formula text must be valid JavaScript code and may only call either the built-in  MathFunctions or a  custom\n function.
      *
      * @return Current text value. Default value is null
      */

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * An EditProxy is attached to an editable component when editMode is enabled. This proxy has methods and properties which
@@ -154,10 +157,11 @@ public class EditProxy extends BaseClass {
      * whether a drop can be made into this component.
      *
      * @param allowNestedDrops New allowNestedDrops value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditProxy EditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setAllowNestedDrops(Boolean allowNestedDrops)  throws IllegalStateException {
-        setAttribute("allowNestedDrops", allowNestedDrops, false);
+    public EditProxy setAllowNestedDrops(Boolean allowNestedDrops)  throws IllegalStateException {
+        return (EditProxy)setAttribute("allowNestedDrops", allowNestedDrops, false);
     }
 
     /**
@@ -178,10 +182,11 @@ public class EditProxy extends BaseClass {
      * com.smartgwt.client.tools.EditProxy#getUseEditMask useEditMask} <code>true</code> if not explicitly set?
      *
      * @param autoMaskChildren New autoMaskChildren value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditProxy EditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setAutoMaskChildren(Boolean autoMaskChildren)  throws IllegalStateException {
-        setAttribute("autoMaskChildren", autoMaskChildren, false);
+    public EditProxy setAutoMaskChildren(Boolean autoMaskChildren)  throws IllegalStateException {
+        return (EditProxy)setAttribute("autoMaskChildren", autoMaskChildren, false);
     }
 
     /**
@@ -200,10 +205,11 @@ public class EditProxy extends BaseClass {
      * com.smartgwt.client.tools.EditProxy#getUseEditMask useEditMask}:true.
      *
      * @param bringToFrontOnSelect New bringToFrontOnSelect value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditProxy EditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setBringToFrontOnSelect(Boolean bringToFrontOnSelect)  throws IllegalStateException {
-        setAttribute("bringToFrontOnSelect", bringToFrontOnSelect, false);
+    public EditProxy setBringToFrontOnSelect(Boolean bringToFrontOnSelect)  throws IllegalStateException {
+        return (EditProxy)setAttribute("bringToFrontOnSelect", bringToFrontOnSelect, false);
     }
 
     /**
@@ -221,10 +227,11 @@ public class EditProxy extends BaseClass {
      * Can this component be selected? Selection is allowed unless this property is set to <code>false</code>.
      *
      * @param canSelect New canSelect value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditProxy EditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setCanSelect(Boolean canSelect)  throws IllegalStateException {
-        setAttribute("canSelect", canSelect, false);
+    public EditProxy setCanSelect(Boolean canSelect)  throws IllegalStateException {
+        return (EditProxy)setAttribute("canSelect", canSelect, false);
     }
 
     /**
@@ -253,10 +260,11 @@ public class EditProxy extends BaseClass {
      * Setter for {@link com.smartgwt.client.tools.EditProxy#getCanSelectChildren canSelectChildren}.
      *
      * @param canSelectChildren the new canSelectChildren. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditProxy EditProxy} instance, for chaining setter calls
      * @see com.smartgwt.client.tools.EditContext#setCanSelectEditNodes
      */
-    public void setCanSelectChildren(Boolean canSelectChildren) {
-        setAttribute("canSelectChildren", canSelectChildren, true);
+    public EditProxy setCanSelectChildren(Boolean canSelectChildren) {
+        return (EditProxy)setAttribute("canSelectChildren", canSelectChildren, true);
     }
 
     /**
@@ -285,9 +293,10 @@ public class EditProxy extends BaseClass {
      * snapResizeToGrid functionality to be enforced during edit mode but not when live.
      *
      * @param childrenSnapResizeToGrid New childrenSnapResizeToGrid value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditProxy EditProxy} instance, for chaining setter calls
      */
-    public void setChildrenSnapResizeToGrid(Boolean childrenSnapResizeToGrid) {
-        setAttribute("childrenSnapResizeToGrid", childrenSnapResizeToGrid, true);
+    public EditProxy setChildrenSnapResizeToGrid(Boolean childrenSnapResizeToGrid) {
+        return (EditProxy)setAttribute("childrenSnapResizeToGrid", childrenSnapResizeToGrid, true);
     }
 
     /**
@@ -308,9 +317,10 @@ public class EditProxy extends BaseClass {
      * functionality to be enforced during edit mode but not when live.
      *
      * @param childrenSnapToGrid New childrenSnapToGrid value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditProxy EditProxy} instance, for chaining setter calls
      */
-    public void setChildrenSnapToGrid(Boolean childrenSnapToGrid) {
-        setAttribute("childrenSnapToGrid", childrenSnapToGrid, true);
+    public EditProxy setChildrenSnapToGrid(Boolean childrenSnapToGrid) {
+        return (EditProxy)setAttribute("childrenSnapToGrid", childrenSnapToGrid, true);
     }
 
     /**
@@ -368,10 +378,11 @@ public class EditProxy extends BaseClass {
      * com.smartgwt.client.tools.EditProxy} subclasses have built-in modes for inline editing.
      *
      * @param inlineEditEvent New inlineEditEvent value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditProxy EditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setInlineEditEvent(InlineEditEvent inlineEditEvent)  throws IllegalStateException {
-        setAttribute("inlineEditEvent", inlineEditEvent == null ? null : inlineEditEvent.getValue(), false);
+    public EditProxy setInlineEditEvent(InlineEditEvent inlineEditEvent)  throws IllegalStateException {
+        return (EditProxy)setAttribute("inlineEditEvent", inlineEditEvent == null ? null : inlineEditEvent.getValue(), false);
     }
 
     /**
@@ -427,11 +438,12 @@ public class EditProxy extends BaseClass {
      * com.smartgwt.client.tools.EditProxy#getInlineEditInstructionLabel inlineEditInstructionLabel}.
      *
      * @param inlineEditInstructions New inlineEditInstructions value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditProxy EditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setInlineEditInstructions(String inlineEditInstructions)  throws IllegalStateException {
-        setAttribute("inlineEditInstructions", inlineEditInstructions, false);
+    public EditProxy setInlineEditInstructions(String inlineEditInstructions)  throws IllegalStateException {
+        return (EditProxy)setAttribute("inlineEditInstructions", inlineEditInstructions, false);
     }
 
     /**
@@ -452,10 +464,11 @@ public class EditProxy extends BaseClass {
      * multiline covers the control.
      *
      * @param inlineEditMultiline New inlineEditMultiline value. Default value is false
+     * @return {@link com.smartgwt.client.tools.EditProxy EditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setInlineEditMultiline(Boolean inlineEditMultiline)  throws IllegalStateException {
-        setAttribute("inlineEditMultiline", inlineEditMultiline, false);
+    public EditProxy setInlineEditMultiline(Boolean inlineEditMultiline)  throws IllegalStateException {
+        return (EditProxy)setAttribute("inlineEditMultiline", inlineEditMultiline, false);
     }
 
     /**
@@ -474,10 +487,11 @@ public class EditProxy extends BaseClass {
      * Should the inline editor be shown when new component is first dropped?
      *
      * @param inlineEditOnDrop New inlineEditOnDrop value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditProxy EditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setInlineEditOnDrop(Boolean inlineEditOnDrop)  throws IllegalStateException {
-        setAttribute("inlineEditOnDrop", inlineEditOnDrop, false);
+    public EditProxy setInlineEditOnDrop(Boolean inlineEditOnDrop)  throws IllegalStateException {
+        return (EditProxy)setAttribute("inlineEditOnDrop", inlineEditOnDrop, false);
     }
 
     /**
@@ -503,9 +517,10 @@ public class EditProxy extends BaseClass {
      * com.smartgwt.client.tools.EditContext#getPersistCoordinates EditContext.persistCoordinates} to <code>null</code>.
      *
      * @param persistCoordinates New persistCoordinates value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditProxy EditProxy} instance, for chaining setter calls
      */
-    public void setPersistCoordinates(Boolean persistCoordinates) {
-        setAttribute("persistCoordinates", persistCoordinates, true);
+    public EditProxy setPersistCoordinates(Boolean persistCoordinates) {
+        return (EditProxy)setAttribute("persistCoordinates", persistCoordinates, true);
     }
 
     /**
@@ -534,13 +549,14 @@ public class EditProxy extends BaseClass {
      * <li>Otherwise, "outlineMask" is used  </ul>
      *
      * @param selectedAppearance New selectedAppearance value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditProxy EditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.tools.EditProxy#setSelectedBorder
      * @see com.smartgwt.client.tools.EditProxy#setSelectedTintColor
      * @see com.smartgwt.client.tools.EditProxy#setSelectedTintOpacity
      */
-    public void setSelectedAppearance(SelectedAppearance selectedAppearance)  throws IllegalStateException {
-        setAttribute("selectedAppearance", selectedAppearance == null ? null : selectedAppearance.getValue(), false);
+    public EditProxy setSelectedAppearance(SelectedAppearance selectedAppearance)  throws IllegalStateException {
+        return (EditProxy)setAttribute("selectedAppearance", selectedAppearance == null ? null : selectedAppearance.getValue(), false);
     }
 
     /**
@@ -566,10 +582,11 @@ public class EditProxy extends BaseClass {
      * <code>outlineEdges</code>.
      *
      * @param selectedBorder New selectedBorder value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditProxy EditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setSelectedBorder(String selectedBorder)  throws IllegalStateException {
-        setAttribute("selectedBorder", selectedBorder, false);
+    public EditProxy setSelectedBorder(String selectedBorder)  throws IllegalStateException {
+        return (EditProxy)setAttribute("selectedBorder", selectedBorder, false);
     }
 
     /**
@@ -593,10 +610,11 @@ public class EditProxy extends BaseClass {
      * selectedAppearance} is "outlineEdges".
      *
      * @param selectedLabelBackgroundColor New selectedLabelBackgroundColor value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditProxy EditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setSelectedLabelBackgroundColor(String selectedLabelBackgroundColor)  throws IllegalStateException {
-        setAttribute("selectedLabelBackgroundColor", selectedLabelBackgroundColor, false);
+    public EditProxy setSelectedLabelBackgroundColor(String selectedLabelBackgroundColor)  throws IllegalStateException {
+        return (EditProxy)setAttribute("selectedLabelBackgroundColor", selectedLabelBackgroundColor, false);
     }
 
     /**
@@ -619,12 +637,13 @@ public class EditProxy extends BaseClass {
      * from {@link com.smartgwt.client.tools.EditContext#getSelectedTintColor EditContext.selectedTintColor}.
      *
      * @param selectedTintColor New selectedTintColor value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditProxy EditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.tools.EditProxy#setSelectedTintOpacity
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      */
-    public void setSelectedTintColor(String selectedTintColor)  throws IllegalStateException {
-        setAttribute("selectedTintColor", selectedTintColor, false);
+    public EditProxy setSelectedTintColor(String selectedTintColor)  throws IllegalStateException {
+        return (EditProxy)setAttribute("selectedTintColor", selectedTintColor, false);
     }
 
     /**
@@ -646,11 +665,12 @@ public class EditProxy extends BaseClass {
      * com.smartgwt.client.tools.EditProxy#getSelectedAppearance selectedAppearance} is "tintMask".
      *
      * @param selectedTintOpacity New selectedTintOpacity value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditProxy EditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.tools.EditProxy#setSelectedTintColor
      */
-    public void setSelectedTintOpacity(Integer selectedTintOpacity)  throws IllegalStateException {
-        setAttribute("selectedTintOpacity", selectedTintOpacity, false);
+    public EditProxy setSelectedTintOpacity(Integer selectedTintOpacity)  throws IllegalStateException {
+        return (EditProxy)setAttribute("selectedTintOpacity", selectedTintOpacity, false);
     }
 
     /**
@@ -666,6 +686,29 @@ public class EditProxy extends BaseClass {
     
 
     /**
+     * Should drag handles or thumb be shown when this component is selected? These are shown unless this property is set to
+     * <code>false</code>.
+     *
+     * @param showDragHandle New showDragHandle value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditProxy EditProxy} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public EditProxy setShowDragHandle(Boolean showDragHandle)  throws IllegalStateException {
+        return (EditProxy)setAttribute("showDragHandle", showDragHandle, false);
+    }
+
+    /**
+     * Should drag handles or thumb be shown when this component is selected? These are shown unless this property is set to
+     * <code>false</code>.
+     *
+     * @return Current showDragHandle value. Default value is null
+     */
+    public Boolean getShowDragHandle()  {
+        return getAttributeAsBoolean("showDragHandle");
+    }
+    
+
+    /**
      * Whether this EditProxy has an inline edit behavior, which allows an end user to configure a component by editing a
      * simple text representation of its configuration.   <p> For example, when inline edit is enabled, a {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem} allows {@link
@@ -675,10 +718,11 @@ public class EditProxy extends BaseClass {
      * more details and configuration options.
      *
      * @param supportsInlineEdit New supportsInlineEdit value. Default value is true
+     * @return {@link com.smartgwt.client.tools.EditProxy EditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setSupportsInlineEdit(Boolean supportsInlineEdit)  throws IllegalStateException {
-        setAttribute("supportsInlineEdit", supportsInlineEdit, false);
+    public EditProxy setSupportsInlineEdit(Boolean supportsInlineEdit)  throws IllegalStateException {
+        return (EditProxy)setAttribute("supportsInlineEdit", supportsInlineEdit, false);
     }
 
     /**
@@ -710,10 +754,11 @@ public class EditProxy extends BaseClass {
      * editNodeTree}.
      *
      * @param useCopyPasteShortcuts New useCopyPasteShortcuts value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditProxy EditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setUseCopyPasteShortcuts(Boolean useCopyPasteShortcuts)  throws IllegalStateException {
-        setAttribute("useCopyPasteShortcuts", useCopyPasteShortcuts, false);
+    public EditProxy setUseCopyPasteShortcuts(Boolean useCopyPasteShortcuts)  throws IllegalStateException {
+        return (EditProxy)setAttribute("useCopyPasteShortcuts", useCopyPasteShortcuts, false);
     }
 
     /**
@@ -741,10 +786,11 @@ public class EditProxy extends BaseClass {
      * com.smartgwt.client.tools.EditProxy#getAutoMaskChildren autoMaskChildren} is <code>true</code>.
      *
      * @param useEditMask New useEditMask value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditProxy EditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setUseEditMask(Boolean useEditMask)  throws IllegalStateException {
-        setAttribute("useEditMask", useEditMask, false);
+    public EditProxy setUseEditMask(Boolean useEditMask)  throws IllegalStateException {
+        return (EditProxy)setAttribute("useEditMask", useEditMask, false);
     }
 
     /**

@@ -246,6 +246,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.data.OperationBinding#getBeanClassName
  * @see com.smartgwt.client.data.OperationBinding#getOperationType
  * @see com.smartgwt.client.data.OperationBinding#getOperationId
+ * @see com.smartgwt.client.data.OperationBinding#getRequiredCriterion
  * @see com.smartgwt.client.data.OperationBinding#getWsOperation
  * @see com.smartgwt.client.data.OperationBinding#getDataURL
  * @see com.smartgwt.client.data.OperationBinding#getDataProtocol

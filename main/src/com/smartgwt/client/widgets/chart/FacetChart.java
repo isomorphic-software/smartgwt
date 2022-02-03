@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -479,10 +482,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * data.
      *
      * @param allowBubbleGradients New allowBubbleGradients value. Default value is !(isc.Browser.isIE &amp;&amp; isc.Browser.version &lt;= 8)
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAllowBubbleGradients(boolean allowBubbleGradients)  throws IllegalStateException {
-        setAttribute("allowBubbleGradients", allowBubbleGradients, false);
+    public FacetChart setAllowBubbleGradients(boolean allowBubbleGradients)  throws IllegalStateException {
+        return (FacetChart)setAttribute("allowBubbleGradients", allowBubbleGradients, false);
     }
 
     /**
@@ -507,9 +511,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * multi-axis}.
      *
      * @param allowedChartTypes New allowedChartTypes value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      */
-    public void setAllowedChartTypes(ChartType... allowedChartTypes) {
-        setAttribute("allowedChartTypes", allowedChartTypes, true);
+    public FacetChart setAllowedChartTypes(ChartType... allowedChartTypes) {
+        return (FacetChart)setAttribute("allowedChartTypes", allowedChartTypes, true);
     }
 
     /**
@@ -532,14 +537,15 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Whether to automatically rotate labels if needed in order to make them legible and non-overlapping.
      *
      * @param autoRotateLabels New autoRotateLabels value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @deprecated As of Smart GWT 9.0 this property is replaced by the property {@link
      * com.smartgwt.client.widgets.chart.FacetChart#getRotateLabels rotateLabels}.  Setting rotateLabels to "auto" is
      * equivalent to setting autoRotateLabels to <code>true</code>.  Setting rotateLabels to "never" is equivalent to setting
      * autoRotateLabels to <code>false</code>.
      */
-    public void setAutoRotateLabels(Boolean autoRotateLabels)  throws IllegalStateException {
-        setAttribute("autoRotateLabels", autoRotateLabels, false);
+    public FacetChart setAutoRotateLabels(Boolean autoRotateLabels)  throws IllegalStateException {
+        return (FacetChart)setAttribute("autoRotateLabels", autoRotateLabels, false);
     }
 
     /**
@@ -558,10 +564,49 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
     
 
     /**
-     * For a column, histogram, line, or area chart that has {@link
-     * com.smartgwt.client.widgets.chart.FacetChart#getDataLabelFacet facet values displayed along the x-axis}, should the
-     * chart be expanded automatically horizontally, showing a scroll bar, if that's needed to make room for the facet value
-     * labels or, for column and histogram charts, to make space for the {@link
+     * When set to true, introduces scrollbars when this widget is smaller than the specified  chart-content minimum {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getMinContentWidth width} or  {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getMinContentHeight height}.  These minimum sizes limit all chart-content,
+     * including data and labels, titles and legends. <P> See {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getAutoScrollData autoScrollData} for a means to introduce scrolling
+     * according to the data being displayed.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Sets {@link com.smartgwt.client.widgets.chart.FacetChart#getAutoScrollContent autoScrollContent} and updates the chart.
+     *
+     * @param autoScrollContent whether the chart should automatically show scrollbars      when it's size is smaller than the minimum content      
+     * {@link com.smartgwt.client.widgets.chart.FacetChart#getMinContentWidth width} or {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getMinContentHeight height}. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
+     */
+    public FacetChart setAutoScrollContent(boolean autoScrollContent) {
+        return (FacetChart)setAttribute("autoScrollContent", autoScrollContent, true);
+    }
+
+    /**
+     * When set to true, introduces scrollbars when this widget is smaller than the specified  chart-content minimum {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getMinContentWidth width} or  {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getMinContentHeight height}.  These minimum sizes limit all chart-content,
+     * including data and labels, titles and legends. <P> See {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getAutoScrollData autoScrollData} for a means to introduce scrolling
+     * according to the data being displayed.
+     *
+     * @return Current autoScrollContent value. Default value is false
+     */
+    public boolean getAutoScrollContent()  {
+        Boolean result = getAttributeAsBoolean("autoScrollContent");
+        return result == null ? false : result;
+    }
+    
+
+    /**
+     * For some {@link com.smartgwt.client.widgets.chart.FacetChart#getChartType chart-types}, should the chart body be
+     * automatically  expanded and scrollbars introduced according to data? <P> When true for a column, histogram, line, or
+     * area chart that has {@link com.smartgwt.client.widgets.chart.FacetChart#getDataLabelFacet facet values displayed along
+     * the x-axis}, the chart expands horizontally, showing a scroll  bar, if that's needed to make room for the facet value
+     * labels or, for column and histogram  charts, to make space for the {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getMinClusterSize minimum configured bar \n thicknesses} or the margins
+     * between them. <P> When true for a Bar chart, expansion and scrollbar are vertical, and also make space for the  {@link
      * com.smartgwt.client.widgets.chart.FacetChart#getMinClusterSize minimum configured bar thicknesses} or the margins
      * between them. <P> Note that this feature is incompatible with the following properties:<ul> <li>{@link
      * com.smartgwt.client.types.LabelCollapseMode} (other than the default of "none") <li>{@link
@@ -571,27 +616,35 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getRotateLabels rotateLabels} is set to "auto" it will be treated as
      * "never" if <code>autoScrollData</code> has been set.  If any of the other properties have non-default values, a warning
      * will be logged and <code>autoScrollData</code> will be disabled.  The factors used to drive expansion can be limited by
-     * setting {@link com.smartgwt.client.types.AutoScrollDataApproach}.
+     * setting {@link com.smartgwt.client.types.AutoScrollDataApproach}.  You can also enforce a minimum size for the
+     * chart-content, and scrollbars will be introduced if this widget shrinks below that size.  See  {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getAutoScrollContent autoScrollContent}, along with {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getMinContentWidth minContentWidth} and {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getMinContentHeight minContentHeight}.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets {@link com.smartgwt.client.widgets.chart.FacetChart#getAutoScrollData autoScrollData} and updates the chart.
      *
-     * @param autoScrollData whether chart should expand automatically                                   horizontally to accommodate content. Default value is false
+     * @param autoScrollData whether chart should automatically expand                                   and show scrollbars to accommodate content. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.chart.FacetChart#setCanZoom
      * @see com.smartgwt.client.widgets.chart.FacetChart#setRotateLabels
      * @see com.smartgwt.client.types.LabelCollapseMode
      * @see com.smartgwt.client.widgets.chart.FacetChart#getMinClusterSize
      * @see com.smartgwt.client.widgets.drawing.DrawPane#setCanDragScroll
      */
-    public void setAutoScrollData(boolean autoScrollData) {
-        setAttribute("autoScrollData", autoScrollData, true);
+    public FacetChart setAutoScrollData(boolean autoScrollData) {
+        return (FacetChart)setAttribute("autoScrollData", autoScrollData, true);
     }
 
     /**
-     * For a column, histogram, line, or area chart that has {@link
-     * com.smartgwt.client.widgets.chart.FacetChart#getDataLabelFacet facet values displayed along the x-axis}, should the
-     * chart be expanded automatically horizontally, showing a scroll bar, if that's needed to make room for the facet value
-     * labels or, for column and histogram charts, to make space for the {@link
+     * For some {@link com.smartgwt.client.widgets.chart.FacetChart#getChartType chart-types}, should the chart body be
+     * automatically  expanded and scrollbars introduced according to data? <P> When true for a column, histogram, line, or
+     * area chart that has {@link com.smartgwt.client.widgets.chart.FacetChart#getDataLabelFacet facet values displayed along
+     * the x-axis}, the chart expands horizontally, showing a scroll  bar, if that's needed to make room for the facet value
+     * labels or, for column and histogram  charts, to make space for the {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getMinClusterSize minimum configured bar \n thicknesses} or the margins
+     * between them. <P> When true for a Bar chart, expansion and scrollbar are vertical, and also make space for the  {@link
      * com.smartgwt.client.widgets.chart.FacetChart#getMinClusterSize minimum configured bar thicknesses} or the margins
      * between them. <P> Note that this feature is incompatible with the following properties:<ul> <li>{@link
      * com.smartgwt.client.types.LabelCollapseMode} (other than the default of "none") <li>{@link
@@ -601,7 +654,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getRotateLabels rotateLabels} is set to "auto" it will be treated as
      * "never" if <code>autoScrollData</code> has been set.  If any of the other properties have non-default values, a warning
      * will be logged and <code>autoScrollData</code> will be disabled.  The factors used to drive expansion can be limited by
-     * setting {@link com.smartgwt.client.types.AutoScrollDataApproach}.
+     * setting {@link com.smartgwt.client.types.AutoScrollDataApproach}.  You can also enforce a minimum size for the
+     * chart-content, and scrollbars will be introduced if this widget shrinks below that size.  See  {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getAutoScrollContent autoScrollContent}, along with {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getMinContentWidth minContentWidth} and {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getMinContentHeight minContentHeight}.
      *
      * @return Current autoScrollData value. Default value is false
      * @see com.smartgwt.client.widgets.chart.FacetChart#getCanZoom
@@ -618,31 +675,32 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
 
     /**
      * If set, overrides the default behavior of {@link com.smartgwt.client.widgets.chart.FacetChart#getAutoScrollData
-     * autoScrollData}, potentially limiting what factors drive the automatic horizontal expansion of the chart.  (The "both"
-     * setting is no different than the default of null.) <P> If you're sizing bars very tightly to labels by defining {@link
-     * com.smartgwt.client.widgets.chart.FacetChart#getMinClusterSize getMinClusterSize()}, you may not want label-driven
-     * expansion, as the separation between them assigned automatically is very generous, and is based on the widest labels. 
-     * (You may also set {@link com.smartgwt.client.widgets.chart.FacetChart#getMinLabelGap minLabelGap} to gain more control
-     * over the separation.)
+     * autoScrollData}, potentially limiting what factors drive the automatic expansion of the chart.  (The "both" setting is
+     * no different than the default of null.) <P> When labels are on the x-axis, and if you're sizing bars very tightly to
+     * labels by  defining {@link com.smartgwt.client.widgets.chart.FacetChart#getMinClusterSize getMinClusterSize()}, you may
+     * not want label-driven expansion, as the  default separation assigned between them is very generous, and is based on the
+     * widest  labels.  (You may also set {@link com.smartgwt.client.widgets.chart.FacetChart#getMinLabelGap minLabelGap} to
+     * gain more control over the separation.)
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets {@link com.smartgwt.client.types.AutoScrollDataApproach} and updates the chart.
      *
      * @param autoScrollDataApproach what should drive horizontal expansion                                                       of the chart?. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.chart.FacetChart#setAutoScrollData
      */
-    public void setAutoScrollDataApproach(AutoScrollDataApproach autoScrollDataApproach) {
-        setAttribute("autoScrollDataApproach", autoScrollDataApproach == null ? null : autoScrollDataApproach.getValue(), true);
+    public FacetChart setAutoScrollDataApproach(AutoScrollDataApproach autoScrollDataApproach) {
+        return (FacetChart)setAttribute("autoScrollDataApproach", autoScrollDataApproach == null ? null : autoScrollDataApproach.getValue(), true);
     }
 
     /**
      * If set, overrides the default behavior of {@link com.smartgwt.client.widgets.chart.FacetChart#getAutoScrollData
-     * autoScrollData}, potentially limiting what factors drive the automatic horizontal expansion of the chart.  (The "both"
-     * setting is no different than the default of null.) <P> If you're sizing bars very tightly to labels by defining {@link
-     * com.smartgwt.client.widgets.chart.FacetChart#getMinClusterSize getMinClusterSize()}, you may not want label-driven
-     * expansion, as the separation between them assigned automatically is very generous, and is based on the widest labels. 
-     * (You may also set {@link com.smartgwt.client.widgets.chart.FacetChart#getMinLabelGap minLabelGap} to gain more control
-     * over the separation.)
+     * autoScrollData}, potentially limiting what factors drive the automatic expansion of the chart.  (The "both" setting is
+     * no different than the default of null.) <P> When labels are on the x-axis, and if you're sizing bars very tightly to
+     * labels by  defining {@link com.smartgwt.client.widgets.chart.FacetChart#getMinClusterSize getMinClusterSize()}, you may
+     * not want label-driven expansion, as the  default separation assigned between them is very generous, and is based on the
+     * widest  labels.  (You may also set {@link com.smartgwt.client.widgets.chart.FacetChart#getMinLabelGap minLabelGap} to
+     * gain more control over the separation.)
      *
      * @return Current autoScrollDataApproach value. Default value is null
      * @see com.smartgwt.client.widgets.chart.FacetChart#getAutoScrollData
@@ -659,11 +717,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * they appear in the data.
      *
      * @param autoSortBubblePoints New autoSortBubblePoints value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#bubbleChart" target="examples">Bubble Chart Example</a>
      */
-    public void setAutoSortBubblePoints(boolean autoSortBubblePoints)  throws IllegalStateException {
-        setAttribute("autoSortBubblePoints", autoSortBubblePoints, false);
+    public FacetChart setAutoSortBubblePoints(boolean autoSortBubblePoints)  throws IllegalStateException {
+        return (FacetChart)setAttribute("autoSortBubblePoints", autoSortBubblePoints, false);
     }
 
     /**
@@ -693,10 +752,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getDiscontinuousLines discontinuousLines} to true in this case.
      *
      * @param axisEndValue New axisEndValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAxisEndValue(Double axisEndValue)  throws IllegalStateException {
-        setAttribute("axisEndValue", axisEndValue, false);
+    public FacetChart setAxisEndValue(Double axisEndValue)  throws IllegalStateException {
+        return (FacetChart)setAttribute("axisEndValue", axisEndValue, false);
     }
 
     /**
@@ -730,10 +790,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getDiscontinuousLines discontinuousLines} to true in this case.
      *
      * @param axisStartValue New axisStartValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAxisStartValue(Double axisStartValue)  throws IllegalStateException {
-        setAttribute("axisStartValue", axisStartValue, false);
+    public FacetChart setAxisStartValue(Double axisStartValue)  throws IllegalStateException {
+        return (FacetChart)setAttribute("axisStartValue", axisStartValue, false);
     }
 
     /**
@@ -759,10 +820,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for background band
      *
      * @param backgroundBandProperties New backgroundBandProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setBackgroundBandProperties(DrawRect backgroundBandProperties)  throws IllegalStateException {
+    public FacetChart setBackgroundBandProperties(DrawRect backgroundBandProperties)  throws IllegalStateException {
         if (backgroundBandProperties != null) {
             if (backgroundBandProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setBackgroundBandProperties", "DrawRect");
@@ -770,7 +832,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             backgroundBandProperties.setConfigOnly(true);
         }
         JavaScriptObject config = backgroundBandProperties == null ? null : backgroundBandProperties.getConfig();
-        setAttribute("backgroundBandProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("backgroundBandProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -791,10 +853,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getBackgroundBandProperties backgroundBandProperties}.
      *
      * @param bandedBackground New bandedBackground value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setBandedBackground(Boolean bandedBackground)  throws IllegalStateException {
-        setAttribute("bandedBackground", bandedBackground, false);
+    public FacetChart setBandedBackground(Boolean bandedBackground)  throws IllegalStateException {
+        return (FacetChart)setAttribute("bandedBackground", bandedBackground, false);
     }
 
     /**
@@ -814,11 +877,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * standard deviation} lines. <p> Standard deviation bands are not available for pie or radar charts.
      *
      * @param bandedStandardDeviations New bandedStandardDeviations value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#setStandardDeviationBandProperties
      */
-    public void setBandedStandardDeviations(Boolean bandedStandardDeviations)  throws IllegalStateException {
-        setAttribute("bandedStandardDeviations", bandedStandardDeviations, false);
+    public FacetChart setBandedStandardDeviations(Boolean bandedStandardDeviations)  throws IllegalStateException {
+        return (FacetChart)setAttribute("bandedStandardDeviations", bandedStandardDeviations, false);
     }
 
     /**
@@ -839,10 +903,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getMinBarThickness minBarThickness}.
      *
      * @param barMargin New barMargin value. Default value is 4
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setBarMargin(int barMargin)  throws IllegalStateException {
-        setAttribute("barMargin", barMargin, false);
+    public FacetChart setBarMargin(int barMargin)  throws IllegalStateException {
+        return (FacetChart)setAttribute("barMargin", barMargin, false);
     }
 
     /**
@@ -860,9 +925,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for bar
      *
      * @param barProperties New barProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setBarProperties(DrawRect barProperties) {
+    public FacetChart setBarProperties(DrawRect barProperties) {
         if (barProperties != null) {
             if (barProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setBarProperties", "DrawRect");
@@ -870,7 +936,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             barProperties.setConfigOnly(true);
         }
         JavaScriptObject config = barProperties == null ? null : barProperties.getConfig();
-        setAttribute("barProperties", JSOHelper.cleanProperties(config, true), true);
+        return (FacetChart)setAttribute("barProperties", JSOHelper.cleanProperties(config, true), true);
     }
 
     /**
@@ -891,9 +957,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * brighten the line color around the bar chart area
      *
      * @param brightenAllOnHover New brightenAllOnHover value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      */
-    public void setBrightenAllOnHover(Boolean brightenAllOnHover) {
-        setAttribute("brightenAllOnHover", brightenAllOnHover, true);
+    public FacetChart setBrightenAllOnHover(Boolean brightenAllOnHover) {
+        return (FacetChart)setAttribute("brightenAllOnHover", brightenAllOnHover, true);
     }
 
     /**
@@ -911,10 +978,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Maximum distance from the *outer radius* of the nearest bubble when hover will be shown.
      *
      * @param bubbleHoverMaxDistance New bubbleHoverMaxDistance value. Default value is 50
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setBubbleHoverMaxDistance(int bubbleHoverMaxDistance)  throws IllegalStateException {
-        setAttribute("bubbleHoverMaxDistance", bubbleHoverMaxDistance, false);
+    public FacetChart setBubbleHoverMaxDistance(int bubbleHoverMaxDistance)  throws IllegalStateException {
+        return (FacetChart)setAttribute("bubbleHoverMaxDistance", bubbleHoverMaxDistance, false);
     }
 
     /**
@@ -934,11 +1002,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * <code>bubbleProperties</code> displays each data points with a linear gradient.
      *
      * @param bubbleProperties New bubbleProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#bubbleChart" target="examples">Bubble Chart Example</a>
      */
-    public void setBubbleProperties(DrawItem bubbleProperties)  throws IllegalStateException {
+    public FacetChart setBubbleProperties(DrawItem bubbleProperties)  throws IllegalStateException {
         if (bubbleProperties != null) {
             if (bubbleProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setBubbleProperties", "DrawItem");
@@ -946,7 +1015,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             bubbleProperties.setConfigOnly(true);
         }
         JavaScriptObject config = bubbleProperties == null ? null : bubbleProperties.getConfig();
-        setAttribute("bubbleProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("bubbleProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -971,10 +1040,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * axes.
      *
      * @param canMoveAxes New canMoveAxes value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanMoveAxes(Boolean canMoveAxes)  throws IllegalStateException {
-        setAttribute("canMoveAxes", canMoveAxes, false);
+    public FacetChart setCanMoveAxes(Boolean canMoveAxes)  throws IllegalStateException {
+        return (FacetChart)setAttribute("canMoveAxes", canMoveAxes, false);
     }
 
     /**
@@ -996,10 +1066,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * and is based on the type of the first non-null data value.
      *
      * @param canZoom New canZoom value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanZoom(Boolean canZoom)  throws IllegalStateException {
-        setAttribute("canZoom", canZoom, false);
+    public FacetChart setCanZoom(Boolean canZoom)  throws IllegalStateException {
+        return (FacetChart)setAttribute("canZoom", canZoom, false);
     }
 
     /**
@@ -1025,13 +1096,14 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * axis labeling, which always occurs with respect to the full, expanded width of the chart.
      *
      * @param centerLegend New centerLegend value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#setShowLegend
      * @see com.smartgwt.client.widgets.chart.FacetChart#setCenterTitle
      * @see com.smartgwt.client.widgets.chart.FacetChart#setAutoScrollData
      */
-    public void setCenterLegend(Boolean centerLegend)  throws IllegalStateException {
-        setAttribute("centerLegend", centerLegend, false);
+    public FacetChart setCenterLegend(Boolean centerLegend)  throws IllegalStateException {
+        return (FacetChart)setAttribute("centerLegend", centerLegend, false);
     }
 
     /**
@@ -1061,14 +1133,15 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getTitleAlign titleAlign}.
      *
      * @param centerTitle New centerTitle value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#setTitle
      * @see com.smartgwt.client.widgets.chart.FacetChart#setShowTitle
      * @see com.smartgwt.client.widgets.chart.FacetChart#setCenterLegend
      * @see com.smartgwt.client.widgets.chart.FacetChart#setAutoScrollData
      */
-    public void setCenterTitle(Boolean centerTitle)  throws IllegalStateException {
-        setAttribute("centerTitle", centerTitle, false);
+    public FacetChart setCenterTitle(Boolean centerTitle)  throws IllegalStateException {
+        return (FacetChart)setAttribute("centerTitle", centerTitle, false);
     }
 
     /**
@@ -1095,10 +1168,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * of chart.
      *
      * @param chartRectMargin New chartRectMargin value. Default value is 5
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setChartRectMargin(int chartRectMargin)  throws IllegalStateException {
-        setAttribute("chartRectMargin", chartRectMargin, false);
+    public FacetChart setChartRectMargin(int chartRectMargin)  throws IllegalStateException {
+        return (FacetChart)setAttribute("chartRectMargin", chartRectMargin, false);
     }
 
     /**
@@ -1119,9 +1193,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * padChartRectByCornerRadius} to <code>false</code> to change this default.
      *
      * @param chartRectProperties New chartRectProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setChartRectProperties(DrawRect chartRectProperties) {
+    public FacetChart setChartRectProperties(DrawRect chartRectProperties) {
         if (chartRectProperties != null) {
             if (chartRectProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setChartRectProperties", "DrawRect");
@@ -1129,7 +1204,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             chartRectProperties.setConfigOnly(true);
         }
         JavaScriptObject config = chartRectProperties == null ? null : chartRectProperties.getConfig();
-        setAttribute("chartRectProperties", JSOHelper.cleanProperties(config, true), true);
+        return (FacetChart)setAttribute("chartRectProperties", JSOHelper.cleanProperties(config, true), true);
     }
 
     /**
@@ -1156,9 +1231,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Method to change the current {@link com.smartgwt.client.types.ChartType chartType}. Will redraw the chart if drawn.  Will use default settings for the new chart type for {@link com.smartgwt.client.widgets.chart.FacetChart#getStacked stacked} and {@link com.smartgwt.client.widgets.chart.FacetChart#getFilled filled} if those values are null. <p> Note that for {@link com.smartgwt.client.widgets.chart.FacetChart#getExtraAxisMetrics multi-axis} charts this method changes the <code>chartType</code> for the main value axis only.
      *
      * @param chartType new chart type. Default value is "Column"
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      */
-    public void setChartType(ChartType chartType) {
-        setAttribute("chartType", chartType == null ? null : chartType.getValue(), true);
+    public FacetChart setChartType(ChartType chartType) {
+        return (FacetChart)setAttribute("chartType", chartType == null ? null : chartType.getValue(), true);
     }
 
     /**
@@ -1176,10 +1252,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * For clustered charts, ratio between margins between individual bars and margins between clusters.
      *
      * @param clusterMarginRatio New clusterMarginRatio value. Default value is 4
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setClusterMarginRatio(float clusterMarginRatio)  throws IllegalStateException {
-        setAttribute("clusterMarginRatio", clusterMarginRatio, false);
+    public FacetChart setClusterMarginRatio(float clusterMarginRatio)  throws IllegalStateException {
+        return (FacetChart)setAttribute("clusterMarginRatio", clusterMarginRatio, false);
     }
 
     /**
@@ -1197,10 +1274,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * shifting them toward white (or for negative numbers, toward black).
      *
      * @param colorMutePercent New colorMutePercent value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setColorMutePercent(Float colorMutePercent)  throws IllegalStateException {
-        setAttribute("colorMutePercent", colorMutePercent, false);
+    public FacetChart setColorMutePercent(Float colorMutePercent)  throws IllegalStateException {
+        return (FacetChart)setAttribute("colorMutePercent", colorMutePercent, false);
     }
 
     /**
@@ -1223,11 +1301,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getLogScalePointColor logScalePointColor}.
      *
      * @param colorScaleMetric New colorScaleMetric value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#colorScaleChart" target="examples">Color Scale Chart Example</a>
      */
-    public void setColorScaleMetric(String colorScaleMetric)  throws IllegalStateException {
-        setAttribute("colorScaleMetric", colorScaleMetric, false);
+    public FacetChart setColorScaleMetric(String colorScaleMetric)  throws IllegalStateException {
+        return (FacetChart)setAttribute("colorScaleMetric", colorScaleMetric, false);
     }
 
     /**
@@ -1251,9 +1330,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for labels of data axis.
      *
      * @param dataAxisLabelProperties New dataAxisLabelProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setDataAxisLabelProperties(DrawLabel dataAxisLabelProperties) {
+    public FacetChart setDataAxisLabelProperties(DrawLabel dataAxisLabelProperties) {
         if (dataAxisLabelProperties != null) {
             if (dataAxisLabelProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setDataAxisLabelProperties", "DrawLabel");
@@ -1261,7 +1341,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             dataAxisLabelProperties.setConfigOnly(true);
         }
         JavaScriptObject config = dataAxisLabelProperties == null ? null : dataAxisLabelProperties.getConfig();
-        setAttribute("dataAxisLabelProperties", JSOHelper.cleanProperties(config, true), true);
+        return (FacetChart)setAttribute("dataAxisLabelProperties", JSOHelper.cleanProperties(config, true), true);
     }
 
     /**
@@ -1286,10 +1366,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Setter for {@link com.smartgwt.client.widgets.chart.FacetChart#getDataColors dataColors}.
      *
      * @param dataColors New set of data colors. Default value is see below
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      */
-    public void setDataColors(String... dataColors) {
-        setAttribute("dataColors", dataColors, true);
+    public FacetChart setDataColors(String... dataColors) {
+        return (FacetChart)setAttribute("dataColors", dataColors, true);
     }
 
     /**
@@ -1310,9 +1391,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for data label
      *
      * @param dataLabelProperties New dataLabelProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setDataLabelProperties(DrawLabel dataLabelProperties) {
+    public FacetChart setDataLabelProperties(DrawLabel dataLabelProperties) {
         if (dataLabelProperties != null) {
             if (dataLabelProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setDataLabelProperties", "DrawLabel");
@@ -1320,7 +1402,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             dataLabelProperties.setConfigOnly(true);
         }
         JavaScriptObject config = dataLabelProperties == null ? null : dataLabelProperties.getConfig();
-        setAttribute("dataLabelProperties", JSOHelper.cleanProperties(config, true), true);
+        return (FacetChart)setAttribute("dataLabelProperties", JSOHelper.cleanProperties(config, true), true);
     }
 
     /**
@@ -1340,10 +1422,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for lines that show data (as opposed to gradations or borders around the data area).
      *
      * @param dataLineProperties New dataLineProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setDataLineProperties(DrawLine dataLineProperties)  throws IllegalStateException {
+    public FacetChart setDataLineProperties(DrawLine dataLineProperties)  throws IllegalStateException {
         if (dataLineProperties != null) {
             if (dataLineProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setDataLineProperties", "DrawLine");
@@ -1351,7 +1434,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             dataLineProperties.setConfigOnly(true);
         }
         JavaScriptObject config = dataLineProperties == null ? null : dataLineProperties.getConfig();
-        setAttribute("dataLineProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("dataLineProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -1375,9 +1458,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Method to change the current {@link com.smartgwt.client.types.ChartType dataLineType}. Will redraw the chart if drawn.
      *
      * @param dataLineType ow to draw lines between adjacent data points in Line and Scatter charts. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      */
-    public void setDataLineType(DataLineType dataLineType) {
-        setAttribute("dataLineType", dataLineType == null ? null : dataLineType.getValue(), true);
+    public FacetChart setDataLineType(DataLineType dataLineType) {
+        return (FacetChart)setAttribute("dataLineType", dataLineType == null ? null : dataLineType.getValue(), true);
     }
 
     /**
@@ -1396,10 +1480,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * not flush to edge.
      *
      * @param dataMargin New dataMargin value. Default value is 10
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDataMargin(int dataMargin)  throws IllegalStateException {
-        setAttribute("dataMargin", dataMargin, false);
+    public FacetChart setDataMargin(int dataMargin)  throws IllegalStateException {
+        return (FacetChart)setAttribute("dataMargin", dataMargin, false);
     }
 
     /**
@@ -1417,10 +1502,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for lines that outline a data shape (in filled charts such as area or radar charts).
      *
      * @param dataOutlineProperties New dataOutlineProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setDataOutlineProperties(DrawItem dataOutlineProperties)  throws IllegalStateException {
+    public FacetChart setDataOutlineProperties(DrawItem dataOutlineProperties)  throws IllegalStateException {
         if (dataOutlineProperties != null) {
             if (dataOutlineProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setDataOutlineProperties", "DrawItem");
@@ -1428,7 +1514,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             dataOutlineProperties.setConfigOnly(true);
         }
         JavaScriptObject config = dataOutlineProperties == null ? null : dataOutlineProperties.getConfig();
-        setAttribute("dataOutlineProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("dataOutlineProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -1449,10 +1535,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getShowDataPoints showDataPoints}).
      *
      * @param dataPointProperties New dataPointProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setDataPointProperties(DrawItem dataPointProperties)  throws IllegalStateException {
+    public FacetChart setDataPointProperties(DrawItem dataPointProperties)  throws IllegalStateException {
         if (dataPointProperties != null) {
             if (dataPointProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setDataPointProperties", "DrawItem");
@@ -1460,7 +1547,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             dataPointProperties.setConfigOnly(true);
         }
         JavaScriptObject config = dataPointProperties == null ? null : dataPointProperties.getConfig();
-        setAttribute("dataPointProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("dataPointProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -1481,10 +1568,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Size in pixels for data points drawn for line, area, radar and other chart types.
      *
      * @param dataPointSize New dataPointSize value. Default value is 5
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDataPointSize(int dataPointSize)  throws IllegalStateException {
-        setAttribute("dataPointSize", dataPointSize, false);
+    public FacetChart setDataPointSize(int dataPointSize)  throws IllegalStateException {
+        return (FacetChart)setAttribute("dataPointSize", dataPointSize, false);
     }
 
     /**
@@ -1501,10 +1589,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for data shapes (filled areas in area or radar charts).
      *
      * @param dataShapeProperties New dataShapeProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setDataShapeProperties(DrawPath dataShapeProperties)  throws IllegalStateException {
+    public FacetChart setDataShapeProperties(DrawPath dataShapeProperties)  throws IllegalStateException {
         if (dataShapeProperties != null) {
             if (dataShapeProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setDataShapeProperties", "DrawPath");
@@ -1512,7 +1601,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             dataShapeProperties.setConfigOnly(true);
         }
         JavaScriptObject config = dataShapeProperties == null ? null : dataShapeProperties.getConfig();
-        setAttribute("dataShapeProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("dataShapeProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -1532,10 +1621,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Default precision used when formatting float numbers for axis labels
      *
      * @param decimalPrecision New decimalPrecision value. Default value is 2
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDecimalPrecision(int decimalPrecision)  throws IllegalStateException {
-        setAttribute("decimalPrecision", decimalPrecision, false);
+    public FacetChart setDecimalPrecision(int decimalPrecision)  throws IllegalStateException {
+        return (FacetChart)setAttribute("decimalPrecision", decimalPrecision, false);
     }
 
     /**
@@ -1554,9 +1644,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getFilled filled} charts and to <code>false</code> for line charts.
      *
      * @param discontinuousLines New discontinuousLines value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      */
-    public void setDiscontinuousLines(Boolean discontinuousLines) {
-        setAttribute("discontinuousLines", discontinuousLines, true);
+    public FacetChart setDiscontinuousLines(Boolean discontinuousLines) {
+        return (FacetChart)setAttribute("discontinuousLines", discontinuousLines, true);
     }
 
     /**
@@ -1575,9 +1666,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for doughnut hole
      *
      * @param doughnutHoleProperties New doughnutHoleProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setDoughnutHoleProperties(DrawOval doughnutHoleProperties) {
+    public FacetChart setDoughnutHoleProperties(DrawOval doughnutHoleProperties) {
         if (doughnutHoleProperties != null) {
             if (doughnutHoleProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setDoughnutHoleProperties", "DrawOval");
@@ -1585,7 +1677,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             doughnutHoleProperties.setConfigOnly(true);
         }
         JavaScriptObject config = doughnutHoleProperties == null ? null : doughnutHoleProperties.getConfig();
-        setAttribute("doughnutHoleProperties", JSOHelper.cleanProperties(config, true), true);
+        return (FacetChart)setAttribute("doughnutHoleProperties", JSOHelper.cleanProperties(config, true), true);
     }
 
     /**
@@ -1606,10 +1698,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * ratio of the size of the doughnut hole to the size of the overall pie chart, as a number between 0 to 1.
      *
      * @param doughnutRatio New doughnutRatio value. Default value is 0.2
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDoughnutRatio(float doughnutRatio)  throws IllegalStateException {
-        setAttribute("doughnutRatio", doughnutRatio, false);
+    public FacetChart setDoughnutRatio(float doughnutRatio)  throws IllegalStateException {
+        return (FacetChart)setAttribute("doughnutRatio", doughnutRatio, false);
     }
 
     /**
@@ -1630,10 +1723,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * instead.
      *
      * @param drawLegendBoundary New drawLegendBoundary value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDrawLegendBoundary(Boolean drawLegendBoundary)  throws IllegalStateException {
-        setAttribute("drawLegendBoundary", drawLegendBoundary, false);
+    public FacetChart setDrawLegendBoundary(Boolean drawLegendBoundary)  throws IllegalStateException {
+        return (FacetChart)setAttribute("drawLegendBoundary", drawLegendBoundary, false);
     }
 
     /**
@@ -1655,9 +1749,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * if this is true.
      *
      * @param drawTitleBackground New drawTitleBackground value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      */
-    public void setDrawTitleBackground(Boolean drawTitleBackground) {
-        setAttribute("drawTitleBackground", drawTitleBackground, true);
+    public FacetChart setDrawTitleBackground(Boolean drawTitleBackground) {
+        return (FacetChart)setAttribute("drawTitleBackground", drawTitleBackground, true);
     }
 
     /**
@@ -1679,9 +1774,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * used instead.
      *
      * @param drawTitleBoundary New drawTitleBoundary value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      */
-    public void setDrawTitleBoundary(Boolean drawTitleBoundary) {
-        setAttribute("drawTitleBoundary", drawTitleBoundary, true);
+    public FacetChart setDrawTitleBoundary(Boolean drawTitleBoundary) {
+        return (FacetChart)setAttribute("drawTitleBoundary", drawTitleBoundary, true);
     }
 
     /**
@@ -1702,11 +1798,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "FacetChartEditProxy"
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
-        setAttribute("editProxyConstructor", editProxyConstructor, false);
+    public FacetChart setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
+        return (FacetChart)setAttribute("editProxyConstructor", editProxyConstructor, false);
     }
 
     /**
@@ -1726,11 +1823,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * point is set via the {@link com.smartgwt.client.widgets.chart.FacetChart#getValueProperty valueProperty}.
      *
      * @param endValueMetric New endValueMetric value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#setMetricFacetId
      */
-    public void setEndValueMetric(String endValueMetric)  throws IllegalStateException {
-        setAttribute("endValueMetric", endValueMetric, false);
+    public FacetChart setEndValueMetric(String endValueMetric)  throws IllegalStateException {
+        return (FacetChart)setAttribute("endValueMetric", endValueMetric, false);
     }
 
     /**
@@ -1752,10 +1850,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * colors.
      *
      * @param errorBarColorMutePercent New errorBarColorMutePercent value. Default value is -60
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setErrorBarColorMutePercent(float errorBarColorMutePercent)  throws IllegalStateException {
-        setAttribute("errorBarColorMutePercent", errorBarColorMutePercent, false);
+    public FacetChart setErrorBarColorMutePercent(float errorBarColorMutePercent)  throws IllegalStateException {
+        return (FacetChart)setAttribute("errorBarColorMutePercent", errorBarColorMutePercent, false);
     }
 
     /**
@@ -1775,10 +1874,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Width of the horizontal line of the "T"-shape portion of the error bar).
      *
      * @param errorBarWidth New errorBarWidth value. Default value is 6
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setErrorBarWidth(int errorBarWidth)  throws IllegalStateException {
-        setAttribute("errorBarWidth", errorBarWidth, false);
+    public FacetChart setErrorBarWidth(int errorBarWidth)  throws IllegalStateException {
+        return (FacetChart)setAttribute("errorBarWidth", errorBarWidth, false);
     }
 
     /**
@@ -1797,11 +1897,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * property has no effect as the color of the error bars is derived from the color of the data line.
      *
      * @param errorLineProperties New errorLineProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#setErrorBarColorMutePercent
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setErrorLineProperties(DrawLine errorLineProperties)  throws IllegalStateException {
+    public FacetChart setErrorLineProperties(DrawLine errorLineProperties)  throws IllegalStateException {
         if (errorLineProperties != null) {
             if (errorLineProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setErrorLineProperties", "DrawLine");
@@ -1809,7 +1910,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             errorLineProperties.setConfigOnly(true);
         }
         JavaScriptObject config = errorLineProperties == null ? null : errorLineProperties.getConfig();
-        setAttribute("errorLineProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("errorLineProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -1835,10 +1936,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.drawing.DrawOval}.
      *
      * @param expectedValueLineProperties New expectedValueLineProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setExpectedValueLineProperties(DrawItem expectedValueLineProperties)  throws IllegalStateException {
+    public FacetChart setExpectedValueLineProperties(DrawItem expectedValueLineProperties)  throws IllegalStateException {
         if (expectedValueLineProperties != null) {
             if (expectedValueLineProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setExpectedValueLineProperties", "DrawItem");
@@ -1846,7 +1948,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             expectedValueLineProperties.setConfigOnly(true);
         }
         JavaScriptObject config = expectedValueLineProperties == null ? null : expectedValueLineProperties.getConfig();
-        setAttribute("expectedValueLineProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("expectedValueLineProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -1862,6 +1964,26 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
         properties.setConfigOnly(true);
         properties.setConfig(getAttributeAsJavaScriptObject("expectedValueLineProperties"));
         return properties;
+    }
+    
+
+    /**
+     * Horizontal alignment of labels shown in extra y-axes, shown to the right of the chart.
+     *
+     * @param extraAxisLabelAlign New extraAxisLabelAlign value. Default value is "left"
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
+     */
+    public FacetChart setExtraAxisLabelAlign(Alignment extraAxisLabelAlign) {
+        return (FacetChart)setAttribute("extraAxisLabelAlign", extraAxisLabelAlign == null ? null : extraAxisLabelAlign.getValue(), true);
+    }
+
+    /**
+     * Horizontal alignment of labels shown in extra y-axes, shown to the right of the chart.
+     *
+     * @return Current extraAxisLabelAlign value. Default value is "left"
+     */
+    public Alignment getExtraAxisLabelAlign()  {
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("extraAxisLabelAlign"));
     }
     
 
@@ -1886,10 +2008,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * placed to the left of the main value axis (and therefore to the left of the chart rectangle).
      *
      * @param extraAxisMetrics New extraAxisMetrics value. Default value is []
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setExtraAxisMetrics(String... extraAxisMetrics)  throws IllegalStateException {
-        setAttribute("extraAxisMetrics", extraAxisMetrics, false);
+    public FacetChart setExtraAxisMetrics(String... extraAxisMetrics)  throws IllegalStateException {
+        return (FacetChart)setAttribute("extraAxisMetrics", extraAxisMetrics, false);
     }
 
     /**
@@ -1932,10 +2055,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * metric will be drawn as columns and the remaining will be drawn as lines.
      *
      * @param extraAxisSettings New extraAxisSettings value. Default value is []
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setExtraAxisSettings(MetricSettings... extraAxisSettings)  throws IllegalStateException {
-        setAttribute("extraAxisSettings", extraAxisSettings, false);
+    public FacetChart setExtraAxisSettings(MetricSettings... extraAxisSettings)  throws IllegalStateException {
+        return (FacetChart)setAttribute("extraAxisSettings", extraAxisSettings, false);
     }
 
     /**
@@ -1975,10 +2099,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * context menu.
      *
      * @param facets New facets value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setFacets(Facet... facets)  throws IllegalStateException {
-        setAttribute("facets", facets, false);
+    public FacetChart setFacets(Facet... facets)  throws IllegalStateException {
+        return (FacetChart)setAttribute("facets", facets, false);
     }
 
     /**
@@ -2022,10 +2147,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * context menu.
      *
      * @param facets New facets value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setFacets(Facet facets)  throws IllegalStateException {
-        setAttribute("facets", facets == null ? null : facets.getJsObj(), false);
+    public FacetChart setFacets(Facet facets)  throws IllegalStateException {
+        return (FacetChart)setAttribute("facets", facets == null ? null : facets.getJsObj(), false);
     }
 
     /**
@@ -2063,9 +2189,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Method to change {@link com.smartgwt.client.widgets.chart.FacetChart#getFilled filled}. Use null to apply a default value for the current {@link com.smartgwt.client.types.ChartType chartType}.
      *
      * @param filled new value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      */
-    public void setFilled(Boolean filled) {
-        setAttribute("filled", filled, true);
+    public FacetChart setFilled(Boolean filled) {
+        return (FacetChart)setAttribute("filled", filled, true);
     }
 
     /**
@@ -2089,11 +2216,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * string case.
      *
      * @param formatStringFacetValueIds New formatStringFacetValueIds value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.chart.FacetChart#setXAxisValueFormatter
      * @see com.smartgwt.client.widgets.chart.FacetChart#formatFacetValueId
      */
-    public void setFormatStringFacetValueIds(Boolean formatStringFacetValueIds) {
-        setAttribute("formatStringFacetValueIds", formatStringFacetValueIds, true);
+    public FacetChart setFormatStringFacetValueIds(Boolean formatStringFacetValueIds) {
+        return (FacetChart)setAttribute("formatStringFacetValueIds", formatStringFacetValueIds, true);
     }
 
     /**
@@ -2126,10 +2254,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Setter for {@link com.smartgwt.client.widgets.chart.FacetChart#getGradationGaps gradationGaps}.
      *
      * @param gradationGaps new {@link com.smartgwt.client.widgets.chart.FacetChart#getGradationGaps gradationGaps} value. Default value is [1, 2, 5]
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#customTicksChart" target="examples">Custom Date Ticks Example</a>
      */
-    public void setGradationGaps(float... gradationGaps) {
-        setAttribute("gradationGaps", gradationGaps, true);
+    public FacetChart setGradationGaps(float... gradationGaps) {
+        return (FacetChart)setAttribute("gradationGaps", gradationGaps, true);
     }
 
     /**
@@ -2154,10 +2283,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Padding from edge of Y the Axis Label.
      *
      * @param gradationLabelPadding New gradationLabelPadding value. Default value is 5
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setGradationLabelPadding(int gradationLabelPadding)  throws IllegalStateException {
-        setAttribute("gradationLabelPadding", gradationLabelPadding, false);
+    public FacetChart setGradationLabelPadding(int gradationLabelPadding)  throws IllegalStateException {
+        return (FacetChart)setAttribute("gradationLabelPadding", gradationLabelPadding, false);
     }
 
     /**
@@ -2174,10 +2304,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for gradation labels
      *
      * @param gradationLabelProperties New gradationLabelProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setGradationLabelProperties(DrawLabel gradationLabelProperties)  throws IllegalStateException {
+    public FacetChart setGradationLabelProperties(DrawLabel gradationLabelProperties)  throws IllegalStateException {
         if (gradationLabelProperties != null) {
             if (gradationLabelProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setGradationLabelProperties", "DrawLabel");
@@ -2185,7 +2316,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             gradationLabelProperties.setConfigOnly(true);
         }
         JavaScriptObject config = gradationLabelProperties == null ? null : gradationLabelProperties.getConfig();
-        setAttribute("gradationLabelProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("gradationLabelProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -2205,10 +2336,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for gradation lines
      *
      * @param gradationLineProperties New gradationLineProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setGradationLineProperties(DrawLine gradationLineProperties)  throws IllegalStateException {
+    public FacetChart setGradationLineProperties(DrawLine gradationLineProperties)  throws IllegalStateException {
         if (gradationLineProperties != null) {
             if (gradationLineProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setGradationLineProperties", "DrawLine");
@@ -2216,7 +2348,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             gradationLineProperties.setConfigOnly(true);
         }
         JavaScriptObject config = gradationLineProperties == null ? null : gradationLineProperties.getConfig();
-        setAttribute("gradationLineProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("gradationLineProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -2236,17 +2368,20 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * 
      *
      * @param gradationTickMarkLength New gradationTickMarkLength value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.chart.FacetChart#setTickLength
      * @deprecated use {@link com.smartgwt.client.widgets.chart.FacetChart#getTickLength tickLength} instead
      */
-    public void setGradationTickMarkLength(Integer gradationTickMarkLength)  throws IllegalStateException {
-        setAttribute("gradationTickMarkLength", gradationTickMarkLength, false);
+    public FacetChart setGradationTickMarkLength(Integer gradationTickMarkLength)  throws IllegalStateException {
+        return (FacetChart)setAttribute("gradationTickMarkLength", gradationTickMarkLength, false);
     }
 
     /**
      * 
      *
      * @return Current gradationTickMarkLength value. Default value is null
+     * @see com.smartgwt.client.widgets.chart.FacetChart#getTickLength
      * @deprecated use {@link com.smartgwt.client.widgets.chart.FacetChart#getTickLength tickLength} instead
      */
     public Integer getGradationTickMarkLength()  {
@@ -2258,10 +2393,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for the gradation line drawn for zero (slightly thicker by default).
      *
      * @param gradationZeroLineProperties New gradationZeroLineProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setGradationZeroLineProperties(DrawLine gradationZeroLineProperties)  throws IllegalStateException {
+    public FacetChart setGradationZeroLineProperties(DrawLine gradationZeroLineProperties)  throws IllegalStateException {
         if (gradationZeroLineProperties != null) {
             if (gradationZeroLineProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setGradationZeroLineProperties", "DrawLine");
@@ -2269,7 +2405,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             gradationZeroLineProperties.setConfigOnly(true);
         }
         JavaScriptObject config = gradationZeroLineProperties == null ? null : gradationZeroLineProperties.getConfig();
-        setAttribute("gradationZeroLineProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("gradationZeroLineProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -2289,10 +2425,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * See {@link com.smartgwt.client.widgets.chart.FacetChart#getLowErrorMetric lowErrorMetric}.
      *
      * @param highErrorMetric New highErrorMetric value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setHighErrorMetric(String highErrorMetric)  throws IllegalStateException {
-        setAttribute("highErrorMetric", highErrorMetric, false);
+    public FacetChart setHighErrorMetric(String highErrorMetric)  throws IllegalStateException {
+        return (FacetChart)setAttribute("highErrorMetric", highErrorMetric, false);
     }
 
     /**
@@ -2312,10 +2449,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param hoverLabelPadding New hoverLabelPadding value. Default value is 4
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setHoverLabelPadding(int hoverLabelPadding)  throws IllegalStateException {
-        setAttribute("hoverLabelPadding", hoverLabelPadding, false);
+    public FacetChart setHoverLabelPadding(int hoverLabelPadding)  throws IllegalStateException {
+        return (FacetChart)setAttribute("hoverLabelPadding", hoverLabelPadding, false);
     }
 
     /**
@@ -2335,11 +2473,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * chart area when {@link com.smartgwt.client.widgets.chart.FacetChart#getShowValueOnHover showValueOnHover} is enabled.
      *
      * @param hoverLabelProperties New hoverLabelProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#setHoverLabelPadding
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setHoverLabelProperties(DrawLabel hoverLabelProperties)  throws IllegalStateException {
+    public FacetChart setHoverLabelProperties(DrawLabel hoverLabelProperties)  throws IllegalStateException {
         if (hoverLabelProperties != null) {
             if (hoverLabelProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setHoverLabelProperties", "DrawLabel");
@@ -2347,7 +2486,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             hoverLabelProperties.setConfigOnly(true);
         }
         JavaScriptObject config = hoverLabelProperties == null ? null : hoverLabelProperties.getConfig();
-        setAttribute("hoverLabelProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("hoverLabelProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -2370,10 +2509,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getShowValueOnHover showValueOnHover} for more details.
      *
      * @param hoverRectProperties New hoverRectProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setHoverRectProperties(DrawRect hoverRectProperties)  throws IllegalStateException {
+    public FacetChart setHoverRectProperties(DrawRect hoverRectProperties)  throws IllegalStateException {
         if (hoverRectProperties != null) {
             if (hoverRectProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setHoverRectProperties", "DrawRect");
@@ -2381,7 +2521,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             hoverRectProperties.setConfigOnly(true);
         }
         JavaScriptObject config = hoverRectProperties == null ? null : hoverRectProperties.getConfig();
-        setAttribute("hoverRectProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("hoverRectProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -2427,11 +2567,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * values in ascending order.
      *
      * @param labelCollapseMode New labelCollapseMode value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#setXAxisValueFormatter
      */
-    public void setLabelCollapseMode(LabelCollapseMode labelCollapseMode)  throws IllegalStateException {
-        setAttribute("labelCollapseMode", labelCollapseMode == null ? null : labelCollapseMode.getValue(), false);
+    public FacetChart setLabelCollapseMode(LabelCollapseMode labelCollapseMode)  throws IllegalStateException {
+        return (FacetChart)setAttribute("labelCollapseMode", labelCollapseMode == null ? null : labelCollapseMode.getValue(), false);
     }
 
     /**
@@ -2474,9 +2615,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Horizontal alignment of the chart's {@link com.smartgwt.client.widgets.chart.FacetChart#getShowLegend legend widget}.
      *
      * @param legendAlign New legendAlign value. Default value is "center"
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      */
-    public void setLegendAlign(LegendAlign legendAlign) {
-        setAttribute("legendAlign", legendAlign == null ? null : legendAlign.getValue(), true);
+    public FacetChart setLegendAlign(LegendAlign legendAlign) {
+        return (FacetChart)setAttribute("legendAlign", legendAlign == null ? null : legendAlign.getValue(), true);
     }
 
     /**
@@ -2494,10 +2636,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * {@link com.smartgwt.client.widgets.chart.FacetChart#getDrawLegendBoundary drawLegendBoundary}
      *
      * @param legendBoundaryProperties New legendBoundaryProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setLegendBoundaryProperties(DrawLine legendBoundaryProperties)  throws IllegalStateException {
+    public FacetChart setLegendBoundaryProperties(DrawLine legendBoundaryProperties)  throws IllegalStateException {
         if (legendBoundaryProperties != null) {
             if (legendBoundaryProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setLegendBoundaryProperties", "DrawLine");
@@ -2505,7 +2648,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             legendBoundaryProperties.setConfigOnly(true);
         }
         JavaScriptObject config = legendBoundaryProperties == null ? null : legendBoundaryProperties.getConfig();
-        setAttribute("legendBoundaryProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("legendBoundaryProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -2526,10 +2669,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Padding between each swatch and label pair.
      *
      * @param legendItemPadding New legendItemPadding value. Default value is 5
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setLegendItemPadding(int legendItemPadding)  throws IllegalStateException {
-        setAttribute("legendItemPadding", legendItemPadding, false);
+    public FacetChart setLegendItemPadding(int legendItemPadding)  throws IllegalStateException {
+        return (FacetChart)setAttribute("legendItemPadding", legendItemPadding, false);
     }
 
     /**
@@ -2546,10 +2690,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for labels shown next to legend color swatches.
      *
      * @param legendLabelProperties New legendLabelProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setLegendLabelProperties(DrawLabel legendLabelProperties)  throws IllegalStateException {
+    public FacetChart setLegendLabelProperties(DrawLabel legendLabelProperties)  throws IllegalStateException {
         if (legendLabelProperties != null) {
             if (legendLabelProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setLegendLabelProperties", "DrawLabel");
@@ -2557,7 +2702,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             legendLabelProperties.setConfigOnly(true);
         }
         JavaScriptObject config = legendLabelProperties == null ? null : legendLabelProperties.getConfig();
-        setAttribute("legendLabelProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("legendLabelProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -2577,10 +2722,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Space between the legend and the chart rect or axis labels (whatever the legend is adjacent to.
      *
      * @param legendMargin New legendMargin value. Default value is 10
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setLegendMargin(int legendMargin)  throws IllegalStateException {
-        setAttribute("legendMargin", legendMargin, false);
+    public FacetChart setLegendMargin(int legendMargin)  throws IllegalStateException {
+        return (FacetChart)setAttribute("legendMargin", legendMargin, false);
     }
 
     /**
@@ -2597,10 +2743,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Padding around the legend as a whole.
      *
      * @param legendPadding New legendPadding value. Default value is 5
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setLegendPadding(int legendPadding)  throws IllegalStateException {
-        setAttribute("legendPadding", legendPadding, false);
+    public FacetChart setLegendPadding(int legendPadding)  throws IllegalStateException {
+        return (FacetChart)setAttribute("legendPadding", legendPadding, false);
     }
 
     /**
@@ -2617,10 +2764,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * If drawing a border around the legend, the height of the drawn Rectangle.
      *
      * @param legendRectHeight New legendRectHeight value. Default value is 5
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setLegendRectHeight(int legendRectHeight)  throws IllegalStateException {
-        setAttribute("legendRectHeight", legendRectHeight, false);
+    public FacetChart setLegendRectHeight(int legendRectHeight)  throws IllegalStateException {
+        return (FacetChart)setAttribute("legendRectHeight", legendRectHeight, false);
     }
 
     /**
@@ -2637,10 +2785,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for rectangle around the legend as a whole.
      *
      * @param legendRectProperties New legendRectProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setLegendRectProperties(DrawRect legendRectProperties)  throws IllegalStateException {
+    public FacetChart setLegendRectProperties(DrawRect legendRectProperties)  throws IllegalStateException {
         if (legendRectProperties != null) {
             if (legendRectProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setLegendRectProperties", "DrawRect");
@@ -2648,7 +2797,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             legendRectProperties.setConfigOnly(true);
         }
         JavaScriptObject config = legendRectProperties == null ? null : legendRectProperties.getConfig();
-        setAttribute("legendRectProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("legendRectProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -2668,10 +2817,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for the swatches of color shown in the legend.
      *
      * @param legendSwatchProperties New legendSwatchProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setLegendSwatchProperties(DrawRect legendSwatchProperties)  throws IllegalStateException {
+    public FacetChart setLegendSwatchProperties(DrawRect legendSwatchProperties)  throws IllegalStateException {
         if (legendSwatchProperties != null) {
             if (legendSwatchProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setLegendSwatchProperties", "DrawRect");
@@ -2679,7 +2829,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             legendSwatchProperties.setConfigOnly(true);
         }
         JavaScriptObject config = legendSwatchProperties == null ? null : legendSwatchProperties.getConfig();
-        setAttribute("legendSwatchProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("legendSwatchProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -2699,10 +2849,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Size of individual color swatches in legend.
      *
      * @param legendSwatchSize New legendSwatchSize value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setLegendSwatchSize(int legendSwatchSize)  throws IllegalStateException {
-        setAttribute("legendSwatchSize", legendSwatchSize, false);
+    public FacetChart setLegendSwatchSize(int legendSwatchSize)  throws IllegalStateException {
+        return (FacetChart)setAttribute("legendSwatchSize", legendSwatchSize, false);
     }
 
     /**
@@ -2719,10 +2870,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Padding between color swatch and its label.
      *
      * @param legendTextPadding New legendTextPadding value. Default value is 5
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setLegendTextPadding(int legendTextPadding)  throws IllegalStateException {
-        setAttribute("legendTextPadding", legendTextPadding, false);
+    public FacetChart setLegendTextPadding(int legendTextPadding)  throws IllegalStateException {
+        return (FacetChart)setAttribute("legendTextPadding", legendTextPadding, false);
     }
 
     /**
@@ -2741,10 +2893,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * specified by {@link com.smartgwt.client.widgets.chart.FacetChart#getLogGradations logGradations}.
      *
      * @param logBase New logBase value. Default value is 10
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setLogBase(int logBase)  throws IllegalStateException {
-        setAttribute("logBase", logBase, false);
+    public FacetChart setLogBase(int logBase)  throws IllegalStateException {
+        return (FacetChart)setAttribute("logBase", logBase, false);
     }
 
     /**
@@ -2779,10 +2932,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      *  </pre>
      *
      * @param logGradations New logGradations value. Default value is [ 1,2,4,6,8 ]
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setLogGradations(float... logGradations)  throws IllegalStateException {
-        setAttribute("logGradations", logGradations, false);
+    public FacetChart setLogGradations(float... logGradations)  throws IllegalStateException {
+        return (FacetChart)setAttribute("logGradations", logGradations, false);
     }
 
     /**
@@ -2817,10 +2971,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * times or 1000% increase).
      *
      * @param logScale New logScale value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setLogScale(Boolean logScale)  throws IllegalStateException {
-        setAttribute("logScale", logScale, false);
+    public FacetChart setLogScale(Boolean logScale)  throws IllegalStateException {
+        return (FacetChart)setAttribute("logScale", logScale, false);
     }
 
     /**
@@ -2842,12 +2997,13 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * logScale}.
      *
      * @param logScalePointColor New logScalePointColor value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#setPointColorLogBase
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#colorScaleChart" target="examples">Color Scale Chart Example</a>
      */
-    public void setLogScalePointColor(boolean logScalePointColor)  throws IllegalStateException {
-        setAttribute("logScalePointColor", logScalePointColor, false);
+    public FacetChart setLogScalePointColor(boolean logScalePointColor)  throws IllegalStateException {
+        return (FacetChart)setAttribute("logScalePointColor", logScalePointColor, false);
     }
 
     /**
@@ -2870,12 +3026,13 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * point sizes}. Defaults to the value of {@link com.smartgwt.client.widgets.chart.FacetChart#getLogScale logScale}.
      *
      * @param logScalePointSize New logScalePointSize value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#setPointSizeLogBase
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#bubbleChart" target="examples">Bubble Chart Example</a>
      */
-    public void setLogScalePointSize(boolean logScalePointSize)  throws IllegalStateException {
-        setAttribute("logScalePointSize", logScalePointSize, false);
+    public FacetChart setLogScalePointSize(boolean logScalePointSize)  throws IllegalStateException {
+        return (FacetChart)setAttribute("logScalePointSize", logScalePointSize, false);
     }
 
     /**
@@ -2899,12 +3056,13 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * error value and high error value respectively. <p> Error bars are supported for single-axis charts only.
      *
      * @param lowErrorMetric New lowErrorMetric value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#setMetricFacetId
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#errorBars" target="examples">Error Bars Example</a>
      */
-    public void setLowErrorMetric(String lowErrorMetric)  throws IllegalStateException {
-        setAttribute("lowErrorMetric", lowErrorMetric, false);
+    public FacetChart setLowErrorMetric(String lowErrorMetric)  throws IllegalStateException {
+        return (FacetChart)setAttribute("lowErrorMetric", lowErrorMetric, false);
     }
 
     /**
@@ -2937,10 +3095,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Setter for {@link com.smartgwt.client.widgets.chart.FacetChart#getMajorTickGradations majorTickGradations}.
      *
      * @param majorTickGradations new {@link com.smartgwt.client.widgets.chart.FacetChart#getMajorTickGradations majorTickGradations} value. Default value is [1]
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMajorTickGradations(float... majorTickGradations)  throws IllegalStateException {
-        setAttribute("majorTickGradations", majorTickGradations, false);
+    public FacetChart setMajorTickGradations(float... majorTickGradations)  throws IllegalStateException {
+        return (FacetChart)setAttribute("majorTickGradations", majorTickGradations, false);
     }
 
     /**
@@ -2974,9 +3133,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Setter for {@link com.smartgwt.client.widgets.chart.FacetChart#getMajorTickTimeIntervals majorTickTimeIntervals}.
      *
      * @param majorTickTimeIntervals new {@link com.smartgwt.client.widgets.chart.FacetChart#getMajorTickTimeIntervals majorTickTimeIntervals} value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      */
-    public void setMajorTickTimeIntervals(String... majorTickTimeIntervals) {
-        setAttribute("majorTickTimeIntervals", majorTickTimeIntervals, true);
+    public FacetChart setMajorTickTimeIntervals(String... majorTickTimeIntervals) {
+        return (FacetChart)setAttribute("majorTickTimeIntervals", majorTickTimeIntervals, true);
     }
 
     /**
@@ -2999,9 +3159,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Setting to define whether the border around the bar chart area should be the same color as the main chart area.
      *
      * @param matchBarChartDataLineColor New matchBarChartDataLineColor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      */
-    public void setMatchBarChartDataLineColor(Boolean matchBarChartDataLineColor) {
-        setAttribute("matchBarChartDataLineColor", matchBarChartDataLineColor, true);
+    public FacetChart setMatchBarChartDataLineColor(Boolean matchBarChartDataLineColor) {
+        return (FacetChart)setAttribute("matchBarChartDataLineColor", matchBarChartDataLineColor, true);
     }
 
     /**
@@ -3018,11 +3179,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Bars will not be drawn over this thickness, instead, margins will be increased.
      *
      * @param maxBarThickness New maxBarThickness value. Default value is 150
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#getMinClusterSize
      */
-    public void setMaxBarThickness(int maxBarThickness)  throws IllegalStateException {
-        setAttribute("maxBarThickness", maxBarThickness, false);
+    public FacetChart setMaxBarThickness(int maxBarThickness)  throws IllegalStateException {
+        return (FacetChart)setAttribute("maxBarThickness", maxBarThickness, false);
     }
 
     /**
@@ -3041,10 +3203,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getPointSizeMetric pointSizeMetric}.
      *
      * @param maxDataPointSize New maxDataPointSize value. Default value is 14
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMaxDataPointSize(double maxDataPointSize)  throws IllegalStateException {
-        setAttribute("maxDataPointSize", maxDataPointSize, false);
+    public FacetChart setMaxDataPointSize(double maxDataPointSize)  throws IllegalStateException {
+        return (FacetChart)setAttribute("maxDataPointSize", maxDataPointSize, false);
     }
 
     /**
@@ -3066,12 +3229,13 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * DrawPane.drawingType}.
      *
      * @param maxDataZIndex New maxDataZIndex value. Default value is 10000
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.types.ChartType
      * @see com.smartgwt.client.widgets.chart.FacetChart#setZIndexMetric
      */
-    public void setMaxDataZIndex(Integer maxDataZIndex)  throws IllegalStateException {
-        setAttribute("maxDataZIndex", maxDataZIndex, false);
+    public FacetChart setMaxDataZIndex(Integer maxDataZIndex)  throws IllegalStateException {
+        return (FacetChart)setAttribute("maxDataZIndex", maxDataZIndex, false);
     }
 
     /**
@@ -3096,10 +3260,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getHighErrorMetric highErrorMetric} when showing error bars.
      *
      * @param metricFacetId New metricFacetId value. Default value is "metric"
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMetricFacetId(String metricFacetId)  throws IllegalStateException {
-        setAttribute("metricFacetId", metricFacetId, false);
+    public FacetChart setMetricFacetId(String metricFacetId)  throws IllegalStateException {
+        return (FacetChart)setAttribute("metricFacetId", metricFacetId, false);
     }
 
     /**
@@ -3118,11 +3283,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * If bars would be smaller than this size, margins are reduced until bars overlap.
      *
      * @param minBarThickness New minBarThickness value. Default value is 4
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#getMinClusterSize
      */
-    public void setMinBarThickness(int minBarThickness)  throws IllegalStateException {
-        setAttribute("minBarThickness", minBarThickness, false);
+    public FacetChart setMinBarThickness(int minBarThickness)  throws IllegalStateException {
+        return (FacetChart)setAttribute("minBarThickness", minBarThickness, false);
     }
 
     /**
@@ -3137,14 +3303,115 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
     
 
     /**
+     * Minimum height for this chart instance.
+     *
+     * @param minChartHeight New minChartHeight value. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public FacetChart setMinChartHeight(Integer minChartHeight)  throws IllegalStateException {
+        return (FacetChart)setAttribute("minChartHeight", minChartHeight, false);
+    }
+
+    /**
+     * Minimum height for this chart instance.
+     *
+     * @return Returns the {@link com.smartgwt.client.widgets.chart.FacetChart#getMinChartHeight minimum height} for the chart body. Default value is 1
+     */
+    public Integer getMinChartHeight()  {
+        return getAttributeAsInt("minChartHeight");
+    }
+    
+
+    /**
+     * Minimum width for this chart instance.
+     *
+     * @param minChartWidth New minChartWidth value. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public FacetChart setMinChartWidth(Integer minChartWidth)  throws IllegalStateException {
+        return (FacetChart)setAttribute("minChartWidth", minChartWidth, false);
+    }
+
+    /**
+     * Minimum width for this chart instance.
+     *
+     * @return Returns the {@link com.smartgwt.client.widgets.chart.FacetChart#getMinChartWidth minimum width} for the chart body. Default value is 1
+     */
+    public Integer getMinChartWidth()  {
+        return getAttributeAsInt("minChartWidth");
+    }
+    
+
+    /**
+     * When {@link com.smartgwt.client.widgets.chart.FacetChart#getAutoScrollContent autoScrollContent} is true, limits the
+     * minimum  height of the chart-content, including data, labels, title and legends.  If this widget is sized smaller than
+     * this height, scrollbars are introduced to reach the hidden content.  See {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getMinContentWidth minContentWidth} to affect the minimum horizontal 
+     * content-size.
+     *
+     * @param minContentHeight New minContentHeight value. Default value is 150
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
+     */
+    public FacetChart setMinContentHeight(int minContentHeight) {
+        return (FacetChart)setAttribute("minContentHeight", minContentHeight, true);
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.chart.FacetChart#getAutoScrollContent autoScrollContent} is true, limits the
+     * minimum  height of the chart-content, including data, labels, title and legends.  If this widget is sized smaller than
+     * this height, scrollbars are introduced to reach the hidden content.  See {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getMinContentWidth minContentWidth} to affect the minimum horizontal 
+     * content-size.
+     *
+     * @return Returns the {@link com.smartgwt.client.widgets.chart.FacetChart#getMinContentHeight minContentHeight} for this facet
+     * chart when {@link com.smartgwt.client.widgets.chart.FacetChart#getAutoScrollContent autoScrollContent} is enabled. Default value is 150
+     */
+    public int getMinContentHeight()  {
+        return getAttributeAsInt("minContentHeight");
+    }
+    
+
+    /**
+     * When {@link com.smartgwt.client.widgets.chart.FacetChart#getAutoScrollContent autoScrollContent} is true, limits the
+     * minimum  width of the chart-content, including data, labels, titles and legends.  If this widget is sized smaller than
+     * this width, scrollbars are introduced to reach the hidden content.  See {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getMinContentHeight minContentHeight} to affect the minimum vertical 
+     * content-size.
+     *
+     * @param minContentWidth New minContentWidth value. Default value is 150
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
+     */
+    public FacetChart setMinContentWidth(int minContentWidth) {
+        return (FacetChart)setAttribute("minContentWidth", minContentWidth, true);
+    }
+
+    /**
+     * When {@link com.smartgwt.client.widgets.chart.FacetChart#getAutoScrollContent autoScrollContent} is true, limits the
+     * minimum  width of the chart-content, including data, labels, titles and legends.  If this widget is sized smaller than
+     * this width, scrollbars are introduced to reach the hidden content.  See {@link
+     * com.smartgwt.client.widgets.chart.FacetChart#getMinContentHeight minContentHeight} to affect the minimum vertical 
+     * content-size.
+     *
+     * @return Returns the {@link com.smartgwt.client.widgets.chart.FacetChart#getMinContentWidth minContentWidth} for this facet chart
+     * when {@link com.smartgwt.client.widgets.chart.FacetChart#getAutoScrollContent autoScrollContent} is enabled. Default value is 150
+     */
+    public int getMinContentWidth()  {
+        return getAttributeAsInt("minContentWidth");
+    }
+    
+
+    /**
      * The minimum allowed data point size when controlled by {@link
      * com.smartgwt.client.widgets.chart.FacetChart#getPointSizeMetric pointSizeMetric}.
      *
      * @param minDataPointSize New minDataPointSize value. Default value is 3
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMinDataPointSize(double minDataPointSize)  throws IllegalStateException {
-        setAttribute("minDataPointSize", minDataPointSize, false);
+    public FacetChart setMinDataPointSize(double minDataPointSize)  throws IllegalStateException {
+        return (FacetChart)setAttribute("minDataPointSize", minDataPointSize, false);
     }
 
     /**
@@ -3175,10 +3442,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * must be used to enable the corresponding feature for the x-axis.
      *
      * @param minDataSpreadPercent New minDataSpreadPercent value. Default value is 30
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMinDataSpreadPercent(int minDataSpreadPercent)  throws IllegalStateException {
-        setAttribute("minDataSpreadPercent", minDataSpreadPercent, false);
+    public FacetChart setMinDataSpreadPercent(int minDataSpreadPercent)  throws IllegalStateException {
+        return (FacetChart)setAttribute("minDataSpreadPercent", minDataSpreadPercent, false);
     }
 
     /**
@@ -3211,10 +3479,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * half a line of text.  If horizontal it's the width of 4 "X" letters.
      *
      * @param minLabelGap New minLabelGap value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMinLabelGap(Integer minLabelGap)  throws IllegalStateException {
-        setAttribute("minLabelGap", minLabelGap, false);
+    public FacetChart setMinLabelGap(Integer minLabelGap)  throws IllegalStateException {
+        return (FacetChart)setAttribute("minLabelGap", minLabelGap, false);
     }
 
     /**
@@ -3238,10 +3507,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Setter for {@link com.smartgwt.client.widgets.chart.FacetChart#getMinorTickLength minorTickLength}.
      *
      * @param minorTickLength new {@link com.smartgwt.client.widgets.chart.FacetChart#getMinorTickLength minorTickLength} value. Default value is 2
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.chart.FacetChart#setTickLength
      */
-    public void setMinorTickLength(int minorTickLength) {
-        setAttribute("minorTickLength", minorTickLength, true);
+    public FacetChart setMinorTickLength(int minorTickLength) {
+        return (FacetChart)setAttribute("minorTickLength", minorTickLength, true);
     }
 
     /**
@@ -3264,11 +3534,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * <code>minXDataSpreadPercent</code> to 0.
      *
      * @param minXDataSpreadPercent New minXDataSpreadPercent value. Default value is 30
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#setMinDataSpreadPercent
      */
-    public void setMinXDataSpreadPercent(int minXDataSpreadPercent)  throws IllegalStateException {
-        setAttribute("minXDataSpreadPercent", minXDataSpreadPercent, false);
+    public FacetChart setMinXDataSpreadPercent(int minXDataSpreadPercent)  throws IllegalStateException {
+        return (FacetChart)setAttribute("minXDataSpreadPercent", minXDataSpreadPercent, false);
     }
 
     /**
@@ -3297,9 +3568,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Setter for {@link com.smartgwt.client.widgets.chart.FacetChart#getOtherAxisGradationGaps otherAxisGradationGaps}.
      *
      * @param otherAxisGradationGaps new {@link com.smartgwt.client.widgets.chart.FacetChart#getOtherAxisGradationGaps otherAxisGradationGaps} value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      */
-    public void setOtherAxisGradationGaps(float... otherAxisGradationGaps) {
-        setAttribute("otherAxisGradationGaps", otherAxisGradationGaps, true);
+    public FacetChart setOtherAxisGradationGaps(float... otherAxisGradationGaps) {
+        return (FacetChart)setAttribute("otherAxisGradationGaps", otherAxisGradationGaps, true);
     }
 
     /**
@@ -3347,10 +3619,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Setter for {@link com.smartgwt.client.widgets.chart.FacetChart#getOtherAxisGradationTimes otherAxisGradationTimes}.
      *
      * @param otherAxisGradationTimes new {@link com.smartgwt.client.widgets.chart.FacetChart#getOtherAxisGradationTimes otherAxisGradationTimes} value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#customTicksChart" target="examples">Custom Date Ticks Example</a>
      */
-    public void setOtherAxisGradationTimes(String... otherAxisGradationTimes) {
-        setAttribute("otherAxisGradationTimes", otherAxisGradationTimes, true);
+    public FacetChart setOtherAxisGradationTimes(String... otherAxisGradationTimes) {
+        return (FacetChart)setAttribute("otherAxisGradationTimes", otherAxisGradationTimes, true);
     }
 
     /**
@@ -3397,10 +3670,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      *
      * @param otherAxisPixelsPerGradation new {@link com.smartgwt.client.widgets.chart.FacetChart#getOtherAxisPixelsPerGradation otherAxisPixelsPerGradation}
      * value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.chart.FacetChart#setPixelsPerGradation
      */
-    public void setOtherAxisPixelsPerGradation(Integer otherAxisPixelsPerGradation) {
-        setAttribute("otherAxisPixelsPerGradation", otherAxisPixelsPerGradation, true);
+    public FacetChart setOtherAxisPixelsPerGradation(Integer otherAxisPixelsPerGradation) {
+        return (FacetChart)setAttribute("otherAxisPixelsPerGradation", otherAxisPixelsPerGradation, true);
     }
 
     /**
@@ -3422,10 +3696,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * rect. should include at least the radius of the rounded corner.
      *
      * @param padChartRectByCornerRadius New padChartRectByCornerRadius value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPadChartRectByCornerRadius(boolean padChartRectByCornerRadius)  throws IllegalStateException {
-        setAttribute("padChartRectByCornerRadius", padChartRectByCornerRadius, false);
+    public FacetChart setPadChartRectByCornerRadius(boolean padChartRectByCornerRadius)  throws IllegalStateException {
+        return (FacetChart)setAttribute("padChartRectByCornerRadius", padChartRectByCornerRadius, false);
     }
 
     /**
@@ -3446,10 +3721,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for the border around a pie chart.
      *
      * @param pieBorderProperties New pieBorderProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setPieBorderProperties(DrawOval pieBorderProperties)  throws IllegalStateException {
+    public FacetChart setPieBorderProperties(DrawOval pieBorderProperties)  throws IllegalStateException {
         if (pieBorderProperties != null) {
             if (pieBorderProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setPieBorderProperties", "DrawOval");
@@ -3457,7 +3733,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             pieBorderProperties.setConfigOnly(true);
         }
         JavaScriptObject config = pieBorderProperties == null ? null : pieBorderProperties.getConfig();
-        setAttribute("pieBorderProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("pieBorderProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -3477,10 +3753,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Angle where first label is placed in a Pie chart in stacked mode, in degrees.
      *
      * @param pieLabelAngleStart New pieLabelAngleStart value. Default value is 20
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPieLabelAngleStart(int pieLabelAngleStart)  throws IllegalStateException {
-        setAttribute("pieLabelAngleStart", pieLabelAngleStart, false);
+    public FacetChart setPieLabelAngleStart(int pieLabelAngleStart)  throws IllegalStateException {
+        return (FacetChart)setAttribute("pieLabelAngleStart", pieLabelAngleStart, false);
     }
 
     /**
@@ -3497,10 +3774,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * How far label lines stick out of the pie radius in a Pie chart in stacked mode.
      *
      * @param pieLabelLineExtent New pieLabelLineExtent value. Default value is 7
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPieLabelLineExtent(int pieLabelLineExtent)  throws IllegalStateException {
-        setAttribute("pieLabelLineExtent", pieLabelLineExtent, false);
+    public FacetChart setPieLabelLineExtent(int pieLabelLineExtent)  throws IllegalStateException {
+        return (FacetChart)setAttribute("pieLabelLineExtent", pieLabelLineExtent, false);
     }
 
     /**
@@ -3517,9 +3795,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for pie label line
      *
      * @param pieLabelLineProperties New pieLabelLineProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setPieLabelLineProperties(DrawLine pieLabelLineProperties) {
+    public FacetChart setPieLabelLineProperties(DrawLine pieLabelLineProperties) {
         if (pieLabelLineProperties != null) {
             if (pieLabelLineProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setPieLabelLineProperties", "DrawLine");
@@ -3527,7 +3806,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             pieLabelLineProperties.setConfigOnly(true);
         }
         JavaScriptObject config = pieLabelLineProperties == null ? null : pieLabelLineProperties.getConfig();
-        setAttribute("pieLabelLineProperties", JSOHelper.cleanProperties(config, true), true);
+        return (FacetChart)setAttribute("pieLabelLineProperties", JSOHelper.cleanProperties(config, true), true);
     }
 
     /**
@@ -3547,10 +3826,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for pie ring border
      *
      * @param pieRingBorderProperties New pieRingBorderProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setPieRingBorderProperties(DrawOval pieRingBorderProperties)  throws IllegalStateException {
+    public FacetChart setPieRingBorderProperties(DrawOval pieRingBorderProperties)  throws IllegalStateException {
         if (pieRingBorderProperties != null) {
             if (pieRingBorderProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setPieRingBorderProperties", "DrawOval");
@@ -3558,7 +3838,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             pieRingBorderProperties.setConfigOnly(true);
         }
         JavaScriptObject config = pieRingBorderProperties == null ? null : pieRingBorderProperties.getConfig();
-        setAttribute("pieRingBorderProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("pieRingBorderProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -3578,10 +3858,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for pie slices
      *
      * @param pieSliceProperties New pieSliceProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setPieSliceProperties(DrawSector pieSliceProperties)  throws IllegalStateException {
+    public FacetChart setPieSliceProperties(DrawSector pieSliceProperties)  throws IllegalStateException {
         if (pieSliceProperties != null) {
             if (pieSliceProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setPieSliceProperties", "DrawSector");
@@ -3589,7 +3870,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             pieSliceProperties.setConfigOnly(true);
         }
         JavaScriptObject config = pieSliceProperties == null ? null : pieSliceProperties.getConfig();
-        setAttribute("pieSliceProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("pieSliceProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -3610,10 +3891,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * value starting from the "east" position.   Use 270 or -90 for north.
      *
      * @param pieStartAngle New pieStartAngle value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPieStartAngle(Integer pieStartAngle)  throws IllegalStateException {
-        setAttribute("pieStartAngle", pieStartAngle, false);
+    public FacetChart setPieStartAngle(Integer pieStartAngle)  throws IllegalStateException {
+        return (FacetChart)setAttribute("pieStartAngle", pieStartAngle, false);
     }
 
     /**
@@ -3638,10 +3920,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Setter for {@link com.smartgwt.client.widgets.chart.FacetChart#getPixelsPerGradation pixelsPerGradation}.
      *
      * @param pixelsPerGradation new {@link com.smartgwt.client.widgets.chart.FacetChart#getPixelsPerGradation pixelsPerGradation} value. Default value is 28
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.chart.FacetChart#setOtherAxisPixelsPerGradation
      */
-    public void setPixelsPerGradation(int pixelsPerGradation) {
-        setAttribute("pixelsPerGradation", pixelsPerGradation, true);
+    public FacetChart setPixelsPerGradation(int pixelsPerGradation) {
+        return (FacetChart)setAttribute("pixelsPerGradation", pixelsPerGradation, true);
     }
 
     /**
@@ -3665,10 +3948,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getColorScaleMetric color scale metric} values.
      *
      * @param pointColorLogBase New pointColorLogBase value. Default value is 10
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPointColorLogBase(Integer pointColorLogBase)  throws IllegalStateException {
-        setAttribute("pointColorLogBase", pointColorLogBase, false);
+    public FacetChart setPointColorLogBase(Integer pointColorLogBase)  throws IllegalStateException {
+        return (FacetChart)setAttribute("pointColorLogBase", pointColorLogBase, false);
     }
 
     /**
@@ -3688,10 +3972,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * property specifies an array of geometric shapes to draw for the data points of each series.
      *
      * @param pointShapes New pointShapes value. Default value is ["Oval", "Square", "Diamond", "Triangle"]
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPointShapes(PointShape... pointShapes)  throws IllegalStateException {
-        setAttribute("pointShapes", pointShapes, false);
+    public FacetChart setPointShapes(PointShape... pointShapes)  throws IllegalStateException {
+        return (FacetChart)setAttribute("pointShapes", pointShapes, false);
     }
 
     /**
@@ -3715,10 +4000,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getPointSizeLogGradations pointSizeLogGradations}.
      *
      * @param pointSizeGradations New pointSizeGradations value. Default value is 5
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPointSizeGradations(Integer pointSizeGradations)  throws IllegalStateException {
-        setAttribute("pointSizeGradations", pointSizeGradations, false);
+    public FacetChart setPointSizeGradations(Integer pointSizeGradations)  throws IllegalStateException {
+        return (FacetChart)setAttribute("pointSizeGradations", pointSizeGradations, false);
     }
 
     /**
@@ -3741,10 +4027,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * logarithmic point size metric values.
      *
      * @param pointSizeLogBase New pointSizeLogBase value. Default value is 10
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPointSizeLogBase(Integer pointSizeLogBase)  throws IllegalStateException {
-        setAttribute("pointSizeLogBase", pointSizeLogBase, false);
+    public FacetChart setPointSizeLogBase(Integer pointSizeLogBase)  throws IllegalStateException {
+        return (FacetChart)setAttribute("pointSizeLogBase", pointSizeLogBase, false);
     }
 
     /**
@@ -3766,11 +4053,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getPointSizeLogBase pointSizeLogBase}.
      *
      * @param pointSizeLogGradations New pointSizeLogGradations value. Default value is [1, 5]
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#setLogGradations
      */
-    public void setPointSizeLogGradations(float... pointSizeLogGradations)  throws IllegalStateException {
-        setAttribute("pointSizeLogGradations", pointSizeLogGradations, false);
+    public FacetChart setPointSizeLogGradations(float... pointSizeLogGradations)  throws IllegalStateException {
+        return (FacetChart)setAttribute("pointSizeLogGradations", pointSizeLogGradations, false);
     }
 
     /**
@@ -3805,11 +4093,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * {@link com.smartgwt.client.widgets.chart.FacetChart#getShowDataPoints showDataPoints}.
      *
      * @param pointSizeMetric New pointSizeMetric value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#bubbleChart" target="examples">Bubble Chart Example</a>
      */
-    public void setPointSizeMetric(String pointSizeMetric)  throws IllegalStateException {
-        setAttribute("pointSizeMetric", pointSizeMetric, false);
+    public FacetChart setPointSizeMetric(String pointSizeMetric)  throws IllegalStateException {
+        return (FacetChart)setAttribute("pointSizeMetric", pointSizeMetric, false);
     }
 
     /**
@@ -3844,10 +4133,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param printZoomChart New printZoomChart value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
-    public void setPrintZoomChart(boolean printZoomChart) {
-        setAttribute("printZoomChart", printZoomChart, true);
+    public FacetChart setPrintZoomChart(boolean printZoomChart) {
+        return (FacetChart)setAttribute("printZoomChart", printZoomChart, true);
     }
 
     /**
@@ -3875,14 +4165,15 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getData data} is not exactly one by scaling the assigned probabilities.
      *
      * @param probabilityMetric New probabilityMetric value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#getMean
      * @see com.smartgwt.client.widgets.chart.FacetChart#getMedian
      * @see com.smartgwt.client.widgets.chart.FacetChart#getStdDev
      * @see com.smartgwt.client.widgets.chart.FacetChart#getVariance
      */
-    public void setProbabilityMetric(String probabilityMetric)  throws IllegalStateException {
-        setAttribute("probabilityMetric", probabilityMetric, false);
+    public FacetChart setProbabilityMetric(String probabilityMetric)  throws IllegalStateException {
+        return (FacetChart)setAttribute("probabilityMetric", probabilityMetric, false);
     }
 
     /**
@@ -3916,10 +4207,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Setter for {@link com.smartgwt.client.widgets.chart.FacetChart#getProportional proportional}.
      *
      * @param proportional Whether the chart should now use proportional mode. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#multiSeriesChart" target="examples">Multi-Series Chart Example</a>
      */
-    public void setProportional(Boolean proportional) {
-        setAttribute("proportional", proportional, true);
+    public FacetChart setProportional(Boolean proportional) {
+        return (FacetChart)setAttribute("proportional", proportional, true);
     }
 
     /**
@@ -3944,10 +4236,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.cube.Facet#getProportionalTitle proportionalTitle}.
      *
      * @param proportionalAxisLabel New proportionalAxisLabel value. Default value is "Percent"
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setProportionalAxisLabel(String proportionalAxisLabel)  throws IllegalStateException {
-        setAttribute("proportionalAxisLabel", proportionalAxisLabel, false);
+    public FacetChart setProportionalAxisLabel(String proportionalAxisLabel)  throws IllegalStateException {
+        return (FacetChart)setAttribute("proportionalAxisLabel", proportionalAxisLabel, false);
     }
 
     /**
@@ -3967,10 +4260,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for radar background
      *
      * @param radarBackgroundProperties New radarBackgroundProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setRadarBackgroundProperties(DrawOval radarBackgroundProperties)  throws IllegalStateException {
+    public FacetChart setRadarBackgroundProperties(DrawOval radarBackgroundProperties)  throws IllegalStateException {
         if (radarBackgroundProperties != null) {
             if (radarBackgroundProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setRadarBackgroundProperties", "DrawOval");
@@ -3978,7 +4272,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             radarBackgroundProperties.setConfigOnly(true);
         }
         JavaScriptObject config = radarBackgroundProperties == null ? null : radarBackgroundProperties.getConfig();
-        setAttribute("radarBackgroundProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("radarBackgroundProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -4003,12 +4297,13 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * and not be legible.  If rotateLabels is "never" then the labels will not be rotated. <P>
      *
      * @param radarRotateLabels New radarRotateLabels value. Default value is "auto"
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#setRotateLabels
      * @see com.smartgwt.client.widgets.chart.FacetChart#setRadialLabelOffset
      */
-    public void setRadarRotateLabels(LabelRotationMode radarRotateLabels)  throws IllegalStateException {
-        setAttribute("radarRotateLabels", radarRotateLabels == null ? null : radarRotateLabels.getValue(), false);
+    public FacetChart setRadarRotateLabels(LabelRotationMode radarRotateLabels)  throws IllegalStateException {
+        return (FacetChart)setAttribute("radarRotateLabels", radarRotateLabels == null ? null : radarRotateLabels.getValue(), false);
     }
 
     /**
@@ -4034,10 +4329,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * radarRotateLabels}.
      *
      * @param radialLabelOffset New radialLabelOffset value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setRadialLabelOffset(Integer radialLabelOffset)  throws IllegalStateException {
-        setAttribute("radialLabelOffset", radialLabelOffset, false);
+    public FacetChart setRadialLabelOffset(Integer radialLabelOffset)  throws IllegalStateException {
+        return (FacetChart)setAttribute("radialLabelOffset", radialLabelOffset, false);
     }
 
     /**
@@ -4056,10 +4352,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for the {@link com.smartgwt.client.widgets.chart.FacetChart#getShowRegressionLine regression line}.
      *
      * @param regressionLineProperties New regressionLineProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setRegressionLineProperties(DrawLine regressionLineProperties)  throws IllegalStateException {
+    public FacetChart setRegressionLineProperties(DrawLine regressionLineProperties)  throws IllegalStateException {
         if (regressionLineProperties != null) {
             if (regressionLineProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setRegressionLineProperties", "DrawLine");
@@ -4067,7 +4364,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             regressionLineProperties.setConfigOnly(true);
         }
         JavaScriptObject config = regressionLineProperties == null ? null : regressionLineProperties.getConfig();
-        setAttribute("regressionLineProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("regressionLineProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -4091,9 +4388,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Setter for {@link com.smartgwt.client.types.RegressionLineType}.
      *
      * @param regressionLineType New value for this.regressionLineType. Default value is "line"
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      */
-    public void setRegressionLineType(RegressionLineType regressionLineType) {
-        setAttribute("regressionLineType", regressionLineType == null ? null : regressionLineType.getValue(), true);
+    public FacetChart setRegressionLineType(RegressionLineType regressionLineType) {
+        return (FacetChart)setAttribute("regressionLineType", regressionLineType == null ? null : regressionLineType.getValue(), true);
     }
 
     /**
@@ -4114,9 +4412,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Setter for {@link com.smartgwt.client.widgets.chart.FacetChart#getRegressionPolynomialDegree regressionPolynomialDegree}.
      *
      * @param regressionPolynomialDegree New value for this.regressionPolynomialDegree. Default value is 3
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      */
-    public void setRegressionPolynomialDegree(int regressionPolynomialDegree) {
-        setAttribute("regressionPolynomialDegree", regressionPolynomialDegree, true);
+    public FacetChart setRegressionPolynomialDegree(int regressionPolynomialDegree) {
+        return (FacetChart)setAttribute("regressionPolynomialDegree", regressionPolynomialDegree, true);
     }
 
     /**
@@ -4126,6 +4425,32 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      */
     public int getRegressionPolynomialDegree()  {
         return getAttributeAsInt("regressionPolynomialDegree");
+    }
+    
+
+    /**
+     * This property controls whether to rotate the labels shown for data-values in  {@link com.smartgwt.client.types.ChartType
+     * Column-type charts}.  "auto" will rotate all data-values if any of them  are wider than their columns.  In all cases,
+     * whether rotated or not, data-values are  hidden and instead shown in hovers if any of them exceed their bar's width.
+     *
+     * @param rotateDataValues New rotateDataValues value. Default value is "auto"
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.chart.FacetChart#setRotateLabels
+     */
+    public FacetChart setRotateDataValues(LabelRotationMode rotateDataValues) {
+        return (FacetChart)setAttribute("rotateDataValues", rotateDataValues == null ? null : rotateDataValues.getValue(), true);
+    }
+
+    /**
+     * This property controls whether to rotate the labels shown for data-values in  {@link com.smartgwt.client.types.ChartType
+     * Column-type charts}.  "auto" will rotate all data-values if any of them  are wider than their columns.  In all cases,
+     * whether rotated or not, data-values are  hidden and instead shown in hovers if any of them exceed their bar's width.
+     *
+     * @return Current rotateDataValues value. Default value is "auto"
+     * @see com.smartgwt.client.widgets.chart.FacetChart#getRotateLabels
+     */
+    public LabelRotationMode getRotateDataValues()  {
+        return EnumUtil.getEnum(LabelRotationMode.values(), getAttribute("rotateDataValues"));
     }
     
 
@@ -4140,11 +4465,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * histogram chart.
      *
      * @param rotateLabels New rotateLabels value. Default value is "auto"
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#setRadarRotateLabels
      */
-    public void setRotateLabels(LabelRotationMode rotateLabels)  throws IllegalStateException {
-        setAttribute("rotateLabels", rotateLabels == null ? null : rotateLabels.getValue(), false);
+    public FacetChart setRotateLabels(LabelRotationMode rotateLabels)  throws IllegalStateException {
+        return (FacetChart)setAttribute("rotateLabels", rotateLabels == null ? null : rotateLabels.getValue(), false);
     }
 
     /**
@@ -4175,11 +4501,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Setter for {@link com.smartgwt.client.widgets.chart.FacetChart#getScaleEndColor scaleEndColor}.
      *
      * @param scaleEndColor The new end color for the color scale. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#colorScaleChart" target="examples">Color Scale Chart Example</a>
      */
-    public void setScaleEndColor(String scaleEndColor) {
-        setAttribute("scaleEndColor", scaleEndColor, true);
+    public FacetChart setScaleEndColor(String scaleEndColor) {
+        return (FacetChart)setAttribute("scaleEndColor", scaleEndColor, true);
     }
 
     /**
@@ -4207,11 +4534,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Setter for {@link com.smartgwt.client.widgets.chart.FacetChart#getScaleStartColor scaleStartColor}.
      *
      * @param scaleStartColor The new start color for the color scale. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#colorScaleChart" target="examples">Color Scale Chart Example</a>
      */
-    public void setScaleStartColor(String scaleStartColor) {
-        setAttribute("scaleStartColor", scaleStartColor, true);
+    public FacetChart setScaleStartColor(String scaleStartColor) {
+        return (FacetChart)setAttribute("scaleStartColor", scaleStartColor, true);
     }
 
     /**
@@ -4233,10 +4561,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for shadows.
      *
      * @param shadowProperties New shadowProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setShadowProperties(DrawOval shadowProperties)  throws IllegalStateException {
+    public FacetChart setShadowProperties(DrawOval shadowProperties)  throws IllegalStateException {
         if (shadowProperties != null) {
             if (shadowProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setShadowProperties", "DrawOval");
@@ -4244,7 +4573,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             shadowProperties.setConfigOnly(true);
         }
         JavaScriptObject config = shadowProperties == null ? null : shadowProperties.getConfig();
-        setAttribute("shadowProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("shadowProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -4266,10 +4595,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * useMultiplePointShapes} is disabled.
      *
      * @param showBubbleLegendPerShape New showBubbleLegendPerShape value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowBubbleLegendPerShape(boolean showBubbleLegendPerShape)  throws IllegalStateException {
-        setAttribute("showBubbleLegendPerShape", showBubbleLegendPerShape, false);
+    public FacetChart setShowBubbleLegendPerShape(boolean showBubbleLegendPerShape)  throws IllegalStateException {
+        return (FacetChart)setAttribute("showBubbleLegendPerShape", showBubbleLegendPerShape, false);
     }
 
     /**
@@ -4289,10 +4619,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Whether to show a rectangular shape around the area of the chart where data is plotted.
      *
      * @param showChartRect New showChartRect value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowChartRect(Boolean showChartRect)  throws IllegalStateException {
-        setAttribute("showChartRect", showChartRect, false);
+    public FacetChart setShowChartRect(Boolean showChartRect)  throws IllegalStateException {
+        return (FacetChart)setAttribute("showChartRect", showChartRect, false);
     }
 
     /**
@@ -4311,13 +4642,14 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * a valid {@link com.smartgwt.client.widgets.chart.FacetChart#getColorScaleMetric colorScaleMetric} is specified.
      *
      * @param showColorScaleLegend New showColorScaleLegend value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#setScaleStartColor
      * @see com.smartgwt.client.widgets.chart.FacetChart#setScaleEndColor
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#colorScaleChart" target="examples">Color Scale Chart Example</a>
      */
-    public void setShowColorScaleLegend(Boolean showColorScaleLegend)  throws IllegalStateException {
-        setAttribute("showColorScaleLegend", showColorScaleLegend, false);
+    public FacetChart setShowColorScaleLegend(Boolean showColorScaleLegend)  throws IllegalStateException {
+        return (FacetChart)setAttribute("showColorScaleLegend", showColorScaleLegend, false);
     }
 
     /**
@@ -4340,10 +4672,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * label. <P> Automatically disabled for non-rectangular charts (eg Pie, Radar).
      *
      * @param showDataAxisLabel New showDataAxisLabel value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowDataAxisLabel(Boolean showDataAxisLabel)  throws IllegalStateException {
-        setAttribute("showDataAxisLabel", showDataAxisLabel, false);
+    public FacetChart setShowDataAxisLabel(Boolean showDataAxisLabel)  throws IllegalStateException {
+        return (FacetChart)setAttribute("showDataAxisLabel", showDataAxisLabel, false);
     }
 
     /**
@@ -4364,10 +4697,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * (above an entire stack of charts, for instance) or are otherwise implicit.
      *
      * @param showDataLabels New showDataLabels value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowDataLabels(boolean showDataLabels)  throws IllegalStateException {
-        setAttribute("showDataLabels", showDataLabels, false);
+    public FacetChart setShowDataLabels(boolean showDataLabels)  throws IllegalStateException {
+        return (FacetChart)setAttribute("showDataLabels", showDataLabels, false);
     }
 
     /**
@@ -4390,10 +4724,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * interactivity.
      *
      * @param showDataPoints New showDataPoints value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowDataPoints(Boolean showDataPoints)  throws IllegalStateException {
-        setAttribute("showDataPoints", showDataPoints, false);
+    public FacetChart setShowDataPoints(Boolean showDataPoints)  throws IllegalStateException {
+        return (FacetChart)setAttribute("showDataPoints", showDataPoints, false);
     }
 
     /**
@@ -4418,10 +4753,13 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getShowValueOnHover showValueOnHover} shows hovers.
      *
      * @param showDataValues New showDataValues value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @deprecated in favor of {@link com.smartgwt.client.widgets.chart.FacetChart#getShowDataValuesMode showDataValuesMode}, which is an
+     * enum of supported modes
      */
-    public void setShowDataValues(boolean showDataValues)  throws IllegalStateException {
-        setAttribute("showDataValues", showDataValues, false);
+    public FacetChart setShowDataValues(boolean showDataValues)  throws IllegalStateException {
+        return (FacetChart)setAttribute("showDataValues", showDataValues, false);
     }
 
     /**
@@ -4432,6 +4770,8 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getShowValueOnHover showValueOnHover} shows hovers.
      *
      * @return Current showDataValues value. Default value is false
+     * @deprecated in favor of {@link com.smartgwt.client.widgets.chart.FacetChart#getShowDataValuesMode showDataValuesMode}, which is an
+     * enum of supported modes
      */
     public boolean getShowDataValues()  {
         Boolean result = getAttributeAsBoolean("showDataValues");
@@ -4440,14 +4780,41 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
     
 
     /**
+     * Strategy for determining whether and when to show data-values - either in the chart, near the shape representing a value
+     * (above columns of a column chart for example, or  adjacent to points in a line chart), in hovers, or some combination of
+     * both, including  {@link com.smartgwt.client.widgets.chart.FacetChart#getRotateDataLabels automatic rotation} where
+     * supported.
+     *
+     * @param showDataValuesMode New showDataValuesMode value. Default value is "never"
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
+     */
+    public FacetChart setShowDataValuesMode(ShowDataValuesMode showDataValuesMode) {
+        return (FacetChart)setAttribute("showDataValuesMode", showDataValuesMode == null ? null : showDataValuesMode.getValue(), true);
+    }
+
+    /**
+     * Strategy for determining whether and when to show data-values - either in the chart, near the shape representing a value
+     * (above columns of a column chart for example, or  adjacent to points in a line chart), in hovers, or some combination of
+     * both, including  {@link com.smartgwt.client.widgets.chart.FacetChart#getRotateDataLabels automatic rotation} where
+     * supported.
+     *
+     * @return Current showDataValuesMode value. Default value is "never"
+     */
+    public ShowDataValuesMode getShowDataValuesMode()  {
+        return EnumUtil.getEnum(ShowDataValuesMode.values(), getAttribute("showDataValuesMode"));
+    }
+    
+
+    /**
      * Whether to show a "doughnut hole" in the middle of pie charts.  Defaults to whether chartType is set to "Doughnut"
      * (shown) vs "Pie" (not shown) but can be forced on or off via <code>showDoughnut</code>.
      *
      * @param showDoughnut New showDoughnut value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowDoughnut(Boolean showDoughnut)  throws IllegalStateException {
-        setAttribute("showDoughnut", showDoughnut, false);
+    public FacetChart setShowDoughnut(Boolean showDoughnut)  throws IllegalStateException {
+        return (FacetChart)setAttribute("showDoughnut", showDoughnut, false);
     }
 
     /**
@@ -4469,10 +4836,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * href="http://en.wikipedia.org/wiki/Expected_value">http://en.wikipedia.org/wiki/Expected_value</a>.
      *
      * @param showExpectedValueLine New showExpectedValueLine value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowExpectedValueLine(Boolean showExpectedValueLine)  throws IllegalStateException {
-        setAttribute("showExpectedValueLine", showExpectedValueLine, false);
+    public FacetChart setShowExpectedValueLine(Boolean showExpectedValueLine)  throws IllegalStateException {
+        return (FacetChart)setAttribute("showExpectedValueLine", showExpectedValueLine, false);
     }
 
     /**
@@ -4494,10 +4862,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * If set, gradation lines are drawn on top of data rather than underneath.
      *
      * @param showGradationsOverData New showGradationsOverData value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowGradationsOverData(Boolean showGradationsOverData)  throws IllegalStateException {
-        setAttribute("showGradationsOverData", showGradationsOverData, false);
+    public FacetChart setShowGradationsOverData(Boolean showGradationsOverData)  throws IllegalStateException {
+        return (FacetChart)setAttribute("showGradationsOverData", showGradationsOverData, false);
     }
 
     /**
@@ -4514,19 +4883,20 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
     /**
      * Causes labels for the X axis to be shown above the axis and to the right of the gradation line they label, making for a
      * vertically more compact chart at the risk of gradation labels being partially obscured by data values.  Also causes the
-     * last label to be skipped (no where to place it).
+     * last label to be skipped (nowhere to place it).
      *
      * @param showInlineLabels New showInlineLabels value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowInlineLabels(Boolean showInlineLabels)  throws IllegalStateException {
-        setAttribute("showInlineLabels", showInlineLabels, false);
+    public FacetChart setShowInlineLabels(Boolean showInlineLabels)  throws IllegalStateException {
+        return (FacetChart)setAttribute("showInlineLabels", showInlineLabels, false);
     }
 
     /**
      * Causes labels for the X axis to be shown above the axis and to the right of the gradation line they label, making for a
      * vertically more compact chart at the risk of gradation labels being partially obscured by data values.  Also causes the
-     * last label to be skipped (no where to place it).
+     * last label to be skipped (nowhere to place it).
      *
      * @return Current showInlineLabels value. Default value is false
      */
@@ -4541,10 +4911,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * setting showLegend to false.
      *
      * @param showLegend New showLegend value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowLegend(Boolean showLegend)  throws IllegalStateException {
-        setAttribute("showLegend", showLegend, false);
+    public FacetChart setShowLegend(Boolean showLegend)  throws IllegalStateException {
+        return (FacetChart)setAttribute("showLegend", showLegend, false);
     }
 
     /**
@@ -4569,9 +4940,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Setter for {@link com.smartgwt.client.widgets.chart.FacetChart#getShowMinorTicks showMinorTicks}.
      *
      * @param showMinorTicks new {@link com.smartgwt.client.widgets.chart.FacetChart#getShowMinorTicks showMinorTicks} value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      */
-    public void setShowMinorTicks(boolean showMinorTicks) {
-        setAttribute("showMinorTicks", showMinorTicks, true);
+    public FacetChart setShowMinorTicks(boolean showMinorTicks) {
+        return (FacetChart)setAttribute("showMinorTicks", showMinorTicks, true);
     }
 
     /**
@@ -4595,6 +4967,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * bubble charts and <code>false</code> for all other chart types.
      *
      * @param showPointSizeLegend New showPointSizeLegend value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#setPointSizeGradations
      * @see com.smartgwt.client.widgets.chart.FacetChart#setUsePointSizeLogGradations
@@ -4602,8 +4975,8 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * @see com.smartgwt.client.widgets.chart.FacetChart#setShowBubbleLegendPerShape
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#bubbleChart" target="examples">Bubble Chart Example</a>
      */
-    public void setShowPointSizeLegend(Boolean showPointSizeLegend)  throws IllegalStateException {
-        setAttribute("showPointSizeLegend", showPointSizeLegend, false);
+    public FacetChart setShowPointSizeLegend(Boolean showPointSizeLegend)  throws IllegalStateException {
+        return (FacetChart)setAttribute("showPointSizeLegend", showPointSizeLegend, false);
     }
 
     /**
@@ -4627,10 +5000,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Whether to show gradation labels in radar charts.
      *
      * @param showRadarGradationLabels New showRadarGradationLabels value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowRadarGradationLabels(Boolean showRadarGradationLabels)  throws IllegalStateException {
-        setAttribute("showRadarGradationLabels", showRadarGradationLabels, false);
+    public FacetChart setShowRadarGradationLabels(Boolean showRadarGradationLabels)  throws IllegalStateException {
+        return (FacetChart)setAttribute("showRadarGradationLabels", showRadarGradationLabels, false);
     }
 
     /**
@@ -4659,12 +5033,13 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Setter for {@link com.smartgwt.client.widgets.chart.FacetChart#getShowRegressionLine showRegressionLine}.
      *
      * @param showRegressionLine New value for this.showRegressionLine. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.chart.FacetChart#setXAxisMetric
      * @see com.smartgwt.client.widgets.chart.FacetChart#setYAxisMetric
      * @see com.smartgwt.client.widgets.chart.FacetChart#setRegressionLineProperties
      */
-    public void setShowRegressionLine(Boolean showRegressionLine) {
-        setAttribute("showRegressionLine", showRegressionLine, true);
+    public FacetChart setShowRegressionLine(Boolean showRegressionLine) {
+        return (FacetChart)setAttribute("showRegressionLine", showRegressionLine, true);
     }
 
     /**
@@ -4697,10 +5072,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Method to change the current {@link com.smartgwt.client.types.ChartType showScatterLines}. Will redraw the chart if drawn.
      *
      * @param showScatterLines whether to draw lines between adjacent data points in "Scatter" plots. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#scatterPlotCharting" target="examples">Scatter Plot Example</a>
      */
-    public void setShowScatterLines(Boolean showScatterLines) {
-        setAttribute("showScatterLines", showScatterLines, true);
+    public FacetChart setShowScatterLines(Boolean showScatterLines) {
+        return (FacetChart)setAttribute("showScatterLines", showScatterLines, true);
     }
 
     /**
@@ -4720,10 +5096,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Whether to automatically show shadows for various charts.
      *
      * @param showShadows New showShadows value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowShadows(Boolean showShadows)  throws IllegalStateException {
-        setAttribute("showShadows", showShadows, false);
+    public FacetChart setShowShadows(Boolean showShadows)  throws IllegalStateException {
+        return (FacetChart)setAttribute("showShadows", showShadows, false);
     }
 
     /**
@@ -4747,10 +5124,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * href="http://en.wikipedia.org/wiki/Standard_deviation">http://en.wikipedia.org/wiki/Standard_deviation</a>.
      *
      * @param showStandardDeviationLines New showStandardDeviationLines value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowStandardDeviationLines(Boolean showStandardDeviationLines)  throws IllegalStateException {
-        setAttribute("showStandardDeviationLines", showStandardDeviationLines, false);
+    public FacetChart setShowStandardDeviationLines(Boolean showStandardDeviationLines)  throws IllegalStateException {
+        return (FacetChart)setAttribute("showStandardDeviationLines", showStandardDeviationLines, false);
     }
 
     /**
@@ -4778,10 +5156,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * rather than underneath.
      *
      * @param showStatisticsOverData New showStatisticsOverData value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowStatisticsOverData(Boolean showStatisticsOverData)  throws IllegalStateException {
-        setAttribute("showStatisticsOverData", showStatisticsOverData, false);
+    public FacetChart setShowStatisticsOverData(Boolean showStatisticsOverData)  throws IllegalStateException {
+        return (FacetChart)setAttribute("showStatisticsOverData", showStatisticsOverData, false);
     }
 
     /**
@@ -4803,9 +5182,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Whether to show a title.
      *
      * @param showTitle New showTitle value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle, true);
+    public FacetChart setShowTitle(Boolean showTitle) {
+        return (FacetChart)setAttribute("showTitle", showTitle, true);
     }
 
     /**
@@ -4826,10 +5206,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * axis. <p> Automatically disabled for non-rectangular charts (eg Pie, Radar).
      *
      * @param showValueAxisLabel New showValueAxisLabel value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowValueAxisLabel(Boolean showValueAxisLabel)  throws IllegalStateException {
-        setAttribute("showValueAxisLabel", showValueAxisLabel, false);
+    public FacetChart setShowValueAxisLabel(Boolean showValueAxisLabel)  throws IllegalStateException {
+        return (FacetChart)setAttribute("showValueAxisLabel", showValueAxisLabel, false);
     }
 
     /**
@@ -4855,10 +5236,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * hoverLabelProperties}.
      *
      * @param showValueOnHover New showValueOnHover value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @deprecated See {@link com.smartgwt.client.widgets.chart.FacetChart#getShowDataValuesMode showDataValuesMode} for details
      */
-    public void setShowValueOnHover(Boolean showValueOnHover)  throws IllegalStateException {
-        setAttribute("showValueOnHover", showValueOnHover, false);
+    public FacetChart setShowValueOnHover(Boolean showValueOnHover)  throws IllegalStateException {
+        return (FacetChart)setAttribute("showValueOnHover", showValueOnHover, false);
     }
 
     /**
@@ -4871,6 +5254,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * hoverLabelProperties}.
      *
      * @return Current showValueOnHover value. Default value is null
+     * @deprecated See {@link com.smartgwt.client.widgets.chart.FacetChart#getShowDataValuesMode showDataValuesMode} for details
      */
     public Boolean getShowValueOnHover()  {
         return getAttributeAsBoolean("showValueOnHover");
@@ -4884,11 +5268,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Setter for {@link com.smartgwt.client.widgets.chart.FacetChart#getShowXTicks showXTicks}.
      *
      * @param showXTicks new {@link com.smartgwt.client.widgets.chart.FacetChart#getShowXTicks showXTicks} value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.chart.FacetChart#setShowYTicks
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#customTicksChart" target="examples">Custom Date Ticks Example</a>
      */
-    public void setShowXTicks(boolean showXTicks) {
-        setAttribute("showXTicks", showXTicks, true);
+    public FacetChart setShowXTicks(boolean showXTicks) {
+        return (FacetChart)setAttribute("showXTicks", showXTicks, true);
     }
 
     /**
@@ -4918,9 +5303,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Setter for {@link com.smartgwt.client.widgets.chart.FacetChart#getShowYTicks showYTicks}.
      *
      * @param showYTicks new {@link com.smartgwt.client.widgets.chart.FacetChart#getShowYTicks showYTicks} value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      */
-    public void setShowYTicks(boolean showYTicks) {
-        setAttribute("showYTicks", showYTicks, true);
+    public FacetChart setShowYTicks(boolean showYTicks) {
+        return (FacetChart)setAttribute("showYTicks", showYTicks, true);
     }
 
     /**
@@ -4950,9 +5336,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Method to change {@link com.smartgwt.client.widgets.chart.FacetChart#getStacked stacked}. Use null to apply a default value for the current {@link com.smartgwt.client.types.ChartType chartType}.
      *
      * @param stacked new value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      */
-    public void setStacked(Boolean stacked) {
-        setAttribute("stacked", stacked, true);
+    public FacetChart setStacked(Boolean stacked) {
+        return (FacetChart)setAttribute("stacked", stacked, true);
     }
 
     /**
@@ -4978,10 +5365,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * mean line.
      *
      * @param standardDeviationBandProperties New standardDeviationBandProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setStandardDeviationBandProperties(DrawItem... standardDeviationBandProperties)  throws IllegalStateException {
+    public FacetChart setStandardDeviationBandProperties(DrawItem... standardDeviationBandProperties)  throws IllegalStateException {
         final JavaScriptObject configs;
         if (standardDeviationBandProperties == null) {
             configs = null;
@@ -4997,7 +5385,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
                 JSOHelper.setArrayValue(configs, configJIndex, JSOHelper.cleanProperties(config, true));
             }
         }
-        setAttribute("standardDeviationBandProperties", configs, false);
+        return (FacetChart)setAttribute("standardDeviationBandProperties", configs, false);
     }
     
 
@@ -5008,10 +5396,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.drawing.DrawOval}.
      *
      * @param standardDeviationLineProperties New standardDeviationLineProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setStandardDeviationLineProperties(DrawItem standardDeviationLineProperties)  throws IllegalStateException {
+    public FacetChart setStandardDeviationLineProperties(DrawItem standardDeviationLineProperties)  throws IllegalStateException {
         if (standardDeviationLineProperties != null) {
             if (standardDeviationLineProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setStandardDeviationLineProperties", "DrawItem");
@@ -5019,7 +5408,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             standardDeviationLineProperties.setConfigOnly(true);
         }
         JavaScriptObject config = standardDeviationLineProperties == null ? null : standardDeviationLineProperties.getConfig();
-        setAttribute("standardDeviationLineProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("standardDeviationLineProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -5086,10 +5475,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * 
      *
      * @param standardDeviations New standardDeviations value. Default value is [-1, 1]
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setStandardDeviations(float... standardDeviations)  throws IllegalStateException {
-        setAttribute("standardDeviations", standardDeviations, false);
+    public FacetChart setStandardDeviations(float... standardDeviations)  throws IllegalStateException {
+        return (FacetChart)setAttribute("standardDeviations", standardDeviations, false);
     }
 
     /**
@@ -5178,9 +5568,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Setter for {@link com.smartgwt.client.widgets.chart.FacetChart#getTickLength tickLength}.
      *
      * @param tickLength new {@link com.smartgwt.client.widgets.chart.FacetChart#getTickLength tickLength} value. Default value is 5
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      */
-    public void setTickLength(int tickLength) {
-        setAttribute("tickLength", tickLength, true);
+    public FacetChart setTickLength(int tickLength) {
+        return (FacetChart)setAttribute("tickLength", tickLength, true);
     }
 
     /**
@@ -5202,10 +5593,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getExtraAxisMetrics extra value axes}.
      *
      * @param tickMarkToValueAxisMargin New tickMarkToValueAxisMargin value. Default value is 7
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTickMarkToValueAxisMargin(int tickMarkToValueAxisMargin)  throws IllegalStateException {
-        setAttribute("tickMarkToValueAxisMargin", tickMarkToValueAxisMargin, false);
+    public FacetChart setTickMarkToValueAxisMargin(int tickMarkToValueAxisMargin)  throws IllegalStateException {
+        return (FacetChart)setAttribute("tickMarkToValueAxisMargin", tickMarkToValueAxisMargin, false);
     }
 
     /**
@@ -5242,9 +5634,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Horizontal alignment of the chart's {@link com.smartgwt.client.widgets.chart.FacetChart#getTitle title}.
      *
      * @param titleAlign New titleAlign value. Default value is "center"
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      */
-    public void setTitleAlign(TitleAlign titleAlign) {
-        setAttribute("titleAlign", titleAlign == null ? null : titleAlign.getValue(), true);
+    public FacetChart setTitleAlign(TitleAlign titleAlign) {
+        return (FacetChart)setAttribute("titleAlign", titleAlign == null ? null : titleAlign.getValue(), true);
     }
 
     /**
@@ -5261,9 +5654,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for title background (if being drawn).
      *
      * @param titleBackgroundProperties New titleBackgroundProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setTitleBackgroundProperties(DrawLabel titleBackgroundProperties) {
+    public FacetChart setTitleBackgroundProperties(DrawLabel titleBackgroundProperties) {
         if (titleBackgroundProperties != null) {
             if (titleBackgroundProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setTitleBackgroundProperties", "DrawLabel");
@@ -5271,7 +5665,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             titleBackgroundProperties.setConfigOnly(true);
         }
         JavaScriptObject config = titleBackgroundProperties == null ? null : titleBackgroundProperties.getConfig();
-        setAttribute("titleBackgroundProperties", JSOHelper.cleanProperties(config, true), true);
+        return (FacetChart)setAttribute("titleBackgroundProperties", JSOHelper.cleanProperties(config, true), true);
     }
 
     /**
@@ -5292,10 +5686,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * {@link com.smartgwt.client.widgets.chart.FacetChart#getDrawTitleBoundary drawTitleBoundary}
      *
      * @param titleBoundaryProperties New titleBoundaryProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setTitleBoundaryProperties(DrawLine titleBoundaryProperties)  throws IllegalStateException {
+    public FacetChart setTitleBoundaryProperties(DrawLine titleBoundaryProperties)  throws IllegalStateException {
         if (titleBoundaryProperties != null) {
             if (titleBoundaryProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setTitleBoundaryProperties", "DrawLine");
@@ -5303,7 +5698,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             titleBoundaryProperties.setConfigOnly(true);
         }
         JavaScriptObject config = titleBoundaryProperties == null ? null : titleBoundaryProperties.getConfig();
-        setAttribute("titleBoundaryProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("titleBoundaryProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -5324,20 +5719,21 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * if aligning the title left or right, the amount of space before (for left aligned) or after (for right aligned) to pad
      * the title from the border edge
      *
-     * @param titlePadding New titlePadding value. Default value is null
+     * @param titlePadding New titlePadding value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      */
-    public void setTitlePadding(Boolean titlePadding) {
-        setAttribute("titlePadding", titlePadding, true);
+    public FacetChart setTitlePadding(int titlePadding) {
+        return (FacetChart)setAttribute("titlePadding", titlePadding, true);
     }
 
     /**
      * if aligning the title left or right, the amount of space before (for left aligned) or after (for right aligned) to pad
      * the title from the border edge
      *
-     * @return Current titlePadding value. Default value is null
+     * @return Current titlePadding value. Default value is 0
      */
-    public Boolean getTitlePadding()  {
-        return getAttributeAsBoolean("titlePadding");
+    public int getTitlePadding()  {
+        return getAttributeAsInt("titlePadding");
     }
     
 
@@ -5345,9 +5741,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for title label.
      *
      * @param titleProperties New titleProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setTitleProperties(DrawLabel titleProperties) {
+    public FacetChart setTitleProperties(DrawLabel titleProperties) {
         if (titleProperties != null) {
             if (titleProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setTitleProperties", "DrawLabel");
@@ -5355,7 +5752,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             titleProperties.setConfigOnly(true);
         }
         JavaScriptObject config = titleProperties == null ? null : titleProperties.getConfig();
-        setAttribute("titleProperties", JSOHelper.cleanProperties(config, true), true);
+        return (FacetChart)setAttribute("titleProperties", JSOHelper.cleanProperties(config, true), true);
     }
 
     /**
@@ -5375,9 +5772,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * The height of the bordered rect around the title - defaults to 0 (assuming no border)
      *
      * @param titleRectHeight New titleRectHeight value. Default value is 5
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      */
-    public void setTitleRectHeight(int titleRectHeight) {
-        setAttribute("titleRectHeight", titleRectHeight, true);
+    public FacetChart setTitleRectHeight(int titleRectHeight) {
+        return (FacetChart)setAttribute("titleRectHeight", titleRectHeight, true);
     }
 
     /**
@@ -5395,10 +5793,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * dataColors} but specify chart-specific  gradients based on the primary data color per chart type.
      *
      * @param useAutoGradients New useAutoGradients value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setUseAutoGradients(Boolean useAutoGradients)  throws IllegalStateException {
-        setAttribute("useAutoGradients", useAutoGradients, false);
+    public FacetChart setUseAutoGradients(Boolean useAutoGradients)  throws IllegalStateException {
+        return (FacetChart)setAttribute("useAutoGradients", useAutoGradients, false);
     }
 
     /**
@@ -5420,10 +5819,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * {@link com.smartgwt.client.widgets.chart.FacetChart#getLogGradations logGradations}.
      *
      * @param useLogGradations New useLogGradations value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setUseLogGradations(Boolean useLogGradations)  throws IllegalStateException {
-        setAttribute("useLogGradations", useLogGradations, false);
+    public FacetChart setUseLogGradations(Boolean useLogGradations)  throws IllegalStateException {
+        return (FacetChart)setAttribute("useLogGradations", useLogGradations, false);
     }
 
     /**
@@ -5452,10 +5852,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Setter for {@link com.smartgwt.client.widgets.chart.FacetChart#getUseMultiplePointShapes useMultiplePointShapes}.
      *
      * @param useMultiplePointShapes Whether the chart should now use multiple shapes to show data points. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#bubbleChart" target="examples">Bubble Chart Example</a>
      */
-    public void setUseMultiplePointShapes(Boolean useMultiplePointShapes) {
-        setAttribute("useMultiplePointShapes", useMultiplePointShapes, true);
+    public FacetChart setUseMultiplePointShapes(Boolean useMultiplePointShapes) {
+        return (FacetChart)setAttribute("useMultiplePointShapes", useMultiplePointShapes, true);
     }
 
     /**
@@ -5484,11 +5885,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * pointSizeLogGradations}.
      *
      * @param usePointSizeLogGradations New usePointSizeLogGradations value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#setUseLogGradations
      */
-    public void setUsePointSizeLogGradations(Boolean usePointSizeLogGradations)  throws IllegalStateException {
-        setAttribute("usePointSizeLogGradations", usePointSizeLogGradations, false);
+    public FacetChart setUsePointSizeLogGradations(Boolean usePointSizeLogGradations)  throws IllegalStateException {
+        return (FacetChart)setAttribute("usePointSizeLogGradations", usePointSizeLogGradations, false);
     }
 
     /**
@@ -5514,10 +5916,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getStandardDeviations standard deviations}.
      *
      * @param useSymmetricStandardDeviations New useSymmetricStandardDeviations value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setUseSymmetricStandardDeviations(Boolean useSymmetricStandardDeviations)  throws IllegalStateException {
-        setAttribute("useSymmetricStandardDeviations", useSymmetricStandardDeviations, false);
+    public FacetChart setUseSymmetricStandardDeviations(Boolean useSymmetricStandardDeviations)  throws IllegalStateException {
+        return (FacetChart)setAttribute("useSymmetricStandardDeviations", useSymmetricStandardDeviations, false);
     }
 
     /**
@@ -5536,9 +5939,10 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties for labels of value axis.
      *
      * @param valueAxisLabelProperties New valueAxisLabelProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setValueAxisLabelProperties(DrawLabel valueAxisLabelProperties) {
+    public FacetChart setValueAxisLabelProperties(DrawLabel valueAxisLabelProperties) {
         if (valueAxisLabelProperties != null) {
             if (valueAxisLabelProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setValueAxisLabelProperties", "DrawLabel");
@@ -5546,7 +5950,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             valueAxisLabelProperties.setConfigOnly(true);
         }
         JavaScriptObject config = valueAxisLabelProperties == null ? null : valueAxisLabelProperties.getConfig();
-        setAttribute("valueAxisLabelProperties", JSOHelper.cleanProperties(config, true), true);
+        return (FacetChart)setAttribute("valueAxisLabelProperties", JSOHelper.cleanProperties(config, true), true);
     }
 
     /**
@@ -5566,10 +5970,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Margin between {@link com.smartgwt.client.widgets.chart.FacetChart#getExtraAxisMetrics multiple value axes}.
      *
      * @param valueAxisMargin New valueAxisMargin value. Default value is 10
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setValueAxisMargin(int valueAxisMargin)  throws IllegalStateException {
-        setAttribute("valueAxisMargin", valueAxisMargin, false);
+    public FacetChart setValueAxisMargin(int valueAxisMargin)  throws IllegalStateException {
+        return (FacetChart)setAttribute("valueAxisMargin", valueAxisMargin, false);
     }
 
     /**
@@ -5587,10 +5992,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * points of a line chart to the X axis, or radial lines in a Radar chart.
      *
      * @param valueLineProperties New valueLineProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setValueLineProperties(DrawLine valueLineProperties)  throws IllegalStateException {
+    public FacetChart setValueLineProperties(DrawLine valueLineProperties)  throws IllegalStateException {
         if (valueLineProperties != null) {
             if (valueLineProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setValueLineProperties", "DrawLine");
@@ -5598,7 +6004,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             valueLineProperties.setConfigOnly(true);
         }
         JavaScriptObject config = valueLineProperties == null ? null : valueLineProperties.getConfig();
-        setAttribute("valueLineProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("valueLineProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -5619,10 +6025,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Property in each record that holds a data value. <P> Not used if there is an inline facet, see  Chart.data.
      *
      * @param valueProperty New valueProperty value. Default value is "_value"
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setValueProperty(String valueProperty)  throws IllegalStateException {
-        setAttribute("valueProperty", valueProperty, false);
+    public FacetChart setValueProperty(String valueProperty)  throws IllegalStateException {
+        return (FacetChart)setAttribute("valueProperty", valueProperty, false);
     }
 
     /**
@@ -5639,10 +6046,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * A label for the data values, such as "Sales in Thousands", typically used as the label for the value axis.
      *
      * @param valueTitle New valueTitle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setValueTitle(String valueTitle)  throws IllegalStateException {
-        setAttribute("valueTitle", valueTitle, false);
+    public FacetChart setValueTitle(String valueTitle)  throws IllegalStateException {
+        return (FacetChart)setAttribute("valueTitle", valueTitle, false);
     }
 
     /**
@@ -5661,11 +6069,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * x-axis metric is date-valued, this value should be a date (typically applies to Scatter charts only).
      *
      * @param xAxisEndValue New xAxisEndValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#setAxisEndValue
      */
-    public void setXAxisEndValue(Double xAxisEndValue)  throws IllegalStateException {
-        setAttribute("xAxisEndValue", xAxisEndValue, false);
+    public FacetChart setXAxisEndValue(Double xAxisEndValue)  throws IllegalStateException {
+        return (FacetChart)setAttribute("xAxisEndValue", xAxisEndValue, false);
     }
 
     /**
@@ -5686,11 +6095,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * x-axis metric is date-valued, this value should be a date (typically applies to Scatter charts only).
      *
      * @param xAxisEndValue New xAxisEndValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#setAxisEndValue
      */
-    public void setXAxisEndValue(Date xAxisEndValue)  throws IllegalStateException {
-        setAttribute("xAxisEndValue", xAxisEndValue, false);
+    public FacetChart setXAxisEndValue(Date xAxisEndValue)  throws IllegalStateException {
+        return (FacetChart)setAttribute("xAxisEndValue", xAxisEndValue, false);
     }
 
     /**
@@ -5711,10 +6121,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * second value of the metric facet.
      *
      * @param xAxisMetric New xAxisMetric value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setXAxisMetric(String xAxisMetric)  throws IllegalStateException {
-        setAttribute("xAxisMetric", xAxisMetric, false);
+    public FacetChart setXAxisMetric(String xAxisMetric)  throws IllegalStateException {
+        return (FacetChart)setAttribute("xAxisMetric", xAxisMetric, false);
     }
 
     /**
@@ -5735,11 +6146,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Scatter charts only).
      *
      * @param xAxisStartValue New xAxisStartValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#setAxisStartValue
      */
-    public void setXAxisStartValue(Double xAxisStartValue)  throws IllegalStateException {
-        setAttribute("xAxisStartValue", xAxisStartValue, false);
+    public FacetChart setXAxisStartValue(Double xAxisStartValue)  throws IllegalStateException {
+        return (FacetChart)setAttribute("xAxisStartValue", xAxisStartValue, false);
     }
 
     /**
@@ -5762,11 +6174,12 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Scatter charts only).
      *
      * @param xAxisStartValue New xAxisStartValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.chart.FacetChart#setAxisStartValue
      */
-    public void setXAxisStartValue(Date xAxisStartValue)  throws IllegalStateException {
-        setAttribute("xAxisStartValue", xAxisStartValue, false);
+    public FacetChart setXAxisStartValue(Date xAxisStartValue)  throws IllegalStateException {
+        return (FacetChart)setAttribute("xAxisStartValue", xAxisStartValue, false);
     }
 
     /**
@@ -5784,13 +6197,34 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
     
 
     /**
+     * Horizontal alignment of y-axis labels, shown to the left of the chart.
+     *
+     * @param yAxisLabelAlign New yAxisLabelAlign value. Default value is "right"
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
+     */
+    public FacetChart setYAxisLabelAlign(Alignment yAxisLabelAlign) {
+        return (FacetChart)setAttribute("yAxisLabelAlign", yAxisLabelAlign == null ? null : yAxisLabelAlign.getValue(), true);
+    }
+
+    /**
+     * Horizontal alignment of y-axis labels, shown to the left of the chart.
+     *
+     * @return Current yAxisLabelAlign value. Default value is "right"
+     */
+    public Alignment getYAxisLabelAlign()  {
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("yAxisLabelAlign"));
+    }
+    
+
+    /**
      * Padding between each swatch and label pair.
      *
      * @param yAxisLabelPadding New yAxisLabelPadding value. Default value is 5
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setYAxisLabelPadding(int yAxisLabelPadding)  throws IllegalStateException {
-        setAttribute("yAxisLabelPadding", yAxisLabelPadding, false);
+    public FacetChart setYAxisLabelPadding(int yAxisLabelPadding)  throws IllegalStateException {
+        return (FacetChart)setAttribute("yAxisLabelPadding", yAxisLabelPadding, false);
     }
 
     /**
@@ -5808,10 +6242,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * first value of the metric facet.
      *
      * @param yAxisMetric New yAxisMetric value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setYAxisMetric(String yAxisMetric)  throws IllegalStateException {
-        setAttribute("yAxisMetric", yAxisMetric, false);
+    public FacetChart setYAxisMetric(String yAxisMetric)  throws IllegalStateException {
+        return (FacetChart)setAttribute("yAxisMetric", yAxisMetric, false);
     }
 
     /**
@@ -5839,12 +6274,13 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Method to change the current {@link com.smartgwt.client.widgets.chart.FacetChart#getZIndexMetric zIndexMetric} - see property for more details. Will redraw the chart if drawn.
      *
      * @param zIndexMetric name of zIndex metric. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.chart.FacetChart#setMetricFacetId
      * @see com.smartgwt.client.widgets.chart.FacetChart#setMaxDataZIndex
      * @see com.smartgwt.client.widgets.chart.FacetChart#getDataLabelFacet
      */
-    public void setZIndexMetric(String zIndexMetric) {
-        setAttribute("zIndexMetric", zIndexMetric, true);
+    public FacetChart setZIndexMetric(String zIndexMetric) {
+        return (FacetChart)setAttribute("zIndexMetric", zIndexMetric, true);
     }
 
     /**
@@ -5895,10 +6331,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * wide as the main chart.
      *
      * @param zoomChartHeight New zoomChartHeight value. Default value is 100
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setZoomChartHeight(double zoomChartHeight)  throws IllegalStateException {
-        setAttribute("zoomChartHeight", zoomChartHeight, false);
+    public FacetChart setZoomChartHeight(double zoomChartHeight)  throws IllegalStateException {
+        return (FacetChart)setAttribute("zoomChartHeight", zoomChartHeight, false);
     }
 
     /**
@@ -5916,10 +6353,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * Properties to further configure the {@link com.smartgwt.client.widgets.chart.FacetChart#getZoomChart zoomChart}.
      *
      * @param zoomChartProperties New zoomChartProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setZoomChartProperties(FacetChart zoomChartProperties)  throws IllegalStateException {
+    public FacetChart setZoomChartProperties(FacetChart zoomChartProperties)  throws IllegalStateException {
         if (zoomChartProperties != null) {
             if (zoomChartProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setZoomChartProperties", "FacetChart");
@@ -5927,7 +6365,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             zoomChartProperties.setConfigOnly(true);
         }
         JavaScriptObject config = zoomChartProperties == null ? null : zoomChartProperties.getConfig();
-        setAttribute("zoomChartProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("zoomChartProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -5968,10 +6406,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * <code>zoomLogScale</code> to explicitly enable or disable logarithmic scaling.
      *
      * @param zoomLogScale New zoomLogScale value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setZoomLogScale(Boolean zoomLogScale)  throws IllegalStateException {
-        setAttribute("zoomLogScale", zoomLogScale, false);
+    public FacetChart setZoomLogScale(Boolean zoomLogScale)  throws IllegalStateException {
+        return (FacetChart)setAttribute("zoomLogScale", zoomLogScale, false);
     }
 
     /**
@@ -5993,10 +6432,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getZoomChart zoomChart}.
      *
      * @param zoomMutePercent New zoomMutePercent value. Default value is -35
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setZoomMutePercent(float zoomMutePercent)  throws IllegalStateException {
-        setAttribute("zoomMutePercent", zoomMutePercent, false);
+    public FacetChart setZoomMutePercent(float zoomMutePercent)  throws IllegalStateException {
+        return (FacetChart)setAttribute("zoomMutePercent", zoomMutePercent, false);
     }
 
     /**
@@ -6031,10 +6471,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * zoomSelectionChart}.
      *
      * @param zoomSelectionChartProperties New zoomSelectionChartProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setZoomSelectionChartProperties(FacetChart zoomSelectionChartProperties)  throws IllegalStateException {
+    public FacetChart setZoomSelectionChartProperties(FacetChart zoomSelectionChartProperties)  throws IllegalStateException {
         if (zoomSelectionChartProperties != null) {
             if (zoomSelectionChartProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(FacetChart.class, "setZoomSelectionChartProperties", "FacetChart");
@@ -6042,7 +6483,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             zoomSelectionChartProperties.setConfigOnly(true);
         }
         JavaScriptObject config = zoomSelectionChartProperties == null ? null : zoomSelectionChartProperties.getConfig();
-        setAttribute("zoomSelectionChartProperties", JSOHelper.cleanProperties(config, true), false);
+        return (FacetChart)setAttribute("zoomSelectionChartProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -6065,10 +6506,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * performance consequences and makes the rendering of the mini-chart slightly slower.
      *
      * @param zoomShowSelection New zoomShowSelection value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setZoomShowSelection(Boolean zoomShowSelection)  throws IllegalStateException {
-        setAttribute("zoomShowSelection", zoomShowSelection, false);
+    public FacetChart setZoomShowSelection(Boolean zoomShowSelection)  throws IllegalStateException {
+        return (FacetChart)setAttribute("zoomShowSelection", zoomShowSelection, false);
     }
 
     /**
@@ -6092,10 +6534,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.chart.FacetChart#getZoomEndValue zoomEndValue} to start with a particular range.
      *
      * @param zoomStartPosition New zoomStartPosition value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.FacetChart FacetChart} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setZoomStartPosition(ZoomStartPosition zoomStartPosition)  throws IllegalStateException {
-        setAttribute("zoomStartPosition", zoomStartPosition == null ? null : zoomStartPosition.getValue(), false);
+    public FacetChart setZoomStartPosition(ZoomStartPosition zoomStartPosition)  throws IllegalStateException {
+        return (FacetChart)setAttribute("zoomStartPosition", zoomStartPosition == null ? null : zoomStartPosition.getValue(), false);
     }
 
     /**
@@ -7788,24 +8231,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
         error("Cannot change configuration property '" + attribute + "' to " + value + " now that component " + id + " has been created.");
     }
 
-    private native Object getAttributeAsObject(String property) /*-{
-        var ret;
-        if (this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
-            var widget = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            ret = widget.getProperty(property);
-        } else {
-            var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
-            if (config[property] != undefined) {
-                ret = config[property];
-            } else {
-                var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
-                ret = $wnd.isc[scClassName].getInstanceProperty(property);
-            }
-        }
-        return (ret == null ? null : $wnd.SmartGWT.convertToJavaType(ret));
-    }-*/;
-
-    private void setAttribute(String attribute, Object value, boolean allowPostCreate) {
+    private FacetChart setAttribute(String attribute, Object value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -7875,6 +8301,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
         } else {
             error(attribute, String.valueOf(value));
         }
+        return this;
     }
 
     private native void setProperty(String property, Object value) /*-{
@@ -8575,6 +9002,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             s.logicalStructureErrors += "FacetChart.autoRotateLabels:" + t.getMessage() + "\n";
         }
         try {
+            s.autoScrollContent = getAttributeAsString("autoScrollContent");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FacetChart.autoScrollContent:" + t.getMessage() + "\n";
+        }
+        try {
             s.autoScrollData = getAttributeAsString("autoScrollData");
         } catch (Throwable t) {
             s.logicalStructureErrors += "FacetChart.autoScrollData:" + t.getMessage() + "\n";
@@ -8718,6 +9150,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             s.errorBarWidth = getAttributeAsString("errorBarWidth");
         } catch (Throwable t) {
             s.logicalStructureErrors += "FacetChart.errorBarWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.extraAxisLabelAlign = getAttributeAsString("extraAxisLabelAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FacetChart.extraAxisLabelAlign:" + t.getMessage() + "\n";
         }
         try {
             s.extraAxisMetrics = getAttributeAsStringArray("extraAxisMetrics");
@@ -8870,6 +9307,26 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             s.logicalStructureErrors += "FacetChart.minBarThickness:" + t.getMessage() + "\n";
         }
         try {
+            s.minChartHeight = getAttributeAsString("minChartHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FacetChart.minChartHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.minChartWidth = getAttributeAsString("minChartWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FacetChart.minChartWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.minContentHeight = getAttributeAsString("minContentHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FacetChart.minContentHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.minContentWidth = getAttributeAsString("minContentWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FacetChart.minContentWidth:" + t.getMessage() + "\n";
+        }
+        try {
             s.minDataPointSize = getAttributeAsString("minDataPointSize");
         } catch (Throwable t) {
             s.logicalStructureErrors += "FacetChart.minDataPointSize:" + t.getMessage() + "\n";
@@ -9005,6 +9462,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             s.logicalStructureErrors += "FacetChart.regressionPolynomialDegree:" + t.getMessage() + "\n";
         }
         try {
+            s.rotateDataValues = getAttributeAsString("rotateDataValues");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FacetChart.rotateDataValues:" + t.getMessage() + "\n";
+        }
+        try {
             s.rotateLabels = getAttributeAsString("rotateLabels");
         } catch (Throwable t) {
             s.logicalStructureErrors += "FacetChart.rotateLabels:" + t.getMessage() + "\n";
@@ -9053,6 +9515,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             s.showDataValues = getAttributeAsString("showDataValues");
         } catch (Throwable t) {
             s.logicalStructureErrors += "FacetChart.showDataValues:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDataValuesMode = getAttributeAsString("showDataValuesMode");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FacetChart.showDataValuesMode:" + t.getMessage() + "\n";
         }
         try {
             s.showDoughnut = getAttributeAsString("showDoughnut");
@@ -9243,6 +9710,11 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
             s.xAxisStartValueAsString = getAttributeAsString("xAxisStartValue");
         } catch (Throwable t) {
             s.logicalStructureErrors += "FacetChart.xAxisStartValueAsString:" + t.getMessage() + "\n";
+        }
+        try {
+            s.yAxisLabelAlign = getAttributeAsString("yAxisLabelAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "FacetChart.yAxisLabelAlign:" + t.getMessage() + "\n";
         }
         try {
             s.yAxisLabelPadding = getAttributeAsString("yAxisLabelPadding");

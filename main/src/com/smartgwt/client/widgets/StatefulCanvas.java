@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -177,10 +180,11 @@ public class StatefulCanvas extends Canvas {
      * Update the 'actionType' for this canvas (radio / checkbox / button) If the canvas is currently selected, and the passed in actionType is 'button' this method will deselect the canvas.
      *
      * @param actionType New actionType value. Default value is "button"
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
-    public void setActionType(SelectionType actionType) {
-        setAttribute("actionType", actionType == null ? null : actionType.getValue(), true);
+    public StatefulCanvas setActionType(SelectionType actionType) {
+        return (StatefulCanvas)setAttribute("actionType", actionType == null ? null : actionType.getValue(), true);
     }
 
     /**
@@ -198,10 +202,11 @@ public class StatefulCanvas extends Canvas {
      * Horizontal alignment of this component's title.
      *
      * @param align New align value. Default value is Canvas.CENTER
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setAlign(Alignment align) {
-        setAttribute("align", align == null ? null : align.getValue(), true);
+    public StatefulCanvas setAlign(Alignment align) {
+        return (StatefulCanvas)setAttribute("align", align == null ? null : align.getValue(), true);
     }
 
     /**
@@ -216,6 +221,35 @@ public class StatefulCanvas extends Canvas {
     
 
     /**
+     * If specified this property returns the <code>aria-label</code> attribute to write out as part of {@link
+     * com.smartgwt.client.widgets.Canvas#getAriaState getAriaState()} in  {@link
+     * com.smartgwt.client.util.isc#setScreenReaderMode screenReaderMode}. <P> If unset, aria-label will default to {@link
+     * com.smartgwt.client.widgets.Canvas#getPrompt this.prompt} if specified, otherwise {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getTitle this.title}. <P>
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param ariaLabel New ariaLabel value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
+     */
+    public StatefulCanvas setAriaLabel(String ariaLabel) {
+        return (StatefulCanvas)setAttribute("ariaLabel", ariaLabel, true);
+    }
+
+    /**
+     * If specified this property returns the <code>aria-label</code> attribute to write out as part of {@link
+     * com.smartgwt.client.widgets.Canvas#getAriaState getAriaState()} in  {@link
+     * com.smartgwt.client.util.isc#setScreenReaderMode screenReaderMode}. <P> If unset, aria-label will default to {@link
+     * com.smartgwt.client.widgets.Canvas#getPrompt this.prompt} if specified, otherwise {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getTitle this.title}. <P>
+     *
+     * @return Current ariaLabel value. Default value is null
+     */
+    public String getAriaLabel()  {
+        return getAttributeAsString("ariaLabel");
+    }
+    
+
+    /**
      * If true, ignore the specified size of this widget and always size just large enough to accommodate the title.  If
      * <code>setWidth()</code> is explicitly called on an autoFit:true button, autoFit will be reset to <code>false</code>. <P>
      * Note that for StretchImgButton instances, autoFit will occur horizontally only, as  unpredictable vertical sizing is
@@ -226,10 +260,11 @@ public class StatefulCanvas extends Canvas {
      * Setter method for the {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit autoFit} property. Pass in true or false to turn autoFit on or off. When autoFit is set to <code>false</code>, canvas will be resized to it's previously specified size.
      *
      * @param autoFit New autoFit setting. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
-    public void setAutoFit(Boolean autoFit) {
-        setAttribute("autoFit", autoFit, true);
+    public StatefulCanvas setAutoFit(Boolean autoFit) {
+        return (StatefulCanvas)setAttribute("autoFit", autoFit, true);
     }
 
     /**
@@ -303,10 +338,11 @@ public class StatefulCanvas extends Canvas {
      * Sets the base CSS style.  As the component changes state and/or is selected, suffixes will be added to the base style.
      *
      * @param baseStyle new base style. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setBaseStyle(String baseStyle) {
-        setAttribute("baseStyle", baseStyle, true);
+    public StatefulCanvas setBaseStyle(String baseStyle) {
+        return (StatefulCanvas)setAttribute("baseStyle", baseStyle, true);
     }
 
     /**
@@ -374,11 +410,12 @@ public class StatefulCanvas extends Canvas {
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "StatefulCanvasEditProxy"
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
-        setAttribute("editProxyConstructor", editProxyConstructor, false);
+    public StatefulCanvas setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
+        return (StatefulCanvas)setAttribute("editProxyConstructor", editProxyConstructor, false);
     }
 
     /**
@@ -400,11 +437,12 @@ public class StatefulCanvas extends Canvas {
      * always sized just large enough to accommodate the title.
      *
      * @param height New height value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.StatefulCanvas#setAutoFit
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
-    public void setHeight(Integer height) {
-        setAttribute("height", height, true);
+    public StatefulCanvas setHeight(Integer height) {
+        return (StatefulCanvas)setAttribute("height", height, true);
     }
 
     /**
@@ -461,11 +499,12 @@ public class StatefulCanvas extends Canvas {
      * Change the icon being shown next to the title text.
      *
      * @param icon URL of new icon. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIcon(String icon) {
-        setAttribute("icon", icon, true);
+    public StatefulCanvas setIcon(String icon) {
+        return (StatefulCanvas)setAttribute("icon", icon, true);
     }
 
     /**
@@ -489,11 +528,12 @@ public class StatefulCanvas extends Canvas {
      * com.smartgwt.client.widgets.StatefulCanvas#getIconSize iconSize}.
      *
      * @param iconHeight New iconHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconHeight(Integer iconHeight)  throws IllegalStateException {
-        setAttribute("iconHeight", iconHeight, false);
+    public StatefulCanvas setIconHeight(Integer iconHeight)  throws IllegalStateException {
+        return (StatefulCanvas)setAttribute("iconHeight", iconHeight, false);
     }
 
     /**
@@ -516,11 +556,12 @@ public class StatefulCanvas extends Canvas {
      * Changes the orientation of the icon relative to the text of the button.
      *
      * @param iconOrientation The new orientation of the icon relative to the text of the button. Default value is "left"
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconOrientation(String iconOrientation)  throws IllegalStateException {
-        setAttribute("iconOrientation", iconOrientation, false);
+    public StatefulCanvas setIconOrientation(String iconOrientation)  throws IllegalStateException {
+        return (StatefulCanvas)setAttribute("iconOrientation", iconOrientation, false);
     }
 
     /**
@@ -545,11 +586,12 @@ public class StatefulCanvas extends Canvas {
      * <code>iconSize</code> ineffective.
      *
      * @param iconSize New iconSize value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconSize(int iconSize)  throws IllegalStateException {
-        setAttribute("iconSize", iconSize, false);
+    public StatefulCanvas setIconSize(int iconSize)  throws IllegalStateException {
+        return (StatefulCanvas)setAttribute("iconSize", iconSize, false);
     }
 
     /**
@@ -608,11 +650,12 @@ public class StatefulCanvas extends Canvas {
      * Setter for {@link com.smartgwt.client.widgets.StatefulCanvas#getIconStyle iconStyle}.
      *
      * @param iconStyle the new <code>iconStyle</code> (may be <code>null</code> to remove the className on the image). Default value is null
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconStyle(String iconStyle) {
-        setAttribute("iconStyle", iconStyle, true);
+    public StatefulCanvas setIconStyle(String iconStyle) {
+        return (StatefulCanvas)setAttribute("iconStyle", iconStyle, true);
     }
 
     /**
@@ -663,11 +706,12 @@ public class StatefulCanvas extends Canvas {
      * com.smartgwt.client.widgets.StatefulCanvas#getIconSize iconSize}.
      *
      * @param iconWidth New iconWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconWidth(Integer iconWidth)  throws IllegalStateException {
-        setAttribute("iconWidth", iconWidth, false);
+    public StatefulCanvas setIconWidth(Integer iconWidth)  throws IllegalStateException {
+        return (StatefulCanvas)setAttribute("iconWidth", iconWidth, false);
     }
 
     /**
@@ -692,9 +736,10 @@ public class StatefulCanvas extends Canvas {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param ignoreRTL new value for ignoreRTL. Default value is false
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      */
-    public void setIgnoreRTL(boolean ignoreRTL) {
-        setAttribute("ignoreRTL", ignoreRTL, true);
+    public StatefulCanvas setIgnoreRTL(boolean ignoreRTL) {
+        return (StatefulCanvas)setAttribute("ignoreRTL", ignoreRTL, true);
     }
 
     /**
@@ -714,10 +759,11 @@ public class StatefulCanvas extends Canvas {
      * If non-null, specifies the horizontal padding applied to the label, if any.
      *
      * @param labelHPad New labelHPad value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.StretchImgButton#setLabelHPad
      */
-    public void setLabelHPad(Integer labelHPad) {
-        setAttribute("labelHPad", labelHPad, true);
+    public StatefulCanvas setLabelHPad(Integer labelHPad) {
+        return (StatefulCanvas)setAttribute("labelHPad", labelHPad, true);
     }
 
     /**
@@ -735,10 +781,11 @@ public class StatefulCanvas extends Canvas {
      * If non-null, specifies the vertical padding applied to the label, if any.
      *
      * @param labelVPad New labelVPad value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.StretchImgButton#setLabelVPad
      */
-    public void setLabelVPad(Integer labelVPad) {
-        setAttribute("labelVPad", labelVPad, true);
+    public StatefulCanvas setLabelVPad(Integer labelVPad) {
+        return (StatefulCanvas)setAttribute("labelVPad", labelVPad, true);
     }
 
     /**
@@ -774,9 +821,10 @@ public class StatefulCanvas extends Canvas {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param overCanvasConstructor New overCanvasConstructor value. Default value is "Canvas"
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      */
-    public void setOverCanvasConstructor(String overCanvasConstructor) {
-        setAttribute("overCanvasConstructor", overCanvasConstructor, true);
+    public StatefulCanvas setOverCanvasConstructor(String overCanvasConstructor) {
+        return (StatefulCanvas)setAttribute("overCanvasConstructor", overCanvasConstructor, true);
     }
 
     /**
@@ -795,10 +843,11 @@ public class StatefulCanvas extends Canvas {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param radioGroup New radioGroup value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
-    public void setRadioGroup(String radioGroup) {
-        setAttribute("radioGroup", radioGroup, true);
+    public StatefulCanvas setRadioGroup(String radioGroup) {
+        return (StatefulCanvas)setAttribute("radioGroup", radioGroup, true);
     }
 
     /**
@@ -817,10 +866,11 @@ public class StatefulCanvas extends Canvas {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param redrawOnStateChange New redrawOnStateChange value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
-    public void setRedrawOnStateChange(Boolean redrawOnStateChange) {
-        setAttribute("redrawOnStateChange", redrawOnStateChange, true);
+    public StatefulCanvas setRedrawOnStateChange(Boolean redrawOnStateChange) {
+        return (StatefulCanvas)setAttribute("redrawOnStateChange", redrawOnStateChange, true);
     }
 
     /**
@@ -842,10 +892,11 @@ public class StatefulCanvas extends Canvas {
      * Set this object to be selected or deselected.
      *
      * @param selected new boolean value of whether or not the object is                                          selected. Default value is false
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
-    public void setSelected(Boolean selected) {
-        setAttribute("selected", selected, true);
+    public StatefulCanvas setSelected(Boolean selected) {
+        return (StatefulCanvas)setAttribute("selected", selected, true);
     }
 
     /**
@@ -864,10 +915,11 @@ public class StatefulCanvas extends Canvas {
      * Should we visibly change state when disabled?
      *
      * @param showDisabled New showDisabled value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
-    public void setShowDisabled(Boolean showDisabled) {
-        setAttribute("showDisabled", showDisabled, true);
+    public StatefulCanvas setShowDisabled(Boolean showDisabled) {
+        return (StatefulCanvas)setAttribute("showDisabled", showDisabled, true);
     }
 
     /**
@@ -886,11 +938,12 @@ public class StatefulCanvas extends Canvas {
      * If using an icon for this button, whether to switch the icon image if the button becomes disabled.
      *
      * @param showDisabledIcon New showDisabledIcon value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowDisabledIcon(Boolean showDisabledIcon)  throws IllegalStateException {
-        setAttribute("showDisabledIcon", showDisabledIcon, false);
+    public StatefulCanvas setShowDisabledIcon(Boolean showDisabledIcon)  throws IllegalStateException {
+        return (StatefulCanvas)setAttribute("showDisabledIcon", showDisabledIcon, false);
     }
 
     /**
@@ -909,10 +962,11 @@ public class StatefulCanvas extends Canvas {
      * Should we visibly change state when the mouse goes down in this object?
      *
      * @param showDown New showDown value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
-    public void setShowDown(Boolean showDown) {
-        setAttribute("showDown", showDown, true);
+    public StatefulCanvas setShowDown(Boolean showDown) {
+        return (StatefulCanvas)setAttribute("showDown", showDown, true);
     }
 
     /**
@@ -931,11 +985,12 @@ public class StatefulCanvas extends Canvas {
      * If using an icon for this button, whether to switch the icon image when the mouse goes down on the button.
      *
      * @param showDownIcon New showDownIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowDownIcon(Boolean showDownIcon)  throws IllegalStateException {
-        setAttribute("showDownIcon", showDownIcon, false);
+    public StatefulCanvas setShowDownIcon(Boolean showDownIcon)  throws IllegalStateException {
+        return (StatefulCanvas)setAttribute("showDownIcon", showDownIcon, false);
     }
 
     /**
@@ -958,10 +1013,11 @@ public class StatefulCanvas extends Canvas {
      * be used.
      *
      * @param showFocused New showFocused value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
-    public void setShowFocused(Boolean showFocused) {
-        setAttribute("showFocused", showFocused, true);
+    public StatefulCanvas setShowFocused(Boolean showFocused) {
+        return (StatefulCanvas)setAttribute("showFocused", showFocused, true);
     }
 
     /**
@@ -985,10 +1041,11 @@ public class StatefulCanvas extends Canvas {
      * state will be used.
      *
      * @param showFocusedAsOver New showFocusedAsOver value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
-    public void setShowFocusedAsOver(Boolean showFocusedAsOver) {
-        setAttribute("showFocusedAsOver", showFocusedAsOver, true);
+    public StatefulCanvas setShowFocusedAsOver(Boolean showFocusedAsOver) {
+        return (StatefulCanvas)setAttribute("showFocusedAsOver", showFocusedAsOver, true);
     }
 
     /**
@@ -1011,11 +1068,12 @@ public class StatefulCanvas extends Canvas {
      * will be displayed when the canvas has focus, otherwise a separate <code>"Focused"</code> icon will be displayed
      *
      * @param showFocusedIcon New showFocusedIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowFocusedIcon(Boolean showFocusedIcon)  throws IllegalStateException {
-        setAttribute("showFocusedIcon", showFocusedIcon, false);
+    public StatefulCanvas setShowFocusedIcon(Boolean showFocusedIcon)  throws IllegalStateException {
+        return (StatefulCanvas)setAttribute("showFocusedIcon", showFocusedIcon, false);
     }
 
     /**
@@ -1033,14 +1091,43 @@ public class StatefulCanvas extends Canvas {
     
 
     /**
+     * If true, this widget will fire {@link com.smartgwt.client.widgets.Canvas#addShowContextMenuHandler showContextMenu()} to
+     * show the {@link com.smartgwt.client.widgets.Canvas#getContextMenu context menu} if one is defined, rather than {@link
+     * com.smartgwt.client.widgets.Canvas#addClickHandler click()}, when the left mouse is clicked. <P> Note that this property
+     * has a different interpretation in {@link com.smartgwt.client.widgets.IconButton} as {@link
+     * com.smartgwt.client.widgets.IconButton#getShowMenuOnClick IconButton.showMenuOnClick}.
+     *
+     * @param showMenuOnClick New showMenuOnClick value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
+     */
+    public StatefulCanvas setShowMenuOnClick(Boolean showMenuOnClick) {
+        return (StatefulCanvas)setAttribute("showMenuOnClick", showMenuOnClick, true);
+    }
+
+    /**
+     * If true, this widget will fire {@link com.smartgwt.client.widgets.Canvas#addShowContextMenuHandler showContextMenu()} to
+     * show the {@link com.smartgwt.client.widgets.Canvas#getContextMenu context menu} if one is defined, rather than {@link
+     * com.smartgwt.client.widgets.Canvas#addClickHandler click()}, when the left mouse is clicked. <P> Note that this property
+     * has a different interpretation in {@link com.smartgwt.client.widgets.IconButton} as {@link
+     * com.smartgwt.client.widgets.IconButton#getShowMenuOnClick IconButton.showMenuOnClick}.
+     *
+     * @return Current showMenuOnClick value. Default value is null
+     */
+    public Boolean getShowMenuOnClick()  {
+        return getAttributeAsBoolean("showMenuOnClick");
+    }
+    
+
+    /**
      * When this property is set to true, this widget will create and show the {@link
      * com.smartgwt.client.widgets.StatefulCanvas#getOverCanvas overCanvas} on user rollover.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showOverCanvas New showOverCanvas value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      */
-    public void setShowOverCanvas(Boolean showOverCanvas) {
-        setAttribute("showOverCanvas", showOverCanvas, true);
+    public StatefulCanvas setShowOverCanvas(Boolean showOverCanvas) {
+        return (StatefulCanvas)setAttribute("showOverCanvas", showOverCanvas, true);
     }
 
     /**
@@ -1059,10 +1146,11 @@ public class StatefulCanvas extends Canvas {
      * Should we visibly change state when the mouse goes over this object?
      *
      * @param showRollOver New showRollOver value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
-    public void setShowRollOver(Boolean showRollOver) {
-        setAttribute("showRollOver", showRollOver, true);
+    public StatefulCanvas setShowRollOver(Boolean showRollOver) {
+        return (StatefulCanvas)setAttribute("showRollOver", showRollOver, true);
     }
 
     /**
@@ -1081,11 +1169,12 @@ public class StatefulCanvas extends Canvas {
      * If using an icon for this button, whether to switch the icon image on mouse rollover.
      *
      * @param showRollOverIcon New showRollOverIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowRollOverIcon(Boolean showRollOverIcon)  throws IllegalStateException {
-        setAttribute("showRollOverIcon", showRollOverIcon, false);
+    public StatefulCanvas setShowRollOverIcon(Boolean showRollOverIcon)  throws IllegalStateException {
+        return (StatefulCanvas)setAttribute("showRollOverIcon", showRollOverIcon, false);
     }
 
     /**
@@ -1107,10 +1196,11 @@ public class StatefulCanvas extends Canvas {
      * image's src will be set to "myIcon_rtl.png".
      *
      * @param showRTLIcon New showRTLIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowRTLIcon(boolean showRTLIcon)  throws IllegalStateException {
-        setAttribute("showRTLIcon", showRTLIcon, false);
+    public StatefulCanvas setShowRTLIcon(boolean showRTLIcon)  throws IllegalStateException {
+        return (StatefulCanvas)setAttribute("showRTLIcon", showRTLIcon, false);
     }
 
     /**
@@ -1131,11 +1221,12 @@ public class StatefulCanvas extends Canvas {
      * If using an icon for this button, whether to switch the icon image when the button becomes selected.
      *
      * @param showSelectedIcon New showSelectedIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowSelectedIcon(Boolean showSelectedIcon)  throws IllegalStateException {
-        setAttribute("showSelectedIcon", showSelectedIcon, false);
+    public StatefulCanvas setShowSelectedIcon(Boolean showSelectedIcon)  throws IllegalStateException {
+        return (StatefulCanvas)setAttribute("showSelectedIcon", showSelectedIcon, false);
     }
 
     /**
@@ -1168,11 +1259,12 @@ public class StatefulCanvas extends Canvas {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param state the new state. Default value is ""
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.types.State
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
-    public void setState(State state) {
-        setAttribute("state", state == null ? null : state.getValue(), true);
+    public StatefulCanvas setState(State state) {
+        return (StatefulCanvas)setAttribute("state", state == null ? null : state.getValue(), true);
     }
 
     /**
@@ -1227,10 +1319,11 @@ public class StatefulCanvas extends Canvas {
      * Vertical alignment of this component's title.
      *
      * @param valign New valign value. Default value is Canvas.CENTER
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setValign(VerticalAlignment valign) {
-        setAttribute("valign", valign == null ? null : valign.getValue(), true);
+    public StatefulCanvas setValign(VerticalAlignment valign) {
+        return (StatefulCanvas)setAttribute("valign", valign == null ? null : valign.getValue(), true);
     }
 
     /**
@@ -1250,11 +1343,12 @@ public class StatefulCanvas extends Canvas {
      * property will be ignored so that the widget is always sized just large enough to accommodate the title.
      *
      * @param width New width value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StatefulCanvas StatefulCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.StatefulCanvas#setAutoFit
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
-    public void setWidth(Integer width) {
-        setAttribute("width", width, true);
+    public StatefulCanvas setWidth(Integer width) {
+        return (StatefulCanvas)setAttribute("width", width, true);
     }
 
     /**
@@ -1328,11 +1422,13 @@ public class StatefulCanvas extends Canvas {
 	/**
      * Returns the suffix that will be appended to the {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle
      * baseStyle}   as the component changes {@link com.smartgwt.client.widgets.StatefulCanvas#getState state} and/or is
-     * selected / focused. <P> The following table lists out the standard set of suffixes which may be applied  to the base
-     * style: <table border=1> <tr><td><b>CSS Class Applied</b></td><td><b>Description</b></td></tr>
-     * <tr><td><code><i>baseStyle</i></code></td><td>Default css style</td></tr>
-     * <tr><td><code><i>baseStyle</i>+Selected</code></td>      <td>Applied when {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getSelected selected} is set to true</td></tr>
+     * selected / focused. <P> Note that suffixes will only be included if the relevant <code>show<i>[StateName]</i></code>
+     * attributes (EG {@link com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver showRollOver}, {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getShowFocused showFocused}, etc) are set to true. <P> The following table
+     * lists out the standard set of suffixes which may be applied  to the base style: <table border=1> <tr><td><b>CSS Class
+     * Applied</b></td><td><b>Description</b></td></tr> <tr><td><code><i>baseStyle</i></code></td><td>Default css
+     * style</td></tr> <tr><td><code><i>baseStyle</i>+Selected</code></td>      <td>Applied when {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getSelected selected} is set to true.</td></tr>
      * <tr><td><code><i>baseStyle</i>+Focused</code></td>      <td>Applied when the component has keyboard focus, if      
      * {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused showFocused} is true, and       {@link
      * com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver showFocusedAsOver} is not true.</td></tr>
@@ -1444,8 +1540,8 @@ public class StatefulCanvas extends Canvas {
     // ***********************************************************
 
 
-    public void setTitleStyle(String titleStyle) {
-        setAttribute("titleStyle", titleStyle, true);
+    public StatefulCanvas setTitleStyle(String titleStyle) {
+        return (StatefulCanvas)setAttribute("titleStyle", titleStyle, true);
     }
     
     public native void setTitleFormatter(TitleFormatter customizer) /*-{
@@ -1501,6 +1597,11 @@ public class StatefulCanvas extends Canvas {
             s.align = getAttributeAsString("align");
         } catch (Throwable t) {
             s.logicalStructureErrors += "StatefulCanvas.align:" + t.getMessage() + "\n";
+        }
+        try {
+            s.ariaLabel = getAttributeAsString("ariaLabel");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.ariaLabel:" + t.getMessage() + "\n";
         }
         try {
             s.autoFit = getAttributeAsString("autoFit");
@@ -1621,6 +1722,11 @@ public class StatefulCanvas extends Canvas {
             s.showFocusedIcon = getAttributeAsString("showFocusedIcon");
         } catch (Throwable t) {
             s.logicalStructureErrors += "StatefulCanvas.showFocusedIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showMenuOnClick = getAttributeAsString("showMenuOnClick");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "StatefulCanvas.showMenuOnClick:" + t.getMessage() + "\n";
         }
         try {
             s.showOverCanvas = getAttributeAsString("showOverCanvas");

@@ -307,13 +307,13 @@ package com.smartgwt.client.docs;
  *  Before starting on implementing paging within sets of children, carefully consider whether
  *  an interface like the above, or some entirely different interface, is actually a superior
  *  option.  It is exceedingly rare that paging within sets of children is the best choice.
- * @see com.smartgwt.client.widgets.tree.TreeGrid#getKeepParentsOnFilter
- * @see com.smartgwt.client.widgets.tree.TreeGrid#getDataFetchMode
  * @see com.smartgwt.client.data.DSRequest#getKeepParentsOnFilter
  * @see com.smartgwt.client.widgets.tree.ResultTree#getData
  * @see com.smartgwt.client.widgets.tree.ResultTree#getFetchMode
  * @see com.smartgwt.client.widgets.tree.ResultTree#getResultSize
  * @see com.smartgwt.client.widgets.tree.ResultTree#getKeepParentsOnFilter
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getKeepParentsOnFilter
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getDataFetchMode
  */
 public interface TreeDataBinding {
 }

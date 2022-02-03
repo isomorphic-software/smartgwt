@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -219,10 +222,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getAddEventButton add event} toolbar button
      *
      * @param addEventButtonHoverText New addEventButtonHoverText value. Default value is "Add an event"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAddEventButtonHoverText(String addEventButtonHoverText)  throws IllegalStateException {
-        setAttribute("addEventButtonHoverText", addEventButtonHoverText, false);
+    public Calendar setAddEventButtonHoverText(String addEventButtonHoverText)  throws IllegalStateException {
+        return (Calendar)setAttribute("addEventButtonHoverText", addEventButtonHoverText, false);
     }
 
     /**
@@ -243,10 +247,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * maintained, instead of the end date, when alterations are made to the event via editors or dragging  with the mouse.
      *
      * @param allowDurationEvents New allowDurationEvents value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
-    public void setAllowDurationEvents(Boolean allowDurationEvents) {
-        setAttribute("allowDurationEvents", allowDurationEvents, true);
+    public Calendar setAllowDurationEvents(Boolean allowDurationEvents) {
+        return (Calendar)setAttribute("allowDurationEvents", allowDurationEvents, true);
     }
 
     /**
@@ -270,9 +275,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * more obvious by showing alternate lanes in a different color.
      *
      * @param alternateLaneStyles New alternateLaneStyles value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setAlternateLaneStyles(Boolean alternateLaneStyles) {
-        setAttribute("alternateLaneStyles", alternateLaneStyles, true);
+    public Calendar setAlternateLaneStyles(Boolean alternateLaneStyles) {
+        return (Calendar)setAttribute("alternateLaneStyles", alternateLaneStyles, true);
     }
 
     /**
@@ -293,9 +299,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * have customized hover-content, or just want your events to  always show hovers, you can set this attribute to true.
      *
      * @param alwaysShowEventHovers New alwaysShowEventHovers value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setAlwaysShowEventHovers(Boolean alwaysShowEventHovers) {
-        setAttribute("alwaysShowEventHovers", alwaysShowEventHovers, true);
+    public Calendar setAlwaysShowEventHovers(Boolean alwaysShowEventHovers) {
+        return (Calendar)setAttribute("alwaysShowEventHovers", alwaysShowEventHovers, true);
     }
 
     /**
@@ -319,11 +326,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getMonthButtonTitle monthButtonTitle}.
      *
      * @param backButtonTitle New backButtonTitle value. Default value is "Back"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setBackButtonTitle(String backButtonTitle)  throws IllegalStateException {
-        setAttribute("backButtonTitle", backButtonTitle, false);
+    public Calendar setBackButtonTitle(String backButtonTitle)  throws IllegalStateException {
+        return (Calendar)setAttribute("backButtonTitle", backButtonTitle, false);
     }
 
     /**
@@ -347,11 +355,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * generate stateful cell styles.
      *
      * @param baseStyle New baseStyle value. Default value is "calendar"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setBaseStyle(String baseStyle) {
-        setAttribute("baseStyle", baseStyle, true);
+    public Calendar setBaseStyle(String baseStyle) {
+        return (Calendar)setAttribute("baseStyle", baseStyle, true);
     }
 
     /**
@@ -373,10 +382,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * If set to true, clicking an event will bring it to the front of the zorder.
      *
      * @param bringEventsToFront New bringEventsToFront value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setBringEventsToFront(Boolean bringEventsToFront)  throws IllegalStateException {
-        setAttribute("bringEventsToFront", bringEventsToFront, false);
+    public Calendar setBringEventsToFront(Boolean bringEventsToFront)  throws IllegalStateException {
+        return (Calendar)setAttribute("bringEventsToFront", bringEventsToFront, false);
     }
 
     /**
@@ -398,11 +408,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * use any other kind of HTML structure than a link.
      *
      * @param calMonthEventLinkStyle New calMonthEventLinkStyle value. Default value is "calMonthEventLink"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setCalMonthEventLinkStyle(String calMonthEventLinkStyle) {
-        setAttribute("calMonthEventLinkStyle", calMonthEventLinkStyle, true);
+    public Calendar setCalMonthEventLinkStyle(String calMonthEventLinkStyle) {
+        return (Calendar)setAttribute("calMonthEventLinkStyle", calMonthEventLinkStyle, true);
     }
 
     /**
@@ -443,11 +454,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getEventEditor event editor}.
      *
      * @param cancelButtonTitle New cancelButtonTitle value. Default value is "Cancel"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
-        setAttribute("cancelButtonTitle", cancelButtonTitle, false);
+    public Calendar setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
+        return (Calendar)setAttribute("cancelButtonTitle", cancelButtonTitle, false);
     }
 
     /**
@@ -466,10 +478,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * If true, users can create new events.
      *
      * @param canCreateEvents New canCreateEvents value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanCreateEvents(Boolean canCreateEvents)  throws IllegalStateException {
-        setAttribute("canCreateEvents", canCreateEvents, false);
+    public Calendar setCanCreateEvents(Boolean canCreateEvents)  throws IllegalStateException {
+        return (Calendar)setAttribute("canCreateEvents", canCreateEvents, false);
     }
 
     /**
@@ -488,11 +501,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getCanEditEvents canEditEvents}.
      *
      * @param canDeleteEvents New canDeleteEvents value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @deprecated in favor of {@link com.smartgwt.client.widgets.calendar.Calendar#getCanRemoveEvents canRemoveEvents}
      */
-    public void setCanDeleteEvents(Boolean canDeleteEvents)  throws IllegalStateException {
-        setAttribute("canDeleteEvents", canDeleteEvents, false);
+    public Calendar setCanDeleteEvents(Boolean canDeleteEvents)  throws IllegalStateException {
+        return (Calendar)setAttribute("canDeleteEvents", canDeleteEvents, false);
     }
 
     /**
@@ -512,9 +526,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * this is false for Touch devices and true otherwise.
      *
      * @param canDragCreateEvents New canDragCreateEvents value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setCanDragCreateEvents(Boolean canDragCreateEvents) {
-        setAttribute("canDragCreateEvents", canDragCreateEvents, true);
+    public Calendar setCanDragCreateEvents(Boolean canDragCreateEvents) {
+        return (Calendar)setAttribute("canDragCreateEvents", canDragCreateEvents, true);
     }
 
     /**
@@ -534,11 +549,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getCanEditEvents canEditEvents} must be true for dragging to be allowed.
      *
      * @param canDragEventField New canDragEventField value. Default value is "canDrag"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
-    public void setCanDragEventField(String canDragEventField)  throws IllegalStateException {
-        setAttribute("canDragEventField", canDragEventField, false);
+    public Calendar setCanDragEventField(String canDragEventField)  throws IllegalStateException {
+        return (Calendar)setAttribute("canDragEventField", canDragEventField, false);
     }
 
     /**
@@ -560,10 +576,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getCanEditEvents canEditEvents} is true.
      *
      * @param canDragEvents New canDragEvents value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanDragEvents(Boolean canDragEvents)  throws IllegalStateException {
-        setAttribute("canDragEvents", canDragEvents, false);
+    public Calendar setCanDragEvents(Boolean canDragEvents)  throws IllegalStateException {
+        return (Calendar)setAttribute("canDragEvents", canDragEvents, false);
     }
 
     /**
@@ -582,10 +599,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * If true, users can edit existing events.
      *
      * @param canEditEvents New canEditEvents value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanEditEvents(Boolean canEditEvents)  throws IllegalStateException {
-        setAttribute("canEditEvents", canEditEvents, false);
+    public Calendar setCanEditEvents(Boolean canEditEvents)  throws IllegalStateException {
+        return (Calendar)setAttribute("canEditEvents", canEditEvents, false);
     }
 
     /**
@@ -608,11 +626,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * editing, but not via drag operations.
      *
      * @param canEditField New canEditField value. Default value is "canEdit"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
-    public void setCanEditField(String canEditField)  throws IllegalStateException {
-        setAttribute("canEditField", canEditField, false);
+    public Calendar setCanEditField(String canEditField)  throws IllegalStateException {
+        return (Calendar)setAttribute("canEditField", canEditField, false);
     }
 
     /**
@@ -644,10 +663,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.CalendarEvent#getCanEditLane event}.
      *
      * @param canEditLane New canEditLane value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanEditLane(Boolean canEditLane)  throws IllegalStateException {
-        setAttribute("canEditLane", canEditLane, false);
+    public Calendar setCanEditLane(Boolean canEditLane)  throws IllegalStateException {
+        return (Calendar)setAttribute("canEditLane", canEditLane, false);
     }
 
     /**
@@ -674,11 +694,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * can be  moved between lanes.
      *
      * @param canEditLaneField New canEditLaneField value. Default value is "canEditLane"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
-    public void setCanEditLaneField(String canEditLaneField)  throws IllegalStateException {
-        setAttribute("canEditLaneField", canEditLaneField, false);
+    public Calendar setCanEditLaneField(String canEditLaneField)  throws IllegalStateException {
+        return (Calendar)setAttribute("canEditLaneField", canEditLaneField, false);
     }
 
     /**
@@ -704,10 +725,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * can be overridden on each {@link com.smartgwt.client.widgets.calendar.CalendarEvent#getCanEditSublane event}.
      *
      * @param canEditSublane New canEditSublane value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanEditSublane(Boolean canEditSublane)  throws IllegalStateException {
-        setAttribute("canEditSublane", canEditSublane, false);
+    public Calendar setCanEditSublane(Boolean canEditSublane)  throws IllegalStateException {
+        return (Calendar)setAttribute("canEditSublane", canEditSublane, false);
     }
 
     /**
@@ -733,11 +755,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Lane}.
      *
      * @param canEditSublaneField New canEditSublaneField value. Default value is "canEditSublane"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
-    public void setCanEditSublaneField(String canEditSublaneField)  throws IllegalStateException {
-        setAttribute("canEditSublaneField", canEditSublaneField, false);
+    public Calendar setCanEditSublaneField(String canEditSublaneField)  throws IllegalStateException {
+        return (Calendar)setAttribute("canEditSublaneField", canEditSublaneField, false);
     }
 
     /**
@@ -762,9 +785,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * grouping.
      *
      * @param canGroupLanes New canGroupLanes value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setCanGroupLanes(Boolean canGroupLanes) {
-        setAttribute("canGroupLanes", canGroupLanes, true);
+    public Calendar setCanGroupLanes(Boolean canGroupLanes) {
+        return (Calendar)setAttribute("canGroupLanes", canGroupLanes, true);
     }
 
     /**
@@ -787,10 +811,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getCanEditEvents canEditEvents}.
      *
      * @param canRemoveEvents New canRemoveEvents value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanRemoveEvents(Boolean canRemoveEvents)  throws IllegalStateException {
-        setAttribute("canRemoveEvents", canRemoveEvents, false);
+    public Calendar setCanRemoveEvents(Boolean canRemoveEvents)  throws IllegalStateException {
+        return (Calendar)setAttribute("canRemoveEvents", canRemoveEvents, false);
     }
 
     /**
@@ -810,11 +835,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * shows a remove button.
      *
      * @param canRemoveField New canRemoveField value. Default value is "canRemove"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
-    public void setCanRemoveField(String canRemoveField)  throws IllegalStateException {
-        setAttribute("canRemoveField", canRemoveField, false);
+    public Calendar setCanRemoveField(String canRemoveField)  throws IllegalStateException {
+        return (Calendar)setAttribute("canRemoveField", canRemoveField, false);
     }
 
     /**
@@ -834,10 +860,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * laneFields} with the mouse.
      *
      * @param canReorderLanes New canReorderLanes value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanReorderLanes(Boolean canReorderLanes)  throws IllegalStateException {
-        setAttribute("canReorderLanes", canReorderLanes, false);
+    public Calendar setCanReorderLanes(Boolean canReorderLanes)  throws IllegalStateException {
+        return (Calendar)setAttribute("canReorderLanes", canReorderLanes, false);
     }
 
     /**
@@ -856,11 +883,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * can be  resized by dragging.
      *
      * @param canResizeEventField New canResizeEventField value. Default value is "canResize"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
-    public void setCanResizeEventField(String canResizeEventField)  throws IllegalStateException {
-        setAttribute("canResizeEventField", canResizeEventField, false);
+    public Calendar setCanResizeEventField(String canResizeEventField)  throws IllegalStateException {
+        return (Calendar)setAttribute("canResizeEventField", canResizeEventField, false);
     }
 
     /**
@@ -880,13 +908,15 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * {@link com.smartgwt.client.widgets.calendar.EventCanvas#getVerticalResize canvas}?  Only has an effect when both {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getCanEditEvents canEditEvents} and {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getCanDragEvents canDragEvents} are true.  Set this attribute to false to
-     * disallow drag-resizing.
+     * disallow drag-resizing. <P> Always false when {@link com.smartgwt.client.widgets.calendar.Calendar#getShowColumnLayouts
+     * showColumnLayouts} is true.
      *
      * @param canResizeEvents New canResizeEvents value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanResizeEvents(Boolean canResizeEvents)  throws IllegalStateException {
-        setAttribute("canResizeEvents", canResizeEvents, false);
+    public Calendar setCanResizeEvents(Boolean canResizeEvents)  throws IllegalStateException {
+        return (Calendar)setAttribute("canResizeEvents", canResizeEvents, false);
     }
 
     /**
@@ -894,7 +924,8 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * {@link com.smartgwt.client.widgets.calendar.EventCanvas#getVerticalResize canvas}?  Only has an effect when both {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getCanEditEvents canEditEvents} and {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getCanDragEvents canDragEvents} are true.  Set this attribute to false to
-     * disallow drag-resizing.
+     * disallow drag-resizing. <P> Always false when {@link com.smartgwt.client.widgets.calendar.Calendar#getShowColumnLayouts
+     * showColumnLayouts} is true.
      *
      * @return Current canResizeEvents value. Default value is true
      */
@@ -908,11 +939,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * Can {@link com.smartgwt.client.widgets.calendar.Timeline} events be stretched by their left and right edges?
      *
      * @param canResizeTimelineEvents New canResizeTimelineEvents value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @deprecated in favor of {@link com.smartgwt.client.widgets.calendar.Calendar#getCanResizeEvents canResizeEvents};
      */
-    public void setCanResizeTimelineEvents(Boolean canResizeTimelineEvents)  throws IllegalStateException {
-        setAttribute("canResizeTimelineEvents", canResizeTimelineEvents, false);
+    public Calendar setCanResizeTimelineEvents(Boolean canResizeTimelineEvents)  throws IllegalStateException {
+        return (Calendar)setAttribute("canResizeTimelineEvents", canResizeTimelineEvents, false);
     }
 
     /**
@@ -939,10 +971,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * interface instead (a single click will simply select the event canvas).
      *
      * @param canSelectEvents New canSelectEvents value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanSelectEvents(Boolean canSelectEvents)  throws IllegalStateException {
-        setAttribute("canSelectEvents", canSelectEvents, false);
+    public Calendar setCanSelectEvents(Boolean canSelectEvents)  throws IllegalStateException {
+        return (Calendar)setAttribute("canSelectEvents", canSelectEvents, false);
     }
 
     /**
@@ -970,9 +1003,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * Set the current date for which the calendar will display events.
      *
      * @param chosenDate the new date to set as the current date. Default value is 'Today'
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setChosenDate(Date chosenDate) {
-        setAttribute("chosenDate", chosenDate, true);
+    public Calendar setChosenDate(Date chosenDate) {
+        return (Calendar)setAttribute("chosenDate", chosenDate, true);
     }
 
     /**
@@ -986,15 +1020,31 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
     
 
     /**
+     * <b>Note :</b> This API is non-functional (always returns null) and exists only to make
+     * you aware that this MultiAutoChild exists.  See {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}
+     * for details.
+     * <p>
+     * When {@link com.smartgwt.client.widgets.calendar.Calendar#getShowColumnLayouts showColumnLayouts} is true, the layouts
+     * added to each column to stack  events.
+     *
+     * @return null
+     */
+    public VLayout getColumnLayout()  {
+        return null;
+    }
+    
+
+    /**
      * When using the Next and Previous arrows to scroll a Timeline, this is the number of columns  of the {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getTimelineGranularity timelineGranularity} to scroll by.  With the
      * default value of null, the Timeline will scroll by its current length.
      *
      * @param columnsPerPage New columnsPerPage value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setColumnsPerPage(Integer columnsPerPage)  throws IllegalStateException {
-        setAttribute("columnsPerPage", columnsPerPage, false);
+    public Calendar setColumnsPerPage(Integer columnsPerPage)  throws IllegalStateException {
+        return (Calendar)setAttribute("columnsPerPage", columnsPerPage, false);
     }
 
     /**
@@ -1037,9 +1087,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * Sets the currently visible view.
      *
      * @param currentViewName The name of the view that should be made visible. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setCurrentViewName(ViewName currentViewName) {
-        setAttribute("currentViewName", currentViewName == null ? null : currentViewName.getValue(), true);
+    public Calendar setCurrentViewName(ViewName currentViewName) {
+        return (Calendar)setAttribute("currentViewName", currentViewName == null ? null : currentViewName.getValue(), true);
     }
 
     /**
@@ -1062,10 +1113,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * Initialize the data object with the given array. Observes methods of the data object so that when the data changes, the calendar will redraw automatically.
      *
      * @param data data to show in the list. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
-    public void setData(CalendarEvent... data) {
-        setAttribute("data", data, true);
+    public Calendar setData(CalendarEvent... data) {
+        return (Calendar)setAttribute("data", data, true);
     }
 
     /**
@@ -1089,10 +1141,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode ResultSet.fetchMode} applies.
      *
      * @param dataFetchMode New dataFetchMode value. Default value is "paged"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
-    public void setDataFetchMode(FetchMode dataFetchMode) {
-        setAttribute("dataFetchMode", dataFetchMode == null ? null : dataFetchMode.getValue(), true);
+    public Calendar setDataFetchMode(FetchMode dataFetchMode) {
+        return (Calendar)setAttribute("dataFetchMode", dataFetchMode == null ? null : dataFetchMode.getValue(), true);
     }
 
     /**
@@ -1115,11 +1168,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * String ID of a DataSource.
      *
      * @param dataSource New dataSource value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_databinding_ds_fields" target="examples">DataSource fields Example</a>
      */
-    public void setDataSource(DataSource dataSource) {
-        setAttribute("dataSource", dataSource == null ? null : dataSource.getOrCreateJsObj(), true);
+    public Calendar setDataSource(DataSource dataSource) {
+        return (Calendar)setAttribute("dataSource", dataSource == null ? null : dataSource.getOrCreateJsObj(), true);
     }
 
     /**
@@ -1128,11 +1182,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * String ID of a DataSource.
      *
      * @param dataSource New dataSource value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_databinding_ds_fields" target="examples">DataSource fields Example</a>
      */
-    public void setDataSource(String dataSource) {
-        setAttribute("dataSource", dataSource, true);
+    public Calendar setDataSource(String dataSource) {
+        return (Calendar)setAttribute("dataSource", dataSource, true);
     }
     
 
@@ -1159,10 +1214,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * granularity  is "minute" or smaller, otherwise "datetime".
      *
      * @param dateEditingStyle New dateEditingStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDateEditingStyle(DateEditingStyle dateEditingStyle)  throws IllegalStateException {
-        setAttribute("dateEditingStyle", dateEditingStyle == null ? null : dateEditingStyle.getValue(), false);
+    public Calendar setDateEditingStyle(DateEditingStyle dateEditingStyle)  throws IllegalStateException {
+        return (Calendar)setAttribute("dateEditingStyle", dateEditingStyle == null ? null : dateEditingStyle.getValue(), false);
     }
 
     /**
@@ -1185,9 +1241,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.types.DateDisplayFormat}.
      *
      * @param dateFormatter New dateFormatter value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue(), true);
+    public Calendar setDateFormatter(DateDisplayFormat dateFormatter) {
+        return (Calendar)setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue(), true);
     }
 
     /**
@@ -1239,10 +1296,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getDatePickerButton date picker} toolbar button
      *
      * @param datePickerHoverText New datePickerHoverText value. Default value is "Choose a date"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDatePickerHoverText(String datePickerHoverText)  throws IllegalStateException {
-        setAttribute("datePickerHoverText", datePickerHoverText, false);
+    public Calendar setDatePickerHoverText(String datePickerHoverText)  throws IllegalStateException {
+        return (Calendar)setAttribute("datePickerHoverText", datePickerHoverText, false);
     }
 
     /**
@@ -1263,11 +1321,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * generate stateful cell styles.
      *
      * @param dayBodyBaseStyle New dayBodyBaseStyle value. Default value is "calMonthDayBody"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setDayBodyBaseStyle(String dayBodyBaseStyle) {
-        setAttribute("dayBodyBaseStyle", dayBodyBaseStyle, true);
+    public Calendar setDayBodyBaseStyle(String dayBodyBaseStyle) {
+        return (Calendar)setAttribute("dayBodyBaseStyle", dayBodyBaseStyle, true);
     }
 
     /**
@@ -1292,11 +1351,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * generate stateful cell styles.
      *
      * @param dayHeaderBaseStyle New dayHeaderBaseStyle value. Default value is "calMonthDayHeader"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setDayHeaderBaseStyle(String dayHeaderBaseStyle) {
-        setAttribute("dayHeaderBaseStyle", dayHeaderBaseStyle, true);
+    public Calendar setDayHeaderBaseStyle(String dayHeaderBaseStyle) {
+        return (Calendar)setAttribute("dayHeaderBaseStyle", dayHeaderBaseStyle, true);
     }
 
     /**
@@ -1333,10 +1393,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * The title for the {@link com.smartgwt.client.widgets.calendar.Calendar#getDayView day view}.
      *
      * @param dayViewTitle New dayViewTitle value. Default value is "Day"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDayViewTitle(String dayViewTitle)  throws IllegalStateException {
-        setAttribute("dayViewTitle", dayViewTitle, false);
+    public Calendar setDayViewTitle(String dayViewTitle)  throws IllegalStateException {
+        return (Calendar)setAttribute("dayViewTitle", dayViewTitle, false);
     }
 
     /**
@@ -1355,10 +1416,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getEndDate endDate} is provided.  The  default is 20.
      *
      * @param defaultTimelineColumnSpan New defaultTimelineColumnSpan value. Default value is 20
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDefaultTimelineColumnSpan(int defaultTimelineColumnSpan)  throws IllegalStateException {
-        setAttribute("defaultTimelineColumnSpan", defaultTimelineColumnSpan, false);
+    public Calendar setDefaultTimelineColumnSpan(int defaultTimelineColumnSpan)  throws IllegalStateException {
+        return (Calendar)setAttribute("defaultTimelineColumnSpan", defaultTimelineColumnSpan, false);
     }
 
     /**
@@ -1377,10 +1439,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * The name of the description field on a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
      * @param descriptionField New descriptionField value. Default value is "description"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDescriptionField(String descriptionField)  throws IllegalStateException {
-        setAttribute("descriptionField", descriptionField, false);
+    public Calendar setDescriptionField(String descriptionField)  throws IllegalStateException {
+        return (Calendar)setAttribute("descriptionField", descriptionField, false);
     }
 
     /**
@@ -1398,11 +1461,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * event dialog}.
      *
      * @param detailsButtonTitle New detailsButtonTitle value. Default value is "Edit Details"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setDetailsButtonTitle(String detailsButtonTitle)  throws IllegalStateException {
-        setAttribute("detailsButtonTitle", detailsButtonTitle, false);
+    public Calendar setDetailsButtonTitle(String detailsButtonTitle)  throws IllegalStateException {
+        return (Calendar)setAttribute("detailsButtonTitle", detailsButtonTitle, false);
     }
 
     /**
@@ -1422,10 +1486,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * weekends is controlled by {@link com.smartgwt.client.widgets.calendar.Calendar#getWeekendDays weekendDays}.
      *
      * @param disableWeekends New disableWeekends value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Visibility Visibility overview and related methods
      */
-    public void setDisableWeekends(Boolean disableWeekends) {
-        setAttribute("disableWeekends", disableWeekends, true);
+    public Calendar setDisableWeekends(Boolean disableWeekends) {
+        return (Calendar)setAttribute("disableWeekends", disableWeekends, true);
     }
 
     /**
@@ -1446,11 +1511,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
      * @param durationField New durationField value. Default value is "duration"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
-    public void setDurationField(String durationField)  throws IllegalStateException {
-        setAttribute("durationField", durationField, false);
+    public Calendar setDurationField(String durationField)  throws IllegalStateException {
+        return (Calendar)setAttribute("durationField", durationField, false);
     }
 
     /**
@@ -1470,11 +1536,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
      * @param durationUnitField New durationUnitField value. Default value is "durationUnit"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
-    public void setDurationUnitField(String durationUnitField)  throws IllegalStateException {
-        setAttribute("durationUnitField", durationUnitField, false);
+    public Calendar setDurationUnitField(String durationUnitField)  throws IllegalStateException {
+        return (Calendar)setAttribute("durationUnitField", durationUnitField, false);
     }
 
     /**
@@ -1497,10 +1564,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * header-levels}, to fit to header boundaries.
      *
      * @param endDate New endDate value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEndDate(Date endDate)  throws IllegalStateException {
-        setAttribute("endDate", endDate, false);
+    public Calendar setEndDate(Date endDate)  throws IllegalStateException {
+        return (Calendar)setAttribute("endDate", endDate, false);
     }
 
     /**
@@ -1521,11 +1589,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * The name of the end date field on a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
      * @param endDateField New endDateField value. Default value is "endDate"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
-    public void setEndDateField(String endDateField)  throws IllegalStateException {
-        setAttribute("endDateField", endDateField, false);
+    public Calendar setEndDateField(String endDateField)  throws IllegalStateException {
+        return (Calendar)setAttribute("endDateField", endDateField, false);
     }
 
     /**
@@ -1543,10 +1612,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * If set to true, enables the auto-arrangement of events that share time in the calendar.  The default is true.
      *
      * @param eventAutoArrange New eventAutoArrange value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEventAutoArrange(Boolean eventAutoArrange)  throws IllegalStateException {
-        setAttribute("eventAutoArrange", eventAutoArrange, false);
+    public Calendar setEventAutoArrange(Boolean eventAutoArrange)  throws IllegalStateException {
+        return (Calendar)setAttribute("eventAutoArrange", eventAutoArrange, false);
     }
 
     /**
@@ -1608,6 +1678,25 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
     public ImgButton getEventCanvasCloseButton() throws IllegalStateException {
         errorIfNotCreated("eventCanvasCloseButton");
         return (ImgButton)ImgButton.getByJSObject(getAttributeAsJavaScriptObject("eventCanvasCloseButton"));
+    }
+    
+
+    /**
+     * <b>Note :</b> This API is non-functional (always returns null) and exists only to make
+     * you aware that this MultiAutoChild exists.  See {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}
+     * for details.
+     * <p>
+     * Multi-AutoChild component, created as a space-filling member in individual  {@link
+     * com.smartgwt.client.widgets.calendar.EventCanvas event-canvases}, when {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getShowEventCanvasComponents showEventCanvasComponents} is true. <P>
+     *
+     * @return null
+     * @see com.smartgwt.client.widgets.calendar.Calendar#getShowEventCanvasComponents
+     * @see com.smartgwt.client.widgets.calendar.Calendar#createEventCanvasComponent
+     * @see com.smartgwt.client.widgets.calendar.Calendar#updateEventCanvasComponent
+     */
+    public Canvas getEventCanvasComponent()  {
+        return null;
     }
     
 
@@ -1713,11 +1802,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getEventEditor editor}.
      *
      * @param eventDescriptionFieldTitle New eventDescriptionFieldTitle value. Default value is "Description"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setEventDescriptionFieldTitle(String eventDescriptionFieldTitle)  throws IllegalStateException {
-        setAttribute("eventDescriptionFieldTitle", eventDescriptionFieldTitle, false);
+    public Calendar setEventDescriptionFieldTitle(String eventDescriptionFieldTitle)  throws IllegalStateException {
+        return (Calendar)setAttribute("eventDescriptionFieldTitle", eventDescriptionFieldTitle, false);
     }
 
     /**
@@ -1754,9 +1844,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * The number of pixels to leave to the right of events so overlapping events can still be  added using the mouse.
      *
      * @param eventDragGap New eventDragGap value. Default value is 10
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setEventDragGap(Integer eventDragGap) {
-        setAttribute("eventDragGap", eventDragGap, true);
+    public Calendar setEventDragGap(Integer eventDragGap) {
+        return (Calendar)setAttribute("eventDragGap", eventDragGap, true);
     }
 
     /**
@@ -1775,11 +1866,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getEventEditor editor}.
      *
      * @param eventDurationFieldTitle New eventDurationFieldTitle value. Default value is "Duration"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setEventDurationFieldTitle(String eventDurationFieldTitle)  throws IllegalStateException {
-        setAttribute("eventDurationFieldTitle", eventDurationFieldTitle, false);
+    public Calendar setEventDurationFieldTitle(String eventDurationFieldTitle)  throws IllegalStateException {
+        return (Calendar)setAttribute("eventDurationFieldTitle", eventDurationFieldTitle, false);
     }
 
     /**
@@ -1801,11 +1893,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getEventEditor editor}.
      *
      * @param eventDurationUnitFieldTitle New eventDurationUnitFieldTitle value. Default value is "&amp;nbsp;"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setEventDurationUnitFieldTitle(String eventDurationUnitFieldTitle)  throws IllegalStateException {
-        setAttribute("eventDurationUnitFieldTitle", eventDurationUnitFieldTitle, false);
+    public Calendar setEventDurationUnitFieldTitle(String eventDurationUnitFieldTitle)  throws IllegalStateException {
+        return (Calendar)setAttribute("eventDurationUnitFieldTitle", eventDurationUnitFieldTitle, false);
     }
 
     /**
@@ -1880,11 +1973,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getEventEditor editor}.
      *
      * @param eventEndDateFieldTitle New eventEndDateFieldTitle value. Default value is "To"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setEventEndDateFieldTitle(String eventEndDateFieldTitle)  throws IllegalStateException {
-        setAttribute("eventEndDateFieldTitle", eventEndDateFieldTitle, false);
+    public Calendar setEventEndDateFieldTitle(String eventEndDateFieldTitle)  throws IllegalStateException {
+        return (Calendar)setAttribute("eventEndDateFieldTitle", eventEndDateFieldTitle, false);
     }
 
     /**
@@ -1906,10 +2000,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      *  height for the {@link com.smartgwt.client.widgets.calendar.EventCanvas#getShowHeader header area} in event canvases.
      *
      * @param eventHeaderHeight New eventHeaderHeight value. Default value is 14
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEventHeaderHeight(int eventHeaderHeight)  throws IllegalStateException {
-        setAttribute("eventHeaderHeight", eventHeaderHeight, false);
+    public Calendar setEventHeaderHeight(int eventHeaderHeight)  throws IllegalStateException {
+        return (Calendar)setAttribute("eventHeaderHeight", eventHeaderHeight, false);
     }
 
     /**
@@ -1933,10 +2028,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * the header area fills the canvas.
      *
      * @param eventHeaderWrap New eventHeaderWrap value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEventHeaderWrap(boolean eventHeaderWrap)  throws IllegalStateException {
-        setAttribute("eventHeaderWrap", eventHeaderWrap, false);
+    public Calendar setEventHeaderWrap(boolean eventHeaderWrap)  throws IllegalStateException {
+        return (Calendar)setAttribute("eventHeaderWrap", eventHeaderWrap, false);
     }
 
     /**
@@ -1961,11 +2057,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getEventEditor editor}.
      *
      * @param eventLaneFieldTitle New eventLaneFieldTitle value. Default value is "Lane"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setEventLaneFieldTitle(String eventLaneFieldTitle)  throws IllegalStateException {
-        setAttribute("eventLaneFieldTitle", eventLaneFieldTitle, false);
+    public Calendar setEventLaneFieldTitle(String eventLaneFieldTitle)  throws IllegalStateException {
+        return (Calendar)setAttribute("eventLaneFieldTitle", eventLaneFieldTitle, false);
     }
 
     /**
@@ -1987,11 +2084,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getEventEditor editor}.
      *
      * @param eventNameFieldTitle New eventNameFieldTitle value. Default value is "Event Name"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setEventNameFieldTitle(String eventNameFieldTitle)  throws IllegalStateException {
-        setAttribute("eventNameFieldTitle", eventNameFieldTitle, false);
+    public Calendar setEventNameFieldTitle(String eventNameFieldTitle)  throws IllegalStateException {
+        return (Calendar)setAttribute("eventNameFieldTitle", eventNameFieldTitle, false);
     }
 
     /**
@@ -2014,10 +2112,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * true for Calendars and false for  {@link com.smartgwt.client.widgets.calendar.Timeline Timelines}.
      *
      * @param eventOverlap New eventOverlap value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEventOverlap(Boolean eventOverlap)  throws IllegalStateException {
-        setAttribute("eventOverlap", eventOverlap, false);
+    public Calendar setEventOverlap(Boolean eventOverlap)  throws IllegalStateException {
+        return (Calendar)setAttribute("eventOverlap", eventOverlap, false);
     }
 
     /**
@@ -2039,10 +2138,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * button hidden.
      *
      * @param eventOverlapIdenticalStartTimes New eventOverlapIdenticalStartTimes value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEventOverlapIdenticalStartTimes(Boolean eventOverlapIdenticalStartTimes)  throws IllegalStateException {
-        setAttribute("eventOverlapIdenticalStartTimes", eventOverlapIdenticalStartTimes, false);
+    public Calendar setEventOverlapIdenticalStartTimes(Boolean eventOverlapIdenticalStartTimes)  throws IllegalStateException {
+        return (Calendar)setAttribute("eventOverlapIdenticalStartTimes", eventOverlapIdenticalStartTimes, false);
     }
 
     /**
@@ -2061,10 +2161,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * The size of the overlap, presented as a percentage of the width of events sharing timeslots.
      *
      * @param eventOverlapPercent New eventOverlapPercent value. Default value is 10
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEventOverlapPercent(int eventOverlapPercent)  throws IllegalStateException {
-        setAttribute("eventOverlapPercent", eventOverlapPercent, false);
+    public Calendar setEventOverlapPercent(int eventOverlapPercent)  throws IllegalStateException {
+        return (Calendar)setAttribute("eventOverlapPercent", eventOverlapPercent, false);
     }
 
     /**
@@ -2097,10 +2198,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * case, 10 minutes.  If the columns were only  60px wide, it would be 30 minutes.
      *
      * @param eventSnapGap New eventSnapGap value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
-    public void setEventSnapGap(Integer eventSnapGap) {
-        setAttribute("eventSnapGap", eventSnapGap, true);
+    public Calendar setEventSnapGap(Integer eventSnapGap) {
+        return (Calendar)setAttribute("eventSnapGap", eventSnapGap, true);
     }
 
     /**
@@ -2136,11 +2238,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getEventEditor editor}.
      *
      * @param eventStartDateFieldTitle New eventStartDateFieldTitle value. Default value is "From"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setEventStartDateFieldTitle(String eventStartDateFieldTitle)  throws IllegalStateException {
-        setAttribute("eventStartDateFieldTitle", eventStartDateFieldTitle, false);
+    public Calendar setEventStartDateFieldTitle(String eventStartDateFieldTitle)  throws IllegalStateException {
+        return (Calendar)setAttribute("eventStartDateFieldTitle", eventStartDateFieldTitle, false);
     }
 
     /**
@@ -2163,11 +2266,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * 'eventWindowHeader'.
      *
      * @param eventStyleName New eventStyleName value. Default value is "eventWindow"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setEventStyleName(String eventStyleName) {
-        setAttribute("eventStyleName", eventStyleName, true);
+    public Calendar setEventStyleName(String eventStyleName) {
+        return (Calendar)setAttribute("eventStyleName", eventStyleName, true);
     }
 
     /**
@@ -2191,11 +2295,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * CalendarEvent.styleName}.
      *
      * @param eventStyleNameField New eventStyleNameField value. Default value is "styleName"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setEventStyleNameField(String eventStyleNameField)  throws IllegalStateException {
-        setAttribute("eventStyleNameField", eventStyleNameField, false);
+    public Calendar setEventStyleNameField(String eventStyleNameField)  throws IllegalStateException {
+        return (Calendar)setAttribute("eventStyleNameField", eventStyleNameField, false);
     }
 
     /**
@@ -2217,11 +2322,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getEventEditor event editor}.
      *
      * @param eventSublaneFieldTitle New eventSublaneFieldTitle value. Default value is "Sublane"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setEventSublaneFieldTitle(String eventSublaneFieldTitle)  throws IllegalStateException {
-        setAttribute("eventSublaneFieldTitle", eventSublaneFieldTitle, false);
+    public Calendar setEventSublaneFieldTitle(String eventSublaneFieldTitle)  throws IllegalStateException {
+        return (Calendar)setAttribute("eventSublaneFieldTitle", eventSublaneFieldTitle, false);
     }
 
     /**
@@ -2260,12 +2366,13 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * header, define a CSS class called 'eventWindowHeader'.
      *
      * @param eventWindowStyle New eventWindowStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @deprecated in favor of {@link com.smartgwt.client.widgets.calendar.Calendar#getEventStyleName eventStyleName}
      */
-    public void setEventWindowStyle(String eventWindowStyle) {
-        setAttribute("eventWindowStyle", eventWindowStyle, true);
+    public Calendar setEventWindowStyle(String eventWindowStyle) {
+        return (Calendar)setAttribute("eventWindowStyle", eventWindowStyle, true);
     }
 
     /**
@@ -2289,12 +2396,13 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.CalendarEvent#getEventWindowStyle CalendarEvent.eventWindowStyle}.
      *
      * @param eventWindowStyleField New eventWindowStyleField value. Default value is "eventWindowStyle"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @deprecated in favor of {@link com.smartgwt.client.widgets.calendar.Calendar#getEventStyleNameField eventStyleNameField}
      */
-    public void setEventWindowStyleField(String eventWindowStyleField)  throws IllegalStateException {
-        setAttribute("eventWindowStyleField", eventWindowStyleField, false);
+    public Calendar setEventWindowStyleField(String eventWindowStyleField)  throws IllegalStateException {
+        return (Calendar)setAttribute("eventWindowStyleField", eventWindowStyleField, false);
     }
 
     /**
@@ -2317,9 +2425,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * the default is taken from the current locale.
      *
      * @param firstDayOfWeek New firstDayOfWeek value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setFirstDayOfWeek(Integer firstDayOfWeek) {
-        setAttribute("firstDayOfWeek", firstDayOfWeek, true);
+    public Calendar setFirstDayOfWeek(Integer firstDayOfWeek) {
+        return (Calendar)setAttribute("firstDayOfWeek", firstDayOfWeek, true);
     }
 
     /**
@@ -2343,9 +2452,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * For {@link com.smartgwt.client.widgets.calendar.Timeline}s, configures the levels of {@link com.smartgwt.client.widgets.calendar.HeaderLevel headers} shown above the  event area, and their time units, after initialization.
      *
      * @param headerLevels the array of HeaderLevels to set. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setHeaderLevels(HeaderLevel... headerLevels) {
-        setAttribute("headerLevels", headerLevels, true);
+    public Calendar setHeaderLevels(HeaderLevel... headerLevels) {
+        return (Calendar)setAttribute("headerLevels", headerLevels, true);
     }
 
     /**
@@ -2368,9 +2478,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * Setter for updating {@link com.smartgwt.client.widgets.calendar.Calendar#getHideUnusedLanes hideUnusedLanes} after creation.
      *
      * @param hideUnusedLanes whether to hide unused lanes. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setHideUnusedLanes(Boolean hideUnusedLanes) {
-        setAttribute("hideUnusedLanes", hideUnusedLanes, true);
+    public Calendar setHideUnusedLanes(Boolean hideUnusedLanes) {
+        return (Calendar)setAttribute("hideUnusedLanes", hideUnusedLanes, true);
     }
 
     /**
@@ -2413,9 +2524,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * Sets the {@link com.smartgwt.client.widgets.calendar.Calendar#getIndicators indicators} used to highlight instants in time.
      *
      * @param indicators array of indicators to display. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setIndicators(CalendarEvent... indicators) {
-        setAttribute("indicators", indicators, true);
+    public Calendar setIndicators(CalendarEvent... indicators) {
+        return (Calendar)setAttribute("indicators", indicators, true);
     }
 
     /**
@@ -2439,10 +2551,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * each specified {@link com.smartgwt.client.widgets.calendar.Calendar#getIndicators indicator}.
      *
      * @param indicatorStyleName New indicatorStyleName value. Default value is "indicatorCanvas"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setIndicatorStyleName(String indicatorStyleName) {
-        setAttribute("indicatorStyleName", indicatorStyleName, true);
+    public Calendar setIndicatorStyleName(String indicatorStyleName) {
+        return (Calendar)setAttribute("indicatorStyleName", indicatorStyleName, true);
     }
 
     /**
@@ -2463,10 +2576,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * 'To' date is greater than the 'From' date and a save is attempted.
      *
      * @param invalidDateMessage New invalidDateMessage value. Default value is "From must be before To"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setInvalidDateMessage(String invalidDateMessage)  throws IllegalStateException {
-        setAttribute("invalidDateMessage", invalidDateMessage, false);
+    public Calendar setInvalidDateMessage(String invalidDateMessage)  throws IllegalStateException {
+        return (Calendar)setAttribute("invalidDateMessage", invalidDateMessage, false);
     }
 
     /**
@@ -2489,9 +2603,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getShowDayLanes day lanes}.
      *
      * @param laneEventPadding New laneEventPadding value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setLaneEventPadding(Integer laneEventPadding) {
-        setAttribute("laneEventPadding", laneEventPadding, true);
+    public Calendar setLaneEventPadding(Integer laneEventPadding) {
+        return (Calendar)setAttribute("laneEventPadding", laneEventPadding, true);
     }
 
     /**
@@ -2517,10 +2632,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * fields that are specified as lane fields can be used as group fields.
      *
      * @param laneFields New laneFields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setLaneFields(ListGridField... laneFields)  throws IllegalStateException {
-        setAttribute("laneFields", laneFields, false);
+    public Calendar setLaneFields(ListGridField... laneFields)  throws IllegalStateException {
+        return (Calendar)setAttribute("laneFields", laneFields, false);
     }
 
     /**
@@ -2542,9 +2658,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * this is a  field name or array of field names on which to group the lanes in a timeline.
      *
      * @param laneGroupByField New laneGroupByField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setLaneGroupByField(String laneGroupByField) {
-        setAttribute("laneGroupByField", laneGroupByField, true);
+    public Calendar setLaneGroupByField(String laneGroupByField) {
+        return (Calendar)setAttribute("laneGroupByField", laneGroupByField, true);
     }
 
     /**
@@ -2562,9 +2679,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * this is a  field name or array of field names on which to group the lanes in a timeline.
      *
      * @param laneGroupByField New laneGroupByField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setLaneGroupByField(String... laneGroupByField) {
-        setAttribute("laneGroupByField", laneGroupByField, true);
+    public Calendar setLaneGroupByField(String... laneGroupByField) {
+        return (Calendar)setAttribute("laneGroupByField", laneGroupByField, true);
     }
 
     /**
@@ -2586,11 +2704,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getShowDayLanes showDayLanes} is true.
      *
      * @param laneNameField New laneNameField value. Default value is "lane"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
-    public void setLaneNameField(String laneNameField)  throws IllegalStateException {
-        setAttribute("laneNameField", laneNameField, false);
+    public Calendar setLaneNameField(String laneNameField)  throws IllegalStateException {
+        return (Calendar)setAttribute("laneNameField", laneNameField, false);
     }
 
     /**
@@ -2617,9 +2736,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * Sets the {@link com.smartgwt.client.widgets.calendar.Calendar#getLanes lanes} in the current calendar view.  Only has an effect in {@link com.smartgwt.client.widgets.calendar.Calendar#getTimelineView timeline views}, and in {@link com.smartgwt.client.widgets.calendar.Calendar#getDayView day views} when  {@link com.smartgwt.client.widgets.calendar.Calendar#getShowDayLanes showDayLanes} is true.
      *
      * @param lanes array of lanes to display. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setLanes(Lane... lanes) {
-        setAttribute("lanes", lanes, true);
+    public Calendar setLanes(Lane... lanes) {
+        return (Calendar)setAttribute("lanes", lanes, true);
     }
 
     /**
@@ -2642,11 +2762,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * events  where some can be moved a certain amount without affecting others.
      *
      * @param leadingDateField New leadingDateField value. Default value is "leadingDate"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
-    public void setLeadingDateField(String leadingDateField)  throws IllegalStateException {
-        setAttribute("leadingDateField", leadingDateField, false);
+    public Calendar setLeadingDateField(String leadingDateField)  throws IllegalStateException {
+        return (Calendar)setAttribute("leadingDateField", leadingDateField, false);
     }
 
     /**
@@ -2685,9 +2806,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * handsets and false otherwise.
      *
      * @param minimalUI New minimalUI value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setMinimalUI(boolean minimalUI) {
-        setAttribute("minimalUI", minimalUI, true);
+    public Calendar setMinimalUI(boolean minimalUI) {
+        return (Calendar)setAttribute("minimalUI", minimalUI, true);
     }
 
     /**
@@ -2710,10 +2832,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * cell's HTML content, whichever is greater.  If the latter, a vertical scrollbar is shown.
      *
      * @param minimumDayHeight New minimumDayHeight value. Default value is 80
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setMinimumDayHeight(Integer minimumDayHeight) {
-        setAttribute("minimumDayHeight", minimumDayHeight, true);
+    public Calendar setMinimumDayHeight(Integer minimumDayHeight) {
+        return (Calendar)setAttribute("minimumDayHeight", minimumDayHeight, true);
     }
 
     /**
@@ -2737,10 +2860,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * or field.
      *
      * @param minLaneWidth New minLaneWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMinLaneWidth(Integer minLaneWidth)  throws IllegalStateException {
-        setAttribute("minLaneWidth", minLaneWidth, false);
+    public Calendar setMinLaneWidth(Integer minLaneWidth)  throws IllegalStateException {
+        return (Calendar)setAttribute("minLaneWidth", minLaneWidth, false);
     }
 
     /**
@@ -2761,10 +2885,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * hour. Note that this value must divide into 60.
      *
      * @param minutesPerRow New minutesPerRow value. Default value is 30
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMinutesPerRow(Integer minutesPerRow)  throws IllegalStateException {
-        setAttribute("minutesPerRow", minutesPerRow, false);
+    public Calendar setMinutesPerRow(Integer minutesPerRow)  throws IllegalStateException {
+        return (Calendar)setAttribute("minutesPerRow", minutesPerRow, false);
     }
 
     /**
@@ -2807,11 +2932,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * of {@link com.smartgwt.client.widgets.calendar.Calendar#getBackButtonTitle backButtonTitle}.
      *
      * @param monthButtonTitle New monthButtonTitle value. Default value is "&amp;lt; ${monthName}"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setMonthButtonTitle(String monthButtonTitle)  throws IllegalStateException {
-        setAttribute("monthButtonTitle", monthButtonTitle, false);
+    public Calendar setMonthButtonTitle(String monthButtonTitle)  throws IllegalStateException {
+        return (Calendar)setAttribute("monthButtonTitle", monthButtonTitle, false);
     }
 
     /**
@@ -2840,11 +2966,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * 3 more...".
      *
      * @param monthMoreEventsLinkTitle New monthMoreEventsLinkTitle value. Default value is "+ ${eventCount} more..."
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setMonthMoreEventsLinkTitle(String monthMoreEventsLinkTitle)  throws IllegalStateException {
-        setAttribute("monthMoreEventsLinkTitle", monthMoreEventsLinkTitle, false);
+    public Calendar setMonthMoreEventsLinkTitle(String monthMoreEventsLinkTitle)  throws IllegalStateException {
+        return (Calendar)setAttribute("monthMoreEventsLinkTitle", monthMoreEventsLinkTitle, false);
     }
 
     /**
@@ -2901,10 +3028,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * The title for the {@link com.smartgwt.client.widgets.calendar.Calendar#getMonthView month view}.
      *
      * @param monthViewTitle New monthViewTitle value. Default value is "Month"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMonthViewTitle(String monthViewTitle)  throws IllegalStateException {
-        setAttribute("monthViewTitle", monthViewTitle, false);
+    public Calendar setMonthViewTitle(String monthViewTitle)  throws IllegalStateException {
+        return (Calendar)setAttribute("monthViewTitle", monthViewTitle, false);
     }
 
     /**
@@ -2921,11 +3049,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * The name of the name field on a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
      * @param nameField New nameField value. Default value is "name"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
-    public void setNameField(String nameField)  throws IllegalStateException {
-        setAttribute("nameField", nameField, false);
+    public Calendar setNameField(String nameField)  throws IllegalStateException {
+        return (Calendar)setAttribute("nameField", nameField, false);
     }
 
     /**
@@ -2960,10 +3089,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * next}  toolbar button
      *
      * @param nextButtonHoverText New nextButtonHoverText value. Default value is "Next"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setNextButtonHoverText(String nextButtonHoverText)  throws IllegalStateException {
-        setAttribute("nextButtonHoverText", nextButtonHoverText, false);
+    public Calendar setNextButtonHoverText(String nextButtonHoverText)  throws IllegalStateException {
+        return (Calendar)setAttribute("nextButtonHoverText", nextButtonHoverText, false);
     }
 
     /**
@@ -2983,12 +3113,13 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getShowOtherDays showOtherDays} is false.
      *
      * @param otherDayBlankStyle New otherDayBlankStyle value. Default value is "calMonthOtherDayBlank"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setOtherDayBlankStyle(String otherDayBlankStyle)  throws IllegalStateException {
-        setAttribute("otherDayBlankStyle", otherDayBlankStyle, false);
+    public Calendar setOtherDayBlankStyle(String otherDayBlankStyle)  throws IllegalStateException {
+        return (Calendar)setAttribute("otherDayBlankStyle", otherDayBlankStyle, false);
     }
 
     /**
@@ -3012,11 +3143,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * generate stateful cell styles.
      *
      * @param otherDayBodyBaseStyle New otherDayBodyBaseStyle value. Default value is "calMonthOtherDayBody"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setOtherDayBodyBaseStyle(String otherDayBodyBaseStyle) {
-        setAttribute("otherDayBodyBaseStyle", otherDayBodyBaseStyle, true);
+    public Calendar setOtherDayBodyBaseStyle(String otherDayBodyBaseStyle) {
+        return (Calendar)setAttribute("otherDayBodyBaseStyle", otherDayBodyBaseStyle, true);
     }
 
     /**
@@ -3041,11 +3173,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * generate stateful cell styles.
      *
      * @param otherDayHeaderBaseStyle New otherDayHeaderBaseStyle value. Default value is "calMonthDayHeader"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setOtherDayHeaderBaseStyle(String otherDayHeaderBaseStyle) {
-        setAttribute("otherDayHeaderBaseStyle", otherDayHeaderBaseStyle, true);
+    public Calendar setOtherDayHeaderBaseStyle(String otherDayHeaderBaseStyle) {
+        return (Calendar)setAttribute("otherDayHeaderBaseStyle", otherDayHeaderBaseStyle, true);
     }
 
     /**
@@ -3077,9 +3210,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.data.DataSource data-source}, if the Calendar is databound.
      *
      * @param overlapSortSpecifiers New overlapSortSpecifiers value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setOverlapSortSpecifiers(SortSpecifier... overlapSortSpecifiers) {
-        setAttribute("overlapSortSpecifiers", overlapSortSpecifiers, true);
+    public Calendar setOverlapSortSpecifiers(SortSpecifier... overlapSortSpecifiers) {
+        return (Calendar)setAttribute("overlapSortSpecifiers", overlapSortSpecifiers, true);
     }
 
     /**
@@ -3123,10 +3257,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getPreviousButton previous} toolbar button.
      *
      * @param previousButtonHoverText New previousButtonHoverText value. Default value is "Previous"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPreviousButtonHoverText(String previousButtonHoverText)  throws IllegalStateException {
-        setAttribute("previousButtonHoverText", previousButtonHoverText, false);
+    public Calendar setPreviousButtonHoverText(String previousButtonHoverText)  throws IllegalStateException {
+        return (Calendar)setAttribute("previousButtonHoverText", previousButtonHoverText, false);
     }
 
     /**
@@ -3161,11 +3296,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getEventEditor event editor}.
      *
      * @param removeButtonTitle New removeButtonTitle value. Default value is "Remove Event"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setRemoveButtonTitle(String removeButtonTitle)  throws IllegalStateException {
-        setAttribute("removeButtonTitle", removeButtonTitle, false);
+    public Calendar setRemoveButtonTitle(String removeButtonTitle)  throws IllegalStateException {
+        return (Calendar)setAttribute("removeButtonTitle", removeButtonTitle, false);
     }
 
     /**
@@ -3182,18 +3318,21 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
 
     /**
      * When set to true, the default, each {@link com.smartgwt.client.widgets.calendar.EventCanvas event} is rendered as it 
-     * appears in the viewport.  If set to false, all events are rendered up-front, whenever the  current range changes.
+     * appears in the viewport.  If set to false, all events are rendered up-front, whenever the  current range changes. <P>
+     * Has no effect when {@link com.smartgwt.client.widgets.calendar.Calendar#getShowColumnLayouts showColumnLayouts} is true.
      *
      * @param renderEventsOnDemand New renderEventsOnDemand value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setRenderEventsOnDemand(boolean renderEventsOnDemand)  throws IllegalStateException {
-        setAttribute("renderEventsOnDemand", renderEventsOnDemand, false);
+    public Calendar setRenderEventsOnDemand(boolean renderEventsOnDemand)  throws IllegalStateException {
+        return (Calendar)setAttribute("renderEventsOnDemand", renderEventsOnDemand, false);
     }
 
     /**
      * When set to true, the default, each {@link com.smartgwt.client.widgets.calendar.EventCanvas event} is rendered as it 
-     * appears in the viewport.  If set to false, all events are rendered up-front, whenever the  current range changes.
+     * appears in the viewport.  If set to false, all events are rendered up-front, whenever the  current range changes. <P>
+     * Has no effect when {@link com.smartgwt.client.widgets.calendar.Calendar#getShowColumnLayouts showColumnLayouts} is true.
      *
      * @return Current renderEventsOnDemand value. Default value is true
      */
@@ -3207,9 +3346,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * The height of time-slots in the calendar.
      *
      * @param rowHeight New rowHeight value. Default value is 20
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setRowHeight(int rowHeight) {
-        setAttribute("rowHeight", rowHeight, true);
+    public Calendar setRowHeight(int rowHeight) {
+        return (Calendar)setAttribute("rowHeight", rowHeight, true);
     }
 
     /**
@@ -3230,10 +3370,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getMinutesPerRow minutesPerRow} and be no larger than 60.
      *
      * @param rowTitleFrequency New rowTitleFrequency value. Default value is 60
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setRowTitleFrequency(Integer rowTitleFrequency)  throws IllegalStateException {
-        setAttribute("rowTitleFrequency", rowTitleFrequency, false);
+    public Calendar setRowTitleFrequency(Integer rowTitleFrequency)  throws IllegalStateException {
+        return (Calendar)setAttribute("rowTitleFrequency", rowTitleFrequency, false);
     }
 
     /**
@@ -3272,11 +3413,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getEventEditor event editor}.
      *
      * @param saveButtonTitle New saveButtonTitle value. Default value is "Save Event"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setSaveButtonTitle(String saveButtonTitle)  throws IllegalStateException {
-        setAttribute("saveButtonTitle", saveButtonTitle, false);
+    public Calendar setSaveButtonTitle(String saveButtonTitle)  throws IllegalStateException {
+        return (Calendar)setAttribute("saveButtonTitle", saveButtonTitle, false);
     }
 
     /**
@@ -3298,10 +3440,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * workday when the calendar is first displayed and whenever the user switches to a new day or week.
      *
      * @param scrollToWorkday New scrollToWorkday value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setScrollToWorkday(Boolean scrollToWorkday)  throws IllegalStateException {
-        setAttribute("scrollToWorkday", scrollToWorkday, false);
+    public Calendar setScrollToWorkday(Boolean scrollToWorkday)  throws IllegalStateException {
+        return (Calendar)setAttribute("scrollToWorkday", scrollToWorkday, false);
     }
 
     /**
@@ -3323,10 +3466,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * other views.
      *
      * @param selectChosenDate New selectChosenDate value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Visibility Visibility overview and related methods
      */
-    public void setSelectChosenDate(Boolean selectChosenDate) {
-        setAttribute("selectChosenDate", selectChosenDate, true);
+    public Calendar setSelectChosenDate(Boolean selectChosenDate) {
+        return (Calendar)setAttribute("selectChosenDate", selectChosenDate, true);
     }
 
     /**
@@ -3347,11 +3491,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * The base name for the CSS class applied to a cell that is selected via a mouse drag.
      *
      * @param selectedCellStyle New selectedCellStyle value. Default value is "calendarCellSelected"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setSelectedCellStyle(String selectedCellStyle) {
-        setAttribute("selectedCellStyle", selectedCellStyle, true);
+    public Calendar setSelectedCellStyle(String selectedCellStyle) {
+        return (Calendar)setAttribute("selectedCellStyle", selectedCellStyle, true);
     }
 
     /**
@@ -3371,9 +3516,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * Set to false to hide the {@link com.smartgwt.client.widgets.calendar.Calendar#getAddEventButton Add Event} button.
      *
      * @param showAddEventButton New showAddEventButton value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setShowAddEventButton(Boolean showAddEventButton) {
-        setAttribute("showAddEventButton", showAddEventButton, true);
+    public Calendar setShowAddEventButton(Boolean showAddEventButton) {
+        return (Calendar)setAttribute("showAddEventButton", showAddEventButton, true);
     }
 
     /**
@@ -3394,10 +3540,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * string.
      *
      * @param showCellHovers New showCellHovers value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowCellHovers(Boolean showCellHovers)  throws IllegalStateException {
-        setAttribute("showCellHovers", showCellHovers, false);
+    public Calendar setShowCellHovers(Boolean showCellHovers)  throws IllegalStateException {
+        return (Calendar)setAttribute("showCellHovers", showCellHovers, false);
     }
 
     /**
@@ -3416,6 +3563,42 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
     
 
     /**
+     * When true, causes {@link com.smartgwt.client.widgets.calendar.Calendar#getColumnLayout layouts} to be added to each
+     * column in  vertical views.  In this mode, eventCanvases are stacked in these layouts, filling width  and auto-sizing
+     * vertically to content, rather than being placed, sized and overlapped  according to their times. <P> Because times are
+     * ignored in this mode, various behaviors are switched off automatically; for example, the {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getShowLabelColumn time-column} is hidden and event-canvases  cannot be
+     * {@link com.smartgwt.client.widgets.calendar.Calendar#getCanResizeEvents resized} or rendered {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getRenderEventsOnDemand on-demand}.
+     *
+     * @param showColumnLayouts New showColumnLayouts value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public Calendar setShowColumnLayouts(Boolean showColumnLayouts)  throws IllegalStateException {
+        return (Calendar)setAttribute("showColumnLayouts", showColumnLayouts, false);
+    }
+
+    /**
+     * When true, causes {@link com.smartgwt.client.widgets.calendar.Calendar#getColumnLayout layouts} to be added to each
+     * column in  vertical views.  In this mode, eventCanvases are stacked in these layouts, filling width  and auto-sizing
+     * vertically to content, rather than being placed, sized and overlapped  according to their times. <P> Because times are
+     * ignored in this mode, various behaviors are switched off automatically; for example, the {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getShowLabelColumn time-column} is hidden and event-canvases  cannot be
+     * {@link com.smartgwt.client.widgets.calendar.Calendar#getCanResizeEvents resized} or rendered {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getRenderEventsOnDemand on-demand}.
+     *
+     * @return Current showColumnLayouts value. Default value is false
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public Boolean getShowColumnLayouts()  {
+        Boolean result = getAttributeAsBoolean("showColumnLayouts");
+        return result == null ? false : result;
+    }
+    
+
+    /**
      * If false the controls bar at the top of the calendar will not be displayed - this means  that the {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getControlsBar controlsBar} will be hidden, so the autoChildren ({@link
      * com.smartgwt.client.widgets.calendar.Calendar#getPreviousButton previousButton},  {@link
@@ -3425,10 +3608,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getDatePickerButton datePickerButton})  will not be created or shown.
      *
      * @param showControlsBar New showControlsBar value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowControlsBar(Boolean showControlsBar)  throws IllegalStateException {
-        setAttribute("showControlsBar", showControlsBar, false);
+    public Calendar setShowControlsBar(Boolean showControlsBar)  throws IllegalStateException {
+        return (Calendar)setAttribute("showControlsBar", showControlsBar, false);
     }
 
     /**
@@ -3452,11 +3636,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * Determines whether the {@link com.smartgwt.client.widgets.calendar.Calendar#getDateChooser dateChooser} is displayed.
      *
      * @param showDateChooser New showDateChooser value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Visibility Visibility overview and related methods
      */
-    public void setShowDateChooser(Boolean showDateChooser)  throws IllegalStateException {
-        setAttribute("showDateChooser", showDateChooser, false);
+    public Calendar setShowDateChooser(Boolean showDateChooser)  throws IllegalStateException {
+        return (Calendar)setAttribute("showDateChooser", showDateChooser, false);
     }
 
     /**
@@ -3476,9 +3661,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * allows selecting a new base date for  this Calendar.
      *
      * @param showDatePickerButton New showDatePickerButton value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setShowDatePickerButton(Boolean showDatePickerButton) {
-        setAttribute("showDatePickerButton", showDatePickerButton, true);
+    public Calendar setShowDatePickerButton(Boolean showDatePickerButton) {
+        return (Calendar)setAttribute("showDatePickerButton", showDatePickerButton, true);
     }
 
     /**
@@ -3501,11 +3687,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * cells, such that no vertical scrollbar is required unless the HTML in the cells renders them taller than will fit.
      *
      * @param showDayHeaders New showDayHeaders value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Visibility Visibility overview and related methods
      */
-    public void setShowDayHeaders(Boolean showDayHeaders)  throws IllegalStateException {
-        setAttribute("showDayHeaders", showDayHeaders, false);
+    public Calendar setShowDayHeaders(Boolean showDayHeaders)  throws IllegalStateException {
+        return (Calendar)setAttribute("showDayHeaders", showDayHeaders, false);
     }
 
     /**
@@ -3541,10 +3728,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * Changes the {@link com.smartgwt.client.widgets.calendar.Calendar#getShowDayLanes view mode} of the day view at runtime - whether to show a normal day column for the {@link com.smartgwt.client.widgets.calendar.Calendar#getChosenDate chosenDate}, or the specified set of  {@link com.smartgwt.client.widgets.calendar.Calendar#getLanes vertical lanes}.
      *
      * @param showDayLanes whether or not to show lanes in the day view. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowDayLanes(Boolean showDayLanes)  throws IllegalStateException {
-        setAttribute("showDayLanes", showDayLanes, false);
+    public Calendar setShowDayLanes(Boolean showDayLanes)  throws IllegalStateException {
+        return (Calendar)setAttribute("showDayLanes", showDayLanes, false);
     }
 
     /**
@@ -3570,11 +3758,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * Whether to show the Day view.
      *
      * @param showDayView New showDayView value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowDayView(Boolean showDayView)  throws IllegalStateException {
-        setAttribute("showDayView", showDayView, false);
+    public Calendar setShowDayView(Boolean showDayView)  throws IllegalStateException {
+        return (Calendar)setAttribute("showDayView", showDayView, false);
     }
 
     /**
@@ -3595,11 +3784,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * shouldn't appear by default in a view that tries to show many records in a small space.
      *
      * @param showDetailFields New showDetailFields value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
-    public void setShowDetailFields(Boolean showDetailFields)  throws IllegalStateException {
-        setAttribute("showDetailFields", showDetailFields, false);
+    public Calendar setShowDetailFields(Boolean showDetailFields)  throws IllegalStateException {
+        return (Calendar)setAttribute("showDetailFields", showDetailFields, false);
     }
 
     /**
@@ -3623,9 +3813,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * overridden to return custom results; by  default, it returns the date range of the drag canvas as a string.
      *
      * @param showDragHovers New showDragHovers value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setShowDragHovers(Boolean showDragHovers) {
-        setAttribute("showDragHovers", showDragHovers, true);
+    public Calendar setShowDragHovers(Boolean showDragHovers) {
+        return (Calendar)setAttribute("showDragHovers", showDragHovers, true);
     }
 
     /**
@@ -3643,6 +3834,36 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
     
 
     /**
+     * Whether {@link com.smartgwt.client.widgets.calendar.Calendar#getEventCanvas event-canvases} should show a custom widget
+     * as content,  rather than the default {@link com.smartgwt.client.widgets.calendar.EventCanvas#getShowHeader header} and 
+     * {@link com.smartgwt.client.widgets.calendar.EventCanvas#getShowBody body} HTML.
+     *
+     * @param showEventCanvasComponents New showEventCanvasComponents value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.calendar.Calendar#createEventCanvasComponent
+     * @see com.smartgwt.client.widgets.calendar.Calendar#updateEventCanvasComponent
+     */
+    public Calendar setShowEventCanvasComponents(boolean showEventCanvasComponents)  throws IllegalStateException {
+        return (Calendar)setAttribute("showEventCanvasComponents", showEventCanvasComponents, false);
+    }
+
+    /**
+     * Whether {@link com.smartgwt.client.widgets.calendar.Calendar#getEventCanvas event-canvases} should show a custom widget
+     * as content,  rather than the default {@link com.smartgwt.client.widgets.calendar.EventCanvas#getShowHeader header} and 
+     * {@link com.smartgwt.client.widgets.calendar.EventCanvas#getShowBody body} HTML.
+     *
+     * @return Current showEventCanvasComponents value. Default value is false
+     * @see com.smartgwt.client.widgets.calendar.Calendar#createEventCanvasComponent
+     * @see com.smartgwt.client.widgets.calendar.Calendar#updateEventCanvasComponent
+     */
+    public boolean getShowEventCanvasComponents()  {
+        Boolean result = getAttributeAsBoolean("showEventCanvasComponents");
+        return result == null ? false : result;
+    }
+    
+
+    /**
      * When rendering the {@link com.smartgwt.client.widgets.calendar.Calendar#getEventCanvas canvas} for an event, whether to
      * show the  {@link com.smartgwt.client.widgets.calendar.EventCanvas#getShowBody body area}, typically containing brief
      * details of the event -  {@link com.smartgwt.client.widgets.calendar.Calendar#getEventBodyHTML by default},  {@link
@@ -3650,10 +3871,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * false, the event's {@link com.smartgwt.client.widgets.calendar.EventCanvas#getShowHeader header}  will fill the canvas.
      *
      * @param showEventDescriptions New showEventDescriptions value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowEventDescriptions(boolean showEventDescriptions)  throws IllegalStateException {
-        setAttribute("showEventDescriptions", showEventDescriptions, false);
+    public Calendar setShowEventDescriptions(boolean showEventDescriptions)  throws IllegalStateException {
+        return (Calendar)setAttribute("showEventDescriptions", showEventDescriptions, false);
     }
 
     /**
@@ -3679,10 +3901,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * event's {@link com.smartgwt.client.widgets.calendar.EventCanvas#getShowBody body area}  will fill the canvas.
      *
      * @param showEventHeaders New showEventHeaders value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowEventHeaders(boolean showEventHeaders)  throws IllegalStateException {
-        setAttribute("showEventHeaders", showEventHeaders, false);
+    public Calendar setShowEventHeaders(boolean showEventHeaders)  throws IllegalStateException {
+        return (Calendar)setAttribute("showEventHeaders", showEventHeaders, false);
     }
 
     /**
@@ -3708,9 +3931,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * custom results.
      *
      * @param showEventHovers New showEventHovers value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setShowEventHovers(Boolean showEventHovers) {
-        setAttribute("showEventHovers", showEventHovers, true);
+    public Calendar setShowEventHovers(Boolean showEventHovers) {
+        return (Calendar)setAttribute("showEventHovers", showEventHovers, true);
     }
 
     /**
@@ -3736,10 +3960,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * which can be overridden to return custom results;
      *
      * @param showHeaderHovers New showHeaderHovers value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowHeaderHovers(Boolean showHeaderHovers)  throws IllegalStateException {
-        setAttribute("showHeaderHovers", showHeaderHovers, false);
+    public Calendar setShowHeaderHovers(Boolean showHeaderHovers)  throws IllegalStateException {
+        return (Calendar)setAttribute("showHeaderHovers", showHeaderHovers, false);
     }
 
     /**
@@ -3762,9 +3987,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * {@link com.smartgwt.client.widgets.calendar.Calendar#getTimelineView timeline views}.
      *
      * @param showIndicators New showIndicators value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setShowIndicators(Boolean showIndicators) {
-        setAttribute("showIndicators", showIndicators, true);
+    public Calendar setShowIndicators(Boolean showIndicators) {
+        return (Calendar)setAttribute("showIndicators", showIndicators, true);
     }
 
     /**
@@ -3783,10 +4009,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * affects where in  the z-order their canvases will be rendered:  either in front of, or behind normal calendar events.
      *
      * @param showIndicatorsInFront New showIndicatorsInFront value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowIndicatorsInFront(boolean showIndicatorsInFront)  throws IllegalStateException {
-        setAttribute("showIndicatorsInFront", showIndicatorsInFront, false);
+    public Calendar setShowIndicatorsInFront(boolean showIndicatorsInFront)  throws IllegalStateException {
+        return (Calendar)setAttribute("showIndicatorsInFront", showIndicatorsInFront, false);
     }
 
     /**
@@ -3803,16 +4030,21 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
 
     /**
      * When set to false, hides the frozen Label-Column in vertical {@link com.smartgwt.client.widgets.calendar.CalendarView}s.
+     * <P> Always false when {@link com.smartgwt.client.widgets.calendar.Calendar#getShowColumnLayouts showColumnLayouts} is
+     * true.
      *
      * @param showLabelColumn New showLabelColumn value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowLabelColumn(boolean showLabelColumn)  throws IllegalStateException {
-        setAttribute("showLabelColumn", showLabelColumn, false);
+    public Calendar setShowLabelColumn(boolean showLabelColumn)  throws IllegalStateException {
+        return (Calendar)setAttribute("showLabelColumn", showLabelColumn, false);
     }
 
     /**
      * When set to false, hides the frozen Label-Column in vertical {@link com.smartgwt.client.widgets.calendar.CalendarView}s.
+     * <P> Always false when {@link com.smartgwt.client.widgets.calendar.Calendar#getShowColumnLayouts showColumnLayouts} is
+     * true.
      *
      * @return Current showLabelColumn value. Default value is true
      */
@@ -3832,9 +4064,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * laneField, no "date" parameter is passed to that method.
      *
      * @param showLaneFieldHovers New showLaneFieldHovers value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setShowLaneFieldHovers(Boolean showLaneFieldHovers) {
-        setAttribute("showLaneFieldHovers", showLaneFieldHovers, true);
+    public Calendar setShowLaneFieldHovers(Boolean showLaneFieldHovers) {
+        return (Calendar)setAttribute("showLaneFieldHovers", showLaneFieldHovers, true);
     }
 
     /**
@@ -3861,9 +4094,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * with the "Over" style.
      *
      * @param showLaneRollOver New showLaneRollOver value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setShowLaneRollOver(Boolean showLaneRollOver) {
-        setAttribute("showLaneRollOver", showLaneRollOver, true);
+    public Calendar setShowLaneRollOver(Boolean showLaneRollOver) {
+        return (Calendar)setAttribute("showLaneRollOver", showLaneRollOver, true);
     }
 
     /**
@@ -3884,9 +4118,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * displaying on Handset  devices.
      *
      * @param showMonthButton New showMonthButton value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setShowMonthButton(Boolean showMonthButton) {
-        setAttribute("showMonthButton", showMonthButton, true);
+    public Calendar setShowMonthButton(Boolean showMonthButton) {
+        return (Calendar)setAttribute("showMonthButton", showMonthButton, true);
     }
 
     /**
@@ -3904,11 +4139,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * Whether to show the Month view.
      *
      * @param showMonthView New showMonthView value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowMonthView(Boolean showMonthView)  throws IllegalStateException {
-        setAttribute("showMonthView", showMonthView, false);
+    public Calendar setShowMonthView(Boolean showMonthView)  throws IllegalStateException {
+        return (Calendar)setAttribute("showMonthView", showMonthView, false);
     }
 
     /**
@@ -3927,9 +4163,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * Set to false to hide the {@link com.smartgwt.client.widgets.calendar.Calendar#getNextButton Next} button.
      *
      * @param showNextButton New showNextButton value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setShowNextButton(Boolean showNextButton) {
-        setAttribute("showNextButton", showNextButton, true);
+    public Calendar setShowNextButton(Boolean showNextButton) {
+        return (Calendar)setAttribute("showNextButton", showNextButton, true);
     }
 
     /**
@@ -3949,11 +4186,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * are non-interactive.
      *
      * @param showOtherDays New showOtherDays value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Visibility Visibility overview and related methods
      */
-    public void setShowOtherDays(Boolean showOtherDays)  throws IllegalStateException {
-        setAttribute("showOtherDays", showOtherDays, false);
+    public Calendar setShowOtherDays(Boolean showOtherDays)  throws IllegalStateException {
+        return (Calendar)setAttribute("showOtherDays", showOtherDays, false);
     }
 
     /**
@@ -3975,9 +4213,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * Set to false to hide the {@link com.smartgwt.client.widgets.calendar.Calendar#getPreviousButton Previous} button.
      *
      * @param showPreviousButton New showPreviousButton value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setShowPreviousButton(Boolean showPreviousButton) {
-        setAttribute("showPreviousButton", showPreviousButton, true);
+    public Calendar setShowPreviousButton(Boolean showPreviousButton) {
+        return (Calendar)setAttribute("showPreviousButton", showPreviousButton, true);
     }
 
     /**
@@ -3995,11 +4234,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * is displayed.
      *
      * @param showQuickEventDialog New showQuickEventDialog value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
-    public void setShowQuickEventDialog(Boolean showQuickEventDialog)  throws IllegalStateException {
-        setAttribute("showQuickEventDialog", showQuickEventDialog, false);
+    public Calendar setShowQuickEventDialog(Boolean showQuickEventDialog)  throws IllegalStateException {
+        return (Calendar)setAttribute("showQuickEventDialog", showQuickEventDialog, false);
     }
 
     /**
@@ -4019,9 +4259,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * If set to true, show the {@link com.smartgwt.client.widgets.calendar.Calendar#getTimelineView Timeline view}.
      *
      * @param showTimelineView New showTimelineView value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setShowTimelineView(Boolean showTimelineView) {
-        setAttribute("showTimelineView", showTimelineView, true);
+    public Calendar setShowTimelineView(Boolean showTimelineView) {
+        return (Calendar)setAttribute("showTimelineView", showTimelineView, true);
     }
 
     /**
@@ -4048,9 +4289,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * Switches the various levels of {@link com.smartgwt.client.widgets.calendar.Calendar#getShowViewHovers hovers} on or off at runtime.
      *
      * @param showViewHovers whether to allow CalendarViews to show hovers. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setShowViewHovers(Boolean showViewHovers) {
-        setAttribute("showViewHovers", showViewHovers, true);
+    public Calendar setShowViewHovers(Boolean showViewHovers) {
+        return (Calendar)setAttribute("showViewHovers", showViewHovers, true);
     }
 
     /**
@@ -4081,10 +4323,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * Setter for updating {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWeekends showWeekends} at runtime.
      *
      * @param showWeekends whether or not to show weekends. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Visibility Visibility overview and related methods
      */
-    public void setShowWeekends(Boolean showWeekends) {
-        setAttribute("showWeekends", showWeekends, true);
+    public Calendar setShowWeekends(Boolean showWeekends) {
+        return (Calendar)setAttribute("showWeekends", showWeekends, true);
     }
 
     /**
@@ -4107,11 +4350,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * Whether to show the Week view.
      *
      * @param showWeekView New showWeekView value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowWeekView(Boolean showWeekView)  throws IllegalStateException {
-        setAttribute("showWeekView", showWeekView, false);
+    public Calendar setShowWeekView(Boolean showWeekView)  throws IllegalStateException {
+        return (Calendar)setAttribute("showWeekView", showWeekView, false);
     }
 
     /**
@@ -4137,10 +4381,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * getWorkdayStart()} and {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayEnd getWorkdayEnd()}.
      *
      * @param showWorkday New showWorkday value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowWorkday(Boolean showWorkday)  throws IllegalStateException {
-        setAttribute("showWorkday", showWorkday, false);
+    public Calendar setShowWorkday(Boolean showWorkday)  throws IllegalStateException {
+        return (Calendar)setAttribute("showWorkday", showWorkday, false);
     }
 
     /**
@@ -4170,9 +4415,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * return custom results.
      *
      * @param showZoneHovers New showZoneHovers value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setShowZoneHovers(Boolean showZoneHovers) {
-        setAttribute("showZoneHovers", showZoneHovers, true);
+    public Calendar setShowZoneHovers(Boolean showZoneHovers) {
+        return (Calendar)setAttribute("showZoneHovers", showZoneHovers, true);
     }
 
     /**
@@ -4196,9 +4442,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getTimelineView timeline views}.
      *
      * @param showZones New showZones value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setShowZones(Boolean showZones) {
-        setAttribute("showZones", showZones, true);
+    public Calendar setShowZones(Boolean showZones) {
+        return (Calendar)setAttribute("showZones", showZones, true);
     }
 
     /**
@@ -4216,10 +4463,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * If true, events will be sized to the grid, even if they start and/or end at times between grid cells.
      *
      * @param sizeEventsToGrid New sizeEventsToGrid value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSizeEventsToGrid(Boolean sizeEventsToGrid)  throws IllegalStateException {
-        setAttribute("sizeEventsToGrid", sizeEventsToGrid, false);
+    public Calendar setSizeEventsToGrid(Boolean sizeEventsToGrid)  throws IllegalStateException {
+        return (Calendar)setAttribute("sizeEventsToGrid", sizeEventsToGrid, false);
     }
 
     /**
@@ -4244,10 +4492,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getHeaderLevels header-levels}, to fit to header boundaries.
      *
      * @param startDate New startDate value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setStartDate(Date startDate)  throws IllegalStateException {
-        setAttribute("startDate", startDate, false);
+    public Calendar setStartDate(Date startDate)  throws IllegalStateException {
+        return (Calendar)setAttribute("startDate", startDate, false);
     }
 
     /**
@@ -4271,11 +4520,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * The name of the start date field on a {@link com.smartgwt.client.widgets.calendar.CalendarEvent}.
      *
      * @param startDateField New startDateField value. Default value is "startDate"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
-    public void setStartDateField(String startDateField)  throws IllegalStateException {
-        setAttribute("startDateField", startDateField, false);
+    public Calendar setStartDateField(String startDateField)  throws IllegalStateException {
+        return (Calendar)setAttribute("startDateField", startDateField, false);
     }
 
     /**
@@ -4296,10 +4546,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getShowDayLanes showDayLanes} is true.
      *
      * @param sublaneNameField New sublaneNameField value. Default value is "sublane"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSublaneNameField(String sublaneNameField)  throws IllegalStateException {
-        setAttribute("sublaneNameField", sublaneNameField, false);
+    public Calendar setSublaneNameField(String sublaneNameField)  throws IllegalStateException {
+        return (Calendar)setAttribute("sublaneNameField", sublaneNameField, false);
     }
 
     /**
@@ -4322,10 +4573,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * type.
      *
      * @param timelineGranularity New timelineGranularity value. Default value is "day"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTimelineGranularity(TimeUnit timelineGranularity)  throws IllegalStateException {
-        setAttribute("timelineGranularity", timelineGranularity == null ? null : timelineGranularity.getValue(), false);
+    public Calendar setTimelineGranularity(TimeUnit timelineGranularity)  throws IllegalStateException {
+        return (Calendar)setAttribute("timelineGranularity", timelineGranularity == null ? null : timelineGranularity.getValue(), false);
     }
 
     /**
@@ -4345,10 +4597,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * cell represents.
      *
      * @param timelineUnitsPerColumn New timelineUnitsPerColumn value. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTimelineUnitsPerColumn(int timelineUnitsPerColumn)  throws IllegalStateException {
-        setAttribute("timelineUnitsPerColumn", timelineUnitsPerColumn, false);
+    public Calendar setTimelineUnitsPerColumn(int timelineUnitsPerColumn)  throws IllegalStateException {
+        return (Calendar)setAttribute("timelineUnitsPerColumn", timelineUnitsPerColumn, false);
     }
 
     /**
@@ -4382,10 +4635,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * The title for the {@link com.smartgwt.client.widgets.calendar.Calendar#getTimelineView timeline view}.
      *
      * @param timelineViewTitle New timelineViewTitle value. Default value is "Timeline"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTimelineViewTitle(String timelineViewTitle)  throws IllegalStateException {
-        setAttribute("timelineViewTitle", timelineViewTitle, false);
+    public Calendar setTimelineViewTitle(String timelineViewTitle)  throws IllegalStateException {
+        return (Calendar)setAttribute("timelineViewTitle", timelineViewTitle, false);
     }
 
     /**
@@ -4402,10 +4656,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * The background color for cells that represent today in all {@link com.smartgwt.client.widgets.calendar.CalendarView}s.
      *
      * @param todayBackgroundColor New todayBackgroundColor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTodayBackgroundColor(String todayBackgroundColor)  throws IllegalStateException {
-        setAttribute("todayBackgroundColor", todayBackgroundColor, false);
+    public Calendar setTodayBackgroundColor(String todayBackgroundColor)  throws IllegalStateException {
+        return (Calendar)setAttribute("todayBackgroundColor", todayBackgroundColor, false);
     }
 
     /**
@@ -4425,11 +4680,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * events  where some can be moved a certain amount without affecting others.
      *
      * @param trailingDateField New trailingDateField value. Default value is "trailingDate"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.calendar.CalendarEvent
      */
-    public void setTrailingDateField(String trailingDateField)  throws IllegalStateException {
-        setAttribute("trailingDateField", trailingDateField, false);
+    public Calendar setTrailingDateField(String trailingDateField)  throws IllegalStateException {
+        return (Calendar)setAttribute("trailingDateField", trailingDateField, false);
     }
 
     /**
@@ -4452,10 +4708,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * installed, causes the  Calendar to choose an appropriate builtin formatter.
      *
      * @param twentyFourHourTime New twentyFourHourTime value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTwentyFourHourTime(Boolean twentyFourHourTime)  throws IllegalStateException {
-        setAttribute("twentyFourHourTime", twentyFourHourTime, false);
+    public Calendar setTwentyFourHourTime(Boolean twentyFourHourTime)  throws IllegalStateException {
+        return (Calendar)setAttribute("twentyFourHourTime", twentyFourHourTime, false);
     }
 
     /**
@@ -4478,10 +4735,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * permanently.
      *
      * @param useEventCanvasRolloverControls New useEventCanvasRolloverControls value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setUseEventCanvasRolloverControls(boolean useEventCanvasRolloverControls)  throws IllegalStateException {
-        setAttribute("useEventCanvasRolloverControls", useEventCanvasRolloverControls, false);
+    public Calendar setUseEventCanvasRolloverControls(boolean useEventCanvasRolloverControls)  throws IllegalStateException {
+        return (Calendar)setAttribute("useEventCanvasRolloverControls", useEventCanvasRolloverControls, false);
     }
 
     /**
@@ -4504,10 +4762,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * according to their set of {@link com.smartgwt.client.widgets.calendar.Lane#getSublanes sublanes}.
      *
      * @param useSublanes New useSublanes value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setUseSublanes(Boolean useSublanes)  throws IllegalStateException {
-        setAttribute("useSublanes", useSublanes, false);
+    public Calendar setUseSublanes(Boolean useSublanes)  throws IllegalStateException {
+        return (Calendar)setAttribute("useSublanes", useSublanes, false);
     }
 
     /**
@@ -4526,10 +4785,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * defaults to the set of days indicated  {@link com.smartgwt.client.util.DateUtil#weekendDays globally}.
      *
      * @param weekendDays New weekendDays value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Visibility Visibility overview and related methods
      */
-    public void setWeekendDays(int... weekendDays) {
-        setAttribute("weekendDays", weekendDays, true);
+    public Calendar setWeekendDays(int... weekendDays) {
+        return (Calendar)setAttribute("weekendDays", weekendDays, true);
     }
 
     /**
@@ -4548,11 +4808,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * Augments the width of week event windows slightly to avoid duplicate adjacent borders between events.
      *
      * @param weekEventBorderOverlap New weekEventBorderOverlap value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setWeekEventBorderOverlap(Boolean weekEventBorderOverlap)  throws IllegalStateException {
-        setAttribute("weekEventBorderOverlap", weekEventBorderOverlap, false);
+    public Calendar setWeekEventBorderOverlap(Boolean weekEventBorderOverlap)  throws IllegalStateException {
+        return (Calendar)setAttribute("weekEventBorderOverlap", weekEventBorderOverlap, false);
     }
 
     /**
@@ -4572,11 +4833,12 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.HeaderLevel}s when this calendar is showing a timeline.
      *
      * @param weekPrefix New weekPrefix value. Default value is "Week"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setWeekPrefix(String weekPrefix)  throws IllegalStateException {
-        setAttribute("weekPrefix", weekPrefix, false);
+    public Calendar setWeekPrefix(String weekPrefix)  throws IllegalStateException {
+        return (Calendar)setAttribute("weekPrefix", weekPrefix, false);
     }
 
     /**
@@ -4610,10 +4872,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * The title for the {@link com.smartgwt.client.widgets.calendar.Calendar#getWeekView week view}.
      *
      * @param weekViewTitle New weekViewTitle value. Default value is "Week"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setWeekViewTitle(String weekViewTitle)  throws IllegalStateException {
-        setAttribute("weekViewTitle", weekViewTitle, false);
+    public Calendar setWeekViewTitle(String weekViewTitle)  throws IllegalStateException {
+        return (Calendar)setAttribute("weekViewTitle", weekViewTitle, false);
     }
 
     /**
@@ -4634,12 +4897,13 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * com.smartgwt.client.widgets.calendar.Calendar#getWorkdayEnd getWorkdayEnd()} implementations.
      *
      * @param workdayBaseStyle New workdayBaseStyle value. Default value is "calendarWorkday"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setWorkdayBaseStyle(String workdayBaseStyle)  throws IllegalStateException {
-        setAttribute("workdayBaseStyle", workdayBaseStyle, false);
+    public Calendar setWorkdayBaseStyle(String workdayBaseStyle)  throws IllegalStateException {
+        return (Calendar)setAttribute("workdayBaseStyle", workdayBaseStyle, false);
     }
 
     /**
@@ -4657,8 +4921,40 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
         return getAttributeAsString("workdayBaseStyle");
     }
     
+
+    /**
+     * When using {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
+     * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the workday starts and ends,
+     * specified as a String acceptable to String. <P> Both start and end time must fall on a 30 minute increment (eg 9:30, but
+     * not 9:45). <P> The hours of the workday can be customized for particular dates by providing implementations of {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart getWorkdayStart()} and {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdayEnd getWorkdayEnd()}.
+     *
+     * @param workdayEnd New workdayEnd value. Default value is "5:00pm"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public Calendar setWorkdayEnd(String workdayEnd)  throws IllegalStateException {
+        return (Calendar)setAttribute("workdayEnd", workdayEnd, false);
+    }
     
     
+
+    /**
+     * When using {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
+     * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the workday starts and ends,
+     * specified as a String acceptable to String. <P> Both start and end time must fall on a 30 minute increment (eg 9:30, but
+     * not 9:45). <P> The hours of the workday can be customized for particular dates by providing implementations of {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart getWorkdayStart()} and {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdayEnd getWorkdayEnd()}.
+     *
+     * @param workdayStart New workdayStart value. Default value is "9:00am"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public Calendar setWorkdayStart(String workdayStart)  throws IllegalStateException {
+        return (Calendar)setAttribute("workdayStart", workdayStart, false);
+    }
     
 
     /**
@@ -4687,9 +4983,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * Sets the {@link com.smartgwt.client.widgets.calendar.Calendar#getZones zones} used to highlight areas of this calendar.
      *
      * @param zones array of zones to display. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      */
-    public void setZones(CalendarEvent... zones) {
-        setAttribute("zones", zones, true);
+    public Calendar setZones(CalendarEvent... zones) {
+        return (Calendar)setAttribute("zones", zones, true);
     }
 
     /**
@@ -4712,10 +5009,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * specified {@link com.smartgwt.client.widgets.calendar.Calendar#getZones zone}.
      *
      * @param zoneStyleName New zoneStyleName value. Default value is "zoneCanvas"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setZoneStyleName(String zoneStyleName) {
-        setAttribute("zoneStyleName", zoneStyleName, true);
+    public Calendar setZoneStyleName(String zoneStyleName) {
+        return (Calendar)setAttribute("zoneStyleName", zoneStyleName, true);
     }
 
     /**
@@ -4734,10 +5032,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * The vertical alignment of the header-text in each {@link com.smartgwt.client.widgets.calendar.Calendar#getZones zone}.
      *
      * @param zoneTitleOrientation New zoneTitleOrientation value. Default value is "bottom"
+     * @return {@link com.smartgwt.client.widgets.calendar.Calendar Calendar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setZoneTitleOrientation(VerticalAlignment zoneTitleOrientation)  throws IllegalStateException {
-        setAttribute("zoneTitleOrientation", zoneTitleOrientation == null ? null : zoneTitleOrientation.getValue(), false);
+    public Calendar setZoneTitleOrientation(VerticalAlignment zoneTitleOrientation)  throws IllegalStateException {
+        return (Calendar)setAttribute("zoneTitleOrientation", zoneTitleOrientation == null ? null : zoneTitleOrientation.getValue(), false);
     }
 
     /**
@@ -5106,6 +5405,34 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
         }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.cancelEditing();
+    }-*/;
+
+	/**
+     * Called from {@link com.smartgwt.client.widgets.calendar.EventCanvas#setEvent EventCanvas.setEvent()} when {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getShowEventCanvasComponents showEventCanvasComponents} is  true and an
+     * eventCanvas needs a component.   The method is expected to create and return a  single component to apply as a
+     * space-filling member of the passed {@link com.smartgwt.client.widgets.calendar.EventCanvas}  in the {@link
+     * com.smartgwt.client.widgets.calendar.EventCanvas#getCalendarView view} in which it appears. <P> By default, this method
+     * returns a {@link com.smartgwt.client.widgets.viewer.DetailViewer} showing values from the  associated event, according
+     * to the fields in the Calendar's  {@link com.smartgwt.client.widgets.calendar.Calendar#getDataSource dataSource}, or the
+     * default event-fields if no dataSource is  present. <P> However, the component can be any {@link
+     * com.smartgwt.client.widgets.Canvas canvas-based} widget, including a Layout  containing an arrangement of other widgets.
+     * When applied as a member of an  eventCanvas, the component fills its container and limits its own content to that size,
+     * showing scrollbars as appropriate. <P> See {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#updateEventCanvasComponent updateEventCanvasComponent()} for details on
+     * updating components that have already been created and applied.
+     * @param canvas the eventCanvas to get the component for
+     *
+     * @return any Canvas
+     * @see com.smartgwt.client.widgets.calendar.Calendar#updateEventCanvasComponent
+     */
+    public native Canvas createEventCanvasComponent(EventCanvas canvas) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "createEventCanvasComponent", "EventCanvas");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.createEventCanvasComponent(canvas == null ? null : canvas.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+        return @com.smartgwt.client.widgets.Canvas::getByJSObject(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
     /**
@@ -7967,6 +8294,26 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
     }-*/;
 	
 	/**
+     * Should a component be applied to the passed {@link com.smartgwt.client.widgets.calendar.EventCanvas canvas} in the  
+     * {@link com.smartgwt.client.widgets.calendar.EventCanvas#getCalendarView view} in which it appears?  Return false from
+     * this method to  override the global value of  {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getShowEventCanvasComponents showEventCanvasComponents} for this canvas.
+     * @param canvas should this eventCanvas get a component component?
+     *
+     * @return boolean
+     * @see com.smartgwt.client.widgets.calendar.Calendar#createEventCanvasComponent
+     * @see com.smartgwt.client.widgets.calendar.Calendar#updateEventCanvasComponent
+     */
+    public native boolean showEventCanvasComponent(EventCanvas canvas) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "showEventCanvasComponent", "EventCanvas");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.showEventCanvasComponent(canvas == null ? null : canvas.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+        return ret == null ? false : ret;
+    }-*/;
+
+	/**
      * Open the Quick Event dialog showing minimal information about an existing  {@link
      * com.smartgwt.client.widgets.calendar.CalendarEvent event}. <P> The {@link
      * com.smartgwt.client.widgets.calendar.Calendar#getStartDateField startDate} field on the event is used to calculate the 
@@ -8182,6 +8529,26 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
         self.updateCalendarEvent(event.@com.smartgwt.client.core.DataClass::getJsObj()(), newEvent.@com.smartgwt.client.core.DataClass::getJsObj()(), otherFields == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(otherFields));
     }-*/;
 
+	/**
+     * Called from {@link com.smartgwt.client.widgets.calendar.EventCanvas#setEvent EventCanvas.setEvent()} when {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getShowEventCanvasComponents showEventCanvasComponents} is  true and the
+     * eventCanvas already has a  {@link com.smartgwt.client.widgets.calendar.Calendar#createEventCanvasComponent component}. 
+     * This method is expected to update  the passed <code>component</code> as necessary, based on the  {@link
+     * com.smartgwt.client.widgets.calendar.EventCanvas#getEvent current event}. <P> By default, if the passed
+     * <code>component</code> has methods called  <code>setEvent</code> or <code>setData</code>, those methods are called
+     * automatically.
+     * @param canvas the eventCanvas to update the component for
+     * @param component the component to be updated the canvas in question
+     * @see com.smartgwt.client.widgets.calendar.Calendar#createEventCanvasComponent
+     */
+    public native void updateEventCanvasComponent(EventCanvas canvas, Canvas component) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "updateEventCanvasComponent", "EventCanvas,Canvas");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.updateEventCanvasComponent(canvas == null ? null : canvas.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), component == null ? null : component.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+    }-*/;
+
     /**
      * Add a zoneClick handler.
      * <p>
@@ -8313,116 +8680,144 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
         }));        
         
         self.__getWorkdayStart = self.getWorkdayStart;
-        self.getWorkdayStart = $debox($entry(function(date) {
+        self.getWorkdayStart = $debox($entry(function(date, laneName) {
         	var jObj = this.__ref;
-            if(jObj == null) return this.__getWorkdayStart(date);
+            if(jObj == null) return this.__getWorkdayStart(date, laneName);
             var dateJava = date == null ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(date.getTime());
-            return jObj.@com.smartgwt.client.widgets.calendar.Calendar::getWorkdayStart(Ljava/util/Date;)(dateJava);
+            return jObj.@com.smartgwt.client.widgets.calendar.Calendar::getWorkdayStart(Ljava/util/Date;Ljava/lang/String;)(dateJava,laneName);
         }));
 
         self.__getWorkdayEnd = self.getWorkdayEnd;
-        self.getWorkdayEnd = $debox($entry(function(date) {
+        self.getWorkdayEnd = $debox($entry(function(date, laneName) {
         	var jObj = this.__ref;
-            if(jObj == null) return this.__getWorkdayEnd(date);
+            if(jObj == null) return this.__getWorkdayEnd(date, laneName);
             var dateJava = date == null ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(date.getTime());
-            return jObj.@com.smartgwt.client.widgets.calendar.Calendar::getWorkdayEnd(Ljava/util/Date;)(dateJava);
+            return jObj.@com.smartgwt.client.widgets.calendar.Calendar::getWorkdayEnd(Ljava/util/Date;Ljava/lang/String;)(dateJava,laneName);
         }));
 
         self.__dateIsWorkday = self.dateIsWorkday;
-        self.dateIsWorkday = $debox($entry(function(date) {
+        self.dateIsWorkday = $debox($entry(function(date, laneName) {
         	var jObj = this.__ref;
-            if(jObj == null) return this.__dateIsWorkday(date);
+            if(jObj == null) return this.__dateIsWorkday(date, laneName);
             var dateJava = date == null ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(date.getTime());
-            var result = jObj.@com.smartgwt.client.widgets.calendar.Calendar::dateIsWorkday(Ljava/util/Date;)(dateJava);
-            return (result == null ? false : result);
+            var result = jObj.@com.smartgwt.client.widgets.calendar.Calendar::dateIsWorkday(Ljava/util/Date;Ljava/lang/String;)(dateJava,laneName);
+            return result == null ? false : result;
         }));
 
         }-*/;
     
     /**
-     * When using {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
-     * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the workday starts and ends,
-     * specified as a String acceptable to String. <P> Both start and end time must fall on a 30 minute increment (eg 9:30, but
-     * not 9:45). <P> The hours of the workday can be customized for particular dates by providing implementations of {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart Calendar.getWorkdayStart} and {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdayEnd Calendar.getWorkdayEnd}.
-     *
-     * @param workdayEnd  Default value is "5:00pm"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setWorkdayEnd(String workdayEnd)  throws IllegalStateException {
-        setAttribute("workdayEnd", workdayEnd, false);
-    }
-
-    /**
-     * When using {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
-     * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the workday starts and ends,
-     * specified as a String acceptable to String. <P> Both start and end time must fall on a 30 minute increment (eg 9:30, but
-     * not 9:45). <P> The hours of the workday can be customized for particular dates by providing implementations of {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart Calendar.getWorkdayStart} and {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdayEnd Calendar.getWorkdayEnd}.
-     *
-     * @param date  the date to get the workday end for
-     * 
-     * @return Returns the end of the working day on the passed date.  By default, this method returns the value of {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdayEnd workdayEnd}.
-     */
-    public native String getWorkdayEnd(Date date)  /*-{
-    	var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-	    var dateJS = date == null ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date);
-    	return self.__getWorkdayEnd(dateJS);
-	}-*/;
-
-    /**
-     * When using {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
-     * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the workday starts and ends,
-     * specified as a String acceptable to String. <P> Both start and end time must fall on a 30 minute increment (eg 9:30, but
-     * not 9:45). <P> The hours of the workday can be customized for particular dates by providing implementations of {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart Calendar.getWorkdayStart} and {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdayEnd Calendar.getWorkdayEnd}.
-     *
-     * @param workdayStart  Default value is "9:00am"
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     */
-    public void setWorkdayStart(String workdayStart)  throws IllegalStateException {
-        setAttribute("workdayStart", workdayStart, false);
-    }
-
-    /**
-     * When using {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
-     * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the workday starts and ends,
-     * specified as a String acceptable to String. <P> Both start and end time must fall on a 30 minute increment (eg 9:30, but
-     * not 9:45). <P> The hours of the workday can be customized for particular dates by providing implementations of {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart Calendar.getWorkdayStart} and {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdayEnd Calendar.getWorkdayEnd}.
+     * When using 
+     * {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
+     * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the
+     * workday starts and ends, specified as a String acceptable to String.
+     * <P> 
+     * Both start and end time must fall on a 30 minute increment (eg 9:30, but not 9:45).
+     * <P>
+     * The hours of the workday can be customized for particular dates by providing 
+     * implementations of 
+     * {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart getWorkdayStart()}
+     * and {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayEnd getWorkdayEnd()}.
+     * <P><B>Note: This is an override point</B>
      *
      * @param date  the date to get the workday start for
-     * 
-     * @return Returns the start of the working day on the passed date.  By default, this method returns the value of {@link
-     * com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart workdayStart}.
+     * @param laneName  the name of the lane if 
+     * {@link com.smartgwt.client.widgets.calendar.Calendar#getShowDayLanes showDayLanes} is
+     * true, or null otherwise
+     *
+     * @return Returns the start of the working day on the passed date.  By default, this method
+     * returns the value of 
+     * {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart workdayStart}.
+     * Default value is "9:00am"
      */
-    
-    public native String getWorkdayStart(Date date)  /*-{
+    public native String getWorkdayStart(Date date, String laneName)  /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getWorkdayStart", "Date,String");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
 	    var dateJS = date == null ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date);
-        return self.__getWorkdayStart(dateJS);
+        return self.__getWorkdayStart(dateJS, laneName);
     }-*/;
-    
+
     /**
-     * Should the parameter date be considered a workday? By default this method tries to find the
-     * parameter date day in {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdays workdays}, 
-     * and returns true if found. Override this method to provide custom logic for determining workday, 
-     * for example returning false on holidays.
-     *
-     * @param date  the date being tested
-     * 
-     * @return Returns true if the date passed should be considered a workday
+     * See {@link #getWorkdayStart(Date,String)}.
      */
-    public native boolean dateIsWorkday(Date date)  /*-{
+    public String getWorkdayStart(Date date) {
+        return getWorkdayStart(date, null);
+    }
+
+    /**
+     * When using {@link com.smartgwt.client.widgets.calendar.Calendar#getShowWorkday showWorkday}:true,
+     * <code>workdayStart</code> and <code>workdayEnd</code> specify the time of day when the
+     * workday starts and ends, specified as a String acceptable to String.
+     * <P> 
+     * Both start and end time must fall on a 30 minute increment (eg 9:30, but not 9:45).
+     * <P>
+     * The hours of the workday can be customized for particular dates by providing
+     * implementations of 
+     * {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayStart getWorkdayStart()}
+     * and {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayEnd getWorkdayEnd()}.
+     * <P><B>Note: This is an override point</B>
+     *
+     * @param date  the date to get the workday end for
+     * @param laneName  the name of the lane if
+     * {@link com.smartgwt.client.widgets.calendar.Calendar#getShowDayLanes showDayLanes} is
+     * true, or null otherwise
+     *
+     * @return Returns the end of the working day on the passed date.  By default, this method
+     * returns the value of
+     * {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdayEnd workdayEnd}.
+     * Default value is "5:00pm"
+     */
+    public native String getWorkdayEnd(Date date, String laneName)  /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getWorkdayEnd", "Date,String");
+        }
     	var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
 	    var dateJS = date == null ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date);
-    	return self.__dateIsWorkday(dateJS);
+    	return self.__getWorkdayEnd(dateJS, laneName);
 	}-*/;
+
+    /**
+     * See {@link #getWorkdayEnd(Date,String)}.
+     */
+    public String getWorkdayEnd(Date date) {
+        return getWorkdayEnd(date, null);
+    }    
+
+	/**
+     * Should the parameter date be considered a workday? By default this method tries to find
+     * the parameter date day in 
+     * {@link com.smartgwt.client.widgets.calendar.Calendar#getWorkdays workdays}, and returns
+     * true if found. Override this method to provide custom logic for determining workday, for
+     * example returning false on holidays. <P> Note that, when showing
+     * {@link com.smartgwt.client.widgets.calendar.Calendar#getShowDayLanes vertical lanes} in
+     * the {@link com.smartgwt.client.widgets.calendar.Calendar#getDayView day view}, this
+     * method is also passed the name of the associated lane.
+     * <P><B>Note: This is an override point</B>
+     *
+     * @param date date to check for being a workday
+     * @param laneName the name of the lane if 
+     * {@link com.smartgwt.client.widgets.calendar.Calendar#getShowDayLanes showDayLanes} is
+     * true, or null otherwise
+     *
+     * @return true if date is a workday, false otherwise
+     */
+    public native boolean dateIsWorkday(Date date, String laneName)  /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "dateIsWorkday", "Date,String");
+        }
+    	var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+	    var dateJS = date == null ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(date);
+    	return self.__dateIsWorkday(dateJS, laneName);
+	}-*/;
+
+    /**
+     * See {@link #dateIsWorkday(Date,String)}.
+     */
+    public boolean dateIsWorkday(Date date) {
+        return dateIsWorkday(date, null);
+    }
 
 	/**
      * Return the HTML to be shown in the body of a day in the month view. <P> Default is to render a series of links that call
@@ -9076,6 +9471,31 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
     }-*/;
 
 
+    /**
+     * This method sets the customizer for EventCanvasComponent methods
+     * 
+     * @param customizer the customizer to execute.
+     */
+    public native void setEventCanvasComponentCustomizer(EventCanvasComponentCustomizer customizer) /*-{
+        var self;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            self = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        } else {
+            self = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        }
+
+        self.createEventCanvasComponent = $debox($entry(function(jsEventCanvas) {
+            var eventCanvasJ = @com.smartgwt.client.widgets.Canvas::getByJSObject(Lcom/google/gwt/core/client/JavaScriptObject;)(jsEventCanvas);
+            var componentJ = customizer.@com.smartgwt.client.widgets.calendar.EventCanvasComponentCustomizer::createEventCanvasComponent(Lcom/smartgwt/client/widgets/calendar/EventCanvas;)(eventCanvasJ);
+            return componentJ == null ? null : componentJ.@com.smartgwt.client.widgets.Canvas::getOrCreateJsObj()();
+        }));
+        self.updateEventCanvasComponent = $debox($entry(function(jsEventCanvas, jsComponent) {
+            var eventCanvasJ = @com.smartgwt.client.widgets.Canvas::getByJSObject(Lcom/google/gwt/core/client/JavaScriptObject;)(jsEventCanvas);
+            var componentJ = @com.smartgwt.client.widgets.Canvas::getByJSObject(Lcom/google/gwt/core/client/JavaScriptObject;)(jsComponent);
+            customizer.@com.smartgwt.client.widgets.calendar.EventCanvasComponentCustomizer::updateEventCanvasComponent(Lcom/smartgwt/client/widgets/calendar/EventCanvas;Lcom/smartgwt/client/widgets/Canvas;)(eventCanvasJ, componentJ);
+        }));
+    }-*/;
+
     public void setLaneGroupStartOpen(GroupStartOpen group) {
         setAttribute("laneGroupStartOpen", group, true);
     }
@@ -9328,8 +9748,8 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
 
     // ********************* DataBoundComponent Properties / Attributes ***********************
 
-    public void setDataPageSize(int dataPageSize) {
-        setAttribute("dataPageSize", dataPageSize, true);
+    public Calendar setDataPageSize(int dataPageSize) {
+        return (Calendar)setAttribute("dataPageSize", dataPageSize, true);
     }
 
     public int getDataPageSize() {
@@ -9337,112 +9757,112 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
         return dataPageSize == null ? 0 : dataPageSize;
     }
 
-    public void setUseAllDataSourceFields(Boolean useAllDataSourceFields) {
-        setAttribute("useAllDataSourceFields", useAllDataSourceFields, true);
+    public Calendar setUseAllDataSourceFields(Boolean useAllDataSourceFields) {
+        return (Calendar)setAttribute("useAllDataSourceFields", useAllDataSourceFields, true);
     }
 
     public Boolean getUseAllDataSourceFields() {
         return getAttributeAsBoolean("useAllDataSourceFields");
     }
 
-    public void setShowHiddenFields(Boolean showHiddenFields) {
-        setAttribute("showHiddenFields", showHiddenFields, true);
+    public Calendar setShowHiddenFields(Boolean showHiddenFields) {
+        return (Calendar)setAttribute("showHiddenFields", showHiddenFields, true);
     }
 
     public Boolean getShowHiddenFields() {
         return getAttributeAsBoolean("showHiddenFields");
     }
 
-    public void setShowComplexFields(Boolean showComplexFields) {
-        setAttribute("showComplexFields", showComplexFields, true);
+    public Calendar setShowComplexFields(Boolean showComplexFields) {
+        return (Calendar)setAttribute("showComplexFields", showComplexFields, true);
     }
 
     public Boolean getShowComplexFields() {
         return getAttributeAsBoolean("showComplexFields");
     }
 
-    public void setFetchOperation(String fetchOperation) {
-        setAttribute("fetchOperation", fetchOperation, true);
+    public Calendar setFetchOperation(String fetchOperation) {
+        return (Calendar)setAttribute("fetchOperation", fetchOperation, true);
     }
 
     public String getFetchOperation() {
         return getAttributeAsString("fetchOperation");
     }
 
-    public void setUpdateOperation(String updateOperation) {
-        setAttribute("updateOperation", updateOperation, true);
+    public Calendar setUpdateOperation(String updateOperation) {
+        return (Calendar)setAttribute("updateOperation", updateOperation, true);
     }
 
     public String getUpdateOperation() {
         return getAttributeAsString("updateOperation");
     }
 
-    public void setAddOperation(String addOperation) {
-        setAttribute("addOperation", addOperation, true);
+    public Calendar setAddOperation(String addOperation) {
+        return (Calendar)setAttribute("addOperation", addOperation, true);
     }
 
     public String getAddOperation() {
         return getAttributeAsString("addOperation");
     }
 
-    public void setRemoveOperation(String removeOperation) {
-        setAttribute("removeOperation", removeOperation, true);
+    public Calendar setRemoveOperation(String removeOperation) {
+        return (Calendar)setAttribute("removeOperation", removeOperation, true);
     }
 
     public String getRemoveOperation() {
         return getAttributeAsString("removeOperation");
     }
 
-    public void setExportFields(String[] exportFields) {
-        setAttribute("exportFields", exportFields, true);
+    public Calendar setExportFields(String[] exportFields) {
+        return (Calendar)setAttribute("exportFields", exportFields, true);
     }
 
     public String[] getExportFields() {
         return getAttributeAsStringArray("exportFields");
     }
 
-    public void setExportAll(Boolean exportAll) {
-        setAttribute("exportAll", exportAll, true);
+    public Calendar setExportAll(Boolean exportAll) {
+        return (Calendar)setAttribute("exportAll", exportAll, true);
     }
 
     public Boolean getExportAll() {
         return getAttributeAsBoolean("exportAll");
     }
 
-    public void setExportIncludeSummaries(Boolean exportIncludeSummaries) {
-        setAttribute("exportIncludeSummaries", exportIncludeSummaries, true);
+    public Calendar setExportIncludeSummaries(Boolean exportIncludeSummaries) {
+        return (Calendar)setAttribute("exportIncludeSummaries", exportIncludeSummaries, true);
     }
 
     public Boolean getExportIncludeSummaries() {
         return getAttributeAsBoolean("exportIncludeSummaries");
     }
 
-    public void setPreventDuplicates(Boolean preventDuplicates) throws IllegalStateException {
-        setAttribute("preventDuplicates", preventDuplicates, false);
+    public Calendar setPreventDuplicates(Boolean preventDuplicates) throws IllegalStateException {
+        return (Calendar)setAttribute("preventDuplicates", preventDuplicates, false);
     }
 
     public Boolean getPreventDuplicates() {
         return getAttributeAsBoolean("preventDuplicates");
     }
 
-    public void setDuplicateDragMessage(String duplicateDragMessage) throws IllegalStateException {
-        setAttribute("duplicateDragMessage", duplicateDragMessage, false);
+    public Calendar setDuplicateDragMessage(String duplicateDragMessage) throws IllegalStateException {
+        return (Calendar)setAttribute("duplicateDragMessage", duplicateDragMessage, false);
     }
 
     public String getDuplicateDragMessage() {
         return getAttributeAsString("duplicateDragMessage");
     }
 
-    public void setAddDropValues(Boolean addDropValues) {
-        setAttribute("addDropValues", addDropValues, true);
+    public Calendar setAddDropValues(Boolean addDropValues) {
+        return (Calendar)setAttribute("addDropValues", addDropValues, true);
     }
 
     public Boolean getAddDropValues() {
         return getAttributeAsBoolean("addDropValues");
     }
 
-    public void setDropValues(Map dropValues) {
-        setAttribute("dropValues", dropValues, true);
+    public Calendar setDropValues(Map dropValues) {
+        return (Calendar)setAttribute("dropValues", dropValues, true);
     }
 
     public Map getDropValues() {
@@ -9450,14 +9870,17 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
     }
 
     /**
-     * Indicates whether or not this component will load its data {@link DataSource#setProgressiveLoading() progressively}
+     * Indicates whether or not this component will load its data
+     * {@link DataSource#setProgressiveLoading() progressively}
      * 
      * @see com.smartgwt.client.docs.ProgressiveLoading  
      * @see com.smartgwt.client.data.DataSource#setProgressiveLoading
      * @param progressiveLoading
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    public void setProgressiveLoading(Boolean progressiveLoading) {
-        setAttribute("progressiveLoading", progressiveLoading, false);
+    public Calendar setProgressiveLoading(Boolean progressiveLoading) {
+        return (Calendar)setAttribute("progressiveLoading", progressiveLoading, false);
     }
 
     /**
@@ -9471,16 +9894,16 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
         return getAttributeAsBoolean("progressiveLoading");
     }
 
-    public void setUseFlatFields(Boolean useFlatFields) throws IllegalStateException {
-        setAttribute("useFlatFields", useFlatFields, false);
+    public Calendar setUseFlatFields(Boolean useFlatFields) throws IllegalStateException {
+        return (Calendar)setAttribute("useFlatFields", useFlatFields, false);
     }
 
     public Boolean getUseFlatFields() {
         return getAttributeAsBoolean("useFlatFields");
     }
 
-    public void setHiliteProperty(String hiliteProperty) {
-        setAttribute("hiliteProperty", hiliteProperty, true);
+    public Calendar setHiliteProperty(String hiliteProperty) {
+        return (Calendar)setAttribute("hiliteProperty", hiliteProperty, true);
     }
 
     public String getHiliteProperty() {
@@ -9496,41 +9919,23 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
         self.editFields();
     }-*/;
 
-    /**
-     * Shows a HiliteEditor interface allowing end-users to edit the data-hilites currently in use by this DataBoundComponent.
-     */
     public native void editHilites() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.editHilites();
     }-*/;
 
-    /**
-     * Get the current hilites encoded as a String, for saving.
-     *
-     * @return the hilite state
-     */
     public native String getHiliteState()  /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getHiliteState();
     }-*/;
 
-    /**
-     * Set the current hilites based on a hiliteState String previously returned from getHilitesState.
-     *
-     * @param hiliteState hilites state encoded as a String
-     */
-    public native void setHiliteState(String hiliteState)  /*-{
+    public native Calendar setHiliteState(String hiliteState)  /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.setHiliteState(hiliteState);
+        self.setHiliteState(hiliteState);
+        return this;
     }-*/;
 
-    /**
-     * Accepts an array of hilite objects and applies them to this DataBoundComponent. See also {@link #getHilites() getHilites} for a method of
-     * retrieving the hilite array for storage, including hilites manually added by the user.
-     *
-     * @param hilites array of hilite objects
-     */
-    public native void setHilites(Hilite[] hilites)/*-{
+    public native Calendar setHilites(Hilite[] hilites)/*-{
         var isCreated = this.@com.smartgwt.client.widgets.BaseWidget::isCreated()();
         var hilitesJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(hilites);
         if (isCreated) {
@@ -9540,38 +9945,33 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
             var obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
             obj.hilites = hilitesJS;
         }
+        return this;
     }-*/;
 
-    /**
-     * Return the set of hilite-objects currently applied to this DataBoundComponent. These can be saved for
-     * storage and then restored to a component later via setHilites().
-     *
-     * @return array of hilite objects
-     */
     public native Hilite[] getHilites()/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var hilitesJS = self.getHilites();
         return @com.smartgwt.client.util.ConvertTo::arrayOfHilite(Lcom/google/gwt/core/client/JavaScriptObject;)(hilitesJS);
     }-*/;
 
-    public void setDragDataAction(DragDataAction dragDataAction) {
-        setAttribute("dragDataAction", dragDataAction.getValue(), true);
+    public Calendar setDragDataAction(DragDataAction dragDataAction) {
+        return (Calendar)setAttribute("dragDataAction", dragDataAction.getValue(), true);
     }
 
     public DragDataAction getDragDataAction() {
         return EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
     }
 
-    public void setDragTrackerStyle(String dragTrackerStyle) {
-        setAttribute("dragTrackerStyle", dragTrackerStyle, true);
+    public Calendar setDragTrackerStyle(String dragTrackerStyle) {
+        return (Calendar)setAttribute("dragTrackerStyle", dragTrackerStyle, true);
     }
 
     public String getDragTrackerStyle() {
         return getAttributeAsString("dragTrackerStyle");
     }
 
-    public void setCanAddFormulaFields(Boolean canAddFormulaFields) {
-        setAttribute("canAddFormulaFields", canAddFormulaFields, true);
+    public Calendar setCanAddFormulaFields(Boolean canAddFormulaFields) {
+        return (Calendar)setAttribute("canAddFormulaFields", canAddFormulaFields, true);
     }
 
     public native void addSummaryField() /*-{
@@ -9588,40 +9988,40 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
         return getAttributeAsBoolean("canAddFormulaFields");
     }
 
-    public void setAddFormulaFieldText(String addFormulaFieldText) {
-        setAttribute("addFormulaFieldText", addFormulaFieldText, true);
+    public Calendar setAddFormulaFieldText(String addFormulaFieldText) {
+        return (Calendar)setAttribute("addFormulaFieldText", addFormulaFieldText, true);
     }
 
     public String getAddFormulaFieldText() {
         return getAttributeAsString("addFormulaFieldText");
     }
 
-    public void setEditFormulaFieldText(String editFormulaFieldText) {
-        setAttribute("editFormulaFieldText", editFormulaFieldText, true);
+    public Calendar setEditFormulaFieldText(String editFormulaFieldText) {
+        return (Calendar)setAttribute("editFormulaFieldText", editFormulaFieldText, true);
     }
 
     public String getEditFormulaFieldText() {
         return getAttributeAsString("editFormulaFieldText");
     }
 
-    public void setCanAddSummaryFields(Boolean canAddSummaryFields) {
-        setAttribute("canAddSummaryFields", canAddSummaryFields, true);
+    public Calendar setCanAddSummaryFields(Boolean canAddSummaryFields) {
+        return (Calendar)setAttribute("canAddSummaryFields", canAddSummaryFields, true);
     }
 
     public Boolean getCanAddSummaryFields() {
         return getAttributeAsBoolean("canAddSummaryFields");
     }
 
-    public void setAddSummaryFieldText(String addSummaryFieldText) {
-        setAttribute("addSummaryFieldText", addSummaryFieldText, true);
+    public Calendar setAddSummaryFieldText(String addSummaryFieldText) {
+        return (Calendar)setAttribute("addSummaryFieldText", addSummaryFieldText, true);
     }
 
     public String getAddSummaryFieldText() {
         return getAttributeAsString("addSummaryFieldText");
     }
 
-    public void setEditSummaryFieldText(String editSummaryFieldText) {
-        setAttribute("editSummaryFieldText", editSummaryFieldText, true);
+    public Calendar setEditSummaryFieldText(String editSummaryFieldText) {
+        return (Calendar)setAttribute("editSummaryFieldText", editSummaryFieldText, true);
     }
 
     public String getEditSummaryFieldText() {
@@ -9856,8 +10256,8 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
          return self.getTitleFieldValue(record);
      }-*/;
 
-    public void setTitleField(String titleField) {
-        setAttribute("titleField", titleField, true);
+    public Calendar setTitleField(String titleField) {
+        return (Calendar)setAttribute("titleField", titleField, true);
     }
 
     public String getTitleField() {
@@ -9870,44 +10270,44 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
         return @com.smartgwt.client.data.DataSource::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(dataSourceJS);
     }-*/;
 
-    public void setAutoFetchData(Boolean autoFetchData) throws IllegalStateException {
-        setAttribute("autoFetchData", autoFetchData, false);
+    public Calendar setAutoFetchData(Boolean autoFetchData) throws IllegalStateException {
+        return (Calendar)setAttribute("autoFetchData", autoFetchData, false);
     }
 
     public Boolean getAutoFetchData() {
         return getAttributeAsBoolean("autoFetchData");
     }
 
-    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle) throws IllegalStateException {
-        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
+    public Calendar setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle) throws IllegalStateException {
+        return (Calendar)setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
     }
 
     public TextMatchStyle getAutoFetchTextMatchStyle() {
         return TextMatchStyle.valueOf(getAttributeAsString("autoFetchTextMatchStyle"));
     }
 
-    public void setAutoFetchAsFilter(Boolean autoFetchAsFilter) throws IllegalStateException {
-        setAttribute("autoFetchAsFilter", autoFetchAsFilter, false);
+    public Calendar setAutoFetchAsFilter(Boolean autoFetchAsFilter) throws IllegalStateException {
+        return (Calendar)setAttribute("autoFetchAsFilter", autoFetchAsFilter, false);
     }
 
     public Boolean getAutoFetchAsFilter() {
         return getAttributeAsBoolean("autoFetchAsFilter");
     }
 
-    public void setInitialCriteria(Criteria initialCriteria) throws IllegalStateException {
-        setAttribute("initialCriteria", initialCriteria.getJsObj(), false);
+    public Calendar setInitialCriteria(Criteria initialCriteria) throws IllegalStateException {
+        return (Calendar)setAttribute("initialCriteria", initialCriteria.getJsObj(), false);
     }
 
     public Criteria getInitialCriteria() {
         return new Criteria(getAttributeAsJavaScriptObject("initialCriteria"));
     }
 
-    public void setImplicitCriteria(Criteria implicitCriteria) {
+    public Calendar setImplicitCriteria(Criteria implicitCriteria) {
         if (implicitCriteria instanceof Criterion) {
             implicitCriteria.setAttribute("_constructor", "AdvancedCriteria");
         }
-        setAttribute("implicitCriteria", implicitCriteria == null ? 
-                     null : implicitCriteria.getJsObj(), true);
+        return (Calendar)setAttribute("implicitCriteria", implicitCriteria == null ?
+                            null : implicitCriteria.getJsObj(), true);
     }
 
     public Criteria getImplicitCriteria()  {
@@ -10171,15 +10571,15 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
         return getAttributeAsBoolean("deepCloneOnEdit");
     }
 
-    public void setDeepCloneOnEdit(Boolean deepCloneOnEdit) {
-        setAttribute("deepCloneOnEdit", deepCloneOnEdit, true);
+    public Calendar setDeepCloneOnEdit(Boolean deepCloneOnEdit) {
+        return (Calendar)setAttribute("deepCloneOnEdit", deepCloneOnEdit, true);
     }
 
-    public void setFields(JavaScriptObject... fields) {
+    public Calendar setFields(JavaScriptObject... fields) {
         if (fields != null) for(int i = 0; i < fields.length; i++) {
             fields[i] = duplicateFieldConfig(JSOHelper.cleanProperties(fields[i], false));
         }
-        setAttribute("fields", fields, true);
+        return (Calendar)setAttribute("fields", fields, true);
     }
 
     private native JavaScriptObject duplicateFieldConfig(JavaScriptObject config) /*-{
@@ -10221,8 +10621,10 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
      * This method is consulted by
      * {@link com.smartgwt.client.widgets.grid.ListGrid#willAcceptDrop willAcceptDrop()}.
      * @param DragDataCustomizer customizer
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    public native void setDragDataCustomizer(DragDataCustomizer customizer) /*-{
+    public native Calendar setDragDataCustomizer(DragDataCustomizer customizer) /*-{
         var self;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             self = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
@@ -10234,6 +10636,25 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
         	var returnJ = customizer.@com.smartgwt.client.widgets.DragDataCustomizer::getDragData(Lcom/smartgwt/client/widgets/DataBoundComponent;)(componentJ);
         	return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(returnJ);
     	}));
+        return this;
+    }-*/;
+
+    public native SortSpecifier[] getSort() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getSort", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        if(self == null) return null
+        var ret = self.getSort();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.ConvertTo::arrayOfSortSpecifier(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+    
+    public native Calendar setSort(SortSpecifier... sortSpecifiers) /*-{
+        var sortSpecifiersJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(sortSpecifiers);
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setSort(sortSpecifiersJS);
+        return this;
     }-*/;
 
 
@@ -10764,6 +11185,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
             s.logicalStructureErrors += "Calendar.showCellHovers:" + t.getMessage() + "\n";
         }
         try {
+            s.showColumnLayouts = getAttributeAsString("showColumnLayouts");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.showColumnLayouts:" + t.getMessage() + "\n";
+        }
+        try {
             s.showControlsBar = getAttributeAsString("showControlsBar");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Calendar.showControlsBar:" + t.getMessage() + "\n";
@@ -10802,6 +11228,11 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
             s.showDragHovers = getAttributeAsString("showDragHovers");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Calendar.showDragHovers:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showEventCanvasComponents = getAttributeAsString("showEventCanvasComponents");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Calendar.showEventCanvasComponents:" + t.getMessage() + "\n";
         }
         try {
             s.showEventDescriptions = getAttributeAsString("showEventDescriptions");
@@ -11004,19 +11435,9 @@ public class Calendar extends Canvas implements DataBoundComponent, com.smartgwt
             s.logicalStructureErrors += "Calendar.workdayBaseStyle:" + t.getMessage() + "\n";
         }
         try {
-            s.workdayEnd = getAttributeAsString("workdayEnd");
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "Calendar.workdayEnd:" + t.getMessage() + "\n";
-        }
-        try {
             s.workdays = getAttributeAsString("workdays");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Calendar.workdays:" + t.getMessage() + "\n";
-        }
-        try {
-            s.workdayStart = getAttributeAsString("workdayStart");
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "Calendar.workdayStart:" + t.getMessage() + "\n";
         }
         try {
             s.zones = getZones();

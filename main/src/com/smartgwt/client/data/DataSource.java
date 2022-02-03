@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * A DataSource is data-provider-independent description of a set of objects that will be loaded, edited and saved within
@@ -117,7 +120,7 @@ import com.google.gwt.event.shared.HasHandlers;
  */
 @BeanFactory.FrameworkClass
 @BeanFactory.ScClassName("DataSource")
-public class DataSource extends BaseClass implements com.smartgwt.client.data.events.HasHandleErrorHandlers {
+public class DataSource extends BaseClass implements com.smartgwt.client.data.events.HasDataChangedHandlers, com.smartgwt.client.data.events.HasHandleErrorHandlers {
 
     public static DataSource getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
@@ -166,10 +169,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param allowAdvancedCriteria New allowAdvancedCriteria value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @see com.smartgwt.client.data.OperationBinding#setAllowAdvancedCriteria
      */
-    public void setAllowAdvancedCriteria(Boolean allowAdvancedCriteria) {
-        setAttribute("allowAdvancedCriteria", allowAdvancedCriteria, true);
+    public DataSource setAllowAdvancedCriteria(Boolean allowAdvancedCriteria) {
+        return (DataSource)setAttribute("allowAdvancedCriteria", allowAdvancedCriteria, true);
     }
 
     /**
@@ -196,6 +200,9 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
     
     
     
+    
+    
+    
 
     /**
      * When a DataSource is not {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData}:true and a fetch
@@ -209,10 +216,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      *   all data available (<code>startRow:0</code> and <code>endRow:totalRows</code>).  </li> </ul>
      *
      * @param autoCacheAllData New autoCacheAllData value. Default value is false
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setAutoCacheAllData(Boolean autoCacheAllData)  throws IllegalStateException {
-        setAttribute("autoCacheAllData", autoCacheAllData, false);
+    public DataSource setAutoCacheAllData(Boolean autoCacheAllData)  throws IllegalStateException {
+        return (DataSource)setAttribute("autoCacheAllData", autoCacheAllData, false);
     }
 
     /**
@@ -240,10 +248,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * values as absolute dates.
      *
      * @param autoConvertRelativeDates New autoConvertRelativeDates value. Default value is true
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setAutoConvertRelativeDates(Boolean autoConvertRelativeDates)  throws IllegalStateException {
-        setAttribute("autoConvertRelativeDates", autoConvertRelativeDates, false);
+    public DataSource setAutoConvertRelativeDates(Boolean autoConvertRelativeDates)  throws IllegalStateException {
+        return (DataSource)setAttribute("autoConvertRelativeDates", autoConvertRelativeDates, false);
     }
 
     /**
@@ -268,10 +277,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * com.smartgwt.client.data.DataSource#getAutoTitle getAutoTitle()}.
      *
      * @param autoDeriveTitles New autoDeriveTitles value. Default value is true
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setAutoDeriveTitles(boolean autoDeriveTitles)  throws IllegalStateException {
-        setAttribute("autoDeriveTitles", autoDeriveTitles, false);
+    public DataSource setAutoDeriveTitles(boolean autoDeriveTitles)  throws IllegalStateException {
+        return (DataSource)setAttribute("autoDeriveTitles", autoDeriveTitles, false);
     }
 
     /**
@@ -302,10 +312,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * com.smartgwt.client.widgets.tree.DiscoverTreeSettings#getNameProperty settings.nameProperty}.
      *
      * @param autoDiscoverTree New autoDiscoverTree value. Default value is false
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setAutoDiscoverTree(boolean autoDiscoverTree)  throws IllegalStateException {
-        setAttribute("autoDiscoverTree", autoDiscoverTree, false);
+    public DataSource setAutoDiscoverTree(boolean autoDiscoverTree)  throws IllegalStateException {
+        return (DataSource)setAttribute("autoDiscoverTree", autoDiscoverTree, false);
     }
 
     /**
@@ -342,10 +353,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * while allowing all other requests to go to the server normally.
      *
      * @param cacheAcrossOperationIds New cacheAcrossOperationIds value. Default value is true
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setCacheAcrossOperationIds(Boolean cacheAcrossOperationIds)  throws IllegalStateException {
-        setAttribute("cacheAcrossOperationIds", cacheAcrossOperationIds, false);
+    public DataSource setCacheAcrossOperationIds(Boolean cacheAcrossOperationIds)  throws IllegalStateException {
+        return (DataSource)setAttribute("cacheAcrossOperationIds", cacheAcrossOperationIds, false);
     }
 
     /**
@@ -392,9 +404,10 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * Call this method to switch cacheAllData on or off after initialization.  Passing a  <code>shouldCache</code> value of false clears any existing client-side cache, cancels any outstanding requests for a full cache and issues any other pending requests normally.
      *
      * @param cacheAllData New value for {@link com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData}. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      */
-    public void setCacheAllData(Boolean cacheAllData) {
-        setAttribute("cacheAllData", cacheAllData, true);
+    public DataSource setCacheAllData(Boolean cacheAllData) {
+        return (DataSource)setAttribute("cacheAllData", cacheAllData, true);
     }
 
     /**
@@ -431,10 +444,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * used (with no <code>operationId</code> specified).
      *
      * @param cacheAllOperationId New cacheAllOperationId value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setCacheAllOperationId(String cacheAllOperationId)  throws IllegalStateException {
-        setAttribute("cacheAllOperationId", cacheAllOperationId, false);
+    public DataSource setCacheAllOperationId(String cacheAllOperationId)  throws IllegalStateException {
+        return (DataSource)setAttribute("cacheAllOperationId", cacheAllOperationId, false);
     }
 
     /**
@@ -455,9 +469,10 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * the current cache will be dropped and another complete cache fetched.
      *
      * @param cacheMaxAge New cacheMaxAge value. Default value is 60
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      */
-    public void setCacheMaxAge(int cacheMaxAge) {
-        setAttribute("cacheMaxAge", cacheMaxAge, true);
+    public DataSource setCacheMaxAge(int cacheMaxAge) {
+        return (DataSource)setAttribute("cacheMaxAge", cacheMaxAge, true);
     }
 
     /**
@@ -477,6 +492,7 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * call as part of the response.
      *
      * @param callbackParam New callbackParam value. Default value is "callback"
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.data.DataSource#setDataFormat
      * @see com.smartgwt.client.data.DataSource#setOperationBindings
@@ -484,8 +500,8 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#edit_save_xml_integration_category" target="examples">Edit and Save Example</a>
      */
-    public void setCallbackParam(String callbackParam)  throws IllegalStateException {
-        setAttribute("callbackParam", callbackParam, false);
+    public DataSource setCallbackParam(String callbackParam)  throws IllegalStateException {
+        return (DataSource)setAttribute("callbackParam", callbackParam, false);
     }
 
     /**
@@ -509,10 +525,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * When true, indicates that this DataSource supports multi-level sorting.
      *
      * @param canMultiSort New canMultiSort value. Default value is true
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setCanMultiSort(boolean canMultiSort)  throws IllegalStateException {
-        setAttribute("canMultiSort", canMultiSort, false);
+    public DataSource setCanMultiSort(boolean canMultiSort)  throws IllegalStateException {
+        return (DataSource)setAttribute("canMultiSort", canMultiSort, false);
     }
 
     /**
@@ -552,12 +569,13 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      *  <code>multiple</code> to false in the appropriate dataSource field definition.
      *
      * @param childrenField New childrenField value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.data.DataSourceField#setChildrenProperty
      * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
      */
-    public void setChildrenField(String childrenField)  throws IllegalStateException {
-        setAttribute("childrenField", childrenField, false);
+    public DataSource setChildrenField(String childrenField)  throws IllegalStateException {
+        return (DataSource)setAttribute("childrenField", childrenField, false);
     }
 
     /**
@@ -621,12 +639,13 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * Switch into clientOnly mode, taking the cache from the cacheAllData ResultSet if it  exists.
      *
      * @param clientOnly New clientOnly value. Default value is false
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.ClientOnlyDataSources ClientOnlyDataSources overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_databinding_local_datasource" target="examples">Local DataSource Example</a>
      */
-    public void setClientOnly(Boolean clientOnly)  throws IllegalStateException {
-        setAttribute("clientOnly", clientOnly, false);
+    public DataSource setClientOnly(Boolean clientOnly)  throws IllegalStateException {
+        return (DataSource)setAttribute("clientOnly", clientOnly, false);
     }
 
     /**
@@ -663,6 +682,7 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
     
     
     
+    
 
     /**
      * Decides under what conditions the {@link com.smartgwt.client.data.ResultSet} cache should be dropped when the {@link
@@ -670,10 +690,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param criteriaPolicy New criteriaPolicy value. Default value is "dropOnShortening"
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @see com.smartgwt.client.data.DataSource#compareCriteria
      */
-    public void setCriteriaPolicy(CriteriaPolicy criteriaPolicy) {
-        setAttribute("criteriaPolicy", criteriaPolicy == null ? null : criteriaPolicy.getValue(), true);
+    public DataSource setCriteriaPolicy(CriteriaPolicy criteriaPolicy) {
+        return (DataSource)setAttribute("criteriaPolicy", criteriaPolicy == null ? null : criteriaPolicy.getValue(), true);
     }
 
     /**
@@ -696,11 +717,12 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * determined in the absence of an explicit setting.
      *
      * @param dataField New dataField value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.DsSpecialFields DsSpecialFields overview and related methods
      */
-    public void setDataField(String dataField)  throws IllegalStateException {
-        setAttribute("dataField", dataField, false);
+    public DataSource setDataField(String dataField)  throws IllegalStateException {
+        return (DataSource)setAttribute("dataField", dataField, false);
     }
 
     /**
@@ -723,13 +745,14 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * com.smartgwt.client.data.DataSource#fetchData fetchData()} is called).
      *
      * @param dataFormat New dataFormat value. Default value is "iscServer"
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_databinding_json_datasource" target="examples">JSON DataSource Example</a>
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#json_integration_category_simple" target="examples">Simple JSON Example</a>
      */
-    public void setDataFormat(DSDataFormat dataFormat)  throws IllegalStateException {
-        setAttribute("dataFormat", dataFormat == null ? null : dataFormat.getValue(), false);
+    public DataSource setDataFormat(DSDataFormat dataFormat)  throws IllegalStateException {
+        return (DataSource)setAttribute("dataFormat", dataFormat == null ? null : dataFormat.getValue(), false);
     }
 
     /**
@@ -757,13 +780,14 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * query parameter name expected by your JSON service provider.
      *
      * @param dataTransport New dataTransport value. Default value is RPCManager.defaultTransport
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.types.RPCTransport
      * @see com.smartgwt.client.data.DataSource#setCallbackParam
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public void setDataTransport(RPCTransport dataTransport)  throws IllegalStateException {
-        setAttribute("dataTransport", dataTransport == null ? null : dataTransport.getValue(), false);
+    public DataSource setDataTransport(RPCTransport dataTransport)  throws IllegalStateException {
+        return (DataSource)setAttribute("dataTransport", dataTransport == null ? null : dataTransport.getValue(), false);
     }
 
     /**
@@ -792,13 +816,14 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * cross-DataSource {@link com.smartgwt.client.rpc.RPCManager#startQueue operation queuing} will not be possible.
      *
      * @param dataURL New dataURL value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.URL URL 
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_databinding_json_datasource" target="examples">JSON DataSource Example</a>
      */
-    public void setDataURL(String dataURL)  throws IllegalStateException {
-        setAttribute("dataURL", dataURL, false);
+    public DataSource setDataURL(String dataURL)  throws IllegalStateException {
+        return (DataSource)setAttribute("dataURL", dataURL, false);
     }
 
     /**
@@ -833,12 +858,13 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param deepCloneNonFieldValuesOnEdit New deepCloneNonFieldValuesOnEdit value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setDataPath
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setDataPath
      * @see com.smartgwt.client.widgets.form.ValuesManager#setDeepCloneOnEdit
      */
-    public void setDeepCloneNonFieldValuesOnEdit(Boolean deepCloneNonFieldValuesOnEdit) {
-        setAttribute("deepCloneNonFieldValuesOnEdit", deepCloneNonFieldValuesOnEdit, true);
+    public DataSource setDeepCloneNonFieldValuesOnEdit(Boolean deepCloneNonFieldValuesOnEdit) {
+        return (DataSource)setAttribute("deepCloneNonFieldValuesOnEdit", deepCloneNonFieldValuesOnEdit, true);
     }
 
     /**
@@ -882,13 +908,14 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param deepCloneOnEdit New deepCloneOnEdit value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setDataPath
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setDataPath
      * @see com.smartgwt.client.data.DataSourceField#setDeepCloneOnEdit
      * @see com.smartgwt.client.widgets.form.ValuesManager#setDeepCloneOnEdit
      */
-    public void setDeepCloneOnEdit(Boolean deepCloneOnEdit) {
-        setAttribute("deepCloneOnEdit", deepCloneOnEdit, true);
+    public DataSource setDeepCloneOnEdit(Boolean deepCloneOnEdit) {
+        return (DataSource)setAttribute("deepCloneOnEdit", deepCloneOnEdit, true);
     }
 
     /**
@@ -928,13 +955,14 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle ListGrid.autoFetchTextMatchStyle}, for example).
      *
      * @param defaultTextMatchStyle New defaultTextMatchStyle value. Default value is "exact"
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_databinding_json_datasource" target="examples">JSON DataSource Example</a>
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#json_integration_category_simple" target="examples">Simple JSON Example</a>
      */
-    public void setDefaultTextMatchStyle(TextMatchStyle defaultTextMatchStyle)  throws IllegalStateException {
-        setAttribute("defaultTextMatchStyle", defaultTextMatchStyle == null ? null : defaultTextMatchStyle.getValue(), false);
+    public DataSource setDefaultTextMatchStyle(TextMatchStyle defaultTextMatchStyle)  throws IllegalStateException {
+        return (DataSource)setAttribute("defaultTextMatchStyle", defaultTextMatchStyle == null ? null : defaultTextMatchStyle.getValue(), false);
     }
 
     /**
@@ -962,11 +990,12 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * field (greater than 255 characters) in the record, or null if no such field exists.
      *
      * @param descriptionField New descriptionField value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.DsSpecialFields DsSpecialFields overview and related methods
      */
-    public void setDescriptionField(String descriptionField)  throws IllegalStateException {
-        setAttribute("descriptionField", descriptionField, false);
+    public DataSource setDescriptionField(String descriptionField)  throws IllegalStateException {
+        return (DataSource)setAttribute("descriptionField", descriptionField, false);
     }
 
     /**
@@ -989,10 +1018,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * com.smartgwt.client.data.DataSource#getAutoDiscoverTree autoDiscoverTree} is set to true for this DataSource
      *
      * @param discoverTreeSettings New discoverTreeSettings value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setDiscoverTreeSettings(DiscoverTreeSettings discoverTreeSettings)  throws IllegalStateException {
-        setAttribute("discoverTreeSettings", discoverTreeSettings == null ? null : discoverTreeSettings.getJsObj(), false);
+    public DataSource setDiscoverTreeSettings(DiscoverTreeSettings discoverTreeSettings)  throws IllegalStateException {
+        return (DataSource)setAttribute("discoverTreeSettings", discoverTreeSettings == null ? null : discoverTreeSettings.getJsObj(), false);
     }
 
     /**
@@ -1018,11 +1048,12 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * com.smartgwt.client.docs.serverds.ServerObject#dropExtraFields ServerObject.dropExtraFields}.
      *
      * @param dropExtraFields New dropExtraFields value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public void setDropExtraFields(Boolean dropExtraFields)  throws IllegalStateException {
-        setAttribute("dropExtraFields", dropExtraFields, false);
+    public DataSource setDropExtraFields(Boolean dropExtraFields)  throws IllegalStateException {
+        return (DataSource)setAttribute("dropExtraFields", dropExtraFields, false);
     }
 
     /**
@@ -1051,10 +1082,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * record values for these fields and as such the client-side filtering logic should ignore them.
      *
      * @param dropUnknownCriteria New dropUnknownCriteria value. Default value is true
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setDropUnknownCriteria(Boolean dropUnknownCriteria)  throws IllegalStateException {
-        setAttribute("dropUnknownCriteria", dropUnknownCriteria, false);
+    public DataSource setDropUnknownCriteria(Boolean dropUnknownCriteria)  throws IllegalStateException {
+        return (DataSource)setAttribute("dropUnknownCriteria", dropUnknownCriteria, false);
     }
 
     /**
@@ -1079,10 +1111,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param enumConstantProperty New enumConstantProperty value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setEnumConstantProperty(String enumConstantProperty)  throws IllegalStateException {
-        setAttribute("enumConstantProperty", enumConstantProperty, false);
+    public DataSource setEnumConstantProperty(String enumConstantProperty)  throws IllegalStateException {
+        return (DataSource)setAttribute("enumConstantProperty", enumConstantProperty, false);
     }
     
 
@@ -1093,10 +1126,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param enumOrdinalProperty New enumOrdinalProperty value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setEnumOrdinalProperty(String enumOrdinalProperty)  throws IllegalStateException {
-        setAttribute("enumOrdinalProperty", enumOrdinalProperty, false);
+    public DataSource setEnumOrdinalProperty(String enumOrdinalProperty)  throws IllegalStateException {
+        return (DataSource)setAttribute("enumOrdinalProperty", enumOrdinalProperty, false);
     }
     
 
@@ -1106,11 +1140,13 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param enumTranslateStrategy New enumTranslateStrategy value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setEnumTranslateStrategy(EnumTranslateStrategy enumTranslateStrategy)  throws IllegalStateException {
-        setAttribute("enumTranslateStrategy", enumTranslateStrategy == null ? null : enumTranslateStrategy.getValue(), false);
+    public DataSource setEnumTranslateStrategy(EnumTranslateStrategy enumTranslateStrategy)  throws IllegalStateException {
+        return (DataSource)setAttribute("enumTranslateStrategy", enumTranslateStrategy == null ? null : enumTranslateStrategy.getValue(), false);
     }
+    
     
     
     
@@ -1139,9 +1175,10 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      *  "http://www.w3.org/1999/XMLSchema-instance" instead.
      *
      * @param globalNamespaces New globalNamespaces value. Default value is ...
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      */
-    public void setGlobalNamespaces(Map globalNamespaces) {
-        setAttribute("globalNamespaces", globalNamespaces, true);
+    public DataSource setGlobalNamespaces(Map globalNamespaces) {
+        return (DataSource)setAttribute("globalNamespaces", globalNamespaces, true);
     }
 
     /**
@@ -1179,11 +1216,12 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * set iconField to <code>null</code>.
      *
      * @param iconField New iconField value. Default value is see below
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.DsSpecialFields DsSpecialFields overview and related methods
      */
-    public void setIconField(String iconField)  throws IllegalStateException {
-        setAttribute("iconField", iconField, false);
+    public DataSource setIconField(String iconField)  throws IllegalStateException {
+        return (DataSource)setAttribute("iconField", iconField, false);
     }
 
     /**
@@ -1212,10 +1250,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * documentation} for a discussion of the nuances of case-sensitive matching.
      *
      * @param ignoreTextMatchStyleCaseSensitive New ignoreTextMatchStyleCaseSensitive value. Default value is false
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setIgnoreTextMatchStyleCaseSensitive(Boolean ignoreTextMatchStyleCaseSensitive)  throws IllegalStateException {
-        setAttribute("ignoreTextMatchStyleCaseSensitive", ignoreTextMatchStyleCaseSensitive, false);
+    public DataSource setIgnoreTextMatchStyleCaseSensitive(Boolean ignoreTextMatchStyleCaseSensitive)  throws IllegalStateException {
+        return (DataSource)setAttribute("ignoreTextMatchStyleCaseSensitive", ignoreTextMatchStyleCaseSensitive, false);
     }
 
     /**
@@ -1248,12 +1287,13 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * from a Smart GWT UI  (eg RestHandler).
      *
      * @param implicitCriteria New implicitCriteria value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      */
-    public void setImplicitCriteria(Criteria implicitCriteria) {
+    public DataSource setImplicitCriteria(Criteria implicitCriteria) {
         if (implicitCriteria instanceof Criterion) {
             implicitCriteria.setAttribute("_constructor", "AdvancedCriteria");
         }
-        setAttribute("implicitCriteria", implicitCriteria == null ? null : implicitCriteria.getJsObj(), true);
+        return (DataSource)setAttribute("implicitCriteria", implicitCriteria == null ? null : implicitCriteria.getJsObj(), true);
     }
 
     /**
@@ -1285,11 +1325,12 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * not automatically determined in the absence of an explicit setting.
      *
      * @param infoField New infoField value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.DsSpecialFields DsSpecialFields overview and related methods
      */
-    public void setInfoField(String infoField)  throws IllegalStateException {
-        setAttribute("infoField", infoField, false);
+    public DataSource setInfoField(String infoField)  throws IllegalStateException {
+        return (DataSource)setAttribute("infoField", infoField, false);
     }
 
     /**
@@ -1334,11 +1375,12 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * "employee" dataSource. </ul>
      *
      * @param inheritsFrom New inheritsFrom value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#featured_xsd_ds" target="examples">Schema Chaining Example</a>
      */
-    public void setInheritsFrom(String inheritsFrom)  throws IllegalStateException {
-        setAttribute("inheritsFrom", inheritsFrom, false);
+    public DataSource setInheritsFrom(String inheritsFrom)  throws IllegalStateException {
+        return (DataSource)setAttribute("inheritsFrom", inheritsFrom, false);
     }
 
     /**
@@ -1386,12 +1428,13 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param jsonPrefix New jsonPrefix value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.data.OperationBinding#setDataFormat
      * @see com.smartgwt.client.data.OperationBinding#setDataTransport
      */
-    public void setJsonPrefix(String jsonPrefix)  throws IllegalStateException {
-        setAttribute("jsonPrefix", jsonPrefix, false);
+    public DataSource setJsonPrefix(String jsonPrefix)  throws IllegalStateException {
+        return (DataSource)setAttribute("jsonPrefix", jsonPrefix, false);
     }
 
     /**
@@ -1422,12 +1465,13 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param jsonSuffix New jsonSuffix value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.data.OperationBinding#setDataFormat
      * @see com.smartgwt.client.data.OperationBinding#setDataTransport
      */
-    public void setJsonSuffix(String jsonSuffix)  throws IllegalStateException {
-        setAttribute("jsonSuffix", jsonSuffix, false);
+    public DataSource setJsonSuffix(String jsonSuffix)  throws IllegalStateException {
+        return (DataSource)setAttribute("jsonSuffix", jsonSuffix, false);
     }
 
     /**
@@ -1453,13 +1497,14 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * DSRequest to retrieve sample data.
      *
      * @param mockDataCriteria New mockDataCriteria value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setMockDataCriteria(Criteria mockDataCriteria)  throws IllegalStateException {
+    public DataSource setMockDataCriteria(Criteria mockDataCriteria)  throws IllegalStateException {
         if (mockDataCriteria instanceof Criterion) {
             mockDataCriteria.setAttribute("_constructor", "AdvancedCriteria");
         }
-        setAttribute("mockDataCriteria", mockDataCriteria == null ? null : mockDataCriteria.getJsObj(), false);
+        return (DataSource)setAttribute("mockDataCriteria", mockDataCriteria == null ? null : mockDataCriteria.getJsObj(), false);
     }
 
     /**
@@ -1478,10 +1523,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * an initial "fetch" DSRequest, for use as sample data.  Set to null to retrieve all available rows.
      *
      * @param mockDataRows New mockDataRows value. Default value is 75
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setMockDataRows(Integer mockDataRows)  throws IllegalStateException {
-        setAttribute("mockDataRows", mockDataRows, false);
+    public DataSource setMockDataRows(Integer mockDataRows)  throws IllegalStateException {
+        return (DataSource)setAttribute("mockDataRows", mockDataRows, false);
     }
 
     /**
@@ -1511,9 +1557,10 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * com.smartgwt.client.rpc.RPCManager#loadScreen RPCManager.loadScreen()} or the server-side Project.load() API.
      *
      * @param mockMode New mockMode value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      */
-    public void setMockMode(Boolean mockMode) {
-        setAttribute("mockMode", mockMode, true);
+    public DataSource setMockMode(Boolean mockMode) {
+        return (DataSource)setAttribute("mockMode", mockMode, true);
     }
 
     /**
@@ -1614,11 +1661,12 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      *  DataSource in order to read an RSS feed.
      *
      * @param operationBindings New operationBindings value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.data.OperationBinding
      */
-    public void setOperationBindings(OperationBinding... operationBindings)  throws IllegalStateException {
-        setAttribute("operationBindings", operationBindings, false);
+    public DataSource setOperationBindings(OperationBinding... operationBindings)  throws IllegalStateException {
+        return (DataSource)setAttribute("operationBindings", operationBindings, false);
     }
 
     /**
@@ -1706,10 +1754,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * treated as a literal character.
      *
      * @param patternEscapeChar New patternEscapeChar value. Default value is "\"
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setPatternEscapeChar(String patternEscapeChar)  throws IllegalStateException {
-        setAttribute("patternEscapeChar", patternEscapeChar, false);
+    public DataSource setPatternEscapeChar(String patternEscapeChar)  throws IllegalStateException {
+        return (DataSource)setAttribute("patternEscapeChar", patternEscapeChar, false);
     }
 
     /**
@@ -1732,10 +1781,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * Pass multiple strings to provide multiple alternative wildcards.
      *
      * @param patternMultiWildcard New patternMultiWildcard value. Default value is "*"
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setPatternMultiWildcard(String patternMultiWildcard)  throws IllegalStateException {
-        setAttribute("patternMultiWildcard", patternMultiWildcard, false);
+    public DataSource setPatternMultiWildcard(String patternMultiWildcard)  throws IllegalStateException {
+        return (DataSource)setAttribute("patternMultiWildcard", patternMultiWildcard, false);
     }
 
     /**
@@ -1755,10 +1805,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * Pass multiple strings to provide multiple alternative wildcards.
      *
      * @param patternMultiWildcard New patternMultiWildcard value. Default value is "*"
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setPatternMultiWildcard(String... patternMultiWildcard)  throws IllegalStateException {
-        setAttribute("patternMultiWildcard", patternMultiWildcard, false);
+    public DataSource setPatternMultiWildcard(String... patternMultiWildcard)  throws IllegalStateException {
+        return (DataSource)setAttribute("patternMultiWildcard", patternMultiWildcard, false);
     }
 
     /**
@@ -1779,10 +1830,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * strings to provide multiple alternative wildcards.
      *
      * @param patternSingleWildcard New patternSingleWildcard value. Default value is ["?","%"]
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setPatternSingleWildcard(String patternSingleWildcard)  throws IllegalStateException {
-        setAttribute("patternSingleWildcard", patternSingleWildcard, false);
+    public DataSource setPatternSingleWildcard(String patternSingleWildcard)  throws IllegalStateException {
+        return (DataSource)setAttribute("patternSingleWildcard", patternSingleWildcard, false);
     }
 
     /**
@@ -1802,10 +1854,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * strings to provide multiple alternative wildcards.
      *
      * @param patternSingleWildcard New patternSingleWildcard value. Default value is ["?","%"]
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setPatternSingleWildcard(String... patternSingleWildcard)  throws IllegalStateException {
-        setAttribute("patternSingleWildcard", patternSingleWildcard, false);
+    public DataSource setPatternSingleWildcard(String... patternSingleWildcard)  throws IllegalStateException {
+        return (DataSource)setAttribute("patternSingleWildcard", patternSingleWildcard, false);
     }
 
     /**
@@ -1825,10 +1878,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * Defaults to <code>dataSource.title</code> + "s".
      *
      * @param pluralTitle New pluralTitle value. Default value is dataSource.ID
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setPluralTitle(String pluralTitle)  throws IllegalStateException {
-        setAttribute("pluralTitle", pluralTitle, false);
+    public DataSource setPluralTitle(String pluralTitle)  throws IllegalStateException {
+        return (DataSource)setAttribute("pluralTitle", pluralTitle, false);
     }
 
     /**
@@ -1848,10 +1902,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * performed by {@link com.smartgwt.client.data.ResultSet}.
      *
      * @param preventHTTPCaching New preventHTTPCaching value. Default value is true
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setPreventHTTPCaching(Boolean preventHTTPCaching)  throws IllegalStateException {
-        setAttribute("preventHTTPCaching", preventHTTPCaching, false);
+    public DataSource setPreventHTTPCaching(Boolean preventHTTPCaching)  throws IllegalStateException {
+        return (DataSource)setAttribute("preventHTTPCaching", preventHTTPCaching, false);
     }
 
     /**
@@ -1888,14 +1943,15 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * to trigger the server behavior  described in the <code>ResultSet</code> documentation linked to above.
      *
      * @param progressiveLoading New progressiveLoading value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.serverds.OperationBinding#progressiveLoading
      * @see com.smartgwt.client.docs.serverds.DataSource#progressiveLoadingThreshold
      * @see com.smartgwt.client.docs.serverds.DataSource#lookAhead
      * @see com.smartgwt.client.docs.serverds.DataSource#endGap
      * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
      */
-    public void setProgressiveLoading(Boolean progressiveLoading) {
-        setAttribute("progressiveLoading", progressiveLoading, true);
+    public DataSource setProgressiveLoading(Boolean progressiveLoading) {
+        return (DataSource)setAttribute("progressiveLoading", progressiveLoading, true);
     }
 
     /**
@@ -1939,11 +1995,12 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * operationBindings.
      *
      * @param qualifyColumnNames New qualifyColumnNames value. Default value is true
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.serverds.OperationBinding#qualifyColumnNames
      */
-    public void setQualifyColumnNames(Boolean qualifyColumnNames)  throws IllegalStateException {
-        setAttribute("qualifyColumnNames", qualifyColumnNames, false);
+    public DataSource setQualifyColumnNames(Boolean qualifyColumnNames)  throws IllegalStateException {
+        return (DataSource)setAttribute("qualifyColumnNames", qualifyColumnNames, false);
     }
 
     /**
@@ -1967,12 +2024,12 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * OperationBinding.recordName}.
      *
      * @param recordName New recordName value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
-     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_weather" target="examples">Weather SOAP Search Example</a>
      */
-    public void setRecordName(String recordName)  throws IllegalStateException {
-        setAttribute("recordName", recordName, false);
+    public DataSource setRecordName(String recordName)  throws IllegalStateException {
+        return (DataSource)setAttribute("recordName", recordName, false);
     }
 
     /**
@@ -1981,7 +2038,6 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      *
      * @return Current recordName value. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
-     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_weather" target="examples">Weather SOAP Search Example</a>
      */
     public String getRecordName()  {
         return getAttributeAsString("recordName");
@@ -1994,14 +2050,15 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * "fetch" operations.
      *
      * @param recordXPath New recordXPath value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.XPathExpression XPathExpression 
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_databinding_xml_datasource" target="examples">XML DataSource Example</a>
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#json_integration_category_xpath" target="examples">JSON XPath Binding Example</a>
      */
-    public void setRecordXPath(String recordXPath)  throws IllegalStateException {
-        setAttribute("recordXPath", recordXPath, false);
+    public DataSource setRecordXPath(String recordXPath)  throws IllegalStateException {
+        return (DataSource)setAttribute("recordXPath", recordXPath, false);
     }
 
     /**
@@ -2027,16 +2084,17 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * transformRequest()} is called.
      *
      * @param requestProperties New requestProperties value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @see com.smartgwt.client.data.DSRequest
      * @see com.smartgwt.client.data.OperationBinding#setRequestProperties
      * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
      */
-    public void setRequestProperties(DSRequest requestProperties) {
+    public DataSource setRequestProperties(DSRequest requestProperties) {
         JavaScriptObject config = JSOHelper.createObject();
         if (requestProperties != null) {
             JSOHelper.addProperties(config, requestProperties.getJsObj());
         }
-        setAttribute("requestProperties", requestProperties == null ? null : config, true);
+        return (DataSource)setAttribute("requestProperties", requestProperties == null ? null : config, true);
     }
 
     /**
@@ -2061,11 +2119,12 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * DataSourceField.requiredMessage} wins over this setting if both are set.
      *
      * @param requiredMessage New requiredMessage value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      * @see com.smartgwt.client.docs.FormTitles FormTitles overview and related methods
      */
-    public void setRequiredMessage(String requiredMessage) {
-        setAttribute("requiredMessage", requiredMessage, true);
+    public DataSource setRequiredMessage(String requiredMessage) {
+        return (DataSource)setAttribute("requiredMessage", requiredMessage, true);
     }
 
     /**
@@ -2095,9 +2154,10 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param resultBatchSize New resultBatchSize value. Default value is 150
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      */
-    public void setResultBatchSize(int resultBatchSize) {
-        setAttribute("resultBatchSize", resultBatchSize, true);
+    public DataSource setResultBatchSize(int resultBatchSize) {
+        return (DataSource)setAttribute("resultBatchSize", resultBatchSize, true);
     }
 
     /**
@@ -2122,10 +2182,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param resultSetClass New resultSetClass value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setResultSetClass(String resultSetClass)  throws IllegalStateException {
-        setAttribute("resultSetClass", resultSetClass, false);
+    public DataSource setResultSetClass(String resultSetClass)  throws IllegalStateException {
+        return (DataSource)setAttribute("resultSetClass", resultSetClass, false);
     }
 
     /**
@@ -2147,10 +2208,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param resultTreeClass New resultTreeClass value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setResultTreeClass(String resultTreeClass)  throws IllegalStateException {
-        setAttribute("resultTreeClass", resultTreeClass, false);
+    public DataSource setResultTreeClass(String resultTreeClass)  throws IllegalStateException {
+        return (DataSource)setAttribute("resultTreeClass", resultTreeClass, false);
     }
 
     /**
@@ -2192,11 +2254,12 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * com.smartgwt.client.data.DataSource#transformRequest transformRequest()} and ultimately sent to the server.
      *
      * @param sendExtraFields New sendExtraFields value. Default value is true
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public void setSendExtraFields(Boolean sendExtraFields)  throws IllegalStateException {
-        setAttribute("sendExtraFields", sendExtraFields, false);
+    public DataSource setSendExtraFields(Boolean sendExtraFields)  throws IllegalStateException {
+        return (DataSource)setAttribute("sendExtraFields", sendExtraFields, false);
     }
 
     /**
@@ -2219,9 +2282,10 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param sendParentNode New sendParentNode value. Default value is false
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      */
-    public void setSendParentNode(Boolean sendParentNode) {
-        setAttribute("sendParentNode", sendParentNode, true);
+    public DataSource setSendParentNode(Boolean sendParentNode) {
+        return (DataSource)setAttribute("sendParentNode", sendParentNode, true);
     }
 
     /**
@@ -2253,12 +2317,12 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * com.smartgwt.client.data.OperationBinding#getDataProtocol dataProtocol} to "soap".
      *
      * @param serviceNamespace New serviceNamespace value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
-     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_weather" target="examples">Weather SOAP Search Example</a>
      */
-    public void setServiceNamespace(String serviceNamespace)  throws IllegalStateException {
-        setAttribute("serviceNamespace", serviceNamespace, false);
+    public DataSource setServiceNamespace(String serviceNamespace)  throws IllegalStateException {
+        return (DataSource)setAttribute("serviceNamespace", serviceNamespace, false);
     }
 
     /**
@@ -2275,7 +2339,6 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      *
      * @return Current serviceNamespace value. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
-     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_weather" target="examples">Weather SOAP Search Example</a>
      */
     public String getServiceNamespace()  {
         return getAttributeAsString("serviceNamespace");
@@ -2288,10 +2351,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * this DataSource should be shown.  All other inherited parent fields will be marked "hidden:true".
      *
      * @param showLocalFieldsOnly New showLocalFieldsOnly value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setShowLocalFieldsOnly(Boolean showLocalFieldsOnly)  throws IllegalStateException {
-        setAttribute("showLocalFieldsOnly", showLocalFieldsOnly, false);
+    public DataSource setShowLocalFieldsOnly(Boolean showLocalFieldsOnly)  throws IllegalStateException {
+        return (DataSource)setAttribute("showLocalFieldsOnly", showLocalFieldsOnly, false);
     }
 
     /**
@@ -2319,9 +2383,10 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * argument allowing <code>showPrompt</code> to be set to false for a specific request.
      *
      * @param showPrompt New showPrompt value. Default value is true
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      */
-    public void setShowPrompt(Boolean showPrompt) {
-        setAttribute("showPrompt", showPrompt, true);
+    public DataSource setShowPrompt(Boolean showPrompt) {
+        return (DataSource)setAttribute("showPrompt", showPrompt, true);
     }
 
     /**
@@ -2350,9 +2415,10 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * time, but shouldn't need to for the rest.
      *
      * @param skipJSONValidation New skipJSONValidation value. Default value is "none"
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      */
-    public void setSkipJSONValidation(SkipJSONValidation skipJSONValidation) {
-        setAttribute("skipJSONValidation", skipJSONValidation == null ? null : skipJSONValidation.getValue(), true);
+    public DataSource setSkipJSONValidation(SkipJSONValidation skipJSONValidation) {
+        return (DataSource)setAttribute("skipJSONValidation", skipJSONValidation == null ? null : skipJSONValidation.getValue(), true);
     }
 
     /**
@@ -2388,10 +2454,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param strictSQLFiltering New strictSQLFiltering value. Default value is false
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setStrictSQLFiltering(Boolean strictSQLFiltering)  throws IllegalStateException {
-        setAttribute("strictSQLFiltering", strictSQLFiltering, false);
+    public DataSource setStrictSQLFiltering(Boolean strictSQLFiltering)  throws IllegalStateException {
+        return (DataSource)setAttribute("strictSQLFiltering", strictSQLFiltering, false);
     }
 
     /**
@@ -2425,11 +2492,12 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param tagName New tagName value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public void setTagName(String tagName)  throws IllegalStateException {
-        setAttribute("tagName", tagName, false);
+    public DataSource setTagName(String tagName)  throws IllegalStateException {
+        return (DataSource)setAttribute("tagName", tagName, false);
     }
 
     /**
@@ -2451,9 +2519,10 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * "Team Member".
      *
      * @param title New title value. Default value is dataSource.ID
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      */
-    public void setTitle(String title) {
-        setAttribute("title", title, true);
+    public DataSource setTitle(String title) {
+        return (DataSource)setAttribute("title", title, true);
     }
 
     /**
@@ -2476,11 +2545,12 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * those names, it becomes the titleField.  If not, then the first field is designated as the titleField.
      *
      * @param titleField New titleField value. Default value is see below
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.DsSpecialFields DsSpecialFields overview and related methods
      */
-    public void setTitleField(String titleField)  throws IllegalStateException {
-        setAttribute("titleField", titleField, false);
+    public DataSource setTitleField(String titleField)  throws IllegalStateException {
+        return (DataSource)setAttribute("titleField", titleField, false);
     }
 
     /**
@@ -2518,10 +2588,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * contains) <p> Also supported: one startsWith, multiple contains, one endsWith.
      *
      * @param translatePatternOperators New translatePatternOperators value. Default value is false
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setTranslatePatternOperators(boolean translatePatternOperators)  throws IllegalStateException {
-        setAttribute("translatePatternOperators", translatePatternOperators, false);
+    public DataSource setTranslatePatternOperators(boolean translatePatternOperators)  throws IllegalStateException {
+        return (DataSource)setAttribute("translatePatternOperators", translatePatternOperators, false);
     }
 
     /**
@@ -2566,10 +2637,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * com.smartgwt.client.docs.serverds.DataSourceField#storeMilliseconds storeMilliseconds} attribute.
      *
      * @param trimMilliseconds New trimMilliseconds value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setTrimMilliseconds(Boolean trimMilliseconds)  throws IllegalStateException {
-        setAttribute("trimMilliseconds", trimMilliseconds, false);
+    public DataSource setTrimMilliseconds(Boolean trimMilliseconds)  throws IllegalStateException {
+        return (DataSource)setAttribute("trimMilliseconds", trimMilliseconds, false);
     }
 
     /**
@@ -2599,10 +2671,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * applies to all DataBound components that bind to this DataSource.
      *
      * @param useFlatFields New useFlatFields value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setUseFlatFields(Boolean useFlatFields)  throws IllegalStateException {
-        setAttribute("useFlatFields", useFlatFields, false);
+    public DataSource setUseFlatFields(Boolean useFlatFields)  throws IllegalStateException {
+        return (DataSource)setAttribute("useFlatFields", useFlatFields, false);
     }
 
     /**
@@ -2621,11 +2694,12 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * default for this DataSource that may be overridden by individual operationBindings.
      *
      * @param useHttpProxy New useHttpProxy value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public void setUseHttpProxy(Boolean useHttpProxy)  throws IllegalStateException {
-        setAttribute("useHttpProxy", useHttpProxy, false);
+    public DataSource setUseHttpProxy(Boolean useHttpProxy)  throws IllegalStateException {
+        return (DataSource)setAttribute("useHttpProxy", useHttpProxy, false);
     }
 
     /**
@@ -2646,10 +2720,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param useLocalValidators New useLocalValidators value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
-    public void setUseLocalValidators(Boolean useLocalValidators) {
-        setAttribute("useLocalValidators", useLocalValidators, true);
+    public DataSource setUseLocalValidators(Boolean useLocalValidators) {
+        return (DataSource)setAttribute("useLocalValidators", useLocalValidators, true);
     }
 
     /**
@@ -2670,9 +2745,10 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * connect to the server).   Note that by default we do NOT use offline storage for a dataSource.
      *
      * @param useOfflineStorage New useOfflineStorage value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      */
-    public void setUseOfflineStorage(Boolean useOfflineStorage) {
-        setAttribute("useOfflineStorage", useOfflineStorage, true);
+    public DataSource setUseOfflineStorage(Boolean useOfflineStorage) {
+        return (DataSource)setAttribute("useOfflineStorage", useOfflineStorage, true);
     }
 
     /**
@@ -2694,11 +2770,12 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * end.
      *
      * @param useParentFieldOrder New useParentFieldOrder value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#featured_xsd_ds" target="examples">Schema Chaining Example</a>
      */
-    public void setUseParentFieldOrder(Boolean useParentFieldOrder)  throws IllegalStateException {
-        setAttribute("useParentFieldOrder", useParentFieldOrder, false);
+    public DataSource setUseParentFieldOrder(Boolean useParentFieldOrder)  throws IllegalStateException {
+        return (DataSource)setAttribute("useParentFieldOrder", useParentFieldOrder, false);
     }
 
     /**
@@ -2725,10 +2802,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * out of scope. See {@link com.smartgwt.client.rpc.RPCManager#allowIE9Leak allowIE9Leak} for more on this.
      *
      * @param useStrictJSON New useStrictJSON value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setUseStrictJSON(Boolean useStrictJSON)  throws IllegalStateException {
-        setAttribute("useStrictJSON", useStrictJSON, false);
+    public DataSource setUseStrictJSON(Boolean useStrictJSON)  throws IllegalStateException {
+        return (DataSource)setAttribute("useStrictJSON", useStrictJSON, false);
     }
 
     /**
@@ -2755,9 +2833,10 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * or unset and a dataURL or testFileName is specified on the DataSource.
      *
      * @param useTestDataFetch New useTestDataFetch value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      */
-    public void setUseTestDataFetch(Boolean useTestDataFetch) {
-        setAttribute("useTestDataFetch", useTestDataFetch, true);
+    public DataSource setUseTestDataFetch(Boolean useTestDataFetch) {
+        return (DataSource)setAttribute("useTestDataFetch", useTestDataFetch, true);
     }
 
     /**
@@ -2779,10 +2858,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} defined.
      *
      * @param validateRelatedRecords New validateRelatedRecords value. Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setValidateRelatedRecords(Boolean validateRelatedRecords)  throws IllegalStateException {
-        setAttribute("validateRelatedRecords", validateRelatedRecords, false);
+    public DataSource setValidateRelatedRecords(Boolean validateRelatedRecords)  throws IllegalStateException {
+        return (DataSource)setAttribute("validateRelatedRecords", validateRelatedRecords, false);
     }
 
     /**
@@ -3136,6 +3216,54 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
         var ret = self.copyRecords(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records));
         if(ret == null) return null;
         return @com.smartgwt.client.util.ConvertTo::arrayOfRecord(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+    /**
+     * Add a dataChanged handler.
+     * <p>
+     * Notification method fired when a DataSource operation such as an  {@link com.smartgwt.client.data.DataSource#addData
+     * add}, {@link com.smartgwt.client.data.DataSource#removeData remove} or  {@link
+     * com.smartgwt.client.data.DataSource#updateData update} modifies the underlying data for a DataSource. <P> This method is
+     * used by {@link com.smartgwt.client.data.ResultSet}s to keep the user-visible data up to date as changes are made.
+     *
+     * @param handler the dataChanged handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addDataChangedHandler(com.smartgwt.client.data.events.DataChangedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.data.events.DataChangedEvent.getType()) == 0) setupDataChangedEvent();
+        return doAddHandler(handler, com.smartgwt.client.data.events.DataChangedEvent.getType());
+    }
+
+    private native void setupDataChangedEvent() /*-{
+        var obj;
+        var selfJ = this;
+        var dataChanged = $entry(function(){
+            var param = {"_this": this, "dsResponse" : arguments[0], "dsRequest" : arguments[1]};
+                var event = @com.smartgwt.client.data.events.DataChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+                selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+                selfJ.@com.smartgwt.client.data.DataSource::handleTearDownDataChangedEvent()();
+            });
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            obj.addProperties({dataChanged:  dataChanged              });
+        } else {
+            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+            obj.dataChanged =  dataChanged             ;
+        }
+    }-*/;
+
+    private void handleTearDownDataChangedEvent() {
+        if (getHandlerCount(com.smartgwt.client.data.events.DataChangedEvent.getType()) == 0) tearDownDataChangedEvent();
+    }
+
+    private native void tearDownDataChangedEvent() /*-{
+        var obj;
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            obj = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+        } else {
+            obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+        }
+        if (obj && obj.hasOwnProperty("dataChanged")) delete obj.dataChanged;
     }-*/;
 
 	/**
@@ -3611,6 +3739,27 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
 			}), requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 	
+	/**
+     * Formats the supplied value using the {@link com.smartgwt.client.data.SimpleType} derived from the field definition. <P>
+     * Note that if {@link com.smartgwt.client.data.DataSourceField#getFormat DataSourceField.format} is defined for a date,
+     * time or numeric-based value, or {@link com.smartgwt.client.data.DataSourceField#getDateFormatter
+     * DataSourceField.dateFormatter} or {@link com.smartgwt.client.data.DataSourceField#getTimeFormatter
+     * DataSourceField.timeFormatter} is defined for a date or time-based value, that format is given priority and used to
+     * format the value rather than the <code>SimpleType</code>.
+     * @param field name of the field to use to format value
+     * @param value raw value to be formatted
+     *
+     * @return formatted value or null
+     */
+    public native String formatFieldValue(DataSourceField field, Object value) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "formatFieldValue", "DataSourceField,Object");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.formatFieldValue(field.@com.smartgwt.client.core.DataClass::getJsObj()(), value);
+        return ret;
+    }-*/;
+
 	/**
      * Produces a clientOnly "copy" of a particular subset of data from a normal  DataSource, via calling fetchData() to fetch
      * matching rows, and constructing  a clientOnly DataSource that {@link com.smartgwt.client.data.DataSource#getInheritsFrom
@@ -5673,7 +5822,9 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * fired after the DataSources are loaded.  The callback is passed a single parameter, the <code>dsID</code> list passed
      * into the method.  If no loading occurs because the requested DataSource(s) are already loaded, a warning is  logged and
      * the callback is fired immediately. <P> To force reloading of DataSources that have already been loaded, pass
-     * <code>true</code> for the forceReload parameter.
+     * <code>true</code> for the forceReload parameter. Note that if a DataSource has been created locally with the specified
+     * ID, even if this is a {@link com.smartgwt.client.data.MockDataSource}, the <code>forceReload</code> parameter will be
+     * required to force the "real" dataSource to be loaded.
      * @param dsID DataSource ID or Array of DataSource IDs
      * @param callback Callback to fire after DataSource loading completes
      */
@@ -5690,7 +5841,9 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * fired after the DataSources are loaded.  The callback is passed a single parameter, the <code>dsID</code> list passed
      * into the method.  If no loading occurs because the requested DataSource(s) are already loaded, a warning is  logged and
      * the callback is fired immediately. <P> To force reloading of DataSources that have already been loaded, pass
-     * <code>true</code> for the forceReload parameter.
+     * <code>true</code> for the forceReload parameter. Note that if a DataSource has been created locally with the specified
+     * ID, even if this is a {@link com.smartgwt.client.data.MockDataSource}, the <code>forceReload</code> parameter will be
+     * required to force the "real" dataSource to be loaded.
      * @param dsID DataSource ID or Array of DataSource IDs
      * @param callback Callback to fire after DataSource loading completes
      * @param forceReload Forcibly reload a dataSource if it's already loaded
@@ -5882,9 +6035,9 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
         }
     }
 
-    public void setID(String id) {
+    public DataSource setID(String id) {
         reregisterSgwtDS(this.id, id);
-        super.setID(id);
+        return (DataSource)super.setID(id);
     }
 
     /**
@@ -5956,10 +6109,12 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * individual request types using {@link com.smartgwt.client.data.OperationBinding#getDataProtocol dataProtocol}}
      *
      * @param dataProtocol dataProtocol Default value is null
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining
+     * setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setDataProtocol(DSProtocol dataProtocol) throws IllegalStateException {
-        setAttribute("dataProtocol", dataProtocol.getValue(), false);
+    public DataSource setDataProtocol(DSProtocol dataProtocol) throws IllegalStateException {
+        return (DataSource)setAttribute("dataProtocol", dataProtocol.getValue(), false);
     }
 
     /**
@@ -6521,14 +6676,14 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
 	 * For basic information on XML Namespaces and their use in XPath, try the
 	 * following search: http://www.google.com/search?q=XPath+xml+namespaces
 	 * 
-	 * @param xmlNamespaces
-	 *            xml namespaces
-	 * @throws IllegalStateException
-	 *             this property cannot be changed after the underlying compo
-	 *             nent has been created
+	 * @param xmlNamespaces  xml namespaces
+     * @return {@link com.smartgwt.client.data.DataSource DataSource} instance, for chaining
+     * setter calls
+	 * @throws IllegalStateException  this property cannot be changed after the underlying
+     *                                component has been created
 	 */
-    public void setXmlNamespaces(XmlNamespaces xmlNamespaces) throws IllegalStateException {
-        setAttribute("xmlNamespaces", xmlNamespaces, false);
+    public DataSource setXmlNamespaces(XmlNamespaces xmlNamespaces) throws IllegalStateException {
+        return (DataSource)setAttribute("xmlNamespaces", xmlNamespaces, false);
     }
 
     /**

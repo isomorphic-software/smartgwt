@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * FormItem that allows picking between several mutually exclusive options via a select list. <P> Options may be derived
@@ -188,10 +191,11 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param addUnknownValues New addUnknownValues value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_dep_dep_selects" target="examples">Dependent Selects Example</a>
      */
-    public void setAddUnknownValues(Boolean addUnknownValues) {
-        setAttribute("addUnknownValues", addUnknownValues);
+    public SelectItem setAddUnknownValues(Boolean addUnknownValues) {
+        return (SelectItem)setAttribute("addUnknownValues", addUnknownValues);
     }
 
     /**
@@ -240,9 +244,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * <code>specialValues</code> documentation}.
      *
      * @param allowEmptyValue New allowEmptyValue value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setAllowEmptyValue(Boolean allowEmptyValue) {
-        setAttribute("allowEmptyValue", allowEmptyValue);
+    public SelectItem setAllowEmptyValue(Boolean allowEmptyValue) {
+        return (SelectItem)setAttribute("allowEmptyValue", allowEmptyValue);
     }
 
     /**
@@ -273,9 +278,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * at a time.
      *
      * @param allowMultiCharSearch New allowMultiCharSearch value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setAllowMultiCharSearch(boolean allowMultiCharSearch) {
-        setAttribute("allowMultiCharSearch", allowMultiCharSearch);
+    public SelectItem setAllowMultiCharSearch(boolean allowMultiCharSearch) {
+        return (SelectItem)setAttribute("allowMultiCharSearch", allowMultiCharSearch);
     }
 
     /**
@@ -299,9 +305,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param autoFetchData New autoFetchData value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setAutoFetchData(Boolean autoFetchData) {
-        setAttribute("autoFetchData", autoFetchData);
+    public SelectItem setAutoFetchData(Boolean autoFetchData) {
+        return (SelectItem)setAttribute("autoFetchData", autoFetchData);
     }
 
     /**
@@ -326,9 +333,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * top-level node and all of it's direct             descendants - otherwise, opens all loaded nodes </li> </ul>
      *
      * @param autoOpenTree New autoOpenTree value. Default value is "none"
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setAutoOpenTree(String autoOpenTree) {
-        setAttribute("autoOpenTree", autoOpenTree);
+    public SelectItem setAutoOpenTree(String autoOpenTree) {
+        return (SelectItem)setAttribute("autoOpenTree", autoOpenTree);
     }
 
     /**
@@ -351,9 +359,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * situations where it is too aggressive.
      *
      * @param cachePickListResults New cachePickListResults value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setCachePickListResults(Boolean cachePickListResults) {
-        setAttribute("cachePickListResults", cachePickListResults);
+    public SelectItem setCachePickListResults(Boolean cachePickListResults) {
+        return (SelectItem)setAttribute("cachePickListResults", cachePickListResults);
     }
 
     /**
@@ -373,9 +382,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * By default SelectItems do not allow users to select the text of the selected value.
      *
      * @param canSelectText New canSelectText value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setCanSelectText(boolean canSelectText) {
-        setAttribute("canSelectText", canSelectText);
+    public SelectItem setCanSelectText(boolean canSelectText) {
+        return (SelectItem)setAttribute("canSelectText", canSelectText);
     }
 
     /**
@@ -390,6 +400,36 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
     
 
     /**
+     * Determines the behavior of the click-mask thrown up when this pickList is visible. <P> The default value, "hard",
+     * matches the familiar behavior of combos and selects on  Windows, Mac and other platforms - mouse-events such as
+     * rollovers are blocked and, when  a click is received, the picker is hidden and the event is cancelled. <P> When
+     * <code>clickMaskMode</code> is "soft", mouse-events continue to fire, meaning that  rollover styles, for example,
+     * continue to be updated.  When a click is received in this mode, the picker is hidden and the click event is allowed to
+     * proceed to its target -  this mesns that clicking an item with an open picker will re-open the picker.
+     *
+     * @param clickMaskMode New clickMaskMode value. Default value is "hard"
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
+     */
+    public SelectItem setClickMaskMode(ClickMaskMode clickMaskMode) {
+        return (SelectItem)setAttribute("clickMaskMode", clickMaskMode == null ? null : clickMaskMode.getValue());
+    }
+
+    /**
+     * Determines the behavior of the click-mask thrown up when this pickList is visible. <P> The default value, "hard",
+     * matches the familiar behavior of combos and selects on  Windows, Mac and other platforms - mouse-events such as
+     * rollovers are blocked and, when  a click is received, the picker is hidden and the event is cancelled. <P> When
+     * <code>clickMaskMode</code> is "soft", mouse-events continue to fire, meaning that  rollover styles, for example,
+     * continue to be updated.  When a click is received in this mode, the picker is hidden and the click event is allowed to
+     * proceed to its target -  this mesns that clicking an item with an open picker will re-open the picker.
+     *
+     * @return Current clickMaskMode value. Default value is "hard"
+     */
+    public ClickMaskMode getClickMaskMode()  {
+        return EnumUtil.getEnum(ClickMaskMode.values(), getAttribute("clickMaskMode"));
+    }
+    
+
+    /**
      * Base CSS class name for a form item's "control box". This is an HTML element which contains the text box and picker icon
      * for the item. <P> See {@link com.smartgwt.client.widgets.form.fields.FormItem#getAlwaysShowControlBox
      * FormItem.alwaysShowControlBox} for details on when the control box is written out. <P> See {@link
@@ -397,12 +437,13 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * com.smartgwt.client.docs.CompoundFormItem_skinning} discussion for special skinning considerations.
      *
      * @param controlStyle New controlStyle value. Default value is "selectItemControl", [IRA]
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setControlStyle(String controlStyle) {
-        setAttribute("controlStyle", controlStyle);
+    public SelectItem setControlStyle(String controlStyle) {
+        return (SelectItem)setAttribute("controlStyle", controlStyle);
     }
 
     /**
@@ -427,9 +468,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * the  pickListConstructor as the picker - "tree" will  show an instance of  pickTreeConstructor.
      *
      * @param dataSetType New dataSetType value. Default value is "list"
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setDataSetType(String dataSetType) {
-        setAttribute("dataSetType", dataSetType);
+    public SelectItem setDataSetType(String dataSetType) {
+        return (SelectItem)setAttribute("dataSetType", dataSetType);
     }
 
     /**
@@ -452,9 +494,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * com.smartgwt.client.widgets.form.fields.SelectItem#defaultDynamicValue defaultDynamicValue()}.
      *
      * @param defaultToFirstOption New defaultToFirstOption value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setDefaultToFirstOption(Boolean defaultToFirstOption) {
-        setAttribute("defaultToFirstOption", defaultToFirstOption);
+    public SelectItem setDefaultToFirstOption(Boolean defaultToFirstOption) {
+        return (SelectItem)setAttribute("defaultToFirstOption", defaultToFirstOption);
     }
 
     /**
@@ -512,22 +555,31 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * com.smartgwt.client.widgets.form.fields.FormItem#getForeignDisplayField FormItem.foreignDisplayField} property  in
      * addition to <code>displayField</code>. This is useful for cases where the display field name in the local dataSource
      * differs from the display field name in the optionDataSource. See the documentation for {@link
-     * com.smartgwt.client.data.DataSourceField#getForeignDisplayField DataSourceField.foreignDisplayField} for more on this.
-     * <P> Note that if <code>optionDataSource</code> is set and no valid display field is specified, {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName FormItem.getDisplayFieldName()} will return the
-     * dataSource title  field by default. <P> If a displayField is specified for a freeform text based item (such as a  {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem}), any user-entered value will be treated as a display value. In
-     * this scenario, items will derive the data value for the item from the first record where the displayField value matches
-     * the user-entered value. To avoid ambiguity, developers may wish to avoid this usage if display values are not unique.
+     * com.smartgwt.client.data.DataSourceField#getForeignDisplayField DataSourceField.foreignDisplayField} for more on
+     * this.<br> If a foreignDisplayField is specified, as with just displayField, if  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue local display values} are being used and
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getStoreDisplayValues FormItem.storeDisplayValues} is true, when
+     * the user  chooses a value the associated display-field value  on the record being edited will be updated. In this case
+     * it would be set to the  foreignDisplayField value from the related record. This means foreignDisplayField  is always
+     * expected to be set to the equivalent field in the related dataSources.<br> Developers looking to display some
+     * <i>other</i> arbitrary field(s) from the related dataSource during editing should consider using custom 
+     * PickList.pickListFields instead of setting a foreignDisplayField.  <P> Note that if <code>optionDataSource</code> is set
+     * and no valid display field is specified, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName
+     * FormItem.getDisplayFieldName()} will return the dataSource title  field by default. <P> If a displayField is specified
+     * for a freeform text based item (such as a  {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem}), any
+     * user-entered value will be treated as a display value. In this scenario, items will derive the data value for the item
+     * from the first record where the displayField value matches the user-entered value. To avoid ambiguity, developers may
+     * wish to avoid this usage if display values are not unique.
      *
      * @param displayField New displayField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName
      * @see com.smartgwt.client.widgets.form.fields.FormItem#invalidateDisplayValueCache
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#selected_value_combobox_category" target="examples">List - Related Records Example</a>
      */
-    public void setDisplayField(String displayField) {
-        setAttribute("displayField", displayField);
+    public SelectItem setDisplayField(String displayField) {
+        return (SelectItem)setAttribute("displayField", displayField);
     }
 
     /**
@@ -558,13 +610,21 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * com.smartgwt.client.widgets.form.fields.FormItem#getForeignDisplayField FormItem.foreignDisplayField} property  in
      * addition to <code>displayField</code>. This is useful for cases where the display field name in the local dataSource
      * differs from the display field name in the optionDataSource. See the documentation for {@link
-     * com.smartgwt.client.data.DataSourceField#getForeignDisplayField DataSourceField.foreignDisplayField} for more on this.
-     * <P> Note that if <code>optionDataSource</code> is set and no valid display field is specified, {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName FormItem.getDisplayFieldName()} will return the
-     * dataSource title  field by default. <P> If a displayField is specified for a freeform text based item (such as a  {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem}), any user-entered value will be treated as a display value. In
-     * this scenario, items will derive the data value for the item from the first record where the displayField value matches
-     * the user-entered value. To avoid ambiguity, developers may wish to avoid this usage if display values are not unique.
+     * com.smartgwt.client.data.DataSourceField#getForeignDisplayField DataSourceField.foreignDisplayField} for more on
+     * this.<br> If a foreignDisplayField is specified, as with just displayField, if  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue local display values} are being used and
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getStoreDisplayValues FormItem.storeDisplayValues} is true, when
+     * the user  chooses a value the associated display-field value  on the record being edited will be updated. In this case
+     * it would be set to the  foreignDisplayField value from the related record. This means foreignDisplayField  is always
+     * expected to be set to the equivalent field in the related dataSources.<br> Developers looking to display some
+     * <i>other</i> arbitrary field(s) from the related dataSource during editing should consider using custom 
+     * PickList.pickListFields instead of setting a foreignDisplayField.  <P> Note that if <code>optionDataSource</code> is set
+     * and no valid display field is specified, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName
+     * FormItem.getDisplayFieldName()} will return the dataSource title  field by default. <P> If a displayField is specified
+     * for a freeform text based item (such as a  {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem}), any
+     * user-entered value will be treated as a display value. In this scenario, items will derive the data value for the item
+     * from the first record where the displayField value matches the user-entered value. To avoid ambiguity, developers may
+     * wish to avoid this usage if display values are not unique.
      *
      * @return Returns the <code>displayField</code> for this item. <P> Behavior varies based on the configuration of this item, as
      * follows: <ul><li>If this item has an {@link com.smartgwt.client.widgets.form.fields.SelectItem#getOptionDataSource
@@ -575,11 +635,11 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * present in the {@link com.smartgwt.client.widgets.form.fields.SelectItem#getOptionDataSource optionDataSource} for  the
      * item, we avoid returning the specified displayField value and instead return the  title field of the option DataSource.
      * We do this to  avoid confusion for the case where the displayField is intended as a display-field  value for showing
-     * another field value within the same record in the underlying  dataSource only.</li> <li>If no explicit foreignDisplay or
-     * displayField   specification was found, and the {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField
-     * FormItem.valueField} for this item is hidden in the   {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource FormItem.optionDataSource}, this method will return
-     * the title field for   the <code>optionDataSource</code>.</li></ul>. Default value is null
+     * another field value within the same record in the underlying  dataSource only.</li> <li>If no explicit
+     * foreignDisplayField or displayField   specification was found, and the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueField FormItem.valueField} for this item is hidden in the  
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource FormItem.optionDataSource}, this method will
+     * return the title field for   the <code>optionDataSource</code>.</li></ul>. Default value is null
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName
      * @see com.smartgwt.client.widgets.form.fields.FormItem#invalidateDisplayValueCache
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
@@ -595,10 +655,11 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "SelectItemEditProxy"
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor) {
-        setAttribute("editProxyConstructor", editProxyConstructor);
+    public SelectItem setEditProxyConstructor(String editProxyConstructor) {
+        return (SelectItem)setAttribute("editProxyConstructor", editProxyConstructor);
     }
 
     /**
@@ -621,10 +682,11 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * <code>emptyCellValue</code> will automatically be set to the <code>emptyDisplayValue</code>.
      *
      * @param emptyDisplayValue New emptyDisplayValue value. Default value is "&amp;nbsp;"
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setEmptyDisplayValue(String emptyDisplayValue) {
-        setAttribute("emptyDisplayValue", emptyDisplayValue);
+    public SelectItem setEmptyDisplayValue(String emptyDisplayValue) {
+        return (SelectItem)setAttribute("emptyDisplayValue", emptyDisplayValue);
     }
 
     /**
@@ -647,9 +709,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param emptyPickListMessage New emptyPickListMessage value. Default value is "No items to show"
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setEmptyPickListMessage(String emptyPickListMessage) {
-        setAttribute("emptyPickListMessage", emptyPickListMessage);
+    public SelectItem setEmptyPickListMessage(String emptyPickListMessage) {
+        return (SelectItem)setAttribute("emptyPickListMessage", emptyPickListMessage);
     }
 
     /**
@@ -668,10 +731,11 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * displayed to the user rather than the interpreted HTML (for example <code>"<b>AAA</b>"</code>)
      *
      * @param escapeHTML New escapeHTML value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setEscapeHTML(Boolean escapeHTML) {
-        setAttribute("escapeHTML", escapeHTML);
+    public SelectItem setEscapeHTML(Boolean escapeHTML) {
+        return (SelectItem)setAttribute("escapeHTML", escapeHTML);
     }
 
     /**
@@ -701,9 +765,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param fetchDisplayedFieldsOnly New fetchDisplayedFieldsOnly value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setFetchDisplayedFieldsOnly(Boolean fetchDisplayedFieldsOnly) {
-        setAttribute("fetchDisplayedFieldsOnly", fetchDisplayedFieldsOnly);
+    public SelectItem setFetchDisplayedFieldsOnly(Boolean fetchDisplayedFieldsOnly) {
+        return (SelectItem)setAttribute("fetchDisplayedFieldsOnly", fetchDisplayedFieldsOnly);
     }
 
     /**
@@ -735,10 +800,11 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param filterLocally New filterLocally value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setFilterLocally
      */
-    public void setFilterLocally(Boolean filterLocally) {
-        setAttribute("filterLocally", filterLocally);
+    public SelectItem setFilterLocally(Boolean filterLocally) {
+        return (SelectItem)setAttribute("filterLocally", filterLocally);
     }
 
     /**
@@ -773,9 +839,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * navigation bar may be easier for the user to interact with.
      *
      * @param iconPlacement New iconPlacement value. Default value is "both"
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setIconPlacement(PickListItemIconPlacement iconPlacement) {
-        setAttribute("iconPlacement", iconPlacement == null ? null : iconPlacement.getValue());
+    public SelectItem setIconPlacement(PickListItemIconPlacement iconPlacement) {
+        return (SelectItem)setAttribute("iconPlacement", iconPlacement == null ? null : iconPlacement.getValue());
     }
 
     /**
@@ -799,9 +866,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * this pickList. If specified, this will be used instead of any   PickList.sortField specified.
      *
      * @param initialSort New initialSort value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setInitialSort(SortSpecifier... initialSort) {
-        setAttribute("initialSort", initialSort);
+    public SelectItem setInitialSort(SortSpecifier... initialSort) {
+        return (SelectItem)setAttribute("initialSort", initialSort);
     }
 
     /**
@@ -830,10 +898,11 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * com.smartgwt.client.data.List#getValueMap dsResponse.data.getValueMap()} to obtain a valueMap.
      *
      * @param multiple New multiple value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setMultiple(Boolean multiple) {
-        setAttribute("multiple", multiple);
+    public SelectItem setMultiple(Boolean multiple) {
+        return (SelectItem)setAttribute("multiple", multiple);
     }
 
     /**
@@ -864,9 +933,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * displayed?
      *
      * @param multipleAppearance New multipleAppearance value. Default value is "picklist"
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setMultipleAppearance(MultipleAppearance multipleAppearance) {
-        setAttribute("multipleAppearance", multipleAppearance == null ? null : multipleAppearance.getValue());
+    public SelectItem setMultipleAppearance(MultipleAppearance multipleAppearance) {
+        return (SelectItem)setAttribute("multipleAppearance", multipleAppearance == null ? null : multipleAppearance.getValue());
     }
 
     /**
@@ -886,9 +956,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * certain that  all users of your applications will expect the Mac convention.
      *
      * @param openOnDownArrow New openOnDownArrow value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setOpenOnDownArrow(Boolean openOnDownArrow) {
-        setAttribute("openOnDownArrow", openOnDownArrow);
+    public SelectItem setOpenOnDownArrow(Boolean openOnDownArrow) {
+        return (SelectItem)setAttribute("openOnDownArrow", openOnDownArrow);
     }
 
     /**
@@ -911,9 +982,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * will not be able to be used for another purpose when focus is in a SelectItem.
      *
      * @param openOnSpace New openOnSpace value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setOpenOnSpace(Boolean openOnSpace) {
-        setAttribute("openOnSpace", openOnSpace);
+    public SelectItem setOpenOnSpace(Boolean openOnSpace) {
+        return (SelectItem)setAttribute("openOnSpace", openOnSpace);
     }
 
     /**
@@ -938,9 +1010,11 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * dataSource to pick up display value mapping.
      *
      * @param optionOperationId New optionOperationId value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
-    public void setOptionOperationId(String optionOperationId) {
-        setAttribute("optionOperationId", optionOperationId);
+    public SelectItem setOptionOperationId(String optionOperationId) {
+        return (SelectItem)setAttribute("optionOperationId", optionOperationId);
     }
 
     /**
@@ -949,6 +1023,7 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * dataSource to pick up display value mapping.
      *
      * @return Current optionOperationId value. Default value is null
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public String getOptionOperationId()  {
         return getAttributeAsString("optionOperationId");
@@ -981,10 +1056,11 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * The title for the {@link com.smartgwt.client.widgets.form.fields.SelectItem#getPickerClearButton pickerClearButton}.
      *
      * @param pickerClearButtonTitle New pickerClearButtonTitle value. Default value is "Clear"
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setPickerClearButtonTitle(String pickerClearButtonTitle) {
-        setAttribute("pickerClearButtonTitle", pickerClearButtonTitle);
+    public SelectItem setPickerClearButtonTitle(String pickerClearButtonTitle) {
+        return (SelectItem)setAttribute("pickerClearButtonTitle", pickerClearButtonTitle);
     }
 
     /**
@@ -1019,10 +1095,11 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * The title for the {@link com.smartgwt.client.widgets.form.fields.SelectItem#getPickerExitButton pickerExitButton}.
      *
      * @param pickerExitButtonTitle New pickerExitButtonTitle value. Default value is "Done"
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setPickerExitButtonTitle(String pickerExitButtonTitle) {
-        setAttribute("pickerExitButtonTitle", pickerExitButtonTitle);
+    public SelectItem setPickerExitButtonTitle(String pickerExitButtonTitle) {
+        return (SelectItem)setAttribute("pickerExitButtonTitle", pickerExitButtonTitle);
     }
 
     /**
@@ -1047,9 +1124,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param pickerIconHeight New pickerIconHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setPickerIconHeight(Integer pickerIconHeight) {
-        setAttribute("pickerIconHeight", pickerIconHeight);
+    public SelectItem setPickerIconHeight(Integer pickerIconHeight) {
+        return (SelectItem)setAttribute("pickerIconHeight", pickerIconHeight);
     }
 
     /**
@@ -1077,10 +1155,11 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param pickerIconSrc New pickerIconSrc value. Default value is "[SKIN]/DynamicForm/SelectItem_PickButton_icon.gif"
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setPickerIconSrc(String pickerIconSrc) {
-        setAttribute("pickerIconSrc", pickerIconSrc);
+    public SelectItem setPickerIconSrc(String pickerIconSrc) {
+        return (SelectItem)setAttribute("pickerIconSrc", pickerIconSrc);
     }
 
     /**
@@ -1103,12 +1182,13 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * com.smartgwt.client.widgets.form.fields.SelectItem#getControlStyle controlStyle}.
      *
      * @param pickerIconStyle New pickerIconStyle value. Default value is "selectItemPickerIcon"
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
      * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
-    public void setPickerIconStyle(String pickerIconStyle) {
-        setAttribute("pickerIconStyle", pickerIconStyle);
+    public SelectItem setPickerIconStyle(String pickerIconStyle) {
+        return (SelectItem)setAttribute("pickerIconStyle", pickerIconStyle);
     }
 
     /**
@@ -1136,9 +1216,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param pickerIconWidth New pickerIconWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setPickerIconWidth(Integer pickerIconWidth) {
-        setAttribute("pickerIconWidth", pickerIconWidth);
+    public SelectItem setPickerIconWidth(Integer pickerIconWidth) {
+        return (SelectItem)setAttribute("pickerIconWidth", pickerIconWidth);
     }
 
     /**
@@ -1177,10 +1258,12 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * {@link com.smartgwt.client.widgets.form.PickListMenu PickListMenu}.
      *
      * @param pickListConstructor New pickListConstructor value. Default value is "PickListMenu"
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     * @see com.smartgwt.client.docs.PickList PickList overview and related methods
      */
-    public void setPickListConstructor(String pickListConstructor) {
-        setAttribute("pickListConstructor", pickListConstructor);
+    public SelectItem setPickListConstructor(String pickListConstructor) {
+        return (SelectItem)setAttribute("pickListConstructor", pickListConstructor);
     }
 
     /**
@@ -1189,6 +1272,7 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      *
      * @return Current pickListConstructor value. Default value is "PickListMenu"
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     * @see com.smartgwt.client.docs.PickList PickList overview and related methods
      */
     public String getPickListConstructor()  {
         return getAttributeAsString("pickListConstructor");
@@ -1201,12 +1285,14 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param pickListCriteria New pickListCriteria value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.PickList PickList overview and related methods
      */
-    public void setPickListCriteria(Criteria pickListCriteria) {
+    public SelectItem setPickListCriteria(Criteria pickListCriteria) {
         if (pickListCriteria instanceof Criterion) {
             pickListCriteria.setAttribute("_constructor", "AdvancedCriteria");
         }
-        setAttribute("pickListCriteria", pickListCriteria == null ? null : pickListCriteria.getJsObj());
+        return (SelectItem)setAttribute("pickListCriteria", pickListCriteria == null ? null : pickListCriteria.getJsObj());
     }
 
     /**
@@ -1214,6 +1300,7 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * provide static filter criteria when retrieving the data for the pickList.
      *
      * @return Current pickListCriteria value. Default value is null
+     * @see com.smartgwt.client.docs.PickList PickList overview and related methods
      */
     public Criteria getPickListCriteria()  {
         return new Criteria(getAttributeAsJavaScriptObject("pickListCriteria"));
@@ -1234,11 +1321,13 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param pickListFields New pickListFields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.SelectItem#setValueField
+     * @see com.smartgwt.client.docs.PickList PickList overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#selected_value_combobox_category" target="examples">List - Related Records Example</a>
      */
-    public void setPickListFields(ListGridField... pickListFields) {
-        setAttribute("pickListFields", pickListFields);
+    public SelectItem setPickListFields(ListGridField... pickListFields) {
+        return (SelectItem)setAttribute("pickListFields", pickListFields);
     }
 
     /**
@@ -1255,6 +1344,7 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      *
      * @return Current pickListFields value. Default value is null
      * @see com.smartgwt.client.widgets.form.fields.SelectItem#getValueField
+     * @see com.smartgwt.client.docs.PickList PickList overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#selected_value_combobox_category" target="examples">List - Related Records Example</a>
      */
     public ListGridField[] getPickListFields()  {
@@ -1274,9 +1364,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * com.smartgwt.client.widgets.form.fields.SelectItem#getPickerExitButton done button} that hides the expanded interface.
      *
      * @param pickListPlacement New pickListPlacement value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setPickListPlacement(PanelPlacement pickListPlacement) {
-        setAttribute("pickListPlacement", pickListPlacement == null ? null : pickListPlacement.getValue());
+    public SelectItem setPickListPlacement(PanelPlacement pickListPlacement) {
+        return (SelectItem)setAttribute("pickListPlacement", pickListPlacement == null ? null : pickListPlacement.getValue());
     }
 
     /**
@@ -1308,9 +1399,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * com.smartgwt.client.widgets.form.fields.SelectItem#getPickerExitButton done button} that hides the expanded interface.
      *
      * @param pickListPlacement New pickListPlacement value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setPickListPlacement(Canvas pickListPlacement) {
-        setAttribute("pickListPlacement", pickListPlacement == null ? null : pickListPlacement.getOrCreateJsObj());
+    public SelectItem setPickListPlacement(Canvas pickListPlacement) {
+        return (SelectItem)setAttribute("pickListPlacement", pickListPlacement == null ? null : pickListPlacement.getOrCreateJsObj());
     }
 
     /**
@@ -1342,9 +1434,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * com.smartgwt.client.widgets.form.fields.SelectItem#getPickerExitButton done button} that hides the expanded interface.
      *
      * @param pickListPlacement New pickListPlacement value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setPickListPlacement(String pickListPlacement) {
-        setAttribute("pickListPlacement", pickListPlacement);
+    public SelectItem setPickListPlacement(String pickListPlacement) {
+        return (SelectItem)setAttribute("pickListPlacement", pickListPlacement);
     }
 
     /**
@@ -1371,10 +1464,11 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * PickTreeMenu.
      *
      * @param pickTreeConstructor New pickTreeConstructor value. Default value is "PickTreeMenu"
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setPickTreeConstructor(String pickTreeConstructor) {
-        setAttribute("pickTreeConstructor", pickTreeConstructor);
+    public SelectItem setPickTreeConstructor(String pickTreeConstructor) {
+        return (SelectItem)setAttribute("pickTreeConstructor", pickTreeConstructor);
     }
 
     /**
@@ -1395,11 +1489,12 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * PickList.
      *
      * @param progressiveLoading New progressiveLoading value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see com.smartgwt.client.data.DataSource#setProgressiveLoading
      * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
      */
-    public void setProgressiveLoading(Boolean progressiveLoading) {
-        setAttribute("progressiveLoading", progressiveLoading);
+    public SelectItem setProgressiveLoading(Boolean progressiveLoading) {
+        return (SelectItem)setAttribute("progressiveLoading", progressiveLoading);
     }
 
     /**
@@ -1422,9 +1517,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * com.smartgwt.client.widgets.tree.Tree#getRootValue root} node.
      *
      * @param rootNodeId New rootNodeId value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setRootNodeId(String rootNodeId) {
-        setAttribute("rootNodeId", rootNodeId);
+    public SelectItem setRootNodeId(String rootNodeId) {
+        return (SelectItem)setAttribute("rootNodeId", rootNodeId);
     }
 
     /**
@@ -1444,9 +1540,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * com.smartgwt.client.widgets.tree.Tree#getRootValue root} node.
      *
      * @param rootNodeId New rootNodeId value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setRootNodeId(Integer rootNodeId) {
-        setAttribute("rootNodeId", rootNodeId);
+    public SelectItem setRootNodeId(Integer rootNodeId) {
+        return (SelectItem)setAttribute("rootNodeId", rootNodeId);
     }
 
     /**
@@ -1469,9 +1566,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * form submission.
      *
      * @param saveOnEnter New saveOnEnter value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setSaveOnEnter(Boolean saveOnEnter) {
-        setAttribute("saveOnEnter", saveOnEnter);
+    public SelectItem setSaveOnEnter(Boolean saveOnEnter) {
+        return (SelectItem)setAttribute("saveOnEnter", saveOnEnter);
     }
 
     /**
@@ -1497,9 +1595,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * separateValues are shown in the normal drop-down list along with other values.
      *
      * @param separateSpecialValues New separateSpecialValues value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setSeparateSpecialValues(Boolean separateSpecialValues) {
-        setAttribute("separateSpecialValues", separateSpecialValues);
+    public SelectItem setSeparateSpecialValues(Boolean separateSpecialValues) {
+        return (SelectItem)setAttribute("separateSpecialValues", separateSpecialValues);
     }
 
     /**
@@ -1535,11 +1634,12 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showFocused New showFocused value. Default value is true, [IRWA]
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
-    public void setShowFocused(Boolean showFocused) {
-        setAttribute("showFocused", showFocused);
+    public SelectItem setShowFocused(Boolean showFocused) {
+        return (SelectItem)setAttribute("showFocused", showFocused);
     }
 
     /**
@@ -1561,11 +1661,12 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showHintInField New showHintInField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setHint
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowHintInField(Boolean showHintInField) {
-        setAttribute("showHintInField", showHintInField);
+    public SelectItem setShowHintInField(Boolean showHintInField) {
+        return (SelectItem)setAttribute("showHintInField", showHintInField);
     }
 
     /**
@@ -1588,10 +1689,11 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showOptionsFromDataSource New showOptionsFromDataSource value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
-    public void setShowOptionsFromDataSource(Boolean showOptionsFromDataSource) {
-        setAttribute("showOptionsFromDataSource", showOptionsFromDataSource);
+    public SelectItem setShowOptionsFromDataSource(Boolean showOptionsFromDataSource) {
+        return (SelectItem)setAttribute("showOptionsFromDataSource", showOptionsFromDataSource);
     }
 
     /**
@@ -1617,10 +1719,11 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showOver New showOver value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
-    public void setShowOver(boolean showOver) {
-        setAttribute("showOver", showOver);
+    public SelectItem setShowOver(boolean showOver) {
+        return (SelectItem)setAttribute("showOver", showOver);
     }
 
     /**
@@ -1648,9 +1751,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * will call {@link com.smartgwt.client.widgets.form.fields.FormItem#showPicker FormItem.showPicker()}.
      *
      * @param showPickerIcon New showPickerIcon value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setShowPickerIcon(Boolean showPickerIcon) {
-        setAttribute("showPickerIcon", showPickerIcon);
+    public SelectItem setShowPickerIcon(Boolean showPickerIcon) {
+        return (SelectItem)setAttribute("showPickerIcon", showPickerIcon);
     }
 
     /**
@@ -1669,6 +1773,31 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
     
 
     /**
+     * When this item is showing a  tree-based picker, the default behavior is for folder open-state to be toggled by
+     * double-clicking. Set this  attribute to true to toggle folders on a single-click instead. <P> Note: when set to true,
+     * users can only choose leaf-nodes, since clicking folders would simply toggle them.
+     *
+     * @param singleClickFolderToggle New singleClickFolderToggle value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
+     */
+    public SelectItem setSingleClickFolderToggle(boolean singleClickFolderToggle) {
+        return (SelectItem)setAttribute("singleClickFolderToggle", singleClickFolderToggle);
+    }
+
+    /**
+     * When this item is showing a  tree-based picker, the default behavior is for folder open-state to be toggled by
+     * double-clicking. Set this  attribute to true to toggle folders on a single-click instead. <P> Note: when set to true,
+     * users can only choose leaf-nodes, since clicking folders would simply toggle them.
+     *
+     * @return Current singleClickFolderToggle value. Default value is false
+     */
+    public boolean getSingleClickFolderToggle()  {
+        Boolean result = getAttributeAsBoolean("singleClickFolderToggle", true);
+        return result == null ? false : result;
+    }
+    
+
+    /**
      * Specifies one or more fields by which this item should be initially sorted.  It can be  a {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getName field name}, or an array of field names - but note that, if
      * multiple fields are supplied, then each will be sorted in the same  {@link
@@ -1678,10 +1807,11 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * initialization.
      *
      * @param sortField New sortField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_sort_sort" target="examples">Sort Example</a>
      */
-    public void setSortField(String sortField) {
-        setAttribute("sortField", sortField);
+    public SelectItem setSortField(String sortField) {
+        return (SelectItem)setAttribute("sortField", sortField);
     }
 
     /**
@@ -1710,10 +1840,11 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * initialization.
      *
      * @param sortField New sortField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_sort_sort" target="examples">Sort Example</a>
      */
-    public void setSortField(String... sortField) {
-        setAttribute("sortField", sortField);
+    public SelectItem setSortField(String... sortField) {
+        return (SelectItem)setAttribute("sortField", sortField);
     }
 
     /**
@@ -1742,10 +1873,11 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * initialization.
      *
      * @param sortField New sortField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_sort_sort" target="examples">Sort Example</a>
      */
-    public void setSortField(Integer sortField) {
-        setAttribute("sortField", sortField);
+    public SelectItem setSortField(Integer sortField) {
+        return (SelectItem)setAttribute("sortField", sortField);
     }
 
     /**
@@ -1796,9 +1928,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * others.
      *
      * @param specialValues New specialValues value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setSpecialValues(Map specialValues) {
-        setAttribute("specialValues", specialValues);
+    public SelectItem setSpecialValues(Map specialValues) {
+        return (SelectItem)setAttribute("specialValues", specialValues);
     }
 
     /**
@@ -1846,12 +1979,13 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * this item.
      *
      * @param textBoxStyle New textBoxStyle value. Default value is "selectItemText", [IRA]
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setTextBoxStyle(String textBoxStyle) {
-        setAttribute("textBoxStyle", textBoxStyle);
+    public SelectItem setTextBoxStyle(String textBoxStyle) {
+        return (SelectItem)setAttribute("textBoxStyle", textBoxStyle);
     }
 
     /**
@@ -1879,9 +2013,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * filterClientPickListData().
      *
      * @param textMatchStyle New textMatchStyle value. Default value is "startsWith"
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setTextMatchStyle(TextMatchStyle textMatchStyle) {
-        setAttribute("textMatchStyle", textMatchStyle == null ? null : textMatchStyle.getValue());
+    public SelectItem setTextMatchStyle(TextMatchStyle textMatchStyle) {
+        return (SelectItem)setAttribute("textMatchStyle", textMatchStyle == null ? null : textMatchStyle.getValue());
     }
 
     /**
@@ -1904,11 +2039,12 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param updateControlOnOver New updateControlOnOver value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.SelectItem#setShowOver
      * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
-    public void setUpdateControlOnOver(Boolean updateControlOnOver) {
-        setAttribute("updateControlOnOver", updateControlOnOver);
+    public SelectItem setUpdateControlOnOver(Boolean updateControlOnOver) {
+        return (SelectItem)setAttribute("updateControlOnOver", updateControlOnOver);
     }
 
     /**
@@ -1931,11 +2067,12 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param updateTextBoxOnOver New updateTextBoxOnOver value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.SelectItem#setShowOver
      * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
-    public void setUpdateTextBoxOnOver(Boolean updateTextBoxOnOver) {
-        setAttribute("updateTextBoxOnOver", updateTextBoxOnOver);
+    public SelectItem setUpdateTextBoxOnOver(Boolean updateTextBoxOnOver) {
+        return (SelectItem)setAttribute("updateTextBoxOnOver", updateTextBoxOnOver);
     }
 
     /**
@@ -1960,9 +2097,10 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param useClientFiltering New useClientFiltering value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      */
-    public void setUseClientFiltering(Boolean useClientFiltering) {
-        setAttribute("useClientFiltering", useClientFiltering);
+    public SelectItem setUseClientFiltering(Boolean useClientFiltering) {
+        return (SelectItem)setAttribute("useClientFiltering", useClientFiltering);
     }
 
     /**
@@ -1987,11 +2125,12 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * com.smartgwt.client.widgets.form.fields.FormItem#getValueFieldName FormItem.getValueFieldName()}.
      *
      * @param valueField New valueField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#selected_value_combobox_category" target="examples">List - Related Records Example</a>
      */
-    public void setValueField(String valueField) {
-        setAttribute("valueField", valueField);
+    public SelectItem setValueField(String valueField) {
+        return (SelectItem)setAttribute("valueField", valueField);
     }
 
     /**
@@ -2075,11 +2214,11 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * present in the {@link com.smartgwt.client.widgets.form.fields.SelectItem#getOptionDataSource optionDataSource} for  the
      * item, we avoid returning the specified displayField value and instead return the  title field of the option DataSource.
      * We do this to  avoid confusion for the case where the displayField is intended as a display-field  value for showing
-     * another field value within the same record in the underlying  dataSource only.</li> <li>If no explicit foreignDisplay or
-     * displayField   specification was found, and the {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField
-     * FormItem.valueField} for this item is hidden in the   {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource FormItem.optionDataSource}, this method will return
-     * the title field for   the <code>optionDataSource</code>.</li></ul>
+     * another field value within the same record in the underlying  dataSource only.</li> <li>If no explicit
+     * foreignDisplayField or displayField   specification was found, and the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueField FormItem.valueField} for this item is hidden in the  
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource FormItem.optionDataSource}, this method will
+     * return the title field for   the <code>optionDataSource</code>.</li></ul>
      *
      * @return display field name, or null if there is no separate display field to                     use.
      * See {@link com.smartgwt.client.docs.FieldName FieldName}
@@ -2352,6 +2491,30 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
     }
 
     /**
+     * Maximum width for this item's pickList. By default if the values displayed in this pickList are wider 
+     * than the specified {@link com.smartgwt.client.widgets.form.fields.SelectItemItem#setPickListWidth setPickListWidth} 
+     * the pickList will render wide enough to accomodate them. This property 
+     * allows the developer to limit how wide the pickList will render.
+     *
+     * @param pickListMaxWidth pickListMaxWidth Default value is 400
+     */
+    public void setPickListMaxWidth(Integer pickListMaxWidth) {
+        setAttribute("pickListMaxWidth", pickListMaxWidth);
+    }
+
+    /**
+     * Maximum width for this item's pickList. By default if the values displayed in this pickList are wider 
+     * than the specified {@link com.smartgwt.client.widgets.form.fields.SelectItem#setPickListWidth setPickListWidth} 
+     * the pickList will render wide enough to accomodate them. This property 
+     * allows the developer to limit how wide the pickList will render.
+     *
+     * @return Integer
+     */
+    public Integer getPickListMaxWidth() {
+        return getAttributeAsInt("pickListMaxWidth");
+    }
+
+    /**
      * Base Style for pickList cells.  As with ListGrid Cells, will have 'over', 'selected' and 'disabled' appended on
      * changes of state for the cells.
      *
@@ -2484,9 +2647,11 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * optionDataSource}.
      *
      * @param showAllOptions showAllOptions Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance,
+     * for chaining setter calls
      */
-    public void setShowAllOptions(Boolean showAllOptions) {
-        setAttribute("showAllOptions", showAllOptions);
+    public SelectItem setShowAllOptions(Boolean showAllOptions) {
+        return (SelectItem)setAttribute("showAllOptions", showAllOptions);
     }
 
     /**
@@ -2539,17 +2704,19 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      * : </b> This is an advanced setting</p>
      *
      * @param optionDataSource optionDataSource Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectItem SelectItem} instance,
+     * for chaining setter calls
      */
-    public void setOptionDataSource(DataSource dataSource) {
-        setAttribute("optionDataSource", dataSource);
+    public SelectItem setOptionDataSource(DataSource dataSource) {
+        return (SelectItem)setAttribute("optionDataSource", dataSource);
     }
 
     public DataSource getOptionDataSource() {
         return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("optionDataSource"));
     }
 
-    public void setSeparatorRows(ListGridRecord[] separatorRows) {
-        setAttribute("separatorRows", separatorRows);
+    public SelectItem setSeparatorRows(ListGridRecord[] separatorRows) {
+        return (SelectItem)setAttribute("separatorRows", separatorRows);
     }
 
     /**

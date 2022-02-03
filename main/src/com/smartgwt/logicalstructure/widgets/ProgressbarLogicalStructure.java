@@ -5,8 +5,10 @@ import com.smartgwt.client.i18n.*;
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.fields.*;
 import com.smartgwt.client.tools.*;
 import com.smartgwt.client.widgets.*;
@@ -44,9 +46,12 @@ import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
 
 public class ProgressbarLogicalStructure extends StretchImgLogicalStructure {
+    public String baseStyle;
     public String breadth;
     public String editProxyConstructor;
     public String percentDone;
+    public String progressStyle;
     public String src;
+    public String useCssStyles;
     public String vertical;
 }

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Checkbox form item, implemented with customizable checkbox images.
@@ -165,9 +168,10 @@ public class CheckboxItem extends FormItem {
      * allow the user to toggle between three values -  <code>true</code>, <code>false</code> and unset.
      *
      * @param allowEmptyValue New allowEmptyValue value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      */
-    public void setAllowEmptyValue(Boolean allowEmptyValue) {
-        setAttribute("allowEmptyValue", allowEmptyValue);
+    public CheckboxItem setAllowEmptyValue(Boolean allowEmptyValue) {
+        return (CheckboxItem)setAttribute("allowEmptyValue", allowEmptyValue);
     }
 
     /**
@@ -189,12 +193,13 @@ public class CheckboxItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param booleanBaseStyle New booleanBaseStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#setPrintBooleanBaseStyle
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * 
      */
-    public void setBooleanBaseStyle(String booleanBaseStyle) {
-        setAttribute("booleanBaseStyle", booleanBaseStyle);
+    public CheckboxItem setBooleanBaseStyle(String booleanBaseStyle) {
+        return (CheckboxItem)setAttribute("booleanBaseStyle", booleanBaseStyle);
     }
 
     /**
@@ -218,10 +223,11 @@ public class CheckboxItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param checkedDescription New checkedDescription value. Default value is "checked"
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setCheckedDescription(String checkedDescription) {
-        setAttribute("checkedDescription", checkedDescription);
+    public CheckboxItem setCheckedDescription(String checkedDescription) {
+        return (CheckboxItem)setAttribute("checkedDescription", checkedDescription);
     }
 
     /**
@@ -250,12 +256,13 @@ public class CheckboxItem extends FormItem {
      * booleanBaseStyle} property to provide a "checked" appearance.
      *
      * @param checkedImage New checkedImage value. Default value is "[SKIN]/DynamicForm/checked.gif"
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#setPrintCheckedImage
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setCheckedImage(String checkedImage) {
-        setAttribute("checkedImage", checkedImage);
+    public CheckboxItem setCheckedImage(String checkedImage) {
+        return (CheckboxItem)setAttribute("checkedImage", checkedImage);
     }
 
     /**
@@ -286,10 +293,11 @@ public class CheckboxItem extends FormItem {
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "CheckboxItemEditProxy"
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor) {
-        setAttribute("editProxyConstructor", editProxyConstructor);
+    public CheckboxItem setEditProxyConstructor(String editProxyConstructor) {
+        return (CheckboxItem)setAttribute("editProxyConstructor", editProxyConstructor);
     }
 
     /**
@@ -315,9 +323,10 @@ public class CheckboxItem extends FormItem {
      * altogether.
      *
      * @param labelAsTitle New labelAsTitle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      */
-    public void setLabelAsTitle(Boolean labelAsTitle) {
-        setAttribute("labelAsTitle", labelAsTitle);
+    public CheckboxItem setLabelAsTitle(Boolean labelAsTitle) {
+        return (CheckboxItem)setAttribute("labelAsTitle", labelAsTitle);
     }
 
     /**
@@ -343,10 +352,11 @@ public class CheckboxItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param partialSelectedDescription New partialSelectedDescription value. Default value is "partially selected"
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setPartialSelectedDescription(String partialSelectedDescription) {
-        setAttribute("partialSelectedDescription", partialSelectedDescription);
+    public CheckboxItem setPartialSelectedDescription(String partialSelectedDescription) {
+        return (CheckboxItem)setAttribute("partialSelectedDescription", partialSelectedDescription);
     }
 
     /**
@@ -370,12 +380,13 @@ public class CheckboxItem extends FormItem {
      * "partially checked" appearance.
      *
      * @param partialSelectedImage New partialSelectedImage value. Default value is "[SKIN]/DynamicForm/partialcheck.gif"
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#setPrintPartialSelectedImage
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setPartialSelectedImage(String partialSelectedImage) {
-        setAttribute("partialSelectedImage", partialSelectedImage);
+    public CheckboxItem setPartialSelectedImage(String partialSelectedImage) {
+        return (CheckboxItem)setAttribute("partialSelectedImage", partialSelectedImage);
     }
 
     /**
@@ -402,12 +413,13 @@ public class CheckboxItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param printBooleanBaseStyle New printBooleanBaseStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#setBooleanBaseStyle
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
-    public void setPrintBooleanBaseStyle(String printBooleanBaseStyle) {
-        setAttribute("printBooleanBaseStyle", printBooleanBaseStyle);
+    public CheckboxItem setPrintBooleanBaseStyle(String printBooleanBaseStyle) {
+        return (CheckboxItem)setAttribute("printBooleanBaseStyle", printBooleanBaseStyle);
     }
 
     /**
@@ -429,12 +441,13 @@ public class CheckboxItem extends FormItem {
      * com.smartgwt.client.docs.Printing printing}.
      *
      * @param printCheckedImage New printCheckedImage value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#setCheckedImage
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
-    public void setPrintCheckedImage(String printCheckedImage) {
-        setAttribute("printCheckedImage", printCheckedImage);
+    public CheckboxItem setPrintCheckedImage(String printCheckedImage) {
+        return (CheckboxItem)setAttribute("printCheckedImage", printCheckedImage);
     }
 
     /**
@@ -456,12 +469,13 @@ public class CheckboxItem extends FormItem {
      * use when {@link com.smartgwt.client.docs.Printing printing}.
      *
      * @param printPartialSelectedImage New printPartialSelectedImage value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#setPartialSelectedImage
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
-    public void setPrintPartialSelectedImage(String printPartialSelectedImage) {
-        setAttribute("printPartialSelectedImage", printPartialSelectedImage);
+    public CheckboxItem setPrintPartialSelectedImage(String printPartialSelectedImage) {
+        return (CheckboxItem)setAttribute("printPartialSelectedImage", printPartialSelectedImage);
     }
 
     /**
@@ -483,12 +497,13 @@ public class CheckboxItem extends FormItem {
      * {@link com.smartgwt.client.docs.Printing printing}.
      *
      * @param printUncheckedImage New printUncheckedImage value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#setUncheckedImage
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
-    public void setPrintUncheckedImage(String printUncheckedImage) {
-        setAttribute("printUncheckedImage", printUncheckedImage);
+    public CheckboxItem setPrintUncheckedImage(String printUncheckedImage) {
+        return (CheckboxItem)setAttribute("printUncheckedImage", printUncheckedImage);
     }
 
     /**
@@ -510,12 +525,13 @@ public class CheckboxItem extends FormItem {
      * com.smartgwt.client.docs.Printing printing}.
      *
      * @param printUnsetImage New printUnsetImage value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#setUnsetImage
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
-    public void setPrintUnsetImage(String printUnsetImage) {
-        setAttribute("printUnsetImage", printUnsetImage);
+    public CheckboxItem setPrintUnsetImage(String printUnsetImage) {
+        return (CheckboxItem)setAttribute("printUnsetImage", printUnsetImage);
     }
 
     /**
@@ -536,9 +552,10 @@ public class CheckboxItem extends FormItem {
      * Should we show the label text next to the checkbox item.
      *
      * @param showLabel New showLabel value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      */
-    public void setShowLabel(Boolean showLabel) {
-        setAttribute("showLabel", showLabel);
+    public CheckboxItem setShowLabel(Boolean showLabel) {
+        return (CheckboxItem)setAttribute("showLabel", showLabel);
     }
 
     /**
@@ -553,13 +570,35 @@ public class CheckboxItem extends FormItem {
     
 
     /**
+     * Should a null value be shown as checked (i.e. true)?
+     *
+     * @param showNullAsTrue New showNullAsTrue value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
+     */
+    public CheckboxItem setShowNullAsTrue(Boolean showNullAsTrue) {
+        return (CheckboxItem)setAttribute("showNullAsTrue", showNullAsTrue);
+    }
+
+    /**
+     * Should a null value be shown as checked (i.e. true)?
+     *
+     * @return Current showNullAsTrue value. Default value is false
+     */
+    public Boolean getShowNullAsTrue()  {
+        Boolean result = getAttributeAsBoolean("showNullAsTrue", true);
+        return result == null ? false : result;
+    }
+    
+
+    /**
      * CheckboxItem has special behavior for titles, see {@link
      * com.smartgwt.client.widgets.form.fields.CheckboxItem#getLabelAsTitle labelAsTitle}.
      *
      * @param showTitle New showTitle value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle);
+    public CheckboxItem setShowTitle(Boolean showTitle) {
+        return (CheckboxItem)setAttribute("showTitle", showTitle);
     }
 
     /**
@@ -580,9 +619,10 @@ public class CheckboxItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showValueIconDisabled New showValueIconDisabled value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      */
-    public void setShowValueIconDisabled(Boolean showValueIconDisabled) {
-        setAttribute("showValueIconDisabled", showValueIconDisabled);
+    public CheckboxItem setShowValueIconDisabled(Boolean showValueIconDisabled) {
+        return (CheckboxItem)setAttribute("showValueIconDisabled", showValueIconDisabled);
     }
 
     /**
@@ -601,9 +641,10 @@ public class CheckboxItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showValueIconDown New showValueIconDown value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      */
-    public void setShowValueIconDown(Boolean showValueIconDown) {
-        setAttribute("showValueIconDown", showValueIconDown);
+    public CheckboxItem setShowValueIconDown(Boolean showValueIconDown) {
+        return (CheckboxItem)setAttribute("showValueIconDown", showValueIconDown);
     }
 
     /**
@@ -622,9 +663,10 @@ public class CheckboxItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showValueIconOver New showValueIconOver value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      */
-    public void setShowValueIconOver(Boolean showValueIconOver) {
-        setAttribute("showValueIconOver", showValueIconOver);
+    public CheckboxItem setShowValueIconOver(Boolean showValueIconOver) {
+        return (CheckboxItem)setAttribute("showValueIconOver", showValueIconOver);
     }
 
     /**
@@ -647,9 +689,10 @@ public class CheckboxItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param sizeToCheckboxImage New sizeToCheckboxImage value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      */
-    public void setSizeToCheckboxImage(boolean sizeToCheckboxImage) {
-        setAttribute("sizeToCheckboxImage", sizeToCheckboxImage);
+    public CheckboxItem setSizeToCheckboxImage(boolean sizeToCheckboxImage) {
+        return (CheckboxItem)setAttribute("sizeToCheckboxImage", sizeToCheckboxImage);
     }
 
     /**
@@ -671,11 +714,12 @@ public class CheckboxItem extends FormItem {
      * Base CSS class for this item's title text
      *
      * @param textBoxStyle New textBoxStyle value. Default value is "labelAnchor"
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setTextBoxStyle(String textBoxStyle) {
-        setAttribute("textBoxStyle", textBoxStyle);
+    public CheckboxItem setTextBoxStyle(String textBoxStyle) {
+        return (CheckboxItem)setAttribute("textBoxStyle", textBoxStyle);
     }
 
     /**
@@ -697,11 +741,12 @@ public class CheckboxItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.CheckboxItem#getTextBoxStyle textBoxStyle} instead.
      *
      * @param titleStyle New titleStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setTitleStyle(String titleStyle) {
-        setAttribute("titleStyle", titleStyle);
+    public CheckboxItem setTitleStyle(String titleStyle) {
+        return (CheckboxItem)setAttribute("titleStyle", titleStyle);
     }
 
     /**
@@ -725,10 +770,11 @@ public class CheckboxItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param uncheckedDescription New uncheckedDescription value. Default value is "unchecked"
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setUncheckedDescription(String uncheckedDescription) {
-        setAttribute("uncheckedDescription", uncheckedDescription);
+    public CheckboxItem setUncheckedDescription(String uncheckedDescription) {
+        return (CheckboxItem)setAttribute("uncheckedDescription", uncheckedDescription);
     }
 
     /**
@@ -752,12 +798,13 @@ public class CheckboxItem extends FormItem {
      * "unchecked" appearance.
      *
      * @param uncheckedImage New uncheckedImage value. Default value is "[SKIN]/DynamicForm/unchecked.gif"
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.CheckboxItem#setPrintUncheckedImage
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setUncheckedImage(String uncheckedImage) {
-        setAttribute("uncheckedImage", uncheckedImage);
+    public CheckboxItem setUncheckedImage(String uncheckedImage) {
+        return (CheckboxItem)setAttribute("uncheckedImage", uncheckedImage);
     }
 
     /**
@@ -784,10 +831,11 @@ public class CheckboxItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param unsetDescription New unsetDescription value. Default value is "unset"
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setUnsetDescription(String unsetDescription) {
-        setAttribute("unsetDescription", unsetDescription);
+    public CheckboxItem setUnsetDescription(String unsetDescription) {
+        return (CheckboxItem)setAttribute("unsetDescription", unsetDescription);
     }
 
     /**
@@ -814,11 +862,12 @@ public class CheckboxItem extends FormItem {
      * booleanBaseStyle} property to provide an "unset" appearance.
      *
      * @param unsetImage New unsetImage value. Default value is "[SKIN]/DynamicForm/unsetcheck.gif"
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setUnsetImage(String unsetImage) {
-        setAttribute("unsetImage", unsetImage);
+    public CheckboxItem setUnsetImage(String unsetImage) {
+        return (CheckboxItem)setAttribute("unsetImage", unsetImage);
     }
 
     /**
@@ -851,9 +900,10 @@ public class CheckboxItem extends FormItem {
      * - the item will render at the size required to contain the icon.
      *
      * @param width New width value. Default value is 150
+     * @return {@link com.smartgwt.client.widgets.form.fields.CheckboxItem CheckboxItem} instance, for chaining setter calls
      */
-    public void setWidth(int width) {
-        setAttribute("width", width);
+    public CheckboxItem setWidth(int width) {
+        return (CheckboxItem)setAttribute("width", width);
     }
 
     /**

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -208,10 +211,11 @@ public class ToolStrip extends Layout {
      * individual ToolStripGroup} level.
      *
      * @param groupTitleAlign New groupTitleAlign value. Default value is "center"
+     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStrip ToolStrip} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setGroupTitleAlign(Alignment groupTitleAlign)  throws IllegalStateException {
-        setAttribute("groupTitleAlign", groupTitleAlign == null ? null : groupTitleAlign.getValue(), false);
+    public ToolStrip setGroupTitleAlign(Alignment groupTitleAlign)  throws IllegalStateException {
+        return (ToolStrip)setAttribute("groupTitleAlign", groupTitleAlign == null ? null : groupTitleAlign.getValue(), false);
     }
 
     /**
@@ -232,10 +236,11 @@ public class ToolStrip extends Layout {
      * com.smartgwt.client.widgets.toolbar.ToolStripGroup#getTitleAlign individual ToolStripGroup} level.
      *
      * @param groupTitleOrientation New groupTitleOrientation value. Default value is "top"
+     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStrip ToolStrip} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setGroupTitleOrientation(VerticalAlignment groupTitleOrientation)  throws IllegalStateException {
-        setAttribute("groupTitleOrientation", groupTitleOrientation == null ? null : groupTitleOrientation.getValue(), false);
+    public ToolStrip setGroupTitleOrientation(VerticalAlignment groupTitleOrientation)  throws IllegalStateException {
+        return (ToolStrip)setAttribute("groupTitleOrientation", groupTitleOrientation == null ? null : groupTitleOrientation.getValue(), false);
     }
 
     /**
@@ -256,10 +261,11 @@ public class ToolStrip extends Layout {
      * Customized resizeBar with typical appearance for a ToolStrip.
      *
      * @param resizeBarClass New resizeBarClass value. Default value is "ToolStripResizer"
+     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStrip ToolStrip} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setResizeBarClass(String resizeBarClass)  throws IllegalStateException {
-        setAttribute("resizeBarClass", resizeBarClass, false);
+    public ToolStrip setResizeBarClass(String resizeBarClass)  throws IllegalStateException {
+        return (ToolStrip)setAttribute("resizeBarClass", resizeBarClass, false);
     }
 
     /**
@@ -277,10 +283,11 @@ public class ToolStrip extends Layout {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param resizeBarSize New resizeBarSize value. Default value is 14
+     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStrip ToolStrip} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setResizeBarSize(int resizeBarSize)  throws IllegalStateException {
-        setAttribute("resizeBarSize", resizeBarSize, false);
+    public ToolStrip setResizeBarSize(int resizeBarSize)  throws IllegalStateException {
+        return (ToolStrip)setAttribute("resizeBarSize", resizeBarSize, false);
     }
 
     /**
@@ -298,10 +305,11 @@ public class ToolStrip extends Layout {
      * members}.
      *
      * @param separatorClass New separatorClass value. Default value is "ToolStripSeparator"
+     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStrip ToolStrip} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSeparatorClass(String separatorClass)  throws IllegalStateException {
-        setAttribute("separatorClass", separatorClass, false);
+    public ToolStrip setSeparatorClass(String separatorClass)  throws IllegalStateException {
+        return (ToolStrip)setAttribute("separatorClass", separatorClass, false);
     }
 
     /**
@@ -319,10 +327,11 @@ public class ToolStrip extends Layout {
      * Separator thickness in pixels
      *
      * @param separatorSize New separatorSize value. Default value is 8
+     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStrip ToolStrip} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSeparatorSize(int separatorSize)  throws IllegalStateException {
-        setAttribute("separatorSize", separatorSize, false);
+    public ToolStrip setSeparatorSize(int separatorSize)  throws IllegalStateException {
+        return (ToolStrip)setAttribute("separatorSize", separatorSize, false);
     }
 
     /**
@@ -341,10 +350,11 @@ public class ToolStrip extends Layout {
      * com.smartgwt.client.widgets.toolbar.ToolStripGroup#setShowTitle individual ToolStripGroup} level.
      *
      * @param showGroupTitle New showGroupTitle value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStrip ToolStrip} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowGroupTitle(Boolean showGroupTitle)  throws IllegalStateException {
-        setAttribute("showGroupTitle", showGroupTitle, false);
+    public ToolStrip setShowGroupTitle(Boolean showGroupTitle)  throws IllegalStateException {
+        return (ToolStrip)setAttribute("showGroupTitle", showGroupTitle, false);
     }
 
     /**
@@ -361,15 +371,43 @@ public class ToolStrip extends Layout {
     
 
     /**
+     * CSS class applied to this toolstrip. <P> Note that if {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getVertical
+     * vertical} is true for this toolStrip,  {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getVerticalStyleName
+     * verticalStyleName} will be used instead of this value if it is non-null.
+     *
+     * @param styleName New styleName value. Default value is "toolStrip"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setStyleName(String styleName) {
+        setAttribute("styleName", styleName, true);
+    }
+
+    /**
+     * CSS class applied to this toolstrip. <P> Note that if {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getVertical
+     * vertical} is true for this toolStrip,  {@link com.smartgwt.client.widgets.toolbar.ToolStrip#getVerticalStyleName
+     * verticalStyleName} will be used instead of this value if it is non-null.
+     *
+     * @return Current styleName value. Default value is "toolStrip"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public String getStyleName()  {
+        return getAttributeAsString("styleName");
+    }
+    
+
+    /**
      * Indicates whether the components are drawn horizontally from left to right (false), or vertically from top to bottom
      * (true).
      *
      * @param vertical New vertical value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStrip ToolStrip} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setVertical(Boolean vertical)  throws IllegalStateException {
-        setAttribute("vertical", vertical, false);
+    public ToolStrip setVertical(Boolean vertical)  throws IllegalStateException {
+        return (ToolStrip)setAttribute("vertical", vertical, false);
     }
 
     /**
@@ -393,12 +431,13 @@ public class ToolStrip extends Layout {
      * com.smartgwt.client.widgets.Canvas#setStyleName setStyleName()} rather than updating this  property.
      *
      * @param verticalStyleName New verticalStyleName value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStrip ToolStrip} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setVerticalStyleName(String verticalStyleName)  throws IllegalStateException {
-        setAttribute("verticalStyleName", verticalStyleName, false);
+    public ToolStrip setVerticalStyleName(String verticalStyleName)  throws IllegalStateException {
+        return (ToolStrip)setAttribute("verticalStyleName", verticalStyleName, false);
     }
 
     /**
@@ -643,6 +682,11 @@ public class ToolStrip extends Layout {
             s.showGroupTitle = getAttributeAsString("showGroupTitle");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ToolStrip.showGroupTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.styleName = getAttributeAsString("styleName");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ToolStrip.styleName:" + t.getMessage() + "\n";
         }
         try {
             s.vertical = getAttributeAsString("vertical");

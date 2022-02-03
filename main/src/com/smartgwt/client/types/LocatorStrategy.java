@@ -21,7 +21,7 @@ package com.smartgwt.client.types;
 /**
  * The AutoTest subsystem relies on generating and parsing identifier strings to identify components on the page. A very
  * common pattern is identifying a specific component within a list of possible candidates. There are many many cases where
- * this pattern is used, for example - members in a layout,tabs in a tabset, sections in a section stack. <P> In order to
+ * this pattern is used, for example - members in a layout, tabs in a tabset, sections in a section stack. <P> In order to
  * make these identifiers as robust as possible across minor changes to an application, (such as skin changes, minor layout
  * changes, etc) the system will store multiple pieces of information about a component when generating an identification
  * string to retrieve it from a list of candidates. The system has a default strategy for choosing the order in which to

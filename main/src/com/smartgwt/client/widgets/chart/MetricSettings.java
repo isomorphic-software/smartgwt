@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Defines a set of properties that are applicable to {@link
@@ -167,9 +170,10 @@ public class MetricSettings extends DataClass {
      * com.smartgwt.client.widgets.chart.FacetChart#getChartRectProperties chart rect.} for each axis line.
      *
      * @param axisLineProperties New axisLineProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setAxisLineProperties(DrawLine axisLineProperties) {
+    public MetricSettings setAxisLineProperties(DrawLine axisLineProperties) {
         if (axisLineProperties != null) {
             if (axisLineProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(MetricSettings.class, "setAxisLineProperties", "DrawLine");
@@ -177,7 +181,7 @@ public class MetricSettings extends DataClass {
             axisLineProperties.setConfigOnly(true);
         }
         JavaScriptObject config = axisLineProperties == null ? null : axisLineProperties.getConfig();
-        setAttribute("axisLineProperties", JSOHelper.cleanProperties(config, true));
+        return (MetricSettings)setAttribute("axisLineProperties", JSOHelper.cleanProperties(config, true));
     }
 
     /**
@@ -204,9 +208,10 @@ public class MetricSettings extends DataClass {
      * only one metric.
      *
      * @param axisStartValue New axisStartValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      */
-    public void setAxisStartValue(Double axisStartValue) {
-        setAttribute("axisStartValue", axisStartValue);
+    public MetricSettings setAxisStartValue(Double axisStartValue) {
+        return (MetricSettings)setAttribute("axisStartValue", axisStartValue);
     }
 
     /**
@@ -228,9 +233,10 @@ public class MetricSettings extends DataClass {
      * Method to change the current {@link com.smartgwt.client.types.ChartType chartType}. Will redraw the chart if drawn.  Will use default settings for the new chart type for {@link com.smartgwt.client.widgets.chart.MetricSettings#getStacked stacked} and {@link com.smartgwt.client.widgets.chart.MetricSettings#getFilled filled} if those values are null. <p> Note that for {@link com.smartgwt.client.widgets.chart.FacetChart#getExtraAxisMetrics multi-axis} charts this method changes the <code>chartType</code> for the main value axis only.
      *
      * @param chartType new chart type. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      */
-    public void setChartType(ChartType chartType) {
-        setAttribute("chartType", chartType == null ? null : chartType.getValue());
+    public MetricSettings setChartType(ChartType chartType) {
+        return (MetricSettings)setAttribute("chartType", chartType == null ? null : chartType.getValue());
     }
 
     /**
@@ -253,10 +259,11 @@ public class MetricSettings extends DataClass {
      * Setter for {@link com.smartgwt.client.widgets.chart.MetricSettings#getDataColors dataColors}.
      *
      * @param dataColors New set of data colors. Default value is see below
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      */
-    public void setDataColors(String... dataColors) {
-        setAttribute("dataColors", dataColors);
+    public MetricSettings setDataColors(String... dataColors) {
+        return (MetricSettings)setAttribute("dataColors", dataColors);
     }
 
     /**
@@ -277,9 +284,10 @@ public class MetricSettings extends DataClass {
      * Properties for lines that show data (as opposed to gradations or borders around the data area).
      *
      * @param dataLineProperties New dataLineProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setDataLineProperties(DrawLine dataLineProperties) {
+    public MetricSettings setDataLineProperties(DrawLine dataLineProperties) {
         if (dataLineProperties != null) {
             if (dataLineProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(MetricSettings.class, "setDataLineProperties", "DrawLine");
@@ -287,7 +295,7 @@ public class MetricSettings extends DataClass {
             dataLineProperties.setConfigOnly(true);
         }
         JavaScriptObject config = dataLineProperties == null ? null : dataLineProperties.getConfig();
-        setAttribute("dataLineProperties", JSOHelper.cleanProperties(config, true));
+        return (MetricSettings)setAttribute("dataLineProperties", JSOHelper.cleanProperties(config, true));
     }
 
     /**
@@ -307,9 +315,10 @@ public class MetricSettings extends DataClass {
      * Properties for lines that outline a data shape (in filled charts such as area or radar charts).
      *
      * @param dataOutlineProperties New dataOutlineProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setDataOutlineProperties(DrawItem dataOutlineProperties) {
+    public MetricSettings setDataOutlineProperties(DrawItem dataOutlineProperties) {
         if (dataOutlineProperties != null) {
             if (dataOutlineProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(MetricSettings.class, "setDataOutlineProperties", "DrawItem");
@@ -317,7 +326,7 @@ public class MetricSettings extends DataClass {
             dataOutlineProperties.setConfigOnly(true);
         }
         JavaScriptObject config = dataOutlineProperties == null ? null : dataOutlineProperties.getConfig();
-        setAttribute("dataOutlineProperties", JSOHelper.cleanProperties(config, true));
+        return (MetricSettings)setAttribute("dataOutlineProperties", JSOHelper.cleanProperties(config, true));
     }
 
     /**
@@ -338,9 +347,10 @@ public class MetricSettings extends DataClass {
      * com.smartgwt.client.widgets.chart.MetricSettings#getShowDataPoints showDataPoints}).
      *
      * @param dataPointProperties New dataPointProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setDataPointProperties(DrawItem dataPointProperties) {
+    public MetricSettings setDataPointProperties(DrawItem dataPointProperties) {
         if (dataPointProperties != null) {
             if (dataPointProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(MetricSettings.class, "setDataPointProperties", "DrawItem");
@@ -348,7 +358,7 @@ public class MetricSettings extends DataClass {
             dataPointProperties.setConfigOnly(true);
         }
         JavaScriptObject config = dataPointProperties == null ? null : dataPointProperties.getConfig();
-        setAttribute("dataPointProperties", JSOHelper.cleanProperties(config, true));
+        return (MetricSettings)setAttribute("dataPointProperties", JSOHelper.cleanProperties(config, true));
     }
 
     /**
@@ -369,9 +379,10 @@ public class MetricSettings extends DataClass {
      * Size in pixels for data points drawn for line, area, radar and other chart types.
      *
      * @param dataPointSize New dataPointSize value. Default value is 6
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      */
-    public void setDataPointSize(int dataPointSize) {
-        setAttribute("dataPointSize", dataPointSize);
+    public MetricSettings setDataPointSize(int dataPointSize) {
+        return (MetricSettings)setAttribute("dataPointSize", dataPointSize);
     }
 
     /**
@@ -388,9 +399,10 @@ public class MetricSettings extends DataClass {
      * Properties for data shapes (filled areas in area or radar charts).
      *
      * @param dataShapeProperties New dataShapeProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setDataShapeProperties(DrawPath dataShapeProperties) {
+    public MetricSettings setDataShapeProperties(DrawPath dataShapeProperties) {
         if (dataShapeProperties != null) {
             if (dataShapeProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(MetricSettings.class, "setDataShapeProperties", "DrawPath");
@@ -398,7 +410,7 @@ public class MetricSettings extends DataClass {
             dataShapeProperties.setConfigOnly(true);
         }
         JavaScriptObject config = dataShapeProperties == null ? null : dataShapeProperties.getConfig();
-        setAttribute("dataShapeProperties", JSOHelper.cleanProperties(config, true));
+        return (MetricSettings)setAttribute("dataShapeProperties", JSOHelper.cleanProperties(config, true));
     }
 
     /**
@@ -419,9 +431,10 @@ public class MetricSettings extends DataClass {
      * the numeric labels of this metric axis.
      *
      * @param decimalPrecision New decimalPrecision value. Default value is 2
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      */
-    public void setDecimalPrecision(int decimalPrecision) {
-        setAttribute("decimalPrecision", decimalPrecision);
+    public MetricSettings setDecimalPrecision(int decimalPrecision) {
+        return (MetricSettings)setAttribute("decimalPrecision", decimalPrecision);
     }
 
     /**
@@ -446,9 +459,10 @@ public class MetricSettings extends DataClass {
      * Method to change {@link com.smartgwt.client.widgets.chart.MetricSettings#getFilled filled}. Use null to apply a default value for the current {@link com.smartgwt.client.types.ChartType chartType}.
      *
      * @param filled new value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      */
-    public void setFilled(Boolean filled) {
-        setAttribute("filled", filled);
+    public MetricSettings setFilled(Boolean filled) {
+        return (MetricSettings)setAttribute("filled", filled);
     }
 
     /**
@@ -472,9 +486,10 @@ public class MetricSettings extends DataClass {
      * the second facet.
      *
      * @param fixedFacetValue New fixedFacetValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      */
-    public void setFixedFacetValue(String fixedFacetValue) {
-        setAttribute("fixedFacetValue", fixedFacetValue);
+    public MetricSettings setFixedFacetValue(String fixedFacetValue) {
+        return (MetricSettings)setAttribute("fixedFacetValue", fixedFacetValue);
     }
 
     /**
@@ -496,9 +511,10 @@ public class MetricSettings extends DataClass {
      * the second facet.
      *
      * @param fixedFacetValue New fixedFacetValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      */
-    public void setFixedFacetValue(Integer fixedFacetValue) {
-        setAttribute("fixedFacetValue", fixedFacetValue);
+    public MetricSettings setFixedFacetValue(Integer fixedFacetValue) {
+        return (MetricSettings)setAttribute("fixedFacetValue", fixedFacetValue);
     }
     
 
@@ -506,9 +522,10 @@ public class MetricSettings extends DataClass {
      * Properties for gradation labels
      *
      * @param gradationLabelProperties New gradationLabelProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setGradationLabelProperties(DrawLabel gradationLabelProperties) {
+    public MetricSettings setGradationLabelProperties(DrawLabel gradationLabelProperties) {
         if (gradationLabelProperties != null) {
             if (gradationLabelProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(MetricSettings.class, "setGradationLabelProperties", "DrawLabel");
@@ -516,7 +533,7 @@ public class MetricSettings extends DataClass {
             gradationLabelProperties.setConfigOnly(true);
         }
         JavaScriptObject config = gradationLabelProperties == null ? null : gradationLabelProperties.getConfig();
-        setAttribute("gradationLabelProperties", JSOHelper.cleanProperties(config, true));
+        return (MetricSettings)setAttribute("gradationLabelProperties", JSOHelper.cleanProperties(config, true));
     }
 
     /**
@@ -536,9 +553,10 @@ public class MetricSettings extends DataClass {
      * Properties for gradation lines
      *
      * @param gradationLineProperties New gradationLineProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setGradationLineProperties(DrawLine gradationLineProperties) {
+    public MetricSettings setGradationLineProperties(DrawLine gradationLineProperties) {
         if (gradationLineProperties != null) {
             if (gradationLineProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(MetricSettings.class, "setGradationLineProperties", "DrawLine");
@@ -546,7 +564,7 @@ public class MetricSettings extends DataClass {
             gradationLineProperties.setConfigOnly(true);
         }
         JavaScriptObject config = gradationLineProperties == null ? null : gradationLineProperties.getConfig();
-        setAttribute("gradationLineProperties", JSOHelper.cleanProperties(config, true));
+        return (MetricSettings)setAttribute("gradationLineProperties", JSOHelper.cleanProperties(config, true));
     }
 
     /**
@@ -566,9 +584,10 @@ public class MetricSettings extends DataClass {
      * Properties for the gradation line drawn for zero (slightly thicker by default).
      *
      * @param gradationZeroLineProperties New gradationZeroLineProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setGradationZeroLineProperties(DrawLine gradationZeroLineProperties) {
+    public MetricSettings setGradationZeroLineProperties(DrawLine gradationZeroLineProperties) {
         if (gradationZeroLineProperties != null) {
             if (gradationZeroLineProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(MetricSettings.class, "setGradationZeroLineProperties", "DrawLine");
@@ -576,7 +595,7 @@ public class MetricSettings extends DataClass {
             gradationZeroLineProperties.setConfigOnly(true);
         }
         JavaScriptObject config = gradationZeroLineProperties == null ? null : gradationZeroLineProperties.getConfig();
-        setAttribute("gradationZeroLineProperties", JSOHelper.cleanProperties(config, true));
+        return (MetricSettings)setAttribute("gradationZeroLineProperties", JSOHelper.cleanProperties(config, true));
     }
 
     /**
@@ -601,9 +620,10 @@ public class MetricSettings extends DataClass {
      * <code>legendLabel</code> to provide custom text for the legend label.
      *
      * @param legendLabel New legendLabel value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      */
-    public void setLegendLabel(String legendLabel) {
-        setAttribute("legendLabel", legendLabel);
+    public MetricSettings setLegendLabel(String legendLabel) {
+        return (MetricSettings)setAttribute("legendLabel", legendLabel);
     }
 
     /**
@@ -627,9 +647,10 @@ public class MetricSettings extends DataClass {
      * specified by {@link com.smartgwt.client.widgets.chart.MetricSettings#getLogGradations logGradations}.
      *
      * @param logBase New logBase value. Default value is 10
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      */
-    public void setLogBase(int logBase) {
-        setAttribute("logBase", logBase);
+    public MetricSettings setLogBase(int logBase) {
+        return (MetricSettings)setAttribute("logBase", logBase);
     }
 
     /**
@@ -664,9 +685,10 @@ public class MetricSettings extends DataClass {
      *  </pre>
      *
      * @param logGradations New logGradations value. Default value is [ 1,2,4,6,8 ]
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      */
-    public void setLogGradations(float... logGradations) {
-        setAttribute("logGradations", logGradations);
+    public MetricSettings setLogGradations(float... logGradations) {
+        return (MetricSettings)setAttribute("logGradations", logGradations);
     }
 
     /**
@@ -701,9 +723,10 @@ public class MetricSettings extends DataClass {
      * times or 1000% increase).
      *
      * @param logScale New logScale value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      */
-    public void setLogScale(Boolean logScale) {
-        setAttribute("logScale", logScale);
+    public MetricSettings setLogScale(Boolean logScale) {
+        return (MetricSettings)setAttribute("logScale", logScale);
     }
 
     /**
@@ -726,10 +749,11 @@ public class MetricSettings extends DataClass {
      * whose values will be displayed by the chart.
      *
      * @param matchGradations New matchGradations value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.chart.FacetChart#setExtraAxisMetrics
      */
-    public void setMatchGradations(String matchGradations) {
-        setAttribute("matchGradations", matchGradations);
+    public MetricSettings setMatchGradations(String matchGradations) {
+        return (MetricSettings)setAttribute("matchGradations", matchGradations);
     }
 
     /**
@@ -752,9 +776,10 @@ public class MetricSettings extends DataClass {
      * will be used.
      *
      * @param minDataSpreadPercent New minDataSpreadPercent value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      */
-    public void setMinDataSpreadPercent(Integer minDataSpreadPercent) {
-        setAttribute("minDataSpreadPercent", minDataSpreadPercent);
+    public MetricSettings setMinDataSpreadPercent(Integer minDataSpreadPercent) {
+        return (MetricSettings)setAttribute("minDataSpreadPercent", minDataSpreadPercent);
     }
 
     /**
@@ -774,9 +799,10 @@ public class MetricSettings extends DataClass {
      * first and second facets (multi-facet).
      *
      * @param multiFacet New multiFacet value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      */
-    public void setMultiFacet(Boolean multiFacet) {
-        setAttribute("multiFacet", multiFacet);
+    public MetricSettings setMultiFacet(Boolean multiFacet) {
+        return (MetricSettings)setAttribute("multiFacet", multiFacet);
     }
 
     /**
@@ -802,10 +828,11 @@ public class MetricSettings extends DataClass {
      * Setter for {@link com.smartgwt.client.widgets.chart.MetricSettings#getProportional proportional}.
      *
      * @param proportional Whether the chart should now use proportional mode. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#multiSeriesChart" target="examples">Multi-Series Chart Example</a>
      */
-    public void setProportional(Boolean proportional) {
-        setAttribute("proportional", proportional);
+    public MetricSettings setProportional(Boolean proportional) {
+        return (MetricSettings)setAttribute("proportional", proportional);
     }
 
     /**
@@ -830,9 +857,10 @@ public class MetricSettings extends DataClass {
      * com.smartgwt.client.widgets.cube.Facet#getProportionalTitle proportionalTitle}.
      *
      * @param proportionalAxisLabel New proportionalAxisLabel value. Default value is "Percent"
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      */
-    public void setProportionalAxisLabel(String proportionalAxisLabel) {
-        setAttribute("proportionalAxisLabel", proportionalAxisLabel);
+    public MetricSettings setProportionalAxisLabel(String proportionalAxisLabel) {
+        return (MetricSettings)setAttribute("proportionalAxisLabel", proportionalAxisLabel);
     }
 
     /**
@@ -852,9 +880,10 @@ public class MetricSettings extends DataClass {
      * Properties for shadows.
      *
      * @param shadowProperties New shadowProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setShadowProperties(DrawOval shadowProperties) {
+    public MetricSettings setShadowProperties(DrawOval shadowProperties) {
         if (shadowProperties != null) {
             if (shadowProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(MetricSettings.class, "setShadowProperties", "DrawOval");
@@ -862,7 +891,7 @@ public class MetricSettings extends DataClass {
             shadowProperties.setConfigOnly(true);
         }
         JavaScriptObject config = shadowProperties == null ? null : shadowProperties.getConfig();
-        setAttribute("shadowProperties", JSOHelper.cleanProperties(config, true));
+        return (MetricSettings)setAttribute("shadowProperties", JSOHelper.cleanProperties(config, true));
     }
 
     /**
@@ -882,9 +911,10 @@ public class MetricSettings extends DataClass {
      * Whether to show the extra value axis.
      *
      * @param showAxis New showAxis value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      */
-    public void setShowAxis(Boolean showAxis) {
-        setAttribute("showAxis", showAxis);
+    public MetricSettings setShowAxis(Boolean showAxis) {
+        return (MetricSettings)setAttribute("showAxis", showAxis);
     }
 
     /**
@@ -903,9 +933,10 @@ public class MetricSettings extends DataClass {
      * property of the FacetChart.
      *
      * @param showAxisLine New showAxisLine value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      */
-    public void setShowAxisLine(Boolean showAxisLine) {
-        setAttribute("showAxisLine", showAxisLine);
+    public MetricSettings setShowAxisLine(Boolean showAxisLine) {
+        return (MetricSettings)setAttribute("showAxisLine", showAxisLine);
     }
 
     /**
@@ -927,9 +958,10 @@ public class MetricSettings extends DataClass {
      * interactivity.
      *
      * @param showDataPoints New showDataPoints value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      */
-    public void setShowDataPoints(Boolean showDataPoints) {
-        setAttribute("showDataPoints", showDataPoints);
+    public MetricSettings setShowDataPoints(Boolean showDataPoints) {
+        return (MetricSettings)setAttribute("showDataPoints", showDataPoints);
     }
 
     /**
@@ -954,9 +986,12 @@ public class MetricSettings extends DataClass {
      * com.smartgwt.client.widgets.chart.MetricSettings#getShowValueOnHover showValueOnHover} shows hovers.
      *
      * @param showDataValues New showDataValues value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
+     * @deprecated in favor of {@link com.smartgwt.client.widgets.chart.FacetChart#getShowDataValuesMode FacetChart.showDataValuesMode},
+     * which is an enum of supported modes
      */
-    public void setShowDataValues(Boolean showDataValues) {
-        setAttribute("showDataValues", showDataValues);
+    public MetricSettings setShowDataValues(Boolean showDataValues) {
+        return (MetricSettings)setAttribute("showDataValues", showDataValues);
     }
 
     /**
@@ -967,6 +1002,8 @@ public class MetricSettings extends DataClass {
      * com.smartgwt.client.widgets.chart.MetricSettings#getShowValueOnHover showValueOnHover} shows hovers.
      *
      * @return Current showDataValues value. Default value is null
+     * @deprecated in favor of {@link com.smartgwt.client.widgets.chart.FacetChart#getShowDataValuesMode FacetChart.showDataValuesMode},
+     * which is an enum of supported modes
      */
     public Boolean getShowDataValues()  {
         return getAttributeAsBoolean("showDataValues", true);
@@ -977,9 +1014,10 @@ public class MetricSettings extends DataClass {
      * Whether to automatically show shadows for various charts.
      *
      * @param showShadows New showShadows value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      */
-    public void setShowShadows(Boolean showShadows) {
-        setAttribute("showShadows", showShadows);
+    public MetricSettings setShowShadows(Boolean showShadows) {
+        return (MetricSettings)setAttribute("showShadows", showShadows);
     }
 
     /**
@@ -1000,9 +1038,10 @@ public class MetricSettings extends DataClass {
      * extra value axis.
      *
      * @param showValueAxisLabel New showValueAxisLabel value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      */
-    public void setShowValueAxisLabel(Boolean showValueAxisLabel) {
-        setAttribute("showValueAxisLabel", showValueAxisLabel);
+    public MetricSettings setShowValueAxisLabel(Boolean showValueAxisLabel) {
+        return (MetricSettings)setAttribute("showValueAxisLabel", showValueAxisLabel);
     }
 
     /**
@@ -1028,9 +1067,11 @@ public class MetricSettings extends DataClass {
      * com.smartgwt.client.widgets.chart.FacetChart#getHoverLabelProperties FacetChart.hoverLabelProperties}.
      *
      * @param showValueOnHover New showValueOnHover value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
+     * @deprecated See {@link com.smartgwt.client.widgets.chart.FacetChart#getShowDataValuesMode FacetChart.showDataValuesMode} for details
      */
-    public void setShowValueOnHover(Boolean showValueOnHover) {
-        setAttribute("showValueOnHover", showValueOnHover);
+    public MetricSettings setShowValueOnHover(Boolean showValueOnHover) {
+        return (MetricSettings)setAttribute("showValueOnHover", showValueOnHover);
     }
 
     /**
@@ -1043,6 +1084,7 @@ public class MetricSettings extends DataClass {
      * com.smartgwt.client.widgets.chart.FacetChart#getHoverLabelProperties FacetChart.hoverLabelProperties}.
      *
      * @return Current showValueOnHover value. Default value is null
+     * @deprecated See {@link com.smartgwt.client.widgets.chart.FacetChart#getShowDataValuesMode FacetChart.showDataValuesMode} for details
      */
     public Boolean getShowValueOnHover()  {
         return getAttributeAsBoolean("showValueOnHover", true);
@@ -1057,9 +1099,10 @@ public class MetricSettings extends DataClass {
      * Method to change {@link com.smartgwt.client.widgets.chart.MetricSettings#getStacked stacked}. Use null to apply a default value for the current {@link com.smartgwt.client.types.ChartType chartType}.
      *
      * @param stacked new value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      */
-    public void setStacked(Boolean stacked) {
-        setAttribute("stacked", stacked);
+    public MetricSettings setStacked(Boolean stacked) {
+        return (MetricSettings)setAttribute("stacked", stacked);
     }
 
     /**
@@ -1080,9 +1123,10 @@ public class MetricSettings extends DataClass {
      * and {@link com.smartgwt.client.widgets.chart.MetricSettings#getLogGradations logGradations}.
      *
      * @param useLogGradations New useLogGradations value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      */
-    public void setUseLogGradations(Boolean useLogGradations) {
-        setAttribute("useLogGradations", useLogGradations);
+    public MetricSettings setUseLogGradations(Boolean useLogGradations) {
+        return (MetricSettings)setAttribute("useLogGradations", useLogGradations);
     }
 
     /**
@@ -1103,9 +1147,10 @@ public class MetricSettings extends DataClass {
      * Properties for labels of value axis.
      *
      * @param valueAxisLabelProperties New valueAxisLabelProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setValueAxisLabelProperties(DrawLabel valueAxisLabelProperties) {
+    public MetricSettings setValueAxisLabelProperties(DrawLabel valueAxisLabelProperties) {
         if (valueAxisLabelProperties != null) {
             if (valueAxisLabelProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(MetricSettings.class, "setValueAxisLabelProperties", "DrawLabel");
@@ -1113,7 +1158,7 @@ public class MetricSettings extends DataClass {
             valueAxisLabelProperties.setConfigOnly(true);
         }
         JavaScriptObject config = valueAxisLabelProperties == null ? null : valueAxisLabelProperties.getConfig();
-        setAttribute("valueAxisLabelProperties", JSOHelper.cleanProperties(config, true));
+        return (MetricSettings)setAttribute("valueAxisLabelProperties", JSOHelper.cleanProperties(config, true));
     }
 
     /**
@@ -1134,9 +1179,10 @@ public class MetricSettings extends DataClass {
      * points of a line chart to the X axis, or radial lines in a Radar chart.
      *
      * @param valueLineProperties New valueLineProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setValueLineProperties(DrawLine valueLineProperties) {
+    public MetricSettings setValueLineProperties(DrawLine valueLineProperties) {
         if (valueLineProperties != null) {
             if (valueLineProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(MetricSettings.class, "setValueLineProperties", "DrawLine");
@@ -1144,7 +1190,7 @@ public class MetricSettings extends DataClass {
             valueLineProperties.setConfigOnly(true);
         }
         JavaScriptObject config = valueLineProperties == null ? null : valueLineProperties.getConfig();
-        setAttribute("valueLineProperties", JSOHelper.cleanProperties(config, true));
+        return (MetricSettings)setAttribute("valueLineProperties", JSOHelper.cleanProperties(config, true));
     }
 
     /**
@@ -1165,9 +1211,10 @@ public class MetricSettings extends DataClass {
      * A label for the data values, such as "Sales in Thousands", typically used as the label for the value axis.
      *
      * @param valueTitle New valueTitle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      */
-    public void setValueTitle(String valueTitle) {
-        setAttribute("valueTitle", valueTitle);
+    public MetricSettings setValueTitle(String valueTitle) {
+        return (MetricSettings)setAttribute("valueTitle", valueTitle);
     }
 
     /**
@@ -1185,9 +1232,10 @@ public class MetricSettings extends DataClass {
      * one metric.
      *
      * @param xAxisEndValue New xAxisEndValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.MetricSettings MetricSettings} instance, for chaining setter calls
      */
-    public void setXAxisEndValue(Double xAxisEndValue) {
-        setAttribute("xAxisEndValue", xAxisEndValue);
+    public MetricSettings setXAxisEndValue(Double xAxisEndValue) {
+        return (MetricSettings)setAttribute("xAxisEndValue", xAxisEndValue);
     }
 
     /**

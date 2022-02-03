@@ -5,8 +5,10 @@ import com.smartgwt.client.i18n.*;
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.fields.*;
 import com.smartgwt.client.tools.*;
 import com.smartgwt.client.widgets.*;
@@ -50,6 +52,7 @@ public class TreeGridLogicalStructure extends ListGridLogicalStructure {
     public String animateFolders;
     public String animateFolderSpeed;
     public String animateFolderTime;
+    public String autoAssignTreeField;
     public String autoFetchTextMatchStyle;
     public String autoPreserveOpenState;
     public String canAcceptDroppedRecords;
@@ -60,6 +63,7 @@ public class TreeGridLogicalStructure extends ListGridLogicalStructure {
     public String canSelectAll;
     public String cantDragIntoChildMessage;
     public String cantDragIntoSelfMessage;
+    public String cantDragMultipleNodeOccurencesMessage;
     public String cascadeSelection;
     public String closedIconSuffix;
     public String connectorImage;

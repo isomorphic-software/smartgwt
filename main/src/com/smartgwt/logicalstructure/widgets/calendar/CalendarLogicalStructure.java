@@ -5,8 +5,10 @@ import com.smartgwt.client.i18n.*;
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.fields.*;
 import com.smartgwt.client.tools.*;
 import com.smartgwt.client.widgets.*;
@@ -150,6 +152,7 @@ public class CalendarLogicalStructure extends CanvasLogicalStructure {
     public String selectedCellStyle;
     public String showAddEventButton;
     public String showCellHovers;
+    public String showColumnLayouts;
     public String showControlsBar;
     public String showDateChooser;
     public String showDatePickerButton;
@@ -158,6 +161,7 @@ public class CalendarLogicalStructure extends CanvasLogicalStructure {
     public String showDayView;
     public String showDetailFields;
     public String showDragHovers;
+    public String showEventCanvasComponents;
     public String showEventDescriptions;
     public String showEventHeaders;
     public String showEventHovers;
@@ -198,9 +202,7 @@ public class CalendarLogicalStructure extends CanvasLogicalStructure {
     public String weekPrefix;
     public String weekViewTitle;
     public String workdayBaseStyle;
-    public String workdayEnd;
     public String workdays;
-    public String workdayStart;
     public CalendarEvent[] zones;
     public String zoneStyleName;
     public String zoneTitleOrientation;

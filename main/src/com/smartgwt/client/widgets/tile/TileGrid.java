@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -177,10 +180,11 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param animateTileChange New animateTileChange value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setAnimateTileChange(Boolean animateTileChange) {
-        setAttribute("animateTileChange", animateTileChange, true);
+    public TileGrid setAnimateTileChange(Boolean animateTileChange) {
+        return (TileGrid)setAttribute("animateTileChange", animateTileChange, true);
     }
 
     /**
@@ -205,10 +209,11 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * Setter for {@link com.smartgwt.client.widgets.tile.TileGrid#getCanAcceptDroppedRecords canAcceptDroppedRecords}.
      *
      * @param canAcceptDroppedRecords New canAcceptDroppedRecords value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_move_list" target="examples">Drag list (move) Example</a>
      */
-    public void setCanAcceptDroppedRecords(Boolean canAcceptDroppedRecords) {
-        setAttribute("canAcceptDroppedRecords", canAcceptDroppedRecords, true);
+    public TileGrid setCanAcceptDroppedRecords(Boolean canAcceptDroppedRecords) {
+        return (TileGrid)setAttribute("canAcceptDroppedRecords", canAcceptDroppedRecords, true);
     }
 
     /**
@@ -238,9 +243,10 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * Setter for {@link com.smartgwt.client.widgets.tile.TileGrid#getCanDragTilesOut canDragTilesOut}.
      *
      * @param canDragTilesOut New canDragTilesOut value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      */
-    public void setCanDragTilesOut(Boolean canDragTilesOut) {
-        setAttribute("canDragTilesOut", canDragTilesOut, true);
+    public TileGrid setCanDragTilesOut(Boolean canDragTilesOut) {
+        return (TileGrid)setAttribute("canDragTilesOut", canDragTilesOut, true);
     }
 
     /**
@@ -277,9 +283,10 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * Setter for {@link com.smartgwt.client.widgets.tile.TileGrid#getCanReorderTiles canReorderTiles}.
      *
      * @param canReorderTiles New canReorderTiles value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      */
-    public void setCanReorderTiles(Boolean canReorderTiles) {
-        setAttribute("canReorderTiles", canReorderTiles, true);
+    public TileGrid setCanReorderTiles(Boolean canReorderTiles) {
+        return (TileGrid)setAttribute("canReorderTiles", canReorderTiles, true);
     }
 
     /**
@@ -311,10 +318,11 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * Provides a new data set to the TileGrid after the grid has been created or drawn. The TileGrid will redraw to show the new data automatically.
      *
      * @param data data to show in the list. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tile.TileRecord
      */
-    public void setData(Record[] data) {
-        setAttribute("data", data, true);
+    public TileGrid setData(Record[] data) {
+        return (TileGrid)setAttribute("data", data, true);
     }
 
     /**
@@ -340,10 +348,11 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * Provides a new data set to the TileGrid after the grid has been created or drawn. The TileGrid will redraw to show the new data automatically.
      *
      * @param data data to show in the list. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tile.TileRecord
      */
-    public void setData(TileRecord[] data) {
-        setAttribute("data", data, true);
+    public TileGrid setData(TileRecord[] data) {
+        return (TileGrid)setAttribute("data", data, true);
     }
 
     /**
@@ -356,10 +365,11 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * Provides a new data set to the TileGrid after the grid has been created or drawn. The TileGrid will redraw to show the new data automatically.
      *
      * @param data data to show in the list. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tile.TileRecord
      */
-    public void setData(RecordList data) {
-        setAttribute("data", data == null ? null : data.getOrCreateJsObj(), true);
+    public TileGrid setData(RecordList data) {
+        return (TileGrid)setAttribute("data", data == null ? null : data.getOrCreateJsObj(), true);
     }
     
 
@@ -370,11 +380,12 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode ResultSet.fetchMode} applies.
      *
      * @param dataFetchMode New dataFetchMode value. Default value is "paged"
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tile.TileGrid#setShowAllRecords
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
-    public void setDataFetchMode(FetchMode dataFetchMode) {
-        setAttribute("dataFetchMode", dataFetchMode == null ? null : dataFetchMode.getValue(), true);
+    public TileGrid setDataFetchMode(FetchMode dataFetchMode) {
+        return (TileGrid)setAttribute("dataFetchMode", dataFetchMode == null ? null : dataFetchMode.getValue(), true);
     }
 
     /**
@@ -398,11 +409,12 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * String ID of a DataSource.
      *
      * @param dataSource New dataSource value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_databinding_ds_fields" target="examples">DataSource fields Example</a>
      */
-    public void setDataSource(DataSource dataSource) {
-        setAttribute("dataSource", dataSource == null ? null : dataSource.getOrCreateJsObj(), true);
+    public TileGrid setDataSource(DataSource dataSource) {
+        return (TileGrid)setAttribute("dataSource", dataSource == null ? null : dataSource.getOrCreateJsObj(), true);
     }
 
     /**
@@ -411,16 +423,19 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * String ID of a DataSource.
      *
      * @param dataSource New dataSource value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_databinding_ds_fields" target="examples">DataSource fields Example</a>
      */
-    public void setDataSource(String dataSource) {
-        setAttribute("dataSource", dataSource, true);
+    public TileGrid setDataSource(String dataSource) {
+        return (TileGrid)setAttribute("dataSource", dataSource, true);
     }
     
 
     /**
-     * DetailViewer instance used to render the content shown in Tiles by default.
+     * Automatically genereated DetailViewer instance used to render the content shown in Tiles by default. <P> This
+     * detailViewer is never actually drawn or displayed to the user - it is simply used to generate the contents of
+     * SimpleTiles as described in {@link com.smartgwt.client.widgets.tile.TileGrid#getTileHTML getTileHTML()}.
      * <p>
      * This component is an AutoChild named "detailViewer".  For an overview of how to use and
      * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
@@ -439,10 +454,11 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * contents of tiles by default.
      *
      * @param detailViewerProperties New detailViewerProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setDetailViewerProperties(DetailViewer detailViewerProperties)  throws IllegalStateException {
+    public TileGrid setDetailViewerProperties(DetailViewer detailViewerProperties)  throws IllegalStateException {
         if (detailViewerProperties != null) {
             if (detailViewerProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(TileGrid.class, "setDetailViewerProperties", "DetailViewer");
@@ -450,7 +466,7 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
             detailViewerProperties.setConfigOnly(true);
         }
         JavaScriptObject config = detailViewerProperties == null ? null : detailViewerProperties.getConfig();
-        setAttribute("detailViewerProperties", JSOHelper.cleanProperties(config, true), false);
+        return (TileGrid)setAttribute("detailViewerProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -483,10 +499,11 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param drawAllMaxTiles New drawAllMaxTiles value. Default value is 25
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tile.TileGrid#setTileConstructor
      */
-    public void setDrawAllMaxTiles(Integer drawAllMaxTiles) {
-        setAttribute("drawAllMaxTiles", drawAllMaxTiles, true);
+    public TileGrid setDrawAllMaxTiles(Integer drawAllMaxTiles) {
+        return (TileGrid)setAttribute("drawAllMaxTiles", drawAllMaxTiles, true);
     }
 
     /**
@@ -514,12 +531,13 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * com.smartgwt.client.widgets.tile.TileGrid#getShowEmptyMessage showEmptyMessage} is true.
      *
      * @param emptyMessage New emptyMessage value. Default value is "No tiles to show."
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tile.TileGrid#setShowEmptyMessage
      * @see com.smartgwt.client.widgets.tile.TileGrid#setEmptyMessageStyle
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setEmptyMessage(String emptyMessage) {
-        setAttribute("emptyMessage", emptyMessage, true);
+    public TileGrid setEmptyMessage(String emptyMessage) {
+        return (TileGrid)setAttribute("emptyMessage", emptyMessage, true);
     }
 
     /**
@@ -541,10 +559,11 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * displayed.
      *
      * @param emptyMessageStyle New emptyMessageStyle value. Default value is "emptyMessage"
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setEmptyMessageStyle(String emptyMessageStyle) {
-        setAttribute("emptyMessageStyle", emptyMessageStyle, true);
+    public TileGrid setEmptyMessageStyle(String emptyMessageStyle) {
+        return (TileGrid)setAttribute("emptyMessageStyle", emptyMessageStyle, true);
     }
 
     /**
@@ -569,7 +588,8 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * of
      *  fields shown by a {@link com.smartgwt.client.widgets.grid.ListGrid}.
      *  <P>
-     *  Only applicable if using the default {@link com.smartgwt.client.widgets.tile.SimpleTile} class for tiles.
+     *  Only applicable if using the default {@link com.smartgwt.client.widgets.tile.SimpleTile} class for tiles. 
+     *  (See {@link com.smartgwt.client.widgets.tile.TileGrid#getTile tile} for more information).
      *  <P>
      * For SimpleTiles, it is possible to use {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getCellStyle
      * DetailViewerField.getCellStyle()} and 
@@ -592,10 +612,11 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      *  </pre>
      *
      * @param fields New fields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setFields(DetailViewerField... fields)  throws IllegalStateException {
-        setAttribute("fields", fields, false);
+    public TileGrid setFields(DetailViewerField... fields)  throws IllegalStateException {
+        return (TileGrid)setAttribute("fields", fields, false);
     }
     
     
@@ -606,11 +627,12 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * include {@link com.smartgwt.client.widgets.Canvas#loadingImageSrc a loading image}.
      *
      * @param loadingDataMessage New loadingDataMessage value. Default value is "${loadingImage}&amp;nbsp;Loading data..."
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tile.TileGrid#setLoadingDataMessageStyle
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setLoadingDataMessage(String loadingDataMessage) {
-        setAttribute("loadingDataMessage", loadingDataMessage, true);
+    public TileGrid setLoadingDataMessage(String loadingDataMessage) {
+        return (TileGrid)setAttribute("loadingDataMessage", loadingDataMessage, true);
     }
 
     /**
@@ -630,10 +652,11 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * The CSS style name applied to the loadingDataMessage string if displayed.
      *
      * @param loadingDataMessageStyle New loadingDataMessageStyle value. Default value is "loadingDataMessage"
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setLoadingDataMessageStyle(String loadingDataMessageStyle) {
-        setAttribute("loadingDataMessageStyle", loadingDataMessageStyle, true);
+    public TileGrid setLoadingDataMessageStyle(String loadingDataMessageStyle) {
+        return (TileGrid)setAttribute("loadingDataMessageStyle", loadingDataMessageStyle, true);
     }
 
     /**
@@ -654,11 +677,12 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * ALIGN='CENTER'&gt;LOADING&lt;/DIV&gt;")
      *
      * @param loadingMessage New loadingMessage value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setLoadingMessage(String loadingMessage)  throws IllegalStateException {
-        setAttribute("loadingMessage", loadingMessage, false);
+    public TileGrid setLoadingMessage(String loadingMessage)  throws IllegalStateException {
+        return (TileGrid)setAttribute("loadingMessage", loadingMessage, false);
     }
 
     /**
@@ -679,10 +703,11 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * How many tiles should be present in a line when printing?
      *
      * @param printTilesPerLine New printTilesPerLine value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPrintTilesPerLine(Integer printTilesPerLine)  throws IllegalStateException {
-        setAttribute("printTilesPerLine", printTilesPerLine, false);
+    public TileGrid setPrintTilesPerLine(Integer printTilesPerLine)  throws IllegalStateException {
+        return (TileGrid)setAttribute("printTilesPerLine", printTilesPerLine, false);
     }
 
     /**
@@ -697,30 +722,31 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
 
     /**
      * This property determines whether tiles that are no longer visible (due to scrolling) are recycled, allowing a large
-     * number of records to be displayed using a (potentially) much smaller set of tiles. <P> Recyling tiles may significantly
+     * number of records to be displayed using a (potentially) much smaller set of tiles. <P> Recycling tiles may significantly
      * reduce the number of live tile widgets needed to support a particular TileGrid, but may also result in extra work when
      * the TileGrid is scrolled, as a scroll that brings off-screen tiles into view will require recycling tiles that have left
      * the view, even if the new tiles have been visited before (in previous scrolling). <P> Recycling will occur when {@link
-     * com.smartgwt.client.widgets.tile.TileGrid#getTile getTile()} is called, unless the supplied record (or record specifed
+     * com.smartgwt.client.widgets.tile.TileGrid#getTile getTile()} is called, unless the supplied record (or record specified
      * by index) is currently bound to an existing tile.  Even if recycling is not enabled, the record associated with a given
      * tile may change if the TileGrid data changes. <P> For more control over the tile creation and recycling process,  see
      * {@link com.smartgwt.client.widgets.tile.TileGrid#createTile createTile()} and {@link
      * com.smartgwt.client.widgets.tile.TileGrid#updateTile updateTile()}.
      *
      * @param recycleTiles New recycleTiles value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setRecycleTiles(Boolean recycleTiles)  throws IllegalStateException {
-        setAttribute("recycleTiles", recycleTiles, false);
+    public TileGrid setRecycleTiles(Boolean recycleTiles)  throws IllegalStateException {
+        return (TileGrid)setAttribute("recycleTiles", recycleTiles, false);
     }
 
     /**
      * This property determines whether tiles that are no longer visible (due to scrolling) are recycled, allowing a large
-     * number of records to be displayed using a (potentially) much smaller set of tiles. <P> Recyling tiles may significantly
+     * number of records to be displayed using a (potentially) much smaller set of tiles. <P> Recycling tiles may significantly
      * reduce the number of live tile widgets needed to support a particular TileGrid, but may also result in extra work when
      * the TileGrid is scrolled, as a scroll that brings off-screen tiles into view will require recycling tiles that have left
      * the view, even if the new tiles have been visited before (in previous scrolling). <P> Recycling will occur when {@link
-     * com.smartgwt.client.widgets.tile.TileGrid#getTile getTile()} is called, unless the supplied record (or record specifed
+     * com.smartgwt.client.widgets.tile.TileGrid#getTile getTile()} is called, unless the supplied record (or record specified
      * by index) is currently bound to an existing tile.  Even if recycling is not enabled, the record associated with a given
      * tile may change if the TileGrid data changes. <P> For more control over the tile creation and recycling process,  see
      * {@link com.smartgwt.client.widgets.tile.TileGrid#createTile createTile()} and {@link
@@ -738,12 +764,13 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * Defines a tileGrid's clickable-selection behavior.
      *
      * @param selectionType New selectionType value. Default value is Selection.MULTIPLE
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.types.SelectionStyle
      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tiling_editing" target="examples">Editing Example</a>
      */
-    public void setSelectionType(SelectionStyle selectionType) {
-        setAttribute("selectionType", selectionType == null ? null : selectionType.getValue(), true);
+    public TileGrid setSelectionType(SelectionStyle selectionType) {
+        return (TileGrid)setAttribute("selectionType", selectionType == null ? null : selectionType.getValue(), true);
     }
 
     /**
@@ -765,11 +792,12 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * requires all records matching the criteria to be fetched from the server at once.
      *
      * @param showAllRecords New showAllRecords value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
-    public void setShowAllRecords(Boolean showAllRecords)  throws IllegalStateException {
-        setAttribute("showAllRecords", showAllRecords, false);
+    public TileGrid setShowAllRecords(Boolean showAllRecords)  throws IllegalStateException {
+        return (TileGrid)setAttribute("showAllRecords", showAllRecords, false);
     }
 
     /**
@@ -791,10 +819,11 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * in the DataSource.  See also {@link com.smartgwt.client.widgets.tile.TileGrid#getFields fields}.
      *
      * @param showDetailFields New showDetailFields value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowDetailFields(Boolean showDetailFields)  throws IllegalStateException {
-        setAttribute("showDetailFields", showDetailFields, false);
+    public TileGrid setShowDetailFields(Boolean showDetailFields)  throws IllegalStateException {
+        return (TileGrid)setAttribute("showDetailFields", showDetailFields, false);
     }
 
     /**
@@ -813,10 +842,11 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * Indicates whether the text of the emptyMessage property should be displayed if no data is available.
      *
      * @param showEmptyMessage New showEmptyMessage value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tile.TileGrid#setEmptyMessage
      */
-    public void setShowEmptyMessage(Boolean showEmptyMessage) {
-        setAttribute("showEmptyMessage", showEmptyMessage, true);
+    public TileGrid setShowEmptyMessage(Boolean showEmptyMessage) {
+        return (TileGrid)setAttribute("showEmptyMessage", showEmptyMessage, true);
     }
 
     /**
@@ -863,11 +893,12 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * A TileGrid automatically creates one tile per record in the dataset, via the
      *  {@link com.smartgwt.client.types.AutoChild} pattern.
      *  <P>
-     * By default, the {@link com.smartgwt.client.widgets.tile.SimpleTile} class will be used, and will contain content as
-     * rendered
-     * by a {@link com.smartgwt.client.widgets.viewer.DetailViewer}, based on the provided {@link
-     * com.smartgwt.client.widgets.tile.TileGrid#getFields fields} (or on the default
-     *  set of fields).
+     * By default, the {@link com.smartgwt.client.widgets.tile.SimpleTile} class will be used. This class automatically invokes
+     * {@link com.smartgwt.client.widgets.tile.TileGrid#getTileHTML getTileHTML()} on the tileGrid to generate its content. The
+     * standard {@link com.smartgwt.client.widgets.tile.TileGrid#getTileHTML getTileHTML()}
+     * method uses a {@link com.smartgwt.client.widgets.tile.TileGrid#getDetailViewer detailViewer} to render html for the
+     * tile's record, based on the 
+     *  provided {@link com.smartgwt.client.widgets.tile.TileGrid#getFields fields} (or on the default set of fields).
      *  <P>
      *  
      *  
@@ -908,7 +939,7 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
     
 
     /**
-     * Classname of a Smart GWT component to use for each tile rendered by this TileGrid.  Tiles are created by the {@link
+     * Class-name of a Smart GWT component to use for each tile rendered by this TileGrid.  Tiles are created by the {@link
      * com.smartgwt.client.types.AutoChild} pattern; see {@link com.smartgwt.client.widgets.tile.TileGrid#getTile tile}. <P> 
      * Any subclass of Canvas is allowed, but typically any custom class will derive from {@link
      * com.smartgwt.client.widgets.tile.SimpleTile}. <p> When using a custom component for tileConstructor, DataBoundComponents
@@ -921,15 +952,16 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * drawAllMaxTiles}.
      *
      * @param tileConstructor New tileConstructor value. Default value is "SimpleTile"
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tiling_custom" target="examples">Custom Tiles Example</a>
      */
-    public void setTileConstructor(String tileConstructor) {
-        setAttribute("tileConstructor", tileConstructor, true);
+    public TileGrid setTileConstructor(String tileConstructor) {
+        return (TileGrid)setAttribute("tileConstructor", tileConstructor, true);
     }
 
     /**
-     * Classname of a Smart GWT component to use for each tile rendered by this TileGrid.  Tiles are created by the {@link
+     * Class-name of a Smart GWT component to use for each tile rendered by this TileGrid.  Tiles are created by the {@link
      * com.smartgwt.client.types.AutoChild} pattern; see {@link com.smartgwt.client.widgets.tile.TileGrid#getTile tile}. <P> 
      * Any subclass of Canvas is allowed, but typically any custom class will derive from {@link
      * com.smartgwt.client.widgets.tile.SimpleTile}. <p> When using a custom component for tileConstructor, DataBoundComponents
@@ -955,11 +987,12 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param tileDragAppearance New tileDragAppearance value. Default value is EventHandler.TRACKER
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setDragAppearance
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
-    public void setTileDragAppearance(DragAppearance tileDragAppearance) {
-        setAttribute("tileDragAppearance", tileDragAppearance == null ? null : tileDragAppearance.getValue(), true);
+    public TileGrid setTileDragAppearance(DragAppearance tileDragAppearance) {
+        return (TileGrid)setAttribute("tileDragAppearance", tileDragAppearance == null ? null : tileDragAppearance.getValue(), true);
     }
 
     /**
@@ -978,9 +1011,10 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * Common properties to use when creating every tile.
      *
      * @param tileProperties New tileProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setTileProperties(Canvas tileProperties) {
+    public TileGrid setTileProperties(Canvas tileProperties) {
         if (tileProperties != null) {
             if (tileProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(TileGrid.class, "setTileProperties", "Canvas");
@@ -988,7 +1022,7 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
             tileProperties.setConfigOnly(true);
         }
         JavaScriptObject config = tileProperties == null ? null : tileProperties.getConfig();
-        setAttribute("tileProperties", JSOHelper.cleanProperties(config, true), true);
+        return (TileGrid)setAttribute("tileProperties", JSOHelper.cleanProperties(config, true), true);
     }
 
     /**
@@ -1013,12 +1047,13 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * com.smartgwt.client.data.List#getLength getLength()} on it.
      *
      * @param tiles New tiles value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tile.TileGrid#setRecycleTiles
      * @see com.smartgwt.client.widgets.tile.TileGrid#setTileConstructor
      */
-    public void setTiles(Canvas... tiles)  throws IllegalStateException {
-        setAttribute("tiles", tiles, false);
+    public TileGrid setTiles(Canvas... tiles)  throws IllegalStateException {
+        return (TileGrid)setAttribute("tiles", tiles, false);
     }
 
     /**
@@ -1042,10 +1077,11 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * Horizontal alignment for tile values: "left", "right" or "center".
      *
      * @param tileValueAlign New tileValueAlign value. Default value is "center"
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTileValueAlign(String tileValueAlign)  throws IllegalStateException {
-        setAttribute("tileValueAlign", tileValueAlign, false);
+    public TileGrid setTileValueAlign(String tileValueAlign)  throws IllegalStateException {
+        return (TileGrid)setAttribute("tileValueAlign", tileValueAlign, false);
     }
 
     /**
@@ -1063,11 +1099,12 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * tile.
      *
      * @param tileValueStyle New tileValueStyle value. Default value is "tileValue"
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setTileValueStyle(String tileValueStyle)  throws IllegalStateException {
-        setAttribute("tileValueStyle", tileValueStyle, false);
+    public TileGrid setTileValueStyle(String tileValueStyle)  throws IllegalStateException {
+        return (TileGrid)setAttribute("tileValueStyle", tileValueStyle, false);
     }
 
     /**
@@ -1086,10 +1123,11 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * Should tile values change state when the mouse goes down on them?
      *
      * @param valuesShowDown New valuesShowDown value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setValuesShowDown(boolean valuesShowDown)  throws IllegalStateException {
-        setAttribute("valuesShowDown", valuesShowDown, false);
+    public TileGrid setValuesShowDown(boolean valuesShowDown)  throws IllegalStateException {
+        return (TileGrid)setAttribute("valuesShowDown", valuesShowDown, false);
     }
 
     /**
@@ -1107,10 +1145,11 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * Should tile values change state when the mouse goes over them?
      *
      * @param valuesShowRollOver New valuesShowRollOver value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setValuesShowRollOver(boolean valuesShowRollOver)  throws IllegalStateException {
-        setAttribute("valuesShowRollOver", valuesShowRollOver, false);
+    public TileGrid setValuesShowRollOver(boolean valuesShowRollOver)  throws IllegalStateException {
+        return (TileGrid)setAttribute("valuesShowRollOver", valuesShowRollOver, false);
     }
 
     /**
@@ -1128,10 +1167,11 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * Should tile values change state when they are selected?
      *
      * @param valuesShowSelected New valuesShowSelected value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setValuesShowSelected(boolean valuesShowSelected)  throws IllegalStateException {
-        setAttribute("valuesShowSelected", valuesShowSelected, false);
+    public TileGrid setValuesShowSelected(boolean valuesShowSelected)  throws IllegalStateException {
+        return (TileGrid)setAttribute("valuesShowSelected", valuesShowSelected, false);
     }
 
     /**
@@ -1149,10 +1189,11 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * Whether values should be allowed to wrap by default, or should be shown on one line regardless of length.
      *
      * @param wrapValues New wrapValues value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tile.TileGrid TileGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setWrapValues(Boolean wrapValues)  throws IllegalStateException {
-        setAttribute("wrapValues", wrapValues, false);
+    public TileGrid setWrapValues(Boolean wrapValues)  throws IllegalStateException {
+        return (TileGrid)setAttribute("wrapValues", wrapValues, false);
     }
 
     /**
@@ -1330,6 +1371,12 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * com.smartgwt.client.docs.ListGridFieldState} object. <P> This object can be passed to {@link
      * com.smartgwt.client.widgets.tile.TileGrid#setFieldState setFieldState()} to reset this grid's fields to the current
      * state. <P> Note that the information stored includes the current width and visibility of each of this  grid's fields.
+     * <P> The optional <code>sparse</code> parameter governs whether the returned field state should omit state information
+     * for hidden fields. If this parameter is not passed explicitly, field state will be sparse if {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getSparseFieldState DataBoundComponent.sparseFieldState} is true.<br>
+     * When applying sparse field state to a component via {@link com.smartgwt.client.widgets.tile.TileGrid#setFieldState
+     * setFieldState()}, any  explicitly defined fields on the component that were not captured in the stored state object will
+     * be hidden.
      *
      * @return current state of this grid's fields.
      * See {@link com.smartgwt.client.docs.ListGridFieldState ListGridFieldState}
@@ -1344,6 +1391,32 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
         return ret;
     }-*/;
 
+	/**
+     * Returns a snapshot of the current presentation of this grid's fields as  a {@link
+     * com.smartgwt.client.docs.ListGridFieldState} object. <P> This object can be passed to {@link
+     * com.smartgwt.client.widgets.tile.TileGrid#setFieldState setFieldState()} to reset this grid's fields to the current
+     * state. <P> Note that the information stored includes the current width and visibility of each of this  grid's fields.
+     * <P> The optional <code>sparse</code> parameter governs whether the returned field state should omit state information
+     * for hidden fields. If this parameter is not passed explicitly, field state will be sparse if {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getSparseFieldState DataBoundComponent.sparseFieldState} is true.<br>
+     * When applying sparse field state to a component via {@link com.smartgwt.client.widgets.tile.TileGrid#setFieldState
+     * setFieldState()}, any  explicitly defined fields on the component that were not captured in the stored state object will
+     * be hidden.
+     * @param sparse If true, field state will be ommitted for hidden fields.
+     *
+     * @return current state of this grid's fields.
+     * See {@link com.smartgwt.client.docs.ListGridFieldState ListGridFieldState}
+     * @see com.smartgwt.client.widgets.tile.TileGrid#setFieldState
+     */
+    public native String getFieldState(Boolean sparse) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getFieldState", "Boolean");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getFieldState(sparse == null ? null : sparse.@java.lang.Boolean::booleanValue()());
+        return ret;
+    }-*/;
+	
 	/**
      * Returns the first selected record in this component. <p> <strong>NOTE:</strong> If a record is returned, it should be
      * treated as read-only and not modified.
@@ -1627,13 +1700,49 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
 	/**
      * This is not allowed for tileGrid. Instead, use {@link com.smartgwt.client.widgets.tile.TileGrid#removeData
      * removeData()}.
+     * @param tileID index or String ID of the tile
+     *
+     * @return whether a tile was found and removed
      */
-    public native void removeTile() /*-{
+    public native boolean removeTile(Canvas tileID) /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "removeTile", "");
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "removeTile", "Canvas");
         }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.removeTile();
+        var ret = self.removeTile(tileID == null ? null : tileID.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+        return ret == null ? false : ret;
+    }-*/;
+
+	/**
+     * This is not allowed for tileGrid. Instead, use {@link com.smartgwt.client.widgets.tile.TileGrid#removeData
+     * removeData()}.
+     * @param tileID index or String ID of the tile
+     *
+     * @return whether a tile was found and removed
+     */
+    public native boolean removeTile(int tileID) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "removeTile", "int");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.removeTile(tileID);
+        return ret == null ? false : ret;
+    }-*/;
+
+	/**
+     * This is not allowed for tileGrid. Instead, use {@link com.smartgwt.client.widgets.tile.TileGrid#removeData
+     * removeData()}.
+     * @param tileID index or String ID of the tile
+     *
+     * @return whether a tile was found and removed
+     */
+    public native boolean removeTile(String tileID) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "removeTile", "String");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.removeTile(tileID);
+        return ret == null ? false : ret;
     }-*/;
 
     /**
@@ -1720,7 +1829,12 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
 	/**
      * Sets some presentation properties (visibility, width, userFormula and userSummary) of the  grid fields based on the
      * {@link com.smartgwt.client.docs.ListGridFieldState} object passed in.<br> Used to restore previous state retrieved from
-     * the grid by a call to {@link com.smartgwt.client.widgets.tile.TileGrid#getFieldState getFieldState()}.
+     * the grid by a call to {@link com.smartgwt.client.widgets.tile.TileGrid#getFieldState getFieldState()}. <P> The optional
+     * <code>isSparse</code> parameter may be passed to indicate whether the fieldState object is "sparse" - whether it
+     * includes explicit state information for hidden fields. In this case any fields defined on the component not explicitly
+     * included in the fieldState object will be hidden.<br> If <code>isSparse</code> is not explicitly passed as a parameter, 
+     * sparseness will be assumed if {@link com.smartgwt.client.widgets.DataBoundComponent#getSparseFieldState
+     * DataBoundComponent.sparseFieldState} is true.
      * @param fieldState state to apply to the grid's fields.
      * See {@link com.smartgwt.client.docs.ListGridFieldState ListGridFieldState}
      * @see com.smartgwt.client.widgets.tile.TileGrid#getFieldState
@@ -1734,6 +1848,29 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
         self.setFieldState(fieldState);
     }-*/;
 
+	/**
+     * Sets some presentation properties (visibility, width, userFormula and userSummary) of the  grid fields based on the
+     * {@link com.smartgwt.client.docs.ListGridFieldState} object passed in.<br> Used to restore previous state retrieved from
+     * the grid by a call to {@link com.smartgwt.client.widgets.tile.TileGrid#getFieldState getFieldState()}. <P> The optional
+     * <code>isSparse</code> parameter may be passed to indicate whether the fieldState object is "sparse" - whether it
+     * includes explicit state information for hidden fields. In this case any fields defined on the component not explicitly
+     * included in the fieldState object will be hidden.<br> If <code>isSparse</code> is not explicitly passed as a parameter, 
+     * sparseness will be assumed if {@link com.smartgwt.client.widgets.DataBoundComponent#getSparseFieldState
+     * DataBoundComponent.sparseFieldState} is true.
+     * @param fieldState state to apply to the grid's fields.
+     * See {@link com.smartgwt.client.docs.ListGridFieldState ListGridFieldState}
+     * @param isSparse If true, the fieldState passed in is assumed to be "sparse".   Any fields defined on this component without explicit
+     * field state values will be  hidden.
+     * @see com.smartgwt.client.widgets.tile.TileGrid#getFieldState
+     */
+    public native void setFieldState(String fieldState, Boolean isSparse) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setFieldState", "String,Boolean");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setFieldState(fieldState, isSparse == null ? null : isSparse.@java.lang.Boolean::booleanValue()());
+    }-*/;
+	
 
     // ********************* Static Methods ***********************
 
@@ -1871,6 +2008,7 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      *
      * @param property  property
      * @param ascending direction
+     * @deprecated Use {@link #setSort} instead.
      */
     public native void sortByProperty(String property, boolean ascending) /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
@@ -1991,8 +2129,8 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
 
     // ********************* DataBoundComponent Properties / Attributes ***********************
 
-    public void setDataPageSize(int dataPageSize) {
-        setAttribute("dataPageSize", dataPageSize, true);
+    public TileGrid setDataPageSize(int dataPageSize) {
+        return (TileGrid)setAttribute("dataPageSize", dataPageSize, true);
     }
 
     public int getDataPageSize() {
@@ -2000,112 +2138,112 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
         return dataPageSize == null ? 0 : dataPageSize;
     }
 
-    public void setUseAllDataSourceFields(Boolean useAllDataSourceFields) {
-        setAttribute("useAllDataSourceFields", useAllDataSourceFields, true);
+    public TileGrid setUseAllDataSourceFields(Boolean useAllDataSourceFields) {
+        return (TileGrid)setAttribute("useAllDataSourceFields", useAllDataSourceFields, true);
     }
 
     public Boolean getUseAllDataSourceFields() {
         return getAttributeAsBoolean("useAllDataSourceFields");
     }
 
-    public void setShowHiddenFields(Boolean showHiddenFields) {
-        setAttribute("showHiddenFields", showHiddenFields, true);
+    public TileGrid setShowHiddenFields(Boolean showHiddenFields) {
+        return (TileGrid)setAttribute("showHiddenFields", showHiddenFields, true);
     }
 
     public Boolean getShowHiddenFields() {
         return getAttributeAsBoolean("showHiddenFields");
     }
 
-    public void setShowComplexFields(Boolean showComplexFields) {
-        setAttribute("showComplexFields", showComplexFields, true);
+    public TileGrid setShowComplexFields(Boolean showComplexFields) {
+        return (TileGrid)setAttribute("showComplexFields", showComplexFields, true);
     }
 
     public Boolean getShowComplexFields() {
         return getAttributeAsBoolean("showComplexFields");
     }
 
-    public void setFetchOperation(String fetchOperation) {
-        setAttribute("fetchOperation", fetchOperation, true);
+    public TileGrid setFetchOperation(String fetchOperation) {
+        return (TileGrid)setAttribute("fetchOperation", fetchOperation, true);
     }
 
     public String getFetchOperation() {
         return getAttributeAsString("fetchOperation");
     }
 
-    public void setUpdateOperation(String updateOperation) {
-        setAttribute("updateOperation", updateOperation, true);
+    public TileGrid setUpdateOperation(String updateOperation) {
+        return (TileGrid)setAttribute("updateOperation", updateOperation, true);
     }
 
     public String getUpdateOperation() {
         return getAttributeAsString("updateOperation");
     }
 
-    public void setAddOperation(String addOperation) {
-        setAttribute("addOperation", addOperation, true);
+    public TileGrid setAddOperation(String addOperation) {
+        return (TileGrid)setAttribute("addOperation", addOperation, true);
     }
 
     public String getAddOperation() {
         return getAttributeAsString("addOperation");
     }
 
-    public void setRemoveOperation(String removeOperation) {
-        setAttribute("removeOperation", removeOperation, true);
+    public TileGrid setRemoveOperation(String removeOperation) {
+        return (TileGrid)setAttribute("removeOperation", removeOperation, true);
     }
 
     public String getRemoveOperation() {
         return getAttributeAsString("removeOperation");
     }
 
-    public void setExportFields(String[] exportFields) {
-        setAttribute("exportFields", exportFields, true);
+    public TileGrid setExportFields(String[] exportFields) {
+        return (TileGrid)setAttribute("exportFields", exportFields, true);
     }
 
     public String[] getExportFields() {
         return getAttributeAsStringArray("exportFields");
     }
 
-    public void setExportAll(Boolean exportAll) {
-        setAttribute("exportAll", exportAll, true);
+    public TileGrid setExportAll(Boolean exportAll) {
+        return (TileGrid)setAttribute("exportAll", exportAll, true);
     }
 
     public Boolean getExportAll() {
         return getAttributeAsBoolean("exportAll");
     }
 
-    public void setExportIncludeSummaries(Boolean exportIncludeSummaries) {
-        setAttribute("exportIncludeSummaries", exportIncludeSummaries, true);
+    public TileGrid setExportIncludeSummaries(Boolean exportIncludeSummaries) {
+        return (TileGrid)setAttribute("exportIncludeSummaries", exportIncludeSummaries, true);
     }
 
     public Boolean getExportIncludeSummaries() {
         return getAttributeAsBoolean("exportIncludeSummaries");
     }
 
-    public void setPreventDuplicates(Boolean preventDuplicates) throws IllegalStateException {
-        setAttribute("preventDuplicates", preventDuplicates, false);
+    public TileGrid setPreventDuplicates(Boolean preventDuplicates) throws IllegalStateException {
+        return (TileGrid)setAttribute("preventDuplicates", preventDuplicates, false);
     }
 
     public Boolean getPreventDuplicates() {
         return getAttributeAsBoolean("preventDuplicates");
     }
 
-    public void setDuplicateDragMessage(String duplicateDragMessage) throws IllegalStateException {
-        setAttribute("duplicateDragMessage", duplicateDragMessage, false);
+    public TileGrid setDuplicateDragMessage(String duplicateDragMessage) throws IllegalStateException {
+        return (TileGrid)setAttribute("duplicateDragMessage", duplicateDragMessage, false);
     }
 
     public String getDuplicateDragMessage() {
         return getAttributeAsString("duplicateDragMessage");
     }
 
-    public void setAddDropValues(Boolean addDropValues) {
-        setAttribute("addDropValues", addDropValues, true);
+    public TileGrid setAddDropValues(Boolean addDropValues) {
+        return (TileGrid)setAttribute("addDropValues", addDropValues, true);
     }
 
     public Boolean getAddDropValues() {
         return getAttributeAsBoolean("addDropValues");
     }
 
-    public void setDropValues(Map dropValues) {
-        setAttribute("dropValues", dropValues, true);
+    public TileGrid setDropValues(Map dropValues) {
+        return (TileGrid)setAttribute("dropValues", dropValues, true);
     }
 
     public Map getDropValues() {
@@ -2113,14 +2251,17 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
     }
 
     /**
-     * Indicates whether or not this component will load its data {@link DataSource#setProgressiveLoading() progressively}
+     * Indicates whether or not this component will load its data
+     * {@link DataSource#setProgressiveLoading() progressively}
      * 
      * @see com.smartgwt.client.docs.ProgressiveLoading  
      * @see com.smartgwt.client.data.DataSource#setProgressiveLoading
      * @param progressiveLoading
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    public void setProgressiveLoading(Boolean progressiveLoading) {
-        setAttribute("progressiveLoading", progressiveLoading, false);
+    public TileGrid setProgressiveLoading(Boolean progressiveLoading) {
+        return (TileGrid)setAttribute("progressiveLoading", progressiveLoading, false);
     }
 
     /**
@@ -2134,16 +2275,16 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
         return getAttributeAsBoolean("progressiveLoading");
     }
 
-    public void setUseFlatFields(Boolean useFlatFields) throws IllegalStateException {
-        setAttribute("useFlatFields", useFlatFields, false);
+    public TileGrid setUseFlatFields(Boolean useFlatFields) throws IllegalStateException {
+        return (TileGrid)setAttribute("useFlatFields", useFlatFields, false);
     }
 
     public Boolean getUseFlatFields() {
         return getAttributeAsBoolean("useFlatFields");
     }
 
-    public void setHiliteProperty(String hiliteProperty) {
-        setAttribute("hiliteProperty", hiliteProperty, true);
+    public TileGrid setHiliteProperty(String hiliteProperty) {
+        return (TileGrid)setAttribute("hiliteProperty", hiliteProperty, true);
     }
 
     public String getHiliteProperty() {
@@ -2159,41 +2300,23 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
         self.editFields();
     }-*/;
 
-    /**
-     * Shows a HiliteEditor interface allowing end-users to edit the data-hilites currently in use by this DataBoundComponent.
-     */
     public native void editHilites() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.editHilites();
     }-*/;
 
-    /**
-     * Get the current hilites encoded as a String, for saving.
-     *
-     * @return the hilite state
-     */
     public native String getHiliteState()  /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getHiliteState();
     }-*/;
 
-    /**
-     * Set the current hilites based on a hiliteState String previously returned from getHilitesState.
-     *
-     * @param hiliteState hilites state encoded as a String
-     */
-    public native void setHiliteState(String hiliteState)  /*-{
+    public native TileGrid setHiliteState(String hiliteState)  /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.setHiliteState(hiliteState);
+        self.setHiliteState(hiliteState);
+        return this;
     }-*/;
 
-    /**
-     * Accepts an array of hilite objects and applies them to this DataBoundComponent. See also {@link #getHilites() getHilites} for a method of
-     * retrieving the hilite array for storage, including hilites manually added by the user.
-     *
-     * @param hilites array of hilite objects
-     */
-    public native void setHilites(Hilite[] hilites)/*-{
+    public native TileGrid setHilites(Hilite[] hilites)/*-{
         var isCreated = this.@com.smartgwt.client.widgets.BaseWidget::isCreated()();
         var hilitesJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(hilites);
         if (isCreated) {
@@ -2203,38 +2326,33 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
             var obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
             obj.hilites = hilitesJS;
         }
+        return this;
     }-*/;
 
-    /**
-     * Return the set of hilite-objects currently applied to this DataBoundComponent. These can be saved for
-     * storage and then restored to a component later via setHilites().
-     *
-     * @return array of hilite objects
-     */
     public native Hilite[] getHilites()/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var hilitesJS = self.getHilites();
         return @com.smartgwt.client.util.ConvertTo::arrayOfHilite(Lcom/google/gwt/core/client/JavaScriptObject;)(hilitesJS);
     }-*/;
 
-    public void setDragDataAction(DragDataAction dragDataAction) {
-        setAttribute("dragDataAction", dragDataAction.getValue(), true);
+    public TileGrid setDragDataAction(DragDataAction dragDataAction) {
+        return (TileGrid)setAttribute("dragDataAction", dragDataAction.getValue(), true);
     }
 
     public DragDataAction getDragDataAction() {
         return EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
     }
 
-    public void setDragTrackerStyle(String dragTrackerStyle) {
-        setAttribute("dragTrackerStyle", dragTrackerStyle, true);
+    public TileGrid setDragTrackerStyle(String dragTrackerStyle) {
+        return (TileGrid)setAttribute("dragTrackerStyle", dragTrackerStyle, true);
     }
 
     public String getDragTrackerStyle() {
         return getAttributeAsString("dragTrackerStyle");
     }
 
-    public void setCanAddFormulaFields(Boolean canAddFormulaFields) {
-        setAttribute("canAddFormulaFields", canAddFormulaFields, true);
+    public TileGrid setCanAddFormulaFields(Boolean canAddFormulaFields) {
+        return (TileGrid)setAttribute("canAddFormulaFields", canAddFormulaFields, true);
     }
 
     public native void addSummaryField() /*-{
@@ -2251,40 +2369,40 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
         return getAttributeAsBoolean("canAddFormulaFields");
     }
 
-    public void setAddFormulaFieldText(String addFormulaFieldText) {
-        setAttribute("addFormulaFieldText", addFormulaFieldText, true);
+    public TileGrid setAddFormulaFieldText(String addFormulaFieldText) {
+        return (TileGrid)setAttribute("addFormulaFieldText", addFormulaFieldText, true);
     }
 
     public String getAddFormulaFieldText() {
         return getAttributeAsString("addFormulaFieldText");
     }
 
-    public void setEditFormulaFieldText(String editFormulaFieldText) {
-        setAttribute("editFormulaFieldText", editFormulaFieldText, true);
+    public TileGrid setEditFormulaFieldText(String editFormulaFieldText) {
+        return (TileGrid)setAttribute("editFormulaFieldText", editFormulaFieldText, true);
     }
 
     public String getEditFormulaFieldText() {
         return getAttributeAsString("editFormulaFieldText");
     }
 
-    public void setCanAddSummaryFields(Boolean canAddSummaryFields) {
-        setAttribute("canAddSummaryFields", canAddSummaryFields, true);
+    public TileGrid setCanAddSummaryFields(Boolean canAddSummaryFields) {
+        return (TileGrid)setAttribute("canAddSummaryFields", canAddSummaryFields, true);
     }
 
     public Boolean getCanAddSummaryFields() {
         return getAttributeAsBoolean("canAddSummaryFields");
     }
 
-    public void setAddSummaryFieldText(String addSummaryFieldText) {
-        setAttribute("addSummaryFieldText", addSummaryFieldText, true);
+    public TileGrid setAddSummaryFieldText(String addSummaryFieldText) {
+        return (TileGrid)setAttribute("addSummaryFieldText", addSummaryFieldText, true);
     }
 
     public String getAddSummaryFieldText() {
         return getAttributeAsString("addSummaryFieldText");
     }
 
-    public void setEditSummaryFieldText(String editSummaryFieldText) {
-        setAttribute("editSummaryFieldText", editSummaryFieldText, true);
+    public TileGrid setEditSummaryFieldText(String editSummaryFieldText) {
+        return (TileGrid)setAttribute("editSummaryFieldText", editSummaryFieldText, true);
     }
 
     public String getEditSummaryFieldText() {
@@ -2519,8 +2637,8 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
          return self.getTitleFieldValue(record);
      }-*/;
 
-    public void setTitleField(String titleField) {
-        setAttribute("titleField", titleField, true);
+    public TileGrid setTitleField(String titleField) {
+        return (TileGrid)setAttribute("titleField", titleField, true);
     }
 
     public String getTitleField() {
@@ -2533,44 +2651,44 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
         return @com.smartgwt.client.data.DataSource::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(dataSourceJS);
     }-*/;
 
-    public void setAutoFetchData(Boolean autoFetchData) throws IllegalStateException {
-        setAttribute("autoFetchData", autoFetchData, false);
+    public TileGrid setAutoFetchData(Boolean autoFetchData) throws IllegalStateException {
+        return (TileGrid)setAttribute("autoFetchData", autoFetchData, false);
     }
 
     public Boolean getAutoFetchData() {
         return getAttributeAsBoolean("autoFetchData");
     }
 
-    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle) throws IllegalStateException {
-        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
+    public TileGrid setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle) throws IllegalStateException {
+        return (TileGrid)setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
     }
 
     public TextMatchStyle getAutoFetchTextMatchStyle() {
         return TextMatchStyle.valueOf(getAttributeAsString("autoFetchTextMatchStyle"));
     }
 
-    public void setAutoFetchAsFilter(Boolean autoFetchAsFilter) throws IllegalStateException {
-        setAttribute("autoFetchAsFilter", autoFetchAsFilter, false);
+    public TileGrid setAutoFetchAsFilter(Boolean autoFetchAsFilter) throws IllegalStateException {
+        return (TileGrid)setAttribute("autoFetchAsFilter", autoFetchAsFilter, false);
     }
 
     public Boolean getAutoFetchAsFilter() {
         return getAttributeAsBoolean("autoFetchAsFilter");
     }
 
-    public void setInitialCriteria(Criteria initialCriteria) throws IllegalStateException {
-        setAttribute("initialCriteria", initialCriteria.getJsObj(), false);
+    public TileGrid setInitialCriteria(Criteria initialCriteria) throws IllegalStateException {
+        return (TileGrid)setAttribute("initialCriteria", initialCriteria.getJsObj(), false);
     }
 
     public Criteria getInitialCriteria() {
         return new Criteria(getAttributeAsJavaScriptObject("initialCriteria"));
     }
 
-    public void setImplicitCriteria(Criteria implicitCriteria) {
+    public TileGrid setImplicitCriteria(Criteria implicitCriteria) {
         if (implicitCriteria instanceof Criterion) {
             implicitCriteria.setAttribute("_constructor", "AdvancedCriteria");
         }
-        setAttribute("implicitCriteria", implicitCriteria == null ? 
-                     null : implicitCriteria.getJsObj(), true);
+        return (TileGrid)setAttribute("implicitCriteria", implicitCriteria == null ?
+                            null : implicitCriteria.getJsObj(), true);
     }
 
     public Criteria getImplicitCriteria()  {
@@ -2834,15 +2952,15 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
         return getAttributeAsBoolean("deepCloneOnEdit");
     }
 
-    public void setDeepCloneOnEdit(Boolean deepCloneOnEdit) {
-        setAttribute("deepCloneOnEdit", deepCloneOnEdit, true);
+    public TileGrid setDeepCloneOnEdit(Boolean deepCloneOnEdit) {
+        return (TileGrid)setAttribute("deepCloneOnEdit", deepCloneOnEdit, true);
     }
 
-    public void setFields(JavaScriptObject... fields) {
+    public TileGrid setFields(JavaScriptObject... fields) {
         if (fields != null) for(int i = 0; i < fields.length; i++) {
             fields[i] = duplicateFieldConfig(JSOHelper.cleanProperties(fields[i], false));
         }
-        setAttribute("fields", fields, true);
+        return (TileGrid)setAttribute("fields", fields, true);
     }
 
     private native JavaScriptObject duplicateFieldConfig(JavaScriptObject config) /*-{
@@ -2884,8 +3002,10 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * This method is consulted by
      * {@link com.smartgwt.client.widgets.grid.ListGrid#willAcceptDrop willAcceptDrop()}.
      * @param DragDataCustomizer customizer
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    public native void setDragDataCustomizer(DragDataCustomizer customizer) /*-{
+    public native TileGrid setDragDataCustomizer(DragDataCustomizer customizer) /*-{
         var self;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             self = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
@@ -2897,6 +3017,25 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
         	var returnJ = customizer.@com.smartgwt.client.widgets.DragDataCustomizer::getDragData(Lcom/smartgwt/client/widgets/DataBoundComponent;)(componentJ);
         	return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(returnJ);
     	}));
+        return this;
+    }-*/;
+
+    public native SortSpecifier[] getSort() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getSort", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        if(self == null) return null
+        var ret = self.getSort();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.ConvertTo::arrayOfSortSpecifier(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+    
+    public native TileGrid setSort(SortSpecifier... sortSpecifiers) /*-{
+        var sortSpecifiersJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(sortSpecifiers);
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setSort(sortSpecifiersJS);
+        return this;
     }-*/;
 
 

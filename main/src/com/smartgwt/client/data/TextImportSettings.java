@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Settings for use with {@link com.smartgwt.client.data.DataSource#recordsFromText DataSource.recordsFromText()}.
@@ -120,10 +123,11 @@ public class TextImportSettings extends TextSettings {
      * names to use when parsing data as {@link com.smartgwt.client.data.TextSettings#getFieldList TextSettings.fieldList}.
      *
      * @param hasHeaderLine New hasHeaderLine value. Default value is false
+     * @return {@link com.smartgwt.client.data.TextImportSettings TextImportSettings} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setHasHeaderLine(Boolean hasHeaderLine)  throws IllegalStateException {
-        setAttribute("hasHeaderLine", hasHeaderLine, false);
+    public TextImportSettings setHasHeaderLine(Boolean hasHeaderLine)  throws IllegalStateException {
+        return (TextImportSettings)setAttribute("hasHeaderLine", hasHeaderLine, false);
     }
 
     /**

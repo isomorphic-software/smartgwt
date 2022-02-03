@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -174,10 +177,11 @@ public class Flashlet extends BrowserPlugin {
      * "clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"  <p>
      *
      * @param classID New classID value. Default value is see below
+     * @return {@link com.smartgwt.client.widgets.plugins.Flashlet Flashlet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setClassID(String classID)  throws IllegalStateException {
-        setAttribute("classID", classID, false);
+    public Flashlet setClassID(String classID)  throws IllegalStateException {
+        return (Flashlet)setAttribute("classID", classID, false);
     }
 
     /**
@@ -196,11 +200,12 @@ public class Flashlet extends BrowserPlugin {
      * codeBase is: "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0"  <p>
      *
      * @param codeBase New codeBase value. Default value is see below
+     * @return {@link com.smartgwt.client.widgets.plugins.Flashlet Flashlet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.URL URL 
      */
-    public void setCodeBase(String codeBase)  throws IllegalStateException {
-        setAttribute("codeBase", codeBase, false);
+    public Flashlet setCodeBase(String codeBase)  throws IllegalStateException {
+        return (Flashlet)setAttribute("codeBase", codeBase, false);
     }
 
     /**
@@ -221,11 +226,12 @@ public class Flashlet extends BrowserPlugin {
      * com.smartgwt.client.widgets.plugins.Flashlet#getPluginHandle getPluginHandle()} to get a  handle to the element.
      *
      * @param name New name value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.plugins.Flashlet Flashlet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.plugins.Flashlet#getPluginHandle
      */
-    public void setName(String name)  throws IllegalStateException {
-        setAttribute("name", name, false);
+    public Flashlet setName(String name)  throws IllegalStateException {
+        return (Flashlet)setAttribute("name", name, false);
     }
 
     /**
@@ -246,10 +252,11 @@ public class Flashlet extends BrowserPlugin {
      * &lt;object&gt; element as well as the inner &lt;embed&gt; element.
      *
      * @param params New params value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.plugins.Flashlet Flashlet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setParams(Map params)  throws IllegalStateException {
-        setAttribute("params", params, false);
+    public Flashlet setParams(Map params)  throws IllegalStateException {
+        return (Flashlet)setAttribute("params", params, false);
     }
 
     /**
@@ -268,11 +275,12 @@ public class Flashlet extends BrowserPlugin {
      * default pluginsPage is: "http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"  <p>
      *
      * @param pluginsPage New pluginsPage value. Default value is see below
+     * @return {@link com.smartgwt.client.widgets.plugins.Flashlet Flashlet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.URL URL 
      */
-    public void setPluginsPage(String pluginsPage)  throws IllegalStateException {
-        setAttribute("pluginsPage", pluginsPage, false);
+    public Flashlet setPluginsPage(String pluginsPage)  throws IllegalStateException {
+        return (Flashlet)setAttribute("pluginsPage", pluginsPage, false);
     }
 
     /**
@@ -294,11 +302,12 @@ public class Flashlet extends BrowserPlugin {
      * Sets the source file for the flash component
      *
      * @param src New src value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.plugins.Flashlet Flashlet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.URL URL 
      */
-    public void setSrc(String src)  throws IllegalStateException {
-        setAttribute("src", src, false);
+    public Flashlet setSrc(String src)  throws IllegalStateException {
+        return (Flashlet)setAttribute("src", src, false);
     }
 
     /**

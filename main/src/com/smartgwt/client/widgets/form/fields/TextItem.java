@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * FormItem for managing a text field.
@@ -165,9 +168,10 @@ public class TextItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param browserAutoCapitalize New browserAutoCapitalize value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      */
-    public void setBrowserAutoCapitalize(Boolean browserAutoCapitalize) {
-        setAttribute("browserAutoCapitalize", browserAutoCapitalize);
+    public TextItem setBrowserAutoCapitalize(Boolean browserAutoCapitalize) {
+        return (TextItem)setAttribute("browserAutoCapitalize", browserAutoCapitalize);
     }
 
     /**
@@ -189,9 +193,10 @@ public class TextItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param browserAutoCorrect New browserAutoCorrect value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      */
-    public void setBrowserAutoCorrect(Boolean browserAutoCorrect) {
-        setAttribute("browserAutoCorrect", browserAutoCorrect);
+    public TextItem setBrowserAutoCorrect(Boolean browserAutoCorrect) {
+        return (TextItem)setAttribute("browserAutoCorrect", browserAutoCorrect);
     }
 
     /**
@@ -234,9 +239,10 @@ public class TextItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param browserInputType New browserInputType value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      */
-    public void setBrowserInputType(String browserInputType) {
-        setAttribute("browserInputType", browserInputType);
+    public TextItem setBrowserInputType(String browserInputType) {
+        return (TextItem)setAttribute("browserInputType", browserInputType);
     }
 
     /**
@@ -278,9 +284,10 @@ public class TextItem extends FormItem {
      * item element as long as focus is in the form item element.
      *
      * @param changeOnKeypress New changeOnKeypress value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      */
-    public void setChangeOnKeypress(Boolean changeOnKeypress) {
-        setAttribute("changeOnKeypress", changeOnKeypress);
+    public TextItem setChangeOnKeypress(Boolean changeOnKeypress) {
+        return (TextItem)setAttribute("changeOnKeypress", changeOnKeypress);
     }
 
     /**
@@ -305,10 +312,11 @@ public class TextItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param characterCasing New characterCasing value. Default value is TextItem.DEFAULT
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_keypress_filter" target="examples">KeyPress Filters Example</a>
      */
-    public void setCharacterCasing(CharacterCasing characterCasing) {
-        setAttribute("characterCasing", characterCasing == null ? null : characterCasing.getValue());
+    public TextItem setCharacterCasing(CharacterCasing characterCasing) {
+        return (TextItem)setAttribute("characterCasing", characterCasing == null ? null : characterCasing.getValue());
     }
 
     /**
@@ -329,10 +337,11 @@ public class TextItem extends FormItem {
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "TextItemEditProxy"
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor) {
-        setAttribute("editProxyConstructor", editProxyConstructor);
+    public TextItem setEditProxyConstructor(String editProxyConstructor) {
+        return (TextItem)setAttribute("editProxyConstructor", editProxyConstructor);
     }
 
     /**
@@ -357,9 +366,10 @@ public class TextItem extends FormItem {
      * editing without seeing it be truncated.
      *
      * @param enforceLength New enforceLength value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      */
-    public void setEnforceLength(boolean enforceLength) {
-        setAttribute("enforceLength", enforceLength);
+    public TextItem setEnforceLength(boolean enforceLength) {
+        return (TextItem)setAttribute("enforceLength", enforceLength);
     }
 
     /**
@@ -386,10 +396,11 @@ public class TextItem extends FormItem {
      * will instead force HTML values in a textItem to be interpreted by the browser in that situation.
      *
      * @param escapeHTML New escapeHTML value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setEscapeHTML(Boolean escapeHTML) {
-        setAttribute("escapeHTML", escapeHTML);
+    public TextItem setEscapeHTML(Boolean escapeHTML) {
+        return (TextItem)setAttribute("escapeHTML", escapeHTML);
     }
 
     /**
@@ -418,12 +429,13 @@ public class TextItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param fetchMissingValues New fetchMissingValues value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setOptionDataSource
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getSelectedRecord
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setFilterLocally
      */
-    public void setFetchMissingValues(Boolean fetchMissingValues) {
-        setAttribute("fetchMissingValues", fetchMissingValues);
+    public TextItem setFetchMissingValues(Boolean fetchMissingValues) {
+        return (TextItem)setAttribute("fetchMissingValues", fetchMissingValues);
     }
 
     /**
@@ -454,9 +466,10 @@ public class TextItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.FormItem#parseEditorValue FormItem.parseEditorValue()} pair.
      *
      * @param formatOnBlur New formatOnBlur value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      */
-    public void setFormatOnBlur(Boolean formatOnBlur) {
-        setAttribute("formatOnBlur", formatOnBlur);
+    public TextItem setFormatOnBlur(Boolean formatOnBlur) {
+        return (TextItem)setAttribute("formatOnBlur", formatOnBlur);
     }
 
     /**
@@ -482,9 +495,10 @@ public class TextItem extends FormItem {
      * and simplifying it down to an easier-to-edit string when the user puts focus into the item.
      *
      * @param formatOnFocusChange New formatOnFocusChange value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      */
-    public void setFormatOnFocusChange(Boolean formatOnFocusChange) {
-        setAttribute("formatOnFocusChange", formatOnFocusChange);
+    public TextItem setFormatOnFocusChange(Boolean formatOnFocusChange) {
+        return (TextItem)setAttribute("formatOnFocusChange", formatOnFocusChange);
     }
 
     /**
@@ -513,11 +527,12 @@ public class TextItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param keyPressFilter new keyPress filter for the item. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.TextItem#setCharacterCasing
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_keypress_filter" target="examples">KeyPress Filters Example</a>
      */
-    public void setKeyPressFilter(String keyPressFilter) {
-        setAttribute("keyPressFilter", keyPressFilter);
+    public TextItem setKeyPressFilter(String keyPressFilter) {
+        return (TextItem)setAttribute("keyPressFilter", keyPressFilter);
     }
 
     /**
@@ -550,10 +565,11 @@ public class TextItem extends FormItem {
      * DataSourceField.length}.
      *
      * @param length New length value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
-    public void setLength(Integer length) {
-        setAttribute("length", length);
+    public TextItem setLength(Integer length) {
+        return (TextItem)setAttribute("length", length);
     }
 
     /**
@@ -611,11 +627,12 @@ public class TextItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param mask mask to apply to text item. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.TextItem#setKeyPressFilter
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_masking" target="examples">Text - Masked Example</a>
      */
-    public void setMask(String mask) {
-        setAttribute("mask", mask);
+    public TextItem setMask(String mask) {
+        return (TextItem)setAttribute("mask", mask);
     }
 
     /**
@@ -661,9 +678,10 @@ public class TextItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param maskOverwriteMode New maskOverwriteMode value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      */
-    public void setMaskOverwriteMode(Boolean maskOverwriteMode) {
-        setAttribute("maskOverwriteMode", maskOverwriteMode);
+    public TextItem setMaskOverwriteMode(Boolean maskOverwriteMode) {
+        return (TextItem)setAttribute("maskOverwriteMode", maskOverwriteMode);
     }
 
     /**
@@ -683,9 +701,10 @@ public class TextItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param maskPadChar New maskPadChar value. Default value is " "
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      */
-    public void setMaskPadChar(String maskPadChar) {
-        setAttribute("maskPadChar", maskPadChar);
+    public TextItem setMaskPadChar(String maskPadChar) {
+        return (TextItem)setAttribute("maskPadChar", maskPadChar);
     }
 
     /**
@@ -705,9 +724,10 @@ public class TextItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param maskPromptChar New maskPromptChar value. Default value is "_"
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      */
-    public void setMaskPromptChar(String maskPromptChar) {
-        setAttribute("maskPromptChar", maskPromptChar);
+    public TextItem setMaskPromptChar(String maskPromptChar) {
+        return (TextItem)setAttribute("maskPromptChar", maskPromptChar);
     }
 
     /**
@@ -727,9 +747,10 @@ public class TextItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param maskSaveLiterals New maskSaveLiterals value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      */
-    public void setMaskSaveLiterals(Boolean maskSaveLiterals) {
-        setAttribute("maskSaveLiterals", maskSaveLiterals);
+    public TextItem setMaskSaveLiterals(Boolean maskSaveLiterals) {
+        return (TextItem)setAttribute("maskSaveLiterals", maskSaveLiterals);
     }
 
     /**
@@ -749,10 +770,11 @@ public class TextItem extends FormItem {
      * does in the live form.
      *
      * @param printFullText New printFullText value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
-    public void setPrintFullText(Boolean printFullText) {
-        setAttribute("printFullText", printFullText);
+    public TextItem setPrintFullText(Boolean printFullText) {
+        return (TextItem)setAttribute("printFullText", printFullText);
     }
 
     /**
@@ -775,9 +797,10 @@ public class TextItem extends FormItem {
      * <code>false</code> will disable this behavior.
      *
      * @param saveOnEnter New saveOnEnter value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      */
-    public void setSaveOnEnter(Boolean saveOnEnter) {
-        setAttribute("saveOnEnter", saveOnEnter);
+    public TextItem setSaveOnEnter(Boolean saveOnEnter) {
+        return (TextItem)setAttribute("saveOnEnter", saveOnEnter);
     }
 
     /**
@@ -799,10 +822,11 @@ public class TextItem extends FormItem {
      * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnClick DynamicForm.selectOnClick}.
      *
      * @param selectOnClick New selectOnClick value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
      */
-    public void setSelectOnClick(Boolean selectOnClick) {
-        setAttribute("selectOnClick", selectOnClick);
+    public TextItem setSelectOnClick(Boolean selectOnClick) {
+        return (TextItem)setAttribute("selectOnClick", selectOnClick);
     }
 
     /**
@@ -824,10 +848,11 @@ public class TextItem extends FormItem {
      * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus DynamicForm.selectOnFocus}.
      *
      * @param selectOnFocus New selectOnFocus value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
      */
-    public void setSelectOnFocus(Boolean selectOnFocus) {
-        setAttribute("selectOnFocus", selectOnFocus);
+    public TextItem setSelectOnFocus(Boolean selectOnFocus) {
+        return (TextItem)setAttribute("selectOnFocus", selectOnFocus);
     }
 
     /**
@@ -847,10 +872,9 @@ public class TextItem extends FormItem {
      * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowHint showing a hint for this form item}, should the
      * hint be shown within the field?
      *  <P>
-     * Unless the HTML5 <code>placeholder</code> attribute is used to display the hint (see {@link
-     * com.smartgwt.client.widgets.form.fields.TextItem#getUsePlaceholderForHint usePlaceholderForHint}),
-     * the value of the {@link com.smartgwt.client.widgets.form.fields.FormItem#getDataElement data element} will be set to the
-     * hint
+     *  Unless the HTML5 <code>placeholder</code> attribute is used to display the hint
+     *  (see {@link com.smartgwt.client.widgets.form.fields.TextItem#getUsePlaceholderForHint usePlaceholderForHint}),
+     *  the value of the &lt;input&gt; element for this item will be set to the hint
      *  whenever this item is not focused. Also, when displaying the hint, the CSS style of the
      * data element will be set to the {@link com.smartgwt.client.widgets.form.fields.TextItem#getTextBoxStyle textBoxStyle}
      * with the suffix
@@ -878,22 +902,22 @@ public class TextItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showHintInField New showHintInField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setHint
      * @see com.smartgwt.client.widgets.form.fields.TextItem#setUsePlaceholderForHint
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowHintInField(Boolean showHintInField) {
-        setAttribute("showHintInField", showHintInField);
+    public TextItem setShowHintInField(Boolean showHintInField) {
+        return (TextItem)setAttribute("showHintInField", showHintInField);
     }
 
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowHint showing a hint for this form item}, should the
      * hint be shown within the field?
      *  <P>
-     * Unless the HTML5 <code>placeholder</code> attribute is used to display the hint (see {@link
-     * com.smartgwt.client.widgets.form.fields.TextItem#getUsePlaceholderForHint usePlaceholderForHint}),
-     * the value of the {@link com.smartgwt.client.widgets.form.fields.FormItem#getDataElement data element} will be set to the
-     * hint
+     *  Unless the HTML5 <code>placeholder</code> attribute is used to display the hint
+     *  (see {@link com.smartgwt.client.widgets.form.fields.TextItem#getUsePlaceholderForHint usePlaceholderForHint}),
+     *  the value of the &lt;input&gt; element for this item will be set to the hint
      *  whenever this item is not focused. Also, when displaying the hint, the CSS style of the
      * data element will be set to the {@link com.smartgwt.client.widgets.form.fields.TextItem#getTextBoxStyle textBoxStyle}
      * with the suffix
@@ -938,9 +962,10 @@ public class TextItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showInputElement New showInputElement value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      */
-    public void setShowInputElement(boolean showInputElement) {
-        setAttribute("showInputElement", showInputElement);
+    public TextItem setShowInputElement(boolean showInputElement) {
+        return (TextItem)setAttribute("showInputElement", showInputElement);
     }
 
     /**
@@ -967,14 +992,14 @@ public class TextItem extends FormItem {
      * browser menu options) using the {@link com.smartgwt.client.widgets.form.fields.FormItem#isCutEvent
      * FormItem.isCutEvent()} and {@link com.smartgwt.client.widgets.form.fields.FormItem#isPasteEvent FormItem.isPasteEvent()}
      * methods. This allows custom cut/paste handling to be added to the various change notification flow methods including 
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler FormItem.change()}, {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#handleChange FormItem.handleChange()} and {@link
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler FormItem.change()}, and {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#setInputTransformer FormItem.transformInput()}.
      *
      * @param supportsCutPasteEvents New supportsCutPasteEvents value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      */
-    public void setSupportsCutPasteEvents(boolean supportsCutPasteEvents) {
-        setAttribute("supportsCutPasteEvents", supportsCutPasteEvents);
+    public TextItem setSupportsCutPasteEvents(boolean supportsCutPasteEvents) {
+        return (TextItem)setAttribute("supportsCutPasteEvents", supportsCutPasteEvents);
     }
 
     /**
@@ -986,8 +1011,7 @@ public class TextItem extends FormItem {
      * browser menu options) using the {@link com.smartgwt.client.widgets.form.fields.FormItem#isCutEvent
      * FormItem.isCutEvent()} and {@link com.smartgwt.client.widgets.form.fields.FormItem#isPasteEvent FormItem.isPasteEvent()}
      * methods. This allows custom cut/paste handling to be added to the various change notification flow methods including 
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler FormItem.change()}, {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#handleChange FormItem.handleChange()} and {@link
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler FormItem.change()}, and {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#setInputTransformer FormItem.transformInput()}.
      *
      * @return Current supportsCutPasteEvents value. Default value is true
@@ -1015,9 +1039,10 @@ public class TextItem extends FormItem {
      * Setter for the {@link com.smartgwt.client.widgets.form.fields.TextItem#getSuppressBrowserClearIcon suppressBrowserClearIcon}
      *
      * @param suppressBrowserClearIcon new value for suppressBrowserClearIcon. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      */
-    public void setSuppressBrowserClearIcon(Boolean suppressBrowserClearIcon) {
-        setAttribute("suppressBrowserClearIcon", suppressBrowserClearIcon);
+    public TextItem setSuppressBrowserClearIcon(Boolean suppressBrowserClearIcon) {
+        return (TextItem)setAttribute("suppressBrowserClearIcon", suppressBrowserClearIcon);
     }
 
     /**
@@ -1049,11 +1074,12 @@ public class TextItem extends FormItem {
      * corners).  For these reasons we recommend rounded inputs only in limited cases like single standalone fields.
      *
      * @param textBoxStyle New textBoxStyle value. Default value is "textItem"
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setTextBoxStyle(String textBoxStyle) {
-        setAttribute("textBoxStyle", textBoxStyle);
+    public TextItem setTextBoxStyle(String textBoxStyle) {
+        return (TextItem)setAttribute("textBoxStyle", textBoxStyle);
     }
 
     /**
@@ -1223,11 +1249,12 @@ public class TextItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param usePlaceholderForHint New usePlaceholderForHint value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.TextItem TextItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setHint
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setUsePlaceholderForHint(boolean usePlaceholderForHint) {
-        setAttribute("usePlaceholderForHint", usePlaceholderForHint);
+    public TextItem setUsePlaceholderForHint(boolean usePlaceholderForHint) {
+        return (TextItem)setAttribute("usePlaceholderForHint", usePlaceholderForHint);
     }
 
     /**
@@ -1476,6 +1503,21 @@ public class TextItem extends FormItem {
         var ret = self.getSelectionRange();
         if(ret == null) return null;
         return @com.smartgwt.client.util.ConvertTo::arrayOfint(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * Return the value tracked by this form item as an Integer.  If the value cannot be parsed to an int that matches the
+     * original value, null will be returned.
+     *
+     * @return value of this element
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getValue
+     */
+    public native Integer getValueAsInteger() /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        if (!this.@com.smartgwt.client.widgets.form.fields.FormItem::isCreated()()) return null;
+        var ret = self.getValueAsInteger();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
     }-*/;
 
 	/**

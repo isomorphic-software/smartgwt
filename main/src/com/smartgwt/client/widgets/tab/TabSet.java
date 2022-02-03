@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -190,11 +193,12 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * Icon for the {@link com.smartgwt.client.widgets.tab.TabSet#getAddTabButton addTabButton}.
      *
      * @param addTabButtonIcon New addTabButtonIcon value. Default value is "[SKIN]actions/add.png"
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setAddTabButtonIcon(String addTabButtonIcon)  throws IllegalStateException {
-        setAttribute("addTabButtonIcon", addTabButtonIcon, false);
+    public TabSet setAddTabButtonIcon(String addTabButtonIcon)  throws IllegalStateException {
+        return (TabSet)setAttribute("addTabButtonIcon", addTabButtonIcon, false);
     }
 
     /**
@@ -213,10 +217,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * into view via an  animation when the user interacts with the scroller buttons?
      *
      * @param animateTabScrolling New animateTabScrolling value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAnimateTabScrolling(Boolean animateTabScrolling)  throws IllegalStateException {
-        setAttribute("animateTabScrolling", animateTabScrolling, false);
+    public TabSet setAnimateTabScrolling(Boolean animateTabScrolling)  throws IllegalStateException {
+        return (TabSet)setAttribute("animateTabScrolling", animateTabScrolling, false);
     }
 
     /**
@@ -239,10 +244,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param ariaCloseableSuffix New ariaCloseableSuffix value. Default value is ", closeable"
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAriaCloseableSuffix(String ariaCloseableSuffix)  throws IllegalStateException {
-        setAttribute("ariaCloseableSuffix", ariaCloseableSuffix, false);
+    public TabSet setAriaCloseableSuffix(String ariaCloseableSuffix)  throws IllegalStateException {
+        return (TabSet)setAttribute("ariaCloseableSuffix", ariaCloseableSuffix, false);
     }
 
     /**
@@ -268,10 +274,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * com.smartgwt.client.widgets.tab.TabSet#addAddTabClickedHandler TabSet.addTabClicked()} event to implement a behavior.
      *
      * @param canAddTabs New canAddTabs value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanAddTabs(Boolean canAddTabs)  throws IllegalStateException {
-        setAttribute("canAddTabs", canAddTabs, false);
+    public TabSet setCanAddTabs(Boolean canAddTabs)  throws IllegalStateException {
+        return (TabSet)setAttribute("canAddTabs", canAddTabs, false);
     }
 
     /**
@@ -313,10 +320,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * Changes this TabSet's {@link com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs} property.
      *
      * @param canCloseTabs the new value for canCloseTabs. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tab.TabSet#closeClick
      */
-    public void setCanCloseTabs(Boolean canCloseTabs) {
-        setAttribute("canCloseTabs", canCloseTabs, true);
+    public TabSet setCanCloseTabs(Boolean canCloseTabs) {
+        return (TabSet)setAttribute("canCloseTabs", canCloseTabs, true);
     }
 
     /**
@@ -356,10 +364,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * {@link com.smartgwt.client.types.TabTitleEditEvent} in order for users to be able to edit the titles of tabs.
      *
      * @param canEditTabTitles New canEditTabTitles value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_title_editable" target="examples">User-Editable Titles Example</a>
      */
-    public void setCanEditTabTitles(Boolean canEditTabTitles) {
-        setAttribute("canEditTabTitles", canEditTabTitles, true);
+    public TabSet setCanEditTabTitles(Boolean canEditTabTitles) {
+        return (TabSet)setAttribute("canEditTabTitles", canEditTabTitles, true);
     }
 
     /**
@@ -383,11 +392,12 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * com.smartgwt.client.widgets.tab.Tab#getCanReorder Tab.canReorder}.
      *
      * @param canReorderTabs New canReorderTabs value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
-    public void setCanReorderTabs(Boolean canReorderTabs)  throws IllegalStateException {
-        setAttribute("canReorderTabs", canReorderTabs, false);
+    public TabSet setCanReorderTabs(Boolean canReorderTabs)  throws IllegalStateException {
+        return (TabSet)setAttribute("canReorderTabs", canReorderTabs, false);
     }
 
     /**
@@ -407,11 +417,13 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * canCloseTabs} is true.
      *
      * @param closeTabIcon New closeTabIcon value. Default value is [SKIN]/TabSet/close.png
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setCloseTabIcon(String closeTabIcon)  throws IllegalStateException {
-        setAttribute("closeTabIcon", closeTabIcon, false);
+    public TabSet setCloseTabIcon(String closeTabIcon)  throws IllegalStateException {
+        return (TabSet)setAttribute("closeTabIcon", closeTabIcon, false);
     }
 
     /**
@@ -420,6 +432,7 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      *
      * @return Current closeTabIcon value. Default value is [SKIN]/TabSet/close.png
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getCloseTabIcon()  {
         return getAttributeAsString("closeTabIcon");
@@ -431,10 +444,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs canCloseTabs} is true.
      *
      * @param closeTabIconSize New closeTabIconSize value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCloseTabIconSize(int closeTabIconSize)  throws IllegalStateException {
-        setAttribute("closeTabIconSize", closeTabIconSize, false);
+    public TabSet setCloseTabIconSize(int closeTabIconSize)  throws IllegalStateException {
+        return (TabSet)setAttribute("closeTabIconSize", closeTabIconSize, false);
     }
 
     /**
@@ -455,10 +469,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * customized by individual {@link com.smartgwt.client.docs.Skinning skins}.
      *
      * @param defaultTabHeight New defaultTabHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDefaultTabHeight(Integer defaultTabHeight)  throws IllegalStateException {
-        setAttribute("defaultTabHeight", defaultTabHeight, false);
+    public TabSet setDefaultTabHeight(Integer defaultTabHeight)  throws IllegalStateException {
+        return (TabSet)setAttribute("defaultTabHeight", defaultTabHeight, false);
     }
 
     /**
@@ -482,10 +497,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * com.smartgwt.client.docs.Skinning skins}.
      *
      * @param defaultTabWidth New defaultTabWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDefaultTabWidth(Integer defaultTabWidth)  throws IllegalStateException {
-        setAttribute("defaultTabWidth", defaultTabWidth, false);
+    public TabSet setDefaultTabWidth(Integer defaultTabWidth)  throws IllegalStateException {
+        return (TabSet)setAttribute("defaultTabWidth", defaultTabWidth, false);
     }
 
     /**
@@ -510,10 +526,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * different parts of the application.
      *
      * @param destroyPanes New destroyPanes value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDestroyPanes(Boolean destroyPanes)  throws IllegalStateException {
-        setAttribute("destroyPanes", destroyPanes, false);
+    public TabSet setDestroyPanes(Boolean destroyPanes)  throws IllegalStateException {
+        return (TabSet)setAttribute("destroyPanes", destroyPanes, false);
     }
 
     /**
@@ -535,11 +552,12 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "TabSetEditProxy"
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
-        setAttribute("editProxyConstructor", editProxyConstructor, false);
+    public TabSet setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
+        return (TabSet)setAttribute("editProxyConstructor", editProxyConstructor, false);
     }
 
     /**
@@ -569,10 +587,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param locateTabsBy New locateTabsBy value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @see com.smartgwt.client.types.LocatorStrategy
      */
-    public void setLocateTabsBy(String locateTabsBy) {
-        setAttribute("locateTabsBy", locateTabsBy, true);
+    public TabSet setLocateTabsBy(String locateTabsBy) {
+        return (TabSet)setAttribute("locateTabsBy", locateTabsBy, true);
     }
 
     /**
@@ -617,10 +636,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * showMoreTab} is enabled.
      *
      * @param moreTabCount New moreTabCount value. Default value is 5
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMoreTabCount(int moreTabCount)  throws IllegalStateException {
-        setAttribute("moreTabCount", moreTabCount, false);
+    public TabSet setMoreTabCount(int moreTabCount)  throws IllegalStateException {
+        return (TabSet)setAttribute("moreTabCount", moreTabCount, false);
     }
 
     /**
@@ -640,11 +660,12 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * image to display on the "More" tab button.
      *
      * @param moreTabImage New moreTabImage value. Default value is "[SKINIMG]/iOS/more.png"
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setMoreTabImage(String moreTabImage)  throws IllegalStateException {
-        setAttribute("moreTabImage", moreTabImage, false);
+    public TabSet setMoreTabImage(String moreTabImage)  throws IllegalStateException {
+        return (TabSet)setAttribute("moreTabImage", moreTabImage, false);
     }
 
     /**
@@ -680,10 +701,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * com.smartgwt.client.widgets.layout.NavigationBar} and {@link com.smartgwt.client.widgets.tableview.TableView}.
      *
      * @param moreTabPaneDefaults New moreTabPaneDefaults value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setMoreTabPaneDefaults(Canvas moreTabPaneDefaults)  throws IllegalStateException {
+    public TabSet setMoreTabPaneDefaults(Canvas moreTabPaneDefaults)  throws IllegalStateException {
         if (moreTabPaneDefaults != null) {
             if (moreTabPaneDefaults.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(TabSet.class, "setMoreTabPaneDefaults", "Canvas");
@@ -691,7 +713,7 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
             moreTabPaneDefaults.setConfigOnly(true);
         }
         JavaScriptObject config = moreTabPaneDefaults == null ? null : moreTabPaneDefaults.getConfig();
-        setAttribute("moreTabPaneDefaults", JSOHelper.cleanProperties(config, true), false);
+        return (TabSet)setAttribute("moreTabPaneDefaults", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -727,10 +749,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * Properties to apply to the "more" tab's pane created by this TabSet.
      *
      * @param moreTabPaneProperties New moreTabPaneProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setMoreTabPaneProperties(Canvas moreTabPaneProperties)  throws IllegalStateException {
+    public TabSet setMoreTabPaneProperties(Canvas moreTabPaneProperties)  throws IllegalStateException {
         if (moreTabPaneProperties != null) {
             if (moreTabPaneProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(TabSet.class, "setMoreTabPaneProperties", "Canvas");
@@ -738,7 +761,7 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
             moreTabPaneProperties.setConfigOnly(true);
         }
         JavaScriptObject config = moreTabPaneProperties == null ? null : moreTabPaneProperties.getConfig();
-        setAttribute("moreTabPaneProperties", JSOHelper.cleanProperties(config, true), false);
+        return (TabSet)setAttribute("moreTabPaneProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -774,14 +797,15 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * Properties to apply to the "more" tab created by this TabSet.
      *
      * @param moreTabProperties New moreTabProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMoreTabProperties(Tab moreTabProperties)  throws IllegalStateException {
+    public TabSet setMoreTabProperties(Tab moreTabProperties)  throws IllegalStateException {
         JavaScriptObject config = JSOHelper.createObject();
         if (moreTabProperties != null) {
             JSOHelper.addProperties(config, moreTabProperties.getJsObj());
         }
-        setAttribute("moreTabProperties", moreTabProperties == null ? null : config, false);
+        return (TabSet)setAttribute("moreTabProperties", moreTabProperties == null ? null : config, false);
     }
 
     /**
@@ -798,10 +822,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * Title for the "More" tab.
      *
      * @param moreTabTitle New moreTabTitle value. Default value is "More"
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMoreTabTitle(String moreTabTitle)  throws IllegalStateException {
-        setAttribute("moreTabTitle", moreTabTitle, false);
+    public TabSet setMoreTabTitle(String moreTabTitle)  throws IllegalStateException {
+        return (TabSet)setAttribute("moreTabTitle", moreTabTitle, false);
     }
 
     /**
@@ -858,10 +883,12 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * CSS style used for the paneContainer.
      *
      * @param paneContainerClassName New paneContainerClassName value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setPaneContainerClassName(String paneContainerClassName) {
-        setAttribute("paneContainerClassName", paneContainerClassName, true);
+    public TabSet setPaneContainerClassName(String paneContainerClassName) {
+        return (TabSet)setAttribute("paneContainerClassName", paneContainerClassName, true);
     }
 
     /**
@@ -869,6 +896,7 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      *
      * @return Current paneContainerClassName value. Default value is null
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getPaneContainerClassName()  {
         return getAttributeAsString("paneContainerClassName");
@@ -885,9 +913,10 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param paneContainerOverflow new overflow setting. Default value is Canvas.AUTO
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      */
-    public void setPaneContainerOverflow(Overflow paneContainerOverflow) {
-        setAttribute("paneContainerOverflow", paneContainerOverflow == null ? null : paneContainerOverflow.getValue(), true);
+    public TabSet setPaneContainerOverflow(Overflow paneContainerOverflow) {
+        return (TabSet)setAttribute("paneContainerOverflow", paneContainerOverflow == null ? null : paneContainerOverflow.getValue(), true);
     }
 
     /**
@@ -907,10 +936,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * {@link com.smartgwt.client.widgets.tab.Tab#getPaneMargin Tab.paneMargin}.
      *
      * @param paneMargin New paneMargin value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPaneMargin(int paneMargin)  throws IllegalStateException {
-        setAttribute("paneMargin", paneMargin, false);
+    public TabSet setPaneMargin(int paneMargin)  throws IllegalStateException {
+        return (TabSet)setAttribute("paneMargin", paneMargin, false);
     }
 
     /**
@@ -935,12 +965,13 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * <code>"Disabled"</code> if the tabset as a whole is  disabled.
      *
      * @param pickerButtonHSrc New pickerButtonHSrc value. Default value is "[SKIN]hpicker.gif"
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tab.TabSet#setSymmetricPickerButton
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setPickerButtonHSrc(String pickerButtonHSrc)  throws IllegalStateException {
-        setAttribute("pickerButtonHSrc", pickerButtonHSrc, false);
+    public TabSet setPickerButtonHSrc(String pickerButtonHSrc)  throws IllegalStateException {
+        return (TabSet)setAttribute("pickerButtonHSrc", pickerButtonHSrc, false);
     }
 
     /**
@@ -973,10 +1004,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * com.smartgwt.client.widgets.tab.TabSet#getTouchPickerButtonSize touchPickerButtonSize} is used instead.
      *
      * @param pickerButtonSize New pickerButtonSize value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPickerButtonSize(int pickerButtonSize)  throws IllegalStateException {
-        setAttribute("pickerButtonSize", pickerButtonSize, false);
+    public TabSet setPickerButtonSize(int pickerButtonSize)  throws IllegalStateException {
+        return (TabSet)setAttribute("pickerButtonSize", pickerButtonSize, false);
     }
 
     /**
@@ -1007,12 +1039,13 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * com.smartgwt.client.widgets.tab.TabSet#getTabBarPosition tabBarPosition} for this tabSet will be appended.</li> </ul>
      *
      * @param pickerButtonSrc New pickerButtonSrc value. Default value is "[SKIN]/picker.gif"
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tab.TabSet#setSymmetricPickerButton
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setPickerButtonSrc(String pickerButtonSrc)  throws IllegalStateException {
-        setAttribute("pickerButtonSrc", pickerButtonSrc, false);
+    public TabSet setPickerButtonSrc(String pickerButtonSrc)  throws IllegalStateException {
+        return (TabSet)setAttribute("pickerButtonSrc", pickerButtonSrc, false);
     }
 
     /**
@@ -1045,12 +1078,13 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * <code>"Disabled"</code> if the tabset as a whole is  disabled.
      *
      * @param pickerButtonVSrc New pickerButtonVSrc value. Default value is "[SKIN]vpicker.gif"
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tab.TabSet#setSymmetricPickerButton
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setPickerButtonVSrc(String pickerButtonVSrc)  throws IllegalStateException {
-        setAttribute("pickerButtonVSrc", pickerButtonVSrc, false);
+    public TabSet setPickerButtonVSrc(String pickerButtonVSrc)  throws IllegalStateException {
+        return (TabSet)setAttribute("pickerButtonVSrc", pickerButtonVSrc, false);
     }
 
     /**
@@ -1101,10 +1135,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * com.smartgwt.client.widgets.tab.TabSet#getTabBarThickness this.tabBarThickness}
      *
      * @param scrollerButtonSize New scrollerButtonSize value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setScrollerButtonSize(int scrollerButtonSize)  throws IllegalStateException {
-        setAttribute("scrollerButtonSize", scrollerButtonSize, false);
+    public TabSet setScrollerButtonSize(int scrollerButtonSize)  throws IllegalStateException {
+        return (TabSet)setAttribute("scrollerButtonSize", scrollerButtonSize, false);
     }
 
     /**
@@ -1138,12 +1173,13 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * and {@link com.smartgwt.client.widgets.tab.TabSet#getScrollerButtonSize scrollerButtonSize}.
      *
      * @param scrollerHSrc New scrollerHSrc value. Default value is "[SKIN]hscroll.gif"
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tab.TabSet#setSymmetricScroller
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setScrollerHSrc(String scrollerHSrc)  throws IllegalStateException {
-        setAttribute("scrollerHSrc", scrollerHSrc, false);
+    public TabSet setScrollerHSrc(String scrollerHSrc)  throws IllegalStateException {
+        return (TabSet)setAttribute("scrollerHSrc", scrollerHSrc, false);
     }
 
     /**
@@ -1191,12 +1227,13 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * tabBarThickness} and {@link com.smartgwt.client.widgets.tab.TabSet#getScrollerButtonSize scrollerButtonSize}.
      *
      * @param scrollerSrc New scrollerSrc value. Default value is "[SKIN]/scroll.gif"
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tab.TabSet#setSymmetricScroller
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setScrollerSrc(String scrollerSrc)  throws IllegalStateException {
-        setAttribute("scrollerSrc", scrollerSrc, false);
+    public TabSet setScrollerSrc(String scrollerSrc)  throws IllegalStateException {
+        return (TabSet)setAttribute("scrollerSrc", scrollerSrc, false);
     }
 
     /**
@@ -1244,12 +1281,13 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * and {@link com.smartgwt.client.widgets.tab.TabSet#getScrollerButtonSize scrollerButtonSize}.
      *
      * @param scrollerVSrc New scrollerVSrc value. Default value is "[SKIN]vscroll.gif"
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tab.TabSet#setSymmetricScroller
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setScrollerVSrc(String scrollerVSrc)  throws IllegalStateException {
-        setAttribute("scrollerVSrc", scrollerVSrc, false);
+    public TabSet setScrollerVSrc(String scrollerVSrc)  throws IllegalStateException {
+        return (TabSet)setAttribute("scrollerVSrc", scrollerVSrc, false);
     }
 
     /**
@@ -1284,10 +1322,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * tab? <p> This setting is used to emulate an iPhone-style tab bar "more" button.
      *
      * @param showMoreTab New showMoreTab value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowMoreTab(Boolean showMoreTab)  throws IllegalStateException {
-        setAttribute("showMoreTab", showMoreTab, false);
+    public TabSet setShowMoreTab(Boolean showMoreTab)  throws IllegalStateException {
+        return (TabSet)setAttribute("showMoreTab", showMoreTab, false);
     }
 
     /**
@@ -1306,9 +1345,10 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showPaneContainerEdges New showPaneContainerEdges value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      */
-    public void setShowPaneContainerEdges(Boolean showPaneContainerEdges) {
-        setAttribute("showPaneContainerEdges", showPaneContainerEdges, true);
+    public TabSet setShowPaneContainerEdges(Boolean showPaneContainerEdges) {
+        return (TabSet)setAttribute("showPaneContainerEdges", showPaneContainerEdges, true);
     }
 
     /**
@@ -1328,10 +1368,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showPartialEdges New showPartialEdges value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowPartialEdges(Boolean showPartialEdges)  throws IllegalStateException {
-        setAttribute("showPartialEdges", showPartialEdges, false);
+    public TabSet setShowPartialEdges(Boolean showPartialEdges)  throws IllegalStateException {
+        return (TabSet)setAttribute("showPartialEdges", showPartialEdges, false);
     }
 
     /**
@@ -1352,9 +1393,10 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * occupied by TabBar
      *
      * @param showTabBar New showTabBar value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      */
-    public void setShowTabBar(Boolean showTabBar) {
-        setAttribute("showTabBar", showTabBar, true);
+    public TabSet setShowTabBar(Boolean showTabBar) {
+        return (TabSet)setAttribute("showTabBar", showTabBar, true);
     }
 
     /**
@@ -1374,10 +1416,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * allow selection of tabs that are clipped?
      *
      * @param showTabPicker New showTabPicker value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowTabPicker(Boolean showTabPicker)  throws IllegalStateException {
-        setAttribute("showTabPicker", showTabPicker, false);
+    public TabSet setShowTabPicker(Boolean showTabPicker)  throws IllegalStateException {
+        return (TabSet)setAttribute("showTabPicker", showTabPicker, false);
     }
 
     /**
@@ -1398,10 +1441,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * handsets} and true otherwise.
      *
      * @param showTabScroller New showTabScroller value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowTabScroller(Boolean showTabScroller)  throws IllegalStateException {
-        setAttribute("showTabScroller", showTabScroller, false);
+    public TabSet setShowTabScroller(Boolean showTabScroller)  throws IllegalStateException {
+        return (TabSet)setAttribute("showTabScroller", showTabScroller, false);
     }
 
     /**
@@ -1423,12 +1467,14 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * over, etc), resolving to a className like  "tabButtonTopOver".
      *
      * @param simpleTabBaseStyle New simpleTabBaseStyle value. Default value is "tabButton"
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Button#setBaseStyle
      * @see com.smartgwt.client.widgets.tab.TabSet#setSimpleTabIconOnlyBaseStyle
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setSimpleTabBaseStyle(String simpleTabBaseStyle) {
-        setAttribute("simpleTabBaseStyle", simpleTabBaseStyle, true);
+    public TabSet setSimpleTabBaseStyle(String simpleTabBaseStyle) {
+        return (TabSet)setAttribute("simpleTabBaseStyle", simpleTabBaseStyle, true);
     }
 
     /**
@@ -1441,6 +1487,7 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * @see com.smartgwt.client.widgets.Button#getBaseStyle
      * @see com.smartgwt.client.widgets.tab.TabSet#getSimpleTabIconOnlyBaseStyle
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getSimpleTabBaseStyle()  {
         return getAttributeAsString("simpleTabBaseStyle");
@@ -1459,13 +1506,14 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * the title is hidden.
      *
      * @param simpleTabIconOnlyBaseStyle New simpleTabIconOnlyBaseStyle value. Default value is varies
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Button#setBaseStyle
      * @see com.smartgwt.client.widgets.Button#setIconOnlyBaseStyle
      * @see com.smartgwt.client.widgets.tab.TabSet#setSimpleTabBaseStyle
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setSimpleTabIconOnlyBaseStyle(String simpleTabIconOnlyBaseStyle) {
-        setAttribute("simpleTabIconOnlyBaseStyle", simpleTabIconOnlyBaseStyle, true);
+    public TabSet setSimpleTabIconOnlyBaseStyle(String simpleTabIconOnlyBaseStyle) {
+        return (TabSet)setAttribute("simpleTabIconOnlyBaseStyle", simpleTabIconOnlyBaseStyle, true);
     }
 
     /**
@@ -1494,12 +1542,13 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * com.smartgwt.client.util.Page#getSkinDir skinDir}.
      *
      * @param skinImgDir New skinImgDir value. Default value is "images/TabSet/"
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
-    public void setSkinImgDir(String skinImgDir)  throws IllegalStateException {
-        setAttribute("skinImgDir", skinImgDir, false);
+    public TabSet setSkinImgDir(String skinImgDir)  throws IllegalStateException {
+        return (TabSet)setAttribute("skinImgDir", skinImgDir, false);
     }
 
     /**
@@ -1526,10 +1575,12 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * com.smartgwt.client.widgets.tab.TabSet#getTopEdgeOffsets topEdgeOffsets} et al.
      *
      * @param symmetricEdges New symmetricEdges value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setSymmetricEdges(Boolean symmetricEdges)  throws IllegalStateException {
-        setAttribute("symmetricEdges", symmetricEdges, false);
+    public TabSet setSymmetricEdges(Boolean symmetricEdges)  throws IllegalStateException {
+        return (TabSet)setAttribute("symmetricEdges", symmetricEdges, false);
     }
 
     /**
@@ -1543,6 +1594,7 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * com.smartgwt.client.widgets.tab.TabSet#getTopEdgeOffsets topEdgeOffsets} et al.
      *
      * @return Current symmetricEdges value. Default value is true
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getSymmetricEdges()  {
         Boolean result = getAttributeAsBoolean("symmetricEdges");
@@ -1559,10 +1611,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * com.smartgwt.client.widgets.tab.TabSet#getPickerButtonSrc pickerButtonSrc} property  for this tabSet.
      *
      * @param symmetricPickerButton New symmetricPickerButton value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSymmetricPickerButton(Boolean symmetricPickerButton)  throws IllegalStateException {
-        setAttribute("symmetricPickerButton", symmetricPickerButton, false);
+    public TabSet setSymmetricPickerButton(Boolean symmetricPickerButton)  throws IllegalStateException {
+        return (TabSet)setAttribute("symmetricPickerButton", symmetricPickerButton, false);
     }
 
     /**
@@ -1590,10 +1643,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * com.smartgwt.client.widgets.tab.TabSet#getScrollerSrc scrollerSrc} property for this tabSet.
      *
      * @param symmetricScroller New symmetricScroller value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSymmetricScroller(Boolean symmetricScroller)  throws IllegalStateException {
-        setAttribute("symmetricScroller", symmetricScroller, false);
+    public TabSet setSymmetricScroller(Boolean symmetricScroller)  throws IllegalStateException {
+        return (TabSet)setAttribute("symmetricScroller", symmetricScroller, false);
     }
 
     /**
@@ -1635,11 +1689,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * be set to "top", "bottom" or "center".  The default is "top".
      *
      * @param tabBarAlign New tabBarAlign value. Default value is see below
-     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_align" target="examples">Align Example</a>
      */
-    public void setTabBarAlign(Side tabBarAlign)  throws IllegalStateException {
-        setAttribute("tabBarAlign", tabBarAlign == null ? null : tabBarAlign.getValue(), false);
+    public TabSet setTabBarAlign(Side tabBarAlign) {
+        return (TabSet)setAttribute("tabBarAlign", tabBarAlign == null ? null : tabBarAlign.getValue(), true);
     }
 
     /**
@@ -1664,11 +1718,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * be set to "top", "bottom" or "center".  The default is "top".
      *
      * @param tabBarAlign New tabBarAlign value. Default value is see below
-     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_align" target="examples">Align Example</a>
      */
-    public void setTabBarAlign(Alignment tabBarAlign)  throws IllegalStateException {
-        setAttribute("tabBarAlign", tabBarAlign == null ? null : tabBarAlign.getValue(), false);
+    public TabSet setTabBarAlign(Alignment tabBarAlign) {
+        return (TabSet)setAttribute("tabBarAlign", tabBarAlign == null ? null : tabBarAlign.getValue(), true);
     }
 
     /**
@@ -1708,11 +1762,12 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * Which side of the TabSet the TabBar should appear on.
      *
      * @param tabBarPosition New tabBarPosition value. Default value is Canvas.TOP
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_tabs_orientation" target="examples">Orientation Example</a>
      */
-    public void setTabBarPosition(Side tabBarPosition)  throws IllegalStateException {
-        setAttribute("tabBarPosition", tabBarPosition == null ? null : tabBarPosition.getValue(), false);
+    public TabSet setTabBarPosition(Side tabBarPosition)  throws IllegalStateException {
+        return (TabSet)setAttribute("tabBarPosition", tabBarPosition == null ? null : tabBarPosition.getValue(), false);
     }
 
     /**
@@ -1733,9 +1788,10 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * borders.
      *
      * @param tabBarThickness New tabBarThickness value. Default value is 21
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      */
-    public void setTabBarThickness(int tabBarThickness) {
-        setAttribute("tabBarThickness", tabBarThickness, true);
+    public TabSet setTabBarThickness(int tabBarThickness) {
+        return (TabSet)setAttribute("tabBarThickness", tabBarThickness, true);
     }
 
     /**
@@ -1795,11 +1851,12 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * on top of that  default offset.
      *
      * @param titleEditorLeftOffset New titleEditorLeftOffset value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tab.TabSet#setTitleEditorRightOffset
      * @see com.smartgwt.client.widgets.tab.TabSet#setTitleEditorTopOffset
      */
-    public void setTitleEditorLeftOffset(Integer titleEditorLeftOffset) {
-        setAttribute("titleEditorLeftOffset", titleEditorLeftOffset, true);
+    public TabSet setTitleEditorLeftOffset(Integer titleEditorLeftOffset) {
+        return (TabSet)setAttribute("titleEditorLeftOffset", titleEditorLeftOffset, true);
     }
 
     /**
@@ -1821,16 +1878,17 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * text item we use to edit tab titles in this tabSet.
      *
      * @param titleEditorProperties New titleEditorProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tab.TabSet#setTitleEditor
      * @see com.smartgwt.client.widgets.tab.TabSet#setCanEditTabTitles
      */
-    public void setTitleEditorProperties(TextItem titleEditorProperties)  throws IllegalStateException {
+    public TabSet setTitleEditorProperties(TextItem titleEditorProperties)  throws IllegalStateException {
         if (titleEditorProperties.isCreated()) {
             ConfigUtil.warnOfPreConfigInstantiation(TabSet.class, "setTitleEditorProperties", "TextItem");
         }                                                                       
         titleEditorProperties.setConfigOnly(true);
-        setAttribute("titleEditorProperties", titleEditorProperties == null ? null : titleEditorProperties.getEditorTypeConfig(), false);
+        return (TabSet)setAttribute("titleEditorProperties", titleEditorProperties == null ? null : titleEditorProperties.getEditorTypeConfig(), false);
     }
 
     /**
@@ -1852,11 +1910,12 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * on top of that  default offset.
      *
      * @param titleEditorRightOffset New titleEditorRightOffset value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tab.TabSet#setTitleEditorLeftOffset
      * @see com.smartgwt.client.widgets.tab.TabSet#setTitleEditorTopOffset
      */
-    public void setTitleEditorRightOffset(Integer titleEditorRightOffset) {
-        setAttribute("titleEditorRightOffset", titleEditorRightOffset, true);
+    public TabSet setTitleEditorRightOffset(Integer titleEditorRightOffset) {
+        return (TabSet)setAttribute("titleEditorRightOffset", titleEditorRightOffset, true);
     }
 
     /**
@@ -1881,11 +1940,12 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * titleEditorDefaults}.
      *
      * @param titleEditorTopOffset New titleEditorTopOffset value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tab.TabSet#setTitleEditorLeftOffset
      * @see com.smartgwt.client.widgets.tab.TabSet#setTitleEditorRightOffset
      */
-    public void setTitleEditorTopOffset(Integer titleEditorTopOffset) {
-        setAttribute("titleEditorTopOffset", titleEditorTopOffset, true);
+    public TabSet setTitleEditorTopOffset(Integer titleEditorTopOffset) {
+        return (TabSet)setAttribute("titleEditorTopOffset", titleEditorTopOffset, true);
     }
 
     /**
@@ -1910,11 +1970,12 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * The size of the tab picker button when {@link com.smartgwt.client.util.Browser#isTouch isTouch} is <code>true</code>.
      *
      * @param touchPickerButtonSize New touchPickerButtonSize value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tab.TabSet#setPickerButtonSize
      */
-    public void setTouchPickerButtonSize(int touchPickerButtonSize)  throws IllegalStateException {
-        setAttribute("touchPickerButtonSize", touchPickerButtonSize, false);
+    public TabSet setTouchPickerButtonSize(int touchPickerButtonSize)  throws IllegalStateException {
+        return (TabSet)setAttribute("touchPickerButtonSize", touchPickerButtonSize, false);
     }
 
     /**
@@ -1935,10 +1996,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * com.smartgwt.client.widgets.tab.Tab#getCanClose closable}, and only for Mobile WebKit.
      *
      * @param useIOSTabs New useIOSTabs value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setUseIOSTabs(Boolean useIOSTabs)  throws IllegalStateException {
-        setAttribute("useIOSTabs", useIOSTabs, false);
+    public TabSet setUseIOSTabs(Boolean useIOSTabs)  throws IllegalStateException {
+        return (TabSet)setAttribute("useIOSTabs", useIOSTabs, false);
     }
 
     /**
@@ -1963,10 +2025,11 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param useSimpleTabs New useSimpleTabs value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tab.TabSet TabSet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setUseSimpleTabs(Boolean useSimpleTabs)  throws IllegalStateException {
-        setAttribute("useSimpleTabs", useSimpleTabs, false);
+    public TabSet setUseSimpleTabs(Boolean useSimpleTabs)  throws IllegalStateException {
+        return (TabSet)setAttribute("useSimpleTabs", useSimpleTabs, false);
     }
 
     /**
@@ -2450,7 +2513,7 @@ public class TabSet extends Canvas implements com.smartgwt.client.widgets.tab.ev
      * Add a tabSelected handler.
      * <p>
      * Notification fired when a tab is selected. Note that this will only fire if  this tabSet is drawn. If a tab is selected
-     * before {@link com.smartgwt.client.widgets.Canvas#draw draw}  is called,  {@link
+     * before {@link com.smartgwt.client.widgets.Canvas#draw draw()}  is called,  {@link
      * com.smartgwt.client.widgets.tab.events.TabSelectedEventl} will fire on <code>draw()</code>.
      *
      * @param handler the tabSelected handler

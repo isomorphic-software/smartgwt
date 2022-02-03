@@ -139,8 +139,8 @@ package com.smartgwt.client.docs;
  *  
  *  
  *  <pre>
- *    ListGrid grid = (ListGrid)Canvas.getByID("mainGrid");
- *    final DynamicForm form = (DynamicForm)Canvas.getByID("editForm");
+ *    ListGrid grid = (ListGrid)Canvas.getById("mainGrid");
+ *    final DynamicForm form = (DynamicForm)Canvas.getById("editForm");
  *    grid.addRecordClickHandler(new RecordClickHandler() {
  *        public void onRecordClick(RecordClickEvent event) {
  *            form.editRecord(event.getRecord());  

@@ -3,7 +3,7 @@ package com.smartgwt.client.widgets;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.user.client.Element;
+import com.google.gwt.dom.client.Element;
 
 import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.util.JSOHelper;
@@ -32,7 +32,9 @@ public class WidgetCanvas extends Canvas {
         if (height != null && !height.equals("")) {
             setHeight(height);
         }
-    		addClearHandler(new ClearHandler() {
+        
+    	
+		addClearHandler(new ClearHandler() {
 			
 			@Override
 			public void onClear(ClearEvent event) {
@@ -42,7 +44,7 @@ public class WidgetCanvas extends Canvas {
     }
     
     private void removeWidget() {
-    
+
         if (widget.isAttached()) {
             // Sanity check: GWT.isAttached can return true even if the widget has been
             // removed from the DOM. We've seen this come in some cases where the WidgetCanvas
@@ -67,11 +69,10 @@ public class WidgetCanvas extends Canvas {
     }
 
     public String getInnerHTML() {
-    
-        //if this canvas is being redrawn, detach underlying gwt widget so that onDraw()
+    	//if this canvas is being redrawn, detach underlying gwt widget so that onDraw()
         //can correctly reassociate it with container div
         String innerElementID = this.getID() + "_widget";
-        
+    
         removeWidget();
 
         return "<DIV STYLE='width:100%;height:100%' ID='" + innerElementID + "'></DIV>";

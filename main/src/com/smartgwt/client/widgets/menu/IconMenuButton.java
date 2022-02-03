@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -194,9 +197,10 @@ public class IconMenuButton extends IconButton {
      * com.smartgwt.client.widgets.menu.MenuButton#getShowMenuButtonImage showMenuButtonImage}: <code>false</code>.
      *
      * @param menu New menu value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.IconMenuButton IconMenuButton} instance, for chaining setter calls
      */
-    public void setMenu(Menu menu) {
-        setAttribute("menu", menu == null ? null : menu.getOrCreateJsObj(), true);
+    public IconMenuButton setMenu(Menu menu) {
+        return (IconMenuButton)setAttribute("menu", menu == null ? null : menu.getOrCreateJsObj(), true);
     }
 
     /**
@@ -216,10 +220,11 @@ public class IconMenuButton extends IconButton {
      * right edges of button and menu if the page is in RTL  mode, and the left edges otherwise.
      *
      * @param menuAlign New menuAlign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.IconMenuButton IconMenuButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMenuAlign(Alignment menuAlign)  throws IllegalStateException {
-        setAttribute("menuAlign", menuAlign == null ? null : menuAlign.getValue(), false);
+    public IconMenuButton setMenuAlign(Alignment menuAlign)  throws IllegalStateException {
+        return (IconMenuButton)setAttribute("menuAlign", menuAlign == null ? null : menuAlign.getValue(), false);
     }
 
     /**
@@ -239,9 +244,10 @@ public class IconMenuButton extends IconButton {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param menuAnimationEffect New menuAnimationEffect value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.IconMenuButton IconMenuButton} instance, for chaining setter calls
      */
-    public void setMenuAnimationEffect(String menuAnimationEffect) {
-        setAttribute("menuAnimationEffect", menuAnimationEffect, true);
+    public IconMenuButton setMenuAnimationEffect(String menuAnimationEffect) {
+        return (IconMenuButton)setAttribute("menuAnimationEffect", menuAnimationEffect, true);
     }
 
     /**
@@ -259,9 +265,10 @@ public class IconMenuButton extends IconButton {
      * The menu drops down below the menu button. Set to false if the menu should appear above the menu button.
      *
      * @param showMenuBelow New showMenuBelow value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.menu.IconMenuButton IconMenuButton} instance, for chaining setter calls
      */
-    public void setShowMenuBelow(Boolean showMenuBelow) {
-        setAttribute("showMenuBelow", showMenuBelow, true);
+    public IconMenuButton setShowMenuBelow(Boolean showMenuBelow) {
+        return (IconMenuButton)setAttribute("showMenuBelow", showMenuBelow, true);
     }
 
     /**

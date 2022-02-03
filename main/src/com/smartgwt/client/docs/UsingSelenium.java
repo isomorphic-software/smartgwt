@@ -18,12 +18,12 @@ package com.smartgwt.client.docs;
  * href='https://www.mozilla.org/en-US/firefox/organizations/' target='_blank'>Firefox 52 ESR</a>,
  * the extended-support release of Firefox which is still receiving updates at the time of this
  * writing.</b> <P> Selenium supports the concept of <a
- * href='http://seleniumhq.org/docs/02_selenium_ide.html#locating-elements'
+ * href='https://www.selenium.dev/documentation/en/webdriver/locating_elements/'
  * target='_blank'>Locators</a> in order to specify the element you'd like a given Selenium
  * command to target. For example Selenium supports XPath based locators and DOM ID based
- * locators. XPath based locators are extremely fragile due to complexity of certain  highly
- * nested DOM elements you need access to combined with the fact that XPath support varies across
- * browsers and  so your tests might not work across different browsers.  <P> Use of Selenium with
+ * locators. XPath based locators are extremely fragile due to complexity of certain highly nested
+ * DOM elements you need access to combined with the fact that XPath support varies across
+ * browsers and so your tests might not work across different browsers. <P> Use of Selenium with
  * Smart GWT applications is no different than using Selenium to write and run test cases with 
  * any other application with the exception of one caveat: Smart GWT occasionally renders a
  * different DOM structure  depending on the browser for performance or rendering the UI such that

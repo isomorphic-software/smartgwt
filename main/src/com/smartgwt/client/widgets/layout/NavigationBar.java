@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -177,9 +180,10 @@ public class NavigationBar extends HLayout implements com.smartgwt.client.widget
      * Setter for {@link com.smartgwt.client.widgets.layout.NavigationBar#getAlwaysShowLeftButtonTitle alwaysShowLeftButtonTitle}.
      *
      * @param alwaysShowLeftButtonTitle new value for <code>alwaysShowLeftButtonTitle</code>. Default value is false
+     * @return {@link com.smartgwt.client.widgets.layout.NavigationBar NavigationBar} instance, for chaining setter calls
      */
-    public void setAlwaysShowLeftButtonTitle(boolean alwaysShowLeftButtonTitle) {
-        setAttribute("alwaysShowLeftButtonTitle", alwaysShowLeftButtonTitle, true);
+    public NavigationBar setAlwaysShowLeftButtonTitle(boolean alwaysShowLeftButtonTitle) {
+        return (NavigationBar)setAttribute("alwaysShowLeftButtonTitle", alwaysShowLeftButtonTitle, true);
     }
 
     /**
@@ -209,10 +213,11 @@ public class NavigationBar extends HLayout implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param animateStateChanges New animateStateChanges value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.layout.NavigationBar NavigationBar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAnimateStateChanges(boolean animateStateChanges)  throws IllegalStateException {
-        setAttribute("animateStateChanges", animateStateChanges, false);
+    public NavigationBar setAnimateStateChanges(boolean animateStateChanges)  throws IllegalStateException {
+        return (NavigationBar)setAttribute("animateStateChanges", animateStateChanges, false);
     }
 
     /**
@@ -235,6 +240,7 @@ public class NavigationBar extends HLayout implements com.smartgwt.client.widget
         return result == null ? false : result;
     }
     
+    
 
     /**
      * An arbitrary component that will be placed where the {@link
@@ -245,9 +251,10 @@ public class NavigationBar extends HLayout implements com.smartgwt.client.widget
      * Setter to update the {@link com.smartgwt.client.widgets.layout.NavigationBar#getCustomNavControl customNavControl} at runtime.
      *
      * @param customNavControl New customNavControl value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavigationBar NavigationBar} instance, for chaining setter calls
      */
-    public void setCustomNavControl(Canvas customNavControl) {
-        setAttribute("customNavControl", customNavControl == null ? null : customNavControl.getOrCreateJsObj(), true);
+    public NavigationBar setCustomNavControl(Canvas customNavControl) {
+        return (NavigationBar)setAttribute("customNavControl", customNavControl == null ? null : customNavControl.getOrCreateJsObj(), true);
     }
 
     /**
@@ -293,10 +300,11 @@ public class NavigationBar extends HLayout implements com.smartgwt.client.widget
      * Setter for {@link com.smartgwt.client.widgets.layout.NavigationBar#getLeftButtonIcon leftButtonIcon}.
      *
      * @param leftButtonIcon new icon for left button. Default value is "[SKIN]back_arrow.png"
+     * @return {@link com.smartgwt.client.widgets.layout.NavigationBar NavigationBar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setLeftButtonIcon(String leftButtonIcon) {
-        setAttribute("leftButtonIcon", leftButtonIcon, true);
+    public NavigationBar setLeftButtonIcon(String leftButtonIcon) {
+        return (NavigationBar)setAttribute("leftButtonIcon", leftButtonIcon, true);
     }
 
     /**
@@ -319,10 +327,11 @@ public class NavigationBar extends HLayout implements com.smartgwt.client.widget
      * Setter for {@link com.smartgwt.client.widgets.layout.NavigationBar#getLeftButtonTitle leftButtonTitle}.
      *
      * @param leftButtonTitle new title HTML for the left button. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavigationBar NavigationBar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setLeftButtonTitle(String leftButtonTitle) {
-        setAttribute("leftButtonTitle", leftButtonTitle, true);
+    public NavigationBar setLeftButtonTitle(String leftButtonTitle) {
+        return (NavigationBar)setAttribute("leftButtonTitle", leftButtonTitle, true);
     }
 
     /**
@@ -342,10 +351,11 @@ public class NavigationBar extends HLayout implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.layout.NavigationBar#getTitle title}.
      *
      * @param maxCenterOffset New maxCenterOffset value. Default value is 40
+     * @return {@link com.smartgwt.client.widgets.layout.NavigationBar NavigationBar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMaxCenterOffset(int maxCenterOffset)  throws IllegalStateException {
-        setAttribute("maxCenterOffset", maxCenterOffset, false);
+    public NavigationBar setMaxCenterOffset(int maxCenterOffset)  throws IllegalStateException {
+        return (NavigationBar)setAttribute("maxCenterOffset", maxCenterOffset, false);
     }
 
     /**
@@ -366,10 +376,11 @@ public class NavigationBar extends HLayout implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.layout.NavigationBar#getLeftButton leftButton} if its present. </ul>
      *
      * @param miniNavAlign New miniNavAlign value. Default value is "right"
+     * @return {@link com.smartgwt.client.widgets.layout.NavigationBar NavigationBar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMiniNavAlign(Alignment miniNavAlign)  throws IllegalStateException {
-        setAttribute("miniNavAlign", miniNavAlign == null ? null : miniNavAlign.getValue(), false);
+    public NavigationBar setMiniNavAlign(Alignment miniNavAlign)  throws IllegalStateException {
+        return (NavigationBar)setAttribute("miniNavAlign", miniNavAlign == null ? null : miniNavAlign.getValue(), false);
     }
 
     /**
@@ -433,10 +444,11 @@ public class NavigationBar extends HLayout implements com.smartgwt.client.widget
      * Setter for {@link com.smartgwt.client.widgets.layout.NavigationBar#getRightButtonIcon rightButtonIcon}.
      *
      * @param rightButtonIcon new icon for the right button. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavigationBar NavigationBar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setRightButtonIcon(String rightButtonIcon) {
-        setAttribute("rightButtonIcon", rightButtonIcon, true);
+    public NavigationBar setRightButtonIcon(String rightButtonIcon) {
+        return (NavigationBar)setAttribute("rightButtonIcon", rightButtonIcon, true);
     }
 
     /**
@@ -459,10 +471,11 @@ public class NavigationBar extends HLayout implements com.smartgwt.client.widget
      * Setter for {@link com.smartgwt.client.widgets.layout.NavigationBar#getRightButtonTitle rightButtonTitle}.
      *
      * @param rightButtonTitle new title HTML for the right button. Default value is "&amp;nbsp;"
+     * @return {@link com.smartgwt.client.widgets.layout.NavigationBar NavigationBar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setRightButtonTitle(String rightButtonTitle) {
-        setAttribute("rightButtonTitle", rightButtonTitle, true);
+    public NavigationBar setRightButtonTitle(String rightButtonTitle) {
+        return (NavigationBar)setAttribute("rightButtonTitle", rightButtonTitle, true);
     }
 
     /**
@@ -486,10 +499,11 @@ public class NavigationBar extends HLayout implements com.smartgwt.client.widget
      * Setter for {@link com.smartgwt.client.widgets.layout.NavigationBar#getShortLeftButtonTitle shortLeftButtonTitle}.
      *
      * @param shortLeftButtonTitle new short title HTML. Default value is "Back"
+     * @return {@link com.smartgwt.client.widgets.layout.NavigationBar NavigationBar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setShortLeftButtonTitle(String shortLeftButtonTitle) {
-        setAttribute("shortLeftButtonTitle", shortLeftButtonTitle, true);
+    public NavigationBar setShortLeftButtonTitle(String shortLeftButtonTitle) {
+        return (NavigationBar)setAttribute("shortLeftButtonTitle", shortLeftButtonTitle, true);
     }
 
     /**
@@ -514,9 +528,10 @@ public class NavigationBar extends HLayout implements com.smartgwt.client.widget
      *
      * @param showLeftButton if <code>false</code>, then the <code>leftButton</code> will be hidden. If unset or <code>true</code> then the
      * <code>leftButton</code> will be shown as long as it is a member of the <code>controls</code> array. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavigationBar NavigationBar} instance, for chaining setter calls
      */
-    public void setShowLeftButton(Boolean showLeftButton) {
-        setAttribute("showLeftButton", showLeftButton, true);
+    public NavigationBar setShowLeftButton(Boolean showLeftButton) {
+        return (NavigationBar)setAttribute("showLeftButton", showLeftButton, true);
     }
 
     /**
@@ -535,10 +550,11 @@ public class NavigationBar extends HLayout implements com.smartgwt.client.widget
      * miniNavControl} is not shown.
      *
      * @param showMiniNavControl New showMiniNavControl value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.layout.NavigationBar NavigationBar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowMiniNavControl(boolean showMiniNavControl)  throws IllegalStateException {
-        setAttribute("showMiniNavControl", showMiniNavControl, false);
+    public NavigationBar setShowMiniNavControl(boolean showMiniNavControl)  throws IllegalStateException {
+        return (NavigationBar)setAttribute("showMiniNavControl", showMiniNavControl, false);
     }
 
     /**
@@ -562,9 +578,10 @@ public class NavigationBar extends HLayout implements com.smartgwt.client.widget
      *
      * @param showRightButton if <code>false</code>, then the <code>rightButton</code> will be hidden. If unset or <code>true</code> then the
      * <code>rightButton</code> will be shown as long as it is a member of the <code>controls</code> array. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavigationBar NavigationBar} instance, for chaining setter calls
      */
-    public void setShowRightButton(Boolean showRightButton) {
-        setAttribute("showRightButton", showRightButton, true);
+    public NavigationBar setShowRightButton(Boolean showRightButton) {
+        return (NavigationBar)setAttribute("showRightButton", showRightButton, true);
     }
 
     /**
@@ -862,6 +879,22 @@ public class NavigationBar extends HLayout implements com.smartgwt.client.widget
     // ***********************************************************
 
 
+
+    /**
+     * Set of controls to show in the navigation bar.
+     * <P>
+     * The standard set of controls included by default are NavigationBarControls.LEFT_BUTTON,
+     * NavigationBarControls.TITLE_LABEL, NavigationBarControls.RIGHT_BUTTON.
+     * <P>
+     * Developers may modify the controls to include any Canvases in addition to these standard
+     * controls and they will be displayed in the navigation bar.
+     *
+     * @param controls to display in the navigation bar.
+     * @see com.smartgwt.client.types.NavigationBarControls
+     */
+    public void setControls(Object... controls) {
+        setAttribute("controls", controls, false);
+    }
 
     /**
      * Setter implementing the {@link com.smartgwt.client.core.LogicalStructure} interface,

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -190,9 +193,10 @@ public class DrawDiamond extends DrawItem {
      * Height of the diamond. Must be non-negative.
      *
      * @param height New height value. Default value is 100
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawDiamond DrawDiamond} instance, for chaining setter calls
      */
-    public void setHeight(int height) {
-        setAttribute("height", height, true);
+    public DrawDiamond setHeight(int height) {
+        return (DrawDiamond)setAttribute("height", height, true);
     }
 
     /**
@@ -218,9 +222,10 @@ public class DrawDiamond extends DrawItem {
      * Left coordinate of the diamond. This is the X coordinate of the western point of the diamond.
      *
      * @param left New left value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawDiamond DrawDiamond} instance, for chaining setter calls
      */
-    public void setLeft(int left) {
-        setAttribute("left", left, true);
+    public DrawDiamond setLeft(int left) {
+        return (DrawDiamond)setAttribute("left", left, true);
     }
 
     /**
@@ -248,12 +253,13 @@ public class DrawDiamond extends DrawItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param titleRotationMode New titleRotationMode value. Default value is "withItemAlwaysUp"
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawDiamond DrawDiamond} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setTitle
      * 
      */
-    public void setTitleRotationMode(TitleRotationMode titleRotationMode)  throws IllegalStateException {
-        setAttribute("titleRotationMode", titleRotationMode == null ? null : titleRotationMode.getValue(), false);
+    public DrawDiamond setTitleRotationMode(TitleRotationMode titleRotationMode)  throws IllegalStateException {
+        return (DrawDiamond)setAttribute("titleRotationMode", titleRotationMode == null ? null : titleRotationMode.getValue(), false);
     }
 
     /**
@@ -273,9 +279,10 @@ public class DrawDiamond extends DrawItem {
      * Top coordinate of the diamond. This is the Y coordinate of the northern point of the diamond.
      *
      * @param top New top value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawDiamond DrawDiamond} instance, for chaining setter calls
      */
-    public void setTop(int top) {
-        setAttribute("top", top, true);
+    public DrawDiamond setTop(int top) {
+        return (DrawDiamond)setAttribute("top", top, true);
     }
 
     /**
@@ -301,9 +308,10 @@ public class DrawDiamond extends DrawItem {
      * Width of the diamond. Must be non-negative.
      *
      * @param width New width value. Default value is 100
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawDiamond DrawDiamond} instance, for chaining setter calls
      */
-    public void setWidth(int width) {
-        setAttribute("width", width, true);
+    public DrawDiamond setWidth(int width) {
+        return (DrawDiamond)setAttribute("width", width, true);
     }
 
     /**

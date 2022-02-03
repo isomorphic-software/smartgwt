@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * {@link com.smartgwt.client.tools.EditProxy} that handles {@link com.smartgwt.client.widgets.viewer.DetailViewer}
@@ -151,10 +154,11 @@ public class DetailViewerEditProxy extends CanvasEditProxy {
      *  - user input will always be treated as just a list of legal field names.
      *
      * @param dataDisplaySeparatorChar New dataDisplaySeparatorChar value. Default value is ":"
+     * @return {@link com.smartgwt.client.tools.DetailViewerEditProxy DetailViewerEditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setDataDisplaySeparatorChar(String dataDisplaySeparatorChar)  throws IllegalStateException {
-        setAttribute("dataDisplaySeparatorChar", dataDisplaySeparatorChar, false);
+    public DetailViewerEditProxy setDataDisplaySeparatorChar(String dataDisplaySeparatorChar)  throws IllegalStateException {
+        return (DetailViewerEditProxy)setAttribute("dataDisplaySeparatorChar", dataDisplaySeparatorChar, false);
     }
 
     /**
@@ -211,10 +215,11 @@ public class DetailViewerEditProxy extends CanvasEditProxy {
      * For example, with the default of "\", inputting "\\" would result in a literal backslash in the value.
      *
      * @param dataEscapeChar New dataEscapeChar value. Default value is "\"
+     * @return {@link com.smartgwt.client.tools.DetailViewerEditProxy DetailViewerEditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setDataEscapeChar(String dataEscapeChar)  throws IllegalStateException {
-        setAttribute("dataEscapeChar", dataEscapeChar, false);
+    public DetailViewerEditProxy setDataEscapeChar(String dataEscapeChar)  throws IllegalStateException {
+        return (DetailViewerEditProxy)setAttribute("dataEscapeChar", dataEscapeChar, false);
     }
 
     /**
@@ -243,10 +248,11 @@ public class DetailViewerEditProxy extends CanvasEditProxy {
      * char as part of a field name or value.
      *
      * @param dataSeparatorChar New dataSeparatorChar value. Default value is ","
+     * @return {@link com.smartgwt.client.tools.DetailViewerEditProxy DetailViewerEditProxy} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setDataSeparatorChar(String dataSeparatorChar)  throws IllegalStateException {
-        setAttribute("dataSeparatorChar", dataSeparatorChar, false);
+    public DetailViewerEditProxy setDataSeparatorChar(String dataSeparatorChar)  throws IllegalStateException {
+        return (DetailViewerEditProxy)setAttribute("dataSeparatorChar", dataSeparatorChar, false);
     }
 
     /**

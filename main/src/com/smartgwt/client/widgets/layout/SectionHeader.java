@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -174,11 +177,12 @@ public class SectionHeader extends Label implements com.smartgwt.client.widgets.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param baseStyle New baseStyle value. Default value is "sectionHeader"
+     * @return {@link com.smartgwt.client.widgets.layout.SectionHeader SectionHeader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setBaseStyle(String baseStyle)  throws IllegalStateException {
-        setAttribute("baseStyle", baseStyle, false);
+    public SectionHeader setBaseStyle(String baseStyle)  throws IllegalStateException {
+        return (SectionHeader)setAttribute("baseStyle", baseStyle, false);
     }
 
     /**
@@ -198,10 +202,11 @@ public class SectionHeader extends Label implements com.smartgwt.client.widgets.
      * 9+).
      *
      * @param clipTitle New clipTitle value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.SectionHeader SectionHeader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setClipTitle(Boolean clipTitle)  throws IllegalStateException {
-        setAttribute("clipTitle", clipTitle, false);
+    public SectionHeader setClipTitle(Boolean clipTitle)  throws IllegalStateException {
+        return (SectionHeader)setAttribute("clipTitle", clipTitle, false);
     }
 
     /**
@@ -225,11 +230,12 @@ public class SectionHeader extends Label implements com.smartgwt.client.widgets.
      * manipulating the existing control(s) set up at init time.
      *
      * @param controls New controls value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SectionHeader SectionHeader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_sections_custom_controls" target="examples">Custom Controls Example</a>
      */
-    public void setControls(Canvas... controls)  throws IllegalStateException {
-        setAttribute("controls", controls, false);
+    public SectionHeader setControls(Canvas... controls)  throws IllegalStateException {
+        return (SectionHeader)setAttribute("controls", controls, false);
     }
     
 
@@ -253,17 +259,43 @@ public class SectionHeader extends Label implements com.smartgwt.client.widgets.
     
 
     /**
+     * Default class used to construct the {@link com.smartgwt.client.tools.EditProxy} for this component when the component is
+     * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
+     *
+     * @param editProxyConstructor New editProxyConstructor value. Default value is "SectionStackSectionEditProxy"
+     * @return {@link com.smartgwt.client.widgets.layout.SectionHeader SectionHeader} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     */
+    public SectionHeader setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
+        return (SectionHeader)setAttribute("editProxyConstructor", editProxyConstructor, false);
+    }
+
+    /**
+     * Default class used to construct the {@link com.smartgwt.client.tools.EditProxy} for this component when the component is
+     * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
+     *
+     * @return Current editProxyConstructor value. Default value is "SectionStackSectionEditProxy"
+     * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     */
+    public String getEditProxyConstructor()  {
+        return getAttributeAsString("editProxyConstructor");
+    }
+    
+
+    /**
      * Base filename of the icon that represents open and closed states. The default settings also change the icon for disabled
      * sections, so a total of four images are required (opened, closed, Disabled_opened, Disabled_closed). <P> Not shown if
      * {@link com.smartgwt.client.widgets.layout.SectionStackSection#getCanCollapse SectionStackSection.canCollapse} is false.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param icon New icon value. Default value is "[SKIN]SectionHeader/opener.gif"
+     * @return {@link com.smartgwt.client.widgets.layout.SectionHeader SectionHeader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setIcon(String icon)  throws IllegalStateException {
-        setAttribute("icon", icon, false);
+    public SectionHeader setIcon(String icon)  throws IllegalStateException {
+        return (SectionHeader)setAttribute("icon", icon, false);
     }
 
     /**
@@ -285,10 +317,11 @@ public class SectionHeader extends Label implements com.smartgwt.client.widgets.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param noDoubleClicks New noDoubleClicks value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.SectionHeader SectionHeader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setNoDoubleClicks(Boolean noDoubleClicks)  throws IllegalStateException {
-        setAttribute("noDoubleClicks", noDoubleClicks, false);
+    public SectionHeader setNoDoubleClicks(Boolean noDoubleClicks)  throws IllegalStateException {
+        return (SectionHeader)setAttribute("noDoubleClicks", noDoubleClicks, false);
     }
 
     /**
@@ -307,9 +340,10 @@ public class SectionHeader extends Label implements com.smartgwt.client.widgets.
      * If true and the title is clipped, then a hover containing the full title of this section header is enabled.
      *
      * @param showClippedTitleOnHover New showClippedTitleOnHover value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.SectionHeader SectionHeader} instance, for chaining setter calls
      */
-    public void setShowClippedTitleOnHover(Boolean showClippedTitleOnHover) {
-        setAttribute("showClippedTitleOnHover", showClippedTitleOnHover, true);
+    public SectionHeader setShowClippedTitleOnHover(Boolean showClippedTitleOnHover) {
+        return (SectionHeader)setAttribute("showClippedTitleOnHover", showClippedTitleOnHover, true);
     }
 
     /**
@@ -557,6 +591,11 @@ public class SectionHeader extends Label implements com.smartgwt.client.widgets.
             s.clipTitle = getAttributeAsString("clipTitle");
         } catch (Throwable t) {
             s.logicalStructureErrors += "SectionHeader.clipTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.editProxyConstructor = getAttributeAsString("editProxyConstructor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SectionHeader.editProxyConstructor:" + t.getMessage() + "\n";
         }
         try {
             s.icon = getAttributeAsString("icon");

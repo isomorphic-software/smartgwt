@@ -27,7 +27,7 @@ package com.smartgwt.client.docs;
  * and for date, time, and datetime types, the format string is similar to java.text.SimpleDateFormat (see  <a
  * href='http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html' target='_blank'>SimpleDateFormat
  * JavaDoc</a>). <p> Note that all the client-side formatting described in this section is is done by the  {@link
- * com.smartgwt.client.util.NumberUtil#format NumberUtil.format()} and   {@link com.smartgwt.client.util.DateUtil.format()}
+ * com.smartgwt.client.util.NumberUtil#format NumberUtil.format()} and   {@link com.smartgwt.client.util.DateUtil#format()}
  * methods.  These are static utility methods that your own code can call if you need to  programmatically format a date or
  * number using a <code>FormatString</code> <p> There are 3 possible contexts where a <code>FormatString</code> may be
  * interpreted, and each has slightly different limitations: <h4>in-browser rendering &amp; client-driven exports</h4>

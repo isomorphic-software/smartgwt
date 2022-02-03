@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -146,7 +149,7 @@ import com.smartgwt.logicalstructure.widgets.tools.*;
  */
 @BeanFactory.FrameworkClass
 @BeanFactory.ScClassName("BatchUploader")
-public class BatchUploader extends VStack implements com.smartgwt.client.widgets.com.smartgwt.client.widgets.events.HasPreviewShownHandlers {
+public class BatchUploader extends VStack implements com.smartgwt.client.widgets.com.smartgwt.client.widgets.events.HasBeforeCommitHandlers, com.smartgwt.client.widgets.com.smartgwt.client.widgets.events.HasPreviewShownHandlers {
 
     public static BatchUploader getOrCreateRef(JavaScriptObject jsObj) {
         if (jsObj == null) return null;
@@ -233,10 +236,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * errors
      *
      * @param allRecordsInErrorMessage New allRecordsInErrorMessage value. Default value is "All records have errors; nothing to commit"
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAllRecordsInErrorMessage(String allRecordsInErrorMessage)  throws IllegalStateException {
-        setAttribute("allRecordsInErrorMessage", allRecordsInErrorMessage, false);
+    public BatchUploader setAllRecordsInErrorMessage(String allRecordsInErrorMessage)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("allRecordsInErrorMessage", allRecordsInErrorMessage, false);
     }
 
     /**
@@ -258,9 +262,10 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * else is true </ul>
      *
      * @param autoInterpretBooleans New autoInterpretBooleans value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      */
-    public void setAutoInterpretBooleans(Boolean autoInterpretBooleans) {
-        setAttribute("autoInterpretBooleans", autoInterpretBooleans, true);
+    public BatchUploader setAutoInterpretBooleans(Boolean autoInterpretBooleans) {
+        return (BatchUploader)setAttribute("autoInterpretBooleans", autoInterpretBooleans, true);
     }
 
     /**
@@ -297,10 +302,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * Title for the {@link com.smartgwt.client.widgets.BatchUploader#getCancelButton cancel button}.
      *
      * @param cancelButtonTitle New cancelButtonTitle value. Default value is "Cancel"
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
-        setAttribute("cancelButtonTitle", cancelButtonTitle, false);
+    public BatchUploader setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("cancelButtonTitle", cancelButtonTitle, false);
     }
 
     /**
@@ -319,9 +325,10 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * you have done on this data. Proceed anyway?"
      *
      * @param cancelConfirmMessage New cancelConfirmMessage value. Default value is See below
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      */
-    public void setCancelConfirmMessage(String cancelConfirmMessage) {
-        setAttribute("cancelConfirmMessage", cancelConfirmMessage, true);
+    public BatchUploader setCancelConfirmMessage(String cancelConfirmMessage) {
+        return (BatchUploader)setAttribute("cancelConfirmMessage", cancelConfirmMessage, true);
     }
 
     /**
@@ -355,10 +362,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * Title for the {@link com.smartgwt.client.widgets.BatchUploader#getCommitButton commit button}.
      *
      * @param commitButtonTitle New commitButtonTitle value. Default value is "Commit"
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCommitButtonTitle(String commitButtonTitle)  throws IllegalStateException {
-        setAttribute("commitButtonTitle", commitButtonTitle, false);
+    public BatchUploader setCommitButtonTitle(String commitButtonTitle)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("commitButtonTitle", commitButtonTitle, false);
     }
 
     /**
@@ -376,10 +384,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * com.smartgwt.client.widgets.BatchUploader#getShowCommitConfirmation showCommitConfirmation} is true.
      *
      * @param commitConfirmationMessage New commitConfirmationMessage value. Default value is "Records added"
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCommitConfirmationMessage(String commitConfirmationMessage)  throws IllegalStateException {
-        setAttribute("commitConfirmationMessage", commitConfirmationMessage, false);
+    public BatchUploader setCommitConfirmationMessage(String commitConfirmationMessage)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("commitConfirmationMessage", commitConfirmationMessage, false);
     }
 
     /**
@@ -397,10 +406,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * Format to assume for user-provided data.  Use {@link com.smartgwt.client.types.ImportFormat} "auto" for auto-detection.
      *
      * @param dataFormat New dataFormat value. Default value is "csv"
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDataFormat(ImportFormat dataFormat)  throws IllegalStateException {
-        setAttribute("dataFormat", dataFormat == null ? null : dataFormat.getValue(), false);
+    public BatchUploader setDataFormat(ImportFormat dataFormat)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("dataFormat", dataFormat == null ? null : dataFormat.getValue(), false);
     }
 
     /**
@@ -419,9 +429,10 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * or post-processing.
      *
      * @param dataURL New dataURL value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      */
-    public void setDataURL(String dataURL) {
-        setAttribute("dataURL", dataURL, true);
+    public BatchUploader setDataURL(String dataURL) {
+        return (BatchUploader)setAttribute("dataURL", dataURL, true);
     }
 
     /**
@@ -440,10 +451,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * The delimiter to use when importing character-delimited files.  The default is comma (CSV).
      *
      * @param defaultDelimiter New defaultDelimiter value. Default value is ","
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @deprecated in favor of {@link com.smartgwt.client.widgets.BatchUploader#getUploadDelimiter uploadDelimiter}
      */
-    public void setDefaultDelimiter(String defaultDelimiter) {
-        setAttribute("defaultDelimiter", defaultDelimiter, true);
+    public BatchUploader setDefaultDelimiter(String defaultDelimiter) {
+        return (BatchUploader)setAttribute("defaultDelimiter", defaultDelimiter, true);
     }
 
     /**
@@ -461,10 +473,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * The default character used to quote strings.
      *
      * @param defaultQuoteString New defaultQuoteString value. Default value is "\""
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @deprecated in favor of {@link com.smartgwt.client.widgets.BatchUploader#getUploadQuoteString uploadQuoteString}
      */
-    public void setDefaultQuoteString(String defaultQuoteString) {
-        setAttribute("defaultQuoteString", defaultQuoteString, true);
+    public BatchUploader setDefaultQuoteString(String defaultQuoteString) {
+        return (BatchUploader)setAttribute("defaultQuoteString", defaultQuoteString, true);
     }
 
     /**
@@ -486,10 +499,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * because they did not match any of the expected column names: ${discardedColumns}"
      *
      * @param discardedColumnsMessage New discardedColumnsMessage value. Default value is "..."
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDiscardedColumnsMessage(String discardedColumnsMessage)  throws IllegalStateException {
-        setAttribute("discardedColumnsMessage", discardedColumnsMessage, false);
+    public BatchUploader setDiscardedColumnsMessage(String discardedColumnsMessage)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("discardedColumnsMessage", discardedColumnsMessage, false);
     }
 
     /**
@@ -513,10 +527,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * com.smartgwt.client.widgets.BatchUploader#getUploadStatusMessages uploadStatusMessages} component.
      *
      * @param displayDiscardedColumns New displayDiscardedColumns value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDisplayDiscardedColumns(Boolean displayDiscardedColumns)  throws IllegalStateException {
-        setAttribute("displayDiscardedColumns", displayDiscardedColumns, false);
+    public BatchUploader setDisplayDiscardedColumns(Boolean displayDiscardedColumns)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("displayDiscardedColumns", displayDiscardedColumns, false);
     }
 
     /**
@@ -538,10 +553,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * first line.
      *
      * @param errorMessageDelimiterOrEndOfLine New errorMessageDelimiterOrEndOfLine value. Default value is "Delimiter or end of line expected after quoted value - problem found in the first line at character position: ${errorOffset}."
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setErrorMessageDelimiterOrEndOfLine(String errorMessageDelimiterOrEndOfLine)  throws IllegalStateException {
-        setAttribute("errorMessageDelimiterOrEndOfLine", errorMessageDelimiterOrEndOfLine, false);
+    public BatchUploader setErrorMessageDelimiterOrEndOfLine(String errorMessageDelimiterOrEndOfLine)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("errorMessageDelimiterOrEndOfLine", errorMessageDelimiterOrEndOfLine, false);
     }
 
     /**
@@ -559,10 +575,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * Error message to show when the uploading process detects an Excel File, which is not supported.
      *
      * @param errorMessageExcelFileDetected New errorMessageExcelFileDetected value. Default value is "You uploaded an Excel file. Please save your data as a csv file and re-upload"
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setErrorMessageExcelFileDetected(String errorMessageExcelFileDetected)  throws IllegalStateException {
-        setAttribute("errorMessageExcelFileDetected", errorMessageExcelFileDetected, false);
+    public BatchUploader setErrorMessageExcelFileDetected(String errorMessageExcelFileDetected)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("errorMessageExcelFileDetected", errorMessageExcelFileDetected, false);
     }
 
     /**
@@ -579,10 +596,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * Error message to show when the uploading process detects a file with no data.
      *
      * @param errorMessageFileIsBlank New errorMessageFileIsBlank value. Default value is "The provided file is blank. Please, provide a file with data."
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setErrorMessageFileIsBlank(String errorMessageFileIsBlank)  throws IllegalStateException {
-        setAttribute("errorMessageFileIsBlank", errorMessageFileIsBlank, false);
+    public BatchUploader setErrorMessageFileIsBlank(String errorMessageFileIsBlank)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("errorMessageFileIsBlank", errorMessageFileIsBlank, false);
     }
 
     /**
@@ -599,10 +617,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * Error message to show when the uploading process detects an invalid inputType.
      *
      * @param errorMessageInputType New errorMessageInputType value. Default value is "Invalid inputType value was set!"
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setErrorMessageInputType(String errorMessageInputType)  throws IllegalStateException {
-        setAttribute("errorMessageInputType", errorMessageInputType, false);
+    public BatchUploader setErrorMessageInputType(String errorMessageInputType)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("errorMessageInputType", errorMessageInputType, false);
     }
 
     /**
@@ -623,10 +642,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * not be parsed.</li> <li>badRowCount: Total rows that could not be parsed.</li> </ul>
      *
      * @param errorMessageRowsNotParsed New errorMessageRowsNotParsed value. Default value is "Some rows could not be parsed; the grid below shows ${goodRowCount} of ${totalRows} data rows. Row number ${firstBadRow} was the first row to fail to be parsed."
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setErrorMessageRowsNotParsed(String errorMessageRowsNotParsed)  throws IllegalStateException {
-        setAttribute("errorMessageRowsNotParsed", errorMessageRowsNotParsed, false);
+    public BatchUploader setErrorMessageRowsNotParsed(String errorMessageRowsNotParsed)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("errorMessageRowsNotParsed", errorMessageRowsNotParsed, false);
     }
 
     /**
@@ -647,10 +667,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * Error message to show when the uploading process is unable to detect the delimiter.
      *
      * @param errorMessageUndeterminedDelimiter New errorMessageUndeterminedDelimiter value. Default value is "We were unable to guess the delimiter"
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setErrorMessageUndeterminedDelimiter(String errorMessageUndeterminedDelimiter)  throws IllegalStateException {
-        setAttribute("errorMessageUndeterminedDelimiter", errorMessageUndeterminedDelimiter, false);
+    public BatchUploader setErrorMessageUndeterminedDelimiter(String errorMessageUndeterminedDelimiter)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("errorMessageUndeterminedDelimiter", errorMessageUndeterminedDelimiter, false);
     }
 
     /**
@@ -667,10 +688,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * Error message to show when the uploading process detects an unterminated quote string in the first line.
      *
      * @param errorMessageUnterminatedQuote New errorMessageUnterminatedQuote value. Default value is "Unterminated quote string - problem found in the first line at character position: ${errorOffset}."
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setErrorMessageUnterminatedQuote(String errorMessageUnterminatedQuote)  throws IllegalStateException {
-        setAttribute("errorMessageUnterminatedQuote", errorMessageUnterminatedQuote, false);
+    public BatchUploader setErrorMessageUnterminatedQuote(String errorMessageUnterminatedQuote)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("errorMessageUnterminatedQuote", errorMessageUnterminatedQuote, false);
     }
 
     /**
@@ -705,9 +727,10 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * DataBoundComponent.fields}.
      *
      * @param gridFields New gridFields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      */
-    public void setGridFields(ListGridField... gridFields) {
-        setAttribute("gridFields", gridFields, true);
+    public BatchUploader setGridFields(ListGridField... gridFields) {
+        return (BatchUploader)setAttribute("gridFields", gridFields, true);
     }
 
     /**
@@ -742,10 +765,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * Title for the {@link com.smartgwt.client.widgets.BatchUploader#getNextButton next error button}.
      *
      * @param nextButtonTitle New nextButtonTitle value. Default value is "Next error"
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setNextButtonTitle(String nextButtonTitle)  throws IllegalStateException {
-        setAttribute("nextButtonTitle", nextButtonTitle, false);
+    public BatchUploader setNextButtonTitle(String nextButtonTitle)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("nextButtonTitle", nextButtonTitle, false);
     }
 
     /**
@@ -763,9 +787,10 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * contains some errors).
      *
      * @param partialCommit New partialCommit value. Default value is "prompt"
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      */
-    public void setPartialCommit(PartialCommitOption partialCommit) {
-        setAttribute("partialCommit", partialCommit == null ? null : partialCommit.getValue(), true);
+    public BatchUploader setPartialCommit(PartialCommitOption partialCommit) {
+        return (BatchUploader)setAttribute("partialCommit", partialCommit == null ? null : partialCommit.getValue(), true);
     }
 
     /**
@@ -784,10 +809,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * com.smartgwt.client.widgets.BatchUploader#getShowCommitConfirmation showCommitConfirmation} is true.
      *
      * @param partialCommitConfirmationMessage New partialCommitConfirmationMessage value. Default value is "Valid records added; some records remain in error"
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPartialCommitConfirmationMessage(String partialCommitConfirmationMessage)  throws IllegalStateException {
-        setAttribute("partialCommitConfirmationMessage", partialCommitConfirmationMessage, false);
+    public BatchUploader setPartialCommitConfirmationMessage(String partialCommitConfirmationMessage)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("partialCommitConfirmationMessage", partialCommitConfirmationMessage, false);
     }
 
     /**
@@ -807,9 +833,10 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * your  data.  Please correct all errors before clicking Commit"
      *
      * @param partialCommitError New partialCommitError value. Default value is See below
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      */
-    public void setPartialCommitError(String partialCommitError) {
-        setAttribute("partialCommitError", partialCommitError, true);
+    public BatchUploader setPartialCommitError(String partialCommitError) {
+        return (BatchUploader)setAttribute("partialCommitError", partialCommitError, true);
     }
 
     /**
@@ -831,9 +858,10 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * return to your data"
      *
      * @param partialCommitPrompt New partialCommitPrompt value. Default value is See below
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      */
-    public void setPartialCommitPrompt(String partialCommitPrompt) {
-        setAttribute("partialCommitPrompt", partialCommitPrompt, true);
+    public BatchUploader setPartialCommitPrompt(String partialCommitPrompt) {
+        return (BatchUploader)setAttribute("partialCommitPrompt", partialCommitPrompt, true);
     }
 
     /**
@@ -868,10 +896,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * Title for the {@link com.smartgwt.client.widgets.BatchUploader#getPreviousButton previous error button}.
      *
      * @param previousButtonTitle New previousButtonTitle value. Default value is "Previous error"
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPreviousButtonTitle(String previousButtonTitle)  throws IllegalStateException {
-        setAttribute("previousButtonTitle", previousButtonTitle, false);
+    public BatchUploader setPreviousButtonTitle(String previousButtonTitle)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("previousButtonTitle", previousButtonTitle, false);
     }
 
     /**
@@ -888,13 +917,14 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * Object containing properties to send with every "add" request this batchUploader sends.
      *
      * @param requestProperties New requestProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      */
-    public void setRequestProperties(DSRequest requestProperties) {
+    public BatchUploader setRequestProperties(DSRequest requestProperties) {
         JavaScriptObject config = JSOHelper.createObject();
         if (requestProperties != null) {
             JSOHelper.addProperties(config, requestProperties.getJsObj());
         }
-        setAttribute("requestProperties", requestProperties == null ? null : config, true);
+        return (BatchUploader)setAttribute("requestProperties", requestProperties == null ? null : config, true);
     }
 
     /**
@@ -912,10 +942,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * data is successfully committed.
      *
      * @param showCommitConfirmation New showCommitConfirmation value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowCommitConfirmation(Boolean showCommitConfirmation)  throws IllegalStateException {
-        setAttribute("showCommitConfirmation", showCommitConfirmation, false);
+    public BatchUploader setShowCommitConfirmation(Boolean showCommitConfirmation)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("showCommitConfirmation", showCommitConfirmation, false);
     }
 
     /**
@@ -936,10 +967,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * transactional updates feature
      *
      * @param updatesRolledBackMessage New updatesRolledBackMessage value. Default value is "One or more updates were rolled-back due to errors on other rows"
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setUpdatesRolledBackMessage(String updatesRolledBackMessage)  throws IllegalStateException {
-        setAttribute("updatesRolledBackMessage", updatesRolledBackMessage, false);
+    public BatchUploader setUpdatesRolledBackMessage(String updatesRolledBackMessage)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("updatesRolledBackMessage", updatesRolledBackMessage, false);
     }
 
     /**
@@ -973,10 +1005,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * Title for the {@link com.smartgwt.client.widgets.BatchUploader#getUploadButton upload button}.
      *
      * @param uploadButtonTitle New uploadButtonTitle value. Default value is "Upload"
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setUploadButtonTitle(String uploadButtonTitle)  throws IllegalStateException {
-        setAttribute("uploadButtonTitle", uploadButtonTitle, false);
+    public BatchUploader setUploadButtonTitle(String uploadButtonTitle)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("uploadButtonTitle", uploadButtonTitle, false);
     }
 
     /**
@@ -996,10 +1029,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * place.
      *
      * @param uploadDataSource New uploadDataSource value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setUploadDataSource(DataSource uploadDataSource)  throws IllegalStateException {
-        setAttribute("uploadDataSource", uploadDataSource == null ? null : uploadDataSource.getOrCreateJsObj(), false);
+    public BatchUploader setUploadDataSource(DataSource uploadDataSource)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("uploadDataSource", uploadDataSource == null ? null : uploadDataSource.getOrCreateJsObj(), false);
     }
 
     /**
@@ -1019,9 +1053,10 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * The delimiter to use when importing character-delimited files.  The default is comma (CSV).
      *
      * @param uploadDelimiter New uploadDelimiter value. Default value is ","
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      */
-    public void setUploadDelimiter(String uploadDelimiter) {
-        setAttribute("uploadDelimiter", uploadDelimiter, true);
+    public BatchUploader setUploadDelimiter(String uploadDelimiter) {
+        return (BatchUploader)setAttribute("uploadDelimiter", uploadDelimiter, true);
     }
 
     /**
@@ -1040,9 +1075,10 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * will be used to create a <code>java.io.Reader</code> instance to read data from uploaded files. The default is "UTF-8".
      *
      * @param uploadEncoding New uploadEncoding value. Default value is "UTF-8"
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      */
-    public void setUploadEncoding(String uploadEncoding) {
-        setAttribute("uploadEncoding", uploadEncoding, true);
+    public BatchUploader setUploadEncoding(String uploadEncoding) {
+        return (BatchUploader)setAttribute("uploadEncoding", uploadEncoding, true);
     }
 
     /**
@@ -1066,9 +1102,10 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * "myFields_someDate"
      *
      * @param uploadFieldPrefix New uploadFieldPrefix value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      */
-    public void setUploadFieldPrefix(String uploadFieldPrefix) {
-        setAttribute("uploadFieldPrefix", uploadFieldPrefix, true);
+    public BatchUploader setUploadFieldPrefix(String uploadFieldPrefix) {
+        return (BatchUploader)setAttribute("uploadFieldPrefix", uploadFieldPrefix, true);
     }
 
     /**
@@ -1106,10 +1143,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * filename to upload
      *
      * @param uploadFileLabel New uploadFileLabel value. Default value is "Upload File"
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setUploadFileLabel(String uploadFileLabel)  throws IllegalStateException {
-        setAttribute("uploadFileLabel", uploadFileLabel, false);
+    public BatchUploader setUploadFileLabel(String uploadFileLabel)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("uploadFileLabel", uploadFileLabel, false);
     }
 
     /**
@@ -1142,10 +1180,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * Optional fields for the uploadForm.
      *
      * @param uploadFormFields New uploadFormFields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setUploadFormFields(FormItem... uploadFormFields)  throws IllegalStateException {
-        setAttribute("uploadFormFields", uploadFormFields, false);
+    public BatchUploader setUploadFormFields(FormItem... uploadFormFields)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("uploadFormFields", uploadFormFields, false);
     }
 
     /**
@@ -1163,10 +1202,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * add new records to the {@link com.smartgwt.client.widgets.BatchUploader#getUploadDataSource uploadDataSource}.
      *
      * @param uploadOperation New uploadOperation value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setUploadOperation(String uploadOperation)  throws IllegalStateException {
-        setAttribute("uploadOperation", uploadOperation, false);
+    public BatchUploader setUploadOperation(String uploadOperation)  throws IllegalStateException {
+        return (BatchUploader)setAttribute("uploadOperation", uploadOperation, false);
     }
 
     /**
@@ -1184,9 +1224,10 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * The character used to quote strings. The default is double quotes.
      *
      * @param uploadQuoteString New uploadQuoteString value. Default value is "\""
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      */
-    public void setUploadQuoteString(String uploadQuoteString) {
-        setAttribute("uploadQuoteString", uploadQuoteString, true);
+    public BatchUploader setUploadQuoteString(String uploadQuoteString) {
+        return (BatchUploader)setAttribute("uploadQuoteString", uploadQuoteString, true);
     }
 
     /**
@@ -1221,9 +1262,10 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      * com.smartgwt.client.widgets.BatchUploader#getCancelConfirmMessage cancelConfirmMessage}
      *
      * @param warnOnCancel New warnOnCancel value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.BatchUploader BatchUploader} instance, for chaining setter calls
      */
-    public void setWarnOnCancel(Boolean warnOnCancel) {
-        setAttribute("warnOnCancel", warnOnCancel, true);
+    public BatchUploader setWarnOnCancel(Boolean warnOnCancel) {
+        return (BatchUploader)setAttribute("warnOnCancel", warnOnCancel, true);
     }
 
     /**
@@ -1240,6 +1282,60 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
     
 
     // ********************* Methods ***********************
+    /**
+     * Add a beforeCommit handler.
+     * <p>
+     * Notification method fired when the {@link com.smartgwt.client.widgets.BatchUploader#getCommitButton
+     * BatchUploader.commitButton} is clicked. <P> This notification occurs before actually committing data to the server. It
+     * allows to make changes to the data after user edits, but before it will be sent to server. <P> Read also {@link
+     * com.smartgwt.client.widgets.BatchUploader#addPreviewShownHandler BatchUploader.previewShown()} docs for details how to
+     * change data in grid and for possibility to interrupt upload process on the server as well.
+     *
+     * @param handler the beforeCommit handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addBeforeCommitHandler(com.smartgwt.client.widgets.com.smartgwt.client.widgets.events.BeforeCommitHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.com.smartgwt.client.widgets.events.BeforeCommitEvent.getType()) == 0) setupBeforeCommitEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.com.smartgwt.client.widgets.events.BeforeCommitEvent.getType());
+    }
+
+    private native void setupBeforeCommitEvent() /*-{
+        var obj;
+        var selfJ = this;
+        var hasDefaultHandler;
+        var beforeCommit = $entry(function(){
+            var param = {"_this": this, "grid" : arguments[0]};
+            var event = @com.smartgwt.client.widgets.com.smartgwt.client.widgets.events.BeforeCommitEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            selfJ.@com.smartgwt.client.widgets.BatchUploader::handleTearDownBeforeCommitEvent()();
+            if (hasDefaultHandler) this.Super("beforeCommit", arguments);
+        });
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            hasDefaultHandler = $wnd.isc.isA.Function(obj.getProperty("beforeCommit"));
+            obj.addProperties({beforeCommit:  beforeCommit              });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+            hasDefaultHandler = $wnd.isc.isA.Function($wnd.isc[scClassName].getInstanceProperty("beforeCommit"));
+            obj.beforeCommit =  beforeCommit             ;
+        }
+    }-*/;
+
+    private void handleTearDownBeforeCommitEvent() {
+        if (getHandlerCount(com.smartgwt.client.widgets.com.smartgwt.client.widgets.events.BeforeCommitEvent.getType()) == 0) tearDownBeforeCommitEvent();
+    }
+
+    private native void tearDownBeforeCommitEvent() /*-{
+        var obj;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        }
+        if (obj && obj.hasOwnProperty("beforeCommit")) delete obj.beforeCommit;
+    }-*/;
+
     /**
      * Add a previewShown handler.
      * <p>

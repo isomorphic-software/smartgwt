@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * FormItem for adding a Button to a form.
@@ -166,9 +169,10 @@ public class ButtonItem extends CanvasItem implements com.smartgwt.client.widget
      * behavior
      *
      * @param autoFit New autoFit value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.ButtonItem ButtonItem} instance, for chaining setter calls
      */
-    public void setAutoFit(Boolean autoFit) {
-        setAttribute("autoFit", autoFit);
+    public ButtonItem setAutoFit(Boolean autoFit) {
+        return (ButtonItem)setAttribute("autoFit", autoFit);
     }
 
     /**
@@ -188,11 +192,12 @@ public class ButtonItem extends CanvasItem implements com.smartgwt.client.widget
      * Optional <code>baseStyle</code> will be applied to the button.
      *
      * @param baseStyle New baseStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ButtonItem ButtonItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setBaseStyle(String baseStyle) {
-        setAttribute("baseStyle", baseStyle);
+    public ButtonItem setBaseStyle(String baseStyle) {
+        return (ButtonItem)setAttribute("baseStyle", baseStyle);
     }
 
     /**
@@ -225,14 +230,40 @@ public class ButtonItem extends CanvasItem implements com.smartgwt.client.widget
     
 
     /**
+     * The (horizontal) alignment of this button's title.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Sets the (horizontal) alignment of this button's title.
+     *
+     * @param buttonTitleAlign new title alignment. Default value is "center"
+     * @return {@link com.smartgwt.client.widgets.form.fields.ButtonItem ButtonItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
+     */
+    public ButtonItem setButtonTitleAlign(Alignment buttonTitleAlign) {
+        return (ButtonItem)setAttribute("buttonTitleAlign", buttonTitleAlign == null ? null : buttonTitleAlign.getValue());
+    }
+
+    /**
+     * The (horizontal) alignment of this button's title.
+     *
+     * @return Current buttonTitleAlign value. Default value is "center"
+     * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
+     */
+    public Alignment getButtonTitleAlign()  {
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("buttonTitleAlign"));
+    }
+    
+
+    /**
      * Default class used to construct the {@link com.smartgwt.client.tools.EditProxy} for this component when the component is
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "ButtonItemEditProxy"
+     * @return {@link com.smartgwt.client.widgets.form.fields.ButtonItem ButtonItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor) {
-        setAttribute("editProxyConstructor", editProxyConstructor);
+    public ButtonItem setEditProxyConstructor(String editProxyConstructor) {
+        return (ButtonItem)setAttribute("editProxyConstructor", editProxyConstructor);
     }
 
     /**
@@ -261,13 +292,14 @@ public class ButtonItem extends CanvasItem implements com.smartgwt.client.widget
      * <code>false</code> to prevent the field from storing its value into the form's values.
      *
      * @param enableWhen New enableWhen value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ButtonItem ButtonItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.RuleCriteria RuleCriteria overview and related methods
      */
-    public void setEnableWhen(AdvancedCriteria enableWhen) {
+    public ButtonItem setEnableWhen(AdvancedCriteria enableWhen) {
         if (enableWhen instanceof Criterion) {
             enableWhen.setAttribute("_constructor", "AdvancedCriteria");
         }
-        setAttribute("enableWhen", enableWhen == null ? null : enableWhen.getJsObj());
+        return (ButtonItem)setAttribute("enableWhen", enableWhen == null ? null : enableWhen.getJsObj());
     }
 
     /**
@@ -295,10 +327,11 @@ public class ButtonItem extends CanvasItem implements com.smartgwt.client.widget
      * These items are in a row by themselves by default
      *
      * @param endRow New endRow value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.ButtonItem ButtonItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
-    public void setEndRow(Boolean endRow) {
-        setAttribute("endRow", endRow);
+    public ButtonItem setEndRow(Boolean endRow) {
+        return (ButtonItem)setAttribute("endRow", endRow);
     }
 
     /**
@@ -319,11 +352,12 @@ public class ButtonItem extends CanvasItem implements com.smartgwt.client.widget
      * Button.icon}.
      *
      * @param icon New icon value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ButtonItem ButtonItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setIcon(String icon) {
-        setAttribute("icon", icon);
+    public ButtonItem setIcon(String icon) {
+        return (ButtonItem)setAttribute("icon", icon);
     }
 
     /**
@@ -345,10 +379,12 @@ public class ButtonItem extends CanvasItem implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.DynamicForm#getReadOnlyDisplay DynamicForm.readOnlyDisplay} default.
      *
      * @param readOnlyDisplay New readOnlyDisplay value. Default value is "disabled"
+     * @return {@link com.smartgwt.client.widgets.form.fields.ButtonItem ButtonItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.DynamicForm#setReadOnlyDisplay
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setReadOnlyDisplay(ReadOnlyDisplayAppearance readOnlyDisplay) {
-        setAttribute("readOnlyDisplay", readOnlyDisplay == null ? null : readOnlyDisplay.getValue());
+    public ButtonItem setReadOnlyDisplay(ReadOnlyDisplayAppearance readOnlyDisplay) {
+        return (ButtonItem)setAttribute("readOnlyDisplay", readOnlyDisplay == null ? null : readOnlyDisplay.getValue());
     }
 
     /**
@@ -358,6 +394,7 @@ public class ButtonItem extends CanvasItem implements com.smartgwt.client.widget
      *
      * @return Current readOnlyDisplay value. Default value is "disabled"
      * @see com.smartgwt.client.widgets.form.DynamicForm#getReadOnlyDisplay
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public ReadOnlyDisplayAppearance getReadOnlyDisplay()  {
         return EnumUtil.getEnum(ReadOnlyDisplayAppearance.values(), getAttribute("readOnlyDisplay"));
@@ -372,9 +409,10 @@ public class ButtonItem extends CanvasItem implements com.smartgwt.client.widget
      * Sets showFocusedAsOver.
      *
      * @param showFocusedAsOver New showFocusedAsOver value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ButtonItem ButtonItem} instance, for chaining setter calls
      */
-    public void setShowFocusedAsOver(Boolean showFocusedAsOver) {
-        setAttribute("showFocusedAsOver", showFocusedAsOver);
+    public ButtonItem setShowFocusedAsOver(Boolean showFocusedAsOver) {
+        return (ButtonItem)setAttribute("showFocusedAsOver", showFocusedAsOver);
     }
 
     /**
@@ -392,10 +430,11 @@ public class ButtonItem extends CanvasItem implements com.smartgwt.client.widget
      * Buttons do not show a title by default.
      *
      * @param showTitle New showTitle value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.ButtonItem ButtonItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle);
+    public ButtonItem setShowTitle(Boolean showTitle) {
+        return (ButtonItem)setAttribute("showTitle", showTitle);
     }
 
     /**
@@ -414,10 +453,11 @@ public class ButtonItem extends CanvasItem implements com.smartgwt.client.widget
      * These items are in a row by themselves by default
      *
      * @param startRow New startRow value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.ButtonItem ButtonItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
-    public void setStartRow(Boolean startRow) {
-        setAttribute("startRow", startRow);
+    public ButtonItem setStartRow(Boolean startRow) {
+        return (ButtonItem)setAttribute("startRow", startRow);
     }
 
     /**

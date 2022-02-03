@@ -34,12 +34,21 @@ public enum FieldImportStrategy implements ValueEnum {
     KEY("key"),
     /**
      * The import process expects values in the import dataset to be display values, and it will transform them to the
-     * corresponding underlying keys
+     * corresponding underlying keys if found
      * <P>
      * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
      * file or server-side DataSource descriptor (.ds.xml file), use the value "display".
      */
     DISPLAY("display"),
+    /**
+     * Same as "display", but results in {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#importStrategyFailedErrorMessage validation error} if corresponding
+     * underlying keys were not found
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "displayRequired".
+     */
+    DISPLAYREQUIRED("displayRequired"),
     /**
      * The import process will attempt to discover the best setting to use, based on the values in the first record, and use
      * that setting for every remaining record in the import dataset

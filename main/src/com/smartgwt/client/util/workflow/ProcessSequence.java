@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * An Array of {@link com.smartgwt.client.util.workflow.ProcessElement}s involved in a {@link
@@ -123,10 +126,11 @@ public class ProcessSequence extends ProcessElement {
      * The {@link com.smartgwt.client.util.workflow.ProcessElement}s in this sequence.
      *
      * @param elements New elements value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.ProcessSequence ProcessSequence} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setElements(ProcessElement... elements)  throws IllegalStateException {
-        setAttribute("elements", elements, false);
+    public ProcessSequence setElements(ProcessElement... elements)  throws IllegalStateException {
+        return (ProcessSequence)setAttribute("elements", elements, false);
     }
     
 

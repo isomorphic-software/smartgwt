@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -179,10 +182,11 @@ public class HiliteEditor extends VLayout {
      * button.
      *
      * @param addAdvancedRuleButtonTitle New addAdvancedRuleButtonTitle value. Default value is "Add Advanced Rule"
+     * @return {@link com.smartgwt.client.widgets.grid.HiliteEditor HiliteEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAddAdvancedRuleButtonTitle(String addAdvancedRuleButtonTitle)  throws IllegalStateException {
-        setAttribute("addAdvancedRuleButtonTitle", addAdvancedRuleButtonTitle, false);
+    public HiliteEditor setAddAdvancedRuleButtonTitle(String addAdvancedRuleButtonTitle)  throws IllegalStateException {
+        return (HiliteEditor)setAttribute("addAdvancedRuleButtonTitle", addAdvancedRuleButtonTitle, false);
     }
 
     /**
@@ -201,10 +205,11 @@ public class HiliteEditor extends VLayout {
      * fieldList}.
      *
      * @param availableFieldsColumnTitle New availableFieldsColumnTitle value. Default value is "Available Fields"
+     * @return {@link com.smartgwt.client.widgets.grid.HiliteEditor HiliteEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAvailableFieldsColumnTitle(String availableFieldsColumnTitle)  throws IllegalStateException {
-        setAttribute("availableFieldsColumnTitle", availableFieldsColumnTitle, false);
+    public HiliteEditor setAvailableFieldsColumnTitle(String availableFieldsColumnTitle)  throws IllegalStateException {
+        return (HiliteEditor)setAttribute("availableFieldsColumnTitle", availableFieldsColumnTitle, false);
     }
 
     /**
@@ -222,11 +227,12 @@ public class HiliteEditor extends VLayout {
      * The callback to fire when {@link com.smartgwt.client.widgets.grid.HiliteEditor#saveHilites saveHilites()} is called.
      *
      * @param callback New callback value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.HiliteEditor HiliteEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Callback Callback 
      */
-    public void setCallback(String callback)  throws IllegalStateException {
-        setAttribute("callback", callback, false);
+    public HiliteEditor setCallback(String callback)  throws IllegalStateException {
+        return (HiliteEditor)setAttribute("callback", callback, false);
     }
 
     /**
@@ -245,10 +251,11 @@ public class HiliteEditor extends VLayout {
      * The title text for the {@link com.smartgwt.client.widgets.grid.HiliteEditor#getCancelButton cancel button}.
      *
      * @param cancelButtonTitle New cancelButtonTitle value. Default value is "Cancel"
+     * @return {@link com.smartgwt.client.widgets.grid.HiliteEditor HiliteEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
-        setAttribute("cancelButtonTitle", cancelButtonTitle, false);
+    public HiliteEditor setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
+        return (HiliteEditor)setAttribute("cancelButtonTitle", cancelButtonTitle, false);
     }
 
     /**
@@ -272,10 +279,11 @@ public class HiliteEditor extends VLayout {
      * in front of the normal cell content.
      *
      * @param hiliteIcons New hiliteIcons value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.HiliteEditor HiliteEditor} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setHiliteIcons(String... hiliteIcons) {
-        setAttribute("hiliteIcons", hiliteIcons, true);
+    public HiliteEditor setHiliteIcons(String... hiliteIcons) {
+        return (HiliteEditor)setAttribute("hiliteIcons", hiliteIcons, true);
     }
 
     /**
@@ -301,10 +309,11 @@ public class HiliteEditor extends VLayout {
      * The title text for the {@link com.smartgwt.client.widgets.grid.HiliteEditor#getSaveButton saveButton}.
      *
      * @param saveButtonTitle New saveButtonTitle value. Default value is "Save"
+     * @return {@link com.smartgwt.client.widgets.grid.HiliteEditor HiliteEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSaveButtonTitle(String saveButtonTitle)  throws IllegalStateException {
-        setAttribute("saveButtonTitle", saveButtonTitle, false);
+    public HiliteEditor setSaveButtonTitle(String saveButtonTitle)  throws IllegalStateException {
+        return (HiliteEditor)setAttribute("saveButtonTitle", saveButtonTitle, false);
     }
 
     /**

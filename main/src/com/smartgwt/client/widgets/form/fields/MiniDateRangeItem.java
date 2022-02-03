@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Provides a compact interface for editing a date range, by providing a formatted, read-only display of the current
@@ -167,9 +170,10 @@ public class MiniDateRangeItem extends StaticTextItem {
      * com.smartgwt.client.widgets.form.fields.RelativeDateItem}s or {@link com.smartgwt.client.widgets.form.fields.DateItem}s.
      *
      * @param allowRelativeDates New allowRelativeDates value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.MiniDateRangeItem MiniDateRangeItem} instance, for chaining setter calls
      */
-    public void setAllowRelativeDates(Boolean allowRelativeDates) {
-        setAttribute("allowRelativeDates", allowRelativeDates);
+    public MiniDateRangeItem setAllowRelativeDates(Boolean allowRelativeDates) {
+        return (MiniDateRangeItem)setAttribute("allowRelativeDates", allowRelativeDates);
     }
 
     /**
@@ -193,9 +197,10 @@ public class MiniDateRangeItem extends StaticTextItem {
      * Setter for {@link com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getAutoValidate autoValidate}
      *
      * @param autoValidate New auto-validate setting. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.MiniDateRangeItem MiniDateRangeItem} instance, for chaining setter calls
      */
-    public void setAutoValidate(Boolean autoValidate) {
-        setAttribute("autoValidate", autoValidate);
+    public MiniDateRangeItem setAutoValidate(Boolean autoValidate) {
+        return (MiniDateRangeItem)setAttribute("autoValidate", autoValidate);
     }
 
     /**
@@ -215,9 +220,10 @@ public class MiniDateRangeItem extends StaticTextItem {
      * launch the dateRange dialog. Set canFocus to false to  suppress this behavior.
      *
      * @param canFocus New canFocus value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.MiniDateRangeItem MiniDateRangeItem} instance, for chaining setter calls
      */
-    public void setCanFocus(Boolean canFocus) {
-        setAttribute("canFocus", canFocus);
+    public MiniDateRangeItem setCanFocus(Boolean canFocus) {
+        return (MiniDateRangeItem)setAttribute("canFocus", canFocus);
     }
 
     /**
@@ -239,9 +245,10 @@ public class MiniDateRangeItem extends StaticTextItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canTabToIcons New canTabToIcons value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.MiniDateRangeItem MiniDateRangeItem} instance, for chaining setter calls
      */
-    public void setCanTabToIcons(Boolean canTabToIcons) {
-        setAttribute("canTabToIcons", canTabToIcons);
+    public MiniDateRangeItem setCanTabToIcons(Boolean canTabToIcons) {
+        return (MiniDateRangeItem)setAttribute("canTabToIcons", canTabToIcons);
     }
 
     /**
@@ -266,9 +273,10 @@ public class MiniDateRangeItem extends StaticTextItem {
      * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getToDateOnlyPrefix toDateOnlyPrefix}.
      *
      * @param dateDisplayFormat New dateDisplayFormat value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.MiniDateRangeItem MiniDateRangeItem} instance, for chaining setter calls
      */
-    public void setDateDisplayFormat(DateDisplayFormat dateDisplayFormat) {
-        setAttribute("dateDisplayFormat", dateDisplayFormat == null ? null : dateDisplayFormat.getValue());
+    public MiniDateRangeItem setDateDisplayFormat(DateDisplayFormat dateDisplayFormat) {
+        return (MiniDateRangeItem)setAttribute("dateDisplayFormat", dateDisplayFormat == null ? null : dateDisplayFormat.getValue());
     }
 
     /**
@@ -292,9 +300,10 @@ public class MiniDateRangeItem extends StaticTextItem {
      * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getFromDate fromDate} is supplied.
      *
      * @param fromDateOnlyPrefix New fromDateOnlyPrefix value. Default value is "Since"
+     * @return {@link com.smartgwt.client.widgets.form.fields.MiniDateRangeItem MiniDateRangeItem} instance, for chaining setter calls
      */
-    public void setFromDateOnlyPrefix(String fromDateOnlyPrefix) {
-        setAttribute("fromDateOnlyPrefix", fromDateOnlyPrefix);
+    public MiniDateRangeItem setFromDateOnlyPrefix(String fromDateOnlyPrefix) {
+        return (MiniDateRangeItem)setAttribute("fromDateOnlyPrefix", fromDateOnlyPrefix);
     }
 
     /**
@@ -312,9 +321,10 @@ public class MiniDateRangeItem extends StaticTextItem {
      * Icon that launches a {@link com.smartgwt.client.widgets.DateChooser} for choosing an absolute date.
      *
      * @param pickerIcon New pickerIcon value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.MiniDateRangeItem MiniDateRangeItem} instance, for chaining setter calls
      */
-    public void setPickerIcon(FormItemIcon pickerIcon) {
-        setAttribute("pickerIcon", pickerIcon == null ? null : pickerIcon.getJsObj());
+    public MiniDateRangeItem setPickerIcon(FormItemIcon pickerIcon) {
+        return (MiniDateRangeItem)setAttribute("pickerIcon", pickerIcon == null ? null : pickerIcon.getJsObj());
     }
 
     /**
@@ -332,10 +342,11 @@ public class MiniDateRangeItem extends StaticTextItem {
      * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getPickerIcon pickerIcon}.
      *
      * @param pickerIconPrompt New pickerIconPrompt value. Default value is "Show Date Chooser"
+     * @return {@link com.smartgwt.client.widgets.form.fields.MiniDateRangeItem MiniDateRangeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setPickerIconPrompt(String pickerIconPrompt) {
-        setAttribute("pickerIconPrompt", pickerIconPrompt);
+    public MiniDateRangeItem setPickerIconPrompt(String pickerIconPrompt) {
+        return (MiniDateRangeItem)setAttribute("pickerIconPrompt", pickerIconPrompt);
     }
 
     /**
@@ -369,9 +380,10 @@ public class MiniDateRangeItem extends StaticTextItem {
      * criterion to be included in the returned AdvancedCriteria object
      *
      * @param shouldSaveValue New shouldSaveValue value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.MiniDateRangeItem MiniDateRangeItem} instance, for chaining setter calls
      */
-    public void setShouldSaveValue(Boolean shouldSaveValue) {
-        setAttribute("shouldSaveValue", shouldSaveValue);
+    public MiniDateRangeItem setShouldSaveValue(Boolean shouldSaveValue) {
+        return (MiniDateRangeItem)setAttribute("shouldSaveValue", shouldSaveValue);
     }
 
     /**
@@ -395,12 +407,13 @@ public class MiniDateRangeItem extends StaticTextItem {
      * this item.
      *
      * @param textBoxStyle New textBoxStyle value. Default value is "textItem"
+     * @return {@link com.smartgwt.client.widgets.form.fields.MiniDateRangeItem MiniDateRangeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
      * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
-    public void setTextBoxStyle(String textBoxStyle) {
-        setAttribute("textBoxStyle", textBoxStyle);
+    public MiniDateRangeItem setTextBoxStyle(String textBoxStyle) {
+        return (MiniDateRangeItem)setAttribute("textBoxStyle", textBoxStyle);
     }
 
     /**
@@ -426,9 +439,10 @@ public class MiniDateRangeItem extends StaticTextItem {
      * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getToDate toDate} is supplied.
      *
      * @param toDateOnlyPrefix New toDateOnlyPrefix value. Default value is "Before"
+     * @return {@link com.smartgwt.client.widgets.form.fields.MiniDateRangeItem MiniDateRangeItem} instance, for chaining setter calls
      */
-    public void setToDateOnlyPrefix(String toDateOnlyPrefix) {
-        setAttribute("toDateOnlyPrefix", toDateOnlyPrefix);
+    public MiniDateRangeItem setToDateOnlyPrefix(String toDateOnlyPrefix) {
+        return (MiniDateRangeItem)setAttribute("toDateOnlyPrefix", toDateOnlyPrefix);
     }
 
     /**

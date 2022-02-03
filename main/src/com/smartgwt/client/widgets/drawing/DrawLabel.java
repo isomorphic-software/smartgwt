@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -194,10 +197,11 @@ public class DrawLabel extends DrawItem {
      * com.smartgwt.client.widgets.drawing.DrawItem#getTitleRotationMode DrawItem.titleRotationMode} simpler.
      *
      * @param alignment New alignment value. Default value is DrawLabel.START
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLabel DrawLabel} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAlignment(LabelAlignment alignment)  throws IllegalStateException {
-        setAttribute("alignment", alignment == null ? null : alignment.getValue(), false);
+    public DrawLabel setAlignment(LabelAlignment alignment)  throws IllegalStateException {
+        return (DrawLabel)setAttribute("alignment", alignment == null ? null : alignment.getValue(), false);
     }
 
     /**
@@ -221,10 +225,11 @@ public class DrawLabel extends DrawItem {
      * Sets this DrawLabel's {@link com.smartgwt.client.widgets.drawing.DrawLabel#getContents contents}.
      *
      * @param contents the new contents. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLabel DrawLabel} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.drawing.DrawLabel#setEscapeContents
      */
-    public void setContents(String contents) {
-        setAttribute("contents", contents, true);
+    public DrawLabel setContents(String contents) {
+        return (DrawLabel)setAttribute("contents", contents, true);
     }
 
     /**
@@ -243,11 +248,12 @@ public class DrawLabel extends DrawItem {
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "DrawLabelEditProxy"
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLabel DrawLabel} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
-        setAttribute("editProxyConstructor", editProxyConstructor, false);
+    public DrawLabel setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
+        return (DrawLabel)setAttribute("editProxyConstructor", editProxyConstructor, false);
     }
 
     /**
@@ -308,11 +314,12 @@ public class DrawLabel extends DrawItem {
      * Sets the {@link com.smartgwt.client.widgets.drawing.DrawLabel#getEscapeContents escapeContents} property for this DrawLabel.
      *
      * @param escapeContents whether to escape {@link com.smartgwt.client.widgets.drawing.DrawLabel#getContents contents}. Default value is true
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLabel DrawLabel} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.drawing.DrawLabel#setContents
      * @see com.smartgwt.client.widgets.drawing.DrawLabel#setAlignment
      */
-    public void setEscapeContents(boolean escapeContents) {
-        setAttribute("escapeContents", escapeContents, true);
+    public DrawLabel setEscapeContents(boolean escapeContents) {
+        return (DrawLabel)setAttribute("escapeContents", escapeContents, true);
     }
 
     /**
@@ -371,11 +378,12 @@ public class DrawLabel extends DrawItem {
      * Font family name, similar to the CSS font-family attribute.
      *
      * @param fontFamily New fontFamily value. Default value is "Tahoma"
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLabel DrawLabel} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawLabel#setStyleName
      */
-    public void setFontFamily(String fontFamily)  throws IllegalStateException {
-        setAttribute("fontFamily", fontFamily, false);
+    public DrawLabel setFontFamily(String fontFamily)  throws IllegalStateException {
+        return (DrawLabel)setAttribute("fontFamily", fontFamily, false);
     }
 
     /**
@@ -396,10 +404,11 @@ public class DrawLabel extends DrawItem {
      * Sets this DrawLabel's {@link com.smartgwt.client.widgets.drawing.DrawLabel#getFontSize fontSize}.
      *
      * @param fontSize the new font size in pixels. Default value is 18
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLabel DrawLabel} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.drawing.DrawLabel#setStyleName
      */
-    public void setFontSize(int fontSize) {
-        setAttribute("fontSize", fontSize, true);
+    public DrawLabel setFontSize(int fontSize) {
+        return (DrawLabel)setAttribute("fontSize", fontSize, true);
     }
 
     /**
@@ -417,11 +426,12 @@ public class DrawLabel extends DrawItem {
      * Font style, similar to the CSS font-style attribute, eg "normal", "italic".
      *
      * @param fontStyle New fontStyle value. Default value is "normal"
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLabel DrawLabel} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawLabel#setStyleName
      */
-    public void setFontStyle(String fontStyle)  throws IllegalStateException {
-        setAttribute("fontStyle", fontStyle, false);
+    public DrawLabel setFontStyle(String fontStyle)  throws IllegalStateException {
+        return (DrawLabel)setAttribute("fontStyle", fontStyle, false);
     }
 
     /**
@@ -439,11 +449,12 @@ public class DrawLabel extends DrawItem {
      * Font weight, similar to the CSS font-weight attribute, eg "normal", "bold".
      *
      * @param fontWeight New fontWeight value. Default value is "bold"
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLabel DrawLabel} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawLabel#setStyleName
      */
-    public void setFontWeight(String fontWeight)  throws IllegalStateException {
-        setAttribute("fontWeight", fontWeight, false);
+    public DrawLabel setFontWeight(String fontWeight)  throws IllegalStateException {
+        return (DrawLabel)setAttribute("fontWeight", fontWeight, false);
     }
 
     /**
@@ -461,13 +472,14 @@ public class DrawLabel extends DrawItem {
      * DrawLabel only supports the  {@link com.smartgwt.client.types.KnobType#MOVE} knob type.
      *
      * @param knobs New knobs value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLabel DrawLabel} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setKnobs
      * 
      * 
      */
-    public void setKnobs(KnobType... knobs)  throws IllegalStateException {
-        setAttribute("knobs", knobs, false);
+    public DrawLabel setKnobs(KnobType... knobs)  throws IllegalStateException {
+        return (DrawLabel)setAttribute("knobs", knobs, false);
     }
 
     /**
@@ -488,10 +500,11 @@ public class DrawLabel extends DrawItem {
      * Sets the amount from the left of its positioning that the element should be placed.
      *
      * @param left New left value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLabel DrawLabel} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setLeft(int left)  throws IllegalStateException {
-        setAttribute("left", left, false);
+    public DrawLabel setLeft(int left)  throws IllegalStateException {
+        return (DrawLabel)setAttribute("left", left, false);
     }
 
     /**
@@ -520,10 +533,11 @@ public class DrawLabel extends DrawItem {
      * Sets the text color of the label.
      *
      * @param lineColor new text color. Default value is "#808080"
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLabel DrawLabel} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      */
-    public void setLineColor(String lineColor) {
-        setAttribute("lineColor", lineColor, true);
+    public DrawLabel setLineColor(String lineColor) {
+        return (DrawLabel)setAttribute("lineColor", lineColor, true);
     }
 
     /**
@@ -542,11 +556,12 @@ public class DrawLabel extends DrawItem {
      * com.smartgwt.client.widgets.drawing.DrawLabel#getLeft left} corner.  The positive direction is clockwise.
      *
      * @param rotation New rotation value. Default value is 0.0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLabel DrawLabel} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setRotation(float rotation)  throws IllegalStateException {
-        setAttribute("rotation", rotation, false);
+    public DrawLabel setRotation(float rotation)  throws IllegalStateException {
+        return (DrawLabel)setAttribute("rotation", rotation, false);
     }
 
     /**
@@ -565,10 +580,11 @@ public class DrawLabel extends DrawItem {
      * com.smartgwt.client.widgets.drawing.DrawLabel#getLeft left} corner.  The positive direction is clockwise.
      *
      * @param rotation New rotation value. Default value is 0.0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLabel DrawLabel} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setRotation(double rotation)  throws IllegalStateException {
-        setAttribute("rotation", rotation, false);
+    public DrawLabel setRotation(double rotation)  throws IllegalStateException {
+        return (DrawLabel)setAttribute("rotation", rotation, false);
     }
 
     /**
@@ -632,10 +648,11 @@ public class DrawLabel extends DrawItem {
      * Sets the amount from the top of its positioning that the element should be placed.
      *
      * @param top New top value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLabel DrawLabel} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTop(int top)  throws IllegalStateException {
-        setAttribute("top", top, false);
+    public DrawLabel setTop(int top)  throws IllegalStateException {
+        return (DrawLabel)setAttribute("top", top, false);
     }
 
     /**

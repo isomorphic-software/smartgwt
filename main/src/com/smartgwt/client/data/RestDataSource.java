@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * The RestDataSource implements the 4 core DataSource operations using a simple protocol of
@@ -284,6 +287,43 @@ import com.google.gwt.event.shared.HasHandlers;
  *  <P>
  *  As with the XML format above, an unrecoverable error is indicated by setting the
  *  <code>status</code> attribute to -1 and the <code>data</code> property to the error message.
+ *  <P>
+ *  <b>Responses with related updates</b>
+ *  <P>
+ *  Related updates is a way to communicate additional changes that occur as a consequence of the
+ *  current DSResponse succeeding, such as changes to other records in the same DataSource or to
+ *  records from unrelated DataSources. Related updates can be attached to main response via
+ *  <code>DSResponse.addRelatedUpdate(dsResponse)</code> server-side API, see its docs for more details.
+ * RestDataSource supports this on the client, {@link com.smartgwt.client.data.DataSource#updateCaches
+ * DataSource.updateCaches()} will be called for all
+ *  related updates found in response. Here's schematic example of how they look like:
+ *  <pre>
+ *  &lt;response&gt;
+ *      ... normal response ...
+ *      &lt;relatedUpdates&gt;
+ *          &lt;response&gt;
+ *               ... normal response ...
+ *          &lt;/response&gt;
+ *          &lt;response&gt;
+ *               ... normal response ...
+ *          &lt;/response&gt;
+ *      &lt;/relatedUpdates&gt;
+ *  &lt;/response&gt;
+ *  </pre>
+ *  same in JSON format
+ *  <pre>
+ *  {
+ *    ... normal response ...,
+ *    relatedUpdates: [
+ *      {
+ *        ... normal response ...
+ *      },
+ *      {
+ *        ... normal response ...
+ *      }
+ *    ]
+ *  }
+ *  </pre>
  *  <P>
  *  <b>Server inbound data formats</b>
  *  <P>
@@ -741,10 +781,11 @@ public class RestDataSource extends DataSource {
      * required to support {@link com.smartgwt.client.rpc.RPCManager#startQueue RPCManager.startQueue()}.
      *
      * @param addDataURL New addDataURL value. Default value is null
+     * @return {@link com.smartgwt.client.data.RestDataSource RestDataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setAddDataURL(String addDataURL)  throws IllegalStateException {
-        setAttribute("addDataURL", addDataURL, false);
+    public RestDataSource setAddDataURL(String addDataURL)  throws IllegalStateException {
+        return (RestDataSource)setAttribute("addDataURL", addDataURL, false);
     }
 
     /**
@@ -765,10 +806,11 @@ public class RestDataSource extends DataSource {
      * by default. See class overview documentation for  examples of responses in each format.
      *
      * @param dataFormat New dataFormat value. Default value is "xml"
+     * @return {@link com.smartgwt.client.data.RestDataSource RestDataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setDataFormat(DSDataFormat dataFormat)  throws IllegalStateException {
-        setAttribute("dataFormat", dataFormat == null ? null : dataFormat.getValue(), false);
+    public RestDataSource setDataFormat(DSDataFormat dataFormat)  throws IllegalStateException {
+        return (RestDataSource)setAttribute("dataFormat", dataFormat == null ? null : dataFormat.getValue(), false);
     }
 
     /**
@@ -791,11 +833,12 @@ public class RestDataSource extends DataSource {
      * com.smartgwt.client.data.RestDataSource#getOperationBindings operationBindings}.
      *
      * @param dataProtocol New dataProtocol value. Default value is null
+     * @return {@link com.smartgwt.client.data.RestDataSource RestDataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
      */
-    public void setDataProtocol(DSProtocol dataProtocol)  throws IllegalStateException {
-        setAttribute("dataProtocol", dataProtocol == null ? null : dataProtocol.getValue(), false);
+    public RestDataSource setDataProtocol(DSProtocol dataProtocol)  throws IllegalStateException {
+        return (RestDataSource)setAttribute("dataProtocol", dataProtocol == null ? null : dataProtocol.getValue(), false);
     }
 
     /**
@@ -827,10 +870,11 @@ public class RestDataSource extends DataSource {
      * mixed operationTypes: multiple requests will be sent to distinct URLs, and a warning logged.
      *
      * @param dataURL New dataURL value. Default value is null
+     * @return {@link com.smartgwt.client.data.RestDataSource RestDataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setDataURL(String dataURL)  throws IllegalStateException {
-        setAttribute("dataURL", dataURL, false);
+    public RestDataSource setDataURL(String dataURL)  throws IllegalStateException {
+        return (RestDataSource)setAttribute("dataURL", dataURL, false);
     }
 
     /**
@@ -856,9 +900,10 @@ public class RestDataSource extends DataSource {
      * If set, disables {@link com.smartgwt.client.rpc.RPCManager#startQueue request queuing} for this RestDataSource.
      *
      * @param disableQueuing New disableQueuing value. Default value is false
+     * @return {@link com.smartgwt.client.data.RestDataSource RestDataSource} instance, for chaining setter calls
      */
-    public void setDisableQueuing(Boolean disableQueuing) {
-        setAttribute("disableQueuing", disableQueuing, true);
+    public RestDataSource setDisableQueuing(Boolean disableQueuing) {
+        return (RestDataSource)setAttribute("disableQueuing", disableQueuing, true);
     }
 
     /**
@@ -879,10 +924,11 @@ public class RestDataSource extends DataSource {
      * required to support {@link com.smartgwt.client.rpc.RPCManager#startQueue RPCManager.startQueue()}.
      *
      * @param fetchDataURL New fetchDataURL value. Default value is null
+     * @return {@link com.smartgwt.client.data.RestDataSource RestDataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setFetchDataURL(String fetchDataURL)  throws IllegalStateException {
-        setAttribute("fetchDataURL", fetchDataURL, false);
+    public RestDataSource setFetchDataURL(String fetchDataURL)  throws IllegalStateException {
+        return (RestDataSource)setAttribute("fetchDataURL", fetchDataURL, false);
     }
 
     /**
@@ -910,10 +956,11 @@ public class RestDataSource extends DataSource {
      * of how to change the way JSON wrapping works on the server side.
      *
      * @param jsonPrefix New jsonPrefix value. Default value is See below
+     * @return {@link com.smartgwt.client.data.RestDataSource RestDataSource} instance, for chaining setter calls
      * @see com.smartgwt.client.data.RestDataSource#setJsonSuffix
      */
-    public void setJsonPrefix(String jsonPrefix) {
-        setAttribute("jsonPrefix", jsonPrefix, true);
+    public RestDataSource setJsonPrefix(String jsonPrefix) {
+        return (RestDataSource)setAttribute("jsonPrefix", jsonPrefix, true);
     }
 
     /**
@@ -950,10 +997,11 @@ public class RestDataSource extends DataSource {
      *  </pre>
      *
      * @param jsonRecordXPath New jsonRecordXPath value. Default value is "/response/data"
+     * @return {@link com.smartgwt.client.data.RestDataSource RestDataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setJsonRecordXPath(String jsonRecordXPath)  throws IllegalStateException {
-        setAttribute("jsonRecordXPath", jsonRecordXPath, false);
+    public RestDataSource setJsonRecordXPath(String jsonRecordXPath)  throws IllegalStateException {
+        return (RestDataSource)setAttribute("jsonRecordXPath", jsonRecordXPath, false);
     }
 
     /**
@@ -983,10 +1031,11 @@ public class RestDataSource extends DataSource {
      * strip it off before evaluating the response text. <p> The default suffix is "//isc_JSONResponseEnd".
      *
      * @param jsonSuffix New jsonSuffix value. Default value is See below
+     * @return {@link com.smartgwt.client.data.RestDataSource RestDataSource} instance, for chaining setter calls
      * @see com.smartgwt.client.data.RestDataSource#setJsonPrefix
      */
-    public void setJsonSuffix(String jsonSuffix) {
-        setAttribute("jsonSuffix", jsonSuffix, true);
+    public RestDataSource setJsonSuffix(String jsonSuffix) {
+        return (RestDataSource)setAttribute("jsonSuffix", jsonSuffix, true);
     }
 
     /**
@@ -1008,10 +1057,11 @@ public class RestDataSource extends DataSource {
      * operations where OperationBinding.dataProtocol is set to  <code>"getParams"</code> or <code>"postParams"</code> only.
      *
      * @param metaDataPrefix New metaDataPrefix value. Default value is "_"
+     * @return {@link com.smartgwt.client.data.RestDataSource RestDataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setMetaDataPrefix(String metaDataPrefix)  throws IllegalStateException {
-        setAttribute("metaDataPrefix", metaDataPrefix, false);
+    public RestDataSource setMetaDataPrefix(String metaDataPrefix)  throws IllegalStateException {
+        return (RestDataSource)setAttribute("metaDataPrefix", metaDataPrefix, false);
     }
 
     /**
@@ -1063,10 +1113,11 @@ public class RestDataSource extends DataSource {
      *  <p>
      *
      * @param operationBindings New operationBindings value. Default value is [...]
+     * @return {@link com.smartgwt.client.data.RestDataSource RestDataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setOperationBindings(OperationBinding... operationBindings)  throws IllegalStateException {
-        setAttribute("operationBindings", operationBindings, false);
+    public RestDataSource setOperationBindings(OperationBinding... operationBindings)  throws IllegalStateException {
+        return (RestDataSource)setAttribute("operationBindings", operationBindings, false);
     }
 
     /**
@@ -1119,10 +1170,11 @@ public class RestDataSource extends DataSource {
      * troubleshooting are key.
      *
      * @param prettyPrintJSON New prettyPrintJSON value. Default value is true
+     * @return {@link com.smartgwt.client.data.RestDataSource RestDataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setPrettyPrintJSON(Boolean prettyPrintJSON)  throws IllegalStateException {
-        setAttribute("prettyPrintJSON", prettyPrintJSON, false);
+    public RestDataSource setPrettyPrintJSON(Boolean prettyPrintJSON)  throws IllegalStateException {
+        return (RestDataSource)setAttribute("prettyPrintJSON", prettyPrintJSON, false);
     }
 
     /**
@@ -1146,9 +1198,10 @@ public class RestDataSource extends DataSource {
      * record xpath binding via {@link com.smartgwt.client.data.OperationBinding#getRecordXPath OperationBinding.recordXPath}.
      *
      * @param recordXPath New recordXPath value. Default value is null
+     * @return {@link com.smartgwt.client.data.RestDataSource RestDataSource} instance, for chaining setter calls
      */
-    public void setRecordXPath(String recordXPath) {
-        setAttribute("recordXPath", recordXPath, true);
+    public RestDataSource setRecordXPath(String recordXPath) {
+        return (RestDataSource)setAttribute("recordXPath", recordXPath, true);
     }
 
     /**
@@ -1171,10 +1224,11 @@ public class RestDataSource extends DataSource {
      * required to support {@link com.smartgwt.client.rpc.RPCManager#startQueue RPCManager.startQueue()}.
      *
      * @param removeDataURL New removeDataURL value. Default value is null
+     * @return {@link com.smartgwt.client.data.RestDataSource RestDataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setRemoveDataURL(String removeDataURL)  throws IllegalStateException {
-        setAttribute("removeDataURL", removeDataURL, false);
+    public RestDataSource setRemoveDataURL(String removeDataURL)  throws IllegalStateException {
+        return (RestDataSource)setAttribute("removeDataURL", removeDataURL, false);
     }
 
     /**
@@ -1196,10 +1250,11 @@ public class RestDataSource extends DataSource {
      * to operations where OperationBinding.dataProtocol is set to  <code>"getParams"</code> or <code>"postParams"</code> only.
      *
      * @param sendMetaData New sendMetaData value. Default value is true
+     * @return {@link com.smartgwt.client.data.RestDataSource RestDataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setSendMetaData(Boolean sendMetaData)  throws IllegalStateException {
-        setAttribute("sendMetaData", sendMetaData, false);
+    public RestDataSource setSendMetaData(Boolean sendMetaData)  throws IllegalStateException {
+        return (RestDataSource)setAttribute("sendMetaData", sendMetaData, false);
     }
 
     /**
@@ -1222,10 +1277,11 @@ public class RestDataSource extends DataSource {
      * required to support {@link com.smartgwt.client.rpc.RPCManager#startQueue RPCManager.startQueue()}.
      *
      * @param updateDataURL New updateDataURL value. Default value is null
+     * @return {@link com.smartgwt.client.data.RestDataSource RestDataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setUpdateDataURL(String updateDataURL)  throws IllegalStateException {
-        setAttribute("updateDataURL", updateDataURL, false);
+    public RestDataSource setUpdateDataURL(String updateDataURL)  throws IllegalStateException {
+        return (RestDataSource)setAttribute("updateDataURL", updateDataURL, false);
     }
 
     /**
@@ -1250,11 +1306,12 @@ public class RestDataSource extends DataSource {
      * null to avoid any prefixes being added.
      *
      * @param xmlNamespaces New xmlNamespaces value. Default value is See below
+     * @return {@link com.smartgwt.client.data.RestDataSource RestDataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.data.DataSourceField#setNillable
      */
-    public void setXmlNamespaces(XmlNamespaces xmlNamespaces)  throws IllegalStateException {
-        setAttribute("xmlNamespaces", xmlNamespaces == null ? null : xmlNamespaces.getJsObj(), false);
+    public RestDataSource setXmlNamespaces(XmlNamespaces xmlNamespaces)  throws IllegalStateException {
+        return (RestDataSource)setAttribute("xmlNamespaces", xmlNamespaces == null ? null : xmlNamespaces.getJsObj(), false);
     }
 
     /**
@@ -1294,10 +1351,11 @@ public class RestDataSource extends DataSource {
      *  </pre>
      *
      * @param xmlRecordXPath New xmlRecordXPath value. Default value is "/response/data/*"
+     * @return {@link com.smartgwt.client.data.RestDataSource RestDataSource} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setXmlRecordXPath(String xmlRecordXPath)  throws IllegalStateException {
-        setAttribute("xmlRecordXPath", xmlRecordXPath, false);
+    public RestDataSource setXmlRecordXPath(String xmlRecordXPath)  throws IllegalStateException {
+        return (RestDataSource)setAttribute("xmlRecordXPath", xmlRecordXPath, false);
     }
 
     /**

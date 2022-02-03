@@ -3,6 +3,10 @@ package com.smartgwt.client.docs;
 
 /**
  * <h3>Customizing Sass-based Skins</h3>
+ * <h3>Skin Editor</h3> To create new skins and easily make bulk changes to details like colors
+ * and fonts, see our {@link com.smartgwt.client.docs.SkinEditor Skin Editor} tool, which can be
+ * accessed online, or locally in your environment if you have a <a
+ * href='https://www.smartclient.com/product/' target='_blank'>Pro or better</a>  license. 
  * <h3>Support for templated skins</h3> Some skins have a stylesheet generated from  <a
  * href='https://sass-lang.com/install' target='_blank'>Sass templates</a> and compiled with <a
  * href='http://compass-style.org/' target='_blank'>compass</a>. Each such skin has a "template"
@@ -27,14 +31,11 @@ package com.smartgwt.client.docs;
  * set up in &#95;base.scss.  This file should not  be edited <li>&#95;skinStyles.scss - This file
  * contains custom CSS for the builtin skin, to be appended after that in &#95;base.scss.  This
  * file should not be edited </ul> <p> <h3>Creating a custom skin</h3> A custom skin is created by
- * copying and extending an existing one. <P> You can start from any templated skin but note that,
- * if you want to make pervasive  color/font alterations, for example, then you should consider
- * starting from the  "Cascade" skin, where variable values often cascade from one another,
- * allowing simple, high-level changes to affect much of the skin.  <P>  In other templated skins,
- * Tahoe, Stratus and Obsidian, where more of the variables are  customized or overridden,
- * changing a base variable value won't affect the parts that have  been overridden. <P> To create
- * a custom skin based on "Cascade": <ul> <li>Copy the skins/Cascade directory to skins/MySkin
- * <li>In skins/MySkin/load_skin.js, find and replace instances of "Cascade" with "MySkin" <li>In
+ * copying and extending an existing one. <P> You can start from whichever templated skin is
+ * closest to your requirement.  Variable values  largely cascade from one another, allowing
+ * simple, high-level changes to affect much of the  skin.  <P> To create a custom skin based on
+ * "Tahoe": <ul> <li>Copy the skins/Tahoe directory to skins/MySkin <li>In
+ * skins/MySkin/load_skin.js, find and replace instances of "Tahoe" with "MySkin" <li>In
  * skins/MySkin/template/sass/&#95;userSettings.scss, declare $theme_name: 'MySkin' <li>Change to
  * skins/MySkin/template and run 'compass compile' </ul> <P> <h3>Customizing your skin</h3>
  * <h4>What to edit</h4> <P> As noted at the top of this discussion, the files you can edit are in
@@ -44,9 +45,10 @@ package com.smartgwt.client.docs;
  * <code>&#95;base.scss</code>. <P>  You can see the list of available variables in
  * <code>&#95;skinSettings.scss</code>, grouped and  named according to what effects they have. 
  * You can copy the variables you want to override  into your <code>&#95;userSettings.scss</code>
- * file, change their values and run  'compass compile'. <P> <h4>By way of example</h4> Try adding
- * these settings to <code>&#95;userSettings.scss</code> and running 'compass compile' <P>
- * $primary_hue: 120;                          // generally green rather than blue<br>
+ * file, change their values and run  'compass compile'. <P> <h4>By way of example</h4> To create
+ * a generally green version of Tahoe, try adding these settings to 
+ * <code>&#95;userSettings.scss</code> and running 'compass compile' <P> $highlight_color:
+ * #40BF41;                  // generally green rather than blue<br>
  * $standard_widget_border_color: #006400;     // darkgreen borders for widgets<br>
  * $standard_button_border_radius: 5px;        // give all buttons rounded corners<br> <P>
  * <h4>After editing</h4> When you make changes to <code>&#95;userSettings.scss</code> or

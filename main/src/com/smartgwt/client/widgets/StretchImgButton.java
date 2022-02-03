@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -178,10 +181,11 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * Update the 'actionType' for this canvas (radio / checkbox / button) If the canvas is currently selected, and the passed in actionType is 'button' this method will deselect the canvas.
      *
      * @param actionType New actionType value. Default value is "button"
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
-    public void setActionType(SelectionType actionType) {
-        setAttribute("actionType", actionType == null ? null : actionType.getValue(), true);
+    public StretchImgButton setActionType(SelectionType actionType) {
+        return (StretchImgButton)setAttribute("actionType", actionType == null ? null : actionType.getValue(), true);
     }
 
     /**
@@ -199,10 +203,11 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * Horizontal alignment of this component's title.
      *
      * @param align New align value. Default value is Canvas.CENTER
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setAlign(Alignment align) {
-        setAttribute("align", align == null ? null : align.getValue(), true);
+    public StretchImgButton setAlign(Alignment align) {
+        return (StretchImgButton)setAttribute("align", align == null ? null : align.getValue(), true);
     }
 
     /**
@@ -227,10 +232,11 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * Setter method for the {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit StatefulCanvas.autoFit} property. Pass in true or false to turn autoFit on or off. When autoFit is set to <code>false</code>, canvas will be resized to it's previously specified size.
      *
      * @param autoFit New autoFit setting. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
-    public void setAutoFit(Boolean autoFit) {
-        setAttribute("autoFit", autoFit, true);
+    public StretchImgButton setAutoFit(Boolean autoFit) {
+        return (StretchImgButton)setAttribute("autoFit", autoFit, true);
     }
 
     /**
@@ -305,10 +311,11 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * Sets the base CSS style.  As the component changes state and/or is selected, suffixes will be added to the base style.
      *
      * @param baseStyle new base style. Default value is "stretchImgButton"
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setBaseStyle(String baseStyle) {
-        setAttribute("baseStyle", baseStyle, true);
+    public StretchImgButton setBaseStyle(String baseStyle) {
+        return (StretchImgButton)setAttribute("baseStyle", baseStyle, true);
     }
 
     /**
@@ -376,10 +383,11 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * How big are the end pieces by default
      *
      * @param capSize New capSize value. Default value is 12
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setCapSize(int capSize) {
-        setAttribute("capSize", capSize, true);
+    public StretchImgButton setCapSize(int capSize) {
+        return (StretchImgButton)setAttribute("capSize", capSize, true);
     }
 
     /**
@@ -401,9 +409,10 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * HTML characters.
      *
      * @param hiliteAccessKey New hiliteAccessKey value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      */
-    public void setHiliteAccessKey(Boolean hiliteAccessKey) {
-        setAttribute("hiliteAccessKey", hiliteAccessKey, true);
+    public StretchImgButton setHiliteAccessKey(Boolean hiliteAccessKey) {
+        return (StretchImgButton)setAttribute("hiliteAccessKey", hiliteAccessKey, true);
     }
 
     /**
@@ -432,11 +441,12 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * Change the icon being shown next to the title text.
      *
      * @param icon URL of new icon. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIcon(String icon) {
-        setAttribute("icon", icon, true);
+    public StretchImgButton setIcon(String icon) {
+        return (StretchImgButton)setAttribute("icon", icon, true);
     }
 
     /**
@@ -459,11 +469,12 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * If this button is showing an icon should it be right or left aligned?
      *
      * @param iconAlign New iconAlign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconAlign(String iconAlign)  throws IllegalStateException {
-        setAttribute("iconAlign", iconAlign, false);
+    public StretchImgButton setIconAlign(String iconAlign)  throws IllegalStateException {
+        return (StretchImgButton)setAttribute("iconAlign", iconAlign, false);
     }
 
     /**
@@ -482,11 +493,12 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * com.smartgwt.client.widgets.StatefulCanvas#getIconSize iconSize}.
      *
      * @param iconHeight New iconHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconHeight(Integer iconHeight)  throws IllegalStateException {
-        setAttribute("iconHeight", iconHeight, false);
+    public StretchImgButton setIconHeight(Integer iconHeight)  throws IllegalStateException {
+        return (StretchImgButton)setAttribute("iconHeight", iconHeight, false);
     }
 
     /**
@@ -509,11 +521,12 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * Changes the orientation of the icon relative to the text of the button.
      *
      * @param iconOrientation The new orientation of the icon relative to the text of the button. Default value is "left"
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconOrientation(String iconOrientation)  throws IllegalStateException {
-        setAttribute("iconOrientation", iconOrientation, false);
+    public StretchImgButton setIconOrientation(String iconOrientation)  throws IllegalStateException {
+        return (StretchImgButton)setAttribute("iconOrientation", iconOrientation, false);
     }
 
     /**
@@ -538,11 +551,12 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * <code>iconSize</code> ineffective.
      *
      * @param iconSize New iconSize value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconSize(int iconSize)  throws IllegalStateException {
-        setAttribute("iconSize", iconSize, false);
+    public StretchImgButton setIconSize(int iconSize)  throws IllegalStateException {
+        return (StretchImgButton)setAttribute("iconSize", iconSize, false);
     }
 
     /**
@@ -566,11 +580,12 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * Pixels between icon and title text.
      *
      * @param iconSpacing New iconSpacing value. Default value is 6
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconSpacing(int iconSpacing)  throws IllegalStateException {
-        setAttribute("iconSpacing", iconSpacing, false);
+    public StretchImgButton setIconSpacing(int iconSpacing)  throws IllegalStateException {
+        return (StretchImgButton)setAttribute("iconSpacing", iconSpacing, false);
     }
 
     /**
@@ -589,11 +604,12 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * com.smartgwt.client.widgets.StatefulCanvas#getIconSize iconSize}.
      *
      * @param iconWidth New iconWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconWidth(Integer iconWidth)  throws IllegalStateException {
-        setAttribute("iconWidth", iconWidth, false);
+    public StretchImgButton setIconWidth(Integer iconWidth)  throws IllegalStateException {
+        return (StretchImgButton)setAttribute("iconWidth", iconWidth, false);
     }
 
     /**
@@ -621,9 +637,10 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * StretchImgButton, but these settings allow the label to partially or wholly overlap the caps.
      *
      * @param labelBreadthPad New labelBreadthPad value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      */
-    public void setLabelBreadthPad(Integer labelBreadthPad) {
-        setAttribute("labelBreadthPad", labelBreadthPad, true);
+    public StretchImgButton setLabelBreadthPad(Integer labelBreadthPad) {
+        return (StretchImgButton)setAttribute("labelBreadthPad", labelBreadthPad, true);
     }
 
     /**
@@ -658,9 +675,10 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * StretchImgButton, but these settings allow the label to partially or wholly overlap the caps.
      *
      * @param labelHPad New labelHPad value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      */
-    public void setLabelHPad(Integer labelHPad) {
-        setAttribute("labelHPad", labelHPad, true);
+    public StretchImgButton setLabelHPad(Integer labelHPad) {
+        return (StretchImgButton)setAttribute("labelHPad", labelHPad, true);
     }
 
     /**
@@ -695,9 +713,10 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * StretchImgButton, but these settings allow the label to partially or wholly overlap the caps.
      *
      * @param labelLengthPad New labelLengthPad value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      */
-    public void setLabelLengthPad(Integer labelLengthPad) {
-        setAttribute("labelLengthPad", labelLengthPad, true);
+    public StretchImgButton setLabelLengthPad(Integer labelLengthPad) {
+        return (StretchImgButton)setAttribute("labelLengthPad", labelLengthPad, true);
     }
 
     /**
@@ -729,10 +748,11 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param labelSkinImgDir new skin img dir to apply to the label holding title text for   this widget. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.URL URL 
      */
-    public void setLabelSkinImgDir(String labelSkinImgDir) {
-        setAttribute("labelSkinImgDir", labelSkinImgDir, true);
+    public StretchImgButton setLabelSkinImgDir(String labelSkinImgDir) {
+        return (StretchImgButton)setAttribute("labelSkinImgDir", labelSkinImgDir, true);
     }
 
     /**
@@ -761,9 +781,10 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * StretchImgButton, but these settings allow the label to partially or wholly overlap the caps.
      *
      * @param labelVPad New labelVPad value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      */
-    public void setLabelVPad(Integer labelVPad) {
-        setAttribute("labelVPad", labelVPad, true);
+    public StretchImgButton setLabelVPad(Integer labelVPad) {
+        return (StretchImgButton)setAttribute("labelVPad", labelVPad, true);
     }
 
     /**
@@ -790,10 +811,11 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param radioGroup New radioGroup value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
-    public void setRadioGroup(String radioGroup) {
-        setAttribute("radioGroup", radioGroup, true);
+    public StretchImgButton setRadioGroup(String radioGroup) {
+        return (StretchImgButton)setAttribute("radioGroup", radioGroup, true);
     }
 
     /**
@@ -812,9 +834,10 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * If true and the title is clipped, then a hover containing the full title of this button is enabled.
      *
      * @param showClippedTitleOnHover New showClippedTitleOnHover value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      */
-    public void setShowClippedTitleOnHover(Boolean showClippedTitleOnHover) {
-        setAttribute("showClippedTitleOnHover", showClippedTitleOnHover, true);
+    public StretchImgButton setShowClippedTitleOnHover(Boolean showClippedTitleOnHover) {
+        return (StretchImgButton)setAttribute("showClippedTitleOnHover", showClippedTitleOnHover, true);
     }
 
     /**
@@ -832,10 +855,11 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * Should we visibly change state when disabled?
      *
      * @param showDisabled New showDisabled value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
-    public void setShowDisabled(Boolean showDisabled) {
-        setAttribute("showDisabled", showDisabled, true);
+    public StretchImgButton setShowDisabled(Boolean showDisabled) {
+        return (StretchImgButton)setAttribute("showDisabled", showDisabled, true);
     }
 
     /**
@@ -854,11 +878,12 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * If using an icon for this button, whether to switch the icon image if the button becomes disabled.
      *
      * @param showDisabledIcon New showDisabledIcon value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowDisabledIcon(Boolean showDisabledIcon)  throws IllegalStateException {
-        setAttribute("showDisabledIcon", showDisabledIcon, false);
+    public StretchImgButton setShowDisabledIcon(Boolean showDisabledIcon)  throws IllegalStateException {
+        return (StretchImgButton)setAttribute("showDisabledIcon", showDisabledIcon, false);
     }
 
     /**
@@ -877,10 +902,11 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * Should we visibly change state when the mouse goes down in this object?
      *
      * @param showDown New showDown value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
-    public void setShowDown(Boolean showDown) {
-        setAttribute("showDown", showDown, true);
+    public StretchImgButton setShowDown(Boolean showDown) {
+        return (StretchImgButton)setAttribute("showDown", showDown, true);
     }
 
     /**
@@ -899,11 +925,12 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * If using an icon for this button, whether to switch the icon image when the mouse goes down on the button.
      *
      * @param showDownIcon New showDownIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowDownIcon(Boolean showDownIcon)  throws IllegalStateException {
-        setAttribute("showDownIcon", showDownIcon, false);
+    public StretchImgButton setShowDownIcon(Boolean showDownIcon)  throws IllegalStateException {
+        return (StretchImgButton)setAttribute("showDownIcon", showDownIcon, false);
     }
 
     /**
@@ -926,10 +953,11 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * will be used.
      *
      * @param showFocused New showFocused value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
-    public void setShowFocused(Boolean showFocused) {
-        setAttribute("showFocused", showFocused, true);
+    public StretchImgButton setShowFocused(Boolean showFocused) {
+        return (StretchImgButton)setAttribute("showFocused", showFocused, true);
     }
 
     /**
@@ -954,11 +982,12 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * will be displayed
      *
      * @param showFocusedIcon New showFocusedIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowFocusedIcon(Boolean showFocusedIcon)  throws IllegalStateException {
-        setAttribute("showFocusedIcon", showFocusedIcon, false);
+    public StretchImgButton setShowFocusedIcon(Boolean showFocusedIcon)  throws IllegalStateException {
+        return (StretchImgButton)setAttribute("showFocusedIcon", showFocusedIcon, false);
     }
 
     /**
@@ -980,10 +1009,11 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * Should we visibly change state when the mouse goes over this object?
      *
      * @param showRollOver New showRollOver value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
-    public void setShowRollOver(Boolean showRollOver) {
-        setAttribute("showRollOver", showRollOver, true);
+    public StretchImgButton setShowRollOver(Boolean showRollOver) {
+        return (StretchImgButton)setAttribute("showRollOver", showRollOver, true);
     }
 
     /**
@@ -1002,11 +1032,12 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * If using an icon for this button, whether to switch the icon image on mouse rollover.
      *
      * @param showRollOverIcon New showRollOverIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowRollOverIcon(Boolean showRollOverIcon)  throws IllegalStateException {
-        setAttribute("showRollOverIcon", showRollOverIcon, false);
+    public StretchImgButton setShowRollOverIcon(Boolean showRollOverIcon)  throws IllegalStateException {
+        return (StretchImgButton)setAttribute("showRollOverIcon", showRollOverIcon, false);
     }
 
     /**
@@ -1025,11 +1056,12 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * If using an icon for this button, whether to switch the icon image when the button becomes selected.
      *
      * @param showSelectedIcon New showSelectedIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowSelectedIcon(Boolean showSelectedIcon)  throws IllegalStateException {
-        setAttribute("showSelectedIcon", showSelectedIcon, false);
+    public StretchImgButton setShowSelectedIcon(Boolean showSelectedIcon)  throws IllegalStateException {
+        return (StretchImgButton)setAttribute("showSelectedIcon", showSelectedIcon, false);
     }
 
     /**
@@ -1050,9 +1082,10 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * over the component
      *
      * @param showTitle New showTitle value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle, true);
+    public StretchImgButton setShowTitle(Boolean showTitle) {
+        return (StretchImgButton)setAttribute("showTitle", showTitle, true);
     }
 
     /**
@@ -1083,10 +1116,11 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * and _stretch images.
      *
      * @param src New src value. Default value is "button.gif"
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setSrc(String src) {
-        setAttribute("src", src, true);
+    public StretchImgButton setSrc(String src) {
+        return (StretchImgButton)setAttribute("src", src, true);
     }
 
     /**
@@ -1129,11 +1163,12 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param state the new state. Default value is ""
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.types.State
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
-    public void setState(State state) {
-        setAttribute("state", state == null ? null : state.getValue(), true);
+    public StretchImgButton setState(State state) {
+        return (StretchImgButton)setAttribute("state", state == null ? null : state.getValue(), true);
     }
 
     /**
@@ -1196,10 +1231,11 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * Sets the {@link com.smartgwt.client.widgets.StretchImgButton#getTitleStyle titleStyle}, which is applied to the title text.
      *
      * @param titleStyle new title style. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setTitleStyle(String titleStyle) {
-        setAttribute("titleStyle", titleStyle, true);
+    public StretchImgButton setTitleStyle(String titleStyle) {
+        return (StretchImgButton)setAttribute("titleStyle", titleStyle, true);
     }
 
     /**
@@ -1222,10 +1258,11 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * Vertical alignment of this component's title.
      *
      * @param valign New valign value. Default value is Canvas.CENTER
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setValign(VerticalAlignment valign) {
-        setAttribute("valign", valign == null ? null : valign.getValue(), true);
+    public StretchImgButton setValign(VerticalAlignment valign) {
+        return (StretchImgButton)setAttribute("valign", valign == null ? null : valign.getValue(), true);
     }
 
     /**
@@ -1244,10 +1281,11 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * automatically rotated.
      *
      * @param vertical New vertical value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setVertical(Boolean vertical) {
-        setAttribute("vertical", vertical, true);
+    public StretchImgButton setVertical(Boolean vertical) {
+        return (StretchImgButton)setAttribute("vertical", vertical, true);
     }
 
     /**
@@ -1268,9 +1306,10 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
      * otherwise disallow wrapping
      *
      * @param wrap New wrap value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchImgButton StretchImgButton} instance, for chaining setter calls
      */
-    public void setWrap(Boolean wrap) {
-        setAttribute("wrap", wrap, true);
+    public StretchImgButton setWrap(Boolean wrap) {
+        return (StretchImgButton)setAttribute("wrap", wrap, true);
     }
 
     /**

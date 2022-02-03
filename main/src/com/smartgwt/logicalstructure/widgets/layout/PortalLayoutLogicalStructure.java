@@ -5,8 +5,10 @@ import com.smartgwt.client.i18n.*;
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.fields.*;
 import com.smartgwt.client.tools.*;
 import com.smartgwt.client.widgets.*;
@@ -51,10 +53,13 @@ public class PortalLayoutLogicalStructure extends LayoutLogicalStructure {
     public String canStretchColumnWidths;
     public String columnBorder;
     public String columnOverflow;
+    public String columnSpacing;
     public String[] dropTypes;
     public String numColumns;
     public String overflow;
     public String[] portletDropTypes;
+    public String portletHSpacing;
+    public String portletVSpacing;
     public String preventColumnUnderflow;
     public String preventRowUnderflow;
     public String preventUnderflow;

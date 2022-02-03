@@ -18,6 +18,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.rpc.RPCResponse#STATUS_TRANSACTION_FAILED
  * @see com.smartgwt.client.rpc.RPCResponse#STATUS_MAX_FILE_SIZE_EXCEEDED
  * @see com.smartgwt.client.rpc.RPCResponse#STATUS_MAX_POST_SIZE_EXCEEDED
+ * @see com.smartgwt.client.rpc.RPCResponse#STATUS_CRITERIA_REQUIRED_ERROR
  * @see com.smartgwt.client.rpc.RPCResponse#STATUS_FILE_REQUIRED_ERROR
  * @see com.smartgwt.client.rpc.RPCResponse#INVALID_RESPONSE_FORMAT
  * @see com.smartgwt.client.rpc.RPCResponse#STATUS_TRANSPORT_ERROR

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Set of horizontally arranged buttons.
@@ -164,11 +167,12 @@ public class ToolbarItem extends CanvasItem {
      * If specified this baseStyle will be applied to the buttons in this toolbar.
      *
      * @param buttonBaseStyle New buttonBaseStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ToolbarItem ToolbarItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setButtonBaseStyle(String buttonBaseStyle) {
-        setAttribute("buttonBaseStyle", buttonBaseStyle);
+    public ToolbarItem setButtonBaseStyle(String buttonBaseStyle) {
+        return (ToolbarItem)setAttribute("buttonBaseStyle", buttonBaseStyle);
     }
 
     /**
@@ -191,10 +195,11 @@ public class ToolbarItem extends CanvasItem {
      * parameters: <code>form</code> and <code>item</code>.
      *
      * @param buttons New buttons value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ToolbarItem ToolbarItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Items Items overview and related methods
      */
-    public void setButtons(StatefulCanvas... buttons) {
-        setAttribute("buttons", buttons);
+    public ToolbarItem setButtons(StatefulCanvas... buttons) {
+        return (ToolbarItem)setAttribute("buttons", buttons);
     }
     
 
@@ -204,10 +209,11 @@ public class ToolbarItem extends CanvasItem {
      * com.smartgwt.client.widgets.form.fields.ToolbarItem#getCanvas canvas}.
      *
      * @param buttonSpace New buttonSpace value. Default value is 4
+     * @return {@link com.smartgwt.client.widgets.form.fields.ToolbarItem ToolbarItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setButtonSpace(int buttonSpace) {
-        setAttribute("buttonSpace", buttonSpace);
+    public ToolbarItem setButtonSpace(int buttonSpace) {
+        return (ToolbarItem)setAttribute("buttonSpace", buttonSpace);
     }
 
     /**
@@ -225,8 +231,7 @@ public class ToolbarItem extends CanvasItem {
 
     /**
      * This item is an autoChild generated {@link com.smartgwt.client.widgets.Canvas} displayed by the ToolbarItem and is an
-     * instance of {@link com.smartgwt.client.widgets.toolbar.Toolbar} by default, customizable  via the {@link
-     * com.smartgwt.client.widgets.form.fields.ToolbarItem#getCanvasConstructor canvasConstructor} attribute.
+     * instance of {@link com.smartgwt.client.widgets.toolbar.Toolbar} by default.
      * <p>
      * This component is an AutoChild named "canvas".  For an overview of how to use and
      * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
@@ -237,6 +242,27 @@ public class ToolbarItem extends CanvasItem {
         return (Canvas)Canvas.getByJSObject(getAttributeAsJavaScriptObject("canvas"));
     }
     
+
+    /**
+     * Constructor class for this toolbarItem's {@link com.smartgwt.client.widgets.form.fields.ToolbarItem#getCanvas canvas}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canvasConstructor New canvasConstructor value. Default value is Toolbar
+     * @return {@link com.smartgwt.client.widgets.form.fields.ToolbarItem ToolbarItem} instance, for chaining setter calls
+     */
+    public ToolbarItem setCanvasConstructor(String canvasConstructor) {
+        return (ToolbarItem)setAttribute("canvasConstructor", canvasConstructor);
+    }
+
+    /**
+     * Constructor class for this toolbarItem's {@link com.smartgwt.client.widgets.form.fields.ToolbarItem#getCanvas canvas}.
+     *
+     * @return Current canvasConstructor value. Default value is Toolbar
+     */
+    public String getCanvasConstructor()  {
+        return getAttributeAsString("canvasConstructor");
+    }
+    
     
 
     /**
@@ -245,9 +271,10 @@ public class ToolbarItem extends CanvasItem {
      * com.smartgwt.client.widgets.toolbar.Toolbar#getCreateButtonsOnInit Toolbar attribute} for more information.
      *
      * @param createButtonsOnInit New createButtonsOnInit value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.ToolbarItem ToolbarItem} instance, for chaining setter calls
      */
-    public void setCreateButtonsOnInit(Boolean createButtonsOnInit) {
-        setAttribute("createButtonsOnInit", createButtonsOnInit);
+    public ToolbarItem setCreateButtonsOnInit(Boolean createButtonsOnInit) {
+        return (ToolbarItem)setAttribute("createButtonsOnInit", createButtonsOnInit);
     }
 
     /**
@@ -266,10 +293,11 @@ public class ToolbarItem extends CanvasItem {
      * these items are in a row by themselves by default
      *
      * @param endRow New endRow value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.ToolbarItem ToolbarItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setEndRow(Boolean endRow) {
-        setAttribute("endRow", endRow);
+    public ToolbarItem setEndRow(Boolean endRow) {
+        return (ToolbarItem)setAttribute("endRow", endRow);
     }
 
     /**
@@ -288,10 +316,11 @@ public class ToolbarItem extends CanvasItem {
      * Don't show a title for toolbars
      *
      * @param showTitle New showTitle value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.ToolbarItem ToolbarItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle);
+    public ToolbarItem setShowTitle(Boolean showTitle) {
+        return (ToolbarItem)setAttribute("showTitle", showTitle);
     }
 
     /**
@@ -310,10 +339,11 @@ public class ToolbarItem extends CanvasItem {
      * these items are in a row by themselves by default
      *
      * @param startRow New startRow value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.ToolbarItem ToolbarItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setStartRow(Boolean startRow) {
-        setAttribute("startRow", startRow);
+    public ToolbarItem setStartRow(Boolean startRow) {
+        return (ToolbarItem)setAttribute("startRow", startRow);
     }
 
     /**
@@ -333,9 +363,10 @@ public class ToolbarItem extends CanvasItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param vertical New vertical value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.ToolbarItem ToolbarItem} instance, for chaining setter calls
      */
-    public void setVertical(Boolean vertical) {
-        setAttribute("vertical", vertical);
+    public ToolbarItem setVertical(Boolean vertical) {
+        return (ToolbarItem)setAttribute("vertical", vertical);
     }
 
     /**

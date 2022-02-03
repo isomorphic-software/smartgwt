@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -178,10 +181,11 @@ public class Snapbar extends Splitbar {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param gripImgSuffix New gripImgSuffix value. Default value is "snap"
+     * @return {@link com.smartgwt.client.widgets.Snapbar Snapbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setGripImgSuffix(String gripImgSuffix)  throws IllegalStateException {
-        setAttribute("gripImgSuffix", gripImgSuffix, false);
+    public Snapbar setGripImgSuffix(String gripImgSuffix)  throws IllegalStateException {
+        return (Snapbar)setAttribute("gripImgSuffix", gripImgSuffix, false);
     }
 
     /**
@@ -204,10 +208,11 @@ public class Snapbar extends Splitbar {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showClosedGrip New showClosedGrip value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Snapbar Snapbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowClosedGrip(Boolean showClosedGrip)  throws IllegalStateException {
-        setAttribute("showClosedGrip", showClosedGrip, false);
+    public Snapbar setShowClosedGrip(Boolean showClosedGrip)  throws IllegalStateException {
+        return (Snapbar)setAttribute("showClosedGrip", showClosedGrip, false);
     }
 
     /**
@@ -229,9 +234,10 @@ public class Snapbar extends Splitbar {
      * Snapbars show mouse-down styling.
      *
      * @param showDown New showDown value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Snapbar Snapbar} instance, for chaining setter calls
      */
-    public void setShowDown(Boolean showDown) {
-        setAttribute("showDown", showDown, true);
+    public Snapbar setShowDown(Boolean showDown) {
+        return (Snapbar)setAttribute("showDown", showDown, true);
     }
 
     /**
@@ -251,9 +257,10 @@ public class Snapbar extends Splitbar {
      * com.smartgwt.client.widgets.StatefulCanvas#getShowDown StatefulCanvas.showDown} is false.
      *
      * @param showDownGrip New showDownGrip value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Snapbar Snapbar} instance, for chaining setter calls
      */
-    public void setShowDownGrip(Boolean showDownGrip) {
-        setAttribute("showDownGrip", showDownGrip, true);
+    public Snapbar setShowDownGrip(Boolean showDownGrip) {
+        return (Snapbar)setAttribute("showDownGrip", showDownGrip, true);
     }
 
     /**
@@ -273,9 +280,10 @@ public class Snapbar extends Splitbar {
      * Should we show a "grip" image floating above the center of this widget?
      *
      * @param showGrip New showGrip value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Snapbar Snapbar} instance, for chaining setter calls
      */
-    public void setShowGrip(Boolean showGrip) {
-        setAttribute("showGrip", showGrip, true);
+    public Snapbar setShowGrip(Boolean showGrip) {
+        return (Snapbar)setAttribute("showGrip", showGrip, true);
     }
 
     /**
@@ -293,9 +301,10 @@ public class Snapbar extends Splitbar {
      * Snapbars show rollover styling.
      *
      * @param showRollOver New showRollOver value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Snapbar Snapbar} instance, for chaining setter calls
      */
-    public void setShowRollOver(Boolean showRollOver) {
-        setAttribute("showRollOver", showRollOver, true);
+    public Snapbar setShowRollOver(Boolean showRollOver) {
+        return (Snapbar)setAttribute("showRollOver", showRollOver, true);
     }
 
     /**
@@ -316,10 +325,11 @@ public class Snapbar extends Splitbar {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showRollOverGrip New showRollOverGrip value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Snapbar Snapbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowRollOverGrip(Boolean showRollOverGrip)  throws IllegalStateException {
-        setAttribute("showRollOverGrip", showRollOverGrip, false);
+    public Snapbar setShowRollOverGrip(Boolean showRollOverGrip)  throws IllegalStateException {
+        return (Snapbar)setAttribute("showRollOverGrip", showRollOverGrip, false);
     }
 
     /**

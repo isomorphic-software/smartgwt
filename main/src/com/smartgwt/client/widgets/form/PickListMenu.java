@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -177,11 +180,12 @@ public class PickListMenu extends ListGrid {
      * ListGrid.bodyBackgroundColor} to <code>null</code>.
      *
      * @param bodyStyleName New bodyStyleName value. Default value is "pickListMenuBody"
+     * @return {@link com.smartgwt.client.widgets.form.PickListMenu PickListMenu} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setBodyStyleName(String bodyStyleName) {
-        setAttribute("bodyStyleName", bodyStyleName, true);
+    public PickListMenu setBodyStyleName(String bodyStyleName) {
+        return (PickListMenu)setAttribute("bodyStyleName", bodyStyleName, true);
     }
 
     /**
@@ -204,10 +208,11 @@ public class PickListMenu extends ListGrid {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param dataProperties New dataProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.PickListMenu PickListMenu} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
-    public void setDataProperties(ResultSet dataProperties) {
-        setAttribute("dataProperties", dataProperties == null ? null : dataProperties.getOrCreateJsObj(), true);
+    public PickListMenu setDataProperties(ResultSet dataProperties) {
+        return (PickListMenu)setAttribute("dataProperties", dataProperties == null ? null : dataProperties.getOrCreateJsObj(), true);
     }
 
     /**
@@ -226,10 +231,11 @@ public class PickListMenu extends ListGrid {
      * The string to display in the body of a listGrid with an empty data array, if showEmptyMessage is true.
      *
      * @param emptyMessage New emptyMessage value. Default value is "No Items To Show"
+     * @return {@link com.smartgwt.client.widgets.form.PickListMenu PickListMenu} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_empty_grid" target="examples">Empty grid Example</a>
      */
-    public void setEmptyMessage(String emptyMessage) {
-        setAttribute("emptyMessage", emptyMessage, true);
+    public PickListMenu setEmptyMessage(String emptyMessage) {
+        return (PickListMenu)setAttribute("emptyMessage", emptyMessage, true);
     }
 
     /**
@@ -252,9 +258,10 @@ public class PickListMenu extends ListGrid {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param normalCellHeight New normalCellHeight value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.form.PickListMenu PickListMenu} instance, for chaining setter calls
      */
-    public void setNormalCellHeight(int normalCellHeight) {
-        setAttribute("normalCellHeight", normalCellHeight, true);
+    public PickListMenu setNormalCellHeight(int normalCellHeight) {
+        return (PickListMenu)setAttribute("normalCellHeight", normalCellHeight, true);
     }
 
     /**

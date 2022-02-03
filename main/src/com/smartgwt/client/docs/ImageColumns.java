@@ -9,6 +9,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getImageWidth
  * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getImageHeight
  * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getImageURLPrefix
+ * @see com.smartgwt.client.widgets.viewer.DetailViewerField#getImageURLSuffix
  * @see com.smartgwt.client.widgets.grid.ListGridField#getValueIcons
  * @see com.smartgwt.client.widgets.grid.ListGrid#getValueIconSize
  * @see com.smartgwt.client.widgets.grid.ListGrid#getValueIconWidth

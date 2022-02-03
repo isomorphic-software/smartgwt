@@ -5,8 +5,10 @@ import com.smartgwt.client.i18n.*;
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.fields.*;
 import com.smartgwt.client.tools.*;
 import com.smartgwt.client.widgets.*;
@@ -82,11 +84,11 @@ public class DynamicFormLogicalStructure extends CanvasLogicalStructure {
     public String implicitSaveOnBlur;
     public String itemHoverAlign;
     public String itemHoverDelay;
-    public String itemHoverHeight;
+    public String itemHoverHeightAsString;
     public String itemHoverOpacity;
     public String itemHoverStyle;
-    public String itemHoverVAlign;
-    public String itemHoverWidth;
+    public String itemHoverVAlignAsString;
+    public String itemHoverWidthAsString;
     public String itemLayout;
     public String longTextEditorThreshold;
     public String longTextEditorType;
@@ -119,6 +121,7 @@ public class DynamicFormLogicalStructure extends CanvasLogicalStructure {
     public String showErrorIcons;
     public String showErrorStyle;
     public String showErrorText;
+    public String showImageAsURL;
     public String showInlineErrors;
     public String showOldValueInHover;
     public String showPending;

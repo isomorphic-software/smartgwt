@@ -7,6 +7,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tab.TabSet#getTabBarAlign
  * @see com.smartgwt.client.widgets.tab.TabSet#getTabBarThickness
  * @see com.smartgwt.client.widgets.tab.TabSet#getSelectedTab
+ * @see com.smartgwt.client.widgets.tab.TabSet#getCanCloseTabs
  */
 public interface TabBar {
 }

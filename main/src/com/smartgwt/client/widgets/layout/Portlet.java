@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -177,9 +180,10 @@ public class Portlet extends Window {
      * its title, etc).
      *
      * @param closeConfirmationDialogProperties New closeConfirmationDialogProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.Portlet Portlet} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setCloseConfirmationDialogProperties(Dialog closeConfirmationDialogProperties) {
+    public Portlet setCloseConfirmationDialogProperties(Dialog closeConfirmationDialogProperties) {
         if (closeConfirmationDialogProperties != null) {
             if (closeConfirmationDialogProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(Portlet.class, "setCloseConfirmationDialogProperties", "Dialog");
@@ -187,7 +191,7 @@ public class Portlet extends Window {
             closeConfirmationDialogProperties.setConfigOnly(true);
         }
         JavaScriptObject config = closeConfirmationDialogProperties == null ? null : closeConfirmationDialogProperties.getConfig();
-        setAttribute("closeConfirmationDialogProperties", JSOHelper.cleanProperties(config, true), true);
+        return (Portlet)setAttribute("closeConfirmationDialogProperties", JSOHelper.cleanProperties(config, true), true);
     }
 
     /**
@@ -211,9 +215,10 @@ public class Portlet extends Window {
      * com.smartgwt.client.widgets.layout.Portlet#getShowCloseConfirmationMessage showCloseConfirmationMessage} is true.
      *
      * @param closeConfirmationMessage New closeConfirmationMessage value. Default value is "Close portlet?"
+     * @return {@link com.smartgwt.client.widgets.layout.Portlet Portlet} instance, for chaining setter calls
      */
-    public void setCloseConfirmationMessage(String closeConfirmationMessage) {
-        setAttribute("closeConfirmationMessage", closeConfirmationMessage, true);
+    public Portlet setCloseConfirmationMessage(String closeConfirmationMessage) {
+        return (Portlet)setAttribute("closeConfirmationMessage", closeConfirmationMessage, true);
     }
 
     /**
@@ -231,9 +236,10 @@ public class Portlet extends Window {
      * Whether to call {@link com.smartgwt.client.widgets.Canvas#destroy destroy()} when closing the Portlet.
      *
      * @param destroyOnClose New destroyOnClose value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.layout.Portlet Portlet} instance, for chaining setter calls
      */
-    public void setDestroyOnClose(Boolean destroyOnClose) {
-        setAttribute("destroyOnClose", destroyOnClose, true);
+    public Portlet setDestroyOnClose(Boolean destroyOnClose) {
+        return (Portlet)setAttribute("destroyOnClose", destroyOnClose, true);
     }
 
     /**
@@ -253,11 +259,12 @@ public class Portlet extends Window {
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "PortletEditProxy"
+     * @return {@link com.smartgwt.client.widgets.layout.Portlet Portlet} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
-        setAttribute("editProxyConstructor", editProxyConstructor, false);
+    public Portlet setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
+        return (Portlet)setAttribute("editProxyConstructor", editProxyConstructor, false);
     }
 
     /**
@@ -279,10 +286,11 @@ public class Portlet extends Window {
      * in that row.
      *
      * @param minHeight New minHeight value. Default value is 60
+     * @return {@link com.smartgwt.client.widgets.layout.Portlet Portlet} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setMinHeight
      */
-    public void setMinHeight(int minHeight) {
-        setAttribute("minHeight", minHeight, true);
+    public Portlet setMinHeight(int minHeight) {
+        return (Portlet)setAttribute("minHeight", minHeight, true);
     }
 
     /**
@@ -302,10 +310,11 @@ public class Portlet extends Window {
      * Specifies a minimum width for the Portlet.
      *
      * @param minWidth New minWidth value. Default value is 70
+     * @return {@link com.smartgwt.client.widgets.layout.Portlet Portlet} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setMinWidth
      */
-    public void setMinWidth(int minWidth) {
-        setAttribute("minWidth", minWidth, true);
+    public Portlet setMinWidth(int minWidth) {
+        return (Portlet)setAttribute("minWidth", minWidth, true);
     }
 
     /**
@@ -325,9 +334,10 @@ public class Portlet extends Window {
      * displayed before portlets are closed
      *
      * @param showCloseConfirmationMessage New showCloseConfirmationMessage value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.Portlet Portlet} instance, for chaining setter calls
      */
-    public void setShowCloseConfirmationMessage(Boolean showCloseConfirmationMessage) {
-        setAttribute("showCloseConfirmationMessage", showCloseConfirmationMessage, true);
+    public Portlet setShowCloseConfirmationMessage(Boolean showCloseConfirmationMessage) {
+        return (Portlet)setAttribute("showCloseConfirmationMessage", showCloseConfirmationMessage, true);
     }
 
     /**
@@ -515,8 +525,8 @@ public class Portlet extends Window {
      *
      * @param height height Default value is null
      */
-    public void setHeight(int height) {
-        setAttribute("height", height, true);
+    public Portlet setHeight(int height) {
+        return (Portlet)setAttribute("height", height, true);
     }
 
     /**

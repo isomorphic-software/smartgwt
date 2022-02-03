@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -174,11 +177,12 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * A string (HTML acceptable) that will be written to a page to separate blocks.
      *
      * @param blockSeparator New blockSeparator value. Default value is "&lt;br&gt;&lt;br&gt;"
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setBlockSeparator(String blockSeparator) {
-        setAttribute("blockSeparator", blockSeparator, true);
+    public DetailViewer setBlockSeparator(String blockSeparator) {
+        return (DetailViewer)setAttribute("blockSeparator", blockSeparator, true);
     }
 
     /**
@@ -197,11 +201,12 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * CSS style for each block (one record's worth of data).
      *
      * @param blockStyle New blockStyle value. Default value is "detailBlock"
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setBlockStyle(String blockStyle) {
-        setAttribute("blockStyle", blockStyle, true);
+    public DetailViewer setBlockStyle(String blockStyle) {
+        return (DetailViewer)setAttribute("blockStyle", blockStyle, true);
     }
 
     /**
@@ -221,10 +226,11 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * com.smartgwt.client.widgets.FieldPicker} for configuring which fields are displayed and their order.
      *
      * @param canPickFields New canPickFields value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanPickFields(Boolean canPickFields)  throws IllegalStateException {
-        setAttribute("canPickFields", canPickFields, false);
+    public DetailViewer setCanPickFields(Boolean canPickFields)  throws IllegalStateException {
+        return (DetailViewer)setAttribute("canPickFields", canPickFields, false);
     }
 
     /**
@@ -243,11 +249,12 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * CSS style for a normal value
      *
      * @param cellStyle New cellStyle value. Default value is "detail"
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setCellStyle(String cellStyle) {
-        setAttribute("cellStyle", cellStyle, true);
+    public DetailViewer setCellStyle(String cellStyle) {
+        return (DetailViewer)setAttribute("cellStyle", cellStyle, true);
     }
 
     /**
@@ -268,10 +275,11 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * The title for the Configure Fields menu item.
      *
      * @param configureFieldsText New configureFieldsText value. Default value is "Configure Fields..."
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setConfigureFieldsText(String configureFieldsText)  throws IllegalStateException {
-        setAttribute("configureFieldsText", configureFieldsText, false);
+    public DetailViewer setConfigureFieldsText(String configureFieldsText)  throws IllegalStateException {
+        return (DetailViewer)setAttribute("configureFieldsText", configureFieldsText, false);
     }
 
     /**
@@ -285,22 +293,23 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
     
 
     /**
-     * A single record object or an array of them, specifying data. Note that DetailViewers do not observe changes to the data
-     * array (in other words they will not automatically re-draw when the data provided via this property is altered).
+     * A single record object or an array of them, specifying data. Note that DetailViewers do not detect changes to the data
+     * array  (in other words they will not automatically re-draw when the data provided via this property is altered).
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the data displayed by this detail viewer.
      *
      * @param data new data to be displayed. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
-    public void setData(DetailViewerRecord[] data) {
-        setAttribute("data", data, true);
+    public DetailViewer setData(DetailViewerRecord[] data) {
+        return (DetailViewer)setAttribute("data", data, true);
     }
 
     /**
-     * A single record object or an array of them, specifying data. Note that DetailViewers do not observe changes to the data
-     * array (in other words they will not automatically re-draw when the data provided via this property is altered).
+     * A single record object or an array of them, specifying data. Note that DetailViewers do not detect changes to the data
+     * array  (in other words they will not automatically re-draw when the data provided via this property is altered).
      *
      * @return Current data value. Default value is null
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
@@ -310,22 +319,23 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
     }
 
     /**
-     * A single record object or an array of them, specifying data. Note that DetailViewers do not observe changes to the data
-     * array (in other words they will not automatically re-draw when the data provided via this property is altered).
+     * A single record object or an array of them, specifying data. Note that DetailViewers do not detect changes to the data
+     * array  (in other words they will not automatically re-draw when the data provided via this property is altered).
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the data displayed by this detail viewer.
      *
      * @param data new data to be displayed. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
-    public void setData(Record[] data) {
-        setAttribute("data", data, true);
+    public DetailViewer setData(Record[] data) {
+        return (DetailViewer)setAttribute("data", data, true);
     }
 
     /**
-     * A single record object or an array of them, specifying data. Note that DetailViewers do not observe changes to the data
-     * array (in other words they will not automatically re-draw when the data provided via this property is altered).
+     * A single record object or an array of them, specifying data. Note that DetailViewers do not detect changes to the data
+     * array  (in other words they will not automatically re-draw when the data provided via this property is altered).
      *
      * @return Current data value. Default value is null
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
@@ -335,22 +345,23 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
     }
 
     /**
-     * A single record object or an array of them, specifying data. Note that DetailViewers do not observe changes to the data
-     * array (in other words they will not automatically re-draw when the data provided via this property is altered).
+     * A single record object or an array of them, specifying data. Note that DetailViewers do not detect changes to the data
+     * array  (in other words they will not automatically re-draw when the data provided via this property is altered).
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the data displayed by this detail viewer.
      *
      * @param data new data to be displayed. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
-    public void setData(RecordList data) {
-        setAttribute("data", data == null ? null : data.getOrCreateJsObj(), true);
+    public DetailViewer setData(RecordList data) {
+        return (DetailViewer)setAttribute("data", data == null ? null : data.getOrCreateJsObj(), true);
     }
 
     /**
-     * A single record object or an array of them, specifying data. Note that DetailViewers do not observe changes to the data
-     * array (in other words they will not automatically re-draw when the data provided via this property is altered).
+     * A single record object or an array of them, specifying data. Note that DetailViewers do not detect changes to the data
+     * array  (in other words they will not automatically re-draw when the data provided via this property is altered).
      *
      * @return Current data value. Default value is null
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
@@ -364,10 +375,11 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * DetailViewers do not yet support paging, and will fetch and render all available records.
      *
      * @param dataFetchMode New dataFetchMode value. Default value is "basic"
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
-    public void setDataFetchMode(FetchMode dataFetchMode) {
-        setAttribute("dataFetchMode", dataFetchMode == null ? null : dataFetchMode.getValue(), true);
+    public DetailViewer setDataFetchMode(FetchMode dataFetchMode) {
+        return (DetailViewer)setAttribute("dataFetchMode", dataFetchMode == null ? null : dataFetchMode.getValue(), true);
     }
 
     /**
@@ -387,11 +399,12 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * String ID of a DataSource.
      *
      * @param dataSource New dataSource value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_databinding_ds_fields" target="examples">DataSource fields Example</a>
      */
-    public void setDataSource(DataSource dataSource) {
-        setAttribute("dataSource", dataSource == null ? null : dataSource.getOrCreateJsObj(), true);
+    public DetailViewer setDataSource(DataSource dataSource) {
+        return (DetailViewer)setAttribute("dataSource", dataSource == null ? null : dataSource.getOrCreateJsObj(), true);
     }
 
     /**
@@ -400,11 +413,12 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * String ID of a DataSource.
      *
      * @param dataSource New dataSource value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_databinding_ds_fields" target="examples">DataSource fields Example</a>
      */
-    public void setDataSource(String dataSource) {
-        setAttribute("dataSource", dataSource, true);
+    public DetailViewer setDataSource(String dataSource) {
+        return (DetailViewer)setAttribute("dataSource", dataSource, true);
     }
     
 
@@ -421,9 +435,10 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * according to the system wide  {@link com.smartgwt.client.util.DateUtil#setNormalDisplayFormat normal display format}.
      *
      * @param dateFormatter New dateFormatter value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      */
-    public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue(), true);
+    public DetailViewer setDateFormatter(DateDisplayFormat dateFormatter) {
+        return (DetailViewer)setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue(), true);
     }
 
     /**
@@ -453,11 +468,12 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * com.smartgwt.client.widgets.viewer.DetailViewerField#getDateFormatter DetailViewerField.dateFormatter}
      *
      * @param datetimeFormatter New datetimeFormatter value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setDateFormatter
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setDatetimeFormatter(DateDisplayFormat datetimeFormatter) {
-        setAttribute("datetimeFormatter", datetimeFormatter == null ? null : datetimeFormatter.getValue(), true);
+    public DetailViewer setDatetimeFormatter(DateDisplayFormat datetimeFormatter) {
+        return (DetailViewer)setAttribute("datetimeFormatter", datetimeFormatter == null ? null : datetimeFormatter.getValue(), true);
     }
 
     /**
@@ -481,11 +497,12 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "DetailViewerEditProxy"
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
-        setAttribute("editProxyConstructor", editProxyConstructor, false);
+    public DetailViewer setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
+        return (DetailViewer)setAttribute("editProxyConstructor", editProxyConstructor, false);
     }
 
     /**
@@ -505,11 +522,12 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param emptyCellValue New emptyCellValue value. Default value is "&amp;nbsp;"
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setEmptyCellValue(String emptyCellValue) {
-        setAttribute("emptyCellValue", emptyCellValue, true);
+    public DetailViewer setEmptyCellValue(String emptyCellValue) {
+        return (DetailViewer)setAttribute("emptyCellValue", emptyCellValue, true);
     }
 
     /**
@@ -528,10 +546,11 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * The string to display in the body of a detailViewer with no records.
      *
      * @param emptyMessage New emptyMessage value. Default value is "No items to display."
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setEmptyMessage(String emptyMessage) {
-        setAttribute("emptyMessage", emptyMessage, true);
+    public DetailViewer setEmptyMessage(String emptyMessage) {
+        return (DetailViewer)setAttribute("emptyMessage", emptyMessage, true);
     }
 
     /**
@@ -550,10 +569,11 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param emptyMessageStyle New emptyMessageStyle value. Default value is "normal"
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setEmptyMessageStyle(String emptyMessageStyle) {
-        setAttribute("emptyMessageStyle", emptyMessageStyle, true);
+    public DetailViewer setEmptyMessageStyle(String emptyMessageStyle) {
+        return (DetailViewer)setAttribute("emptyMessageStyle", emptyMessageStyle, true);
     }
 
     /**
@@ -572,9 +592,10 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param fieldIdProperty New fieldIdProperty value. Default value is "name"
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      */
-    public void setFieldIdProperty(String fieldIdProperty) {
-        setAttribute("fieldIdProperty", fieldIdProperty, true);
+    public DetailViewer setFieldIdProperty(String fieldIdProperty) {
+        return (DetailViewer)setAttribute("fieldIdProperty", fieldIdProperty, true);
     }
 
     /**
@@ -596,10 +617,11 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * respectively.
      *
      * @param fieldPickerFieldProperties New fieldPickerFieldProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setFieldPickerFieldProperties(String... fieldPickerFieldProperties)  throws IllegalStateException {
-        setAttribute("fieldPickerFieldProperties", fieldPickerFieldProperties, false);
+    public DetailViewer setFieldPickerFieldProperties(String... fieldPickerFieldProperties)  throws IllegalStateException {
+        return (DetailViewer)setAttribute("fieldPickerFieldProperties", fieldPickerFieldProperties, false);
     }
 
     /**
@@ -638,9 +660,10 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * the fields specify rows.
      *
      * @param fields New fields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      */
-    public void setFields(DetailViewerField... fields) {
-        setAttribute("fields", fields, true);
+    public DetailViewer setFields(DetailViewerField... fields) {
+        return (DetailViewer)setAttribute("fields", fields, true);
     }
 
     /**
@@ -658,11 +681,12 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * CSS style for a header
      *
      * @param headerStyle New headerStyle value. Default value is "detailHeader"
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setHeaderStyle(String headerStyle) {
-        setAttribute("headerStyle", headerStyle, true);
+    public DetailViewer setHeaderStyle(String headerStyle) {
+        return (DetailViewer)setAttribute("headerStyle", headerStyle, true);
     }
 
     /**
@@ -682,10 +706,11 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconSize hiliteIconSize}. Can be overridden at the field level
      *
      * @param hiliteIconHeight New hiliteIconHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setHiliteIconHeight(Integer hiliteIconHeight) {
-        setAttribute("hiliteIconHeight", hiliteIconHeight, true);
+    public DetailViewer setHiliteIconHeight(Integer hiliteIconHeight) {
+        return (DetailViewer)setAttribute("hiliteIconHeight", hiliteIconHeight, true);
     }
 
     /**
@@ -705,10 +730,11 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * hilite icons} by default? Can be overridden at the field level
      *
      * @param hiliteIconLeftPadding New hiliteIconLeftPadding value. Default value is 2
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setHiliteIconLeftPadding(int hiliteIconLeftPadding) {
-        setAttribute("hiliteIconLeftPadding", hiliteIconLeftPadding, true);
+    public DetailViewer setHiliteIconLeftPadding(int hiliteIconLeftPadding) {
+        return (DetailViewer)setAttribute("hiliteIconLeftPadding", hiliteIconLeftPadding, true);
     }
 
     /**
@@ -729,11 +755,12 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * overridden at the field level.
      *
      * @param hiliteIconPosition New hiliteIconPosition value. Default value is "before"
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setHiliteIconPosition(HiliteIconPosition hiliteIconPosition)  throws IllegalStateException {
-        setAttribute("hiliteIconPosition", hiliteIconPosition == null ? null : hiliteIconPosition.getValue(), false);
+    public DetailViewer setHiliteIconPosition(HiliteIconPosition hiliteIconPosition)  throws IllegalStateException {
+        return (DetailViewer)setAttribute("hiliteIconPosition", hiliteIconPosition == null ? null : hiliteIconPosition.getValue(), false);
     }
 
     /**
@@ -754,10 +781,11 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * hilite icons} by default? Can be overridden at the field level
      *
      * @param hiliteIconRightPadding New hiliteIconRightPadding value. Default value is 2
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setHiliteIconRightPadding(int hiliteIconRightPadding) {
-        setAttribute("hiliteIconRightPadding", hiliteIconRightPadding, true);
+    public DetailViewer setHiliteIconRightPadding(int hiliteIconRightPadding) {
+        return (DetailViewer)setAttribute("hiliteIconRightPadding", hiliteIconRightPadding, true);
     }
 
     /**
@@ -784,11 +812,12 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * can also be overridden at the field level.
      *
      * @param hiliteIcons New hiliteIcons value. Default value is ["[SKINIMG]/Dialog/notify.png", "[SKINIMG]/Dialog/warn.png", "[SKINIMG]/actions/approve.png"]
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setHiliteIcons(String... hiliteIcons)  throws IllegalStateException {
-        setAttribute("hiliteIcons", hiliteIcons, false);
+    public DetailViewer setHiliteIcons(String... hiliteIcons)  throws IllegalStateException {
+        return (DetailViewer)setAttribute("hiliteIcons", hiliteIcons, false);
     }
 
     /**
@@ -820,13 +849,14 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconHeight hiliteIconHeight}
      *
      * @param hiliteIconSize New hiliteIconSize value. Default value is 12
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.viewer.DetailViewer#setHiliteIconWidth
      * @see com.smartgwt.client.widgets.viewer.DetailViewer#setHiliteIconHeight
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setHiliteIconSize
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setHiliteIconSize(int hiliteIconSize) {
-        setAttribute("hiliteIconSize", hiliteIconSize, true);
+    public DetailViewer setHiliteIconSize(int hiliteIconSize) {
+        return (DetailViewer)setAttribute("hiliteIconSize", hiliteIconSize, true);
     }
 
     /**
@@ -854,10 +884,11 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconSize hiliteIconSize}. Can be overridden at the field level.
      *
      * @param hiliteIconWidth New hiliteIconWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setHiliteIconWidth(Integer hiliteIconWidth) {
-        setAttribute("hiliteIconWidth", hiliteIconWidth, true);
+    public DetailViewer setHiliteIconWidth(Integer hiliteIconWidth) {
+        return (DetailViewer)setAttribute("hiliteIconWidth", hiliteIconWidth, true);
     }
 
     /**
@@ -879,9 +910,10 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * and <code>"right"</code> otherwise.
      *
      * @param labelAlign New labelAlign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      */
-    public void setLabelAlign(Alignment labelAlign) {
-        setAttribute("labelAlign", labelAlign == null ? null : labelAlign.getValue(), true);
+    public DetailViewer setLabelAlign(Alignment labelAlign) {
+        return (DetailViewer)setAttribute("labelAlign", labelAlign == null ? null : labelAlign.getValue(), true);
     }
 
     /**
@@ -899,10 +931,11 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * text to put before a label
      *
      * @param labelPrefix New labelPrefix value. Default value is ""
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setLabelPrefix(String labelPrefix) {
-        setAttribute("labelPrefix", labelPrefix, true);
+    public DetailViewer setLabelPrefix(String labelPrefix) {
+        return (DetailViewer)setAttribute("labelPrefix", labelPrefix, true);
     }
 
     /**
@@ -920,11 +953,12 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * CSS style for a normal detail label
      *
      * @param labelStyle New labelStyle value. Default value is "detailLabel"
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setLabelStyle(String labelStyle) {
-        setAttribute("labelStyle", labelStyle, true);
+    public DetailViewer setLabelStyle(String labelStyle) {
+        return (DetailViewer)setAttribute("labelStyle", labelStyle, true);
     }
 
     /**
@@ -943,10 +977,11 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * text to put after a label
      *
      * @param labelSuffix New labelSuffix value. Default value is ":"
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setLabelSuffix(String labelSuffix) {
-        setAttribute("labelSuffix", labelSuffix, true);
+    public DetailViewer setLabelSuffix(String labelSuffix) {
+        return (DetailViewer)setAttribute("labelSuffix", labelSuffix, true);
     }
 
     /**
@@ -967,11 +1002,12 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * more than one link field and the fields' records do not use the same property to store the linkText.
      *
      * @param linkTextProperty New linkTextProperty value. Default value is "linkText"
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setLinkText
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setLinkTextProperty
      */
-    public void setLinkTextProperty(String linkTextProperty) {
-        setAttribute("linkTextProperty", linkTextProperty, true);
+    public DetailViewer setLinkTextProperty(String linkTextProperty) {
+        return (DetailViewer)setAttribute("linkTextProperty", linkTextProperty, true);
     }
 
     /**
@@ -994,10 +1030,11 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * include {@link com.smartgwt.client.widgets.Canvas#loadingImageSrc a loading image}.
      *
      * @param loadingMessage New loadingMessage value. Default value is "&amp;nbsp;${loadingImage}"
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setLoadingMessage(String loadingMessage) {
-        setAttribute("loadingMessage", loadingMessage, true);
+    public DetailViewer setLoadingMessage(String loadingMessage) {
+        return (DetailViewer)setAttribute("loadingMessage", loadingMessage, true);
     }
 
     /**
@@ -1017,10 +1054,11 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param loadingMessageStyle New loadingMessageStyle value. Default value is "normal"
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setLoadingMessageStyle(String loadingMessageStyle) {
-        setAttribute("loadingMessageStyle", loadingMessageStyle, true);
+    public DetailViewer setLoadingMessageStyle(String loadingMessageStyle) {
+        return (DetailViewer)setAttribute("loadingMessageStyle", loadingMessageStyle, true);
     }
 
     /**
@@ -1040,11 +1078,12 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * presentation.
      *
      * @param printCellStyle New printCellStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
-    public void setPrintCellStyle(String printCellStyle) {
-        setAttribute("printCellStyle", printCellStyle, true);
+    public DetailViewer setPrintCellStyle(String printCellStyle) {
+        return (DetailViewer)setAttribute("printCellStyle", printCellStyle, true);
     }
 
     /**
@@ -1067,11 +1106,12 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * presentation.
      *
      * @param printHeaderStyle New printHeaderStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
-    public void setPrintHeaderStyle(String printHeaderStyle) {
-        setAttribute("printHeaderStyle", printHeaderStyle, true);
+    public DetailViewer setPrintHeaderStyle(String printHeaderStyle) {
+        return (DetailViewer)setAttribute("printHeaderStyle", printHeaderStyle, true);
     }
 
     /**
@@ -1094,11 +1134,12 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * presentation.
      *
      * @param printLabelStyle New printLabelStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
-    public void setPrintLabelStyle(String printLabelStyle) {
-        setAttribute("printLabelStyle", printLabelStyle, true);
+    public DetailViewer setPrintLabelStyle(String printLabelStyle) {
+        return (DetailViewer)setAttribute("printLabelStyle", printLabelStyle, true);
     }
 
     /**
@@ -1123,10 +1164,11 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * to indicate all records.
      *
      * @param recordsPerBlock New recordsPerBlock value. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setRecordsPerBlock(int recordsPerBlock) {
-        setAttribute("recordsPerBlock", recordsPerBlock, true);
+    public DetailViewer setRecordsPerBlock(int recordsPerBlock) {
+        return (DetailViewer)setAttribute("recordsPerBlock", recordsPerBlock, true);
     }
 
     /**
@@ -1149,9 +1191,10 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * can be set as null.
      *
      * @param rowHeight New rowHeight value. Default value is 19
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      */
-    public void setRowHeight(int rowHeight) {
-        setAttribute("rowHeight", rowHeight, true);
+    public DetailViewer setRowHeight(int rowHeight) {
+        return (DetailViewer)setAttribute("rowHeight", rowHeight, true);
     }
 
     /**
@@ -1169,11 +1212,12 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * CSS style for a separator
      *
      * @param separatorStyle New separatorStyle value. Default value is "detail"
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setSeparatorStyle(String separatorStyle) {
-        setAttribute("separatorStyle", separatorStyle, true);
+    public DetailViewer setSeparatorStyle(String separatorStyle) {
+        return (DetailViewer)setAttribute("separatorStyle", separatorStyle, true);
     }
 
     /**
@@ -1194,11 +1238,12 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * shouldn't appear by default in a view that tries to show many records in a small space.
      *
      * @param showDetailFields New showDetailFields value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
-    public void setShowDetailFields(Boolean showDetailFields)  throws IllegalStateException {
-        setAttribute("showDetailFields", showDetailFields, false);
+    public DetailViewer setShowDetailFields(Boolean showDetailFields)  throws IllegalStateException {
+        return (DetailViewer)setAttribute("showDetailFields", showDetailFields, false);
     }
 
     /**
@@ -1220,10 +1265,11 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showEmptyField New showEmptyField value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowEmptyField(Boolean showEmptyField) {
-        setAttribute("showEmptyField", showEmptyField, true);
+    public DetailViewer setShowEmptyField(Boolean showEmptyField) {
+        return (DetailViewer)setAttribute("showEmptyField", showEmptyField, true);
     }
 
     /**
@@ -1244,10 +1290,11 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showEmptyMessage New showEmptyMessage value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.viewer.DetailViewer#setEmptyMessage
      */
-    public void setShowEmptyMessage(Boolean showEmptyMessage) {
-        setAttribute("showEmptyMessage", showEmptyMessage, true);
+    public DetailViewer setShowEmptyMessage(Boolean showEmptyMessage) {
+        return (DetailViewer)setAttribute("showEmptyMessage", showEmptyMessage, true);
     }
 
     /**
@@ -1292,10 +1339,11 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * time fields will be formatted based on the system wide  String
      *
      * @param timeFormatter New timeFormatter value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setTimeFormatter(TimeDisplayFormat timeFormatter) {
-        setAttribute("timeFormatter", timeFormatter == null ? null : timeFormatter.getValue(), true);
+    public DetailViewer setTimeFormatter(TimeDisplayFormat timeFormatter) {
+        return (DetailViewer)setAttribute("timeFormatter", timeFormatter == null ? null : timeFormatter.getValue(), true);
     }
 
     /**
@@ -1316,9 +1364,10 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * <code>"left"</code> otherwise.
      *
      * @param valueAlign New valueAlign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      */
-    public void setValueAlign(Alignment valueAlign) {
-        setAttribute("valueAlign", valueAlign == null ? null : valueAlign.getValue(), true);
+    public DetailViewer setValueAlign(Alignment valueAlign) {
+        return (DetailViewer)setAttribute("valueAlign", valueAlign == null ? null : valueAlign.getValue(), true);
     }
 
     /**
@@ -1336,9 +1385,10 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * Should the label be allowed to wrap, or be fixed to one line no matter how long
      *
      * @param wrapLabel New wrapLabel value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      */
-    public void setWrapLabel(Boolean wrapLabel) {
-        setAttribute("wrapLabel", wrapLabel, true);
+    public DetailViewer setWrapLabel(Boolean wrapLabel) {
+        return (DetailViewer)setAttribute("wrapLabel", wrapLabel, true);
     }
 
     /**
@@ -1356,10 +1406,11 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * Whether values should be allowed to wrap by default, or should be shown on one line regardless of length.
      *
      * @param wrapValues New wrapValues value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewer DetailViewer} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setWrapValues(Boolean wrapValues)  throws IllegalStateException {
-        setAttribute("wrapValues", wrapValues, false);
+    public DetailViewer setWrapValues(Boolean wrapValues)  throws IllegalStateException {
+        return (DetailViewer)setAttribute("wrapValues", wrapValues, false);
     }
 
     /**
@@ -1537,10 +1588,10 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
     }-*/;
 
 	/**
-     * Returns a snapshot of the current view state of this DetailViewer.<br> This includes the field, sort and hilite state of
-     * the grid, returned as a {@link com.smartgwt.client.docs.DetailViewerViewState} object.<br> This object can be passed to
-     * {@link com.smartgwt.client.widgets.viewer.DetailViewer#setViewState setViewState()} to reset this detail  viewer's view
-     * state to the current state (assuming the same data / fields are present in  the detail viewer).
+     * Returns a snapshot of the current view state of this DetailViewer.<br> This includes the field state of the
+     * DetailViewer, returned as a {@link com.smartgwt.client.docs.DetailViewerViewState} object.<br> This object can be passed
+     * to {@link com.smartgwt.client.widgets.viewer.DetailViewer#setViewState setViewState()} to reset this detail  viewer's
+     * view state to the current state (assuming the same data / fields are present in  the detail viewer).
      *
      * @return current view state for the detail viewer.
      * See {@link com.smartgwt.client.docs.DetailViewerViewState DetailViewerViewState}
@@ -1706,8 +1757,8 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
 
     // ********************* DataBoundComponent Properties / Attributes ***********************
 
-    public void setDataPageSize(int dataPageSize) {
-        setAttribute("dataPageSize", dataPageSize, true);
+    public DetailViewer setDataPageSize(int dataPageSize) {
+        return (DetailViewer)setAttribute("dataPageSize", dataPageSize, true);
     }
 
     public int getDataPageSize() {
@@ -1715,112 +1766,112 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
         return dataPageSize == null ? 0 : dataPageSize;
     }
 
-    public void setUseAllDataSourceFields(Boolean useAllDataSourceFields) {
-        setAttribute("useAllDataSourceFields", useAllDataSourceFields, true);
+    public DetailViewer setUseAllDataSourceFields(Boolean useAllDataSourceFields) {
+        return (DetailViewer)setAttribute("useAllDataSourceFields", useAllDataSourceFields, true);
     }
 
     public Boolean getUseAllDataSourceFields() {
         return getAttributeAsBoolean("useAllDataSourceFields");
     }
 
-    public void setShowHiddenFields(Boolean showHiddenFields) {
-        setAttribute("showHiddenFields", showHiddenFields, true);
+    public DetailViewer setShowHiddenFields(Boolean showHiddenFields) {
+        return (DetailViewer)setAttribute("showHiddenFields", showHiddenFields, true);
     }
 
     public Boolean getShowHiddenFields() {
         return getAttributeAsBoolean("showHiddenFields");
     }
 
-    public void setShowComplexFields(Boolean showComplexFields) {
-        setAttribute("showComplexFields", showComplexFields, true);
+    public DetailViewer setShowComplexFields(Boolean showComplexFields) {
+        return (DetailViewer)setAttribute("showComplexFields", showComplexFields, true);
     }
 
     public Boolean getShowComplexFields() {
         return getAttributeAsBoolean("showComplexFields");
     }
 
-    public void setFetchOperation(String fetchOperation) {
-        setAttribute("fetchOperation", fetchOperation, true);
+    public DetailViewer setFetchOperation(String fetchOperation) {
+        return (DetailViewer)setAttribute("fetchOperation", fetchOperation, true);
     }
 
     public String getFetchOperation() {
         return getAttributeAsString("fetchOperation");
     }
 
-    public void setUpdateOperation(String updateOperation) {
-        setAttribute("updateOperation", updateOperation, true);
+    public DetailViewer setUpdateOperation(String updateOperation) {
+        return (DetailViewer)setAttribute("updateOperation", updateOperation, true);
     }
 
     public String getUpdateOperation() {
         return getAttributeAsString("updateOperation");
     }
 
-    public void setAddOperation(String addOperation) {
-        setAttribute("addOperation", addOperation, true);
+    public DetailViewer setAddOperation(String addOperation) {
+        return (DetailViewer)setAttribute("addOperation", addOperation, true);
     }
 
     public String getAddOperation() {
         return getAttributeAsString("addOperation");
     }
 
-    public void setRemoveOperation(String removeOperation) {
-        setAttribute("removeOperation", removeOperation, true);
+    public DetailViewer setRemoveOperation(String removeOperation) {
+        return (DetailViewer)setAttribute("removeOperation", removeOperation, true);
     }
 
     public String getRemoveOperation() {
         return getAttributeAsString("removeOperation");
     }
 
-    public void setExportFields(String[] exportFields) {
-        setAttribute("exportFields", exportFields, true);
+    public DetailViewer setExportFields(String[] exportFields) {
+        return (DetailViewer)setAttribute("exportFields", exportFields, true);
     }
 
     public String[] getExportFields() {
         return getAttributeAsStringArray("exportFields");
     }
 
-    public void setExportAll(Boolean exportAll) {
-        setAttribute("exportAll", exportAll, true);
+    public DetailViewer setExportAll(Boolean exportAll) {
+        return (DetailViewer)setAttribute("exportAll", exportAll, true);
     }
 
     public Boolean getExportAll() {
         return getAttributeAsBoolean("exportAll");
     }
 
-    public void setExportIncludeSummaries(Boolean exportIncludeSummaries) {
-        setAttribute("exportIncludeSummaries", exportIncludeSummaries, true);
+    public DetailViewer setExportIncludeSummaries(Boolean exportIncludeSummaries) {
+        return (DetailViewer)setAttribute("exportIncludeSummaries", exportIncludeSummaries, true);
     }
 
     public Boolean getExportIncludeSummaries() {
         return getAttributeAsBoolean("exportIncludeSummaries");
     }
 
-    public void setPreventDuplicates(Boolean preventDuplicates) throws IllegalStateException {
-        setAttribute("preventDuplicates", preventDuplicates, false);
+    public DetailViewer setPreventDuplicates(Boolean preventDuplicates) throws IllegalStateException {
+        return (DetailViewer)setAttribute("preventDuplicates", preventDuplicates, false);
     }
 
     public Boolean getPreventDuplicates() {
         return getAttributeAsBoolean("preventDuplicates");
     }
 
-    public void setDuplicateDragMessage(String duplicateDragMessage) throws IllegalStateException {
-        setAttribute("duplicateDragMessage", duplicateDragMessage, false);
+    public DetailViewer setDuplicateDragMessage(String duplicateDragMessage) throws IllegalStateException {
+        return (DetailViewer)setAttribute("duplicateDragMessage", duplicateDragMessage, false);
     }
 
     public String getDuplicateDragMessage() {
         return getAttributeAsString("duplicateDragMessage");
     }
 
-    public void setAddDropValues(Boolean addDropValues) {
-        setAttribute("addDropValues", addDropValues, true);
+    public DetailViewer setAddDropValues(Boolean addDropValues) {
+        return (DetailViewer)setAttribute("addDropValues", addDropValues, true);
     }
 
     public Boolean getAddDropValues() {
         return getAttributeAsBoolean("addDropValues");
     }
 
-    public void setDropValues(Map dropValues) {
-        setAttribute("dropValues", dropValues, true);
+    public DetailViewer setDropValues(Map dropValues) {
+        return (DetailViewer)setAttribute("dropValues", dropValues, true);
     }
 
     public Map getDropValues() {
@@ -1828,14 +1879,17 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
     }
 
     /**
-     * Indicates whether or not this component will load its data {@link DataSource#setProgressiveLoading() progressively}
+     * Indicates whether or not this component will load its data
+     * {@link DataSource#setProgressiveLoading() progressively}
      * 
      * @see com.smartgwt.client.docs.ProgressiveLoading  
      * @see com.smartgwt.client.data.DataSource#setProgressiveLoading
      * @param progressiveLoading
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    public void setProgressiveLoading(Boolean progressiveLoading) {
-        setAttribute("progressiveLoading", progressiveLoading, false);
+    public DetailViewer setProgressiveLoading(Boolean progressiveLoading) {
+        return (DetailViewer)setAttribute("progressiveLoading", progressiveLoading, false);
     }
 
     /**
@@ -1849,16 +1903,16 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
         return getAttributeAsBoolean("progressiveLoading");
     }
 
-    public void setUseFlatFields(Boolean useFlatFields) throws IllegalStateException {
-        setAttribute("useFlatFields", useFlatFields, false);
+    public DetailViewer setUseFlatFields(Boolean useFlatFields) throws IllegalStateException {
+        return (DetailViewer)setAttribute("useFlatFields", useFlatFields, false);
     }
 
     public Boolean getUseFlatFields() {
         return getAttributeAsBoolean("useFlatFields");
     }
 
-    public void setHiliteProperty(String hiliteProperty) {
-        setAttribute("hiliteProperty", hiliteProperty, true);
+    public DetailViewer setHiliteProperty(String hiliteProperty) {
+        return (DetailViewer)setAttribute("hiliteProperty", hiliteProperty, true);
     }
 
     public String getHiliteProperty() {
@@ -1874,41 +1928,23 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
         self.editFields();
     }-*/;
 
-    /**
-     * Shows a HiliteEditor interface allowing end-users to edit the data-hilites currently in use by this DataBoundComponent.
-     */
     public native void editHilites() /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.editHilites();
     }-*/;
 
-    /**
-     * Get the current hilites encoded as a String, for saving.
-     *
-     * @return the hilite state
-     */
     public native String getHiliteState()  /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         return self.getHiliteState();
     }-*/;
 
-    /**
-     * Set the current hilites based on a hiliteState String previously returned from getHilitesState.
-     *
-     * @param hiliteState hilites state encoded as a String
-     */
-    public native void setHiliteState(String hiliteState)  /*-{
+    public native DetailViewer setHiliteState(String hiliteState)  /*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.setHiliteState(hiliteState);
+        self.setHiliteState(hiliteState);
+        return this;
     }-*/;
 
-    /**
-     * Accepts an array of hilite objects and applies them to this DataBoundComponent. See also {@link #getHilites() getHilites} for a method of
-     * retrieving the hilite array for storage, including hilites manually added by the user.
-     *
-     * @param hilites array of hilite objects
-     */
-    public native void setHilites(Hilite[] hilites)/*-{
+    public native DetailViewer setHilites(Hilite[] hilites)/*-{
         var isCreated = this.@com.smartgwt.client.widgets.BaseWidget::isCreated()();
         var hilitesJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(hilites);
         if (isCreated) {
@@ -1918,38 +1954,33 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
             var obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
             obj.hilites = hilitesJS;
         }
+        return this;
     }-*/;
 
-    /**
-     * Return the set of hilite-objects currently applied to this DataBoundComponent. These can be saved for
-     * storage and then restored to a component later via setHilites().
-     *
-     * @return array of hilite objects
-     */
     public native Hilite[] getHilites()/*-{
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var hilitesJS = self.getHilites();
         return @com.smartgwt.client.util.ConvertTo::arrayOfHilite(Lcom/google/gwt/core/client/JavaScriptObject;)(hilitesJS);
     }-*/;
 
-    public void setDragDataAction(DragDataAction dragDataAction) {
-        setAttribute("dragDataAction", dragDataAction.getValue(), true);
+    public DetailViewer setDragDataAction(DragDataAction dragDataAction) {
+        return (DetailViewer)setAttribute("dragDataAction", dragDataAction.getValue(), true);
     }
 
     public DragDataAction getDragDataAction() {
         return EnumUtil.getEnum(DragDataAction.values(), getAttribute("dragDataAction"));
     }
 
-    public void setDragTrackerStyle(String dragTrackerStyle) {
-        setAttribute("dragTrackerStyle", dragTrackerStyle, true);
+    public DetailViewer setDragTrackerStyle(String dragTrackerStyle) {
+        return (DetailViewer)setAttribute("dragTrackerStyle", dragTrackerStyle, true);
     }
 
     public String getDragTrackerStyle() {
         return getAttributeAsString("dragTrackerStyle");
     }
 
-    public void setCanAddFormulaFields(Boolean canAddFormulaFields) {
-        setAttribute("canAddFormulaFields", canAddFormulaFields, true);
+    public DetailViewer setCanAddFormulaFields(Boolean canAddFormulaFields) {
+        return (DetailViewer)setAttribute("canAddFormulaFields", canAddFormulaFields, true);
     }
 
     public native void addSummaryField() /*-{
@@ -1966,40 +1997,40 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
         return getAttributeAsBoolean("canAddFormulaFields");
     }
 
-    public void setAddFormulaFieldText(String addFormulaFieldText) {
-        setAttribute("addFormulaFieldText", addFormulaFieldText, true);
+    public DetailViewer setAddFormulaFieldText(String addFormulaFieldText) {
+        return (DetailViewer)setAttribute("addFormulaFieldText", addFormulaFieldText, true);
     }
 
     public String getAddFormulaFieldText() {
         return getAttributeAsString("addFormulaFieldText");
     }
 
-    public void setEditFormulaFieldText(String editFormulaFieldText) {
-        setAttribute("editFormulaFieldText", editFormulaFieldText, true);
+    public DetailViewer setEditFormulaFieldText(String editFormulaFieldText) {
+        return (DetailViewer)setAttribute("editFormulaFieldText", editFormulaFieldText, true);
     }
 
     public String getEditFormulaFieldText() {
         return getAttributeAsString("editFormulaFieldText");
     }
 
-    public void setCanAddSummaryFields(Boolean canAddSummaryFields) {
-        setAttribute("canAddSummaryFields", canAddSummaryFields, true);
+    public DetailViewer setCanAddSummaryFields(Boolean canAddSummaryFields) {
+        return (DetailViewer)setAttribute("canAddSummaryFields", canAddSummaryFields, true);
     }
 
     public Boolean getCanAddSummaryFields() {
         return getAttributeAsBoolean("canAddSummaryFields");
     }
 
-    public void setAddSummaryFieldText(String addSummaryFieldText) {
-        setAttribute("addSummaryFieldText", addSummaryFieldText, true);
+    public DetailViewer setAddSummaryFieldText(String addSummaryFieldText) {
+        return (DetailViewer)setAttribute("addSummaryFieldText", addSummaryFieldText, true);
     }
 
     public String getAddSummaryFieldText() {
         return getAttributeAsString("addSummaryFieldText");
     }
 
-    public void setEditSummaryFieldText(String editSummaryFieldText) {
-        setAttribute("editSummaryFieldText", editSummaryFieldText, true);
+    public DetailViewer setEditSummaryFieldText(String editSummaryFieldText) {
+        return (DetailViewer)setAttribute("editSummaryFieldText", editSummaryFieldText, true);
     }
 
     public String getEditSummaryFieldText() {
@@ -2234,8 +2265,8 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
          return self.getTitleFieldValue(record);
      }-*/;
 
-    public void setTitleField(String titleField) {
-        setAttribute("titleField", titleField, true);
+    public DetailViewer setTitleField(String titleField) {
+        return (DetailViewer)setAttribute("titleField", titleField, true);
     }
 
     public String getTitleField() {
@@ -2248,44 +2279,44 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
         return @com.smartgwt.client.data.DataSource::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(dataSourceJS);
     }-*/;
 
-    public void setAutoFetchData(Boolean autoFetchData) throws IllegalStateException {
-        setAttribute("autoFetchData", autoFetchData, false);
+    public DetailViewer setAutoFetchData(Boolean autoFetchData) throws IllegalStateException {
+        return (DetailViewer)setAttribute("autoFetchData", autoFetchData, false);
     }
 
     public Boolean getAutoFetchData() {
         return getAttributeAsBoolean("autoFetchData");
     }
 
-    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle) throws IllegalStateException {
-        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
+    public DetailViewer setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle) throws IllegalStateException {
+        return (DetailViewer)setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle.getValue(), false);
     }
 
     public TextMatchStyle getAutoFetchTextMatchStyle() {
         return TextMatchStyle.valueOf(getAttributeAsString("autoFetchTextMatchStyle"));
     }
 
-    public void setAutoFetchAsFilter(Boolean autoFetchAsFilter) throws IllegalStateException {
-        setAttribute("autoFetchAsFilter", autoFetchAsFilter, false);
+    public DetailViewer setAutoFetchAsFilter(Boolean autoFetchAsFilter) throws IllegalStateException {
+        return (DetailViewer)setAttribute("autoFetchAsFilter", autoFetchAsFilter, false);
     }
 
     public Boolean getAutoFetchAsFilter() {
         return getAttributeAsBoolean("autoFetchAsFilter");
     }
 
-    public void setInitialCriteria(Criteria initialCriteria) throws IllegalStateException {
-        setAttribute("initialCriteria", initialCriteria.getJsObj(), false);
+    public DetailViewer setInitialCriteria(Criteria initialCriteria) throws IllegalStateException {
+        return (DetailViewer)setAttribute("initialCriteria", initialCriteria.getJsObj(), false);
     }
 
     public Criteria getInitialCriteria() {
         return new Criteria(getAttributeAsJavaScriptObject("initialCriteria"));
     }
 
-    public void setImplicitCriteria(Criteria implicitCriteria) {
+    public DetailViewer setImplicitCriteria(Criteria implicitCriteria) {
         if (implicitCriteria instanceof Criterion) {
             implicitCriteria.setAttribute("_constructor", "AdvancedCriteria");
         }
-        setAttribute("implicitCriteria", implicitCriteria == null ? 
-                     null : implicitCriteria.getJsObj(), true);
+        return (DetailViewer)setAttribute("implicitCriteria", implicitCriteria == null ?
+                            null : implicitCriteria.getJsObj(), true);
     }
 
     public Criteria getImplicitCriteria()  {
@@ -2549,15 +2580,15 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
         return getAttributeAsBoolean("deepCloneOnEdit");
     }
 
-    public void setDeepCloneOnEdit(Boolean deepCloneOnEdit) {
-        setAttribute("deepCloneOnEdit", deepCloneOnEdit, true);
+    public DetailViewer setDeepCloneOnEdit(Boolean deepCloneOnEdit) {
+        return (DetailViewer)setAttribute("deepCloneOnEdit", deepCloneOnEdit, true);
     }
 
-    public void setFields(JavaScriptObject... fields) {
+    public DetailViewer setFields(JavaScriptObject... fields) {
         if (fields != null) for(int i = 0; i < fields.length; i++) {
             fields[i] = duplicateFieldConfig(JSOHelper.cleanProperties(fields[i], false));
         }
-        setAttribute("fields", fields, true);
+        return (DetailViewer)setAttribute("fields", fields, true);
     }
 
     private native JavaScriptObject duplicateFieldConfig(JavaScriptObject config) /*-{
@@ -2599,8 +2630,10 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
      * This method is consulted by
      * {@link com.smartgwt.client.widgets.grid.ListGrid#willAcceptDrop willAcceptDrop()}.
      * @param DragDataCustomizer customizer
+     * @return {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponent}
+     * instance, for chaining setter calls
      */
-    public native void setDragDataCustomizer(DragDataCustomizer customizer) /*-{
+    public native DetailViewer setDragDataCustomizer(DragDataCustomizer customizer) /*-{
         var self;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             self = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
@@ -2612,6 +2645,25 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
         	var returnJ = customizer.@com.smartgwt.client.widgets.DragDataCustomizer::getDragData(Lcom/smartgwt/client/widgets/DataBoundComponent;)(componentJ);
         	return @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(returnJ);
     	}));
+        return this;
+    }-*/;
+
+    public native SortSpecifier[] getSort() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getSort", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        if(self == null) return null
+        var ret = self.getSort();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.ConvertTo::arrayOfSortSpecifier(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+    
+    public native DetailViewer setSort(SortSpecifier... sortSpecifiers) /*-{
+        var sortSpecifiersJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(sortSpecifiers);
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setSort(sortSpecifiersJS);
+        return this;
     }-*/;
 
 

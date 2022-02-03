@@ -5,8 +5,10 @@ import com.smartgwt.client.i18n.*;
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.fields.*;
 import com.smartgwt.client.tools.*;
 import com.smartgwt.client.widgets.*;
@@ -45,6 +47,7 @@ import com.smartgwt.logicalstructure.widgets.drawing.*;
 
 public class ButtonLogicalStructure extends StatefulCanvasLogicalStructure {
     public String actionType;
+    public String adaptWidthShowIconOnly;
     public String align;
     public String autoFit;
     public String baseStyle;

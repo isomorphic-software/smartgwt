@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -219,10 +222,11 @@ public class AdaptiveMenu extends Layout {
      * A setting of "center" is invalid and will cause a warning and be ignored
      *
      * @param inlinePlacement New inlinePlacement value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.AdaptiveMenu AdaptiveMenu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setInlinePlacement(Alignment inlinePlacement)  throws IllegalStateException {
-        setAttribute("inlinePlacement", inlinePlacement == null ? null : inlinePlacement.getValue(), false);
+    public AdaptiveMenu setInlinePlacement(Alignment inlinePlacement)  throws IllegalStateException {
+        return (AdaptiveMenu)setAttribute("inlinePlacement", inlinePlacement == null ? null : inlinePlacement.getValue(), false);
     }
 
     /**
@@ -246,10 +250,11 @@ public class AdaptiveMenu extends Layout {
      * A setting of "center" is invalid and will cause a warning and be ignored
      *
      * @param inlinePlacement New inlinePlacement value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.AdaptiveMenu AdaptiveMenu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setInlinePlacement(VerticalAlignment inlinePlacement)  throws IllegalStateException {
-        setAttribute("inlinePlacement", inlinePlacement == null ? null : inlinePlacement.getValue(), false);
+    public AdaptiveMenu setInlinePlacement(VerticalAlignment inlinePlacement)  throws IllegalStateException {
+        return (AdaptiveMenu)setAttribute("inlinePlacement", inlinePlacement == null ? null : inlinePlacement.getValue(), false);
     }
 
     /**
@@ -302,9 +307,10 @@ public class AdaptiveMenu extends Layout {
      * is a Menu when it is drawn. </ul>
      *
      * @param items New items value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.AdaptiveMenu AdaptiveMenu} instance, for chaining setter calls
      */
-    public void setItems(MenuItem... items) {
-        setAttribute("items", items, true);
+    public AdaptiveMenu setItems(MenuItem... items) {
+        return (AdaptiveMenu)setAttribute("items", items, true);
     }
 
     /**
@@ -367,11 +373,12 @@ public class AdaptiveMenu extends Layout {
      * {@link com.smartgwt.client.widgets.menu.MenuButton} class.
      *
      * @param menuButtonIcon New menuButtonIcon value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.AdaptiveMenu AdaptiveMenu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setMenuButtonIcon(String menuButtonIcon)  throws IllegalStateException {
-        setAttribute("menuButtonIcon", menuButtonIcon, false);
+    public AdaptiveMenu setMenuButtonIcon(String menuButtonIcon)  throws IllegalStateException {
+        return (AdaptiveMenu)setAttribute("menuButtonIcon", menuButtonIcon, false);
     }
 
     /**
@@ -390,11 +397,12 @@ public class AdaptiveMenu extends Layout {
      * Title used for the {@link com.smartgwt.client.widgets.menu.MenuButton}.
      *
      * @param menuButtonTitle New menuButtonTitle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.AdaptiveMenu AdaptiveMenu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setMenuButtonTitle(String menuButtonTitle)  throws IllegalStateException {
-        setAttribute("menuButtonTitle", menuButtonTitle, false);
+    public AdaptiveMenu setMenuButtonTitle(String menuButtonTitle)  throws IllegalStateException {
+        return (AdaptiveMenu)setAttribute("menuButtonTitle", menuButtonTitle, false);
     }
 
     /**
@@ -413,9 +421,10 @@ public class AdaptiveMenu extends Layout {
      * between showing
      *
      * @param partialInlining New partialInlining value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.menu.AdaptiveMenu AdaptiveMenu} instance, for chaining setter calls
      */
-    public void setPartialInlining(boolean partialInlining) {
-        setAttribute("partialInlining", partialInlining, true);
+    public AdaptiveMenu setPartialInlining(boolean partialInlining) {
+        return (AdaptiveMenu)setAttribute("partialInlining", partialInlining, true);
     }
 
     /**
@@ -435,10 +444,11 @@ public class AdaptiveMenu extends Layout {
      *  Individual items can set <code>showIconOnlyInline</code> to override this setting.
      *
      * @param showIconOnlyInline New showIconOnlyInline value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.menu.AdaptiveMenu AdaptiveMenu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowIconOnlyInline(boolean showIconOnlyInline)  throws IllegalStateException {
-        setAttribute("showIconOnlyInline", showIconOnlyInline, false);
+    public AdaptiveMenu setShowIconOnlyInline(boolean showIconOnlyInline)  throws IllegalStateException {
+        return (AdaptiveMenu)setAttribute("showIconOnlyInline", showIconOnlyInline, false);
     }
 
     /**
@@ -459,10 +469,11 @@ public class AdaptiveMenu extends Layout {
      * vertical.
      *
      * @param showInlineSeparators New showInlineSeparators value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.AdaptiveMenu AdaptiveMenu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowInlineSeparators(Boolean showInlineSeparators)  throws IllegalStateException {
-        setAttribute("showInlineSeparators", showInlineSeparators, false);
+    public AdaptiveMenu setShowInlineSeparators(Boolean showInlineSeparators)  throws IllegalStateException {
+        return (AdaptiveMenu)setAttribute("showInlineSeparators", showInlineSeparators, false);
     }
 
     /**

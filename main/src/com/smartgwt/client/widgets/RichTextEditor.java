@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -175,9 +178,10 @@ public class RichTextEditor extends VLayout {
      * The prompt for the built-in {@link com.smartgwt.client.types.ControlName alignCenter} control.
      *
      * @param alignCenterPrompt New alignCenterPrompt value. Default value is "Center selection"
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      */
-    public void setAlignCenterPrompt(String alignCenterPrompt) {
-        setAttribute("alignCenterPrompt", alignCenterPrompt, true);
+    public RichTextEditor setAlignCenterPrompt(String alignCenterPrompt) {
+        return (RichTextEditor)setAttribute("alignCenterPrompt", alignCenterPrompt, true);
     }
 
     /**
@@ -194,9 +198,10 @@ public class RichTextEditor extends VLayout {
      * The prompt for the built-in {@link com.smartgwt.client.types.ControlName alignLeft} control.
      *
      * @param alignLeftPrompt New alignLeftPrompt value. Default value is "Left align selection"
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      */
-    public void setAlignLeftPrompt(String alignLeftPrompt) {
-        setAttribute("alignLeftPrompt", alignLeftPrompt, true);
+    public RichTextEditor setAlignLeftPrompt(String alignLeftPrompt) {
+        return (RichTextEditor)setAttribute("alignLeftPrompt", alignLeftPrompt, true);
     }
 
     /**
@@ -213,9 +218,10 @@ public class RichTextEditor extends VLayout {
      * The prompt for the built-in {@link com.smartgwt.client.types.ControlName alignRight} control.
      *
      * @param alignRightPrompt New alignRightPrompt value. Default value is "Right align selection"
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      */
-    public void setAlignRightPrompt(String alignRightPrompt) {
-        setAttribute("alignRightPrompt", alignRightPrompt, true);
+    public RichTextEditor setAlignRightPrompt(String alignRightPrompt) {
+        return (RichTextEditor)setAttribute("alignRightPrompt", alignRightPrompt, true);
     }
 
     /**
@@ -232,9 +238,10 @@ public class RichTextEditor extends VLayout {
      * The prompt for the built-in {@link com.smartgwt.client.types.ControlName backgroundColor} control.
      *
      * @param backgroundColorPrompt New backgroundColorPrompt value. Default value is "Set selection background color"
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      */
-    public void setBackgroundColorPrompt(String backgroundColorPrompt) {
-        setAttribute("backgroundColorPrompt", backgroundColorPrompt, true);
+    public RichTextEditor setBackgroundColorPrompt(String backgroundColorPrompt) {
+        return (RichTextEditor)setAttribute("backgroundColorPrompt", backgroundColorPrompt, true);
     }
 
     /**
@@ -251,9 +258,10 @@ public class RichTextEditor extends VLayout {
      * The prompt for the built-in {@link com.smartgwt.client.types.ControlName boldSelection} control.
      *
      * @param boldSelectionPrompt New boldSelectionPrompt value. Default value is "Make selection bold"
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      */
-    public void setBoldSelectionPrompt(String boldSelectionPrompt) {
-        setAttribute("boldSelectionPrompt", boldSelectionPrompt, true);
+    public RichTextEditor setBoldSelectionPrompt(String boldSelectionPrompt) {
+        return (RichTextEditor)setAttribute("boldSelectionPrompt", boldSelectionPrompt, true);
     }
 
     /**
@@ -274,10 +282,11 @@ public class RichTextEditor extends VLayout {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param bulletControls New bulletControls value. Default value is ["indent", "outdent", "orderedList", "unorderedList", "listProperties"]
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setBulletControls(ControlName... bulletControls)  throws IllegalStateException {
-        setAttribute("bulletControls", bulletControls, false);
+    public RichTextEditor setBulletControls(ControlName... bulletControls)  throws IllegalStateException {
+        return (RichTextEditor)setAttribute("bulletControls", bulletControls, false);
     }
     
 
@@ -289,10 +298,11 @@ public class RichTextEditor extends VLayout {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param colorControls New colorControls value. Default value is ["color", "backgroundColor"]
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setColorControls(ControlName... colorControls)  throws IllegalStateException {
-        setAttribute("colorControls", colorControls, false);
+    public RichTextEditor setColorControls(ControlName... colorControls)  throws IllegalStateException {
+        return (RichTextEditor)setAttribute("colorControls", colorControls, false);
     }
     
 
@@ -300,9 +310,10 @@ public class RichTextEditor extends VLayout {
      * The prompt for the built-in {@link com.smartgwt.client.types.ControlName color} control.
      *
      * @param colorPrompt New colorPrompt value. Default value is "Set selection text color"
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      */
-    public void setColorPrompt(String colorPrompt) {
-        setAttribute("colorPrompt", colorPrompt, true);
+    public RichTextEditor setColorPrompt(String colorPrompt) {
+        return (RichTextEditor)setAttribute("colorPrompt", colorPrompt, true);
     }
 
     /**
@@ -320,9 +331,10 @@ public class RichTextEditor extends VLayout {
      * The prompt for the built-in {@link com.smartgwt.client.types.ControlName copySelection} control.
      *
      * @param copySelectionPrompt New copySelectionPrompt value. Default value is "Copy Selection"
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      */
-    public void setCopySelectionPrompt(String copySelectionPrompt) {
-        setAttribute("copySelectionPrompt", copySelectionPrompt, true);
+    public RichTextEditor setCopySelectionPrompt(String copySelectionPrompt) {
+        return (RichTextEditor)setAttribute("copySelectionPrompt", copySelectionPrompt, true);
     }
 
     /**
@@ -339,9 +351,10 @@ public class RichTextEditor extends VLayout {
      * The prompt for the built-in {@link com.smartgwt.client.types.ControlName cutSelection} control.
      *
      * @param cutSelectionPrompt New cutSelectionPrompt value. Default value is "Cut Selection"
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      */
-    public void setCutSelectionPrompt(String cutSelectionPrompt) {
-        setAttribute("cutSelectionPrompt", cutSelectionPrompt, true);
+    public RichTextEditor setCutSelectionPrompt(String cutSelectionPrompt) {
+        return (RichTextEditor)setAttribute("cutSelectionPrompt", cutSelectionPrompt, true);
     }
 
     /**
@@ -373,10 +386,11 @@ public class RichTextEditor extends VLayout {
      * Background color for the {@link com.smartgwt.client.widgets.RichTextEditor#getEditArea edit canvas}.
      *
      * @param editAreaBackgroundColor New editAreaBackgroundColor value. Default value is "white"
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEditAreaBackgroundColor(String editAreaBackgroundColor)  throws IllegalStateException {
-        setAttribute("editAreaBackgroundColor", editAreaBackgroundColor, false);
+    public RichTextEditor setEditAreaBackgroundColor(String editAreaBackgroundColor)  throws IllegalStateException {
+        return (RichTextEditor)setAttribute("editAreaBackgroundColor", editAreaBackgroundColor, false);
     }
 
     /**
@@ -397,10 +411,11 @@ public class RichTextEditor extends VLayout {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param fontControls New fontControls value. Default value is ["fontSelector", "fontSizeSelector"]
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setFontControls(ControlName... fontControls)  throws IllegalStateException {
-        setAttribute("fontControls", fontControls, false);
+    public RichTextEditor setFontControls(ControlName... fontControls)  throws IllegalStateException {
+        return (RichTextEditor)setAttribute("fontControls", fontControls, false);
     }
     
     
@@ -425,9 +440,10 @@ public class RichTextEditor extends VLayout {
      * The prompt for the built-in {@link com.smartgwt.client.widgets.RichTextEditor#getFontSelectorItem font selector}.
      *
      * @param fontSelectorPrompt New fontSelectorPrompt value. Default value is "Set Font..."
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      */
-    public void setFontSelectorPrompt(String fontSelectorPrompt) {
-        setAttribute("fontSelectorPrompt", fontSelectorPrompt, true);
+    public RichTextEditor setFontSelectorPrompt(String fontSelectorPrompt) {
+        return (RichTextEditor)setAttribute("fontSelectorPrompt", fontSelectorPrompt, true);
     }
 
     /**
@@ -462,9 +478,10 @@ public class RichTextEditor extends VLayout {
      * selector}.
      *
      * @param fontSizeSelectorPrompt New fontSizeSelectorPrompt value. Default value is "Set Font Size..."
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      */
-    public void setFontSizeSelectorPrompt(String fontSizeSelectorPrompt) {
-        setAttribute("fontSizeSelectorPrompt", fontSizeSelectorPrompt, true);
+    public RichTextEditor setFontSizeSelectorPrompt(String fontSizeSelectorPrompt) {
+        return (RichTextEditor)setAttribute("fontSizeSelectorPrompt", fontSizeSelectorPrompt, true);
     }
 
     /**
@@ -486,10 +503,11 @@ public class RichTextEditor extends VLayout {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param formatControls New formatControls value. Default value is ["alignLeft", "alignRight", "alignCenter", "justify"]
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setFormatControls(ControlName... formatControls)  throws IllegalStateException {
-        setAttribute("formatControls", formatControls, false);
+    public RichTextEditor setFormatControls(ControlName... formatControls)  throws IllegalStateException {
+        return (RichTextEditor)setAttribute("formatControls", formatControls, false);
     }
     
 
@@ -497,9 +515,10 @@ public class RichTextEditor extends VLayout {
      * The prompt for the built-in {@link com.smartgwt.client.types.ControlName indent} control.
      *
      * @param indentPrompt New indentPrompt value. Default value is "Increase Indent"
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      */
-    public void setIndentPrompt(String indentPrompt) {
-        setAttribute("indentPrompt", indentPrompt, true);
+    public RichTextEditor setIndentPrompt(String indentPrompt) {
+        return (RichTextEditor)setAttribute("indentPrompt", indentPrompt, true);
     }
 
     /**
@@ -516,9 +535,10 @@ public class RichTextEditor extends VLayout {
      * The prompt for the built-in {@link com.smartgwt.client.types.ControlName italicSelection} control.
      *
      * @param italicSelectionPrompt New italicSelectionPrompt value. Default value is "Make selection italic"
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      */
-    public void setItalicSelectionPrompt(String italicSelectionPrompt) {
-        setAttribute("italicSelectionPrompt", italicSelectionPrompt, true);
+    public RichTextEditor setItalicSelectionPrompt(String italicSelectionPrompt) {
+        return (RichTextEditor)setAttribute("italicSelectionPrompt", italicSelectionPrompt, true);
     }
 
     /**
@@ -535,9 +555,10 @@ public class RichTextEditor extends VLayout {
      * The prompt for the built-in {@link com.smartgwt.client.types.ControlName justify} control.
      *
      * @param justifyPrompt New justifyPrompt value. Default value is "Full justify selection"
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      */
-    public void setJustifyPrompt(String justifyPrompt) {
-        setAttribute("justifyPrompt", justifyPrompt, true);
+    public RichTextEditor setJustifyPrompt(String justifyPrompt) {
+        return (RichTextEditor)setAttribute("justifyPrompt", justifyPrompt, true);
     }
 
     /**
@@ -570,9 +591,10 @@ public class RichTextEditor extends VLayout {
      * The prompt for the built-in {@link com.smartgwt.client.types.ControlName listProperties} control.
      *
      * @param listPropertiesPrompt New listPropertiesPrompt value. Default value is "Configure the list"
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      */
-    public void setListPropertiesPrompt(String listPropertiesPrompt) {
-        setAttribute("listPropertiesPrompt", listPropertiesPrompt, true);
+    public RichTextEditor setListPropertiesPrompt(String listPropertiesPrompt) {
+        return (RichTextEditor)setAttribute("listPropertiesPrompt", listPropertiesPrompt, true);
     }
 
     /**
@@ -590,9 +612,10 @@ public class RichTextEditor extends VLayout {
      * appropriate place.
      *
      * @param listPropertiesWarningText New listPropertiesWarningText value. Default value is "Place the cursor within a list to configure it"
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      */
-    public void setListPropertiesWarningText(String listPropertiesWarningText) {
-        setAttribute("listPropertiesWarningText", listPropertiesWarningText, true);
+    public RichTextEditor setListPropertiesWarningText(String listPropertiesWarningText) {
+        return (RichTextEditor)setAttribute("listPropertiesWarningText", listPropertiesWarningText, true);
     }
 
     /**
@@ -614,9 +637,10 @@ public class RichTextEditor extends VLayout {
      * Setter for {@link com.smartgwt.client.widgets.RichTextEditor#getMoveFocusOnTab moveFocusOnTab}.
      *
      * @param moveFocusOnTab new value for moveFocusOnTab. Default value is true
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      */
-    public void setMoveFocusOnTab(boolean moveFocusOnTab) {
-        setAttribute("moveFocusOnTab", moveFocusOnTab, true);
+    public RichTextEditor setMoveFocusOnTab(boolean moveFocusOnTab) {
+        return (RichTextEditor)setAttribute("moveFocusOnTab", moveFocusOnTab, true);
     }
 
     /**
@@ -635,9 +659,10 @@ public class RichTextEditor extends VLayout {
      * The prompt for the built-in {@link com.smartgwt.client.types.ControlName orderedList} control.
      *
      * @param orderedListPrompt New orderedListPrompt value. Default value is "Convert to a numbered list"
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      */
-    public void setOrderedListPrompt(String orderedListPrompt) {
-        setAttribute("orderedListPrompt", orderedListPrompt, true);
+    public RichTextEditor setOrderedListPrompt(String orderedListPrompt) {
+        return (RichTextEditor)setAttribute("orderedListPrompt", orderedListPrompt, true);
     }
 
     /**
@@ -654,9 +679,10 @@ public class RichTextEditor extends VLayout {
      * The prompt for the built-in {@link com.smartgwt.client.types.ControlName outdent} control.
      *
      * @param outdentPrompt New outdentPrompt value. Default value is "Decrease Indent"
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      */
-    public void setOutdentPrompt(String outdentPrompt) {
-        setAttribute("outdentPrompt", outdentPrompt, true);
+    public RichTextEditor setOutdentPrompt(String outdentPrompt) {
+        return (RichTextEditor)setAttribute("outdentPrompt", outdentPrompt, true);
     }
 
     /**
@@ -673,9 +699,10 @@ public class RichTextEditor extends VLayout {
      * The prompt for the built-in {@link com.smartgwt.client.types.ControlName pasteSelection} control.
      *
      * @param pasteSelectionPrompt New pasteSelectionPrompt value. Default value is "Paste"
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      */
-    public void setPasteSelectionPrompt(String pasteSelectionPrompt) {
-        setAttribute("pasteSelectionPrompt", pasteSelectionPrompt, true);
+    public RichTextEditor setPasteSelectionPrompt(String pasteSelectionPrompt) {
+        return (RichTextEditor)setAttribute("pasteSelectionPrompt", pasteSelectionPrompt, true);
     }
 
     /**
@@ -692,9 +719,10 @@ public class RichTextEditor extends VLayout {
      * The prompt for the built-in {@link com.smartgwt.client.types.ControlName strikethroughSelection} control.
      *
      * @param strikethroughSelectionPrompt New strikethroughSelectionPrompt value. Default value is "Strike through selection"
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      */
-    public void setStrikethroughSelectionPrompt(String strikethroughSelectionPrompt) {
-        setAttribute("strikethroughSelectionPrompt", strikethroughSelectionPrompt, true);
+    public RichTextEditor setStrikethroughSelectionPrompt(String strikethroughSelectionPrompt) {
+        return (RichTextEditor)setAttribute("strikethroughSelectionPrompt", strikethroughSelectionPrompt, true);
     }
 
     /**
@@ -715,10 +743,11 @@ public class RichTextEditor extends VLayout {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param styleControls New styleControls value. Default value is ["boldSelection", "italicSelection", "underlineSelection"]
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setStyleControls(ControlName... styleControls)  throws IllegalStateException {
-        setAttribute("styleControls", styleControls, false);
+    public RichTextEditor setStyleControls(ControlName... styleControls)  throws IllegalStateException {
+        return (RichTextEditor)setAttribute("styleControls", styleControls, false);
     }
     
 
@@ -727,10 +756,11 @@ public class RichTextEditor extends VLayout {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param styleWithCSS New styleWithCSS value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setStyleWithCSS(Boolean styleWithCSS)  throws IllegalStateException {
-        setAttribute("styleWithCSS", styleWithCSS, false);
+    public RichTextEditor setStyleWithCSS(Boolean styleWithCSS)  throws IllegalStateException {
+        return (RichTextEditor)setAttribute("styleWithCSS", styleWithCSS, false);
     }
 
     /**
@@ -777,10 +807,11 @@ public class RichTextEditor extends VLayout {
      * The background color for the toolbar.
      *
      * @param toolbarBackgroundColor New toolbarBackgroundColor value. Default value is "#CCCCCC"
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setToolbarBackgroundColor(String toolbarBackgroundColor)  throws IllegalStateException {
-        setAttribute("toolbarBackgroundColor", toolbarBackgroundColor, false);
+    public RichTextEditor setToolbarBackgroundColor(String toolbarBackgroundColor)  throws IllegalStateException {
+        return (RichTextEditor)setAttribute("toolbarBackgroundColor", toolbarBackgroundColor, false);
     }
 
     /**
@@ -797,9 +828,10 @@ public class RichTextEditor extends VLayout {
      * The prompt for the built-in {@link com.smartgwt.client.types.ControlName underlineSelection} control.
      *
      * @param underlineSelectionPrompt New underlineSelectionPrompt value. Default value is "Make selection underlined"
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      */
-    public void setUnderlineSelectionPrompt(String underlineSelectionPrompt) {
-        setAttribute("underlineSelectionPrompt", underlineSelectionPrompt, true);
+    public RichTextEditor setUnderlineSelectionPrompt(String underlineSelectionPrompt) {
+        return (RichTextEditor)setAttribute("underlineSelectionPrompt", underlineSelectionPrompt, true);
     }
 
     /**
@@ -816,9 +848,10 @@ public class RichTextEditor extends VLayout {
      * The prompt for the built-in {@link com.smartgwt.client.types.ControlName unorderedList} control.
      *
      * @param unorderedListPrompt New unorderedListPrompt value. Default value is "Convert to a bullet list"
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      */
-    public void setUnorderedListPrompt(String unorderedListPrompt) {
-        setAttribute("unorderedListPrompt", unorderedListPrompt, true);
+    public RichTextEditor setUnorderedListPrompt(String unorderedListPrompt) {
+        return (RichTextEditor)setAttribute("unorderedListPrompt", unorderedListPrompt, true);
     }
 
     /**
@@ -838,10 +871,11 @@ public class RichTextEditor extends VLayout {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param useDesignMode New useDesignMode value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setUseDesignMode(Boolean useDesignMode)  throws IllegalStateException {
-        setAttribute("useDesignMode", useDesignMode, false);
+    public RichTextEditor setUseDesignMode(Boolean useDesignMode)  throws IllegalStateException {
+        return (RichTextEditor)setAttribute("useDesignMode", useDesignMode, false);
     }
 
     /**
@@ -863,9 +897,10 @@ public class RichTextEditor extends VLayout {
      * Updates the current value of the edit area.
      *
      * @param value New value value. Default value is ""
+     * @return {@link com.smartgwt.client.widgets.RichTextEditor RichTextEditor} instance, for chaining setter calls
      */
-    public void setValue(String value) {
-        setAttribute("value", value, true);
+    public RichTextEditor setValue(String value) {
+        return (RichTextEditor)setAttribute("value", value, true);
     }
 
     /**

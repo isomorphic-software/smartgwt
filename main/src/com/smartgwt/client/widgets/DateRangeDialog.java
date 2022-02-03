@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -189,10 +192,11 @@ public class DateRangeDialog extends Window {
      * The title for the "Cancel" button on this dialog.
      *
      * @param cancelButtonTitle New cancelButtonTitle value. Default value is "Cancel"
+     * @return {@link com.smartgwt.client.widgets.DateRangeDialog DateRangeDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
-        setAttribute("cancelButtonTitle", cancelButtonTitle, false);
+    public DateRangeDialog setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
+        return (DateRangeDialog)setAttribute("cancelButtonTitle", cancelButtonTitle, false);
     }
 
     /**
@@ -225,10 +229,11 @@ public class DateRangeDialog extends Window {
      * The title for the "Clear" button on this dialog.
      *
      * @param clearButtonTitle New clearButtonTitle value. Default value is "Clear"
+     * @return {@link com.smartgwt.client.widgets.DateRangeDialog DateRangeDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setClearButtonTitle(String clearButtonTitle)  throws IllegalStateException {
-        setAttribute("clearButtonTitle", clearButtonTitle, false);
+    public DateRangeDialog setClearButtonTitle(String clearButtonTitle)  throws IllegalStateException {
+        return (DateRangeDialog)setAttribute("clearButtonTitle", clearButtonTitle, false);
     }
 
     /**
@@ -245,10 +250,11 @@ public class DateRangeDialog extends Window {
      * The title to display in the header-bar of this Dialog.
      *
      * @param headerTitle New headerTitle value. Default value is "Select Date Range"
+     * @return {@link com.smartgwt.client.widgets.DateRangeDialog DateRangeDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setHeaderTitle(String headerTitle)  throws IllegalStateException {
-        setAttribute("headerTitle", headerTitle, false);
+    public DateRangeDialog setHeaderTitle(String headerTitle)  throws IllegalStateException {
+        return (DateRangeDialog)setAttribute("headerTitle", headerTitle, false);
     }
 
     /**
@@ -281,10 +287,11 @@ public class DateRangeDialog extends Window {
      * The title for the "OK" button on this dialog.
      *
      * @param okButtonTitle New okButtonTitle value. Default value is "OK"
+     * @return {@link com.smartgwt.client.widgets.DateRangeDialog DateRangeDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setOkButtonTitle(String okButtonTitle)  throws IllegalStateException {
-        setAttribute("okButtonTitle", okButtonTitle, false);
+    public DateRangeDialog setOkButtonTitle(String okButtonTitle)  throws IllegalStateException {
+        return (DateRangeDialog)setAttribute("okButtonTitle", okButtonTitle, false);
     }
 
     /**
@@ -368,7 +375,7 @@ public class DateRangeDialog extends Window {
 
 
 
-    /**
+	/**
      * Helper method to launch a DateRangeDialog to have a date range input by the user.
      * @param allowRelativeDates whether to allow relative date entry via 
      * {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem}s, default true

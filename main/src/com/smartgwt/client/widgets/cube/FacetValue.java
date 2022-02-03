@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Facet value definition object made use of by the {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrid} and {@link
@@ -144,9 +147,10 @@ public class FacetValue extends RefDataClass {
      * com.smartgwt.client.widgets.cube.CubeGrid#getFacetValueAlign CubeGrid.facetValueAlign}).
      *
      * @param align New align value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.FacetValue FacetValue} instance, for chaining setter calls
      */
-    public void setAlign(Alignment align) {
-        setAttribute("align", align == null ? null : align.getValue());
+    public FacetValue setAlign(Alignment align) {
+        return (FacetValue)setAttribute("align", align == null ? null : align.getValue());
     }
 
     /**
@@ -167,9 +171,10 @@ public class FacetValue extends RefDataClass {
      * com.smartgwt.client.widgets.cube.CubeGrid CubeGrids}.
      *
      * @param borderAfter New borderAfter value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.FacetValue FacetValue} instance, for chaining setter calls
      */
-    public void setBorderAfter(String borderAfter) {
-        setAttribute("borderAfter", borderAfter);
+    public FacetValue setBorderAfter(String borderAfter) {
+        return (FacetValue)setAttribute("borderAfter", borderAfter);
     }
 
     /**
@@ -188,9 +193,10 @@ public class FacetValue extends RefDataClass {
      * com.smartgwt.client.widgets.cube.CubeGrid CubeGrids}.
      *
      * @param borderBefore New borderBefore value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.FacetValue FacetValue} instance, for chaining setter calls
      */
-    public void setBorderBefore(String borderBefore) {
-        setAttribute("borderBefore", borderBefore);
+    public FacetValue setBorderBefore(String borderBefore) {
+        return (FacetValue)setAttribute("borderBefore", borderBefore);
     }
 
     /**
@@ -211,9 +217,10 @@ public class FacetValue extends RefDataClass {
      * CubeGrid.canCollapseFacets}).
      *
      * @param canCollapse New canCollapse value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.cube.FacetValue FacetValue} instance, for chaining setter calls
      */
-    public void setCanCollapse(Boolean canCollapse) {
-        setAttribute("canCollapse", canCollapse);
+    public FacetValue setCanCollapse(Boolean canCollapse) {
+        return (FacetValue)setAttribute("canCollapse", canCollapse);
     }
 
     /**
@@ -236,9 +243,10 @@ public class FacetValue extends RefDataClass {
      * {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrids}.
      *
      * @param canEdit New canEdit value. Default value is cubeGrid.canEdit
+     * @return {@link com.smartgwt.client.widgets.cube.FacetValue FacetValue} instance, for chaining setter calls
      */
-    public void setCanEdit(Boolean canEdit) {
-        setAttribute("canEdit", canEdit);
+    public FacetValue setCanEdit(Boolean canEdit) {
+        return (FacetValue)setAttribute("canEdit", canEdit);
     }
 
     /**
@@ -254,14 +262,44 @@ public class FacetValue extends RefDataClass {
     
 
     /**
+     * If {@link com.smartgwt.client.widgets.cube.CubeGrid#getCanMinimizeFacets facet minimizing} is enabled, whether this
+     * facet value should show controls to minimize the next facet.  Generally a tree facet should not also allow minimizing
+     * the next facet the interaction of the two types of collapsing can be confusing. <P> <b>Note:</b>  This property is
+     * specific to {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrids} (see, for example, {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getCanMinimizeFacets CubeGrid.canMinimizeFacets}).
+     *
+     * @param canMinimize New canMinimize value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.cube.FacetValue FacetValue} instance, for chaining setter calls
+     */
+    public FacetValue setCanMinimize(Boolean canMinimize) {
+        return (FacetValue)setAttribute("canMinimize", canMinimize);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.cube.CubeGrid#getCanMinimizeFacets facet minimizing} is enabled, whether this
+     * facet value should show controls to minimize the next facet.  Generally a tree facet should not also allow minimizing
+     * the next facet the interaction of the two types of collapsing can be confusing. <P> <b>Note:</b>  This property is
+     * specific to {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrids} (see, for example, {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getCanMinimizeFacets CubeGrid.canMinimizeFacets}).
+     *
+     * @return Current canMinimize value. Default value is true
+     */
+    public Boolean getCanMinimize()  {
+        Boolean result = getAttributeAsBoolean("canMinimize", true);
+        return result == null ? true : result;
+    }
+    
+
+    /**
      * Default alignment of cells (in the body) for this facetValue. <P> <b>Note:</b>  This property is specific to {@link
      * com.smartgwt.client.widgets.cube.CubeGrid CubeGrids} (see, for example, {@link
      * com.smartgwt.client.widgets.cube.CubeGrid#getCellAlign CubeGrid.cellAlign}).
      *
      * @param cellAlign New cellAlign value. Default value is facet.cellAlign
+     * @return {@link com.smartgwt.client.widgets.cube.FacetValue FacetValue} instance, for chaining setter calls
      */
-    public void setCellAlign(Alignment cellAlign) {
-        setAttribute("cellAlign", cellAlign == null ? null : cellAlign.getValue());
+    public FacetValue setCellAlign(Alignment cellAlign) {
+        return (FacetValue)setAttribute("cellAlign", cellAlign == null ? null : cellAlign.getValue());
     }
 
     /**
@@ -282,9 +320,10 @@ public class FacetValue extends RefDataClass {
      * {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrids}.
      *
      * @param collapsed New collapsed value. Default value is facet.collapsed
+     * @return {@link com.smartgwt.client.widgets.cube.FacetValue FacetValue} instance, for chaining setter calls
      */
-    public void setCollapsed(Boolean collapsed) {
-        setAttribute("collapsed", collapsed);
+    public FacetValue setCollapsed(Boolean collapsed) {
+        return (FacetValue)setAttribute("collapsed", collapsed);
     }
 
     /**
@@ -306,9 +345,10 @@ public class FacetValue extends RefDataClass {
      * com.smartgwt.client.widgets.cube.CubeGrid#getCanMinimizeFacets CubeGrid.canMinimizeFacets}.
      *
      * @param isMinimizeValue New isMinimizeValue value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.cube.FacetValue FacetValue} instance, for chaining setter calls
      */
-    public void setIsMinimizeValue(Boolean isMinimizeValue) {
-        setAttribute("isMinimizeValue", isMinimizeValue);
+    public FacetValue setIsMinimizeValue(Boolean isMinimizeValue) {
+        return (FacetValue)setAttribute("isMinimizeValue", isMinimizeValue);
     }
 
     /**
@@ -330,9 +370,10 @@ public class FacetValue extends RefDataClass {
      * specific to {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrids}.
      *
      * @param minimized New minimized value. Default value is facet.minimized
+     * @return {@link com.smartgwt.client.widgets.cube.FacetValue FacetValue} instance, for chaining setter calls
      */
-    public void setMinimized(Boolean minimized) {
-        setAttribute("minimized", minimized);
+    public FacetValue setMinimized(Boolean minimized) {
+        return (FacetValue)setAttribute("minimized", minimized);
     }
 
     /**
@@ -353,9 +394,10 @@ public class FacetValue extends RefDataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param parentId New parentId value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.FacetValue FacetValue} instance, for chaining setter calls
      */
-    public void setParentId(String parentId) {
-        setAttribute("parentId", parentId);
+    public FacetValue setParentId(String parentId) {
+        return (FacetValue)setAttribute("parentId", parentId);
     }
 
     /**
@@ -374,9 +416,10 @@ public class FacetValue extends RefDataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param parentId New parentId value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.FacetValue FacetValue} instance, for chaining setter calls
      */
-    public void setParentId(Integer parentId) {
-        setAttribute("parentId", parentId);
+    public FacetValue setParentId(Integer parentId) {
+        return (FacetValue)setAttribute("parentId", parentId);
     }
 
     /**
@@ -395,9 +438,10 @@ public class FacetValue extends RefDataClass {
      * selection. <P> <b>Note:</b>  This property is specific to {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrids}.
      *
      * @param selectionBoundary New selectionBoundary value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.FacetValue FacetValue} instance, for chaining setter calls
      */
-    public void setSelectionBoundary(SelectionBoundary selectionBoundary) {
-        setAttribute("selectionBoundary", selectionBoundary == null ? null : selectionBoundary.getValue());
+    public FacetValue setSelectionBoundary(SelectionBoundary selectionBoundary) {
+        return (FacetValue)setAttribute("selectionBoundary", selectionBoundary == null ? null : selectionBoundary.getValue());
     }
 
     /**
@@ -415,9 +459,10 @@ public class FacetValue extends RefDataClass {
      * User-visible title of this facetValue.  Shown on the field header.
      *
      * @param title New title value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.FacetValue FacetValue} instance, for chaining setter calls
      */
-    public void setTitle(String title) {
-        setAttribute("title", title);
+    public FacetValue setTitle(String title) {
+        return (FacetValue)setAttribute("title", title);
     }
 
     /**
@@ -436,9 +481,10 @@ public class FacetValue extends RefDataClass {
      * CubeGrid.hilites}.
      *
      * @param titleHilite New titleHilite value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.cube.FacetValue FacetValue} instance, for chaining setter calls
      */
-    public void setTitleHilite(String titleHilite) {
-        setAttribute("titleHilite", titleHilite);
+    public FacetValue setTitleHilite(String titleHilite) {
+        return (FacetValue)setAttribute("titleHilite", titleHilite);
     }
 
     /**
@@ -458,9 +504,10 @@ public class FacetValue extends RefDataClass {
      * com.smartgwt.client.widgets.cube.CubeGrid CubeGrids}.
      *
      * @param width New width value. Default value is facet.width
+     * @return {@link com.smartgwt.client.widgets.cube.FacetValue FacetValue} instance, for chaining setter calls
      */
-    public void setWidth(int width) {
-        setAttribute("width", width);
+    public FacetValue setWidth(int width) {
+        return (FacetValue)setAttribute("width", width);
     }
 
     /**

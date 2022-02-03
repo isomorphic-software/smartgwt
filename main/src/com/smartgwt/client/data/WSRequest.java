@@ -50,7 +50,7 @@ import java.util.HashMap;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+import com.google.gwt.dom.client.Element;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.EnumUtil;
 import com.google.gwt.event.shared.*;
@@ -154,9 +154,11 @@ public class WSRequest extends RPCRequest {
      * Data to be serialized to XML to form the SOAP body.
      *
      * @param data data Default value is null
+     * @return {@link com.smartgwt.client.data.WSRequest WSRequest} instance, for chaining
+     * setter calls
      */
-    public void setData(Map data) {
-        setAttribute("data", data);
+    public WSRequest setData(Map data) {
+        return (WSRequest)setAttribute("data", data);
     }
 
     /**

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Section descriptor used by a SectionStack to describe a section of items which are shown or hidden together along with
@@ -137,10 +140,11 @@ public class SectionStackSection extends RefDataClass {
      * section can still be expanded/collapsed programmatically, regardless of this setting.
      *
      * @param canCollapse New canCollapse value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStackSection SectionStackSection} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_sections_expand_collapse" target="examples">Expand / Collapse Example</a>
      */
-    public void setCanCollapse(Boolean canCollapse) {
-        setAttribute("canCollapse", canCollapse);
+    public SectionStackSection setCanCollapse(Boolean canCollapse) {
+        return (SectionStackSection)setAttribute("canCollapse", canCollapse);
     }
     
 
@@ -148,11 +152,12 @@ public class SectionStackSection extends RefDataClass {
      * When explicitly set to false, disallows drop before this member in the Layout.
      *
      * @param canDropBefore New canDropBefore value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStackSection SectionStackSection} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.layout.Layout
      * @see com.smartgwt.client.docs.LayoutMember LayoutMember overview and related methods
      */
-    public void setCanDropBefore(Boolean canDropBefore) {
-        setAttribute("canDropBefore", canDropBefore);
+    public SectionStackSection setCanDropBefore(Boolean canDropBefore) {
+        return (SectionStackSection)setAttribute("canDropBefore", canDropBefore);
     }
     
 
@@ -163,9 +168,10 @@ public class SectionStackSection extends RefDataClass {
      * com.smartgwt.client.widgets.Canvas#getCanDropBefore canDropBefore} to false.
      *
      * @param canReorder New canReorder value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStackSection SectionStackSection} instance, for chaining setter calls
      */
-    public void setCanReorder(Boolean canReorder) {
-        setAttribute("canReorder", canReorder);
+    public SectionStackSection setCanReorder(Boolean canReorder) {
+        return (SectionStackSection)setAttribute("canReorder", canReorder);
     }
     
 
@@ -176,9 +182,10 @@ public class SectionStackSection extends RefDataClass {
      * com.smartgwt.client.docs.Accessibility}.
      *
      * @param canTabToHeader New canTabToHeader value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStackSection SectionStackSection} instance, for chaining setter calls
      */
-    public void setCanTabToHeader(Boolean canTabToHeader) {
-        setAttribute("canTabToHeader", canTabToHeader);
+    public SectionStackSection setCanTabToHeader(Boolean canTabToHeader) {
+        return (SectionStackSection)setAttribute("canTabToHeader", canTabToHeader);
     }
 
     /**
@@ -200,9 +207,10 @@ public class SectionStackSection extends RefDataClass {
      * 9+).
      *
      * @param clipTitle New clipTitle value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStackSection SectionStackSection} instance, for chaining setter calls
      */
-    public void setClipTitle(Boolean clipTitle) {
-        setAttribute("clipTitle", clipTitle);
+    public SectionStackSection setClipTitle(Boolean clipTitle) {
+        return (SectionStackSection)setAttribute("clipTitle", clipTitle);
     }
 
     /**
@@ -226,10 +234,11 @@ public class SectionStackSection extends RefDataClass {
      * runtime by manipulating the existing control(s) set up at init time.
      *
      * @param controls New controls value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStackSection SectionStackSection} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_sections_custom_controls" target="examples">Custom Controls Example</a>
      */
-    public void setControls(Canvas... controls) {
-        setAttribute("controls", controls);
+    public SectionStackSection setControls(Canvas... controls) {
+        return (SectionStackSection)setAttribute("controls", controls);
     }
 
     /**
@@ -246,6 +255,20 @@ public class SectionStackSection extends RefDataClass {
         return com.smartgwt.client.util.ConvertTo.arrayOfCanvas(getAttributeAsJavaScriptObject("controls"));
     }
     
+
+    /**
+     * Should the {@link com.smartgwt.client.widgets.layout.SectionStackSection#getItems items} be {@link
+     * com.smartgwt.client.widgets.Canvas#destroy destroyed} if this section is {@link
+     * com.smartgwt.client.widgets.layout.SectionStack#removeSection removed}?  The section header itself and any controls will
+     * always be destroyed.
+     *
+     * @param destroyOnRemove New destroyOnRemove value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStackSection SectionStackSection} instance, for chaining setter calls
+     */
+    public SectionStackSection setDestroyOnRemove(Boolean destroyOnRemove) {
+        return (SectionStackSection)setAttribute("destroyOnRemove", destroyOnRemove);
+    }
+    
     
     
 
@@ -255,10 +278,11 @@ public class SectionStackSection extends RefDataClass {
      * {@link com.smartgwt.client.widgets.layout.SectionStackSection#getCanCollapse canCollapse} is false.
      *
      * @param icon New icon value. Default value is "[SKIN]SectionHeader/opener.gif"
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStackSection SectionStackSection} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setIcon(String icon) {
-        setAttribute("icon", icon);
+    public SectionStackSection setIcon(String icon) {
+        return (SectionStackSection)setAttribute("icon", icon);
     }
 
     /**
@@ -285,9 +309,10 @@ public class SectionStackSection extends RefDataClass {
      * characters such as "*").
      *
      * @param name New name value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStackSection SectionStackSection} instance, for chaining setter calls
      */
-    public void setName(String name) {
-        setAttribute("name", name);
+    public SectionStackSection setName(String name) {
+        return (SectionStackSection)setAttribute("name", name);
     }
 
     /**
@@ -310,10 +335,11 @@ public class SectionStackSection extends RefDataClass {
      * this flag directly on any of the items in any section to cause that item to not be resizeable.
      *
      * @param resizeable New resizeable value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStackSection SectionStackSection} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_sections_resize" target="examples">Resize Sections Example</a>
      */
-    public void setResizeable(Boolean resizeable) {
-        setAttribute("resizeable", resizeable);
+    public SectionStackSection setResizeable(Boolean resizeable) {
+        return (SectionStackSection)setAttribute("resizeable", resizeable);
     }
     
 
@@ -321,9 +347,10 @@ public class SectionStackSection extends RefDataClass {
      * If true and the title is clipped, then a hover containing the full title of this section header is enabled.
      *
      * @param showClippedTitleOnHover New showClippedTitleOnHover value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStackSection SectionStackSection} instance, for chaining setter calls
      */
-    public void setShowClippedTitleOnHover(Boolean showClippedTitleOnHover) {
-        setAttribute("showClippedTitleOnHover", showClippedTitleOnHover);
+    public SectionStackSection setShowClippedTitleOnHover(Boolean showClippedTitleOnHover) {
+        return (SectionStackSection)setAttribute("showClippedTitleOnHover", showClippedTitleOnHover);
     }
 
     /**
@@ -341,9 +368,10 @@ public class SectionStackSection extends RefDataClass {
      * If true, a header will be shown for this section.  If false, no header will be shown.
      *
      * @param showHeader New showHeader value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStackSection SectionStackSection} instance, for chaining setter calls
      */
-    public void setShowHeader(Boolean showHeader) {
-        setAttribute("showHeader", showHeader);
+    public SectionStackSection setShowHeader(Boolean showHeader) {
+        return (SectionStackSection)setAttribute("showHeader", showHeader);
     }
     
     

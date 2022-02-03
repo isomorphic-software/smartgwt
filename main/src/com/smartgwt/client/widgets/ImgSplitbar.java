@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -184,9 +187,10 @@ public class ImgSplitbar extends Img {
      * <code>true</code>.
      *
      * @param canCollapse New canCollapse value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.ImgSplitbar ImgSplitbar} instance, for chaining setter calls
      */
-    public void setCanCollapse(Boolean canCollapse) {
-        setAttribute("canCollapse", canCollapse, true);
+    public ImgSplitbar setCanCollapse(Boolean canCollapse) {
+        return (ImgSplitbar)setAttribute("canCollapse", canCollapse, true);
     }
 
     /**
@@ -210,9 +214,10 @@ public class ImgSplitbar extends Img {
      * com.smartgwt.client.widgets.Splitbar#getTarget target}
      *
      * @param canDrag New canDrag value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.ImgSplitbar ImgSplitbar} instance, for chaining setter calls
      */
-    public void setCanDrag(Boolean canDrag) {
-        setAttribute("canDrag", canDrag, true);
+    public ImgSplitbar setCanDrag(Boolean canDrag) {
+        return (ImgSplitbar)setAttribute("canDrag", canDrag, true);
     }
 
     /**
@@ -232,11 +237,12 @@ public class ImgSplitbar extends Img {
      * com.smartgwt.client.widgets.ImgSplitbar#getSrc src} is unset.
      *
      * @param hSrc New hSrc value. Default value is [SKIN]hgrip.png
+     * @return {@link com.smartgwt.client.widgets.ImgSplitbar ImgSplitbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.ImgSplitbar#setSrc
      */
-    public void setHSrc(String hSrc)  throws IllegalStateException {
-        setAttribute("hSrc", hSrc, false);
+    public ImgSplitbar setHSrc(String hSrc)  throws IllegalStateException {
+        return (ImgSplitbar)setAttribute("hSrc", hSrc, false);
     }
 
     /**
@@ -256,12 +262,13 @@ public class ImgSplitbar extends Img {
      * com.smartgwt.client.util.Page#getSkinDir skinDir}.
      *
      * @param skinImgDir New skinImgDir value. Default value is "images/SplitBar/"
+     * @return {@link com.smartgwt.client.widgets.ImgSplitbar ImgSplitbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
-    public void setSkinImgDir(String skinImgDir)  throws IllegalStateException {
-        setAttribute("skinImgDir", skinImgDir, false);
+    public ImgSplitbar setSkinImgDir(String skinImgDir)  throws IllegalStateException {
+        return (ImgSplitbar)setAttribute("skinImgDir", skinImgDir, false);
     }
 
     /**
@@ -278,80 +285,23 @@ public class ImgSplitbar extends Img {
     
 
     /**
-     * The base filename for the image. <P> This value will be combined with any specified {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getState state} to form a combined URL, changing the appearance of the
-     * component as the state changes. <P> The following table lists out the standard set of combined URLs that  may be
-     * generated. Subclasses may support additional state-derived media of course. Note that the src URL will be split such
-     * that the extension is always applied to the end of the combined string. For example in the following table, if
-     * <code>src</code> was set to <code>"blank.gif"</code>, the Selected+Focused URL would be 
-     * <code>"blank_Selected_Focused.gif"</code>. <table> <tr><td><b>URL for Img
-     * source</b></td><td><b>Description</b></td></tr> <tr><td><code><i>src</i>+<i>extension</i></code></td><td>Default
-     * URL</td></tr> <tr><td><code><i>src</i>+"_Selected"+<i>extension</i></code></td>      <td>Applied when {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getSelected StatefulCanvas.selected} is set to true</td></tr>
-     * <tr><td><code><i>src</i>+"_Focused"+<i>extension</i></code></td>      <td>Applied when the component has keyboard focus,
-     * if       {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused StatefulCanvas.showFocused} is true, and      
-     * {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver StatefulCanvas.showFocusedAsOver} is not
-     * true.</td></tr> <tr><td><code><i>src</i>+"_Over"+<i>extension</i></code></td>      <td>Applied when the user rolls over
-     * the component if          {@link com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver StatefulCanvas.showRollOver}
-     * is set to true</td></tr> <tr><td><code><i>src</i>+"_Down"+<i>extension</i></code></td>      <td>Applied when the user
-     * presses the mouse button over over the component if          {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowDown StatefulCanvas.showDown} is set to true</td></tr>
-     * <tr><td><code><i>src</i>+"_Disabled"+<i>extension</i></code></td>      <td>Applied to {@link
-     * com.smartgwt.client.widgets.Canvas#getDisabled Canvas.disabled} component       if {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowDisabled StatefulCanvas.showDisabled} is true.</td></tr> <tr><td
-     * colspan=2><i>Combined states</i></td></tr> <tr><td><code><i>src</i>+"_Selected_Focused"+<i>extension</i></code></td>    
-     * <td>Combined Selected and focused state</td></tr> <tr><td><code><i>src</i>+"_Selected_Over"+<i>extension</i></code></td>
-     * <td>Combined Selected and rollOver state</td></tr> <tr><td><code><i>src</i>+"_Focused_Over"+<i>extension</i></code></td>
-     * <td>Combined Focused and rollOver state</td></tr>
-     * <tr><td><code><i>src</i>+"_Selected_Focused_Over"+<i>extension</i></code></td>      <td>Combined Selected, Focused and
-     * rollOver state</td></tr> <tr><td><code><i>src</i>+"_Selected_Down"+<i>extension</i></code></td>      <td>Combined
-     * Selected and mouse-down state</td></tr> <tr><td><code><i>src</i>+"_Focused_Down"+<i>extension</i></code></td>     
-     * <td>Combined Focused and mouse-down state</td></tr>
-     * <tr><td><code><i>src</i>+"_Selected_Focused_Down"+<i>extension</i></code></td>      <td>Combined Selected, Focused and
-     * mouse-down state</td></tr> <tr><td><code><i>src</i>+"_Selected_Disabled"+<i>extension</i></code></td>      <td>Combined
-     * Selected and Disabled state</td></tr> </table>
+     * The base filename or stateful image configuration for the image.  Note that as the {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getState state}  of the component changes, the image displayed will be
+     * updated as described in {@link com.smartgwt.client.docs.StatefulImages}.
      *
      * @param src New src value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.ImgSplitbar ImgSplitbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setSrc(String src)  throws IllegalStateException {
-        setAttribute("src", src, false);
+    public ImgSplitbar setSrc(String src)  throws IllegalStateException {
+        return (ImgSplitbar)setAttribute("src", src, false);
     }
 
     /**
-     * The base filename for the image. <P> This value will be combined with any specified {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getState state} to form a combined URL, changing the appearance of the
-     * component as the state changes. <P> The following table lists out the standard set of combined URLs that  may be
-     * generated. Subclasses may support additional state-derived media of course. Note that the src URL will be split such
-     * that the extension is always applied to the end of the combined string. For example in the following table, if
-     * <code>src</code> was set to <code>"blank.gif"</code>, the Selected+Focused URL would be 
-     * <code>"blank_Selected_Focused.gif"</code>. <table> <tr><td><b>URL for Img
-     * source</b></td><td><b>Description</b></td></tr> <tr><td><code><i>src</i>+<i>extension</i></code></td><td>Default
-     * URL</td></tr> <tr><td><code><i>src</i>+"_Selected"+<i>extension</i></code></td>      <td>Applied when {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getSelected StatefulCanvas.selected} is set to true</td></tr>
-     * <tr><td><code><i>src</i>+"_Focused"+<i>extension</i></code></td>      <td>Applied when the component has keyboard focus,
-     * if       {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused StatefulCanvas.showFocused} is true, and      
-     * {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver StatefulCanvas.showFocusedAsOver} is not
-     * true.</td></tr> <tr><td><code><i>src</i>+"_Over"+<i>extension</i></code></td>      <td>Applied when the user rolls over
-     * the component if          {@link com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver StatefulCanvas.showRollOver}
-     * is set to true</td></tr> <tr><td><code><i>src</i>+"_Down"+<i>extension</i></code></td>      <td>Applied when the user
-     * presses the mouse button over over the component if          {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowDown StatefulCanvas.showDown} is set to true</td></tr>
-     * <tr><td><code><i>src</i>+"_Disabled"+<i>extension</i></code></td>      <td>Applied to {@link
-     * com.smartgwt.client.widgets.Canvas#getDisabled Canvas.disabled} component       if {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowDisabled StatefulCanvas.showDisabled} is true.</td></tr> <tr><td
-     * colspan=2><i>Combined states</i></td></tr> <tr><td><code><i>src</i>+"_Selected_Focused"+<i>extension</i></code></td>    
-     * <td>Combined Selected and focused state</td></tr> <tr><td><code><i>src</i>+"_Selected_Over"+<i>extension</i></code></td>
-     * <td>Combined Selected and rollOver state</td></tr> <tr><td><code><i>src</i>+"_Focused_Over"+<i>extension</i></code></td>
-     * <td>Combined Focused and rollOver state</td></tr>
-     * <tr><td><code><i>src</i>+"_Selected_Focused_Over"+<i>extension</i></code></td>      <td>Combined Selected, Focused and
-     * rollOver state</td></tr> <tr><td><code><i>src</i>+"_Selected_Down"+<i>extension</i></code></td>      <td>Combined
-     * Selected and mouse-down state</td></tr> <tr><td><code><i>src</i>+"_Focused_Down"+<i>extension</i></code></td>     
-     * <td>Combined Focused and mouse-down state</td></tr>
-     * <tr><td><code><i>src</i>+"_Selected_Focused_Down"+<i>extension</i></code></td>      <td>Combined Selected, Focused and
-     * mouse-down state</td></tr> <tr><td><code><i>src</i>+"_Selected_Disabled"+<i>extension</i></code></td>      <td>Combined
-     * Selected and Disabled state</td></tr> </table>
+     * The base filename or stateful image configuration for the image.  Note that as the {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getState state}  of the component changes, the image displayed will be
+     * updated as described in {@link com.smartgwt.client.docs.StatefulImages}.
      *
      * @return Current src value. Default value is null
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
@@ -383,12 +333,13 @@ public class ImgSplitbar extends Img {
      * com.smartgwt.client.widgets.ImgSplitbar#getSrc src} is unset.
      *
      * @param vSrc New vSrc value. Default value is [SKIN]vgrip.png
+     * @return {@link com.smartgwt.client.widgets.ImgSplitbar ImgSplitbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.ImgSplitbar#setSrc
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setVSrc(String vSrc)  throws IllegalStateException {
-        setAttribute("vSrc", vSrc, false);
+    public ImgSplitbar setVSrc(String vSrc)  throws IllegalStateException {
+        return (ImgSplitbar)setAttribute("vSrc", vSrc, false);
     }
 
     /**

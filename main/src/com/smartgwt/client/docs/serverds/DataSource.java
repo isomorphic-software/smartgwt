@@ -629,6 +629,18 @@ public class DataSource {
     public String tagName;
 
     /**
+     * For an {@link com.smartgwt.client.docs.serverds.DataSource#audit audited} DataSource, controls
+     * whether the Framework will attempt to auto-generate the audit DataSource.  Note that this
+     * property is independent of {@link
+     * com.smartgwt.client.docs.serverds.DataSource#auditDataSourceID auditDataSourceID} so that, by
+     * default, even when the audit DataSource is given a non-default ID, the Framework will still
+     * attempt to auto-generate it.
+     *
+     * <p>Default value is true
+     */
+    public boolean generateAuditDS;
+
+    /**
      * The list of fields that compose records from this DataSource. <P> Each DataSource field can
      * have type, user-visible title, validators, and other metadata attached.
      *
@@ -842,6 +854,17 @@ public class DataSource {
      * <p>Default value is null
      */
     public String idClassName;
+
+    /**
+     * For DataSources with {@link com.smartgwt.client.docs.serverds.DataSource#audit auditing
+     * enabled}, specifies the field name used to store the names of the fields which were updated. 
+     * If empty string is specified as the field name, the audit DataSource will not store this field.
+     * <P> Note that this field will only be set for {@link com.smartgwt.client.types.DSOperationType
+     * update} operations.
+     *
+     * <p>Default value is "audit_changedFields"
+     */
+    public String auditChangedFieldsFieldName;
 
     /**
      * Decides under what conditions the {@link com.smartgwt.client.data.ResultSet} cache should be
@@ -1374,22 +1397,26 @@ public class DataSource {
      * {@link com.smartgwt.client.docs.serverds.OperationBinding#requiresRole Declarative Security}
      * subsystem determines the       current user. <li> {@link
      * com.smartgwt.client.docs.serverds.DataSource#auditTimeStampFieldName "audit_changeTime"}: a
-     * field of type "datetime" recording the timestamp of      the change <li> {@link
+     * field of type "datetime" recording      the timestamp of the change <li> {@link
      * com.smartgwt.client.docs.serverds.DataSource#auditRevisionFieldName "audit_revision"}: a field
-     * of type "sequence" recording a simple      increasing integer value </ul> <p> If any of the
-     * field names above collide with field names of the DataSource being audited, an integer suffix
-     * will also be added, starting with 2 (for example, "audit_modifier2", then "audit_modifier3",
-     * etc). <p> To omit a data field from the automatically generated audit DataSource, just set
-     * {@link com.smartgwt.client.docs.serverds.DataSourceField#audit DataSourceField.audit} to false.
-     * <p> Note: audit DataSource feature works only with single row operations, i.e. operations with 
-     * {@link com.smartgwt.client.docs.serverds.OperationBinding#allowMultiUpdate allowMultiUpdate}
-     * enabled are not supported. <p> Note, audit can be disabled for a given DSRequest via
-     * server-side API <code>DSRequest.setSkipAudit()</code>  or for specific opreation via {@link
-     * com.smartgwt.client.docs.serverds.OperationBinding#skipAudit operationBinding.skipAudit}
-     * setting. <p> <h4>Auto-generated Audit DataSources</h4> <p> The audit DataSource is normally
-     * automatically generated, and unless otherwise specified with {@link
-     * com.smartgwt.client.docs.serverds.DataSource#auditDataSourceID auditDataSourceID}, the ID of
-     * the audit DataSource will be <code>audit_[OriginalDSID]</code>.   <p> By default, the
+     * of type "sequence" recording a      simple increasing integer value <li> {@link
+     * com.smartgwt.client.docs.serverds.DataSource#auditChangedFieldsFieldName
+     * "audit_changedFields"}: a      {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#multiple "multiple"} field of type "string". 
+     * For "update"      operations, records which fields have changed; otherwise, null </ul> <p> If
+     * any of the field names above collide with field names of the DataSource being audited, an
+     * integer suffix will also be added, starting with 2 (for example, "audit_modifier2", then
+     * "audit_modifier3", etc). <p> To omit a data field from the automatically generated audit
+     * DataSource, just set {@link com.smartgwt.client.docs.serverds.DataSourceField#audit
+     * DataSourceField.audit} to false.  Audit can be disabled for a given DSRequest via the
+     * server-side API <code>DSRequest.setSkipAudit()</code>, or for a specific operation  via the
+     * {@link com.smartgwt.client.docs.serverds.OperationBinding#skipAudit operationBinding.skipAudit}
+     * setting. <p> Note: The DataSource audit feature works only with single row operations;
+     * operations with  {@link com.smartgwt.client.docs.serverds.OperationBinding#allowMultiUpdate
+     * allowMultiUpdate} enabled are not supported. <p> <h4>Auto-generated Audit DataSources</h4> <p>
+     * The audit DataSource is normally automatically generated, and unless otherwise specified with
+     * {@link com.smartgwt.client.docs.serverds.DataSource#auditDataSourceID auditDataSourceID}, the
+     * ID of the audit DataSource will be <code>audit_[OriginalDSID]</code>.   <p> By default, the
      * automatically generated audit DataSource will be of the same type as the DataSource being
      * audited, however, if the DataSource being audited is not already a SQLDataSource, we recommend
      * using {@link com.smartgwt.client.docs.serverds.DataSource#auditDSConstructor
@@ -1570,6 +1597,23 @@ public class DataSource {
      * @see com.smartgwt.client.docs.FileSource FileSource overview and related methods
      */
     public String fileLastModifiedField;
+
+    /**
+     * Only applicable to {@link com.smartgwt.client.docs.BinaryFields binary fields} on {@link
+     * com.smartgwt.client.docs.serverds.DataSource#audit audited} DataSources. <p> When determining
+     * if a binary field has changed for auditing purposes, should we compare the metadata values (ie,
+     * the associated <code>_filename</code> and <code>_filesize</code>  fields) or the actual binary
+     * content?  If you set this flag to false, this will cause  Smart GWT to fetch the existing
+     * content of any binary field from the database before any update, and then compare it byte by
+     * byte to the new content.  You should consider if this  will have performance implications for
+     * your application, particularly if you store large  binary values. <p> Note that value
+     * comparison of any kind is only performed if the field's  {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#audit DataSourceField.audit} setting is
+     * "change"
+     *
+     * <p>Default value is true
+     */
+    public boolean compareMetadataForAuditChangeStatus;
 
     /**
      * Name of the field that has a long description of the record, or has the primary text data value
@@ -1801,6 +1845,23 @@ public class DataSource {
 
     /**
      * For DataSources with {@link com.smartgwt.client.docs.serverds.DataSource#audit auditing
+     * enabled}, specifies the length of the field used 
+     *  to store the names of the fields which were updated.  See also 
+     * {@link com.smartgwt.client.docs.serverds.DataSource#auditChangedFieldsFieldName
+     * auditChangedFieldsFieldName}
+     *  <p>
+     *  To set the changedFields field length for all DataSources that do not override the default,
+     *  set <code>audit.auditChangedFieldsFieldLength</code> in your <code>server.properties</code>
+     *  file.  For example <pre>
+     *         audit.auditChangedFieldsFieldLength: 512
+     *  </pre>
+     *
+     * <p>Default value is 255
+     */
+    public Integer auditChangedFieldsFieldLength;
+
+    /**
+     * For DataSources with {@link com.smartgwt.client.docs.serverds.DataSource#audit auditing
      * enabled}, optionally specifies the {@link
      * com.smartgwt.client.docs.serverds.DataSource#serverConstructor serverConstructor} for the
      * automatically generated audit DataSource.  The default is to use the same
@@ -1825,7 +1886,7 @@ public class DataSource {
 
     /**
      * For dataSources of {@link com.smartgwt.client.docs.serverds.DataSource#serverType serverType}
-     * "sql" and "hibrenate", specifies the inheritance  mode to use.  This property has no effect for
+     * "sql" and "hibernate", specifies the inheritance  mode to use.  This property has no effect for
      * any other type of DataSource.
      *
      * <p>Default value is "full"
@@ -2243,6 +2304,28 @@ public class DataSource {
     public Boolean sendExtraFields;
 
     /**
+     * Criteria that are implicitly applied to all fetches made through this DataSource.  These
+     * criteria are never shown to or edited by the user and are cumulative with any other  criteria
+     * provided on the DSRequest. <P> For example, a DataSource might *always* implicitly limit its
+     * fetch results to records  owned by the current user's department.  Components and ResultSets
+     * requesting data  from the DataSource can then apply further implicitCriteria of their own,
+     * separately  from their regular, user-editable criteria. <P> For instance, a grid bound to this
+     * dataSource might be further limited to  implicitly show only the subset of records created by
+     * the current user.  See  {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getImplicitCriteria
+     * DataBoundComponent.implicitCriteria} and {@link
+     * com.smartgwt.client.data.ResultSet#getImplicitCriteria ResultSet.implicitCriteria} for  more on
+     * these localized options. <P> Note that, while <code>implicitCriteria</code> can be declared in
+     * a server DataSource  file using {@link com.smartgwt.client.docs.ComponentXML Component XML}, it
+     * is an entirely client-side  feature, added by client-side components.  So it does not affect
+     * server-side requests,  and will not be added to client-side requests that don't come from a
+     * Smart GWT UI  (eg RestHandler).
+     *
+     * <p>Default value is null
+     */
+    public Criteria implicitCriteria;
+
+    /**
      * ID of another DataSource this DataSource inherits its {@link
      * com.smartgwt.client.docs.serverds.DataSource#fields fields} from. <P> Local fields (fields
      * defined in this DataSource) are added to inherited fields  to form the full set of fields. 
@@ -2284,6 +2367,16 @@ public class DataSource {
      * <p>Default value is dataSource.ID
      */
     public String pluralTitle;
+
+    /**
+     * For audit DataSources, this required property specifies the ID of the {@link
+     * com.smartgwt.client.docs.serverds.DataSource#audit audited} DataSource.  Automatically
+     * populated for {@link com.smartgwt.client.docs.serverds.DataSource#generateAuditDS
+     * auto-generated} audit DataSources.
+     *
+     * <p>Default value is varies
+     */
+    public String auditedDataSourceID;
 
     /**
      * For DataSources using the {@link com.smartgwt.client.docs.SqlDataSource Smart GWT SQL engine}

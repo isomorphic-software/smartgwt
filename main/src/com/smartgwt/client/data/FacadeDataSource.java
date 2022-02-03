@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Extends an arbitrary {@link com.smartgwt.client.data.DataSource} with the ability to queue requests made on it and
@@ -143,9 +146,10 @@ public class FacadeDataSource extends DataSource {
      * Setter for {@link com.smartgwt.client.data.FacadeDataSource#getQueueRequests queueRequests}.
      *
      * @param queueRequests New queueRequests value. Default value is false
+     * @return {@link com.smartgwt.client.data.FacadeDataSource FacadeDataSource} instance, for chaining setter calls
      */
-    public void setQueueRequests(boolean queueRequests) {
-        setAttribute("queueRequests", queueRequests, true);
+    public FacadeDataSource setQueueRequests(boolean queueRequests) {
+        return (FacadeDataSource)setAttribute("queueRequests", queueRequests, true);
     }
 
     /**

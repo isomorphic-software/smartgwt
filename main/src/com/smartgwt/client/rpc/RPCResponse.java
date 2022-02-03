@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Encapsulates an RPC response from the server.  Instances of this class are automatically created and optionally passed
@@ -121,6 +124,12 @@ public class RPCResponse extends DataClass {
      * currently down.
      */
     public final static int STATUS_CONNECTION_RESET_ERROR = -92;
+
+    /** 
+     * Indicates that an operation binding configured to require {@link
+     * com.smartgwt.client.data.OperationBinding#getRequiredCriterion OperationBinding.requiredCriterion} has received none.
+     */
+    public final static int STATUS_CRITERIA_REQUIRED_ERROR = -13;
 
     /** 
      * Indicates a generic failure on the server.   See the error handling section in {@link com.smartgwt.client.rpc.RPCManager
@@ -307,9 +316,10 @@ public class RPCResponse extends DataClass {
      * com.smartgwt.client.docs.Relogin Relogin\n Overview} for details.
      *
      * @param status New status value. Default value is 0
+     * @return {@link com.smartgwt.client.rpc.RPCResponse RPCResponse} instance, for chaining setter calls
      */
-    public void setStatus(int status) {
-        setAttribute("status", status);
+    public RPCResponse setStatus(int status) {
+        return (RPCResponse)setAttribute("status", status);
     }
 
     /**

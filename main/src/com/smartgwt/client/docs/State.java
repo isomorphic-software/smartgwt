@@ -70,6 +70,16 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Button#getShowDown
  * @see com.smartgwt.client.widgets.Button#getShowFocused
  * @see com.smartgwt.client.widgets.Button#getShowRollOver
+ * @see com.smartgwt.client.widgets.Img#getShowRollOver
+ * @see com.smartgwt.client.widgets.Img#getShowImageRollOver
+ * @see com.smartgwt.client.widgets.Img#getShowFocused
+ * @see com.smartgwt.client.widgets.Img#getShowImageFocused
+ * @see com.smartgwt.client.widgets.Img#getShowFocusedAsOver
+ * @see com.smartgwt.client.widgets.Img#getShowImageFocusedAsOver
+ * @see com.smartgwt.client.widgets.Img#getShowDown
+ * @see com.smartgwt.client.widgets.Img#getShowImageDown
+ * @see com.smartgwt.client.widgets.Img#getShowDisabled
+ * @see com.smartgwt.client.widgets.Img#getShowImageDisabled
  * @see com.smartgwt.client.widgets.ImgButton#getSelected
  * @see com.smartgwt.client.widgets.ImgButton#getRadioGroup
  * @see com.smartgwt.client.widgets.ImgButton#getActionType

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * FormItem intended for inputting integer numbers.
@@ -164,20 +167,6 @@ public class IntegerItem extends TextItem {
     // ********************* Properties / Attributes ***********************
 
     // ********************* Methods ***********************
-	/**
-     * Return the value tracked by this form item as a Integer.  If the value cannot be parsed to an int that matches the
-     * original value, null will be returned.
-     *
-     * @return value of this element
-     * @see com.smartgwt.client.widgets.form.fields.FormItem#getValue
-     */
-    public native Integer getValueAsInteger() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var ret = self.setValue ? self.getValueAsInteger() : self.value;
-        if(ret == null) return null;
-        return @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
-    }-*/;
-
 
     // ********************* Static Methods ***********************
 

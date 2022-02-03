@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * FormItem which renders a Canvas inline in a DynamicForm instance. <P> CanvasItem is {@link
@@ -194,9 +197,10 @@ public class CanvasItem extends FormItem implements com.smartgwt.client.widgets.
      * the prompt be applied to the {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvas canvas} for this item?
      *
      * @param applyPromptToCanvas New applyPromptToCanvas value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.CanvasItem CanvasItem} instance, for chaining setter calls
      */
-    public void setApplyPromptToCanvas(Boolean applyPromptToCanvas) {
-        setAttribute("applyPromptToCanvas", applyPromptToCanvas);
+    public CanvasItem setApplyPromptToCanvas(Boolean applyPromptToCanvas) {
+        return (CanvasItem)setAttribute("applyPromptToCanvas", applyPromptToCanvas);
     }
 
     /**
@@ -228,9 +232,10 @@ public class CanvasItem extends FormItem implements com.smartgwt.client.widgets.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param autoDestroy New autoDestroy value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.CanvasItem CanvasItem} instance, for chaining setter calls
      */
-    public void setAutoDestroy(Boolean autoDestroy) {
-        setAttribute("autoDestroy", autoDestroy);
+    public CanvasItem setAutoDestroy(Boolean autoDestroy) {
+        return (CanvasItem)setAttribute("autoDestroy", autoDestroy);
     }
 
     /**
@@ -272,9 +277,10 @@ public class CanvasItem extends FormItem implements com.smartgwt.client.widgets.
      * Setter to update the {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvas canvas} at runtime
      *
      * @param canvas New canvas to display. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.CanvasItem CanvasItem} instance, for chaining setter calls
      */
-    public void setCanvas(Canvas canvas) {
-        setAttribute("canvas", canvas == null ? null : canvas.getOrCreateJsObj());
+    public CanvasItem setCanvas(Canvas canvas) {
+        return (CanvasItem)setAttribute("canvas", canvas == null ? null : canvas.getOrCreateJsObj());
     }
 
     /**
@@ -310,9 +316,10 @@ public class CanvasItem extends FormItem implements com.smartgwt.client.widgets.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param editCriteriaInInnerForm New editCriteriaInInnerForm value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.CanvasItem CanvasItem} instance, for chaining setter calls
      */
-    public void setEditCriteriaInInnerForm(Boolean editCriteriaInInnerForm) {
-        setAttribute("editCriteriaInInnerForm", editCriteriaInInnerForm);
+    public CanvasItem setEditCriteriaInInnerForm(Boolean editCriteriaInInnerForm) {
+        return (CanvasItem)setAttribute("editCriteriaInInnerForm", editCriteriaInInnerForm);
     }
 
     /**
@@ -338,9 +345,10 @@ public class CanvasItem extends FormItem implements com.smartgwt.client.widgets.
      * standard formItem sizing rules as described in {@link com.smartgwt.client.docs.FormLayout}
      *
      * @param height New height value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.CanvasItem CanvasItem} instance, for chaining setter calls
      */
-    public void setHeight(int height) {
-        setAttribute("height", height);
+    public CanvasItem setHeight(int height) {
+        return (CanvasItem)setAttribute("height", height);
     }
 
     /**
@@ -372,9 +380,10 @@ public class CanvasItem extends FormItem implements com.smartgwt.client.widgets.
      * standard formItem sizing rules as described in {@link com.smartgwt.client.docs.FormLayout}
      *
      * @param height New height value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.CanvasItem CanvasItem} instance, for chaining setter calls
      */
-    public void setHeight(String height) {
-        setAttribute("height", height);
+    public CanvasItem setHeight(String height) {
+        return (CanvasItem)setAttribute("height", height);
     }
 
     /**
@@ -398,9 +407,10 @@ public class CanvasItem extends FormItem implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.form.fields.CanvasItem#getHeight height}.
      *
      * @param maxHeight New maxHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.CanvasItem CanvasItem} instance, for chaining setter calls
      */
-    public void setMaxHeight(Integer maxHeight) {
-        setAttribute("maxHeight", maxHeight);
+    public CanvasItem setMaxHeight(Integer maxHeight) {
+        return (CanvasItem)setAttribute("maxHeight", maxHeight);
     }
 
     /**
@@ -421,9 +431,10 @@ public class CanvasItem extends FormItem implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.form.fields.CanvasItem#getHeight height}.
      *
      * @param minHeight New minHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.CanvasItem CanvasItem} instance, for chaining setter calls
      */
-    public void setMinHeight(Integer minHeight) {
-        setAttribute("minHeight", minHeight);
+    public CanvasItem setMinHeight(Integer minHeight) {
+        return (CanvasItem)setAttribute("minHeight", minHeight);
     }
 
     /**
@@ -445,9 +456,10 @@ public class CanvasItem extends FormItem implements com.smartgwt.client.widgets.
      * then the return type is either <code>List</code> or <code>RecordList</code>.
      *
      * @param multiple New multiple value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.CanvasItem CanvasItem} instance, for chaining setter calls
      */
-    public void setMultiple(Boolean multiple) {
-        setAttribute("multiple", multiple);
+    public CanvasItem setMultiple(Boolean multiple) {
+        return (CanvasItem)setAttribute("multiple", multiple);
     }
 
     /**
@@ -468,9 +480,10 @@ public class CanvasItem extends FormItem implements com.smartgwt.client.widgets.
      * CanvasItems support specifying overflow for the Canvas directly on the item.
      *
      * @param overflow New overflow value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.CanvasItem CanvasItem} instance, for chaining setter calls
      */
-    public void setOverflow(Overflow overflow) {
-        setAttribute("overflow", overflow == null ? null : overflow.getValue());
+    public CanvasItem setOverflow(Overflow overflow) {
+        return (CanvasItem)setAttribute("overflow", overflow == null ? null : overflow.getValue());
     }
 
     /**
@@ -484,25 +497,34 @@ public class CanvasItem extends FormItem implements com.smartgwt.client.widgets.
     
 
     /**
-     * This text is shown as a tooltip prompt when the cursor hovers over this item. When item is {@link
+     * This text is shown as a tooltip prompt when the cursor hovers over this item. <P> When item is {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#setCanEdit read-only} a different hover can be shown with {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyHover FormItem.readOnlyHover}.
+     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyHover FormItem.readOnlyHover}. Or, when item is {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisabled disabled} or read-only with {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyDisplay readOnlyDisplay:disabled} a different hover can be
+     * shown with {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisabledHover FormItem.disabledHover}. <P> Note
+     * that when the form is {@link com.smartgwt.client.widgets.Canvas#getDisabled disabled} this prompt will not be shown.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the {@link com.smartgwt.client.widgets.form.fields.FormItem#getPrompt FormItem.prompt} for this item. Default implementation will also apply the prompt to {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getCanvas canvas} if {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getApplyPromptToCanvas applyPromptToCanvas} is true.
      *
      * @param prompt new prompt for the item. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.CanvasItem CanvasItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
-    public void setPrompt(String prompt) {
-        setAttribute("prompt", prompt);
+    public CanvasItem setPrompt(String prompt) {
+        return (CanvasItem)setAttribute("prompt", prompt);
     }
 
     /**
-     * This text is shown as a tooltip prompt when the cursor hovers over this item. When item is {@link
+     * This text is shown as a tooltip prompt when the cursor hovers over this item. <P> When item is {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#setCanEdit read-only} a different hover can be shown with {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyHover FormItem.readOnlyHover}.
+     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyHover FormItem.readOnlyHover}. Or, when item is {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisabled disabled} or read-only with {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyDisplay readOnlyDisplay:disabled} a different hover can be
+     * shown with {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisabledHover FormItem.disabledHover}. <P> Note
+     * that when the form is {@link com.smartgwt.client.widgets.Canvas#getDisabled disabled} this prompt will not be shown.
      *
      * @return Current prompt value. Default value is null
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
@@ -523,9 +545,10 @@ public class CanvasItem extends FormItem implements com.smartgwt.client.widgets.
      * CanvasItems.
      *
      * @param shouldSaveValue New shouldSaveValue value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.CanvasItem CanvasItem} instance, for chaining setter calls
      */
-    public void setShouldSaveValue(Boolean shouldSaveValue) {
-        setAttribute("shouldSaveValue", shouldSaveValue);
+    public CanvasItem setShouldSaveValue(Boolean shouldSaveValue) {
+        return (CanvasItem)setAttribute("shouldSaveValue", shouldSaveValue);
     }
 
     /**

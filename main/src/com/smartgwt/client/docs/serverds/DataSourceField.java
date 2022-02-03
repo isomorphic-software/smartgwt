@@ -141,7 +141,7 @@ public class DataSourceField {
     public Boolean initRequiresAuthentication;
 
     /**
-     * Indicates this field should be fetched from another, related DataSource.
+     * Indicates that this field should be fetched from another, related DataSource.
      *  <P>
      *  The <code>incluedFrom</code> attribute should be of the form
      *  "<i>dataSourceId</i>.<i>fieldName</i>", for example:
@@ -152,20 +152,40 @@ public class DataSourceField {
      * A {@link com.smartgwt.client.docs.serverds.DataSourceField#foreignKey foreignKey} declaration
      * must exist between the two DataSources, establishing either
      *  a 1-to-1 relationship or a many-to-1 relationship from this DataSource to the related
-     *  DataSource.  The inclusion can be indirect (traverse multiple DataSources) so long as there
+     *  DataSource. The inclusion can be indirect (traverse multiple DataSources) so long as there
      *  is a chain of <code>foreignKey</code> declarations from the target DataSource to the
-     *  DataSource where the <code>includeFrom</code> field is declared.
-     *  <P>
-     * {@link com.smartgwt.client.docs.serverds.DataSourceField#name name} will default to the name of
-     * the included field, or you can
-     *  specify a different name.
+     *  DataSource where the <code>includeFrom</code> field is declared.  You may use dot-notation
+     *  to provide an explicit path between DataSources, or provide the name of only the last
+     *  DataSource in the chain to have the complete path calculated for you at runtime.
+     *  i.e., either of the following are acceptable forms, where foreign keys
+     *  are defined to link records in the current DataSource to Employee records and in turn to
+     *  Office records:
+     *  <pre>
+     *    &lt;field includeFrom="Employee.Office.territory"/&gt;
+     *    &lt;!-- OR --&gt;
+     *    &lt;field includeFrom="Office.territory"/&gt;
+     *  </pre>
+     *  Note that when using the shorthand form, there is potential ambiguity: there could be 
+     *  multiple ways in which two DataSources are related via different intervening DataSources, 
+     *  so the auto-discovered relation may be different depending on which other DataSources are 
+     *  loaded in the page. For this reason, explicitly spelling out the inclusion path is 
+     *  preferred.
+     *  <p>
+     *  For including from a
+     *  related DataSource where there are multiple related records, see
+     * {@link com.smartgwt.client.docs.serverds.DataSourceField#includeSummaryFunction
+     * includeSummaryFunction}.
+     *  <p>
+     * In all cases, {@link com.smartgwt.client.docs.serverds.DataSourceField#name name} will default
+     * to the name of the included field,
+     *  or you can specify a different name.
      *  <p>
      *  If both DataSources are SQLDataSources, HibernateDataSources or JPADataSources (with
      *  Hibernate as the provider) the related data will be retrieved via a SQL join and criteria
      *  and sort directions applied to the field work normally (they become part of the generated
      *  SQL query).
-     *  <P>
-     *  Otherwise, the related data will be retrieved via performing a DSRequest against
+     *  <p>
+     *  Related data will be retrieved via performing a DSRequest against
      *  the related DataSource once the data from the primary DataSource has been retrieved.  In
      *  this case, criteria or sorting directions applied to the included field are only allowed if
      * data paging is not in use (for example {@link
@@ -283,7 +303,7 @@ public class DataSourceField {
      * is needed to join the target table, and {@link
      * com.smartgwt.client.docs.serverds.DataSourceField#includeVia includeVia} is missing, generated
      * alias is a concatenation of <code>relatedTableAlias</code> and FK field names starting with the
-     * first <code>relatedTableAlias</code> met in chain of relations leading to the target table.
+     * first <code>relatedTableAlias</code>  met in chain of relations leading to the target table.
      *
      * <p>Default value is null
      * @see com.smartgwt.client.docs.serverds.DataSourceField#includeVia
@@ -648,13 +668,30 @@ public class DataSourceField {
     public Boolean creatorOverrides;
 
     /**
-     * Setting <code>audit</code> to <code>false</code> explicitly indicates that this field will not
-     * be saved to the audit DataSource when {@link com.smartgwt.client.docs.serverds.DataSource#audit
-     * auditing} is enabled.
+     * Determines when the field value should be saved to the audit DataSource when {@link
+     * com.smartgwt.client.docs.serverds.DataSource#audit auditing} is enabled.  Setting the property
+     * to "change" will conserve storage by only saving out the value when it's changed, and setting
+     * it to "never" will exclude the field values from ever being saved during auditing. <h4>Binary
+     * fields</h4> Because binary data can be very large compared to other data types, and in many use
+     * cases  does not typically change (for example, an application that stores scanned documents), 
+     * binary fields are treated specially for auditing purposes:<ul> <li>The default
+     * <code>audit</code> setting is "never"</li> <li>The implied <code>_filename</code>,
+     * <code>_filesize</code> and <code>_date_created</code> metadata fields inherit their
+     * <code>audit</code> setting from the associated binary field, if no explicit setting is provided
+     * for the metadata field, but this does not include inheriting the  the implicit "never" default.
+     * See the {@link com.smartgwt.client.docs.BinaryFields binary fields overview}  for more details
+     * about the binary metadata fields, including how to provide explicit  properties for them</li>
+     * <li>By default, we determine if the binary content has changed by comparing the 
+     * <code>_filename</code> and <code>_filesize</code> metadata values.  If both those values are
+     * unchanged, we assume the content is also unchanged.  If you want to compare the actual  binary
+     * content instead, set <code>DataSource</code> property  {@link
+     * com.smartgwt.client.docs.serverds.DataSource#compareMetadataForAuditChangeStatus
+     * DataSource.compareMetadataForAuditChangeStatus} to false, but bear in mind this may have
+     * performance implications, as described in the documentation for that property</li>
      *
-     * <p>Default value is true
+     * <p>Default value is "always"
      */
-    public boolean audit;
+    public FieldAuditMode audit;
 
     /**
      * Sets the default FormItem to be used for this field if it appears in a filter row, and {@link
@@ -744,7 +781,8 @@ public class DataSourceField {
     /**
      * Alternative XPath expression used to set the field's value. <P> If is not set, then {@link
      * com.smartgwt.client.docs.serverds.DataSourceField#valueXPath dataSourceField.valueXPath} is
-     * used, see its description for details.
+     * used, see its description for details. <P> See also Smart GWT server java APIs
+     * <code>DataSource.setProperties()</code> and <code>DSResponse.setData()</code>.
      *
      * <p>Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
@@ -781,7 +819,7 @@ public class DataSourceField {
      *  <h3>SQL Templating and <code>includeVia</code></h3>
      *  <p>
      * The <code>includeVia</code> feature uses SQL table aliases in the generated SQL when generating
-     * multiple SQL joins 
+     * multiple SQL joins
      * to the same SQL table.  When using {@link com.smartgwt.client.docs.CustomQuerying SQL
      * Templating}, it's sometimes necessary to know 
      *  the names of the aliases in the generated SQL.  The table alias used can be configured via
@@ -872,10 +910,14 @@ public class DataSourceField {
      * <code>foreignKey</code> field names will be used in aliases: "mtId_sourceCurId_groupId" and
      * "mtId_paymentCurId_groupId".
      *  <p>
-     *  <b>Note</b> that Oracle has a limit of 30 characters on identifier names.  We limit table
-     *  aliases to 30 characters <b>all databases</b> despite actual database in use to support
-     *  portability across databases.  If the generated table alias would exceed 30 chars, 
-     *  we instead use a generated and unpredictable value like "a123".  To avoid hitting this limit
+     * <b>Note</b> that databases have their limitations for the length of identifier names. We limit
+     * table
+     * aliases according to the current database as described in {@link
+     * com.smartgwt.client.docs.SqlSettings SQL Settings overview}
+     * (search for <code>aliasLengthLimit</code> settings). If the generated table alias would exceed
+     * the length
+     * limit, we instead use a generated and unpredictable value like "a123".  To avoid hitting this
+     * limit
      *  for the advanced cases discussed above:
      *  <ul>
      *  <li> use relatively short strings for <code>relatedTableAlias</code>
@@ -1044,7 +1086,9 @@ public class DataSourceField {
      *  If you're using the Smart GWT server to return data via the DSResponse object (or
      *  indirectly doing so using DataSource DMI), the valueXPath you specify on the DataSource
      *  fields will be applied to the data you return via the 
-     *  <a href='http://commons.apache.org/jxpath/' target='_blank'>JXPath</a> library.
+     *  <a href='http://commons.apache.org/jxpath/' target='_blank'>JXPath</a> library.<br>
+     *  See also the server side Java APIs <code>DataSource.setProperties()</code> and 
+     *  <code>DSResponse.setData()</code>.
      *  <P>
      *  If you are returning Java Beans as your DSResponse data, normally each dataSource field
      *  receives the value of the same-named Java Bean property, that is, a field "zipCode" is
@@ -1076,7 +1120,16 @@ public class DataSourceField {
 
     /**
      * Should the user be able to filter data by this field? Affects whether this field will show up
-     * in dataBoundComponents with UI for filtering data. <P>
+     * in dataBoundComponents with UI for filtering data. <P> Note that setting
+     * <code>canFilter:false</code> only affects UI and is not a security feature.  Enforcing that
+     * filtering cannot be performed server side does not meaningfully increase security, since as
+     * long as a field can be viewed by an end user, they can effectively search the field themselves
+     * even if the UI doesn't offer a means to do so. If a field should be unable to be viewed
+     * entirely by some users, use  {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#viewRequiresRole viewRequiresRole} and
+     * related settings. <P> Rather than a security setting, <code>canFilter:false</code> is intended
+     * for situations where it would be redundant or nonsensical to be able to search on a field, or
+     * where searching isn't implemented for that field.
      *
      * <p>Default value is null
      * @see com.smartgwt.client.widgets.form.SearchForm#getShowFilterFieldsOnly
@@ -1259,6 +1312,7 @@ public class DataSourceField {
      *  <li>Oracle 10g</li>
      *  <li>Microsoft SQL Server 2008</li>
      *  <li>MySQL 5.6</li>
+     *  <li>MariaDB 5.3</li>
      *  <li>PostgreSQL 9.1</li>
      *  <li>HSQLDB 2.2</li>
      *  <li>DB2 for Unix/Linux 9.7</li>
@@ -1354,24 +1408,28 @@ public class DataSourceField {
      * <code>com.isomorphic.datasource.DataSource.setProperties()</code>.  This includes 
      * auto-populating POJO arguments of a {@link com.smartgwt.client.docs.DmiOverview DMI} method, or
      * populating JPA/Hibernate beans with data when using the built-in JPA and Hibernate DataSources.
-     * <p> For DataSources that do not use Java Beans, fields declared to be of type "integer" or
-     * "float" can use <code>javaClass</code> to force a particular numeric representation for 
-     * validated DSRequest data (e.g. data passed to a DMI).  Valid settings include "BigInteger",
+     * <p> For DataSources that do not use Java Beans, <code>javaClass</code> can be used to force a
+     * particular representation for validated DSRequest data (e.g. data passed to a DMI): <ul>
+     * <li>for fields declared to be of type "integer" or "float" valid settings include "BigInteger",
      * "Long", "Integer", "Short", "Byte", "AtomicInteger", "AtomicLong", "BigDecimal", "Double",
-     * "Float". <p> When populating Java Beans/ POJOs, <code>javaClass</code> does not normally have
-     * to specified: Smart GWT will use Java reflection to inspect the type of argument expected by a
-     * setter method and will attempt conversion of inbound data to that type.  As described in the
-     * documentation for <code>DataTools.setProperties()</code>, this works for almost all typical
-     * cases.  However <code>field.javaClass</code> is useful for: <ul> <li> subobject of abstract or
-     * interface type: in this case Java Reflection is not sufficient to discover the concrete type
-     * that should be instantiated, and <code>javaClass</code> should be set instead.</li> <li>
-     * subobject of Collection or Map type, when Java generics are not used or the Collection member
-     * type or Map value type is abstract.  When Java generics are used (for example the setter takes
-     * an argument is of type Collection&lt;SomePOJO&gt; or Map&lt;KeyType,SomePOJO&gt;, Smart GWT
-     * will automatically attempt to convert inbound data to the type of the members of the Collection
-     * or values of the Map.  Without generics, <code>javaClass</code> needs to be specified.  Note
-     * that <code>javaClass</code> will take precedence over generics if both  are used. Also note
-     * that {@link com.smartgwt.client.docs.serverds.DataSourceField#javaCollectionClass
+     * "Float".</li> <li>for fields declared to be of type "date" valid settings include basic
+     * "java.util.Date", "java.sql.Date" and "java.sql.Time" types as well as Joda-Time types
+     * "DateTime", "DateMidnight", "LocalDateTime", "LocalDate", "LocalTime" and Java 8 Date/Time API
+     * types "LocalDate", "LocalDateTime", "LocalTime".</li> </ul> When populating Java Beans/ POJOs,
+     * <code>javaClass</code> does not normally have to specified: Smart GWT will use Java reflection
+     * to inspect the type of argument expected by a setter method and will attempt conversion of
+     * inbound data to that type.  As described in the documentation for
+     * <code>DataTools.setProperties()</code>, this works for almost all typical cases.  However
+     * <code>field.javaClass</code> is useful for: <ul> <li> subobject of abstract or interface type:
+     * in this case Java Reflection is not sufficient to discover the concrete type that should be
+     * instantiated, and <code>javaClass</code> should be set instead.</li> <li> subobject of
+     * Collection or Map type, when Java generics are not used or the Collection member type or Map
+     * value type is abstract.  When Java generics are used (for example the setter takes an argument
+     * is of type Collection&lt;SomePOJO&gt; or Map&lt;KeyType,SomePOJO&gt;, Smart GWT will
+     * automatically attempt to convert inbound data to the type of the members of the Collection or
+     * values of the Map.  Without generics, <code>javaClass</code> needs to be specified.  Note that
+     * <code>javaClass</code> will take precedence over generics if both  are used. Also note that
+     * {@link com.smartgwt.client.docs.serverds.DataSourceField#javaCollectionClass
      * javaCollectionClass} can be specified if a particular Collection or Map type is needed, and
      * {@link com.smartgwt.client.docs.serverds.DataSourceField#javaKeyClass javaKeyClass} can be
      * specified for a field of type <code>java.util.Map</code>.</li> </ul> <b>NOTE:</b> It is also
@@ -1449,14 +1507,15 @@ public class DataSourceField {
      * transformed to replicate the client-side filtering behavior for multiple:true fields, where
      * possible. The following operators are supported with the same behavior as client-side
      * filtering: <ul> <li> all String-oriented operators including {@link
-     * com.smartgwt.client.docs.PatternOperators pattern operators},  but not regexp/iRegexp <li>
-     * isBlank / notBlank <li> isNull / notNull <li> inSet / notInSet <li> equalsField /
-     * notEqualsField / iEqualsField / iNotEqualsField </ul> The following operators, which are
-     * supported for client-side filtering of multiple:true fields, are not supported for server
-     * filtering when using <code>multipleStorage</code>: <ul> <li> greaterThan/lessThan(OrEqual) <li>
-     * "between" and all other operators with {@link com.smartgwt.client.types.OperatorValueType} of
-     * "valueRange"  <li> regexp / iRegexp as noted above </ul> Note that for string-based filtering
-     * operators such as "equals", no characters which are part of the {@link
+     * com.smartgwt.client.docs.PatternOperators pattern operators} <li> regexp / iRegexp (built-in
+     * SQL only, JPA and Hibernate do not support these) <li> isBlank / notBlank <li> isNull / notNull
+     * <li> inSet / notInSet <li> equalsField / notEqualsField / iEqualsField / iNotEqualsField </ul>
+     * The following operators, which are supported for client-side filtering of multiple:true fields,
+     * are not supported for server filtering when using <code>multipleStorage</code>: <ul> <li>
+     * greaterThan/lessThan(OrEqual) <li> "between" and all other operators with {@link
+     * com.smartgwt.client.types.OperatorValueType} of "valueRange"  <li> regexp / iRegexp as noted
+     * above </ul> Note that for string-based filtering operators such as "equals", no characters
+     * which are part of the {@link
      * com.smartgwt.client.docs.serverds.DataSourceField#multipleStorageSeparator
      * multipleStorageSeparator} may be used in the filter string.  If any characters from the
      * <code>multipleStorageSeparator</code> are present in the filter value, it will always fail to
@@ -1909,6 +1968,16 @@ public class DataSourceField {
      *  If the user showed the drop-down list of options for this field, the display values
      *  within that list would be picked up from the "name" field values for the related
      *  "countryDS" records.
+     *  <P>
+     *  Note that when specified, <code>foreignDisplayField</code> is always expected to be set to 
+     *  the related dataSource field containing equivalent values to the <code>displayField</code>
+     * in the local dataSource. This is important as, when editing the field, foreignDisplayField
+     * values from 
+     *  the related dataSource will be displayed to the user, and when a value is selected
+     *  the local record's <code>displayField</code> value will be updated to match the selected
+     *  <code>foreignDisplayField</code> value from the related dataSource's record. This behavior
+     * is documented under {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField
+     * FormItem.displayField}.
      *
      * <p>Default value is null
      * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
@@ -1960,10 +2029,11 @@ public class DataSourceField {
      * identifying the field to use as a static display value within the record being edited,
      * <code>displayField</code> will also identify which field on the related dataSource to use as a
      * display field when showing a set of options to the user. This behavior may be modified in a
-     * couple of ways: <ul>  <li>A separate field name can be specified to identify the display field
-     * on the      related dataSource using the {@link
+     * couple of ways: <ul>  <li>The {@link
      * com.smartgwt.client.docs.serverds.DataSourceField#foreignDisplayField foreignDisplayField}
-     * attribute</li>  <li>The {@link
+     * attribute may be used to handle the      case where the name of the field used as a
+     * displayField within the dataSource is      different from the name of the included/equivalent
+     * field in the related dataSource.</li>  <li>The {@link
      * com.smartgwt.client.docs.serverds.DataSourceField#useLocalDisplayFieldValue
      * useLocalDisplayFieldValue} attribute may be explicitly      set to false to avoid picking up a
      * display value from the local record altogether.      Instead the displayField will be used only
@@ -1992,6 +2062,17 @@ public class DataSourceField {
      * @see com.smartgwt.client.docs.FieldLevelAuth FieldLevelAuth overview and related methods
      */
     public String initRequiresRole;
+
+    /**
+     * Customizable and {@link com.smartgwt.client.docs.I18n localizable} error message to use when
+     * "displayRequired" {@link com.smartgwt.client.docs.serverds.DataSourceField#importStrategy
+     * importStrategy} fails to find corresponding key value. Default message: <i>Key mapping for
+     * display value is required, but was not found</i>.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.serverds.DataSourceField#importStrategy
+     */
+    public String importStrategyFailedErrorMessage;
 
     /**
      * Controls whether an explicit null-valued Record attribute for this field
@@ -2046,7 +2127,8 @@ public class DataSourceField {
      * DB2</td><td>4000</td><td>CLOB</td></tr> <tr><td>Firebird</td><td>32767</td><td>BLOB with
      * subtype 1</td></tr> <tr><td>Informix</td><td>255 / 32739</td><td>LVARCHAR / TEXT ** </td></tr>
      * <tr><td> Microsoft SQL Server </td><td>8000</td><td>TEXT</td></tr> <tr><td>MySQL</td><td> 255 /
-     * 65535 / 16M </td><td> TEXT / MEDIUMTEXT / LONGTEXT *** </td></tr>
+     * 65535 / 16M </td><td> TEXT / MEDIUMTEXT / LONGTEXT *** </td></tr> <tr><td>MariaDB</td><td> 255
+     * / 65535 / 16M </td><td> TEXT / MEDIUMTEXT / LONGTEXT *** </td></tr>
      * <tr><td>Oracle</td><td>4000</td><td>CLOB</td></tr>
      * <tr><td>PostgreSQL</td><td>4000</td><td>TEXT</td></tr> </table><br> <b>*</b> The "VARCHAR
      * limit" referred to here is a limit used by the Smart GWT Server; it is not necessarily imposed
@@ -2185,7 +2267,7 @@ public class DataSourceField {
      *  <code>multiple:true</code> field, according to the
      * {@link com.smartgwt.client.data.DSRequest#getTextMatchStyle textMatchStyle}.  If <i>any</i>
      * field value matches the
-     *  filter value, the field is considered to match the criteria.
+     * j filter value, the field is considered to match the criteria.
      *  <p>
      * For {@link com.smartgwt.client.docs.serverds.AdvancedCriteria}, for normal {@link
      * com.smartgwt.client.types.OperatorId search operators} the field

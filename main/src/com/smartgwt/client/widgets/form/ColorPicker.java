@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -178,10 +181,11 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * Should the "complex" mode be allowed for this ColorPicker? If false, no "More" button is shown on the simple picker
      *
      * @param allowComplexMode New allowComplexMode value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAllowComplexMode(Boolean allowComplexMode)  throws IllegalStateException {
-        setAttribute("allowComplexMode", allowComplexMode, false);
+    public ColorPicker setAllowComplexMode(Boolean allowComplexMode)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("allowComplexMode", allowComplexMode, false);
     }
 
     /**
@@ -200,11 +204,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * whether to automatically center the colorPicker every time it is redisplayed with the show() method.
      *
      * @param autoCenterOnShow New autoCenterOnShow value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.form.ColorPicker#setAutoPosition
      */
-    public void setAutoCenterOnShow(Boolean autoCenterOnShow)  throws IllegalStateException {
-        setAttribute("autoCenterOnShow", autoCenterOnShow, false);
+    public ColorPicker setAutoCenterOnShow(Boolean autoCenterOnShow)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("autoCenterOnShow", autoCenterOnShow, false);
     }
 
     /**
@@ -227,11 +232,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * can be especially useful when for instance embedding this component inside another component.
      *
      * @param autoHide New autoHide value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.form.ColorPicker#setDefaultPickMode
      */
-    public void setAutoHide(Boolean autoHide)  throws IllegalStateException {
-        setAttribute("autoHide", autoHide, false);
+    public ColorPicker setAutoHide(Boolean autoHide)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("autoHide", autoHide, false);
     }
 
     /**
@@ -255,11 +261,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * was last shown.
      *
      * @param autoPosition New autoPosition value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.form.ColorPicker#setAutoCenterOnShow
      */
-    public void setAutoPosition(Boolean autoPosition)  throws IllegalStateException {
-        setAttribute("autoPosition", autoPosition, false);
+    public ColorPicker setAutoPosition(Boolean autoPosition)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("autoPosition", autoPosition, false);
     }
 
     /**
@@ -281,11 +288,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The label shown above the basic color blocks.
      *
      * @param basicColorLabel New basicColorLabel value. Default value is "Basic Colors:"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setBasicColorLabel(String basicColorLabel)  throws IllegalStateException {
-        setAttribute("basicColorLabel", basicColorLabel, false);
+    public ColorPicker setBasicColorLabel(String basicColorLabel)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("basicColorLabel", basicColorLabel, false);
     }
 
     /**
@@ -303,11 +311,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The text to show when the mouse hovers over the 'Blue' field in the complex chooser.
      *
      * @param blueFieldPrompt New blueFieldPrompt value. Default value is "The Blue component of the selected color"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setBlueFieldPrompt(String blueFieldPrompt)  throws IllegalStateException {
-        setAttribute("blueFieldPrompt", blueFieldPrompt, false);
+    public ColorPicker setBlueFieldPrompt(String blueFieldPrompt)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("blueFieldPrompt", blueFieldPrompt, false);
     }
 
     /**
@@ -325,11 +334,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The title for the 'Blue' field in the complex chooser.
      *
      * @param blueFieldTitle New blueFieldTitle value. Default value is "Blue"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setBlueFieldTitle(String blueFieldTitle)  throws IllegalStateException {
-        setAttribute("blueFieldTitle", blueFieldTitle, false);
+    public ColorPicker setBlueFieldTitle(String blueFieldTitle)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("blueFieldTitle", blueFieldTitle, false);
     }
 
     /**
@@ -363,11 +373,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The title for the 'Cancel' button.
      *
      * @param cancelButtonTitle New cancelButtonTitle value. Default value is "Cancel"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
-        setAttribute("cancelButtonTitle", cancelButtonTitle, false);
+    public ColorPicker setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("cancelButtonTitle", cancelButtonTitle, false);
     }
 
     /**
@@ -385,10 +396,11 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * Array of 40 HTML color strings, used to render the basic color selection boxes.
      *
      * @param colorArray New colorArray value. Default value is [...]
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setColorArray(String[] colorArray)  throws IllegalStateException {
-        setAttribute("colorArray", colorArray, false);
+    public ColorPicker setColorArray(String[] colorArray)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("colorArray", colorArray, false);
     }
 
     /**
@@ -405,11 +417,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * Base CSS style applied to the basic color boxes
      *
      * @param colorButtonBaseStyle New colorButtonBaseStyle value. Default value is "ColorChooserCell"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setColorButtonBaseStyle(String colorButtonBaseStyle)  throws IllegalStateException {
-        setAttribute("colorButtonBaseStyle", colorButtonBaseStyle, false);
+    public ColorPicker setColorButtonBaseStyle(String colorButtonBaseStyle)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("colorButtonBaseStyle", colorButtonBaseStyle, false);
     }
 
     /**
@@ -427,10 +440,11 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * Width and height of the basic color boxes (they are always square, and they are all the same size).
      *
      * @param colorButtonSize New colorButtonSize value. Default value is 20
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setColorButtonSize(int colorButtonSize)  throws IllegalStateException {
-        setAttribute("colorButtonSize", colorButtonSize, false);
+    public ColorPicker setColorButtonSize(int colorButtonSize)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("colorButtonSize", colorButtonSize, false);
     }
 
     /**
@@ -447,11 +461,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The location of the crosshair image file
      *
      * @param crosshairImageURL New crosshairImageURL value. Default value is "[SKIN]ColorPicker/crosshair.png"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setCrosshairImageURL(String crosshairImageURL)  throws IllegalStateException {
-        setAttribute("crosshairImageURL", crosshairImageURL, false);
+    public ColorPicker setCrosshairImageURL(String crosshairImageURL)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("crosshairImageURL", crosshairImageURL, false);
     }
 
     /**
@@ -469,10 +484,11 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The default color. This is the color that is selected when the picker first loads
      *
      * @param defaultColor New defaultColor value. Default value is #808080
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDefaultColor(String defaultColor)  throws IllegalStateException {
-        setAttribute("defaultColor", defaultColor, false);
+    public ColorPicker setDefaultColor(String defaultColor)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("defaultColor", defaultColor, false);
     }
 
     /**
@@ -489,10 +505,11 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The initial opacity value for the component, as a percentage value between 0 and 100
      *
      * @param defaultOpacity New defaultOpacity value. Default value is 100
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDefaultOpacity(int defaultOpacity)  throws IllegalStateException {
-        setAttribute("defaultOpacity", defaultOpacity, false);
+    public ColorPicker setDefaultOpacity(int defaultOpacity)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("defaultOpacity", defaultOpacity, false);
     }
 
     /**
@@ -515,11 +532,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * Changes the pick mode of this <code>ColorPicker</code> to <code>pickMode</code>. <p> Note: It is not allowed to set the pick mode to  {@link com.smartgwt.client.types.ColorPickerMode#COMPLEX} if {@link com.smartgwt.client.widgets.form.ColorPicker#getAllowComplexMode allowComplexMode} is <code>false</code>.
      *
      * @param defaultPickMode the new pick mode. Default value is "simple"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.form.ColorPicker#setAllowComplexMode
      */
-    public void setDefaultPickMode(ColorPickerMode defaultPickMode)  throws IllegalStateException {
-        setAttribute("defaultPickMode", defaultPickMode == null ? null : defaultPickMode.getValue(), false);
+    public ColorPicker setDefaultPickMode(ColorPickerMode defaultPickMode)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("defaultPickMode", defaultPickMode == null ? null : defaultPickMode.getValue(), false);
     }
 
     /**
@@ -540,11 +558,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The text to show when the mouse hovers over the 'Green' field in the complex chooser.
      *
      * @param greenFieldPrompt New greenFieldPrompt value. Default value is "The Green component of the selected color"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setGreenFieldPrompt(String greenFieldPrompt)  throws IllegalStateException {
-        setAttribute("greenFieldPrompt", greenFieldPrompt, false);
+    public ColorPicker setGreenFieldPrompt(String greenFieldPrompt)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("greenFieldPrompt", greenFieldPrompt, false);
     }
 
     /**
@@ -562,11 +581,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The title for the 'Green' field in the complex chooser.
      *
      * @param greenFieldTitle New greenFieldTitle value. Default value is "Green"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setGreenFieldTitle(String greenFieldTitle)  throws IllegalStateException {
-        setAttribute("greenFieldTitle", greenFieldTitle, false);
+    public ColorPicker setGreenFieldTitle(String greenFieldTitle)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("greenFieldTitle", greenFieldTitle, false);
     }
 
     /**
@@ -584,11 +604,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The text to show when the mouse hovers over the 'HTML' field in the complex chooser.
      *
      * @param htmlFieldPrompt New htmlFieldPrompt value. Default value is "The selected color''s HTML coding"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setHtmlFieldPrompt(String htmlFieldPrompt)  throws IllegalStateException {
-        setAttribute("htmlFieldPrompt", htmlFieldPrompt, false);
+    public ColorPicker setHtmlFieldPrompt(String htmlFieldPrompt)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("htmlFieldPrompt", htmlFieldPrompt, false);
     }
 
     /**
@@ -606,11 +627,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The title for the 'HTML' field in the complex chooser.
      *
      * @param htmlFieldTitle New htmlFieldTitle value. Default value is "HTML"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setHtmlFieldTitle(String htmlFieldTitle)  throws IllegalStateException {
-        setAttribute("htmlFieldTitle", htmlFieldTitle, false);
+    public ColorPicker setHtmlFieldTitle(String htmlFieldTitle)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("htmlFieldTitle", htmlFieldTitle, false);
     }
 
     /**
@@ -628,11 +650,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The text to show when the mouse hovers over the 'Hue' field in the complex chooser.
      *
      * @param hueFieldPrompt New hueFieldPrompt value. Default value is "The Hue (base tone) of the selected color"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setHueFieldPrompt(String hueFieldPrompt)  throws IllegalStateException {
-        setAttribute("hueFieldPrompt", hueFieldPrompt, false);
+    public ColorPicker setHueFieldPrompt(String hueFieldPrompt)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("hueFieldPrompt", hueFieldPrompt, false);
     }
 
     /**
@@ -650,11 +673,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The title for the 'Hue' field in the complex chooser.
      *
      * @param hueFieldTitle New hueFieldTitle value. Default value is "Hue"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setHueFieldTitle(String hueFieldTitle)  throws IllegalStateException {
-        setAttribute("hueFieldTitle", hueFieldTitle, false);
+    public ColorPicker setHueFieldTitle(String hueFieldTitle)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("hueFieldTitle", hueFieldTitle, false);
     }
 
     /**
@@ -672,11 +696,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The title for the button that switches to a less complex view.
      *
      * @param lessButtonTitle New lessButtonTitle value. Default value is "&lt;&lt; Less"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setLessButtonTitle(String lessButtonTitle)  throws IllegalStateException {
-        setAttribute("lessButtonTitle", lessButtonTitle, false);
+    public ColorPicker setLessButtonTitle(String lessButtonTitle)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("lessButtonTitle", lessButtonTitle, false);
     }
 
     /**
@@ -694,11 +719,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The text to show when the mouse hovers over the 'Luminosity' field in the complex chooser.
      *
      * @param lumFieldPrompt New lumFieldPrompt value. Default value is "The Luminosity (brightness) of the selected color"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setLumFieldPrompt(String lumFieldPrompt)  throws IllegalStateException {
-        setAttribute("lumFieldPrompt", lumFieldPrompt, false);
+    public ColorPicker setLumFieldPrompt(String lumFieldPrompt)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("lumFieldPrompt", lumFieldPrompt, false);
     }
 
     /**
@@ -716,11 +742,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The title for the 'Luminosity' field in the complex chooser.
      *
      * @param lumFieldTitle New lumFieldTitle value. Default value is "Lum"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setLumFieldTitle(String lumFieldTitle)  throws IllegalStateException {
-        setAttribute("lumFieldTitle", lumFieldTitle, false);
+    public ColorPicker setLumFieldTitle(String lumFieldTitle)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("lumFieldTitle", lumFieldTitle, false);
     }
 
     /**
@@ -738,10 +765,11 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * Width of the Luminosity bar
      *
      * @param lumWidth New lumWidth value. Default value is 15
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setLumWidth(int lumWidth)  throws IllegalStateException {
-        setAttribute("lumWidth", lumWidth, false);
+    public ColorPicker setLumWidth(int lumWidth)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("lumWidth", lumWidth, false);
     }
 
     /**
@@ -774,11 +802,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The title for the button that switches to a more complex view.
      *
      * @param moreButtonTitle New moreButtonTitle value. Default value is "More &gt;&gt;"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setMoreButtonTitle(String moreButtonTitle)  throws IllegalStateException {
-        setAttribute("moreButtonTitle", moreButtonTitle, false);
+    public ColorPicker setMoreButtonTitle(String moreButtonTitle)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("moreButtonTitle", moreButtonTitle, false);
     }
 
     /**
@@ -812,11 +841,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The title for the 'OK' button.
      *
      * @param okButtonTitle New okButtonTitle value. Default value is "OK"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setOkButtonTitle(String okButtonTitle)  throws IllegalStateException {
-        setAttribute("okButtonTitle", okButtonTitle, false);
+    public ColorPicker setOkButtonTitle(String okButtonTitle)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("okButtonTitle", okButtonTitle, false);
     }
 
     /**
@@ -835,11 +865,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * com.smartgwt.client.widgets.form.ColorPicker#getSupportsTransparency supportsTransparency} is false.
      *
      * @param opacitySliderLabel New opacitySliderLabel value. Default value is "Opacity:"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setOpacitySliderLabel(String opacitySliderLabel)  throws IllegalStateException {
-        setAttribute("opacitySliderLabel", opacitySliderLabel, false);
+    public ColorPicker setOpacitySliderLabel(String opacitySliderLabel)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("opacitySliderLabel", opacitySliderLabel, false);
     }
 
     /**
@@ -859,12 +890,13 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * not want such text, set  this value to blank. This value is irrelevant if  {@link
      * com.smartgwt.client.widgets.form.ColorPicker#getSupportsTransparency supportsTransparency} is false.
      *
-     * @param opacityText New opacityText value. Default value is "Lorem ipsum dolor sit amet, consectetuer adipiscing elit."
+     * @param opacityText New opacityText value. Default value is "Lorem ipsum"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setOpacityText(String opacityText)  throws IllegalStateException {
-        setAttribute("opacityText", opacityText, false);
+    public ColorPicker setOpacityText(String opacityText)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("opacityText", opacityText, false);
     }
 
     /**
@@ -872,7 +904,7 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * not want such text, set  this value to blank. This value is irrelevant if  {@link
      * com.smartgwt.client.widgets.form.ColorPicker#getSupportsTransparency supportsTransparency} is false.
      *
-     * @return Current opacityText value. Default value is "Lorem ipsum dolor sit amet, consectetuer adipiscing elit."
+     * @return Current opacityText value. Default value is "Lorem ipsum"
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
     public String getOpacityText()  {
@@ -884,11 +916,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The text to show when the mouse hovers over the 'Red' field in the complex chooser.
      *
      * @param redFieldPrompt New redFieldPrompt value. Default value is "The Red component of the selected color"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setRedFieldPrompt(String redFieldPrompt)  throws IllegalStateException {
-        setAttribute("redFieldPrompt", redFieldPrompt, false);
+    public ColorPicker setRedFieldPrompt(String redFieldPrompt)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("redFieldPrompt", redFieldPrompt, false);
     }
 
     /**
@@ -906,11 +939,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The title for the 'Red' field in the complex chooser.
      *
      * @param redFieldTitle New redFieldTitle value. Default value is "Red"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setRedFieldTitle(String redFieldTitle)  throws IllegalStateException {
-        setAttribute("redFieldTitle", redFieldTitle, false);
+    public ColorPicker setRedFieldTitle(String redFieldTitle)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("redFieldTitle", redFieldTitle, false);
     }
 
     /**
@@ -928,11 +962,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The text to show when the mouse hovers over the 'Saturation' field in the complex chooser.
      *
      * @param satFieldPrompt New satFieldPrompt value. Default value is "The Saturation (color purity) of the selected color"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setSatFieldPrompt(String satFieldPrompt)  throws IllegalStateException {
-        setAttribute("satFieldPrompt", satFieldPrompt, false);
+    public ColorPicker setSatFieldPrompt(String satFieldPrompt)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("satFieldPrompt", satFieldPrompt, false);
     }
 
     /**
@@ -950,11 +985,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The title for the 'Sat' field in the complex chooser.
      *
      * @param satFieldTitle New satFieldTitle value. Default value is "Sat"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setSatFieldTitle(String satFieldTitle)  throws IllegalStateException {
-        setAttribute("satFieldTitle", satFieldTitle, false);
+    public ColorPicker setSatFieldTitle(String satFieldTitle)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("satFieldTitle", satFieldTitle, false);
     }
 
     /**
@@ -972,11 +1008,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The label shown next to the selected color box.
      *
      * @param selectedColorLabel New selectedColorLabel value. Default value is "Selected Color:"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setSelectedColorLabel(String selectedColorLabel)  throws IllegalStateException {
-        setAttribute("selectedColorLabel", selectedColorLabel, false);
+    public ColorPicker setSelectedColorLabel(String selectedColorLabel)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("selectedColorLabel", selectedColorLabel, false);
     }
 
     /**
@@ -995,10 +1032,11 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showCancelButton New showCancelButton value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowCancelButton(Boolean showCancelButton)  throws IllegalStateException {
-        setAttribute("showCancelButton", showCancelButton, false);
+    public ColorPicker setShowCancelButton(Boolean showCancelButton)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("showCancelButton", showCancelButton, false);
     }
 
     /**
@@ -1017,10 +1055,11 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showModeToggleButton New showModeToggleButton value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowModeToggleButton(Boolean showModeToggleButton)  throws IllegalStateException {
-        setAttribute("showModeToggleButton", showModeToggleButton, false);
+    public ColorPicker setShowModeToggleButton(Boolean showModeToggleButton)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("showModeToggleButton", showModeToggleButton, false);
     }
 
     /**
@@ -1039,10 +1078,11 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showOkButton New showOkButton value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowOkButton(Boolean showOkButton)  throws IllegalStateException {
-        setAttribute("showOkButton", showOkButton, false);
+    public ColorPicker setShowOkButton(Boolean showOkButton)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("showOkButton", showOkButton, false);
     }
 
     /**
@@ -1065,10 +1105,11 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * Set the {@link com.smartgwt.client.widgets.form.ColorPicker#getSupportsTransparency supportsTransparency} flag.
      *
      * @param supportsTransparency Set to true to enable transparency/opacity. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSupportsTransparency(Boolean supportsTransparency)  throws IllegalStateException {
-        setAttribute("supportsTransparency", supportsTransparency, false);
+    public ColorPicker setSupportsTransparency(Boolean supportsTransparency)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("supportsTransparency", supportsTransparency, false);
     }
 
     /**
@@ -1089,10 +1130,11 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * picking window
      *
      * @param swatchHeight New swatchHeight value. Default value is 170
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSwatchHeight(int swatchHeight)  throws IllegalStateException {
-        setAttribute("swatchHeight", swatchHeight, false);
+    public ColorPicker setSwatchHeight(int swatchHeight)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("swatchHeight", swatchHeight, false);
     }
 
     /**
@@ -1110,11 +1152,12 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * The location of the color swatch image file
      *
      * @param swatchImageURL New swatchImageURL value. Default value is "[SKIN]ColorPicker/spectrum.png"
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setSwatchImageURL(String swatchImageURL)  throws IllegalStateException {
-        setAttribute("swatchImageURL", swatchImageURL, false);
+    public ColorPicker setSwatchImageURL(String swatchImageURL)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("swatchImageURL", swatchImageURL, false);
     }
 
     /**
@@ -1133,10 +1176,11 @@ public class ColorPicker extends Window implements com.smartgwt.client.widgets.f
      * picking window
      *
      * @param swatchWidth New swatchWidth value. Default value is 170
+     * @return {@link com.smartgwt.client.widgets.form.ColorPicker ColorPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSwatchWidth(int swatchWidth)  throws IllegalStateException {
-        setAttribute("swatchWidth", swatchWidth, false);
+    public ColorPicker setSwatchWidth(int swatchWidth)  throws IllegalStateException {
+        return (ColorPicker)setAttribute("swatchWidth", swatchWidth, false);
     }
 
     /**

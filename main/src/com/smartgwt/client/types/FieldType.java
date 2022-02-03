@@ -80,8 +80,9 @@ public enum FieldType implements ValueEnum {
      */
     TIME("time"),
     /**
-     * A date and time, accurate to the second. Represented on the client as a JavaScript <code>Date</code> object. See also
-     * {@link com.smartgwt.client.docs.DateFormatAndStorage}.
+     * A date and time, accurate to the {@link com.smartgwt.client.docs.serverds.DataSourceField#storeMilliseconds second}.
+     * Represented on the client as a JavaScript <code>Date</code> object. See also {@link
+     * com.smartgwt.client.docs.DateFormatAndStorage}.
      * <P>
      * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
      * file or server-side DataSource descriptor (.ds.xml file), use the value "datetime".

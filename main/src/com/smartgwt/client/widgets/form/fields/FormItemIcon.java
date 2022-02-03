@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Form item icon descriptor objects used by Form Items to specify the appearance and  behavior of icons displayed after
@@ -109,10 +112,11 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param baseStyle New baseStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setBaseStyle(String baseStyle) {
-        setAttribute("baseStyle", baseStyle);
+    public FormItemIcon setBaseStyle(String baseStyle) {
+        return (FormItemIcon)setAttribute("baseStyle", baseStyle);
     }
 
     /**
@@ -136,9 +140,10 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canFocus New canFocus value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      */
-    public void setCanFocus(Boolean canFocus) {
-        setAttribute("canFocus", canFocus);
+    public FormItemIcon setCanFocus(Boolean canFocus) {
+        return (FormItemIcon)setAttribute("canFocus", canFocus);
     }
 
     /**
@@ -159,10 +164,11 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param cursor New cursor value. Default value is Canvas.POINTER
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Cues Cues overview and related methods
      */
-    public void setCursor(Cursor cursor) {
-        setAttribute("cursor", cursor == null ? null : cursor.getValue());
+    public FormItemIcon setCursor(Cursor cursor) {
+        return (FormItemIcon)setAttribute("cursor", cursor == null ? null : cursor.getValue());
     }
 
     /**
@@ -185,11 +191,12 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * icon.disabled property.
      *
      * @param disabled New disabled value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setIconDisabled
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setDisabled(Boolean disabled) {
-        setAttribute("disabled", disabled);
+    public FormItemIcon setDisabled(Boolean disabled) {
+        return (FormItemIcon)setAttribute("disabled", disabled);
     }
 
     /**
@@ -213,10 +220,11 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param disabledCursor New disabledCursor value. Default value is Canvas.DEFAULT
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Cues Cues overview and related methods
      */
-    public void setDisabledCursor(Cursor disabledCursor) {
-        setAttribute("disabledCursor", disabledCursor == null ? null : disabledCursor.getValue());
+    public FormItemIcon setDisabledCursor(Cursor disabledCursor) {
+        return (FormItemIcon)setAttribute("disabledCursor", disabledCursor == null ? null : disabledCursor.getValue());
     }
 
     /**
@@ -240,9 +248,10 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param disableOnReadOnly New disableOnReadOnly value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      */
-    public void setDisableOnReadOnly(Boolean disableOnReadOnly) {
-        setAttribute("disableOnReadOnly", disableOnReadOnly);
+    public FormItemIcon setDisableOnReadOnly(Boolean disableOnReadOnly) {
+        return (FormItemIcon)setAttribute("disableOnReadOnly", disableOnReadOnly);
     }
 
     /**
@@ -270,13 +279,14 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * on its FormItem.
      *
      * @param enableWhen New enableWhen value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.RuleCriteria RuleCriteria overview and related methods
      */
-    public void setEnableWhen(AdvancedCriteria enableWhen) {
+    public FormItemIcon setEnableWhen(AdvancedCriteria enableWhen) {
         if (enableWhen instanceof Criterion) {
             enableWhen.setAttribute("_constructor", "AdvancedCriteria");
         }
-        setAttribute("enableWhen", enableWhen == null ? null : enableWhen.getJsObj());
+        return (FormItemIcon)setAttribute("enableWhen", enableWhen == null ? null : enableWhen.getJsObj());
     }
 
     /**
@@ -302,10 +312,11 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * property will be used instead.
      *
      * @param height New height value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setIconHeight
      */
-    public void setHeight(Integer height) {
-        setAttribute("height", height);
+    public FormItemIcon setHeight(Integer height) {
+        return (FormItemIcon)setAttribute("height", height);
     }
 
     /**
@@ -328,9 +339,10 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * item's {@link com.smartgwt.client.widgets.form.fields.FormItem#getIconHSpace iconHSpace} will be used instead.
      *
      * @param hspace New hspace value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      */
-    public void setHspace(Integer hspace) {
-        setAttribute("hspace", hspace);
+    public FormItemIcon setHspace(Integer hspace) {
+        return (FormItemIcon)setAttribute("hspace", hspace);
     }
 
     /**
@@ -355,9 +367,10 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * with limited available screen space, icons rendered in the navigation bar may be easier for the user to interact with.
      *
      * @param iconPlacement New iconPlacement value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      */
-    public void setIconPlacement(PickListItemIconPlacement iconPlacement) {
-        setAttribute("iconPlacement", iconPlacement == null ? null : iconPlacement.getValue());
+    public FormItemIcon setIconPlacement(PickListItemIconPlacement iconPlacement) {
+        return (FormItemIcon)setAttribute("iconPlacement", iconPlacement == null ? null : iconPlacement.getValue());
     }
 
     /**
@@ -389,10 +402,11 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * instead. See {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getText text}.
      *
      * @param inline New inline value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      * 
      */
-    public void setInline(Boolean inline) {
-        setAttribute("inline", inline);
+    public FormItemIcon setInline(Boolean inline) {
+        return (FormItemIcon)setAttribute("inline", inline);
     }
 
     /**
@@ -426,9 +440,10 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * <code>inlineIconAlign:"right"</code> results in the icon being placed on the left.
      *
      * @param inlineIconAlign New inlineIconAlign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      */
-    public void setInlineIconAlign(Alignment inlineIconAlign) {
-        setAttribute("inlineIconAlign", inlineIconAlign == null ? null : inlineIconAlign.getValue());
+    public FormItemIcon setInlineIconAlign(Alignment inlineIconAlign) {
+        return (FormItemIcon)setAttribute("inlineIconAlign", inlineIconAlign == null ? null : inlineIconAlign.getValue());
     }
 
     /**
@@ -451,10 +466,11 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * FormItem.getIcon()}.
      *
      * @param name New name value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Identifier Identifier 
      */
-    public void setName(String name) {
-        setAttribute("name", name);
+    public FormItemIcon setName(String name) {
+        return (FormItemIcon)setAttribute("name", name);
     }
 
     /**
@@ -482,9 +498,10 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param neverDisable New neverDisable value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      */
-    public void setNeverDisable(Boolean neverDisable) {
-        setAttribute("neverDisable", neverDisable);
+    public FormItemIcon setNeverDisable(Boolean neverDisable) {
+        return (FormItemIcon)setAttribute("neverDisable", neverDisable);
     }
 
     /**
@@ -510,11 +527,12 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param prompt New prompt value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setIconPrompt
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setPrompt(String prompt) {
-        setAttribute("prompt", prompt);
+    public FormItemIcon setPrompt(String prompt) {
+        return (FormItemIcon)setAttribute("prompt", prompt);
     }
 
     /**
@@ -540,9 +558,10 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showDisabledOnFocus New showDisabledOnFocus value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      */
-    public void setShowDisabledOnFocus(Boolean showDisabledOnFocus) {
-        setAttribute("showDisabledOnFocus", showDisabledOnFocus);
+    public FormItemIcon setShowDisabledOnFocus(Boolean showDisabledOnFocus) {
+        return (FormItemIcon)setAttribute("showDisabledOnFocus", showDisabledOnFocus);
     }
 
     /**
@@ -566,11 +585,12 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showFocused New showFocused value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setShowFocusedIcons
      * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#setShowFocusedWithItem
      */
-    public void setShowFocused(Boolean showFocused) {
-        setAttribute("showFocused", showFocused);
+    public FormItemIcon setShowFocused(Boolean showFocused) {
+        return (FormItemIcon)setAttribute("showFocused", showFocused);
     }
 
     /**
@@ -595,11 +615,12 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showFocusedWithItem New showFocusedWithItem value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setShowFocusedIcons
      * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#setShowFocused
      */
-    public void setShowFocusedWithItem(Boolean showFocusedWithItem) {
-        setAttribute("showFocusedWithItem", showFocusedWithItem);
+    public FormItemIcon setShowFocusedWithItem(Boolean showFocusedWithItem) {
+        return (FormItemIcon)setAttribute("showFocusedWithItem", showFocusedWithItem);
     }
 
     /**
@@ -627,10 +648,11 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showOnFocus New showOnFocus value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setIconShowOnFocus
      */
-    public void setShowOnFocus(Boolean showOnFocus) {
-        setAttribute("showOnFocus", showOnFocus);
+    public FormItemIcon setShowOnFocus(Boolean showOnFocus) {
+        return (FormItemIcon)setAttribute("showOnFocus", showOnFocus);
     }
 
     /**
@@ -658,10 +680,11 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showOver New showOver value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setShowOverIcons
      */
-    public void setShowOver(Boolean showOver) {
-        setAttribute("showOver", showOver);
+    public FormItemIcon setShowOver(Boolean showOver) {
+        return (FormItemIcon)setAttribute("showOver", showOver);
     }
 
     /**
@@ -688,9 +711,10 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showOverWhen New showOverWhen value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      */
-    public void setShowOverWhen(IconOverTrigger showOverWhen) {
-        setAttribute("showOverWhen", showOverWhen == null ? null : showOverWhen.getValue());
+    public FormItemIcon setShowOverWhen(IconOverTrigger showOverWhen) {
+        return (FormItemIcon)setAttribute("showOverWhen", showOverWhen == null ? null : showOverWhen.getValue());
     }
 
     /**
@@ -717,9 +741,10 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showRTL New showRTL value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      */
-    public void setShowRTL(Boolean showRTL) {
-        setAttribute("showRTL", showRTL);
+    public FormItemIcon setShowRTL(Boolean showRTL) {
+        return (FormItemIcon)setAttribute("showRTL", showRTL);
     }
 
     /**
@@ -752,12 +777,13 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * a {@link com.smartgwt.client.docs.SCSpriteConfig} formatted string.
      *
      * @param src New src value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setDefaultIconSrc
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_icons" target="examples">Icons Example</a>
      */
-    public void setSrc(String src) {
-        setAttribute("src", src);
+    public FormItemIcon setSrc(String src) {
+        return (FormItemIcon)setAttribute("src", src);
     }
 
     /**
@@ -792,9 +818,10 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param tabIndex New tabIndex value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      */
-    public void setTabIndex(Integer tabIndex) {
-        setAttribute("tabIndex", tabIndex);
+    public FormItemIcon setTabIndex(Integer tabIndex) {
+        return (FormItemIcon)setAttribute("tabIndex", tabIndex);
     }
 
     /**
@@ -827,11 +854,12 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param text New text value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_text_icons" target="examples">Text Icons Example</a>
      */
-    public void setText(String text) {
-        setAttribute("text", text);
+    public FormItemIcon setText(String text) {
+        return (FormItemIcon)setAttribute("text", text);
     }
 
     /**
@@ -868,13 +896,14 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * on its FormItem.
      *
      * @param visibleWhen New visibleWhen value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.RuleCriteria RuleCriteria overview and related methods
      */
-    public void setVisibleWhen(AdvancedCriteria visibleWhen) {
+    public FormItemIcon setVisibleWhen(AdvancedCriteria visibleWhen) {
         if (visibleWhen instanceof Criterion) {
             visibleWhen.setAttribute("_constructor", "AdvancedCriteria");
         }
-        setAttribute("visibleWhen", visibleWhen == null ? null : visibleWhen.getJsObj());
+        return (FormItemIcon)setAttribute("visibleWhen", visibleWhen == null ? null : visibleWhen.getJsObj());
     }
 
     /**
@@ -900,10 +929,11 @@ public class FormItemIcon extends DataClass implements com.smartgwt.client.widge
      * property will be used instead.
      *
      * @param width New width value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItemIcon FormItemIcon} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setIconWidth
      */
-    public void setWidth(Integer width) {
-        setAttribute("width", width);
+    public FormItemIcon setWidth(Integer width) {
+        return (FormItemIcon)setAttribute("width", width);
     }
 
     /**

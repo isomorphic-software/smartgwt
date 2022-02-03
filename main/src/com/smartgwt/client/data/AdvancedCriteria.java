@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * AdvancedCriteria is a format for representing search criteria which may include
@@ -210,10 +213,11 @@ public class AdvancedCriteria extends Criterion {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param strictSQLFiltering New strictSQLFiltering value. Default value is null
+     * @return {@link com.smartgwt.client.data.AdvancedCriteria AdvancedCriteria} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
-    public void setStrictSQLFiltering(Boolean strictSQLFiltering) {
-        setAttribute("strictSQLFiltering", strictSQLFiltering);
+    public AdvancedCriteria setStrictSQLFiltering(Boolean strictSQLFiltering) {
+        return (AdvancedCriteria)setAttribute("strictSQLFiltering", strictSQLFiltering);
     }
 
     /**

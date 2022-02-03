@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * A Palette with no visible representation that handles programmatic creation of components.
@@ -150,10 +153,11 @@ public class HiddenPalette extends BaseClass implements Palette {
      * A list of {@link com.smartgwt.client.tools.PaletteNode PaletteNodes} for component creation.
      *
      * @param data New data value. Default value is null
+     * @return {@link com.smartgwt.client.tools.HiddenPalette HiddenPalette} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setData(PaletteNode... data)  throws IllegalStateException {
-        setAttribute("data", data, false);
+    public HiddenPalette setData(PaletteNode... data)  throws IllegalStateException {
+        return (HiddenPalette)setAttribute("data", data, false);
     }
 
     /**
@@ -174,8 +178,9 @@ public class HiddenPalette extends BaseClass implements Palette {
      * Sets the default EditContext that this palette should use.  Palettes generally create components via drag and drop, but may also support creation via double-click or other UI idioms when a defaultEditContext is set.
      *
      * @param defaultEditContext the default EditContext used by this Palette. Default value is null
+     * @return {@link com.smartgwt.client.tools.HiddenPalette HiddenPalette} instance, for chaining setter calls
      */
-    public native void setDefaultEditContext(EditContext defaultEditContext) /*-{
+    public native HiddenPalette setDefaultEditContext(EditContext defaultEditContext) /*-{
         var defaultEditContextJS = (
                 defaultEditContext == null ?
                 null :
@@ -190,7 +195,7 @@ public class HiddenPalette extends BaseClass implements Palette {
             defaultEditContextJS = defaultEditContextJS.getEditContext();
         }
 
-        this.@com.smartgwt.client.core.BaseClass::setAttribute(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;Z)("defaultEditContext", defaultEditContextJS, true);
+        return this.@com.smartgwt.client.core.BaseClass::setAttribute(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;Z)("defaultEditContext", defaultEditContextJS, true);
     }-*/;
 
     /**
@@ -211,8 +216,9 @@ public class HiddenPalette extends BaseClass implements Palette {
      * Sets the default EditContext that this palette should use.  Palettes generally create components via drag and drop, but may also support creation via double-click or other UI idioms when a defaultEditContext is set.
      *
      * @param defaultEditContext the default EditContext used by this Palette. Default value is null
+     * @return {@link com.smartgwt.client.tools.HiddenPalette HiddenPalette} instance, for chaining setter calls
      */
-    public native void setDefaultEditContext(EditTree defaultEditContext) /*-{
+    public native HiddenPalette setDefaultEditContext(EditTree defaultEditContext) /*-{
         var defaultEditContextJS = (
                 defaultEditContext == null ?
                 null :
@@ -227,7 +233,7 @@ public class HiddenPalette extends BaseClass implements Palette {
             defaultEditContextJS = defaultEditContextJS.getEditContext();
         }
 
-        this.@com.smartgwt.client.core.BaseClass::setAttribute(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;Z)("defaultEditContext", defaultEditContextJS, true);
+        return this.@com.smartgwt.client.core.BaseClass::setAttribute(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;Z)("defaultEditContext", defaultEditContextJS, true);
     }-*/;
 
     /**
@@ -248,8 +254,9 @@ public class HiddenPalette extends BaseClass implements Palette {
      * Sets the default EditContext that this palette should use.  Palettes generally create components via drag and drop, but may also support creation via double-click or other UI idioms when a defaultEditContext is set.
      *
      * @param defaultEditContext the default EditContext used by this Palette. Default value is null
+     * @return {@link com.smartgwt.client.tools.HiddenPalette HiddenPalette} instance, for chaining setter calls
      */
-    public native void setDefaultEditContext(EditPane defaultEditContext) /*-{
+    public native HiddenPalette setDefaultEditContext(EditPane defaultEditContext) /*-{
         var defaultEditContextJS = (
                 defaultEditContext == null ?
                 null :
@@ -264,7 +271,7 @@ public class HiddenPalette extends BaseClass implements Palette {
             defaultEditContextJS = defaultEditContextJS.getEditContext();
         }
 
-        this.@com.smartgwt.client.core.BaseClass::setAttribute(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;Z)("defaultEditContext", defaultEditContextJS, true);
+        return this.@com.smartgwt.client.core.BaseClass::setAttribute(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;Z)("defaultEditContext", defaultEditContextJS, true);
     }-*/;
 
     /**
@@ -282,11 +289,12 @@ public class HiddenPalette extends BaseClass implements Palette {
      * component's type, eg, "ListGrid0".
      *
      * @param generateNames New generateNames value. Default value is true
+     * @return {@link com.smartgwt.client.tools.HiddenPalette HiddenPalette} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.DevTools DevTools overview and related methods
      */
-    public void setGenerateNames(boolean generateNames)  throws IllegalStateException {
-        setAttribute("generateNames", generateNames, false);
+    public HiddenPalette setGenerateNames(boolean generateNames)  throws IllegalStateException {
+        return (HiddenPalette)setAttribute("generateNames", generateNames, false);
     }
 
     /**

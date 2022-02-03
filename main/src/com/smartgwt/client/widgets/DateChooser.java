@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -175,9 +178,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * alternateWeekStyles}.
      *
      * @param alternateStyleSuffix New alternateStyleSuffix value. Default value is "Dark"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setAlternateStyleSuffix(String alternateStyleSuffix) {
-        setAttribute("alternateStyleSuffix", alternateStyleSuffix, true);
+    public DateChooser setAlternateStyleSuffix(String alternateStyleSuffix) {
+        return (DateChooser)setAttribute("alternateStyleSuffix", alternateStyleSuffix, true);
     }
 
     /**
@@ -196,9 +200,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * {@link com.smartgwt.client.widgets.DateChooser#getAlternateStyleSuffix alternateStyleSuffix} appended to it.
      *
      * @param alternateWeekStyles New alternateWeekStyles value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setAlternateWeekStyles(Boolean alternateWeekStyles) {
-        setAttribute("alternateWeekStyles", alternateWeekStyles, true);
+    public DateChooser setAlternateWeekStyles(Boolean alternateWeekStyles) {
+        return (DateChooser)setAttribute("alternateWeekStyles", alternateWeekStyles, true);
     }
 
     /**
@@ -234,9 +239,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Title for the {@link com.smartgwt.client.widgets.DateChooser#getApplyButton Apply} button.
      *
      * @param applyButtonTitle New applyButtonTitle value. Default value is "Apply"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setApplyButtonTitle(String applyButtonTitle) {
-        setAttribute("applyButtonTitle", applyButtonTitle, true);
+    public DateChooser setApplyButtonTitle(String applyButtonTitle) {
+        return (DateChooser)setAttribute("applyButtonTitle", applyButtonTitle, true);
     }
 
     /**
@@ -254,10 +260,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * specified in {@link com.smartgwt.client.widgets.DateChooser#getBaseButtonStyle baseButtonStyle} is used.
      *
      * @param baseBottomButtonStyle New baseBottomButtonStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setBaseBottomButtonStyle(String baseBottomButtonStyle) {
-        setAttribute("baseBottomButtonStyle", baseBottomButtonStyle, true);
+    public DateChooser setBaseBottomButtonStyle(String baseBottomButtonStyle) {
+        return (DateChooser)setAttribute("baseBottomButtonStyle", baseBottomButtonStyle, true);
     }
 
     /**
@@ -278,10 +285,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * are combined with the base style to generate stateful cell styles in Grids.
      *
      * @param baseButtonStyle New baseButtonStyle value. Default value is "dateChooserButton"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setBaseButtonStyle(String baseButtonStyle) {
-        setAttribute("baseButtonStyle", baseButtonStyle, true);
+    public DateChooser setBaseButtonStyle(String baseButtonStyle) {
+        return (DateChooser)setAttribute("baseButtonStyle", baseButtonStyle, true);
     }
 
     /**
@@ -303,10 +311,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * combined with the base style to generate stateful cell styles in Grids.
      *
      * @param baseFiscalYearStyle New baseFiscalYearStyle value. Default value is "dateChooserFiscalYearCell"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setBaseFiscalYearStyle(String baseFiscalYearStyle) {
-        setAttribute("baseFiscalYearStyle", baseFiscalYearStyle, true);
+    public DateChooser setBaseFiscalYearStyle(String baseFiscalYearStyle) {
+        return (DateChooser)setAttribute("baseFiscalYearStyle", baseFiscalYearStyle, true);
     }
 
     /**
@@ -327,10 +336,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * in {@link com.smartgwt.client.widgets.DateChooser#getBaseButtonStyle baseButtonStyle} is used.
      *
      * @param baseNavButtonStyle New baseNavButtonStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setBaseNavButtonStyle(String baseNavButtonStyle) {
-        setAttribute("baseNavButtonStyle", baseNavButtonStyle, true);
+    public DateChooser setBaseNavButtonStyle(String baseNavButtonStyle) {
+        return (DateChooser)setAttribute("baseNavButtonStyle", baseNavButtonStyle, true);
     }
 
     /**
@@ -352,10 +362,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * generate stateful cell styles in Grids.
      *
      * @param baseWeekdayStyle New baseWeekdayStyle value. Default value is "dateChooserWeekday"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setBaseWeekdayStyle(String baseWeekdayStyle) {
-        setAttribute("baseWeekdayStyle", baseWeekdayStyle, true);
+    public DateChooser setBaseWeekdayStyle(String baseWeekdayStyle) {
+        return (DateChooser)setAttribute("baseWeekdayStyle", baseWeekdayStyle, true);
     }
 
     /**
@@ -379,10 +390,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * to generate stateful cell styles in Grids.
      *
      * @param baseWeekendStyle New baseWeekendStyle value. Default value is "dateChooserWeekend"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setBaseWeekendStyle(String baseWeekendStyle) {
-        setAttribute("baseWeekendStyle", baseWeekendStyle, true);
+    public DateChooser setBaseWeekendStyle(String baseWeekendStyle) {
+        return (DateChooser)setAttribute("baseWeekendStyle", baseWeekendStyle, true);
     }
 
     /**
@@ -404,10 +416,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * column}.
      *
      * @param baseWeekStyle New baseWeekStyle value. Default value is "dateChooserWeekCell"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setBaseWeekStyle(String baseWeekStyle) {
-        setAttribute("baseWeekStyle", baseWeekStyle, true);
+    public DateChooser setBaseWeekStyle(String baseWeekStyle) {
+        return (DateChooser)setAttribute("baseWeekStyle", baseWeekStyle, true);
     }
 
     /**
@@ -464,10 +477,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      *  Tip: custom controls need to set layoutAlign:"center" to appear vertically centered.
      *
      * @param buttonLayoutControls New buttonLayoutControls value. Default value is (see below)
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setButtonLayoutControls(String... buttonLayoutControls)  throws IllegalStateException {
-        setAttribute("buttonLayoutControls", buttonLayoutControls, false);
+    public DateChooser setButtonLayoutControls(String... buttonLayoutControls)  throws IllegalStateException {
+        return (DateChooser)setAttribute("buttonLayoutControls", buttonLayoutControls, false);
     }
 
     /**
@@ -519,9 +533,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Title for the cancellation button.
      *
      * @param cancelButtonTitle New cancelButtonTitle value. Default value is "Cancel"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setCancelButtonTitle(String cancelButtonTitle) {
-        setAttribute("cancelButtonTitle", cancelButtonTitle, true);
+    public DateChooser setCancelButtonTitle(String cancelButtonTitle) {
+        return (DateChooser)setAttribute("cancelButtonTitle", cancelButtonTitle, true);
     }
 
     /**
@@ -542,9 +557,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.DateChooser#getTimeItem timeItem} is showing.
      *
      * @param closeOnDateClick New closeOnDateClick value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setCloseOnDateClick(Boolean closeOnDateClick) {
-        setAttribute("closeOnDateClick", closeOnDateClick, true);
+    public DateChooser setCloseOnDateClick(Boolean closeOnDateClick) {
+        return (DateChooser)setAttribute("closeOnDateClick", closeOnDateClick, true);
     }
 
     /**
@@ -565,10 +581,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Should this dateChooser be dismissed if the user presses the Escape key?
      *
      * @param closeOnEscapeKeypress New closeOnEscapeKeypress value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCloseOnEscapeKeypress(boolean closeOnEscapeKeypress)  throws IllegalStateException {
-        setAttribute("closeOnEscapeKeypress", closeOnEscapeKeypress, false);
+    public DateChooser setCloseOnEscapeKeypress(boolean closeOnEscapeKeypress)  throws IllegalStateException {
+        return (DateChooser)setAttribute("closeOnEscapeKeypress", closeOnEscapeKeypress, false);
     }
 
     /**
@@ -601,10 +618,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * How long (how many characters) should be day names be. May be 1, 2 or 3 characters.
      *
      * @param dayNameLength New dayNameLength value. Default value is 2
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDayNameLength(int dayNameLength)  throws IllegalStateException {
-        setAttribute("dayNameLength", dayNameLength, false);
+    public DateChooser setDayNameLength(int dayNameLength)  throws IllegalStateException {
+        return (DateChooser)setAttribute("dayNameLength", dayNameLength, false);
     }
 
     /**
@@ -621,9 +639,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * An array of Date instances that should be disabled if they appear in the calendar view.
      *
      * @param disabledDates New disabledDates value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setDisabledDates(Date... disabledDates) {
-        setAttribute("disabledDates", disabledDates, true);
+    public DateChooser setDisabledDates(Date... disabledDates) {
+        return (DateChooser)setAttribute("disabledDates", disabledDates, true);
     }
 
     /**
@@ -641,10 +660,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * disabled}.
      *
      * @param disabledWeekdayStyle New disabledWeekdayStyle value. Default value is "dateChooserDisabledWeekday"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setDisabledWeekdayStyle(String disabledWeekdayStyle) {
-        setAttribute("disabledWeekdayStyle", disabledWeekdayStyle, true);
+    public DateChooser setDisabledWeekdayStyle(String disabledWeekdayStyle) {
+        return (DateChooser)setAttribute("disabledWeekdayStyle", disabledWeekdayStyle, true);
     }
 
     /**
@@ -664,10 +684,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * disabled}.
      *
      * @param disabledWeekendStyle New disabledWeekendStyle value. Default value is "dateChooserDisabledWeekend"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setDisabledWeekendStyle(String disabledWeekendStyle) {
-        setAttribute("disabledWeekendStyle", disabledWeekendStyle, true);
+    public DateChooser setDisabledWeekendStyle(String disabledWeekendStyle) {
+        return (DateChooser)setAttribute("disabledWeekendStyle", disabledWeekendStyle, true);
     }
 
     /**
@@ -689,10 +710,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * com.smartgwt.client.util.DateUtil#weekendDays weekendDays} otherwise.
      *
      * @param disableWeekends New disableWeekends value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDisableWeekends(Boolean disableWeekends)  throws IllegalStateException {
-        setAttribute("disableWeekends", disableWeekends, false);
+    public DateChooser setDisableWeekends(Boolean disableWeekends)  throws IllegalStateException {
+        return (DateChooser)setAttribute("disableWeekends", disableWeekends, false);
     }
 
     /**
@@ -710,19 +732,26 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
     
 
     /**
-     * Last year that may be selected.
+     * Latest year that may be selected.  If this chooser was opened by a  {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem}, the default is inherited from {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getEndDate DateItem.endDate}. Otherwise, the default is 5 years after
+     * today.
      *
-     * @param endYear New endYear value. Default value is 2020
+     * @param endYear New endYear value. Default value is 2025
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEndYear(int endYear)  throws IllegalStateException {
-        setAttribute("endYear", endYear, false);
+    public DateChooser setEndYear(int endYear)  throws IllegalStateException {
+        return (DateChooser)setAttribute("endYear", endYear, false);
     }
 
     /**
-     * Last year that may be selected.
+     * Latest year that may be selected.  If this chooser was opened by a  {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem}, the default is inherited from {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getEndDate DateItem.endDate}. Otherwise, the default is 5 years after
+     * today.
      *
-     * @return Current endYear value. Default value is 2020
+     * @return Current endYear value. Default value is 2025
      */
     public int getEndYear()  {
         return getAttributeAsInt("endYear");
@@ -735,11 +764,12 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * com.smartgwt.client.util.DateUtil#setFirstDayOfWeek global setter}.
      *
      * @param firstDayOfWeek New firstDayOfWeek value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setFirstDayOfWeek(int firstDayOfWeek)  throws IllegalStateException {
-        setAttribute("firstDayOfWeek", firstDayOfWeek, false);
+    public DateChooser setFirstDayOfWeek(int firstDayOfWeek)  throws IllegalStateException {
+        return (DateChooser)setAttribute("firstDayOfWeek", firstDayOfWeek, false);
     }
 
     /**
@@ -776,9 +806,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * grid.
      *
      * @param fiscalYearFieldTitle New fiscalYearFieldTitle value. Default value is "Year"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setFiscalYearFieldTitle(String fiscalYearFieldTitle) {
-        setAttribute("fiscalYearFieldTitle", fiscalYearFieldTitle, true);
+    public DateChooser setFiscalYearFieldTitle(String fiscalYearFieldTitle) {
+        return (DateChooser)setAttribute("fiscalYearFieldTitle", fiscalYearFieldTitle, true);
     }
 
     /**
@@ -797,10 +828,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * fiscal year column} in the  {@link com.smartgwt.client.widgets.DateChooser#getDateGrid calendar view}.
      *
      * @param fiscalYearHeaderStyle New fiscalYearHeaderStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setFiscalYearHeaderStyle(String fiscalYearHeaderStyle) {
-        setAttribute("fiscalYearHeaderStyle", fiscalYearHeaderStyle, true);
+    public DateChooser setFiscalYearHeaderStyle(String fiscalYearHeaderStyle) {
+        return (DateChooser)setAttribute("fiscalYearHeaderStyle", fiscalYearHeaderStyle, true);
     }
 
     /**
@@ -819,11 +851,12 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Height of the header area (containing the navigation buttons) in pixels.
      *
      * @param headerHeight New headerHeight value. Default value is 20
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @deprecated in favor of {@link com.smartgwt.client.widgets.DateChooser#getNavigationLayoutHeight navigationLayoutHeight}
      */
-    public void setHeaderHeight(Integer headerHeight)  throws IllegalStateException {
-        setAttribute("headerHeight", headerHeight, false);
+    public DateChooser setHeaderHeight(Integer headerHeight)  throws IllegalStateException {
+        return (DateChooser)setAttribute("headerHeight", headerHeight, false);
     }
 
     /**
@@ -842,10 +875,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * style to weekend headers, set  {@link com.smartgwt.client.widgets.DateChooser#getWeekendHeaderStyle weekendHeaderStyle}
      *
      * @param headerStyle New headerStyle value. Default value is "dateChooserButtonDisabled"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setHeaderStyle(String headerStyle) {
-        setAttribute("headerStyle", headerStyle, true);
+    public DateChooser setHeaderStyle(String headerStyle) {
+        return (DateChooser)setAttribute("headerStyle", headerStyle, true);
     }
 
     /**
@@ -880,11 +914,12 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Style for the pop-up year menu.
      *
      * @param monthMenuStyle New monthMenuStyle value. Default value is "dateChooserMonthMenu"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setMonthMenuStyle(String monthMenuStyle)  throws IllegalStateException {
-        setAttribute("monthMenuStyle", monthMenuStyle, false);
+    public DateChooser setMonthMenuStyle(String monthMenuStyle)  throws IllegalStateException {
+        return (DateChooser)setAttribute("monthMenuStyle", monthMenuStyle, false);
     }
 
     /**
@@ -928,11 +963,12 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * various buttons for navigating the {@link com.smartgwt.client.widgets.DateChooser#getDateGrid calendar view}.
      *
      * @param navigationLayoutHeight New navigationLayoutHeight value. Default value is 20
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @deprecated in favor of {@link com.smartgwt.client.widgets.DateChooser#getNavigationLayoutHeight navigationLayoutHeight}
      */
-    public void setNavigationLayoutHeight(int navigationLayoutHeight)  throws IllegalStateException {
-        setAttribute("navigationLayoutHeight", navigationLayoutHeight, false);
+    public DateChooser setNavigationLayoutHeight(int navigationLayoutHeight)  throws IllegalStateException {
+        return (DateChooser)setAttribute("navigationLayoutHeight", navigationLayoutHeight, false);
     }
 
     /**
@@ -964,13 +1000,37 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
     
 
     /**
+     * {@link com.smartgwt.client.widgets.StatefulCanvas#getAriaLabel Aria label} for the {@link
+     * com.smartgwt.client.widgets.DateChooser#getNextMonthButton nextMonthButton}.
+     *
+     * @param nextMonthButtonAriaLabel New nextMonthButtonAriaLabel value. Default value is "Next month"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public DateChooser setNextMonthButtonAriaLabel(String nextMonthButtonAriaLabel)  throws IllegalStateException {
+        return (DateChooser)setAttribute("nextMonthButtonAriaLabel", nextMonthButtonAriaLabel, false);
+    }
+
+    /**
+     * {@link com.smartgwt.client.widgets.StatefulCanvas#getAriaLabel Aria label} for the {@link
+     * com.smartgwt.client.widgets.DateChooser#getNextMonthButton nextMonthButton}.
+     *
+     * @return Current nextMonthButtonAriaLabel value. Default value is "Next month"
+     */
+    public String getNextMonthButtonAriaLabel()  {
+        return getAttributeAsString("nextMonthButtonAriaLabel");
+    }
+    
+
+    /**
      * Icon for the next month button
      *
      * @param nextMonthIcon New nextMonthIcon value. Default value is "[SKIN]arrow_right.gif"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.URL URL 
      */
-    public void setNextMonthIcon(String nextMonthIcon) {
-        setAttribute("nextMonthIcon", nextMonthIcon, true);
+    public DateChooser setNextMonthIcon(String nextMonthIcon) {
+        return (DateChooser)setAttribute("nextMonthIcon", nextMonthIcon, true);
     }
 
     /**
@@ -988,9 +1048,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Height of the icon for the next month button
      *
      * @param nextMonthIconHeight New nextMonthIconHeight value. Default value is 7
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setNextMonthIconHeight(int nextMonthIconHeight) {
-        setAttribute("nextMonthIconHeight", nextMonthIconHeight, true);
+    public DateChooser setNextMonthIconHeight(int nextMonthIconHeight) {
+        return (DateChooser)setAttribute("nextMonthIconHeight", nextMonthIconHeight, true);
     }
 
     /**
@@ -1007,10 +1068,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Icon for the next month button
      *
      * @param nextMonthIconRTL New nextMonthIconRTL value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.URL URL 
      */
-    public void setNextMonthIconRTL(String nextMonthIconRTL) {
-        setAttribute("nextMonthIconRTL", nextMonthIconRTL, true);
+    public DateChooser setNextMonthIconRTL(String nextMonthIconRTL) {
+        return (DateChooser)setAttribute("nextMonthIconRTL", nextMonthIconRTL, true);
     }
 
     /**
@@ -1031,9 +1093,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * versa.
      *
      * @param nextMonthIconWidth New nextMonthIconWidth value. Default value is 7
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setNextMonthIconWidth(int nextMonthIconWidth) {
-        setAttribute("nextMonthIconWidth", nextMonthIconWidth, true);
+    public DateChooser setNextMonthIconWidth(int nextMonthIconWidth) {
+        return (DateChooser)setAttribute("nextMonthIconWidth", nextMonthIconWidth, true);
     }
 
     /**
@@ -1066,15 +1129,39 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
     
 
     /**
+     * {@link com.smartgwt.client.widgets.StatefulCanvas#getAriaLabel Aria label} for the {@link
+     * com.smartgwt.client.widgets.DateChooser#getNextYearButton nextYearButton}.
+     *
+     * @param nextYearButtonAriaLabel New nextYearButtonAriaLabel value. Default value is "Next year"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public DateChooser setNextYearButtonAriaLabel(String nextYearButtonAriaLabel)  throws IllegalStateException {
+        return (DateChooser)setAttribute("nextYearButtonAriaLabel", nextYearButtonAriaLabel, false);
+    }
+
+    /**
+     * {@link com.smartgwt.client.widgets.StatefulCanvas#getAriaLabel Aria label} for the {@link
+     * com.smartgwt.client.widgets.DateChooser#getNextYearButton nextYearButton}.
+     *
+     * @return Current nextYearButtonAriaLabel value. Default value is "Next year"
+     */
+    public String getNextYearButtonAriaLabel()  {
+        return getAttributeAsString("nextYearButtonAriaLabel");
+    }
+    
+
+    /**
      * Icon for the next year button
      *
      * @param nextYearIcon New nextYearIcon value. Default value is "[SKIN]doubleArrow_right.gif"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.DateChooser#setShowDoubleYearIcon
      * @see com.smartgwt.client.docs.URL URL 
      */
-    public void setNextYearIcon(String nextYearIcon)  throws IllegalStateException {
-        setAttribute("nextYearIcon", nextYearIcon, false);
+    public DateChooser setNextYearIcon(String nextYearIcon)  throws IllegalStateException {
+        return (DateChooser)setAttribute("nextYearIcon", nextYearIcon, false);
     }
 
     /**
@@ -1093,9 +1180,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Height of the icon for the next year button
      *
      * @param nextYearIconHeight New nextYearIconHeight value. Default value is 7
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setNextYearIconHeight(int nextYearIconHeight) {
-        setAttribute("nextYearIconHeight", nextYearIconHeight, true);
+    public DateChooser setNextYearIconHeight(int nextYearIconHeight) {
+        return (DateChooser)setAttribute("nextYearIconHeight", nextYearIconHeight, true);
     }
 
     /**
@@ -1114,12 +1202,13 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * place of the {@link com.smartgwt.client.widgets.DateChooser#getPrevYearIcon prevYearIcon} and vice versa.
      *
      * @param nextYearIconRTL New nextYearIconRTL value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.DateChooser#setShowDoubleYearIcon
      * @see com.smartgwt.client.docs.URL URL 
      */
-    public void setNextYearIconRTL(String nextYearIconRTL)  throws IllegalStateException {
-        setAttribute("nextYearIconRTL", nextYearIconRTL, false);
+    public DateChooser setNextYearIconRTL(String nextYearIconRTL)  throws IllegalStateException {
+        return (DateChooser)setAttribute("nextYearIconRTL", nextYearIconRTL, false);
     }
 
     /**
@@ -1140,10 +1229,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Width of the icon for the next year button
      *
      * @param nextYearIconWidth New nextYearIconWidth value. Default value is 14
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setNextYearIconWidth(int nextYearIconWidth)  throws IllegalStateException {
-        setAttribute("nextYearIconWidth", nextYearIconWidth, false);
+    public DateChooser setNextYearIconWidth(int nextYearIconWidth)  throws IllegalStateException {
+        return (DateChooser)setAttribute("nextYearIconWidth", nextYearIconWidth, false);
     }
 
     /**
@@ -1173,6 +1263,29 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
     
 
     /**
+     * {@link com.smartgwt.client.widgets.StatefulCanvas#getAriaLabel Aria label} for the {@link
+     * com.smartgwt.client.widgets.DateChooser#getPreviousMonthButton previousMonthButton}.
+     *
+     * @param previousMonthButtonAriaLabel New previousMonthButtonAriaLabel value. Default value is "Previous month"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public DateChooser setPreviousMonthButtonAriaLabel(String previousMonthButtonAriaLabel)  throws IllegalStateException {
+        return (DateChooser)setAttribute("previousMonthButtonAriaLabel", previousMonthButtonAriaLabel, false);
+    }
+
+    /**
+     * {@link com.smartgwt.client.widgets.StatefulCanvas#getAriaLabel Aria label} for the {@link
+     * com.smartgwt.client.widgets.DateChooser#getPreviousMonthButton previousMonthButton}.
+     *
+     * @return Current previousMonthButtonAriaLabel value. Default value is "Previous month"
+     */
+    public String getPreviousMonthButtonAriaLabel()  {
+        return getAttributeAsString("previousMonthButtonAriaLabel");
+    }
+    
+
+    /**
      * A button shown in the {@link com.smartgwt.client.widgets.DateChooser#getNavigationLayout navigation layout} that shifts
      * the calendar view backward by a year.
      * <p>
@@ -1189,14 +1302,38 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
     
 
     /**
+     * {@link com.smartgwt.client.widgets.StatefulCanvas#getAriaLabel Aria label} for the {@link
+     * com.smartgwt.client.widgets.DateChooser#getPreviousYearButton previousYearButton}.
+     *
+     * @param previousYearButtonAriaLabel New previousYearButtonAriaLabel value. Default value is "Previous year"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public DateChooser setPreviousYearButtonAriaLabel(String previousYearButtonAriaLabel)  throws IllegalStateException {
+        return (DateChooser)setAttribute("previousYearButtonAriaLabel", previousYearButtonAriaLabel, false);
+    }
+
+    /**
+     * {@link com.smartgwt.client.widgets.StatefulCanvas#getAriaLabel Aria label} for the {@link
+     * com.smartgwt.client.widgets.DateChooser#getPreviousYearButton previousYearButton}.
+     *
+     * @return Current previousYearButtonAriaLabel value. Default value is "Previous year"
+     */
+    public String getPreviousYearButtonAriaLabel()  {
+        return getAttributeAsString("previousYearButtonAriaLabel");
+    }
+    
+
+    /**
      * Icon for the previous month button
      *
      * @param prevMonthIcon New prevMonthIcon value. Default value is "[SKIN]arrow_left.gif"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.URL URL 
      */
-    public void setPrevMonthIcon(String prevMonthIcon)  throws IllegalStateException {
-        setAttribute("prevMonthIcon", prevMonthIcon, false);
+    public DateChooser setPrevMonthIcon(String prevMonthIcon)  throws IllegalStateException {
+        return (DateChooser)setAttribute("prevMonthIcon", prevMonthIcon, false);
     }
 
     /**
@@ -1214,10 +1351,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Height of the icon for the previous month button
      *
      * @param prevMonthIconHeight New prevMonthIconHeight value. Default value is 7
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPrevMonthIconHeight(int prevMonthIconHeight)  throws IllegalStateException {
-        setAttribute("prevMonthIconHeight", prevMonthIconHeight, false);
+    public DateChooser setPrevMonthIconHeight(int prevMonthIconHeight)  throws IllegalStateException {
+        return (DateChooser)setAttribute("prevMonthIconHeight", prevMonthIconHeight, false);
     }
 
     /**
@@ -1236,11 +1374,12 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * in place of the {@link com.smartgwt.client.widgets.DateChooser#getPrevMonthIcon prevMonthIcon} and vice versa.
      *
      * @param prevMonthIconRTL New prevMonthIconRTL value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.URL URL 
      */
-    public void setPrevMonthIconRTL(String prevMonthIconRTL)  throws IllegalStateException {
-        setAttribute("prevMonthIconRTL", prevMonthIconRTL, false);
+    public DateChooser setPrevMonthIconRTL(String prevMonthIconRTL)  throws IllegalStateException {
+        return (DateChooser)setAttribute("prevMonthIconRTL", prevMonthIconRTL, false);
     }
 
     /**
@@ -1260,10 +1399,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Width of the icon for the previous month button
      *
      * @param prevMonthIconWidth New prevMonthIconWidth value. Default value is 7
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPrevMonthIconWidth(int prevMonthIconWidth)  throws IllegalStateException {
-        setAttribute("prevMonthIconWidth", prevMonthIconWidth, false);
+    public DateChooser setPrevMonthIconWidth(int prevMonthIconWidth)  throws IllegalStateException {
+        return (DateChooser)setAttribute("prevMonthIconWidth", prevMonthIconWidth, false);
     }
 
     /**
@@ -1280,12 +1420,13 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Icon for the previous year button
      *
      * @param prevYearIcon New prevYearIcon value. Default value is "[SKIN]doubleArrow_left.gif"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.DateChooser#setShowDoubleYearIcon
      * @see com.smartgwt.client.docs.URL URL 
      */
-    public void setPrevYearIcon(String prevYearIcon)  throws IllegalStateException {
-        setAttribute("prevYearIcon", prevYearIcon, false);
+    public DateChooser setPrevYearIcon(String prevYearIcon)  throws IllegalStateException {
+        return (DateChooser)setAttribute("prevYearIcon", prevYearIcon, false);
     }
 
     /**
@@ -1304,10 +1445,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Height of the icon for the previous year button
      *
      * @param prevYearIconHeight New prevYearIconHeight value. Default value is 7
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPrevYearIconHeight(int prevYearIconHeight)  throws IllegalStateException {
-        setAttribute("prevYearIconHeight", prevYearIconHeight, false);
+    public DateChooser setPrevYearIconHeight(int prevYearIconHeight)  throws IllegalStateException {
+        return (DateChooser)setAttribute("prevYearIconHeight", prevYearIconHeight, false);
     }
 
     /**
@@ -1326,11 +1468,12 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * in place of the {@link com.smartgwt.client.widgets.DateChooser#getPrevYearIcon prevYearIcon} and vice versa.
      *
      * @param prevYearIconRTL New prevYearIconRTL value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.DateChooser#setShowDoubleYearIcon
      * @see com.smartgwt.client.docs.URL URL 
      */
-    public void setPrevYearIconRTL(String prevYearIconRTL) {
-        setAttribute("prevYearIconRTL", prevYearIconRTL, true);
+    public DateChooser setPrevYearIconRTL(String prevYearIconRTL) {
+        return (DateChooser)setAttribute("prevYearIconRTL", prevYearIconRTL, true);
     }
 
     /**
@@ -1351,10 +1494,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Width of the icon for the previous year button
      *
      * @param prevYearIconWidth New prevYearIconWidth value. Default value is 14
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPrevYearIconWidth(int prevYearIconWidth)  throws IllegalStateException {
-        setAttribute("prevYearIconWidth", prevYearIconWidth, false);
+    public DateChooser setPrevYearIconWidth(int prevYearIconWidth)  throws IllegalStateException {
+        return (DateChooser)setAttribute("prevYearIconWidth", prevYearIconWidth, false);
     }
 
     /**
@@ -1372,10 +1516,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * {@link com.smartgwt.client.widgets.DateChooser#getShowWeekChooser week chooser}).
      *
      * @param selectedWeekStyle New selectedWeekStyle value. Default value is "dateChooserSelectedWeek"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setSelectedWeekStyle(String selectedWeekStyle) {
-        setAttribute("selectedWeekStyle", selectedWeekStyle, true);
+    public DateChooser setSelectedWeekStyle(String selectedWeekStyle) {
+        return (DateChooser)setAttribute("selectedWeekStyle", selectedWeekStyle, true);
     }
 
     /**
@@ -1394,9 +1539,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Determines whether the {@link com.smartgwt.client.widgets.DateChooser#getApplyButton applyButton} will be displayed.
      *
      * @param showApplyButton New showApplyButton value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setShowApplyButton(Boolean showApplyButton) {
-        setAttribute("showApplyButton", showApplyButton, true);
+    public DateChooser setShowApplyButton(Boolean showApplyButton) {
+        return (DateChooser)setAttribute("showApplyButton", showApplyButton, true);
     }
 
     /**
@@ -1413,9 +1559,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Determines whether the "Cancel" button will be displayed.
      *
      * @param showCancelButton New showCancelButton value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setShowCancelButton(Boolean showCancelButton) {
-        setAttribute("showCancelButton", showCancelButton, true);
+    public DateChooser setShowCancelButton(Boolean showCancelButton) {
+        return (DateChooser)setAttribute("showCancelButton", showCancelButton, true);
     }
 
     /**
@@ -1434,9 +1581,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * When set to true, show a button that allows the calendar to be navigated by fiscal year.
      *
      * @param showFiscalYearChooser New showFiscalYearChooser value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setShowFiscalYearChooser(Boolean showFiscalYearChooser) {
-        setAttribute("showFiscalYearChooser", showFiscalYearChooser, true);
+    public DateChooser setShowFiscalYearChooser(Boolean showFiscalYearChooser) {
+        return (DateChooser)setAttribute("showFiscalYearChooser", showFiscalYearChooser, true);
     }
 
     /**
@@ -1455,9 +1603,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * picker.  When unset, the second field is not shown.
      *
      * @param showSecondItem New showSecondItem value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setShowSecondItem(Boolean showSecondItem) {
-        setAttribute("showSecondItem", showSecondItem, true);
+    public DateChooser setShowSecondItem(Boolean showSecondItem) {
+        return (DateChooser)setAttribute("showSecondItem", showSecondItem, true);
     }
 
     /**
@@ -1477,9 +1626,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * {@link com.smartgwt.client.widgets.DateChooser#getShowSecondItem second chooser} is  not shown by default.
      *
      * @param showTimeItem New showTimeItem value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setShowTimeItem(Boolean showTimeItem) {
-        setAttribute("showTimeItem", showTimeItem, true);
+    public DateChooser setShowTimeItem(Boolean showTimeItem) {
+        return (DateChooser)setAttribute("showTimeItem", showTimeItem, true);
     }
 
     /**
@@ -1498,9 +1648,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Determines whether the "Today" button will be displayed, allowing the user to select  the current date.
      *
      * @param showTodayButton New showTodayButton value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setShowTodayButton(Boolean showTodayButton) {
-        setAttribute("showTodayButton", showTodayButton, true);
+    public DateChooser setShowTodayButton(Boolean showTodayButton) {
+        return (DateChooser)setAttribute("showTodayButton", showTodayButton, true);
     }
 
     /**
@@ -1519,9 +1670,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * of {@link com.smartgwt.client.widgets.DateChooser#getShowFiscalYearChooser showFiscalYearChooser}.
      *
      * @param showWeekChooser New showWeekChooser value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setShowWeekChooser(Boolean showWeekChooser) {
-        setAttribute("showWeekChooser", showWeekChooser, true);
+    public DateChooser setShowWeekChooser(Boolean showWeekChooser) {
+        return (DateChooser)setAttribute("showWeekChooser", showWeekChooser, true);
     }
 
     /**
@@ -1542,10 +1694,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * com.smartgwt.client.util.DateUtil#weekendDays weekendDays} otherwise.
      *
      * @param showWeekends New showWeekends value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowWeekends(Boolean showWeekends)  throws IllegalStateException {
-        setAttribute("showWeekends", showWeekends, false);
+    public DateChooser setShowWeekends(Boolean showWeekends)  throws IllegalStateException {
+        return (DateChooser)setAttribute("showWeekends", showWeekends, false);
     }
 
     /**
@@ -1566,10 +1719,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param skinImgDir New skinImgDir value. Default value is "images/common/"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setSkinImgDir(String skinImgDir) {
-        setAttribute("skinImgDir", skinImgDir, true);
+    public DateChooser setSkinImgDir(String skinImgDir) {
+        return (DateChooser)setAttribute("skinImgDir", skinImgDir, true);
     }
 
     /**
@@ -1584,19 +1738,26 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
     
 
     /**
-     * Earliest year that may be selected.
+     * Earliest year that may be selected.  If this chooser was opened by a  {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem}, the default is inherited from {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getStartDate DateItem.startDate}. Otherwise, the default is 10 years
+     * before today.
      *
-     * @param startYear New startYear value. Default value is 1995
+     * @param startYear New startYear value. Default value is 2010
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setStartYear(int startYear)  throws IllegalStateException {
-        setAttribute("startYear", startYear, false);
+    public DateChooser setStartYear(int startYear)  throws IllegalStateException {
+        return (DateChooser)setAttribute("startYear", startYear, false);
     }
 
     /**
-     * Earliest year that may be selected.
+     * Earliest year that may be selected.  If this chooser was opened by a  {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem}, the default is inherited from {@link
+     * com.smartgwt.client.widgets.form.fields.DateItem#getStartDate DateItem.startDate}. Otherwise, the default is 10 years
+     * before today.
      *
-     * @return Current startYear value. Default value is 1995
+     * @return Current startYear value. Default value is 2010
      */
     public int getStartYear()  {
         return getAttributeAsInt("startYear");
@@ -1626,14 +1787,15 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param timeItemProperties New timeItemProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTimeItemProperties(TimeItem timeItemProperties)  throws IllegalStateException {
+    public DateChooser setTimeItemProperties(TimeItem timeItemProperties)  throws IllegalStateException {
         if (timeItemProperties.isCreated()) {
             ConfigUtil.warnOfPreConfigInstantiation(DateChooser.class, "setTimeItemProperties", "TimeItem");
         }                                                                       
         timeItemProperties.setConfigOnly(true);
-        setAttribute("timeItemProperties", timeItemProperties == null ? null : timeItemProperties.getEditorTypeConfig(), false);
+        return (DateChooser)setAttribute("timeItemProperties", timeItemProperties == null ? null : timeItemProperties.getEditorTypeConfig(), false);
     }
 
     /**
@@ -1651,9 +1813,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Title for the {@link com.smartgwt.client.widgets.DateChooser#getTimeItem time field}.
      *
      * @param timeItemTitle New timeItemTitle value. Default value is "Time"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setTimeItemTitle(String timeItemTitle) {
-        setAttribute("timeItemTitle", timeItemTitle, true);
+    public DateChooser setTimeItemTitle(String timeItemTitle) {
+        return (DateChooser)setAttribute("timeItemTitle", timeItemTitle, true);
     }
 
     /**
@@ -1686,9 +1849,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * If set specifies a fixed height for the Today and Cancel buttons.
      *
      * @param todayButtonHeight New todayButtonHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setTodayButtonHeight(Integer todayButtonHeight) {
-        setAttribute("todayButtonHeight", todayButtonHeight, true);
+    public DateChooser setTodayButtonHeight(Integer todayButtonHeight) {
+        return (DateChooser)setAttribute("todayButtonHeight", todayButtonHeight, true);
     }
 
     /**
@@ -1705,9 +1869,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Title for "Today" button.
      *
      * @param todayButtonTitle New todayButtonTitle value. Default value is "Today"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setTodayButtonTitle(String todayButtonTitle) {
-        setAttribute("todayButtonTitle", todayButtonTitle, true);
+    public DateChooser setTodayButtonTitle(String todayButtonTitle) {
+        return (DateChooser)setAttribute("todayButtonTitle", todayButtonTitle, true);
     }
 
     /**
@@ -1725,9 +1890,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.form.fields.TimeItem TimeItem} should be set to use 24-hour time.  The default is true.
      *
      * @param use24HourTime New use24HourTime value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setUse24HourTime(Boolean use24HourTime) {
-        setAttribute("use24HourTime", use24HourTime, true);
+    public DateChooser setUse24HourTime(Boolean use24HourTime) {
+        return (DateChooser)setAttribute("use24HourTime", use24HourTime, true);
     }
 
     /**
@@ -1748,9 +1914,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * the calendar will display Tuesday to Monday from left to right.
      *
      * @param useFirstDayOfFiscalWeek New useFirstDayOfFiscalWeek value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setUseFirstDayOfFiscalWeek(Boolean useFirstDayOfFiscalWeek) {
-        setAttribute("useFirstDayOfFiscalWeek", useFirstDayOfFiscalWeek, true);
+    public DateChooser setUseFirstDayOfFiscalWeek(Boolean useFirstDayOfFiscalWeek) {
+        return (DateChooser)setAttribute("useFirstDayOfFiscalWeek", useFirstDayOfFiscalWeek, true);
     }
 
     /**
@@ -1790,10 +1957,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * defaults to the set of days indicated  {@link com.smartgwt.client.util.DateUtil#weekendDays globally}.
      *
      * @param weekendDays New weekendDays value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Visibility Visibility overview and related methods
      */
-    public void setWeekendDays(int... weekendDays) {
-        setAttribute("weekendDays", weekendDays, true);
+    public DateChooser setWeekendDays(int... weekendDays) {
+        return (DateChooser)setAttribute("weekendDays", weekendDays, true);
     }
 
     /**
@@ -1813,9 +1981,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * com.smartgwt.client.widgets.DateChooser#getHeaderStyle headerStyle} will be applied to both weekdays and weekend days.
      *
      * @param weekendHeaderStyle New weekendHeaderStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setWeekendHeaderStyle(String weekendHeaderStyle) {
-        setAttribute("weekendHeaderStyle", weekendHeaderStyle, true);
+    public DateChooser setWeekendHeaderStyle(String weekendHeaderStyle) {
+        return (DateChooser)setAttribute("weekendHeaderStyle", weekendHeaderStyle, true);
     }
 
     /**
@@ -1833,9 +2002,10 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Title for the {@link com.smartgwt.client.widgets.DateChooser#getShowWeekChooser week} field in the date grid.
      *
      * @param weekFieldTitle New weekFieldTitle value. Default value is "Wk"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      */
-    public void setWeekFieldTitle(String weekFieldTitle) {
-        setAttribute("weekFieldTitle", weekFieldTitle, true);
+    public DateChooser setWeekFieldTitle(String weekFieldTitle) {
+        return (DateChooser)setAttribute("weekFieldTitle", weekFieldTitle, true);
     }
 
     /**
@@ -1853,10 +2023,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * calendar week column} in the {@link com.smartgwt.client.widgets.DateChooser#getDateGrid calendar view}.
      *
      * @param weekHeaderStyle New weekHeaderStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setWeekHeaderStyle(String weekHeaderStyle) {
-        setAttribute("weekHeaderStyle", weekHeaderStyle, true);
+    public DateChooser setWeekHeaderStyle(String weekHeaderStyle) {
+        return (DateChooser)setAttribute("weekHeaderStyle", weekHeaderStyle, true);
     }
 
     /**
@@ -1875,11 +2046,12 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Style for the pop-up week menu.
      *
      * @param weekMenuStyle New weekMenuStyle value. Default value is "dateChooserWeekMenu"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setWeekMenuStyle(String weekMenuStyle)  throws IllegalStateException {
-        setAttribute("weekMenuStyle", weekMenuStyle, false);
+    public DateChooser setWeekMenuStyle(String weekMenuStyle)  throws IllegalStateException {
+        return (DateChooser)setAttribute("weekMenuStyle", weekMenuStyle, false);
     }
 
     /**
@@ -1913,11 +2085,12 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
      * Style for the pop-up year menu.
      *
      * @param yearMenuStyle New yearMenuStyle value. Default value is "dateChooserYearMenu"
+     * @return {@link com.smartgwt.client.widgets.DateChooser DateChooser} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setYearMenuStyle(String yearMenuStyle)  throws IllegalStateException {
-        setAttribute("yearMenuStyle", yearMenuStyle, false);
+    public DateChooser setYearMenuStyle(String yearMenuStyle)  throws IllegalStateException {
+        return (DateChooser)setAttribute("yearMenuStyle", yearMenuStyle, false);
     }
 
     /**
@@ -1946,9 +2119,8 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
     /**
      * Add a dataChanged handler.
      * <p>
-     * Method to override or observe in order to be notified when a user picks a date value. <P> Has no default behavior (so no
-     * need to call Super). <P> Use {@link com.smartgwt.client.widgets.DateChooser#getData DateChooser.getData()} to get the
-     * current date value.
+     * Add a notification to be fired whenever the data changes. <P> Has no default behavior (so no need to call Super). <P>
+     * Use {@link com.smartgwt.client.widgets.DateChooser#getData DateChooser.getData()} to get the current date value.
      *
      * @param handler the dataChanged handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -2318,6 +2490,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
             s.logicalStructureErrors += "DateChooser.navigationLayoutHeight:" + t.getMessage() + "\n";
         }
         try {
+            s.nextMonthButtonAriaLabel = getAttributeAsString("nextMonthButtonAriaLabel");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DateChooser.nextMonthButtonAriaLabel:" + t.getMessage() + "\n";
+        }
+        try {
             s.nextMonthIcon = getAttributeAsString("nextMonthIcon");
         } catch (Throwable t) {
             s.logicalStructureErrors += "DateChooser.nextMonthIcon:" + t.getMessage() + "\n";
@@ -2338,6 +2515,11 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
             s.logicalStructureErrors += "DateChooser.nextMonthIconWidth:" + t.getMessage() + "\n";
         }
         try {
+            s.nextYearButtonAriaLabel = getAttributeAsString("nextYearButtonAriaLabel");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DateChooser.nextYearButtonAriaLabel:" + t.getMessage() + "\n";
+        }
+        try {
             s.nextYearIcon = getAttributeAsString("nextYearIcon");
         } catch (Throwable t) {
             s.logicalStructureErrors += "DateChooser.nextYearIcon:" + t.getMessage() + "\n";
@@ -2356,6 +2538,16 @@ public class DateChooser extends VLayout implements com.smartgwt.client.widgets.
             s.nextYearIconWidth = getAttributeAsString("nextYearIconWidth");
         } catch (Throwable t) {
             s.logicalStructureErrors += "DateChooser.nextYearIconWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.previousMonthButtonAriaLabel = getAttributeAsString("previousMonthButtonAriaLabel");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DateChooser.previousMonthButtonAriaLabel:" + t.getMessage() + "\n";
+        }
+        try {
+            s.previousYearButtonAriaLabel = getAttributeAsString("previousYearButtonAriaLabel");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DateChooser.previousYearButtonAriaLabel:" + t.getMessage() + "\n";
         }
         try {
             s.prevMonthIcon = getAttributeAsString("prevMonthIcon");

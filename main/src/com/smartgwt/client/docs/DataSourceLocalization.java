@@ -99,6 +99,9 @@ package com.smartgwt.client.docs;
  *  &lt;/DataSource&gt;
  *  </pre>
  *  <p>
+ *  Any property on a DataSource or on a UI component that is documented to be of "String" type 
+ *  or any derived type (such as "URL") supports the <code>fmt:message</code> tags.
+ *  <p>
  *  Note that any amount of whitespace around &lt;fmt&gt; tag is ignored, unless there is also 
  *  some text, then whitespace becomes significant as well. A declaration like this one:
  *  <pre>
@@ -189,6 +192,10 @@ package com.smartgwt.client.docs;
  * (this is done for you when you pass a locale to the {@link
  * com.smartgwt.client.rpc.RPCManager#loadScreen RPCManager.loadScreen()} method).</li>
  *  </ul>
+ *  <h4>Custom localization provider support</h4>
+ *  Custom localization providers can be configured for the entire framework or for specific 
+ *  DataSource and Component XML instances based on their names. For more details see 
+ *  javadoc for <code>com.isomorphic.util.LocaleMessageProviderRegistry</code> server-side API.
  *  <h4>Troubleshooting</h4>
  *  If something went wrong, we use fmt string as a value:
  *  <code>&lt;fmt:message key="message_key"&gt;</code>.

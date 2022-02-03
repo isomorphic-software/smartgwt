@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * A TileRecord is a JavaScript Object whose properties contain values for each TileField. A TileRecord may have additional
@@ -109,6 +112,30 @@ public class TileRecord extends DetailViewerRecord {
 
 
     // ********************* Properties / Attributes ***********************
+
+    /**
+     * By default, image-type fields shown in a Tile are auto-scaled to fit a tile's full width,  and an equal share of
+     * tile-height not already required by other visible (non-image) fields.  This attribute enforces a minimum image-height,
+     * below which a given image will not shrink when being scaled.
+     *
+     * @param minimumImageFieldSize New minimumImageFieldSize value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.tile.TileRecord TileRecord} instance, for chaining setter calls
+     */
+    public TileRecord setMinimumImageFieldSize(int minimumImageFieldSize) {
+        return (TileRecord)setAttribute("minimumImageFieldSize", minimumImageFieldSize);
+    }
+
+    /**
+     * By default, image-type fields shown in a Tile are auto-scaled to fit a tile's full width,  and an equal share of
+     * tile-height not already required by other visible (non-image) fields.  This attribute enforces a minimum image-height,
+     * below which a given image will not shrink when being scaled.
+     *
+     * @return Current minimumImageFieldSize value. Default value is 16
+     */
+    public int getMinimumImageFieldSize()  {
+        return getAttributeAsInt("minimumImageFieldSize");
+    }
+    
     
     
 

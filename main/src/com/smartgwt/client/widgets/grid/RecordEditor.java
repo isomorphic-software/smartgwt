@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -196,10 +199,11 @@ public class RecordEditor extends ListGrid {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param actionButtonProperties New actionButtonProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.RecordEditor RecordEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setActionButtonProperties(Button actionButtonProperties)  throws IllegalStateException {
+    public RecordEditor setActionButtonProperties(Button actionButtonProperties)  throws IllegalStateException {
         if (actionButtonProperties != null) {
             if (actionButtonProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(RecordEditor.class, "setActionButtonProperties", "Button");
@@ -207,7 +211,7 @@ public class RecordEditor extends ListGrid {
             actionButtonProperties.setConfigOnly(true);
         }
         JavaScriptObject config = actionButtonProperties == null ? null : actionButtonProperties.getConfig();
-        setAttribute("actionButtonProperties", JSOHelper.cleanProperties(config, true), false);
+        return (RecordEditor)setAttribute("actionButtonProperties", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -232,11 +236,12 @@ public class RecordEditor extends ListGrid {
      * com.smartgwt.client.widgets.grid.RecordEditor#getActionButton actionButton}
      *
      * @param actionButtonStyle New actionButtonStyle value. Default value is "normal"
+     * @return {@link com.smartgwt.client.widgets.grid.RecordEditor RecordEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setActionButtonStyle(String actionButtonStyle)  throws IllegalStateException {
-        setAttribute("actionButtonStyle", actionButtonStyle, false);
+    public RecordEditor setActionButtonStyle(String actionButtonStyle)  throws IllegalStateException {
+        return (RecordEditor)setAttribute("actionButtonStyle", actionButtonStyle, false);
     }
 
     /**
@@ -260,12 +265,13 @@ public class RecordEditor extends ListGrid {
      * generate stateful cell styles.
      *
      * @param baseStyle New baseStyle value. Default value is "recordEditorCell"
+     * @return {@link com.smartgwt.client.widgets.grid.RecordEditor RecordEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setBaseStyle(String baseStyle)  throws IllegalStateException {
-        setAttribute("baseStyle", baseStyle, false);
+    public RecordEditor setBaseStyle(String baseStyle)  throws IllegalStateException {
+        return (RecordEditor)setAttribute("baseStyle", baseStyle, false);
     }
 
     /**
@@ -293,11 +299,12 @@ public class RecordEditor extends ListGrid {
      * com.smartgwt.client.widgets.grid.RecordEditor#getSkinImgDir skinImgDir} defined for the RecordEditor.
      *
      * @param filterImg New filterImg value. Default value is "[SKIN]filter.png"
+     * @return {@link com.smartgwt.client.widgets.grid.RecordEditor RecordEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setFilterImg(String filterImg)  throws IllegalStateException {
-        setAttribute("filterImg", filterImg, false);
+    public RecordEditor setFilterImg(String filterImg)  throws IllegalStateException {
+        return (RecordEditor)setAttribute("filterImg", filterImg, false);
     }
 
     /**
@@ -320,11 +327,12 @@ public class RecordEditor extends ListGrid {
      * this attribute specifies a custom base style to apply to cells in the summary field
      *
      * @param recordSummaryBaseStyle New recordSummaryBaseStyle value. Default value is "recordEditorCell"
+     * @return {@link com.smartgwt.client.widgets.grid.RecordEditor RecordEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setRecordSummaryBaseStyle(String recordSummaryBaseStyle)  throws IllegalStateException {
-        setAttribute("recordSummaryBaseStyle", recordSummaryBaseStyle, false);
+    public RecordEditor setRecordSummaryBaseStyle(String recordSummaryBaseStyle)  throws IllegalStateException {
+        return (RecordEditor)setAttribute("recordSummaryBaseStyle", recordSummaryBaseStyle, false);
     }
 
     /**
@@ -343,11 +351,12 @@ public class RecordEditor extends ListGrid {
      * Where do 'skin' images (those provided with the class) live?
      *
      * @param skinImgDir New skinImgDir value. Default value is "images/RecordEditor/"
+     * @return {@link com.smartgwt.client.widgets.grid.RecordEditor RecordEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setSkinImgDir(String skinImgDir)  throws IllegalStateException {
-        setAttribute("skinImgDir", skinImgDir, false);
+    public RecordEditor setSkinImgDir(String skinImgDir)  throws IllegalStateException {
+        return (RecordEditor)setAttribute("skinImgDir", skinImgDir, false);
     }
 
     /**
@@ -370,10 +379,11 @@ public class RecordEditor extends ListGrid {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param suppressNullValueFormat New suppressNullValueFormat value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.grid.RecordEditor RecordEditor} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSuppressNullValueFormat(boolean suppressNullValueFormat)  throws IllegalStateException {
-        setAttribute("suppressNullValueFormat", suppressNullValueFormat, false);
+    public RecordEditor setSuppressNullValueFormat(boolean suppressNullValueFormat)  throws IllegalStateException {
+        return (RecordEditor)setAttribute("suppressNullValueFormat", suppressNullValueFormat, false);
     }
 
     /**

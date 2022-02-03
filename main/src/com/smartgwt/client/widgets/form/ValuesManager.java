@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * The ValuesManager manages data from multiple member forms. <P> If a single logical form needs to be separated into
@@ -146,10 +149,11 @@ public class ValuesManager extends BaseClass implements com.smartgwt.client.form
      * {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} to use when performing add operations.
      *
      * @param addOperation New addOperation value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.ValuesManager ValuesManager} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Operations Operations overview and related methods
      */
-    public void setAddOperation(String addOperation) {
-        setAttribute("addOperation", addOperation, true);
+    public ValuesManager setAddOperation(String addOperation) {
+        return (ValuesManager)setAttribute("addOperation", addOperation, true);
     }
 
     /**
@@ -170,9 +174,10 @@ public class ValuesManager extends BaseClass implements com.smartgwt.client.form
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param autoSynchronize New autoSynchronize value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.ValuesManager ValuesManager} instance, for chaining setter calls
      */
-    public void setAutoSynchronize(Boolean autoSynchronize) {
-        setAttribute("autoSynchronize", autoSynchronize, true);
+    public ValuesManager setAutoSynchronize(Boolean autoSynchronize) {
+        return (ValuesManager)setAttribute("autoSynchronize", autoSynchronize, true);
     }
 
     /**
@@ -200,13 +205,14 @@ public class ValuesManager extends BaseClass implements com.smartgwt.client.form
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param deepCloneNonFieldValuesOnEdit New deepCloneNonFieldValuesOnEdit value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.ValuesManager ValuesManager} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setDataPath
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setDataPath
      * @see com.smartgwt.client.data.DataSourceField#setDeepCloneOnEdit
      * @see com.smartgwt.client.data.DataSource#setDeepCloneOnEdit
      */
-    public void setDeepCloneNonFieldValuesOnEdit(Boolean deepCloneNonFieldValuesOnEdit) {
-        setAttribute("deepCloneNonFieldValuesOnEdit", deepCloneNonFieldValuesOnEdit, true);
+    public ValuesManager setDeepCloneNonFieldValuesOnEdit(Boolean deepCloneNonFieldValuesOnEdit) {
+        return (ValuesManager)setAttribute("deepCloneNonFieldValuesOnEdit", deepCloneNonFieldValuesOnEdit, true);
     }
 
     /**
@@ -242,13 +248,14 @@ public class ValuesManager extends BaseClass implements com.smartgwt.client.form
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param deepCloneOnEdit New deepCloneOnEdit value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.ValuesManager ValuesManager} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setDataPath
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setDataPath
      * @see com.smartgwt.client.data.DataSourceField#setDeepCloneOnEdit
      * @see com.smartgwt.client.data.DataSource#setDeepCloneOnEdit
      */
-    public void setDeepCloneOnEdit(Boolean deepCloneOnEdit) {
-        setAttribute("deepCloneOnEdit", deepCloneOnEdit, true);
+    public ValuesManager setDeepCloneOnEdit(Boolean deepCloneOnEdit) {
+        return (ValuesManager)setAttribute("deepCloneOnEdit", deepCloneOnEdit, true);
     }
 
     /**
@@ -278,12 +285,13 @@ public class ValuesManager extends BaseClass implements com.smartgwt.client.form
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param disableValidation New disableValidation value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.ValuesManager ValuesManager} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.DynamicForm#saveData
      * @see com.smartgwt.client.widgets.form.DynamicForm#submit
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
-    public void setDisableValidation(Boolean disableValidation) {
-        setAttribute("disableValidation", disableValidation, true);
+    public ValuesManager setDisableValidation(Boolean disableValidation) {
+        return (ValuesManager)setAttribute("disableValidation", disableValidation, true);
     }
 
     /**
@@ -304,10 +312,11 @@ public class ValuesManager extends BaseClass implements com.smartgwt.client.form
      * {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} to use when performing fetch operations.
      *
      * @param fetchOperation New fetchOperation value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.ValuesManager ValuesManager} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Operations Operations overview and related methods
      */
-    public void setFetchOperation(String fetchOperation) {
-        setAttribute("fetchOperation", fetchOperation, true);
+    public ValuesManager setFetchOperation(String fetchOperation) {
+        return (ValuesManager)setAttribute("fetchOperation", fetchOperation, true);
     }
 
     /**
@@ -327,10 +336,11 @@ public class ValuesManager extends BaseClass implements com.smartgwt.client.form
      * com.smartgwt.client.widgets.form.ValuesManager#getValuesAsCriteria getValuesAsCriteria()} is called?
      *
      * @param operator New operator value. Default value is "and"
+     * @return {@link com.smartgwt.client.widgets.form.ValuesManager ValuesManager} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setOperator(OperatorId operator)  throws IllegalStateException {
-        setAttribute("operator", operator == null ? null : operator.getValue(), false);
+    public ValuesManager setOperator(OperatorId operator)  throws IllegalStateException {
+        return (ValuesManager)setAttribute("operator", operator == null ? null : operator.getValue(), false);
     }
 
     /**
@@ -348,10 +358,11 @@ public class ValuesManager extends BaseClass implements com.smartgwt.client.form
      * {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} to use when performing remove operations.
      *
      * @param removeOperation New removeOperation value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.ValuesManager ValuesManager} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Operations Operations overview and related methods
      */
-    public void setRemoveOperation(String removeOperation) {
-        setAttribute("removeOperation", removeOperation, true);
+    public ValuesManager setRemoveOperation(String removeOperation) {
+        return (ValuesManager)setAttribute("removeOperation", removeOperation, true);
     }
 
     /**
@@ -378,9 +389,10 @@ public class ValuesManager extends BaseClass implements com.smartgwt.client.form
      * Setter for the default {@link com.smartgwt.client.types.DSOperationType} when {@link com.smartgwt.client.widgets.form.DynamicForm#saveData DynamicForm.saveData()} is called. Note that this property can also be set by calling {@link com.smartgwt.client.widgets.form.DynamicForm#editRecord DynamicForm.editRecord()} or  {@link com.smartgwt.client.widgets.form.DynamicForm#editNewRecord DynamicForm.editNewRecord()}
      *
      * @param saveOperationType Operation type to use as a default. Valid values are  <code>"add"</code> or <code>"update"</code>. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.ValuesManager ValuesManager} instance, for chaining setter calls
      */
-    public void setSaveOperationType(DSOperationType saveOperationType) {
-        setAttribute("saveOperationType", saveOperationType == null ? null : saveOperationType.getValue(), true);
+    public ValuesManager setSaveOperationType(DSOperationType saveOperationType) {
+        return (ValuesManager)setAttribute("saveOperationType", saveOperationType == null ? null : saveOperationType.getValue(), true);
     }
 
     /**
@@ -425,9 +437,10 @@ public class ValuesManager extends BaseClass implements com.smartgwt.client.form
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param suppressValidationErrorCallback New suppressValidationErrorCallback value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.ValuesManager ValuesManager} instance, for chaining setter calls
      */
-    public void setSuppressValidationErrorCallback(Boolean suppressValidationErrorCallback) {
-        setAttribute("suppressValidationErrorCallback", suppressValidationErrorCallback, true);
+    public ValuesManager setSuppressValidationErrorCallback(Boolean suppressValidationErrorCallback) {
+        return (ValuesManager)setAttribute("suppressValidationErrorCallback", suppressValidationErrorCallback, true);
     }
 
     /**
@@ -455,10 +468,11 @@ public class ValuesManager extends BaseClass implements com.smartgwt.client.form
      * {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} to use when performing update operations.
      *
      * @param updateOperation New updateOperation value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.ValuesManager ValuesManager} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Operations Operations overview and related methods
      */
-    public void setUpdateOperation(String updateOperation) {
-        setAttribute("updateOperation", updateOperation, true);
+    public ValuesManager setUpdateOperation(String updateOperation) {
+        return (ValuesManager)setAttribute("updateOperation", updateOperation, true);
     }
 
     /**
@@ -518,6 +532,7 @@ public class ValuesManager extends BaseClass implements com.smartgwt.client.form
      * 
      * @see com.smartgwt.client.widgets.form.DynamicForm#cancelEditing
      * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
+     * @deprecated Since Apache Struts will be removed from Smartclient 13.0
      */
     public native void cancel() /*-{
         if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
@@ -544,6 +559,7 @@ public class ValuesManager extends BaseClass implements com.smartgwt.client.form
      * @param requestProperties additional properties to set on the RPCRequest                                          that will be issued
      * @see com.smartgwt.client.widgets.form.DynamicForm#cancelEditing
      * @see com.smartgwt.client.docs.Submitting Submitting overview and related methods
+     * @deprecated Since Apache Struts will be removed from Smartclient 13.0
      */
     public native void cancel(DSRequest requestProperties) /*-{
         if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
@@ -904,9 +920,13 @@ public class ValuesManager extends BaseClass implements com.smartgwt.client.form
 	/**
      * Returns the current set of values for the values manager instance.  This includes the values from any form managed by
      * this manager, as well as any values explicitly applied via {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#setValues setValues()}. <P> Note that modifying the returned object is
+     * not a supported way of adding or modifying values.  Instead use {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#setValue setValue()} or {@link
      * com.smartgwt.client.widgets.form.ValuesManager#setValues setValues()}.
      *
      * @return a map of the values for this manager
+     * @see com.smartgwt.client.widgets.form.DynamicForm#getValues
      */
     public native Map getValues() /*-{
         if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {

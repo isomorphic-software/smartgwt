@@ -26,7 +26,7 @@ import java.util.Set;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.client.JsDate;
-import com.google.gwt.user.client.Element;
+import com.google.gwt.dom.client.Element;
 import com.smartgwt.client.core.JsObject;
 import com.smartgwt.client.core.BaseClass;
 import com.smartgwt.client.core.DataClass;

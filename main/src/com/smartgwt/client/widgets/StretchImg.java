@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -174,10 +177,11 @@ public class StretchImg extends StatefulCanvas {
      * If the default items are used, capSize is the size in pixels of the first and last          images in this stretchImg.
      *
      * @param capSize New capSize value. Default value is 2
+     * @return {@link com.smartgwt.client.widgets.StretchImg StretchImg} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setCapSize(int capSize) {
-        setAttribute("capSize", capSize, true);
+    public StretchImg setCapSize(int capSize) {
+        return (StretchImg)setAttribute("capSize", capSize, true);
     }
 
     /**
@@ -196,10 +200,11 @@ public class StretchImg extends StatefulCanvas {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param gripImgSuffix New gripImgSuffix value. Default value is "grip"
+     * @return {@link com.smartgwt.client.widgets.StretchImg StretchImg} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setGripImgSuffix(String gripImgSuffix)  throws IllegalStateException {
-        setAttribute("gripImgSuffix", gripImgSuffix, false);
+    public StretchImg setGripImgSuffix(String gripImgSuffix)  throws IllegalStateException {
+        return (StretchImg)setAttribute("gripImgSuffix", gripImgSuffix, false);
     }
 
     /**
@@ -217,13 +222,14 @@ public class StretchImg extends StatefulCanvas {
      * com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
      *
      * @param hSrc New hSrc value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchImg StretchImg} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.StretchImg#setSrc
      * @see com.smartgwt.client.widgets.StretchImg#setVSrc
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setHSrc(String hSrc) {
-        setAttribute("hSrc", hSrc, true);
+    public StretchImg setHSrc(String hSrc) {
+        return (StretchImg)setAttribute("hSrc", hSrc, true);
     }
 
     /**
@@ -253,10 +259,11 @@ public class StretchImg extends StatefulCanvas {
      * Setter for {@link com.smartgwt.client.widgets.StretchImg#getIgnoreRTL ignoreRTL}.
      *
      * @param ignoreRTL new value for ignoreRTL. Default value is true
+     * @return {@link com.smartgwt.client.widgets.StretchImg StretchImg} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setIgnoreRTL(boolean ignoreRTL) {
-        setAttribute("ignoreRTL", ignoreRTL, true);
+    public StretchImg setIgnoreRTL(boolean ignoreRTL) {
+        return (StretchImg)setAttribute("ignoreRTL", ignoreRTL, true);
     }
 
     /**
@@ -281,10 +288,11 @@ public class StretchImg extends StatefulCanvas {
      * not match the size of the image. See ImageStyle for          details.
      *
      * @param imageType New imageType value. Default value is Img.STRETCH
+     * @return {@link com.smartgwt.client.widgets.StretchImg StretchImg} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setImageType(ImageStyle imageType) {
-        setAttribute("imageType", imageType == null ? null : imageType.getValue(), true);
+    public StretchImg setImageType(ImageStyle imageType) {
+        return (StretchImg)setAttribute("imageType", imageType == null ? null : imageType.getValue(), true);
     }
 
     /**
@@ -306,10 +314,11 @@ public class StretchImg extends StatefulCanvas {
      * described in  {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle StatefulCanvas.baseStyle}).
      *
      * @param itemBaseStyle New itemBaseStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchImg StretchImg} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setItemBaseStyle(String itemBaseStyle) {
-        setAttribute("itemBaseStyle", itemBaseStyle, true);
+    public StretchImg setItemBaseStyle(String itemBaseStyle) {
+        return (StretchImg)setAttribute("itemBaseStyle", itemBaseStyle, true);
     }
 
     /**
@@ -364,10 +373,11 @@ public class StretchImg extends StatefulCanvas {
      * Setter for {@link com.smartgwt.client.widgets.StretchImg#getItems items}.
      *
      * @param items the new array of items. Default value is see below
+     * @return {@link com.smartgwt.client.widgets.StretchImg StretchImg} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setItems(StretchItem... items) {
-        setAttribute("items", items, true);
+    public StretchImg setItems(StretchItem... items) {
+        return (StretchImg)setAttribute("items", items, true);
     }
 
     /**
@@ -419,10 +429,11 @@ public class StretchImg extends StatefulCanvas {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showDownGrip New showDownGrip value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchImg StretchImg} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowDownGrip(Boolean showDownGrip)  throws IllegalStateException {
-        setAttribute("showDownGrip", showDownGrip, false);
+    public StretchImg setShowDownGrip(Boolean showDownGrip)  throws IllegalStateException {
+        return (StretchImg)setAttribute("showDownGrip", showDownGrip, false);
     }
 
     /**
@@ -442,10 +453,11 @@ public class StretchImg extends StatefulCanvas {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showGrip New showGrip value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchImg StretchImg} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowGrip(Boolean showGrip)  throws IllegalStateException {
-        setAttribute("showGrip", showGrip, false);
+    public StretchImg setShowGrip(Boolean showGrip)  throws IllegalStateException {
+        return (StretchImg)setAttribute("showGrip", showGrip, false);
     }
 
     /**
@@ -465,10 +477,11 @@ public class StretchImg extends StatefulCanvas {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showRollOverGrip New showRollOverGrip value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchImg StretchImg} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowRollOverGrip(Boolean showRollOverGrip)  throws IllegalStateException {
-        setAttribute("showRollOverGrip", showRollOverGrip, false);
+    public StretchImg setShowRollOverGrip(Boolean showRollOverGrip)  throws IllegalStateException {
+        return (StretchImg)setAttribute("showRollOverGrip", showRollOverGrip, false);
     }
 
     /**
@@ -490,9 +503,10 @@ public class StretchImg extends StatefulCanvas {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showTitle New showTitle value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.StretchImg StretchImg} instance, for chaining setter calls
      */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle, true);
+    public StretchImg setShowTitle(Boolean showTitle) {
+        return (StretchImg)setAttribute("showTitle", showTitle, true);
     }
 
     /**
@@ -519,13 +533,14 @@ public class StretchImg extends StatefulCanvas {
      * Changes the base {@link com.smartgwt.client.widgets.StretchImg#getSrc src} for this stretchImg, redrawing if necessary.
      *
      * @param src new URL for the image. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchImg StretchImg} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.StretchImg#setHSrc
      * @see com.smartgwt.client.widgets.StretchImg#setVSrc
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setSrc(String src) {
-        setAttribute("src", src, true);
+    public StretchImg setSrc(String src) {
+        return (StretchImg)setAttribute("src", src, true);
     }
 
     /**
@@ -551,10 +566,11 @@ public class StretchImg extends StatefulCanvas {
      * (false).
      *
      * @param vertical New vertical value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.StretchImg StretchImg} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setVertical(Boolean vertical) {
-        setAttribute("vertical", vertical, true);
+    public StretchImg setVertical(Boolean vertical) {
+        return (StretchImg)setAttribute("vertical", vertical, true);
     }
 
     /**
@@ -575,13 +591,14 @@ public class StretchImg extends StatefulCanvas {
      * com.smartgwt.client.widgets.StretchImg#getSrc src} is unset.
      *
      * @param vSrc New vSrc value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.StretchImg StretchImg} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.StretchImg#setSrc
      * @see com.smartgwt.client.widgets.StretchImg#setVSrc
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setVSrc(String vSrc) {
-        setAttribute("vSrc", vSrc, true);
+    public StretchImg setVSrc(String vSrc) {
+        return (StretchImg)setAttribute("vSrc", vSrc, true);
     }
 
     /**

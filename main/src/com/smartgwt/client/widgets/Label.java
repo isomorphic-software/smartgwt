@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -182,10 +185,11 @@ public class Label extends Button {
      * Horizontal alignment of label text. See Alignment type for details.
      *
      * @param align New align value. Default value is Canvas.LEFT
+     * @return {@link com.smartgwt.client.widgets.Label Label} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
      */
-    public void setAlign(Alignment align) {
-        setAttribute("align", align == null ? null : align.getValue(), true);
+    public Label setAlign(Alignment align) {
+        return (Label)setAttribute("align", align == null ? null : align.getValue(), true);
     }
 
     /**
@@ -207,10 +211,11 @@ public class Label extends Button {
      * and having  overflow:"visible"
      *
      * @param autoFit New autoFit value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Label Label} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
-    public void setAutoFit(Boolean autoFit) {
-        setAttribute("autoFit", autoFit, true);
+    public Label setAutoFit(Boolean autoFit) {
+        return (Label)setAttribute("autoFit", autoFit, true);
     }
 
     /**
@@ -235,11 +240,12 @@ public class Label extends Button {
      * Changes the contents of a widget to newContents, an HTML string. <P> When {@link com.smartgwt.client.widgets.Canvas#getDynamicContents dynamicContents} is set, <code>setContents()</code> can also be called with no arguments to cause contents to be re-evaluated.
      *
      * @param contents an HTML string to be set as the contents of this widget. Default value is "&amp;nbsp;"
+     * @return {@link com.smartgwt.client.widgets.Label Label} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Label#setDynamicContents
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setContents(String contents) {
-        setAttribute("contents", contents, true);
+    public Label setContents(String contents) {
+        return (Label)setAttribute("contents", contents, true);
     }
 
     /**
@@ -255,110 +261,49 @@ public class Label extends Button {
     
 
     /**
-     * Dynamic contents allows the contents string to be treated as a simple, but powerful
-     *  template.  When this attribute is set to true, expressions of the form &#36;{arbitrary JS
-     *  here} are replaced by the result of the evaluation of the JS code inside the curly
-     *  brackets.  This evaluation happens at draw time.  If you want to trigger a re-evaluation
-     *  of the expressions in the contents string you can call markForRedraw() on the canvas.
-     *  <p>
-     *  You can use this feature to build some simple custom components. For example, let's say
-     *  you want to show the value of a Slider in a Canvas somewhere on the screen.  You can do
-     *  this by observing the valueChanged() method on the slider and calling setContents() on
-     *  your canvas with the new string or you can set the contents of the canvas to something
-     *  like:
-     *  <p><code>
-     *  "The slider value is &#36;{sliderInstance.getValue()}."
-     *  </code><p>
-     *  Next you set dynamicContents: true on the canvas, observe valueChanged() on the slider
-     *  and call canvas.markForRedraw() in that observation.  This approach is cleaner than
-     *  setContents() when the Canvas is aggregating several values or dynamic expressions.
-     *  Like so:
-     *  <p>
-     *  <pre>
-     *  Slider.create({
-     *      ID: "mySlider"
-     *  });
-     * 
-     *  Canvas.create({
-     *      ID: "myCanvas",
-     *      dynamicContents: true,
-     *      contents: "The slider value is &#36;{mySlider.getValue()}."
-     *  });
-     * 
-     *  myCanvas.observe(mySlider, "valueChanged",
-     *                   "observer.markForRedraw()");
-     *  </pre>
-     *  You can embed an arbitrary number of dynamic expressions in the contents string.  The
-     *  search and replace is optimized for speed.
-     *  <p>
-     *  If an error occurs during the evaluation of one of the expressions, a warning is logged
-     *  to the ISC Developer Console and the error string is embedded in place of the expected
-     *  value in the Canvas.
-     *  <p>
-     *  The value of a function is its return value.  The value of any variable is the same as
-     *  that returned by its toString() representation.
-     *  <p>
-     *  Inside the evaluation contentext, <code>this</code> points to the canvas instance that
-     *  has the dynamicContents string as its contents - in other words the canvas instance on
-     *  which the template is declared.
+     * Dynamic contents allows the contents string to be treated as a simple but powerful template.  When this attribute is set
+     * to true, JavaScript expressions may be embedded  within the contents string, using the format:
+     * <code>&#36;{<i>[JavaScript to evaluate]</i>}</code>. <P> For example, to include the current date in a templated
+     * message,  <code>canvas.contents</code> could be set to:<br> <code>"Today's date is &lt;b&gt;&#36;{new
+     * Date().toUSShortDate()}&lt;/b&gt;"</code> <P> Embedded expressions will be evaluated when the canvas is drawn or
+     * redrawn, and the result of the evaluated expression will be displayed to the user. If the expression does not evaluate
+     * to a String, the <code>toString()</code> representation of the returned object will be displayed automatically <P>
+     * Dynamic expressions are evaluated in the scope of the canvas displaying the content,  so the <code>this</code> keyword
+     * may be used within your expression to refer to the  canvas. Developers may also explicitly supply values for variables
+     * to be used within the evaluation via the {@link com.smartgwt.client.widgets.Canvas#getDynamicContentsVars
+     * Canvas.dynamicContentsVars} property. <P> Notes:<ul> <li>Calling markForRedraw() on the canvas will evaluate any
+     * embedded expressions.</li> <li>Multiple such expressions may be embedded within the contents string for a
+     * component.</li> <li>If an error occurs during evaluation, a warning is logged     to the {@link
+     * com.smartgwt.client.docs.Debugging Developer Console} and the error string will be embedded in place      of the
+     * expected value in the Canvas. </li> </ul>
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param dynamicContents New dynamicContents value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Label Label} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Label#setContents
      * @see com.smartgwt.client.widgets.Canvas#setDynamicContentsVars
      * 
      */
-    public void setDynamicContents(Boolean dynamicContents) {
-        setAttribute("dynamicContents", dynamicContents, true);
+    public Label setDynamicContents(Boolean dynamicContents) {
+        return (Label)setAttribute("dynamicContents", dynamicContents, true);
     }
 
     /**
-     * Dynamic contents allows the contents string to be treated as a simple, but powerful
-     *  template.  When this attribute is set to true, expressions of the form &#36;{arbitrary JS
-     *  here} are replaced by the result of the evaluation of the JS code inside the curly
-     *  brackets.  This evaluation happens at draw time.  If you want to trigger a re-evaluation
-     *  of the expressions in the contents string you can call markForRedraw() on the canvas.
-     *  <p>
-     *  You can use this feature to build some simple custom components. For example, let's say
-     *  you want to show the value of a Slider in a Canvas somewhere on the screen.  You can do
-     *  this by observing the valueChanged() method on the slider and calling setContents() on
-     *  your canvas with the new string or you can set the contents of the canvas to something
-     *  like:
-     *  <p><code>
-     *  "The slider value is &#36;{sliderInstance.getValue()}."
-     *  </code><p>
-     *  Next you set dynamicContents: true on the canvas, observe valueChanged() on the slider
-     *  and call canvas.markForRedraw() in that observation.  This approach is cleaner than
-     *  setContents() when the Canvas is aggregating several values or dynamic expressions.
-     *  Like so:
-     *  <p>
-     *  <pre>
-     *  Slider.create({
-     *      ID: "mySlider"
-     *  });
-     * 
-     *  Canvas.create({
-     *      ID: "myCanvas",
-     *      dynamicContents: true,
-     *      contents: "The slider value is &#36;{mySlider.getValue()}."
-     *  });
-     * 
-     *  myCanvas.observe(mySlider, "valueChanged",
-     *                   "observer.markForRedraw()");
-     *  </pre>
-     *  You can embed an arbitrary number of dynamic expressions in the contents string.  The
-     *  search and replace is optimized for speed.
-     *  <p>
-     *  If an error occurs during the evaluation of one of the expressions, a warning is logged
-     *  to the ISC Developer Console and the error string is embedded in place of the expected
-     *  value in the Canvas.
-     *  <p>
-     *  The value of a function is its return value.  The value of any variable is the same as
-     *  that returned by its toString() representation.
-     *  <p>
-     *  Inside the evaluation contentext, <code>this</code> points to the canvas instance that
-     *  has the dynamicContents string as its contents - in other words the canvas instance on
-     *  which the template is declared.
+     * Dynamic contents allows the contents string to be treated as a simple but powerful template.  When this attribute is set
+     * to true, JavaScript expressions may be embedded  within the contents string, using the format:
+     * <code>&#36;{<i>[JavaScript to evaluate]</i>}</code>. <P> For example, to include the current date in a templated
+     * message,  <code>canvas.contents</code> could be set to:<br> <code>"Today's date is &lt;b&gt;&#36;{new
+     * Date().toUSShortDate()}&lt;/b&gt;"</code> <P> Embedded expressions will be evaluated when the canvas is drawn or
+     * redrawn, and the result of the evaluated expression will be displayed to the user. If the expression does not evaluate
+     * to a String, the <code>toString()</code> representation of the returned object will be displayed automatically <P>
+     * Dynamic expressions are evaluated in the scope of the canvas displaying the content,  so the <code>this</code> keyword
+     * may be used within your expression to refer to the  canvas. Developers may also explicitly supply values for variables
+     * to be used within the evaluation via the {@link com.smartgwt.client.widgets.Canvas#getDynamicContentsVars
+     * Canvas.dynamicContentsVars} property. <P> Notes:<ul> <li>Calling markForRedraw() on the canvas will evaluate any
+     * embedded expressions.</li> <li>Multiple such expressions may be embedded within the contents string for a
+     * component.</li> <li>If an error occurs during evaluation, a warning is logged     to the {@link
+     * com.smartgwt.client.docs.Debugging Developer Console} and the error string will be embedded in place      of the
+     * expected value in the Canvas. </li> </ul>
      *
      * @return Current dynamicContents value. Default value is false
      * @see com.smartgwt.client.widgets.Label#getContents
@@ -376,11 +321,12 @@ public class Label extends Button {
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "LabelEditProxy"
+     * @return {@link com.smartgwt.client.widgets.Label Label} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
-        setAttribute("editProxyConstructor", editProxyConstructor, false);
+    public Label setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
+        return (Label)setAttribute("editProxyConstructor", editProxyConstructor, false);
     }
 
     /**
@@ -397,26 +343,27 @@ public class Label extends Button {
 
     /**
      * Size for this component's vertical dimension.  See {@link com.smartgwt.client.widgets.Canvas#getHeight Canvas.height}
-     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Label#getAutoFit autoFit} is set on non-{@link
-     * com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the widget is always
-     * sized just large enough to accommodate the title.
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit StatefulCanvas.autoFit}
+     * is set on non-{@link com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the
+     * widget is always sized just large enough to accommodate the title.
      *
      * @param height New height value. Default value is null
-     * @see com.smartgwt.client.widgets.Label#setAutoFit
+     * @return {@link com.smartgwt.client.widgets.Label Label} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.StatefulCanvas#setAutoFit
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
-    public void setHeight(Integer height) {
-        setAttribute("height", height, true);
+    public Label setHeight(Integer height) {
+        return (Label)setAttribute("height", height, true);
     }
 
     /**
      * Size for this component's vertical dimension.  See {@link com.smartgwt.client.widgets.Canvas#getHeight Canvas.height}
-     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Label#getAutoFit autoFit} is set on non-{@link
-     * com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the widget is always
-     * sized just large enough to accommodate the title.
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit StatefulCanvas.autoFit}
+     * is set on non-{@link com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the
+     * widget is always sized just large enough to accommodate the title.
      *
      * @return Current height value. Default value is null
-     * @see com.smartgwt.client.widgets.Label#getAutoFit
+     * @see com.smartgwt.client.widgets.StatefulCanvas#getAutoFit
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public Integer getHeight()  {
@@ -425,12 +372,12 @@ public class Label extends Button {
 
     /**
      * Size for this component's vertical dimension.  See {@link com.smartgwt.client.widgets.Canvas#getHeight Canvas.height}
-     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Label#getAutoFit autoFit} is set on non-{@link
-     * com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the widget is always
-     * sized just large enough to accommodate the title.
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit StatefulCanvas.autoFit}
+     * is set on non-{@link com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the
+     * widget is always sized just large enough to accommodate the title.
      *
      * @param height New height value. Default value is null
-     * @see com.smartgwt.client.widgets.Label#setAutoFit
+     * @see com.smartgwt.client.widgets.StatefulCanvas#setAutoFit
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public void setHeight(String height) {
@@ -439,12 +386,12 @@ public class Label extends Button {
 
     /**
      * Size for this component's vertical dimension.  See {@link com.smartgwt.client.widgets.Canvas#getHeight Canvas.height}
-     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Label#getAutoFit autoFit} is set on non-{@link
-     * com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the widget is always
-     * sized just large enough to accommodate the title.
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit StatefulCanvas.autoFit}
+     * is set on non-{@link com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the
+     * widget is always sized just large enough to accommodate the title.
      *
      * @return Current height value. Default value is null
-     * @see com.smartgwt.client.widgets.Label#getAutoFit
+     * @see com.smartgwt.client.widgets.StatefulCanvas#getAutoFit
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public String getHeightAsString()  {
@@ -463,11 +410,12 @@ public class Label extends Button {
      * Change the icon being shown next to the title text.
      *
      * @param icon URL of new icon. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Label Label} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIcon(String icon) {
-        setAttribute("icon", icon, true);
+    public Label setIcon(String icon) {
+        return (Label)setAttribute("icon", icon, true);
     }
 
     /**
@@ -490,11 +438,12 @@ public class Label extends Button {
      * If this button is showing an icon should it be right or left aligned?
      *
      * @param iconAlign New iconAlign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Label Label} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconAlign(String iconAlign)  throws IllegalStateException {
-        setAttribute("iconAlign", iconAlign, false);
+    public Label setIconAlign(String iconAlign)  throws IllegalStateException {
+        return (Label)setAttribute("iconAlign", iconAlign, false);
     }
 
     /**
@@ -513,11 +462,12 @@ public class Label extends Button {
      * com.smartgwt.client.widgets.StatefulCanvas#getIconSize iconSize}.
      *
      * @param iconHeight New iconHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Label Label} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconHeight(Integer iconHeight)  throws IllegalStateException {
-        setAttribute("iconHeight", iconHeight, false);
+    public Label setIconHeight(Integer iconHeight)  throws IllegalStateException {
+        return (Label)setAttribute("iconHeight", iconHeight, false);
     }
 
     /**
@@ -540,11 +490,12 @@ public class Label extends Button {
      * Changes the orientation of the icon relative to the text of the button.
      *
      * @param iconOrientation The new orientation of the icon relative to the text of the button. Default value is "left"
+     * @return {@link com.smartgwt.client.widgets.Label Label} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconOrientation(String iconOrientation)  throws IllegalStateException {
-        setAttribute("iconOrientation", iconOrientation, false);
+    public Label setIconOrientation(String iconOrientation)  throws IllegalStateException {
+        return (Label)setAttribute("iconOrientation", iconOrientation, false);
     }
 
     /**
@@ -569,11 +520,12 @@ public class Label extends Button {
      * <code>iconSize</code> ineffective.
      *
      * @param iconSize New iconSize value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.Label Label} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconSize(int iconSize)  throws IllegalStateException {
-        setAttribute("iconSize", iconSize, false);
+    public Label setIconSize(int iconSize)  throws IllegalStateException {
+        return (Label)setAttribute("iconSize", iconSize, false);
     }
 
     /**
@@ -597,11 +549,12 @@ public class Label extends Button {
      * Pixels between icon and title text.
      *
      * @param iconSpacing New iconSpacing value. Default value is 6
+     * @return {@link com.smartgwt.client.widgets.Label Label} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconSpacing(int iconSpacing)  throws IllegalStateException {
-        setAttribute("iconSpacing", iconSpacing, false);
+    public Label setIconSpacing(int iconSpacing)  throws IllegalStateException {
+        return (Label)setAttribute("iconSpacing", iconSpacing, false);
     }
 
     /**
@@ -620,11 +573,12 @@ public class Label extends Button {
      * com.smartgwt.client.widgets.StatefulCanvas#getIconSize iconSize}.
      *
      * @param iconWidth New iconWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Label Label} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconWidth(Integer iconWidth)  throws IllegalStateException {
-        setAttribute("iconWidth", iconWidth, false);
+    public Label setIconWidth(Integer iconWidth)  throws IllegalStateException {
+        return (Label)setAttribute("iconWidth", iconWidth, false);
     }
 
     /**
@@ -643,11 +597,12 @@ public class Label extends Button {
      * If using an icon for this button, whether to switch the icon image if the button becomes disabled.
      *
      * @param showDisabledIcon New showDisabledIcon value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Label Label} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowDisabledIcon(Boolean showDisabledIcon)  throws IllegalStateException {
-        setAttribute("showDisabledIcon", showDisabledIcon, false);
+    public Label setShowDisabledIcon(Boolean showDisabledIcon)  throws IllegalStateException {
+        return (Label)setAttribute("showDisabledIcon", showDisabledIcon, false);
     }
 
     /**
@@ -666,11 +621,12 @@ public class Label extends Button {
      * If using an icon for this button, whether to switch the icon image when the mouse goes down on the button.
      *
      * @param showDownIcon New showDownIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Label Label} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowDownIcon(Boolean showDownIcon)  throws IllegalStateException {
-        setAttribute("showDownIcon", showDownIcon, false);
+    public Label setShowDownIcon(Boolean showDownIcon)  throws IllegalStateException {
+        return (Label)setAttribute("showDownIcon", showDownIcon, false);
     }
 
     /**
@@ -692,11 +648,12 @@ public class Label extends Button {
      * will be displayed
      *
      * @param showFocusedIcon New showFocusedIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Label Label} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowFocusedIcon(Boolean showFocusedIcon)  throws IllegalStateException {
-        setAttribute("showFocusedIcon", showFocusedIcon, false);
+    public Label setShowFocusedIcon(Boolean showFocusedIcon)  throws IllegalStateException {
+        return (Label)setAttribute("showFocusedIcon", showFocusedIcon, false);
     }
 
     /**
@@ -718,11 +675,12 @@ public class Label extends Button {
      * If using an icon for this button, whether to switch the icon image on mouse rollover.
      *
      * @param showRollOverIcon New showRollOverIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Label Label} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowRollOverIcon(Boolean showRollOverIcon)  throws IllegalStateException {
-        setAttribute("showRollOverIcon", showRollOverIcon, false);
+    public Label setShowRollOverIcon(Boolean showRollOverIcon)  throws IllegalStateException {
+        return (Label)setAttribute("showRollOverIcon", showRollOverIcon, false);
     }
 
     /**
@@ -741,11 +699,12 @@ public class Label extends Button {
      * If using an icon for this button, whether to switch the icon image when the button becomes selected.
      *
      * @param showSelectedIcon New showSelectedIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Label Label} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowSelectedIcon(Boolean showSelectedIcon)  throws IllegalStateException {
-        setAttribute("showSelectedIcon", showSelectedIcon, false);
+    public Label setShowSelectedIcon(Boolean showSelectedIcon)  throws IllegalStateException {
+        return (Label)setAttribute("showSelectedIcon", showSelectedIcon, false);
     }
 
     /**
@@ -790,10 +749,11 @@ public class Label extends Button {
      * Vertical alignment of label text. See VerticalAlignment type for details.
      *
      * @param valign New valign value. Default value is Canvas.CENTER
+     * @return {@link com.smartgwt.client.widgets.Label Label} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
      */
-    public void setValign(VerticalAlignment valign) {
-        setAttribute("valign", valign == null ? null : valign.getValue(), true);
+    public Label setValign(VerticalAlignment valign) {
+        return (Label)setAttribute("valign", valign == null ? null : valign.getValue(), true);
     }
 
     /**
@@ -809,24 +769,25 @@ public class Label extends Button {
 
     /**
      * Size for this component's horizontal dimension.  See {@link com.smartgwt.client.widgets.Canvas#getWidth Canvas.width}
-     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Label#getAutoFit autoFit} is set, this property
-     * will be ignored so that the widget is always sized just large enough to accommodate the title.
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit StatefulCanvas.autoFit}
+     * is set, this property will be ignored so that the widget is always sized just large enough to accommodate the title.
      *
      * @param width New width value. Default value is null
-     * @see com.smartgwt.client.widgets.Label#setAutoFit
+     * @return {@link com.smartgwt.client.widgets.Label Label} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.StatefulCanvas#setAutoFit
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
-    public void setWidth(Integer width) {
-        setAttribute("width", width, true);
+    public Label setWidth(Integer width) {
+        return (Label)setAttribute("width", width, true);
     }
 
     /**
      * Size for this component's horizontal dimension.  See {@link com.smartgwt.client.widgets.Canvas#getWidth Canvas.width}
-     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Label#getAutoFit autoFit} is set, this property
-     * will be ignored so that the widget is always sized just large enough to accommodate the title.
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit StatefulCanvas.autoFit}
+     * is set, this property will be ignored so that the widget is always sized just large enough to accommodate the title.
      *
      * @return Current width value. Default value is null
-     * @see com.smartgwt.client.widgets.Label#getAutoFit
+     * @see com.smartgwt.client.widgets.StatefulCanvas#getAutoFit
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public Integer getWidth()  {
@@ -835,11 +796,11 @@ public class Label extends Button {
 
     /**
      * Size for this component's horizontal dimension.  See {@link com.smartgwt.client.widgets.Canvas#getWidth Canvas.width}
-     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Label#getAutoFit autoFit} is set, this property
-     * will be ignored so that the widget is always sized just large enough to accommodate the title.
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit StatefulCanvas.autoFit}
+     * is set, this property will be ignored so that the widget is always sized just large enough to accommodate the title.
      *
      * @param width New width value. Default value is null
-     * @see com.smartgwt.client.widgets.Label#setAutoFit
+     * @see com.smartgwt.client.widgets.StatefulCanvas#setAutoFit
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public void setWidth(String width) {
@@ -848,11 +809,11 @@ public class Label extends Button {
 
     /**
      * Size for this component's horizontal dimension.  See {@link com.smartgwt.client.widgets.Canvas#getWidth Canvas.width}
-     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Label#getAutoFit autoFit} is set, this property
-     * will be ignored so that the widget is always sized just large enough to accommodate the title.
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit StatefulCanvas.autoFit}
+     * is set, this property will be ignored so that the widget is always sized just large enough to accommodate the title.
      *
      * @return Current width value. Default value is null
-     * @see com.smartgwt.client.widgets.Label#getAutoFit
+     * @see com.smartgwt.client.widgets.StatefulCanvas#getAutoFit
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public String getWidthAsString()  {
@@ -864,10 +825,11 @@ public class Label extends Button {
      * If false, the label text will not be wrapped to the next line.
      *
      * @param wrap New wrap value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Label Label} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
-    public void setWrap(Boolean wrap) {
-        setAttribute("wrap", wrap, true);
+    public Label setWrap(Boolean wrap) {
+        return (Label)setAttribute("wrap", wrap, true);
     }
 
     /**

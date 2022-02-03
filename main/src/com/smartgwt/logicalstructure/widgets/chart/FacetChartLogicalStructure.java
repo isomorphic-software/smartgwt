@@ -5,8 +5,10 @@ import com.smartgwt.client.i18n.*;
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.fields.*;
 import com.smartgwt.client.tools.*;
 import com.smartgwt.client.widgets.*;
@@ -47,6 +49,7 @@ public class FacetChartLogicalStructure extends DrawPaneLogicalStructure {
     public String allowBubbleGradients;
     public String[] allowedChartTypes;
     public String autoRotateLabels;
+    public String autoScrollContent;
     public String autoScrollData;
     public String autoScrollDataApproach;
     public String autoSortBubblePoints;
@@ -78,6 +81,7 @@ public class FacetChartLogicalStructure extends DrawPaneLogicalStructure {
     public String editProxyConstructor;
     public String endValueMetric;
     public String errorBarWidth;
+    public String extraAxisLabelAlign;
     public String[] extraAxisMetrics;
     public MetricSettings[] extraAxisSettings;
     public String filled;
@@ -108,6 +112,10 @@ public class FacetChartLogicalStructure extends DrawPaneLogicalStructure {
     public String maxDataZIndex;
     public String metricFacetId;
     public String minBarThickness;
+    public String minChartHeight;
+    public String minChartWidth;
+    public String minContentHeight;
+    public String minContentWidth;
     public String minDataPointSize;
     public String minDataSpreadPercent;
     public String minLabelGap;
@@ -135,6 +143,7 @@ public class FacetChartLogicalStructure extends DrawPaneLogicalStructure {
     public String radialLabelOffset;
     public String regressionLineType;
     public String regressionPolynomialDegree;
+    public String rotateDataValues;
     public String rotateLabels;
     public String scaleEndColor;
     public String scaleStartColor;
@@ -145,6 +154,7 @@ public class FacetChartLogicalStructure extends DrawPaneLogicalStructure {
     public String showDataLabels;
     public String showDataPoints;
     public String showDataValues;
+    public String showDataValuesMode;
     public String showDoughnut;
     public String showExpectedValueLine;
     public String showGradationsOverData;
@@ -183,6 +193,7 @@ public class FacetChartLogicalStructure extends DrawPaneLogicalStructure {
     public String xAxisEndValueAsString;
     public String xAxisMetric;
     public String xAxisStartValueAsString;
+    public String yAxisLabelAlign;
     public String yAxisLabelPadding;
     public String yAxisMetric;
     public String zIndexMetric;

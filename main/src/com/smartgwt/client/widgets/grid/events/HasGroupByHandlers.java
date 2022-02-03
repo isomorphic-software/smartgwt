@@ -26,7 +26,10 @@ public interface HasGroupByHandlers extends HasHandlers {
      * com.smartgwt.client.widgets.grid.ListGrid#groupBy groupBy()} is called programmatically.  This event may be cancelled.
      * <P> This notification is fired before the {@link com.smartgwt.client.widgets.grid.ListGrid#getGroupTree data} is updated
      * to reflect the grouping. See also {@link com.smartgwt.client.widgets.grid.ListGrid#addGroupByCompleteHandler
-     * ListGrid.groupByComplete()}.
+     * ListGrid.groupByComplete()}. <P> Note that this method is not called when the data is regrouped, either {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#regroup programmatically}, or in response to new data arriving from the
+     * server, and such regrouping can't be canceled - instead use callback {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#addRegroupHandler ListGrid.regroup()}.
      *
      * @param handler the groupBy handler
      * @return {@link HandlerRegistration} used to remove this handler

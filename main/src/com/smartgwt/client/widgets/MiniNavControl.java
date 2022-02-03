@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -173,11 +176,12 @@ public class MiniNavControl extends StretchImgButton implements com.smartgwt.cli
      * Image used for the down arrowhead.
      *
      * @param downButtonSrc New downButtonSrc value. Default value is "[SKIN]/down.png"
+     * @return {@link com.smartgwt.client.widgets.MiniNavControl MiniNavControl} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setDownButtonSrc(String downButtonSrc)  throws IllegalStateException {
-        setAttribute("downButtonSrc", downButtonSrc, false);
+    public MiniNavControl setDownButtonSrc(String downButtonSrc)  throws IllegalStateException {
+        return (MiniNavControl)setAttribute("downButtonSrc", downButtonSrc, false);
     }
 
     /**
@@ -195,11 +199,12 @@ public class MiniNavControl extends StretchImgButton implements com.smartgwt.cli
      * 
      *
      * @param skinImgDir New skinImgDir value. Default value is "images/NavigationBar"
+     * @return {@link com.smartgwt.client.widgets.MiniNavControl MiniNavControl} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setSkinImgDir(String skinImgDir)  throws IllegalStateException {
-        setAttribute("skinImgDir", skinImgDir, false);
+    public MiniNavControl setSkinImgDir(String skinImgDir)  throws IllegalStateException {
+        return (MiniNavControl)setAttribute("skinImgDir", skinImgDir, false);
     }
 
     /**
@@ -217,11 +222,12 @@ public class MiniNavControl extends StretchImgButton implements com.smartgwt.cli
      * Image used for the up arrowhead.
      *
      * @param upButtonSrc New upButtonSrc value. Default value is "[SKIN]/up.png"
+     * @return {@link com.smartgwt.client.widgets.MiniNavControl MiniNavControl} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setUpButtonSrc(String upButtonSrc)  throws IllegalStateException {
-        setAttribute("upButtonSrc", upButtonSrc, false);
+    public MiniNavControl setUpButtonSrc(String upButtonSrc)  throws IllegalStateException {
+        return (MiniNavControl)setAttribute("upButtonSrc", upButtonSrc, false);
     }
 
     /**

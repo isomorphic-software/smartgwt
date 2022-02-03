@@ -62,19 +62,9 @@ package com.smartgwt.client.docs;
  * Canvas.updateTabPositionOnReparent}).<br>     This is useful for providing tab index management
  * logic that doesn't     match up with top level draw order, or the canvas parent-child
  * hierarchy.</li> </ul> Focusable elements other than Smart GWT components (for example, native
- * HTML elements embedded in some canvas) can also participate in the automatically assigned tab
- * order. <P> To achieve this, a (unique) entry for each focusable component would be added  to
- * the TabIndexManager at the desired location in the tab sequence tree.<br> For example, if a
- * focusable element is being written into some Canvas as part of  its contents, you might
- * override {@link com.smartgwt.client.widgets.Canvas#draw Canvas.draw()} to add a new entry for
- * the element to the TabIndexManager, passing the canvas' ID as the parentID parameter. A  call
- * to {@link com.smartgwt.client.widgets.TabIndexManager#getTabIndex
- * TabIndexManager.getTabIndex()} would then retrieve a numeric index that could be written into
- * the native HTML. You'd also want to provide a callback to  update the element's native tabIndex
- * when the TabIndexManager creates a new numeric value for it. If you want to support {@link
- * com.smartgwt.client.widgets.Canvas#focusInNextTabElement programmatically tabbing} into the
- * element,  a shiftFocusCallback should also be provided to put focus into the element,  or
- * return false if this is not currently possibly for some reason.
+ * HTML elements embedded in some canvas, or third party widgets)  can also participate in the
+ * automatically assigned tab order. See {@link com.smartgwt.client.docs.CustomTabElements} for
+ * details on how to achieve this.
  */
 public interface TabOrderOverview {
 }

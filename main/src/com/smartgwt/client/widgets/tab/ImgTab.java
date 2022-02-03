@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -173,10 +176,11 @@ public class ImgTab extends StretchImgButton {
      * Alignment of title text
      *
      * @param align New align value. Default value is Canvas.CENTER
+     * @return {@link com.smartgwt.client.widgets.tab.ImgTab ImgTab} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Positioning Positioning overview and related methods
      */
-    public void setAlign(Alignment align) {
-        setAttribute("align", align == null ? null : align.getValue(), true);
+    public ImgTab setAlign(Alignment align) {
+        return (ImgTab)setAttribute("align", align == null ? null : align.getValue(), true);
     }
 
     /**
@@ -194,11 +198,12 @@ public class ImgTab extends StretchImgButton {
      * 
      *
      * @param baseStyle New baseStyle value. Default value is "tab"
+     * @return {@link com.smartgwt.client.widgets.tab.ImgTab ImgTab} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setBaseStyle(String baseStyle)  throws IllegalStateException {
-        setAttribute("baseStyle", baseStyle, false);
+    public ImgTab setBaseStyle(String baseStyle)  throws IllegalStateException {
+        return (ImgTab)setAttribute("baseStyle", baseStyle, false);
     }
 
     /**
@@ -216,10 +221,11 @@ public class ImgTab extends StretchImgButton {
      * How big are the end pieces by default
      *
      * @param capSize New capSize value. Default value is 2
+     * @return {@link com.smartgwt.client.widgets.tab.ImgTab ImgTab} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setCapSize(int capSize) {
-        setAttribute("capSize", capSize, true);
+    public ImgTab setCapSize(int capSize) {
+        return (ImgTab)setAttribute("capSize", capSize, true);
     }
 
     /**
@@ -237,10 +243,11 @@ public class ImgTab extends StretchImgButton {
      * Base path for images shown within this ImgTab's label. This will be used for icons (such as the close icon) by default.
      *
      * @param labelSkinImgDir New labelSkinImgDir value. Default value is "images/"
+     * @return {@link com.smartgwt.client.widgets.tab.ImgTab ImgTab} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.URL URL 
      */
-    public void setLabelSkinImgDir(String labelSkinImgDir) {
-        setAttribute("labelSkinImgDir", labelSkinImgDir, true);
+    public ImgTab setLabelSkinImgDir(String labelSkinImgDir) {
+        return (ImgTab)setAttribute("labelSkinImgDir", labelSkinImgDir, true);
     }
 
     /**
@@ -259,9 +266,10 @@ public class ImgTab extends StretchImgButton {
      * Should we visibly change state when the tab receives keyboard focus?
      *
      * @param showFocused New showFocused value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tab.ImgTab ImgTab} instance, for chaining setter calls
      */
-    public void setShowFocused(Boolean showFocused) {
-        setAttribute("showFocused", showFocused, true);
+    public ImgTab setShowFocused(Boolean showFocused) {
+        return (ImgTab)setAttribute("showFocused", showFocused, true);
     }
 
     /**
@@ -279,9 +287,10 @@ public class ImgTab extends StretchImgButton {
      * Should we visibly change state when the mouse goes over this tab
      *
      * @param showRollOver New showRollOver value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tab.ImgTab ImgTab} instance, for chaining setter calls
      */
-    public void setShowRollOver(Boolean showRollOver) {
-        setAttribute("showRollOver", showRollOver, true);
+    public ImgTab setShowRollOver(Boolean showRollOver) {
+        return (ImgTab)setAttribute("showRollOver", showRollOver, true);
     }
 
     /**
@@ -301,10 +310,11 @@ public class ImgTab extends StretchImgButton {
      * segment, yielding "images/Tab/top/" et al.
      *
      * @param skinImgDir New skinImgDir value. Default value is "images/Tab/"
+     * @return {@link com.smartgwt.client.widgets.tab.ImgTab ImgTab} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.URL URL 
      */
-    public void setSkinImgDir(String skinImgDir) {
-        setAttribute("skinImgDir", skinImgDir, true);
+    public ImgTab setSkinImgDir(String skinImgDir) {
+        return (ImgTab)setAttribute("skinImgDir", skinImgDir, true);
     }
 
     /**
@@ -324,10 +334,11 @@ public class ImgTab extends StretchImgButton {
      * Base URL for tab images
      *
      * @param src New src value. Default value is "[SKIN]tab.gif"
+     * @return {@link com.smartgwt.client.widgets.tab.ImgTab ImgTab} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setSrc(String src) {
-        setAttribute("src", src, true);
+    public ImgTab setSrc(String src) {
+        return (ImgTab)setAttribute("src", src, true);
     }
 
     /**
@@ -348,11 +359,12 @@ public class ImgTab extends StretchImgButton {
      * name (hence "tabTitle" -> "vtabTitle").
      *
      * @param titleStyle New titleStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tab.ImgTab ImgTab} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setTitleStyle(String titleStyle)  throws IllegalStateException {
-        setAttribute("titleStyle", titleStyle, false);
+    public ImgTab setTitleStyle(String titleStyle)  throws IllegalStateException {
+        return (ImgTab)setAttribute("titleStyle", titleStyle, false);
     }
 
     /**

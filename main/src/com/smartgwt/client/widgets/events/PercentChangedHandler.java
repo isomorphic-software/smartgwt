@@ -21,7 +21,7 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface PercentChangedHandler extends EventHandler {
     /**
-     * This method is called when the percentDone value changes. Observe this method to be notified upon a change to the
+     * This method is called when the percentDone value changes.  Call this method to be notified upon a change to the
      * percentDone value.
      *
      * @param event the event

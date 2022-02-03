@@ -68,8 +68,10 @@ public interface PickList {
      * hideEmptyPickList} is <code>false</code>. <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param emptyPickListMessage emptyPickListMessage Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.PickList PickList} instance, for
+     * chaining setter calls
      */
-    public void setEmptyPickListMessage(String emptyPickListMessage);
+    public PickList setEmptyPickListMessage(String emptyPickListMessage);
 
     /**
      * Empty message to display in the pickList if  {@link com.smartgwt.client.widgets.form.fields.PickList#getHideEmptyPickList
@@ -110,6 +112,26 @@ public interface PickList {
      * @return Integer
      */
     public Integer getPickListWidth();
+
+    /**
+     * Maximum width for this item's pickList. By default if the values displayed in this pickList are wider 
+     * than the specified {@link com.smartgwt.client.widgets.form.fields.PickList#setPickListWidth setPickListWidth} 
+     * the pickList will render wide enough to accomodate them. This property 
+     * allows the developer to limit how wide the pickList will render.
+     *
+     * @param pickListMaxWidth pickListMaxWidth Default value is 400
+     */
+    public void setPickListMaxWidth(Integer pickListMaxWidth);
+
+    /**
+     * Maximum width for this item's pickList. By default if the values displayed in this pickList are wider 
+     * than the specified {@link com.smartgwt.client.widgets.form.fields.PickList#setPickListWidth setPickListWidth} 
+     * the pickList will render wide enough to accomodate them. This property 
+     * allows the developer to limit how wide the pickList will render.
+     *
+     * @return Integer
+     */
+    public Integer getPickListMaxWidth();
 
     /**
      * Base Style for pickList cells.  As with ListGrid Cells, will have 'over', 'selected' and 'disabled' appended on
@@ -197,8 +219,10 @@ public interface PickList {
      * This is an advanced setting</p>
      *
      * @param valueField valueField Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.PickList PickList} instance, for
+     * chaining setter calls
      */
-    public void setValueField(String valueField);
+    public PickList setValueField(String valueField);
 
     /**
      * If this form item maps data values to display values by retrieving the  {@link
@@ -223,8 +247,10 @@ public interface PickList {
      * {@link com.smartgwt.client.docs.ValueMap ValueMap}.
      *
      * @param displayField displayField Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.PickList PickList} instance, for
+     * chaining setter calls
      */
-    public void setDisplayField(String displayField);
+    public PickList setDisplayField(String displayField);
 
     /**
      * Specifies an alternative field from which display values should be retrieved for this item.<br> If this item is
@@ -273,8 +299,10 @@ public interface PickList {
      * for the pickList. <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param pickListCriteria pickListCriteria Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.PickList PickList} instance, for
+     * chaining setter calls
      */
-    public void setPickListCriteria(Criteria pickListCriteria);
+    public PickList setPickListCriteria(Criteria pickListCriteria);
 
     /**
      * If this item has a databound pick-list (for example {@link com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource
@@ -292,8 +320,10 @@ public interface PickList {
      * advanced setting</p>
      *
      * @param showOptionsFromDataSource showOptionsFromDataSource Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.PickList PickList} instance, for
+     * chaining setter calls
      */
-    public void setShowOptionsFromDataSource(Boolean showOptionsFromDataSource);
+    public PickList setShowOptionsFromDataSource(Boolean showOptionsFromDataSource);
 
     /**
      * If this item is part of a databound form, and has a specified <code>valueMap</code> by default we show the
@@ -312,8 +342,10 @@ public interface PickList {
      * setting</p>
      *
      * @param filterLocally filterLocally Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.PickList PickList} instance, for
+     * chaining setter calls
      */
-    public void setFilterLocally(Boolean filterLocally);
+    public PickList setFilterLocally(Boolean filterLocally);
 
     /**
      * If <code>filterLocally</code> is set for this item, and this item is showing options  from a dataSource, fetch
@@ -334,8 +366,10 @@ public interface PickList {
      * <code>textMatchStyle</code> is applied by  {@link com.smartgwt.client.widgets.form.fields.PickList#filterClientPickListData}.
      *
      * @param textMatchStyle textMatchStyle Default value is "startsWith"
+     * @return {@link com.smartgwt.client.widgets.form.fields.PickList PickList} instance, for
+     * chaining setter calls
      */
-    public void setTextMatchStyle(TextMatchStyle textMatchStyle);
+    public PickList setTextMatchStyle(TextMatchStyle textMatchStyle);
 
     /**
      * When applying filter criteria to pickList data, what type of matching to use.  Legal values are "substring"
@@ -355,8 +389,10 @@ public interface PickList {
      * optionDataSource}.
      *
      * @param showAllOptions showAllOptions Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.PickList PickList} instance, for
+     * chaining setter calls
      */
-    public void setShowAllOptions(Boolean showAllOptions);
+    public PickList setShowAllOptions(Boolean showAllOptions);
 
     /**
      * If true, even non-matching options will be shown, with configurable  {@link com.smartgwt.client.widgets.form.fields.PickList#getSeparatorRows
@@ -448,12 +484,14 @@ public interface PickList {
      * Not valid for {@link FormItem#setOptionDataSource(com.smartgwt.client.data.DataSource) 'databound pickLists'}.
      * 
      * @param separatorRows separator rows
+     * @return {@link com.smartgwt.client.widgets.form.fields.PickList PickList} instance, for
+     * chaining setter calls
      */
-    public void setSeparatorRows(ListGridRecord[] separatorRows);
+    public PickList setSeparatorRows(ListGridRecord[] separatorRows);
 
     public DataSource getOptionDataSource();
 
-    public void setOptionDataSource(DataSource dataSource);
+    public PickList setOptionDataSource(DataSource dataSource);
 
     /**
     * If this item has a specified <code>optionDataSource</code>, and this property is&#010 not null, this will be passed to the datasource as {@link com.smartgwt.client.rpc.RPCRequest} properties when&#010 performing the fetch operation on the dataSource to obtain a data-value to display-value&#010 mapping

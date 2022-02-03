@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * FormItem that allows picking a value from a hierarchical data model.
@@ -179,11 +182,12 @@ public class PickTreeItem extends CanvasItem {
      * hiding the menus, calling click handlers, etc) instead of showing the submenu.
      *
      * @param canSelectParentItems New canSelectParentItems value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.PickTreeItem PickTreeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_editing" target="examples">Editing Example</a>
      */
-    public void setCanSelectParentItems(Boolean canSelectParentItems) {
-        setAttribute("canSelectParentItems", canSelectParentItems);
+    public PickTreeItem setCanSelectParentItems(Boolean canSelectParentItems) {
+        return (PickTreeItem)setAttribute("canSelectParentItems", canSelectParentItems);
     }
 
     /**
@@ -212,9 +216,10 @@ public class PickTreeItem extends CanvasItem {
      * the  <code>displayField</code> value from that record.
      *
      * @param displayField New displayField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.PickTreeItem PickTreeItem} instance, for chaining setter calls
      */
-    public void setDisplayField(String displayField) {
-        setAttribute("displayField", displayField);
+    public PickTreeItem setDisplayField(String displayField) {
+        return (PickTreeItem)setAttribute("displayField", displayField);
     }
 
     /**
@@ -246,10 +251,11 @@ public class PickTreeItem extends CanvasItem {
      * Setter for {@link com.smartgwt.client.widgets.form.fields.PickTreeItem#getEmptyDisplayValue emptyDisplayValue}.
      *
      * @param emptyDisplayValue New emptyDisplayValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.PickTreeItem PickTreeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setEmptyDisplayValue(String emptyDisplayValue) {
-        setAttribute("emptyDisplayValue", emptyDisplayValue);
+    public PickTreeItem setEmptyDisplayValue(String emptyDisplayValue) {
+        return (PickTreeItem)setAttribute("emptyDisplayValue", emptyDisplayValue);
     }
 
     /**
@@ -274,11 +280,12 @@ public class PickTreeItem extends CanvasItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param emptyMenuMessage New emptyMenuMessage value. Default value is "No items to display"
+     * @return {@link com.smartgwt.client.widgets.form.fields.PickTreeItem PickTreeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#picktree_combobox_category" target="examples">Picktree Example</a>
      */
-    public void setEmptyMenuMessage(String emptyMenuMessage) {
-        setAttribute("emptyMenuMessage", emptyMenuMessage);
+    public PickTreeItem setEmptyMenuMessage(String emptyMenuMessage) {
+        return (PickTreeItem)setAttribute("emptyMenuMessage", emptyMenuMessage);
     }
 
     /**
@@ -300,9 +307,10 @@ public class PickTreeItem extends CanvasItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param loadDataOnDemand New loadDataOnDemand value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.PickTreeItem PickTreeItem} instance, for chaining setter calls
      */
-    public void setLoadDataOnDemand(Boolean loadDataOnDemand) {
-        setAttribute("loadDataOnDemand", loadDataOnDemand);
+    public PickTreeItem setLoadDataOnDemand(Boolean loadDataOnDemand) {
+        return (PickTreeItem)setAttribute("loadDataOnDemand", loadDataOnDemand);
     }
 
     /**
@@ -335,11 +343,12 @@ public class PickTreeItem extends CanvasItem {
      * <code>optionDataSource</code> is unset, <code>optionDataSource</code> will default to the form's current DataSource
      *
      * @param optionDataSource New optionDataSource value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.PickTreeItem PickTreeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#invalidateDisplayValueCache
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">List - Combo Box Example</a>
      */
-    public void setOptionDataSource(DataSource optionDataSource) {
-        setAttribute("optionDataSource", optionDataSource == null ? null : optionDataSource.getOrCreateJsObj());
+    public PickTreeItem setOptionDataSource(DataSource optionDataSource) {
+        return (PickTreeItem)setAttribute("optionDataSource", optionDataSource == null ? null : optionDataSource.getOrCreateJsObj());
     }
 
     /**
@@ -376,10 +385,11 @@ public class PickTreeItem extends CanvasItem {
      * then the <code>baseStyle</code> of the button is not changed.
      *
      * @param pendingButtonStyle New pendingButtonStyle value. Default value is "buttonPending"
+     * @return {@link com.smartgwt.client.widgets.form.fields.PickTreeItem PickTreeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setPendingButtonStyle(String pendingButtonStyle) {
-        setAttribute("pendingButtonStyle", pendingButtonStyle);
+    public PickTreeItem setPendingButtonStyle(String pendingButtonStyle) {
+        return (PickTreeItem)setAttribute("pendingButtonStyle", pendingButtonStyle);
     }
 
     /**
@@ -403,9 +413,10 @@ public class PickTreeItem extends CanvasItem {
      * <code>static</code> appearances.
      *
      * @param readOnlyDisplay New readOnlyDisplay value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.PickTreeItem PickTreeItem} instance, for chaining setter calls
      */
-    public void setReadOnlyDisplay(ReadOnlyDisplayAppearance readOnlyDisplay) {
-        setAttribute("readOnlyDisplay", readOnlyDisplay == null ? null : readOnlyDisplay.getValue());
+    public PickTreeItem setReadOnlyDisplay(ReadOnlyDisplayAppearance readOnlyDisplay) {
+        return (PickTreeItem)setAttribute("readOnlyDisplay", readOnlyDisplay == null ? null : readOnlyDisplay.getValue());
     }
 
     /**
@@ -436,9 +447,10 @@ public class PickTreeItem extends CanvasItem {
      * is logged, and      shouldSaveValue will be set to false. </li></ul>
      *
      * @param shouldSaveValue New shouldSaveValue value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.PickTreeItem PickTreeItem} instance, for chaining setter calls
      */
-    public void setShouldSaveValue(Boolean shouldSaveValue) {
-        setAttribute("shouldSaveValue", shouldSaveValue);
+    public PickTreeItem setShouldSaveValue(Boolean shouldSaveValue) {
+        return (PickTreeItem)setAttribute("shouldSaveValue", shouldSaveValue);
     }
 
     /**
@@ -467,10 +479,11 @@ public class PickTreeItem extends CanvasItem {
      * Which field in the tree-data should be returned as this item's value? If unspecified, the path will be used
      *
      * @param valueField New valueField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.PickTreeItem PickTreeItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#picktree_combobox_category" target="examples">Picktree Example</a>
      */
-    public void setValueField(String valueField) {
-        setAttribute("valueField", valueField);
+    public PickTreeItem setValueField(String valueField) {
+        return (PickTreeItem)setAttribute("valueField", valueField);
     }
 
     /**

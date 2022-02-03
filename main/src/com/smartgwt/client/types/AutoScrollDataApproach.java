@@ -19,11 +19,11 @@ package com.smartgwt.client.types;
 /* sgwtgen */
  
 /**
- * What should drive the automatic horizontal expansion of the chart?
+ * What should drive the automatic expansion of the chart?
  */
 public enum AutoScrollDataApproach implements ValueEnum {
     /**
-     * Expand the chart to make room for data label facet value.
+     * Expand the chart to make room for data label facet value. Unused in Bar-type charts
      * <P>
      * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
      * file or server-side DataSource descriptor (.ds.xml file), use the value "labels".

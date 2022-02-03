@@ -163,6 +163,12 @@ package com.smartgwt.client.docs;
  *  custom logic throws an exception or returns an error <code>DSResponse</code>, the default
  *  behavior of the Server Framework is indeed to return a valid file containing the error
  *  message.
+ *  <p>
+ *  <b>Unrecoverable server error handling</b><br>
+ *  Unrecoverable server <code>Exception</code> will be written to HTTP response as a warning
+ *  containing the exception message. Depending on framework setting
+ * <code>servlet.sendStackTraceToClient</code> (boolean) exception stacktrace can also be
+ * included.
  * @see com.smartgwt.client.data.DataSource#getSimpleErrors
  * @see com.smartgwt.client.rpc.HandleErrorCallback#handleError
  * @see com.smartgwt.client.rpc.RPCManager#runDefaultErrorHandling

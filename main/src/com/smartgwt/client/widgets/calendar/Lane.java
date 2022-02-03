@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Lane shown in a {@link com.smartgwt.client.widgets.calendar.Timeline} view, or in a {@link
@@ -131,11 +134,12 @@ public class Lane extends RefDataClass {
      * information.
      *
      * @param eventStyleName New eventStyleName value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Lane Lane} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setEventStyleName(String eventStyleName) {
-        setAttribute("eventStyleName", eventStyleName);
+    public Lane setEventStyleName(String eventStyleName) {
+        return (Lane)setAttribute("eventStyleName", eventStyleName);
     }
 
     /**
@@ -160,11 +164,12 @@ public class Lane extends RefDataClass {
      * this Lane.
      *
      * @param fieldStyleName New fieldStyleName value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Lane Lane} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setFieldStyleName(String fieldStyleName) {
-        setAttribute("fieldStyleName", fieldStyleName);
+    public Lane setFieldStyleName(String fieldStyleName) {
+        return (Lane)setAttribute("fieldStyleName", fieldStyleName);
     }
 
     /**
@@ -190,9 +195,10 @@ public class Lane extends RefDataClass {
      * the delta between the  initial slice and the specified one.
      *
      * @param height New height value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Lane Lane} instance, for chaining setter calls
      */
-    public void setHeight(Integer height) {
-        setAttribute("height", height);
+    public Lane setHeight(Integer height) {
+        return (Lane)setAttribute("height", height);
     }
 
     /**
@@ -217,9 +223,10 @@ public class Lane extends RefDataClass {
      * CalendarEvent.
      *
      * @param name New name value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Lane Lane} instance, for chaining setter calls
      */
-    public void setName(String name) {
-        setAttribute("name", name);
+    public Lane setName(String name) {
+        return (Lane)setAttribute("name", name);
     }
 
     /**
@@ -238,11 +245,12 @@ public class Lane extends RefDataClass {
      * The base style-name for normal cells in this Lane.
      *
      * @param styleName New styleName value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Lane Lane} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setStyleName(String styleName) {
-        setAttribute("styleName", styleName);
+    public Lane setStyleName(String styleName) {
+        return (Lane)setAttribute("styleName", styleName);
     }
 
     /**
@@ -266,9 +274,10 @@ public class Lane extends RefDataClass {
      * com.smartgwt.client.widgets.calendar.Calendar#getEventAutoArrange auto arrangement} of events that share time.
      *
      * @param sublanes New sublanes value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Lane Lane} instance, for chaining setter calls
      */
-    public void setSublanes(Lane... sublanes) {
-        setAttribute("sublanes", sublanes);
+    public Lane setSublanes(Lane... sublanes) {
+        return (Lane)setAttribute("sublanes", sublanes);
     }
 
     /**
@@ -291,10 +300,11 @@ public class Lane extends RefDataClass {
      * com.smartgwt.client.widgets.calendar.Lane#getSublanes sublanes}.
      *
      * @param title New title value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Lane Lane} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setTitle(String title) {
-        setAttribute("title", title);
+    public Lane setTitle(String title) {
+        return (Lane)setAttribute("title", title);
     }
 
     /**
@@ -319,9 +329,10 @@ public class Lane extends RefDataClass {
      * lane will change by the delta between the  initial slice and the specified one.
      *
      * @param width New width value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.Lane Lane} instance, for chaining setter calls
      */
-    public void setWidth(Integer width) {
-        setAttribute("width", width);
+    public Lane setWidth(Integer width) {
+        return (Lane)setAttribute("width", width);
     }
 
     /**

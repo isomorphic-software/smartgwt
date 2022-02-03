@@ -23,6 +23,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -65,14 +66,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 public class FolderOpenedEvent extends BrowserEvent<FolderOpenedHandler>  implements Cancellable {
     private boolean cancel = false;
@@ -161,6 +164,21 @@ public class FolderOpenedEvent extends BrowserEvent<FolderOpenedHandler>  implem
         var ret = self.node;
         if(ret == null) return null;
         return @com.smartgwt.client.widgets.tree.TreeNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * optional parameter containing the full path to the node.                          This is essential context for a       
+     * {@link com.smartgwt.client.widgets.tree.Tree#getMultiLinkTree multi-link tree}, but is not                          
+     * required in ordinary trees
+     *
+     * @return optional parameter containing the full path to the node.                          This is essential context for a       
+     * {@link com.smartgwt.client.widgets.tree.Tree#getMultiLinkTree multi-link tree}, but is not                          
+     * required in ordinary trees
+     */
+    public native String getPath() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.path;
+        return ret == null ? null : ret;
     }-*/;
 
 }

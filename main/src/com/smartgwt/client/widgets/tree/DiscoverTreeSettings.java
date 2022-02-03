@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Defines a set of properties that specify how the tree will be explored by {@link
@@ -104,9 +107,10 @@ public class DiscoverTreeSettings extends DataClass {
      * the property that appears to contain child objects
      *
      * @param childrenMode New childrenMode value. Default value is ChildrenPropertyMode.ANY
+     * @return {@link com.smartgwt.client.widgets.tree.DiscoverTreeSettings DiscoverTreeSettings} instance, for chaining setter calls
      */
-    public void setChildrenMode(ChildrenPropertyMode childrenMode) {
-        setAttribute("childrenMode", childrenMode == null ? null : childrenMode.getValue());
+    public DiscoverTreeSettings setChildrenMode(ChildrenPropertyMode childrenMode) {
+        return (DiscoverTreeSettings)setAttribute("childrenMode", childrenMode == null ? null : childrenMode.getValue());
     }
 
     /**
@@ -124,9 +128,10 @@ public class DiscoverTreeSettings extends DataClass {
      * For string leaf nodes (if allowed), the name of the property to store the string under in the auto-created object
      *
      * @param nameProperty New nameProperty value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.DiscoverTreeSettings DiscoverTreeSettings} instance, for chaining setter calls
      */
-    public void setNameProperty(String nameProperty) {
-        setAttribute("nameProperty", nameProperty);
+    public DiscoverTreeSettings setNameProperty(String nameProperty) {
+        return (DiscoverTreeSettings)setAttribute("nameProperty", nameProperty);
     }
 
     /**
@@ -144,9 +149,10 @@ public class DiscoverTreeSettings extends DataClass {
      * com.smartgwt.client.widgets.tree.Tree#getChildrenProperty Tree.childrenProperty} inside discoverTree()
      *
      * @param newChildrenProperty New newChildrenProperty value. Default value is null (see below)
+     * @return {@link com.smartgwt.client.widgets.tree.DiscoverTreeSettings DiscoverTreeSettings} instance, for chaining setter calls
      */
-    public void setNewChildrenProperty(String newChildrenProperty) {
-        setAttribute("newChildrenProperty", newChildrenProperty);
+    public DiscoverTreeSettings setNewChildrenProperty(String newChildrenProperty) {
+        return (DiscoverTreeSettings)setAttribute("newChildrenProperty", newChildrenProperty);
     }
 
     /**
@@ -164,9 +170,10 @@ public class DiscoverTreeSettings extends DataClass {
      * Determines how to scan for the {@link com.smartgwt.client.widgets.tree.Tree#getChildrenProperty Tree.childrenProperty}
      *
      * @param scanMode New scanMode value. Default value is ScanMode.BRANCH
+     * @return {@link com.smartgwt.client.widgets.tree.DiscoverTreeSettings DiscoverTreeSettings} instance, for chaining setter calls
      */
-    public void setScanMode(ScanMode scanMode) {
-        setAttribute("scanMode", scanMode == null ? null : scanMode.getValue());
+    public DiscoverTreeSettings setScanMode(ScanMode scanMode) {
+        return (DiscoverTreeSettings)setAttribute("scanMode", scanMode == null ? null : scanMode.getValue());
     }
 
     /**
@@ -184,9 +191,10 @@ public class DiscoverTreeSettings extends DataClass {
      * Tree.childrenProperty} when using scanMode "branch" or "level"
      *
      * @param tieMode New tieMode value. Default value is TieMode.NODE
+     * @return {@link com.smartgwt.client.widgets.tree.DiscoverTreeSettings DiscoverTreeSettings} instance, for chaining setter calls
      */
-    public void setTieMode(TieMode tieMode) {
-        setAttribute("tieMode", tieMode == null ? null : tieMode.getValue());
+    public DiscoverTreeSettings setTieMode(TieMode tieMode) {
+        return (DiscoverTreeSettings)setAttribute("tieMode", tieMode == null ? null : tieMode.getValue());
     }
 
     /**
@@ -205,9 +213,10 @@ public class DiscoverTreeSettings extends DataClass {
      * children
      *
      * @param typeProperty New typeProperty value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.DiscoverTreeSettings DiscoverTreeSettings} instance, for chaining setter calls
      */
-    public void setTypeProperty(String typeProperty) {
-        setAttribute("typeProperty", typeProperty);
+    public DiscoverTreeSettings setTypeProperty(String typeProperty) {
+        return (DiscoverTreeSettings)setAttribute("typeProperty", typeProperty);
     }
 
     /**

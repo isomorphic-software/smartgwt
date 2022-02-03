@@ -38,29 +38,34 @@ package com.smartgwt.client.docs;
  * com.smartgwt.client.docs.Server_properties server.properties}         file (these builtin RPCs
  * should already be enabled in a development environment).          When these built-in RPCs are
  * enabled, server timing data can be switched on and          off on a per-client basis, via a
- * checkbox in the Developer Console.</li>     </ul>  </li> </ul> With these settings in place, an
- * extra "Timing" tab appears in the "Request" section: <p> <img src="skin/detailedTiming1.png"
- * width="1059px" height="275px"> <p> The timing data is tree-structured; a node with an opener
- * next to it can be expanded to  drill into more detail: <p> <img src="skin/detailedTiming2.png"
- * width="1059px" height="701px"> <p> The following important points apply to the detailed timing
- * information: <ul> <li>It is meaningless to compare the actual start and end timestamps reported
- * by the client     with those reported by the server, because their clocks are unlikely to be
- * exactly      synchronized (unless the client and the server are the same physical machine). 
- * The      timestamps are the underlying raw data - it is much more meaningful to consider the   
- * elapsed times than the timestamps</li> <li>The basic timing details reported in the main RPC
- * History list do not correspond to the     detailed timing data because the detailed timing data
- * attempts to cover the entire      period of the transaction, from the UI event to calling the
- * user callback method.  By      contrast, the basic timing data only covers the period from when
- * the request left the      client to when the response was received by the client.  The basic
- * timing "Time Sent"      and "Elapsed time" figures correspond to the "Server roundtrip" entry
- * in the detailed      timing data</li> <li>The "Network time (inferred)" measurements are
- * informed guesswork.  We calculate the     difference between the "Server turnaround" time
- * measured by the client and the "Server     processing" time measured by the server, and apply
- * half of that difference to either side     of the "Server processing" figure as "Network time
- * (inferred)".  Note that this guesswork     can easily mean that network timings overlap with
- * server processing timings, even when the      client and the server are the same machine</li>
- * <li>The "UI event to DSRequest creation" timing measures the time from the most recent event   
- * to be registered by the EventHandler subsystem, to that of DSRequest creation (and      hence,
+ * checkbox in the Developer Console.</li>     </ul>  <li>To globally <b>prevent</b> collecting
+ * details of the server-side processing, set      <code>DSRequest.allowReturnTimingData:
+ * false</code> in your {@link com.smartgwt.client.docs.Server_properties server.properties}      
+ * file.  This will unconditionally prevent server timing information from being         
+ * gathered; it beats the methods mentioned above for gathering server timings </li> </ul> With
+ * these settings in place, an extra "Timing" tab appears in the "Request" section: <p> <img
+ * src="skin/detailedTiming1.png" width="1059px" height="275px"> <p> The timing data is
+ * tree-structured; a node with an opener next to it can be expanded to  drill into more detail:
+ * <p> <img src="skin/detailedTiming2.png" width="1059px" height="701px"> <p> The following
+ * important points apply to the detailed timing information: <ul> <li>It is meaningless to
+ * compare the actual start and end timestamps reported by the client     with those reported by
+ * the server, because their clocks are unlikely to be exactly      synchronized (unless the
+ * client and the server are the same physical machine).  The      timestamps are the underlying
+ * raw data - it is much more meaningful to consider the      elapsed times than the
+ * timestamps</li> <li>The basic timing details reported in the main RPC History list do not
+ * correspond to the     detailed timing data because the detailed timing data attempts to cover
+ * the entire      period of the transaction, from the UI event to calling the user callback
+ * method.  By      contrast, the basic timing data only covers the period from when the request
+ * left the      client to when the response was received by the client.  The basic timing "Time
+ * Sent"      and "Elapsed time" figures correspond to the "Server roundtrip" entry in the
+ * detailed      timing data</li> <li>The "Network time (inferred)" measurements are informed
+ * guesswork.  We calculate the     difference between the "Server turnaround" time measured by
+ * the client and the "Server     processing" time measured by the server, and apply half of that
+ * difference to either side     of the "Server processing" figure as "Network time (inferred)". 
+ * Note that this guesswork     can easily mean that network timings overlap with server
+ * processing timings, even when the      client and the server are the same machine</li> <li>The
+ * "UI event to DSRequest creation" timing measures the time from the most recent event      to be
+ * registered by the EventHandler subsystem, to that of DSRequest creation (and      hence,
  * incidentally, is not recorded for RPCRequests).  This is often a meaningful thing     to
  * measure, but not always.  If the DSRequest was created programatically during application     
  * startup or off the back of a timer, then the most recent UI event clearly had no influence     

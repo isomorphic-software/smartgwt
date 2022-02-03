@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,27 +65,29 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * A validator describes a check that should be performed on a value the user is trying to save. <p> Validators are
  * specified for DataSource fields via the {@link com.smartgwt.client.data.DataSourceField#getValidators
- * DataSourceField.validators} property.  Validators that need not be run on the server can also be specified for a
- * specific {@link com.smartgwt.client.widgets.form.fields.FormItem} or {@link
- * com.smartgwt.client.widgets.grid.ListGridField}. <p> Smart GWT supports a powerful library of {@link
- * com.smartgwt.client.types.ValidatorType ValidatorTypes} which have identical behavior on both the client and the server.
- * <p>  Beyond this, custom validators can be defined on the client and custom validation logic added on the server.  Note
- * that the <code>regexp</code> and <code>mask</code> validator types are very flexible and can be used to perform
- * virtually any kind of formatting check that doesn't involve some large external dataset. <p> Custom validators can be
- * reused on the client by adding them to the global validator list, via the {@link
- * com.smartgwt.client.widgets.form.validator.Validator#addValidator addValidator()} method.
+ * DataSourceField.validators} property and {@link com.smartgwt.client.docs.ValidatorExecution are executed in the order in
+ * which they are defined}. Validators that need not be run on the server can also be specified for a specific {@link
+ * com.smartgwt.client.widgets.form.fields.FormItem} or {@link com.smartgwt.client.widgets.grid.ListGridField}. <p> Smart
+ * GWT supports a powerful library of {@link com.smartgwt.client.types.ValidatorType ValidatorTypes} which have identical
+ * behavior on both the client and the server.   <p>  Beyond this, custom validators can be defined on the client and
+ * custom validation logic added on the server.  Note that the <code>regexp</code> and <code>mask</code> validator types
+ * are very flexible and can be used to perform virtually any kind of formatting check that doesn't involve some large
+ * external dataset. <p> Custom validators can be reused on the client by adding them to the global validator list, via the
+ * {@link com.smartgwt.client.widgets.form.validator.Validator#addValidator addValidator()} method.
  * @see com.smartgwt.client.types.ValidatorType
  */
 @BeanFactory.FrameworkClass
@@ -179,12 +182,13 @@ public class Validator extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param applyWhen New applyWhen value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.validator.Validator Validator} instance, for chaining setter calls
      */
-    public void setApplyWhen(AdvancedCriteria applyWhen) {
+    public Validator setApplyWhen(AdvancedCriteria applyWhen) {
         if (applyWhen instanceof Criterion) {
             applyWhen.setAttribute("_constructor", "AdvancedCriteria");
         }
-        setAttribute("applyWhen", applyWhen == null ? null : applyWhen.getJsObj());
+        return (Validator)setAttribute("applyWhen", applyWhen == null ? null : applyWhen.getJsObj());
     }
 
     /**
@@ -269,9 +273,10 @@ public class Validator extends DataClass {
      * explicitly mark a validator that only needs to run on the client.
      *
      * @param clientOnly New clientOnly value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.validator.Validator Validator} instance, for chaining setter calls
      */
-    public void setClientOnly(Boolean clientOnly) {
-        setAttribute("clientOnly", clientOnly);
+    public Validator setClientOnly(Boolean clientOnly) {
+        return (Validator)setAttribute("clientOnly", clientOnly);
     }
 
     /**
@@ -308,10 +313,11 @@ public class Validator extends DataClass {
      *   ValidatorConditionCallback.
      *
      * @param condition New condition value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.validator.Validator Validator} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.StringMethod StringMethod 
      */
-    public void setCondition(String condition) {
-        setAttribute("condition", condition);
+    public Validator setCondition(String condition) {
+        return (Validator)setAttribute("condition", condition);
     }
 
     /**
@@ -351,10 +357,11 @@ public class Validator extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param dependentFields New dependentFields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.validator.Validator Validator} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.validator.Validator#setApplyWhen
      */
-    public void setDependentFields(String[] dependentFields) {
-        setAttribute("dependentFields", dependentFields);
+    public Validator setDependentFields(String[] dependentFields) {
+        return (Validator)setAttribute("dependentFields", dependentFields);
     }
 
     /**
@@ -374,13 +381,18 @@ public class Validator extends DataClass {
 
     /**
      * Text to display if the value does not pass this validation check. <P> If unspecified, default error messages exist for
-     * all built-in validators, and a generic message will be used for a custom validator that is not passed.
+     * all built-in validators, and a generic message will be used for a custom validator that is not passed. <P> Server-side
+     * this string evaluates in a Velocity context where the variables $value and $fieldName are available and refer to the
+     * supplied value and the field name, respectively. Note that if the validator is intended to run both on the client and
+     * server, you shouldn't use these velocity vars as they will not be expanded on the client and the user may then see raw
+     * uninterpolated strings.
      *
      * @param errorMessage New errorMessage value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.validator.Validator Validator} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_dep_conditionally" target="examples">Conditionally Required Example</a>
      */
-    public void setErrorMessage(String errorMessage) {
-        setAttribute("errorMessage", errorMessage);
+    public Validator setErrorMessage(String errorMessage) {
+        return (Validator)setAttribute("errorMessage", errorMessage);
     }
     
     
@@ -393,19 +405,22 @@ public class Validator extends DataClass {
     
 
     /**
-     * Normally, all validators defined for a field will be run even if one of the validators has already failed.  However, if
+     * Normally, all validators defined for a field will be run  {@link com.smartgwt.client.docs.ValidatorExecution in the
+     * order in which they are defined}  even if one of the validators has already failed.  However, if
      * <code>stopIfFalse</code> is set, validation will not proceed beyond this validator if the check fails. <P> This is
      * useful to prevent expensive validators from being run unnecessarily, or to allow custom validators that don't need to be
      * robust about handling every conceivable type of value.
      *
      * @param stopIfFalse New stopIfFalse value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.validator.Validator Validator} instance, for chaining setter calls
      */
-    public void setStopIfFalse(Boolean stopIfFalse) {
-        setAttribute("stopIfFalse", stopIfFalse);
+    public Validator setStopIfFalse(Boolean stopIfFalse) {
+        return (Validator)setAttribute("stopIfFalse", stopIfFalse);
     }
 
     /**
-     * Normally, all validators defined for a field will be run even if one of the validators has already failed.  However, if
+     * Normally, all validators defined for a field will be run  {@link com.smartgwt.client.docs.ValidatorExecution in the
+     * order in which they are defined}  even if one of the validators has already failed.  However, if
      * <code>stopIfFalse</code> is set, validation will not proceed beyond this validator if the check fails. <P> This is
      * useful to prevent expensive validators from being run unnecessarily, or to allow custom validators that don't need to be
      * robust about handling every conceivable type of value.
@@ -427,9 +442,10 @@ public class Validator extends DataClass {
      * com.smartgwt.client.widgets.form.fields.FormItem#getSynchronousValidation FormItem.synchronousValidation} is forced on.
      *
      * @param stopOnError New stopOnError value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.validator.Validator Validator} instance, for chaining setter calls
      */
-    public void setStopOnError(Boolean stopOnError) {
-        setAttribute("stopOnError", stopOnError);
+    public Validator setStopOnError(Boolean stopOnError) {
+        return (Validator)setAttribute("stopOnError", stopOnError);
     }
 
     /**
@@ -452,9 +468,10 @@ public class Validator extends DataClass {
      * "custom" to define a custom validator, or the string "serverCustom" to define a server-only custom validator.
      *
      * @param type New type value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.validator.Validator Validator} instance, for chaining setter calls
      */
-    public void setType(ValidatorType type) {
-        setAttribute("type", type == null ? null : type.getValue());
+    public Validator setType(ValidatorType type) {
+        return (Validator)setAttribute("type", type == null ? null : type.getValue());
     }
 
     /**
@@ -472,9 +489,10 @@ public class Validator extends DataClass {
      * "custom" to define a custom validator, or the string "serverCustom" to define a server-only custom validator.
      *
      * @param type New type value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.validator.Validator Validator} instance, for chaining setter calls
      */
-    public void setType(String type) {
-        setAttribute("type", type);
+    public Validator setType(String type) {
+        return (Validator)setAttribute("type", type);
     }
 
     /**
@@ -495,9 +513,10 @@ public class Validator extends DataClass {
      * validator, the validator will be fired on change - displaying errors and rejecting the change on validation failure.
      *
      * @param validateOnChange New validateOnChange value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.validator.Validator Validator} instance, for chaining setter calls
      */
-    public void setValidateOnChange(Boolean validateOnChange) {
-        setAttribute("validateOnChange", validateOnChange);
+    public Validator setValidateOnChange(Boolean validateOnChange) {
+        return (Validator)setAttribute("validateOnChange", validateOnChange);
     }
 
     /**

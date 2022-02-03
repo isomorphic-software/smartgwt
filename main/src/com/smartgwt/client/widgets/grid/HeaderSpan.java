@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * A header span appears as a second level of headers in a ListGrid, spanning one or more ListGrid columns and their
@@ -115,9 +118,10 @@ public class HeaderSpan extends DataClass {
      * Horizontal alignment of the title of this headerSpan.
      *
      * @param align New align value. Default value is "center"
+     * @return {@link com.smartgwt.client.widgets.grid.HeaderSpan HeaderSpan} instance, for chaining setter calls
      */
-    public void setAlign(Alignment align) {
-        setAttribute("align", align == null ? null : align.getValue());
+    public HeaderSpan setAlign(Alignment align) {
+        return (HeaderSpan)setAttribute("align", align == null ? null : align.getValue());
     }
 
     /**
@@ -137,9 +141,10 @@ public class HeaderSpan extends DataClass {
      * specified with both <code>fields</code> and <code>spans</code>.
      *
      * @param fields New fields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.HeaderSpan HeaderSpan} instance, for chaining setter calls
      */
-    public void setFields(String... fields) {
-        setAttribute("fields", fields);
+    public HeaderSpan setFields(String... fields) {
+        return (HeaderSpan)setAttribute("fields", fields);
     }
 
     /**
@@ -162,11 +167,12 @@ public class HeaderSpan extends DataClass {
      * com.smartgwt.client.widgets.grid.HeaderSpan#getHeaderTitleStyle headerTitleStyle} as well.
      *
      * @param headerBaseStyle New headerBaseStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.HeaderSpan HeaderSpan} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setHeaderBaseStyle(String headerBaseStyle) {
-        setAttribute("headerBaseStyle", headerBaseStyle);
+    public HeaderSpan setHeaderBaseStyle(String headerBaseStyle) {
+        return (HeaderSpan)setAttribute("headerBaseStyle", headerBaseStyle);
     }
 
     /**
@@ -190,9 +196,10 @@ public class HeaderSpan extends DataClass {
      * the title in the header button entirely.
      *
      * @param headerTitle New headerTitle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.HeaderSpan HeaderSpan} instance, for chaining setter calls
      */
-    public void setHeaderTitle(String headerTitle) {
-        setAttribute("headerTitle", headerTitle);
+    public HeaderSpan setHeaderTitle(String headerTitle) {
+        return (HeaderSpan)setAttribute("headerTitle", headerTitle);
     }
 
     /**
@@ -214,12 +221,13 @@ public class HeaderSpan extends DataClass {
      * ListGrid.headerButtonConstructor} is set to {@link com.smartgwt.client.widgets.StretchImgButton} or a subclass thereof.
      *
      * @param headerTitleStyle New headerTitleStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.HeaderSpan HeaderSpan} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.HeaderSpan#setHeaderBaseStyle
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setHeaderTitleStyle(String headerTitleStyle) {
-        setAttribute("headerTitleStyle", headerTitleStyle);
+    public HeaderSpan setHeaderTitleStyle(String headerTitleStyle) {
+        return (HeaderSpan)setAttribute("headerTitleStyle", headerTitleStyle);
     }
 
     /**
@@ -243,9 +251,10 @@ public class HeaderSpan extends DataClass {
      * ListGrid.headerSpanHeight}.
      *
      * @param height New height value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.HeaderSpan HeaderSpan} instance, for chaining setter calls
      */
-    public void setHeight(Integer height) {
-        setAttribute("height", height);
+    public HeaderSpan setHeight(Integer height) {
+        return (HeaderSpan)setAttribute("height", height);
     }
 
     /**
@@ -266,10 +275,11 @@ public class HeaderSpan extends DataClass {
      * StringUtil.isValidID()  function can be used to test whether a name is a valid JavaScript identifier).
      *
      * @param name New name value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.HeaderSpan HeaderSpan} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Identifier Identifier 
      */
-    public void setName(String name) {
-        setAttribute("name", name);
+    public HeaderSpan setName(String name) {
+        return (HeaderSpan)setAttribute("name", name);
     }
 
     /**
@@ -307,9 +317,10 @@ public class HeaderSpan extends DataClass {
      *  and {@link com.smartgwt.client.widgets.grid.HeaderSpan#getFields fields}.
      *
      * @param spans New spans value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.HeaderSpan HeaderSpan} instance, for chaining setter calls
      */
-    public void setSpans(HeaderSpan... spans) {
-        setAttribute("spans", spans);
+    public HeaderSpan setSpans(HeaderSpan... spans) {
+        return (HeaderSpan)setAttribute("spans", spans);
     }
 
     /**
@@ -348,9 +359,10 @@ public class HeaderSpan extends DataClass {
      * com.smartgwt.client.widgets.grid.ListGridField#getTitle ListGridField.title}.
      *
      * @param title New title value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.HeaderSpan HeaderSpan} instance, for chaining setter calls
      */
-    public void setTitle(String title) {
-        setAttribute("title", title);
+    public HeaderSpan setTitle(String title) {
+        return (HeaderSpan)setAttribute("title", title);
     }
 
     /**
@@ -372,9 +384,10 @@ public class HeaderSpan extends DataClass {
      * Vertical alignment of the title of this headerSpan. <P> Defaults to listGrid.headerSpanVAlign if unset.
      *
      * @param valign New valign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.HeaderSpan HeaderSpan} instance, for chaining setter calls
      */
-    public void setValign(VerticalAlignment valign) {
-        setAttribute("valign", valign == null ? null : valign.getValue());
+    public HeaderSpan setValign(VerticalAlignment valign) {
+        return (HeaderSpan)setAttribute("valign", valign == null ? null : valign.getValue());
     }
 
     /**
@@ -393,10 +406,11 @@ public class HeaderSpan extends DataClass {
      * (This is a soft-wrap - if set the title will wrap at word boundaries.)
      *
      * @param wrap New wrap value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.HeaderSpan HeaderSpan} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setWrap
      */
-    public void setWrap(Boolean wrap) {
-        setAttribute("wrap", wrap);
+    public HeaderSpan setWrap(Boolean wrap) {
+        return (HeaderSpan)setAttribute("wrap", wrap);
     }
 
     /**

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -179,7 +182,7 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
     }-*/;
 
     public Menu(){
-        setAlternateRecordStyles(false);scClassName = "Menu";
+        scClassName = "Menu";
     }
 
     public Menu(JavaScriptObject jsObj){
@@ -203,9 +206,10 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * impact menus' appearance.
      *
      * @param alternateRecordStyles New alternateRecordStyles value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      */
-    public void setAlternateRecordStyles(Boolean alternateRecordStyles) {
-        setAttribute("alternateRecordStyles", alternateRecordStyles, true);
+    public Menu setAlternateRecordStyles(Boolean alternateRecordStyles) {
+        return (Menu)setAttribute("alternateRecordStyles", alternateRecordStyles, true);
     }
 
     /**
@@ -225,10 +229,11 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * place for further interactivity
      *
      * @param autoDismiss New autoDismiss value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.menu.Menu#setCascadeAutoDismiss
      */
-    public void setAutoDismiss(Boolean autoDismiss) {
-        setAttribute("autoDismiss", autoDismiss, true);
+    public Menu setAutoDismiss(Boolean autoDismiss) {
+        return (Menu)setAttribute("autoDismiss", autoDismiss, true);
     }
 
     /**
@@ -249,9 +254,10 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * staying in place for further interactivity.
      *
      * @param autoDismissOnBlur New autoDismissOnBlur value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      */
-    public void setAutoDismissOnBlur(Boolean autoDismissOnBlur) {
-        setAttribute("autoDismissOnBlur", autoDismissOnBlur, true);
+    public Menu setAutoDismissOnBlur(Boolean autoDismissOnBlur) {
+        return (Menu)setAttribute("autoDismissOnBlur", autoDismissOnBlur, true);
     }
 
     /**
@@ -271,9 +277,10 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param autoDraw New autoDraw value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      */
-    public void setAutoDraw(Boolean autoDraw) {
-        setAttribute("autoDraw", autoDraw, true);
+    public Menu setAutoDraw(Boolean autoDraw) {
+        return (Menu)setAttribute("autoDraw", autoDraw, true);
     }
 
     /**
@@ -292,10 +299,11 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * CSS style for a normal cell
      *
      * @param baseStyle New baseStyle value. Default value is "menu"
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setBaseStyle(String baseStyle) {
-        setAttribute("baseStyle", baseStyle, true);
+    public Menu setBaseStyle(String baseStyle) {
+        return (Menu)setAttribute("baseStyle", baseStyle, true);
     }
 
     /**
@@ -316,12 +324,13 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * com.smartgwt.client.widgets.grid.ListGrid#getBodyBackgroundColor bodyBackgroundColor} to <code>null</code>.
      *
      * @param bodyStyleName New bodyStyleName value. Default value is "normal"
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.menu.Menu#setFillSpaceStyleName
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setBodyStyleName(String bodyStyleName) {
-        setAttribute("bodyStyleName", bodyStyleName, true);
+    public Menu setBodyStyleName(String bodyStyleName) {
+        return (Menu)setAttribute("bodyStyleName", bodyStyleName, true);
     }
 
     /**
@@ -344,11 +353,12 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * Title for the "Done" button shown when the {@link com.smartgwt.client.widgets.layout.NavigationBar} is present.
      *
      * @param cancelButtonTitle New cancelButtonTitle value. Default value is "Done"
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
-        setAttribute("cancelButtonTitle", cancelButtonTitle, false);
+    public Menu setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
+        return (Menu)setAttribute("cancelButtonTitle", cancelButtonTitle, false);
     }
 
     /**
@@ -367,11 +377,12 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * hiding the menus, calling click handlers, etc) instead of showing the submenu.
      *
      * @param canSelectParentItems New canSelectParentItems value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_treebinding" target="examples">Tree Binding Example</a>
      */
-    public void setCanSelectParentItems(Boolean canSelectParentItems) {
-        setAttribute("canSelectParentItems", canSelectParentItems, true);
+    public Menu setCanSelectParentItems(Boolean canSelectParentItems) {
+        return (Menu)setAttribute("canSelectParentItems", canSelectParentItems, true);
     }
 
     /**
@@ -392,9 +403,10 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * from this menu.
      *
      * @param cascadeAutoDismiss New cascadeAutoDismiss value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      */
-    public void setCascadeAutoDismiss(Boolean cascadeAutoDismiss) {
-        setAttribute("cascadeAutoDismiss", cascadeAutoDismiss, true);
+    public Menu setCascadeAutoDismiss(Boolean cascadeAutoDismiss) {
+        return (Menu)setAttribute("cascadeAutoDismiss", cascadeAutoDismiss, true);
     }
 
     /**
@@ -413,10 +425,11 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * The height of each item in the menu, in pixels.
      *
      * @param cellHeight New cellHeight value. Default value is 20
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
-    public void setCellHeight(int cellHeight) {
-        setAttribute("cellHeight", cellHeight, true);
+    public Menu setCellHeight(int cellHeight) {
+        return (Menu)setAttribute("cellHeight", cellHeight, true);
     }
 
     /**
@@ -435,10 +448,11 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * format. Valid src, width and height must be specified.
      *
      * @param checkmarkDisabledImage New checkmarkDisabledImage value. Default value is {...}
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setCheckmarkDisabledImage(Img checkmarkDisabledImage)  throws IllegalStateException {
+    public Menu setCheckmarkDisabledImage(Img checkmarkDisabledImage)  throws IllegalStateException {
         if (checkmarkDisabledImage != null) {
             if (checkmarkDisabledImage.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(Menu.class, "setCheckmarkDisabledImage", "Img");
@@ -446,7 +460,7 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
             checkmarkDisabledImage.setConfigOnly(true);
         }
         JavaScriptObject config = checkmarkDisabledImage == null ? null : checkmarkDisabledImage.getConfig();
-        setAttribute("checkmarkDisabledImage", JSOHelper.cleanProperties(config, true), false);
+        return (Menu)setAttribute("checkmarkDisabledImage", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -468,10 +482,11 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * src, width and height must be specified.
      *
      * @param checkmarkImage New checkmarkImage value. Default value is {...}
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setCheckmarkImage(Img checkmarkImage)  throws IllegalStateException {
+    public Menu setCheckmarkImage(Img checkmarkImage)  throws IllegalStateException {
         if (checkmarkImage != null) {
             if (checkmarkImage.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(Menu.class, "setCheckmarkImage", "Img");
@@ -479,7 +494,7 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
             checkmarkImage.setConfigOnly(true);
         }
         JavaScriptObject config = checkmarkImage == null ? null : checkmarkImage.getConfig();
-        setAttribute("checkmarkImage", JSOHelper.cleanProperties(config, true), false);
+        return (Menu)setAttribute("checkmarkImage", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -506,10 +521,11 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * Change the set of items to display in this menu
      *
      * @param data new items for this menu. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
      */
-    public void setData(MenuItem... data) {
-        setAttribute("data", data, true);
+    public Menu setData(MenuItem... data) {
+        return (Menu)setAttribute("data", data, true);
     }
 
     /**
@@ -522,10 +538,11 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * Change the set of items to display in this menu
      *
      * @param data new items for this menu. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
      */
-    public void setData(Record[] data) {
-        setAttribute("data", data, true);
+    public Menu setData(Record[] data) {
+        return (Menu)setAttribute("data", data, true);
     }
 
     /**
@@ -538,10 +555,11 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * Change the set of items to display in this menu
      *
      * @param data new items for this menu. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
      */
-    public void setData(Tree data) {
-        setAttribute("data", data == null ? null : data.getOrCreateJsObj(), true);
+    public Menu setData(Tree data) {
+        return (Menu)setAttribute("data", data == null ? null : data.getOrCreateJsObj(), true);
     }
 
     /**
@@ -554,10 +572,11 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * Change the set of items to display in this menu
      *
      * @param data new items for this menu. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
      */
-    public void setData(RecordList data) {
-        setAttribute("data", data == null ? null : data.getOrCreateJsObj(), true);
+    public Menu setData(RecordList data) {
+        return (Menu)setAttribute("data", data == null ? null : data.getOrCreateJsObj(), true);
     }
     
     
@@ -575,10 +594,11 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * setCriteria() and other APIs like setCriteria().
      *
      * @param dataSource New dataSource value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDataSource(DataSource dataSource)  throws IllegalStateException {
-        setAttribute("dataSource", dataSource == null ? null : dataSource.getOrCreateJsObj(), false);
+    public Menu setDataSource(DataSource dataSource)  throws IllegalStateException {
+        return (Menu)setAttribute("dataSource", dataSource == null ? null : dataSource.getOrCreateJsObj(), false);
     }
 
     /**
@@ -604,10 +624,11 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * The default menu width.
      *
      * @param defaultWidth New defaultWidth value. Default value is 150
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
-    public void setDefaultWidth(int defaultWidth) {
-        setAttribute("defaultWidth", defaultWidth, true);
+    public Menu setDefaultWidth(int defaultWidth) {
+        return (Menu)setAttribute("defaultWidth", defaultWidth, true);
     }
 
     /**
@@ -622,14 +643,40 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
     
 
     /**
+     * Default class used to construct the {@link com.smartgwt.client.tools.EditProxy} for this component when the component is
+     * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
+     *
+     * @param editProxyConstructor New editProxyConstructor value. Default value is "MenuEditProxy"
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     */
+    public Menu setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
+        return (Menu)setAttribute("editProxyConstructor", editProxyConstructor, false);
+    }
+
+    /**
+     * Default class used to construct the {@link com.smartgwt.client.tools.EditProxy} for this component when the component is
+     * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
+     *
+     * @return Current editProxyConstructor value. Default value is "MenuEditProxy"
+     * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     */
+    public String getEditProxyConstructor()  {
+        return getAttributeAsString("editProxyConstructor");
+    }
+    
+
+    /**
      * Message to show when a menu is shown with no items.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param emptyMessage New emptyMessage value. Default value is "[Empty menu]"
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setEmptyMessage(String emptyMessage) {
-        setAttribute("emptyMessage", emptyMessage, true);
+    public Menu setEmptyMessage(String emptyMessage) {
+        return (Menu)setAttribute("emptyMessage", emptyMessage, true);
     }
 
     /**
@@ -649,10 +696,11 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * basis via {@link com.smartgwt.client.widgets.menu.MenuItem#getFetchSubmenus MenuItem.fetchSubmenus}.
      *
      * @param fetchSubmenus New fetchSubmenus value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setFetchSubmenus(Boolean fetchSubmenus)  throws IllegalStateException {
-        setAttribute("fetchSubmenus", fetchSubmenus, false);
+    public Menu setFetchSubmenus(Boolean fetchSubmenus)  throws IllegalStateException {
+        return (Menu)setAttribute("fetchSubmenus", fetchSubmenus, false);
     }
 
     /**
@@ -678,12 +726,13 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * overrides this setting.
      *
      * @param fillSpaceStyleName New fillSpaceStyleName value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setFillSpaceStyleName(String fillSpaceStyleName)  throws IllegalStateException {
-        setAttribute("fillSpaceStyleName", fillSpaceStyleName, false);
+    public Menu setFillSpaceStyleName(String fillSpaceStyleName)  throws IllegalStateException {
+        return (Menu)setAttribute("fillSpaceStyleName", fillSpaceStyleName, false);
     }
 
     /**
@@ -710,13 +759,14 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * to LTR styles. Otherwise, menus may lose their styling in RTL mode.
      *
      * @param iconBodyStyleName New iconBodyStyleName value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.menu.Menu#setIconFillSpaceStyleName
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setIconBodyStyleName(String iconBodyStyleName)  throws IllegalStateException {
-        setAttribute("iconBodyStyleName", iconBodyStyleName, false);
+    public Menu setIconBodyStyleName(String iconBodyStyleName)  throws IllegalStateException {
+        return (Menu)setAttribute("iconBodyStyleName", iconBodyStyleName, false);
     }
 
     /**
@@ -741,14 +791,15 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * com.smartgwt.client.widgets.menu.Menu#getShowIcons showIcons} for an overview of the icon column.
      *
      * @param iconFieldProperties New iconFieldProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setIconFieldProperties(ListGridField iconFieldProperties)  throws IllegalStateException {
+    public Menu setIconFieldProperties(ListGridField iconFieldProperties)  throws IllegalStateException {
         JavaScriptObject config = JSOHelper.createObject();
         if (iconFieldProperties != null) {
             JSOHelper.addProperties(config, iconFieldProperties.getJsObj());
         }
-        setAttribute("iconFieldProperties", iconFieldProperties == null ? null : config, false);
+        return (Menu)setAttribute("iconFieldProperties", iconFieldProperties == null ? null : config, false);
     }
 
     /**
@@ -772,12 +823,13 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * should add "RTL" styles as well, even if identical to LTR styles. Otherwise, menus may lose their styling in RTL mode.
      *
      * @param iconFillSpaceStyleName New iconFillSpaceStyleName value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setIconFillSpaceStyleName(String iconFillSpaceStyleName)  throws IllegalStateException {
-        setAttribute("iconFillSpaceStyleName", iconFillSpaceStyleName, false);
+    public Menu setIconFillSpaceStyleName(String iconFillSpaceStyleName)  throws IllegalStateException {
+        return (Menu)setAttribute("iconFillSpaceStyleName", iconFillSpaceStyleName, false);
     }
 
     /**
@@ -803,9 +855,10 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * specified.
      *
      * @param iconHeight New iconHeight value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      */
-    public void setIconHeight(int iconHeight) {
-        setAttribute("iconHeight", iconHeight, true);
+    public Menu setIconHeight(int iconHeight) {
+        return (Menu)setAttribute("iconHeight", iconHeight, true);
     }
 
     /**
@@ -823,9 +876,10 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * The default width applied to custom icons in this menu. This is used whenever          item.iconWidth is not specified.
      *
      * @param iconWidth New iconWidth value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      */
-    public void setIconWidth(int iconWidth) {
-        setAttribute("iconWidth", iconWidth, true);
+    public Menu setIconWidth(int iconWidth) {
+        return (Menu)setAttribute("iconWidth", iconWidth, true);
     }
 
     /**
@@ -843,14 +897,15 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * com.smartgwt.client.widgets.grid.ListGrid#setCriteria setCriteria} is not supported in Menus.
      *
      * @param initialCriteria New initialCriteria value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
-    public void setInitialCriteria(Criteria initialCriteria)  throws IllegalStateException {
+    public Menu setInitialCriteria(Criteria initialCriteria)  throws IllegalStateException {
         if (initialCriteria instanceof Criterion) {
             initialCriteria.setAttribute("_constructor", "AdvancedCriteria");
         }
-        setAttribute("initialCriteria", initialCriteria == null ? null : initialCriteria.getJsObj(), false);
+        return (Menu)setAttribute("initialCriteria", initialCriteria == null ? null : initialCriteria.getJsObj(), false);
     }
 
     /**
@@ -872,9 +927,10 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * Synonym for {@link com.smartgwt.client.widgets.menu.Menu#setData setData()}.
      *
      * @param items new items for this menu. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      */
-    public void setItems(MenuItem... items) {
-        setAttribute("items", items, true);
+    public Menu setItems(MenuItem... items) {
+        return (Menu)setAttribute("items", items, true);
     }
     
     
@@ -884,14 +940,15 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * com.smartgwt.client.widgets.menu.Menu#getShowKeys showKeys} for an overview of the key column.
      *
      * @param keyFieldProperties New keyFieldProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setKeyFieldProperties(ListGridField keyFieldProperties)  throws IllegalStateException {
+    public Menu setKeyFieldProperties(ListGridField keyFieldProperties)  throws IllegalStateException {
         JavaScriptObject config = JSOHelper.createObject();
         if (keyFieldProperties != null) {
             JSOHelper.addProperties(config, keyFieldProperties.getJsObj());
         }
-        setAttribute("keyFieldProperties", keyFieldProperties == null ? null : config, false);
+        return (Menu)setAttribute("keyFieldProperties", keyFieldProperties == null ? null : config, false);
     }
 
     /**
@@ -911,10 +968,11 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * unset, the MenuButton will be as wide as <code>menu.width</code>.
      *
      * @param menuButtonWidth New menuButtonWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMenuButtonWidth(Integer menuButtonWidth)  throws IllegalStateException {
-        setAttribute("menuButtonWidth", menuButtonWidth, false);
+    public Menu setMenuButtonWidth(Integer menuButtonWidth)  throws IllegalStateException {
+        return (Menu)setAttribute("menuButtonWidth", menuButtonWidth, false);
     }
 
     /**
@@ -973,10 +1031,11 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * com.smartgwt.client.widgets.menu.Menu#getCancelButtonTitle cancel button}.
      *
      * @param placement New placement value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPlacement(PanelPlacement placement)  throws IllegalStateException {
-        setAttribute("placement", placement == null ? null : placement.getValue(), false);
+    public Menu setPlacement(PanelPlacement placement)  throws IllegalStateException {
+        return (Menu)setAttribute("placement", placement == null ? null : placement.getValue(), false);
     }
 
     /**
@@ -1004,9 +1063,10 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showAnimationEffect New showAnimationEffect value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      */
-    public void setShowAnimationEffect(String showAnimationEffect) {
-        setAttribute("showAnimationEffect", showAnimationEffect, true);
+    public Menu setShowAnimationEffect(String showAnimationEffect) {
+        return (Menu)setAttribute("showAnimationEffect", showAnimationEffect, true);
     }
 
     /**
@@ -1027,10 +1087,11 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * placement} setting indicates the Menu will be filling a portion of the screen or a panel.
      *
      * @param showEdges New showEdges value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowEdges(Boolean showEdges)  throws IllegalStateException {
-        setAttribute("showEdges", showEdges, false);
+    public Menu setShowEdges(Boolean showEdges)  throws IllegalStateException {
+        return (Menu)setAttribute("showEdges", showEdges, false);
     }
 
     /**
@@ -1051,9 +1112,10 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * Show or hide the checkmark/custom icon column at runtime.
      *
      * @param showIcons whether the icon column should be displayed. Default value is true
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      */
-    public void setShowIcons(Boolean showIcons) {
-        setAttribute("showIcons", showIcons, true);
+    public Menu setShowIcons(Boolean showIcons) {
+        return (Menu)setAttribute("showIcons", showIcons, true);
     }
 
     /**
@@ -1073,9 +1135,10 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * but will still function.
      *
      * @param showKeys New showKeys value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      */
-    public void setShowKeys(Boolean showKeys) {
-        setAttribute("showKeys", showKeys, true);
+    public Menu setShowKeys(Boolean showKeys) {
+        return (Menu)setAttribute("showKeys", showKeys, true);
     }
 
     /**
@@ -1101,10 +1164,11 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * indicates the Menu will be filling a portion of the screen or a panel.
      *
      * @param showShadow New showShadow value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowShadow(Boolean showShadow)  throws IllegalStateException {
-        setAttribute("showShadow", showShadow, false);
+    public Menu setShowShadow(Boolean showShadow)  throws IllegalStateException {
+        return (Menu)setAttribute("showShadow", showShadow, false);
     }
 
     /**
@@ -1132,9 +1196,10 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * Show or hide the submenu indicator column at runtime.
      *
      * @param showSubmenus whether the submenu indicator column should be displayed. Default value is true
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      */
-    public void setShowSubmenus(Boolean showSubmenus) {
-        setAttribute("showSubmenus", showSubmenus, true);
+    public Menu setShowSubmenus(Boolean showSubmenus) {
+        return (Menu)setAttribute("showSubmenus", showSubmenus, true);
     }
 
     /**
@@ -1155,11 +1220,12 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * generating submenus.
      *
      * @param submenuConstructor New submenuConstructor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setSubmenuConstructor(String submenuConstructor)  throws IllegalStateException {
-        setAttribute("submenuConstructor", submenuConstructor, false);
+    public Menu setSubmenuConstructor(String submenuConstructor)  throws IllegalStateException {
+        return (Menu)setAttribute("submenuConstructor", submenuConstructor, false);
     }
 
     /**
@@ -1180,9 +1246,10 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * (see {@link com.smartgwt.client.util.Page#isRTL Page.isRTL()}).
      *
      * @param submenuDirection New submenuDirection value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      */
-    public void setSubmenuDirection(String submenuDirection) {
-        setAttribute("submenuDirection", submenuDirection, true);
+    public Menu setSubmenuDirection(String submenuDirection) {
+        return (Menu)setAttribute("submenuDirection", submenuDirection, true);
     }
 
     /**
@@ -1204,10 +1271,11 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * will have the suffix <code>"_left"</code> appended to it.
      *
      * @param submenuDisabledImage New submenuDisabledImage value. Default value is {...}
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setSubmenuDisabledImage(Img submenuDisabledImage)  throws IllegalStateException {
+    public Menu setSubmenuDisabledImage(Img submenuDisabledImage)  throws IllegalStateException {
         if (submenuDisabledImage != null) {
             if (submenuDisabledImage.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(Menu.class, "setSubmenuDisabledImage", "Img");
@@ -1215,7 +1283,7 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
             submenuDisabledImage.setConfigOnly(true);
         }
         JavaScriptObject config = submenuDisabledImage == null ? null : submenuDisabledImage.getConfig();
-        setAttribute("submenuDisabledImage", JSOHelper.cleanProperties(config, true), false);
+        return (Menu)setAttribute("submenuDisabledImage", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -1240,14 +1308,15 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * com.smartgwt.client.widgets.menu.Menu#getShowSubmenus showSubmenus} for an overview of the submenu column.
      *
      * @param submenuFieldProperties New submenuFieldProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSubmenuFieldProperties(ListGridField submenuFieldProperties)  throws IllegalStateException {
+    public Menu setSubmenuFieldProperties(ListGridField submenuFieldProperties)  throws IllegalStateException {
         JavaScriptObject config = JSOHelper.createObject();
         if (submenuFieldProperties != null) {
             JSOHelper.addProperties(config, submenuFieldProperties.getJsObj());
         }
-        setAttribute("submenuFieldProperties", submenuFieldProperties == null ? null : config, false);
+        return (Menu)setAttribute("submenuFieldProperties", submenuFieldProperties == null ? null : config, false);
     }
 
     /**
@@ -1268,10 +1337,11 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * will have the suffix <code>"_left"</code> appended to it.
      *
      * @param submenuImage New submenuImage value. Default value is {...}
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setSubmenuImage(Img submenuImage)  throws IllegalStateException {
+    public Menu setSubmenuImage(Img submenuImage)  throws IllegalStateException {
         if (submenuImage != null) {
             if (submenuImage.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(Menu.class, "setSubmenuImage", "Img");
@@ -1279,7 +1349,7 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
             submenuImage.setConfigOnly(true);
         }
         JavaScriptObject config = submenuImage == null ? null : submenuImage.getConfig();
-        setAttribute("submenuImage", JSOHelper.cleanProperties(config, true), false);
+        return (Menu)setAttribute("submenuImage", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -1307,9 +1377,10 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * child menus.
      *
      * @param target New target value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      */
-    public void setTarget(Canvas target) {
-        setAttribute("target", target == null ? null : target.getOrCreateJsObj(), true);
+    public Menu setTarget(Canvas target) {
+        return (Menu)setAttribute("target", target == null ? null : target.getOrCreateJsObj(), true);
     }
 
     /**
@@ -1332,14 +1403,15 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * Custom properties for the automatically generated title column.
      *
      * @param titleFieldProperties New titleFieldProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTitleFieldProperties(ListGridField titleFieldProperties)  throws IllegalStateException {
+    public Menu setTitleFieldProperties(ListGridField titleFieldProperties)  throws IllegalStateException {
         JavaScriptObject config = JSOHelper.createObject();
         if (titleFieldProperties != null) {
             JSOHelper.addProperties(config, titleFieldProperties.getJsObj());
         }
-        setAttribute("titleFieldProperties", titleFieldProperties == null ? null : config, false);
+        return (Menu)setAttribute("titleFieldProperties", titleFieldProperties == null ? null : config, false);
     }
 
     /**
@@ -1357,9 +1429,10 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
      * to explicitly disable shortcut keys.
      *
      * @param useKeys New useKeys value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.menu.Menu Menu} instance, for chaining setter calls
      */
-    public void setUseKeys(Boolean useKeys) {
-        setAttribute("useKeys", useKeys, true);
+    public Menu setUseKeys(Boolean useKeys) {
+        return (Menu)setAttribute("useKeys", useKeys, true);
     }
 
     /**
@@ -2285,6 +2358,11 @@ public class Menu extends ListGrid implements com.smartgwt.client.widgets.menu.e
             s.defaultWidth = getAttributeAsString("defaultWidth");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Menu.defaultWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.editProxyConstructor = getAttributeAsString("editProxyConstructor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Menu.editProxyConstructor:" + t.getMessage() + "\n";
         }
         try {
             s.emptyMessage = getAttributeAsString("emptyMessage");

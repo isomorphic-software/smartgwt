@@ -170,6 +170,10 @@ package com.smartgwt.client.docs;
  *  grouped fields.  This kind of result can be used in various ways; one common use case is
  *  populating a ComboBoxItem with a list of existing values for a field that already appear in
  *  DataSource records.
+ *  <p>
+ * Check out <a href='https://www.smartclient.com/smartclient-latest/showcase/?id=loadedValues'
+ * target='_blank'>this example</a>
+ *  of grouping without summarizing being used to determine all unique values of a field.
  * @see com.smartgwt.client.types.SummaryFunction
  * @see com.smartgwt.client.data.DSRequest#getSummaryFunctions
  * @see com.smartgwt.client.data.DSRequest#getGroupBy

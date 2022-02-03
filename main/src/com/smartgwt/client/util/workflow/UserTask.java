@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,21 +65,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * A task that involves showing a user interface to the end user allowing the user to view and input data and press a
  * button (or do some other UI gesture) to complete the task. <P> A UserTask takes the following steps: <ul> <li>
  * Optionally show() or otherwise make visible the {@link com.smartgwt.client.util.workflow.UserTask#getTargetView
- * targetView} <li> Provide values to either a {@link com.smartgwt.client.widgets.form.DynamicForm} designated as the
- * {@link com.smartgwt.client.util.workflow.UserTask#getTargetForm targetForm} or to      a {@link
+ * targetView}      or {@link com.smartgwt.client.util.workflow.UserTask#getInlineView inlineView} <li> Provide values to
+ * either a {@link com.smartgwt.client.widgets.form.DynamicForm} designated as the {@link
+ * com.smartgwt.client.util.workflow.UserTask#getTargetForm targetForm} or to      a {@link
  * com.smartgwt.client.widgets.form.ValuesManager} designated as the {@link
  * com.smartgwt.client.util.workflow.UserTask#getTargetVM targetVM}, via {@link
  * com.smartgwt.client.widgets.form.ValuesManager#setValues setValues()} <li> Waits for notification of completion or
@@ -88,8 +92,11 @@ import com.google.gwt.event.shared.HasHandlers;
  * {@link com.smartgwt.client.widgets.form.DynamicForm#cancelEditing DynamicForm.cancelEditing()} or      {@link
  * com.smartgwt.client.widgets.form.DynamicForm#completeEditing DynamicForm.completeEditing()} achieve the same result.
  * <li> if cancellation occurs, the process continues to the {@link
- * com.smartgwt.client.util.workflow.UserTask#getCancelElement cancelElement} <li> if completion occurs, values are
- * retrieved from the form or valuesManager and applied      to the process state </ul>
+ * com.smartgwt.client.util.workflow.UserTask#getCancelElement cancelElement}      if specified. Otherwise the workflow is
+ * immediately finished. <li> if completion occurs, values are retrieved from the form or valuesManager and applied      to
+ * the process state based on {@link com.smartgwt.client.util.workflow.Task#getOutputField outputField},      {@link
+ * com.smartgwt.client.util.workflow.Task#getOutputFieldList outputFieldList} or {@link
+ * com.smartgwt.client.util.workflow.Task#getInputField inputField}, in that order. </ul>
  */
 @BeanFactory.FrameworkClass
 @BeanFactory.ScClassName("UserTask")
@@ -127,19 +134,22 @@ public class UserTask extends Task {
     /**
      * Next element to proceed to if the task is cancelled because the {@link
      * com.smartgwt.client.util.workflow.UserTask#getTargetForm targetForm} or {@link
-     * com.smartgwt.client.util.workflow.UserTask#getTargetVM targetVM} had <code>cancelEditing()</code> called on it.
+     * com.smartgwt.client.util.workflow.UserTask#getTargetVM targetVM} had <code>cancelEditing()</code> called on it. <p> if
+     * no value is provided the workflow immediately completes.
      *
      * @param cancelElement New cancelElement value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.UserTask UserTask} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setCancelElement(String cancelElement)  throws IllegalStateException {
-        setAttribute("cancelElement", cancelElement, false);
+    public UserTask setCancelElement(String cancelElement)  throws IllegalStateException {
+        return (UserTask)setAttribute("cancelElement", cancelElement, false);
     }
 
     /**
      * Next element to proceed to if the task is cancelled because the {@link
      * com.smartgwt.client.util.workflow.UserTask#getTargetForm targetForm} or {@link
-     * com.smartgwt.client.util.workflow.UserTask#getTargetVM targetVM} had <code>cancelEditing()</code> called on it.
+     * com.smartgwt.client.util.workflow.UserTask#getTargetVM targetVM} had <code>cancelEditing()</code> called on it. <p> if
+     * no value is provided the workflow immediately completes.
      *
      * @return Current cancelElement value. Default value is null
      */
@@ -149,21 +159,48 @@ public class UserTask extends Task {
     
 
     /**
-     * An inline definition of the form. Could be used to encode form directly in process xml.
+     * An inline definition of the form. Can be used in place of {@link
+     * com.smartgwt.client.util.workflow.UserTask#getTargetView targetView} to encode form directly in process xml.
      *
      * @param inlineView New inlineView value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.UserTask UserTask} instance, for chaining setter calls
      */
-    public void setInlineView(Canvas inlineView) {
-        setAttribute("inlineView", inlineView == null ? null : inlineView.getOrCreateJsObj(), true);
+    public UserTask setInlineView(Canvas inlineView) {
+        return (UserTask)setAttribute("inlineView", inlineView == null ? null : inlineView.getOrCreateJsObj(), true);
     }
 
     /**
-     * An inline definition of the form. Could be used to encode form directly in process xml.
+     * An inline definition of the form. Can be used in place of {@link
+     * com.smartgwt.client.util.workflow.UserTask#getTargetView targetView} to encode form directly in process xml.
      *
      * @return Current inlineView value. Default value is null
      */
     public Canvas getInlineView()  {
         return (Canvas)Canvas.getByJSObject(getAttributeAsJavaScriptObject("inlineView"));
+    }
+    
+
+    /**
+     * Does this processElement pass through output from the last executed task (i.e. transient state)? See {@link
+     * com.smartgwt.client.docs.TaskInputExpression taskInputExpressions} for details on the transient state.
+     *
+     * @param passThruOutput New passThruOutput value. Default value is false
+     * @return {@link com.smartgwt.client.util.workflow.UserTask UserTask} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public UserTask setPassThruOutput(Boolean passThruOutput)  throws IllegalStateException {
+        return (UserTask)setAttribute("passThruOutput", passThruOutput, false);
+    }
+
+    /**
+     * Does this processElement pass through output from the last executed task (i.e. transient state)? See {@link
+     * com.smartgwt.client.docs.TaskInputExpression taskInputExpressions} for details on the transient state.
+     *
+     * @return Current passThruOutput value. Default value is false
+     */
+    public Boolean getPassThruOutput()  {
+        Boolean result = getAttributeAsBoolean("passThruOutput");
+        return result == null ? false : result;
     }
     
 
@@ -175,10 +212,11 @@ public class UserTask extends Task {
      * com.smartgwt.client.widgets.form.DynamicForm#getUserTask userTask} property.
      *
      * @param previousElement New previousElement value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.UserTask UserTask} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setPreviousElement(String previousElement)  throws IllegalStateException {
-        setAttribute("previousElement", previousElement, false);
+    public UserTask setPreviousElement(String previousElement)  throws IllegalStateException {
+        return (UserTask)setAttribute("previousElement", previousElement, false);
     }
 
     /**
@@ -196,21 +234,24 @@ public class UserTask extends Task {
     
 
     /**
-     * If saveToServer is set then associated form will perform the normal  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#submit DynamicForm.submit()} actions when called (typically from a {@link
-     * com.smartgwt.client.widgets.form.fields.SubmitItem}). By default the form submit action is bypassed.
+     * If saveToServer is set then the associated form ({@link com.smartgwt.client.util.workflow.UserTask#getTargetForm
+     * targetForm}) will perform the normal  {@link com.smartgwt.client.widgets.form.DynamicForm#submit DynamicForm.submit()}
+     * actions when submitted (typically from a {@link com.smartgwt.client.widgets.form.fields.SubmitItem}). By default the
+     * form submit action is bypassed.
      *
      * @param saveToServer New saveToServer value. Default value is false
+     * @return {@link com.smartgwt.client.util.workflow.UserTask UserTask} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setSaveToServer(Boolean saveToServer)  throws IllegalStateException {
-        setAttribute("saveToServer", saveToServer, false);
+    public UserTask setSaveToServer(Boolean saveToServer)  throws IllegalStateException {
+        return (UserTask)setAttribute("saveToServer", saveToServer, false);
     }
 
     /**
-     * If saveToServer is set then associated form will perform the normal  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#submit DynamicForm.submit()} actions when called (typically from a {@link
-     * com.smartgwt.client.widgets.form.fields.SubmitItem}). By default the form submit action is bypassed.
+     * If saveToServer is set then the associated form ({@link com.smartgwt.client.util.workflow.UserTask#getTargetForm
+     * targetForm}) will perform the normal  {@link com.smartgwt.client.widgets.form.DynamicForm#submit DynamicForm.submit()}
+     * actions when submitted (typically from a {@link com.smartgwt.client.widgets.form.fields.SubmitItem}). By default the
+     * form submit action is bypassed.
      *
      * @return Current saveToServer value. Default value is false
      */
@@ -221,26 +262,55 @@ public class UserTask extends Task {
     
 
     /**
-     * DynamicForm that should be populated with data and that should provide the data for the task outputs. <P> Use {@link
-     * com.smartgwt.client.util.workflow.UserTask#getTargetVM targetVM} to use a {@link
-     * com.smartgwt.client.widgets.form.ValuesManager} instead.
+     * DynamicForm that should be populated with data and that should provide the data for the task outputs. If {@link
+     * com.smartgwt.client.util.workflow.UserTask#getTargetView targetView} is a DynamicForm and would also be the targetForm,
+     * the targetForm attribute can be left unset. <P> Use {@link com.smartgwt.client.util.workflow.UserTask#getTargetVM
+     * targetVM} to use a {@link com.smartgwt.client.widgets.form.ValuesManager} instead.
      *
      * @param targetForm New targetForm value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.UserTask UserTask} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setTargetForm(DynamicForm targetForm)  throws IllegalStateException {
-        setAttribute("targetForm", targetForm == null ? null : targetForm.getOrCreateJsObj(), false);
+    public UserTask setTargetForm(DynamicForm targetForm)  throws IllegalStateException {
+        return (UserTask)setAttribute("targetForm", targetForm == null ? null : targetForm.getOrCreateJsObj(), false);
     }
 
     /**
-     * DynamicForm that should be populated with data and that should provide the data for the task outputs. <P> Use {@link
-     * com.smartgwt.client.util.workflow.UserTask#getTargetVM targetVM} to use a {@link
-     * com.smartgwt.client.widgets.form.ValuesManager} instead.
+     * DynamicForm that should be populated with data and that should provide the data for the task outputs. If {@link
+     * com.smartgwt.client.util.workflow.UserTask#getTargetView targetView} is a DynamicForm and would also be the targetForm,
+     * the targetForm attribute can be left unset. <P> Use {@link com.smartgwt.client.util.workflow.UserTask#getTargetVM
+     * targetVM} to use a {@link com.smartgwt.client.widgets.form.ValuesManager} instead.
      *
      * @return Current targetForm value. Default value is null
      */
     public DynamicForm getTargetForm()  {
         return (DynamicForm)DynamicForm.getByJSObject(getAttributeAsJavaScriptObject("targetForm"));
+    }
+
+    /**
+     * DynamicForm that should be populated with data and that should provide the data for the task outputs. If {@link
+     * com.smartgwt.client.util.workflow.UserTask#getTargetView targetView} is a DynamicForm and would also be the targetForm,
+     * the targetForm attribute can be left unset. <P> Use {@link com.smartgwt.client.util.workflow.UserTask#getTargetVM
+     * targetVM} to use a {@link com.smartgwt.client.widgets.form.ValuesManager} instead.
+     *
+     * @param targetForm New targetForm value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.UserTask UserTask} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public UserTask setTargetForm(String targetForm)  throws IllegalStateException {
+        return (UserTask)setAttribute("targetForm", targetForm, false);
+    }
+
+    /**
+     * DynamicForm that should be populated with data and that should provide the data for the task outputs. If {@link
+     * com.smartgwt.client.util.workflow.UserTask#getTargetView targetView} is a DynamicForm and would also be the targetForm,
+     * the targetForm attribute can be left unset. <P> Use {@link com.smartgwt.client.util.workflow.UserTask#getTargetVM
+     * targetVM} to use a {@link com.smartgwt.client.widgets.form.ValuesManager} instead.
+     *
+     * @return Current targetForm value. Default value is null
+     */
+    public String getTargetFormAsString()  {
+        return getAttributeAsString("targetForm");
     }
     
     
@@ -250,10 +320,11 @@ public class UserTask extends Task {
      * If wizard is set then associated form will be hidden after user goes to next or prev step of current workflow.
      *
      * @param wizard New wizard value. Default value is false
+     * @return {@link com.smartgwt.client.util.workflow.UserTask UserTask} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setWizard(Boolean wizard)  throws IllegalStateException {
-        setAttribute("wizard", wizard, false);
+    public UserTask setWizard(Boolean wizard)  throws IllegalStateException {
+        return (UserTask)setAttribute("wizard", wizard, false);
     }
 
     /**

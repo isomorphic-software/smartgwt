@@ -22,9 +22,9 @@ import com.google.gwt.event.shared.EventHandler;
 public interface DataChangedHandler extends EventHandler {
     /**
      * Notification method fired when the TreeGrid's data changes, for any reason. <P> Examples of why data changed might
-     * be:<ul> <li> a call to {@link com.smartgwt.client.widgets.grid.ListGrid#addData addData}, {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#updateData updateData}, or {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#removeData removeData} <li> {@link com.smartgwt.client.data.DataSource}
+     * be:<ul> <li> a call to {@link com.smartgwt.client.widgets.grid.ListGrid#addData addData()}, {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#updateData updateData()}, or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#removeData removeData()} <li> {@link com.smartgwt.client.data.DataSource}
      * updates from the server for {@link com.smartgwt.client.widgets.tree.ResultTree} data (triggered by record editing, etc.)
      * <li> fetches arriving back from the server for {@link com.smartgwt.client.widgets.tree.ResultTree} data <li>
      * programmatic changes to {@link com.smartgwt.client.widgets.tree.Tree} data if made through APIs such as {@link
@@ -34,10 +34,11 @@ public interface DataChangedHandler extends EventHandler {
      * one of the above listed events is triggered (e.g. a server fetch for  {@link
      * com.smartgwt.client.widgets.tree.ResultTree} data). <P> Note that the <code>operationType</code> parameter is optional
      * and will be passed and contain the operation (e.g. "update") if this notification was triggered by a fetch, an {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#addData addData}, {@link com.smartgwt.client.widgets.grid.ListGrid#updateData
-     * updateData}, or {@link com.smartgwt.client.widgets.grid.ListGrid#removeData removeData}, or a {@link
-     * com.smartgwt.client.data.DataSource} update for {@link com.smartgwt.client.widgets.tree.ResultTree} data (the first
-     * three reasons listed above) but otherwise will be null.
+     * com.smartgwt.client.widgets.grid.ListGrid#addData addData()}, {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#updateData updateData()}, or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#removeData removeData()}, or a {@link com.smartgwt.client.data.DataSource}
+     * update for {@link com.smartgwt.client.widgets.tree.ResultTree} data (the first three reasons listed above) but otherwise
+     * will be null.
      *
      * @param event the event
      */

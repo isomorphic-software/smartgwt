@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -178,11 +181,12 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * Update the 'actionType' for this canvas (radio / checkbox / button) If the canvas is currently selected, and the passed in actionType is 'button' this method will deselect the canvas.
      *
      * @param actionType New actionType value. Default value is "button"
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.State State overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_toggle" target="examples">Radio / Toggle Behavior Example</a>
      */
-    public void setActionType(SelectionType actionType) {
-        setAttribute("actionType", actionType == null ? null : actionType.getValue(), true);
+    public ImgButton setActionType(SelectionType actionType) {
+        return (ImgButton)setAttribute("actionType", actionType == null ? null : actionType.getValue(), true);
     }
 
     /**
@@ -201,10 +205,11 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * Horizontal alignment of this component's title.
      *
      * @param align New align value. Default value is Canvas.CENTER
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setAlign(Alignment align) {
-        setAttribute("align", align == null ? null : align.getValue(), true);
+    public ImgButton setAlign(Alignment align) {
+        return (ImgButton)setAttribute("align", align == null ? null : align.getValue(), true);
     }
 
     /**
@@ -229,10 +234,11 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * Setter method for the {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit StatefulCanvas.autoFit} property. Pass in true or false to turn autoFit on or off. When autoFit is set to <code>false</code>, canvas will be resized to it's previously specified size.
      *
      * @param autoFit New autoFit setting. Default value is null
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
-    public void setAutoFit(Boolean autoFit) {
-        setAttribute("autoFit", autoFit, true);
+    public ImgButton setAutoFit(Boolean autoFit) {
+        return (ImgButton)setAttribute("autoFit", autoFit, true);
     }
 
     /**
@@ -307,10 +313,11 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * Sets the base CSS style.  As the component changes state and/or is selected, suffixes will be added to the base style.
      *
      * @param baseStyle new base style. Default value is "imgButton"
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setBaseStyle(String baseStyle) {
-        setAttribute("baseStyle", baseStyle, true);
+    public ImgButton setBaseStyle(String baseStyle) {
+        return (ImgButton)setAttribute("baseStyle", baseStyle, true);
     }
 
     /**
@@ -376,26 +383,27 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
 
     /**
      * Size for this component's vertical dimension.  See {@link com.smartgwt.client.widgets.Canvas#getHeight Canvas.height}
-     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.ImgButton#getAutoFit autoFit} is set on non-{@link
-     * com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the widget is always
-     * sized just large enough to accommodate the title.
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit StatefulCanvas.autoFit}
+     * is set on non-{@link com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the
+     * widget is always sized just large enough to accommodate the title.
      *
      * @param height New height value. Default value is null
-     * @see com.smartgwt.client.widgets.ImgButton#setAutoFit
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.StatefulCanvas#setAutoFit
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
-    public void setHeight(Integer height) {
-        setAttribute("height", height, true);
+    public ImgButton setHeight(Integer height) {
+        return (ImgButton)setAttribute("height", height, true);
     }
 
     /**
      * Size for this component's vertical dimension.  See {@link com.smartgwt.client.widgets.Canvas#getHeight Canvas.height}
-     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.ImgButton#getAutoFit autoFit} is set on non-{@link
-     * com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the widget is always
-     * sized just large enough to accommodate the title.
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit StatefulCanvas.autoFit}
+     * is set on non-{@link com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the
+     * widget is always sized just large enough to accommodate the title.
      *
      * @return Current height value. Default value is null
-     * @see com.smartgwt.client.widgets.ImgButton#getAutoFit
+     * @see com.smartgwt.client.widgets.StatefulCanvas#getAutoFit
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public Integer getHeight()  {
@@ -404,12 +412,12 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
 
     /**
      * Size for this component's vertical dimension.  See {@link com.smartgwt.client.widgets.Canvas#getHeight Canvas.height}
-     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.ImgButton#getAutoFit autoFit} is set on non-{@link
-     * com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the widget is always
-     * sized just large enough to accommodate the title.
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit StatefulCanvas.autoFit}
+     * is set on non-{@link com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the
+     * widget is always sized just large enough to accommodate the title.
      *
      * @param height New height value. Default value is null
-     * @see com.smartgwt.client.widgets.ImgButton#setAutoFit
+     * @see com.smartgwt.client.widgets.StatefulCanvas#setAutoFit
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public void setHeight(String height) {
@@ -418,12 +426,12 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
 
     /**
      * Size for this component's vertical dimension.  See {@link com.smartgwt.client.widgets.Canvas#getHeight Canvas.height}
-     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.ImgButton#getAutoFit autoFit} is set on non-{@link
-     * com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the widget is always
-     * sized just large enough to accommodate the title.
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit StatefulCanvas.autoFit}
+     * is set on non-{@link com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the
+     * widget is always sized just large enough to accommodate the title.
      *
      * @return Current height value. Default value is null
-     * @see com.smartgwt.client.widgets.ImgButton#getAutoFit
+     * @see com.smartgwt.client.widgets.StatefulCanvas#getAutoFit
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public String getHeightAsString()  {
@@ -439,9 +447,10 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * HTML characters.
      *
      * @param hiliteAccessKey New hiliteAccessKey value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      */
-    public void setHiliteAccessKey(Boolean hiliteAccessKey) {
-        setAttribute("hiliteAccessKey", hiliteAccessKey, true);
+    public ImgButton setHiliteAccessKey(Boolean hiliteAccessKey) {
+        return (ImgButton)setAttribute("hiliteAccessKey", hiliteAccessKey, true);
     }
 
     /**
@@ -469,11 +478,12 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * Change the icon being shown next to the title text.
      *
      * @param icon URL of new icon. Default value is null
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIcon(String icon) {
-        setAttribute("icon", icon, true);
+    public ImgButton setIcon(String icon) {
+        return (ImgButton)setAttribute("icon", icon, true);
     }
 
     /**
@@ -496,11 +506,12 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * If this button is showing an icon should it be right or left aligned?
      *
      * @param iconAlign New iconAlign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconAlign(String iconAlign)  throws IllegalStateException {
-        setAttribute("iconAlign", iconAlign, false);
+    public ImgButton setIconAlign(String iconAlign)  throws IllegalStateException {
+        return (ImgButton)setAttribute("iconAlign", iconAlign, false);
     }
 
     /**
@@ -519,11 +530,12 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * com.smartgwt.client.widgets.StatefulCanvas#getIconSize iconSize}.
      *
      * @param iconHeight New iconHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconHeight(Integer iconHeight)  throws IllegalStateException {
-        setAttribute("iconHeight", iconHeight, false);
+    public ImgButton setIconHeight(Integer iconHeight)  throws IllegalStateException {
+        return (ImgButton)setAttribute("iconHeight", iconHeight, false);
     }
 
     /**
@@ -546,11 +558,12 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * Changes the orientation of the icon relative to the text of the button.
      *
      * @param iconOrientation The new orientation of the icon relative to the text of the button. Default value is "left"
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconOrientation(String iconOrientation)  throws IllegalStateException {
-        setAttribute("iconOrientation", iconOrientation, false);
+    public ImgButton setIconOrientation(String iconOrientation)  throws IllegalStateException {
+        return (ImgButton)setAttribute("iconOrientation", iconOrientation, false);
     }
 
     /**
@@ -575,11 +588,12 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * <code>iconSize</code> ineffective.
      *
      * @param iconSize New iconSize value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconSize(int iconSize)  throws IllegalStateException {
-        setAttribute("iconSize", iconSize, false);
+    public ImgButton setIconSize(int iconSize)  throws IllegalStateException {
+        return (ImgButton)setAttribute("iconSize", iconSize, false);
     }
 
     /**
@@ -603,11 +617,12 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * Pixels between icon and title text.
      *
      * @param iconSpacing New iconSpacing value. Default value is 6
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconSpacing(int iconSpacing)  throws IllegalStateException {
-        setAttribute("iconSpacing", iconSpacing, false);
+    public ImgButton setIconSpacing(int iconSpacing)  throws IllegalStateException {
+        return (ImgButton)setAttribute("iconSpacing", iconSpacing, false);
     }
 
     /**
@@ -626,11 +641,12 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * com.smartgwt.client.widgets.StatefulCanvas#getIconSize iconSize}.
      *
      * @param iconWidth New iconWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconWidth(Integer iconWidth)  throws IllegalStateException {
-        setAttribute("iconWidth", iconWidth, false);
+    public ImgButton setIconWidth(Integer iconWidth)  throws IllegalStateException {
+        return (ImgButton)setAttribute("iconWidth", iconWidth, false);
     }
 
     /**
@@ -651,9 +667,10 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * amount of padding is 2x the specified value.
      *
      * @param labelHPad New labelHPad value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      */
-    public void setLabelHPad(Integer labelHPad) {
-        setAttribute("labelHPad", labelHPad, true);
+    public ImgButton setLabelHPad(Integer labelHPad) {
+        return (ImgButton)setAttribute("labelHPad", labelHPad, true);
     }
 
     /**
@@ -674,9 +691,10 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * of padding is 2x the specified value.
      *
      * @param labelVPad New labelVPad value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      */
-    public void setLabelVPad(Integer labelVPad) {
-        setAttribute("labelVPad", labelVPad, true);
+    public ImgButton setLabelVPad(Integer labelVPad) {
+        return (ImgButton)setAttribute("labelVPad", labelVPad, true);
     }
 
     /**
@@ -696,11 +714,12 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param radioGroup New radioGroup value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.State State overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_toggle" target="examples">Radio / Toggle Behavior Example</a>
      */
-    public void setRadioGroup(String radioGroup) {
-        setAttribute("radioGroup", radioGroup, true);
+    public ImgButton setRadioGroup(String radioGroup) {
+        return (ImgButton)setAttribute("radioGroup", radioGroup, true);
     }
 
     /**
@@ -720,9 +739,10 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * If true and the title is clipped, then a hover containing the full title of this button is enabled.
      *
      * @param showClippedTitleOnHover New showClippedTitleOnHover value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      */
-    public void setShowClippedTitleOnHover(Boolean showClippedTitleOnHover) {
-        setAttribute("showClippedTitleOnHover", showClippedTitleOnHover, true);
+    public ImgButton setShowClippedTitleOnHover(Boolean showClippedTitleOnHover) {
+        return (ImgButton)setAttribute("showClippedTitleOnHover", showClippedTitleOnHover, true);
     }
 
     /**
@@ -740,10 +760,11 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * Should we visibly change state when disabled?
      *
      * @param showDisabled New showDisabled value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
-    public void setShowDisabled(Boolean showDisabled) {
-        setAttribute("showDisabled", showDisabled, true);
+    public ImgButton setShowDisabled(Boolean showDisabled) {
+        return (ImgButton)setAttribute("showDisabled", showDisabled, true);
     }
 
     /**
@@ -762,11 +783,12 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * If using an icon for this button, whether to switch the icon image if the button becomes disabled.
      *
      * @param showDisabledIcon New showDisabledIcon value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowDisabledIcon(Boolean showDisabledIcon)  throws IllegalStateException {
-        setAttribute("showDisabledIcon", showDisabledIcon, false);
+    public ImgButton setShowDisabledIcon(Boolean showDisabledIcon)  throws IllegalStateException {
+        return (ImgButton)setAttribute("showDisabledIcon", showDisabledIcon, false);
     }
 
     /**
@@ -785,10 +807,11 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * Should we visibly change state when the mouse goes down in this object?
      *
      * @param showDown New showDown value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
-    public void setShowDown(Boolean showDown) {
-        setAttribute("showDown", showDown, true);
+    public ImgButton setShowDown(Boolean showDown) {
+        return (ImgButton)setAttribute("showDown", showDown, true);
     }
 
     /**
@@ -807,11 +830,12 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * If using an icon for this button, whether to switch the icon image when the mouse goes down on the button.
      *
      * @param showDownIcon New showDownIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowDownIcon(Boolean showDownIcon)  throws IllegalStateException {
-        setAttribute("showDownIcon", showDownIcon, false);
+    public ImgButton setShowDownIcon(Boolean showDownIcon)  throws IllegalStateException {
+        return (ImgButton)setAttribute("showDownIcon", showDownIcon, false);
     }
 
     /**
@@ -834,10 +858,11 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * will be used.
      *
      * @param showFocused New showFocused value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
-    public void setShowFocused(Boolean showFocused) {
-        setAttribute("showFocused", showFocused, true);
+    public ImgButton setShowFocused(Boolean showFocused) {
+        return (ImgButton)setAttribute("showFocused", showFocused, true);
     }
 
     /**
@@ -862,11 +887,12 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * will be displayed
      *
      * @param showFocusedIcon New showFocusedIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowFocusedIcon(Boolean showFocusedIcon)  throws IllegalStateException {
-        setAttribute("showFocusedIcon", showFocusedIcon, false);
+    public ImgButton setShowFocusedIcon(Boolean showFocusedIcon)  throws IllegalStateException {
+        return (ImgButton)setAttribute("showFocusedIcon", showFocusedIcon, false);
     }
 
     /**
@@ -888,10 +914,11 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * Should we visibly change state when the mouse goes over this object?
      *
      * @param showRollOver New showRollOver value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
-    public void setShowRollOver(Boolean showRollOver) {
-        setAttribute("showRollOver", showRollOver, true);
+    public ImgButton setShowRollOver(Boolean showRollOver) {
+        return (ImgButton)setAttribute("showRollOver", showRollOver, true);
     }
 
     /**
@@ -910,11 +937,12 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * If using an icon for this button, whether to switch the icon image on mouse rollover.
      *
      * @param showRollOverIcon New showRollOverIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowRollOverIcon(Boolean showRollOverIcon)  throws IllegalStateException {
-        setAttribute("showRollOverIcon", showRollOverIcon, false);
+    public ImgButton setShowRollOverIcon(Boolean showRollOverIcon)  throws IllegalStateException {
+        return (ImgButton)setAttribute("showRollOverIcon", showRollOverIcon, false);
     }
 
     /**
@@ -933,11 +961,12 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * If using an icon for this button, whether to switch the icon image when the button becomes selected.
      *
      * @param showSelectedIcon New showSelectedIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowSelectedIcon(Boolean showSelectedIcon)  throws IllegalStateException {
-        setAttribute("showSelectedIcon", showSelectedIcon, false);
+    public ImgButton setShowSelectedIcon(Boolean showSelectedIcon)  throws IllegalStateException {
+        return (ImgButton)setAttribute("showSelectedIcon", showSelectedIcon, false);
     }
 
     /**
@@ -959,9 +988,10 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showTitle New showTitle value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle, true);
+    public ImgButton setShowTitle(Boolean showTitle) {
+        return (ImgButton)setAttribute("showTitle", showTitle, true);
     }
 
     /**
@@ -978,81 +1008,24 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
     
 
     /**
-     * The base filename for the image. <P> This value will be combined with any specified {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getState state} to form a combined URL, changing the appearance of the
-     * component as the state changes. <P> The following table lists out the standard set of combined URLs that  may be
-     * generated. Subclasses may support additional state-derived media of course. Note that the src URL will be split such
-     * that the extension is always applied to the end of the combined string. For example in the following table, if
-     * <code>src</code> was set to <code>"blank.gif"</code>, the Selected+Focused URL would be 
-     * <code>"blank_Selected_Focused.gif"</code>. <table> <tr><td><b>URL for Img
-     * source</b></td><td><b>Description</b></td></tr> <tr><td><code><i>src</i>+<i>extension</i></code></td><td>Default
-     * URL</td></tr> <tr><td><code><i>src</i>+"_Selected"+<i>extension</i></code></td>      <td>Applied when {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getSelected StatefulCanvas.selected} is set to true</td></tr>
-     * <tr><td><code><i>src</i>+"_Focused"+<i>extension</i></code></td>      <td>Applied when the component has keyboard focus,
-     * if       {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused StatefulCanvas.showFocused} is true, and      
-     * {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver StatefulCanvas.showFocusedAsOver} is not
-     * true.</td></tr> <tr><td><code><i>src</i>+"_Over"+<i>extension</i></code></td>      <td>Applied when the user rolls over
-     * the component if          {@link com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver StatefulCanvas.showRollOver}
-     * is set to true</td></tr> <tr><td><code><i>src</i>+"_Down"+<i>extension</i></code></td>      <td>Applied when the user
-     * presses the mouse button over over the component if          {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowDown StatefulCanvas.showDown} is set to true</td></tr>
-     * <tr><td><code><i>src</i>+"_Disabled"+<i>extension</i></code></td>      <td>Applied to {@link
-     * com.smartgwt.client.widgets.Canvas#getDisabled Canvas.disabled} component       if {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowDisabled StatefulCanvas.showDisabled} is true.</td></tr> <tr><td
-     * colspan=2><i>Combined states</i></td></tr> <tr><td><code><i>src</i>+"_Selected_Focused"+<i>extension</i></code></td>    
-     * <td>Combined Selected and focused state</td></tr> <tr><td><code><i>src</i>+"_Selected_Over"+<i>extension</i></code></td>
-     * <td>Combined Selected and rollOver state</td></tr> <tr><td><code><i>src</i>+"_Focused_Over"+<i>extension</i></code></td>
-     * <td>Combined Focused and rollOver state</td></tr>
-     * <tr><td><code><i>src</i>+"_Selected_Focused_Over"+<i>extension</i></code></td>      <td>Combined Selected, Focused and
-     * rollOver state</td></tr> <tr><td><code><i>src</i>+"_Selected_Down"+<i>extension</i></code></td>      <td>Combined
-     * Selected and mouse-down state</td></tr> <tr><td><code><i>src</i>+"_Focused_Down"+<i>extension</i></code></td>     
-     * <td>Combined Focused and mouse-down state</td></tr>
-     * <tr><td><code><i>src</i>+"_Selected_Focused_Down"+<i>extension</i></code></td>      <td>Combined Selected, Focused and
-     * mouse-down state</td></tr> <tr><td><code><i>src</i>+"_Selected_Disabled"+<i>extension</i></code></td>      <td>Combined
-     * Selected and Disabled state</td></tr> </table>
+     * The base filename or stateful image configuration for the image.  Note that as the {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getState state}  of the component changes, the image displayed will be
+     * updated as described in {@link com.smartgwt.client.docs.StatefulImages}.
      *
      * @param src New src value. Default value is "[SKIN]/ImgButton/button.png"
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_appearance" target="examples">Appearance Example</a>
      */
-    public void setSrc(String src) {
-        setAttribute("src", src, true);
+    public ImgButton setSrc(String src) {
+        return (ImgButton)setAttribute("src", src, true);
     }
 
     /**
-     * The base filename for the image. <P> This value will be combined with any specified {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getState state} to form a combined URL, changing the appearance of the
-     * component as the state changes. <P> The following table lists out the standard set of combined URLs that  may be
-     * generated. Subclasses may support additional state-derived media of course. Note that the src URL will be split such
-     * that the extension is always applied to the end of the combined string. For example in the following table, if
-     * <code>src</code> was set to <code>"blank.gif"</code>, the Selected+Focused URL would be 
-     * <code>"blank_Selected_Focused.gif"</code>. <table> <tr><td><b>URL for Img
-     * source</b></td><td><b>Description</b></td></tr> <tr><td><code><i>src</i>+<i>extension</i></code></td><td>Default
-     * URL</td></tr> <tr><td><code><i>src</i>+"_Selected"+<i>extension</i></code></td>      <td>Applied when {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getSelected StatefulCanvas.selected} is set to true</td></tr>
-     * <tr><td><code><i>src</i>+"_Focused"+<i>extension</i></code></td>      <td>Applied when the component has keyboard focus,
-     * if       {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused StatefulCanvas.showFocused} is true, and      
-     * {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver StatefulCanvas.showFocusedAsOver} is not
-     * true.</td></tr> <tr><td><code><i>src</i>+"_Over"+<i>extension</i></code></td>      <td>Applied when the user rolls over
-     * the component if          {@link com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver StatefulCanvas.showRollOver}
-     * is set to true</td></tr> <tr><td><code><i>src</i>+"_Down"+<i>extension</i></code></td>      <td>Applied when the user
-     * presses the mouse button over over the component if          {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowDown StatefulCanvas.showDown} is set to true</td></tr>
-     * <tr><td><code><i>src</i>+"_Disabled"+<i>extension</i></code></td>      <td>Applied to {@link
-     * com.smartgwt.client.widgets.Canvas#getDisabled Canvas.disabled} component       if {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowDisabled StatefulCanvas.showDisabled} is true.</td></tr> <tr><td
-     * colspan=2><i>Combined states</i></td></tr> <tr><td><code><i>src</i>+"_Selected_Focused"+<i>extension</i></code></td>    
-     * <td>Combined Selected and focused state</td></tr> <tr><td><code><i>src</i>+"_Selected_Over"+<i>extension</i></code></td>
-     * <td>Combined Selected and rollOver state</td></tr> <tr><td><code><i>src</i>+"_Focused_Over"+<i>extension</i></code></td>
-     * <td>Combined Focused and rollOver state</td></tr>
-     * <tr><td><code><i>src</i>+"_Selected_Focused_Over"+<i>extension</i></code></td>      <td>Combined Selected, Focused and
-     * rollOver state</td></tr> <tr><td><code><i>src</i>+"_Selected_Down"+<i>extension</i></code></td>      <td>Combined
-     * Selected and mouse-down state</td></tr> <tr><td><code><i>src</i>+"_Focused_Down"+<i>extension</i></code></td>     
-     * <td>Combined Focused and mouse-down state</td></tr>
-     * <tr><td><code><i>src</i>+"_Selected_Focused_Down"+<i>extension</i></code></td>      <td>Combined Selected, Focused and
-     * mouse-down state</td></tr> <tr><td><code><i>src</i>+"_Selected_Disabled"+<i>extension</i></code></td>      <td>Combined
-     * Selected and Disabled state</td></tr> </table>
+     * The base filename or stateful image configuration for the image.  Note that as the {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getState state}  of the component changes, the image displayed will be
+     * updated as described in {@link com.smartgwt.client.docs.StatefulImages}.
      *
      * @return Current src value. Default value is "[SKIN]/ImgButton/button.png"
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
@@ -1061,6 +1034,35 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      */
     public String getSrc()  {
         return getAttributeAsString("src");
+    }
+
+    /**
+     * The base filename or stateful image configuration for the image.  Note that as the {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getState state}  of the component changes, the image displayed will be
+     * updated as described in {@link com.smartgwt.client.docs.StatefulImages}.
+     *
+     * @param src New src value. Default value is "[SKIN]/ImgButton/button.png"
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_appearance" target="examples">Appearance Example</a>
+     */
+    public ImgButton setSrc(SCStatefulImgConfig src) {
+        return (ImgButton)setAttribute("src", src == null ? null : src.getJsObj(), true);
+    }
+
+    /**
+     * The base filename or stateful image configuration for the image.  Note that as the {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getState state}  of the component changes, the image displayed will be
+     * updated as described in {@link com.smartgwt.client.docs.StatefulImages}.
+     *
+     * @return Current src value. Default value is "[SKIN]/ImgButton/button.png"
+     * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_appearance" target="examples">Appearance Example</a>
+     */
+    public SCStatefulImgConfig getSrcAsSCStatefulImgConfig()  {
+        return new SCStatefulImgConfig(getAttributeAsJavaScriptObject("src"));
     }
     
 
@@ -1082,11 +1084,12 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param state the new state. Default value is ""
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.types.State
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
-    public void setState(State state) {
-        setAttribute("state", state == null ? null : state.getValue(), true);
+    public ImgButton setState(State state) {
+        return (ImgButton)setAttribute("state", state == null ? null : state.getValue(), true);
     }
 
     /**
@@ -1141,10 +1144,11 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
      * Vertical alignment of this component's title.
      *
      * @param valign New valign value. Default value is Canvas.CENTER
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setValign(VerticalAlignment valign) {
-        setAttribute("valign", valign == null ? null : valign.getValue(), true);
+    public ImgButton setValign(VerticalAlignment valign) {
+        return (ImgButton)setAttribute("valign", valign == null ? null : valign.getValue(), true);
     }
 
     /**
@@ -1160,24 +1164,25 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
 
     /**
      * Size for this component's horizontal dimension.  See {@link com.smartgwt.client.widgets.Canvas#getWidth Canvas.width}
-     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.ImgButton#getAutoFit autoFit} is set, this
-     * property will be ignored so that the widget is always sized just large enough to accommodate the title.
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit StatefulCanvas.autoFit}
+     * is set, this property will be ignored so that the widget is always sized just large enough to accommodate the title.
      *
      * @param width New width value. Default value is null
-     * @see com.smartgwt.client.widgets.ImgButton#setAutoFit
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.StatefulCanvas#setAutoFit
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
-    public void setWidth(Integer width) {
-        setAttribute("width", width, true);
+    public ImgButton setWidth(Integer width) {
+        return (ImgButton)setAttribute("width", width, true);
     }
 
     /**
      * Size for this component's horizontal dimension.  See {@link com.smartgwt.client.widgets.Canvas#getWidth Canvas.width}
-     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.ImgButton#getAutoFit autoFit} is set, this
-     * property will be ignored so that the widget is always sized just large enough to accommodate the title.
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit StatefulCanvas.autoFit}
+     * is set, this property will be ignored so that the widget is always sized just large enough to accommodate the title.
      *
      * @return Current width value. Default value is null
-     * @see com.smartgwt.client.widgets.ImgButton#getAutoFit
+     * @see com.smartgwt.client.widgets.StatefulCanvas#getAutoFit
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public Integer getWidth()  {
@@ -1186,11 +1191,11 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
 
     /**
      * Size for this component's horizontal dimension.  See {@link com.smartgwt.client.widgets.Canvas#getWidth Canvas.width}
-     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.ImgButton#getAutoFit autoFit} is set, this
-     * property will be ignored so that the widget is always sized just large enough to accommodate the title.
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit StatefulCanvas.autoFit}
+     * is set, this property will be ignored so that the widget is always sized just large enough to accommodate the title.
      *
      * @param width New width value. Default value is null
-     * @see com.smartgwt.client.widgets.ImgButton#setAutoFit
+     * @see com.smartgwt.client.widgets.StatefulCanvas#setAutoFit
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public void setWidth(String width) {
@@ -1199,11 +1204,11 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
 
     /**
      * Size for this component's horizontal dimension.  See {@link com.smartgwt.client.widgets.Canvas#getWidth Canvas.width}
-     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.ImgButton#getAutoFit autoFit} is set, this
-     * property will be ignored so that the widget is always sized just large enough to accommodate the title.
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.StatefulCanvas#getAutoFit StatefulCanvas.autoFit}
+     * is set, this property will be ignored so that the widget is always sized just large enough to accommodate the title.
      *
      * @return Current width value. Default value is null
-     * @see com.smartgwt.client.widgets.ImgButton#getAutoFit
+     * @see com.smartgwt.client.widgets.StatefulCanvas#getAutoFit
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public String getWidthAsString()  {
@@ -1295,14 +1300,18 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
 	/**
      * Enable or disable this object
      * @param disabled true if this widget is to be disabled
+     *
+     * @return {@link com.smartgwt.client.widgets.ImgButton ImgButton} instance, for chaining setter
+     * calls
      * @see com.smartgwt.client.docs.State State overview and related methods
      */
-    public native void setDisabled(boolean disabled) /*-{
+    public native ImgButton setDisabled(boolean disabled) /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
             @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setDisabled", "boolean");
         }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setDisabled(disabled);
+        return this;        
     }-*/;
 
 	/**
@@ -1612,9 +1621,14 @@ public class ImgButton extends Img implements com.smartgwt.client.widgets.events
             s.logicalStructureErrors += "ImgButton.showTitle:" + t.getMessage() + "\n";
         }
         try {
-            s.src = getAttributeAsString("src");
+            s.srcAsString = getAttributeAsString("src");
         } catch (Throwable t) {
-            s.logicalStructureErrors += "ImgButton.src:" + t.getMessage() + "\n";
+            s.logicalStructureErrors += "ImgButton.srcAsString:" + t.getMessage() + "\n";
+        }
+        try {
+            s.srcAsSCStatefulImgConfig = getSrcAsSCStatefulImgConfig();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ImgButton.srcAsSCStatefulImgConfig:" + t.getMessage() + "\n";
         }
         try {
             s.state = getAttributeAsString("state");

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.widgets.*;
@@ -50,7 +51,7 @@ import java.util.*;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+import com.google.gwt.dom.client.Element;
 import com.smartgwt.client.util.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
@@ -99,9 +100,11 @@ public class CancelItem extends ButtonItem {
      * CancelItems show a title of <code>"Cancel"</code> by default. May be overridden.
      *
      * @param title title Default value is "Cancel"
+     * @return {com.smartgwt.client.widgets.form.fields.CancelItem CancelItem} instance, for
+     * chaining setter calls
      */
-    public void setTitle(String title) {
-        setAttribute("title", title);
+    public CancelItem setTitle(String title) {
+        return (CancelItem)setAttribute("title", title);
     }
 
     /**

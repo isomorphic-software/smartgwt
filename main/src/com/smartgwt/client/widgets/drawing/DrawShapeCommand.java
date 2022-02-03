@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Holds the information of a drawing command.
@@ -103,9 +106,10 @@ public class DrawShapeCommand extends DataClass {
      * The command type.
      *
      * @param type New type value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawShapeCommand DrawShapeCommand} instance, for chaining setter calls
      */
-    public void setType(DrawShapeCommandType type) {
-        setAttribute("type", type == null ? null : type.getValue());
+    public DrawShapeCommand setType(DrawShapeCommandType type) {
+        return (DrawShapeCommand)setAttribute("type", type == null ? null : type.getValue());
     }
 
     /**

@@ -5,6 +5,7 @@ package com.smartgwt.client.widgets.form.validator;
  * acceptable values is specified via the list property on the validator, which should be set to an array of values. If
  * validator.list is not supplied, the valueMap for the field will be used. If there is no valueMap, not providing
  * validator.list is an error.
+ * @deprecated deprecated in favor of {@link com.smartgwt.client.widgets.form.validator.InSetValidator}
  */
 public class IsOneOfValidator extends Validator {
 

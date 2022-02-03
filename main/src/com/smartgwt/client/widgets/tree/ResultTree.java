@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * ResultTrees are an implementation of the {@link com.smartgwt.client.widgets.tree.Tree} API, used to handle hierarchical
@@ -153,9 +156,10 @@ public class ResultTree extends Tree {
      * of it's direct             descendants - otherwise, opens all loaded nodes </li> </ul>
      *
      * @param autoOpen New autoOpen value. Default value is "none"
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
      */
-    public void setAutoOpen(String autoOpen) {
-        setAttribute("autoOpen", autoOpen, true);
+    public ResultTree setAutoOpen(String autoOpen) {
+        return (ResultTree)setAttribute("autoOpen", autoOpen, true);
     }
 
     /**
@@ -183,9 +187,10 @@ public class ResultTree extends Tree {
      * invalidateCache()} or of changing criteria such that the current cache of nodes is dropped.
      *
      * @param autoPreserveOpenState New autoPreserveOpenState value. Default value is "whenUnique"
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
      */
-    public void setAutoPreserveOpenState(PreserveOpenState autoPreserveOpenState) {
-        setAttribute("autoPreserveOpenState", autoPreserveOpenState == null ? null : autoPreserveOpenState.getValue(), true);
+    public ResultTree setAutoPreserveOpenState(PreserveOpenState autoPreserveOpenState) {
+        return (ResultTree)setAttribute("autoPreserveOpenState", autoPreserveOpenState == null ? null : autoPreserveOpenState.getValue(), true);
     }
 
     /**
@@ -202,16 +207,96 @@ public class ResultTree extends Tree {
     
 
     /**
+     * For {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link trees}, indicates that we should
+     * automatically
+     * update the {@link com.smartgwt.client.widgets.tree.Tree#getLinkPositionField position} values of old and new sibling
+     * records 
+     *  after a drag reparent or reposition-within-parent operation.  For example, say you have a 
+     *  tree like this (where the number in parentheses indicates the node's 
+     *  {@link com.smartgwt.client.widgets.tree.Tree#getLinkPositionField position} value):<pre>
+     *       A
+     *         - B (1)
+     *         - C (2)
+     *         - D (3)
+     *       E
+     *         - F (1)
+     *         - G (2)</pre>
+     *  and you drag node C out and drop it between nodes F and G.  This drag operation will spawn
+     *  two update operations to the server: a "remove" to delete node C from parent A, and an "add"
+     *  to re-add it under parent E.  With <code>autoUpdateSiblingNodesOnDrag</code> in force, we 
+     *  also automatically issue two "update" operations to the server - one to change the position 
+     *  on node D to 2, and another to change the position on node G to 3.  The end result of this
+     *  is that node position values are kept correct.
+     *  <p>
+     *  Please note the following:<ul>
+     *  <li>As noted above, these automatic updates are persistent - we send a queue of actual 
+     *  update requests to the server.  This is convenient, but it may not be terribly efficient, 
+     *  particularly if you have just dropped a node at the head of a list of several hundred 
+     *  siblings.  This is why we do not default this setting to true</li>
+     *  <li>The automatic updates work by applying an integer delta value to the existing position
+     *  value.  So in the above example, we would compute a delta of negative 1 for node D and 
+     *  positive 1 for node G.  The upshot of this is that <code>autoUpdateSiblingNodesOnDrag</code>
+     *  only works well if your position values are consecutive integers</li></ul>
+     *
+     * @param autoUpdateSiblingNodesOnDrag New autoUpdateSiblingNodesOnDrag value. Default value is (see below)
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public ResultTree setAutoUpdateSiblingNodesOnDrag(Boolean autoUpdateSiblingNodesOnDrag)  throws IllegalStateException {
+        return (ResultTree)setAttribute("autoUpdateSiblingNodesOnDrag", autoUpdateSiblingNodesOnDrag, false);
+    }
+
+    /**
+     * For {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link trees}, indicates that we should
+     * automatically
+     * update the {@link com.smartgwt.client.widgets.tree.Tree#getLinkPositionField position} values of old and new sibling
+     * records 
+     *  after a drag reparent or reposition-within-parent operation.  For example, say you have a 
+     *  tree like this (where the number in parentheses indicates the node's 
+     *  {@link com.smartgwt.client.widgets.tree.Tree#getLinkPositionField position} value):<pre>
+     *       A
+     *         - B (1)
+     *         - C (2)
+     *         - D (3)
+     *       E
+     *         - F (1)
+     *         - G (2)</pre>
+     *  and you drag node C out and drop it between nodes F and G.  This drag operation will spawn
+     *  two update operations to the server: a "remove" to delete node C from parent A, and an "add"
+     *  to re-add it under parent E.  With <code>autoUpdateSiblingNodesOnDrag</code> in force, we 
+     *  also automatically issue two "update" operations to the server - one to change the position 
+     *  on node D to 2, and another to change the position on node G to 3.  The end result of this
+     *  is that node position values are kept correct.
+     *  <p>
+     *  Please note the following:<ul>
+     *  <li>As noted above, these automatic updates are persistent - we send a queue of actual 
+     *  update requests to the server.  This is convenient, but it may not be terribly efficient, 
+     *  particularly if you have just dropped a node at the head of a list of several hundred 
+     *  siblings.  This is why we do not default this setting to true</li>
+     *  <li>The automatic updates work by applying an integer delta value to the existing position
+     *  value.  So in the above example, we would compute a delta of negative 1 for node D and 
+     *  positive 1 for node G.  The upshot of this is that <code>autoUpdateSiblingNodesOnDrag</code>
+     *  only works well if your position values are consecutive integers</li></ul>
+     *
+     * @return Current autoUpdateSiblingNodesOnDrag value. Default value is (see below)
+     */
+    public Boolean getAutoUpdateSiblingNodesOnDrag()  {
+        return getAttributeAsBoolean("autoUpdateSiblingNodesOnDrag");
+    }
+    
+
+    /**
      * When using {@link com.smartgwt.client.types.FetchMode fetchMode:"paged"} and providing multiple levels of the tree in
      * one DSResponse, this property specifies the default value assumed for the {@link
      * com.smartgwt.client.widgets.tree.ResultTree#getCanReturnOpenSubfoldersProperty canReturnOpenSubfoldersProperty} when no
      * value for that property is provided for a node.
      *
      * @param canReturnOpenFolders New canReturnOpenFolders value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setCanReturnOpenFolders(boolean canReturnOpenFolders)  throws IllegalStateException {
-        setAttribute("canReturnOpenFolders", canReturnOpenFolders, false);
+    public ResultTree setCanReturnOpenFolders(boolean canReturnOpenFolders)  throws IllegalStateException {
+        return (ResultTree)setAttribute("canReturnOpenFolders", canReturnOpenFolders, false);
     }
 
     /**
@@ -238,11 +323,12 @@ public class ResultTree extends Tree {
      * of entirely leaf nodes.
      *
      * @param canReturnOpenSubfoldersProperty New canReturnOpenSubfoldersProperty value. Default value is "canReturnOpenSubfolders"
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.widgets.tree.ResultTree#setCanReturnOpenFolders
      */
-    public void setCanReturnOpenSubfoldersProperty(String canReturnOpenSubfoldersProperty)  throws IllegalStateException {
-        setAttribute("canReturnOpenSubfoldersProperty", canReturnOpenSubfoldersProperty, false);
+    public ResultTree setCanReturnOpenSubfoldersProperty(String canReturnOpenSubfoldersProperty)  throws IllegalStateException {
+        return (ResultTree)setAttribute("canReturnOpenSubfoldersProperty", canReturnOpenSubfoldersProperty, false);
     }
 
     /**
@@ -269,11 +355,12 @@ public class ResultTree extends Tree {
      * com.smartgwt.client.docs.TreeDataBinding} overview.
      *
      * @param childCountProperty New childCountProperty value. Default value is "childCount"
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#tree_multi_level_child_paging" target="examples">Multi-Level Child Paging Example</a>
      */
-    public void setChildCountProperty(String childCountProperty)  throws IllegalStateException {
-        setAttribute("childCountProperty", childCountProperty, false);
+    public ResultTree setChildCountProperty(String childCountProperty)  throws IllegalStateException {
+        return (ResultTree)setAttribute("childCountProperty", childCountProperty, false);
     }
 
     /**
@@ -298,12 +385,13 @@ public class ResultTree extends Tree {
      * Set the filter criteria to use when fetching rows. <P> Depending on the result of {@link com.smartgwt.client.widgets.tree.ResultTree#compareCriteria compareCriteria()} and setting for {@link com.smartgwt.client.widgets.tree.ResultTree#getFetchMode fetchMode}, setting criteria may cause a trip to the server to get a new set of nodes, or may simply cause already-fetched nodes to be re-filtered according to the new criteria. <P> For a basic overview on when server fetches are generally performed, see {@link com.smartgwt.client.widgets.tree.ResultTree#getFetchMode fetchMode}. However, this is not the final determination of when server fetches occur. Criteria can be split into local criteria and server criteria by specifying {@link com.smartgwt.client.widgets.tree.ResultTree#getServerFilterFields serverFilterFields}. Thus, even when using fetchMode:"local" a new server fetch will occur if the server criteria changes. For details on how the criteria is split, see {@link com.smartgwt.client.data.DataSource#splitCriteria DataSource.splitCriteria()}. <P> Note: if criteria is being split to retrieve server criteria portion and the criteria is an {@link com.smartgwt.client.data.AdvancedCriteria}, the criteria must consist of a single "and" operator and one or more simple criteria below it. No other logical operators may be used. In other words, the {@link com.smartgwt.client.data.AdvancedCriteria} provided must be exactly representable by a simple criteria.
      *
      * @param criteria the filter criteria. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
      */
-    public void setCriteria(Criteria criteria) {
+    public ResultTree setCriteria(Criteria criteria) {
         if (criteria instanceof Criterion) {
             criteria.setAttribute("_constructor", "AdvancedCriteria");
         }
-        setAttribute("criteria", criteria == null ? null : criteria.getJsObj(), true);
+        return (ResultTree)setAttribute("criteria", criteria == null ? null : criteria.getJsObj(), true);
     }
 
     /**
@@ -342,13 +430,14 @@ public class ResultTree extends Tree {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param data New data value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.widgets.tree.Tree#setData
      * @see com.smartgwt.client.widgets.tree.TreeNode
      * @see com.smartgwt.client.docs.TreeDataBinding TreeDataBinding overview and related methods
      */
-    public void setData(TreeNode... data)  throws IllegalStateException {
-        setAttribute("data", data, false);
+    public ResultTree setData(TreeNode... data)  throws IllegalStateException {
+        return (ResultTree)setAttribute("data", data, false);
     }
 
     /**
@@ -399,11 +488,12 @@ public class ResultTree extends Tree {
      * or leaves.
      *
      * @param defaultIsFolder New defaultIsFolder value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setLoadDataOnDemand
      */
-    public void setDefaultIsFolder(Boolean defaultIsFolder)  throws IllegalStateException {
-        setAttribute("defaultIsFolder", defaultIsFolder, false);
+    public ResultTree setDefaultIsFolder(Boolean defaultIsFolder)  throws IllegalStateException {
+        return (ResultTree)setAttribute("defaultIsFolder", defaultIsFolder, false);
     }
 
     /**
@@ -437,9 +527,10 @@ public class ResultTree extends Tree {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param defaultNewNodesToRoot New defaultNewNodesToRoot value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
      */
-    public void setDefaultNewNodesToRoot(Boolean defaultNewNodesToRoot) {
-        setAttribute("defaultNewNodesToRoot", defaultNewNodesToRoot, true);
+    public ResultTree setDefaultNewNodesToRoot(Boolean defaultNewNodesToRoot) {
+        return (ResultTree)setAttribute("defaultNewNodesToRoot", defaultNewNodesToRoot, true);
     }
 
     /**
@@ -464,10 +555,11 @@ public class ResultTree extends Tree {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param disableCacheSync New disableCacheSync value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setDisableCacheSync(Boolean disableCacheSync)  throws IllegalStateException {
-        setAttribute("disableCacheSync", disableCacheSync, false);
+    public ResultTree setDisableCacheSync(Boolean disableCacheSync)  throws IllegalStateException {
+        return (ResultTree)setAttribute("disableCacheSync", disableCacheSync, false);
     }
 
     /**
@@ -498,10 +590,11 @@ public class ResultTree extends Tree {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param discardParentlessNodes New discardParentlessNodes value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setDiscardParentlessNodes(Boolean discardParentlessNodes)  throws IllegalStateException {
-        setAttribute("discardParentlessNodes", discardParentlessNodes, false);
+    public ResultTree setDiscardParentlessNodes(Boolean discardParentlessNodes)  throws IllegalStateException {
+        return (ResultTree)setAttribute("discardParentlessNodes", discardParentlessNodes, false);
     }
 
     /**
@@ -543,14 +636,15 @@ public class ResultTree extends Tree {
      * com.smartgwt.client.docs.TreeDataBinding} overview.
      *
      * @param fetchMode New fetchMode value. Default value is "basic"
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.widgets.tree.ResultTree#setLoadDataOnDemand
      * @see com.smartgwt.client.widgets.tree.ResultTree#setUseSimpleCriteriaLOD
      * @see com.smartgwt.client.docs.TreeDataBinding TreeDataBinding overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#tree_paging_for_children" target="examples">Paging for Children Example</a>
      */
-    public void setFetchMode(FetchMode fetchMode)  throws IllegalStateException {
-        setAttribute("fetchMode", fetchMode == null ? null : fetchMode.getValue(), false);
+    public ResultTree setFetchMode(FetchMode fetchMode)  throws IllegalStateException {
+        return (ResultTree)setAttribute("fetchMode", fetchMode == null ? null : fetchMode.getValue(), false);
     }
 
     /**
@@ -582,17 +676,44 @@ public class ResultTree extends Tree {
     
 
     /**
+     * If {@link com.smartgwt.client.widgets.tree.ResultTree#getAutoUpdateSiblingNodesOnDrag autoUpdateSiblingNodesOnDrag} is
+     * in force, this is the value we will  use to auto-update the position of a node when we cannot derive that value from the
+     * existing value of a neighbor.  This happens when a node is dropped into the very first  position below a parent
+     * (including the special case of the parent being previously empty)
+     *
+     * @param firstPositionValue New firstPositionValue value. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
+     */
+    public ResultTree setFirstPositionValue(Integer firstPositionValue) {
+        return (ResultTree)setAttribute("firstPositionValue", firstPositionValue, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.tree.ResultTree#getAutoUpdateSiblingNodesOnDrag autoUpdateSiblingNodesOnDrag} is
+     * in force, this is the value we will  use to auto-update the position of a node when we cannot derive that value from the
+     * existing value of a neighbor.  This happens when a node is dropped into the very first  position below a parent
+     * (including the special case of the parent being previously empty)
+     *
+     * @return Current firstPositionValue value. Default value is 1
+     */
+    public Integer getFirstPositionValue()  {
+        return getAttributeAsInt("firstPositionValue");
+    }
+    
+
+    /**
      * Criteria that are never shown to or edited by the user and are cumulative with any  criteria provided via {@link
      * com.smartgwt.client.widgets.DataBoundComponent#getInitialCriteria DataBoundComponent.initialCriteria}, {@link
      * com.smartgwt.client.widgets.tree.ResultTree#setCriteria setCriteria()} etc.
      *
      * @param implicitCriteria New implicitCriteria value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
      */
-    public void setImplicitCriteria(Criteria implicitCriteria) {
+    public ResultTree setImplicitCriteria(Criteria implicitCriteria) {
         if (implicitCriteria instanceof Criterion) {
             implicitCriteria.setAttribute("_constructor", "AdvancedCriteria");
         }
-        setAttribute("implicitCriteria", implicitCriteria == null ? null : implicitCriteria.getJsObj(), true);
+        return (ResultTree)setAttribute("implicitCriteria", implicitCriteria == null ? null : implicitCriteria.getJsObj(), true);
     }
 
     /**
@@ -620,11 +741,12 @@ public class ResultTree extends Tree {
      * list of field names that will be sent to the server whenever they are present in the criteria.
      *
      * @param keepParentsOnFilter New keepParentsOnFilter value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.TreeDataBinding TreeDataBinding overview and related methods
      */
-    public void setKeepParentsOnFilter(Boolean keepParentsOnFilter)  throws IllegalStateException {
-        setAttribute("keepParentsOnFilter", keepParentsOnFilter, false);
+    public ResultTree setKeepParentsOnFilter(Boolean keepParentsOnFilter)  throws IllegalStateException {
+        return (ResultTree)setAttribute("keepParentsOnFilter", keepParentsOnFilter, false);
     }
 
     /**
@@ -648,16 +770,529 @@ public class ResultTree extends Tree {
     
 
     /**
+     * The {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} this <code>ResultTree</code> should use  when
+     * performing add operations on its {@link com.smartgwt.client.widgets.tree.ResultTree#getLinkDataSource linkDataSource}. 
+     * Has no effect if this is not a {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}. <p> Note,
+     * this property wll be used by internal update operations when you drag-move or  drag-reparent nodes in a multi-link tree.
+     * Do not use it when adding records from  application code by directly calling <code>addData()</code> on the  {@link
+     * com.smartgwt.client.widgets.tree.ResultTree#getLinkDataSource linkDataSource}; instead just use the regular 
+     * <code>operationId</code> property in your add request.  Also note, because this  property is intended to allow your code
+     * to influence the operationId used by internal  methods, and those methods never directly update link data (moved and
+     * re-parented links  are always removed and then re-added), there is no corresponding 
+     * <code>linkDataUpdateOperation</code> property.
+     *
+     * @param linkDataAddOperation New linkDataAddOperation value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
+     */
+    public ResultTree setLinkDataAddOperation(String linkDataAddOperation) {
+        return (ResultTree)setAttribute("linkDataAddOperation", linkDataAddOperation, true);
+    }
+
+    /**
+     * The {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} this <code>ResultTree</code> should use  when
+     * performing add operations on its {@link com.smartgwt.client.widgets.tree.ResultTree#getLinkDataSource linkDataSource}. 
+     * Has no effect if this is not a {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}. <p> Note,
+     * this property wll be used by internal update operations when you drag-move or  drag-reparent nodes in a multi-link tree.
+     * Do not use it when adding records from  application code by directly calling <code>addData()</code> on the  {@link
+     * com.smartgwt.client.widgets.tree.ResultTree#getLinkDataSource linkDataSource}; instead just use the regular 
+     * <code>operationId</code> property in your add request.  Also note, because this  property is intended to allow your code
+     * to influence the operationId used by internal  methods, and those methods never directly update link data (moved and
+     * re-parented links  are always removed and then re-added), there is no corresponding 
+     * <code>linkDataUpdateOperation</code> property.
+     *
+     * @return Current linkDataAddOperation value. Default value is null
+     */
+    public String getLinkDataAddOperation()  {
+        return getAttributeAsString("linkDataAddOperation");
+    }
+    
+
+    /**
+     * The fetch mode for this tree's link data; ignored if this is not a  {@link
+     * com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}
+     *
+     * @param linkDataFetchMode New linkDataFetchMode value. Default value is "separate"
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public ResultTree setLinkDataFetchMode(LinkDataFetchMode linkDataFetchMode)  throws IllegalStateException {
+        return (ResultTree)setAttribute("linkDataFetchMode", linkDataFetchMode == null ? null : linkDataFetchMode.getValue(), false);
+    }
+
+    /**
+     * The fetch mode for this tree's link data; ignored if this is not a  {@link
+     * com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}
+     *
+     * @return Current linkDataFetchMode value. Default value is "separate"
+     */
+    public LinkDataFetchMode getLinkDataFetchMode()  {
+        return EnumUtil.getEnum(LinkDataFetchMode.values(), getAttribute("linkDataFetchMode"));
+    }
+    
+
+    /**
+     * The {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} this <code>ResultTree</code> should use  when
+     * performing fetch operations on its {@link com.smartgwt.client.widgets.tree.ResultTree#getLinkDataSource linkDataSource}.
+     * Has no effect if this is not a {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree} <p> Note,
+     * this value can be overridden by {@link com.smartgwt.client.data.DSRequest#getLinkDataFetchOperation
+     * DSRequest.linkDataFetchOperation} when  calling <code>fetchData()</code> on the component (e.g. {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#fetchData TreeGrid.fetchData}) directly from application code.
+     *
+     * @param linkDataFetchOperation New linkDataFetchOperation value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
+     */
+    public ResultTree setLinkDataFetchOperation(String linkDataFetchOperation) {
+        return (ResultTree)setAttribute("linkDataFetchOperation", linkDataFetchOperation, true);
+    }
+
+    /**
+     * The {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} this <code>ResultTree</code> should use  when
+     * performing fetch operations on its {@link com.smartgwt.client.widgets.tree.ResultTree#getLinkDataSource linkDataSource}.
+     * Has no effect if this is not a {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree} <p> Note,
+     * this value can be overridden by {@link com.smartgwt.client.data.DSRequest#getLinkDataFetchOperation
+     * DSRequest.linkDataFetchOperation} when  calling <code>fetchData()</code> on the component (e.g. {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#fetchData TreeGrid.fetchData}) directly from application code.
+     *
+     * @return Current linkDataFetchOperation value. Default value is null
+     */
+    public String getLinkDataFetchOperation()  {
+        return getAttributeAsString("linkDataFetchOperation");
+    }
+    
+
+    /**
+     * The {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} this <code>ResultTree</code> should use  when
+     * performing remove operations on its {@link com.smartgwt.client.widgets.tree.ResultTree#getLinkDataSource
+     * linkDataSource}.  Has no effect if this is not a {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link
+     * tree}. <p> See {@link com.smartgwt.client.widgets.tree.ResultTree#getLinkDataAddOperation linkDataAddOperation} for more
+     * information on how this property is  intended to be used.
+     *
+     * @param linkDataRemoveOperation New linkDataRemoveOperation value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
+     */
+    public ResultTree setLinkDataRemoveOperation(String linkDataRemoveOperation) {
+        return (ResultTree)setAttribute("linkDataRemoveOperation", linkDataRemoveOperation, true);
+    }
+
+    /**
+     * The {@link com.smartgwt.client.data.DSRequest#getOperationId operationId} this <code>ResultTree</code> should use  when
+     * performing remove operations on its {@link com.smartgwt.client.widgets.tree.ResultTree#getLinkDataSource
+     * linkDataSource}.  Has no effect if this is not a {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link
+     * tree}. <p> See {@link com.smartgwt.client.widgets.tree.ResultTree#getLinkDataAddOperation linkDataAddOperation} for more
+     * information on how this property is  intended to be used.
+     *
+     * @return Current linkDataRemoveOperation value. Default value is null
+     */
+    public String getLinkDataRemoveOperation()  {
+        return getAttributeAsString("linkDataRemoveOperation");
+    }
+    
+
+    /**
+     * This property allows you to specify the dataSource to be used for fetching link information
+     *  in a databound <i>multilink</i> tree.  A multilink tree is one where the same node is 
+     *  allowed to appear in multiple places in the tree, and it is achieved by providing the node 
+     *  data and the link data separately.  Nodes are provided via the normal 
+     * {@link com.smartgwt.client.widgets.tree.ResultTree#getDataSource dataSource}; <code>linkDataSource</code> is only used
+     * for 
+     *  fetching and updating link information.  
+     *  <p>
+     *  The <code>linkDataSource</code> is an ordinary {@link com.smartgwt.client.data.DataSource} that you implement
+     *  just like any other.  However, for correct operation as a <code>linkDataSource</code>, it 
+     *  must have the following:<ul>
+     *  <li>A {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey field}.  Like any dataSource, a 
+     *  <code>linkDataSource</code> is not fully functional without a <code>primaryKey</code> field</li>
+     * <li>A field named the same as the {@link com.smartgwt.client.widgets.tree.Tree#getParentIdField Tree.parentIdField}</li>
+     *  <li>A field named the same as the {@link com.smartgwt.client.widgets.tree.Tree#getIdField Tree.idField}</li>
+     * <li>Optionally, a field named the same as the {@link com.smartgwt.client.widgets.tree.Tree#getLinkPositionField
+     * Tree.linkPositionField}</li>
+     *  <li>Fields for other values you may wish to store with the link, if any</li>
+     *  </ul>
+     *  <h3>Providing node data and link data</h3>
+     *  Consider a structure for the components of a bicycle, greatly simplified:<pre>
+     *          Frame
+     *         /    \
+     *      Wheel   Wheel
+     *     /  \     /  \
+     *   Hub Tire  Hub Tire
+     *  </pre>
+     *  Here, the two wheels are the same assembly, so really it should look like this:<pre>
+     *        Frame
+     *         | |               
+     *        Wheel
+     *        /   \     
+     *      Hub  Tire 
+     *  </pre>
+     *  Normal Smart GWT trees cannot model this arrangement accurately because this is not 
+     *  really a tree, it is a graph; trees do not contain multiple paths to a given node.  The 
+     *  only way to handle this arrangement of nodes in a formal tree would be to make two copies
+     *  of the "Wheel" node, at which point they are no longer the same thing. Either way, in a 
+     *  {@link com.smartgwt.client.widgets.tree.TreeGrid}, we would have to visualise it like this:<pre> 
+     *    Frame
+     *       Wheel
+     *          Hub
+     *          Tire
+     *       Wheel
+     *          Hub
+     *          Tire
+     *  </pre>
+     *  But if we use copies so that the the two wheels are no longer the same thing, changing 
+     *  one of them will no longer change the other, which is a fundamental problem because in 
+     *  this scenario, the two wheels really are the same thing.  Now, changing the name of the 
+     *  "Hub" in one "Wheel" would not change it in the other; adding a "Spokes" node to the 
+     *  second item would not also add it to the first.  Drag-reordering child nodes in one 
+     *  "Wheel" would not re-order them in the other.  All of these things are incorrect, because
+     *  the two wheels are the same thing.
+     *  <p>
+     *  Multilink trees provide a way to handle this arrangement without physical copying of the
+     *  duplicate nodes, preserving the sameness of them and thus fixing all the problems
+     *  described above.
+     *  <p>
+     *  The node data for the above tree, simplified, would be a flat list something like this:<pre>
+     *    [
+     *       { id: 1, description: "Frame" },
+     *       { id: 2, description: "Wheel" },
+     *       { id: 3, description: "Hub" },
+     *       { id: 4, description: "Tire" }
+     *    ]
+     *  </pre>
+     *  The link data would look like this:<pre>
+     *    [
+     *       { linkId: 1, parentId: 1, id: 2, position: 1 },
+     *       { linkId: 2, parentId: 2, id: 3, position: 1 },
+     *       { linkId: 3, parentId: 2, id: 4, position: 2 },
+     *       { linkId: 4, parentId: 1, id: 2, position: 2 }
+     *    ]
+     *  </pre>
+     * Or, if you were using {@link com.smartgwt.client.widgets.tree.ResultTree#getLinkDataFetchMode linkDataFetchMode}
+     * "single", you would combine 
+     *  the node and link data into a single dataset like this:<pre>
+     *    [
+     *       { id: 1, position: 0, description: "Frame" },
+     *       { parentId: 1, id: 2, position: 1, description: "Wheel", linkId: 1 },
+     *       { parentId: 2, id: 3, position: 1, description: "Hub", linkId: 2 },
+     *       { parentId: 2, id: 4, position: 2, description: "Tire", linkId: 3 },
+     *       { parentId: 1, id: 2, position: 2, description: "Wheel", linkId: 4 }
+     *    ]</pre>
+     * 
+     *  <p>
+     * <b>NOTE:</b> It is also possible to create an unbound multilink tree - see {@link
+     * com.smartgwt.client.widgets.tree.Tree#getLinkData Tree.linkData}.
+     *
+     * @param linkDataSource New linkDataSource value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public ResultTree setLinkDataSource(DataSource linkDataSource)  throws IllegalStateException {
+        return (ResultTree)setAttribute("linkDataSource", linkDataSource == null ? null : linkDataSource.getOrCreateJsObj(), false);
+    }
+
+    /**
+     * This property allows you to specify the dataSource to be used for fetching link information
+     *  in a databound <i>multilink</i> tree.  A multilink tree is one where the same node is 
+     *  allowed to appear in multiple places in the tree, and it is achieved by providing the node 
+     *  data and the link data separately.  Nodes are provided via the normal 
+     * {@link com.smartgwt.client.widgets.tree.ResultTree#getDataSource dataSource}; <code>linkDataSource</code> is only used
+     * for 
+     *  fetching and updating link information.  
+     *  <p>
+     *  The <code>linkDataSource</code> is an ordinary {@link com.smartgwt.client.data.DataSource} that you implement
+     *  just like any other.  However, for correct operation as a <code>linkDataSource</code>, it 
+     *  must have the following:<ul>
+     *  <li>A {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey field}.  Like any dataSource, a 
+     *  <code>linkDataSource</code> is not fully functional without a <code>primaryKey</code> field</li>
+     * <li>A field named the same as the {@link com.smartgwt.client.widgets.tree.Tree#getParentIdField Tree.parentIdField}</li>
+     *  <li>A field named the same as the {@link com.smartgwt.client.widgets.tree.Tree#getIdField Tree.idField}</li>
+     * <li>Optionally, a field named the same as the {@link com.smartgwt.client.widgets.tree.Tree#getLinkPositionField
+     * Tree.linkPositionField}</li>
+     *  <li>Fields for other values you may wish to store with the link, if any</li>
+     *  </ul>
+     *  <h3>Providing node data and link data</h3>
+     *  Consider a structure for the components of a bicycle, greatly simplified:<pre>
+     *          Frame
+     *         /    \
+     *      Wheel   Wheel
+     *     /  \     /  \
+     *   Hub Tire  Hub Tire
+     *  </pre>
+     *  Here, the two wheels are the same assembly, so really it should look like this:<pre>
+     *        Frame
+     *         | |               
+     *        Wheel
+     *        /   \     
+     *      Hub  Tire 
+     *  </pre>
+     *  Normal Smart GWT trees cannot model this arrangement accurately because this is not 
+     *  really a tree, it is a graph; trees do not contain multiple paths to a given node.  The 
+     *  only way to handle this arrangement of nodes in a formal tree would be to make two copies
+     *  of the "Wheel" node, at which point they are no longer the same thing. Either way, in a 
+     *  {@link com.smartgwt.client.widgets.tree.TreeGrid}, we would have to visualise it like this:<pre> 
+     *    Frame
+     *       Wheel
+     *          Hub
+     *          Tire
+     *       Wheel
+     *          Hub
+     *          Tire
+     *  </pre>
+     *  But if we use copies so that the the two wheels are no longer the same thing, changing 
+     *  one of them will no longer change the other, which is a fundamental problem because in 
+     *  this scenario, the two wheels really are the same thing.  Now, changing the name of the 
+     *  "Hub" in one "Wheel" would not change it in the other; adding a "Spokes" node to the 
+     *  second item would not also add it to the first.  Drag-reordering child nodes in one 
+     *  "Wheel" would not re-order them in the other.  All of these things are incorrect, because
+     *  the two wheels are the same thing.
+     *  <p>
+     *  Multilink trees provide a way to handle this arrangement without physical copying of the
+     *  duplicate nodes, preserving the sameness of them and thus fixing all the problems
+     *  described above.
+     *  <p>
+     *  The node data for the above tree, simplified, would be a flat list something like this:<pre>
+     *    [
+     *       { id: 1, description: "Frame" },
+     *       { id: 2, description: "Wheel" },
+     *       { id: 3, description: "Hub" },
+     *       { id: 4, description: "Tire" }
+     *    ]
+     *  </pre>
+     *  The link data would look like this:<pre>
+     *    [
+     *       { linkId: 1, parentId: 1, id: 2, position: 1 },
+     *       { linkId: 2, parentId: 2, id: 3, position: 1 },
+     *       { linkId: 3, parentId: 2, id: 4, position: 2 },
+     *       { linkId: 4, parentId: 1, id: 2, position: 2 }
+     *    ]
+     *  </pre>
+     * Or, if you were using {@link com.smartgwt.client.widgets.tree.ResultTree#getLinkDataFetchMode linkDataFetchMode}
+     * "single", you would combine 
+     *  the node and link data into a single dataset like this:<pre>
+     *    [
+     *       { id: 1, position: 0, description: "Frame" },
+     *       { parentId: 1, id: 2, position: 1, description: "Wheel", linkId: 1 },
+     *       { parentId: 2, id: 3, position: 1, description: "Hub", linkId: 2 },
+     *       { parentId: 2, id: 4, position: 2, description: "Tire", linkId: 3 },
+     *       { parentId: 1, id: 2, position: 2, description: "Wheel", linkId: 4 }
+     *    ]</pre>
+     * 
+     *  <p>
+     * <b>NOTE:</b> It is also possible to create an unbound multilink tree - see {@link
+     * com.smartgwt.client.widgets.tree.Tree#getLinkData Tree.linkData}.
+     *
+     * @return Current linkDataSource value. Default value is null
+     */
+    public DataSource getLinkDataSource()  {
+        return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("linkDataSource"));
+    }
+
+    /**
+     * This property allows you to specify the dataSource to be used for fetching link information
+     *  in a databound <i>multilink</i> tree.  A multilink tree is one where the same node is 
+     *  allowed to appear in multiple places in the tree, and it is achieved by providing the node 
+     *  data and the link data separately.  Nodes are provided via the normal 
+     * {@link com.smartgwt.client.widgets.tree.ResultTree#getDataSource dataSource}; <code>linkDataSource</code> is only used
+     * for 
+     *  fetching and updating link information.  
+     *  <p>
+     *  The <code>linkDataSource</code> is an ordinary {@link com.smartgwt.client.data.DataSource} that you implement
+     *  just like any other.  However, for correct operation as a <code>linkDataSource</code>, it 
+     *  must have the following:<ul>
+     *  <li>A {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey field}.  Like any dataSource, a 
+     *  <code>linkDataSource</code> is not fully functional without a <code>primaryKey</code> field</li>
+     * <li>A field named the same as the {@link com.smartgwt.client.widgets.tree.Tree#getParentIdField Tree.parentIdField}</li>
+     *  <li>A field named the same as the {@link com.smartgwt.client.widgets.tree.Tree#getIdField Tree.idField}</li>
+     * <li>Optionally, a field named the same as the {@link com.smartgwt.client.widgets.tree.Tree#getLinkPositionField
+     * Tree.linkPositionField}</li>
+     *  <li>Fields for other values you may wish to store with the link, if any</li>
+     *  </ul>
+     *  <h3>Providing node data and link data</h3>
+     *  Consider a structure for the components of a bicycle, greatly simplified:<pre>
+     *          Frame
+     *         /    \
+     *      Wheel   Wheel
+     *     /  \     /  \
+     *   Hub Tire  Hub Tire
+     *  </pre>
+     *  Here, the two wheels are the same assembly, so really it should look like this:<pre>
+     *        Frame
+     *         | |               
+     *        Wheel
+     *        /   \     
+     *      Hub  Tire 
+     *  </pre>
+     *  Normal Smart GWT trees cannot model this arrangement accurately because this is not 
+     *  really a tree, it is a graph; trees do not contain multiple paths to a given node.  The 
+     *  only way to handle this arrangement of nodes in a formal tree would be to make two copies
+     *  of the "Wheel" node, at which point they are no longer the same thing. Either way, in a 
+     *  {@link com.smartgwt.client.widgets.tree.TreeGrid}, we would have to visualise it like this:<pre> 
+     *    Frame
+     *       Wheel
+     *          Hub
+     *          Tire
+     *       Wheel
+     *          Hub
+     *          Tire
+     *  </pre>
+     *  But if we use copies so that the the two wheels are no longer the same thing, changing 
+     *  one of them will no longer change the other, which is a fundamental problem because in 
+     *  this scenario, the two wheels really are the same thing.  Now, changing the name of the 
+     *  "Hub" in one "Wheel" would not change it in the other; adding a "Spokes" node to the 
+     *  second item would not also add it to the first.  Drag-reordering child nodes in one 
+     *  "Wheel" would not re-order them in the other.  All of these things are incorrect, because
+     *  the two wheels are the same thing.
+     *  <p>
+     *  Multilink trees provide a way to handle this arrangement without physical copying of the
+     *  duplicate nodes, preserving the sameness of them and thus fixing all the problems
+     *  described above.
+     *  <p>
+     *  The node data for the above tree, simplified, would be a flat list something like this:<pre>
+     *    [
+     *       { id: 1, description: "Frame" },
+     *       { id: 2, description: "Wheel" },
+     *       { id: 3, description: "Hub" },
+     *       { id: 4, description: "Tire" }
+     *    ]
+     *  </pre>
+     *  The link data would look like this:<pre>
+     *    [
+     *       { linkId: 1, parentId: 1, id: 2, position: 1 },
+     *       { linkId: 2, parentId: 2, id: 3, position: 1 },
+     *       { linkId: 3, parentId: 2, id: 4, position: 2 },
+     *       { linkId: 4, parentId: 1, id: 2, position: 2 }
+     *    ]
+     *  </pre>
+     * Or, if you were using {@link com.smartgwt.client.widgets.tree.ResultTree#getLinkDataFetchMode linkDataFetchMode}
+     * "single", you would combine 
+     *  the node and link data into a single dataset like this:<pre>
+     *    [
+     *       { id: 1, position: 0, description: "Frame" },
+     *       { parentId: 1, id: 2, position: 1, description: "Wheel", linkId: 1 },
+     *       { parentId: 2, id: 3, position: 1, description: "Hub", linkId: 2 },
+     *       { parentId: 2, id: 4, position: 2, description: "Tire", linkId: 3 },
+     *       { parentId: 1, id: 2, position: 2, description: "Wheel", linkId: 4 }
+     *    ]</pre>
+     * 
+     *  <p>
+     * <b>NOTE:</b> It is also possible to create an unbound multilink tree - see {@link
+     * com.smartgwt.client.widgets.tree.Tree#getLinkData Tree.linkData}.
+     *
+     * @param linkDataSource New linkDataSource value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public ResultTree setLinkDataSource(String linkDataSource)  throws IllegalStateException {
+        return (ResultTree)setAttribute("linkDataSource", linkDataSource, false);
+    }
+
+    /**
+     * This property allows you to specify the dataSource to be used for fetching link information
+     *  in a databound <i>multilink</i> tree.  A multilink tree is one where the same node is 
+     *  allowed to appear in multiple places in the tree, and it is achieved by providing the node 
+     *  data and the link data separately.  Nodes are provided via the normal 
+     * {@link com.smartgwt.client.widgets.tree.ResultTree#getDataSource dataSource}; <code>linkDataSource</code> is only used
+     * for 
+     *  fetching and updating link information.  
+     *  <p>
+     *  The <code>linkDataSource</code> is an ordinary {@link com.smartgwt.client.data.DataSource} that you implement
+     *  just like any other.  However, for correct operation as a <code>linkDataSource</code>, it 
+     *  must have the following:<ul>
+     *  <li>A {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey field}.  Like any dataSource, a 
+     *  <code>linkDataSource</code> is not fully functional without a <code>primaryKey</code> field</li>
+     * <li>A field named the same as the {@link com.smartgwt.client.widgets.tree.Tree#getParentIdField Tree.parentIdField}</li>
+     *  <li>A field named the same as the {@link com.smartgwt.client.widgets.tree.Tree#getIdField Tree.idField}</li>
+     * <li>Optionally, a field named the same as the {@link com.smartgwt.client.widgets.tree.Tree#getLinkPositionField
+     * Tree.linkPositionField}</li>
+     *  <li>Fields for other values you may wish to store with the link, if any</li>
+     *  </ul>
+     *  <h3>Providing node data and link data</h3>
+     *  Consider a structure for the components of a bicycle, greatly simplified:<pre>
+     *          Frame
+     *         /    \
+     *      Wheel   Wheel
+     *     /  \     /  \
+     *   Hub Tire  Hub Tire
+     *  </pre>
+     *  Here, the two wheels are the same assembly, so really it should look like this:<pre>
+     *        Frame
+     *         | |               
+     *        Wheel
+     *        /   \     
+     *      Hub  Tire 
+     *  </pre>
+     *  Normal Smart GWT trees cannot model this arrangement accurately because this is not 
+     *  really a tree, it is a graph; trees do not contain multiple paths to a given node.  The 
+     *  only way to handle this arrangement of nodes in a formal tree would be to make two copies
+     *  of the "Wheel" node, at which point they are no longer the same thing. Either way, in a 
+     *  {@link com.smartgwt.client.widgets.tree.TreeGrid}, we would have to visualise it like this:<pre> 
+     *    Frame
+     *       Wheel
+     *          Hub
+     *          Tire
+     *       Wheel
+     *          Hub
+     *          Tire
+     *  </pre>
+     *  But if we use copies so that the the two wheels are no longer the same thing, changing 
+     *  one of them will no longer change the other, which is a fundamental problem because in 
+     *  this scenario, the two wheels really are the same thing.  Now, changing the name of the 
+     *  "Hub" in one "Wheel" would not change it in the other; adding a "Spokes" node to the 
+     *  second item would not also add it to the first.  Drag-reordering child nodes in one 
+     *  "Wheel" would not re-order them in the other.  All of these things are incorrect, because
+     *  the two wheels are the same thing.
+     *  <p>
+     *  Multilink trees provide a way to handle this arrangement without physical copying of the
+     *  duplicate nodes, preserving the sameness of them and thus fixing all the problems
+     *  described above.
+     *  <p>
+     *  The node data for the above tree, simplified, would be a flat list something like this:<pre>
+     *    [
+     *       { id: 1, description: "Frame" },
+     *       { id: 2, description: "Wheel" },
+     *       { id: 3, description: "Hub" },
+     *       { id: 4, description: "Tire" }
+     *    ]
+     *  </pre>
+     *  The link data would look like this:<pre>
+     *    [
+     *       { linkId: 1, parentId: 1, id: 2, position: 1 },
+     *       { linkId: 2, parentId: 2, id: 3, position: 1 },
+     *       { linkId: 3, parentId: 2, id: 4, position: 2 },
+     *       { linkId: 4, parentId: 1, id: 2, position: 2 }
+     *    ]
+     *  </pre>
+     * Or, if you were using {@link com.smartgwt.client.widgets.tree.ResultTree#getLinkDataFetchMode linkDataFetchMode}
+     * "single", you would combine 
+     *  the node and link data into a single dataset like this:<pre>
+     *    [
+     *       { id: 1, position: 0, description: "Frame" },
+     *       { parentId: 1, id: 2, position: 1, description: "Wheel", linkId: 1 },
+     *       { parentId: 2, id: 3, position: 1, description: "Hub", linkId: 2 },
+     *       { parentId: 2, id: 4, position: 2, description: "Tire", linkId: 3 },
+     *       { parentId: 1, id: 2, position: 2, description: "Wheel", linkId: 4 }
+     *    ]</pre>
+     * 
+     *  <p>
+     * <b>NOTE:</b> It is also possible to create an unbound multilink tree - see {@link
+     * com.smartgwt.client.widgets.tree.Tree#getLinkData Tree.linkData}.
+     *
+     * @return Current linkDataSource value. Default value is null
+     */
+    public String getLinkDataSourceAsString()  {
+        return getAttributeAsString("linkDataSource");
+    }
+    
+
+    /**
      * Does this resultTree load data incrementally as folders within the tree are opened, or is it all loaded in a single
      * request?  Must be true if {@link com.smartgwt.client.widgets.tree.ResultTree#getFetchMode fetchMode} is "paged".
      *
      * @param loadDataOnDemand New loadDataOnDemand value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setLoadDataOnDemand
      * @see com.smartgwt.client.widgets.tree.ResultTree#setUseSimpleCriteriaLOD
      */
-    public void setLoadDataOnDemand(Boolean loadDataOnDemand)  throws IllegalStateException {
-        setAttribute("loadDataOnDemand", loadDataOnDemand, false);
+    public ResultTree setLoadDataOnDemand(Boolean loadDataOnDemand)  throws IllegalStateException {
+        return (ResultTree)setAttribute("loadDataOnDemand", loadDataOnDemand, false);
     }
 
     /**
@@ -683,12 +1318,13 @@ public class ResultTree extends Tree {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param modelType New modelType value. Default value is "parent"
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.Tree#setData
      * @see com.smartgwt.client.widgets.tree.Tree#setRoot
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
-    public void setModelType(TreeModelType modelType) {
-        setAttribute("modelType", modelType == null ? null : modelType.getValue(), true);
+    public ResultTree setModelType(TreeModelType modelType) {
+        return (ResultTree)setAttribute("modelType", modelType == null ? null : modelType.getValue(), true);
     }
 
     /**
@@ -718,13 +1354,14 @@ public class ResultTree extends Tree {
      * property only has an effect for {@link com.smartgwt.client.types.FetchMode fetchMode:"paged"} ResultTrees.
      *
      * @param progressiveLoading New progressiveLoading value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
      * @see com.smartgwt.client.data.DataSource#setProgressiveLoading
      * @see com.smartgwt.client.docs.serverds.OperationBinding#progressiveLoading
      * @see com.smartgwt.client.data.DSRequest#setProgressiveLoading
      * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
      */
-    public void setProgressiveLoading(Boolean progressiveLoading) {
-        setAttribute("progressiveLoading", progressiveLoading, true);
+    public ResultTree setProgressiveLoading(Boolean progressiveLoading) {
+        return (ResultTree)setAttribute("progressiveLoading", progressiveLoading, true);
     }
 
     /**
@@ -754,11 +1391,12 @@ public class ResultTree extends Tree {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param resultSize New resultSize value. Default value is 75
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.TreeDataBinding TreeDataBinding overview and related methods
      */
-    public void setResultSize(Integer resultSize)  throws IllegalStateException {
-        setAttribute("resultSize", resultSize, false);
+    public ResultTree setResultSize(Integer resultSize)  throws IllegalStateException {
+        return (ResultTree)setAttribute("resultSize", resultSize, false);
     }
 
     /**
@@ -776,15 +1414,46 @@ public class ResultTree extends Tree {
     
 
     /**
+     * For {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}s only, should we send up the  {@link
+     * com.smartgwt.client.widgets.tree.Tree#getParentIdField parentId} in fetch criteria if the criteria value is null?  If 
+     * false, we remove the <code>parentId</code> from the criteria when  {@link
+     * com.smartgwt.client.widgets.tree.ResultTree#getLinkDataSource fetching link data}, <b>if</b> the criteria value is  null
+     * (as it will be by default when fetching the direct child nodes of the tree's root). <p> Ignored for non-multiLink trees.
+     *
+     * @param sendNullParentInLinkDataCriteria New sendNullParentInLinkDataCriteria value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public ResultTree setSendNullParentInLinkDataCriteria(Boolean sendNullParentInLinkDataCriteria)  throws IllegalStateException {
+        return (ResultTree)setAttribute("sendNullParentInLinkDataCriteria", sendNullParentInLinkDataCriteria, false);
+    }
+
+    /**
+     * For {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}s only, should we send up the  {@link
+     * com.smartgwt.client.widgets.tree.Tree#getParentIdField parentId} in fetch criteria if the criteria value is null?  If 
+     * false, we remove the <code>parentId</code> from the criteria when  {@link
+     * com.smartgwt.client.widgets.tree.ResultTree#getLinkDataSource fetching link data}, <b>if</b> the criteria value is  null
+     * (as it will be by default when fetching the direct child nodes of the tree's root). <p> Ignored for non-multiLink trees.
+     *
+     * @return Current sendNullParentInLinkDataCriteria value. Default value is true
+     */
+    public Boolean getSendNullParentInLinkDataCriteria()  {
+        Boolean result = getAttributeAsBoolean("sendNullParentInLinkDataCriteria");
+        return result == null ? true : result;
+    }
+    
+
+    /**
      * When {@link com.smartgwt.client.widgets.tree.ResultTree#getKeepParentsOnFilter keepParentsOnFilter} is enabled for
      * {@link com.smartgwt.client.types.FetchMode fetchMode:"local"} ResultTrees, this property lists field names that will be
      * sent to the server if they are present in the criteria.
      *
      * @param serverFilterFields New serverFilterFields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setServerFilterFields(String... serverFilterFields)  throws IllegalStateException {
-        setAttribute("serverFilterFields", serverFilterFields, false);
+    public ResultTree setServerFilterFields(String... serverFilterFields)  throws IllegalStateException {
+        return (ResultTree)setAttribute("serverFilterFields", serverFilterFields, false);
     }
 
     /**
@@ -806,10 +1475,11 @@ public class ResultTree extends Tree {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param updateCacheFromRequest New updateCacheFromRequest value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setUpdateCacheFromRequest(Boolean updateCacheFromRequest)  throws IllegalStateException {
-        setAttribute("updateCacheFromRequest", updateCacheFromRequest, false);
+    public ResultTree setUpdateCacheFromRequest(Boolean updateCacheFromRequest)  throws IllegalStateException {
+        return (ResultTree)setAttribute("updateCacheFromRequest", updateCacheFromRequest, false);
     }
 
     /**
@@ -836,11 +1506,12 @@ public class ResultTree extends Tree {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param useSimpleCriteriaLOD New useSimpleCriteriaLOD value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setAutoFetchTextMatchStyle
      * @see com.smartgwt.client.data.DataSource#setDefaultTextMatchStyle
      */
-    public void setUseSimpleCriteriaLOD(boolean useSimpleCriteriaLOD) {
-        setAttribute("useSimpleCriteriaLOD", useSimpleCriteriaLOD, true);
+    public ResultTree setUseSimpleCriteriaLOD(boolean useSimpleCriteriaLOD) {
+        return (ResultTree)setAttribute("useSimpleCriteriaLOD", useSimpleCriteriaLOD, true);
     }
 
     /**
@@ -1040,7 +1711,7 @@ public class ResultTree extends Tree {
     }-*/;
 
 	/**
-     * Manually invalidate this ResultTree's cache. <P> Generally a ResultTree will observe and incorporate updates to the
+     * Manually invalidate this ResultTree's cache. <P> Generally a ResultTree will detect and incorporate updates to the
      * DataSource that provides its records, but when this is not possible, <code>invalidateCache()</code> allows manual cache
      * invalidation. <P> Components bound to this ResultTree will typically re-request the currently visible portion of the
      * dataset, causing the ResultTree to re-fetch data from the server.
@@ -1196,15 +1867,17 @@ public class ResultTree extends Tree {
      * What {@link com.smartgwt.client.data.DataSource} is this resultTree associated with?
      *
      * @param dataSource dataSource Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.ResultTree ResultTree} instance, for
+     * chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_databinding_ds_fields" target="examples">DataSource fields Example</a>
      */
-    public void setDataSource(DataSource dataSource)  throws IllegalStateException {
+    public ResultTree setDataSource(DataSource dataSource)  throws IllegalStateException {
     	if(dataSource==null) {
     		throw new IllegalArgumentException("Invalid call to setDataSource() passing null.  If you're having trouble with loading DataSources, please see the following FAQ: http://forums.smartclient.com/showthread.php?t=8159#aDSLoad");
     	}
-        setAttribute("dataSource", dataSource.getOrCreateJsObj(), false);
+        return (ResultTree)setAttribute("dataSource", dataSource.getOrCreateJsObj(), false);
     }
 
     /**

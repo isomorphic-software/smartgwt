@@ -12,6 +12,30 @@ package com.smartgwt.client.docs;
  *  automatically. Where applicable, additional module .jar files are included in
  * Evaluation SDKs but are separate downloads when using an Optional Module with Power or
  * Enterprise.
+ *  <P>
+ *  <b>Optional modules and Maven</b><br>
+ * Developers using {@link com.smartgwt.client.docs.MavenSupport Maven} may add resources for
+ * optional modules
+ *  via <code>includeAnalytics</code>, <code>includeMessaging</code> arguments when 
+ * <a href='http://github.smartclient.com/isc-maven-plugin/install-mojo.html'
+ * target='_blank'>installing modules to the maven repository</a>.
+ *  You can then configure configure your project POM to use the new dependency, for example:
+ *  <pre>
+ *     ....
+ *     &lt;!-- The SmartGWT core --&gt;
+ *     &lt;dependency&gt;
+ *         &lt;groupId&gt;com.isomorphic.smartgwt.enterprise&lt;/groupId&gt;
+ *         &lt;artifactId&gt;smartgwt-enterprise&lt;/artifactId&gt;
+ *         &lt;version&gt;\${smartgwt.version}&lt;/version&gt;
+ *     &lt;/dependency&gt;
+ *     &lt;!-- Analytics optional module --&gt;
+ *     &lt;dependency&gt;
+ *          &lt;groupId&gt;com.isomorphic.smartgwt.enterprise&lt;/groupId&gt;
+ *          &lt;artifactId&gt;smartgwt-analytics&lt;/artifactId&gt;
+ *          &lt;version&gt;\${smartgwt.version}&lt;/version&gt;
+ *     &lt;/dependency&gt;
+ *  </pre>
+ *  <P>
  *  The table below describes what &lt;inherits&gt; to add for each module.</p>
  *  <table class="normal" border=1>
  *  <tr>

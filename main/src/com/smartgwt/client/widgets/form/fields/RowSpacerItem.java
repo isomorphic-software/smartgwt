@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Form item that renders as a blank row in the form layout.<br> Set {@link
@@ -159,10 +162,11 @@ public class RowSpacerItem extends SpacerItem {
      * by default, separators span all remaining columns
      *
      * @param colSpan New colSpan value. Default value is "*"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RowSpacerItem RowSpacerItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setColSpan(int colSpan) {
-        setAttribute("colSpan", colSpan);
+    public RowSpacerItem setColSpan(int colSpan) {
+        return (RowSpacerItem)setAttribute("colSpan", colSpan);
     }
 
     /**
@@ -185,10 +189,11 @@ public class RowSpacerItem extends SpacerItem {
      * by default, separators span all remaining columns
      *
      * @param colSpan New colSpan value. Default value is "*"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RowSpacerItem RowSpacerItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setColSpan(String colSpan) {
-        setAttribute("colSpan", colSpan);
+    public RowSpacerItem setColSpan(String colSpan) {
+        return (RowSpacerItem)setAttribute("colSpan", colSpan);
     }
 
     /**
@@ -206,10 +211,11 @@ public class RowSpacerItem extends SpacerItem {
      * these items are in a row by themselves by default
      *
      * @param endRow New endRow value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.RowSpacerItem RowSpacerItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setEndRow(Boolean endRow) {
-        setAttribute("endRow", endRow);
+    public RowSpacerItem setEndRow(Boolean endRow) {
+        return (RowSpacerItem)setAttribute("endRow", endRow);
     }
 
     /**
@@ -228,10 +234,11 @@ public class RowSpacerItem extends SpacerItem {
      * we never show a separate title cell for separators
      *
      * @param showTitle New showTitle value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.RowSpacerItem RowSpacerItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle);
+    public RowSpacerItem setShowTitle(Boolean showTitle) {
+        return (RowSpacerItem)setAttribute("showTitle", showTitle);
     }
 
     /**
@@ -250,10 +257,11 @@ public class RowSpacerItem extends SpacerItem {
      * these items are in a row by themselves by default
      *
      * @param startRow New startRow value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.RowSpacerItem RowSpacerItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setStartRow(Boolean startRow) {
-        setAttribute("startRow", startRow);
+    public RowSpacerItem setStartRow(Boolean startRow) {
+        return (RowSpacerItem)setAttribute("startRow", startRow);
     }
 
     /**

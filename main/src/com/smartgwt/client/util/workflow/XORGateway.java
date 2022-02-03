@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Chooses one or another next process element based on AdvancedCriteria applied to {@link
@@ -122,26 +125,43 @@ public class XORGateway extends ProcessElement {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Simple or {@link com.smartgwt.client.data.AdvancedCriteria} to be applied to the task inputs.  These will be applied to
-     * either the data indicated by the {@link com.smartgwt.client.util.workflow.Task#getInputField Task.inputField} or to the
-     * "inputRecord" if multiple input fields are declared (see {@link com.smartgwt.client.docs.TaskIO}).
+     * Simple or {@link com.smartgwt.client.data.AdvancedCriteria} to be applied against the {@link
+     * com.smartgwt.client.util.workflow.Process#getState Process.state}. <P> Data values in this criteria prefixed with "$"
+     * will be treated as dynamic expressions as detailed in {@link com.smartgwt.client.docs.TaskInputExpression}. 
+     * Specifically, this means that for  simple criteria, any property value that is a String and is prefixed with "$" will be
+     * assumed to be an expression, and for AdvancedCriteria, the same treatment will be applied to {@link
+     * com.smartgwt.client.data.Criterion#getValue Criterion.value}. <p> Note that dynamic expressions starting with "$input"
+     * are not applicable for an XORGateway but "$inputRecord" can be used for direct reference to {@link
+     * com.smartgwt.client.util.workflow.Process#getState Process.state}.  <p> This property supports {@link
+     * com.smartgwt.client.docs.DynamicCriteria} - use {@link com.smartgwt.client.data.Criterion#getValuePath
+     * Criterion.valuePath} to refer to values in the {@link com.smartgwt.client.util.workflow.Process#getRuleScope
+     * Process.ruleScope}.
      *
-     * @param criteria New criteria value. Default value is IR
+     * @param criteria New criteria value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.XORGateway XORGateway} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setCriteria(Criteria criteria)  throws IllegalStateException {
+    public XORGateway setCriteria(Criteria criteria)  throws IllegalStateException {
         if (criteria instanceof Criterion) {
             criteria.setAttribute("_constructor", "AdvancedCriteria");
         }
-        setAttribute("criteria", criteria == null ? null : criteria.getJsObj(), false);
+        return (XORGateway)setAttribute("criteria", criteria == null ? null : criteria.getJsObj(), false);
     }
 
     /**
-     * Simple or {@link com.smartgwt.client.data.AdvancedCriteria} to be applied to the task inputs.  These will be applied to
-     * either the data indicated by the {@link com.smartgwt.client.util.workflow.Task#getInputField Task.inputField} or to the
-     * "inputRecord" if multiple input fields are declared (see {@link com.smartgwt.client.docs.TaskIO}).
+     * Simple or {@link com.smartgwt.client.data.AdvancedCriteria} to be applied against the {@link
+     * com.smartgwt.client.util.workflow.Process#getState Process.state}. <P> Data values in this criteria prefixed with "$"
+     * will be treated as dynamic expressions as detailed in {@link com.smartgwt.client.docs.TaskInputExpression}. 
+     * Specifically, this means that for  simple criteria, any property value that is a String and is prefixed with "$" will be
+     * assumed to be an expression, and for AdvancedCriteria, the same treatment will be applied to {@link
+     * com.smartgwt.client.data.Criterion#getValue Criterion.value}. <p> Note that dynamic expressions starting with "$input"
+     * are not applicable for an XORGateway but "$inputRecord" can be used for direct reference to {@link
+     * com.smartgwt.client.util.workflow.Process#getState Process.state}.  <p> This property supports {@link
+     * com.smartgwt.client.docs.DynamicCriteria} - use {@link com.smartgwt.client.data.Criterion#getValuePath
+     * Criterion.valuePath} to refer to values in the {@link com.smartgwt.client.util.workflow.Process#getRuleScope
+     * Process.ruleScope}.
      *
-     * @return Current criteria value. Default value is IR
+     * @return Current criteria value. Default value is null
      */
     public Criteria getCriteria()  {
         return new Criteria(getAttributeAsJavaScriptObject("criteria"));
@@ -152,10 +172,11 @@ public class XORGateway extends ProcessElement {
      * ID of the next sequence or element to proceed to if the criteria do not match.
      *
      * @param failureElement New failureElement value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.XORGateway XORGateway} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setFailureElement(String failureElement)  throws IllegalStateException {
-        setAttribute("failureElement", failureElement, false);
+    public XORGateway setFailureElement(String failureElement)  throws IllegalStateException {
+        return (XORGateway)setAttribute("failureElement", failureElement, false);
     }
 
     /**
@@ -169,23 +190,28 @@ public class XORGateway extends ProcessElement {
     
 
     /**
-     * ID of the next {@link com.smartgwt.client.util.workflow.Process#getSequences sequence} or {process.elements,element} to
-     * procede to if the criteria match the process state.  If this gateway is part of a {@link
-     * com.smartgwt.client.util.workflow.Process#getSequences sequence} and has a next element in the sequence,
-     * <code>nextElement</code> does not need to be specified.
+     * Next {@link com.smartgwt.client.util.workflow.Process#getSequences sequence} or {@link
+     * com.smartgwt.client.util.workflow.Process#getElements element} to execute if the criteria match the process state.   <p>
+     * <code>nextElement</code> does not need to be specified if this gateway is part of a {@link
+     * com.smartgwt.client.util.workflow.Process#getSequences sequence} and has a next element in the sequence. <p> Note that
+     * if there is both a <code>sequence</code> and a normal <code>element</code> with the same name in the current
+     * <code>Process</code>, the <code>sequence</code> will be used.
      *
      * @param nextElement New nextElement value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.XORGateway XORGateway} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setNextElement(String nextElement)  throws IllegalStateException {
-        setAttribute("nextElement", nextElement, false);
+    public XORGateway setNextElement(String nextElement)  throws IllegalStateException {
+        return (XORGateway)setAttribute("nextElement", nextElement, false);
     }
 
     /**
-     * ID of the next {@link com.smartgwt.client.util.workflow.Process#getSequences sequence} or {process.elements,element} to
-     * procede to if the criteria match the process state.  If this gateway is part of a {@link
-     * com.smartgwt.client.util.workflow.Process#getSequences sequence} and has a next element in the sequence,
-     * <code>nextElement</code> does not need to be specified.
+     * Next {@link com.smartgwt.client.util.workflow.Process#getSequences sequence} or {@link
+     * com.smartgwt.client.util.workflow.Process#getElements element} to execute if the criteria match the process state.   <p>
+     * <code>nextElement</code> does not need to be specified if this gateway is part of a {@link
+     * com.smartgwt.client.util.workflow.Process#getSequences sequence} and has a next element in the sequence. <p> Note that
+     * if there is both a <code>sequence</code> and a normal <code>element</code> with the same name in the current
+     * <code>Process</code>, the <code>sequence</code> will be used.
      *
      * @return Current nextElement value. Default value is null
      */

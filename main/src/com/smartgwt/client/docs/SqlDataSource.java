@@ -19,17 +19,17 @@ package com.smartgwt.client.docs;
  * specific database configuration you have configured via the Admin Console. <P> The list of
  * databases known to work with the the built-in SQL logic is as follows: <p> <table
  * class='normal'> <tr><td width=40></td><td width=400><i>HSQLDB 1.7.x, 1.8.x, 2.0.x, 2.2.x,
- * 2.3.x, 2.4.x</i></td><td></td></tr> <tr><td></td><td><i>IBM DB2 8.x, 9.x, 10.x,
+ * 2.3.x, 2.4.x, 2.5.x</i></td><td></td></tr> <tr><td></td><td><i>IBM DB2 8.x, 9.x, 10.x,
  * 11.x</i></td><td></td></tr> <tr><td></td><td><i>IBM DB2 for i (formerly known as DB2 for i5/OS)
- * V5R4M0 onwards</i></td><td></td></tr> <tr><td></td><td><i>Firebird 2.5.x</i></td><td></td></tr>
- * <tr><td></td><td><i>Informix 11.5+, 12.1</i></td><td></td></tr> <tr><td></td><td><i>MS SQL
- * Server 2000, 2005, 2008, 2008 R2, 2012, 2014, 2016, 2017</i></td><td></td></tr>
- * <tr><td></td><td><i>MySQL 3.2.x, 4.0.x, 4.1.x, 5.0.x, 5.1.x, 5.5.x, 5.6.x,
- * 5.7.x</i></td><td></td></tr> <tr><td></td><td><i>MariaDB 5.x, 10.x</i></td><td></td></tr>
- * <tr><td></td><td><i>Oracle 8.0.5, 8i, 9i, 10g, 11g, 12c, 18c</i></td><td></td></tr>
- * <tr><td></td><td><i>PostgreSQL 7.x, 8.x, 9.x, 10.x</i></td><td></td></tr> </table> <p>We also
- * support a generic SQL92 database connection which works for basic CRUD operations with any
- * database product that supports standard SQL92 syntax and data types, plus a couple  of
+ * V5R4M0 onwards</i></td><td></td></tr> <tr><td></td><td><i>Firebird 2.5.x,
+ * 3.x</i></td><td></td></tr> <tr><td></td><td><i>Informix 11.5+, 12.1</i></td><td></td></tr>
+ * <tr><td></td><td><i>MS SQL Server 2000, 2005, 2008, 2008 R2, 2012, 2014, 2016,
+ * 2017</i></td><td></td></tr> <tr><td></td><td><i>MySQL 5.0.x, 5.1.x, 5.5.x, 5.6.x, 5.7.x,
+ * 8.x</i></td><td></td></tr> <tr><td></td><td><i>MariaDB 5.x, 10.x</i></td><td></td></tr>
+ * <tr><td></td><td><i>Oracle 8.0.5, 8i, 9i, 10g, 11g, 12c, 18c, 19c</i></td><td></td></tr>
+ * <tr><td></td><td><i>PostgreSQL 7.x, 8.x, 9.x, 10.x, 11.x, 12.x</i></td><td></td></tr> </table>
+ * <p>We also support a generic SQL92 database connection which works for basic CRUD operations
+ * with any database product that supports standard SQL92 syntax and data types, plus a couple  of
  * widely-implemented features that are not actually part of the standard.  Specifically, this
  * means we do not support:<ul> <li>Sequences</li> <li>Paging via SQL limit queries</li>
  * <li>{@link com.smartgwt.client.data.DataSource#getAutoJoinTransactions Automatic transaction

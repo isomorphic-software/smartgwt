@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Settings for use with {@link com.smartgwt.client.data.DataSource#recordsAsText DataSource.recordsAsText()}.
@@ -116,10 +119,11 @@ public class TextExportSettings extends TextSettings {
      * be used.
      *
      * @param dateFormat New dateFormat value. Default value is null
+     * @return {@link com.smartgwt.client.data.TextExportSettings TextExportSettings} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setDateFormat(DateDisplayFormat dateFormat)  throws IllegalStateException {
-        setAttribute("dateFormat", dateFormat == null ? null : dateFormat.getValue(), false);
+    public TextExportSettings setDateFormat(DateDisplayFormat dateFormat)  throws IllegalStateException {
+        return (TextExportSettings)setAttribute("dateFormat", dateFormat == null ? null : dateFormat.getValue(), false);
     }
 
     /**
@@ -140,10 +144,11 @@ public class TextExportSettings extends TextSettings {
      * (" ").
      *
      * @param dateTimeFormat New dateTimeFormat value. Default value is null
+     * @return {@link com.smartgwt.client.data.TextExportSettings TextExportSettings} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setDateTimeFormat(DateDisplayFormat dateTimeFormat)  throws IllegalStateException {
-        setAttribute("dateTimeFormat", dateTimeFormat == null ? null : dateTimeFormat.getValue(), false);
+    public TextExportSettings setDateTimeFormat(DateDisplayFormat dateTimeFormat)  throws IllegalStateException {
+        return (TextExportSettings)setAttribute("dateTimeFormat", dateTimeFormat == null ? null : dateTimeFormat.getValue(), false);
     }
 
     /**
@@ -163,10 +168,11 @@ public class TextExportSettings extends TextSettings {
      * DataSourceField.exportForceText}.
      *
      * @param forceText New forceText value. Default value is null
+     * @return {@link com.smartgwt.client.data.TextExportSettings TextExportSettings} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setForceText(ForceTextApproach forceText)  throws IllegalStateException {
-        setAttribute("forceText", forceText == null ? null : forceText.getValue(), false);
+    public TextExportSettings setForceText(ForceTextApproach forceText)  throws IllegalStateException {
+        return (TextExportSettings)setAttribute("forceText", forceText == null ? null : forceText.getValue(), false);
     }
 
     /**
@@ -185,10 +191,11 @@ public class TextExportSettings extends TextSettings {
      * Separator between Records.  Default is a newline character ("\n").
      *
      * @param lineSeparator New lineSeparator value. Default value is "\n"
+     * @return {@link com.smartgwt.client.data.TextExportSettings TextExportSettings} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setLineSeparator(String lineSeparator)  throws IllegalStateException {
-        setAttribute("lineSeparator", lineSeparator, false);
+    public TextExportSettings setLineSeparator(String lineSeparator)  throws IllegalStateException {
+        return (TextExportSettings)setAttribute("lineSeparator", lineSeparator, false);
     }
 
     /**
@@ -206,10 +213,11 @@ public class TextExportSettings extends TextSettings {
      * default value for their field type.
      *
      * @param nullValueText New nullValueText value. Default value is ""
+     * @return {@link com.smartgwt.client.data.TextExportSettings TextExportSettings} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setNullValueText(String nullValueText)  throws IllegalStateException {
-        setAttribute("nullValueText", nullValueText, false);
+    public TextExportSettings setNullValueText(String nullValueText)  throws IllegalStateException {
+        return (TextExportSettings)setAttribute("nullValueText", nullValueText, false);
     }
 
     /**
@@ -227,10 +235,11 @@ public class TextExportSettings extends TextSettings {
      * Whether to surround each value with quotes ("").
      *
      * @param quoteValues New quoteValues value. Default value is true
+     * @return {@link com.smartgwt.client.data.TextExportSettings TextExportSettings} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setQuoteValues(Boolean quoteValues)  throws IllegalStateException {
-        setAttribute("quoteValues", quoteValues, false);
+    public TextExportSettings setQuoteValues(Boolean quoteValues)  throws IllegalStateException {
+        return (TextExportSettings)setAttribute("quoteValues", quoteValues, false);
     }
 
     /**
@@ -248,10 +257,11 @@ public class TextExportSettings extends TextSettings {
      * Format to use when outputting time values.  Default is 24 hour time.
      *
      * @param timeFormat New timeFormat value. Default value is null
+     * @return {@link com.smartgwt.client.data.TextExportSettings TextExportSettings} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setTimeFormat(TimeDisplayFormat timeFormat)  throws IllegalStateException {
-        setAttribute("timeFormat", timeFormat == null ? null : timeFormat.getValue(), false);
+    public TextExportSettings setTimeFormat(TimeDisplayFormat timeFormat)  throws IllegalStateException {
+        return (TextExportSettings)setAttribute("timeFormat", timeFormat == null ? null : timeFormat.getValue(), false);
     }
 
     /**
@@ -269,10 +279,11 @@ public class TextExportSettings extends TextSettings {
      * export the field's value.
      *
      * @param useDisplayValue New useDisplayValue value. Default value is false
+     * @return {@link com.smartgwt.client.data.TextExportSettings TextExportSettings} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setUseDisplayValue(Boolean useDisplayValue)  throws IllegalStateException {
-        setAttribute("useDisplayValue", useDisplayValue, false);
+    public TextExportSettings setUseDisplayValue(Boolean useDisplayValue)  throws IllegalStateException {
+        return (TextExportSettings)setAttribute("useDisplayValue", useDisplayValue, false);
     }
 
     /**

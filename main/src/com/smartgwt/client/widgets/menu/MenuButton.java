@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -187,9 +190,10 @@ public class MenuButton extends Button {
      * com.smartgwt.client.widgets.menu.MenuButton#getMenu menu}?
      *
      * @param autoDestroyMenu New autoDestroyMenu value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.menu.MenuButton MenuButton} instance, for chaining setter calls
      */
-    public void setAutoDestroyMenu(Boolean autoDestroyMenu) {
-        setAttribute("autoDestroyMenu", autoDestroyMenu, true);
+    public MenuButton setAutoDestroyMenu(Boolean autoDestroyMenu) {
+        return (MenuButton)setAttribute("autoDestroyMenu", autoDestroyMenu, true);
     }
 
     /**
@@ -208,19 +212,20 @@ public class MenuButton extends Button {
      * Default class used to construct the {@link com.smartgwt.client.tools.EditProxy} for this component when the component is
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
-     * @param editProxyConstructor New editProxyConstructor value. Default value is "MenuEditEditProxy"
+     * @param editProxyConstructor New editProxyConstructor value. Default value is "MenuEditProxy"
+     * @return {@link com.smartgwt.client.widgets.menu.MenuButton MenuButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
-        setAttribute("editProxyConstructor", editProxyConstructor, false);
+    public MenuButton setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
+        return (MenuButton)setAttribute("editProxyConstructor", editProxyConstructor, false);
     }
 
     /**
      * Default class used to construct the {@link com.smartgwt.client.tools.EditProxy} for this component when the component is
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
-     * @return Current editProxyConstructor value. Default value is "MenuEditEditProxy"
+     * @return Current editProxyConstructor value. Default value is "MenuEditProxy"
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
     public String getEditProxyConstructor()  {
@@ -234,10 +239,11 @@ public class MenuButton extends Button {
      * the title of the button by default
      *
      * @param hiliteAccessKey New hiliteAccessKey value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.menu.MenuButton MenuButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setHiliteAccessKey(Boolean hiliteAccessKey)  throws IllegalStateException {
-        setAttribute("hiliteAccessKey", hiliteAccessKey, false);
+    public MenuButton setHiliteAccessKey(Boolean hiliteAccessKey)  throws IllegalStateException {
+        return (MenuButton)setAttribute("hiliteAccessKey", hiliteAccessKey, false);
     }
 
     /**
@@ -260,12 +266,13 @@ public class MenuButton extends Button {
      * and pre-pending it to your title.
      *
      * @param icon New icon value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.MenuButton MenuButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_category_icons" target="examples">Icons Example</a>
      */
-    public void setIcon(String icon) {
-        setAttribute("icon", icon, true);
+    public MenuButton setIcon(String icon) {
+        return (MenuButton)setAttribute("icon", icon, true);
     }
 
     /**
@@ -290,9 +297,10 @@ public class MenuButton extends Button {
      * {@link com.smartgwt.client.widgets.menu.MenuButton#getShowMenuButtonImage showMenuButtonImage}: <code>false</code>.
      *
      * @param menu New menu value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.MenuButton MenuButton} instance, for chaining setter calls
      */
-    public void setMenu(Menu menu) {
-        setAttribute("menu", menu == null ? null : menu.getOrCreateJsObj(), true);
+    public MenuButton setMenu(Menu menu) {
+        return (MenuButton)setAttribute("menu", menu == null ? null : menu.getOrCreateJsObj(), true);
     }
 
     /**
@@ -311,10 +319,11 @@ public class MenuButton extends Button {
      * right edges of button and menu if the page is in RTL  mode, and the left edges otherwise.
      *
      * @param menuAlign New menuAlign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.MenuButton MenuButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMenuAlign(Alignment menuAlign)  throws IllegalStateException {
-        setAttribute("menuAlign", menuAlign == null ? null : menuAlign.getValue(), false);
+    public MenuButton setMenuAlign(Alignment menuAlign)  throws IllegalStateException {
+        return (MenuButton)setAttribute("menuAlign", menuAlign == null ? null : menuAlign.getValue(), false);
     }
 
     /**
@@ -334,9 +343,10 @@ public class MenuButton extends Button {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param menuAnimationEffect New menuAnimationEffect value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.MenuButton MenuButton} instance, for chaining setter calls
      */
-    public void setMenuAnimationEffect(String menuAnimationEffect) {
-        setAttribute("menuAnimationEffect", menuAnimationEffect, true);
+    public MenuButton setMenuAnimationEffect(String menuAnimationEffect) {
+        return (MenuButton)setAttribute("menuAnimationEffect", menuAnimationEffect, true);
     }
 
     /**
@@ -357,12 +367,13 @@ public class MenuButton extends Button {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param menuButtonImage New menuButtonImage value. Default value is "[SKIN]menu_button.gif"
+     * @return {@link com.smartgwt.client.widgets.menu.MenuButton MenuButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.menu.MenuButton#setMenuButtonImageUp
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setMenuButtonImage(String menuButtonImage)  throws IllegalStateException {
-        setAttribute("menuButtonImage", menuButtonImage, false);
+    public MenuButton setMenuButtonImage(String menuButtonImage)  throws IllegalStateException {
+        return (MenuButton)setAttribute("menuButtonImage", menuButtonImage, false);
     }
 
     /**
@@ -386,12 +397,13 @@ public class MenuButton extends Button {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param menuButtonImageUp New menuButtonImageUp value. Default value is "[SKIN]menu_button_up.gif"
+     * @return {@link com.smartgwt.client.widgets.menu.MenuButton MenuButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.menu.MenuButton#setMenuButtonImage
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setMenuButtonImageUp(String menuButtonImageUp)  throws IllegalStateException {
-        setAttribute("menuButtonImageUp", menuButtonImageUp, false);
+    public MenuButton setMenuButtonImageUp(String menuButtonImageUp)  throws IllegalStateException {
+        return (MenuButton)setAttribute("menuButtonImageUp", menuButtonImageUp, false);
     }
 
     /**
@@ -414,11 +426,12 @@ public class MenuButton extends Button {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param rollOverMenuHideDelay New rollOverMenuHideDelay value. Default value is 250
+     * @return {@link com.smartgwt.client.widgets.menu.MenuButton MenuButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setRollOverMenuHideDelay(int rollOverMenuHideDelay)  throws IllegalStateException {
-        setAttribute("rollOverMenuHideDelay", rollOverMenuHideDelay, false);
+    public MenuButton setRollOverMenuHideDelay(int rollOverMenuHideDelay)  throws IllegalStateException {
+        return (MenuButton)setAttribute("rollOverMenuHideDelay", rollOverMenuHideDelay, false);
     }
 
     /**
@@ -440,9 +453,10 @@ public class MenuButton extends Button {
      * Setter for the 'showMenuButtonBelow' property - determines whether the menu will be shown above or below the menubutton.
      *
      * @param showMenuBelow True if the menu should be shown below the menubutton. Default value is true
+     * @return {@link com.smartgwt.client.widgets.menu.MenuButton MenuButton} instance, for chaining setter calls
      */
-    public void setShowMenuBelow(Boolean showMenuBelow) {
-        setAttribute("showMenuBelow", showMenuBelow, true);
+    public MenuButton setShowMenuBelow(Boolean showMenuBelow) {
+        return (MenuButton)setAttribute("showMenuBelow", showMenuBelow, true);
     }
 
     /**
@@ -463,10 +477,11 @@ public class MenuButton extends Button {
      * Setter for the 'showMenuButtonImage' property - shows/hides the menu button image at runtime.
      *
      * @param showMenuButtonImage Should the image be shown. Default value is true
+     * @return {@link com.smartgwt.client.widgets.menu.MenuButton MenuButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowMenuButtonImage(Boolean showMenuButtonImage)  throws IllegalStateException {
-        setAttribute("showMenuButtonImage", showMenuButtonImage, false);
+    public MenuButton setShowMenuButtonImage(Boolean showMenuButtonImage)  throws IllegalStateException {
+        return (MenuButton)setAttribute("showMenuButtonImage", showMenuButtonImage, false);
     }
 
     /**
@@ -486,11 +501,12 @@ public class MenuButton extends Button {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showMenuOnRollOver New showMenuOnRollOver value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.menu.MenuButton MenuButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowMenuOnRollOver(Boolean showMenuOnRollOver)  throws IllegalStateException {
-        setAttribute("showMenuOnRollOver", showMenuOnRollOver, false);
+    public MenuButton setShowMenuOnRollOver(Boolean showMenuOnRollOver)  throws IllegalStateException {
+        return (MenuButton)setAttribute("showMenuOnRollOver", showMenuOnRollOver, false);
     }
 
     /**

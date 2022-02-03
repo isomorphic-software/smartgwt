@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Internal use only.
@@ -101,8 +104,8 @@ public class AceCompletionResult extends DataClass {
     /**
      * Internal use only.
      */
-    public void setCaption(String caption) {
-        setAttribute("caption", caption);
+    public AceCompletionResult setCaption(String caption) {
+        return (AceCompletionResult)setAttribute("caption", caption);
     }
 
     /**
@@ -116,8 +119,8 @@ public class AceCompletionResult extends DataClass {
     /**
      * Internal use only.
      */
-    public void setMeta(String meta) {
-        setAttribute("meta", meta);
+    public AceCompletionResult setMeta(String meta) {
+        return (AceCompletionResult)setAttribute("meta", meta);
     }
 
     /**
@@ -131,8 +134,8 @@ public class AceCompletionResult extends DataClass {
     /**
      * Internal use only.
      */
-    public void setScore(Integer score) {
-        setAttribute("score", score);
+    public AceCompletionResult setScore(Integer score) {
+        return (AceCompletionResult)setAttribute("score", score);
     }
 
     /**
@@ -146,8 +149,8 @@ public class AceCompletionResult extends DataClass {
     /**
      * Internal use only.
      */
-    public void setTooltip(String tooltip) {
-        setAttribute("tooltip", tooltip);
+    public AceCompletionResult setTooltip(String tooltip) {
+        return (AceCompletionResult)setAttribute("tooltip", tooltip);
     }
 
     /**
@@ -161,8 +164,8 @@ public class AceCompletionResult extends DataClass {
     /**
      * Internal use only.
      */
-    public void setValue(String value) {
-        setAttribute("value", value);
+    public AceCompletionResult setValue(String value) {
+        return (AceCompletionResult)setAttribute("value", value);
     }
 
     /**

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * The MultiFileItem provides an interface for a user to save one or more files that are
@@ -206,9 +209,10 @@ public class MultiFileItem extends CanvasItem {
      * com.smartgwt.client.widgets.form.fields.MultiFileItem#getEditButton edit button}.
      *
      * @param editButtonPrompt New editButtonPrompt value. Default value is "Add files"
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiFileItem MultiFileItem} instance, for chaining setter calls
      */
-    public void setEditButtonPrompt(String editButtonPrompt) {
-        setAttribute("editButtonPrompt", editButtonPrompt);
+    public MultiFileItem setEditButtonPrompt(String editButtonPrompt) {
+        return (MultiFileItem)setAttribute("editButtonPrompt", editButtonPrompt);
     }
 
     /**
@@ -226,9 +230,10 @@ public class MultiFileItem extends CanvasItem {
      * Empty message to display when there are no files listed.
      *
      * @param emptyMessage New emptyMessage value. Default value is "Click icon to add..."
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiFileItem MultiFileItem} instance, for chaining setter calls
      */
-    public void setEmptyMessage(String emptyMessage) {
-        setAttribute("emptyMessage", emptyMessage);
+    public MultiFileItem setEmptyMessage(String emptyMessage) {
+        return (MultiFileItem)setAttribute("emptyMessage", emptyMessage);
     }
 
     /**
@@ -246,10 +251,11 @@ public class MultiFileItem extends CanvasItem {
      * com.smartgwt.client.widgets.form.fields.MultiFileItem#getEditButton edit button}.
      *
      * @param pickerAddAnotherFileButtonTitle New pickerAddAnotherFileButtonTitle value. Default value is "&lt;u&gt;Add&amp;nbsp;another&lt;/u&gt;"
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiFileItem MultiFileItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setPickerAddAnotherFileButtonTitle(String pickerAddAnotherFileButtonTitle) {
-        setAttribute("pickerAddAnotherFileButtonTitle", pickerAddAnotherFileButtonTitle);
+    public MultiFileItem setPickerAddAnotherFileButtonTitle(String pickerAddAnotherFileButtonTitle) {
+        return (MultiFileItem)setAttribute("pickerAddAnotherFileButtonTitle", pickerAddAnotherFileButtonTitle);
     }
 
     /**
@@ -269,9 +275,10 @@ public class MultiFileItem extends CanvasItem {
      * com.smartgwt.client.widgets.form.fields.MultiFileItem#getEditButton edit button}.
      *
      * @param pickerCancelButtonTitle New pickerCancelButtonTitle value. Default value is "Cancel"
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiFileItem MultiFileItem} instance, for chaining setter calls
      */
-    public void setPickerCancelButtonTitle(String pickerCancelButtonTitle) {
-        setAttribute("pickerCancelButtonTitle", pickerCancelButtonTitle);
+    public MultiFileItem setPickerCancelButtonTitle(String pickerCancelButtonTitle) {
+        return (MultiFileItem)setAttribute("pickerCancelButtonTitle", pickerCancelButtonTitle);
     }
 
     /**
@@ -290,10 +297,11 @@ public class MultiFileItem extends CanvasItem {
      * <code>picker</code> autoChild may be customized via the standard  {@link com.smartgwt.client.types.AutoChild} pattern.
      *
      * @param pickerConstructor New pickerConstructor value. Default value is "MultiFilePicker"
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiFileItem MultiFileItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setPickerConstructor(String pickerConstructor) {
-        setAttribute("pickerConstructor", pickerConstructor);
+    public MultiFileItem setPickerConstructor(String pickerConstructor) {
+        return (MultiFileItem)setAttribute("pickerConstructor", pickerConstructor);
     }
 
     /**
@@ -313,10 +321,11 @@ public class MultiFileItem extends CanvasItem {
      * com.smartgwt.client.widgets.form.fields.MultiFileItem#getEditButton edit button} that is used before the form is saved.
      *
      * @param pickerUploadButtonInitialTitle New pickerUploadButtonInitialTitle value. Default value is "OK"
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiFileItem MultiFileItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.MultiFileItem#setPickerUploadButtonTitle
      */
-    public void setPickerUploadButtonInitialTitle(String pickerUploadButtonInitialTitle) {
-        setAttribute("pickerUploadButtonInitialTitle", pickerUploadButtonInitialTitle);
+    public MultiFileItem setPickerUploadButtonInitialTitle(String pickerUploadButtonInitialTitle) {
+        return (MultiFileItem)setAttribute("pickerUploadButtonInitialTitle", pickerUploadButtonInitialTitle);
     }
 
     /**
@@ -336,10 +345,11 @@ public class MultiFileItem extends CanvasItem {
      * com.smartgwt.client.widgets.form.fields.MultiFileItem#getEditButton edit button} that is used after the form is saved.
      *
      * @param pickerUploadButtonTitle New pickerUploadButtonTitle value. Default value is "Save"
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiFileItem MultiFileItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.MultiFileItem#setPickerUploadButtonInitialTitle
      */
-    public void setPickerUploadButtonTitle(String pickerUploadButtonTitle) {
-        setAttribute("pickerUploadButtonTitle", pickerUploadButtonTitle);
+    public MultiFileItem setPickerUploadButtonTitle(String pickerUploadButtonTitle) {
+        return (MultiFileItem)setAttribute("pickerUploadButtonTitle", pickerUploadButtonTitle);
     }
 
     /**
@@ -361,10 +371,11 @@ public class MultiFileItem extends CanvasItem {
      * variables <code>fileName</code> and <code>formattedFileSize</code>.
      *
      * @param pickerUploadProgressLabel New pickerUploadProgressLabel value. Default value is "Saving ${fileName} ${formattedFileSize}"
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiFileItem MultiFileItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setPickerUploadProgressLabel(String pickerUploadProgressLabel) {
-        setAttribute("pickerUploadProgressLabel", pickerUploadProgressLabel);
+    public MultiFileItem setPickerUploadProgressLabel(String pickerUploadProgressLabel) {
+        return (MultiFileItem)setAttribute("pickerUploadProgressLabel", pickerUploadProgressLabel);
     }
 
     /**
@@ -387,9 +398,10 @@ public class MultiFileItem extends CanvasItem {
      * com.smartgwt.client.widgets.form.fields.MultiFileItem#getRemoveButton remove button}.
      *
      * @param removeButtonPrompt New removeButtonPrompt value. Default value is "Remove selected files"
+     * @return {@link com.smartgwt.client.widgets.form.fields.MultiFileItem MultiFileItem} instance, for chaining setter calls
      */
-    public void setRemoveButtonPrompt(String removeButtonPrompt) {
-        setAttribute("removeButtonPrompt", removeButtonPrompt);
+    public MultiFileItem setRemoveButtonPrompt(String removeButtonPrompt) {
+        return (MultiFileItem)setAttribute("removeButtonPrompt", removeButtonPrompt);
     }
 
     /**

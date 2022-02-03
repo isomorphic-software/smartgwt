@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -193,9 +196,10 @@ public class DrawSector extends DrawItem {
      * Change the center point for this sector.
      *
      * @param centerPoint X coordinate of the center point (in the global coordinate system). Default value is [0,0]
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawSector DrawSector} instance, for chaining setter calls
      */
-    public void setCenterPoint(Point centerPoint) {
-        setAttribute("centerPoint", centerPoint == null ? null : centerPoint.getJsObj(), true);
+    public DrawSector setCenterPoint(Point centerPoint) {
+        return (DrawSector)setAttribute("centerPoint", centerPoint == null ? null : centerPoint.getJsObj(), true);
     }
 
     /**
@@ -213,11 +217,12 @@ public class DrawSector extends DrawItem {
      * for further details.
      *
      * @param endAngle New endAngle value. Default value is 20.0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawSector DrawSector} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setEndAngle(float endAngle)  throws IllegalStateException {
-        setAttribute("endAngle", endAngle, false);
+    public DrawSector setEndAngle(float endAngle)  throws IllegalStateException {
+        return (DrawSector)setAttribute("endAngle", endAngle, false);
     }
 
     /**
@@ -236,10 +241,11 @@ public class DrawSector extends DrawItem {
      * for further details.
      *
      * @param endAngle New endAngle value. Default value is 20.0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawSector DrawSector} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEndAngle(double endAngle)  throws IllegalStateException {
-        setAttribute("endAngle", endAngle, false);
+    public DrawSector setEndAngle(double endAngle)  throws IllegalStateException {
+        return (DrawSector)setAttribute("endAngle", endAngle, false);
     }
 
     /**
@@ -257,13 +263,14 @@ public class DrawSector extends DrawItem {
      * DrawSector only supports the  {@link com.smartgwt.client.types.KnobType#MOVE} knob type.
      *
      * @param knobs New knobs value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawSector DrawSector} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setKnobs
      * 
      * 
      */
-    public void setKnobs(KnobType... knobs)  throws IllegalStateException {
-        setAttribute("knobs", knobs, false);
+    public DrawSector setKnobs(KnobType... knobs)  throws IllegalStateException {
+        return (DrawSector)setAttribute("knobs", knobs, false);
     }
 
     /**
@@ -284,10 +291,11 @@ public class DrawSector extends DrawItem {
      * Radius of the sector.
      *
      * @param radius New radius value. Default value is 100
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawSector DrawSector} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setRadius(int radius)  throws IllegalStateException {
-        setAttribute("radius", radius, false);
+    public DrawSector setRadius(int radius)  throws IllegalStateException {
+        return (DrawSector)setAttribute("radius", radius, false);
     }
 
     /**
@@ -314,11 +322,12 @@ public class DrawSector extends DrawItem {
      * DrawSector. The positive direction is clockwise.
      *
      * @param rotation New rotation value. Default value is 0.0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawSector DrawSector} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setRotation(float rotation)  throws IllegalStateException {
-        setAttribute("rotation", rotation, false);
+    public DrawSector setRotation(float rotation)  throws IllegalStateException {
+        return (DrawSector)setAttribute("rotation", rotation, false);
     }
 
     /**
@@ -337,10 +346,11 @@ public class DrawSector extends DrawItem {
      * DrawSector. The positive direction is clockwise.
      *
      * @param rotation New rotation value. Default value is 0.0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawSector DrawSector} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setRotation(double rotation)  throws IllegalStateException {
-        setAttribute("rotation", rotation, false);
+    public DrawSector setRotation(double rotation)  throws IllegalStateException {
+        return (DrawSector)setAttribute("rotation", rotation, false);
     }
 
     /**
@@ -362,10 +372,11 @@ public class DrawSector extends DrawItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showTitleLabelBackground New showTitleLabelBackground value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawSector DrawSector} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowTitleLabelBackground(boolean showTitleLabelBackground)  throws IllegalStateException {
-        setAttribute("showTitleLabelBackground", showTitleLabelBackground, false);
+    public DrawSector setShowTitleLabelBackground(boolean showTitleLabelBackground)  throws IllegalStateException {
+        return (DrawSector)setAttribute("showTitleLabelBackground", showTitleLabelBackground, false);
     }
 
     /**
@@ -395,11 +406,12 @@ public class DrawSector extends DrawItem {
      * centerPoint).
      *
      * @param startAngle New startAngle value. Default value is 0.0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawSector DrawSector} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setStartAngle(float startAngle)  throws IllegalStateException {
-        setAttribute("startAngle", startAngle, false);
+    public DrawSector setStartAngle(float startAngle)  throws IllegalStateException {
+        return (DrawSector)setAttribute("startAngle", startAngle, false);
     }
 
     /**
@@ -434,10 +446,11 @@ public class DrawSector extends DrawItem {
      * centerPoint).
      *
      * @param startAngle New startAngle value. Default value is 0.0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawSector DrawSector} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setStartAngle(double startAngle)  throws IllegalStateException {
-        setAttribute("startAngle", startAngle, false);
+    public DrawSector setStartAngle(double startAngle)  throws IllegalStateException {
+        return (DrawSector)setAttribute("startAngle", startAngle, false);
     }
 
     /**

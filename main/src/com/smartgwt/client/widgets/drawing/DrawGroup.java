@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -223,9 +226,10 @@ public class DrawGroup extends DrawItem {
      * Sets the height of this <code>DrawGroup</code>'s {@link com.smartgwt.client.widgets.drawing.DrawGroup#getGroupRect group rectangle}. Note that setting the height will not move or resize the items in this <code>DrawGroup</code>.
      *
      * @param height new height for the group rectangle. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawGroup DrawGroup} instance, for chaining setter calls
      */
-    public void setHeight(int height) {
-        setAttribute("height", height, true);
+    public DrawGroup setHeight(int height) {
+        return (DrawGroup)setAttribute("height", height, true);
     }
 
     /**
@@ -253,14 +257,15 @@ public class DrawGroup extends DrawItem {
      * DrawGroup only supports the  {@link com.smartgwt.client.types.KnobType#MOVE} knob type.
      *
      * @param knobs New knobs value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawGroup DrawGroup} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setKnobs
      * @see com.smartgwt.client.widgets.drawing.DrawGroup#setMoveItemsWithGroup
      * 
      * 
      */
-    public void setKnobs(KnobType... knobs)  throws IllegalStateException {
-        setAttribute("knobs", knobs, false);
+    public DrawGroup setKnobs(KnobType... knobs)  throws IllegalStateException {
+        return (DrawGroup)setAttribute("knobs", knobs, false);
     }
 
     /**
@@ -286,9 +291,10 @@ public class DrawGroup extends DrawItem {
      * Sets the left coordinate of this <code>DrawGroup</code>'s {@link com.smartgwt.client.widgets.drawing.DrawGroup#getGroupRect group rectangle}. Note that setting the left coordinate will not move the items in this <code>DrawGroup</code>.
      *
      * @param left new left coordinate. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawGroup DrawGroup} instance, for chaining setter calls
      */
-    public void setLeft(int left) {
-        setAttribute("left", left, true);
+    public DrawGroup setLeft(int left) {
+        return (DrawGroup)setAttribute("left", left, true);
     }
 
     /**
@@ -318,9 +324,10 @@ public class DrawGroup extends DrawItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param moveItemsWithGroup New moveItemsWithGroup value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawGroup DrawGroup} instance, for chaining setter calls
      */
-    public void setMoveItemsWithGroup(Boolean moveItemsWithGroup) {
-        setAttribute("moveItemsWithGroup", moveItemsWithGroup, true);
+    public DrawGroup setMoveItemsWithGroup(Boolean moveItemsWithGroup) {
+        return (DrawGroup)setAttribute("moveItemsWithGroup", moveItemsWithGroup, true);
     }
 
     /**
@@ -342,9 +349,10 @@ public class DrawGroup extends DrawItem {
      * groupRectOutline} be shown? <p> Set to false to disable showing the <code>groupRectOutline</code>.
      *
      * @param showGroupRectOutline New showGroupRectOutline value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawGroup DrawGroup} instance, for chaining setter calls
      */
-    public void setShowGroupRectOutline(Boolean showGroupRectOutline) {
-        setAttribute("showGroupRectOutline", showGroupRectOutline, true);
+    public DrawGroup setShowGroupRectOutline(Boolean showGroupRectOutline) {
+        return (DrawGroup)setAttribute("showGroupRectOutline", showGroupRectOutline, true);
     }
 
     /**
@@ -368,9 +376,10 @@ public class DrawGroup extends DrawItem {
      * Sets the top coordinate of this <code>DrawGroup</code>'s {@link com.smartgwt.client.widgets.drawing.DrawGroup#getGroupRect group rectangle}. Note that setting the top coordinate will not move the items in this <code>DrawGroup</code>.
      *
      * @param top new top coordinate in pixels. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawGroup DrawGroup} instance, for chaining setter calls
      */
-    public void setTop(int top) {
-        setAttribute("top", top, true);
+    public DrawGroup setTop(int top) {
+        return (DrawGroup)setAttribute("top", top, true);
     }
 
     /**
@@ -405,10 +414,11 @@ public class DrawGroup extends DrawItem {
      * level as well.
      *
      * @param useGroupRect New useGroupRect value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawGroup DrawGroup} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setUseGroupRect(boolean useGroupRect)  throws IllegalStateException {
-        setAttribute("useGroupRect", useGroupRect, false);
+    public DrawGroup setUseGroupRect(boolean useGroupRect)  throws IllegalStateException {
+        return (DrawGroup)setAttribute("useGroupRect", useGroupRect, false);
     }
 
     /**
@@ -437,9 +447,10 @@ public class DrawGroup extends DrawItem {
      * Sets the width of this <code>DrawGroup</code>'s {@link com.smartgwt.client.widgets.drawing.DrawGroup#getGroupRect group rectangle}. Note that setting the width will not move or resize the items in this <code>DrawGroup</code>.
      *
      * @param width new width for the group rectangle. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawGroup DrawGroup} instance, for chaining setter calls
      */
-    public void setWidth(int width) {
-        setAttribute("width", width, true);
+    public DrawGroup setWidth(int width) {
+        return (DrawGroup)setAttribute("width", width, true);
     }
 
     /**

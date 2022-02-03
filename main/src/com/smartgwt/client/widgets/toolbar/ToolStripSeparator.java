@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -174,11 +177,12 @@ public class ToolStripSeparator extends Img {
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "ToolStripSeparatorEditProxy"
+     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripSeparator ToolStripSeparator} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
-        setAttribute("editProxyConstructor", editProxyConstructor, false);
+    public ToolStripSeparator setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
+        return (ToolStripSeparator)setAttribute("editProxyConstructor", editProxyConstructor, false);
     }
 
     /**
@@ -197,11 +201,12 @@ public class ToolStripSeparator extends Img {
      * Image for horizontally oriented separator (for vertical toolstrips).
      *
      * @param hSrc New hSrc value. Default value is "[SKIN]hseparator.png"
+     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripSeparator ToolStripSeparator} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setHSrc(String hSrc)  throws IllegalStateException {
-        setAttribute("hSrc", hSrc, false);
+    public ToolStripSeparator setHSrc(String hSrc)  throws IllegalStateException {
+        return (ToolStripSeparator)setAttribute("hSrc", hSrc, false);
     }
 
     /**
@@ -219,11 +224,12 @@ public class ToolStripSeparator extends Img {
      * Path to separator image.
      *
      * @param skinImgDir New skinImgDir value. Default value is "images/ToolStrip/"
+     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripSeparator ToolStripSeparator} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setSkinImgDir(String skinImgDir)  throws IllegalStateException {
-        setAttribute("skinImgDir", skinImgDir, false);
+    public ToolStripSeparator setSkinImgDir(String skinImgDir)  throws IllegalStateException {
+        return (ToolStripSeparator)setAttribute("skinImgDir", skinImgDir, false);
     }
 
     /**
@@ -241,11 +247,12 @@ public class ToolStripSeparator extends Img {
      * Image for vertically oriented separator (for horizontal toolstrips).
      *
      * @param vSrc New vSrc value. Default value is "[SKIN]separator.png"
+     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripSeparator ToolStripSeparator} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setVSrc(String vSrc)  throws IllegalStateException {
-        setAttribute("vSrc", vSrc, false);
+    public ToolStripSeparator setVSrc(String vSrc)  throws IllegalStateException {
+        return (ToolStripSeparator)setAttribute("vSrc", vSrc, false);
     }
 
     /**

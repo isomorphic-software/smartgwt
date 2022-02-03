@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Task that executes arbitrary code, either synchronous or asynchronous.  Override the {@link
@@ -131,10 +134,11 @@ public class ScriptTask extends Task {
      * com.smartgwt.client.util.workflow.ScriptTask#setOutputRecord setOutputRecord()} is called.
      *
      * @param isAsync New isAsync value. Default value is false
+     * @return {@link com.smartgwt.client.util.workflow.ScriptTask ScriptTask} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setIsAsync(Boolean isAsync)  throws IllegalStateException {
-        setAttribute("isAsync", isAsync, false);
+    public ScriptTask setIsAsync(Boolean isAsync)  throws IllegalStateException {
+        return (ScriptTask)setAttribute("isAsync", isAsync, false);
     }
 
     /**
@@ -148,6 +152,30 @@ public class ScriptTask extends Task {
      */
     public Boolean getIsAsync()  {
         Boolean result = getAttributeAsBoolean("isAsync");
+        return result == null ? false : result;
+    }
+    
+
+    /**
+     * Does this processElement pass through output from the last executed task (i.e. transient state)? See {@link
+     * com.smartgwt.client.docs.TaskInputExpression taskInputExpressions} for details on the transient state.
+     *
+     * @param passThruOutput New passThruOutput value. Default value is false
+     * @return {@link com.smartgwt.client.util.workflow.ScriptTask ScriptTask} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public ScriptTask setPassThruOutput(Boolean passThruOutput)  throws IllegalStateException {
+        return (ScriptTask)setAttribute("passThruOutput", passThruOutput, false);
+    }
+
+    /**
+     * Does this processElement pass through output from the last executed task (i.e. transient state)? See {@link
+     * com.smartgwt.client.docs.TaskInputExpression taskInputExpressions} for details on the transient state.
+     *
+     * @return Current passThruOutput value. Default value is false
+     */
+    public Boolean getPassThruOutput()  {
+        Boolean result = getAttributeAsBoolean("passThruOutput");
         return result == null ? false : result;
     }
     
@@ -202,6 +230,21 @@ public class ScriptTask extends Task {
         var ret = self.getInputRecord();
         if(ret == null) return null;
         return @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * Get the process executing this task instance.
+     *
+     * @return the owning process
+     */
+    public native Process getProcess() /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getProcess", "");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getProcess();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.workflow.Process::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
 	/**

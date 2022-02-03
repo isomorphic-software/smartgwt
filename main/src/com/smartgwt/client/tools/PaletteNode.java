@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * An object representing a component which the user may create dynamically within an application. <P> A PaletteNode
@@ -118,9 +121,10 @@ public class PaletteNode extends TreeNode {
      * com.smartgwt.client.tools.PaletteNode PaletteNode}.
      *
      * @param canDuplicate New canDuplicate value. Default value is null
+     * @return {@link com.smartgwt.client.tools.PaletteNode PaletteNode} instance, for chaining setter calls
      */
-    public void setCanDuplicate(Boolean canDuplicate) {
-        setAttribute("canDuplicate", canDuplicate);
+    public PaletteNode setCanDuplicate(Boolean canDuplicate) {
+        return (PaletteNode)setAttribute("canDuplicate", canDuplicate);
     }
 
     /**
@@ -146,9 +150,10 @@ public class PaletteNode extends TreeNode {
      * {@link com.smartgwt.client.docs.DevTools Dashboards &amp; Tools} in general.
      *
      * @param defaults New defaults value. Default value is null
+     * @return {@link com.smartgwt.client.tools.PaletteNode PaletteNode} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setCanvasDefaults(Canvas defaults) {
+    public PaletteNode setCanvasDefaults(Canvas defaults) {
         if (defaults != null) {
             if (defaults.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(PaletteNode.class, "setCanvasDefaults", "Canvas");
@@ -156,7 +161,7 @@ public class PaletteNode extends TreeNode {
             defaults.setConfigOnly(true);
         }
         JavaScriptObject config = defaults == null ? null : defaults.getConfig();
-        setAttribute("defaults", JSOHelper.cleanProperties(config, true));
+        return (PaletteNode)setAttribute("defaults", JSOHelper.cleanProperties(config, true));
     }
 
     /**
@@ -185,9 +190,10 @@ public class PaletteNode extends TreeNode {
      * com.smartgwt.client.tools.EditNode#getLiveObject EditNode.liveObject} for the created editNode.
      *
      * @param liveObject New liveObject value. Default value is null
+     * @return {@link com.smartgwt.client.tools.PaletteNode PaletteNode} instance, for chaining setter calls
      */
-    public void setCanvasLiveObject(Canvas liveObject) {
-        setAttribute("liveObject", liveObject == null ? null : liveObject.getOrCreateJsObj());
+    public PaletteNode setCanvasLiveObject(Canvas liveObject) {
+        return (PaletteNode)setAttribute("liveObject", liveObject == null ? null : liveObject.getOrCreateJsObj());
     }
 
     /**
@@ -214,9 +220,10 @@ public class PaletteNode extends TreeNode {
      * {@link com.smartgwt.client.docs.DevTools Dashboards &amp; Tools} in general.
      *
      * @param defaults New defaults value. Default value is null
+     * @return {@link com.smartgwt.client.tools.PaletteNode PaletteNode} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setDrawItemDefaults(DrawItem defaults) {
+    public PaletteNode setDrawItemDefaults(DrawItem defaults) {
         if (defaults != null) {
             if (defaults.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(PaletteNode.class, "setDrawItemDefaults", "DrawItem");
@@ -224,7 +231,7 @@ public class PaletteNode extends TreeNode {
             defaults.setConfigOnly(true);
         }
         JavaScriptObject config = defaults == null ? null : defaults.getConfig();
-        setAttribute("defaults", JSOHelper.cleanProperties(config, true));
+        return (PaletteNode)setAttribute("defaults", JSOHelper.cleanProperties(config, true));
     }
 
     /**
@@ -253,9 +260,10 @@ public class PaletteNode extends TreeNode {
      * com.smartgwt.client.tools.EditNode#getLiveObject EditNode.liveObject} for the created editNode.
      *
      * @param liveObject New liveObject value. Default value is null
+     * @return {@link com.smartgwt.client.tools.PaletteNode PaletteNode} instance, for chaining setter calls
      */
-    public void setDrawItemLiveObject(DrawItem liveObject) {
-        setAttribute("liveObject", liveObject == null ? null : liveObject.getOrCreateJsObj());
+    public PaletteNode setDrawItemLiveObject(DrawItem liveObject) {
+        return (PaletteNode)setAttribute("liveObject", liveObject == null ? null : liveObject.getOrCreateJsObj());
     }
 
     /**
@@ -281,9 +289,10 @@ public class PaletteNode extends TreeNode {
      * {@link com.smartgwt.client.docs.DevTools Dashboards &amp; Tools} in general.
      *
      * @param defaults New defaults value. Default value is null
+     * @return {@link com.smartgwt.client.tools.PaletteNode PaletteNode} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setDrawPaneDefaults(DrawPane defaults) {
+    public PaletteNode setDrawPaneDefaults(DrawPane defaults) {
         if (defaults != null) {
             if (defaults.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(PaletteNode.class, "setDrawPaneDefaults", "DrawPane");
@@ -291,7 +300,7 @@ public class PaletteNode extends TreeNode {
             defaults.setConfigOnly(true);
         }
         JavaScriptObject config = defaults == null ? null : defaults.getConfig();
-        setAttribute("defaults", JSOHelper.cleanProperties(config, true));
+        return (PaletteNode)setAttribute("defaults", JSOHelper.cleanProperties(config, true));
     }
 
     /**
@@ -320,9 +329,10 @@ public class PaletteNode extends TreeNode {
      * com.smartgwt.client.tools.EditNode#getLiveObject EditNode.liveObject} for the created editNode.
      *
      * @param liveObject New liveObject value. Default value is null
+     * @return {@link com.smartgwt.client.tools.PaletteNode PaletteNode} instance, for chaining setter calls
      */
-    public void setDrawPaneLiveObject(DrawPane liveObject) {
-        setAttribute("liveObject", liveObject == null ? null : liveObject.getOrCreateJsObj());
+    public PaletteNode setDrawPaneLiveObject(DrawPane liveObject) {
+        return (PaletteNode)setAttribute("liveObject", liveObject == null ? null : liveObject.getOrCreateJsObj());
     }
 
     /**
@@ -342,13 +352,14 @@ public class PaletteNode extends TreeNode {
      * Properties to be applied to the {@link com.smartgwt.client.tools.EditNode editNode} when created.
      *
      * @param editNodeProperties New editNodeProperties value. Default value is null
+     * @return {@link com.smartgwt.client.tools.PaletteNode PaletteNode} instance, for chaining setter calls
      */
-    public void setEditNodeProperties(EditNode editNodeProperties) {
+    public PaletteNode setEditNodeProperties(EditNode editNodeProperties) {
         JavaScriptObject config = JSOHelper.createObject();
         if (editNodeProperties != null) {
             JSOHelper.addProperties(config, editNodeProperties.getJsObj());
         }
-        setAttribute("editNodeProperties", editNodeProperties == null ? null : config);
+        return (PaletteNode)setAttribute("editNodeProperties", editNodeProperties == null ? null : config);
     }
 
     /**
@@ -366,9 +377,10 @@ public class PaletteNode extends TreeNode {
      * com.smartgwt.client.widgets.Canvas#getEditProxy editProxy} when created.
      *
      * @param editProxyProperties New editProxyProperties value. Default value is null
+     * @return {@link com.smartgwt.client.tools.PaletteNode PaletteNode} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setEditProxyProperties(EditProxy editProxyProperties) {
+    public PaletteNode setEditProxyProperties(EditProxy editProxyProperties) {
         if (editProxyProperties != null) {
             if (editProxyProperties.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(PaletteNode.class, "setEditProxyProperties", "EditProxy");
@@ -376,7 +388,7 @@ public class PaletteNode extends TreeNode {
             editProxyProperties.setConfigOnly(true);
         }
         JavaScriptObject config = editProxyProperties == null ? null : editProxyProperties.getConfig();
-        setAttribute("editProxyProperties", JSOHelper.cleanProperties(config, true));
+        return (PaletteNode)setAttribute("editProxyProperties", JSOHelper.cleanProperties(config, true));
     }
 
     /**
@@ -400,9 +412,10 @@ public class PaletteNode extends TreeNode {
      * {@link com.smartgwt.client.docs.DevTools Dashboards &amp; Tools} in general.
      *
      * @param defaults New defaults value. Default value is null
+     * @return {@link com.smartgwt.client.tools.PaletteNode PaletteNode} instance, for chaining setter calls
      */
-    public void setFormItemDefaults(FormItem defaults) {
-        setAttribute("defaults", defaults == null ? null : defaults.getJsObj());
+    public PaletteNode setFormItemDefaults(FormItem defaults) {
+        return (PaletteNode)setAttribute("defaults", defaults == null ? null : defaults.getJsObj());
     }
 
     /**
@@ -428,9 +441,10 @@ public class PaletteNode extends TreeNode {
      * com.smartgwt.client.tools.EditNode#getLiveObject EditNode.liveObject} for the created editNode.
      *
      * @param liveObject New liveObject value. Default value is null
+     * @return {@link com.smartgwt.client.tools.PaletteNode PaletteNode} instance, for chaining setter calls
      */
-    public void setFormItemLiveObject(FormItem liveObject) {
-        setAttribute("liveObject", liveObject == null ? null : liveObject.getJsObj());
+    public PaletteNode setFormItemLiveObject(FormItem liveObject) {
+        return (PaletteNode)setAttribute("liveObject", liveObject == null ? null : liveObject.getJsObj());
     }
 
     /**
@@ -450,10 +464,11 @@ public class PaletteNode extends TreeNode {
      * Icon for this paletteNode.
      *
      * @param icon New icon value. Default value is null
+     * @return {@link com.smartgwt.client.tools.PaletteNode PaletteNode} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setIcon(String icon) {
-        setAttribute("icon", icon);
+    public PaletteNode setIcon(String icon) {
+        return (PaletteNode)setAttribute("icon", icon);
     }
 
     /**
@@ -468,13 +483,37 @@ public class PaletteNode extends TreeNode {
     
 
     /**
+     * Name used to create unique component ID. If not specified, {@link com.smartgwt.client.tools.PaletteNode#getType type} is
+     * used. <p> Note: idName must follow all rules for a {@link com.smartgwt.client.docs.Identifier}.
+     *
+     * @param idName New idName value. Default value is null
+     * @return {@link com.smartgwt.client.tools.PaletteNode PaletteNode} instance, for chaining setter calls
+     */
+    public PaletteNode setIdName(String idName) {
+        return (PaletteNode)setAttribute("idName", idName);
+    }
+
+    /**
+     * Name used to create unique component ID. If not specified, {@link com.smartgwt.client.tools.PaletteNode#getType type} is
+     * used. <p> Note: idName must follow all rules for a {@link com.smartgwt.client.docs.Identifier}.
+     *
+     * @return Current idName value. Default value is null
+     */
+    public String getIdName()  {
+        return getAttributeAsString("idName");
+    }
+    
+
+    /**
      * Prefix used to create unique component ID. If not specified, {@link com.smartgwt.client.tools.PaletteNode#getType type}
      * is used.
      *
      * @param idPrefix New idPrefix value. Default value is null
+     * @return {@link com.smartgwt.client.tools.PaletteNode PaletteNode} instance, for chaining setter calls
+     * @deprecated As of Smart GWT version 12.1, deprecated in favor of {@link com.smartgwt.client.tools.PaletteNode#getIdName idName}
      */
-    public void setIdPrefix(String idPrefix) {
-        setAttribute("idPrefix", idPrefix);
+    public PaletteNode setIdPrefix(String idPrefix) {
+        return (PaletteNode)setAttribute("idPrefix", idPrefix);
     }
 
     /**
@@ -482,6 +521,7 @@ public class PaletteNode extends TreeNode {
      * is used.
      *
      * @return Current idPrefix value. Default value is null
+     * @deprecated As of Smart GWT version 12.1, deprecated in favor of {@link com.smartgwt.client.tools.PaletteNode#getIdName idName}
      */
     public String getIdPrefix()  {
         return getAttributeAsString("idPrefix");
@@ -493,9 +533,10 @@ public class PaletteNode extends TreeNode {
      * Textual title for this paletteNode.
      *
      * @param title New title value. Default value is null
+     * @return {@link com.smartgwt.client.tools.PaletteNode PaletteNode} instance, for chaining setter calls
      */
-    public void setTitle(String title) {
-        setAttribute("title", title);
+    public PaletteNode setTitle(String title) {
+        return (PaletteNode)setAttribute("title", title);
     }
 
     /**
@@ -512,10 +553,11 @@ public class PaletteNode extends TreeNode {
      * String this paletteNode creates, for example, "ListGrid".
      *
      * @param type New type value. Default value is null
+     * @return {@link com.smartgwt.client.tools.PaletteNode PaletteNode} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setType(String type) {
-        setAttribute("type", type);
+    public PaletteNode setType(String type) {
+        return (PaletteNode)setAttribute("type", type);
     }
 
     /**

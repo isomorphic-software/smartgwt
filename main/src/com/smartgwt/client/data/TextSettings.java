@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Common base class of {@link com.smartgwt.client.data.TextImportSettings}.
@@ -149,10 +152,11 @@ public class TextSettings extends BaseClass {
      * {@link com.smartgwt.client.types.EscapingMode} expected for escaping special characters embedded in text values.
      *
      * @param escapingMode New escapingMode value. Default value is "backslash"
+     * @return {@link com.smartgwt.client.data.TextSettings TextSettings} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setEscapingMode(EscapingMode escapingMode)  throws IllegalStateException {
-        setAttribute("escapingMode", escapingMode == null ? null : escapingMode.getValue(), false);
+    public TextSettings setEscapingMode(EscapingMode escapingMode)  throws IllegalStateException {
+        return (TextSettings)setAttribute("escapingMode", escapingMode == null ? null : escapingMode.getValue(), false);
     }
 
     /**
@@ -173,10 +177,11 @@ public class TextSettings extends BaseClass {
      * in a given Record than the listed fields or than all DataSource fields, remaining values are ignored.
      *
      * @param fieldList New fieldList value. Default value is null
+     * @return {@link com.smartgwt.client.data.TextSettings TextSettings} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setFieldList(String... fieldList)  throws IllegalStateException {
-        setAttribute("fieldList", fieldList, false);
+    public TextSettings setFieldList(String... fieldList)  throws IllegalStateException {
+        return (TextSettings)setAttribute("fieldList", fieldList, false);
     }
 
     /**
@@ -197,10 +202,11 @@ public class TextSettings extends BaseClass {
      * Separator between field values.  Default is a comma character, producing CSV  (comma-separated values) format.
      *
      * @param fieldSeparator New fieldSeparator value. Default value is ","
+     * @return {@link com.smartgwt.client.data.TextSettings TextSettings} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setFieldSeparator(String fieldSeparator)  throws IllegalStateException {
-        setAttribute("fieldSeparator", fieldSeparator, false);
+    public TextSettings setFieldSeparator(String fieldSeparator)  throws IllegalStateException {
+        return (TextSettings)setAttribute("fieldSeparator", fieldSeparator, false);
     }
 
     /**
@@ -219,10 +225,11 @@ public class TextSettings extends BaseClass {
      * {@link com.smartgwt.client.data.TextExportSettings}.
      *
      * @param lineSeparator New lineSeparator value. Default value is null
+     * @return {@link com.smartgwt.client.data.TextSettings TextSettings} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setLineSeparator(String lineSeparator)  throws IllegalStateException {
-        setAttribute("lineSeparator", lineSeparator, false);
+    public TextSettings setLineSeparator(String lineSeparator)  throws IllegalStateException {
+        return (TextSettings)setAttribute("lineSeparator", lineSeparator, false);
     }
 
     /**

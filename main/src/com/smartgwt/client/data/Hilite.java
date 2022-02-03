@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * An object representing a user-created and user-modifiable hilite, which can be created and edited with a {@link
@@ -118,10 +121,11 @@ public class Hilite extends RefDataClass {
      * automatically.
      *
      * @param backgroundColor New backgroundColor value. Default value is null
+     * @return {@link com.smartgwt.client.data.Hilite Hilite} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setBackgroundColor(String backgroundColor) {
-        setAttribute("backgroundColor", backgroundColor);
+    public Hilite setBackgroundColor(String backgroundColor) {
+        return (Hilite)setAttribute("backgroundColor", backgroundColor);
     }
 
     /**
@@ -143,10 +147,11 @@ public class Hilite extends RefDataClass {
      * <code>null</code> or <code>true</code> value allows editing.
      *
      * @param canEdit New canEdit value. Default value is null
+     * @return {@link com.smartgwt.client.data.Hilite Hilite} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setCanEdit(Boolean canEdit) {
-        setAttribute("canEdit", canEdit);
+    public Hilite setCanEdit(Boolean canEdit) {
+        return (Hilite)setAttribute("canEdit", canEdit);
     }
 
     /**
@@ -166,11 +171,12 @@ public class Hilite extends RefDataClass {
      * CSS text to be applied to cells where this hilite is applied, for example, "background-color:#FF0000"
      *
      * @param cssText New cssText value. Default value is null
+     * @return {@link com.smartgwt.client.data.Hilite Hilite} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSText CSSText 
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setCssText(String cssText) {
-        setAttribute("cssText", cssText);
+    public Hilite setCssText(String cssText) {
+        return (Hilite)setAttribute("cssText", cssText);
     }
 
     /**
@@ -190,10 +196,11 @@ public class Hilite extends RefDataClass {
      * com.smartgwt.client.widgets.DataBoundComponent#enableHilite DataBoundComponent.enableHilite()}.
      *
      * @param disabled New disabled value. Default value is false
+     * @return {@link com.smartgwt.client.data.Hilite Hilite} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setDisabled(Boolean disabled) {
-        setAttribute("disabled", disabled);
+    public Hilite setDisabled(Boolean disabled) {
+        return (Hilite)setAttribute("disabled", disabled);
     }
 
     /**
@@ -214,11 +221,12 @@ public class Hilite extends RefDataClass {
      * field of the record.
      *
      * @param fieldName New fieldName value. Default value is null
+     * @return {@link com.smartgwt.client.data.Hilite Hilite} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FieldName FieldName 
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setFieldName(String fieldName) {
-        setAttribute("fieldName", fieldName);
+    public Hilite setFieldName(String fieldName) {
+        return (Hilite)setAttribute("fieldName", fieldName);
     }
 
     /**
@@ -238,12 +246,13 @@ public class Hilite extends RefDataClass {
      * field of the record.
      *
      * @param fieldName New fieldName value. Default value is null
+     * @return {@link com.smartgwt.client.data.Hilite Hilite} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FieldName FieldName 
      * @see com.smartgwt.client.docs.FieldName FieldName 
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setFieldName(String... fieldName) {
-        setAttribute("fieldName", fieldName);
+    public Hilite setFieldName(String... fieldName) {
+        return (Hilite)setAttribute("fieldName", fieldName);
     }
 
     /**
@@ -264,11 +273,12 @@ public class Hilite extends RefDataClass {
      * HTML to append to the end of cell values where this hilite is applied.
      *
      * @param htmlAfter New htmlAfter value. Default value is null
+     * @return {@link com.smartgwt.client.data.Hilite Hilite} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setHtmlAfter(String htmlAfter) {
-        setAttribute("htmlAfter", htmlAfter);
+    public Hilite setHtmlAfter(String htmlAfter) {
+        return (Hilite)setAttribute("htmlAfter", htmlAfter);
     }
 
     /**
@@ -287,11 +297,12 @@ public class Hilite extends RefDataClass {
      * HTML to pre-pend to cell values where this hilite is applied.
      *
      * @param htmlBefore New htmlBefore value. Default value is null
+     * @return {@link com.smartgwt.client.data.Hilite Hilite} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setHtmlBefore(String htmlBefore) {
-        setAttribute("htmlBefore", htmlBefore);
+    public Hilite setHtmlBefore(String htmlBefore) {
+        return (Hilite)setAttribute("htmlBefore", htmlBefore);
     }
 
     /**
@@ -312,14 +323,15 @@ public class Hilite extends RefDataClass {
      * translate very small or very large values to "Outlier" or "Negligible", and similar use cases.
      *
      * @param htmlValue New htmlValue value. Default value is null
+     * @return {@link com.smartgwt.client.data.Hilite Hilite} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      * @deprecated <code>htmlValue</code> is deprecated in favor of {@link com.smartgwt.client.data.Hilite#getReplacementValue
      * replacementValue}.   Note that unlike <code>replacementValue</code>, this property does not respect  {@link
      * com.smartgwt.client.data.Hilite#getDisabled disabled}, and will be applied even if <code>disabled</code> is set to 
      * <code>true</code>
      */
-    public void setHtmlValue(String htmlValue) {
-        setAttribute("htmlValue", htmlValue);
+    public Hilite setHtmlValue(String htmlValue) {
+        return (Hilite)setAttribute("htmlValue", htmlValue);
     }
 
     /**
@@ -345,11 +357,12 @@ public class Hilite extends RefDataClass {
      * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconPosition ListGridField.hiliteIconPosition}.
      *
      * @param icon New icon value. Default value is null
+     * @return {@link com.smartgwt.client.data.Hilite Hilite} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setIcon(String icon) {
-        setAttribute("icon", icon);
+    public Hilite setIcon(String icon) {
+        return (Hilite)setAttribute("icon", icon);
     }
 
     /**
@@ -373,10 +386,11 @@ public class Hilite extends RefDataClass {
      * this id.
      *
      * @param id New id value. Default value is null
+     * @return {@link com.smartgwt.client.data.Hilite Hilite} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setId(String id) {
-        setAttribute("id", id);
+    public Hilite setId(String id) {
+        return (Hilite)setAttribute("id", id);
     }
 
     /**
@@ -400,11 +414,12 @@ public class Hilite extends RefDataClass {
      * be displayed as text such as "current" or "past due".
      *
      * @param replacementValue New replacementValue value. Default value is null
+     * @return {@link com.smartgwt.client.data.Hilite Hilite} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setReplacementValue(String replacementValue) {
-        setAttribute("replacementValue", replacementValue);
+    public Hilite setReplacementValue(String replacementValue) {
+        return (Hilite)setAttribute("replacementValue", replacementValue);
     }
 
     /**
@@ -429,10 +444,11 @@ public class Hilite extends RefDataClass {
      * automatically.
      *
      * @param textColor New textColor value. Default value is null
+     * @return {@link com.smartgwt.client.data.Hilite Hilite} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setTextColor(String textColor) {
-        setAttribute("textColor", textColor);
+    public Hilite setTextColor(String textColor) {
+        return (Hilite)setAttribute("textColor", textColor);
     }
 
     /**
@@ -453,10 +469,11 @@ public class Hilite extends RefDataClass {
      * User-visible title for this hilite.  Used for interfaces such as menus that can enable or disable hilites.
      *
      * @param title New title value. Default value is null
+     * @return {@link com.smartgwt.client.data.Hilite Hilite} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setTitle(String title) {
-        setAttribute("title", title);
+    public Hilite setTitle(String title) {
+        return (Hilite)setAttribute("title", title);
     }
 
     /**

@@ -44,13 +44,21 @@ package com.smartgwt.client.docs;
  * where JSP tags can't be used for some reason (such as with SmartGWT).  See  {@link
  * com.smartgwt.client.docs.DataSourceDeclaration Creating DataSources} for more details.
  * <li>ScreenLoaderServlet - a servlet that returns the definition of one or more screens in
- * JavaScript notation.</li> </ul> Note that not all of the servlets and filters listed under
- * <i>Optional Functionality</i> above are present in the web.xml that ships with the
- * smartclientRuntime - if you need to use any of these, copy their configuration from the web.xml
- * available under the WEB-INF directory of smartclientSDK.  Other servlets, filters and
- * configuration files from the smartclientSDK should not be copied to your deployment, simply
- * because the SDK includes many developer tools that are not extensively audited from a security
- * standpoint.
+ * JavaScript notation.  Can be invoked using a traditional HTTP GET, the {@link loadUITag loadUI
+ * JSP tag}, or the {@link com.smartgwt.client.rpc.RPCManager#loadScreen RPCManager.loadScreen()}
+ * function.</li> <li>ProjectLoaderServlet - returns a JavaScript fragment that when executed
+ * loads a named project and {@link com.smartgwt.client.rpc.RPCManager#cacheScreens caches} all
+ * (or a specified subset) of its screens up-front. Can be invoked using a traditional HTTP GET,
+ * or the {@link com.smartgwt.client.rpc.RPCManager#loadProject RPCManager.loadProject()}
+ * function. Refer to <a
+ * href='../../../../../server/javadoc/com.isomorphic.servlet.ProjectLoaderServlet'
+ * target='_blank'>javadoc</a>  for parameter names  and their meanings. </li> </ul> Note that not
+ * all of the servlets and filters listed under <i>Optional Functionality</i> above are present in
+ * the web.xml that ships with the smartclientRuntime - if you need to use any of these, copy
+ * their configuration from the web.xml available under the WEB-INF directory of smartclientSDK. 
+ * Other servlets, filters and configuration files from the smartclientSDK should not be copied to
+ * your deployment, simply because the SDK includes many developer tools that are not extensively
+ * audited from a security standpoint.
  */
 public interface ServletDetails {
 }

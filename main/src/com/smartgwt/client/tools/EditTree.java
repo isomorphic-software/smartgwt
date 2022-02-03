@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -192,10 +195,11 @@ public class EditTree extends TreeGrid {
      * property to false.
      *
      * @param allowNestedDrops New allowNestedDrops value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditTree EditTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAllowNestedDrops(Boolean allowNestedDrops)  throws IllegalStateException {
-        setAttribute("allowNestedDrops", allowNestedDrops, false);
+    public EditTree setAllowNestedDrops(Boolean allowNestedDrops)  throws IllegalStateException {
+        return (EditTree)setAttribute("allowNestedDrops", allowNestedDrops, false);
     }
 
     /**
@@ -221,10 +225,11 @@ public class EditTree extends TreeGrid {
      * suppress this action set <code>autoEditNewNodes</code> to false.
      *
      * @param autoEditNewNodes New autoEditNewNodes value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditTree EditTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAutoEditNewNodes(Boolean autoEditNewNodes)  throws IllegalStateException {
-        setAttribute("autoEditNewNodes", autoEditNewNodes, false);
+    public EditTree setAutoEditNewNodes(Boolean autoEditNewNodes)  throws IllegalStateException {
+        return (EditTree)setAttribute("autoEditNewNodes", autoEditNewNodes, false);
     }
 
     /**
@@ -244,10 +249,11 @@ public class EditTree extends TreeGrid {
      * com.smartgwt.client.tools.EditContext#getCanGroupSelect canGroupSelect} is true.
      *
      * @param canDragGroup New canDragGroup value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditTree EditTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanDragGroup(Boolean canDragGroup)  throws IllegalStateException {
-        setAttribute("canDragGroup", canDragGroup, false);
+    public EditTree setCanDragGroup(Boolean canDragGroup)  throws IllegalStateException {
+        return (EditTree)setAttribute("canDragGroup", canDragGroup, false);
     }
 
     /**
@@ -269,10 +275,11 @@ public class EditTree extends TreeGrid {
      * com.smartgwt.client.tools.EditContext#getSelectionType selectionType}.
      *
      * @param canGroupSelect New canGroupSelect value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditTree EditTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanGroupSelect(Boolean canGroupSelect)  throws IllegalStateException {
-        setAttribute("canGroupSelect", canGroupSelect, false);
+    public EditTree setCanGroupSelect(Boolean canGroupSelect)  throws IllegalStateException {
+        return (EditTree)setAttribute("canGroupSelect", canGroupSelect, false);
     }
 
     /**
@@ -299,15 +306,16 @@ public class EditTree extends TreeGrid {
      * {@link com.smartgwt.client.tools.Palette} to use when an {@link com.smartgwt.client.tools.EditNode} is being created directly by this EditContext, instead of being created due to a user interaction with a palette (eg dragging from a {@link com.smartgwt.client.tools.TreePalette}, or clicking on {@link com.smartgwt.client.tools.MenuPalette}). <P> If no defaultPalette is provided, the EditContext uses an automatically created {@link com.smartgwt.client.tools.HiddenPalette}.
      *
      * @param defaultPalette the default Palette. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditTree EditTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDefaultPalette(Palette defaultPalette)  throws IllegalStateException {
+    public EditTree setDefaultPalette(Palette defaultPalette)  throws IllegalStateException {
         // Since Palette is an interface, we need to convert it to a
         // JavaScriptObject dynamically at run-time -- we don't know what class
         // is implementing the interface.
         JavaScriptObject jsoArray = JSOHelper.convertToJavaScriptArray(new Object[] {defaultPalette});
         JavaScriptObject jso = JSOHelper.getValueFromJavaScriptObjectArray(jsoArray, 0);
-        setAttribute("defaultPalette", jso == null ? null : jso, false);
+        return (EditTree)setAttribute("defaultPalette", jso == null ? null : jso, false);
     }
 
     /**
@@ -357,10 +365,11 @@ public class EditTree extends TreeGrid {
      * created.
      *
      * @param editContext New editContext value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditTree EditTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEditContext(EditContext editContext)  throws IllegalStateException {
-        setAttribute("editContext", editContext == null ? null : editContext.getOrCreateJsObj(), false);
+    public EditTree setEditContext(EditContext editContext)  throws IllegalStateException {
+        return (EditTree)setAttribute("editContext", editContext == null ? null : editContext.getOrCreateJsObj(), false);
     }
 
     /**
@@ -381,15 +390,16 @@ public class EditTree extends TreeGrid {
      * here.
      *
      * @param extraPalettes New extraPalettes value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditTree EditTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setExtraPalettes(Palette... extraPalettes)  throws IllegalStateException {
+    public EditTree setExtraPalettes(Palette... extraPalettes)  throws IllegalStateException {
         // Since Palette... is an interface, we need to convert it to a
         // JavaScriptObject dynamically at run-time -- we don't know what class
         // is implementing the interface.
         JavaScriptObject jsoArray = JSOHelper.convertToJavaScriptArray(new Object[] {extraPalettes});
         JavaScriptObject jso = JSOHelper.getValueFromJavaScriptObjectArray(jsoArray, 0);
-        setAttribute("extraPalettes", jso == null ? null : jso, false);
+        return (EditTree)setAttribute("extraPalettes", jso == null ? null : jso, false);
     }
 
     /**
@@ -410,10 +420,11 @@ public class EditTree extends TreeGrid {
      * is true be hidden during drag? <P> Treated as <code>true</code> if not explicitly set to false.
      *
      * @param hideGroupBorderOnDrag New hideGroupBorderOnDrag value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditTree EditTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setHideGroupBorderOnDrag(Boolean hideGroupBorderOnDrag)  throws IllegalStateException {
-        setAttribute("hideGroupBorderOnDrag", hideGroupBorderOnDrag, false);
+    public EditTree setHideGroupBorderOnDrag(Boolean hideGroupBorderOnDrag)  throws IllegalStateException {
+        return (EditTree)setAttribute("hideGroupBorderOnDrag", hideGroupBorderOnDrag, false);
     }
 
     /**
@@ -438,10 +449,11 @@ public class EditTree extends TreeGrid {
      * coordinates of children unless <code>EditProxy.persistCoordinates</code> is explicitly set to <code>true</code>.
      *
      * @param persistCoordinates New persistCoordinates value. Default value is true
+     * @return {@link com.smartgwt.client.tools.EditTree EditTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPersistCoordinates(Boolean persistCoordinates)  throws IllegalStateException {
-        setAttribute("persistCoordinates", persistCoordinates, false);
+    public EditTree setPersistCoordinates(Boolean persistCoordinates)  throws IllegalStateException {
+        return (EditTree)setAttribute("persistCoordinates", persistCoordinates, false);
     }
 
     /**
@@ -470,11 +482,12 @@ public class EditTree extends TreeGrid {
      * to retrieve the {@link com.smartgwt.client.tools.EditNode} created from the rootComponent.
      *
      * @param rootComponent New rootComponent value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditTree EditTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.DevTools DevTools overview and related methods
      */
-    public void setRootComponent(Record rootComponent)  throws IllegalStateException {
-        setAttribute("rootComponent", rootComponent == null ? null : rootComponent.getJsObj(), false);
+    public EditTree setRootComponent(Record rootComponent)  throws IllegalStateException {
+        return (EditTree)setAttribute("rootComponent", rootComponent == null ? null : rootComponent.getJsObj(), false);
     }
 
     /**
@@ -499,10 +512,11 @@ public class EditTree extends TreeGrid {
      * com.smartgwt.client.tools.EditProxy#getSelectedBorder EditProxy.selectedBorder}.
      *
      * @param selectedBorder New selectedBorder value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditTree EditTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSelectedBorder(String selectedBorder)  throws IllegalStateException {
-        setAttribute("selectedBorder", selectedBorder, false);
+    public EditTree setSelectedBorder(String selectedBorder)  throws IllegalStateException {
+        return (EditTree)setAttribute("selectedBorder", selectedBorder, false);
     }
 
     /**
@@ -526,11 +540,12 @@ public class EditTree extends TreeGrid {
      * EditProxy.selectedAppearance} is "outlineEdges".
      *
      * @param selectedLabelBackgroundColor New selectedLabelBackgroundColor value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditTree EditTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.tools.EditContext#setShowSelectedLabel
      */
-    public void setSelectedLabelBackgroundColor(String selectedLabelBackgroundColor)  throws IllegalStateException {
-        setAttribute("selectedLabelBackgroundColor", selectedLabelBackgroundColor, false);
+    public EditTree setSelectedLabelBackgroundColor(String selectedLabelBackgroundColor)  throws IllegalStateException {
+        return (EditTree)setAttribute("selectedLabelBackgroundColor", selectedLabelBackgroundColor, false);
     }
 
     /**
@@ -557,10 +572,11 @@ public class EditTree extends TreeGrid {
      * EditProxy.selectedAppearance} is "outlineEdges".
      *
      * @param showSelectedLabel New showSelectedLabel value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditTree EditTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowSelectedLabel(Boolean showSelectedLabel)  throws IllegalStateException {
-        setAttribute("showSelectedLabel", showSelectedLabel, false);
+    public EditTree setShowSelectedLabel(Boolean showSelectedLabel)  throws IllegalStateException {
+        return (EditTree)setAttribute("showSelectedLabel", showSelectedLabel, false);
     }
 
     /**
@@ -585,10 +601,11 @@ public class EditTree extends TreeGrid {
      * editNode or one is added later.
      *
      * @param useCopyPasteShortcuts New useCopyPasteShortcuts value. Default value is null
+     * @return {@link com.smartgwt.client.tools.EditTree EditTree} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setUseCopyPasteShortcuts(Boolean useCopyPasteShortcuts)  throws IllegalStateException {
-        setAttribute("useCopyPasteShortcuts", useCopyPasteShortcuts, false);
+    public EditTree setUseCopyPasteShortcuts(Boolean useCopyPasteShortcuts)  throws IllegalStateException {
+        return (EditTree)setAttribute("useCopyPasteShortcuts", useCopyPasteShortcuts, false);
     }
 
     /**
@@ -1009,6 +1026,49 @@ public class EditTree extends TreeGrid {
         return @com.smartgwt.client.widgets.tree.Tree::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
+	/**
+     * Obtain {@link com.smartgwt.client.tools.PaletteNode PaletteNodes} from a JavaScript source representation. <P> By
+     * default, components that have {@link com.smartgwt.client.widgets.Canvas#getID global IDs} will not actually be allowed
+     * to take those global IDs - instead, only widgets that have one of the global IDs passed as the <code>globals</code>
+     * parameter will actually receive their global IDs.  To override this behavior, pass the special value {@link
+     * com.smartgwt.client.rpc.RPCManager#ALL_GLOBALS ALL_GLOBALS} for the <code>globals</code> parameter.
+     * @param jsCode JavaScript code to eval.
+     * @param callback Callback used to return the PaletteNodes
+     */
+    public native void getPaletteNodesFromJS(String jsCode, PaletteNodeCallback callback) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getPaletteNodesFromJS", "String,PaletteNodeCallback");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.getPaletteNodesFromJS(jsCode, 
+			$entry( function(paletteNodes) { 
+				if(callback!=null) callback.@com.smartgwt.client.callbacks.PaletteNodeCallback::execute([Lcom/smartgwt/client/tools/PaletteNode;)(@com.smartgwt.client.util.ConvertTo::arrayOfPaletteNode(Lcom/google/gwt/core/client/JavaScriptObject;)(paletteNodes)
+				);
+			}));
+    }-*/;
+
+	/**
+     * Obtain {@link com.smartgwt.client.tools.PaletteNode PaletteNodes} from a JavaScript source representation. <P> By
+     * default, components that have {@link com.smartgwt.client.widgets.Canvas#getID global IDs} will not actually be allowed
+     * to take those global IDs - instead, only widgets that have one of the global IDs passed as the <code>globals</code>
+     * parameter will actually receive their global IDs.  To override this behavior, pass the special value {@link
+     * com.smartgwt.client.rpc.RPCManager#ALL_GLOBALS ALL_GLOBALS} for the <code>globals</code> parameter.
+     * @param jsCode JavaScript code to eval.
+     * @param callback Callback used to return the PaletteNodes
+     * @param globals widgets to allow to take their global IDs
+     */
+    public native void getPaletteNodesFromJS(String jsCode, PaletteNodeCallback callback, String[] globals) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getPaletteNodesFromJS", "String,PaletteNodeCallback,String[]");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.getPaletteNodesFromJS(jsCode, 
+			$entry( function(paletteNodes) { 
+				if(callback!=null) callback.@com.smartgwt.client.callbacks.PaletteNodeCallback::execute([Lcom/smartgwt/client/tools/PaletteNode;)(@com.smartgwt.client.util.ConvertTo::arrayOfPaletteNode(Lcom/google/gwt/core/client/JavaScriptObject;)(paletteNodes)
+				);
+			}), @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(globals));
+    }-*/;
+	
 	/**
      * Obtain {@link com.smartgwt.client.tools.PaletteNode PaletteNodes} from an XML representation, but do not add them to the
      * EditContext.

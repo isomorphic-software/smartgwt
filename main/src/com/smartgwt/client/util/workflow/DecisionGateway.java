@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Chooses a next element in a {@link com.smartgwt.client.util.workflow.Process} by evaluating a series of criteria against
@@ -114,13 +117,87 @@ public class DecisionGateway extends ProcessElement {
 
     /**
      * A Map from {@link com.smartgwt.client.util.workflow.ProcessElement#getID ProcessElement.ID} to Criteria that will cause
-     * this ProcessElement to be chosen as the next element if the criteria matches.
+     * this ProcessElement to be chosen as the next element if the criteria matches. <P> If no criteria is matched the next
+     * element is {@link com.smartgwt.client.util.workflow.DecisionGateway#getDefaultElement defaultElement} or the workflow is
+     * finished. <P> Data values in this criteria prefixed with "$" will be treated as dynamic expressions as detailed in
+     * {@link com.smartgwt.client.docs.TaskInputExpression}.  Specifically, this means that for  simple criteria, any property
+     * value that is a String and is prefixed with "$" will be assumed to be an expression, and for AdvancedCriteria, the same
+     * treatment will be applied to {@link com.smartgwt.client.data.Criterion#getValue Criterion.value}. <P> Note that dynamic
+     * expressions starting with "$input" are not applicable for an DecisionGateway but "$inputRecord" can be used for direct
+     * reference to {@link com.smartgwt.client.util.workflow.Process#getState Process.state}.  <p> This property supports
+     * {@link com.smartgwt.client.docs.DynamicCriteria} - use {@link com.smartgwt.client.data.Criterion#getValuePath
+     * Criterion.valuePath} to refer to values in the {@link com.smartgwt.client.util.workflow.Process#getRuleScope
+     * Process.ruleScope}.
      *
      * @param criteriaMap New criteriaMap value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.DecisionGateway DecisionGateway} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @deprecated In favor of {@link com.smartgwt.client.util.workflow.DecisionGateway#getDecisionList decisionList} as of  SmartGWT
+     * release 12.1
+     */
+    public DecisionGateway setCriteriaMap(Map<String,Criteria> criteriaMap)  throws IllegalStateException {
+        return (DecisionGateway)setAttribute("criteriaMap", criteriaMap, false);
+    }
+    
+
+    /**
+     * List of {@link com.smartgwt.client.util.workflow.TaskDecision TaskDecisions} to be processed to find the first with
+     * matching
+     * criteria. The specified {@link com.smartgwt.client.util.workflow.TaskDecision#getTargetTask TaskDecision.targetTask} is
+     * then used to identify the the next
+     *  element.
+     *  <P>
+     * If no criteria is matched the next element is {@link com.smartgwt.client.util.workflow.DecisionGateway#getDefaultElement
+     * defaultElement} or the workflow
+     *  is finished.
+     *  <p>
+     *  When providing a DecisionGateway in XML, the <code>decisionList</code> is expressed as:
+     *  <pre>
+     *      &lt;DecisionGateway ID="continentDecision" description="Which continent?" defaultElement="summary"&gt;
+     *          &lt;decisionList&gt;
+     *              &lt;taskDecision targetTask="europeVATTask"&gt;
+     *                  &lt;criteria fieldName="order.continent" operator="equals" value="Europe" /&gt;
+     *              &lt;/taskDecision&gt;
+     *              ...
+     *          &lt;/decisionList&gt;
+     *      &lt;DecisionGateway&gt;
+     *  </pre>
+     *
+     * @param decisionList New decisionList value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.DecisionGateway DecisionGateway} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setCriteriaMap(Map<String,Criteria> criteriaMap)  throws IllegalStateException {
-        setAttribute("criteriaMap", criteriaMap, false);
+    public DecisionGateway setDecisionList(TaskDecision... decisionList)  throws IllegalStateException {
+        return (DecisionGateway)setAttribute("decisionList", decisionList, false);
+    }
+
+    /**
+     * List of {@link com.smartgwt.client.util.workflow.TaskDecision TaskDecisions} to be processed to find the first with
+     * matching
+     * criteria. The specified {@link com.smartgwt.client.util.workflow.TaskDecision#getTargetTask TaskDecision.targetTask} is
+     * then used to identify the the next
+     *  element.
+     *  <P>
+     * If no criteria is matched the next element is {@link com.smartgwt.client.util.workflow.DecisionGateway#getDefaultElement
+     * defaultElement} or the workflow
+     *  is finished.
+     *  <p>
+     *  When providing a DecisionGateway in XML, the <code>decisionList</code> is expressed as:
+     *  <pre>
+     *      &lt;DecisionGateway ID="continentDecision" description="Which continent?" defaultElement="summary"&gt;
+     *          &lt;decisionList&gt;
+     *              &lt;taskDecision targetTask="europeVATTask"&gt;
+     *                  &lt;criteria fieldName="order.continent" operator="equals" value="Europe" /&gt;
+     *              &lt;/taskDecision&gt;
+     *              ...
+     *          &lt;/decisionList&gt;
+     *      &lt;DecisionGateway&gt;
+     *  </pre>
+     *
+     * @return Current decisionList value. Default value is null
+     */
+    public TaskDecision[] getDecisionList()  {
+        return com.smartgwt.client.util.ConvertTo.arrayOfTaskDecision(getAttributeAsJavaScriptObject("decisionList"));
     }
     
 
@@ -130,10 +207,11 @@ public class DecisionGateway extends ProcessElement {
      * <code>defaultElement</code> is assumed to be the next element and does not need to be specified.
      *
      * @param defaultElement New defaultElement value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.DecisionGateway DecisionGateway} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setDefaultElement(String defaultElement)  throws IllegalStateException {
-        setAttribute("defaultElement", defaultElement, false);
+    public DecisionGateway setDefaultElement(String defaultElement)  throws IllegalStateException {
+        return (DecisionGateway)setAttribute("defaultElement", defaultElement, false);
     }
 
     /**
@@ -146,6 +224,7 @@ public class DecisionGateway extends ProcessElement {
     public String getDefaultElement()  {
         return getAttributeAsString("defaultElement");
     }
+    
     
 
     // ********************* Methods ***********************
@@ -160,7 +239,7 @@ public class DecisionGateway extends ProcessElement {
      * A Map from {@link com.smartgwt.client.util.workflow.ProcessElement#getID ID} to Criteria that will cause this
      * ProcessElement to be chosen as the next element if the criteria matches.
      *
-     *
+     * @deprecated in favor of {@link #getDecisionList}.
      * @return LinkedHashMap<String,Criteria>
      */
     public LinkedHashMap getCriteriaMap()  {

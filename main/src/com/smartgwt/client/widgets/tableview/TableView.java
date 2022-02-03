@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -177,9 +180,10 @@ public class TableView extends ListGrid implements com.smartgwt.client.widgets.t
      * Field to display as part of individual record in "summary" {@link com.smartgwt.client.types.RecordLayout}s.
      *
      * @param dataField New dataField value. Default value is "data"
+     * @return {@link com.smartgwt.client.widgets.tableview.TableView TableView} instance, for chaining setter calls
      */
-    public void setDataField(String dataField) {
-        setAttribute("dataField", dataField, true);
+    public TableView setDataField(String dataField) {
+        return (TableView)setAttribute("dataField", dataField, true);
     }
 
     /**
@@ -197,9 +201,10 @@ public class TableView extends ListGrid implements com.smartgwt.client.widgets.t
      * "titleOnly".
      *
      * @param descriptionField New descriptionField value. Default value is "description"
+     * @return {@link com.smartgwt.client.widgets.tableview.TableView TableView} instance, for chaining setter calls
      */
-    public void setDescriptionField(String descriptionField) {
-        setAttribute("descriptionField", descriptionField, true);
+    public TableView setDescriptionField(String descriptionField) {
+        return (TableView)setAttribute("descriptionField", descriptionField, true);
     }
 
     /**
@@ -219,9 +224,10 @@ public class TableView extends ListGrid implements com.smartgwt.client.widgets.t
      * com.smartgwt.client.widgets.tableview.TableView#getShowIconField showIconField} is <code>true</code>.
      *
      * @param iconField New iconField value. Default value is "icon"
+     * @return {@link com.smartgwt.client.widgets.tableview.TableView TableView} instance, for chaining setter calls
      */
-    public void setIconField(String iconField) {
-        setAttribute("iconField", iconField, true);
+    public TableView setIconField(String iconField) {
+        return (TableView)setAttribute("iconField", iconField, true);
     }
 
     /**
@@ -240,10 +246,11 @@ public class TableView extends ListGrid implements com.smartgwt.client.widgets.t
      * Field to display as part of individual record in "summary" {@link com.smartgwt.client.types.RecordLayout}s.
      *
      * @param infoField New infoField value. Default value is "info"
+     * @return {@link com.smartgwt.client.widgets.tableview.TableView TableView} instance, for chaining setter calls
      * @see com.smartgwt.client.types.RecordLayout
      */
-    public void setInfoField(String infoField) {
-        setAttribute("infoField", infoField, true);
+    public TableView setInfoField(String infoField) {
+        return (TableView)setAttribute("infoField", infoField, true);
     }
 
     /**
@@ -262,10 +269,11 @@ public class TableView extends ListGrid implements com.smartgwt.client.widgets.t
      * showNavigation} is true and {@link com.smartgwt.client.types.NavigationMode} is set to "navIconOny".
      *
      * @param navIcon New navIcon value. Default value is "[SKINIMG]/iOS/listArrow_button.png"
+     * @return {@link com.smartgwt.client.widgets.tableview.TableView TableView} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setNavIcon(String navIcon) {
-        setAttribute("navIcon", navIcon, true);
+    public TableView setNavIcon(String navIcon) {
+        return (TableView)setAttribute("navIcon", navIcon, true);
     }
 
     /**
@@ -284,9 +292,10 @@ public class TableView extends ListGrid implements com.smartgwt.client.widgets.t
      * Set navigation mode for this TableView.
      *
      * @param navigationMode New navigationMode value. Default value is "wholeRecord"
+     * @return {@link com.smartgwt.client.widgets.tableview.TableView TableView} instance, for chaining setter calls
      */
-    public void setNavigationMode(NavigationMode navigationMode) {
-        setAttribute("navigationMode", navigationMode == null ? null : navigationMode.getValue(), true);
+    public TableView setNavigationMode(NavigationMode navigationMode) {
+        return (TableView)setAttribute("navigationMode", navigationMode == null ? null : navigationMode.getValue(), true);
     }
 
     /**
@@ -303,10 +312,11 @@ public class TableView extends ListGrid implements com.smartgwt.client.widgets.t
      * Default style for data field.
      *
      * @param recordDataStyle New recordDataStyle value. Default value is "recordData"
+     * @return {@link com.smartgwt.client.widgets.tableview.TableView TableView} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setRecordDataStyle(String recordDataStyle) {
-        setAttribute("recordDataStyle", recordDataStyle, true);
+    public TableView setRecordDataStyle(String recordDataStyle) {
+        return (TableView)setAttribute("recordDataStyle", recordDataStyle, true);
     }
 
     /**
@@ -324,10 +334,11 @@ public class TableView extends ListGrid implements com.smartgwt.client.widgets.t
      * Default style for description.
      *
      * @param recordDescriptionStyle New recordDescriptionStyle value. Default value is "recordDescription"
+     * @return {@link com.smartgwt.client.widgets.tableview.TableView TableView} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setRecordDescriptionStyle(String recordDescriptionStyle) {
-        setAttribute("recordDescriptionStyle", recordDescriptionStyle, true);
+    public TableView setRecordDescriptionStyle(String recordDescriptionStyle) {
+        return (TableView)setAttribute("recordDescriptionStyle", recordDescriptionStyle, true);
     }
 
     /**
@@ -345,10 +356,11 @@ public class TableView extends ListGrid implements com.smartgwt.client.widgets.t
      * Default style for info field.
      *
      * @param recordInfoStyle New recordInfoStyle value. Default value is "recordInfo"
+     * @return {@link com.smartgwt.client.widgets.tableview.TableView TableView} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setRecordInfoStyle(String recordInfoStyle) {
-        setAttribute("recordInfoStyle", recordInfoStyle, true);
+    public TableView setRecordInfoStyle(String recordInfoStyle) {
+        return (TableView)setAttribute("recordInfoStyle", recordInfoStyle, true);
     }
 
     /**
@@ -369,9 +381,10 @@ public class TableView extends ListGrid implements com.smartgwt.client.widgets.t
      * shown field, to the left of the area controlled by RecordLayout.
      *
      * @param recordLayout New recordLayout value. Default value is "titleOnly"
+     * @return {@link com.smartgwt.client.widgets.tableview.TableView TableView} instance, for chaining setter calls
      */
-    public void setRecordLayout(RecordLayout recordLayout) {
-        setAttribute("recordLayout", recordLayout == null ? null : recordLayout.getValue(), true);
+    public TableView setRecordLayout(RecordLayout recordLayout) {
+        return (TableView)setAttribute("recordLayout", recordLayout == null ? null : recordLayout.getValue(), true);
     }
 
     /**
@@ -393,9 +406,10 @@ public class TableView extends ListGrid implements com.smartgwt.client.widgets.t
      * com.smartgwt.client.widgets.tableview.TableView#getShowNavigation showNavigation} is <code>true</code>.
      *
      * @param recordNavigationProperty New recordNavigationProperty value. Default value is "_navigate"
+     * @return {@link com.smartgwt.client.widgets.tableview.TableView TableView} instance, for chaining setter calls
      */
-    public void setRecordNavigationProperty(String recordNavigationProperty) {
-        setAttribute("recordNavigationProperty", recordNavigationProperty, true);
+    public TableView setRecordNavigationProperty(String recordNavigationProperty) {
+        return (TableView)setAttribute("recordNavigationProperty", recordNavigationProperty, true);
     }
 
     /**
@@ -414,10 +428,11 @@ public class TableView extends ListGrid implements com.smartgwt.client.widgets.t
      * Default style for title.
      *
      * @param recordTitleStyle New recordTitleStyle value. Default value is "recordTitle"
+     * @return {@link com.smartgwt.client.widgets.tableview.TableView TableView} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setRecordTitleStyle(String recordTitleStyle) {
-        setAttribute("recordTitleStyle", recordTitleStyle, true);
+    public TableView setRecordTitleStyle(String recordTitleStyle) {
+        return (TableView)setAttribute("recordTitleStyle", recordTitleStyle, true);
     }
 
     /**
@@ -436,9 +451,10 @@ public class TableView extends ListGrid implements com.smartgwt.client.widgets.t
      * record in the {@link com.smartgwt.client.widgets.tableview.TableView#getIconField iconField}.
      *
      * @param showIconField New showIconField value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tableview.TableView TableView} instance, for chaining setter calls
      */
-    public void setShowIconField(Boolean showIconField) {
-        setAttribute("showIconField", showIconField, true);
+    public TableView setShowIconField(Boolean showIconField) {
+        return (TableView)setAttribute("showIconField", showIconField, true);
     }
 
     /**
@@ -458,9 +474,10 @@ public class TableView extends ListGrid implements com.smartgwt.client.widgets.t
      * com.smartgwt.client.widgets.tableview.TableView#getRecordNavigationProperty recordNavigationProperty}.
      *
      * @param showNavigation New showNavigation value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tableview.TableView TableView} instance, for chaining setter calls
      */
-    public void setShowNavigation(Boolean showNavigation) {
-        setAttribute("showNavigation", showNavigation, true);
+    public TableView setShowNavigation(Boolean showNavigation) {
+        return (TableView)setAttribute("showNavigation", showNavigation, true);
     }
 
     /**
@@ -478,9 +495,10 @@ public class TableView extends ListGrid implements com.smartgwt.client.widgets.t
      * The display mode of the table.
      *
      * @param tableMode New tableMode value. Default value is "plain"
+     * @return {@link com.smartgwt.client.widgets.tableview.TableView TableView} instance, for chaining setter calls
      */
-    public void setTableMode(TableMode tableMode) {
-        setAttribute("tableMode", tableMode == null ? null : tableMode.getValue(), true);
+    public TableView setTableMode(TableMode tableMode) {
+        return (TableView)setAttribute("tableMode", tableMode == null ? null : tableMode.getValue(), true);
     }
 
     /**
@@ -497,9 +515,10 @@ public class TableView extends ListGrid implements com.smartgwt.client.widgets.t
      * Field to display for an individual record as the main title.
      *
      * @param titleField New titleField value. Default value is "title"
+     * @return {@link com.smartgwt.client.widgets.tableview.TableView TableView} instance, for chaining setter calls
      */
-    public void setTitleField(String titleField) {
-        setAttribute("titleField", titleField, true);
+    public TableView setTitleField(String titleField) {
+        return (TableView)setAttribute("titleField", titleField, true);
     }
 
     /**
@@ -517,10 +536,11 @@ public class TableView extends ListGrid implements com.smartgwt.client.widgets.t
      * showNavigation} is true and {@link com.smartgwt.client.types.NavigationMode} is set to "wholeRecord".
      *
      * @param wholeRecordNavIcon New wholeRecordNavIcon value. Default value is "[SKINIMG]/iOS/listArrow.png"
+     * @return {@link com.smartgwt.client.widgets.tableview.TableView TableView} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setWholeRecordNavIcon(String wholeRecordNavIcon) {
-        setAttribute("wholeRecordNavIcon", wholeRecordNavIcon, true);
+    public TableView setWholeRecordNavIcon(String wholeRecordNavIcon) {
+        return (TableView)setAttribute("wholeRecordNavIcon", wholeRecordNavIcon, true);
     }
 
     /**

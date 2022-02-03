@@ -38,9 +38,9 @@ package com.smartgwt.client.docs;
  * By default, Smart GWT components will write out limited ARIA markup sufficient to navigate
  * basic
  *  menus and buttons.  Full screen reader mode is not enabled by default because it has a small
- * performance impact and subtly changes the management of keyboard focus in a way that is
- * slightly worse
- *  for unimpaired users.  
+ * performance impact and subtly changes the management of keyboard focus in a way that may be
+ * less
+ *  intuitive when primarily navigating an application with the mouse.
  *  <P>
  * The limited ARIA support which is enabled by default is intended to allow a screen reader user
  * to
@@ -136,14 +136,24 @@ package com.smartgwt.client.docs;
  * <a href='http://www.freedomscientific.com/Support/TechnicalSupport/Bulletin/1404'
  * target='_blank'>Freedom Scientific Bulletin 1404 - In ARIA&#44; what is the difference in how
  * JAWS treats role="application" and role="document"?</a>
+ * @see com.smartgwt.client.util.isc#setScreenReaderMode
  * @see com.smartgwt.client.widgets.Canvas#setAriaState
- * @see com.smartgwt.client.widgets.grid.ListGrid#getCanTabToHeader
- * @see com.smartgwt.client.widgets.grid.ListGrid#getScreenReaderCellSeparator
- * @see com.smartgwt.client.widgets.grid.ListGrid#getScreenReaderRowSeparator
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getCellRole
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getCellAriaState
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getRowRole
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getRowAriaState
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderButtonAriaState
  * @see com.smartgwt.client.widgets.Canvas#getAriaRole
  * @see com.smartgwt.client.widgets.Canvas#getAriaState
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getAriaRole
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getAriaState
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getAriaRole
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getCanTabToHeader
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getCanTabToSorter
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getScreenReaderCellSeparator
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getScreenReaderRowSeparator
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getScreenReaderIncludeFieldTitles
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getScreenReaderWriteRowLabelledBy
  * @see com.smartgwt.client.widgets.Img#getAltText
  */
 public interface Accessibility {

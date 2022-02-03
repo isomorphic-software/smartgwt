@@ -14,6 +14,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.util.Page#getIsomorphicDir
  * @see com.smartgwt.client.util.Page#setIsomorphicToolsDir
  * @see com.smartgwt.client.util.Page#getIsomorphicToolsDir
+ * @see com.smartgwt.client.util.Page#getToolsImgDir
  * @see com.smartgwt.client.util.Page#setSkinDir
  * @see com.smartgwt.client.util.Page#getSkinDir
  * @see com.smartgwt.client.util.Page#getSkinImgDir

@@ -17,6 +17,9 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionComponent
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecordProperty
  * @see com.smartgwt.client.widgets.grid.ListGridRecord#getCanExpand
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getEmbeddedComponentIndent
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getEmbeddedComponentMargin
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionIndent
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanExpandRecords
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanExpandMultipleRecords
  * @see com.smartgwt.client.widgets.grid.ListGrid#getMaxExpandedRecords
@@ -25,6 +28,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionField
  * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionFieldTrueImage
  * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionFieldFalseImage
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionFieldImageShowRTL
  * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionFieldImageShowSelected
  * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionFieldImageWidth
  * @see com.smartgwt.client.widgets.grid.ListGrid#getExpansionFieldImageHeight

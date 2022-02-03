@@ -19,7 +19,7 @@ package com.smartgwt.client.types;
 /* sgwtgen */
  
 /**
- * Strategy for determining whether to rotate the X-axis labels by 90 degrees.
+ * Strategy for determining whether and when to rotate certain labels.
  */
 public enum LabelRotationMode implements ValueEnum {
     /**

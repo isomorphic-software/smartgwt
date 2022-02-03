@@ -34,7 +34,7 @@ public enum ExportFormat implements ValueEnum {
      */
     XML("xml"),
     /**
-     * Export data as JSON objects
+     * Export data as JSON objects. Not allowed as a client-side option.
      * <P>
      * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
      * file or server-side DataSource descriptor (.ds.xml file), use the value "json".

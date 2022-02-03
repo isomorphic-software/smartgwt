@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Represents a sector on the gauge.
@@ -142,10 +145,11 @@ public class GaugeSector extends RefDataClass {
      * 
      *
      * @param endAngle New endAngle value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.GaugeSector GaugeSector} instance, for chaining setter calls
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setEndAngle(float endAngle) {
-        setAttribute("endAngle", endAngle);
+    public GaugeSector setEndAngle(float endAngle) {
+        return (GaugeSector)setAttribute("endAngle", endAngle);
     }
 
     /**
@@ -162,9 +166,10 @@ public class GaugeSector extends RefDataClass {
      * 
      *
      * @param endAngle New endAngle value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.GaugeSector GaugeSector} instance, for chaining setter calls
      */
-    public void setEndAngle(double endAngle) {
-        setAttribute("endAngle", endAngle);
+    public GaugeSector setEndAngle(double endAngle) {
+        return (GaugeSector)setAttribute("endAngle", endAngle);
     }
 
     /**
@@ -181,10 +186,11 @@ public class GaugeSector extends RefDataClass {
      * 
      *
      * @param fillColor New fillColor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.GaugeSector GaugeSector} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      */
-    public void setFillColor(String fillColor) {
-        setAttribute("fillColor", fillColor);
+    public GaugeSector setFillColor(String fillColor) {
+        return (GaugeSector)setAttribute("fillColor", fillColor);
     }
 
     /**
@@ -202,10 +208,11 @@ public class GaugeSector extends RefDataClass {
      * 
      *
      * @param startAngle New startAngle value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.GaugeSector GaugeSector} instance, for chaining setter calls
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setStartAngle(float startAngle) {
-        setAttribute("startAngle", startAngle);
+    public GaugeSector setStartAngle(float startAngle) {
+        return (GaugeSector)setAttribute("startAngle", startAngle);
     }
 
     /**
@@ -222,9 +229,10 @@ public class GaugeSector extends RefDataClass {
      * 
      *
      * @param startAngle New startAngle value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.GaugeSector GaugeSector} instance, for chaining setter calls
      */
-    public void setStartAngle(double startAngle) {
-        setAttribute("startAngle", startAngle);
+    public GaugeSector setStartAngle(double startAngle) {
+        return (GaugeSector)setAttribute("startAngle", startAngle);
     }
 
     /**
@@ -241,10 +249,11 @@ public class GaugeSector extends RefDataClass {
      * 
      *
      * @param value New value value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.GaugeSector GaugeSector} instance, for chaining setter calls
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setValue(float value) {
-        setAttribute("value", value);
+    public GaugeSector setValue(float value) {
+        return (GaugeSector)setAttribute("value", value);
     }
 
     /**
@@ -261,9 +270,10 @@ public class GaugeSector extends RefDataClass {
      * 
      *
      * @param value New value value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.GaugeSector GaugeSector} instance, for chaining setter calls
      */
-    public void setValue(double value) {
-        setAttribute("value", value);
+    public GaugeSector setValue(double value) {
+        return (GaugeSector)setAttribute("value", value);
     }
 
     /**

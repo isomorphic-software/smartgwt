@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -174,10 +177,11 @@ public class ToolStripGroup extends VLayout {
      * bahavior and have group-titles cut off when they're  wider than the buttons they contain, set this attribute to false
      *
      * @param autoSizeToTitle New autoSizeToTitle value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroup} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAutoSizeToTitle(Boolean autoSizeToTitle)  throws IllegalStateException {
-        setAttribute("autoSizeToTitle", autoSizeToTitle, false);
+    public ToolStripGroup setAutoSizeToTitle(Boolean autoSizeToTitle)  throws IllegalStateException {
+        return (ToolStripGroup)setAttribute("autoSizeToTitle", autoSizeToTitle, false);
     }
 
     /**
@@ -213,10 +217,11 @@ public class ToolStripGroup extends VLayout {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param bodyConstructor New bodyConstructor value. Default value is "HLayout"
+     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroup} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setBodyConstructor(String bodyConstructor)  throws IllegalStateException {
-        setAttribute("bodyConstructor", bodyConstructor, false);
+    public ToolStripGroup setBodyConstructor(String bodyConstructor)  throws IllegalStateException {
+        return (ToolStripGroup)setAttribute("bodyConstructor", bodyConstructor, false);
     }
 
     /**
@@ -252,9 +257,10 @@ public class ToolStripGroup extends VLayout {
      * Clears the array of controls and then adds the passed array to this toolStripGroup,  creating new {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getColumnLayout columns} as necessary, according to each control's <code>rowSpan</code> attribute and the group's  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getNumRows numRows} attribute.
      *
      * @param controls an array of widgets to add to this group. Default value is null
+     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroup} instance, for chaining setter calls
      */
-    public void setControls(Canvas... controls) {
-        setAttribute("controls", controls, true);
+    public ToolStripGroup setControls(Canvas... controls) {
+        return (ToolStripGroup)setAttribute("controls", controls, true);
     }
 
     /**
@@ -295,10 +301,11 @@ public class ToolStripGroup extends VLayout {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param labelConstructor New labelConstructor value. Default value is "Label"
+     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroup} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setLabelConstructor(String labelConstructor)  throws IllegalStateException {
-        setAttribute("labelConstructor", labelConstructor, false);
+    public ToolStripGroup setLabelConstructor(String labelConstructor)  throws IllegalStateException {
+        return (ToolStripGroup)setAttribute("labelConstructor", labelConstructor, false);
     }
 
     /**
@@ -336,9 +343,10 @@ public class ToolStripGroup extends VLayout {
      * com.smartgwt.client.widgets.toolbar.ToolStripGroup#reflowControls reflowControls}  will force the group to reflow.
      *
      * @param numRows New numRows value. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroup} instance, for chaining setter calls
      */
-    public void setNumRows(int numRows) {
-        setAttribute("numRows", numRows, true);
+    public ToolStripGroup setNumRows(int numRows) {
+        return (ToolStripGroup)setAttribute("numRows", numRows, true);
     }
 
     /**
@@ -359,9 +367,10 @@ public class ToolStripGroup extends VLayout {
      * The height of rows in each column.
      *
      * @param rowHeight New rowHeight value. Default value is 26
+     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroup} instance, for chaining setter calls
      */
-    public void setRowHeight(int rowHeight) {
-        setAttribute("rowHeight", rowHeight, true);
+    public ToolStripGroup setRowHeight(int rowHeight) {
+        return (ToolStripGroup)setAttribute("rowHeight", rowHeight, true);
     }
 
     /**
@@ -429,9 +438,10 @@ public class ToolStripGroup extends VLayout {
      * This method forcibly sets the horizontal alignment of the  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getTitle title-text}, within the  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel title label}, after initial draw.
      *
      * @param titleAlign the new alignment for the text, left or right. Default value is "center"
+     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroup} instance, for chaining setter calls
      */
-    public void setTitleAlign(Alignment titleAlign) {
-        setAttribute("titleAlign", titleAlign == null ? null : titleAlign.getValue(), true);
+    public ToolStripGroup setTitleAlign(Alignment titleAlign) {
+        return (ToolStripGroup)setAttribute("titleAlign", titleAlign == null ? null : titleAlign.getValue(), true);
     }
 
     /**
@@ -455,9 +465,10 @@ public class ToolStripGroup extends VLayout {
      * This method forcibly sets the height of this group's  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel title label} after initial draw.
      *
      * @param titleHeight the new height for the {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel title label}. Default value is 18
+     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroup} instance, for chaining setter calls
      */
-    public void setTitleHeight(int titleHeight) {
-        setAttribute("titleHeight", titleHeight, true);
+    public ToolStripGroup setTitleHeight(int titleHeight) {
+        return (ToolStripGroup)setAttribute("titleHeight", titleHeight, true);
     }
 
     /**
@@ -481,9 +492,10 @@ public class ToolStripGroup extends VLayout {
      * This method forcibly sets the  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getTitleOrientation vertical orientation} of this group's  {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel title label} after initial draw.
      *
      * @param titleOrientation the new orientation for the title, either bottom or top. Default value is "top"
+     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroup} instance, for chaining setter calls
      */
-    public void setTitleOrientation(VerticalAlignment titleOrientation) {
-        setAttribute("titleOrientation", titleOrientation == null ? null : titleOrientation.getValue(), true);
+    public ToolStripGroup setTitleOrientation(VerticalAlignment titleOrientation) {
+        return (ToolStripGroup)setAttribute("titleOrientation", titleOrientation == null ? null : titleOrientation.getValue(), true);
     }
 
     /**
@@ -525,10 +537,11 @@ public class ToolStripGroup extends VLayout {
      *
      * @param titleStyle the CSS class to apply to the                                  {@link
      * com.smartgwt.client.widgets.toolbar.ToolStripGroup#getLabel title label}. Default value is "toolStripGroupTitle"
+     * @return {@link com.smartgwt.client.widgets.toolbar.ToolStripGroup ToolStripGroup} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setTitleStyle(String titleStyle) {
-        setAttribute("titleStyle", titleStyle, true);
+    public ToolStripGroup setTitleStyle(String titleStyle) {
+        return (ToolStripGroup)setAttribute("titleStyle", titleStyle, true);
     }
 
     /**

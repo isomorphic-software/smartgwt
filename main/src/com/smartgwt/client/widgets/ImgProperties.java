@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * A set of properties that can be used to create an image.
@@ -110,10 +113,11 @@ public class ImgProperties extends DataClass {
      * Specifies the additional event-related attributes to write in the tag.
      *
      * @param eventStuff New eventStuff value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.ImgProperties ImgProperties} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.ImgProperties#setExtraStuff
      */
-    public void setEventStuff(String eventStuff) {
-        setAttribute("eventStuff", eventStuff);
+    public ImgProperties setEventStuff(String eventStuff) {
+        return (ImgProperties)setAttribute("eventStuff", eventStuff);
     }
 
     /**
@@ -133,9 +137,10 @@ public class ImgProperties extends DataClass {
      * images.
      *
      * @param extraStuff New extraStuff value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.ImgProperties ImgProperties} instance, for chaining setter calls
      */
-    public void setExtraStuff(String extraStuff) {
-        setAttribute("extraStuff", extraStuff);
+    public ImgProperties setExtraStuff(String extraStuff) {
+        return (ImgProperties)setAttribute("extraStuff", extraStuff);
     }
 
     /**
@@ -154,9 +159,10 @@ public class ImgProperties extends DataClass {
      * Specifies the height of the image.
      *
      * @param height New height value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.ImgProperties ImgProperties} instance, for chaining setter calls
      */
-    public void setHeight(Integer height) {
-        setAttribute("height", height);
+    public ImgProperties setHeight(Integer height) {
+        return (ImgProperties)setAttribute("height", height);
     }
 
     /**
@@ -173,10 +179,11 @@ public class ImgProperties extends DataClass {
      * Specifies the image-specific image directory to override the default.
      *
      * @param imgDir New imgDir value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.ImgProperties ImgProperties} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.URL URL 
      */
-    public void setImgDir(String imgDir) {
-        setAttribute("imgDir", imgDir);
+    public ImgProperties setImgDir(String imgDir) {
+        return (ImgProperties)setAttribute("imgDir", imgDir);
     }
 
     /**
@@ -197,9 +204,10 @@ public class ImgProperties extends DataClass {
      * created using this ImgProperties object.
      *
      * @param name New name value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.ImgProperties ImgProperties} instance, for chaining setter calls
      */
-    public void setName(String name) {
-        setAttribute("name", name);
+    public ImgProperties setName(String name) {
+        return (ImgProperties)setAttribute("name", name);
     }
 
     /**
@@ -219,10 +227,11 @@ public class ImgProperties extends DataClass {
      * Specifies the URL of the image local to the skin or application directory.
      *
      * @param src New src value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.ImgProperties ImgProperties} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.URL URL 
      */
-    public void setSrc(String src) {
-        setAttribute("src", src);
+    public ImgProperties setSrc(String src) {
+        return (ImgProperties)setAttribute("src", src);
     }
 
     /**
@@ -240,9 +249,10 @@ public class ImgProperties extends DataClass {
      * Specifies the width of the image.
      *
      * @param width New width value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.ImgProperties ImgProperties} instance, for chaining setter calls
      */
-    public void setWidth(Integer width) {
-        setAttribute("width", width);
+    public ImgProperties setWidth(Integer width) {
+        return (ImgProperties)setAttribute("width", width);
     }
 
     /**

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -199,10 +202,11 @@ public class MultiSortDialog extends Window {
      * need to consider the properties on the MultiSortPanel for i18n.
      *
      * @param addLevelButtonTitle New addLevelButtonTitle value. Default value is "Add Level"
+     * @return {@link com.smartgwt.client.widgets.MultiSortDialog MultiSortDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAddLevelButtonTitle(String addLevelButtonTitle)  throws IllegalStateException {
-        setAttribute("addLevelButtonTitle", addLevelButtonTitle, false);
+    public MultiSortDialog setAddLevelButtonTitle(String addLevelButtonTitle)  throws IllegalStateException {
+        return (MultiSortDialog)setAttribute("addLevelButtonTitle", addLevelButtonTitle, false);
     }
 
     /**
@@ -240,10 +244,11 @@ public class MultiSortDialog extends Window {
      * The title-text to appear on the applyButton
      *
      * @param applyButtonTitle New applyButtonTitle value. Default value is "Apply"
+     * @return {@link com.smartgwt.client.widgets.MultiSortDialog MultiSortDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setApplyButtonTitle(String applyButtonTitle)  throws IllegalStateException {
-        setAttribute("applyButtonTitle", applyButtonTitle, false);
+    public MultiSortDialog setApplyButtonTitle(String applyButtonTitle)  throws IllegalStateException {
+        return (MultiSortDialog)setAttribute("applyButtonTitle", applyButtonTitle, false);
     }
 
     /**
@@ -262,10 +267,11 @@ public class MultiSortDialog extends Window {
      * contained in this dialog.  You only need to consider the properties on the MultiSortPanel for i18n.
      *
      * @param ascendingTitle New ascendingTitle value. Default value is "Ascending"
+     * @return {@link com.smartgwt.client.widgets.MultiSortDialog MultiSortDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAscendingTitle(String ascendingTitle)  throws IllegalStateException {
-        setAttribute("ascendingTitle", ascendingTitle, false);
+    public MultiSortDialog setAscendingTitle(String ascendingTitle)  throws IllegalStateException {
+        return (MultiSortDialog)setAttribute("ascendingTitle", ascendingTitle, false);
     }
 
     /**
@@ -303,10 +309,11 @@ public class MultiSortDialog extends Window {
      * The title-text to appear on the cancelButton
      *
      * @param cancelButtonTitle New cancelButtonTitle value. Default value is "Cancel"
+     * @return {@link com.smartgwt.client.widgets.MultiSortDialog MultiSortDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
-        setAttribute("cancelButtonTitle", cancelButtonTitle, false);
+    public MultiSortDialog setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
+        return (MultiSortDialog)setAttribute("cancelButtonTitle", cancelButtonTitle, false);
     }
 
     /**
@@ -342,10 +349,11 @@ public class MultiSortDialog extends Window {
      * need to consider the properties on the MultiSortPanel for i18n.
      *
      * @param copyLevelButtonTitle New copyLevelButtonTitle value. Default value is "Copy Level"
+     * @return {@link com.smartgwt.client.widgets.MultiSortDialog MultiSortDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCopyLevelButtonTitle(String copyLevelButtonTitle)  throws IllegalStateException {
-        setAttribute("copyLevelButtonTitle", copyLevelButtonTitle, false);
+    public MultiSortDialog setCopyLevelButtonTitle(String copyLevelButtonTitle)  throws IllegalStateException {
+        return (MultiSortDialog)setAttribute("copyLevelButtonTitle", copyLevelButtonTitle, false);
     }
 
     /**
@@ -383,10 +391,11 @@ public class MultiSortDialog extends Window {
      * need to consider the properties on the MultiSortPanel for i18n.
      *
      * @param deleteLevelButtonTitle New deleteLevelButtonTitle value. Default value is "Delete Level"
+     * @return {@link com.smartgwt.client.widgets.MultiSortDialog MultiSortDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDeleteLevelButtonTitle(String deleteLevelButtonTitle)  throws IllegalStateException {
-        setAttribute("deleteLevelButtonTitle", deleteLevelButtonTitle, false);
+    public MultiSortDialog setDeleteLevelButtonTitle(String deleteLevelButtonTitle)  throws IllegalStateException {
+        return (MultiSortDialog)setAttribute("deleteLevelButtonTitle", deleteLevelButtonTitle, false);
     }
 
     /**
@@ -407,10 +416,11 @@ public class MultiSortDialog extends Window {
      * contained in this dialog.  You only need to consider the properties on the MultiSortPanel for i18n.
      *
      * @param descendingTitle New descendingTitle value. Default value is "Descending"
+     * @return {@link com.smartgwt.client.widgets.MultiSortDialog MultiSortDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDescendingTitle(String descendingTitle)  throws IllegalStateException {
-        setAttribute("descendingTitle", descendingTitle, false);
+    public MultiSortDialog setDescendingTitle(String descendingTitle)  throws IllegalStateException {
+        return (MultiSortDialog)setAttribute("descendingTitle", descendingTitle, false);
     }
 
     /**
@@ -431,10 +441,11 @@ public class MultiSortDialog extends Window {
      * dialog.  You only need to consider the properties on the MultiSortPanel for i18n.
      *
      * @param directionFieldTitle New directionFieldTitle value. Default value is "Order"
+     * @return {@link com.smartgwt.client.widgets.MultiSortDialog MultiSortDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDirectionFieldTitle(String directionFieldTitle)  throws IllegalStateException {
-        setAttribute("directionFieldTitle", directionFieldTitle, false);
+    public MultiSortDialog setDirectionFieldTitle(String directionFieldTitle)  throws IllegalStateException {
+        return (MultiSortDialog)setAttribute("directionFieldTitle", directionFieldTitle, false);
     }
 
     /**
@@ -453,10 +464,11 @@ public class MultiSortDialog extends Window {
      * The list of fields which the user can choose to sort by.
      *
      * @param fields New fields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.MultiSortDialog MultiSortDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setFields(DataSourceField... fields)  throws IllegalStateException {
-        setAttribute("fields", fields, false);
+    public MultiSortDialog setFields(DataSourceField... fields)  throws IllegalStateException {
+        return (MultiSortDialog)setAttribute("fields", fields, false);
     }
 
     /**
@@ -475,10 +487,11 @@ public class MultiSortDialog extends Window {
      * dialog.  You only need to consider the properties on the MultiSortPanel for i18n.
      *
      * @param firstSortLevelTitle New firstSortLevelTitle value. Default value is "Sort by"
+     * @return {@link com.smartgwt.client.widgets.MultiSortDialog MultiSortDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setFirstSortLevelTitle(String firstSortLevelTitle)  throws IllegalStateException {
-        setAttribute("firstSortLevelTitle", firstSortLevelTitle, false);
+    public MultiSortDialog setFirstSortLevelTitle(String firstSortLevelTitle)  throws IllegalStateException {
+        return (MultiSortDialog)setAttribute("firstSortLevelTitle", firstSortLevelTitle, false);
     }
 
     /**
@@ -499,10 +512,11 @@ public class MultiSortDialog extends Window {
      * com.smartgwt.client.widgets.MultiSortPanel MultiSortPanel} contained in this dialog.
      *
      * @param initialSort New initialSort value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.MultiSortDialog MultiSortDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setInitialSort(SortSpecifier... initialSort)  throws IllegalStateException {
-        setAttribute("initialSort", initialSort, false);
+    public MultiSortDialog setInitialSort(SortSpecifier... initialSort)  throws IllegalStateException {
+        return (MultiSortDialog)setAttribute("initialSort", initialSort, false);
     }
 
     /**
@@ -525,11 +539,12 @@ public class MultiSortDialog extends Window {
      * the properties on the MultiSortPanel for i18n.
      *
      * @param invalidListPrompt New invalidListPrompt value. Default value is "Columns may only be used once: '${title}' is used multiple times."
+     * @return {@link com.smartgwt.client.widgets.MultiSortDialog MultiSortDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setInvalidListPrompt(String invalidListPrompt)  throws IllegalStateException {
-        setAttribute("invalidListPrompt", invalidListPrompt, false);
+    public MultiSortDialog setInvalidListPrompt(String invalidListPrompt)  throws IllegalStateException {
+        return (MultiSortDialog)setAttribute("invalidListPrompt", invalidListPrompt, false);
     }
 
     /**
@@ -569,10 +584,11 @@ public class MultiSortDialog extends Window {
      * The hover-prompt for the Level Down button.
      *
      * @param levelDownButtonTitle New levelDownButtonTitle value. Default value is "Move Level Down"
+     * @return {@link com.smartgwt.client.widgets.MultiSortDialog MultiSortDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setLevelDownButtonTitle(String levelDownButtonTitle)  throws IllegalStateException {
-        setAttribute("levelDownButtonTitle", levelDownButtonTitle, false);
+    public MultiSortDialog setLevelDownButtonTitle(String levelDownButtonTitle)  throws IllegalStateException {
+        return (MultiSortDialog)setAttribute("levelDownButtonTitle", levelDownButtonTitle, false);
     }
 
     /**
@@ -607,10 +623,11 @@ public class MultiSortDialog extends Window {
      * The hover-prompt for the Level Up button.
      *
      * @param levelUpButtonTitle New levelUpButtonTitle value. Default value is "Move Level Up"
+     * @return {@link com.smartgwt.client.widgets.MultiSortDialog MultiSortDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setLevelUpButtonTitle(String levelUpButtonTitle)  throws IllegalStateException {
-        setAttribute("levelUpButtonTitle", levelUpButtonTitle, false);
+    public MultiSortDialog setLevelUpButtonTitle(String levelUpButtonTitle)  throws IllegalStateException {
+        return (MultiSortDialog)setAttribute("levelUpButtonTitle", levelUpButtonTitle, false);
     }
 
     /**
@@ -631,10 +648,11 @@ public class MultiSortDialog extends Window {
      * contained in this dialog.
      *
      * @param maxLevels New maxLevels value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.MultiSortDialog MultiSortDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMaxLevels(Integer maxLevels)  throws IllegalStateException {
-        setAttribute("maxLevels", maxLevels, false);
+    public MultiSortDialog setMaxLevels(Integer maxLevels)  throws IllegalStateException {
+        return (MultiSortDialog)setAttribute("maxLevels", maxLevels, false);
     }
 
     /**
@@ -690,10 +708,11 @@ public class MultiSortDialog extends Window {
      * contained in this dialog.  You only need to consider the properties on the MultiSortPanel for i18n.
      *
      * @param otherSortLevelTitle New otherSortLevelTitle value. Default value is "Then by"
+     * @return {@link com.smartgwt.client.widgets.MultiSortDialog MultiSortDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setOtherSortLevelTitle(String otherSortLevelTitle)  throws IllegalStateException {
-        setAttribute("otherSortLevelTitle", otherSortLevelTitle, false);
+    public MultiSortDialog setOtherSortLevelTitle(String otherSortLevelTitle)  throws IllegalStateException {
+        return (MultiSortDialog)setAttribute("otherSortLevelTitle", otherSortLevelTitle, false);
     }
 
     /**
@@ -714,10 +733,11 @@ public class MultiSortDialog extends Window {
      * dialog.  You only need to consider the properties on the MultiSortPanel for i18n.
      *
      * @param propertyFieldTitle New propertyFieldTitle value. Default value is "Column"
+     * @return {@link com.smartgwt.client.widgets.MultiSortDialog MultiSortDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPropertyFieldTitle(String propertyFieldTitle)  throws IllegalStateException {
-        setAttribute("propertyFieldTitle", propertyFieldTitle, false);
+    public MultiSortDialog setPropertyFieldTitle(String propertyFieldTitle)  throws IllegalStateException {
+        return (MultiSortDialog)setAttribute("propertyFieldTitle", propertyFieldTitle, false);
     }
 
     /**

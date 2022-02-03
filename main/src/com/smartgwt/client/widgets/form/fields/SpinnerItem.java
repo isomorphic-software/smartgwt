@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Item for picking a number. Includes arrow buttons to increase / decrease the value
@@ -186,13 +189,14 @@ public class SpinnerItem extends TextItem {
      * decreaseIcon} AutoChild of this SpinnerItem.
      *
      * @param decreaseIconProperties New decreaseIconProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SpinnerItem SpinnerItem} instance, for chaining setter calls
      */
-    public void setDecreaseIconProperties(FormItemIcon decreaseIconProperties) {
+    public SpinnerItem setDecreaseIconProperties(FormItemIcon decreaseIconProperties) {
         JavaScriptObject config = JSOHelper.createObject();
         if (decreaseIconProperties != null) {
             JSOHelper.addProperties(config, decreaseIconProperties.getJsObj());
         }
-        setAttribute("decreaseIconProperties", decreaseIconProperties == null ? null : config);
+        return (SpinnerItem)setAttribute("decreaseIconProperties", decreaseIconProperties == null ? null : config);
     }
     
 
@@ -222,13 +226,14 @@ public class SpinnerItem extends TextItem {
      * increaseIcon} AutoChild of this SpinnerItem.
      *
      * @param increaseIconProperties New increaseIconProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SpinnerItem SpinnerItem} instance, for chaining setter calls
      */
-    public void setIncreaseIconProperties(FormItemIcon increaseIconProperties) {
+    public SpinnerItem setIncreaseIconProperties(FormItemIcon increaseIconProperties) {
         JavaScriptObject config = JSOHelper.createObject();
         if (increaseIconProperties != null) {
             JSOHelper.addProperties(config, increaseIconProperties.getJsObj());
         }
-        setAttribute("increaseIconProperties", increaseIconProperties == null ? null : config);
+        return (SpinnerItem)setAttribute("increaseIconProperties", increaseIconProperties == null ? null : config);
     }
     
 
@@ -237,9 +242,10 @@ public class SpinnerItem extends TextItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param mask New mask value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SpinnerItem SpinnerItem} instance, for chaining setter calls
      */
-    public void setMask(String mask) {
-        setAttribute("mask", mask);
+    public SpinnerItem setMask(String mask) {
+        return (SpinnerItem)setAttribute("mask", mask);
     }
 
     /**
@@ -257,9 +263,10 @@ public class SpinnerItem extends TextItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param maskOverwriteMode New maskOverwriteMode value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SpinnerItem SpinnerItem} instance, for chaining setter calls
      */
-    public void setMaskOverwriteMode(Boolean maskOverwriteMode) {
-        setAttribute("maskOverwriteMode", maskOverwriteMode);
+    public SpinnerItem setMaskOverwriteMode(Boolean maskOverwriteMode) {
+        return (SpinnerItem)setAttribute("maskOverwriteMode", maskOverwriteMode);
     }
 
     /**
@@ -277,9 +284,10 @@ public class SpinnerItem extends TextItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param maskPadChar New maskPadChar value. Default value is " "
+     * @return {@link com.smartgwt.client.widgets.form.fields.SpinnerItem SpinnerItem} instance, for chaining setter calls
      */
-    public void setMaskPadChar(String maskPadChar) {
-        setAttribute("maskPadChar", maskPadChar);
+    public SpinnerItem setMaskPadChar(String maskPadChar) {
+        return (SpinnerItem)setAttribute("maskPadChar", maskPadChar);
     }
 
     /**
@@ -297,9 +305,10 @@ public class SpinnerItem extends TextItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param maskPromptChar New maskPromptChar value. Default value is "_"
+     * @return {@link com.smartgwt.client.widgets.form.fields.SpinnerItem SpinnerItem} instance, for chaining setter calls
      */
-    public void setMaskPromptChar(String maskPromptChar) {
-        setAttribute("maskPromptChar", maskPromptChar);
+    public SpinnerItem setMaskPromptChar(String maskPromptChar) {
+        return (SpinnerItem)setAttribute("maskPromptChar", maskPromptChar);
     }
 
     /**
@@ -317,9 +326,10 @@ public class SpinnerItem extends TextItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param maskSaveLiterals New maskSaveLiterals value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SpinnerItem SpinnerItem} instance, for chaining setter calls
      */
-    public void setMaskSaveLiterals(Boolean maskSaveLiterals) {
-        setAttribute("maskSaveLiterals", maskSaveLiterals);
+    public SpinnerItem setMaskSaveLiterals(Boolean maskSaveLiterals) {
+        return (SpinnerItem)setAttribute("maskSaveLiterals", maskSaveLiterals);
     }
 
     /**
@@ -340,10 +350,11 @@ public class SpinnerItem extends TextItem {
      * are used to increase or decrease the value and these handlers  are also used to determine the maximum value.
      *
      * @param max New max value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SpinnerItem SpinnerItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Spinner Example</a>
      */
-    public void setMax(Double max) {
-        setAttribute("max", max);
+    public SpinnerItem setMax(Double max) {
+        return (SpinnerItem)setAttribute("max", max);
     }
 
     /**
@@ -369,10 +380,11 @@ public class SpinnerItem extends TextItem {
      * are used to increase or decrease the value and these handlers  are also used to determine the minimum value.
      *
      * @param min New min value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SpinnerItem SpinnerItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Spinner Example</a>
      */
-    public void setMin(Double min) {
-        setAttribute("min", min);
+    public SpinnerItem setMin(Double min) {
+        return (SpinnerItem)setAttribute("min", min);
     }
 
     /**
@@ -400,9 +412,10 @@ public class SpinnerItem extends TextItem {
      * {@link com.smartgwt.client.widgets.form.fields.SpinnerItem#getStackedIconsWidth stackedIconsWidth}.
      *
      * @param stackedIconsHeight New stackedIconsHeight value. Default value is 18
+     * @return {@link com.smartgwt.client.widgets.form.fields.SpinnerItem SpinnerItem} instance, for chaining setter calls
      */
-    public void setStackedIconsHeight(Integer stackedIconsHeight) {
-        setAttribute("stackedIconsHeight", stackedIconsHeight);
+    public SpinnerItem setStackedIconsHeight(Integer stackedIconsHeight) {
+        return (SpinnerItem)setAttribute("stackedIconsHeight", stackedIconsHeight);
     }
 
     /**
@@ -430,9 +443,10 @@ public class SpinnerItem extends TextItem {
      * {@link com.smartgwt.client.widgets.form.fields.SpinnerItem#getStackedIconsHeight stackedIconsHeight}.
      *
      * @param stackedIconsWidth New stackedIconsWidth value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.form.fields.SpinnerItem SpinnerItem} instance, for chaining setter calls
      */
-    public void setStackedIconsWidth(Integer stackedIconsWidth) {
-        setAttribute("stackedIconsWidth", stackedIconsWidth);
+    public SpinnerItem setStackedIconsWidth(Integer stackedIconsWidth) {
+        return (SpinnerItem)setAttribute("stackedIconsWidth", stackedIconsWidth);
     }
 
     /**
@@ -459,10 +473,11 @@ public class SpinnerItem extends TextItem {
      * decreasing functions.
      *
      * @param step New step value. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.form.fields.SpinnerItem SpinnerItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Spinner Example</a>
      */
-    public void setStep(double step) {
-        setAttribute("step", step);
+    public SpinnerItem setStep(double step) {
+        return (SpinnerItem)setAttribute("step", step);
     }
 
     /**
@@ -521,11 +536,12 @@ public class SpinnerItem extends TextItem {
      * com.smartgwt.client.widgets.form.fields.SpinnerItem#getUnstackedTextBoxStyle unstackedTextBoxStyle} is used.
      *
      * @param unstackedPrintTextBoxStyle New unstackedPrintTextBoxStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SpinnerItem SpinnerItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setUnstackedPrintTextBoxStyle(String unstackedPrintTextBoxStyle) {
-        setAttribute("unstackedPrintTextBoxStyle", unstackedPrintTextBoxStyle);
+    public SpinnerItem setUnstackedPrintTextBoxStyle(String unstackedPrintTextBoxStyle) {
+        return (SpinnerItem)setAttribute("unstackedPrintTextBoxStyle", unstackedPrintTextBoxStyle);
     }
 
     /**
@@ -546,11 +562,12 @@ public class SpinnerItem extends TextItem {
      * 
      *
      * @param unstackedReadOnlyTextBoxStyle New unstackedReadOnlyTextBoxStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SpinnerItem SpinnerItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setUnstackedReadOnlyTextBoxStyle(String unstackedReadOnlyTextBoxStyle) {
-        setAttribute("unstackedReadOnlyTextBoxStyle", unstackedReadOnlyTextBoxStyle);
+    public SpinnerItem setUnstackedReadOnlyTextBoxStyle(String unstackedReadOnlyTextBoxStyle) {
+        return (SpinnerItem)setAttribute("unstackedReadOnlyTextBoxStyle", unstackedReadOnlyTextBoxStyle);
     }
 
     /**
@@ -571,11 +588,12 @@ public class SpinnerItem extends TextItem {
      * com.smartgwt.client.docs.CompoundFormItem_skinning} discussion for special skinning considerations.
      *
      * @param unstackedTextBoxStyle New unstackedTextBoxStyle value. Default value is "textItem"
+     * @return {@link com.smartgwt.client.widgets.form.fields.SpinnerItem SpinnerItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setUnstackedTextBoxStyle(String unstackedTextBoxStyle) {
-        setAttribute("unstackedTextBoxStyle", unstackedTextBoxStyle);
+    public SpinnerItem setUnstackedTextBoxStyle(String unstackedTextBoxStyle) {
+        return (SpinnerItem)setAttribute("unstackedTextBoxStyle", unstackedTextBoxStyle);
     }
 
     /**
@@ -605,10 +623,11 @@ public class SpinnerItem extends TextItem {
      * unstackedDecreaseIcon} control the appearance of the unstacked icons.
      *
      * @param writeStackedIcons New writeStackedIcons value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SpinnerItem SpinnerItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setWriteStackedIcons(Boolean writeStackedIcons) {
-        setAttribute("writeStackedIcons", writeStackedIcons);
+    public SpinnerItem setWriteStackedIcons(Boolean writeStackedIcons) {
+        return (SpinnerItem)setAttribute("writeStackedIcons", writeStackedIcons);
     }
 
     /**

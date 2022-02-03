@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -180,10 +183,11 @@ public class HiliteRule extends HLayout {
      * The {@link com.smartgwt.client.widgets.form.fields.FormItem#getTitle title} of the 'Background' color picker.
      *
      * @param backgroundColorTitle New backgroundColorTitle value. Default value is "Background"
+     * @return {@link com.smartgwt.client.widgets.grid.HiliteRule HiliteRule} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setBackgroundColorTitle(String backgroundColorTitle)  throws IllegalStateException {
-        setAttribute("backgroundColorTitle", backgroundColorTitle, false);
+    public HiliteRule setBackgroundColorTitle(String backgroundColorTitle)  throws IllegalStateException {
+        return (HiliteRule)setAttribute("backgroundColorTitle", backgroundColorTitle, false);
     }
 
     /**
@@ -201,10 +205,11 @@ public class HiliteRule extends HLayout {
      * The title for the Color picker field.
      *
      * @param colorFieldTitle New colorFieldTitle value. Default value is "Color"
+     * @return {@link com.smartgwt.client.widgets.grid.HiliteRule HiliteRule} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setColorFieldTitle(String colorFieldTitle)  throws IllegalStateException {
-        setAttribute("colorFieldTitle", colorFieldTitle, false);
+    public HiliteRule setColorFieldTitle(String colorFieldTitle)  throws IllegalStateException {
+        return (HiliteRule)setAttribute("colorFieldTitle", colorFieldTitle, false);
     }
 
     /**
@@ -221,10 +226,11 @@ public class HiliteRule extends HLayout {
      * The {@link com.smartgwt.client.widgets.form.fields.FormItem#getTitle title} of the 'Text' color picker.
      *
      * @param foregroundColorTitle New foregroundColorTitle value. Default value is "Text"
+     * @return {@link com.smartgwt.client.widgets.grid.HiliteRule HiliteRule} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setForegroundColorTitle(String foregroundColorTitle)  throws IllegalStateException {
-        setAttribute("foregroundColorTitle", foregroundColorTitle, false);
+    public HiliteRule setForegroundColorTitle(String foregroundColorTitle)  throws IllegalStateException {
+        return (HiliteRule)setAttribute("foregroundColorTitle", foregroundColorTitle, false);
     }
 
     /**
@@ -242,10 +248,11 @@ public class HiliteRule extends HLayout {
      * The {@link com.smartgwt.client.widgets.form.fields.FormItem#getTitle title} of the 'Icon' picker.
      *
      * @param iconFieldTitle New iconFieldTitle value. Default value is "Icon"
+     * @return {@link com.smartgwt.client.widgets.grid.HiliteRule HiliteRule} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setIconFieldTitle(String iconFieldTitle)  throws IllegalStateException {
-        setAttribute("iconFieldTitle", iconFieldTitle, false);
+    public HiliteRule setIconFieldTitle(String iconFieldTitle)  throws IllegalStateException {
+        return (HiliteRule)setAttribute("iconFieldTitle", iconFieldTitle, false);
     }
 
     /**
@@ -263,10 +270,11 @@ public class HiliteRule extends HLayout {
      * The hover prompt text for the {@link com.smartgwt.client.widgets.grid.HiliteRule#getRemoveButton remove button}.
      *
      * @param removeButtonPrompt New removeButtonPrompt value. Default value is "Remove"
+     * @return {@link com.smartgwt.client.widgets.grid.HiliteRule HiliteRule} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setRemoveButtonPrompt(String removeButtonPrompt)  throws IllegalStateException {
-        setAttribute("removeButtonPrompt", removeButtonPrompt, false);
+    public HiliteRule setRemoveButtonPrompt(String removeButtonPrompt)  throws IllegalStateException {
+        return (HiliteRule)setAttribute("removeButtonPrompt", removeButtonPrompt, false);
     }
 
     /**
@@ -284,10 +292,11 @@ public class HiliteRule extends HLayout {
      * it  to be removed.
      *
      * @param showRemoveButton New showRemoveButton value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.grid.HiliteRule HiliteRule} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowRemoveButton(boolean showRemoveButton)  throws IllegalStateException {
-        setAttribute("showRemoveButton", showRemoveButton, false);
+    public HiliteRule setShowRemoveButton(boolean showRemoveButton)  throws IllegalStateException {
+        return (HiliteRule)setAttribute("showRemoveButton", showRemoveButton, false);
     }
 
     /**

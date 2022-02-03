@@ -135,6 +135,19 @@ public class Operator {
     public OperatorValueType valueType;
 
     /**
+     * Usage hint text specific to this Operator and shown, for example, in the hover-text of  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid} {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor filterEditor} fields. <P> If
+     * unset, the default for all operators, this value is derived from an attribute on the  Operators
+     * class, in the format [operator.valueType]UsageHint - for example, the   "between" operator uses
+     *  valueRangeUsageHint.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
+     */
+    public String usageHint;
+
+    /**
      * Name of a property on the Operators class that provides the title for this operator when used
      * with text-based fields.
      *

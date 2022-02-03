@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * FormItem for showing a header within a DynamicForm. <p> Set the <code>defaultValue</code> of this item to the HTML you
@@ -169,11 +172,12 @@ public class HeaderItem extends FormItem {
      * the header text.
      *
      * @param align New align value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.HeaderItem HeaderItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setApplyAlignToText
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setAlign(Alignment align) {
-        setAttribute("align", align == null ? null : align.getValue());
+    public HeaderItem setAlign(Alignment align) {
+        return (HeaderItem)setAttribute("align", align == null ? null : align.getValue());
     }
 
     /**
@@ -199,10 +203,11 @@ public class HeaderItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param applyAlignToText New applyAlignToText value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.HeaderItem HeaderItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setApplyAlignToText(boolean applyAlignToText) {
-        setAttribute("applyAlignToText", applyAlignToText);
+    public HeaderItem setApplyAlignToText(boolean applyAlignToText) {
+        return (HeaderItem)setAttribute("applyAlignToText", applyAlignToText);
     }
 
     /**
@@ -223,9 +228,10 @@ public class HeaderItem extends FormItem {
      * Should the user be able to select the text in this item?
      *
      * @param canSelectText New canSelectText value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.HeaderItem HeaderItem} instance, for chaining setter calls
      */
-    public void setCanSelectText(boolean canSelectText) {
-        setAttribute("canSelectText", canSelectText);
+    public HeaderItem setCanSelectText(boolean canSelectText) {
+        return (HeaderItem)setAttribute("canSelectText", canSelectText);
     }
 
     /**
@@ -243,10 +249,11 @@ public class HeaderItem extends FormItem {
      * by default, headers span all remaining columns
      *
      * @param colSpan New colSpan value. Default value is "*"
+     * @return {@link com.smartgwt.client.widgets.form.fields.HeaderItem HeaderItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setColSpan(int colSpan) {
-        setAttribute("colSpan", colSpan);
+    public HeaderItem setColSpan(int colSpan) {
+        return (HeaderItem)setAttribute("colSpan", colSpan);
     }
 
     /**
@@ -269,10 +276,11 @@ public class HeaderItem extends FormItem {
      * by default, headers span all remaining columns
      *
      * @param colSpan New colSpan value. Default value is "*"
+     * @return {@link com.smartgwt.client.widgets.form.fields.HeaderItem HeaderItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setColSpan(String colSpan) {
-        setAttribute("colSpan", colSpan);
+    public HeaderItem setColSpan(String colSpan) {
+        return (HeaderItem)setAttribute("colSpan", colSpan);
     }
 
     /**
@@ -290,10 +298,11 @@ public class HeaderItem extends FormItem {
      * Header text
      *
      * @param defaultValue New defaultValue value. Default value is "Header"
+     * @return {@link com.smartgwt.client.widgets.form.fields.HeaderItem HeaderItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setDefaultValue(String defaultValue) {
-        setAttribute("defaultValue", defaultValue);
+    public HeaderItem setDefaultValue(String defaultValue) {
+        return (HeaderItem)setAttribute("defaultValue", defaultValue);
     }
 
     /**
@@ -308,13 +317,38 @@ public class HeaderItem extends FormItem {
     
 
     /**
+     * Default class used to construct the {@link com.smartgwt.client.tools.EditProxy} for this component when the component is
+     * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
+     *
+     * @param editProxyConstructor New editProxyConstructor value. Default value is "TextItemEditProxy"
+     * @return {@link com.smartgwt.client.widgets.form.fields.HeaderItem HeaderItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     */
+    public HeaderItem setEditProxyConstructor(String editProxyConstructor) {
+        return (HeaderItem)setAttribute("editProxyConstructor", editProxyConstructor);
+    }
+
+    /**
+     * Default class used to construct the {@link com.smartgwt.client.tools.EditProxy} for this component when the component is
+     * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
+     *
+     * @return Current editProxyConstructor value. Default value is "TextItemEditProxy"
+     * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     */
+    public String getEditProxyConstructor()  {
+        return getAttributeAsString("editProxyConstructor");
+    }
+    
+
+    /**
      * these items are in a row by themselves by default
      *
      * @param endRow New endRow value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.HeaderItem HeaderItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setEndRow(Boolean endRow) {
-        setAttribute("endRow", endRow);
+    public HeaderItem setEndRow(Boolean endRow) {
+        return (HeaderItem)setAttribute("endRow", endRow);
     }
 
     /**
@@ -333,10 +367,11 @@ public class HeaderItem extends FormItem {
      * Don't show a separate title cell for headers
      *
      * @param showTitle New showTitle value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.HeaderItem HeaderItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle);
+    public HeaderItem setShowTitle(Boolean showTitle) {
+        return (HeaderItem)setAttribute("showTitle", showTitle);
     }
 
     /**
@@ -355,10 +390,11 @@ public class HeaderItem extends FormItem {
      * these items are in a row by themselves by default
      *
      * @param startRow New startRow value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.HeaderItem HeaderItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setStartRow(Boolean startRow) {
-        setAttribute("startRow", startRow);
+    public HeaderItem setStartRow(Boolean startRow) {
+        return (HeaderItem)setAttribute("startRow", startRow);
     }
 
     /**
@@ -377,11 +413,12 @@ public class HeaderItem extends FormItem {
      * Base CSS class for this item
      *
      * @param textBoxStyle New textBoxStyle value. Default value is "headerItem"
+     * @return {@link com.smartgwt.client.widgets.form.fields.HeaderItem HeaderItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setTextBoxStyle(String textBoxStyle) {
-        setAttribute("textBoxStyle", textBoxStyle);
+    public HeaderItem setTextBoxStyle(String textBoxStyle) {
+        return (HeaderItem)setAttribute("textBoxStyle", textBoxStyle);
     }
 
     /**

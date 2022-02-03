@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -197,9 +200,10 @@ public class NavPanel extends SplitPane {
      *
      * @param currentItem the new <code>currentItem</code>.  May be <code>null</code> to hide the current item.  If <code>newCurrentItem</code> is
      * a separator or header item, then setCurrentItem() has no effect. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavPanel NavPanel} instance, for chaining setter calls
      */
-    public void setCurrentItem(NavItem currentItem) {
-        setAttribute("currentItem", currentItem == null ? null : currentItem.getJsObj(), true);
+    public NavPanel setCurrentItem(NavItem currentItem) {
+        return (NavPanel)setAttribute("currentItem", currentItem == null ? null : currentItem.getJsObj(), true);
     }
 
     /**
@@ -231,10 +235,11 @@ public class NavPanel extends SplitPane {
      * NavItem.id} or the ID of the item's {@link com.smartgwt.client.widgets.layout.NavItem#getPane NavItem.pane}.  May be
      * <code>null</code> or an empty string to hide the current item.  If the item with ID <code>newCurrentItemId</code> is a
      * separator or header item, then setCurrentItemId() has no effect. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavPanel NavPanel} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Identifier Identifier 
      */
-    public void setCurrentItemId(String currentItemId) {
-        setAttribute("currentItemId", currentItemId, true);
+    public NavPanel setCurrentItemId(String currentItemId) {
+        return (NavPanel)setAttribute("currentItemId", currentItemId, true);
     }
 
     /**
@@ -255,16 +260,42 @@ public class NavPanel extends SplitPane {
     
 
     /**
+     * Select the first {@link com.smartgwt.client.widgets.layout.NavItem} on initialization if neither {@link
+     * com.smartgwt.client.widgets.layout.NavPanel#getCurrentItemId currentItemId} nor {@link
+     * com.smartgwt.client.widgets.layout.NavPanel#getCurrentItem currentItem} are provided.
+     *
+     * @param defaultToFirstItem New defaultToFirstItem value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.layout.NavPanel NavPanel} instance, for chaining setter calls
+     */
+    public NavPanel setDefaultToFirstItem(Boolean defaultToFirstItem) {
+        return (NavPanel)setAttribute("defaultToFirstItem", defaultToFirstItem, true);
+    }
+
+    /**
+     * Select the first {@link com.smartgwt.client.widgets.layout.NavItem} on initialization if neither {@link
+     * com.smartgwt.client.widgets.layout.NavPanel#getCurrentItemId currentItemId} nor {@link
+     * com.smartgwt.client.widgets.layout.NavPanel#getCurrentItem currentItem} are provided.
+     *
+     * @return Current defaultToFirstItem value. Default value is false
+     */
+    public Boolean getDefaultToFirstItem()  {
+        Boolean result = getAttributeAsBoolean("defaultToFirstItem");
+        return result == null ? false : result;
+    }
+    
+
+    /**
      * CSS style used when {@link com.smartgwt.client.widgets.layout.NavItem#getIsHeader NavItem.isHeader} is set on an item.
      * May be overridden for a specific header item by {@link com.smartgwt.client.widgets.layout.NavItem#getCustomStyle
      * NavItem.customStyle}.
      *
      * @param headerStyle New headerStyle value. Default value is "navItemHeader"
+     * @return {@link com.smartgwt.client.widgets.layout.NavPanel NavPanel} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setHeaderStyle(String headerStyle)  throws IllegalStateException {
-        setAttribute("headerStyle", headerStyle, false);
+    public NavPanel setHeaderStyle(String headerStyle)  throws IllegalStateException {
+        return (NavPanel)setAttribute("headerStyle", headerStyle, false);
     }
 
     /**
@@ -292,10 +323,11 @@ public class NavPanel extends SplitPane {
      * <code>isTree</code> explicitly if auto-detection doesn't yield the correct result for your application.
      *
      * @param isTree New isTree value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavPanel NavPanel} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setIsTree(Boolean isTree)  throws IllegalStateException {
-        setAttribute("isTree", isTree, false);
+    public NavPanel setIsTree(Boolean isTree)  throws IllegalStateException {
+        return (NavPanel)setAttribute("isTree", isTree, false);
     }
 
     /**
@@ -360,9 +392,10 @@ public class NavPanel extends SplitPane {
      * com.smartgwt.client.widgets.layout.NavItem#getCustomStyle NavItem.customStyle}.
      *
      * @param navItems New navItems value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavPanel NavPanel} instance, for chaining setter calls
      */
-    public void setNavItems(NavItem... navItems) {
-        setAttribute("navItems", navItems, true);
+    public NavPanel setNavItems(NavItem... navItems) {
+        return (NavPanel)setAttribute("navItems", navItems, true);
     }
 
     /**
@@ -433,6 +466,11 @@ public class NavPanel extends SplitPane {
             s.currentItemId = getAttributeAsString("currentItemId");
         } catch (Throwable t) {
             s.logicalStructureErrors += "NavPanel.currentItemId:" + t.getMessage() + "\n";
+        }
+        try {
+            s.defaultToFirstItem = getAttributeAsString("defaultToFirstItem");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "NavPanel.defaultToFirstItem:" + t.getMessage() + "\n";
         }
         try {
             s.headerStyle = getAttributeAsString("headerStyle");

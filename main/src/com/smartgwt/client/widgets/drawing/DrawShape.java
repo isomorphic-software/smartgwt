@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -194,9 +197,10 @@ public class DrawShape extends DrawItem {
      * Sets the {@link com.smartgwt.client.widgets.drawing.DrawShape#getCommands commands} that define this shape.
      *
      * @param commands the new commands. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawShape DrawShape} instance, for chaining setter calls
      */
-    public void setCommands(DrawShapeCommand... commands) {
-        setAttribute("commands", commands, true);
+    public DrawShape setCommands(DrawShapeCommand... commands) {
+        return (DrawShape)setAttribute("commands", commands, true);
     }
 
     /**
@@ -215,12 +219,13 @@ public class DrawShape extends DrawItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param titleRotationMode New titleRotationMode value. Default value is "withItemAlwaysUp"
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawShape DrawShape} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setTitle
      * 
      */
-    public void setTitleRotationMode(TitleRotationMode titleRotationMode)  throws IllegalStateException {
-        setAttribute("titleRotationMode", titleRotationMode == null ? null : titleRotationMode.getValue(), false);
+    public DrawShape setTitleRotationMode(TitleRotationMode titleRotationMode)  throws IllegalStateException {
+        return (DrawShape)setAttribute("titleRotationMode", titleRotationMode == null ? null : titleRotationMode.getValue(), false);
     }
 
     /**

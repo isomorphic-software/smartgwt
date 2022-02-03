@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * HiddenItems track a value but have no visible appearance and do not take up space in the form layout. <P> When using
@@ -181,9 +184,10 @@ public class HiddenItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param alwaysFetchMissingValues New alwaysFetchMissingValues value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.HiddenItem HiddenItem} instance, for chaining setter calls
      */
-    public void setAlwaysFetchMissingValues(Boolean alwaysFetchMissingValues) {
-        setAttribute("alwaysFetchMissingValues", alwaysFetchMissingValues);
+    public HiddenItem setAlwaysFetchMissingValues(Boolean alwaysFetchMissingValues) {
+        return (HiddenItem)setAttribute("alwaysFetchMissingValues", alwaysFetchMissingValues);
     }
 
     /**
@@ -219,10 +223,11 @@ public class HiddenItem extends FormItem {
      * hidden fields don't take up any columns
      *
      * @param colSpan New colSpan value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.form.fields.HiddenItem HiddenItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setColSpan(int colSpan) {
-        setAttribute("colSpan", colSpan);
+    public HiddenItem setColSpan(int colSpan) {
+        return (HiddenItem)setAttribute("colSpan", colSpan);
     }
 
     /**
@@ -245,10 +250,11 @@ public class HiddenItem extends FormItem {
      * hidden fields don't take up any columns
      *
      * @param colSpan New colSpan value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.form.fields.HiddenItem HiddenItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setColSpan(String colSpan) {
-        setAttribute("colSpan", colSpan);
+    public HiddenItem setColSpan(String colSpan) {
+        return (HiddenItem)setAttribute("colSpan", colSpan);
     }
 
     /**
@@ -272,12 +278,13 @@ public class HiddenItem extends FormItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param fetchMissingValues New fetchMissingValues value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.HiddenItem HiddenItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setOptionDataSource
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getSelectedRecord
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setFilterLocally
      */
-    public void setFetchMissingValues(Boolean fetchMissingValues) {
-        setAttribute("fetchMissingValues", fetchMissingValues);
+    public HiddenItem setFetchMissingValues(Boolean fetchMissingValues) {
+        return (HiddenItem)setAttribute("fetchMissingValues", fetchMissingValues);
     }
 
     /**
@@ -303,10 +310,11 @@ public class HiddenItem extends FormItem {
      * hidden fields don't take up any rows
      *
      * @param rowSpan New rowSpan value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.form.fields.HiddenItem HiddenItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setRowSpan(int rowSpan) {
-        setAttribute("rowSpan", rowSpan);
+    public HiddenItem setRowSpan(int rowSpan) {
+        return (HiddenItem)setAttribute("rowSpan", rowSpan);
     }
 
     /**
@@ -324,10 +332,11 @@ public class HiddenItem extends FormItem {
      * we never show a separate title cell for hidden fields
      *
      * @param showTitle New showTitle value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.HiddenItem HiddenItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle);
+    public HiddenItem setShowTitle(Boolean showTitle) {
+        return (HiddenItem)setAttribute("showTitle", showTitle);
     }
 
     /**

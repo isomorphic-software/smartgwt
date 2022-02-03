@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -175,9 +178,10 @@ public class MultiFilePicker extends VStack {
      * The maximum number of upload fields to show.  If not specified, user can add as many upload fields as he wishes.
      *
      * @param maxUploadFields New maxUploadFields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.MultiFilePicker MultiFilePicker} instance, for chaining setter calls
      */
-    public void setMaxUploadFields(Integer maxUploadFields) {
-        setAttribute("maxUploadFields", maxUploadFields, true);
+    public MultiFilePicker setMaxUploadFields(Integer maxUploadFields) {
+        return (MultiFilePicker)setAttribute("maxUploadFields", maxUploadFields, true);
     }
 
     /**
@@ -194,9 +198,10 @@ public class MultiFilePicker extends VStack {
      * Minimum number of upload fields to show. This many fields will show up initially.
      *
      * @param minUploadFields New minUploadFields value. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.MultiFilePicker MultiFilePicker} instance, for chaining setter calls
      */
-    public void setMinUploadFields(Integer minUploadFields) {
-        setAttribute("minUploadFields", minUploadFields, true);
+    public MultiFilePicker setMinUploadFields(Integer minUploadFields) {
+        return (MultiFilePicker)setAttribute("minUploadFields", minUploadFields, true);
     }
 
     /**
@@ -213,10 +218,11 @@ public class MultiFilePicker extends VStack {
      * If set true, the picker will be displayed inside a Window.
      *
      * @param showInWindow New showInWindow value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.MultiFilePicker MultiFilePicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowInWindow(boolean showInWindow)  throws IllegalStateException {
-        setAttribute("showInWindow", showInWindow, false);
+    public MultiFilePicker setShowInWindow(boolean showInWindow)  throws IllegalStateException {
+        return (MultiFilePicker)setAttribute("showInWindow", showInWindow, false);
     }
 
     /**

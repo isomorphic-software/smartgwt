@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * An atomic type such as a string or number, that is generally stored, displayed and
@@ -204,9 +207,10 @@ public class SimpleType extends BaseClass {
      * com.smartgwt.client.data.SimpleType#getGroupingModes groupingModes} to use when grouping values of this type.
      *
      * @param defaultGroupingMode New defaultGroupingMode value. Default value is null
+     * @return {@link com.smartgwt.client.data.SimpleType SimpleType} instance, for chaining setter calls
      */
-    public void setDefaultGroupingMode(String defaultGroupingMode) {
-        setAttribute("defaultGroupingMode", defaultGroupingMode, true);
+    public SimpleType setDefaultGroupingMode(String defaultGroupingMode) {
+        return (SimpleType)setAttribute("defaultGroupingMode", defaultGroupingMode, true);
     }
 
     /**
@@ -224,11 +228,12 @@ public class SimpleType extends BaseClass {
      * The default search-operator for this data-type.
      *
      * @param defaultOperator New defaultOperator value. Default value is null
+     * @return {@link com.smartgwt.client.data.SimpleType SimpleType} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
-    public void setDefaultOperator(OperatorId defaultOperator)  throws IllegalStateException {
-        setAttribute("defaultOperator", defaultOperator == null ? null : defaultOperator.getValue(), false);
+    public SimpleType setDefaultOperator(OperatorId defaultOperator)  throws IllegalStateException {
+        return (SimpleType)setAttribute("defaultOperator", defaultOperator == null ? null : defaultOperator.getValue(), false);
     }
 
     /**
@@ -248,12 +253,13 @@ public class SimpleType extends BaseClass {
      * com.smartgwt.client.data.DataSourceField#getExportFormat DataSourceField.exportFormat}.
      *
      * @param exportFormat New exportFormat value. Default value is null
+     * @return {@link com.smartgwt.client.data.SimpleType SimpleType} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.FormatString FormatString 
      * @see com.smartgwt.client.docs.ExportFormatting ExportFormatting overview and related methods
      */
-    public void setExportFormat(String exportFormat)  throws IllegalStateException {
-        setAttribute("exportFormat", exportFormat, false);
+    public SimpleType setExportFormat(String exportFormat)  throws IllegalStateException {
+        return (SimpleType)setAttribute("exportFormat", exportFormat, false);
     }
 
     /**
@@ -274,14 +280,15 @@ public class SimpleType extends BaseClass {
      * properties are only client-side properties.
      *
      * @param fieldProperties New fieldProperties value. Default value is null
+     * @return {@link com.smartgwt.client.data.SimpleType SimpleType} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setFieldProperties(DataSourceField fieldProperties)  throws IllegalStateException {
+    public SimpleType setFieldProperties(DataSourceField fieldProperties)  throws IllegalStateException {
         JavaScriptObject config = JSOHelper.createObject();
         if (fieldProperties != null) {
             JSOHelper.addProperties(config, fieldProperties.getJsObj());
         }
-        setAttribute("fieldProperties", fieldProperties == null ? null : config, false);
+        return (SimpleType)setAttribute("fieldProperties", fieldProperties == null ? null : config, false);
     }
 
     /**
@@ -301,12 +308,13 @@ public class SimpleType extends BaseClass {
      * com.smartgwt.client.data.DataSourceField#getFormat DataSourceField.format}.
      *
      * @param format New format value. Default value is null
+     * @return {@link com.smartgwt.client.data.SimpleType SimpleType} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.FormatString FormatString 
      * @see com.smartgwt.client.docs.ExportFormatting ExportFormatting overview and related methods
      */
-    public void setFormat(String format)  throws IllegalStateException {
-        setAttribute("format", format, false);
+    public SimpleType setFormat(String format)  throws IllegalStateException {
+        return (SimpleType)setAttribute("format", format, false);
     }
 
     /**
@@ -331,9 +339,10 @@ public class SimpleType extends BaseClass {
      * for each of the grouping modes you provide.
      *
      * @param groupingModes New groupingModes value. Default value is null
+     * @return {@link com.smartgwt.client.data.SimpleType SimpleType} instance, for chaining setter calls
      */
-    public void setGroupingModes(Map groupingModes) {
-        setAttribute("groupingModes", groupingModes, true);
+    public SimpleType setGroupingModes(Map groupingModes) {
+        return (SimpleType)setAttribute("groupingModes", groupingModes, true);
     }
 
     /**
@@ -357,12 +366,13 @@ public class SimpleType extends BaseClass {
      * SimpleType properties default to the inherited type's value.
      *
      * @param inheritsFrom New inheritsFrom value. Default value is null
+     * @return {@link com.smartgwt.client.data.SimpleType SimpleType} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.Identifier Identifier 
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_type_reuse" target="examples">DataType Reuse Example</a>
      */
-    public void setInheritsFrom(String inheritsFrom)  throws IllegalStateException {
-        setAttribute("inheritsFrom", inheritsFrom, false);
+    public SimpleType setInheritsFrom(String inheritsFrom)  throws IllegalStateException {
+        return (SimpleType)setAttribute("inheritsFrom", inheritsFrom, false);
     }
 
     /**
@@ -382,11 +392,12 @@ public class SimpleType extends BaseClass {
      * Name of the type, used to refer to the type from {@link com.smartgwt.client.data.DataSourceField#getType field.type}.
      *
      * @param name New name value. Default value is null
+     * @return {@link com.smartgwt.client.data.SimpleType SimpleType} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.Identifier Identifier 
      */
-    public void setName(String name)  throws IllegalStateException {
-        setAttribute("name", name, false);
+    public SimpleType setName(String name)  throws IllegalStateException {
+        return (SimpleType)setAttribute("name", name, false);
     }
 
     /**
@@ -405,11 +416,12 @@ public class SimpleType extends BaseClass {
      * Validators to apply to value of this type.
      *
      * @param validators New validators value. Default value is null
+     * @return {@link com.smartgwt.client.data.SimpleType SimpleType} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
-    public void setValidators(Validator... validators)  throws IllegalStateException {
-        setAttribute("validators", validators, false);
+    public SimpleType setValidators(Validator... validators)  throws IllegalStateException {
+        return (SimpleType)setAttribute("validators", validators, false);
     }
     
 
@@ -419,11 +431,12 @@ public class SimpleType extends BaseClass {
      * default operators for the basic types (eg, integer).
      *
      * @param validOperators New validOperators value. Default value is null
+     * @return {@link com.smartgwt.client.data.SimpleType SimpleType} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
-    public void setValidOperators(OperatorId... validOperators)  throws IllegalStateException {
-        setAttribute("validOperators", validOperators, false);
+    public SimpleType setValidOperators(OperatorId... validOperators)  throws IllegalStateException {
+        return (SimpleType)setAttribute("validOperators", validOperators, false);
     }
     
     

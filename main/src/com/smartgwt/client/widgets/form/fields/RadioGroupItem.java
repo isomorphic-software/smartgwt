@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * FormItem that shows a set of mutually exclusive options as a group of radio buttons.
@@ -166,14 +169,15 @@ public class RadioGroupItem extends FormItem {
      * useNativeRadioItems} is false.
      *
      * @param checkboxItemProperties New checkboxItemProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.RadioGroupItem RadioGroupItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setCheckboxItemProperties(CheckboxItem checkboxItemProperties) {
+    public RadioGroupItem setCheckboxItemProperties(CheckboxItem checkboxItemProperties) {
         if (checkboxItemProperties.isCreated()) {
             ConfigUtil.warnOfPreConfigInstantiation(RadioGroupItem.class, "setCheckboxItemProperties", "CheckboxItem");
         }                                                                       
         checkboxItemProperties.setConfigOnly(true);
-        setAttribute("checkboxItemProperties", checkboxItemProperties == null ? null : checkboxItemProperties.getEditorTypeConfig());
+        return (RadioGroupItem)setAttribute("checkboxItemProperties", checkboxItemProperties == null ? null : checkboxItemProperties.getEditorTypeConfig());
     }
 
     /**
@@ -194,18 +198,19 @@ public class RadioGroupItem extends FormItem {
      * Default class used to construct the {@link com.smartgwt.client.tools.EditProxy} for this component when the component is
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
-     * @param editProxyConstructor New editProxyConstructor value. Default value is "SelectItemEditProxy"
+     * @param editProxyConstructor New editProxyConstructor value. Default value is "RadioGroupItemEditProxy"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RadioGroupItem RadioGroupItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor) {
-        setAttribute("editProxyConstructor", editProxyConstructor);
+    public RadioGroupItem setEditProxyConstructor(String editProxyConstructor) {
+        return (RadioGroupItem)setAttribute("editProxyConstructor", editProxyConstructor);
     }
 
     /**
      * Default class used to construct the {@link com.smartgwt.client.tools.EditProxy} for this component when the component is
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
-     * @return Current editProxyConstructor value. Default value is "SelectItemEditProxy"
+     * @return Current editProxyConstructor value. Default value is "RadioGroupItemEditProxy"
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
     public String getEditProxyConstructor()  {
@@ -218,10 +223,11 @@ public class RadioGroupItem extends FormItem {
      * specified width, should options be spread out evenly to fill the specified width?
      *
      * @param fillHorizontalSpace New fillHorizontalSpace value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.RadioGroupItem RadioGroupItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setFillHorizontalSpace(boolean fillHorizontalSpace) {
-        setAttribute("fillHorizontalSpace", fillHorizontalSpace);
+    public RadioGroupItem setFillHorizontalSpace(boolean fillHorizontalSpace) {
+        return (RadioGroupItem)setAttribute("fillHorizontalSpace", fillHorizontalSpace);
     }
 
     /**
@@ -245,11 +251,12 @@ public class RadioGroupItem extends FormItem {
      * Setter for {@link com.smartgwt.client.widgets.form.fields.RadioGroupItem#getTextBoxStyle textBoxStyle}.
      *
      * @param textBoxStyle new <code>textBoxStyle</code>. Default value is "labelAnchor"
+     * @return {@link com.smartgwt.client.widgets.form.fields.RadioGroupItem RadioGroupItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setTextBoxStyle(String textBoxStyle) {
-        setAttribute("textBoxStyle", textBoxStyle);
+    public RadioGroupItem setTextBoxStyle(String textBoxStyle) {
+        return (RadioGroupItem)setAttribute("textBoxStyle", textBoxStyle);
     }
 
     /**
@@ -270,10 +277,11 @@ public class RadioGroupItem extends FormItem {
      * com.smartgwt.client.widgets.form.fields.RadioGroupItem#getCheckboxItemProperties checkboxItemProperties}.
      *
      * @param useNativeRadioItems New useNativeRadioItems value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.RadioGroupItem RadioGroupItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setUseNativeRadioItems(boolean useNativeRadioItems) {
-        setAttribute("useNativeRadioItems", useNativeRadioItems);
+    public RadioGroupItem setUseNativeRadioItems(boolean useNativeRadioItems) {
+        return (RadioGroupItem)setAttribute("useNativeRadioItems", useNativeRadioItems);
     }
 
     /**
@@ -294,10 +302,11 @@ public class RadioGroupItem extends FormItem {
      * True == display options vertically, false == display in a single row
      *
      * @param vertical New vertical value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.RadioGroupItem RadioGroupItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setVertical(Boolean vertical) {
-        setAttribute("vertical", vertical);
+    public RadioGroupItem setVertical(Boolean vertical) {
+        return (RadioGroupItem)setAttribute("vertical", vertical);
     }
 
     /**
@@ -316,10 +325,11 @@ public class RadioGroupItem extends FormItem {
      * Should the text for items within this radio group wrap?
      *
      * @param wrap New wrap value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.RadioGroupItem RadioGroupItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setWrap(Boolean wrap) {
-        setAttribute("wrap", wrap);
+    public RadioGroupItem setWrap(Boolean wrap) {
+        return (RadioGroupItem)setAttribute("wrap", wrap);
     }
 
     /**

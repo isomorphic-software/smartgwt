@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -101,7 +104,7 @@ import com.smartgwt.logicalstructure.widgets.tools.*;
  */
 @BeanFactory.FrameworkClass
 @BeanFactory.ScClassName("SearchForm")
-public class SearchForm extends DynamicForm {
+public class SearchForm extends DynamicForm implements com.smartgwt.client.widgets.form.events.HasCriteriaChangedHandlers {
 
     public static SearchForm getOrCreateRef(JavaScriptObject jsObj) {
         if (jsObj == null) return null;
@@ -178,10 +181,11 @@ public class SearchForm extends DynamicForm {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canEditFieldAttribute New canEditFieldAttribute value. Default value is "canFilter"
+     * @return {@link com.smartgwt.client.widgets.form.SearchForm SearchForm} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanEditFieldAttribute(String canEditFieldAttribute)  throws IllegalStateException {
-        setAttribute("canEditFieldAttribute", canEditFieldAttribute, false);
+    public SearchForm setCanEditFieldAttribute(String canEditFieldAttribute)  throws IllegalStateException {
+        return (SearchForm)setAttribute("canEditFieldAttribute", canEditFieldAttribute, false);
     }
 
     /**
@@ -196,15 +200,72 @@ public class SearchForm extends DynamicForm {
     
 
     /**
+     * Delay in milliseconds between user changing the criteria in the form and the {@link
+     * com.smartgwt.client.widgets.form.SearchForm#addCriteriaChangedHandler SearchForm.criteriaChanged()} notification method
+     * being fired. Set to zero to respond to criteria changes synchronously after {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#addItemChangedHandler DynamicForm.itemChanged()}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param criteriaChangedDelay New criteriaChangedDelay value. Default value is 200
+     * @return {@link com.smartgwt.client.widgets.form.SearchForm SearchForm} instance, for chaining setter calls
+     */
+    public SearchForm setCriteriaChangedDelay(Integer criteriaChangedDelay) {
+        return (SearchForm)setAttribute("criteriaChangedDelay", criteriaChangedDelay, true);
+    }
+
+    /**
+     * Delay in milliseconds between user changing the criteria in the form and the {@link
+     * com.smartgwt.client.widgets.form.SearchForm#addCriteriaChangedHandler SearchForm.criteriaChanged()} notification method
+     * being fired. Set to zero to respond to criteria changes synchronously after {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#addItemChangedHandler DynamicForm.itemChanged()}.
+     *
+     * @return Current criteriaChangedDelay value. Default value is 200
+     */
+    public Integer getCriteriaChangedDelay()  {
+        return getAttributeAsInt("criteriaChangedDelay");
+    }
+    
+
+    /**
+     * Causes the {@link com.smartgwt.client.widgets.form.SearchForm#search search()} event to be triggered when the user
+     * presses the Enter key in any field of this form. <P> This is the same as the {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOnEnter saveOnEnter} property of {@link
+     * com.smartgwt.client.widgets.form.DynamicForm} - setting  either property to true will cause the {@link
+     * com.smartgwt.client.widgets.form.SearchForm#search search()} event to fire on Enter keypress.
+     *
+     * @param searchOnEnter New searchOnEnter value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.SearchForm SearchForm} instance, for chaining setter calls
+     */
+    public SearchForm setSearchOnEnter(Boolean searchOnEnter) {
+        return (SearchForm)setAttribute("searchOnEnter", searchOnEnter, true);
+    }
+
+    /**
+     * Causes the {@link com.smartgwt.client.widgets.form.SearchForm#search search()} event to be triggered when the user
+     * presses the Enter key in any field of this form. <P> This is the same as the {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getSaveOnEnter saveOnEnter} property of {@link
+     * com.smartgwt.client.widgets.form.DynamicForm} - setting  either property to true will cause the {@link
+     * com.smartgwt.client.widgets.form.SearchForm#search search()} event to fire on Enter keypress.
+     *
+     * @return Current searchOnEnter value. Default value is false
+     */
+    public Boolean getSearchOnEnter()  {
+        Boolean result = getAttributeAsBoolean("searchOnEnter");
+        return result == null ? false : result;
+    }
+    
+
+    /**
      * If this attribute is true any {@link com.smartgwt.client.data.DataSourceField#getCanFilter canFilter:false} fields
      * specified on the dataSource will not be shown unless explicitly included in this component's {@link
      * com.smartgwt.client.widgets.DataBoundComponent#getFields fields array}
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showFilterFieldsOnly New showFilterFieldsOnly value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.SearchForm SearchForm} instance, for chaining setter calls
      */
-    public void setShowFilterFieldsOnly(Boolean showFilterFieldsOnly) {
-        setAttribute("showFilterFieldsOnly", showFilterFieldsOnly, true);
+    public SearchForm setShowFilterFieldsOnly(Boolean showFilterFieldsOnly) {
+        return (SearchForm)setAttribute("showFilterFieldsOnly", showFilterFieldsOnly, true);
     }
 
     /**
@@ -235,9 +296,10 @@ public class SearchForm extends DynamicForm {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param storeDisplayValues New storeDisplayValues value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.SearchForm SearchForm} instance, for chaining setter calls
      */
-    public void setStoreDisplayValues(Boolean storeDisplayValues) {
-        setAttribute("storeDisplayValues", storeDisplayValues, true);
+    public SearchForm setStoreDisplayValues(Boolean storeDisplayValues) {
+        return (SearchForm)setAttribute("storeDisplayValues", storeDisplayValues, true);
     }
 
     /**
@@ -262,6 +324,57 @@ public class SearchForm extends DynamicForm {
     
 
     // ********************* Methods ***********************
+    /**
+     * Add a criteriaChanged handler.
+     * <p>
+     * Notification method fired when the criteria are modified in this SearchForm. As the user edits values, this method will
+     * be fired after a {@link com.smartgwt.client.widgets.form.SearchForm#getCriteriaChangedDelay configurable delay}.
+     *
+     * @param handler the criteriaChanged handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addCriteriaChangedHandler(com.smartgwt.client.widgets.form.events.CriteriaChangedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.events.CriteriaChangedDevent.getType()) == 0) setupCriteriaChangedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.events.CriteriaChangedDevent.getType());
+    }
+
+    private native void setupCriteriaChangedEvent() /*-{
+        var obj;
+        var selfJ = this;
+        var hasDefaultHandler;
+        var criteriaChanged = $entry(function(){
+            var param = {"_this": this, "criteria" : arguments[0], "form" : arguments[1]};
+            var event = @com.smartgwt.client.widgets.form.events.CriteriaChangedDevent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            selfJ.@com.smartgwt.client.widgets.form.SearchForm::handleTearDownCriteriaChangedEvent()();
+            if (hasDefaultHandler) this.Super("criteriaChanged", arguments);
+        });
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            hasDefaultHandler = $wnd.isc.isA.Function(obj.getProperty("criteriaChanged"));
+            obj.addProperties({criteriaChanged:  criteriaChanged              });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+            hasDefaultHandler = $wnd.isc.isA.Function($wnd.isc[scClassName].getInstanceProperty("criteriaChanged"));
+            obj.criteriaChanged =  criteriaChanged             ;
+        }
+    }-*/;
+
+    private void handleTearDownCriteriaChangedEvent() {
+        if (getHandlerCount(com.smartgwt.client.widgets.form.events.CriteriaChangedDevent.getType()) == 0) tearDownCriteriaChangedEvent();
+    }
+
+    private native void tearDownCriteriaChangedEvent() /*-{
+        var obj;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        }
+        if (obj && obj.hasOwnProperty("criteriaChanged")) delete obj.criteriaChanged;
+    }-*/;
+
 
     // ********************* Static Methods ***********************
 
@@ -306,6 +419,16 @@ public class SearchForm extends DynamicForm {
             s.canEditFieldAttribute = getAttributeAsString("canEditFieldAttribute");
         } catch (Throwable t) {
             s.logicalStructureErrors += "SearchForm.canEditFieldAttribute:" + t.getMessage() + "\n";
+        }
+        try {
+            s.criteriaChangedDelay = getAttributeAsString("criteriaChangedDelay");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SearchForm.criteriaChangedDelay:" + t.getMessage() + "\n";
+        }
+        try {
+            s.searchOnEnter = getAttributeAsString("searchOnEnter");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SearchForm.searchOnEnter:" + t.getMessage() + "\n";
         }
         try {
             s.showFilterFieldsOnly = getAttributeAsString("showFilterFieldsOnly");

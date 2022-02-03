@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -182,11 +185,12 @@ public class EventCanvas extends VLayout {
      * suffix "Body".
      *
      * @param bodyStyle New bodyStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.EventCanvas EventCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setBodyStyle(String bodyStyle) {
-        setAttribute("bodyStyle", bodyStyle, true);
+    public EventCanvas setBodyStyle(String bodyStyle) {
+        return (EventCanvas)setAttribute("bodyStyle", bodyStyle, true);
     }
 
     /**
@@ -207,10 +211,11 @@ public class EventCanvas extends VLayout {
      * The {@link com.smartgwt.client.widgets.calendar.Calendar} in which this EventCanvas is being rendered.
      *
      * @param calendar New calendar value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.EventCanvas EventCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCalendar(Calendar calendar)  throws IllegalStateException {
-        setAttribute("calendar", calendar == null ? null : calendar.getOrCreateJsObj(), false);
+    public EventCanvas setCalendar(Calendar calendar)  throws IllegalStateException {
+        return (EventCanvas)setAttribute("calendar", calendar == null ? null : calendar.getOrCreateJsObj(), false);
     }
 
     /**
@@ -227,10 +232,11 @@ public class EventCanvas extends VLayout {
      * The {@link com.smartgwt.client.widgets.calendar.CalendarView} in which this EventCanvas is being rendered.
      *
      * @param calendarView New calendarView value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.EventCanvas EventCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCalendarView(CalendarView calendarView)  throws IllegalStateException {
-        setAttribute("calendarView", calendarView == null ? null : calendarView.getOrCreateJsObj(), false);
+    public EventCanvas setCalendarView(CalendarView calendarView)  throws IllegalStateException {
+        return (EventCanvas)setAttribute("calendarView", calendarView == null ? null : calendarView.getOrCreateJsObj(), false);
     }
 
     /**
@@ -250,10 +256,11 @@ public class EventCanvas extends VLayout {
      * Assigns a new {@link com.smartgwt.client.widgets.calendar.CalendarEvent event} to this EventCanvas, including updates to  drag, style and {@link com.smartgwt.client.widgets.calendar.EventCanvas#getShowRolloverControls rollover} properties.
      *
      * @param event the new event to apply to this EventCanvas. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.EventCanvas EventCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEvent(CalendarEvent event)  throws IllegalStateException {
-        setAttribute("event", event == null ? null : event.getJsObj(), false);
+    public EventCanvas setEvent(CalendarEvent event)  throws IllegalStateException {
+        return (EventCanvas)setAttribute("event", event == null ? null : event.getJsObj(), false);
     }
 
     /**
@@ -287,10 +294,11 @@ public class EventCanvas extends VLayout {
      * dragged with the mouse.
      *
      * @param gripperIcon New gripperIcon value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.EventCanvas EventCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setGripperIcon(String gripperIcon) {
-        setAttribute("gripperIcon", gripperIcon, true);
+    public EventCanvas setGripperIcon(String gripperIcon) {
+        return (EventCanvas)setAttribute("gripperIcon", gripperIcon, true);
     }
 
     /**
@@ -312,10 +320,11 @@ public class EventCanvas extends VLayout {
      * header area fills the canvas.
      *
      * @param headerHeight New headerHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.EventCanvas EventCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setHeaderHeight(Integer headerHeight) {
-        setAttribute("headerHeight", headerHeight, true);
+    public EventCanvas setHeaderHeight(Integer headerHeight) {
+        return (EventCanvas)setAttribute("headerHeight", headerHeight, true);
     }
 
     /**
@@ -338,11 +347,12 @@ public class EventCanvas extends VLayout {
      * suffix "Header".
      *
      * @param headerStyle New headerStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.EventCanvas EventCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setHeaderStyle(String headerStyle) {
-        setAttribute("headerStyle", headerStyle, true);
+    public EventCanvas setHeaderStyle(String headerStyle) {
+        return (EventCanvas)setAttribute("headerStyle", headerStyle, true);
     }
 
     /**
@@ -366,10 +376,11 @@ public class EventCanvas extends VLayout {
      * the full height of the canvas is {@link com.smartgwt.client.widgets.calendar.EventCanvas#getShowBody showBody} is false.
      *
      * @param headerWrap New headerWrap value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.EventCanvas EventCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setHeaderWrap(Boolean headerWrap) {
-        setAttribute("headerWrap", headerWrap, true);
+    public EventCanvas setHeaderWrap(Boolean headerWrap) {
+        return (EventCanvas)setAttribute("headerWrap", headerWrap, true);
     }
 
     /**
@@ -443,9 +454,10 @@ public class EventCanvas extends VLayout {
      * from {@link com.smartgwt.client.widgets.calendar.Calendar#getShowEventDescriptions Calendar.showEventDescriptions}.
      *
      * @param showBody New showBody value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.EventCanvas EventCanvas} instance, for chaining setter calls
      */
-    public void setShowBody(Boolean showBody) {
-        setAttribute("showBody", showBody, true);
+    public EventCanvas setShowBody(Boolean showBody) {
+        return (EventCanvas)setAttribute("showBody", showBody, true);
     }
 
     /**
@@ -468,9 +480,10 @@ public class EventCanvas extends VLayout {
      * snaps, centered, to the top edge of the eventCanvas and can be used to move it with the mouse.
      *
      * @param showGripper New showGripper value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.EventCanvas EventCanvas} instance, for chaining setter calls
      */
-    public void setShowGripper(Boolean showGripper) {
-        setAttribute("showGripper", showGripper, true);
+    public EventCanvas setShowGripper(Boolean showGripper) {
+        return (EventCanvas)setAttribute("showGripper", showGripper, true);
     }
 
     /**
@@ -494,9 +507,10 @@ public class EventCanvas extends VLayout {
      * Calendar.showEventHeaders}.
      *
      * @param showHeader New showHeader value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.EventCanvas EventCanvas} instance, for chaining setter calls
      */
-    public void setShowHeader(Boolean showHeader) {
-        setAttribute("showHeader", showHeader, true);
+    public EventCanvas setShowHeader(Boolean showHeader) {
+        return (EventCanvas)setAttribute("showHeader", showHeader, true);
     }
 
     /**
@@ -522,9 +536,10 @@ public class EventCanvas extends VLayout {
      * outside of it.
      *
      * @param showLabel New showLabel value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.EventCanvas EventCanvas} instance, for chaining setter calls
      */
-    public void setShowLabel(Boolean showLabel) {
-        setAttribute("showLabel", showLabel, true);
+    public EventCanvas setShowLabel(Boolean showLabel) {
+        return (EventCanvas)setAttribute("showLabel", showLabel, true);
     }
 
     /**
@@ -551,9 +566,10 @@ public class EventCanvas extends VLayout {
      * Calendar.useEventCanvasRolloverControls} for the alternative.
      *
      * @param showRolloverControls New showRolloverControls value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.calendar.EventCanvas EventCanvas} instance, for chaining setter calls
      */
-    public void setShowRolloverControls(Boolean showRolloverControls) {
-        setAttribute("showRolloverControls", showRolloverControls, true);
+    public EventCanvas setShowRolloverControls(Boolean showRolloverControls) {
+        return (EventCanvas)setAttribute("showRolloverControls", showRolloverControls, true);
     }
 
     /**
@@ -610,9 +626,10 @@ public class EventCanvas extends VLayout {
      * the canvas are available for resizing.
      *
      * @param verticalResize New verticalResize value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.calendar.EventCanvas EventCanvas} instance, for chaining setter calls
      */
-    public void setVerticalResize(Boolean verticalResize) {
-        setAttribute("verticalResize", verticalResize, true);
+    public EventCanvas setVerticalResize(Boolean verticalResize) {
+        return (EventCanvas)setAttribute("verticalResize", verticalResize, true);
     }
 
     /**

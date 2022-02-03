@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -195,10 +198,11 @@ public class DrawKnob extends Canvas {
      * com.smartgwt.client.widgets.drawing.DrawKnob#getKnobShape knobShape} will be rendered.
      *
      * @param drawPane New drawPane value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawKnob DrawKnob} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDrawPane(DrawPane drawPane)  throws IllegalStateException {
-        setAttribute("drawPane", drawPane == null ? null : drawPane.getOrCreateJsObj(), false);
+    public DrawKnob setDrawPane(DrawPane drawPane)  throws IllegalStateException {
+        return (DrawKnob)setAttribute("drawPane", drawPane == null ? null : drawPane.getOrCreateJsObj(), false);
     }
 
     /**
@@ -241,10 +245,11 @@ public class DrawKnob extends Canvas {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param knobShapeDefaults New knobShapeDefaults value. Default value is {...}
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawKnob DrawKnob} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SGWTProperties
      */
-    public void setKnobShapeDefaults(DrawItem knobShapeDefaults)  throws IllegalStateException {
+    public DrawKnob setKnobShapeDefaults(DrawItem knobShapeDefaults)  throws IllegalStateException {
         if (knobShapeDefaults != null) {
             if (knobShapeDefaults.isCreated()) {
                 ConfigUtil.warnOfPreConfigInstantiation(DrawKnob.class, "setKnobShapeDefaults", "DrawItem");
@@ -252,7 +257,7 @@ public class DrawKnob extends Canvas {
             knobShapeDefaults.setConfigOnly(true);
         }
         JavaScriptObject config = knobShapeDefaults == null ? null : knobShapeDefaults.getConfig();
-        setAttribute("knobShapeDefaults", JSOHelper.cleanProperties(config, true), false);
+        return (DrawKnob)setAttribute("knobShapeDefaults", JSOHelper.cleanProperties(config, true), false);
     }
 
     /**
@@ -281,10 +286,11 @@ public class DrawKnob extends Canvas {
      * X-Coordinate for this DrawKnob. DrawKnob will initially be drawn centered over this coordinate
      *
      * @param x New x value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawKnob DrawKnob} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setX(Integer x)  throws IllegalStateException {
-        setAttribute("x", x, false);
+    public DrawKnob setX(Integer x)  throws IllegalStateException {
+        return (DrawKnob)setAttribute("x", x, false);
     }
 
     /**
@@ -301,10 +307,11 @@ public class DrawKnob extends Canvas {
      * Y-Coordinate for this DrawKnob. DrawKnob will initially be drawn centered over this coordinate
      *
      * @param y New y value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawKnob DrawKnob} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setY(Integer y)  throws IllegalStateException {
-        setAttribute("y", y, false);
+    public DrawKnob setY(Integer y)  throws IllegalStateException {
+        return (DrawKnob)setAttribute("y", y, false);
     }
 
     /**
@@ -352,11 +359,10 @@ public class DrawKnob extends Canvas {
     }-*/;
 	
 	/**
-     * Method called in response to the user dragging this DrawKnob. May be observed or overridden to allow drawItems to react
-     * to user drag interactions on this knob. <P> Note that the default implementation does nothing. When working with draw
-     * knobs directly this is typically where you would both update the shape being controlled by the draw knob, and ensure the
-     * drawKnob gets repositioned. You may also need to update the drawKnob position in response to the drawItem being
-     * repositioned, resized, etc.
+     * Method called in response to the user dragging this DrawKnob.   <P> Note that the default implementation does nothing.
+     * When working with draw knobs directly this is typically where you would both update the shape being controlled by the
+     * draw knob, and ensure the drawKnob gets repositioned. You may also need to update the drawKnob position in response to
+     * the drawItem being repositioned, resized, etc.
      * @param x new x-coordinate of the drawKnob
      * @param y new y-coordinate of the drawKnob
      * @param dX horizontal distance moved

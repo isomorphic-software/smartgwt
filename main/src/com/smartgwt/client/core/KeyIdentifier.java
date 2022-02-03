@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Identifier for a key pressed by the user, optionally specifying whether the Shift, Control, and/or Alt keys should be
@@ -103,10 +106,11 @@ public class KeyIdentifier extends DataClass {
      * If set, whether the Alt key must be held down.
      *
      * @param altKey New altKey value. Default value is null
+     * @return {@link com.smartgwt.client.core.KeyIdentifier KeyIdentifier} instance, for chaining setter calls
      * @see com.smartgwt.client.util.EventHandler#altKeyDown
      */
-    public void setAltKey(Boolean altKey) {
-        setAttribute("altKey", altKey);
+    public KeyIdentifier setAltKey(Boolean altKey) {
+        return (KeyIdentifier)setAttribute("altKey", altKey);
     }
 
     /**
@@ -124,10 +128,11 @@ public class KeyIdentifier extends DataClass {
      * If set, whether the Control key must be held down.
      *
      * @param ctrlKey New ctrlKey value. Default value is null
+     * @return {@link com.smartgwt.client.core.KeyIdentifier KeyIdentifier} instance, for chaining setter calls
      * @see com.smartgwt.client.util.EventHandler#ctrlKeyDown
      */
-    public void setCtrlKey(Boolean ctrlKey) {
-        setAttribute("ctrlKey", ctrlKey);
+    public KeyIdentifier setCtrlKey(Boolean ctrlKey) {
+        return (KeyIdentifier)setAttribute("ctrlKey", ctrlKey);
     }
 
     /**
@@ -145,10 +150,11 @@ public class KeyIdentifier extends DataClass {
      * Name of the key.
      *
      * @param keyName New keyName value. Default value is null
+     * @return {@link com.smartgwt.client.core.KeyIdentifier KeyIdentifier} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.KeyName KeyName 
      */
-    public void setKeyName(String keyName) {
-        setAttribute("keyName", keyName);
+    public KeyIdentifier setKeyName(String keyName) {
+        return (KeyIdentifier)setAttribute("keyName", keyName);
     }
 
     /**
@@ -166,10 +172,11 @@ public class KeyIdentifier extends DataClass {
      * If set, whether the Shift key must be held down.
      *
      * @param shiftKey New shiftKey value. Default value is null
+     * @return {@link com.smartgwt.client.core.KeyIdentifier KeyIdentifier} instance, for chaining setter calls
      * @see com.smartgwt.client.util.EventHandler#shiftKeyDown
      */
-    public void setShiftKey(Boolean shiftKey) {
-        setAttribute("shiftKey", shiftKey);
+    public KeyIdentifier setShiftKey(Boolean shiftKey) {
+        return (KeyIdentifier)setAttribute("shiftKey", shiftKey);
     }
 
     /**

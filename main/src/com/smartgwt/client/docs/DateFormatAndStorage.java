@@ -50,6 +50,11 @@ package com.smartgwt.client.docs;
  *  number of milliseconds since midnight on January 1st 1970 in the UTC timezone
  *  (because 1970-01-01 00:00:00 UTC is "the epoch").
  *  <P>
+ *  To ensure that "datetime" values are persisted on the server with full millisecond resolution
+ * (rather than only seconds), you may need to set {@link
+ * com.smartgwt.client.docs.serverds.DataSourceField#storeMilliseconds
+ * DataSourceField.storeMilliseconds}.
+ *  <P>
  *  When sent or received in XML or JSON, datetime field values should be serialized out as full
  *  datetimes using the standard
  * <a href='http://www.w3.org/TR/xmlschema-2/#dateTime' target='_blank'>XML Schema datetime

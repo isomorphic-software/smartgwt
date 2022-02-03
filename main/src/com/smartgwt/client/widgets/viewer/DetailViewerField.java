@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * An object literal with a particular set of properties used to configure the display of and interaction with the rows of
@@ -118,9 +121,10 @@ public class DetailViewerField extends DBCField {
      * canExport: false.
      *
      * @param canExport New canExport value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      */
-    public void setCanExport(Boolean canExport) {
-        setAttribute("canExport", canExport);
+    public DetailViewerField setCanExport(Boolean canExport) {
+        return (DetailViewerField)setAttribute("canExport", canExport);
     }
 
     /**
@@ -139,10 +143,11 @@ public class DetailViewerField extends DBCField {
      * Determines whether this field can be hilited.  Set to false to prevent this field from appearing in HiliteEditor.
      *
      * @param canHilite New canHilite value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setCanHilite(Boolean canHilite) {
-        setAttribute("canHilite", canHilite);
+    public DetailViewerField setCanHilite(Boolean canHilite) {
+        return (DetailViewerField)setAttribute("canHilite", canHilite);
     }
 
     /**
@@ -161,10 +166,11 @@ public class DetailViewerField extends DBCField {
      * com.smartgwt.client.widgets.viewer.DetailViewer#getCellStyle DetailViewer.cellStyle}
      *
      * @param cellStyle New cellStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setCellStyle(String cellStyle) {
-        setAttribute("cellStyle", cellStyle);
+    public DetailViewerField setCellStyle(String cellStyle) {
+        return (DetailViewerField)setAttribute("cellStyle", cellStyle);
     }
 
     /**
@@ -186,9 +192,10 @@ public class DetailViewerField extends DBCField {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param dataPath New dataPath value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      */
-    public void setDataPath(String dataPath) {
-        setAttribute("dataPath", dataPath);
+    public DetailViewerField setDataPath(String dataPath) {
+        return (DetailViewerField)setAttribute("dataPath", dataPath);
     }
 
     /**
@@ -216,12 +223,13 @@ public class DetailViewerField extends DBCField {
      * valid  {@link com.smartgwt.client.types.DateDisplayFormat} to change the format used by this item.
      *
      * @param dateFormatter New dateFormatter value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#setDateFormatter
      * @see com.smartgwt.client.widgets.grid.ListGrid#setDatetimeFormatter
      * @see com.smartgwt.client.widgets.grid.ListGridField#setTimeFormatter
      */
-    public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue());
+    public DetailViewerField setDateFormatter(DateDisplayFormat dateFormatter) {
+        return (DetailViewerField)setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue());
     }
 
     /**
@@ -254,10 +262,11 @@ public class DetailViewerField extends DBCField {
      * original unpadded value is always shown when the value is edited.
      *
      * @param decimalPad New decimalPad value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setDecimalPad(Integer decimalPad) {
-        setAttribute("decimalPad", decimalPad);
+    public DetailViewerField setDecimalPad(Integer decimalPad) {
+        return (DetailViewerField)setAttribute("decimalPad", decimalPad);
     }
 
     /**
@@ -281,10 +290,11 @@ public class DetailViewerField extends DBCField {
      * shown with its original precision when edited.
      *
      * @param decimalPrecision New decimalPrecision value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setDecimalPrecision(Integer decimalPrecision) {
-        setAttribute("decimalPrecision", decimalPrecision);
+    public DetailViewerField setDecimalPrecision(Integer decimalPrecision) {
+        return (DetailViewerField)setAttribute("decimalPrecision", decimalPrecision);
     }
 
     /**
@@ -308,9 +318,10 @@ public class DetailViewerField extends DBCField {
      * com.smartgwt.client.widgets.viewer.DetailViewerField#getName name} of the field.
      *
      * @param displayField New displayField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      */
-    public void setDisplayField(String displayField) {
-        setAttribute("displayField", displayField);
+    public DetailViewerField setDisplayField(String displayField) {
+        return (DetailViewerField)setAttribute("displayField", displayField);
     }
 
     /**
@@ -331,12 +342,13 @@ public class DetailViewerField extends DBCField {
      * emptyCellValue for all empty fields in the viewer.
      *
      * @param emptyCellValue New emptyCellValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.viewer.DetailViewer#setEmptyCellValue
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setEmptyCellValue(String emptyCellValue) {
-        setAttribute("emptyCellValue", emptyCellValue);
+    public DetailViewerField setEmptyCellValue(String emptyCellValue) {
+        return (DetailViewerField)setAttribute("emptyCellValue", emptyCellValue);
     }
 
     /**
@@ -360,9 +372,10 @@ public class DetailViewerField extends DBCField {
      * displayed to the user rather than the interpreted HTML (for example <code>"<b>AAA</b>"</code>)
      *
      * @param escapeHTML New escapeHTML value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      */
-    public void setEscapeHTML(Boolean escapeHTML) {
-        setAttribute("escapeHTML", escapeHTML);
+    public DetailViewerField setEscapeHTML(Boolean escapeHTML) {
+        return (DetailViewerField)setAttribute("escapeHTML", escapeHTML);
     }
 
     /**
@@ -382,11 +395,12 @@ public class DetailViewerField extends DBCField {
      * com.smartgwt.client.data.DataSourceField#getExportFormat DataSourceField.exportFormat}.
      *
      * @param exportFormat New exportFormat value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormatString FormatString 
      * @see com.smartgwt.client.docs.ExportFormatting ExportFormatting overview and related methods
      */
-    public void setExportFormat(String exportFormat) {
-        setAttribute("exportFormat", exportFormat);
+    public DetailViewerField setExportFormat(String exportFormat) {
+        return (DetailViewerField)setAttribute("exportFormat", exportFormat);
     }
 
     /**
@@ -408,9 +422,10 @@ public class DetailViewerField extends DBCField {
      * values in the field-formatters will not be executed for data in this field.
      *
      * @param exportRawValues New exportRawValues value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      */
-    public void setExportRawValues(Boolean exportRawValues) {
-        setAttribute("exportRawValues", exportRawValues);
+    public DetailViewerField setExportRawValues(Boolean exportRawValues) {
+        return (DetailViewerField)setAttribute("exportRawValues", exportRawValues);
     }
 
     /**
@@ -430,11 +445,12 @@ public class DetailViewerField extends DBCField {
      * com.smartgwt.client.data.DataSourceField#getFormat DataSourceField.format}.
      *
      * @param format New format value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormatString FormatString 
      * @see com.smartgwt.client.docs.ExportFormatting ExportFormatting overview and related methods
      */
-    public void setFormat(String format) {
-        setAttribute("format", format);
+    public DetailViewerField setFormat(String format) {
+        return (DetailViewerField)setAttribute("format", format);
     }
 
     /**
@@ -455,9 +471,10 @@ public class DetailViewerField extends DBCField {
      * specifies the height of the separator.
      *
      * @param height New height value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      */
-    public void setHeight(Integer height) {
-        setAttribute("height", height);
+    public DetailViewerField setHeight(Integer height) {
+        return (DetailViewerField)setAttribute("height", height);
     }
 
     /**
@@ -478,10 +495,11 @@ public class DetailViewerField extends DBCField {
      * com.smartgwt.client.widgets.viewer.DetailViewerField#getHiliteIconSize hiliteIconSize}.
      *
      * @param hiliteIconHeight New hiliteIconHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setHiliteIconHeight(Integer hiliteIconHeight) {
-        setAttribute("hiliteIconHeight", hiliteIconHeight);
+    public DetailViewerField setHiliteIconHeight(Integer hiliteIconHeight) {
+        return (DetailViewerField)setAttribute("hiliteIconHeight", hiliteIconHeight);
     }
 
     /**
@@ -504,10 +522,11 @@ public class DetailViewerField extends DBCField {
      * DetailViewer.hiliteIconLeftPadding}
      *
      * @param hiliteIconLeftPadding New hiliteIconLeftPadding value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setHiliteIconLeftPadding(Integer hiliteIconLeftPadding) {
-        setAttribute("hiliteIconLeftPadding", hiliteIconLeftPadding);
+    public DetailViewerField setHiliteIconLeftPadding(Integer hiliteIconLeftPadding) {
+        return (DetailViewerField)setAttribute("hiliteIconLeftPadding", hiliteIconLeftPadding);
     }
 
     /**
@@ -529,10 +548,11 @@ public class DetailViewerField extends DBCField {
      * Overrides {@link com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconPosition DetailViewer.hiliteIconPosition}
      *
      * @param hiliteIconPosition New hiliteIconPosition value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setHiliteIconPosition(HiliteIconPosition hiliteIconPosition) {
-        setAttribute("hiliteIconPosition", hiliteIconPosition == null ? null : hiliteIconPosition.getValue());
+    public DetailViewerField setHiliteIconPosition(HiliteIconPosition hiliteIconPosition) {
+        return (DetailViewerField)setAttribute("hiliteIconPosition", hiliteIconPosition == null ? null : hiliteIconPosition.getValue());
     }
 
     /**
@@ -554,10 +574,11 @@ public class DetailViewerField extends DBCField {
      * com.smartgwt.client.widgets.viewer.DetailViewer#getHiliteIconRightPadding DetailViewer.hiliteIconRightPadding}
      *
      * @param hiliteIconRightPadding New hiliteIconRightPadding value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setHiliteIconRightPadding(Integer hiliteIconRightPadding) {
-        setAttribute("hiliteIconRightPadding", hiliteIconRightPadding);
+    public DetailViewerField setHiliteIconRightPadding(Integer hiliteIconRightPadding) {
+        return (DetailViewerField)setAttribute("hiliteIconRightPadding", hiliteIconRightPadding);
     }
 
     /**
@@ -580,13 +601,14 @@ public class DetailViewerField extends DBCField {
      * {@link com.smartgwt.client.widgets.viewer.DetailViewerField#getHiliteIconHeight hiliteIconHeight}
      *
      * @param hiliteIconSize New hiliteIconSize value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.viewer.DetailViewer#setHiliteIconSize
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setHiliteIconWidth
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setHiliteIconHeight
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setHiliteIconSize(Integer hiliteIconSize) {
-        setAttribute("hiliteIconSize", hiliteIconSize);
+    public DetailViewerField setHiliteIconSize(Integer hiliteIconSize) {
+        return (DetailViewerField)setAttribute("hiliteIconSize", hiliteIconSize);
     }
 
     /**
@@ -613,10 +635,11 @@ public class DetailViewerField extends DBCField {
      * com.smartgwt.client.widgets.viewer.DetailViewerField#getHiliteIconSize hiliteIconSize}.
      *
      * @param hiliteIconWidth New hiliteIconWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setHiliteIconWidth(Integer hiliteIconWidth) {
-        setAttribute("hiliteIconWidth", hiliteIconWidth);
+    public DetailViewerField setHiliteIconWidth(Integer hiliteIconWidth) {
+        return (DetailViewerField)setAttribute("hiliteIconWidth", hiliteIconWidth);
     }
 
     /**
@@ -639,12 +662,13 @@ public class DetailViewerField extends DBCField {
      * <code>record.logoHeight</code> will control the height of the image.
      *
      * @param imageHeight New imageHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setImageSize
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setImageWidth
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
-    public void setImageHeight(Integer imageHeight) {
-        setAttribute("imageHeight", imageHeight);
+    public DetailViewerField setImageHeight(Integer imageHeight) {
+        return (DetailViewerField)setAttribute("imageHeight", imageHeight);
     }
 
     /**
@@ -667,12 +691,13 @@ public class DetailViewerField extends DBCField {
      * <code>record.logoHeight</code> will control the height of the image.
      *
      * @param imageHeight New imageHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setImageSize
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setImageWidth
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
-    public void setImageHeight(String imageHeight) {
-        setAttribute("imageHeight", imageHeight);
+    public DetailViewerField setImageHeight(String imageHeight) {
+        return (DetailViewerField)setAttribute("imageHeight", imageHeight);
     }
 
     /**
@@ -696,12 +721,13 @@ public class DetailViewerField extends DBCField {
      * <code>record.logoSize</code> will control the size of the image.
      *
      * @param imageSize New imageSize value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setImageWidth
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setImageHeight
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
-    public void setImageSize(Integer imageSize) {
-        setAttribute("imageSize", imageSize);
+    public DetailViewerField setImageSize(Integer imageSize) {
+        return (DetailViewerField)setAttribute("imageSize", imageSize);
     }
 
     /**
@@ -724,12 +750,13 @@ public class DetailViewerField extends DBCField {
      * <code>record.logoSize</code> will control the size of the image.
      *
      * @param imageSize New imageSize value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setImageWidth
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setImageHeight
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
-    public void setImageSize(String imageSize) {
-        setAttribute("imageSize", imageSize);
+    public DetailViewerField setImageSize(String imageSize) {
+        return (DetailViewerField)setAttribute("imageSize", imageSize);
     }
 
     /**
@@ -749,19 +776,20 @@ public class DetailViewerField extends DBCField {
 
     /**
      * If this field has type set to <code>"image"</code> and the URL for the image displayed is not absolute, the path of the
-     * URL will be relative to this string<br>
+     * URL will be relative to this string.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param imageURLPrefix New imageURLPrefix value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
-    public void setImageURLPrefix(String imageURLPrefix) {
-        setAttribute("imageURLPrefix", imageURLPrefix);
+    public DetailViewerField setImageURLPrefix(String imageURLPrefix) {
+        return (DetailViewerField)setAttribute("imageURLPrefix", imageURLPrefix);
     }
 
     /**
      * If this field has type set to <code>"image"</code> and the URL for the image displayed is not absolute, the path of the
-     * URL will be relative to this string<br>
+     * URL will be relative to this string.
      *
      * @return Current imageURLPrefix value. Default value is null
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
@@ -772,17 +800,43 @@ public class DetailViewerField extends DBCField {
     
 
     /**
+     * If this field has type set to <code>"image"</code>, the value of this property will be appended to the end of the URL
+     * for the icon displayed.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param imageURLSuffix New imageURLSuffix value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
+     */
+    public DetailViewerField setImageURLSuffix(String imageURLSuffix) {
+        return (DetailViewerField)setAttribute("imageURLSuffix", imageURLSuffix);
+    }
+
+    /**
+     * If this field has type set to <code>"image"</code>, the value of this property will be appended to the end of the URL
+     * for the icon displayed.
+     *
+     * @return Current imageURLSuffix value. Default value is null
+     * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
+     */
+    public String getImageURLSuffix()  {
+        return getAttributeAsString("imageURLSuffix");
+    }
+    
+
+    /**
      * Width of images shown for fieldTypes image in this field. <P> If set to a String, assumed to be a property on each
      * record that specifies the image width.  For example, if <code>field.imageWidth</code> is "logoWidth",
      * <code>record.logoWidth</code> will control the width of the image.
      *
      * @param imageWidth New imageWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setImageSize
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setImageHeight
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
-    public void setImageWidth(Integer imageWidth) {
-        setAttribute("imageWidth", imageWidth);
+    public DetailViewerField setImageWidth(Integer imageWidth) {
+        return (DetailViewerField)setAttribute("imageWidth", imageWidth);
     }
 
     /**
@@ -805,12 +859,13 @@ public class DetailViewerField extends DBCField {
      * <code>record.logoWidth</code> will control the width of the image.
      *
      * @param imageWidth New imageWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setImageSize
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setImageHeight
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
-    public void setImageWidth(String imageWidth) {
-        setAttribute("imageWidth", imageWidth);
+    public DetailViewerField setImageWidth(String imageWidth) {
+        return (DetailViewerField)setAttribute("imageWidth", imageWidth);
     }
 
     /**
@@ -835,9 +890,10 @@ public class DetailViewerField extends DBCField {
      * from the primary DataSource.
      *
      * @param includeFrom New includeFrom value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      */
-    public void setIncludeFrom(String includeFrom) {
-        setAttribute("includeFrom", includeFrom);
+    public DetailViewerField setIncludeFrom(String includeFrom) {
+        return (DetailViewerField)setAttribute("includeFrom", includeFrom);
     }
 
     /**
@@ -859,13 +915,14 @@ public class DetailViewerField extends DBCField {
      * com.smartgwt.client.widgets.viewer.DetailViewerRecord#getLinkText DetailViewerRecord.linkText}.
      *
      * @param linkText New linkText value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setType
      * @see com.smartgwt.client.widgets.viewer.DetailViewerRecord#setLinkText
      * @see com.smartgwt.client.widgets.viewer.DetailViewer#setLinkTextProperty
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setLinkTextProperty
      */
-    public void setLinkText(String linkText) {
-        setAttribute("linkText", linkText);
+    public DetailViewerField setLinkText(String linkText) {
+        return (DetailViewerField)setAttribute("linkText", linkText);
     }
 
     /**
@@ -889,13 +946,14 @@ public class DetailViewerField extends DBCField {
      * is set to "link".
      *
      * @param linkTextProperty New linkTextProperty value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setType
      * @see com.smartgwt.client.widgets.viewer.DetailViewerRecord#setLinkText
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setLinkText
      * @see com.smartgwt.client.widgets.viewer.DetailViewer#setLinkTextProperty
      */
-    public void setLinkTextProperty(String linkTextProperty) {
-        setAttribute("linkTextProperty", linkTextProperty);
+    public DetailViewerField setLinkTextProperty(String linkTextProperty) {
+        return (DetailViewerField)setAttribute("linkTextProperty", linkTextProperty);
     }
 
     /**
@@ -919,10 +977,11 @@ public class DetailViewerField extends DBCField {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param linkURLPrefix New linkURLPrefix value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setType
      */
-    public void setLinkURLPrefix(String linkURLPrefix) {
-        setAttribute("linkURLPrefix", linkURLPrefix);
+    public DetailViewerField setLinkURLPrefix(String linkURLPrefix) {
+        return (DetailViewerField)setAttribute("linkURLPrefix", linkURLPrefix);
     }
 
     /**
@@ -943,10 +1002,11 @@ public class DetailViewerField extends DBCField {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param linkURLSuffix New linkURLSuffix value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setType
      */
-    public void setLinkURLSuffix(String linkURLSuffix) {
-        setAttribute("linkURLSuffix", linkURLSuffix);
+    public DetailViewerField setLinkURLSuffix(String linkURLSuffix) {
+        return (DetailViewerField)setAttribute("linkURLSuffix", linkURLSuffix);
     }
 
     /**
@@ -969,10 +1029,11 @@ public class DetailViewerField extends DBCField {
      * displayField}.
      *
      * @param name New name value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FieldName FieldName 
      */
-    public void setName(String name) {
-        setAttribute("name", name);
+    public DetailViewerField setName(String name) {
+        return (DetailViewerField)setAttribute("name", name);
     }
 
     /**
@@ -996,10 +1057,11 @@ public class DetailViewerField extends DBCField {
      * DetailViewer.printCellStyle}
      *
      * @param printCellStyle New printCellStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setPrintCellStyle(String printCellStyle) {
-        setAttribute("printCellStyle", printCellStyle);
+    public DetailViewerField setPrintCellStyle(String printCellStyle) {
+        return (DetailViewerField)setAttribute("printCellStyle", printCellStyle);
     }
 
     /**
@@ -1020,9 +1082,10 @@ public class DetailViewerField extends DBCField {
      * Download icons.
      *
      * @param showFileInline New showFileInline value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      */
-    public void setShowFileInline(Boolean showFileInline) {
-        setAttribute("showFileInline", showFileInline);
+    public DetailViewerField setShowFileInline(Boolean showFileInline) {
+        return (DetailViewerField)setAttribute("showFileInline", showFileInline);
     }
 
     /**
@@ -1042,10 +1105,11 @@ public class DetailViewerField extends DBCField {
      * the anchor tag used to render  the link.  <code>target</code> is applicable only if the field type is set to "link".
      *
      * @param target New target value. Default value is "_blank"
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.viewer.DetailViewerField#setType
      */
-    public void setTarget(String target) {
-        setAttribute("target", target);
+    public DetailViewerField setTarget(String target) {
+        return (DetailViewerField)setAttribute("target", target);
     }
 
     /**
@@ -1071,10 +1135,11 @@ public class DetailViewerField extends DBCField {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param timeFormatter New timeFormatter value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setTimeFormatter(TimeDisplayFormat timeFormatter) {
-        setAttribute("timeFormatter", timeFormatter == null ? null : timeFormatter.getValue());
+    public DetailViewerField setTimeFormatter(TimeDisplayFormat timeFormatter) {
+        return (DetailViewerField)setAttribute("timeFormatter", timeFormatter == null ? null : timeFormatter.getValue());
     }
 
     /**
@@ -1099,11 +1164,12 @@ public class DetailViewerField extends DBCField {
      * DetailViewer.fieldIdProperty} on this field.  So, by default, the title of a field is the value of its "name" property.
      *
      * @param title New title value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.viewer.DetailViewer#setFieldIdProperty
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setTitle(String title) {
-        setAttribute("title", title);
+    public DetailViewerField setTitle(String title) {
+        return (DetailViewerField)setAttribute("title", title);
     }
 
     /**
@@ -1144,9 +1210,10 @@ public class DetailViewerField extends DBCField {
      * com.smartgwt.client.widgets.viewer.DetailViewerField#getTarget target} for more information.</p></li> </ul>
      *
      * @param type New type value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      */
-    public void setType(String type) {
-        setAttribute("type", type);
+    public DetailViewerField setType(String type) {
+        return (DetailViewerField)setAttribute("type", type);
     }
 
     /**
@@ -1184,10 +1251,11 @@ public class DetailViewerField extends DBCField {
      * value of this attribute specifies the header text.
      *
      * @param value New value value. Default value is "undefined"
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setValue(String value) {
-        setAttribute("value", value);
+    public DetailViewerField setValue(String value) {
+        return (DetailViewerField)setAttribute("value", value);
     }
 
     /**
@@ -1207,9 +1275,10 @@ public class DetailViewerField extends DBCField {
      * values for the field (row).
      *
      * @param valueMap New valueMap value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.viewer.DetailViewerField DetailViewerField} instance, for chaining setter calls
      */
-    public void setValueMap(Map valueMap) {
-        setAttribute("valueMap", valueMap);
+    public DetailViewerField setValueMap(Map valueMap) {
+        return (DetailViewerField)setAttribute("valueMap", valueMap);
     }
     
 

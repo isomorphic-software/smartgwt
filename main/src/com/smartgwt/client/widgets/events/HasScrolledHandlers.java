@@ -22,7 +22,7 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 public interface HasScrolledHandlers extends HasHandlers {
     /**
-     * Notification that this component has just scrolled.  Use with  observation. <P> Fires for both CSS and {@link
+     * Notification that this component has just scrolled.  <P> Fires for both CSS and {@link
      * com.smartgwt.client.widgets.Scrollbar "synthetic" scrollbars}.
      *
      * @param handler the scrolled handler

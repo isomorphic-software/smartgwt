@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Defines a simple gradient vertical gradient between {@link com.smartgwt.client.widgets.drawing.Gradient#getStartColor
@@ -106,9 +109,10 @@ public class Gradient extends DataClass {
      * An array of color stops for this gradient.
      *
      * @param colorStops New colorStops value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.Gradient Gradient} instance, for chaining setter calls
      */
-    public void setColorStops(ColorStop... colorStops) {
-        setAttribute("colorStops", colorStops);
+    public Gradient setColorStops(ColorStop... colorStops) {
+        return (Gradient)setAttribute("colorStops", colorStops);
     }
 
     /**
@@ -126,10 +130,11 @@ public class Gradient extends DataClass {
      * endColor are set then {@link com.smartgwt.client.widgets.drawing.Gradient#getColorStops colorStops} is ignored.
      *
      * @param endColor New endColor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.Gradient Gradient} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      */
-    public void setEndColor(String endColor) {
-        setAttribute("endColor", endColor);
+    public Gradient setEndColor(String endColor) {
+        return (Gradient)setAttribute("endColor", endColor);
     }
 
     /**
@@ -150,10 +155,11 @@ public class Gradient extends DataClass {
      * is assigned directly to a DrawItem. <p> The ID must be unique within DrawPane.gradients if defined.
      *
      * @param id New id value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.Gradient Gradient} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Identifier Identifier 
      */
-    public void setId(String id) {
-        setAttribute("id", id);
+    public Gradient setId(String id) {
+        return (Gradient)setAttribute("id", id);
     }
 
     /**
@@ -174,10 +180,11 @@ public class Gradient extends DataClass {
      * endColor} are set then {@link com.smartgwt.client.widgets.drawing.Gradient#getColorStops colorStops} is ignored.
      *
      * @param startColor New startColor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.Gradient Gradient} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      */
-    public void setStartColor(String startColor) {
-        setAttribute("startColor", startColor);
+    public Gradient setStartColor(String startColor) {
+        return (Gradient)setAttribute("startColor", startColor);
     }
 
     /**

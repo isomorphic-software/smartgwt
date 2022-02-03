@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Internal use only.
@@ -156,8 +159,8 @@ public class AceAnchor extends BaseClass {
     /**
      * Internal use only.
      */
-    public void setColumn(Integer column)  throws IllegalStateException {
-        setAttribute("column", column, false);
+    public AceAnchor setColumn(Integer column)  throws IllegalStateException {
+        return (AceAnchor)setAttribute("column", column, false);
     }
 
     /**
@@ -171,8 +174,8 @@ public class AceAnchor extends BaseClass {
     /**
      * Internal use only.
      */
-    public void setDocument(AceDocument document)  throws IllegalStateException {
-        setAttribute("document", document == null ? null : document.getOrCreateJsObj(), false);
+    public AceAnchor setDocument(AceDocument document)  throws IllegalStateException {
+        return (AceAnchor)setAttribute("document", document == null ? null : document.getOrCreateJsObj(), false);
     }
 
     /**
@@ -186,8 +189,8 @@ public class AceAnchor extends BaseClass {
     /**
      * Internal use only.
      */
-    public void setRow(Integer row)  throws IllegalStateException {
-        setAttribute("row", row, false);
+    public AceAnchor setRow(Integer row)  throws IllegalStateException {
+        return (AceAnchor)setAttribute("row", row, false);
     }
 
     /**

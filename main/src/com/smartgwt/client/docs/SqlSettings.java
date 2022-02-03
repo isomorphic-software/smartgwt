@@ -33,6 +33,7 @@ package com.smartgwt.client.docs;
  *  <tr><td><b>informix</b></td><td>Informix 11.5 and greater</td></tr>
  *  <tr><td><b>sqlserver</b></td><td>Microsoft SQL Server 2000 and greater</td></tr>
  *  <tr><td><b>mysql</b></td><td>MySQL 3.2.x and greater</td></tr>
+ *  <tr><td><b>mariadb</b></td><td>MariaDB 5.1 and greater</td></tr>
  *  <tr><td><b>oracle</b></td><td>Oracle 8.0.5, 8i and greater</td></tr>
  *  <tr><td><b>postgresql</b></td><td>PostgreSQL 7.x and greater</td></tr>
  *  <tr><td><b>generic</b></td><td>A generic SQL92 database, with limitations described in
@@ -54,6 +55,7 @@ package com.smartgwt.client.docs;
  *  <code>com.microsoft.sqlserver.jdbc.SQLServerDriver</code> (Microsoft changed the order of 
  *  "jdbc" and "sqlserver" between the 2000 and 2005 editions of the product)</td></tr>
  * <tr><td><b>mysql</b></td><td><code>com.mysql.jdbc.jdbc2.optional.MysqlDataSource</code></td></tr>
+ *  <tr><td><b>mariadb</b></td><td><code>org.mariadb.jdbc.MariaDbDataSource</code></td></tr>
  *  <tr><td><b>oracle</b></td><td><code>oracle.jdbc.driver.OracleDriver</code></td></tr>
  *  <tr><td><b>postgresql</b></td><td><code>org.postgresql.Driver</code></td></tr>
  *  </table><p>
@@ -105,6 +107,38 @@ package com.smartgwt.client.docs;
  *  setting <code>sql.MyDatabase.driver.useUnicode</code> to true means we'll attempt to call 
  *  <code>setUseUnicode(true)</code> on this class.  This would have exactly the same effect as
  *  defining the connection URL manually and specifying the parameter <code>useUnicode=true</code>
+ * 
+ *  Mysql vs MariaDB: there is broad compatibility between these two databases as described in
+ * <a href='https://mariadb.com/kb/en/library/mariadb-vs-mysql-compatibility/'
+ * target='_blank'>https://mariadb.com/kb/en/library/mariadb-vs-mysql-compatibility/</a>.  Within
+ *  the bounds of that compatibility matrix, you can use database.type 'mysql' and 'mariadb' 
+ *  interchangeably, and likewise with the drivers that you use.  However for future compatibility
+ * it is recommended that you use <code>database.type: mariadb</code> for MariaDB.  This will
+ * ensure
+ *  that as MariaDB implements new features and backompat breaking changes, your application won't
+ * run into any gotchas because the Smart GWT server logic will automatically use the right
+ * feature
+ *  set to accomplish documented behavior.
+ * 
+ *  <h4>Smartclient properties</h4><p>
+ *  <b><code>sql.aliasLengthLimit</code> and <code>sql.MyDatabase.aliasLengthLimit</code></b><br>
+ *  These properties override the default table alias length limit when using features like
+ * {@link com.smartgwt.client.docs.serverds.DataSourceField#includeVia
+ * DataSourceField.includeVia}.
+ *  Default alias length limit is set accordingly to the documentation for supported databases
+ *  and defaults to 128 characters, except these databases:<p>
+ *  <table style="font-size:10px">
+ *  <tr><td><b>firebirdsql</b></td>  <td>63</td></tr>
+ *  <tr><td><b>mysql</b></td>        <td>256</td></tr>
+ *  <tr><td><b>mariadb</b></td>      <td>256</td></tr>
+ * <tr><td><b>oracle</b></td>       <td>automatically set to 128 since DB version 12.2 and to 30
+ * for older versions</td></tr>
+ *  <tr><td><b>postgresql</b></td>   <td>63</td></tr>
+ *  </table><p>
+ *  In order to support portability across databases it is advised to keep alias length limit at
+ * the lowest supported value. Use global setting <code>sql.aliasLengthLimit</code> to apply limit
+ *  across all DB drivers, or use DB specific setting <code>sql.MyDatabase.aliasLengthLimit</code>
+ *  (overrides the global one).
  */
 public interface SqlSettings {
 }

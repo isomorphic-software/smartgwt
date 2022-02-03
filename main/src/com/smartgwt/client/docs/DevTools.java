@@ -307,16 +307,19 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.tools.CanvasEditProxy
  * @see com.smartgwt.client.tools.LayoutEditProxy
  * @see com.smartgwt.client.tools.SplitPaneEditProxy
- * @see com.smartgwt.client.tools.SectionStackEditProxy
  * @see com.smartgwt.client.tools.TabSetEditProxy
  * @see com.smartgwt.client.tools.StatefulCanvasEditProxy
+ * @see com.smartgwt.client.tools.ImgEditProxy
  * @see com.smartgwt.client.tools.LabelEditProxy
  * @see com.smartgwt.client.tools.ProgressbarEditProxy
  * @see com.smartgwt.client.tools.WindowEditProxy
  * @see com.smartgwt.client.tools.DetailViewerEditProxy
  * @see com.smartgwt.client.tools.MenuEditProxy
+ * @see com.smartgwt.client.tools.SectionStackEditProxy
+ * @see com.smartgwt.client.tools.SectionStackSectionEditProxy
  * @see com.smartgwt.client.tools.FormEditProxy
  * @see com.smartgwt.client.tools.FormItemEditProxy
+ * @see com.smartgwt.client.tools.FileItemEditProxy
  * @see com.smartgwt.client.tools.TextItemEditProxy
  * @see com.smartgwt.client.tools.TextAreaItemEditProxy
  * @see com.smartgwt.client.tools.SelectItemEditProxy

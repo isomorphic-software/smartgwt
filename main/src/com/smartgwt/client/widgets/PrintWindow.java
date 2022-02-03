@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -177,9 +180,10 @@ public class PrintWindow extends Window {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param externalStylesheet New externalStylesheet value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.PrintWindow PrintWindow} instance, for chaining setter calls
      */
-    public void setExternalStylesheet(String externalStylesheet) {
-        setAttribute("externalStylesheet", externalStylesheet, true);
+    public PrintWindow setExternalStylesheet(String externalStylesheet) {
+        return (PrintWindow)setAttribute("externalStylesheet", externalStylesheet, true);
     }
 
     /**
@@ -200,9 +204,10 @@ public class PrintWindow extends Window {
      * Setter for title for the print button
      *
      * @param printButtonTitle new title for the print button. Default value is "Print"
+     * @return {@link com.smartgwt.client.widgets.PrintWindow PrintWindow} instance, for chaining setter calls
      */
-    public void setPrintButtonTitle(String printButtonTitle) {
-        setAttribute("printButtonTitle", printButtonTitle, true);
+    public PrintWindow setPrintButtonTitle(String printButtonTitle) {
+        return (PrintWindow)setAttribute("printButtonTitle", printButtonTitle, true);
     }
 
     /**

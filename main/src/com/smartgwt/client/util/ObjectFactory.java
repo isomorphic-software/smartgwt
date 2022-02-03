@@ -336,8 +336,12 @@ public final class ObjectFactory {
             dataJsObj = @com.smartgwt.client.tools.SerializationSettings::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("FacetValue" === smartClientClassName) {
             dataJsObj = @com.smartgwt.client.widgets.cube.FacetValue::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("NotifyAction" === smartClientClassName) {
+            dataJsObj = @com.smartgwt.client.widgets.notify.NotifyAction::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("FiscalCalendar" === smartClientClassName) {
             dataJsObj = @com.smartgwt.client.widgets.FiscalCalendar::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("CreateScreenSettings" === smartClientClassName) {
+            dataJsObj = @com.smartgwt.client.rpc.CreateScreenSettings::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("Shadow" === smartClientClassName) {
             dataJsObj = @com.smartgwt.client.widgets.drawing.Shadow::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("ListProperties" === smartClientClassName) {
@@ -376,6 +380,8 @@ public final class ObjectFactory {
             dataJsObj = @com.smartgwt.client.data.DSLoadSettings::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("DiscoverTreeSettings" === smartClientClassName) {
             dataJsObj = @com.smartgwt.client.widgets.tree.DiscoverTreeSettings::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("LoadProjectSettings" === smartClientClassName) {
+            dataJsObj = @com.smartgwt.client.rpc.LoadProjectSettings::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("EditNode" === smartClientClassName) {
             dataJsObj = @com.smartgwt.client.tools.EditNode::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("DrawnValue" === smartClientClassName) {
@@ -394,6 +400,8 @@ public final class ObjectFactory {
             dataJsObj = @com.smartgwt.client.data.OperationBinding::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("DataSourceField" === smartClientClassName) {
             dataJsObj = @com.smartgwt.client.data.DataSourceField::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("QualityIndicatedLocator" === smartClientClassName) {
+            dataJsObj = @com.smartgwt.client.util.QualityIndicatedLocator::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("RadialGradient" === smartClientClassName) {
             dataJsObj = @com.smartgwt.client.widgets.drawing.RadialGradient::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("KeyIdentifier" === smartClientClassName) {
@@ -432,6 +440,10 @@ public final class ObjectFactory {
             dataJsObj = @com.smartgwt.client.widgets.calendar.CalendarEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("StretchItem" === smartClientClassName) {
             dataJsObj = @com.smartgwt.client.widgets.StretchItem::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("SCStatefulImgConfig" === smartClientClassName) {
+            dataJsObj = @com.smartgwt.client.widgets.SCStatefulImgConfig::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("NotifySettings" === smartClientClassName) {
+            dataJsObj = @com.smartgwt.client.widgets.notify.NotifySettings::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("FileSpec" === smartClientClassName) {
             dataJsObj = @com.smartgwt.client.data.FileSpec::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("FiscalYear" === smartClientClassName) {
@@ -468,10 +480,14 @@ public final class ObjectFactory {
                                                                                           boolean createDefault)
     /*-{
         var instance = null;
-        if ("SectionStackEditProxy" === smartClientClassName) {
+        if ("ResetPasswordTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.ResetPasswordTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("SectionStackEditProxy" === smartClientClassName) {
             instance = @com.smartgwt.client.tools.SectionStackEditProxy::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("SimpleType" === smartClientClassName) {
             instance = @com.smartgwt.client.data.SimpleType::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("DSUpdateTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.DSUpdateTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("AceCompleter" === smartClientClassName) {
             instance = @com.smartgwt.client.widgets.ace.AceCompleter::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("DrawPaneEditProxy" === smartClientClassName) {
@@ -494,12 +510,18 @@ public final class ObjectFactory {
             instance = @com.smartgwt.client.widgets.ace.AceAnchor::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("CheckboxItemEditProxy" === smartClientClassName) {
             instance = @com.smartgwt.client.tools.CheckboxItemEditProxy::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("GridRemoveSelectedDataTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.GridRemoveSelectedDataTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("CanvasEditProxy" === smartClientClassName) {
             instance = @com.smartgwt.client.tools.CanvasEditProxy::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("AceEditSession" === smartClientClassName) {
             instance = @com.smartgwt.client.widgets.ace.AceEditSession::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("MockDataSource" === smartClientClassName) {
             instance = @com.smartgwt.client.data.MockDataSource::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("AskForValueTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.AskForValueTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("NavigateDetailPaneTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.NavigateDetailPaneTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("DetailViewerEditProxy" === smartClientClassName) {
             instance = @com.smartgwt.client.tools.DetailViewerEditProxy::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("UserTask" === smartClientClassName) {
@@ -510,30 +532,50 @@ public final class ObjectFactory {
             instance = @com.smartgwt.client.data.ResultSet::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("Task" === smartClientClassName) {
             instance = @com.smartgwt.client.util.workflow.Task::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
-        } else         if ("Process" === smartClientClassName) {
-            instance = @com.smartgwt.client.util.workflow.Process::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("SetLabelTextTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.SetLabelTextTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("SelectItemEditProxy" === smartClientClassName) {
             instance = @com.smartgwt.client.tools.SelectItemEditProxy::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("Process" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.Process::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("SetButtonTitleTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.SetButtonTitleTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("GridEditProxy" === smartClientClassName) {
             instance = @com.smartgwt.client.tools.GridEditProxy::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("SyntaxHiliter" === smartClientClassName) {
             instance = @com.smartgwt.client.util.SyntaxHiliter::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("FormHideFieldTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.FormHideFieldTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("EditContext" === smartClientClassName) {
             instance = @com.smartgwt.client.tools.EditContext::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("Tree" === smartClientClassName) {
             instance = @com.smartgwt.client.widgets.tree.Tree::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("ComponentTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.ComponentTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("TextSettings" === smartClientClassName) {
             instance = @com.smartgwt.client.data.TextSettings::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("ShowComponentTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.ShowComponentTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("DecisionGateway" === smartClientClassName) {
             instance = @com.smartgwt.client.util.workflow.DecisionGateway::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("HideComponentTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.HideComponentTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("XJSONDataSource" === smartClientClassName) {
             instance = @com.smartgwt.client.data.XJSONDataSource::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("ImgEditProxy" === smartClientClassName) {
+            instance = @com.smartgwt.client.tools.ImgEditProxy::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("WSDataSource" === smartClientClassName) {
             instance = @com.smartgwt.client.data.WSDataSource::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("WindowEditProxy" === smartClientClassName) {
             instance = @com.smartgwt.client.tools.WindowEditProxy::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("GridSaveAllEditsTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.GridSaveAllEditsTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("ShowNextToComponentTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.ShowNextToComponentTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("JSONEncoder" === smartClientClassName) {
             instance = @com.smartgwt.client.util.JSONEncoder::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("StartTransactionTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.StartTransactionTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("FacadeDataSource" === smartClientClassName) {
             instance = @com.smartgwt.client.data.FacadeDataSource::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("HiddenPalette" === smartClientClassName) {
@@ -546,30 +588,64 @@ public final class ObjectFactory {
             instance = @com.smartgwt.client.tools.TextAreaItemEditProxy::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("DrawLabelEditProxy" === smartClientClassName) {
             instance = @com.smartgwt.client.tools.DrawLabelEditProxy::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("GridExportDataTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.GridExportDataTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("LayoutEditProxy" === smartClientClassName) {
             instance = @com.smartgwt.client.tools.LayoutEditProxy::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("TextExportSettings" === smartClientClassName) {
             instance = @com.smartgwt.client.data.TextExportSettings::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("ProcessSequence" === smartClientClassName) {
             instance = @com.smartgwt.client.util.workflow.ProcessSequence::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("FileItemEditProxy" === smartClientClassName) {
+            instance = @com.smartgwt.client.tools.FileItemEditProxy::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("FormSetFieldValueTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.FormSetFieldValueTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("EndProcessTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.EndProcessTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("StartProcessTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.StartProcessTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("TextItemEditProxy" === smartClientClassName) {
             instance = @com.smartgwt.client.tools.TextItemEditProxy::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("GridSetEditValueTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.GridSetEditValueTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("AceUndoManager" === smartClientClassName) {
             instance = @com.smartgwt.client.widgets.ace.AceUndoManager::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("DSRemoveTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.DSRemoveTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("ResultTree" === smartClientClassName) {
             instance = @com.smartgwt.client.widgets.tree.ResultTree::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("TextImportSettings" === smartClientClassName) {
             instance = @com.smartgwt.client.data.TextImportSettings::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("RestDataSource" === smartClientClassName) {
             instance = @com.smartgwt.client.data.RestDataSource::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("FormValidateValuesTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.FormValidateValuesTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("ValuesManager" === smartClientClassName) {
             instance = @com.smartgwt.client.widgets.form.ValuesManager::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("XMLSyntaxHiliter" === smartClientClassName) {
             instance = @com.smartgwt.client.util.XMLSyntaxHiliter::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("PrintCanvasTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.PrintCanvasTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("LogOutTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.LogOutTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("GridExportClientDataTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.GridExportClientDataTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("ShowMessageTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.ShowMessageTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("UserConfirmationGateway" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.UserConfirmationGateway::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("FormResetValuesTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.FormResetValuesTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("ShowNotificationTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.ShowNotificationTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("AceMarker" === smartClientClassName) {
             instance = @com.smartgwt.client.widgets.ace.AceMarker::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("SplitPaneEditProxy" === smartClientClassName) {
             instance = @com.smartgwt.client.tools.SplitPaneEditProxy::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("GridFetchDataTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.GridFetchDataTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("NavigateListPaneTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.NavigateListPaneTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("FormEditProxy" === smartClientClassName) {
             instance = @com.smartgwt.client.tools.FormEditProxy::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("FacetChartEditProxy" === smartClientClassName) {
@@ -580,20 +656,52 @@ public final class ObjectFactory {
             instance = @com.smartgwt.client.tools.EditProxy::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("ScriptTask" === smartClientClassName) {
             instance = @com.smartgwt.client.util.workflow.ScriptTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("GridFetchRelatedDataTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.GridFetchRelatedDataTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("DSAddTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.DSAddTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("SetSectionTitleTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.SetSectionTitleTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("SendTransactionTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.SendTransactionTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("SectionStackSectionEditProxy" === smartClientClassName) {
+            instance = @com.smartgwt.client.tools.SectionStackSectionEditProxy::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("FormSaveDataTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.FormSaveDataTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("FormEditNewRecordTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.FormEditNewRecordTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("DSFetchTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.DSFetchTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("AceRange" === smartClientClassName) {
             instance = @com.smartgwt.client.widgets.ace.AceRange::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("FormEditRecordTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.FormEditRecordTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("XORGateway" === smartClientClassName) {
             instance = @com.smartgwt.client.util.workflow.XORGateway::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("FormClearValuesTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.FormClearValuesTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("FormSetValuesTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.FormSetValuesTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("GridStartEditingTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.GridStartEditingTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("TabSetEditProxy" === smartClientClassName) {
             instance = @com.smartgwt.client.tools.TabSetEditProxy::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("ProgressbarEditProxy" === smartClientClassName) {
             instance = @com.smartgwt.client.tools.ProgressbarEditProxy::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("NodeLocator" === smartClientClassName) {
+            instance = @com.smartgwt.client.widgets.tree.NodeLocator::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("FormDisableFieldTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.FormDisableFieldTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("ServiceTask" === smartClientClassName) {
             instance = @com.smartgwt.client.util.workflow.ServiceTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("FormEditSelectedTask" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.FormEditSelectedTask::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("AceDocument" === smartClientClassName) {
             instance = @com.smartgwt.client.widgets.ace.AceDocument::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("JSSyntaxHiliter" === smartClientClassName) {
             instance = @com.smartgwt.client.util.JSSyntaxHiliter::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("TaskDecision" === smartClientClassName) {
+            instance = @com.smartgwt.client.util.workflow.TaskDecision::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else 
         if ($wnd.isc.isAn.Instance(javaScriptObject) && createDefault) {
             instance = @com.smartgwt.client.core.BaseClass::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);

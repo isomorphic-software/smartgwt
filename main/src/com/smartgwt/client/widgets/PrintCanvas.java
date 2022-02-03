@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -177,9 +180,10 @@ public class PrintCanvas extends Canvas {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param externalStylesheet New externalStylesheet value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.PrintCanvas PrintCanvas} instance, for chaining setter calls
      */
-    public void setExternalStylesheet(String externalStylesheet) {
-        setAttribute("externalStylesheet", externalStylesheet, true);
+    public PrintCanvas setExternalStylesheet(String externalStylesheet) {
+        return (PrintCanvas)setAttribute("externalStylesheet", externalStylesheet, true);
     }
 
     /**
@@ -199,10 +203,11 @@ public class PrintCanvas extends Canvas {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param printFrameURL New printFrameURL value. Default value is "[HELPERS]printFrame.html"
+     * @return {@link com.smartgwt.client.widgets.PrintCanvas PrintCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPrintFrameURL(String printFrameURL)  throws IllegalStateException {
-        setAttribute("printFrameURL", printFrameURL, false);
+    public PrintCanvas setPrintFrameURL(String printFrameURL)  throws IllegalStateException {
+        return (PrintCanvas)setAttribute("printFrameURL", printFrameURL, false);
     }
 
     /**

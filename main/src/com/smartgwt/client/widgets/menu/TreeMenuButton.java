@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -177,10 +180,11 @@ public class TreeMenuButton extends MenuButton {
      * (as a disabled item) in the empty menu.
      *
      * @param emptyMenuMessage New emptyMenuMessage value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.TreeMenuButton TreeMenuButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setEmptyMenuMessage(String emptyMenuMessage) {
-        setAttribute("emptyMenuMessage", emptyMenuMessage, true);
+    public TreeMenuButton setEmptyMenuMessage(String emptyMenuMessage) {
+        return (TreeMenuButton)setAttribute("emptyMenuMessage", emptyMenuMessage, true);
     }
 
     /**
@@ -200,10 +204,11 @@ public class TreeMenuButton extends MenuButton {
      * will  appear between the folders in the selected value's path.
      *
      * @param pathSeparatorString New pathSeparatorString value. Default value is "&amp;nbsp;&amp;gt;&amp;nbsp;"
+     * @return {@link com.smartgwt.client.widgets.menu.TreeMenuButton TreeMenuButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setPathSeparatorString(String pathSeparatorString) {
-        setAttribute("pathSeparatorString", pathSeparatorString, true);
+    public TreeMenuButton setPathSeparatorString(String pathSeparatorString) {
+        return (TreeMenuButton)setAttribute("pathSeparatorString", pathSeparatorString, true);
     }
 
     /**
@@ -223,10 +228,11 @@ public class TreeMenuButton extends MenuButton {
      * the stylesheet applied to this widget).
      *
      * @param selectedBaseStyle New selectedBaseStyle value. Default value is "treeMenuSelected"
+     * @return {@link com.smartgwt.client.widgets.menu.TreeMenuButton TreeMenuButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setSelectedBaseStyle(String selectedBaseStyle) {
-        setAttribute("selectedBaseStyle", selectedBaseStyle, true);
+    public TreeMenuButton setSelectedBaseStyle(String selectedBaseStyle) {
+        return (TreeMenuButton)setAttribute("selectedBaseStyle", selectedBaseStyle, true);
     }
 
     /**
@@ -246,9 +252,10 @@ public class TreeMenuButton extends MenuButton {
      * we  show the full path to the item, or just the item's title as the button's title?
      *
      * @param showPath New showPath value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.menu.TreeMenuButton TreeMenuButton} instance, for chaining setter calls
      */
-    public void setShowPath(boolean showPath) {
-        setAttribute("showPath", showPath, true);
+    public TreeMenuButton setShowPath(boolean showPath) {
+        return (TreeMenuButton)setAttribute("showPath", showPath, true);
     }
 
     /**
@@ -302,11 +309,12 @@ public class TreeMenuButton extends MenuButton {
      * com.smartgwt.client.widgets.menu.SelectionTreeMenu}.
      *
      * @param treeMenuConstructor New treeMenuConstructor value. Default value is "SelectionTreeMenu"
+     * @return {@link com.smartgwt.client.widgets.menu.TreeMenuButton TreeMenuButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setTreeMenuConstructor(String treeMenuConstructor)  throws IllegalStateException {
-        setAttribute("treeMenuConstructor", treeMenuConstructor, false);
+    public TreeMenuButton setTreeMenuConstructor(String treeMenuConstructor)  throws IllegalStateException {
+        return (TreeMenuButton)setAttribute("treeMenuConstructor", treeMenuConstructor, false);
     }
 
     /**
@@ -326,10 +334,11 @@ public class TreeMenuButton extends MenuButton {
      * title  when the user has not selected any value from the hierachichal menu.
      *
      * @param unselectedTitle New unselectedTitle value. Default value is "Choose a value"
+     * @return {@link com.smartgwt.client.widgets.menu.TreeMenuButton TreeMenuButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setUnselectedTitle(String unselectedTitle) {
-        setAttribute("unselectedTitle", unselectedTitle, true);
+    public TreeMenuButton setUnselectedTitle(String unselectedTitle) {
+        return (TreeMenuButton)setAttribute("unselectedTitle", unselectedTitle, true);
     }
 
     /**

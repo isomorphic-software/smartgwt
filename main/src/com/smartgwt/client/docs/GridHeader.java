@@ -37,6 +37,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSorterDefaults
  * @see com.smartgwt.client.widgets.grid.ListGrid#getSorterProperties
  * @see com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderSpanContextMenu
  */
 public interface GridHeader {
 }

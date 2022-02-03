@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -94,7 +97,7 @@ import com.smartgwt.logicalstructure.widgets.cube.*;
 import com.smartgwt.logicalstructure.widgets.tools.*;
 
 /**
- * Lays out a series of components, calls "tiles", in a grid with multiple tiles per row.
+ * Lays out a series of components, called "tiles", in a grid with multiple tiles per row.
  */
 @BeanFactory.FrameworkClass
 @BeanFactory.ScClassName("TileLayout")
@@ -174,10 +177,11 @@ public class TileLayout extends Canvas {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param animateTileChange New animateTileChange value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tile.TileLayout TileLayout} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setAnimateTileChange(Boolean animateTileChange) {
-        setAttribute("animateTileChange", animateTileChange, true);
+    public TileLayout setAnimateTileChange(Boolean animateTileChange) {
+        return (TileLayout)setAttribute("animateTileChange", animateTileChange, true);
     }
 
     /**
@@ -199,10 +203,11 @@ public class TileLayout extends Canvas {
      * com.smartgwt.client.widgets.Canvas#getEndLine tile.endLine}.
      *
      * @param autoWrapLines New autoWrapLines value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tile.TileLayout TileLayout} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAutoWrapLines(Boolean autoWrapLines)  throws IllegalStateException {
-        setAttribute("autoWrapLines", autoWrapLines, false);
+    public TileLayout setAutoWrapLines(Boolean autoWrapLines)  throws IllegalStateException {
+        return (TileLayout)setAttribute("autoWrapLines", autoWrapLines, false);
     }
 
     /**
@@ -223,11 +228,12 @@ public class TileLayout extends Canvas {
      * Indicates what to do with data dragged into another DataBoundComponent. See DragDataAction type for details.
      *
      * @param dragDataAction New dragDataAction value. Default value is Canvas.MOVE
+     * @return {@link com.smartgwt.client.widgets.tile.TileLayout TileLayout} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_drag_move" target="examples">Drag move Example</a>
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_drag_copy" target="examples">Drag copy Example</a>
      */
-    public void setDragDataAction(DragDataAction dragDataAction) {
-        setAttribute("dragDataAction", dragDataAction == null ? null : dragDataAction.getValue(), true);
+    public TileLayout setDragDataAction(DragDataAction dragDataAction) {
+        return (TileLayout)setAttribute("dragDataAction", dragDataAction == null ? null : dragDataAction.getValue(), true);
     }
 
     /**
@@ -264,10 +270,11 @@ public class TileLayout extends Canvas {
      * com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight}. See those properties for details.
      *
      * @param expandMargins New expandMargins value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tile.TileLayout TileLayout} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setExpandMargins(Boolean expandMargins)  throws IllegalStateException {
-        setAttribute("expandMargins", expandMargins, false);
+    public TileLayout setExpandMargins(Boolean expandMargins)  throws IllegalStateException {
+        return (TileLayout)setAttribute("expandMargins", expandMargins, false);
     }
 
     /**
@@ -288,10 +295,11 @@ public class TileLayout extends Canvas {
      * A margin left around the outside of all tiles.
      *
      * @param layoutMargin New layoutMargin value. Default value is 5
+     * @return {@link com.smartgwt.client.widgets.tile.TileLayout TileLayout} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setLayoutMargin(Integer layoutMargin)  throws IllegalStateException {
-        setAttribute("layoutMargin", layoutMargin, false);
+    public TileLayout setLayoutMargin(Integer layoutMargin)  throws IllegalStateException {
+        return (TileLayout)setAttribute("layoutMargin", layoutMargin, false);
     }
 
     /**
@@ -309,10 +317,11 @@ public class TileLayout extends Canvas {
      * Direction of tiling.  See also {@link com.smartgwt.client.types.TileLayoutPolicy}.
      *
      * @param orientation New orientation value. Default value is "horizontal"
+     * @return {@link com.smartgwt.client.widgets.tile.TileLayout TileLayout} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setOrientation(Orientation orientation)  throws IllegalStateException {
-        setAttribute("orientation", orientation == null ? null : orientation.getValue(), false);
+    public TileLayout setOrientation(Orientation orientation)  throws IllegalStateException {
+        return (TileLayout)setAttribute("orientation", orientation == null ? null : orientation.getValue(), false);
     }
 
     /**
@@ -331,10 +340,11 @@ public class TileLayout extends Canvas {
      * accommodate members.
      *
      * @param overflow New overflow value. Default value is "auto"
+     * @return {@link com.smartgwt.client.widgets.tile.TileLayout TileLayout} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
-    public void setOverflow(Overflow overflow) {
-        setAttribute("overflow", overflow == null ? null : overflow.getValue(), true);
+    public TileLayout setOverflow(Overflow overflow) {
+        return (TileLayout)setAttribute("overflow", overflow == null ? null : overflow.getValue(), true);
     }
 
     /**
@@ -360,9 +370,10 @@ public class TileLayout extends Canvas {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param paddingAsLayoutMargin New paddingAsLayoutMargin value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tile.TileLayout TileLayout} instance, for chaining setter calls
      */
-    public void setPaddingAsLayoutMargin(Boolean paddingAsLayoutMargin) {
-        setAttribute("paddingAsLayoutMargin", paddingAsLayoutMargin, true);
+    public TileLayout setPaddingAsLayoutMargin(Boolean paddingAsLayoutMargin) {
+        return (TileLayout)setAttribute("paddingAsLayoutMargin", paddingAsLayoutMargin, true);
     }
 
     /**
@@ -392,11 +403,12 @@ public class TileLayout extends Canvas {
      * Sets the height of tiles.
      *
      * @param tileHeight height. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tile.TileLayout TileLayout} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
-    public void setTileHeight(Integer tileHeight)  throws IllegalStateException {
-        setAttribute("tileHeight", tileHeight, false);
+    public TileLayout setTileHeight(Integer tileHeight)  throws IllegalStateException {
+        return (TileLayout)setAttribute("tileHeight", tileHeight, false);
     }
 
     /**
@@ -421,10 +433,11 @@ public class TileLayout extends Canvas {
      * Sets the horizontal margin of tiles.
      *
      * @param tileHMargin margin. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tile.TileLayout TileLayout} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTileHMargin(Integer tileHMargin)  throws IllegalStateException {
-        setAttribute("tileHMargin", tileHMargin, false);
+    public TileLayout setTileHMargin(Integer tileHMargin)  throws IllegalStateException {
+        return (TileLayout)setAttribute("tileHMargin", tileHMargin, false);
     }
 
     /**
@@ -446,10 +459,11 @@ public class TileLayout extends Canvas {
      * Sets the vertical and horizontal margin of tiles.
      *
      * @param tileMargin margin. Default value is 10
+     * @return {@link com.smartgwt.client.widgets.tile.TileLayout TileLayout} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTileMargin(int tileMargin)  throws IllegalStateException {
-        setAttribute("tileMargin", tileMargin, false);
+    public TileLayout setTileMargin(int tileMargin)  throws IllegalStateException {
+        return (TileLayout)setAttribute("tileMargin", tileMargin, false);
     }
 
     /**
@@ -468,10 +482,11 @@ public class TileLayout extends Canvas {
      * List of tiles to lay out.
      *
      * @param tiles New tiles value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tile.TileLayout TileLayout} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTiles(Canvas... tiles)  throws IllegalStateException {
-        setAttribute("tiles", tiles, false);
+    public TileLayout setTiles(Canvas... tiles)  throws IllegalStateException {
+        return (TileLayout)setAttribute("tiles", tiles, false);
     }
     
 
@@ -484,12 +499,13 @@ public class TileLayout extends Canvas {
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the height and width of tiles.
      *
-     * @param tileSize size. Default value is 50
+     * @param tileSize size. Default value is 100
+     * @return {@link com.smartgwt.client.widgets.tile.TileLayout TileLayout} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
-    public void setTileSize(int tileSize)  throws IllegalStateException {
-        setAttribute("tileSize", tileSize, false);
+    public TileLayout setTileSize(int tileSize)  throws IllegalStateException {
+        return (TileLayout)setAttribute("tileSize", tileSize, false);
     }
 
     /**
@@ -498,7 +514,7 @@ public class TileLayout extends Canvas {
      * via {@link com.smartgwt.client.widgets.tile.TileLayout#getTileHeight tileHeight} and {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileWidth tileWidth}.
      *
-     * @return Current tileSize value. Default value is 50
+     * @return Current tileSize value. Default value is 100
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
     public int getTileSize()  {
@@ -516,9 +532,10 @@ public class TileLayout extends Canvas {
      * Sets the number of tiles per line.
      *
      * @param tilesPerLine New {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine tilesPerLine} value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tile.TileLayout TileLayout} instance, for chaining setter calls
      */
-    public void setTilesPerLine(Integer tilesPerLine) {
-        setAttribute("tilesPerLine", tilesPerLine, true);
+    public TileLayout setTilesPerLine(Integer tilesPerLine) {
+        return (TileLayout)setAttribute("tilesPerLine", tilesPerLine, true);
     }
 
     /**
@@ -541,10 +558,11 @@ public class TileLayout extends Canvas {
      * Sets the vertical margin of tiles.
      *
      * @param tileVMargin margin. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tile.TileLayout TileLayout} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTileVMargin(Integer tileVMargin)  throws IllegalStateException {
-        setAttribute("tileVMargin", tileVMargin, false);
+    public TileLayout setTileVMargin(Integer tileVMargin)  throws IllegalStateException {
+        return (TileLayout)setAttribute("tileVMargin", tileVMargin, false);
     }
 
     /**
@@ -568,11 +586,12 @@ public class TileLayout extends Canvas {
      * Sets the width of tiles.
      *
      * @param tileWidth width. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tile.TileLayout TileLayout} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
-    public void setTileWidth(Integer tileWidth)  throws IllegalStateException {
-        setAttribute("tileWidth", tileWidth, false);
+    public TileLayout setTileWidth(Integer tileWidth)  throws IllegalStateException {
+        return (TileLayout)setAttribute("tileWidth", tileWidth, false);
     }
 
     /**

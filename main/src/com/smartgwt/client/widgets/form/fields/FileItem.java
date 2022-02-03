@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Binary data interface for use in DynamicForms. Allows users to select a single file for upload. In read-only mode
@@ -182,9 +185,10 @@ public class FileItem extends CanvasItem {
      * 'accept' attribute - is it useful?</a> </ul>
      *
      * @param accept New accept value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FileItem FileItem} instance, for chaining setter calls
      */
-    public void setAccept(String accept) {
-        setAttribute("accept", accept);
+    public FileItem setAccept(String accept) {
+        return (FileItem)setAttribute("accept", accept);
     }
 
     /**
@@ -265,11 +269,12 @@ public class FileItem extends CanvasItem {
      * Returns the URL for an Icon that will allow the file to be downloaded
      *
      * @param downloadIconSrc New downloadIconSrc value. Default value is "[SKIN]actions/download.png"
+     * @return {@link com.smartgwt.client.widgets.form.fields.FileItem FileItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
-    public void setDownloadIconSrc(String downloadIconSrc) {
-        setAttribute("downloadIconSrc", downloadIconSrc);
+    public FileItem setDownloadIconSrc(String downloadIconSrc) {
+        return (FileItem)setAttribute("downloadIconSrc", downloadIconSrc);
     }
 
     /**
@@ -299,6 +304,30 @@ public class FileItem extends CanvasItem {
      */
     public DynamicForm getEditForm()  {
         return (DynamicForm)DynamicForm.getByJSObject(getAttributeAsJavaScriptObject("editForm"));
+    }
+    
+
+    /**
+     * Default class used to construct the {@link com.smartgwt.client.tools.EditProxy} for this component when the component is
+     * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
+     *
+     * @param editProxyConstructor New editProxyConstructor value. Default value is "FileItemEditProxy"
+     * @return {@link com.smartgwt.client.widgets.form.fields.FileItem FileItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     */
+    public FileItem setEditProxyConstructor(String editProxyConstructor) {
+        return (FileItem)setAttribute("editProxyConstructor", editProxyConstructor);
+    }
+
+    /**
+     * Default class used to construct the {@link com.smartgwt.client.tools.EditProxy} for this component when the component is
+     * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
+     *
+     * @return Current editProxyConstructor value. Default value is "FileItemEditProxy"
+     * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     */
+    public String getEditProxyConstructor()  {
+        return getAttributeAsString("editProxyConstructor");
     }
     
 
@@ -344,9 +373,10 @@ public class FileItem extends CanvasItem {
      * Updates the {@link com.smartgwt.client.widgets.form.fields.FileItem#getMultiple multiple} setting at runtime, propagating it to the Browser's file dialog.  Causes a redraw.
      *
      * @param multiple the HTML of the view link. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.FileItem FileItem} instance, for chaining setter calls
      */
-    public void setMultiple(Boolean multiple) {
-        setAttribute("multiple", multiple);
+    public FileItem setMultiple(Boolean multiple) {
+        return (FileItem)setAttribute("multiple", multiple);
     }
 
     /**
@@ -410,9 +440,10 @@ public class FileItem extends CanvasItem {
      * is logged, and      shouldSaveValue will be set to false. </li></ul>
      *
      * @param shouldSaveValue New shouldSaveValue value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.FileItem FileItem} instance, for chaining setter calls
      */
-    public void setShouldSaveValue(Boolean shouldSaveValue) {
-        setAttribute("shouldSaveValue", shouldSaveValue);
+    public FileItem setShouldSaveValue(Boolean shouldSaveValue) {
+        return (FileItem)setAttribute("shouldSaveValue", shouldSaveValue);
     }
 
     /**
@@ -441,9 +472,10 @@ public class FileItem extends CanvasItem {
      * Indicates whether to stream the image and display it inline or to display the View and Download icons.
      *
      * @param showFileInline New showFileInline value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FileItem FileItem} instance, for chaining setter calls
      */
-    public void setShowFileInline(Boolean showFileInline) {
-        setAttribute("showFileInline", showFileInline);
+    public FileItem setShowFileInline(Boolean showFileInline) {
+        return (FileItem)setAttribute("showFileInline", showFileInline);
     }
 
     /**
@@ -478,11 +510,12 @@ public class FileItem extends CanvasItem {
      * Returns the URL for an Icon that will allow the file to be viewed.
      *
      * @param viewIconSrc New viewIconSrc value. Default value is "[SKIN]actions/view.png"
+     * @return {@link com.smartgwt.client.widgets.form.fields.FileItem FileItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
-    public void setViewIconSrc(String viewIconSrc) {
-        setAttribute("viewIconSrc", viewIconSrc);
+    public FileItem setViewIconSrc(String viewIconSrc) {
+        return (FileItem)setAttribute("viewIconSrc", viewIconSrc);
     }
 
     /**

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * A instance of Process represents a stateful process executing a series of Tasks, 
@@ -167,19 +170,20 @@ public class Process extends Task {
     
 
     /**
-     * Identifier of canvas where should be added UI elements created by using {@link
-     * com.smartgwt.client.util.workflow.UserTask#getInlineView inline view} property.
+     * Identifier of canvas where UI elements created by using {@link com.smartgwt.client.util.workflow.UserTask#getInlineView
+     * inline view} property should be added using addMember.
      *
      * @param containerId New containerId value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.Process Process} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.GlobalId GlobalId 
      */
-    public void setContainerId(String containerId) {
-        setAttribute("containerId", containerId, true);
+    public Process setContainerId(String containerId) {
+        return (Process)setAttribute("containerId", containerId, true);
     }
 
     /**
-     * Identifier of canvas where should be added UI elements created by using {@link
-     * com.smartgwt.client.util.workflow.UserTask#getInlineView inline view} property.
+     * Identifier of canvas where UI elements created by using {@link com.smartgwt.client.util.workflow.UserTask#getInlineView
+     * inline view} property should be added using addMember.
      *
      * @return Current containerId value. Default value is null
      * @see com.smartgwt.client.docs.GlobalId GlobalId 
@@ -195,10 +199,38 @@ public class Process extends Task {
      * elements and interlink them.
      *
      * @param elements New elements value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.Process Process} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setElements(ProcessElement... elements)  throws IllegalStateException {
-        setAttribute("elements", elements, false);
+    public Process setElements(ProcessElement... elements)  throws IllegalStateException {
+        return (Process)setAttribute("elements", elements, false);
+    }
+    
+
+    /**
+     * {@link com.smartgwt.client.widgets.Canvas#getID Canvas.ID} of the component that manages "rule context" for which this
+     * process participates. The rule context can be used in {@link com.smartgwt.client.docs.TaskInputExpression
+     * taskInputExpression}.
+     *
+     * @param ruleScope New ruleScope value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.Process Process} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.widgets.Canvas#setRuleScope
+     */
+    public Process setRuleScope(String ruleScope)  throws IllegalStateException {
+        return (Process)setAttribute("ruleScope", ruleScope, false);
+    }
+
+    /**
+     * {@link com.smartgwt.client.widgets.Canvas#getID Canvas.ID} of the component that manages "rule context" for which this
+     * process participates. The rule context can be used in {@link com.smartgwt.client.docs.TaskInputExpression
+     * taskInputExpression}.
+     *
+     * @return Current ruleScope value. Default value is null
+     * @see com.smartgwt.client.widgets.Canvas#getRuleScope
+     */
+    public String getRuleScope()  {
+        return getAttributeAsString("ruleScope");
     }
     
 
@@ -227,10 +259,11 @@ public class Process extends Task {
      * 
      *
      * @param sequences New sequences value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.Process Process} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setSequences(ProcessSequence... sequences)  throws IllegalStateException {
-        setAttribute("sequences", sequences, false);
+    public Process setSequences(ProcessSequence... sequences)  throws IllegalStateException {
+        return (Process)setAttribute("sequences", sequences, false);
     }
 
     /**
@@ -271,10 +304,11 @@ public class Process extends Task {
      * nothing if there are neither sequences or elements
      *
      * @param startElement New startElement value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.Process Process} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setStartElement(String startElement)  throws IllegalStateException {
-        setAttribute("startElement", startElement, false);
+    public Process setStartElement(String startElement)  throws IllegalStateException {
+        return (Process)setAttribute("startElement", startElement, false);
     }
 
     /**
@@ -292,20 +326,27 @@ public class Process extends Task {
 
     /**
      * Current state of a process.  As with Records in general, any field of a Record may contain a nested Record or Array of
-     * Records, so the process state is essentially a hierarchical data structure.
+     * Records, so the process state is essentially a hierarchical data structure. <p> <h4>Transient state</h4> In addition to
+     * the explicit process state there is a "transient state." The transient state represents the complete output of each of
+     * the last tasks of each type within the current process execution. This allows easy reference to the previous task output
+     * with {@link com.smartgwt.client.docs.TaskInputExpression taskInputExpressions}.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Set process state for current process
      *
      * @param state the new process state. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.Process Process} instance, for chaining setter calls
      */
-    public void setState(Record state) {
-        setAttribute("state", state == null ? null : state.getJsObj(), true);
+    public Process setState(Record state) {
+        return (Process)setAttribute("state", state == null ? null : state.getJsObj(), true);
     }
 
     /**
      * Current state of a process.  As with Records in general, any field of a Record may contain a nested Record or Array of
-     * Records, so the process state is essentially a hierarchical data structure.
+     * Records, so the process state is essentially a hierarchical data structure. <p> <h4>Transient state</h4> In addition to
+     * the explicit process state there is a "transient state." The transient state represents the complete output of each of
+     * the last tasks of each type within the current process execution. This allows easy reference to the previous task output
+     * with {@link com.smartgwt.client.docs.TaskInputExpression taskInputExpressions}.
      *
      * @return Current state value. Default value is null
      */
@@ -315,14 +356,38 @@ public class Process extends Task {
     
 
     /**
+     * Context object to be passed to {@link com.smartgwt.client.util.workflow.Process#traceElement traceElement()} during
+     * process execution.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param traceContext New traceContext value. Default value is null
+     * @return {@link com.smartgwt.client.util.workflow.Process Process} instance, for chaining setter calls
+     */
+    public Process setTraceContext(Map traceContext) {
+        return (Process)setAttribute("traceContext", traceContext, true);
+    }
+
+    /**
+     * Context object to be passed to {@link com.smartgwt.client.util.workflow.Process#traceElement traceElement()} during
+     * process execution.
+     *
+     * @return Current traceContext value. Default value is null
+     */
+    public Map getTraceContext()  {
+        return getAttributeAsMap("traceContext");
+    }
+    
+
+    /**
      * If wizard is set then current workflow will be handled as wizard. Every userTask will hide associated form after user
      * finished step.
      *
      * @param wizard New wizard value. Default value is false
+     * @return {@link com.smartgwt.client.util.workflow.Process Process} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
      */
-    public void setWizard(Boolean wizard)  throws IllegalStateException {
-        setAttribute("wizard", wizard, false);
+    public Process setWizard(Boolean wizard)  throws IllegalStateException {
+        return (Process)setAttribute("wizard", wizard, false);
     }
 
     /**
@@ -379,7 +444,8 @@ public class Process extends Task {
     }-*/;
 
 	/**
-     * Starts this task by executing the {@link com.smartgwt.client.util.workflow.Process#getStartElement startElement}.
+     * Starts this task by executing the {@link com.smartgwt.client.util.workflow.Process#getStartElement startElement}. Also
+     * used by asynchronous tasks to restart the workflow.
      */
     public native void start() /*-{
         if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
@@ -387,6 +453,19 @@ public class Process extends Task {
         }
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         self.start();
+    }-*/;
+
+	/**
+     * StringMethod called during process execution before each task element is processed.
+     * @param element the {@link com.smartgwt.client.util.workflow.Task} being executed
+     * @param context the {@link com.smartgwt.client.util.workflow.Process#getTraceContext traceContext}, if set
+     */
+    public native void traceElement(Task element, Map context) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "traceElement", "Task,Map");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        self.traceElement(element == null ? null : element.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()(), context == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(context));
     }-*/;
 
 

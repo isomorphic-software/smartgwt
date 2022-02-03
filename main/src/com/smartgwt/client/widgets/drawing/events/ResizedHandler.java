@@ -21,7 +21,7 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface ResizedHandler extends EventHandler {
     /**
-     * Observable method called whenever a DrawItem changes size.
+     * Method called whenever  a DrawItem changes size.
      *
      * @param event the event
      */

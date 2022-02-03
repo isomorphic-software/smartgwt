@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -173,10 +176,11 @@ public class NavigationButton extends Button {
      * Base style for navigation buttons where {@link com.smartgwt.client.types.Direction} is set to <code>"back"</code>
      *
      * @param backBaseStyle New backBaseStyle value. Default value is "navBackButton"
+     * @return {@link com.smartgwt.client.widgets.NavigationButton NavigationButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setBackBaseStyle(String backBaseStyle) {
-        setAttribute("backBaseStyle", backBaseStyle, true);
+    public NavigationButton setBackBaseStyle(String backBaseStyle) {
+        return (NavigationButton)setAttribute("backBaseStyle", backBaseStyle, true);
     }
 
     /**
@@ -197,10 +201,11 @@ public class NavigationButton extends Button {
      * com.smartgwt.client.widgets.NavigationButton#getDirection direction} is set.
      *
      * @param baseStyle New baseStyle value. Default value is "navButton"
+     * @return {@link com.smartgwt.client.widgets.NavigationButton NavigationButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setBaseStyle(String baseStyle) {
-        setAttribute("baseStyle", baseStyle, true);
+    public NavigationButton setBaseStyle(String baseStyle) {
+        return (NavigationButton)setAttribute("baseStyle", baseStyle, true);
     }
 
     /**
@@ -223,9 +228,10 @@ public class NavigationButton extends Button {
      * com.smartgwt.client.widgets.NavigationButton#getBackBaseStyle backBaseStyle} will be applied.
      *
      * @param direction New direction value. Default value is "none"
+     * @return {@link com.smartgwt.client.widgets.NavigationButton NavigationButton} instance, for chaining setter calls
      */
-    public void setDirection(NavigationDirection direction) {
-        setAttribute("direction", direction == null ? null : direction.getValue(), true);
+    public NavigationButton setDirection(NavigationDirection direction) {
+        return (NavigationButton)setAttribute("direction", direction == null ? null : direction.getValue(), true);
     }
 
     /**
@@ -244,10 +250,11 @@ public class NavigationButton extends Button {
      * Base style for navigation buttons where {@link com.smartgwt.client.types.Direction} is set to <code>"forward"</code>
      *
      * @param forwardBaseStyle New forwardBaseStyle value. Default value is "navForwardButton"
+     * @return {@link com.smartgwt.client.widgets.NavigationButton NavigationButton} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setForwardBaseStyle(String forwardBaseStyle) {
-        setAttribute("forwardBaseStyle", forwardBaseStyle, true);
+    public NavigationButton setForwardBaseStyle(String forwardBaseStyle) {
+        return (NavigationButton)setAttribute("forwardBaseStyle", forwardBaseStyle, true);
     }
 
     /**

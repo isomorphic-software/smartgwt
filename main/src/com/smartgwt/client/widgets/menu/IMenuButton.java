@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -187,9 +190,10 @@ public class IMenuButton extends StretchImgButton {
      * com.smartgwt.client.widgets.menu.MenuButton#getMenu MenuButton.menu}?
      *
      * @param autoDestroyMenu New autoDestroyMenu value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.menu.IMenuButton IMenuButton} instance, for chaining setter calls
      */
-    public void setAutoDestroyMenu(Boolean autoDestroyMenu) {
-        setAttribute("autoDestroyMenu", autoDestroyMenu, true);
+    public IMenuButton setAutoDestroyMenu(Boolean autoDestroyMenu) {
+        return (IMenuButton)setAttribute("autoDestroyMenu", autoDestroyMenu, true);
     }
 
     /**
@@ -210,10 +214,11 @@ public class IMenuButton extends StretchImgButton {
      * the title of the button by default
      *
      * @param hiliteAccessKey New hiliteAccessKey value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.menu.IMenuButton IMenuButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setHiliteAccessKey(Boolean hiliteAccessKey)  throws IllegalStateException {
-        setAttribute("hiliteAccessKey", hiliteAccessKey, false);
+    public IMenuButton setHiliteAccessKey(Boolean hiliteAccessKey)  throws IllegalStateException {
+        return (IMenuButton)setAttribute("hiliteAccessKey", hiliteAccessKey, false);
     }
 
     /**
@@ -233,9 +238,10 @@ public class IMenuButton extends StretchImgButton {
      * {@link com.smartgwt.client.widgets.menu.MenuButton#getShowMenuButtonImage showMenuButtonImage}: <code>false</code>.
      *
      * @param menu New menu value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.IMenuButton IMenuButton} instance, for chaining setter calls
      */
-    public void setMenu(Menu menu) {
-        setAttribute("menu", menu == null ? null : menu.getOrCreateJsObj(), true);
+    public IMenuButton setMenu(Menu menu) {
+        return (IMenuButton)setAttribute("menu", menu == null ? null : menu.getOrCreateJsObj(), true);
     }
 
     /**
@@ -254,10 +260,11 @@ public class IMenuButton extends StretchImgButton {
      * right edges of button and menu if the page is in RTL  mode, and the left edges otherwise.
      *
      * @param menuAlign New menuAlign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.IMenuButton IMenuButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMenuAlign(Alignment menuAlign)  throws IllegalStateException {
-        setAttribute("menuAlign", menuAlign == null ? null : menuAlign.getValue(), false);
+    public IMenuButton setMenuAlign(Alignment menuAlign)  throws IllegalStateException {
+        return (IMenuButton)setAttribute("menuAlign", menuAlign == null ? null : menuAlign.getValue(), false);
     }
 
     /**
@@ -277,9 +284,10 @@ public class IMenuButton extends StretchImgButton {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param menuAnimationEffect New menuAnimationEffect value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.IMenuButton IMenuButton} instance, for chaining setter calls
      */
-    public void setMenuAnimationEffect(String menuAnimationEffect) {
-        setAttribute("menuAnimationEffect", menuAnimationEffect, true);
+    public IMenuButton setMenuAnimationEffect(String menuAnimationEffect) {
+        return (IMenuButton)setAttribute("menuAnimationEffect", menuAnimationEffect, true);
     }
 
     /**
@@ -300,12 +308,13 @@ public class IMenuButton extends StretchImgButton {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param menuButtonImage New menuButtonImage value. Default value is "[SKIN]menu_button.gif"
+     * @return {@link com.smartgwt.client.widgets.menu.IMenuButton IMenuButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.menu.MenuButton#setMenuButtonImageUp
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setMenuButtonImage(String menuButtonImage)  throws IllegalStateException {
-        setAttribute("menuButtonImage", menuButtonImage, false);
+    public IMenuButton setMenuButtonImage(String menuButtonImage)  throws IllegalStateException {
+        return (IMenuButton)setAttribute("menuButtonImage", menuButtonImage, false);
     }
 
     /**
@@ -329,12 +338,13 @@ public class IMenuButton extends StretchImgButton {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param menuButtonImageUp New menuButtonImageUp value. Default value is "[SKIN]menu_button_up.gif"
+     * @return {@link com.smartgwt.client.widgets.menu.IMenuButton IMenuButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.menu.MenuButton#setMenuButtonImage
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setMenuButtonImageUp(String menuButtonImageUp)  throws IllegalStateException {
-        setAttribute("menuButtonImageUp", menuButtonImageUp, false);
+    public IMenuButton setMenuButtonImageUp(String menuButtonImageUp)  throws IllegalStateException {
+        return (IMenuButton)setAttribute("menuButtonImageUp", menuButtonImageUp, false);
     }
 
     /**
@@ -358,9 +368,10 @@ public class IMenuButton extends StretchImgButton {
      * Setter for the 'showMenuButtonBelow' property - determines whether the menu will be shown above or below the menubutton.
      *
      * @param showMenuBelow True if the menu should be shown below the menubutton. Default value is true
+     * @return {@link com.smartgwt.client.widgets.menu.IMenuButton IMenuButton} instance, for chaining setter calls
      */
-    public void setShowMenuBelow(Boolean showMenuBelow) {
-        setAttribute("showMenuBelow", showMenuBelow, true);
+    public IMenuButton setShowMenuBelow(Boolean showMenuBelow) {
+        return (IMenuButton)setAttribute("showMenuBelow", showMenuBelow, true);
     }
 
     /**
@@ -381,10 +392,11 @@ public class IMenuButton extends StretchImgButton {
      * Setter for the 'showMenuButtonImage' property - shows/hides the menu button image at runtime.
      *
      * @param showMenuButtonImage Should the image be shown. Default value is true
+     * @return {@link com.smartgwt.client.widgets.menu.IMenuButton IMenuButton} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowMenuButtonImage(Boolean showMenuButtonImage)  throws IllegalStateException {
-        setAttribute("showMenuButtonImage", showMenuButtonImage, false);
+    public IMenuButton setShowMenuButtonImage(Boolean showMenuButtonImage)  throws IllegalStateException {
+        return (IMenuButton)setAttribute("showMenuButtonImage", showMenuButtonImage, false);
     }
 
     /**

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Provides information about the page you're loaded in.  We define "page" here to be roughly  equivalent to the browser
@@ -346,6 +349,17 @@ public class Page {
 	
 
 	/**
+     * Return the images directory used by Isomorphic-supplied tools.
+     *
+     * @return ToolsImgDir URL.
+     */
+    public static native String getToolsImgDir() /*-{
+        var ret = $wnd.isc.Page.getToolsImgDir();
+        return ret;
+    }-*/;
+
+
+	/**
      * Returns the text for the prompt shown to user from {@link com.smartgwt.client.util.Page#checkBrowserAndRedirect
      * checkBrowserAndRedirect()} if they are accessing this page in an unsupported browser and {@link
      * com.smartgwt.client.util.Page#unsupportedBrowserAction unsupportedBrowserAction} is set to <code>"confirm"</code>. May
@@ -371,6 +385,7 @@ public class Page {
         var ret = $wnd.isc.Page.getURL(fileName);
         return ret;
     }-*/;
+
 
 
 
@@ -435,6 +450,7 @@ public class Page {
     public static native void moveTo(int left, int top) /*-{
         $wnd.isc.Page.moveTo(left, top);
     }-*/;
+
 
 
 

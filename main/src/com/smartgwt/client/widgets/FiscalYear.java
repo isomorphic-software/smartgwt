@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * An object representing the start of a given Fiscal Year in the current locale. <P> See {@link
@@ -131,9 +134,10 @@ public class FiscalYear extends RefDataClass {
      * year starts.
      *
      * @param date New date value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.FiscalYear FiscalYear} instance, for chaining setter calls
      */
-    public void setDate(Integer date) {
-        setAttribute("date", date);
+    public FiscalYear setDate(Integer date) {
+        return (FiscalYear)setAttribute("date", date);
     }
 
     /**
@@ -156,9 +160,10 @@ public class FiscalYear extends RefDataClass {
      * com.smartgwt.client.widgets.FiscalYear#getYear year} would be set to <code>2019</code>
      *
      * @param fiscalYear New fiscalYear value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.FiscalYear FiscalYear} instance, for chaining setter calls
      */
-    public void setFiscalYear(Integer fiscalYear) {
-        setAttribute("fiscalYear", fiscalYear);
+    public FiscalYear setFiscalYear(Integer fiscalYear) {
+        return (FiscalYear)setAttribute("fiscalYear", fiscalYear);
     }
 
     /**
@@ -180,9 +185,10 @@ public class FiscalYear extends RefDataClass {
      * The zero-based month-number when this fiscal year starts.
      *
      * @param month New month value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.FiscalYear FiscalYear} instance, for chaining setter calls
      */
-    public void setMonth(Integer month) {
-        setAttribute("month", month);
+    public FiscalYear setMonth(Integer month) {
+        return (FiscalYear)setAttribute("month", month);
     }
 
     /**
@@ -199,9 +205,10 @@ public class FiscalYear extends RefDataClass {
      * The 4-digit calendar year when this fiscal year starts.
      *
      * @param year New year value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.FiscalYear FiscalYear} instance, for chaining setter calls
      */
-    public void setYear(Integer year) {
-        setAttribute("year", year);
+    public FiscalYear setYear(Integer year) {
+        return (FiscalYear)setAttribute("year", year);
     }
 
     /**

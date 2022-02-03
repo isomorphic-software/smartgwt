@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * A record which specifies files for use with {@link com.smartgwt.client.docs.FileSource FileSource Operations}.
@@ -111,9 +114,10 @@ public class FileSpec extends DataClass {
      * The format of the file, e.g. "xml" or "js"
      *
      * @param fileFormat New fileFormat value. Default value is null
+     * @return {@link com.smartgwt.client.data.FileSpec FileSpec} instance, for chaining setter calls
      */
-    public void setFileFormat(String fileFormat) {
-        setAttribute("fileFormat", fileFormat);
+    public FileSpec setFileFormat(String fileFormat) {
+        return (FileSpec)setAttribute("fileFormat", fileFormat);
     }
 
     /**
@@ -131,9 +135,10 @@ public class FileSpec extends DataClass {
      * {@link com.smartgwt.client.data.FileSpec#getFileFormat format}.
      *
      * @param fileName New fileName value. Default value is null
+     * @return {@link com.smartgwt.client.data.FileSpec FileSpec} instance, for chaining setter calls
      */
-    public void setFileName(String fileName) {
-        setAttribute("fileName", fileName);
+    public FileSpec setFileName(String fileName) {
+        return (FileSpec)setAttribute("fileName", fileName);
     }
 
     /**
@@ -151,9 +156,10 @@ public class FileSpec extends DataClass {
      * The type of the file, e.g. "ds" for datasource, or "proj" for project.
      *
      * @param fileType New fileType value. Default value is null
+     * @return {@link com.smartgwt.client.data.FileSpec FileSpec} instance, for chaining setter calls
      */
-    public void setFileType(String fileType) {
-        setAttribute("fileType", fileType);
+    public FileSpec setFileType(String fileType) {
+        return (FileSpec)setAttribute("fileType", fileType);
     }
 
     /**

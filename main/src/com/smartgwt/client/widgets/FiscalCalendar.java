@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * An object representing the start date for fiscal years in the current locale. <P> A fiscal year spans a configurable
@@ -130,9 +133,10 @@ public class FiscalCalendar extends RefDataClass {
      * is present. <br> See also {@link com.smartgwt.client.widgets.FiscalCalendar#getDefaultYearMode defaultYearMode}.
      *
      * @param defaultDate New defaultDate value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.FiscalCalendar FiscalCalendar} instance, for chaining setter calls
      */
-    public void setDefaultDate(Integer defaultDate) {
-        setAttribute("defaultDate", defaultDate);
+    public FiscalCalendar setDefaultDate(Integer defaultDate) {
+        return (FiscalCalendar)setAttribute("defaultDate", defaultDate);
     }
 
     /**
@@ -157,9 +161,10 @@ public class FiscalCalendar extends RefDataClass {
      * com.smartgwt.client.widgets.FiscalCalendar#getDefaultYearMode defaultYearMode}.
      *
      * @param defaultMonth New defaultMonth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.FiscalCalendar FiscalCalendar} instance, for chaining setter calls
      */
-    public void setDefaultMonth(Integer defaultMonth) {
-        setAttribute("defaultMonth", defaultMonth);
+    public FiscalCalendar setDefaultMonth(Integer defaultMonth) {
+        return (FiscalCalendar)setAttribute("defaultMonth", defaultMonth);
     }
 
     /**
@@ -186,9 +191,10 @@ public class FiscalCalendar extends RefDataClass {
      * reported as fiscalYear 2020 or 2021).
      *
      * @param defaultYearMode New defaultYearMode value. Default value is "end"
+     * @return {@link com.smartgwt.client.widgets.FiscalCalendar FiscalCalendar} instance, for chaining setter calls
      */
-    public void setDefaultYearMode(FiscalYearMode defaultYearMode) {
-        setAttribute("defaultYearMode", defaultYearMode == null ? null : defaultYearMode.getValue());
+    public FiscalCalendar setDefaultYearMode(FiscalYearMode defaultYearMode) {
+        return (FiscalCalendar)setAttribute("defaultYearMode", defaultYearMode == null ? null : defaultYearMode.getValue());
     }
 
     /**
@@ -212,9 +218,10 @@ public class FiscalCalendar extends RefDataClass {
      * single fiscal year.
      *
      * @param fiscalYears New fiscalYears value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.FiscalCalendar FiscalCalendar} instance, for chaining setter calls
      */
-    public void setFiscalYears(FiscalYear... fiscalYears) {
-        setAttribute("fiscalYears", fiscalYears);
+    public FiscalCalendar setFiscalYears(FiscalYear... fiscalYears) {
+        return (FiscalCalendar)setAttribute("fiscalYears", fiscalYears);
     }
 
     /**

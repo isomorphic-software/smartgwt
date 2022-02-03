@@ -19,10 +19,11 @@ package com.smartgwt.client.docs;
  *  <b><u>Tag Attributes:</u></b>
  *  <p>
  *  <b>name</b><br>
- *  <i>value format</i>: String - name of Project file to load (minus extension)<br>
+ *  <i>value format</i>: String - comma separated list of Project files to load (minus 
+ *  extensions)<br>
  *  <i>default value</i>: NONE
  *  <p>
- *  This attribute specifies the name of the project file that specifies the list of
+ *  This attribute specifies the name(s) of the project file(s) that contains any
  *  screens that should be loaded into the browser. Project files are located in
  *  <code>[webroot]/shared/ui</code> by default.  This location is
  *  changeable in <code>[webroot]/WEB-INF/classes/server.properties</code> by setting the config
@@ -40,7 +41,9 @@ package com.smartgwt.client.docs;
  *  <p>
  *  <b>currentScreenName</b><br>
  *  <i>value format</i>: String - name of screen to initially draw<br>
- *  <i>default value</i>: the currentScreenName defined in the project file
+ *  <i>default value</i>: the currentScreenName defined in the project file.  In the case where
+ *  more than one project is specified by the <code>name</code> attribute, the default value is
+ *  taken from the first project only.
  *  <p>
  *  This attribute specifies the name of the screen within the project to draw
  *  after loading. Drawing of the screen can be suppressed by including the

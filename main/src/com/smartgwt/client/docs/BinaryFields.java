@@ -26,20 +26,25 @@ package com.smartgwt.client.docs;
  * size, file name and date of creation.  Typically you do not need to add these fields to the
  * dataSource yourself, because the Smart GWT Server will implicitly create them if  they do not
  * exist.  You only need to declare one or more of these fields yourself if  you need non-default
- * settings - for example, if you have a need to support filenames  longer than 255 characters.
- * <P> When using one of the built-in server DataSource types (SQL, JPA, Hibernate), these
- * metadata fields, UI controls and APIs will work with no special effort - just declare a binary
- * field.  For JPA or Hibernate the Java getter/setter for the binary field must be of type byte[]
- * or Byte[] (this is imposed by the ORM system); if you  are using the SQL DataSource, no
- * additional declarations are required unless you are using {@link
- * com.smartgwt.client.docs.serverds.DataSource#beanClassName DataSource.beanClassName}, in which
- * case you must add getters/setters of type InputStream, or one of the types listed for
- * JPA/Hibernate. <P> For metadata fields like the file size, providing storage for the metadata
- * fields (SQL columns or JPA/Hibernate getter/setters) is optional but highly recommended.  If
- * you don't want a particular metadata field, you can declare a &lt;field&gt; for it explicitly
- * and set ignore="true".  <b>Note:</b> If you decide not to store the  "_filename" metadata
- * element, the built-in binary UI controls in components like ListGrid, mentioned above, do not
- * work properly.  In the absence of a filename metadata field,  it is necessary to set {@link
+ * settings - for example, if you have a need to support filenames  longer than 255 characters. 
+ * If you do need non-default settings, simply declare the  metadata field(s) in the normal way. 
+ * If you do this, note that you become responsible  for ensuring that the fields are correctly
+ * declared: in particular, you must ensure that you declare the correct type for each field
+ * (<code>text</code>, <code>integer</code> and <code>datetime</code> for <code>_filename</code>,
+ * <code>_filesize</code> and  <code>_date_created</code>, respectively) <P> When using one of the
+ * built-in server DataSource types (SQL, JPA, Hibernate), these metadata fields, UI controls and
+ * APIs will work with no special effort - just declare a binary field.  For JPA or Hibernate the
+ * Java getter/setter for the binary field must be of type byte[] or Byte[] (this is imposed by
+ * the ORM system); if you  are using the SQL DataSource, no additional declarations are required
+ * unless you are using {@link com.smartgwt.client.docs.serverds.DataSource#beanClassName
+ * DataSource.beanClassName}, in which case you must add getters/setters of type InputStream, or
+ * one of the types listed for JPA/Hibernate. <P> For metadata fields like the file size,
+ * providing storage for the metadata fields (SQL columns or JPA/Hibernate getter/setters) is
+ * optional but highly recommended.  If you don't want a particular metadata field, you can
+ * declare a &lt;field&gt; for it explicitly and set ignore="true".  <b>Note:</b> If you decide
+ * not to store the  "_filename" metadata element, the built-in binary UI controls in components
+ * like ListGrid, mentioned above, do not work properly.  In the absence of a filename metadata
+ * field,  it is necessary to set {@link
  * com.smartgwt.client.docs.serverds.DataSourceField#mimeType mime-type} on the binary field - 
  * otherwise, we can't make a reasonable guess at a MIME type, so the browser tends  not to know
  * what to do with the downloaded content. Omiting the file size metadata will  simply cause the

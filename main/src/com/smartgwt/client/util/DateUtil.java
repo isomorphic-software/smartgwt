@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Static singleton class containing APIs for interacting with Dates.
@@ -85,6 +88,23 @@ public class DateUtil {
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
+
+	/**
+     * Returns a new {@link com.smartgwt.client.util.Date} instance, representing the <code>baseDate</code> adjusted by  the
+     * relative amount of the {@link com.smartgwt.client.docs.RelativeDateString relativeDateString}.
+     * @param baseDate Date instance to apply a relative amount to - defaults to new Date()
+     * @param relativeDateString the relative amount to apply to the                            <code>baseDate</code>.
+     * See {@link com.smartgwt.client.docs.RelativeDateString RelativeDateString}
+     *
+     * @return a new Date instance representing the <code>baseDate</code> adjusted by                            the
+     * <code>relativeDateString</code>
+     */
+    public static native Date adjustDate(Date baseDate, String relativeDateString) /*-{
+        var ret = $wnd.isc.DateUtil.adjustDate(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptDate(Ljava/util/Date;)(baseDate), relativeDateString);
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
+    }-*/;
+
 
 	/**
      * Combine a logical date (a value appropriate for a DataSourceField of type "date") with a logical time (a value

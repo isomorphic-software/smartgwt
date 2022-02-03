@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * FormItem that uses a {@link com.smartgwt.client.widgets.Slider} component to present an interface for picking from
@@ -168,9 +171,10 @@ public class SliderItem extends CanvasItem {
      * operations such as server fetches while the user drags through a range of values.
      *
      * @param changeOnDrag New changeOnDrag value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.SliderItem SliderItem} instance, for chaining setter calls
      */
-    public void setChangeOnDrag(Boolean changeOnDrag) {
-        setAttribute("changeOnDrag", changeOnDrag);
+    public SliderItem setChangeOnDrag(Boolean changeOnDrag) {
+        return (SliderItem)setAttribute("changeOnDrag", changeOnDrag);
     }
 
     /**
@@ -191,9 +195,10 @@ public class SliderItem extends CanvasItem {
      * Default value for this sliderItems is 1.
      *
      * @param defaultValue New defaultValue value. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.form.fields.SliderItem SliderItem} instance, for chaining setter calls
      */
-    public void setDefaultValue(int defaultValue) {
-        setAttribute("defaultValue", defaultValue);
+    public SliderItem setDefaultValue(double defaultValue) {
+        return (SliderItem)setAttribute("defaultValue", defaultValue);
     }
 
     /**
@@ -201,8 +206,8 @@ public class SliderItem extends CanvasItem {
      *
      * @return Current defaultValue value. Default value is 1
      */
-    public int getDefaultValue()  {
-        return getAttributeAsInt("defaultValue");
+    public double getDefaultValue()  {
+        return getAttributeAsDouble("defaultValue");
     }
     
 
@@ -215,12 +220,13 @@ public class SliderItem extends CanvasItem {
      *
      * @param maxValue the new maximum value <b>Note:</b>Use Doubles rather Floats when manipulating decimal values.  See {@link
      * com.smartgwt.client.docs.GwtFloatVsDouble} for details. Default value is 100
+     * @return {@link com.smartgwt.client.widgets.form.fields.SliderItem SliderItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Slider#setFlipValues
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Slider Example</a>
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setMaxValue(float maxValue) {
-        setAttribute("maxValue", maxValue);
+    public SliderItem setMaxValue(float maxValue) {
+        return (SliderItem)setAttribute("maxValue", maxValue);
     }
 
     /**
@@ -245,11 +251,12 @@ public class SliderItem extends CanvasItem {
      *
      * @param maxValue the new maximum value <b>Note:</b>Use Doubles rather Floats when manipulating decimal values.  See {@link
      * com.smartgwt.client.docs.GwtFloatVsDouble} for details. Default value is 100
+     * @return {@link com.smartgwt.client.widgets.form.fields.SliderItem SliderItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Slider#setFlipValues
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Slider Example</a>
      */
-    public void setMaxValue(double maxValue) {
-        setAttribute("maxValue", maxValue);
+    public SliderItem setMaxValue(double maxValue) {
+        return (SliderItem)setAttribute("maxValue", maxValue);
     }
 
     /**
@@ -274,12 +281,13 @@ public class SliderItem extends CanvasItem {
      *
      * @param minValue the new minimum value <b>Note:</b>Use Doubles rather Floats when manipulating decimal values.  See {@link
      * com.smartgwt.client.docs.GwtFloatVsDouble} for details. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.form.fields.SliderItem SliderItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Slider#setFlipValues
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Slider Example</a>
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setMinValue(float minValue) {
-        setAttribute("minValue", minValue);
+    public SliderItem setMinValue(float minValue) {
+        return (SliderItem)setAttribute("minValue", minValue);
     }
 
     /**
@@ -304,11 +312,12 @@ public class SliderItem extends CanvasItem {
      *
      * @param minValue the new minimum value <b>Note:</b>Use Doubles rather Floats when manipulating decimal values.  See {@link
      * com.smartgwt.client.docs.GwtFloatVsDouble} for details. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.form.fields.SliderItem SliderItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Slider#setFlipValues
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Slider Example</a>
      */
-    public void setMinValue(double minValue) {
-        setAttribute("minValue", minValue);
+    public SliderItem setMinValue(double minValue) {
+        return (SliderItem)setAttribute("minValue", minValue);
     }
 
     /**
@@ -334,10 +343,11 @@ public class SliderItem extends CanvasItem {
      *
      * @param numValues the new number of values <b>Note:</b>Use Doubles rather Floats when manipulating decimal values.  See {@link
      * com.smartgwt.client.docs.GwtFloatVsDouble} for details. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.SliderItem SliderItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Slider Example</a>
      */
-    public void setNumValues(Integer numValues) {
-        setAttribute("numValues", numValues);
+    public SliderItem setNumValues(Integer numValues) {
+        return (SliderItem)setAttribute("numValues", numValues);
     }
 
     /**
@@ -358,10 +368,11 @@ public class SliderItem extends CanvasItem {
      * rounded to this number of decimal places. If set to null the value will not be rounded
      *
      * @param roundPrecision New roundPrecision value. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.form.fields.SliderItem SliderItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Slider Example</a>
      */
-    public void setRoundPrecision(int roundPrecision) {
-        setAttribute("roundPrecision", roundPrecision);
+    public SliderItem setRoundPrecision(int roundPrecision) {
+        return (SliderItem)setAttribute("roundPrecision", roundPrecision);
     }
 
     /**
@@ -382,10 +393,11 @@ public class SliderItem extends CanvasItem {
      * com.smartgwt.client.widgets.form.fields.SliderItem#getRoundPrecision roundPrecision}.
      *
      * @param roundValues New roundValues value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.SliderItem SliderItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">Number - Slider Example</a>
      */
-    public void setRoundValues(Boolean roundValues) {
-        setAttribute("roundValues", roundValues);
+    public SliderItem setRoundValues(Boolean roundValues) {
+        return (SliderItem)setAttribute("roundValues", roundValues);
     }
 
     /**
@@ -417,9 +429,10 @@ public class SliderItem extends CanvasItem {
      * is logged, and      shouldSaveValue will be set to false. </li></ul>
      *
      * @param shouldSaveValue New shouldSaveValue value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.SliderItem SliderItem} instance, for chaining setter calls
      */
-    public void setShouldSaveValue(Boolean shouldSaveValue) {
-        setAttribute("shouldSaveValue", shouldSaveValue);
+    public SliderItem setShouldSaveValue(Boolean shouldSaveValue) {
+        return (SliderItem)setAttribute("shouldSaveValue", shouldSaveValue);
     }
 
     /**
@@ -467,10 +480,11 @@ public class SliderItem extends CanvasItem {
      * Indicates whether this is a vertical or horizontal slider.
      *
      * @param vertical New vertical value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.SliderItem SliderItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
      */
-    public void setVertical(Boolean vertical) {
-        setAttribute("vertical", vertical);
+    public SliderItem setVertical(Boolean vertical) {
+        return (SliderItem)setAttribute("vertical", vertical);
     }
 
     /**
@@ -489,10 +503,11 @@ public class SliderItem extends CanvasItem {
      * Default width of this item.
      *
      * @param width New width value. Default value is 150
+     * @return {@link com.smartgwt.client.widgets.form.fields.SliderItem SliderItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setWidth(int width) {
-        setAttribute("width", width);
+    public SliderItem setWidth(int width) {
+        return (SliderItem)setAttribute("width", width);
     }
 
     /**

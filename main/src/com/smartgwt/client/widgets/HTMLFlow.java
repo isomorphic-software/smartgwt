@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -189,10 +192,11 @@ public class HTMLFlow extends Canvas implements com.smartgwt.client.widgets.even
      * response can be cached.
      *
      * @param allowCaching New allowCaching value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.HTMLFlow HTMLFlow} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAllowCaching(Boolean allowCaching)  throws IllegalStateException {
-        setAttribute("allowCaching", allowCaching, false);
+    public HTMLFlow setAllowCaching(Boolean allowCaching)  throws IllegalStateException {
+        return (HTMLFlow)setAttribute("allowCaching", allowCaching, false);
     }
 
     /**
@@ -209,14 +213,43 @@ public class HTMLFlow extends Canvas implements com.smartgwt.client.widgets.even
     
 
     /**
+     * Text selection for copy and paste is enabled by default in the HTMLFlow class. Note that this setting has no impact if
+     * {@link com.smartgwt.client.types.ContentsType} is set to  {@link com.smartgwt.client.types.ContentsType#PAGE}. In this
+     * case contents is loaded from a target URL via an IFRAME element, and text selection behavior will be dictated by the
+     * loaded HTML.
+     *
+     * @param canSelectText New canSelectText value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.HTMLFlow HTMLFlow} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public HTMLFlow setCanSelectText(Boolean canSelectText)  throws IllegalStateException {
+        return (HTMLFlow)setAttribute("canSelectText", canSelectText, false);
+    }
+
+    /**
+     * Text selection for copy and paste is enabled by default in the HTMLFlow class. Note that this setting has no impact if
+     * {@link com.smartgwt.client.types.ContentsType} is set to  {@link com.smartgwt.client.types.ContentsType#PAGE}. In this
+     * case contents is loaded from a target URL via an IFRAME element, and text selection behavior will be dictated by the
+     * loaded HTML.
+     *
+     * @return Current canSelectText value. Default value is true
+     */
+    public Boolean getCanSelectText()  {
+        Boolean result = getAttributeAsBoolean("canSelectText");
+        return result == null ? true : result;
+    }
+    
+
+    /**
      * If true, Smart GWT components created while executing the loaded HTML are captured for rendering inside the HTMLFlow.
      * <P> Only applies when contentsType is <b>not</b> "page".
      *
      * @param captureSCComponents New captureSCComponents value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.HTMLFlow HTMLFlow} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCaptureSCComponents(Boolean captureSCComponents)  throws IllegalStateException {
-        setAttribute("captureSCComponents", captureSCComponents, false);
+    public HTMLFlow setCaptureSCComponents(Boolean captureSCComponents)  throws IllegalStateException {
+        return (HTMLFlow)setAttribute("captureSCComponents", captureSCComponents, false);
     }
 
     /**
@@ -238,11 +271,12 @@ public class HTMLFlow extends Canvas implements com.smartgwt.client.widgets.even
      * Changes the contents of a widget to newContents, an HTML string.
      *
      * @param contents an HTML string to be set as the contents of this widget. Default value is "&amp;nbsp;"
+     * @return {@link com.smartgwt.client.widgets.HTMLFlow HTMLFlow} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.HTMLFlow#setDynamicContents
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setContents(String contents) {
-        setAttribute("contents", contents, true);
+    public HTMLFlow setContents(String contents) {
+        return (HTMLFlow)setAttribute("contents", contents, true);
     }
 
     /**
@@ -276,10 +310,11 @@ public class HTMLFlow extends Canvas implements com.smartgwt.client.widgets.even
      * Canvas.shrinkElementOnHide} to <code>true</code> will work around this behavior.
      *
      * @param contentsType New contentsType value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.HTMLFlow HTMLFlow} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setContentsType(ContentsType contentsType)  throws IllegalStateException {
-        setAttribute("contentsType", contentsType == null ? null : contentsType.getValue(), false);
+    public HTMLFlow setContentsType(ContentsType contentsType)  throws IllegalStateException {
+        return (HTMLFlow)setAttribute("contentsType", contentsType == null ? null : contentsType.getValue(), false);
     }
 
     /**
@@ -316,10 +351,11 @@ public class HTMLFlow extends Canvas implements com.smartgwt.client.widgets.even
      * Change the URL this component loads content from.  Triggers a fetch for content from the new URL. <p> Can also be called with no arguments to reload content from the existing {@link com.smartgwt.client.widgets.HTMLFlow#getContentsURL contentsURL}. <P> This feature relies on the XMLHttpRequest object which can be disabled by end-users in some supported browsers.  See {@link com.smartgwt.client.docs.PlatformDependencies} for more information.
      *
      * @param contentsURL URL to retrieve contents from. Default value is null
+     * @return {@link com.smartgwt.client.widgets.HTMLFlow HTMLFlow} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.URL URL 
      */
-    public void setContentsURL(String contentsURL) {
-        setAttribute("contentsURL", contentsURL, true);
+    public HTMLFlow setContentsURL(String contentsURL) {
+        return (HTMLFlow)setAttribute("contentsURL", contentsURL, true);
     }
 
     /**
@@ -339,117 +375,57 @@ public class HTMLFlow extends Canvas implements com.smartgwt.client.widgets.even
      * Parameters to be sent to the contentsURL when fetching content.
      *
      * @param contentsURLParams New contentsURLParams value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.HTMLFlow HTMLFlow} instance, for chaining setter calls
      */
-    public void setContentsURLParams(Map contentsURLParams) {
-        setAttribute("contentsURLParams", contentsURLParams, true);
+    public HTMLFlow setContentsURLParams(Map contentsURLParams) {
+        return (HTMLFlow)setAttribute("contentsURLParams", contentsURLParams, true);
     }
     
 
     /**
-     * Dynamic contents allows the contents string to be treated as a simple, but powerful
-     *  template.  When this attribute is set to true, expressions of the form &#36;{arbitrary JS
-     *  here} are replaced by the result of the evaluation of the JS code inside the curly
-     *  brackets.  This evaluation happens at draw time.  If you want to trigger a re-evaluation
-     *  of the expressions in the contents string you can call markForRedraw() on the canvas.
-     *  <p>
-     *  You can use this feature to build some simple custom components. For example, let's say
-     *  you want to show the value of a Slider in a Canvas somewhere on the screen.  You can do
-     *  this by observing the valueChanged() method on the slider and calling setContents() on
-     *  your canvas with the new string or you can set the contents of the canvas to something
-     *  like:
-     *  <p><code>
-     *  "The slider value is &#36;{sliderInstance.getValue()}."
-     *  </code><p>
-     *  Next you set dynamicContents: true on the canvas, observe valueChanged() on the slider
-     *  and call canvas.markForRedraw() in that observation.  This approach is cleaner than
-     *  setContents() when the Canvas is aggregating several values or dynamic expressions.
-     *  Like so:
-     *  <p>
-     *  <pre>
-     *  Slider.create({
-     *      ID: "mySlider"
-     *  });
-     * 
-     *  Canvas.create({
-     *      ID: "myCanvas",
-     *      dynamicContents: true,
-     *      contents: "The slider value is &#36;{mySlider.getValue()}."
-     *  });
-     * 
-     *  myCanvas.observe(mySlider, "valueChanged",
-     *                   "observer.markForRedraw()");
-     *  </pre>
-     *  You can embed an arbitrary number of dynamic expressions in the contents string.  The
-     *  search and replace is optimized for speed.
-     *  <p>
-     *  If an error occurs during the evaluation of one of the expressions, a warning is logged
-     *  to the ISC Developer Console and the error string is embedded in place of the expected
-     *  value in the Canvas.
-     *  <p>
-     *  The value of a function is its return value.  The value of any variable is the same as
-     *  that returned by its toString() representation.
-     *  <p>
-     *  Inside the evaluation contentext, <code>this</code> points to the canvas instance that
-     *  has the dynamicContents string as its contents - in other words the canvas instance on
-     *  which the template is declared.
+     * Dynamic contents allows the contents string to be treated as a simple but powerful template.  When this attribute is set
+     * to true, JavaScript expressions may be embedded  within the contents string, using the format:
+     * <code>&#36;{<i>[JavaScript to evaluate]</i>}</code>. <P> For example, to include the current date in a templated
+     * message,  <code>canvas.contents</code> could be set to:<br> <code>"Today's date is &lt;b&gt;&#36;{new
+     * Date().toUSShortDate()}&lt;/b&gt;"</code> <P> Embedded expressions will be evaluated when the canvas is drawn or
+     * redrawn, and the result of the evaluated expression will be displayed to the user. If the expression does not evaluate
+     * to a String, the <code>toString()</code> representation of the returned object will be displayed automatically <P>
+     * Dynamic expressions are evaluated in the scope of the canvas displaying the content,  so the <code>this</code> keyword
+     * may be used within your expression to refer to the  canvas. Developers may also explicitly supply values for variables
+     * to be used within the evaluation via the {@link com.smartgwt.client.widgets.Canvas#getDynamicContentsVars
+     * Canvas.dynamicContentsVars} property. <P> Notes:<ul> <li>Calling markForRedraw() on the canvas will evaluate any
+     * embedded expressions.</li> <li>Multiple such expressions may be embedded within the contents string for a
+     * component.</li> <li>If an error occurs during evaluation, a warning is logged     to the {@link
+     * com.smartgwt.client.docs.Debugging Developer Console} and the error string will be embedded in place      of the
+     * expected value in the Canvas. </li> </ul>
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param dynamicContents New dynamicContents value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.HTMLFlow HTMLFlow} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.HTMLFlow#setContents
      * @see com.smartgwt.client.widgets.Canvas#setDynamicContentsVars
      * 
      */
-    public void setDynamicContents(Boolean dynamicContents) {
-        setAttribute("dynamicContents", dynamicContents, true);
+    public HTMLFlow setDynamicContents(Boolean dynamicContents) {
+        return (HTMLFlow)setAttribute("dynamicContents", dynamicContents, true);
     }
 
     /**
-     * Dynamic contents allows the contents string to be treated as a simple, but powerful
-     *  template.  When this attribute is set to true, expressions of the form &#36;{arbitrary JS
-     *  here} are replaced by the result of the evaluation of the JS code inside the curly
-     *  brackets.  This evaluation happens at draw time.  If you want to trigger a re-evaluation
-     *  of the expressions in the contents string you can call markForRedraw() on the canvas.
-     *  <p>
-     *  You can use this feature to build some simple custom components. For example, let's say
-     *  you want to show the value of a Slider in a Canvas somewhere on the screen.  You can do
-     *  this by observing the valueChanged() method on the slider and calling setContents() on
-     *  your canvas with the new string or you can set the contents of the canvas to something
-     *  like:
-     *  <p><code>
-     *  "The slider value is &#36;{sliderInstance.getValue()}."
-     *  </code><p>
-     *  Next you set dynamicContents: true on the canvas, observe valueChanged() on the slider
-     *  and call canvas.markForRedraw() in that observation.  This approach is cleaner than
-     *  setContents() when the Canvas is aggregating several values or dynamic expressions.
-     *  Like so:
-     *  <p>
-     *  <pre>
-     *  Slider.create({
-     *      ID: "mySlider"
-     *  });
-     * 
-     *  Canvas.create({
-     *      ID: "myCanvas",
-     *      dynamicContents: true,
-     *      contents: "The slider value is &#36;{mySlider.getValue()}."
-     *  });
-     * 
-     *  myCanvas.observe(mySlider, "valueChanged",
-     *                   "observer.markForRedraw()");
-     *  </pre>
-     *  You can embed an arbitrary number of dynamic expressions in the contents string.  The
-     *  search and replace is optimized for speed.
-     *  <p>
-     *  If an error occurs during the evaluation of one of the expressions, a warning is logged
-     *  to the ISC Developer Console and the error string is embedded in place of the expected
-     *  value in the Canvas.
-     *  <p>
-     *  The value of a function is its return value.  The value of any variable is the same as
-     *  that returned by its toString() representation.
-     *  <p>
-     *  Inside the evaluation contentext, <code>this</code> points to the canvas instance that
-     *  has the dynamicContents string as its contents - in other words the canvas instance on
-     *  which the template is declared.
+     * Dynamic contents allows the contents string to be treated as a simple but powerful template.  When this attribute is set
+     * to true, JavaScript expressions may be embedded  within the contents string, using the format:
+     * <code>&#36;{<i>[JavaScript to evaluate]</i>}</code>. <P> For example, to include the current date in a templated
+     * message,  <code>canvas.contents</code> could be set to:<br> <code>"Today's date is &lt;b&gt;&#36;{new
+     * Date().toUSShortDate()}&lt;/b&gt;"</code> <P> Embedded expressions will be evaluated when the canvas is drawn or
+     * redrawn, and the result of the evaluated expression will be displayed to the user. If the expression does not evaluate
+     * to a String, the <code>toString()</code> representation of the returned object will be displayed automatically <P>
+     * Dynamic expressions are evaluated in the scope of the canvas displaying the content,  so the <code>this</code> keyword
+     * may be used within your expression to refer to the  canvas. Developers may also explicitly supply values for variables
+     * to be used within the evaluation via the {@link com.smartgwt.client.widgets.Canvas#getDynamicContentsVars
+     * Canvas.dynamicContentsVars} property. <P> Notes:<ul> <li>Calling markForRedraw() on the canvas will evaluate any
+     * embedded expressions.</li> <li>Multiple such expressions may be embedded within the contents string for a
+     * component.</li> <li>If an error occurs during evaluation, a warning is logged     to the {@link
+     * com.smartgwt.client.docs.Debugging Developer Console} and the error string will be embedded in place      of the
+     * expected value in the Canvas. </li> </ul>
      *
      * @return Current dynamicContents value. Default value is false
      * @see com.smartgwt.client.widgets.HTMLFlow#getContents
@@ -472,10 +448,11 @@ public class HTMLFlow extends Canvas implements com.smartgwt.client.widgets.even
      * across different browsers. <P> Only applies when contentsType is <b>not</b> "page".
      *
      * @param evalScriptBlocks New evalScriptBlocks value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.HTMLFlow HTMLFlow} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEvalScriptBlocks(Boolean evalScriptBlocks)  throws IllegalStateException {
-        setAttribute("evalScriptBlocks", evalScriptBlocks, false);
+    public HTMLFlow setEvalScriptBlocks(Boolean evalScriptBlocks)  throws IllegalStateException {
+        return (HTMLFlow)setAttribute("evalScriptBlocks", evalScriptBlocks, false);
     }
 
     /**
@@ -498,9 +475,10 @@ public class HTMLFlow extends Canvas implements com.smartgwt.client.widgets.even
      * Selects the HTTP method that will be used when fetching content.  Valid values are "POST" and "GET".
      *
      * @param httpMethod New httpMethod value. Default value is "GET"
+     * @return {@link com.smartgwt.client.widgets.HTMLFlow HTMLFlow} instance, for chaining setter calls
      */
-    public void setHttpMethod(SendMethod httpMethod) {
-        setAttribute("httpMethod", httpMethod == null ? null : httpMethod.getValue(), true);
+    public HTMLFlow setHttpMethod(SendMethod httpMethod) {
+        return (HTMLFlow)setAttribute("httpMethod", httpMethod == null ? null : httpMethod.getValue(), true);
     }
 
     /**
@@ -522,10 +500,11 @@ public class HTMLFlow extends Canvas implements com.smartgwt.client.widgets.even
      * generated &lt;iframe&gt; element and cannot fix bugs or differences in sandbox behavior across different browsers.
      *
      * @param iframeSandbox New iframeSandbox value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.HTMLFlow HTMLFlow} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setIframeSandbox(String iframeSandbox)  throws IllegalStateException {
-        setAttribute("iframeSandbox", iframeSandbox, false);
+    public HTMLFlow setIframeSandbox(String iframeSandbox)  throws IllegalStateException {
+        return (HTMLFlow)setAttribute("iframeSandbox", iframeSandbox, false);
     }
 
     /**
@@ -552,10 +531,11 @@ public class HTMLFlow extends Canvas implements com.smartgwt.client.widgets.even
      * than HTML fragments (see {@link com.smartgwt.client.widgets.HTMLFlow#getContentsType contentsType}).
      *
      * @param loadingMessage New loadingMessage value. Default value is "&amp;nbsp;${loadingImage}"
+     * @return {@link com.smartgwt.client.widgets.HTMLFlow HTMLFlow} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setLoadingMessage(String loadingMessage) {
-        setAttribute("loadingMessage", loadingMessage, true);
+    public HTMLFlow setLoadingMessage(String loadingMessage) {
+        return (HTMLFlow)setAttribute("loadingMessage", loadingMessage, true);
     }
 
     /**
@@ -582,10 +562,11 @@ public class HTMLFlow extends Canvas implements com.smartgwt.client.widgets.even
      * com.smartgwt.client.types.ContentsType#PAGE}.
      *
      * @param selectContentOnSelectAll New selectContentOnSelectAll value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.HTMLFlow HTMLFlow} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_html_pane" target="examples">HTMLPane Example</a>
      */
-    public void setSelectContentOnSelectAll(Boolean selectContentOnSelectAll) {
-        setAttribute("selectContentOnSelectAll", selectContentOnSelectAll, true);
+    public HTMLFlow setSelectContentOnSelectAll(Boolean selectContentOnSelectAll) {
+        return (HTMLFlow)setAttribute("selectContentOnSelectAll", selectContentOnSelectAll, true);
     }
 
     /**
@@ -607,14 +588,14 @@ public class HTMLFlow extends Canvas implements com.smartgwt.client.widgets.even
     /**
      * Add a contentLoaded handler.
      * <p>
-     * StringMethod fired when content is completely loaded in this htmlFlow. Has no default  implementation. May be observed
-     * or overridden as a notification type method to fire custom logic when loading completes. <P> Notes: <ul><li>A call to
-     * {@link com.smartgwt.client.widgets.Canvas#setContents this.setContents()}   will cause this notification to be fired
-     * when  the contents have been set. If {@link com.smartgwt.client.widgets.HTMLFlow#getEvalScriptBlocks
-     * HTMLFlow.evalScriptBlocks} is true, and the HTML passed  into <code>setContents()</code> contains any <code>&lt;script
-     * src=... &gt;</code>  tags, this callback will be fired asynchronously once the scripts have been loaded  from the server
-     * and executed, as well as having the widget content updated</li> <li>When using {@link
-     * com.smartgwt.client.widgets.HTMLFlow#getContentsURL HTMLFlow.contentsURL}, this does not apply to htmlFlows with  {@link
+     * StringMethod fired when content is completely loaded in this htmlFlow. Has no default  implementation. Add a
+     * notification to fire custom logic when loading completes. <P> Notes: <ul><li>A call to {@link
+     * com.smartgwt.client.widgets.Canvas#setContents this.setContents()}   will cause this notification to be fired when  the
+     * contents have been set. If {@link com.smartgwt.client.widgets.HTMLFlow#getEvalScriptBlocks HTMLFlow.evalScriptBlocks} is
+     * true, and the HTML passed  into <code>setContents()</code> contains any <code>&lt;script src=... &gt;</code>  tags, this
+     * callback will be fired asynchronously once the scripts have been loaded  from the server and executed, as well as having
+     * the widget content updated</li> <li>When using {@link com.smartgwt.client.widgets.HTMLFlow#getContentsURL
+     * HTMLFlow.contentsURL}, this does not apply to htmlFlows with  {@link
      * com.smartgwt.client.widgets.HTMLFlow#getContentsType contentsType} set to <code>"page"</code></li></ul>
      *
      * @param handler the contentLoaded handler
@@ -801,6 +782,11 @@ public class HTMLFlow extends Canvas implements com.smartgwt.client.widgets.even
             s.allowCaching = getAttributeAsString("allowCaching");
         } catch (Throwable t) {
             s.logicalStructureErrors += "HTMLFlow.allowCaching:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canSelectText = getAttributeAsString("canSelectText");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "HTMLFlow.canSelectText:" + t.getMessage() + "\n";
         }
         try {
             s.captureSCComponents = getAttributeAsString("captureSCComponents");

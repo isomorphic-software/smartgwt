@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -166,8 +169,7 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
     }-*/;
 
     public TreeGrid(){
-        setAnimateFolderSpeed(3000);setAlternateRecordStyles(false);
-				scClassName = "TreeGrid";
+        scClassName = "TreeGrid";
     }
 
     public TreeGrid(JavaScriptObject jsObj){
@@ -196,9 +198,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * the {@link com.smartgwt.client.docs.TreeDataBinding} documentation.
      *
      * @param alwaysShowOpener New alwaysShowOpener value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      */
-    public void setAlwaysShowOpener(Boolean alwaysShowOpener) {
-        setAttribute("alwaysShowOpener", alwaysShowOpener, true);
+    public TreeGrid setAlwaysShowOpener(Boolean alwaysShowOpener) {
+        return (TreeGrid)setAttribute("alwaysShowOpener", alwaysShowOpener, true);
     }
 
     /**
@@ -224,9 +227,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * animation than at the end.
      *
      * @param animateFolderEffect New animateFolderEffect value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      */
-    public void setAnimateFolderEffect(AnimationAcceleration animateFolderEffect) {
-        setAttribute("animateFolderEffect", animateFolderEffect == null ? null : animateFolderEffect.getValue(), true);
+    public TreeGrid setAnimateFolderEffect(AnimationAcceleration animateFolderEffect) {
+        return (TreeGrid)setAttribute("animateFolderEffect", animateFolderEffect == null ? null : animateFolderEffect.getValue(), true);
     }
 
     /**
@@ -246,10 +250,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * can be set to designate the maximum number of rows to animate at a time when opening / closing a folder.
      *
      * @param animateFolderMaxRows New animateFolderMaxRows value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderMaxRows
      */
-    public void setAnimateFolderMaxRows(Integer animateFolderMaxRows) {
-        setAttribute("animateFolderMaxRows", animateFolderMaxRows, true);
+    public TreeGrid setAnimateFolderMaxRows(Integer animateFolderMaxRows) {
+        return (TreeGrid)setAttribute("animateFolderMaxRows", animateFolderMaxRows, true);
     }
 
     /**
@@ -274,10 +279,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * used.
      *
      * @param animateFolders New animateFolders value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_tree" target="examples">Tree Folders Example</a>
      */
-    public void setAnimateFolders(Boolean animateFolders) {
-        setAttribute("animateFolders", animateFolders, true);
+    public TreeGrid setAnimateFolders(Boolean animateFolders) {
+        return (TreeGrid)setAttribute("animateFolders", animateFolders, true);
     }
 
     /**
@@ -301,11 +307,12 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * animateFolderTime} property, which allows the developer to specify a duration for the animation rather than a speed.
      *
      * @param animateFolderSpeed New animateFolderSpeed value. Default value is 3000
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setAnimateFolderTime
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_tree" target="examples">Tree Folders Example</a>
      */
-    public void setAnimateFolderSpeed(int animateFolderSpeed) {
-        setAttribute("animateFolderSpeed", animateFolderSpeed, true);
+    public TreeGrid setAnimateFolderSpeed(int animateFolderSpeed) {
+        return (TreeGrid)setAttribute("animateFolderSpeed", animateFolderSpeed, true);
     }
 
     /**
@@ -327,10 +334,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * animateFolderSpeed} is not set, this property designates the duration of the animation in ms.
      *
      * @param animateFolderTime New animateFolderTime value. Default value is 100
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setAnimateFolderSpeed
      */
-    public void setAnimateFolderTime(int animateFolderTime) {
-        setAttribute("animateFolderTime", animateFolderTime, true);
+    public TreeGrid setAnimateFolderTime(int animateFolderTime) {
+        return (TreeGrid)setAttribute("animateFolderTime", animateFolderTime, true);
     }
 
     /**
@@ -346,17 +354,48 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
     
 
     /**
+     * If this grid was passed an explicit set of fields, but no field was specified as the "tree-field" (showing indentations
+     * for tree hierarchy and tree icons), should we assign one of the other fields to be the tree-field? <P> When true, if
+     * we're showing a field for the {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty Tree.titleProperty} of the
+     * tree,  this will be displayed as a Tree Field by default. If not, the first entry in the  specified fields array will be
+     * used. <P> This may be set to false to display a tree or partial tree as a flattened list within a TreeGrid.
+     *
+     * @param autoAssignTreeField New autoAssignTreeField value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public TreeGrid setAutoAssignTreeField(boolean autoAssignTreeField)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("autoAssignTreeField", autoAssignTreeField, false);
+    }
+
+    /**
+     * If this grid was passed an explicit set of fields, but no field was specified as the "tree-field" (showing indentations
+     * for tree hierarchy and tree icons), should we assign one of the other fields to be the tree-field? <P> When true, if
+     * we're showing a field for the {@link com.smartgwt.client.widgets.tree.Tree#getTitleProperty Tree.titleProperty} of the
+     * tree,  this will be displayed as a Tree Field by default. If not, the first entry in the  specified fields array will be
+     * used. <P> This may be set to false to display a tree or partial tree as a flattened list within a TreeGrid.
+     *
+     * @return Current autoAssignTreeField value. Default value is true
+     */
+    public boolean getAutoAssignTreeField()  {
+        Boolean result = getAttributeAsBoolean("autoAssignTreeField");
+        return result == null ? true : result;
+    }
+    
+
+    /**
      * With {@link com.smartgwt.client.widgets.tree.TreeGrid#getLoadDataOnDemand loadDataOnDemand}:true, TreeGrids fetch data
      * by selecting the child nodes of each parent, which should be exact match, so we default to
      * <code>autoFetchTextMatchStyle:"exact"</code> when autoFetchData is true. <P> See {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchTextMatchStyle ListGrid.autoFetchTextMatchStyle} for details.
      *
      * @param autoFetchTextMatchStyle New autoFetchTextMatchStyle value. Default value is "exact"
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tree.ResultTree#setUseSimpleCriteriaLOD
      */
-    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
-        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle == null ? null : autoFetchTextMatchStyle.getValue(), false);
+    public TreeGrid setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle == null ? null : autoFetchTextMatchStyle.getValue(), false);
     }
 
     /**
@@ -379,10 +418,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * arrives due to cache invalidation.
      *
      * @param autoPreserveOpenState New autoPreserveOpenState value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAutoPreserveOpenState(PreserveOpenState autoPreserveOpenState)  throws IllegalStateException {
-        setAttribute("autoPreserveOpenState", autoPreserveOpenState == null ? null : autoPreserveOpenState.getValue(), false);
+    public TreeGrid setAutoPreserveOpenState(PreserveOpenState autoPreserveOpenState)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("autoPreserveOpenState", autoPreserveOpenState == null ? null : autoPreserveOpenState.getValue(), false);
     }
 
     /**
@@ -401,13 +441,14 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * Indicates whether records can be dropped into this listGrid.
      *
      * @param canAcceptDroppedRecords New canAcceptDroppedRecords value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.TreeNode#setCanDrag
      * @see com.smartgwt.client.widgets.tree.TreeNode#setCanAcceptDrop
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_interaction_drag_reparent" target="examples">Drag reparent Example</a>
      */
-    public void setCanAcceptDroppedRecords(Boolean canAcceptDroppedRecords) {
-        setAttribute("canAcceptDroppedRecords", canAcceptDroppedRecords, true);
+    public TreeGrid setCanAcceptDroppedRecords(Boolean canAcceptDroppedRecords) {
+        return (TreeGrid)setAttribute("canAcceptDroppedRecords", canAcceptDroppedRecords, true);
     }
 
     /**
@@ -429,27 +470,31 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * Indicates whether records can be dragged from this listGrid and dropped elsewhere. <p> <strong>NOTE:</strong> If
      * <code>canDragRecordsOut</code> is initially enabled or might be dynamically enabled after the grid is created, it may be
      * desirable to disable {@link com.smartgwt.client.widgets.Canvas#getUseTouchScrolling touch scrolling} so that
-     * touch-dragging a record starts a drag operation rather than a scroll. If {@link
+     * touch-dragging a record starts a drag operation rather than a scroll, but see the discussion of  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#showDragHandles drag handles}. If  {@link
      * com.smartgwt.client.widgets.Canvas#getDisableTouchScrollingForDrag Canvas.disableTouchScrollingForDrag} is set to
      * <code>true</code>, then touch scrolling will be disabled automatically. However, for {@link
      * com.smartgwt.client.docs.Accessibility accessibility} reasons, it is recommended to leave touch scrolling enabled and
      * provide an alternative set of controls that can be used to perform drag and drop of records out of the grid.
      *
      * @param canDragRecordsOut New canDragRecordsOut value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.TreeNode#setCanDrag
      * @see com.smartgwt.client.widgets.tree.TreeNode#setCanAcceptDrop
+     * @see com.smartgwt.client.widgets.grid.ListGrid#showDragHandles
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_interaction_drop_events" target="examples">Drop Events Example</a>
      */
-    public void setCanDragRecordsOut(Boolean canDragRecordsOut) {
-        setAttribute("canDragRecordsOut", canDragRecordsOut, true);
+    public TreeGrid setCanDragRecordsOut(Boolean canDragRecordsOut) {
+        return (TreeGrid)setAttribute("canDragRecordsOut", canDragRecordsOut, true);
     }
 
     /**
      * Indicates whether records can be dragged from this listGrid and dropped elsewhere. <p> <strong>NOTE:</strong> If
      * <code>canDragRecordsOut</code> is initially enabled or might be dynamically enabled after the grid is created, it may be
      * desirable to disable {@link com.smartgwt.client.widgets.Canvas#getUseTouchScrolling touch scrolling} so that
-     * touch-dragging a record starts a drag operation rather than a scroll. If {@link
+     * touch-dragging a record starts a drag operation rather than a scroll, but see the discussion of  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#showDragHandles drag handles}. If  {@link
      * com.smartgwt.client.widgets.Canvas#getDisableTouchScrollingForDrag Canvas.disableTouchScrollingForDrag} is set to
      * <code>true</code>, then touch scrolling will be disabled automatically. However, for {@link
      * com.smartgwt.client.docs.Accessibility accessibility} reasons, it is recommended to leave touch scrolling enabled and
@@ -458,6 +503,7 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * @return Current canDragRecordsOut value. Default value is false
      * @see com.smartgwt.client.widgets.tree.TreeNode#getCanDrag
      * @see com.smartgwt.client.widgets.tree.TreeNode#getCanAcceptDrop
+     * @see com.smartgwt.client.widgets.grid.ListGrid#showDragHandles
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_interaction_drop_events" target="examples">Drop Events Example</a>
      */
@@ -480,9 +526,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canDropOnLeaves New canDropOnLeaves value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      */
-    public void setCanDropOnLeaves(Boolean canDropOnLeaves) {
-        setAttribute("canDropOnLeaves", canDropOnLeaves, true);
+    public TreeGrid setCanDropOnLeaves(Boolean canDropOnLeaves) {
+        return (TreeGrid)setAttribute("canDropOnLeaves", canDropOnLeaves, true);
     }
 
     /**
@@ -509,7 +556,8 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * <code>canReorderRecords</code> is initially enabled or might be {@link
      * com.smartgwt.client.widgets.grid.ListGrid#setCanReorderRecords dynamically enabled} after the grid is created, it may be
      * desirable to disable {@link com.smartgwt.client.widgets.Canvas#getUseTouchScrolling touch scrolling} so that
-     * touch-dragging a record starts a reorder operation rather than a scroll. If {@link
+     * touch-dragging a record starts a reorder operation rather than a scroll, but see the discussion of {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#showDragHandles drag handles}. If  {@link
      * com.smartgwt.client.widgets.Canvas#getDisableTouchScrollingForDrag Canvas.disableTouchScrollingForDrag} is set to
      * <code>true</code>, then touch scrolling will be disabled automatically. However, for {@link
      * com.smartgwt.client.docs.Accessibility accessibility} reasons, it is recommended to leave touch scrolling enabled and
@@ -517,13 +565,15 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canReorderRecords New canReorderRecords value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.TreeNode#setCanDrag
      * @see com.smartgwt.client.widgets.tree.TreeNode#setCanAcceptDrop
+     * @see com.smartgwt.client.widgets.grid.ListGrid#showDragHandles
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_interaction_drag_reparent" target="examples">Drag reparent Example</a>
      */
-    public void setCanReorderRecords(Boolean canReorderRecords) {
-        setAttribute("canReorderRecords", canReorderRecords, true);
+    public TreeGrid setCanReorderRecords(Boolean canReorderRecords) {
+        return (TreeGrid)setAttribute("canReorderRecords", canReorderRecords, true);
     }
 
     /**
@@ -531,7 +581,8 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * <code>canReorderRecords</code> is initially enabled or might be {@link
      * com.smartgwt.client.widgets.grid.ListGrid#setCanReorderRecords dynamically enabled} after the grid is created, it may be
      * desirable to disable {@link com.smartgwt.client.widgets.Canvas#getUseTouchScrolling touch scrolling} so that
-     * touch-dragging a record starts a reorder operation rather than a scroll. If {@link
+     * touch-dragging a record starts a reorder operation rather than a scroll, but see the discussion of {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#showDragHandles drag handles}. If  {@link
      * com.smartgwt.client.widgets.Canvas#getDisableTouchScrollingForDrag Canvas.disableTouchScrollingForDrag} is set to
      * <code>true</code>, then touch scrolling will be disabled automatically. However, for {@link
      * com.smartgwt.client.docs.Accessibility accessibility} reasons, it is recommended to leave touch scrolling enabled and
@@ -540,6 +591,7 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * @return Current canReorderRecords value. Default value is false
      * @see com.smartgwt.client.widgets.tree.TreeNode#getCanDrag
      * @see com.smartgwt.client.widgets.tree.TreeNode#getCanAcceptDrop
+     * @see com.smartgwt.client.widgets.grid.ListGrid#showDragHandles
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_interaction_drag_reparent" target="examples">Drag reparent Example</a>
      */
@@ -555,12 +607,13 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * <code>this.canAcceptDroppedRecords</code> is true, we allow nodes to be dragged to different folders.
      *
      * @param canReparentNodes New canReparentNodes value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.TreeNode#setCanDrag
      * @see com.smartgwt.client.widgets.tree.TreeNode#setCanAcceptDrop
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
-    public void setCanReparentNodes(Boolean canReparentNodes) {
-        setAttribute("canReparentNodes", canReparentNodes, true);
+    public TreeGrid setCanReparentNodes(Boolean canReparentNodes) {
+        return (TreeGrid)setAttribute("canReparentNodes", canReparentNodes, true);
     }
 
     /**
@@ -583,10 +636,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * superclass.
      *
      * @param canSelectAll New canSelectAll value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
-    public void setCanSelectAll(Boolean canSelectAll) {
-        setAttribute("canSelectAll", canSelectAll, true);
+    public TreeGrid setCanSelectAll(Boolean canSelectAll) {
+        return (TreeGrid)setAttribute("canSelectAll", canSelectAll, true);
     }
 
     /**
@@ -605,13 +659,14 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * Message displayed when user attempts to drop a node into a child of itself.
      *
      * @param cantDragIntoChildMessage New cantDragIntoChildMessage value. Default value is "You can't drag an item into one of it's children."
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCanDragRecordsOut
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCanAcceptDroppedRecords
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCanReorderRecords
      */
-    public void setCantDragIntoChildMessage(String cantDragIntoChildMessage)  throws IllegalStateException {
-        setAttribute("cantDragIntoChildMessage", cantDragIntoChildMessage, false);
+    public TreeGrid setCantDragIntoChildMessage(String cantDragIntoChildMessage)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("cantDragIntoChildMessage", cantDragIntoChildMessage, false);
     }
 
     /**
@@ -631,13 +686,14 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * Message displayed when user attempts to drop a dragged node onto itself.
      *
      * @param cantDragIntoSelfMessage New cantDragIntoSelfMessage value. Default value is "You can't drag an item into itself."
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCanDragRecordsOut
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCanAcceptDroppedRecords
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCanReorderRecords
      */
-    public void setCantDragIntoSelfMessage(String cantDragIntoSelfMessage)  throws IllegalStateException {
-        setAttribute("cantDragIntoSelfMessage", cantDragIntoSelfMessage, false);
+    public TreeGrid setCantDragIntoSelfMessage(String cantDragIntoSelfMessage)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("cantDragIntoSelfMessage", cantDragIntoSelfMessage, false);
     }
 
     /**
@@ -654,13 +710,45 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
     
 
     /**
+     * For {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree Multi-link trees} only, the message displayed when the 
+     * user attempts to drag two or more occurences of the same node into a parent.
+     *
+     * @param cantDragMultipleNodeOccurencesMessage New cantDragMultipleNodeOccurencesMessage value. Default value is "You can't drag two occurences of the same node into a parent."
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.tree.TreeGrid#setCanDragRecordsOut
+     * @see com.smartgwt.client.widgets.tree.TreeGrid#setCanAcceptDroppedRecords
+     * @see com.smartgwt.client.widgets.tree.TreeGrid#setCanReorderRecords
+     * @see com.smartgwt.client.widgets.tree.TreeGrid#setParentAlreadyContainsChildMessage
+     */
+    public TreeGrid setCantDragMultipleNodeOccurencesMessage(String cantDragMultipleNodeOccurencesMessage)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("cantDragMultipleNodeOccurencesMessage", cantDragMultipleNodeOccurencesMessage, false);
+    }
+
+    /**
+     * For {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree Multi-link trees} only, the message displayed when the 
+     * user attempts to drag two or more occurences of the same node into a parent.
+     *
+     * @return Current cantDragMultipleNodeOccurencesMessage value. Default value is "You can't drag two occurences of the same node into a parent."
+     * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanDragRecordsOut
+     * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanAcceptDroppedRecords
+     * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords
+     * @see com.smartgwt.client.widgets.tree.TreeGrid#getParentAlreadyContainsChildMessage
+     */
+    public String getCantDragMultipleNodeOccurencesMessage()  {
+        return getAttributeAsString("cantDragMultipleNodeOccurencesMessage");
+    }
+    
+
+    /**
      * Should children be selected when parent is selected? And should parent be selected when any child is selected?
      *
      * @param cascadeSelection New cascadeSelection value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCascadeSelection(Boolean cascadeSelection)  throws IllegalStateException {
-        setAttribute("cascadeSelection", cascadeSelection, false);
+    public TreeGrid setCascadeSelection(Boolean cascadeSelection)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("cascadeSelection", cascadeSelection, false);
     }
 
     /**
@@ -680,10 +768,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * <code>false</code> this suffix will also be appended to open folders' icons.
      *
      * @param closedIconSuffix New closedIconSuffix value. Default value is "closed"
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setClosedIconSuffix(String closedIconSuffix)  throws IllegalStateException {
-        setAttribute("closedIconSuffix", closedIconSuffix, false);
+    public TreeGrid setClosedIconSuffix(String closedIconSuffix)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("closedIconSuffix", closedIconSuffix, false);
     }
 
     /**
@@ -749,11 +838,12 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * etc.
      *
      * @param connectorImage New connectorImage value. Default value is "[SKIN]connector.gif"
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setConnectorImage(String connectorImage)  throws IllegalStateException {
-        setAttribute("connectorImage", connectorImage, false);
+    public TreeGrid setConnectorImage(String connectorImage)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("connectorImage", connectorImage, false);
     }
 
     /**
@@ -830,10 +920,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * {@link com.smartgwt.client.widgets.tree.TreeGrid#getUseAllDataSourceFields useAllDataSourceFields} to <code>true</code>.
      *
      * @param createDefaultTreeField New createDefaultTreeField value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCreateDefaultTreeField(Boolean createDefaultTreeField)  throws IllegalStateException {
-        setAttribute("createDefaultTreeField", createDefaultTreeField, false);
+    public TreeGrid setCreateDefaultTreeField(Boolean createDefaultTreeField)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("createDefaultTreeField", createDefaultTreeField, false);
     }
 
     /**
@@ -865,11 +956,12 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param customIconDropProperty New customIconDropProperty value. Default value is "showDropIcon"
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCustomIconProperty
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setShowCustomIconDrop
      */
-    public void setCustomIconDropProperty(String customIconDropProperty) {
-        setAttribute("customIconDropProperty", customIconDropProperty, true);
+    public TreeGrid setCustomIconDropProperty(String customIconDropProperty) {
+        return (TreeGrid)setAttribute("customIconDropProperty", customIconDropProperty, true);
     }
 
     /**
@@ -891,11 +983,12 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param customIconOpenProperty New customIconOpenProperty value. Default value is "showOpenIcon"
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCustomIconProperty
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setShowCustomIconOpen
      */
-    public void setCustomIconOpenProperty(String customIconOpenProperty) {
-        setAttribute("customIconOpenProperty", customIconOpenProperty, true);
+    public TreeGrid setCustomIconOpenProperty(String customIconOpenProperty) {
+        return (TreeGrid)setAttribute("customIconOpenProperty", customIconOpenProperty, true);
     }
 
     /**
@@ -916,9 +1009,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * node.icon} property.
      *
      * @param customIconProperty New customIconProperty value. Default value is "icon"
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      */
-    public void setCustomIconProperty(String customIconProperty) {
-        setAttribute("customIconProperty", customIconProperty, true);
+    public TreeGrid setCustomIconProperty(String customIconProperty) {
+        return (TreeGrid)setAttribute("customIconProperty", customIconProperty, true);
     }
 
     /**
@@ -938,11 +1032,12 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param customIconSelectedProperty New customIconSelectedProperty value. Default value is "showSelectedIcon"
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCustomIconProperty
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setShowCustomIconSelected
      */
-    public void setCustomIconSelectedProperty(String customIconSelectedProperty) {
-        setAttribute("customIconSelectedProperty", customIconSelectedProperty, true);
+    public TreeGrid setCustomIconSelectedProperty(String customIconSelectedProperty) {
+        return (TreeGrid)setAttribute("customIconSelectedProperty", customIconSelectedProperty, true);
     }
 
     /**
@@ -977,14 +1072,15 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * com.smartgwt.client.docs.TreeDataBinding} overview.
      *
      * @param dataFetchMode New dataFetchMode value. Default value is "basic"
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tree.ResultTree#setLoadDataOnDemand
      * @see com.smartgwt.client.widgets.tree.ResultTree#setUseSimpleCriteriaLOD
      * @see com.smartgwt.client.docs.TreeDataBinding TreeDataBinding overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#tree_paging_for_children" target="examples">Paging for Children Example</a>
      */
-    public void setDataFetchMode(FetchMode dataFetchMode)  throws IllegalStateException {
-        setAttribute("dataFetchMode", dataFetchMode == null ? null : dataFetchMode.getValue(), false);
+    public TreeGrid setDataFetchMode(FetchMode dataFetchMode)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("dataFetchMode", dataFetchMode == null ? null : dataFetchMode.getValue(), false);
     }
 
     /**
@@ -1033,10 +1129,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * Specifies the type of nodes displayed in the treeGrid.
      *
      * @param displayNodeType New displayNodeType value. Default value is Tree.FOLDERS_AND_LEAVES
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.types.DisplayNodeType
      */
-    public void setDisplayNodeType(DisplayNodeType displayNodeType) {
-        setAttribute("displayNodeType", displayNodeType == null ? null : displayNodeType.getValue(), true);
+    public TreeGrid setDisplayNodeType(DisplayNodeType displayNodeType) {
+        return (TreeGrid)setAttribute("displayNodeType", displayNodeType == null ? null : displayNodeType.getValue(), true);
     }
 
     /**
@@ -1057,10 +1154,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * over some folder.
      *
      * @param dropIconSuffix New dropIconSuffix value. Default value is "drop"
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDropIconSuffix(String dropIconSuffix)  throws IllegalStateException {
-        setAttribute("dropIconSuffix", dropIconSuffix, false);
+    public TreeGrid setDropIconSuffix(String dropIconSuffix)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("dropIconSuffix", dropIconSuffix, false);
     }
 
     /**
@@ -1081,11 +1179,12 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} or node text.
      *
      * @param extraIconGap New extraIconGap value. Default value is 2
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setExtraIconGap(int extraIconGap)  throws IllegalStateException {
-        setAttribute("extraIconGap", extraIconGap, false);
+    public TreeGrid setExtraIconGap(int extraIconGap)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("extraIconGap", extraIconGap, false);
     }
 
     /**
@@ -1109,11 +1208,12 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * DataBoundComponent.fields}.
      *
      * @param fields New fields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.TreeGridField
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
-    public void setFields(TreeGridField... fields) {
-        setAttribute("fields", fields, true);
+    public TreeGrid setFields(TreeGridField... fields) {
+        return (TreeGrid)setAttribute("fields", fields, true);
     }
     
     
@@ -1133,11 +1233,12 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * icons
      *
      * @param folderIcon New folderIcon value. Default value is "[SKIN]folder.gif"
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
-    public void setFolderIcon(String folderIcon) {
-        setAttribute("folderIcon", folderIcon, true);
+    public TreeGrid setFolderIcon(String folderIcon) {
+        return (TreeGrid)setAttribute("folderIcon", folderIcon, true);
     }
 
     /**
@@ -1168,10 +1269,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * com.smartgwt.client.widgets.tree.TreeGrid#getIconPaddingProperty iconPaddingProperty}
      *
      * @param folderIconPadding New folderIconPadding value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setFolderIconPadding(Integer folderIconPadding)  throws IllegalStateException {
-        setAttribute("folderIconPadding", folderIconPadding, false);
+    public TreeGrid setFolderIconPadding(Integer folderIconPadding)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("folderIconPadding", folderIconPadding, false);
     }
 
     /**
@@ -1196,10 +1298,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * on individual nodes
      *
      * @param iconPadding New iconPadding value. Default value is 2
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setIconPadding(Integer iconPadding)  throws IllegalStateException {
-        setAttribute("iconPadding", iconPadding, false);
+    public TreeGrid setIconPadding(Integer iconPadding)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("iconPadding", iconPadding, false);
     }
 
     /**
@@ -1221,10 +1324,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * iconPadding} for specific nodes
      *
      * @param iconPaddingProperty New iconPaddingProperty value. Default value is "iconPadding"
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setIconPaddingProperty(String iconPaddingProperty)  throws IllegalStateException {
-        setAttribute("iconPaddingProperty", iconPaddingProperty, false);
+    public TreeGrid setIconPaddingProperty(String iconPaddingProperty)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("iconPaddingProperty", iconPaddingProperty, false);
     }
 
     /**
@@ -1242,9 +1346,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * The standard size (same height and width, in pixels) of node icons in this          treeGrid.
      *
      * @param iconSize New iconSize value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      */
-    public void setIconSize(int iconSize) {
-        setAttribute("iconSize", iconSize, true);
+    public TreeGrid setIconSize(int iconSize) {
+        return (TreeGrid)setAttribute("iconSize", iconSize, true);
     }
 
     /**
@@ -1264,9 +1369,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * addEmbeddedComponent}.
      *
      * @param indentRecordComponents New indentRecordComponents value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      */
-    public void setIndentRecordComponents(Boolean indentRecordComponents) {
-        setAttribute("indentRecordComponents", indentRecordComponents, true);
+    public TreeGrid setIndentRecordComponents(Boolean indentRecordComponents) {
+        return (TreeGrid)setAttribute("indentRecordComponents", indentRecordComponents, true);
     }
 
     /**
@@ -1289,10 +1395,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * <code>true</code> because fixed-size images are used to render the connectors.
      *
      * @param indentSize New indentSize value. Default value is 20
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setIndentSize(int indentSize) {
-        setAttribute("indentSize", indentSize, true);
+    public TreeGrid setIndentSize(int indentSize) {
+        return (TreeGrid)setAttribute("indentSize", indentSize, true);
     }
 
     /**
@@ -1322,11 +1429,12 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * be set to a list of field names that will be sent to the server whenever they are present in the criteria.
      *
      * @param keepParentsOnFilter New keepParentsOnFilter value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.TreeDataBinding TreeDataBinding overview and related methods
      */
-    public void setKeepParentsOnFilter(Boolean keepParentsOnFilter)  throws IllegalStateException {
-        setAttribute("keepParentsOnFilter", keepParentsOnFilter, false);
+    public TreeGrid setKeepParentsOnFilter(Boolean keepParentsOnFilter)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("keepParentsOnFilter", keepParentsOnFilter, false);
     }
 
     /**
@@ -1357,11 +1465,12 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * <code>true</code>
      *
      * @param leaveSelectionCheckboxGap New leaveSelectionCheckboxGap value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.grid.ListGrid#setRecordCanSelectProperty
      */
-    public void setLeaveSelectionCheckboxGap(Boolean leaveSelectionCheckboxGap)  throws IllegalStateException {
-        setAttribute("leaveSelectionCheckboxGap", leaveSelectionCheckboxGap, false);
+    public TreeGrid setLeaveSelectionCheckboxGap(Boolean leaveSelectionCheckboxGap)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("leaveSelectionCheckboxGap", leaveSelectionCheckboxGap, false);
     }
 
     /**
@@ -1393,12 +1502,13 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * this behavior.
      *
      * @param loadDataOnDemand New loadDataOnDemand value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setDataFetchMode
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_databinding_init_ondemand" target="examples">Initial Data & Load on Demand Example</a>
      */
-    public void setLoadDataOnDemand(Boolean loadDataOnDemand) {
-        setAttribute("loadDataOnDemand", loadDataOnDemand, true);
+    public TreeGrid setLoadDataOnDemand(Boolean loadDataOnDemand) {
+        return (TreeGrid)setAttribute("loadDataOnDemand", loadDataOnDemand, true);
     }
 
     /**
@@ -1428,10 +1538,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * when the folder is  {@link com.smartgwt.client.widgets.tree.Tree#getLoadState loading children from the server}.
      *
      * @param loadingIcon New loadingIcon value. Default value is "[SKIN]folder_loading.gif"
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setLoadingIcon(String loadingIcon) {
-        setAttribute("loadingIcon", loadingIcon, true);
+    public TreeGrid setLoadingIcon(String loadingIcon) {
+        return (TreeGrid)setAttribute("loadingIcon", loadingIcon, true);
     }
 
     /**
@@ -1451,11 +1562,12 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * dragged.
      *
      * @param manyItemsImage New manyItemsImage value. Default value is "[SKIN]folder_file.gif"
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
-    public void setManyItemsImage(String manyItemsImage) {
-        setAttribute("manyItemsImage", manyItemsImage, true);
+    public TreeGrid setManyItemsImage(String manyItemsImage) {
+        return (TreeGrid)setAttribute("manyItemsImage", manyItemsImage, true);
     }
 
     /**
@@ -1482,11 +1594,12 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * Set the icon for a particular treenode to a specified URL
      *
      * @param nodeIcon tree node. Default value is "[SKIN]file.gif"
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
-    public void setNodeIcon(String nodeIcon) {
-        setAttribute("nodeIcon", nodeIcon, true);
+    public TreeGrid setNodeIcon(String nodeIcon) {
+        return (TreeGrid)setAttribute("nodeIcon", nodeIcon, true);
     }
 
     /**
@@ -1511,9 +1624,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * presented to the user in  in a pop-up dialog box.
      *
      * @param offlineNodeMessage New offlineNodeMessage value. Default value is "This data not available while offline"
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      */
-    public void setOfflineNodeMessage(String offlineNodeMessage) {
-        setAttribute("offlineNodeMessage", offlineNodeMessage, true);
+    public TreeGrid setOfflineNodeMessage(String offlineNodeMessage) {
+        return (TreeGrid)setAttribute("offlineNodeMessage", offlineNodeMessage, true);
     }
 
     /**
@@ -1534,9 +1648,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * openerIconSize} is used instead.
      *
      * @param openerIconHeight New openerIconHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      */
-    public void setOpenerIconHeight(Integer openerIconHeight) {
-        setAttribute("openerIconHeight", openerIconHeight, true);
+    public TreeGrid setOpenerIconHeight(Integer openerIconHeight) {
+        return (TreeGrid)setAttribute("openerIconHeight", openerIconHeight, true);
     }
 
     /**
@@ -1562,9 +1677,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * iconSize}.
      *
      * @param openerIconSize New openerIconSize value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      */
-    public void setOpenerIconSize(Integer openerIconSize) {
-        setAttribute("openerIconSize", openerIconSize, true);
+    public TreeGrid setOpenerIconSize(Integer openerIconSize) {
+        return (TreeGrid)setAttribute("openerIconSize", openerIconSize, true);
     }
 
     /**
@@ -1590,9 +1706,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * is used instead.
      *
      * @param openerIconWidth New openerIconWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      */
-    public void setOpenerIconWidth(Integer openerIconWidth) {
-        setAttribute("openerIconWidth", openerIconWidth, true);
+    public TreeGrid setOpenerIconWidth(Integer openerIconWidth) {
+        return (TreeGrid)setAttribute("openerIconWidth", openerIconWidth, true);
     }
 
     /**
@@ -1621,11 +1738,12 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * <code>{baseName}_opened_selected.{extension}</code>,  <code>{baseName}_closed_selected.{extension}</code>, etc.
      *
      * @param openerImage New openerImage value. Default value is "[SKIN]opener.gif"
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setOpenerImage(String openerImage)  throws IllegalStateException {
-        setAttribute("openerImage", openerImage, false);
+    public TreeGrid setOpenerImage(String openerImage)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("openerImage", openerImage, false);
     }
 
     /**
@@ -1655,10 +1773,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * grid.
      *
      * @param openIconSuffix New openIconSuffix value. Default value is "open"
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setOpenIconSuffix(String openIconSuffix)  throws IllegalStateException {
-        setAttribute("openIconSuffix", openIconSuffix, false);
+    public TreeGrid setOpenIconSuffix(String openIconSuffix)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("openIconSuffix", openIconSuffix, false);
     }
 
     /**
@@ -1674,25 +1793,28 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
     
 
     /**
-     * Message displayed when user attempts to drag a node into a parent that already contains a child of the same name.
+     * Message displayed when user attempts to drag a node into a parent that already contains a child of the same name/ID.
      *
      * @param parentAlreadyContainsChildMessage New parentAlreadyContainsChildMessage value. Default value is "This item already contains a child item with that name."
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCanDragRecordsOut
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCanAcceptDroppedRecords
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setCanReorderRecords
+     * @see com.smartgwt.client.widgets.tree.TreeGrid#setCantDragMultipleNodeOccurencesMessage
      */
-    public void setParentAlreadyContainsChildMessage(String parentAlreadyContainsChildMessage)  throws IllegalStateException {
-        setAttribute("parentAlreadyContainsChildMessage", parentAlreadyContainsChildMessage, false);
+    public TreeGrid setParentAlreadyContainsChildMessage(String parentAlreadyContainsChildMessage)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("parentAlreadyContainsChildMessage", parentAlreadyContainsChildMessage, false);
     }
 
     /**
-     * Message displayed when user attempts to drag a node into a parent that already contains a child of the same name.
+     * Message displayed when user attempts to drag a node into a parent that already contains a child of the same name/ID.
      *
      * @return Current parentAlreadyContainsChildMessage value. Default value is "This item already contains a child item with that name."
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanDragRecordsOut
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanAcceptDroppedRecords
      * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords
+     * @see com.smartgwt.client.widgets.tree.TreeGrid#getCantDragMultipleNodeOccurencesMessage
      */
     public String getParentAlreadyContainsChildMessage()  {
         return getAttributeAsString("parentAlreadyContainsChildMessage");
@@ -1706,9 +1828,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * com.smartgwt.client.widgets.tree.TreeGrid#recordDrop recordDrop()} event handler.
      *
      * @param recordDropAppearance New recordDropAppearance value. Default value is ListGrid.BOTH
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      */
-    public void setRecordDropAppearance(RecordDropAppearance recordDropAppearance) {
-        setAttribute("recordDropAppearance", recordDropAppearance == null ? null : recordDropAppearance.getValue(), true);
+    public TreeGrid setRecordDropAppearance(RecordDropAppearance recordDropAppearance) {
+        return (TreeGrid)setAttribute("recordDropAppearance", recordDropAppearance == null ? null : recordDropAppearance.getValue(), true);
     }
 
     /**
@@ -1730,10 +1853,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * grid.
      *
      * @param selectedIconSuffix New selectedIconSuffix value. Default value is "selected"
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSelectedIconSuffix(String selectedIconSuffix)  throws IllegalStateException {
-        setAttribute("selectedIconSuffix", selectedIconSuffix, false);
+    public TreeGrid setSelectedIconSuffix(String selectedIconSuffix)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("selectedIconSuffix", selectedIconSuffix, false);
     }
 
     /**
@@ -1756,11 +1880,12 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param selectionProperty New selectionProperty value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
-    public void setSelectionProperty(String selectionProperty)  throws IllegalStateException {
-        setAttribute("selectionProperty", selectionProperty, false);
+    public TreeGrid setSelectionProperty(String selectionProperty)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("selectionProperty", selectionProperty, false);
     }
 
     /**
@@ -1787,10 +1912,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * dataProperties}.
      *
      * @param separateFolders New separateFolders value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSeparateFolders(Boolean separateFolders)  throws IllegalStateException {
-        setAttribute("separateFolders", separateFolders, false);
+    public TreeGrid setSeparateFolders(Boolean separateFolders)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("separateFolders", separateFolders, false);
     }
 
     /**
@@ -1815,10 +1941,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * the server if they are present in the criteria.
      *
      * @param serverFilterFields New serverFilterFields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setServerFilterFields(String... serverFilterFields)  throws IllegalStateException {
-        setAttribute("serverFilterFields", serverFilterFields, false);
+    public TreeGrid setServerFilterFields(String... serverFilterFields)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("serverFilterFields", serverFilterFields, false);
     }
 
     /**
@@ -1841,10 +1968,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * configuration, including example CSS.
      *
      * @param showConnectors New showConnectors value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_connectors" target="examples">Connectors Example</a>
      */
-    public void setShowConnectors(Boolean showConnectors) {
-        setAttribute("showConnectors", showConnectors, true);
+    public TreeGrid setShowConnectors(Boolean showConnectors) {
+        return (TreeGrid)setAttribute("showConnectors", showConnectors, true);
     }
 
     /**
@@ -1875,9 +2003,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showCustomIconDrop New showCustomIconDrop value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      */
-    public void setShowCustomIconDrop(Boolean showCustomIconDrop) {
-        setAttribute("showCustomIconDrop", showCustomIconDrop, true);
+    public TreeGrid setShowCustomIconDrop(Boolean showCustomIconDrop) {
+        return (TreeGrid)setAttribute("showCustomIconDrop", showCustomIconDrop, true);
     }
 
     /**
@@ -1911,9 +2040,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showCustomIconOpen New showCustomIconOpen value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      */
-    public void setShowCustomIconOpen(Boolean showCustomIconOpen) {
-        setAttribute("showCustomIconOpen", showCustomIconOpen, true);
+    public TreeGrid setShowCustomIconOpen(Boolean showCustomIconOpen) {
+        return (TreeGrid)setAttribute("showCustomIconOpen", showCustomIconOpen, true);
     }
 
     /**
@@ -1947,9 +2077,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showCustomIconSelected New showCustomIconSelected value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      */
-    public void setShowCustomIconSelected(Boolean showCustomIconSelected) {
-        setAttribute("showCustomIconSelected", showCustomIconSelected, true);
+    public TreeGrid setShowCustomIconSelected(Boolean showCustomIconSelected) {
+        return (TreeGrid)setAttribute("showCustomIconSelected", showCustomIconSelected, true);
     }
 
     /**
@@ -1977,11 +2108,12 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * leaveSelectionCheckboxGap} to determine whether to leave a blank space where the checkbox would normally appear.
      *
      * @param showDisabledSelectionCheckbox New showDisabledSelectionCheckbox value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.grid.ListGrid#setRecordCanSelectProperty
      */
-    public void setShowDisabledSelectionCheckbox(Boolean showDisabledSelectionCheckbox)  throws IllegalStateException {
-        setAttribute("showDisabledSelectionCheckbox", showDisabledSelectionCheckbox, false);
+    public TreeGrid setShowDisabledSelectionCheckbox(Boolean showDisabledSelectionCheckbox)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("showDisabledSelectionCheckbox", showDisabledSelectionCheckbox, false);
     }
 
     /**
@@ -2000,21 +2132,22 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
     
 
     /**
-     * If true, when the user drags a droppable target over a folder in this TreeGrid, show  a different icon folder icon. This
-     * is achieved by appending the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} onto the
+     * If true, when the user drags a droppable target over a folder in this TreeGrid, show  a different folder icon. This is
+     * achieved by appending the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} onto the
      * {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} URL (for example
      * <code>"[SKIN]/folder.gif"</code> may be replaced by <code>"[SKIN]/folder_drop.gif"</code>).
      *
      * @param showDropIcons New showDropIcons value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
-    public void setShowDropIcons(Boolean showDropIcons) {
-        setAttribute("showDropIcons", showDropIcons, true);
+    public TreeGrid setShowDropIcons(Boolean showDropIcons) {
+        return (TreeGrid)setAttribute("showDropIcons", showDropIcons, true);
     }
 
     /**
-     * If true, when the user drags a droppable target over a folder in this TreeGrid, show  a different icon folder icon. This
-     * is achieved by appending the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} onto the
+     * If true, when the user drags a droppable target over a folder in this TreeGrid, show  a different folder icon. This is
+     * achieved by appending the {@link com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} onto the
      * {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcon} URL (for example
      * <code>"[SKIN]/folder.gif"</code> may be replaced by <code>"[SKIN]/folder_drop.gif"</code>).
      *
@@ -2033,9 +2166,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * com.smartgwt.client.widgets.tree.TreeGrid#getIcon getIcon()} for more details on treeGrid icons
      *
      * @param showFolderIcons New showFolderIcons value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      */
-    public void setShowFolderIcons(Boolean showFolderIcons) {
-        setAttribute("showFolderIcons", showFolderIcons, true);
+    public TreeGrid setShowFolderIcons(Boolean showFolderIcons) {
+        return (TreeGrid)setAttribute("showFolderIcons", showFolderIcons, true);
     }
 
     /**
@@ -2056,9 +2190,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * show only the hierarchy lines are only shown for the most indented path ("sparse" connectors).
      *
      * @param showFullConnectors New showFullConnectors value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      */
-    public void setShowFullConnectors(Boolean showFullConnectors) {
-        setAttribute("showFullConnectors", showFullConnectors, true);
+    public TreeGrid setShowFullConnectors(Boolean showFullConnectors) {
+        return (TreeGrid)setAttribute("showFullConnectors", showFullConnectors, true);
     }
 
     /**
@@ -2075,23 +2210,24 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
     
 
     /**
-     * If set, when a folder is loading it's children from the server ({@link
-     * com.smartgwt.client.widgets.tree.Tree#getLoadState Tree.getLoadState()} returns "loading"), it uses a distinct icon
-     * image given by {@link com.smartgwt.client.widgets.tree.TreeGrid#getLoadingIcon loadingIcon}.  This is typically used to
-     * show a small animating "spinner" icon to let the user know data is being fetched.
+     * If set, when a folder is loading its children from the server ({@link com.smartgwt.client.widgets.tree.Tree#getLoadState
+     * Tree.getLoadState()} returns "loading"), it uses a distinct icon image given by {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getLoadingIcon loadingIcon}.  This is typically used to show a small animating
+     * "spinner" icon to let the user know data is being fetched.
      *
      * @param showLoadingIcons New showLoadingIcons value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowLoadingIcons(boolean showLoadingIcons)  throws IllegalStateException {
-        setAttribute("showLoadingIcons", showLoadingIcons, false);
+    public TreeGrid setShowLoadingIcons(boolean showLoadingIcons)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("showLoadingIcons", showLoadingIcons, false);
     }
 
     /**
-     * If set, when a folder is loading it's children from the server ({@link
-     * com.smartgwt.client.widgets.tree.Tree#getLoadState Tree.getLoadState()} returns "loading"), it uses a distinct icon
-     * image given by {@link com.smartgwt.client.widgets.tree.TreeGrid#getLoadingIcon loadingIcon}.  This is typically used to
-     * show a small animating "spinner" icon to let the user know data is being fetched.
+     * If set, when a folder is loading its children from the server ({@link com.smartgwt.client.widgets.tree.Tree#getLoadState
+     * Tree.getLoadState()} returns "loading"), it uses a distinct icon image given by {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getLoadingIcon loadingIcon}.  This is typically used to show a small animating
+     * "spinner" icon to let the user know data is being fetched.
      *
      * @return Current showLoadingIcons value. Default value is true
      */
@@ -2107,9 +2243,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * com.smartgwt.client.widgets.tree.TreeGrid#getIcon getIcon()} for more details on treeGrid icons
      *
      * @param showNodeIcons New showNodeIcons value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      */
-    public void setShowNodeIcons(Boolean showNodeIcons) {
-        setAttribute("showNodeIcons", showNodeIcons, true);
+    public TreeGrid setShowNodeIcons(Boolean showNodeIcons) {
+        return (TreeGrid)setAttribute("showNodeIcons", showNodeIcons, true);
     }
 
     /**
@@ -2143,9 +2280,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * will be displayed for selected nodes.
      *
      * @param showOpener New showOpener value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      */
-    public void setShowOpener(Boolean showOpener) {
-        setAttribute("showOpener", showOpener, true);
+    public TreeGrid setShowOpener(Boolean showOpener) {
+        return (TreeGrid)setAttribute("showOpener", showOpener, true);
     }
 
     /**
@@ -2183,10 +2321,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * the {@link com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix closedIconSuffix}.
      *
      * @param showOpenIcons New showOpenIcons value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_appearance_node_titles" target="examples">Node Titles Example</a>
      */
-    public void setShowOpenIcons(Boolean showOpenIcons) {
-        setAttribute("showOpenIcons", showOpenIcons, true);
+    public TreeGrid setShowOpenIcons(Boolean showOpenIcons) {
+        return (TreeGrid)setAttribute("showOpenIcons", showOpenIcons, true);
     }
 
     /**
@@ -2211,9 +2350,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * Should partially selected parents be shown with special icon?
      *
      * @param showPartialSelection New showPartialSelection value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      */
-    public void setShowPartialSelection(Boolean showPartialSelection) {
-        setAttribute("showPartialSelection", showPartialSelection, true);
+    public TreeGrid setShowPartialSelection(Boolean showPartialSelection) {
+        return (TreeGrid)setAttribute("showPartialSelection", showPartialSelection, true);
     }
 
     /**
@@ -2236,10 +2376,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * com.smartgwt.client.widgets.tree.Tree#getRoot this.data.getRoot()}.
      *
      * @param showRoot New showRoot value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowRoot(Boolean showRoot)  throws IllegalStateException {
-        setAttribute("showRoot", showRoot, false);
+    public TreeGrid setShowRoot(Boolean showRoot)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("showRoot", showRoot, false);
     }
 
     /**
@@ -2271,9 +2412,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * for a folder that was both selected and opened.
      *
      * @param showSelectedIcons New showSelectedIcons value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      */
-    public void setShowSelectedIcons(Boolean showSelectedIcons) {
-        setAttribute("showSelectedIcons", showSelectedIcons, true);
+    public TreeGrid setShowSelectedIcons(Boolean showSelectedIcons) {
+        return (TreeGrid)setAttribute("showSelectedIcons", showSelectedIcons, true);
     }
 
     /**
@@ -2305,9 +2447,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * com.smartgwt.client.widgets.tree.TreeGrid#getConnectorImage connectorImage}.
      *
      * @param showSelectedOpener New showSelectedOpener value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      */
-    public void setShowSelectedOpener(Boolean showSelectedOpener) {
-        setAttribute("showSelectedOpener", showSelectedOpener, true);
+    public TreeGrid setShowSelectedOpener(Boolean showSelectedOpener) {
+        return (TreeGrid)setAttribute("showSelectedOpener", showSelectedOpener, true);
     }
 
     /**
@@ -2335,11 +2478,12 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * after. To invert this behavior, set this property to false.
      *
      * @param sortFoldersBeforeLeaves New sortFoldersBeforeLeaves value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.tree.TreeGrid#setSeparateFolders
      */
-    public void setSortFoldersBeforeLeaves(Boolean sortFoldersBeforeLeaves)  throws IllegalStateException {
-        setAttribute("sortFoldersBeforeLeaves", sortFoldersBeforeLeaves, false);
+    public TreeGrid setSortFoldersBeforeLeaves(Boolean sortFoldersBeforeLeaves)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("sortFoldersBeforeLeaves", sortFoldersBeforeLeaves, false);
     }
 
     /**
@@ -2362,10 +2506,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * Visible title for the tree column (field).
      *
      * @param treeFieldTitle New treeFieldTitle value. Default value is "Name"
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTreeFieldTitle(String treeFieldTitle)  throws IllegalStateException {
-        setAttribute("treeFieldTitle", treeFieldTitle, false);
+    public TreeGrid setTreeFieldTitle(String treeFieldTitle)  throws IllegalStateException {
+        return (TreeGrid)setAttribute("treeFieldTitle", treeFieldTitle, false);
     }
 
     /**
@@ -2391,12 +2536,13 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * setting may be cleared if a {@link com.smartgwt.client.widgets.FieldPicker} is used to edit the component's field order.
      *
      * @param useAllDataSourceFields New useAllDataSourceFields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.FieldPicker#setDataBoundComponent
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_validation_customized_binding" target="examples">Customized Binding Example</a>
      */
-    public void setUseAllDataSourceFields(Boolean useAllDataSourceFields) {
-        setAttribute("useAllDataSourceFields", useAllDataSourceFields, true);
+    public TreeGrid setUseAllDataSourceFields(Boolean useAllDataSourceFields) {
+        return (TreeGrid)setAttribute("useAllDataSourceFields", useAllDataSourceFields, true);
     }
 
     /**
@@ -2514,9 +2660,9 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * Add a dataChanged handler.
      * <p>
      * Notification method fired when the TreeGrid's data changes, for any reason. <P> Examples of why data changed might
-     * be:<ul> <li> a call to {@link com.smartgwt.client.widgets.grid.ListGrid#addData addData}, {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#updateData updateData}, or {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#removeData removeData} <li> {@link com.smartgwt.client.data.DataSource}
+     * be:<ul> <li> a call to {@link com.smartgwt.client.widgets.grid.ListGrid#addData addData()}, {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#updateData updateData()}, or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#removeData removeData()} <li> {@link com.smartgwt.client.data.DataSource}
      * updates from the server for {@link com.smartgwt.client.widgets.tree.ResultTree} data (triggered by record editing, etc.)
      * <li> fetches arriving back from the server for {@link com.smartgwt.client.widgets.tree.ResultTree} data <li>
      * programmatic changes to {@link com.smartgwt.client.widgets.tree.Tree} data if made through APIs such as {@link
@@ -2526,10 +2672,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * may fire if one of the above listed events is triggered (e.g. a server fetch for  {@link
      * com.smartgwt.client.widgets.tree.ResultTree} data). <P> Note that the <code>operationType</code> parameter is optional
      * and will be passed and contain the operation (e.g. "update") if this notification was triggered by a fetch, an {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#addData addData}, {@link com.smartgwt.client.widgets.grid.ListGrid#updateData
-     * updateData}, or {@link com.smartgwt.client.widgets.grid.ListGrid#removeData removeData}, or a {@link
-     * com.smartgwt.client.data.DataSource} update for {@link com.smartgwt.client.widgets.tree.ResultTree} data (the first
-     * three reasons listed above) but otherwise will be null.
+     * com.smartgwt.client.widgets.grid.ListGrid#addData addData()}, {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#updateData updateData()}, or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#removeData removeData()}, or a {@link com.smartgwt.client.data.DataSource}
+     * update for {@link com.smartgwt.client.widgets.tree.ResultTree} data (the first three reasons listed above) but otherwise
+     * will be null.
      *
      * @param handler the dataChanged handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -2866,7 +3013,7 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
             hasDefaultHandler = $wnd.isc.isA.Function(obj.getProperty("folderOpened"));
             obj.addProperties({folderOpened: 
                 function () {
-                    var param = {"_this": this, "node" : arguments[0]};
+                    var param = {"_this": this, "node" : arguments[0], "path" : arguments[1]};
                     var ret = folderOpened(param) == true;
                     if (ret && hasDefaultHandler) {
                         ret = this.Super("folderOpened", arguments);
@@ -2880,7 +3027,7 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
             hasDefaultHandler = $wnd.isc.isA.Function($wnd.isc[scClassName].getInstanceProperty("folderOpened"));
             obj.folderOpened = 
                 function () {
-                    var param = {"_this": this, "node" : arguments[0]};
+                    var param = {"_this": this, "node" : arguments[0], "path" : arguments[1]};
                     var ret = folderOpened(param) == true;
                     if (ret && hasDefaultHandler) {
                         ret = this.Super("folderOpened", arguments);
@@ -2903,6 +3050,27 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
         }
         if (obj && obj.hasOwnProperty("folderOpened")) delete obj.folderOpened;
+    }-*/;
+
+	/**
+     * <b>NOTE:</b> Applicable only to {@link com.smartgwt.client.widgets.tree.Tree#getMultiLinkTree multi-link trees}; if
+     * called on a  regular <code>TreeGrid</code>, returns an empty array. <p> During a drag-and-drop interaction, this method
+     * returns the set of node occurences being  dragged out of the component, wrapped inside {@link
+     * com.smartgwt.client.widgets.tree.NodeLocator}s.  In the default  implementation, this is the list of currently selected
+     * node occurences<p>
+     * @param source source grid from which the records will be transferred
+     *
+     * @return Array of {@link com.smartgwt.client.widgets.tree.NodeLocator}s unambiguously identifying                                
+     *      the node occurences that are currently selected
+     */
+    public native NodeLocator[] getDraggedNodeLocators(TreeGrid source) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getDraggedNodeLocators", "TreeGrid");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getDraggedNodeLocators(source == null ? null : source.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.ConvertTo::arrayOfNodeLocator(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
 	/**
@@ -3393,6 +3561,25 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
     }-*/;
 
 	/**
+     * Opens a folder. <p> Executed when a folder node receives a 'doubleClick' event.  <p> See the ListGrid Widget Class for
+     * inherited recordClick and recordDoubleClick events.
+     * @param node node to open
+     * @param path optional parameter containing the full path to the node.                                      This is essential context
+     * for a                                      {@link com.smartgwt.client.widgets.tree.Tree#getMultiLinkTree multi-link
+     * tree}, but is not                                       required in ordinary trees
+     * @see com.smartgwt.client.widgets.tree.TreeGrid#closeFolder
+     * @see com.smartgwt.client.widgets.tree.events.FolderOpenedEvent
+     * @see com.smartgwt.client.widgets.grid.ListGrid
+     */
+    public native void openFolder(TreeNode node, String path) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "openFolder", "TreeNode,String");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.openFolder(node.@com.smartgwt.client.core.DataClass::getJsObj()(), path);
+    }-*/;
+	
+	/**
      * Handle a doubleClick on a tree node - override of ListGrid stringMethod of same name.  If the node is a folder, this
      * implementation calls {@link com.smartgwt.client.widgets.tree.TreeGrid#toggleFolder toggleFolder()} on it.  If the node
      * is a leaf, calls {@link com.smartgwt.client.widgets.tree.TreeGrid#openLeaf openLeaf()} on it.
@@ -3443,7 +3630,8 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
 	/**
      * Opens the folder specified by node if it's closed, and closes it if it's open. TreeGrid will redraw if there's a change
      * in the folder's open/closed state.
-     * @param node node to toggle
+     * @param node the node in question, or the                                                               the node's ID, or a
+     * NodeLocator                                                              object
      */
     public native void toggleFolder(TreeNode node) /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
@@ -3451,6 +3639,48 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
         }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.toggleFolder(node.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+	/**
+     * Opens the folder specified by node if it's closed, and closes it if it's open. TreeGrid will redraw if there's a change
+     * in the folder's open/closed state.
+     * @param node the node in question, or the                                                               the node's ID, or a
+     * NodeLocator                                                              object
+     */
+    public native void toggleFolder(String node) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "toggleFolder", "String");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.toggleFolder(node);
+    }-*/;
+
+	/**
+     * Opens the folder specified by node if it's closed, and closes it if it's open. TreeGrid will redraw if there's a change
+     * in the folder's open/closed state.
+     * @param node the node in question, or the                                                               the node's ID, or a
+     * NodeLocator                                                              object
+     */
+    public native void toggleFolder(Integer node) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "toggleFolder", "Integer");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.toggleFolder(node == null ? null : node.@java.lang.Integer::intValue()());
+    }-*/;
+
+	/**
+     * Opens the folder specified by node if it's closed, and closes it if it's open. TreeGrid will redraw if there's a change
+     * in the folder's open/closed state.
+     * @param node the node in question, or the                                                               the node's ID, or a
+     * NodeLocator                                                              object
+     */
+    public native void toggleFolder(NodeLocator node) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "toggleFolder", "NodeLocator");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.toggleFolder(node == null ? null : node.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()());
     }-*/;
 
 
@@ -4146,6 +4376,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
             s.logicalStructureErrors += "TreeGrid.animateFolderTime:" + t.getMessage() + "\n";
         }
         try {
+            s.autoAssignTreeField = getAttributeAsString("autoAssignTreeField");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.autoAssignTreeField:" + t.getMessage() + "\n";
+        }
+        try {
             s.autoFetchTextMatchStyle = getAttributeAsString("autoFetchTextMatchStyle");
         } catch (Throwable t) {
             s.logicalStructureErrors += "TreeGrid.autoFetchTextMatchStyle:" + t.getMessage() + "\n";
@@ -4194,6 +4429,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
             s.cantDragIntoSelfMessage = getAttributeAsString("cantDragIntoSelfMessage");
         } catch (Throwable t) {
             s.logicalStructureErrors += "TreeGrid.cantDragIntoSelfMessage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.cantDragMultipleNodeOccurencesMessage = getAttributeAsString("cantDragMultipleNodeOccurencesMessage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.cantDragMultipleNodeOccurencesMessage:" + t.getMessage() + "\n";
         }
         try {
             s.cascadeSelection = getAttributeAsString("cascadeSelection");

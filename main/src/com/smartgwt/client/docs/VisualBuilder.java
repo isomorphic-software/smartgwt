@@ -156,7 +156,7 @@ package com.smartgwt.client.docs;
  * including the ability to
  *  set field.editorType to use a custom FormItem.
  *  <P>
- *  When the "Apply" button is clicked, Visual Builder will look for an appropriate "setter
+ *  When properties are changed by the user, Visual Builder will look for an appropriate "setter
  *  function" for the custom field, for example, for a field named "myProp", Visual Builder will
  * look for "setMyProp".  The target component will also be {@link
  * com.smartgwt.client.widgets.Canvas#redraw redrawn}.

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * An object containing properties that is used in Gradient types
@@ -119,10 +122,11 @@ public class ColorStop extends RefDataClass {
      * eg #ff0000 or red or rgb(255,0,0)
      *
      * @param color New color value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.ColorStop ColorStop} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      */
-    public void setColor(String color) {
-        setAttribute("color", color);
+    public ColorStop setColor(String color) {
+        return (ColorStop)setAttribute("color", color);
     }
 
     /**
@@ -140,9 +144,10 @@ public class ColorStop extends RefDataClass {
      * The relative offset for the color.
      *
      * @param offset New offset value. Default value is 0.0
+     * @return {@link com.smartgwt.client.widgets.drawing.ColorStop ColorStop} instance, for chaining setter calls
      */
-    public void setOffset(float offset) {
-        setAttribute("offset", offset);
+    public ColorStop setOffset(float offset) {
+        return (ColorStop)setAttribute("offset", offset);
     }
 
     /**
@@ -159,9 +164,10 @@ public class ColorStop extends RefDataClass {
      * 0 is transparent, 1 is fully opaque
      *
      * @param opacity New opacity value. Default value is 1.0
+     * @return {@link com.smartgwt.client.widgets.drawing.ColorStop ColorStop} instance, for chaining setter calls
      */
-    public void setOpacity(float opacity) {
-        setAttribute("opacity", opacity);
+    public ColorStop setOpacity(float opacity) {
+        return (ColorStop)setAttribute("opacity", opacity);
     }
 
     /**

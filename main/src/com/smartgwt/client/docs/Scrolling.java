@@ -3,9 +3,6 @@ package com.smartgwt.client.docs;
 
 /**
  * Scrolling and clipping of objects when part of the object is obscured
- * @see com.smartgwt.client.widgets.grid.ListGrid#scrollToColumn
- * @see com.smartgwt.client.widgets.grid.ListGrid#scrollToRow
- * @see com.smartgwt.client.widgets.grid.ListGrid#scrollToCell
  * @see com.smartgwt.client.widgets.Canvas#getScrollLeft
  * @see com.smartgwt.client.widgets.Canvas#getScrollTop
  * @see com.smartgwt.client.widgets.Canvas#getScrollbarSize
@@ -20,6 +17,9 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#scrollTo
  * @see com.smartgwt.client.widgets.Canvas#scrollToPercent
  * @see com.smartgwt.client.widgets.events.ScrolledEvent
+ * @see com.smartgwt.client.widgets.grid.ListGrid#scrollToColumn
+ * @see com.smartgwt.client.widgets.grid.ListGrid#scrollToRow
+ * @see com.smartgwt.client.widgets.grid.ListGrid#scrollToCell
  * @see com.smartgwt.client.widgets.Canvas#getShowCustomScrollbars
  * @see com.smartgwt.client.widgets.Canvas#getReceiveScrollbarEvents
  * @see com.smartgwt.client.widgets.Canvas#getAlwaysShowScrollbars

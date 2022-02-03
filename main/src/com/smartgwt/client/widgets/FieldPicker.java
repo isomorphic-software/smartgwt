@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -177,10 +180,11 @@ public class FieldPicker extends VLayout {
      * The title displayed for the Add Custom Fields Button
      *
      * @param addCustomFieldsButtonTitle New addCustomFieldsButtonTitle value. Default value is "Add Custom Fields"
+     * @return {@link com.smartgwt.client.widgets.FieldPicker FieldPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAddCustomFieldsButtonTitle(String addCustomFieldsButtonTitle)  throws IllegalStateException {
-        setAttribute("addCustomFieldsButtonTitle", addCustomFieldsButtonTitle, false);
+    public FieldPicker setAddCustomFieldsButtonTitle(String addCustomFieldsButtonTitle)  throws IllegalStateException {
+        return (FieldPicker)setAttribute("addCustomFieldsButtonTitle", addCustomFieldsButtonTitle, false);
     }
 
     /**
@@ -213,10 +217,11 @@ public class FieldPicker extends VLayout {
      * header controls} above the available fields grid.
      *
      * @param availableFieldsHeaderControls New availableFieldsHeaderControls value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.FieldPicker FieldPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAvailableFieldsHeaderControls(Canvas... availableFieldsHeaderControls)  throws IllegalStateException {
-        setAttribute("availableFieldsHeaderControls", availableFieldsHeaderControls, false);
+    public FieldPicker setAvailableFieldsHeaderControls(Canvas... availableFieldsHeaderControls)  throws IllegalStateException {
+        return (FieldPicker)setAttribute("availableFieldsHeaderControls", availableFieldsHeaderControls, false);
     }
 
     /**
@@ -234,10 +239,11 @@ public class FieldPicker extends VLayout {
      * 
      *
      * @param availableFieldsTitle New availableFieldsTitle value. Default value is "Available Fields"
+     * @return {@link com.smartgwt.client.widgets.FieldPicker FieldPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAvailableFieldsTitle(String availableFieldsTitle)  throws IllegalStateException {
-        setAttribute("availableFieldsTitle", availableFieldsTitle, false);
+    public FieldPicker setAvailableFieldsTitle(String availableFieldsTitle)  throws IllegalStateException {
+        return (FieldPicker)setAttribute("availableFieldsTitle", availableFieldsTitle, false);
     }
 
     /**
@@ -254,10 +260,11 @@ public class FieldPicker extends VLayout {
      * The title displayed for the title property of the available fields
      *
      * @param availableTitleTitle New availableTitleTitle value. Default value is "Name"
+     * @return {@link com.smartgwt.client.widgets.FieldPicker FieldPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAvailableTitleTitle(String availableTitleTitle)  throws IllegalStateException {
-        setAttribute("availableTitleTitle", availableTitleTitle, false);
+    public FieldPicker setAvailableTitleTitle(String availableTitleTitle)  throws IllegalStateException {
+        return (FieldPicker)setAttribute("availableTitleTitle", availableTitleTitle, false);
     }
 
     /**
@@ -291,10 +298,11 @@ public class FieldPicker extends VLayout {
      * The title shown on the Cancel button
      *
      * @param cancelButtonTitle New cancelButtonTitle value. Default value is "Cancel"
+     * @return {@link com.smartgwt.client.widgets.FieldPicker FieldPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
-        setAttribute("cancelButtonTitle", cancelButtonTitle, false);
+    public FieldPicker setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
+        return (FieldPicker)setAttribute("cancelButtonTitle", cancelButtonTitle, false);
     }
 
     /**
@@ -327,12 +335,13 @@ public class FieldPicker extends VLayout {
      * Whether the current fields' filter row allows the sample value column to be filtered.
      *
      * @param canFilterSampleValue New canFilterSampleValue value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.FieldPicker FieldPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.FieldPicker#setSampleValueTitle
      * @see com.smartgwt.client.widgets.FieldPicker#setSampleRecord
      */
-    public void setCanFilterSampleValue(Boolean canFilterSampleValue)  throws IllegalStateException {
-        setAttribute("canFilterSampleValue", canFilterSampleValue, false);
+    public FieldPicker setCanFilterSampleValue(Boolean canFilterSampleValue)  throws IllegalStateException {
+        return (FieldPicker)setAttribute("canFilterSampleValue", canFilterSampleValue, false);
     }
 
     /**
@@ -352,10 +361,11 @@ public class FieldPicker extends VLayout {
      * 
      *
      * @param confirmText New confirmText value. Default value is "Must save pending changes to proceed. OK?"
+     * @return {@link com.smartgwt.client.widgets.FieldPicker FieldPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setConfirmText(String confirmText)  throws IllegalStateException {
-        setAttribute("confirmText", confirmText, false);
+    public FieldPicker setConfirmText(String confirmText)  throws IllegalStateException {
+        return (FieldPicker)setAttribute("confirmText", confirmText, false);
     }
 
     /**
@@ -387,10 +397,11 @@ public class FieldPicker extends VLayout {
      * 
      *
      * @param currentFieldsTitle New currentFieldsTitle value. Default value is "Visible Fields"
+     * @return {@link com.smartgwt.client.widgets.FieldPicker FieldPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCurrentFieldsTitle(String currentFieldsTitle)  throws IllegalStateException {
-        setAttribute("currentFieldsTitle", currentFieldsTitle, false);
+    public FieldPicker setCurrentFieldsTitle(String currentFieldsTitle)  throws IllegalStateException {
+        return (FieldPicker)setAttribute("currentFieldsTitle", currentFieldsTitle, false);
     }
 
     /**
@@ -407,10 +418,11 @@ public class FieldPicker extends VLayout {
      * The title displayed for the title property of the current fields
      *
      * @param currentTitleTitle New currentTitleTitle value. Default value is "Field Title"
+     * @return {@link com.smartgwt.client.widgets.FieldPicker FieldPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCurrentTitleTitle(String currentTitleTitle)  throws IllegalStateException {
-        setAttribute("currentTitleTitle", currentTitleTitle, false);
+    public FieldPicker setCurrentTitleTitle(String currentTitleTitle)  throws IllegalStateException {
+        return (FieldPicker)setAttribute("currentTitleTitle", currentTitleTitle, false);
     }
 
     /**
@@ -430,10 +442,11 @@ public class FieldPicker extends VLayout {
      * a fixed ordering on the fields.
      *
      * @param dataBoundComponent New dataBoundComponent value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.FieldPicker FieldPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDataBoundComponent(Canvas dataBoundComponent)  throws IllegalStateException {
-        setAttribute("dataBoundComponent", dataBoundComponent == null ? null : dataBoundComponent.getOrCreateJsObj(), false);
+    public FieldPicker setDataBoundComponent(Canvas dataBoundComponent)  throws IllegalStateException {
+        return (FieldPicker)setAttribute("dataBoundComponent", dataBoundComponent == null ? null : dataBoundComponent.getOrCreateJsObj(), false);
     }
 
     /**
@@ -455,10 +468,11 @@ public class FieldPicker extends VLayout {
      * a {@link com.smartgwt.client.widgets.FieldPicker#getDataBoundComponent dataBoundComponent} is specified.
      *
      * @param dataSource New dataSource value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.FieldPicker FieldPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDataSource(DataSource dataSource)  throws IllegalStateException {
-        setAttribute("dataSource", dataSource == null ? null : dataSource.getOrCreateJsObj(), false);
+    public FieldPicker setDataSource(DataSource dataSource)  throws IllegalStateException {
+        return (FieldPicker)setAttribute("dataSource", dataSource == null ? null : dataSource.getOrCreateJsObj(), false);
     }
 
     /**
@@ -477,10 +491,11 @@ public class FieldPicker extends VLayout {
      * The hint shown when editing a field with no title defined.
      *
      * @param emptyTitleHint New emptyTitleHint value. Default value is "[No title specified]"
+     * @return {@link com.smartgwt.client.widgets.FieldPicker FieldPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEmptyTitleHint(String emptyTitleHint)  throws IllegalStateException {
-        setAttribute("emptyTitleHint", emptyTitleHint, false);
+    public FieldPicker setEmptyTitleHint(String emptyTitleHint)  throws IllegalStateException {
+        return (FieldPicker)setAttribute("emptyTitleHint", emptyTitleHint, false);
     }
 
     /**
@@ -497,10 +512,11 @@ public class FieldPicker extends VLayout {
      * 
      *
      * @param hilitesText New hilitesText value. Default value is "Highlights..."
+     * @return {@link com.smartgwt.client.widgets.FieldPicker FieldPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setHilitesText(String hilitesText)  throws IllegalStateException {
-        setAttribute("hilitesText", hilitesText, false);
+    public FieldPicker setHilitesText(String hilitesText)  throws IllegalStateException {
+        return (FieldPicker)setAttribute("hilitesText", hilitesText, false);
     }
 
     /**
@@ -533,11 +549,12 @@ public class FieldPicker extends VLayout {
      * 
      *
      * @param instructions New instructions value. Default value is "Drag and drop or use arrows to move fields.  Drag reorder to change field order."
+     * @return {@link com.smartgwt.client.widgets.FieldPicker FieldPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setInstructions(String instructions)  throws IllegalStateException {
-        setAttribute("instructions", instructions, false);
+    public FieldPicker setInstructions(String instructions)  throws IllegalStateException {
+        return (FieldPicker)setAttribute("instructions", instructions, false);
     }
 
     /**
@@ -556,10 +573,11 @@ public class FieldPicker extends VLayout {
      * 'Available Fields' collection.
      *
      * @param removeItemTitle New removeItemTitle value. Default value is "Remove"
+     * @return {@link com.smartgwt.client.widgets.FieldPicker FieldPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setRemoveItemTitle(String removeItemTitle)  throws IllegalStateException {
-        setAttribute("removeItemTitle", removeItemTitle, false);
+    public FieldPicker setRemoveItemTitle(String removeItemTitle)  throws IllegalStateException {
+        return (FieldPicker)setAttribute("removeItemTitle", removeItemTitle, false);
     }
 
     /**
@@ -577,10 +595,11 @@ public class FieldPicker extends VLayout {
      * 
      *
      * @param removeText New removeText value. Default value is "You are about to remove the field. Are you sure?"
+     * @return {@link com.smartgwt.client.widgets.FieldPicker FieldPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setRemoveText(String removeText)  throws IllegalStateException {
-        setAttribute("removeText", removeText, false);
+    public FieldPicker setRemoveText(String removeText)  throws IllegalStateException {
+        return (FieldPicker)setAttribute("removeText", removeText, false);
     }
 
     /**
@@ -602,10 +621,11 @@ public class FieldPicker extends VLayout {
      * for organizational purposes only and hence would have no actual data for columns other than the tree column).
      *
      * @param sampleRecord New sampleRecord value. Default value is "first"
+     * @return {@link com.smartgwt.client.widgets.FieldPicker FieldPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSampleRecord(Record sampleRecord)  throws IllegalStateException {
-        setAttribute("sampleRecord", sampleRecord == null ? null : sampleRecord.getJsObj(), false);
+    public FieldPicker setSampleRecord(Record sampleRecord)  throws IllegalStateException {
+        return (FieldPicker)setAttribute("sampleRecord", sampleRecord == null ? null : sampleRecord.getJsObj(), false);
     }
 
     /**
@@ -631,10 +651,11 @@ public class FieldPicker extends VLayout {
      * for organizational purposes only and hence would have no actual data for columns other than the tree column).
      *
      * @param sampleRecord New sampleRecord value. Default value is "first"
+     * @return {@link com.smartgwt.client.widgets.FieldPicker FieldPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSampleRecord(DefaultSampleRecord sampleRecord)  throws IllegalStateException {
-        setAttribute("sampleRecord", sampleRecord == null ? null : sampleRecord.getValue(), false);
+    public FieldPicker setSampleRecord(DefaultSampleRecord sampleRecord)  throws IllegalStateException {
+        return (FieldPicker)setAttribute("sampleRecord", sampleRecord == null ? null : sampleRecord.getValue(), false);
     }
 
     /**
@@ -656,10 +677,11 @@ public class FieldPicker extends VLayout {
      * The title displayed for the sample value property of the current fields
      *
      * @param sampleValueTitle New sampleValueTitle value. Default value is "Sample Value"
+     * @return {@link com.smartgwt.client.widgets.FieldPicker FieldPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSampleValueTitle(String sampleValueTitle)  throws IllegalStateException {
-        setAttribute("sampleValueTitle", sampleValueTitle, false);
+    public FieldPicker setSampleValueTitle(String sampleValueTitle)  throws IllegalStateException {
+        return (FieldPicker)setAttribute("sampleValueTitle", sampleValueTitle, false);
     }
 
     /**
@@ -692,10 +714,11 @@ public class FieldPicker extends VLayout {
      * The title shown on the Save and Exit button
      *
      * @param saveAndExitButtonTitle New saveAndExitButtonTitle value. Default value is "Apply"
+     * @return {@link com.smartgwt.client.widgets.FieldPicker FieldPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSaveAndExitButtonTitle(String saveAndExitButtonTitle)  throws IllegalStateException {
-        setAttribute("saveAndExitButtonTitle", saveAndExitButtonTitle, false);
+    public FieldPicker setSaveAndExitButtonTitle(String saveAndExitButtonTitle)  throws IllegalStateException {
+        return (FieldPicker)setAttribute("saveAndExitButtonTitle", saveAndExitButtonTitle, false);
     }
 
     /**
@@ -712,10 +735,11 @@ public class FieldPicker extends VLayout {
      * When set to false, hides the right-most set of buttons, used for re-ordering fields in the Visible Fields list.
      *
      * @param showFieldOrderButtons New showFieldOrderButtons value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.FieldPicker FieldPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowFieldOrderButtons(boolean showFieldOrderButtons)  throws IllegalStateException {
-        setAttribute("showFieldOrderButtons", showFieldOrderButtons, false);
+    public FieldPicker setShowFieldOrderButtons(boolean showFieldOrderButtons)  throws IllegalStateException {
+        return (FieldPicker)setAttribute("showFieldOrderButtons", showFieldOrderButtons, false);
     }
 
     /**
@@ -733,10 +757,11 @@ public class FieldPicker extends VLayout {
      * Shows a "Highlights..." button that shows an interface for editing hilites in the attached DataBoundComponent.
      *
      * @param showHilitesButton New showHilitesButton value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.FieldPicker FieldPicker} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowHilitesButton(boolean showHilitesButton)  throws IllegalStateException {
-        setAttribute("showHilitesButton", showHilitesButton, false);
+    public FieldPicker setShowHilitesButton(boolean showHilitesButton)  throws IllegalStateException {
+        return (FieldPicker)setAttribute("showHilitesButton", showHilitesButton, false);
     }
 
     /**

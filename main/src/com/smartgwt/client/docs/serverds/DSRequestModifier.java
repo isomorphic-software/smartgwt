@@ -57,9 +57,7 @@ import java.util.Map;
  *  <p>
  * In addition to the standard {@link com.smartgwt.client.docs.VelocitySupport Velocity
  * variables}, special Velocity 
- * variables are available for the {@link
- * com.smartgwt.client.docs.serverds.DSRequestModifier#value value} field when used in a
- * &lt;values&gt; declaration - 
+ * variables are available for the <i>value</i> field when used in a &lt;values&gt; declaration - 
  *  see {@link com.smartgwt.client.docs.serverds.DSRequestModifier#value value} for details.
  *  <p>
  * See below some examples of {@link com.smartgwt.client.docs.serverds.OperationBinding#criteria

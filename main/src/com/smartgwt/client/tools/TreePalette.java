@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -177,11 +180,12 @@ public class TreePalette extends TreeGrid implements Palette {
      * Defaults to apply to all components originating from this palette.
      *
      * @param componentDefaults New componentDefaults value. Default value is null
+     * @return {@link com.smartgwt.client.tools.TreePalette TreePalette} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.DevTools DevTools overview and related methods
      */
-    public void setComponentDefaults(Record componentDefaults)  throws IllegalStateException {
-        setAttribute("componentDefaults", componentDefaults == null ? null : componentDefaults.getJsObj(), false);
+    public TreePalette setComponentDefaults(Record componentDefaults)  throws IllegalStateException {
+        return (TreePalette)setAttribute("componentDefaults", componentDefaults == null ? null : componentDefaults.getJsObj(), false);
     }
 
     /**
@@ -203,8 +207,9 @@ public class TreePalette extends TreeGrid implements Palette {
      * Sets the default EditContext that this palette should use.  Palettes generally create components via drag and drop, but may also support creation via double-click or other UI idioms when a defaultEditContext is set.
      *
      * @param defaultEditContext the default EditContext used by this Palette. Default value is null
+     * @return {@link com.smartgwt.client.tools.TreePalette TreePalette} instance, for chaining setter calls
      */
-    public native void setDefaultEditContext(EditContext defaultEditContext) /*-{
+    public native TreePalette setDefaultEditContext(EditContext defaultEditContext) /*-{
         var defaultEditContextJS = (
                 defaultEditContext == null ?
                 null :
@@ -219,7 +224,7 @@ public class TreePalette extends TreeGrid implements Palette {
             defaultEditContextJS = defaultEditContextJS.getEditContext();
         }
 
-        this.@com.smartgwt.client.widgets.BaseWidget::setAttribute(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;Z)("defaultEditContext", defaultEditContextJS, true);
+        return this.@com.smartgwt.client.widgets.BaseWidget::setAttribute(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;Z)("defaultEditContext", defaultEditContextJS, true);
     }-*/;
 
     /**
@@ -240,8 +245,9 @@ public class TreePalette extends TreeGrid implements Palette {
      * Sets the default EditContext that this palette should use.  Palettes generally create components via drag and drop, but may also support creation via double-click or other UI idioms when a defaultEditContext is set.
      *
      * @param defaultEditContext the default EditContext used by this Palette. Default value is null
+     * @return {@link com.smartgwt.client.tools.TreePalette TreePalette} instance, for chaining setter calls
      */
-    public native void setDefaultEditContext(EditTree defaultEditContext) /*-{
+    public native TreePalette setDefaultEditContext(EditTree defaultEditContext) /*-{
         var defaultEditContextJS = (
                 defaultEditContext == null ?
                 null :
@@ -256,7 +262,7 @@ public class TreePalette extends TreeGrid implements Palette {
             defaultEditContextJS = defaultEditContextJS.getEditContext();
         }
 
-        this.@com.smartgwt.client.widgets.BaseWidget::setAttribute(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;Z)("defaultEditContext", defaultEditContextJS, true);
+        return this.@com.smartgwt.client.widgets.BaseWidget::setAttribute(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;Z)("defaultEditContext", defaultEditContextJS, true);
     }-*/;
 
     /**
@@ -277,8 +283,9 @@ public class TreePalette extends TreeGrid implements Palette {
      * Sets the default EditContext that this palette should use.  Palettes generally create components via drag and drop, but may also support creation via double-click or other UI idioms when a defaultEditContext is set.
      *
      * @param defaultEditContext the default EditContext used by this Palette. Default value is null
+     * @return {@link com.smartgwt.client.tools.TreePalette TreePalette} instance, for chaining setter calls
      */
-    public native void setDefaultEditContext(EditPane defaultEditContext) /*-{
+    public native TreePalette setDefaultEditContext(EditPane defaultEditContext) /*-{
         var defaultEditContextJS = (
                 defaultEditContext == null ?
                 null :
@@ -293,7 +300,7 @@ public class TreePalette extends TreeGrid implements Palette {
             defaultEditContextJS = defaultEditContextJS.getEditContext();
         }
 
-        this.@com.smartgwt.client.widgets.BaseWidget::setAttribute(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;Z)("defaultEditContext", defaultEditContextJS, true);
+        return this.@com.smartgwt.client.widgets.BaseWidget::setAttribute(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;Z)("defaultEditContext", defaultEditContextJS, true);
     }-*/;
 
     /**
@@ -311,11 +318,12 @@ public class TreePalette extends TreeGrid implements Palette {
      * component's type, eg, "ListGrid0".
      *
      * @param generateNames New generateNames value. Default value is true
+     * @return {@link com.smartgwt.client.tools.TreePalette TreePalette} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.DevTools DevTools overview and related methods
      */
-    public void setGenerateNames(boolean generateNames)  throws IllegalStateException {
-        setAttribute("generateNames", generateNames, false);
+    public TreePalette setGenerateNames(boolean generateNames)  throws IllegalStateException {
+        return (TreePalette)setAttribute("generateNames", generateNames, false);
     }
 
     /**

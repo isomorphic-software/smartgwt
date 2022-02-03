@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -190,13 +193,14 @@ public class PortalLayout extends Layout {
      * Set whether columns in this portalLayout are drag-resizable, and update any drawn columns to reflect this.
      *
      * @param canResizeColumns Whether columns are drag-resizable. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.PortalLayout PortalLayout} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanStretchColumnWidths
      * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanShrinkColumnWidths
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      * 
      */
-    public void setCanResizeColumns(Boolean canResizeColumns) {
-        setAttribute("canResizeColumns", canResizeColumns, true);
+    public PortalLayout setCanResizeColumns(Boolean canResizeColumns) {
+        return (PortalLayout)setAttribute("canResizeColumns", canResizeColumns, true);
     }
 
     /**
@@ -238,6 +242,7 @@ public class PortalLayout extends Layout {
      * Set whether the height and width of {@link com.smartgwt.client.widgets.layout.Portlet Portlets} should be drag-resizable, and update any drawn Portlets to reflect this.
      *
      * @param canResizePortlets Whether drag-resizing the height and width of portlets is allowed. Default value is false
+     * @return {@link com.smartgwt.client.widgets.layout.PortalLayout PortalLayout} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanResizeColumns
      * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanStretchColumnWidths
      * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanShrinkColumnWidths
@@ -245,8 +250,8 @@ public class PortalLayout extends Layout {
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      * 
      */
-    public void setCanResizePortlets(Boolean canResizePortlets) {
-        setAttribute("canResizePortlets", canResizePortlets, true);
+    public PortalLayout setCanResizePortlets(Boolean canResizePortlets) {
+        return (PortalLayout)setAttribute("canResizePortlets", canResizePortlets, true);
     }
 
     /**
@@ -285,10 +290,11 @@ public class PortalLayout extends Layout {
      * Set whether vertical drag-resize of portlets within columns is allowed, and update any drawn columns to reflect this.
      *
      * @param canResizeRows Whether drag-resize of portlets within columns is allowed. Default value is false
+     * @return {@link com.smartgwt.client.widgets.layout.PortalLayout PortalLayout} instance, for chaining setter calls
      * @deprecated Use {@link com.smartgwt.client.widgets.layout.PortalLayout#getCanResizePortlets canResizePortlets} instead.
      */
-    public void setCanResizeRows(Boolean canResizeRows) {
-        setAttribute("canResizeRows", canResizeRows, true);
+    public PortalLayout setCanResizeRows(Boolean canResizeRows) {
+        return (PortalLayout)setAttribute("canResizeRows", canResizeRows, true);
     }
 
     /**
@@ -314,11 +320,12 @@ public class PortalLayout extends Layout {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canShrinkColumnWidths Whether columns can shrink to avoid overflowing the PortalLayout's width. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.PortalLayout PortalLayout} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanStretchColumnWidths
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
-    public void setCanShrinkColumnWidths(Boolean canShrinkColumnWidths) {
-        setAttribute("canShrinkColumnWidths", canShrinkColumnWidths, true);
+    public PortalLayout setCanShrinkColumnWidths(Boolean canShrinkColumnWidths) {
+        return (PortalLayout)setAttribute("canShrinkColumnWidths", canShrinkColumnWidths, true);
     }
 
     /**
@@ -351,13 +358,14 @@ public class PortalLayout extends Layout {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canStretchColumnWidths Whether columns can stretch to accommodate {@link com.smartgwt.client.widgets.layout.Portlet} widths. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.PortalLayout PortalLayout} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanShrinkColumnWidths
      * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanResizePortlets
      * @see com.smartgwt.client.types.Overflow
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
-    public void setCanStretchColumnWidths(Boolean canStretchColumnWidths) {
-        setAttribute("canStretchColumnWidths", canStretchColumnWidths, true);
+    public PortalLayout setCanStretchColumnWidths(Boolean canStretchColumnWidths) {
+        return (PortalLayout)setAttribute("canStretchColumnWidths", canStretchColumnWidths, true);
     }
 
     /**
@@ -411,9 +419,10 @@ public class PortalLayout extends Layout {
      * Sets the columnBorder for to the specified value and updates any drawn columns to reflect this.
      *
      * @param columnBorder New border to show around columns. Default value is "1px solid gray"
+     * @return {@link com.smartgwt.client.widgets.layout.PortalLayout PortalLayout} instance, for chaining setter calls
      */
-    public void setColumnBorder(String columnBorder) {
-        setAttribute("columnBorder", columnBorder, true);
+    public PortalLayout setColumnBorder(String columnBorder) {
+        return (PortalLayout)setAttribute("columnBorder", columnBorder, true);
     }
 
     /**
@@ -439,13 +448,14 @@ public class PortalLayout extends Layout {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param columnOverflow Overflow setting for columns. Default value is "auto"
+     * @return {@link com.smartgwt.client.widgets.layout.PortalLayout PortalLayout} instance, for chaining setter calls
      * @see com.smartgwt.client.types.Overflow
      * @see com.smartgwt.client.widgets.Canvas#setOverflow
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      * 
      */
-    public void setColumnOverflow(Overflow columnOverflow) {
-        setAttribute("columnOverflow", columnOverflow == null ? null : columnOverflow.getValue(), true);
+    public PortalLayout setColumnOverflow(Overflow columnOverflow) {
+        return (PortalLayout)setAttribute("columnOverflow", columnOverflow == null ? null : columnOverflow.getValue(), true);
     }
 
     /**
@@ -468,18 +478,50 @@ public class PortalLayout extends Layout {
     
 
     /**
+     * The space between portal columns. <p> To set spacing between portlets on a row in the same column, see {@link
+     * com.smartgwt.client.widgets.layout.PortalLayout#getPortletHSpacing portletHSpacing}.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Sets {@link com.smartgwt.client.widgets.layout.PortalLayout#getColumnSpacing columnSpacing} and reflows the layout to implement it.
+     *
+     * @param columnSpacing The amount of space to apply between columns. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.layout.PortalLayout PortalLayout} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.layout.PortalLayout#setPortletHSpacing
+     * @see com.smartgwt.client.widgets.layout.PortalLayout#setPortletVSpacing
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public PortalLayout setColumnSpacing(Integer columnSpacing) {
+        return (PortalLayout)setAttribute("columnSpacing", columnSpacing, true);
+    }
+
+    /**
+     * The space between portal columns. <p> To set spacing between portlets on a row in the same column, see {@link
+     * com.smartgwt.client.widgets.layout.PortalLayout#getPortletHSpacing portletHSpacing}.
+     *
+     * @return Current columnSpacing value. Default value is 0
+     * @see com.smartgwt.client.widgets.layout.PortalLayout#getPortletHSpacing
+     * @see com.smartgwt.client.widgets.layout.PortalLayout#getPortletVSpacing
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public Integer getColumnSpacing()  {
+        return getAttributeAsInt("columnSpacing");
+    }
+    
+
+    /**
      * <code>dropTypes</code> is set to <code>["PortalColumn"]</code> in order to allow the dragging of columns within the
      * <code>PortalLayout</code>.  To control <code>dropTypes</code> when {@link com.smartgwt.client.widgets.layout.Portlet
      * Portlets} or other components are dragged into the <code>PortalLayout</code>, use {@link
      * com.smartgwt.client.widgets.layout.PortalLayout#getPortletDropTypes portletDropTypes} instead.
      *
      * @param dropTypes New dropTypes value. Default value is ["PortalColumn"]
+     * @return {@link com.smartgwt.client.widgets.layout.PortalLayout PortalLayout} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.layout.PortalLayout#setPortletDropTypes
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
-    public void setDropTypes(String... dropTypes)  throws IllegalStateException {
-        setAttribute("dropTypes", dropTypes, false);
+    public PortalLayout setDropTypes(String... dropTypes)  throws IllegalStateException {
+        return (PortalLayout)setAttribute("dropTypes", dropTypes, false);
     }
 
     /**
@@ -505,11 +547,12 @@ public class PortalLayout extends Layout {
      * will imply how many columns to create.
      *
      * @param numColumns New numColumns value. Default value is 2
+     * @return {@link com.smartgwt.client.widgets.layout.PortalLayout PortalLayout} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.layout.PortalLayout#setPortlets
      */
-    public void setNumColumns(int numColumns)  throws IllegalStateException {
-        setAttribute("numColumns", numColumns, false);
+    public PortalLayout setNumColumns(int numColumns)  throws IllegalStateException {
+        return (PortalLayout)setAttribute("numColumns", numColumns, false);
     }
 
     /**
@@ -537,14 +580,15 @@ public class PortalLayout extends Layout {
      * individually -- you can change columnOverflow to "auto" to scroll the whole PortalLayout instead.
      *
      * @param overflow New overflow value. Default value is "auto"
+     * @return {@link com.smartgwt.client.widgets.layout.PortalLayout PortalLayout} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanResizePortlets
      * @see com.smartgwt.client.widgets.layout.PortalLayout#setColumnOverflow
      * @see com.smartgwt.client.widgets.Canvas#setOverflow
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      * 
      */
-    public void setOverflow(Overflow overflow) {
-        setAttribute("overflow", overflow == null ? null : overflow.getValue(), true);
+    public PortalLayout setOverflow(Overflow overflow) {
+        return (PortalLayout)setAttribute("overflow", overflow == null ? null : overflow.getValue(), true);
     }
 
     /**
@@ -592,11 +636,12 @@ public class PortalLayout extends Layout {
      * <p>Sets the {@link com.smartgwt.client.widgets.layout.PortalLayout#getPortletDropTypes portletDropTypes} to be applied when dropping {@link com.smartgwt.client.widgets.layout.Portlet Portlets} on this <code>PortalLayout</code>, or when dropping other components to be auto-wrapped in a {@link com.smartgwt.client.widgets.layout.Portlet}.</p>
      *
      * @param portletDropTypes dropTypes to apply when dropping {@link com.smartgwt.client.widgets.layout.Portlet Portlets}. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.PortalLayout PortalLayout} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Canvas#setDropTypes
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
-    public void setPortletDropTypes(String... portletDropTypes) {
-        setAttribute("portletDropTypes", portletDropTypes, true);
+    public PortalLayout setPortletDropTypes(String... portletDropTypes) {
+        return (PortalLayout)setAttribute("portletDropTypes", portletDropTypes, true);
     }
 
     /**
@@ -629,6 +674,37 @@ public class PortalLayout extends Layout {
     
 
     /**
+     * The horizontal space between portlets placed into the same row. <p> To set the spacing between portal columns, use
+     * {@link com.smartgwt.client.widgets.layout.PortalLayout#getColumnSpacing columnSpacing}.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Sets {@link com.smartgwt.client.widgets.layout.PortalLayout#getPortletHSpacing portletHSpacing} and reflows the layout to implement it.
+     *
+     * @param portletHSpacing The amount of space to apply between portlets in a row. Default value is 3
+     * @return {@link com.smartgwt.client.widgets.layout.PortalLayout PortalLayout} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.layout.PortalLayout#setPortletVSpacing
+     * @see com.smartgwt.client.widgets.layout.PortalLayout#setColumnSpacing
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public PortalLayout setPortletHSpacing(Integer portletHSpacing) {
+        return (PortalLayout)setAttribute("portletHSpacing", portletHSpacing, true);
+    }
+
+    /**
+     * The horizontal space between portlets placed into the same row. <p> To set the spacing between portal columns, use
+     * {@link com.smartgwt.client.widgets.layout.PortalLayout#getColumnSpacing columnSpacing}.
+     *
+     * @return Current portletHSpacing value. Default value is 3
+     * @see com.smartgwt.client.widgets.layout.PortalLayout#getPortletVSpacing
+     * @see com.smartgwt.client.widgets.layout.PortalLayout#getColumnSpacing
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public Integer getPortletHSpacing()  {
+        return getAttributeAsInt("portletHSpacing");
+    }
+    
+
+    /**
      * A convenience attribute which you can use to populate a PortalLayout with {@link
      * com.smartgwt.client.widgets.layout.Portlet Portlets} on initialization. After initialization, use {@link
      * com.smartgwt.client.widgets.layout.PortalLayout#addPortlet addPortlet()} or drag-and-drop to add Portlets, and {@link
@@ -641,6 +717,7 @@ public class PortalLayout extends Layout {
      * You can provide an empty second-level array to create a blank column, if needed.
      *
      * @param portlets New portlets value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.PortalLayout PortalLayout} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.layout.PortalLayout#getPortlets
      * @see com.smartgwt.client.widgets.layout.PortalLayout#getPortletArray
@@ -648,8 +725,35 @@ public class PortalLayout extends Layout {
      * @see com.smartgwt.client.widgets.layout.PortalLayout#setNumColumns
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#repositioning_portal_layout_new" target="examples">Repositioning Example</a>
      */
-    public void setPortlets(Portlet... portlets)  throws IllegalStateException {
-        setAttribute("portlets", portlets, false);
+    public PortalLayout setPortlets(Portlet... portlets)  throws IllegalStateException {
+        return (PortalLayout)setAttribute("portlets", portlets, false);
+    }
+    
+
+    /**
+     * The vertical space between portal rows.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Sets {@link com.smartgwt.client.widgets.layout.PortalLayout#getPortletVSpacing portletVSpacing} and reflows the layout to implement it.
+     *
+     * @param portletVSpacing The amount of space to apply between rows. Default value is 3
+     * @return {@link com.smartgwt.client.widgets.layout.PortalLayout PortalLayout} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.layout.PortalLayout#setPortletHSpacing
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public PortalLayout setPortletVSpacing(Integer portletVSpacing) {
+        return (PortalLayout)setAttribute("portletVSpacing", portletVSpacing, true);
+    }
+
+    /**
+     * The vertical space between portal rows.
+     *
+     * @return Current portletVSpacing value. Default value is 3
+     * @see com.smartgwt.client.widgets.layout.PortalLayout#getPortletHSpacing
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public Integer getPortletVSpacing()  {
+        return getAttributeAsInt("portletVSpacing");
     }
     
 
@@ -658,11 +762,12 @@ public class PortalLayout extends Layout {
      * column's height, or left at its specified height.
      *
      * @param preventColumnUnderflow New preventColumnUnderflow value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.PortalLayout PortalLayout} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      * 
      */
-    public void setPreventColumnUnderflow(Boolean preventColumnUnderflow) {
-        setAttribute("preventColumnUnderflow", preventColumnUnderflow, true);
+    public PortalLayout setPreventColumnUnderflow(Boolean preventColumnUnderflow) {
+        return (PortalLayout)setAttribute("preventColumnUnderflow", preventColumnUnderflow, true);
     }
 
     /**
@@ -687,11 +792,12 @@ public class PortalLayout extends Layout {
      * Sets {@link com.smartgwt.client.widgets.layout.PortalLayout#getPreventRowUnderflow preventRowUnderflow} and reflows the layout to implement it.
      *
      * @param preventRowUnderflow Whether to stretch the last {@link com.smartgwt.client.widgets.layout.Portlet} in a row to to fill the row's width. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.PortalLayout PortalLayout} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      * 
      */
-    public void setPreventRowUnderflow(Boolean preventRowUnderflow) {
-        setAttribute("preventRowUnderflow", preventRowUnderflow, true);
+    public PortalLayout setPreventRowUnderflow(Boolean preventRowUnderflow) {
+        return (PortalLayout)setAttribute("preventRowUnderflow", preventRowUnderflow, true);
     }
 
     /**
@@ -715,11 +821,12 @@ public class PortalLayout extends Layout {
      * Sets {@link com.smartgwt.client.widgets.layout.PortalLayout#getPreventUnderflow preventUnderflow} and reflows the layout to implement it.
      *
      * @param preventUnderflow Whether to stretch the last column to fill the PortalLayout's width. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.PortalLayout PortalLayout} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      * 
      */
-    public void setPreventUnderflow(Boolean preventUnderflow) {
-        setAttribute("preventUnderflow", preventUnderflow, true);
+    public PortalLayout setPreventUnderflow(Boolean preventUnderflow) {
+        return (PortalLayout)setAttribute("preventUnderflow", preventUnderflow, true);
     }
 
     /**
@@ -786,10 +893,11 @@ public class PortalLayout extends Layout {
      * Sets {@link com.smartgwt.client.widgets.layout.PortalLayout#getShowColumnMenus showColumnMenus} and updates existing columns to reflect the new setting.
      *
      * @param showColumnMenus Whether to show column menus. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.PortalLayout PortalLayout} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#add_remove_columns_portal_layout_new" target="examples">Add/Remove Columns Example</a>
      */
-    public void setShowColumnMenus(Boolean showColumnMenus) {
-        setAttribute("showColumnMenus", showColumnMenus, true);
+    public PortalLayout setShowColumnMenus(Boolean showColumnMenus) {
+        return (PortalLayout)setAttribute("showColumnMenus", showColumnMenus, true);
     }
 
     /**
@@ -815,12 +923,13 @@ public class PortalLayout extends Layout {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param stretchColumnWidthsProportionally Whether to stretch column widths proportionally. Default value is false
+     * @return {@link com.smartgwt.client.widgets.layout.PortalLayout PortalLayout} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanStretchColumnWidths
      * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanShrinkColumnWidths
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
-    public void setStretchColumnWidthsProportionally(Boolean stretchColumnWidthsProportionally) {
-        setAttribute("stretchColumnWidthsProportionally", stretchColumnWidthsProportionally, true);
+    public PortalLayout setStretchColumnWidthsProportionally(Boolean stretchColumnWidthsProportionally) {
+        return (PortalLayout)setAttribute("stretchColumnWidthsProportionally", stretchColumnWidthsProportionally, true);
     }
 
     /**
@@ -1477,6 +1586,11 @@ public class PortalLayout extends Layout {
             s.logicalStructureErrors += "PortalLayout.columnOverflow:" + t.getMessage() + "\n";
         }
         try {
+            s.columnSpacing = getAttributeAsString("columnSpacing");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "PortalLayout.columnSpacing:" + t.getMessage() + "\n";
+        }
+        try {
             s.dropTypes = getAttributeAsStringArray("dropTypes");
         } catch (Throwable t) {
             s.logicalStructureErrors += "PortalLayout.dropTypesArray:" + t.getMessage() + "\n";
@@ -1495,6 +1609,16 @@ public class PortalLayout extends Layout {
             s.portletDropTypes = getAttributeAsStringArray("portletDropTypes");
         } catch (Throwable t) {
             s.logicalStructureErrors += "PortalLayout.portletDropTypesArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.portletHSpacing = getAttributeAsString("portletHSpacing");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "PortalLayout.portletHSpacing:" + t.getMessage() + "\n";
+        }
+        try {
+            s.portletVSpacing = getAttributeAsString("portletVSpacing");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "PortalLayout.portletVSpacing:" + t.getMessage() + "\n";
         }
         try {
             s.preventColumnUnderflow = getAttributeAsString("preventColumnUnderflow");

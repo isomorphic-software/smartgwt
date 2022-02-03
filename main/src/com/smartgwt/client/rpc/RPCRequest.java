@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Encapsulates a client/server RPC request.  You'll need to provide an instance of this class (or a constructor for it) to
@@ -109,11 +112,12 @@ public class RPCRequest extends DataClass {
      * will be logged to the Developer Console.
      *
      * @param actionURL New actionURL value. Default value is RPCManager.actionURL
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.rpc.RPCManager#actionURL
      * @see com.smartgwt.client.docs.URL URL 
      */
-    public void setActionURL(String actionURL) {
-        setAttribute("actionURL", actionURL);
+    public RPCRequest setActionURL(String actionURL) {
+        return (RPCRequest)setAttribute("actionURL", actionURL);
     }
 
     /**
@@ -145,9 +149,10 @@ public class RPCRequest extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param allowIE9Leak New allowIE9Leak value. Default value is null
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      */
-    public void setAllowIE9Leak(Boolean allowIE9Leak) {
-        setAttribute("allowIE9Leak", allowIE9Leak);
+    public RPCRequest setAllowIE9Leak(Boolean allowIE9Leak) {
+        return (RPCRequest)setAttribute("allowIE9Leak", allowIE9Leak);
     }
 
     /**
@@ -175,9 +180,10 @@ public class RPCRequest extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param bypassCache New bypassCache value. Default value is false
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      */
-    public void setBypassCache(Boolean bypassCache) {
-        setAttribute("bypassCache", bypassCache);
+    public RPCRequest setBypassCache(Boolean bypassCache) {
+        return (RPCRequest)setAttribute("bypassCache", bypassCache);
     }
 
     /**
@@ -218,9 +224,10 @@ public class RPCRequest extends DataClass {
      *  <code>scriptInclude</code>.
      *
      * @param callbackParam New callbackParam value. Default value is "callback"
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      */
-    public void setCallbackParam(String callbackParam) {
-        setAttribute("callbackParam", callbackParam);
+    public RPCRequest setCallbackParam(String callbackParam) {
+        return (RPCRequest)setAttribute("callbackParam", callbackParam);
     }
 
     /**
@@ -265,10 +272,11 @@ public class RPCRequest extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param containsCredentials New containsCredentials value. Default value is false
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Relogin Relogin overview and related methods
      */
-    public void setContainsCredentials(Boolean containsCredentials) {
-        setAttribute("containsCredentials", containsCredentials);
+    public RPCRequest setContainsCredentials(Boolean containsCredentials) {
+        return (RPCRequest)setAttribute("containsCredentials", containsCredentials);
     }
 
     /**
@@ -293,9 +301,10 @@ public class RPCRequest extends DataClass {
      * httpMethod} is set to "POST".
      *
      * @param contentType New contentType value. Default value is "application/x-www-form-urlencoded"
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      */
-    public void setContentType(String contentType) {
-        setAttribute("contentType", contentType);
+    public RPCRequest setContentType(String contentType) {
+        return (RPCRequest)setAttribute("contentType", contentType);
     }
 
     /**
@@ -337,10 +346,11 @@ public class RPCRequest extends DataClass {
      * details.
      *
      * @param data New data value. Default value is null
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.rpc.RPCResponse#setData
      */
-    public void setData(String data) {
-        setAttribute("data", data);
+    public RPCRequest setData(String data) {
+        return (RPCRequest)setAttribute("data", data);
     }
 
     /**
@@ -371,10 +381,11 @@ public class RPCRequest extends DataClass {
      * details.
      *
      * @param data New data value. Default value is null
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.rpc.RPCResponse#setData
      */
-    public void setData(Record data) {
-        setAttribute("data", data == null ? null : data.getJsObj());
+    public RPCRequest setData(Record data) {
+        return (RPCRequest)setAttribute("data", data == null ? null : data.getJsObj());
     }
 
     /**
@@ -405,31 +416,45 @@ public class RPCRequest extends DataClass {
      * details.
      *
      * @param data New data value. Default value is null
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.rpc.RPCResponse#setData
      */
-    public void setData(Map data) {
-        setAttribute("data", data);
+    public RPCRequest setData(Map data) {
+        return (RPCRequest)setAttribute("data", data);
     }
     
 
     /**
      * If enabled, causes the RPCRequest to download the requested resource as a file, either  showing the browser's Save
      * dialog or displaying the file-content in  {@link com.smartgwt.client.rpc.RPCRequest#getDownloadToNewWindow a new browser
-     * window}. <P> Setting this attribute to true means that no callback will be fired and implies that the  request will
-     * silently use {@link com.smartgwt.client.rpc.RPCRequest#getTransport transport}: "hiddenFrame".
+     * window}. <P> Download requests do not fire a callback.<br> By default the request will use {@link
+     * com.smartgwt.client.rpc.RPCRequest#getTransport transport}: "hiddenFrame". Developers may override this by explicitly
+     * setting <code>request.transport</code> to "xmlHttpRequest". This mode allows developers to send {@link
+     * com.smartgwt.client.rpc.RPCRequest#getHttpHeaders httpHeaders} to the server, but has some drawbacks:
+     * <ul><li>xmlHttpRequest download does not have a built-in progress bar to indicate download progress</li>     <li>The
+     * browser must hold the entire XHR response in memory, whereas with normal download         data is streamed to disk or to
+     * another application</li>     <li>This mode does not currently support {@link
+     * com.smartgwt.client.rpc.RPCRequest#getDownloadToNewWindow downloadToNewWindow}</li></ul>
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param downloadResult New downloadResult value. Default value is false
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      */
-    public void setDownloadResult(Boolean downloadResult) {
-        setAttribute("downloadResult", downloadResult);
+    public RPCRequest setDownloadResult(Boolean downloadResult) {
+        return (RPCRequest)setAttribute("downloadResult", downloadResult);
     }
 
     /**
      * If enabled, causes the RPCRequest to download the requested resource as a file, either  showing the browser's Save
      * dialog or displaying the file-content in  {@link com.smartgwt.client.rpc.RPCRequest#getDownloadToNewWindow a new browser
-     * window}. <P> Setting this attribute to true means that no callback will be fired and implies that the  request will
-     * silently use {@link com.smartgwt.client.rpc.RPCRequest#getTransport transport}: "hiddenFrame".
+     * window}. <P> Download requests do not fire a callback.<br> By default the request will use {@link
+     * com.smartgwt.client.rpc.RPCRequest#getTransport transport}: "hiddenFrame". Developers may override this by explicitly
+     * setting <code>request.transport</code> to "xmlHttpRequest". This mode allows developers to send {@link
+     * com.smartgwt.client.rpc.RPCRequest#getHttpHeaders httpHeaders} to the server, but has some drawbacks:
+     * <ul><li>xmlHttpRequest download does not have a built-in progress bar to indicate download progress</li>     <li>The
+     * browser must hold the entire XHR response in memory, whereas with normal download         data is streamed to disk or to
+     * another application</li>     <li>This mode does not currently support {@link
+     * com.smartgwt.client.rpc.RPCRequest#getDownloadToNewWindow downloadToNewWindow}</li></ul>
      *
      * @return Current downloadResult value. Default value is false
      */
@@ -441,18 +466,25 @@ public class RPCRequest extends DataClass {
 
     /**
      * When {@link com.smartgwt.client.rpc.RPCRequest#getDownloadResult downloadResult} is true, setting this attribute to true
-     * causes the content of the downloaded file to be displayed in a new browser window.
+     * causes the content of the downloaded file to be displayed in a new browser window.  <P> Note that this setting is
+     * currently incompatible with {@link com.smartgwt.client.rpc.RPCRequest#getTransport transport:"xmlHttpRequest"}. See the 
+     * {@link com.smartgwt.client.rpc.RPCRequest#getDownloadResult downloadResult} documentation for more details on 
+     * xmlHttpRequest downloads
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param downloadToNewWindow New downloadToNewWindow value. Default value is false
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      */
-    public void setDownloadToNewWindow(Boolean downloadToNewWindow) {
-        setAttribute("downloadToNewWindow", downloadToNewWindow);
+    public RPCRequest setDownloadToNewWindow(Boolean downloadToNewWindow) {
+        return (RPCRequest)setAttribute("downloadToNewWindow", downloadToNewWindow);
     }
 
     /**
      * When {@link com.smartgwt.client.rpc.RPCRequest#getDownloadResult downloadResult} is true, setting this attribute to true
-     * causes the content of the downloaded file to be displayed in a new browser window.
+     * causes the content of the downloaded file to be displayed in a new browser window.  <P> Note that this setting is
+     * currently incompatible with {@link com.smartgwt.client.rpc.RPCRequest#getTransport transport:"xmlHttpRequest"}. See the 
+     * {@link com.smartgwt.client.rpc.RPCRequest#getDownloadResult downloadResult} documentation for more details on 
+     * xmlHttpRequest downloads
      *
      * @return Current downloadToNewWindow value. Default value is false
      */
@@ -506,11 +538,12 @@ public class RPCRequest extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param evalResult New evalResult value. Default value is false
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.ViewLoader
      * @see com.smartgwt.client.rpc.RPCRequest#setEvalVars
      */
-    public void setEvalResult(Boolean evalResult) {
-        setAttribute("evalResult", evalResult);
+    public RPCRequest setEvalResult(Boolean evalResult) {
+        return (RPCRequest)setAttribute("evalResult", evalResult);
     }
 
     /**
@@ -573,9 +606,10 @@ public class RPCRequest extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param evalVars New evalVars value. Default value is null
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      */
-    public void setEvalVars(Map evalVars) {
-        setAttribute("evalVars", evalVars);
+    public RPCRequest setEvalVars(Map evalVars) {
+        return (RPCRequest)setAttribute("evalVars", evalVars);
     }
     
 
@@ -584,9 +618,10 @@ public class RPCRequest extends DataClass {
      * with the xmlHttpRequest {@link com.smartgwt.client.rpc.RPCRequest#getTransport transport} only.
      *
      * @param httpHeaders New httpHeaders value. Default value is null
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      */
-    public void setHttpHeaders(Map httpHeaders) {
-        setAttribute("httpHeaders", httpHeaders);
+    public RPCRequest setHttpHeaders(Map httpHeaders) {
+        return (RPCRequest)setAttribute("httpHeaders", httpHeaders);
     }
 
     /**
@@ -606,9 +641,10 @@ public class RPCRequest extends DataClass {
      * to version 3.0.
      *
      * @param httpMethod New httpMethod value. Default value is "POST"
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      */
-    public void setHttpMethod(String httpMethod) {
-        setAttribute("httpMethod", httpMethod);
+    public RPCRequest setHttpMethod(String httpMethod) {
+        return (RPCRequest)setAttribute("httpMethod", httpMethod);
     }
 
     /**
@@ -629,10 +665,11 @@ public class RPCRequest extends DataClass {
      * used instead.
      *
      * @param httpProxyURL New httpProxyURL value. Default value is null
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.rpc.RPCManager#httpProxyURL
      */
-    public void setHttpProxyURL(String httpProxyURL) {
-        setAttribute("httpProxyURL", httpProxyURL);
+    public RPCRequest setHttpProxyURL(String httpProxyURL) {
+        return (RPCRequest)setAttribute("httpProxyURL", httpProxyURL);
     }
 
     /**
@@ -655,9 +692,10 @@ public class RPCRequest extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param ignoreTimeout New ignoreTimeout value. Default value is false
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      */
-    public void setIgnoreTimeout(Boolean ignoreTimeout) {
-        setAttribute("ignoreTimeout", ignoreTimeout);
+    public RPCRequest setIgnoreTimeout(Boolean ignoreTimeout) {
+        return (RPCRequest)setAttribute("ignoreTimeout", ignoreTimeout);
     }
 
     /**
@@ -679,9 +717,10 @@ public class RPCRequest extends DataClass {
      * should be loaded in mock mode.
      *
      * @param mockMode New mockMode value. Default value is null
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      */
-    public void setMockMode(Boolean mockMode) {
-        setAttribute("mockMode", mockMode);
+    public RPCRequest setMockMode(Boolean mockMode) {
+        return (RPCRequest)setAttribute("mockMode", mockMode);
     }
 
     /**
@@ -705,9 +744,10 @@ public class RPCRequest extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param omitNullMapValuesInResponse New omitNullMapValuesInResponse value. Default value is false
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      */
-    public void setOmitNullMapValuesInResponse(Boolean omitNullMapValuesInResponse) {
-        setAttribute("omitNullMapValuesInResponse", omitNullMapValuesInResponse);
+    public RPCRequest setOmitNullMapValuesInResponse(Boolean omitNullMapValuesInResponse) {
+        return (RPCRequest)setAttribute("omitNullMapValuesInResponse", omitNullMapValuesInResponse);
     }
 
     /**
@@ -749,9 +789,10 @@ public class RPCRequest extends DataClass {
      * RPCRequests specified params.
      *
      * @param params New params value. Default value is null
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      */
-    public void setParams(Map params) {
-        setAttribute("params", params);
+    public RPCRequest setParams(Map params) {
+        return (RPCRequest)setAttribute("params", params);
     }
 
     /**
@@ -790,6 +831,7 @@ public class RPCRequest extends DataClass {
      * first request in the queue is the one that is shown to the user.
      *
      * @param prompt New prompt value. Default value is RPCManager.defaultPrompt
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.rpc.RPCManager#defaultPrompt
      * @see com.smartgwt.client.rpc.RPCManager#showPrompt
      * @see com.smartgwt.client.rpc.RPCManager#promptStyle
@@ -800,8 +842,8 @@ public class RPCRequest extends DataClass {
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      * @see com.smartgwt.client.docs.RpcPrompt RpcPrompt overview and related methods
      */
-    public void setPrompt(String prompt) {
-        setAttribute("prompt", prompt);
+    public RPCRequest setPrompt(String prompt) {
+        return (RPCRequest)setAttribute("prompt", prompt);
     }
 
     /**
@@ -830,11 +872,12 @@ public class RPCRequest extends DataClass {
      * promptCursor}.
      *
      * @param promptCursor New promptCursor value. Default value is "progress"
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.rpc.RPCManager#promptCursor
      * @see com.smartgwt.client.docs.RpcPrompt RpcPrompt overview and related methods
      */
-    public void setPromptCursor(String promptCursor) {
-        setAttribute("promptCursor", promptCursor);
+    public RPCRequest setPromptCursor(String promptCursor) {
+        return (RPCRequest)setAttribute("promptCursor", promptCursor);
     }
 
     /**
@@ -858,12 +901,13 @@ public class RPCRequest extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param promptDelay New promptDelay value. Default value is RPCManager.promptDelay
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.rpc.RPCRequest#setShowPrompt
      * @see com.smartgwt.client.rpc.RPCManager#promptDelay
      * @see com.smartgwt.client.docs.RpcPrompt RpcPrompt overview and related methods
      */
-    public void setPromptDelay(int promptDelay) {
-        setAttribute("promptDelay", promptDelay);
+    public RPCRequest setPromptDelay(int promptDelay) {
+        return (RPCRequest)setAttribute("promptDelay", promptDelay);
     }
 
     /**
@@ -886,11 +930,12 @@ public class RPCRequest extends DataClass {
      * promptStyle}.
      *
      * @param promptStyle New promptStyle value. Default value is RPCManager.promptStyle
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.rpc.RPCManager#promptStyle
      * @see com.smartgwt.client.docs.RpcPrompt RpcPrompt overview and related methods
      */
-    public void setPromptStyle(PromptStyle promptStyle) {
-        setAttribute("promptStyle", promptStyle == null ? null : promptStyle.getValue());
+    public RPCRequest setPromptStyle(PromptStyle promptStyle) {
+        return (RPCRequest)setAttribute("promptStyle", promptStyle == null ? null : promptStyle.getValue());
     }
 
     /**
@@ -911,9 +956,10 @@ public class RPCRequest extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param sendNoQueue New sendNoQueue value. Default value is false
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      */
-    public void setSendNoQueue(Boolean sendNoQueue) {
-        setAttribute("sendNoQueue", sendNoQueue);
+    public RPCRequest setSendNoQueue(Boolean sendNoQueue) {
+        return (RPCRequest)setAttribute("sendNoQueue", sendNoQueue);
     }
 
     /**
@@ -949,9 +995,10 @@ public class RPCRequest extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param serverOutputAsString New serverOutputAsString value. Default value is false
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      */
-    public void setServerOutputAsString(Boolean serverOutputAsString) {
-        setAttribute("serverOutputAsString", serverOutputAsString);
+    public RPCRequest setServerOutputAsString(Boolean serverOutputAsString) {
+        return (RPCRequest)setAttribute("serverOutputAsString", serverOutputAsString);
     }
 
     /**
@@ -990,11 +1037,13 @@ public class RPCRequest extends DataClass {
      * prompt.
      *
      * @param showPrompt New showPrompt value. Default value is null
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.rpc.RPCManager#showPrompt
+     * @see com.smartgwt.client.rpc.RPCRequest#setPromptStyle
      * @see com.smartgwt.client.docs.RpcPrompt RpcPrompt overview and related methods
      */
-    public void setShowPrompt(Boolean showPrompt) {
-        setAttribute("showPrompt", showPrompt);
+    public RPCRequest setShowPrompt(Boolean showPrompt) {
+        return (RPCRequest)setAttribute("showPrompt", showPrompt);
     }
 
     /**
@@ -1006,6 +1055,7 @@ public class RPCRequest extends DataClass {
      *
      * @return Current showPrompt value. Default value is null
      * @see com.smartgwt.client.rpc.RPCManager#showPrompt
+     * @see com.smartgwt.client.rpc.RPCRequest#getPromptStyle
      * @see com.smartgwt.client.docs.RpcPrompt RpcPrompt overview and related methods
      */
     public Boolean getShowPrompt()  {
@@ -1021,9 +1071,10 @@ public class RPCRequest extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param suppressAutoDraw New suppressAutoDraw value. Default value is true
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      */
-    public void setSuppressAutoDraw(Boolean suppressAutoDraw) {
-        setAttribute("suppressAutoDraw", suppressAutoDraw);
+    public RPCRequest setSuppressAutoDraw(Boolean suppressAutoDraw) {
+        return (RPCRequest)setAttribute("suppressAutoDraw", suppressAutoDraw);
     }
 
     /**
@@ -1061,10 +1112,11 @@ public class RPCRequest extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param timeout New timeout value. Default value is null
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.rpc.RPCManager#defaultTimeout
      */
-    public void setTimeout(Integer timeout) {
-        setAttribute("timeout", timeout);
+    public RPCRequest setTimeout(Integer timeout) {
+        return (RPCRequest)setAttribute("timeout", timeout);
     }
 
     /**
@@ -1111,10 +1163,11 @@ public class RPCRequest extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param transport New transport value. Default value is RPCManager.defaultTransport
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.rpc.RPCManager#defaultTransport
      */
-    public void setTransport(RPCTransport transport) {
-        setAttribute("transport", transport == null ? null : transport.getValue());
+    public RPCRequest setTransport(RPCTransport transport) {
+        return (RPCRequest)setAttribute("transport", transport == null ? null : transport.getValue());
     }
 
     /**
@@ -1147,11 +1200,12 @@ public class RPCRequest extends DataClass {
      * {@link com.smartgwt.client.rpc.RPCManager#useCursorTracker useCursorTracker}.
      *
      * @param useCursorTracker New useCursorTracker value. Default value is false
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.rpc.RPCManager#useCursorTracker
      * @see com.smartgwt.client.docs.RpcPrompt RpcPrompt overview and related methods
      */
-    public void setUseCursorTracker(boolean useCursorTracker) {
-        setAttribute("useCursorTracker", useCursorTracker);
+    public RPCRequest setUseCursorTracker(boolean useCursorTracker) {
+        return (RPCRequest)setAttribute("useCursorTracker", useCursorTracker);
     }
 
     /**
@@ -1183,9 +1237,10 @@ public class RPCRequest extends DataClass {
      * HttpProxyServlet.
      *
      * @param useHttpProxy New useHttpProxy value. Default value is null
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      */
-    public void setUseHttpProxy(Boolean useHttpProxy) {
-        setAttribute("useHttpProxy", useHttpProxy);
+    public RPCRequest setUseHttpProxy(Boolean useHttpProxy) {
+        return (RPCRequest)setAttribute("useHttpProxy", useHttpProxy);
     }
 
     /**
@@ -1225,9 +1280,10 @@ public class RPCRequest extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param useSimpleHttp New useSimpleHttp value. Default value is false
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      */
-    public void setUseSimpleHttp(Boolean useSimpleHttp) {
-        setAttribute("useSimpleHttp", useSimpleHttp);
+    public RPCRequest setUseSimpleHttp(Boolean useSimpleHttp) {
+        return (RPCRequest)setAttribute("useSimpleHttp", useSimpleHttp);
     }
 
     /**
@@ -1263,10 +1319,11 @@ public class RPCRequest extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param useStrictJSON New useStrictJSON value. Default value is null
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.data.DSRequest#setUseStrictJSON
      */
-    public void setUseStrictJSON(Boolean useStrictJSON) {
-        setAttribute("useStrictJSON", useStrictJSON);
+    public RPCRequest setUseStrictJSON(Boolean useStrictJSON) {
+        return (RPCRequest)setAttribute("useStrictJSON", useStrictJSON);
     }
 
     /**
@@ -1292,11 +1349,12 @@ public class RPCRequest extends DataClass {
      * com.smartgwt.client.rpc.RPCManager} docs.
      *
      * @param willHandleError New willHandleError value. Default value is false
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.rpc.RPCManager
      * @see com.smartgwt.client.docs.ErrorHandling ErrorHandling overview and related methods
      */
-    public void setWillHandleError(Boolean willHandleError) {
-        setAttribute("willHandleError", willHandleError);
+    public RPCRequest setWillHandleError(Boolean willHandleError) {
+        return (RPCRequest)setAttribute("willHandleError", willHandleError);
     }
 
     /**
@@ -1330,9 +1388,10 @@ public class RPCRequest extends DataClass {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param withCredentials New withCredentials value. Default value is null
+     * @return {@link com.smartgwt.client.rpc.RPCRequest RPCRequest} instance, for chaining setter calls
      */
-    public void setWithCredentials(Boolean withCredentials) {
-        setAttribute("withCredentials", withCredentials);
+    public RPCRequest setWithCredentials(Boolean withCredentials) {
+        return (RPCRequest)setAttribute("withCredentials", withCredentials);
     }
 
     /**

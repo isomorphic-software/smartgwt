@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Definition of a simple linear gradient defined by 2 colors and a {@link
@@ -105,9 +108,10 @@ public class SimpleGradient extends Gradient {
      * gradient.
      *
      * @param direction New direction value. Default value is 0.0
+     * @return {@link com.smartgwt.client.widgets.drawing.SimpleGradient SimpleGradient} instance, for chaining setter calls
      */
-    public void setDirection(float direction) {
-        setAttribute("direction", direction);
+    public SimpleGradient setDirection(float direction) {
+        return (SimpleGradient)setAttribute("direction", direction);
     }
 
     /**
@@ -126,10 +130,11 @@ public class SimpleGradient extends Gradient {
      * The end color of the gradient.
      *
      * @param endColor New endColor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.SimpleGradient SimpleGradient} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      */
-    public void setEndColor(String endColor) {
-        setAttribute("endColor", endColor);
+    public SimpleGradient setEndColor(String endColor) {
+        return (SimpleGradient)setAttribute("endColor", endColor);
     }
 
     /**
@@ -147,10 +152,11 @@ public class SimpleGradient extends Gradient {
      * The start color of the gradient.
      *
      * @param startColor New startColor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.SimpleGradient SimpleGradient} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      */
-    public void setStartColor(String startColor) {
-        setAttribute("startColor", startColor);
+    public SimpleGradient setStartColor(String startColor) {
+        return (SimpleGradient)setAttribute("startColor", startColor);
     }
 
     /**

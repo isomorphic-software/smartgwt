@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -604,8 +607,8 @@ scClassName = "BaseWidget";
         setAttribute("position", position, false);
     }
 
-    public void setHtmlElement(Element element) {
-        setAttribute("htmlElement", element, false);
+    public BaseWidget setHtmlElement(Element element) {
+        return setAttribute("htmlElement", element, false);
     }
 
     public native Element getDOM()/*-{
@@ -669,8 +672,9 @@ scClassName = "BaseWidget";
         if (!autoAssigned) setAttribute(SC.AUTOIDCLASS, (String)null, false);
     }
 
-    public void setID(String id) {
+    public BaseWidget setID(String id) {
         internalSetID(id, false);
+        return this;
     }
 
     public JavaScriptObject getConfig() {
@@ -978,6 +982,23 @@ scClassName = "BaseWidget";
         return ret === undefined ? null : ret;
     }-*/;
 
+    protected native Object getAttributeAsObject(String property)/*-{
+        var ret;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            var widget = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            ret = widget.getProperty(property);
+        } else {
+            var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
+            if(config[property] !== undefined) {
+                ret = config[property];
+            } else {
+               var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+               ret = $wnd.isc[scClassName].getInstanceProperty(property);
+            }
+        }
+        return (ret == null ? null : $wnd.SmartGWT.convertToJavaType(ret));
+    }-*/;
+
     protected native Float getAttributeAsFloat(String property)/*-{
         var ret;
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
@@ -1065,7 +1086,7 @@ scClassName = "BaseWidget";
         }
     }
 
-    protected void setAttribute(String attribute, String value, boolean allowPostCreate) {
+    protected BaseWidget setAttribute(String attribute, String value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -1073,9 +1094,10 @@ scClassName = "BaseWidget";
         } else {
             error(attribute, value);
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, ValueEnum value, boolean allowPostCreate) {
+    protected BaseWidget setAttribute(String attribute, ValueEnum value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value.getValue());
         } else if (allowPostCreate) {
@@ -1083,9 +1105,10 @@ scClassName = "BaseWidget";
         } else {
             error(attribute, value.getValue());
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, BaseWidget value, boolean allowPostCreate) {
+    protected BaseWidget setAttribute(String attribute, BaseWidget value, boolean allowPostCreate) {
         JavaScriptObject valueJS = value.isConfigOnly() ? value.getConfig() : value.getOrCreateJsObj();
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, valueJS);
@@ -1094,9 +1117,10 @@ scClassName = "BaseWidget";
         } else {
             error(attribute, value.toString());
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, Map value, boolean allowPostCreate) {
+    protected BaseWidget setAttribute(String attribute, Map value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -1104,9 +1128,10 @@ scClassName = "BaseWidget";
         } else {
             error(attribute, value.toString());
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, int[] value, boolean allowPostCreate) {
+    protected BaseWidget setAttribute(String attribute, int[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -1114,9 +1139,10 @@ scClassName = "BaseWidget";
         } else {
             error(attribute, value.toString());
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, float[] value, boolean allowPostCreate) {
+    protected BaseWidget setAttribute(String attribute, float[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -1124,9 +1150,10 @@ scClassName = "BaseWidget";
         } else {
             error(attribute, value.toString());
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, double[] value, boolean allowPostCreate) {
+    protected BaseWidget setAttribute(String attribute, double[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -1134,9 +1161,10 @@ scClassName = "BaseWidget";
         } else {
             error(attribute, value.toString());
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, Float[] value, boolean allowPostCreate) {
+    protected BaseWidget setAttribute(String attribute, Float[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -1144,9 +1172,10 @@ scClassName = "BaseWidget";
         } else {
             error(attribute, value.toString());
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, DataClass value, boolean allowPostCreate) {
+    protected BaseWidget setAttribute(String attribute, DataClass value, boolean allowPostCreate) {
 
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value.getJsObj());
@@ -1155,9 +1184,10 @@ scClassName = "BaseWidget";
         } else {
             error(attribute, value.toString());
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, DataClass[] value, boolean allowPostCreate) {
+    protected BaseWidget setAttribute(String attribute, DataClass[] value, boolean allowPostCreate) {
 
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, JSOHelper.convertToJavaScriptArray(value));
@@ -1166,9 +1196,10 @@ scClassName = "BaseWidget";
         } else {
             error(attribute, value.toString());
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, JavaScriptObject[] value, boolean allowPostCreate) {
+    protected BaseWidget setAttribute(String attribute, JavaScriptObject[] value, boolean allowPostCreate) {
 
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, JSOHelper.convertToJavaScriptArray(value));
@@ -1177,9 +1208,10 @@ scClassName = "BaseWidget";
         } else {
             error(attribute, value.toString());
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, BaseClass[] value, boolean allowPostCreate) {
+    protected BaseWidget setAttribute(String attribute, BaseClass[] value, boolean allowPostCreate) {
 
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, JSOHelper.convertToJavaScriptArray(value));
@@ -1188,9 +1220,10 @@ scClassName = "BaseWidget";
         } else {
             error(attribute, value.toString());
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, BaseWidget[] value, boolean allowPostCreate) {
+    protected BaseWidget setAttribute(String attribute, BaseWidget[] value, boolean allowPostCreate) {
 
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, JSOHelper.convertToJavaScriptArray(value));
@@ -1199,9 +1232,10 @@ scClassName = "BaseWidget";
         } else {
             error(attribute, value.toString());
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, float value, boolean allowPostCreate) {
+    protected BaseWidget setAttribute(String attribute, float value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -1209,9 +1243,10 @@ scClassName = "BaseWidget";
         } else {
             error(attribute, String.valueOf(value));
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, double value, boolean allowPostCreate) {
+    protected BaseWidget setAttribute(String attribute, double value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -1219,9 +1254,10 @@ scClassName = "BaseWidget";
         } else {
             error(attribute, String.valueOf(value));
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, Integer value, boolean allowPostCreate) {
+    protected BaseWidget setAttribute(String attribute, Integer value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -1233,6 +1269,7 @@ scClassName = "BaseWidget";
         } else {
             error(attribute, String.valueOf(value));
         }
+        return this;
     }
 
     public native void setNullProperty(String property)/*-{
@@ -1275,7 +1312,7 @@ scClassName = "BaseWidget";
         widget.setProperty(property, value);
     }-*/;
 
-    protected void setAttribute(String attribute, Date value, boolean allowPostCreate) {
+    protected BaseWidget setAttribute(String attribute, Date value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -1287,9 +1324,10 @@ scClassName = "BaseWidget";
         } else {
             error(attribute, String.valueOf(value));
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, JavaScriptObject value, boolean allowPostCreate) {
+    protected BaseWidget setAttribute(String attribute, JavaScriptObject value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -1297,9 +1335,10 @@ scClassName = "BaseWidget";
         } else {
             error(attribute, String.valueOf(value));
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, String[] value, boolean allowPostCreate) {
+    protected BaseWidget setAttribute(String attribute, String[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, JSOHelper.convertToJavaScriptArray(value));
         } else if (allowPostCreate) {
@@ -1307,9 +1346,10 @@ scClassName = "BaseWidget";
         } else {
             error(attribute, String.valueOf(value));
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, Object[] value, boolean allowPostCreate) {
+    protected BaseWidget setAttribute(String attribute, Object[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, JSOHelper.convertToJavaScriptArray(value));
         } else if (allowPostCreate) {
@@ -1317,9 +1357,10 @@ scClassName = "BaseWidget";
         } else {
             error(attribute, String.valueOf(value));
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, Boolean value, boolean allowPostCreate) {
+    protected BaseWidget setAttribute(String attribute, Boolean value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -1331,9 +1372,10 @@ scClassName = "BaseWidget";
         } else {
             error(attribute, String.valueOf(value));
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, Element value, boolean allowPostCreate) {
+    protected BaseWidget setAttribute(String attribute, Element value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -1341,6 +1383,7 @@ scClassName = "BaseWidget";
         } else {
             error(attribute, String.valueOf(value));
         }
+        return this;
     }
 
     //override default behavior of setting title for SmartGWT widgets

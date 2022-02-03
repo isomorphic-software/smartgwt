@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Allows a user to select an absolute or relative range of dates via two {@link
@@ -205,9 +208,10 @@ public class DateRangeItem extends CanvasItem {
      * com.smartgwt.client.widgets.form.fields.DateItem}s).
      *
      * @param allowRelativeDates New allowRelativeDates value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.DateRangeItem DateRangeItem} instance, for chaining setter calls
      */
-    public void setAllowRelativeDates(Boolean allowRelativeDates) {
-        setAttribute("allowRelativeDates", allowRelativeDates);
+    public DateRangeItem setAllowRelativeDates(Boolean allowRelativeDates) {
+        return (DateRangeItem)setAttribute("allowRelativeDates", allowRelativeDates);
     }
 
     /**
@@ -252,9 +256,10 @@ public class DateRangeItem extends CanvasItem {
      * of unpleasant side-to-side shifting of  controls.
      *
      * @param fieldLayout New fieldLayout value. Default value is "vertical"
+     * @return {@link com.smartgwt.client.widgets.form.fields.DateRangeItem DateRangeItem} instance, for chaining setter calls
      */
-    public void setFieldLayout(DateFieldLayout fieldLayout) {
-        setAttribute("fieldLayout", fieldLayout == null ? null : fieldLayout.getValue());
+    public DateRangeItem setFieldLayout(DateFieldLayout fieldLayout) {
+        return (DateRangeItem)setAttribute("fieldLayout", fieldLayout == null ? null : fieldLayout.getValue());
     }
 
     /**
@@ -277,9 +282,10 @@ public class DateRangeItem extends CanvasItem {
      * Not applicable to a DateRangeItem.
      *
      * @param formula New formula value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.DateRangeItem DateRangeItem} instance, for chaining setter calls
      */
-    public void setFormula(UserFormula formula) {
-        setAttribute("formula", formula == null ? null : formula.getJsObj());
+    public DateRangeItem setFormula(UserFormula formula) {
+        return (DateRangeItem)setAttribute("formula", formula == null ? null : formula.getJsObj());
     }
 
     /**
@@ -312,9 +318,10 @@ public class DateRangeItem extends CanvasItem {
      * The title for the {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#getFromField from} part of the range.
      *
      * @param fromTitle New fromTitle value. Default value is "From"
+     * @return {@link com.smartgwt.client.widgets.form.fields.DateRangeItem DateRangeItem} instance, for chaining setter calls
      */
-    public void setFromTitle(String fromTitle) {
-        setAttribute("fromTitle", fromTitle);
+    public DateRangeItem setFromTitle(String fromTitle) {
+        return (DateRangeItem)setAttribute("fromTitle", fromTitle);
     }
 
     /**
@@ -333,9 +340,10 @@ public class DateRangeItem extends CanvasItem {
      * com.smartgwt.client.widgets.form.DynamicForm#getTitleOrientation this.form.titleOrientation}.
      *
      * @param innerTitleOrientation New innerTitleOrientation value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.DateRangeItem DateRangeItem} instance, for chaining setter calls
      */
-    public void setInnerTitleOrientation(TitleOrientation innerTitleOrientation) {
-        setAttribute("innerTitleOrientation", innerTitleOrientation == null ? null : innerTitleOrientation.getValue());
+    public DateRangeItem setInnerTitleOrientation(TitleOrientation innerTitleOrientation) {
+        return (DateRangeItem)setAttribute("innerTitleOrientation", innerTitleOrientation == null ? null : innerTitleOrientation.getValue());
     }
 
     /**
@@ -356,11 +364,12 @@ public class DateRangeItem extends CanvasItem {
      * com.smartgwt.client.widgets.form.fields.DateItem#getInputFormat inputFormat} applied to the item.
      *
      * @param inputFormat New inputFormat value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.DateRangeItem DateRangeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setDateFormatter
      * @see com.smartgwt.client.docs.DateInputFormat DateInputFormat 
      */
-    public void setInputFormat(String inputFormat) {
-        setAttribute("inputFormat", inputFormat);
+    public DateRangeItem setInputFormat(String inputFormat) {
+        return (DateRangeItem)setAttribute("inputFormat", inputFormat);
     }
 
     /**
@@ -382,9 +391,10 @@ public class DateRangeItem extends CanvasItem {
      * value.
      *
      * @param invalidRangeErrorMessage New invalidRangeErrorMessage value. Default value is "'To' field value cannot be earlier than 'From' field value."
+     * @return {@link com.smartgwt.client.widgets.form.fields.DateRangeItem DateRangeItem} instance, for chaining setter calls
      */
-    public void setInvalidRangeErrorMessage(String invalidRangeErrorMessage) {
-        setAttribute("invalidRangeErrorMessage", invalidRangeErrorMessage);
+    public DateRangeItem setInvalidRangeErrorMessage(String invalidRangeErrorMessage) {
+        return (DateRangeItem)setAttribute("invalidRangeErrorMessage", invalidRangeErrorMessage);
     }
 
     /**
@@ -415,9 +425,10 @@ public class DateRangeItem extends CanvasItem {
      * criterion to be included in the returned AdvancedCriteria object
      *
      * @param shouldSaveValue New shouldSaveValue value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.DateRangeItem DateRangeItem} instance, for chaining setter calls
      */
-    public void setShouldSaveValue(Boolean shouldSaveValue) {
-        setAttribute("shouldSaveValue", shouldSaveValue);
+    public DateRangeItem setShouldSaveValue(Boolean shouldSaveValue) {
+        return (DateRangeItem)setAttribute("shouldSaveValue", shouldSaveValue);
     }
 
     /**
@@ -437,9 +448,10 @@ public class DateRangeItem extends CanvasItem {
      * Not applicable to a DateRangeItem.
      *
      * @param textFormula New textFormula value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.DateRangeItem DateRangeItem} instance, for chaining setter calls
      */
-    public void setTextFormula(UserSummary textFormula) {
-        setAttribute("textFormula", textFormula == null ? null : textFormula.getJsObj());
+    public DateRangeItem setTextFormula(UserSummary textFormula) {
+        return (DateRangeItem)setAttribute("textFormula", textFormula == null ? null : textFormula.getJsObj());
     }
 
     /**
@@ -459,9 +471,10 @@ public class DateRangeItem extends CanvasItem {
      * Sets the {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#getToDate toDate} for this DateRangeItem.
      *
      * @param toDate the date at which this item should end it's range. Default value is today
+     * @return {@link com.smartgwt.client.widgets.form.fields.DateRangeItem DateRangeItem} instance, for chaining setter calls
      */
-    public void setToDate(Date toDate) {
-        setAttribute("toDate", toDate);
+    public DateRangeItem setToDate(Date toDate) {
+        return (DateRangeItem)setAttribute("toDate", toDate);
     }
 
     /**
@@ -480,10 +493,11 @@ public class DateRangeItem extends CanvasItem {
      * Sets the {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#getToDate toDate} for this DateRangeItem.
      *
      * @param toDate the date at which this item should end it's range. Default value is today
+     * @return {@link com.smartgwt.client.widgets.form.fields.DateRangeItem DateRangeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.RelativeDateString RelativeDateString 
      */
-    public void setToDate(String toDate) {
-        setAttribute("toDate", toDate);
+    public DateRangeItem setToDate(String toDate) {
+        return (DateRangeItem)setAttribute("toDate", toDate);
     }
 
     /**
@@ -503,10 +517,11 @@ public class DateRangeItem extends CanvasItem {
      * Sets the {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#getToDate toDate} for this DateRangeItem.
      *
      * @param toDate the date at which this item should end it's range. Default value is today
+     * @return {@link com.smartgwt.client.widgets.form.fields.DateRangeItem DateRangeItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.RelativeDateString RelativeDateString 
      */
-    public void setToDate(TimeUnit toDate) {
-        setAttribute("toDate", toDate == null ? null : toDate.getValue());
+    public DateRangeItem setToDate(TimeUnit toDate) {
+        return (DateRangeItem)setAttribute("toDate", toDate == null ? null : toDate.getValue());
     }
 
     /**
@@ -539,9 +554,10 @@ public class DateRangeItem extends CanvasItem {
      * The title for the {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#getToField to} part of the range.
      *
      * @param toTitle New toTitle value. Default value is "To"
+     * @return {@link com.smartgwt.client.widgets.form.fields.DateRangeItem DateRangeItem} instance, for chaining setter calls
      */
-    public void setToTitle(String toTitle) {
-        setAttribute("toTitle", toTitle);
+    public DateRangeItem setToTitle(String toTitle) {
+        return (DateRangeItem)setAttribute("toTitle", toTitle);
     }
 
     /**
@@ -560,9 +576,10 @@ public class DateRangeItem extends CanvasItem {
      * field fails validation. See {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#validateRange validateRange()}
      *
      * @param validateCriteria New validateCriteria value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.DateRangeItem DateRangeItem} instance, for chaining setter calls
      */
-    public void setValidateCriteria(Boolean validateCriteria) {
-        setAttribute("validateCriteria", validateCriteria);
+    public DateRangeItem setValidateCriteria(Boolean validateCriteria) {
+        return (DateRangeItem)setAttribute("validateCriteria", validateCriteria);
     }
 
     /**
@@ -687,7 +704,12 @@ public class DateRangeItem extends CanvasItem {
             //do nothing as null is the default
         } else {
             if($wnd.isc.isA.Date(startJS)) {
-                var start = @com.smartgwt.client.util.JSOHelper::toDate(D)(startJS.getTime());
+                var start = null;
+                if (startJS.logicalDate == true) {
+                    start = @com.smartgwt.client.util.LogicalDate::new(D)(startJS.getTime());
+                } else {
+                    start = @com.smartgwt.client.util.JSOHelper::toDate(D)(startJS.getTime());
+                }
                 dateRangeJ.@com.smartgwt.client.data.DateRange::setStartDate(Ljava/util/Date;)(start);
             } else if($wnd.isc.isA.String(startJS)) {
                 var start = @com.smartgwt.client.data.RelativeDate::new(Ljava/lang/String;)(startJS);
@@ -701,7 +723,12 @@ public class DateRangeItem extends CanvasItem {
             //do nothing as null is the default
         } else {
             if($wnd.isc.isA.Date(endJS)) {
-                var end = @com.smartgwt.client.util.JSOHelper::toDate(D)(endJS.getTime());
+                var end = null;
+                if (endJS.logicalDate == true) {
+                    end = @com.smartgwt.client.util.LogicalDate::new(D)(endJS.getTime());
+                } else {
+                    end = @com.smartgwt.client.util.JSOHelper::toDate(D)(endJS.getTime());
+                }
                 dateRangeJ.@com.smartgwt.client.data.DateRange::setEndDate(Ljava/util/Date;)(end);
             } else if($wnd.isc.isA.String(endJS)) {
                 var end = @com.smartgwt.client.data.RelativeDate::new(Ljava/lang/String;)(endJS);

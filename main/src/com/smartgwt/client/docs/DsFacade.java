@@ -66,7 +66,12 @@ package com.smartgwt.client.docs;
  *      }
  *  };
  *  </pre>
- * 
+ *  
+ *  <p>
+ * Check out <a href='https://www.smartclient.com/smartclient-latest/showcase/?id=loadedValues'
+ * target='_blank'>this example</a>
+ *  of the DataSource facade pattern being used to create a DataSource that may work with already 
+ *  loaded data, or may use another DataSource to fulfill its requests.
  */
 public interface DsFacade {
 }

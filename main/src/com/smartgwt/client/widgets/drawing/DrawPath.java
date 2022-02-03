@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -190,13 +193,14 @@ public class DrawPath extends DrawItem {
      * DrawPath only supports the  {@link com.smartgwt.client.types.KnobType#MOVE} knob type.
      *
      * @param knobs New knobs value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawPath DrawPath} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setKnobs
      * 
      * 
      */
-    public void setKnobs(KnobType... knobs)  throws IllegalStateException {
-        setAttribute("knobs", knobs, false);
+    public DrawPath setKnobs(KnobType... knobs)  throws IllegalStateException {
+        return (DrawPath)setAttribute("knobs", knobs, false);
     }
 
     /**
@@ -218,9 +222,10 @@ public class DrawPath extends DrawItem {
      * system}.
      *
      * @param points New points value. Default value is [[0,0], [100,100]]
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawPath DrawPath} instance, for chaining setter calls
      */
-    public void setPoints(Point... points) {
-        setAttribute("points", points, true);
+    public DrawPath setPoints(Point... points) {
+        return (DrawPath)setAttribute("points", points, true);
     }
 
     /**
@@ -242,10 +247,11 @@ public class DrawPath extends DrawItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showTitleLabelBackground New showTitleLabelBackground value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawPath DrawPath} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowTitleLabelBackground(boolean showTitleLabelBackground)  throws IllegalStateException {
-        setAttribute("showTitleLabelBackground", showTitleLabelBackground, false);
+    public DrawPath setShowTitleLabelBackground(boolean showTitleLabelBackground)  throws IllegalStateException {
+        return (DrawPath)setAttribute("showTitleLabelBackground", showTitleLabelBackground, false);
     }
 
     /**

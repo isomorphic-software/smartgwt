@@ -36,6 +36,9 @@
  *    </operationBindings>
  *</DataSource>}</pre>
  * <p>
+ * DataSource files and other Component XML files can be localized using resource bundles - 
+ * see {@link com.smartgwt.client.docs.I18n this overview} for details.
+ * <p>
  * NOTE: the settings described in the special "serverds" JavaDoc package are only usable with
  * Smart GWT Pro Edition and above, however, the "serverds" documentation is included with
  * Smart GWT LGPL since some parts of the documentation cover concepts and approaches that are

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -171,6 +174,31 @@ public class Progressbar extends StretchImg implements com.smartgwt.client.widge
     // ********************* Properties / Attributes ***********************
 
     /**
+     * {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle Base style} for this Progressbar.  Only used when  {@link
+     * com.smartgwt.client.widgets.Progressbar#getUseCssStyles useCssStyles} is true.
+     *
+     * @param baseStyle New baseStyle value. Default value is "progressbar"
+     * @return {@link com.smartgwt.client.widgets.Progressbar Progressbar} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public Progressbar setBaseStyle(String baseStyle)  throws IllegalStateException {
+        return (Progressbar)setAttribute("baseStyle", baseStyle, false);
+    }
+
+    /**
+     * {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle Base style} for this Progressbar.  Only used when  {@link
+     * com.smartgwt.client.widgets.Progressbar#getUseCssStyles useCssStyles} is true.
+     *
+     * @return Current baseStyle value. Default value is "progressbar"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public String getBaseStyle()  {
+        return getAttributeAsString("baseStyle");
+    }
+    
+
+    /**
      * Thickness of the progressbar in pixels. This is effectively width for a vertical progressbar, or height for a horizontal
      * progressbar. <P> This property must be set instead of setting <code>width</code> or <code>height</code>.
      *
@@ -178,10 +206,11 @@ public class Progressbar extends StretchImg implements com.smartgwt.client.widge
      * Sets the breadth of the progressbar to newLength. This is the height of a horizontal progressbar, or the width of a vertical progressbar.
      *
      * @param breadth the new breadth of the progressbar. Default value is 20
+     * @return {@link com.smartgwt.client.widgets.Progressbar Progressbar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setBreadth(int breadth) {
-        setAttribute("breadth", breadth, true);
+    public Progressbar setBreadth(int breadth) {
+        return (Progressbar)setAttribute("breadth", breadth, true);
     }
 
     /**
@@ -201,11 +230,12 @@ public class Progressbar extends StretchImg implements com.smartgwt.client.widge
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "ProgressbarProxy"
+     * @return {@link com.smartgwt.client.widgets.Progressbar Progressbar} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
-        setAttribute("editProxyConstructor", editProxyConstructor, false);
+    public Progressbar setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
+        return (Progressbar)setAttribute("editProxyConstructor", editProxyConstructor, false);
     }
 
     /**
@@ -228,10 +258,11 @@ public class Progressbar extends StretchImg implements com.smartgwt.client.widge
      * Sets the length of the progressbar to newLength. This is the width of a horizontal progressbar, or the height of a vertical progressbar.
      *
      * @param length the new length of the progressbar. Default value is 100
+     * @return {@link com.smartgwt.client.widgets.Progressbar Progressbar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setLength(int length) {
-        setAttribute("length", length, true);
+    public Progressbar setLength(int length) {
+        return (Progressbar)setAttribute("length", length, true);
     }
 
     /**
@@ -253,10 +284,11 @@ public class Progressbar extends StretchImg implements com.smartgwt.client.widge
      * Sets the length of the progressbar to newLength. This is the width of a horizontal progressbar, or the height of a vertical progressbar.
      *
      * @param length the new length of the progressbar. Default value is 100
+     * @return {@link com.smartgwt.client.widgets.Progressbar Progressbar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setLength(String length) {
-        setAttribute("length", length, true);
+    public Progressbar setLength(String length) {
+        return (Progressbar)setAttribute("length", length, true);
     }
     
 
@@ -267,10 +299,11 @@ public class Progressbar extends StretchImg implements com.smartgwt.client.widge
      * Sets percentDone to newPercent.
      *
      * @param percentDone percent to show as done (0-100). Default value is 0
+     * @return {@link com.smartgwt.client.widgets.Progressbar Progressbar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setPercentDone(int percentDone) {
-        setAttribute("percentDone", percentDone, true);
+    public Progressbar setPercentDone(int percentDone) {
+        return (Progressbar)setAttribute("percentDone", percentDone, true);
     }
 
     /**
@@ -285,14 +318,40 @@ public class Progressbar extends StretchImg implements com.smartgwt.client.widge
     
 
     /**
+     * {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle Base style} used to style the percentage-done portion of
+     * this Progressbar.  Only used when {@link com.smartgwt.client.widgets.Progressbar#getUseCssStyles useCssStyles} is true.
+     *
+     * @param progressStyle New progressStyle value. Default value is "progressbarProgress"
+     * @return {@link com.smartgwt.client.widgets.Progressbar Progressbar} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public Progressbar setProgressStyle(String progressStyle)  throws IllegalStateException {
+        return (Progressbar)setAttribute("progressStyle", progressStyle, false);
+    }
+
+    /**
+     * {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle Base style} used to style the percentage-done portion of
+     * this Progressbar.  Only used when {@link com.smartgwt.client.widgets.Progressbar#getUseCssStyles useCssStyles} is true.
+     *
+     * @return Current progressStyle value. Default value is "progressbarProgress"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public String getProgressStyle()  {
+        return getAttributeAsString("progressStyle");
+    }
+    
+
+    /**
      * The base file name for the progressbar image.
      *
      * @param src New src value. Default value is "[SKIN]progressbar.gif"
+     * @return {@link com.smartgwt.client.widgets.Progressbar Progressbar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setSrc(String src) {
-        setAttribute("src", src, true);
+    public Progressbar setSrc(String src) {
+        return (Progressbar)setAttribute("src", src, true);
     }
 
     /**
@@ -308,13 +367,38 @@ public class Progressbar extends StretchImg implements com.smartgwt.client.widge
     
 
     /**
+     * When set to true, styles the Progressbar via the {@link com.smartgwt.client.widgets.Progressbar#getBaseStyle base} and 
+     * {@link com.smartgwt.client.widgets.Progressbar#getProgressStyle progress} CSS styles.
+     *
+     * @param useCssStyles New useCssStyles value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Progressbar Progressbar} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public Progressbar setUseCssStyles(boolean useCssStyles)  throws IllegalStateException {
+        return (Progressbar)setAttribute("useCssStyles", useCssStyles, false);
+    }
+
+    /**
+     * When set to true, styles the Progressbar via the {@link com.smartgwt.client.widgets.Progressbar#getBaseStyle base} and 
+     * {@link com.smartgwt.client.widgets.Progressbar#getProgressStyle progress} CSS styles.
+     *
+     * @return Current useCssStyles value. Default value is false
+     */
+    public boolean getUseCssStyles()  {
+        Boolean result = getAttributeAsBoolean("useCssStyles");
+        return result == null ? false : result;
+    }
+    
+
+    /**
      * Indicates whether this is a vertical or horizontal progressbar.
      *
      * @param vertical New vertical value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Progressbar Progressbar} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setVertical(Boolean vertical) {
-        setAttribute("vertical", vertical, true);
+    public Progressbar setVertical(Boolean vertical) {
+        return (Progressbar)setAttribute("vertical", vertical, true);
     }
 
     /**
@@ -333,7 +417,7 @@ public class Progressbar extends StretchImg implements com.smartgwt.client.widge
     /**
      * Add a percentChanged handler.
      * <p>
-     * This method is called when the percentDone value changes. Observe this method to be notified upon a change to the
+     * This method is called when the percentDone value changes.  Call this method to be notified upon a change to the
      * percentDone value.
      *
      * @param handler the percentChanged handler
@@ -428,6 +512,11 @@ public class Progressbar extends StretchImg implements com.smartgwt.client.widge
     public LogicalStructureObject setLogicalStructure(ProgressbarLogicalStructure s) {
         super.setLogicalStructure(s);
         try {
+            s.baseStyle = getAttributeAsString("baseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Progressbar.baseStyle:" + t.getMessage() + "\n";
+        }
+        try {
             s.breadth = getAttributeAsString("breadth");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Progressbar.breadth:" + t.getMessage() + "\n";
@@ -443,9 +532,19 @@ public class Progressbar extends StretchImg implements com.smartgwt.client.widge
             s.logicalStructureErrors += "Progressbar.percentDone:" + t.getMessage() + "\n";
         }
         try {
+            s.progressStyle = getAttributeAsString("progressStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Progressbar.progressStyle:" + t.getMessage() + "\n";
+        }
+        try {
             s.src = getAttributeAsString("src");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Progressbar.src:" + t.getMessage() + "\n";
+        }
+        try {
+            s.useCssStyles = getAttributeAsString("useCssStyles");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Progressbar.useCssStyles:" + t.getMessage() + "\n";
         }
         try {
             s.vertical = getAttributeAsString("vertical");

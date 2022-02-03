@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -195,12 +198,13 @@ public class FilterClause extends HStack {
      * the operator not chosen.
      *
      * @param criterion New criterion value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.FilterClause FilterClause} instance, for chaining setter calls
      */
-    public void setCriterion(Criteria criterion) {
+    public FilterClause setCriterion(Criteria criterion) {
         if (criterion instanceof Criterion) {
             criterion.setAttribute("_constructor", "AdvancedCriteria");
         }
-        setAttribute("criterion", criterion == null ? null : criterion.getJsObj(), true);
+        return (FilterClause)setAttribute("criterion", criterion == null ? null : criterion.getJsObj(), true);
     }
 
     /**
@@ -221,14 +225,15 @@ public class FilterClause extends HStack {
      * Properties to combine with the {@link com.smartgwt.client.widgets.FieldPicker} autoChild FormItem.
      *
      * @param fieldPickerProperties New fieldPickerProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.FilterClause FilterClause} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setFieldPickerProperties(FormItem fieldPickerProperties)  throws IllegalStateException {
+    public FilterClause setFieldPickerProperties(FormItem fieldPickerProperties)  throws IllegalStateException {
         if (fieldPickerProperties.isCreated()) {
             ConfigUtil.warnOfPreConfigInstantiation(FilterClause.class, "setFieldPickerProperties", "FormItem");
         }                                                                       
         fieldPickerProperties.setConfigOnly(true);
-        setAttribute("fieldPickerProperties", fieldPickerProperties == null ? null : fieldPickerProperties.getEditorTypeConfig(), false);
+        return (FilterClause)setAttribute("fieldPickerProperties", fieldPickerProperties == null ? null : fieldPickerProperties.getEditorTypeConfig(), false);
     }
 
     /**
@@ -245,10 +250,11 @@ public class FilterClause extends HStack {
      * The title for the {@link com.smartgwt.client.widgets.FieldPicker field-picker} select-item.
      *
      * @param fieldPickerTitle New fieldPickerTitle value. Default value is "Field Name"
+     * @return {@link com.smartgwt.client.widgets.form.FilterClause FilterClause} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setFieldPickerTitle(String fieldPickerTitle)  throws IllegalStateException {
-        setAttribute("fieldPickerTitle", fieldPickerTitle, false);
+    public FilterClause setFieldPickerTitle(String fieldPickerTitle)  throws IllegalStateException {
+        return (FilterClause)setAttribute("fieldPickerTitle", fieldPickerTitle, false);
     }
 
     /**
@@ -283,14 +289,15 @@ public class FilterClause extends HStack {
      * autoChild FormItem.
      *
      * @param operatorPickerProperties New operatorPickerProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.FilterClause FilterClause} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setOperatorPickerProperties(FormItem operatorPickerProperties)  throws IllegalStateException {
+    public FilterClause setOperatorPickerProperties(FormItem operatorPickerProperties)  throws IllegalStateException {
         if (operatorPickerProperties.isCreated()) {
             ConfigUtil.warnOfPreConfigInstantiation(FilterClause.class, "setOperatorPickerProperties", "FormItem");
         }                                                                       
         operatorPickerProperties.setConfigOnly(true);
-        setAttribute("operatorPickerProperties", operatorPickerProperties == null ? null : operatorPickerProperties.getEditorTypeConfig(), false);
+        return (FilterClause)setAttribute("operatorPickerProperties", operatorPickerProperties == null ? null : operatorPickerProperties.getEditorTypeConfig(), false);
     }
 
     /**
@@ -308,10 +315,11 @@ public class FilterClause extends HStack {
      * The title for the operator-picker select-item.
      *
      * @param operatorPickerTitle New operatorPickerTitle value. Default value is "Operator"
+     * @return {@link com.smartgwt.client.widgets.form.FilterClause FilterClause} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setOperatorPickerTitle(String operatorPickerTitle)  throws IllegalStateException {
-        setAttribute("operatorPickerTitle", operatorPickerTitle, false);
+    public FilterClause setOperatorPickerTitle(String operatorPickerTitle)  throws IllegalStateException {
+        return (FilterClause)setAttribute("operatorPickerTitle", operatorPickerTitle, false);
     }
 
     /**
@@ -344,10 +352,11 @@ public class FilterClause extends HStack {
      * The hover prompt text for the remove button.
      *
      * @param removeButtonPrompt New removeButtonPrompt value. Default value is "Remove"
+     * @return {@link com.smartgwt.client.widgets.form.FilterClause FilterClause} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setRemoveButtonPrompt(String removeButtonPrompt)  throws IllegalStateException {
-        setAttribute("removeButtonPrompt", removeButtonPrompt, false);
+    public FilterClause setRemoveButtonPrompt(String removeButtonPrompt)  throws IllegalStateException {
+        return (FilterClause)setAttribute("removeButtonPrompt", removeButtonPrompt, false);
     }
 
     /**
@@ -365,10 +374,11 @@ public class FilterClause extends HStack {
      * field names instead.
      *
      * @param showFieldTitles New showFieldTitles value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.FilterClause FilterClause} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowFieldTitles(Boolean showFieldTitles)  throws IllegalStateException {
-        setAttribute("showFieldTitles", showFieldTitles, false);
+    public FilterClause setShowFieldTitles(Boolean showFieldTitles)  throws IllegalStateException {
+        return (FilterClause)setAttribute("showFieldTitles", showFieldTitles, false);
     }
 
     /**
@@ -387,10 +397,11 @@ public class FilterClause extends HStack {
      * If set, show a button for this clause allowing it to be removed.
      *
      * @param showRemoveButton New showRemoveButton value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.FilterClause FilterClause} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowRemoveButton(Boolean showRemoveButton)  throws IllegalStateException {
-        setAttribute("showRemoveButton", showRemoveButton, false);
+    public FilterClause setShowRemoveButton(Boolean showRemoveButton)  throws IllegalStateException {
+        return (FilterClause)setAttribute("showRemoveButton", showRemoveButton, false);
     }
 
     /**
@@ -411,10 +422,11 @@ public class FilterClause extends HStack {
      * com.smartgwt.client.widgets.form.FilterClause#validate validate()} from your own code.
      *
      * @param validateOnChange New validateOnChange value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.FilterClause FilterClause} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setValidateOnChange(Boolean validateOnChange)  throws IllegalStateException {
-        setAttribute("validateOnChange", validateOnChange, false);
+    public FilterClause setValidateOnChange(Boolean validateOnChange)  throws IllegalStateException {
+        return (FilterClause)setAttribute("validateOnChange", validateOnChange, false);
     }
 
     /**
@@ -435,10 +447,11 @@ public class FilterClause extends HStack {
      * A hint to show in the value-item when using an operator that allows users to select  field-names from a list.
      *
      * @param valueItemFieldHint New valueItemFieldHint value. Default value is "Select a field"
+     * @return {@link com.smartgwt.client.widgets.form.FilterClause FilterClause} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setValueItemFieldHint(String valueItemFieldHint)  throws IllegalStateException {
-        setAttribute("valueItemFieldHint", valueItemFieldHint, false);
+    public FilterClause setValueItemFieldHint(String valueItemFieldHint)  throws IllegalStateException {
+        return (FilterClause)setAttribute("valueItemFieldHint", valueItemFieldHint, false);
     }
 
     /**
@@ -455,10 +468,11 @@ public class FilterClause extends HStack {
      * A hint to show in the value-item when using an operator that allows users to select values from a list.
      *
      * @param valueItemListHint New valueItemListHint value. Default value is "Select a value"
+     * @return {@link com.smartgwt.client.widgets.form.FilterClause FilterClause} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setValueItemListHint(String valueItemListHint)  throws IllegalStateException {
-        setAttribute("valueItemListHint", valueItemListHint, false);
+    public FilterClause setValueItemListHint(String valueItemListHint)  throws IllegalStateException {
+        return (FilterClause)setAttribute("valueItemListHint", valueItemListHint, false);
     }
 
     /**
@@ -475,10 +489,11 @@ public class FilterClause extends HStack {
      * A hint to show in the value-item when using an operator that takes user-entered values.
      *
      * @param valueItemTextHint New valueItemTextHint value. Default value is "Enter a value"
+     * @return {@link com.smartgwt.client.widgets.form.FilterClause FilterClause} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setValueItemTextHint(String valueItemTextHint)  throws IllegalStateException {
-        setAttribute("valueItemTextHint", valueItemTextHint, false);
+    public FilterClause setValueItemTextHint(String valueItemTextHint)  throws IllegalStateException {
+        return (FilterClause)setAttribute("valueItemTextHint", valueItemTextHint, false);
     }
 
     /**
@@ -495,10 +510,11 @@ public class FilterClause extends HStack {
      * The title for the value-item.
      *
      * @param valueItemTitle New valueItemTitle value. Default value is "Value"
+     * @return {@link com.smartgwt.client.widgets.form.FilterClause FilterClause} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setValueItemTitle(String valueItemTitle)  throws IllegalStateException {
-        setAttribute("valueItemTitle", valueItemTitle, false);
+    public FilterClause setValueItemTitle(String valueItemTitle)  throws IllegalStateException {
+        return (FilterClause)setAttribute("valueItemTitle", valueItemTitle, false);
     }
 
     /**
@@ -515,10 +531,11 @@ public class FilterClause extends HStack {
      * A hint to show in the value-item when using an operator that takes an array of values.
      *
      * @param valueSetHint New valueSetHint value. Default value is "Comma-separated values"
+     * @return {@link com.smartgwt.client.widgets.form.FilterClause FilterClause} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setValueSetHint(String valueSetHint)  throws IllegalStateException {
-        setAttribute("valueSetHint", valueSetHint, false);
+    public FilterClause setValueSetHint(String valueSetHint)  throws IllegalStateException {
+        return (FilterClause)setAttribute("valueSetHint", valueSetHint, false);
     }
 
     /**

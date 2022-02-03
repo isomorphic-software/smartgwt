@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -197,10 +200,11 @@ public class MultiGroupDialog extends Window {
      * need to consider the properties on the MultiGroupPanel for i18n.
      *
      * @param addLevelButtonTitle New addLevelButtonTitle value. Default value is "Add Level"
+     * @return {@link com.smartgwt.client.widgets.MultiGroupDialog MultiGroupDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setAddLevelButtonTitle(String addLevelButtonTitle)  throws IllegalStateException {
-        setAttribute("addLevelButtonTitle", addLevelButtonTitle, false);
+    public MultiGroupDialog setAddLevelButtonTitle(String addLevelButtonTitle)  throws IllegalStateException {
+        return (MultiGroupDialog)setAttribute("addLevelButtonTitle", addLevelButtonTitle, false);
     }
 
     /**
@@ -238,10 +242,11 @@ public class MultiGroupDialog extends Window {
      * The title-text to appear on the applyButton
      *
      * @param applyButtonTitle New applyButtonTitle value. Default value is "Apply"
+     * @return {@link com.smartgwt.client.widgets.MultiGroupDialog MultiGroupDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setApplyButtonTitle(String applyButtonTitle)  throws IllegalStateException {
-        setAttribute("applyButtonTitle", applyButtonTitle, false);
+    public MultiGroupDialog setApplyButtonTitle(String applyButtonTitle)  throws IllegalStateException {
+        return (MultiGroupDialog)setAttribute("applyButtonTitle", applyButtonTitle, false);
     }
 
     /**
@@ -277,10 +282,11 @@ public class MultiGroupDialog extends Window {
      * The title-text to appear on the cancelButton
      *
      * @param cancelButtonTitle New cancelButtonTitle value. Default value is "Cancel"
+     * @return {@link com.smartgwt.client.widgets.MultiGroupDialog MultiGroupDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
-        setAttribute("cancelButtonTitle", cancelButtonTitle, false);
+    public MultiGroupDialog setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
+        return (MultiGroupDialog)setAttribute("cancelButtonTitle", cancelButtonTitle, false);
     }
 
     /**
@@ -316,10 +322,11 @@ public class MultiGroupDialog extends Window {
      * need to consider the properties on the MultiGroupPanel for i18n.
      *
      * @param copyLevelButtonTitle New copyLevelButtonTitle value. Default value is "Copy Level"
+     * @return {@link com.smartgwt.client.widgets.MultiGroupDialog MultiGroupDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCopyLevelButtonTitle(String copyLevelButtonTitle)  throws IllegalStateException {
-        setAttribute("copyLevelButtonTitle", copyLevelButtonTitle, false);
+    public MultiGroupDialog setCopyLevelButtonTitle(String copyLevelButtonTitle)  throws IllegalStateException {
+        return (MultiGroupDialog)setAttribute("copyLevelButtonTitle", copyLevelButtonTitle, false);
     }
 
     /**
@@ -358,10 +365,11 @@ public class MultiGroupDialog extends Window {
      * need to consider the properties on the MultiGroupPanel for i18n.
      *
      * @param deleteLevelButtonTitle New deleteLevelButtonTitle value. Default value is "Delete Level"
+     * @return {@link com.smartgwt.client.widgets.MultiGroupDialog MultiGroupDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDeleteLevelButtonTitle(String deleteLevelButtonTitle)  throws IllegalStateException {
-        setAttribute("deleteLevelButtonTitle", deleteLevelButtonTitle, false);
+    public MultiGroupDialog setDeleteLevelButtonTitle(String deleteLevelButtonTitle)  throws IllegalStateException {
+        return (MultiGroupDialog)setAttribute("deleteLevelButtonTitle", deleteLevelButtonTitle, false);
     }
 
     /**
@@ -383,10 +391,11 @@ public class MultiGroupDialog extends Window {
      * dialog.  You only need to consider the properties on the MultiGroupPanel for i18n.
      *
      * @param groupingFieldTitle New groupingFieldTitle value. Default value is "Grouping"
+     * @return {@link com.smartgwt.client.widgets.MultiGroupDialog MultiGroupDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setGroupingFieldTitle(String groupingFieldTitle)  throws IllegalStateException {
-        setAttribute("groupingFieldTitle", groupingFieldTitle, false);
+    public MultiGroupDialog setGroupingFieldTitle(String groupingFieldTitle)  throws IllegalStateException {
+        return (MultiGroupDialog)setAttribute("groupingFieldTitle", groupingFieldTitle, false);
     }
 
     /**
@@ -410,11 +419,12 @@ public class MultiGroupDialog extends Window {
      * the properties on the MultiGroupPanel for i18n.
      *
      * @param invalidListPrompt New invalidListPrompt value. Default value is "Columns may only be used once: '${title}' is used multiple times."
+     * @return {@link com.smartgwt.client.widgets.MultiGroupDialog MultiGroupDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setInvalidListPrompt(String invalidListPrompt)  throws IllegalStateException {
-        setAttribute("invalidListPrompt", invalidListPrompt, false);
+    public MultiGroupDialog setInvalidListPrompt(String invalidListPrompt)  throws IllegalStateException {
+        return (MultiGroupDialog)setAttribute("invalidListPrompt", invalidListPrompt, false);
     }
 
     /**
@@ -454,10 +464,11 @@ public class MultiGroupDialog extends Window {
      * The hover-prompt for the Level Down button.
      *
      * @param levelDownButtonTitle New levelDownButtonTitle value. Default value is "Move Level Down"
+     * @return {@link com.smartgwt.client.widgets.MultiGroupDialog MultiGroupDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setLevelDownButtonTitle(String levelDownButtonTitle)  throws IllegalStateException {
-        setAttribute("levelDownButtonTitle", levelDownButtonTitle, false);
+    public MultiGroupDialog setLevelDownButtonTitle(String levelDownButtonTitle)  throws IllegalStateException {
+        return (MultiGroupDialog)setAttribute("levelDownButtonTitle", levelDownButtonTitle, false);
     }
 
     /**
@@ -492,10 +503,11 @@ public class MultiGroupDialog extends Window {
      * The hover-prompt for the Level Up button.
      *
      * @param levelUpButtonTitle New levelUpButtonTitle value. Default value is "Move Level Up"
+     * @return {@link com.smartgwt.client.widgets.MultiGroupDialog MultiGroupDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setLevelUpButtonTitle(String levelUpButtonTitle)  throws IllegalStateException {
-        setAttribute("levelUpButtonTitle", levelUpButtonTitle, false);
+    public MultiGroupDialog setLevelUpButtonTitle(String levelUpButtonTitle)  throws IllegalStateException {
+        return (MultiGroupDialog)setAttribute("levelUpButtonTitle", levelUpButtonTitle, false);
     }
 
     /**
@@ -516,10 +528,11 @@ public class MultiGroupDialog extends Window {
      * contained in this dialog.
      *
      * @param maxLevels New maxLevels value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.MultiGroupDialog MultiGroupDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setMaxLevels(Integer maxLevels)  throws IllegalStateException {
-        setAttribute("maxLevels", maxLevels, false);
+    public MultiGroupDialog setMaxLevels(Integer maxLevels)  throws IllegalStateException {
+        return (MultiGroupDialog)setAttribute("maxLevels", maxLevels, false);
     }
 
     /**
@@ -560,10 +573,11 @@ public class MultiGroupDialog extends Window {
      * dialog.  You only need to consider the properties on the MultiGroupPanel for i18n.
      *
      * @param propertyFieldTitle New propertyFieldTitle value. Default value is "Column"
+     * @return {@link com.smartgwt.client.widgets.MultiGroupDialog MultiGroupDialog} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPropertyFieldTitle(String propertyFieldTitle)  throws IllegalStateException {
-        setAttribute("propertyFieldTitle", propertyFieldTitle, false);
+    public MultiGroupDialog setPropertyFieldTitle(String propertyFieldTitle)  throws IllegalStateException {
+        return (MultiGroupDialog)setAttribute("propertyFieldTitle", propertyFieldTitle, false);
     }
 
     /**

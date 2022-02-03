@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -96,7 +99,8 @@ import com.smartgwt.logicalstructure.widgets.tools.*;
 /**
  * A container that manages a list of sections of widgets, each with a header.  Sometimes called an "Accordion". <P>
  * SectionStack can be configured so that only one section is visible at a time (similar to MS Outlook's left-hand Nav), or
- * to allow multiple sections to be visible and share the available space.
+ * to allow multiple sections to be visible and share the available space.  For further details, see {@link
+ * com.smartgwt.client.widgets.layout.SectionStack#getVisibilityMode visibilityMode}.
  */
 @BeanFactory.FrameworkClass
 @BeanFactory.ScClassName("SectionStack")
@@ -175,10 +179,11 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
      * If true, sections are animated during expand/collapse and addition/removal of SectionItems is likewise animated.
      *
      * @param animateSections New animateSections value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_sections" target="examples">Section Reveal Example</a>
      */
-    public void setAnimateSections(Boolean animateSections) {
-        setAttribute("animateSections", animateSections, true);
+    public SectionStack setAnimateSections(Boolean animateSections) {
+        return (SectionStack)setAttribute("animateSections", animateSections, true);
     }
 
     /**
@@ -198,9 +203,10 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
      * If false, collapsing the last open section will open the next one (wrapping around at the end).
      *
      * @param canCollapseAll New canCollapseAll value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
      */
-    public void setCanCollapseAll(Boolean canCollapseAll) {
-        setAttribute("canCollapseAll", canCollapseAll, true);
+    public SectionStack setCanCollapseAll(Boolean canCollapseAll) {
+        return (SectionStack)setAttribute("canCollapseAll", canCollapseAll, true);
     }
 
     /**
@@ -226,11 +232,12 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canDropComponents New canDropComponents value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
      */
-    public void setCanDropComponents(Boolean canDropComponents)  throws IllegalStateException {
-        setAttribute("canDropComponents", canDropComponents, false);
+    public SectionStack setCanDropComponents(Boolean canDropComponents)  throws IllegalStateException {
+        return (SectionStack)setAttribute("canDropComponents", canDropComponents, false);
     }
 
     /**
@@ -259,10 +266,11 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canReorderSections New canReorderSections value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanReorderSections(Boolean canReorderSections)  throws IllegalStateException {
-        setAttribute("canReorderSections", canReorderSections, false);
+    public SectionStack setCanReorderSections(Boolean canReorderSections)  throws IllegalStateException {
+        return (SectionStack)setAttribute("canReorderSections", canReorderSections, false);
     }
 
     /**
@@ -288,10 +296,11 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canResizeSections New canResizeSections value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanResizeSections(Boolean canResizeSections)  throws IllegalStateException {
-        setAttribute("canResizeSections", canResizeSections, false);
+    public SectionStack setCanResizeSections(Boolean canResizeSections)  throws IllegalStateException {
+        return (SectionStack)setAttribute("canResizeSections", canResizeSections, false);
     }
 
     /**
@@ -317,10 +326,11 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canTabToHeaders New canTabToHeaders value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setCanTabToHeaders(Boolean canTabToHeaders)  throws IllegalStateException {
-        setAttribute("canTabToHeaders", canTabToHeaders, false);
+    public SectionStack setCanTabToHeaders(Boolean canTabToHeaders)  throws IllegalStateException {
+        return (SectionStack)setAttribute("canTabToHeaders", canTabToHeaders, false);
     }
 
     /**
@@ -342,11 +352,12 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "SectionStackEditProxy"
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
-        setAttribute("editProxyConstructor", editProxyConstructor, false);
+    public SectionStack setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
+        return (SectionStack)setAttribute("editProxyConstructor", editProxyConstructor, false);
     }
 
     /**
@@ -365,10 +376,11 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
      * Height of headers for sections.
      *
      * @param headerHeight New headerHeight value. Default value is 20
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setHeaderHeight(int headerHeight)  throws IllegalStateException {
-        setAttribute("headerHeight", headerHeight, false);
+    public SectionStack setHeaderHeight(int headerHeight)  throws IllegalStateException {
+        return (SectionStack)setAttribute("headerHeight", headerHeight, false);
     }
 
     /**
@@ -386,10 +398,11 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
      * left-aligned members,  itemStartIndent specifies indentation for every item from the right side of the section stack.
      *
      * @param itemEndIndent New itemEndIndent value. Default value is undefined
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.LayoutMember LayoutMember overview and related methods
      */
-    public void setItemEndIndent(int itemEndIndent) {
-        setAttribute("itemEndIndent", itemEndIndent, true);
+    public SectionStack setItemEndIndent(int itemEndIndent) {
+        return (SectionStack)setAttribute("itemEndIndent", itemEndIndent, true);
     }
 
     /**
@@ -411,10 +424,11 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
      * setting itemStartIndent to the same amount and itemEndIndent to 0.
      *
      * @param itemIndent New itemIndent value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.LayoutMember LayoutMember overview and related methods
      */
-    public void setItemIndent(int itemIndent) {
-        setAttribute("itemIndent", itemIndent, true);
+    public SectionStack setItemIndent(int itemIndent) {
+        return (SectionStack)setAttribute("itemIndent", itemIndent, true);
     }
 
     /**
@@ -437,10 +451,11 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
      * Overrides {@link com.smartgwt.client.widgets.layout.SectionStack#getItemIndent itemIndent}.
      *
      * @param itemStartIndent New itemStartIndent value. Default value is undefined
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.LayoutMember LayoutMember overview and related methods
      */
-    public void setItemStartIndent(int itemStartIndent) {
-        setAttribute("itemStartIndent", itemStartIndent, true);
+    public SectionStack setItemStartIndent(int itemStartIndent) {
+        return (SectionStack)setAttribute("itemStartIndent", itemStartIndent, true);
     }
 
     /**
@@ -467,9 +482,10 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param locateSectionsBy New locateSectionsBy value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
      */
-    public void setLocateSectionsBy(LocatorStrategy locateSectionsBy) {
-        setAttribute("locateSectionsBy", locateSectionsBy == null ? null : locateSectionsBy.getValue(), true);
+    public SectionStack setLocateSectionsBy(LocatorStrategy locateSectionsBy) {
+        return (SectionStack)setAttribute("locateSectionsBy", locateSectionsBy == null ? null : locateSectionsBy.getValue(), true);
     }
 
     /**
@@ -493,9 +509,10 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param locateSectionsType New locateSectionsType value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
      */
-    public void setLocateSectionsType(LocatorTypeStrategy locateSectionsType) {
-        setAttribute("locateSectionsType", locateSectionsType == null ? null : locateSectionsType.getValue(), true);
+    public SectionStack setLocateSectionsType(LocatorTypeStrategy locateSectionsType) {
+        return (SectionStack)setAttribute("locateSectionsType", locateSectionsType == null ? null : locateSectionsType.getValue(), true);
     }
 
     /**
@@ -514,9 +531,10 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
      * accommodate the resized sections.
      *
      * @param overflow New overflow value. Default value is "hidden"
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
      */
-    public void setOverflow(Overflow overflow) {
-        setAttribute("overflow", overflow == null ? null : overflow.getValue(), true);
+    public SectionStack setOverflow(Overflow overflow) {
+        return (SectionStack)setAttribute("overflow", overflow == null ? null : overflow.getValue(), true);
     }
 
     /**
@@ -537,10 +555,11 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
      * viewport.
      *
      * @param scrollSectionIntoView New scrollSectionIntoView value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setScrollSectionIntoView(Boolean scrollSectionIntoView)  throws IllegalStateException {
-        setAttribute("scrollSectionIntoView", scrollSectionIntoView, false);
+    public SectionStack setScrollSectionIntoView(Boolean scrollSectionIntoView)  throws IllegalStateException {
+        return (SectionStack)setAttribute("scrollSectionIntoView", scrollSectionIntoView, false);
     }
 
     /**
@@ -571,10 +590,11 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param sectionHeaderClass New sectionHeaderClass value. Default value is "SectionHeader"
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setSectionHeaderClass(String sectionHeaderClass)  throws IllegalStateException {
-        setAttribute("sectionHeaderClass", sectionHeaderClass, false);
+    public SectionStack setSectionHeaderClass(String sectionHeaderClass)  throws IllegalStateException {
+        return (SectionStack)setAttribute("sectionHeaderClass", sectionHeaderClass, false);
     }
 
     /**
@@ -603,9 +623,10 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
      * and, instead, treats a click anywhere on the header as if  it were a click on the expand control.
      *
      * @param showExpandControls New showExpandControls value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
      */
-    public void setShowExpandControls(Boolean showExpandControls) {
-        setAttribute("showExpandControls", showExpandControls, true);
+    public SectionStack setShowExpandControls(Boolean showExpandControls) {
+        return (SectionStack)setAttribute("showExpandControls", showExpandControls, true);
     }
 
     /**
@@ -648,10 +669,11 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
      * will behave as a synonym for SectionStackSection.name.
      *
      * @param useGlobalSectionIDs New useGlobalSectionIDs value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setUseGlobalSectionIDs(Boolean useGlobalSectionIDs)  throws IllegalStateException {
-        setAttribute("useGlobalSectionIDs", useGlobalSectionIDs, false);
+    public SectionStack setUseGlobalSectionIDs(Boolean useGlobalSectionIDs)  throws IllegalStateException {
+        return (SectionStack)setAttribute("useGlobalSectionIDs", useGlobalSectionIDs, false);
     }
 
     /**
@@ -675,11 +697,12 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
      *
      * @param visibilityMode new <code>visibilityMode</code> setting. If this is {@link com.smartgwt.client.types.VisibilityMode#MUTEX} then all but
      * the first expanded section is collapsed. Default value is "mutex"
+     * @return {@link com.smartgwt.client.widgets.layout.SectionStack SectionStack} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.layout.SectionStack#setCanCollapseAll
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_sections_expand_collapse" target="examples">Expand / Collapse Example</a>
      */
-    public void setVisibilityMode(VisibilityMode visibilityMode) {
-        setAttribute("visibilityMode", visibilityMode == null ? null : visibilityMode.getValue(), true);
+    public SectionStack setVisibilityMode(VisibilityMode visibilityMode) {
+        return (SectionStack)setAttribute("visibilityMode", visibilityMode == null ? null : visibilityMode.getValue(), true);
     }
 
     /**
@@ -955,8 +978,10 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
     }-*/;
 
 	/**
-     * Remove a section or set of sections from the SectionStack.  The removed sections' header and items (if any) are
-     * automatically destroyed.
+     * Remove a section or set of sections from the SectionStack.  The removed sections' header and controls (if any) are
+     * automatically destroyed.  A section's {@link com.smartgwt.client.widgets.layout.SectionStackSection#getItems items} will
+     * also be destroyed if {@link com.smartgwt.client.widgets.layout.SectionStackSection#getDestroyOnRemove destroyOnRemove}
+     * is set on the section.
      * @param sections Section(s) to remove.                  For this parameter, you can pass the position of the section in the              
      * SectionStack, the <code>name</code> of the section, or a List of                   section <code>name</code>s or
      * indices.
@@ -1036,7 +1061,7 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
      * Sets a new list of canvii as items into the specified section by removing the existing items, then adding the new ones. 
      * Initial items for a section should be specified using the property {@link
      * com.smartgwt.client.widgets.layout.SectionStackSection#getItems SectionStackSection.items}.
-     * @param section ID or index of the section to remove item from
+     * @param section ID or index of the section to set items on
      * @param items new items to add
      */
     public native void setItems(String section, Canvas... items) /*-{

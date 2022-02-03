@@ -4,15 +4,6 @@ package com.smartgwt.client.docs;
 /**
  * Horizontal and vertical location on the page
  * @see com.smartgwt.client.types.Positioning
- * @see com.smartgwt.client.widgets.grid.ListGrid#getRowTop
- * @see com.smartgwt.client.widgets.grid.ListGrid#getRowPageTop
- * @see com.smartgwt.client.widgets.grid.ListGrid#getColumnLeft
- * @see com.smartgwt.client.widgets.grid.ListGrid#getColumnPageLeft
- * @see com.smartgwt.client.widgets.grid.ListGrid#getColumnWidth
- * @see com.smartgwt.client.widgets.grid.ListGrid#getCellPageRect
- * @see com.smartgwt.client.widgets.grid.ListGrid#getDrawnRowHeight
- * @see com.smartgwt.client.widgets.drawing.DrawItem#getPageLeft
- * @see com.smartgwt.client.widgets.drawing.DrawItem#getPageTop
  * @see com.smartgwt.client.widgets.Canvas#setSnapTo
  * @see com.smartgwt.client.widgets.Canvas#getSnapTo
  * @see com.smartgwt.client.widgets.Canvas#setSnapEdge
@@ -48,6 +39,15 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#getHSnapOrigin
  * @see com.smartgwt.client.widgets.Canvas#placeNear
  * @see com.smartgwt.client.widgets.Canvas#setOverflow
+ * @see com.smartgwt.client.widgets.drawing.DrawItem#getPageLeft
+ * @see com.smartgwt.client.widgets.drawing.DrawItem#getPageTop
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getRowTop
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getRowPageTop
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getColumnLeft
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getColumnPageLeft
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getColumnWidth
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getCellPageRect
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getDrawnRowHeight
  * @see com.smartgwt.client.widgets.Button#setAlign
  * @see com.smartgwt.client.widgets.Button#setVAlign
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getRect
@@ -56,16 +56,18 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getTop
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getPageLeft
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getPageTop
+ * @see com.smartgwt.client.widgets.form.fields.ButtonItem#setButtonTitleAlign
  * @see com.smartgwt.client.widgets.Canvas#defaultPageSpace
+ * @see com.smartgwt.client.widgets.tab.ImgTab#getAlign
  * @see com.smartgwt.client.widgets.Canvas#getHtmlElement
  * @see com.smartgwt.client.widgets.Canvas#getHtmlPosition
  * @see com.smartgwt.client.widgets.Canvas#getPosition
  * @see com.smartgwt.client.widgets.Canvas#getLeft
  * @see com.smartgwt.client.widgets.Canvas#getTop
  * @see com.smartgwt.client.widgets.Canvas#getLeavePageSpace
- * @see com.smartgwt.client.widgets.tab.ImgTab#getAlign
  * @see com.smartgwt.client.widgets.Label#getAlign
  * @see com.smartgwt.client.widgets.Label#getValign
+ * @see com.smartgwt.client.widgets.form.fields.ButtonItem#getButtonTitleAlign
  */
 public interface Positioning {
 }

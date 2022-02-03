@@ -26,7 +26,7 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-import com.google.gwt.user.client.Element;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.Window;
 import com.smartgwt.client.bean.BeanFactory;
 import com.smartgwt.client.types.ValueEnum;
@@ -34,6 +34,8 @@ import com.smartgwt.client.util.IDManager;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.ObjectFactory;
 import com.smartgwt.client.util.SC;
+import com.smartgwt.client.widgets.UserFormula;
+import com.smartgwt.client.widgets.UserSummary;
 
 public abstract class BaseClass implements HasHandlers {
 	
@@ -180,13 +182,14 @@ public abstract class BaseClass implements HasHandlers {
         if (!autoAssigned) setAttribute(SC.AUTOIDCLASS, (String)null, false);
     }
 
-    public void setID(String id) {
+    public BaseClass setID(String id) {
         internalSetID(id, false);
+        return this;
     }
 
     /**
      * Returns the javascript class name.
-     * @return
+     * @return the class name
      */
     public String getClassName(){
         return JSOHelper.getClassName(config);
@@ -556,7 +559,7 @@ public abstract class BaseClass implements HasHandlers {
     }
 
 
-    public void setAttribute(String attribute, String value, boolean allowPostCreate) {
+    public BaseClass setAttribute(String attribute, String value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -564,9 +567,10 @@ public abstract class BaseClass implements HasHandlers {
         } else {
             error(attribute, value, allowPostCreate);
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, Boolean value, boolean allowPostCreate) {
+    public BaseClass setAttribute(String attribute, Boolean value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -574,9 +578,10 @@ public abstract class BaseClass implements HasHandlers {
         } else {
             error(attribute, value.toString(), allowPostCreate);
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, Map value, boolean allowPostCreate) {
+    public BaseClass setAttribute(String attribute, Map value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, JSOHelper.convertMapToJavascriptObject(value));
         } else if (allowPostCreate) {
@@ -584,9 +589,10 @@ public abstract class BaseClass implements HasHandlers {
         } else {
             error(attribute, value.toString(), allowPostCreate);
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, int[] value, boolean allowPostCreate) {
+    public BaseClass setAttribute(String attribute, int[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, JSOHelper.convertToJavaScriptArray(value));
         } else if (allowPostCreate) {
@@ -594,9 +600,10 @@ public abstract class BaseClass implements HasHandlers {
         } else {
             error(attribute, value.toString(), allowPostCreate);
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, Integer[] value, boolean allowPostCreate) {
+    public BaseClass setAttribute(String attribute, Integer[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, JSOHelper.convertToJavaScriptArray(value));
         } else if (allowPostCreate) {
@@ -604,9 +611,10 @@ public abstract class BaseClass implements HasHandlers {
         } else {
             error(attribute, value.toString(), allowPostCreate);
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, BaseClass[] value, boolean allowPostCreate) {
+    public BaseClass setAttribute(String attribute, BaseClass[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, JSOHelper.convertToJavaScriptArray(value));
         } else if (allowPostCreate) {
@@ -614,9 +622,10 @@ public abstract class BaseClass implements HasHandlers {
         } else {
             error(attribute, value.toString(), allowPostCreate);
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, DataClass[] value, boolean allowPostCreate) {
+    public BaseClass setAttribute(String attribute, DataClass[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, JSOHelper.convertToJavaScriptArray(value));
         } else if (allowPostCreate) {
@@ -624,10 +633,11 @@ public abstract class BaseClass implements HasHandlers {
         } else {
             error(attribute, value.toString(), allowPostCreate);
         }
+        return this;
     }
 
 
-    public void setAttribute(String attribute, double value, boolean allowPostCreate) {
+    public BaseClass setAttribute(String attribute, double value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -635,9 +645,10 @@ public abstract class BaseClass implements HasHandlers {
         } else {
             error(attribute, String.valueOf(value), allowPostCreate);
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, int value, boolean allowPostCreate) {
+    public BaseClass setAttribute(String attribute, int value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -645,9 +656,10 @@ public abstract class BaseClass implements HasHandlers {
         } else {
             error(attribute, String.valueOf(value), allowPostCreate);
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, Date value, boolean allowPostCreate) {
+    public BaseClass setAttribute(String attribute, Date value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -655,9 +667,10 @@ public abstract class BaseClass implements HasHandlers {
         } else {
             error(attribute, String.valueOf(value), allowPostCreate);
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, ValueEnum[] value, boolean allowPostCreate) {
+    public BaseClass setAttribute(String attribute, ValueEnum[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -665,9 +678,10 @@ public abstract class BaseClass implements HasHandlers {
         } else {
             error(attribute, String.valueOf(value), allowPostCreate);
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, DataClass value, boolean allowPostCreate) {
+    public BaseClass setAttribute(String attribute, DataClass value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value.getJsObj());
         } else if (allowPostCreate) {
@@ -675,9 +689,10 @@ public abstract class BaseClass implements HasHandlers {
         } else {
             error(attribute, String.valueOf(value), allowPostCreate);
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, JavaScriptObject value, boolean allowPostCreate) {
+    public BaseClass setAttribute(String attribute, JavaScriptObject value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -685,9 +700,10 @@ public abstract class BaseClass implements HasHandlers {
         } else {
             error(attribute, String.valueOf(value), allowPostCreate);
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, String[] value, boolean allowPostCreate) {
+    public BaseClass setAttribute(String attribute, String[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, JSOHelper.convertToJavaScriptArray(value));
         } else if (allowPostCreate) {
@@ -695,9 +711,10 @@ public abstract class BaseClass implements HasHandlers {
         } else {
             error(attribute, String.valueOf(value), allowPostCreate);
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, float[] value, boolean allowPostCreate) {
+    protected BaseClass setAttribute(String attribute, float[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -705,9 +722,10 @@ public abstract class BaseClass implements HasHandlers {
         } else {
             error(attribute, value.toString(), allowPostCreate);
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, Float[] value, boolean allowPostCreate) {
+    protected BaseClass setAttribute(String attribute, Float[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -715,9 +733,10 @@ public abstract class BaseClass implements HasHandlers {
         } else {
             error(attribute, value.toString(), allowPostCreate);
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, double[] value, boolean allowPostCreate) {
+    protected BaseClass setAttribute(String attribute, double[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -725,9 +744,10 @@ public abstract class BaseClass implements HasHandlers {
         } else {
             error(attribute, value.toString(), allowPostCreate);
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, Double[] value, boolean allowPostCreate) {
+    protected BaseClass setAttribute(String attribute, Double[] value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -735,9 +755,10 @@ public abstract class BaseClass implements HasHandlers {
         } else {
             error(attribute, value.toString(), allowPostCreate);
         }
+        return this;
     }
 
-    protected void setAttribute(String attribute, boolean value, boolean allowPostCreate) {
+    protected BaseClass setAttribute(String attribute, boolean value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -745,9 +766,10 @@ public abstract class BaseClass implements HasHandlers {
         } else {
             error(attribute, String.valueOf(value), allowPostCreate);
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, Element value, boolean allowPostCreate) {
+    public BaseClass setAttribute(String attribute, Element value, boolean allowPostCreate) {
         if (!isCreated()) {
             JSOHelper.setAttribute(config, attribute, value);
         } else if (allowPostCreate) {
@@ -755,6 +777,7 @@ public abstract class BaseClass implements HasHandlers {
         } else {
             error(attribute, String.valueOf(value), allowPostCreate);
         }
+        return this;
     }
 
     public native void setProperty(String property, String value)/*-{
@@ -809,4 +832,170 @@ public abstract class BaseClass implements HasHandlers {
     public int getHandlerCount(GwtEvent.Type<?> type) {
         return manager == null? 0 : manager.getHandlerCount(type);
     }
+
+    // ---------------------------------------
+    // Dynamic Properties
+
+    /**
+     * {@link com.smartgwt.client.widgets.Canvas#getID ID} of the component that manages "rule context"
+     * for which this class participates. A non-Canvas class can only use the ruleScope
+     * for supporting {@link addDynamicProperty dynamic properties}. Unlike {@link com.smartgwt.client.widgets.Canvas#setRuleScope Canvas.setRuleScope}
+     * <code>ruleScope</code> on a standalone class must be explicitly specified.
+     *
+     * @param ruleScope New ruleScope value. Default value is null
+     * @return {@link com.smartgwt.client.core.BaseClass BaseClass} instance, for chaining setter calls
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public BaseClass setRuleScope(String ruleScope)  throws IllegalStateException {
+        return (BaseClass)setAttribute("ruleScope", ruleScope, false);
+    }
+
+    /**
+     * {@link com.smartgwt.client.widgets.Canvas#getID ID} of the component that manages "rule context"
+     * for which this class participates. A non-Canvas class can only use the ruleScope
+     * for supporting {@link addDynamicProperty dynamic properties}. Unlike {@link com.smartgwt.client.widgets.Canvas#setRuleScope Canvas.setRuleScope}
+     * <code>ruleScope</code> on a standalone class must be explicitly specified.
+     *
+     * @return Current ruleScope value. Default value is null
+     */
+    public String getRuleScope()  {
+    	return getAttributeAsString("ruleScope");
+    }
+
+    /**
+     * Sets up the value of <code>propertyName</code> to be dynamically derived from the
+     * {@link com.smartgwt.client.widgets.Canvas#getRuleScope ruleScope}, by either a simple
+     * {@link com.smartgwt.client.docs.DataPath} into the ruleScope or via a textual
+     * or numeric formula using the ruleScope as available formula inputs.
+     * <p>
+     * The dataPath or formula is evaluated immediately when addDynamicProperty() is called, then re-evaluated
+     * every time the ruleScope changes.
+     * <p>
+     * It is invalid usage to use <code>addDynamicProperty()</code> on a property that is not runtime settable,
+     * however, <code>addDynamicProperty()</code> will not throw an error or log a warning if this is done.
+     * <p>
+     * If a property is already dynamic and addDynamicProperty() is called again, the new dynamic behavior
+     * replaces the old.  If a property should no longer be dynamic, call +link{clearDynamicProperty()}.
+     *
+     * @param propertyName name of a settable property on this instance
+     * @param source dataPath
+     */
+    public native void addDynamicProperty (String propertyName, String source) /*-{
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            widget.addDynamicProperty(propertyName, source);
+        } else {
+            var config = this.@com.smartgwt.client.core.BaseClass::config;
+            if(config["dynamicProperties"] === undefined) {
+                config["dynamicProperties"] = {};
+            }
+            config["dynamicProperties"][propertyName] = (source == null ? null : String(source));
+        }
+    }-*/;
+
+    /**
+     * Sets up the value of <code>propertyName</code> to be dynamically derived from the
+     * {@link com.smartgwt.client.widgets.Canvas#getRuleScope ruleScope}, by either a simple
+     * {@link com.smartgwt.client.docs.DataPath} into the ruleScope or via a textual
+     * or numeric formula using the ruleScope as available formula inputs.
+     * <p>
+     * The dataPath or formula is evaluated immediately when addDynamicProperty() is called, then re-evaluated
+     * every time the ruleScope changes.
+     * <p>
+     * It is invalid usage to use <code>addDynamicProperty()</code> on a property that is not runtime settable,
+     * however, <code>addDynamicProperty()</code> will not throw an error or log a warning if this is done.
+     * <p>
+     * If a property is already dynamic and addDynamicProperty() is called again, the new dynamic behavior
+     * replaces the old.  If a property should no longer be dynamic, call +link{clearDynamicProperty()}.
+     *
+     * @param propertyName name of a settable property on this instance
+     * @param source UserFormula
+     */
+    public native void addDynamicProperty (String propertyName, UserFormula source) /*-{
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            widget.addDynamicProperty(propertyName, source);
+        } else {
+            var config = this.@com.smartgwt.client.core.BaseClass::config;
+            if(config["dynamicProperties"] === undefined) {
+                config["dynamicProperties"] = {};
+            }
+            var jsObj = (source == null ? null : source.@com.smartgwt.client.widgets.UserFormula::getJsObj()());
+            config["dynamicProperties"][propertyName] = source;
+        }
+    }-*/;
+
+    /**
+     * Sets up the value of <code>propertyName</code> to be dynamically derived from the
+     * {@link com.smartgwt.client.widgets.Canvas#getRuleScope ruleScope}, by either a simple
+     * {@link com.smartgwt.client.docs.DataPath} into the ruleScope or via a textual
+     * or numeric formula using the ruleScope as available formula inputs.
+     * <p>
+     * The dataPath or formula is evaluated immediately when addDynamicProperty() is called, then re-evaluated
+     * every time the ruleScope changes.
+     * <p>
+     * It is invalid usage to use <code>addDynamicProperty()</code> on a property that is not runtime settable,
+     * however, <code>addDynamicProperty()</code> will not throw an error or log a warning if this is done.
+     * <p>
+     * If a property is already dynamic and addDynamicProperty() is called again, the new dynamic behavior
+     * replaces the old.  If a property should no longer be dynamic, call +link{clearDynamicProperty()}.
+     *
+     * @param propertyName name of a settable property on this instance
+     * @param source UserSummary
+     */
+    public native void addDynamicProperty (String propertyName, UserSummary source) /*-{
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            widget.addDynamicProperty(propertyName, source);
+        } else {
+            var config = this.@com.smartgwt.client.core.BaseClass::config;
+            if(config["dynamicProperties"] === undefined) {
+                config["dynamicProperties"] = {};
+            }
+            var jsObj = (source == null ? null : source.@com.smartgwt.client.widgets.UserSummary::getJsObj()());
+            config["dynamicProperties"][propertyName] = source;
+        }
+    }-*/;
+
+
+    /**
+     * Clears a dynamic property previously established via {@link addDynamicProperty()}.
+     * <p>
+     * If the property is not currently dynamic, nothing will be done (and no warning logged).
+     * <p>
+     * The current value of the property will not be changed by this call.
+     * 
+     * @param propertyName name of the dynamic property to clear
+     */
+    public native void clearDynamicProperty (String propertyName) /*-{
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            widget.clearDynamicProperty(propertyName);
+        } else {
+            var config = this.@com.smartgwt.client.core.BaseClass::config;
+            if(config["dynamicProperties"] !== undefined) {
+                delete config["dynamicProperties"][propertyName];
+            }
+        }
+    }-*/;
+
+    /**
+     * Returns true if the property is dynamic.
+     * 
+     * @param propertyName name of the dynamic property to check
+     * @return boolean true if the property is dynamic
+     */
+    public native boolean hasDynamicProperty (String propertyName) /*-{
+        var ret = false;
+        if(this.@com.smartgwt.client.core.BaseClass::isCreated()()) {
+            var widget = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
+            ret = widget.hasDynamicProperty(propertyName);
+        } else {
+            var config = this.@com.smartgwt.client.core.BaseClass::config;
+            if(config["dynamicProperties"] !== undefined) {
+                ret = (config["dynamicProperties"][propertyName] != null);
+            }
+        }
+        return ret;
+    }-*/;
 }

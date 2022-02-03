@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * FormItem that shows a list of options, plus an "Other..." option that allows them to enter another value. <p> Note -
@@ -175,9 +178,10 @@ public class SelectOtherItem extends SelectItem {
      * Width for the "other value" prompt dialog.
      *
      * @param dialogWidth New dialogWidth value. Default value is 250
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectOtherItem SelectOtherItem} instance, for chaining setter calls
      */
-    public void setDialogWidth(int dialogWidth) {
-        setAttribute("dialogWidth", dialogWidth);
+    public SelectOtherItem setDialogWidth(int dialogWidth) {
+        return (SelectOtherItem)setAttribute("dialogWidth", dialogWidth);
     }
 
     /**
@@ -195,10 +199,11 @@ public class SelectOtherItem extends SelectItem {
      * enter a new value for the item.
      *
      * @param otherTitle New otherTitle value. Default value is "Other..."
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectOtherItem SelectOtherItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setOtherTitle(String otherTitle) {
-        setAttribute("otherTitle", otherTitle);
+    public SelectOtherItem setOtherTitle(String otherTitle) {
+        return (SelectOtherItem)setAttribute("otherTitle", otherTitle);
     }
 
     /**
@@ -219,10 +224,11 @@ public class SelectOtherItem extends SelectItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param otherValue New otherValue value. Default value is "***other***"
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectOtherItem SelectOtherItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setOtherValue(String otherValue) {
-        setAttribute("otherValue", otherValue);
+    public SelectOtherItem setOtherValue(String otherValue) {
+        return (SelectOtherItem)setAttribute("otherValue", otherValue);
     }
 
     /**
@@ -243,10 +249,11 @@ public class SelectOtherItem extends SelectItem {
      * <code>value</code> a pointer to the currently selected item value.
      *
      * @param selectOtherPrompt New selectOtherPrompt value. Default value is "Other value for &lt;br&gt;${item.getTitle()}?"
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectOtherItem SelectOtherItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setSelectOtherPrompt(String selectOtherPrompt) {
-        setAttribute("selectOtherPrompt", selectOtherPrompt);
+    public SelectOtherItem setSelectOtherPrompt(String selectOtherPrompt) {
+        return (SelectOtherItem)setAttribute("selectOtherPrompt", selectOtherPrompt);
     }
 
     /**
@@ -267,10 +274,11 @@ public class SelectOtherItem extends SelectItem {
      * item will not change the FormItem's value.
      *
      * @param separatorTitle New separatorTitle value. Default value is "--------------------"
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectOtherItem SelectOtherItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setSeparatorTitle(String separatorTitle) {
-        setAttribute("separatorTitle", separatorTitle);
+    public SelectOtherItem setSeparatorTitle(String separatorTitle) {
+        return (SelectOtherItem)setAttribute("separatorTitle", separatorTitle);
     }
 
     /**
@@ -292,10 +300,11 @@ public class SelectOtherItem extends SelectItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param separatorValue New separatorValue value. Default value is "----"
+     * @return {@link com.smartgwt.client.widgets.form.fields.SelectOtherItem SelectOtherItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setSeparatorValue(String separatorValue) {
-        setAttribute("separatorValue", separatorValue);
+    public SelectOtherItem setSeparatorValue(String separatorValue) {
+        return (SelectOtherItem)setAttribute("separatorValue", separatorValue);
     }
 
     /**

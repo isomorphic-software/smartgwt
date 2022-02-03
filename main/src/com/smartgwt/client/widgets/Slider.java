@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -203,11 +206,12 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * track. <P> Will have the suffix "Disabled" added when the slider is disabled.
      *
      * @param activeTrackStyle New activeTrackStyle value. Default value is "sliderTrackActive"
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setActiveTrackStyle(String activeTrackStyle)  throws IllegalStateException {
-        setAttribute("activeTrackStyle", activeTrackStyle, false);
+    public Slider setActiveTrackStyle(String activeTrackStyle)  throws IllegalStateException {
+        return (Slider)setAttribute("activeTrackStyle", activeTrackStyle, false);
     }
 
     /**
@@ -227,9 +231,10 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * slider track.
      *
      * @param animateThumb New animateThumb value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      */
-    public void setAnimateThumb(Boolean animateThumb) {
-        setAttribute("animateThumb", animateThumb, true);
+    public Slider setAnimateThumb(Boolean animateThumb) {
+        return (Slider)setAttribute("animateThumb", animateThumb, true);
     }
 
     /**
@@ -248,9 +253,10 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * If thumb animation is enabled, should the thumb be animated to its initial value?
      *
      * @param animateThumbInit New animateThumbInit value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      */
-    public void setAnimateThumbInit(Boolean animateThumbInit) {
-        setAttribute("animateThumbInit", animateThumbInit, true);
+    public Slider setAnimateThumbInit(Boolean animateThumbInit) {
+        return (Slider)setAttribute("animateThumbInit", animateThumbInit, true);
     }
 
     /**
@@ -268,9 +274,10 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * Duration of thumb animation, in milliseconds.
      *
      * @param animateThumbTime New animateThumbTime value. Default value is 250
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      */
-    public void setAnimateThumbTime(int animateThumbTime) {
-        setAttribute("animateThumbTime", animateThumbTime, true);
+    public Slider setAnimateThumbTime(int animateThumbTime) {
+        return (Slider)setAttribute("animateThumbTime", animateThumbTime, true);
     }
 
     /**
@@ -287,9 +294,10 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * Indicates whether keyboard manipulation of the slider is allowed.
      *
      * @param canFocus New canFocus value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      */
-    public void setCanFocus(Boolean canFocus) {
-        setAttribute("canFocus", canFocus, true);
+    public Slider setCanFocus(Boolean canFocus) {
+        return (Slider)setAttribute("canFocus", canFocus, true);
     }
 
     /**
@@ -312,9 +320,10 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * Sets the {@link com.smartgwt.client.widgets.Slider#getFlipValues flipValues} property of the slider
      *
      * @param flipValues flip slider values?. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      */
-    public void setFlipValues(Boolean flipValues) {
-        setAttribute("flipValues", flipValues, true);
+    public Slider setFlipValues(Boolean flipValues) {
+        return (Slider)setAttribute("flipValues", flipValues, true);
     }
 
     /**
@@ -337,9 +346,10 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * com.smartgwt.client.widgets.Slider#getLabelSpacing labelSpacing}.
      *
      * @param hLabelSpacing New hLabelSpacing value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      */
-    public void setHLabelSpacing(Integer hLabelSpacing) {
-        setAttribute("hLabelSpacing", hLabelSpacing, true);
+    public Slider setHLabelSpacing(Integer hLabelSpacing) {
+        return (Slider)setAttribute("hLabelSpacing", hLabelSpacing, true);
     }
 
     /**
@@ -361,11 +371,12 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * is disabled.
      *
      * @param hThumbStyle New hThumbStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setHThumbStyle(String hThumbStyle)  throws IllegalStateException {
-        setAttribute("hThumbStyle", hThumbStyle, false);
+    public Slider setHThumbStyle(String hThumbStyle)  throws IllegalStateException {
+        return (Slider)setAttribute("hThumbStyle", hThumbStyle, false);
     }
 
     /**
@@ -386,11 +397,12 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * slider. <P> Will have the suffix "Disabled" added when the slider is disabled.
      *
      * @param hTrackStyle New hTrackStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setHTrackStyle(String hTrackStyle)  throws IllegalStateException {
-        setAttribute("hTrackStyle", hTrackStyle, false);
+    public Slider setHTrackStyle(String hTrackStyle)  throws IllegalStateException {
+        return (Slider)setAttribute("hTrackStyle", hTrackStyle, false);
     }
 
     /**
@@ -411,11 +423,12 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * com.smartgwt.client.widgets.Slider#getVertical vertical} is false.
      *
      * @param hValueStyle New hValueStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setHValueStyle(String hValueStyle)  throws IllegalStateException {
-        setAttribute("hValueStyle", hValueStyle, false);
+    public Slider setHValueStyle(String hValueStyle)  throws IllegalStateException {
+        return (Slider)setAttribute("hValueStyle", hValueStyle, false);
     }
 
     /**
@@ -439,9 +452,10 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * Sets the {@link com.smartgwt.client.widgets.Slider#getLabelHeight labelHeight} property of the slider
      *
      * @param labelHeight new label height. Default value is 20
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      */
-    public void setLabelHeight(int labelHeight) {
-        setAttribute("labelHeight", labelHeight, true);
+    public Slider setLabelHeight(int labelHeight) {
+        return (Slider)setAttribute("labelHeight", labelHeight, true);
     }
 
     /**
@@ -463,9 +477,10 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * Sets the {@link com.smartgwt.client.widgets.Slider#getLabelSpacing labelSpacing} property of the slider
      *
      * @param labelSpacing new label spacing. Default value is 5
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      */
-    public void setLabelSpacing(int labelSpacing) {
-        setAttribute("labelSpacing", labelSpacing, true);
+    public Slider setLabelSpacing(int labelSpacing) {
+        return (Slider)setAttribute("labelSpacing", labelSpacing, true);
     }
 
     /**
@@ -486,9 +501,10 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * Sets the {@link com.smartgwt.client.widgets.Slider#getLabelWidth labelWidth} property of the slider
      *
      * @param labelWidth new label width. Default value is 50
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      */
-    public void setLabelWidth(int labelWidth) {
-        setAttribute("labelWidth", labelWidth, true);
+    public Slider setLabelWidth(int labelWidth) {
+        return (Slider)setAttribute("labelWidth", labelWidth, true);
     }
 
     /**
@@ -506,9 +522,10 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * entire widget. Overridden by an explicit width/height specification for the widget.
      *
      * @param length New length value. Default value is 200
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      */
-    public void setLength(int length) {
-        setAttribute("length", length, true);
+    public Slider setLength(int length) {
+        return (Slider)setAttribute("length", length, true);
     }
 
     /**
@@ -531,12 +548,13 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      *
      * @param maxValue the new maximum value <b>Note:</b>Use Doubles rather Floats when manipulating decimal values.  See {@link
      * com.smartgwt.client.docs.GwtFloatVsDouble} for details. Default value is 100
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Slider#setFlipValues
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setMaxValue(float maxValue) {
-        setAttribute("maxValue", maxValue, true);
+    public Slider setMaxValue(float maxValue) {
+        return (Slider)setAttribute("maxValue", maxValue, true);
     }
 
     /**
@@ -561,11 +579,12 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      *
      * @param maxValue the new maximum value <b>Note:</b>Use Doubles rather Floats when manipulating decimal values.  See {@link
      * com.smartgwt.client.docs.GwtFloatVsDouble} for details. Default value is 100
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Slider#setFlipValues
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
      */
-    public void setMaxValue(double maxValue) {
-        setAttribute("maxValue", maxValue, true);
+    public Slider setMaxValue(double maxValue) {
+        return (Slider)setAttribute("maxValue", maxValue, true);
     }
 
     /**
@@ -589,11 +608,12 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * Sets the {@link com.smartgwt.client.widgets.Slider#getMaxValueLabel maxValueLabel} property of the slider
      *
      * @param maxValueLabel new label text. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Slider#setShowRange
      * @see com.smartgwt.client.widgets.Slider#setMaxValue
      */
-    public void setMaxValueLabel(String maxValueLabel) {
-        setAttribute("maxValueLabel", maxValueLabel, true);
+    public Slider setMaxValueLabel(String maxValueLabel) {
+        return (Slider)setAttribute("maxValueLabel", maxValueLabel, true);
     }
 
     /**
@@ -618,12 +638,13 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      *
      * @param minValue the new minimum value <b>Note:</b>Use Doubles rather Floats when manipulating decimal values.  See {@link
      * com.smartgwt.client.docs.GwtFloatVsDouble} for details. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Slider#setFlipValues
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setMinValue(float minValue) {
-        setAttribute("minValue", minValue, true);
+    public Slider setMinValue(float minValue) {
+        return (Slider)setAttribute("minValue", minValue, true);
     }
 
     /**
@@ -648,11 +669,12 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      *
      * @param minValue the new minimum value <b>Note:</b>Use Doubles rather Floats when manipulating decimal values.  See {@link
      * com.smartgwt.client.docs.GwtFloatVsDouble} for details. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Slider#setFlipValues
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
      */
-    public void setMinValue(double minValue) {
-        setAttribute("minValue", minValue, true);
+    public Slider setMinValue(double minValue) {
+        return (Slider)setAttribute("minValue", minValue, true);
     }
 
     /**
@@ -673,11 +695,12 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * displayed.
      *
      * @param minValueLabel New minValueLabel value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Slider#setShowRange
      * @see com.smartgwt.client.widgets.Slider#setMinValue
      */
-    public void setMinValueLabel(String minValueLabel) {
-        setAttribute("minValueLabel", minValueLabel, true);
+    public Slider setMinValueLabel(String minValueLabel) {
+        return (Slider)setAttribute("minValueLabel", minValueLabel, true);
     }
 
     /**
@@ -703,10 +726,11 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      *
      * @param numValues the new number of values <b>Note:</b>Use Doubles rather Floats when manipulating decimal values.  See {@link
      * com.smartgwt.client.docs.GwtFloatVsDouble} for details. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
      */
-    public void setNumValues(Integer numValues) {
-        setAttribute("numValues", numValues, true);
+    public Slider setNumValues(Integer numValues) {
+        return (Slider)setAttribute("numValues", numValues, true);
     }
 
     /**
@@ -727,12 +751,13 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * com.smartgwt.client.widgets.Slider#getValueFormat valueFormat}
      *
      * @param rangeFormat New rangeFormat value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.FormatString FormatString 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setRangeFormat(String rangeFormat)  throws IllegalStateException {
-        setAttribute("rangeFormat", rangeFormat, false);
+    public Slider setRangeFormat(String rangeFormat)  throws IllegalStateException {
+        return (Slider)setAttribute("rangeFormat", rangeFormat, false);
     }
 
     /**
@@ -768,11 +793,12 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * com.smartgwt.client.widgets.Slider#getShowRange showRange} is true.
      *
      * @param rangeStyle New rangeStyle value. Default value is "sliderRange"
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setRangeStyle(String rangeStyle)  throws IllegalStateException {
-        setAttribute("rangeStyle", rangeStyle, false);
+    public Slider setRangeStyle(String rangeStyle)  throws IllegalStateException {
+        return (Slider)setAttribute("rangeStyle", rangeStyle, false);
     }
 
     /**
@@ -795,9 +821,10 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * Sets the {@link com.smartgwt.client.widgets.Slider#getRoundPrecision roundPrecision} property of the slider
      *
      * @param roundPrecision new round precision. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      */
-    public void setRoundPrecision(int roundPrecision) {
-        setAttribute("roundPrecision", roundPrecision, true);
+    public Slider setRoundPrecision(int roundPrecision) {
+        return (Slider)setAttribute("roundPrecision", roundPrecision, true);
     }
 
     /**
@@ -820,9 +847,10 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * Sets the {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} property of the slider
      *
      * @param roundValues round slider values?. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      */
-    public void setRoundValues(Boolean roundValues) {
-        setAttribute("roundValues", roundValues, true);
+    public Slider setRoundValues(Boolean roundValues) {
+        return (Slider)setAttribute("roundValues", roundValues, true);
     }
 
     /**
@@ -843,10 +871,11 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      *  portion of a slider, from its minimum to its current {@link com.smartgwt.client.widgets.Slider#getValue value}.
      *
      * @param showActiveTrack New showActiveTrack value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowActiveTrack(Boolean showActiveTrack)  throws IllegalStateException {
-        setAttribute("showActiveTrack", showActiveTrack, false);
+    public Slider setShowActiveTrack(Boolean showActiveTrack)  throws IllegalStateException {
+        return (Slider)setAttribute("showActiveTrack", showActiveTrack, false);
     }
 
     /**
@@ -870,11 +899,12 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * Sets the {@link com.smartgwt.client.widgets.Slider#getShowRange showRange} property of the slider
      *
      * @param showRange show the slider range?. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Slider#setMinValueLabel
      * @see com.smartgwt.client.widgets.Slider#setMaxValueLabel
      */
-    public void setShowRange(Boolean showRange) {
-        setAttribute("showRange", showRange, true);
+    public Slider setShowRange(Boolean showRange) {
+        return (Slider)setAttribute("showRange", showRange, true);
     }
 
     /**
@@ -901,10 +931,11 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * Sets the {@link com.smartgwt.client.widgets.Slider#getShowTitle showTitle} property of the slider
      *
      * @param showTitle show the slider title?. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Slider#setTitle
      */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle, true);
+    public Slider setShowTitle(Boolean showTitle) {
+        return (Slider)setAttribute("showTitle", showTitle, true);
     }
 
     /**
@@ -930,10 +961,11 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * Sets the {@link com.smartgwt.client.widgets.Slider#getShowValue showValue} property of the slider
      *
      * @param showValue show the slider value?. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Slider#setValue
      */
-    public void setShowValue(Boolean showValue) {
-        setAttribute("showValue", showValue, true);
+    public Slider setShowValue(Boolean showValue) {
+        return (Slider)setAttribute("showValue", showValue, true);
     }
 
     /**
@@ -959,10 +991,11 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * Sets the {@link com.smartgwt.client.widgets.Slider#getStepPercent stepPercent} property of the slider
      *
      * @param stepPercent new slider step percent. Default value is 5
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setStepPercent(float stepPercent) {
-        setAttribute("stepPercent", stepPercent, true);
+    public Slider setStepPercent(float stepPercent) {
+        return (Slider)setAttribute("stepPercent", stepPercent, true);
     }
 
     /**
@@ -984,9 +1017,10 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * Sets the {@link com.smartgwt.client.widgets.Slider#getStepPercent stepPercent} property of the slider
      *
      * @param stepPercent new slider step percent. Default value is 5
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      */
-    public void setStepPercent(double stepPercent) {
-        setAttribute("stepPercent", stepPercent, true);
+    public Slider setStepPercent(double stepPercent) {
+        return (Slider)setAttribute("stepPercent", stepPercent, true);
     }
 
     /**
@@ -1014,9 +1048,10 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * Sets the {@link com.smartgwt.client.widgets.Slider#getThumbSrc thumbSrc} property of the slider
      *
      * @param thumbSrc new thumbSrc. Default value is "thumb.gif"
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      */
-    public void setThumbSrc(String thumbSrc) {
-        setAttribute("thumbSrc", thumbSrc, true);
+    public Slider setThumbSrc(String thumbSrc) {
+        return (Slider)setAttribute("thumbSrc", thumbSrc, true);
     }
 
     /**
@@ -1043,9 +1078,10 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * Sets the {@link com.smartgwt.client.widgets.Slider#getThumbThickWidth thumbThickWidth} property of the slider
      *
      * @param thumbThickWidth new thumbThickWidth. Default value is 23
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      */
-    public void setThumbThickWidth(int thumbThickWidth) {
-        setAttribute("thumbThickWidth", thumbThickWidth, true);
+    public Slider setThumbThickWidth(int thumbThickWidth) {
+        return (Slider)setAttribute("thumbThickWidth", thumbThickWidth, true);
     }
 
     /**
@@ -1065,9 +1101,10 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * Sets the {@link com.smartgwt.client.widgets.Slider#getThumbThinWidth thumbThinWidth} property of the slider
      *
      * @param thumbThinWidth new thumbThinWidth. Default value is 17
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      */
-    public void setThumbThinWidth(int thumbThinWidth) {
-        setAttribute("thumbThinWidth", thumbThinWidth, true);
+    public Slider setThumbThinWidth(int thumbThinWidth) {
+        return (Slider)setAttribute("thumbThinWidth", thumbThinWidth, true);
     }
 
     /**
@@ -1108,9 +1145,10 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * The space between the {@link com.smartgwt.client.widgets.Slider#getShowTitle title} and the track.
      *
      * @param titleSpacing New titleSpacing value. Default value is 5
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      */
-    public void setTitleSpacing(int titleSpacing) {
-        setAttribute("titleSpacing", titleSpacing, true);
+    public Slider setTitleSpacing(int titleSpacing) {
+        return (Slider)setAttribute("titleSpacing", titleSpacing, true);
     }
 
     /**
@@ -1128,11 +1166,12 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * com.smartgwt.client.widgets.Slider#getShowTitle showTitle} is true.
      *
      * @param titleStyle New titleStyle value. Default value is "sliderTitle"
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setTitleStyle(String titleStyle)  throws IllegalStateException {
-        setAttribute("titleStyle", titleStyle, false);
+    public Slider setTitleStyle(String titleStyle)  throws IllegalStateException {
+        return (Slider)setAttribute("titleStyle", titleStyle, false);
     }
 
     /**
@@ -1155,9 +1194,10 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackCapSize trackCapSize} property of the slider
      *
      * @param trackCapSize new trackCapSize. Default value is 6
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      */
-    public void setTrackCapSize(int trackCapSize) {
-        setAttribute("trackCapSize", trackCapSize, true);
+    public Slider setTrackCapSize(int trackCapSize) {
+        return (Slider)setAttribute("trackCapSize", trackCapSize, true);
     }
 
     /**
@@ -1178,11 +1218,12 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackImageType trackImageType} property of the slider
      *
      * @param trackImageType new trackImageType. Default value is "stretch"
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @see com.smartgwt.client.types.ImageStyle
      * @see com.smartgwt.client.widgets.StretchImg#setImageType
      */
-    public void setTrackImageType(ImageStyle trackImageType) {
-        setAttribute("trackImageType", trackImageType == null ? null : trackImageType.getValue(), true);
+    public Slider setTrackImageType(ImageStyle trackImageType) {
+        return (Slider)setAttribute("trackImageType", trackImageType == null ? null : trackImageType.getValue(), true);
     }
 
     /**
@@ -1220,10 +1261,11 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackSrc trackSrc} property of the slider
      *
      * @param trackSrc new trackSrc. Default value is "track.gif"
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Slider#setTrackImageType
      */
-    public void setTrackSrc(String trackSrc) {
-        setAttribute("trackSrc", trackSrc, true);
+    public Slider setTrackSrc(String trackSrc) {
+        return (Slider)setAttribute("trackSrc", trackSrc, true);
     }
 
     /**
@@ -1261,9 +1303,10 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackWidth trackWidth} property of the slider
      *
      * @param trackWidth new trackWidth. Default value is 7
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      */
-    public void setTrackWidth(int trackWidth) {
-        setAttribute("trackWidth", trackWidth, true);
+    public Slider setTrackWidth(int trackWidth) {
+        return (Slider)setAttribute("trackWidth", trackWidth, true);
     }
 
     /**
@@ -1286,14 +1329,15 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      *
      * @param value the new value <b>Note:</b>Use Doubles rather Floats when manipulating decimal values.  See {@link
      * com.smartgwt.client.docs.GwtFloatVsDouble} for details. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Slider#setMinValue
      * @see com.smartgwt.client.widgets.Slider#setMaxValue
      * @see com.smartgwt.client.widgets.Slider#setFlipValues
      * @see com.smartgwt.client.widgets.Slider#setShowValue
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setValue(float value) {
-        setAttribute("value", value, true);
+    public Slider setValue(float value) {
+        return (Slider)setAttribute("value", value, true);
     }
 
     /**
@@ -1320,13 +1364,14 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      *
      * @param value the new value <b>Note:</b>Use Doubles rather Floats when manipulating decimal values.  See {@link
      * com.smartgwt.client.docs.GwtFloatVsDouble} for details. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.Slider#setMinValue
      * @see com.smartgwt.client.widgets.Slider#setMaxValue
      * @see com.smartgwt.client.widgets.Slider#setFlipValues
      * @see com.smartgwt.client.widgets.Slider#setShowValue
      */
-    public void setValue(double value) {
-        setAttribute("value", value, true);
+    public Slider setValue(double value) {
+        return (Slider)setAttribute("value", value, true);
     }
 
     /**
@@ -1348,12 +1393,13 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * {@link com.smartgwt.client.docs.FormatString} for numeric formatting of the value and range labels.
      *
      * @param valueFormat New valueFormat value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.FormatString FormatString 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setValueFormat(String valueFormat)  throws IllegalStateException {
-        setAttribute("valueFormat", valueFormat, false);
+    public Slider setValueFormat(String valueFormat)  throws IllegalStateException {
+        return (Slider)setAttribute("valueFormat", valueFormat, false);
     }
 
     /**
@@ -1389,11 +1435,12 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * com.smartgwt.client.widgets.Slider#getShowValue showValue} is true.
      *
      * @param valueStyle New valueStyle value. Default value is "sliderValue"
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setValueStyle(String valueStyle)  throws IllegalStateException {
-        setAttribute("valueStyle", valueStyle, false);
+    public Slider setValueStyle(String valueStyle)  throws IllegalStateException {
+        return (Slider)setAttribute("valueStyle", valueStyle, false);
     }
 
     /**
@@ -1413,11 +1460,12 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * when {@link com.smartgwt.client.widgets.Slider#getShowValue showValue} is true.
      *
      * @param valueTextStyle New valueTextStyle value. Default value is "sliderValueText"
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setValueTextStyle(String valueTextStyle)  throws IllegalStateException {
-        setAttribute("valueTextStyle", valueTextStyle, false);
+    public Slider setValueTextStyle(String valueTextStyle)  throws IllegalStateException {
+        return (Slider)setAttribute("valueTextStyle", valueTextStyle, false);
     }
 
     /**
@@ -1439,10 +1487,11 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * Sets the {@link com.smartgwt.client.widgets.Slider#getVertical vertical} property of the slider
      *
      * @param vertical is the slider vertical. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
      */
-    public void setVertical(Boolean vertical) {
-        setAttribute("vertical", vertical, true);
+    public Slider setVertical(Boolean vertical) {
+        return (Slider)setAttribute("vertical", vertical, true);
     }
 
     /**
@@ -1464,9 +1513,10 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * com.smartgwt.client.widgets.Slider#getLabelSpacing labelSpacing}.
      *
      * @param vLabelSpacing New vLabelSpacing value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      */
-    public void setVLabelSpacing(Integer vLabelSpacing) {
-        setAttribute("vLabelSpacing", vLabelSpacing, true);
+    public Slider setVLabelSpacing(Integer vLabelSpacing) {
+        return (Slider)setAttribute("vLabelSpacing", vLabelSpacing, true);
     }
 
     /**
@@ -1487,11 +1537,12 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * slider.  See {@link com.smartgwt.client.widgets.Slider#getHThumbStyle hThumbStyle} for state suffixes.
      *
      * @param vThumbStyle New vThumbStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setVThumbStyle(String vThumbStyle)  throws IllegalStateException {
-        setAttribute("vThumbStyle", vThumbStyle, false);
+    public Slider setVThumbStyle(String vThumbStyle)  throws IllegalStateException {
+        return (Slider)setAttribute("vThumbStyle", vThumbStyle, false);
     }
 
     /**
@@ -1511,11 +1562,12 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * slider. <P> Will have the suffix "Disabled" added when the slider is disabled.
      *
      * @param vTrackStyle New vTrackStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setVTrackStyle(String vTrackStyle)  throws IllegalStateException {
-        setAttribute("vTrackStyle", vTrackStyle, false);
+    public Slider setVTrackStyle(String vTrackStyle)  throws IllegalStateException {
+        return (Slider)setAttribute("vTrackStyle", vTrackStyle, false);
     }
 
     /**
@@ -1536,11 +1588,12 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
      * com.smartgwt.client.widgets.Slider#getVertical vertical} is true.
      *
      * @param vValueStyle New vValueStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Slider Slider} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setVValueStyle(String vValueStyle)  throws IllegalStateException {
-        setAttribute("vValueStyle", vValueStyle, false);
+    public Slider setVValueStyle(String vValueStyle)  throws IllegalStateException {
+        return (Slider)setAttribute("vValueStyle", vValueStyle, false);
     }
 
     /**

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -177,9 +180,10 @@ public class EdgedCanvas extends Canvas {
      * cell)<br> <code>_B</code> (bottom center cell)<br> <code>_BR</code> (bottom right cell)
      *
      * @param addEdgeStyleSuffix New addEdgeStyleSuffix value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.EdgedCanvas EdgedCanvas} instance, for chaining setter calls
      */
-    public void setAddEdgeStyleSuffix(Boolean addEdgeStyleSuffix) {
-        setAttribute("addEdgeStyleSuffix", addEdgeStyleSuffix, true);
+    public EdgedCanvas setAddEdgeStyleSuffix(Boolean addEdgeStyleSuffix) {
+        return (EdgedCanvas)setAttribute("addEdgeStyleSuffix", addEdgeStyleSuffix, true);
     }
 
     /**
@@ -202,11 +206,12 @@ public class EdgedCanvas extends Canvas {
      * the Canvas is set to partially overlap the edges and hence can't show a background color itself without occluding media.
      *
      * @param centerBackgroundColor New centerBackgroundColor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.EdgedCanvas EdgedCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      */
-    public void setCenterBackgroundColor(String centerBackgroundColor)  throws IllegalStateException {
-        setAttribute("centerBackgroundColor", centerBackgroundColor, false);
+    public EdgedCanvas setCenterBackgroundColor(String centerBackgroundColor)  throws IllegalStateException {
+        return (EdgedCanvas)setAttribute("centerBackgroundColor", centerBackgroundColor, false);
     }
 
     /**
@@ -226,10 +231,11 @@ public class EdgedCanvas extends Canvas {
      * Height in pixels for bottom corners and edges.  Defaults to edgeSize when unset.
      *
      * @param edgeBottom New edgeBottom value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.EdgedCanvas EdgedCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEdgeBottom(Integer edgeBottom)  throws IllegalStateException {
-        setAttribute("edgeBottom", edgeBottom, false);
+    public EdgedCanvas setEdgeBottom(Integer edgeBottom)  throws IllegalStateException {
+        return (EdgedCanvas)setAttribute("edgeBottom", edgeBottom, false);
     }
 
     /**
@@ -247,11 +253,12 @@ public class EdgedCanvas extends Canvas {
      * "edge_88FF88_TL.gif".
      *
      * @param edgeColor New edgeColor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.EdgedCanvas EdgedCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      */
-    public void setEdgeColor(String edgeColor)  throws IllegalStateException {
-        setAttribute("edgeColor", edgeColor, false);
+    public EdgedCanvas setEdgeColor(String edgeColor)  throws IllegalStateException {
+        return (EdgedCanvas)setAttribute("edgeColor", edgeColor, false);
     }
 
     /**
@@ -272,11 +279,12 @@ public class EdgedCanvas extends Canvas {
      * The full list of extensions is: "_TL", "_TR", "_BL", "_BR", "_T", "_L", "_B", "_R", "_center".
      *
      * @param edgeImage New edgeImage value. Default value is "[SKIN]/rounded/frame/FFFFFF/6.png"
+     * @return {@link com.smartgwt.client.widgets.EdgedCanvas EdgedCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setEdgeImage(String edgeImage)  throws IllegalStateException {
-        setAttribute("edgeImage", edgeImage, false);
+    public EdgedCanvas setEdgeImage(String edgeImage)  throws IllegalStateException {
+        return (EdgedCanvas)setAttribute("edgeImage", edgeImage, false);
     }
 
     /**
@@ -296,10 +304,11 @@ public class EdgedCanvas extends Canvas {
      * Height in pixels for left corners and edges.  Defaults to edgeSize when unset.
      *
      * @param edgeLeft New edgeLeft value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.EdgedCanvas EdgedCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEdgeLeft(Integer edgeLeft)  throws IllegalStateException {
-        setAttribute("edgeLeft", edgeLeft, false);
+    public EdgedCanvas setEdgeLeft(Integer edgeLeft)  throws IllegalStateException {
+        return (EdgedCanvas)setAttribute("edgeLeft", edgeLeft, false);
     }
 
     /**
@@ -319,10 +328,11 @@ public class EdgedCanvas extends Canvas {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param edgeOffsetBottom New edgeOffsetBottom value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.EdgedCanvas EdgedCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEdgeOffsetBottom(Integer edgeOffsetBottom)  throws IllegalStateException {
-        setAttribute("edgeOffsetBottom", edgeOffsetBottom, false);
+    public EdgedCanvas setEdgeOffsetBottom(Integer edgeOffsetBottom)  throws IllegalStateException {
+        return (EdgedCanvas)setAttribute("edgeOffsetBottom", edgeOffsetBottom, false);
     }
 
     /**
@@ -342,10 +352,11 @@ public class EdgedCanvas extends Canvas {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param edgeOffsetLeft New edgeOffsetLeft value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.EdgedCanvas EdgedCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEdgeOffsetLeft(Integer edgeOffsetLeft)  throws IllegalStateException {
-        setAttribute("edgeOffsetLeft", edgeOffsetLeft, false);
+    public EdgedCanvas setEdgeOffsetLeft(Integer edgeOffsetLeft)  throws IllegalStateException {
+        return (EdgedCanvas)setAttribute("edgeOffsetLeft", edgeOffsetLeft, false);
     }
 
     /**
@@ -365,10 +376,11 @@ public class EdgedCanvas extends Canvas {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param edgeOffsetRight New edgeOffsetRight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.EdgedCanvas EdgedCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEdgeOffsetRight(Integer edgeOffsetRight)  throws IllegalStateException {
-        setAttribute("edgeOffsetRight", edgeOffsetRight, false);
+    public EdgedCanvas setEdgeOffsetRight(Integer edgeOffsetRight)  throws IllegalStateException {
+        return (EdgedCanvas)setAttribute("edgeOffsetRight", edgeOffsetRight, false);
     }
 
     /**
@@ -388,10 +400,11 @@ public class EdgedCanvas extends Canvas {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param edgeOffsetTop New edgeOffsetTop value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.EdgedCanvas EdgedCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEdgeOffsetTop(Integer edgeOffsetTop)  throws IllegalStateException {
-        setAttribute("edgeOffsetTop", edgeOffsetTop, false);
+    public EdgedCanvas setEdgeOffsetTop(Integer edgeOffsetTop)  throws IllegalStateException {
+        return (EdgedCanvas)setAttribute("edgeOffsetTop", edgeOffsetTop, false);
     }
 
     /**
@@ -409,10 +422,11 @@ public class EdgedCanvas extends Canvas {
      * Height in pixels for right corners and edges.  Defaults to edgeSize when unset.
      *
      * @param edgeRight New edgeRight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.EdgedCanvas EdgedCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEdgeRight(Integer edgeRight)  throws IllegalStateException {
-        setAttribute("edgeRight", edgeRight, false);
+    public EdgedCanvas setEdgeRight(Integer edgeRight)  throws IllegalStateException {
+        return (EdgedCanvas)setAttribute("edgeRight", edgeRight, false);
     }
 
     /**
@@ -432,10 +446,11 @@ public class EdgedCanvas extends Canvas {
      * com.smartgwt.client.widgets.EdgedCanvas#getAddEdgeStyleSuffix addEdgeStyleSuffix}.
      *
      * @param edgeStyleName New edgeStyleName value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.EdgedCanvas EdgedCanvas} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setEdgeStyleName(String edgeStyleName) {
-        setAttribute("edgeStyleName", edgeStyleName, true);
+    public EdgedCanvas setEdgeStyleName(String edgeStyleName) {
+        return (EdgedCanvas)setAttribute("edgeStyleName", edgeStyleName, true);
     }
 
     /**
@@ -455,10 +470,11 @@ public class EdgedCanvas extends Canvas {
      * Height in pixels for top corners and edges.  Defaults to edgeSize when unset.
      *
      * @param edgeTop New edgeTop value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.EdgedCanvas EdgedCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEdgeTop(Integer edgeTop)  throws IllegalStateException {
-        setAttribute("edgeTop", edgeTop, false);
+    public EdgedCanvas setEdgeTop(Integer edgeTop)  throws IllegalStateException {
+        return (EdgedCanvas)setAttribute("edgeTop", edgeTop, false);
     }
 
     /**
@@ -475,10 +491,11 @@ public class EdgedCanvas extends Canvas {
      * Whether to show media in the center section, that is, behind the decorated Canvas.
      *
      * @param showCenter New showCenter value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.EdgedCanvas EdgedCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowCenter(Boolean showCenter)  throws IllegalStateException {
-        setAttribute("showCenter", showCenter, false);
+    public EdgedCanvas setShowCenter(Boolean showCenter)  throws IllegalStateException {
+        return (EdgedCanvas)setAttribute("showCenter", showCenter, false);
     }
 
     /**
@@ -496,11 +513,12 @@ public class EdgedCanvas extends Canvas {
      * Standard skin directory for edge images (sides and corners).
      *
      * @param skinImgDir New skinImgDir value. Default value is "images/edges/"
+     * @return {@link com.smartgwt.client.widgets.EdgedCanvas EdgedCanvas} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setSkinImgDir(String skinImgDir)  throws IllegalStateException {
-        setAttribute("skinImgDir", skinImgDir, false);
+    public EdgedCanvas setSkinImgDir(String skinImgDir)  throws IllegalStateException {
+        return (EdgedCanvas)setAttribute("skinImgDir", skinImgDir, false);
     }
 
     /**

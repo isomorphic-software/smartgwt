@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Configuration of an HTML list in a {@link com.smartgwt.client.widgets.RichTextEditor}.
@@ -103,10 +106,11 @@ public class ListProperties extends DataClass {
      * image to use for the markers.
      *
      * @param image New image value. Default value is "[SKIN]/RichTextEditor/bullet_blue.png"
+     * @return {@link com.smartgwt.client.widgets.rte.ListProperties ListProperties} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setImage(String image) {
-        setAttribute("image", image);
+    public ListProperties setImage(String image) {
+        return (ListProperties)setAttribute("image", image);
     }
 
     /**
@@ -125,9 +129,10 @@ public class ListProperties extends DataClass {
      * For ordered lists, the number to start the first item with. Must be non-negative.
      *
      * @param startNumber New startNumber value. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.rte.ListProperties ListProperties} instance, for chaining setter calls
      */
-    public void setStartNumber(int startNumber) {
-        setAttribute("startNumber", startNumber);
+    public ListProperties setStartNumber(int startNumber) {
+        return (ListProperties)setAttribute("startNumber", startNumber);
     }
 
     /**
@@ -145,9 +150,10 @@ public class ListProperties extends DataClass {
      * image} should be specified.
      *
      * @param style New style value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.rte.ListProperties ListProperties} instance, for chaining setter calls
      */
-    public void setStyle(ListStyleType style) {
-        setAttribute("style", style == null ? null : style.getValue());
+    public ListProperties setStyle(ListStyleType style) {
+        return (ListProperties)setAttribute("style", style == null ? null : style.getValue());
     }
 
     /**

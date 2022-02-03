@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Singleton class with static APIs for managing automatically assigned tab order for Smart GWT components and other
@@ -88,9 +91,14 @@ import com.google.gwt.event.shared.HasHandlers;
  * be used to take an appropriate action such as updating the tab index of an element in the DOM. The second callback will
  * be fired when a call to the special {@link com.smartgwt.client.widgets.TabIndexManager#focusInTarget focusInTarget()} or
  * {@link com.smartgwt.client.widgets.TabIndexManager#shiftFocus shiftFocus()} API requests focus be passed to an entry.
- * This allows a developer to take an appropriate action (such as programmatically focussing in some DOM element). <P> See
- * the {@link com.smartgwt.client.docs.TabOrderOverview tab order overview} topic for more information on tab order
- * management for components in Smart GWT.
+ * This allows a developer to take an appropriate action (such as programmatically focussing in some DOM element). <P> For
+ * standard Smart GWT components (focusable {@link com.smartgwt.client.widgets.Canvas canvases}  and {@link
+ * com.smartgwt.client.widgets.form.fields.FormItem formItems}), developers will typically use APIs directly on the widget
+ * to customize tab sequence behavior rather than interacting with the TabIndexManager class. See the {@link
+ * com.smartgwt.client.docs.TabOrderOverview tab order overview} topic for more  information on tab order management for
+ * components in Smart GWT.<br> Developers wishing to embed focusable components into a page which are not Smart GWT
+ * components (native HTML elements and third party widgets), may use TabIndexManager APIs to do so. This process is
+ * described in  {@link com.smartgwt.client.docs.CustomTabElements}.
  */
 @BeanFactory.FrameworkClass
 public class TabIndexManager {
@@ -102,6 +110,86 @@ public class TabIndexManager {
 
     // ********************* Static Methods ***********************
 
+	/**
+     * Register a target to have its tab order position managed by the TabIndexManager.
+     * @param ID Unique ID to associate with a tab position. For a Canvas this    would typically be the {@link
+     * com.smartgwt.client.widgets.Canvas#getID Canvas.ID} but any unique string is valid.
+     * @param canFocus Is this target directly focusable? Governs whether an     explicit tabIndex will be created for this target. This
+     * parameter should be    passed as <code>false</code> for targets which do not require an explicit tabIndex    as they are
+     * not focusable, or not explicit tab-stops for the user tabbing through the     page. They will still have an implicit tab
+     * order position which     governs where descendants appear, and would be used to generate a tabIndex if    canFocus is
+     * subsequently updated via {@link com.smartgwt.client.widgets.TabIndexManager#setCanFocus setCanFocus()}.
+     */
+    public static native void addTarget(String ID, boolean canFocus) /*-{
+        $wnd.isc.TabIndexManager.addTarget(ID, canFocus);
+    }-*/;
+
+    /**
+     * @see TabIndexManager#addTarget
+     */
+    public static void addTarget(String ID, boolean canFocus, String parentID){
+        addTarget(ID, canFocus, parentID, (Integer) null, null, null);
+    }
+
+    /**
+     * @see TabIndexManager#addTarget
+     */
+    public static void addTarget(String ID, boolean canFocus, String parentID, Integer position){
+        addTarget(ID, canFocus, parentID, position, null, null);
+    }
+
+    /**
+     * @see TabIndexManager#addTarget
+     */
+    public static void addTarget(String ID, boolean canFocus, String parentID, Integer position, TabIndexUpdatedCallback tabIndexUpdatedCallback){
+        addTarget(ID, canFocus, parentID, position, tabIndexUpdatedCallback, null);
+    }
+
+	/**
+     * Register a target to have its tab order position managed by the TabIndexManager.
+     * @param ID Unique ID to associate with a tab position. For a Canvas this    would typically be the {@link
+     * com.smartgwt.client.widgets.Canvas#getID Canvas.ID} but any unique string is valid.
+     * @param canFocus Is this target directly focusable? Governs whether an     explicit tabIndex will be created for this target. This
+     * parameter should be    passed as <code>false</code> for targets which do not require an explicit tabIndex    as they are
+     * not focusable, or not explicit tab-stops for the user tabbing through the     page. They will still have an implicit tab
+     * order position which     governs where descendants appear, and would be used to generate a tabIndex if    canFocus is
+     * subsequently updated via {@link com.smartgwt.client.widgets.TabIndexManager#setCanFocus setCanFocus()}.
+     * @param parentID For cases where the tab position should be treated part of a     group to be moved together, the ID of the parent target
+     * containing all members of this    group. An example of this would be a Layout managing the tab order of all its members.
+     * If present, the passed parentID must already be being managed by this TabIndexManager.    May be updated for registered
+     * targets via {@link com.smartgwt.client.widgets.TabIndexManager#moveTarget moveTarget()}.
+     * @param position Position in the tab-order within the specified parent [or    within top level widgets]. Omitting this parameter will add
+     * the target to the end of    the specified parent's tab group.     May be updated for registered targets via {@link
+     * com.smartgwt.client.widgets.TabIndexManager#moveTarget moveTarget()}.
+     * @param tabIndexUpdatedCallback This notification method will     be fired when the tabIndex is actually updated, typically due to the target, or some  
+     * parent of it being re-positioned in the managed Tab order. In some cases tab indices    may also be updated to make
+     * space for unrelated entries being added to the    TabIndexManager. This notification is typically used to update the
+     * appropriate element    in the DOM to reflect a new tab index.
+     * @param shiftFocusCallback This notification method will be fired    when the special {@link com.smartgwt.client.widgets.TabIndexManager#shiftFocus
+     * shiftFocus()} method is called to     programmatically move focus through the registered targets (simulating the user
+     * tabbing    through elements in the tab index chain). The implementation should attempt to update    the UI state by
+     * focusing in the appropriate UI for this target -- typically this means    putting browser focus into a DOM element, and
+     * return true to indicate success.<br>    Returning false indicates the element is currently not focusable (disabled,
+     * masked, etc),    and cause the TabIndexManager to call the shiftFocusCallback on the next registered    entry (skipping
+     * over this entry).<br>    If this  method was not supplied, calls to {@link
+     * com.smartgwt.client.widgets.TabIndexManager#shiftFocus shiftFocus()} will simply skip    this entry.
+     */
+    public static native void addTarget(String ID, boolean canFocus, String parentID, Integer position, TabIndexUpdatedCallback tabIndexUpdatedCallback, ShiftFocusCallback shiftFocusCallback) /*-{
+        $wnd.isc.TabIndexManager.addTarget(ID, canFocus, parentID, position == null ? null : position.@java.lang.Integer::intValue()(), 
+			$entry( function(ID) { 
+				if(tabIndexUpdatedCallback!=null) tabIndexUpdatedCallback.@com.smartgwt.client.callbacks.TabIndexUpdatedCallback::execute(Ljava/lang/String;)(
+					ID
+				);
+			}), 
+			$entry( function(ID) { 
+				var retVal=null;
+				if(shiftFocusCallback!=null) retVal = shiftFocusCallback.@com.smartgwt.client.callbacks.ShiftFocusCallback::execute(Ljava/lang/String;)(
+					ID
+				);
+				return retVal;
+			}));
+    }-*/;
+	
 
 	/**
      * Request the TabIndexManager shift focus to a registered focus target. <P> This method does not directly change the focus
@@ -243,6 +331,16 @@ public class TabIndexManager {
 
 
 	/**
+     * Should {@link com.smartgwt.client.widgets.TabIndexManager#useExplicitFocusNavigation useExplicitFocusNavigation()} to
+     * always return true?
+     * @param newValue whether we should always use explicit focus navigation
+     */
+    public static native void setAlwaysUseExplicitFocusNavigation(boolean newValue) /*-{
+        $wnd.isc.TabIndexManager.setAlwaysUseExplicitFocusNavigation(newValue);
+    }-*/;
+
+
+	/**
      * Modifies whether or not some specified target should be treated as focusable and provide a meaningful TabIndex on a call
      * to {@link com.smartgwt.client.widgets.TabIndexManager#getTabIndex getTabIndex()}.
      * @param ID target ID
@@ -250,6 +348,18 @@ public class TabIndexManager {
      */
     public static native void setCanFocus(String ID, boolean canFocus) /*-{
         $wnd.isc.TabIndexManager.setCanFocus(ID, canFocus);
+    }-*/;
+
+
+	/**
+     * Mark the specified node (and its descendents) as using explicit focus navigation rather than relying on native browser
+     * Tab event handling behavior. See {@link com.smartgwt.client.widgets.TabIndexManager#useExplicitFocusNavigation
+     * useExplicitFocusNavigation()} for more information.
+     * @param ID registered TabIndexManager target
+     * @param newValue should explicit focus navigation be used for the specified   target and its descendents
+     */
+    public static native void setUseExplicitFocusNavigation(String ID, boolean newValue) /*-{
+        $wnd.isc.TabIndexManager.setUseExplicitFocusNavigation(ID, newValue);
     }-*/;
 
 
@@ -343,86 +453,30 @@ public class TabIndexManager {
     }-*/;
 
 
+	/**
+     * Should focus navigation be achieved by explicitly calling the TabIndexManager {@link
+     * com.smartgwt.client.widgets.TabIndexManager#shiftFocus shiftFocus()} method for the specified node? <P> Developers
+     * integrating custom focusable element's into a Smart GWT based application  can use this method to ensure the elements in
+     * question interact correctly with  {@link com.smartgwt.client.widgets.Canvas#showClickMask click masks} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanEdit grid editing}. See the {@link
+     * com.smartgwt.client.docs.TabOrderOverview tab order overview} topic for more information on integrating custom focusable
+     * UI into a Smart GWT application. <P> This method will return true if the {@link
+     * com.smartgwt.client.widgets.TabIndexManager#setAlwaysUseExplicitFocusNavigation setAlwaysUseExplicitFocusNavigation()}
+     * has been set to true (typically because a {@link com.smartgwt.client.widgets.Canvas#showClickMask click mask} is
+     * showing), or if the entry or some ancestor has been marked as  {@link
+     * com.smartgwt.client.widgets.TabIndexManager#setUseExplicitFocusNavigation useExplicitFocusNavigation:true}. Note that
+     * this is the case for entries registered under a canvas with {@link
+     * com.smartgwt.client.widgets.Canvas#getAlwaysManageFocusNavigation Canvas.alwaysManageFocusNavigation} set to true.
+     * @param ID TabIndexManager registered target ID
+     *
+     * @return true if explicit focus navigation should be used
+     */
+    public static native boolean useExplicitFocusNavigation(String ID) /*-{
+        var ret = $wnd.isc.TabIndexManager.useExplicitFocusNavigation(ID);
+        return ret == null ? false : ret;
+    }-*/;
+
+
     // ***********************************************************
-
-
-	/**
-     * Register a target to have its tab order position managed by the TabIndexManager.
-     * @param ID Unique ID to associate with a tab position. For a Canvas this would typically be the {@link
-     * com.smartgwt.client.widgets.Canvas#getID Canvas.ID} but any unique string is valid.
-     * @param canFocus Is this target directly focusable? Governs whether an explicit tabIndex will be created for this target. This
-     * parameter should be passed as <code>false</code> for targets which do not require an explicit tabIndex as they are
-     * not focusable, or not explicit tab-stops for the user tabbing through the page. They will still have an implicit tab
-     * order position which governs where descendants appear, and would be used to generate a tabIndex if canFocus is
-     * subsequently updated via {@link com.smartgwt.client.widgets.TabIndexManager#setCanFocus setCanFocus()}.
-     */
-    public static native void addTarget(String ID, boolean canFocus) /*-{
-        $wnd.isc.TabIndexManager.addTarget(ID, canFocus);
-    }-*/;
-
-    /**
-     * @see TabIndexManager#addTarget
-     */
-    public static void addTarget(String ID, boolean canFocus, String parentID){
-        addTarget(ID, canFocus, parentID, (Integer) null, null, null);
-    }
-
-    /**
-     * @see TabIndexManager#addTarget
-     */
-    public static void addTarget(String ID, boolean canFocus, String parentID, Integer position){
-        addTarget(ID, canFocus, parentID, position, null, null);
-    }
-
-    /**
-     * @see TabIndexManager#addTarget
-     */
-    public static void addTarget(String ID, boolean canFocus, String parentID, Integer position, TabIndexUpdatedCallback tabIndexUpdatedCallback){
-        addTarget(ID, canFocus, parentID, position, tabIndexUpdatedCallback, null);
-    }
-
-	/**
-     * Register a target to have its tab order position managed by the TabIndexManager.
-     * @param ID Unique ID to associate with a tab position. For a Canvas this would typically be the {@link
-     * com.smartgwt.client.widgets.Canvas#getID Canvas.ID} but any unique string is valid.
-     * @param canFocus Is this target directly focusable? Governs whether an explicit tabIndex will be created for this target. This
-     * parameter should be passed as <code>false</code> for targets which do not require an explicit tabIndex as they are
-     * not focusable, or not explicit tab-stops for the user tabbing through the page. They will still have an implicit tab
-     * order position which governs where descendants appear, and would be used to generate a tabIndex if canFocus is
-     * subsequently updated via {@link com.smartgwt.client.widgets.TabIndexManager#setCanFocus setCanFocus()}.
-     * @param parentID For cases where the tab position should be treated part of a group to be moved together, the ID of the parent target
-     * containing all members of this group. An example of this would be a Layout managing the tab order of all its members.
-     * If present, the passed parentID must already be being managed by this TabIndexManager.  May be updated for registered
-     * targets via {@link com.smartgwt.client.widgets.TabIndexManager#moveTarget moveTarget()}.
-     * @param position Position in the tab-order within the specified parent [or within top level widgets]. Omitting this parameter will add
-     * the target to the end of the specified parent's tab group.  May be updated for registered targets via {@link
-     * com.smartgwt.client.widgets.TabIndexManager#moveTarget moveTarget()}.
-     * @param tabIndexUpdatedCallback This notification method will be fired when the tabIndex is actually updated, typically due to the target, or some  
-     * parent of it being re-positioned in the managed Tab order. In some cases tab indices may also be updated to make
-     * space for unrelated entries being added to the TabIndexManager. This notification is typically used to update the
-     * appropriate element in the DOM to reflect a new tab index.
-     * @param shiftFocusCallback This notification method will be when the special {@link com.smartgwt.client.widgets.TabIndexManager#shiftFocus
-     * shiftFocus()} method is called to programmatically move focus through the registered targets (simulating the user
-     * tabbing through elements in the tab index chain). The implementation should attempt to update the UI state by
-     * focusing in the appropriate UI for this target -- typically this means putting browser focus into a DOM element, and
-     * return true to indicate success.<br>  Returning false indicates the element is currently not focusable (disabled,
-     * masked, etc), and cause the TabIndexManager to call the shiftFocusCallback on the next registered entry (skipping
-     * over this entry).<br>  If this  method was not supplied, calls to {@link
-     * com.smartgwt.client.widgets.TabIndexManager#shiftFocus shiftFocus()} will simply skip this entry.
-     */
-    public static native void addTarget(String ID, boolean canFocus, String parentID, Integer position, TabIndexUpdatedCallback tabIndexUpdatedCallback, ShiftFocusCallback shiftFocusCallback) /*-{
-        $wnd.isc.TabIndexManager.addTarget(ID, canFocus, parentID, position == null ? null : position.@java.lang.Integer::intValue()(), 
-			$entry( function(ID) { 
-				if(tabIndexUpdatedCallback!=null) tabIndexUpdatedCallback.@com.smartgwt.client.callbacks.TabIndexUpdatedCallback::execute(Ljava/lang/String;)(
-					ID
-				);
-			}), 
-			$entry( function(ID) { 
-				if(shiftFocusCallback!=null) return shiftFocusCallback.@com.smartgwt.client.callbacks.ShiftFocusCallback::execute(Ljava/lang/String;)(
-					ID
-				);
-			}));
-    }-*/;
-	
 
 }

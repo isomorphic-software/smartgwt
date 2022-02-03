@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Returns information about how a data value is rendered in a chart.
@@ -102,9 +105,10 @@ public class DrawnValue extends DataClass {
      * For bar and column charts, thickness of the bar representing this data value.
      *
      * @param barThickness New barThickness value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.DrawnValue DrawnValue} instance, for chaining setter calls
      */
-    public void setBarThickness(Integer barThickness) {
-        setAttribute("barThickness", barThickness);
+    public DrawnValue setBarThickness(Integer barThickness) {
+        return (DrawnValue)setAttribute("barThickness", barThickness);
     }
 
     /**
@@ -121,9 +125,10 @@ public class DrawnValue extends DataClass {
      * For pie mode only, start angle of the segment for the data value.
      *
      * @param endAngle New endAngle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.DrawnValue DrawnValue} instance, for chaining setter calls
      */
-    public void setEndAngle(Integer endAngle) {
-        setAttribute("endAngle", endAngle);
+    public DrawnValue setEndAngle(Integer endAngle) {
+        return (DrawnValue)setAttribute("endAngle", endAngle);
     }
 
     /**
@@ -140,9 +145,10 @@ public class DrawnValue extends DataClass {
      * FacetValues for the data value.
      *
      * @param facetValues New facetValues value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.DrawnValue DrawnValue} instance, for chaining setter calls
      */
-    public void setFacetValues(FacetValueMap facetValues) {
-        setAttribute("facetValues", facetValues == null ? null : facetValues.getJsObj());
+    public DrawnValue setFacetValues(FacetValueMap facetValues) {
+        return (DrawnValue)setAttribute("facetValues", facetValues == null ? null : facetValues.getJsObj());
     }
 
     /**
@@ -159,9 +165,10 @@ public class DrawnValue extends DataClass {
      * For pie mode only, the radius of the segment for the data value.
      *
      * @param radius New radius value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.DrawnValue DrawnValue} instance, for chaining setter calls
      */
-    public void setRadius(Double radius) {
-        setAttribute("radius", radius);
+    public DrawnValue setRadius(Double radius) {
+        return (DrawnValue)setAttribute("radius", radius);
     }
 
     /**
@@ -183,9 +190,10 @@ public class DrawnValue extends DataClass {
      * com.smartgwt.client.widgets.chart.DrawnValue#getFacetValues facetValues}.
      *
      * @param record New record value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.DrawnValue DrawnValue} instance, for chaining setter calls
      */
-    public void setRecord(Record record) {
-        setAttribute("record", record == null ? null : record.getJsObj());
+    public DrawnValue setRecord(Record record) {
+        return (DrawnValue)setAttribute("record", record == null ? null : record.getJsObj());
     }
 
     /**
@@ -207,9 +215,10 @@ public class DrawnValue extends DataClass {
      * For pie mode only, start angle of the segment for the data value.
      *
      * @param startAngle New startAngle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.DrawnValue DrawnValue} instance, for chaining setter calls
      */
-    public void setStartAngle(Integer startAngle) {
-        setAttribute("startAngle", startAngle);
+    public DrawnValue setStartAngle(Integer startAngle) {
+        return (DrawnValue)setAttribute("startAngle", startAngle);
     }
 
     /**
@@ -226,10 +235,11 @@ public class DrawnValue extends DataClass {
      * Data value this <code>drawnValue</code> represents.
      *
      * @param value New value value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.DrawnValue DrawnValue} instance, for chaining setter calls
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setValue(Float value) {
-        setAttribute("value", value);
+    public DrawnValue setValue(Float value) {
+        return (DrawnValue)setAttribute("value", value);
     }
 
     /**
@@ -246,9 +256,10 @@ public class DrawnValue extends DataClass {
      * Data value this <code>drawnValue</code> represents.
      *
      * @param value New value value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.DrawnValue DrawnValue} instance, for chaining setter calls
      */
-    public void setValue(Double value) {
-        setAttribute("value", value);
+    public DrawnValue setValue(Double value) {
+        return (DrawnValue)setAttribute("value", value);
     }
 
     /**
@@ -266,9 +277,10 @@ public class DrawnValue extends DataClass {
      * data value appears.
      *
      * @param x New x value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.DrawnValue DrawnValue} instance, for chaining setter calls
      */
-    public void setX(Integer x) {
-        setAttribute("x", x);
+    public DrawnValue setX(Integer x) {
+        return (DrawnValue)setAttribute("x", x);
     }
 
     /**
@@ -287,9 +299,10 @@ public class DrawnValue extends DataClass {
      * data value appears.
      *
      * @param y New y value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.chart.DrawnValue DrawnValue} instance, for chaining setter calls
      */
-    public void setY(Integer y) {
-        setAttribute("y", y);
+    public DrawnValue setY(Integer y) {
+        return (DrawnValue)setAttribute("y", y);
     }
 
     /**

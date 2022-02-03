@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -193,9 +196,10 @@ public class DrawImage extends DrawItem {
      * Set the height of the drawImage.
      *
      * @param height new height. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawImage DrawImage} instance, for chaining setter calls
      */
-    public void setHeight(int height) {
-        setAttribute("height", height, true);
+    public DrawImage setHeight(int height) {
+        return (DrawImage)setAttribute("height", height, true);
     }
 
     /**
@@ -224,9 +228,10 @@ public class DrawImage extends DrawItem {
      * Set the left coordinate of the drawImage.
      *
      * @param left new left coordinate. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawImage DrawImage} instance, for chaining setter calls
      */
-    public void setLeft(int left) {
-        setAttribute("left", left, true);
+    public DrawImage setLeft(int left) {
+        return (DrawImage)setAttribute("left", left, true);
     }
 
     /**
@@ -255,10 +260,11 @@ public class DrawImage extends DrawItem {
      * Change the URL of the image displayed.
      *
      * @param src new URL. Default value is "blank.png"
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawImage DrawImage} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.URL URL 
      */
-    public void setSrc(String src) {
-        setAttribute("src", src, true);
+    public DrawImage setSrc(String src) {
+        return (DrawImage)setAttribute("src", src, true);
     }
 
     /**
@@ -299,9 +305,10 @@ public class DrawImage extends DrawItem {
      * Set the top coordinate of the drawImage.
      *
      * @param top new top coordinate. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawImage DrawImage} instance, for chaining setter calls
      */
-    public void setTop(int top) {
-        setAttribute("top", top, true);
+    public DrawImage setTop(int top) {
+        return (DrawImage)setAttribute("top", top, true);
     }
 
     /**
@@ -341,11 +348,12 @@ public class DrawImage extends DrawItem {
      * com.smartgwt.client.docs.IEFilters here}.
      *
      * @param useMatrixFilter New useMatrixFilter value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawImage DrawImage} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.IEFilters IEFilters overview and related methods
      */
-    public void setUseMatrixFilter(Boolean useMatrixFilter)  throws IllegalStateException {
-        setAttribute("useMatrixFilter", useMatrixFilter, false);
+    public DrawImage setUseMatrixFilter(Boolean useMatrixFilter)  throws IllegalStateException {
+        return (DrawImage)setAttribute("useMatrixFilter", useMatrixFilter, false);
     }
 
     /**
@@ -380,9 +388,10 @@ public class DrawImage extends DrawItem {
      * Set the width of the drawImage.
      *
      * @param width new width. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawImage DrawImage} instance, for chaining setter calls
      */
-    public void setWidth(int width) {
-        setAttribute("width", width, true);
+    public DrawImage setWidth(int width) {
+        return (DrawImage)setAttribute("width", width, true);
     }
 
     /**

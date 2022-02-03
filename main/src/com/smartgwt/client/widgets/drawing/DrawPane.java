@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -247,13 +250,14 @@ public class DrawPane extends Canvas implements com.smartgwt.client.widgets.draw
      * Can the user drag-scroll the DrawPane?
      *
      * @param canDragScroll New canDragScroll value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawPane DrawPane} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawPane#setDrawingWidth
      * @see com.smartgwt.client.widgets.drawing.DrawPane#setDrawingHeight
      * 
      */
-    public void setCanDragScroll(boolean canDragScroll)  throws IllegalStateException {
-        setAttribute("canDragScroll", canDragScroll, false);
+    public DrawPane setCanDragScroll(boolean canDragScroll)  throws IllegalStateException {
+        return (DrawPane)setAttribute("canDragScroll", canDragScroll, false);
     }
 
     /**
@@ -275,11 +279,12 @@ public class DrawPane extends Canvas implements com.smartgwt.client.widgets.draw
      * of the area in viewbox coordinates that can be accessed through drag-scrolling.
      *
      * @param drawingHeight New drawingHeight value. Default value is 1000
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawPane DrawPane} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * 
      */
-    public void setDrawingHeight(int drawingHeight)  throws IllegalStateException {
-        setAttribute("drawingHeight", drawingHeight, false);
+    public DrawPane setDrawingHeight(int drawingHeight)  throws IllegalStateException {
+        return (DrawPane)setAttribute("drawingHeight", drawingHeight, false);
     }
 
     /**
@@ -303,10 +308,11 @@ public class DrawPane extends Canvas implements com.smartgwt.client.widgets.draw
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param drawingType New drawingType value. Default value is based on browser
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawPane DrawPane} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDrawingType(DrawingType drawingType)  throws IllegalStateException {
-        setAttribute("drawingType", drawingType == null ? null : drawingType.getValue(), false);
+    public DrawPane setDrawingType(DrawingType drawingType)  throws IllegalStateException {
+        return (DrawPane)setAttribute("drawingType", drawingType == null ? null : drawingType.getValue(), false);
     }
 
     /**
@@ -328,11 +334,12 @@ public class DrawPane extends Canvas implements com.smartgwt.client.widgets.draw
      * of the area in viewbox coordinates that can be accessed through drag-scrolling.
      *
      * @param drawingWidth New drawingWidth value. Default value is 1000
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawPane DrawPane} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * 
      */
-    public void setDrawingWidth(int drawingWidth)  throws IllegalStateException {
-        setAttribute("drawingWidth", drawingWidth, false);
+    public DrawPane setDrawingWidth(int drawingWidth)  throws IllegalStateException {
+        return (DrawPane)setAttribute("drawingWidth", drawingWidth, false);
     }
 
     /**
@@ -351,10 +358,11 @@ public class DrawPane extends Canvas implements com.smartgwt.client.widgets.draw
      * Array of DrawItems to initially display in this DrawPane.
      *
      * @param drawItems New drawItems value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawPane DrawPane} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setDrawItems(DrawItem... drawItems)  throws IllegalStateException {
-        setAttribute("drawItems", drawItems, false);
+    public DrawPane setDrawItems(DrawItem... drawItems)  throws IllegalStateException {
+        return (DrawPane)setAttribute("drawItems", drawItems, false);
     }
 
     /**
@@ -372,11 +380,12 @@ public class DrawPane extends Canvas implements com.smartgwt.client.widgets.draw
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "DrawPaneEditProxy"
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawPane DrawPane} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
-        setAttribute("editProxyConstructor", editProxyConstructor, false);
+    public DrawPane setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
+        return (DrawPane)setAttribute("editProxyConstructor", editProxyConstructor, false);
     }
 
     /**
@@ -396,10 +405,11 @@ public class DrawPane extends Canvas implements com.smartgwt.client.widgets.draw
      * to be used for reference.
      *
      * @param gradients New gradients value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawPane DrawPane} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setGradients(Gradient... gradients)  throws IllegalStateException {
-        setAttribute("gradients", gradients, false);
+    public DrawPane setGradients(Gradient... gradients)  throws IllegalStateException {
+        return (DrawPane)setAttribute("gradients", gradients, false);
     }
 
     /**
@@ -422,10 +432,11 @@ public class DrawPane extends Canvas implements com.smartgwt.client.widgets.draw
      * Sets the {@link com.smartgwt.client.widgets.drawing.DrawPane#getRotation rotation} of the <code>DrawPane</code>.
      *
      * @param rotation the new rotation in degrees. The positive direction corresponds to clockwise rotation. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawPane DrawPane} instance, for chaining setter calls
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setRotation(float rotation) {
-        setAttribute("rotation", rotation, true);
+    public DrawPane setRotation(float rotation) {
+        return (DrawPane)setAttribute("rotation", rotation, true);
     }
 
     /**
@@ -449,9 +460,10 @@ public class DrawPane extends Canvas implements com.smartgwt.client.widgets.draw
      * Sets the {@link com.smartgwt.client.widgets.drawing.DrawPane#getRotation rotation} of the <code>DrawPane</code>.
      *
      * @param rotation the new rotation in degrees. The positive direction corresponds to clockwise rotation. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawPane DrawPane} instance, for chaining setter calls
      */
-    public void setRotation(double rotation) {
-        setAttribute("rotation", rotation, true);
+    public DrawPane setRotation(double rotation) {
+        return (DrawPane)setAttribute("rotation", rotation, true);
     }
 
     /**
@@ -471,10 +483,11 @@ public class DrawPane extends Canvas implements com.smartgwt.client.widgets.draw
      * number is the Y translation amount in pixels.
      *
      * @param translate New translate value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawPane DrawPane} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTranslate(int[] translate)  throws IllegalStateException {
-        setAttribute("translate", translate, false);
+    public DrawPane setTranslate(int[] translate)  throws IllegalStateException {
+        return (DrawPane)setAttribute("translate", translate, false);
     }
 
     /**
@@ -495,10 +508,11 @@ public class DrawPane extends Canvas implements com.smartgwt.client.widgets.draw
      * Sets the zoom on this <code>DrawPane</code> to the specified magnification, maintaining the current viewport position.
      *
      * @param zoomLevel Desired zoom level as a float where <code>1.0</code> is equivalent to 100% magnification. Must be greater than 0. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawPane DrawPane} instance, for chaining setter calls
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setZoomLevel(float zoomLevel) {
-        setAttribute("zoomLevel", zoomLevel, true);
+    public DrawPane setZoomLevel(float zoomLevel) {
+        return (DrawPane)setAttribute("zoomLevel", zoomLevel, true);
     }
 
     /**
@@ -518,9 +532,10 @@ public class DrawPane extends Canvas implements com.smartgwt.client.widgets.draw
      * Sets the zoom on this <code>DrawPane</code> to the specified magnification, maintaining the current viewport position.
      *
      * @param zoomLevel Desired zoom level as a float where <code>1.0</code> is equivalent to 100% magnification. Must be greater than 0. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawPane DrawPane} instance, for chaining setter calls
      */
-    public void setZoomLevel(double zoomLevel) {
-        setAttribute("zoomLevel", zoomLevel, true);
+    public DrawPane setZoomLevel(double zoomLevel) {
+        return (DrawPane)setAttribute("zoomLevel", zoomLevel, true);
     }
 
     /**

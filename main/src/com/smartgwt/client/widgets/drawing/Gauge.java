@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -175,12 +178,13 @@ public class Gauge extends DrawPane {
      * Color for gauge sector borders.
      *
      * @param borderColor New borderColor value. Default value is "#333333"
+     * @return {@link com.smartgwt.client.widgets.drawing.Gauge Gauge} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setLineColor
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      */
-    public void setBorderColor(String borderColor)  throws IllegalStateException {
-        setAttribute("borderColor", borderColor, false);
+    public Gauge setBorderColor(String borderColor)  throws IllegalStateException {
+        return (Gauge)setAttribute("borderColor", borderColor, false);
     }
 
     /**
@@ -199,11 +203,12 @@ public class Gauge extends DrawPane {
      * Pixel width for gauge sector borders.
      *
      * @param borderWidth New borderWidth value. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.drawing.Gauge Gauge} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setLineWidth
      */
-    public void setBorderWidth(int borderWidth)  throws IllegalStateException {
-        setAttribute("borderWidth", borderWidth, false);
+    public Gauge setBorderWidth(int borderWidth)  throws IllegalStateException {
+        return (Gauge)setAttribute("borderWidth", borderWidth, false);
     }
 
     /**
@@ -224,10 +229,11 @@ public class Gauge extends DrawPane {
      * All DrawItems currently associated with this Gauge are destroyed and  new DrawItems are created instead.
      *
      * @param dialRadius Radius in pixels of the dial. Default value is 150
+     * @return {@link com.smartgwt.client.widgets.drawing.Gauge Gauge} instance, for chaining setter calls
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setDialRadius(float dialRadius) {
-        setAttribute("dialRadius", dialRadius, true);
+    public Gauge setDialRadius(float dialRadius) {
+        return (Gauge)setAttribute("dialRadius", dialRadius, true);
     }
 
     /**
@@ -247,9 +253,10 @@ public class Gauge extends DrawPane {
      * All DrawItems currently associated with this Gauge are destroyed and  new DrawItems are created instead.
      *
      * @param dialRadius Radius in pixels of the dial. Default value is 150
+     * @return {@link com.smartgwt.client.widgets.drawing.Gauge Gauge} instance, for chaining setter calls
      */
-    public void setDialRadius(double dialRadius) {
-        setAttribute("dialRadius", dialRadius, true);
+    public Gauge setDialRadius(double dialRadius) {
+        return (Gauge)setAttribute("dialRadius", dialRadius, true);
     }
 
     /**
@@ -269,9 +276,10 @@ public class Gauge extends DrawPane {
      * Sets the {@link com.smartgwt.client.widgets.drawing.Gauge#getDrawnClockwise drawnClockwise} property and redraws the gauge.
      *
      * @param drawnClockwise whether the sectors are drawn clockwise. Default value is true
+     * @return {@link com.smartgwt.client.widgets.drawing.Gauge Gauge} instance, for chaining setter calls
      */
-    public void setDrawnClockwise(boolean drawnClockwise) {
-        setAttribute("drawnClockwise", drawnClockwise, true);
+    public Gauge setDrawnClockwise(boolean drawnClockwise) {
+        return (Gauge)setAttribute("drawnClockwise", drawnClockwise, true);
     }
 
     /**
@@ -289,11 +297,12 @@ public class Gauge extends DrawPane {
      * Font size of sector labels. Must be at least 3.
      *
      * @param fontSize New fontSize value. Default value is 11
+     * @return {@link com.smartgwt.client.widgets.drawing.Gauge Gauge} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawLabel#setFontSize
      */
-    public void setFontSize(int fontSize)  throws IllegalStateException {
-        setAttribute("fontSize", fontSize, false);
+    public Gauge setFontSize(int fontSize)  throws IllegalStateException {
+        return (Gauge)setAttribute("fontSize", fontSize, false);
     }
 
     /**
@@ -314,10 +323,11 @@ public class Gauge extends DrawPane {
      * Sets the {@link com.smartgwt.client.widgets.drawing.Gauge#getLabelPrefix labelPrefix} property and re-creates all sector labels.
      *
      * @param labelPrefix the new label prefix. Default value is ""
+     * @return {@link com.smartgwt.client.widgets.drawing.Gauge Gauge} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.drawing.Gauge#formatLabelContents
      */
-    public void setLabelPrefix(String labelPrefix) {
-        setAttribute("labelPrefix", labelPrefix, true);
+    public Gauge setLabelPrefix(String labelPrefix) {
+        return (Gauge)setAttribute("labelPrefix", labelPrefix, true);
     }
 
     /**
@@ -338,10 +348,11 @@ public class Gauge extends DrawPane {
      * Sets the {@link com.smartgwt.client.widgets.drawing.Gauge#getLabelSuffix labelSuffix} property and re-creates all sector labels.
      *
      * @param labelSuffix the new label suffix. Default value is "%"
+     * @return {@link com.smartgwt.client.widgets.drawing.Gauge Gauge} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.drawing.Gauge#formatLabelContents
      */
-    public void setLabelSuffix(String labelSuffix) {
-        setAttribute("labelSuffix", labelSuffix, true);
+    public Gauge setLabelSuffix(String labelSuffix) {
+        return (Gauge)setAttribute("labelSuffix", labelSuffix, true);
     }
 
     /**
@@ -363,10 +374,11 @@ public class Gauge extends DrawPane {
      *
      * @param maxValue the new maximum dial value. Must be at least 1 greater than the minimum dial value. If <code>maxValue</code> is not at
      * least 1 greater than the minimum value, then it is set to <code>1 + minValue</code>. Default value is 100
+     * @return {@link com.smartgwt.client.widgets.drawing.Gauge Gauge} instance, for chaining setter calls
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setMaxValue(float maxValue) {
-        setAttribute("maxValue", maxValue, true);
+    public Gauge setMaxValue(float maxValue) {
+        return (Gauge)setAttribute("maxValue", maxValue, true);
     }
 
     /**
@@ -387,9 +399,10 @@ public class Gauge extends DrawPane {
      *
      * @param maxValue the new maximum dial value. Must be at least 1 greater than the minimum dial value. If <code>maxValue</code> is not at
      * least 1 greater than the minimum value, then it is set to <code>1 + minValue</code>. Default value is 100
+     * @return {@link com.smartgwt.client.widgets.drawing.Gauge Gauge} instance, for chaining setter calls
      */
-    public void setMaxValue(double maxValue) {
-        setAttribute("maxValue", maxValue, true);
+    public Gauge setMaxValue(double maxValue) {
+        return (Gauge)setAttribute("maxValue", maxValue, true);
     }
 
     /**
@@ -410,10 +423,11 @@ public class Gauge extends DrawPane {
      *
      * @param minValue the new minimum dial value. Must be at least 1 less than the maximum dial value. If <code>minValue</code> is not at
      * least 1 less than the maximum value, then it is set to <code>maxValue - 1</code>. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.Gauge Gauge} instance, for chaining setter calls
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setMinValue(float minValue) {
-        setAttribute("minValue", minValue, true);
+    public Gauge setMinValue(float minValue) {
+        return (Gauge)setAttribute("minValue", minValue, true);
     }
 
     /**
@@ -434,9 +448,10 @@ public class Gauge extends DrawPane {
      *
      * @param minValue the new minimum dial value. Must be at least 1 less than the maximum dial value. If <code>minValue</code> is not at
      * least 1 less than the maximum value, then it is set to <code>maxValue - 1</code>. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.Gauge Gauge} instance, for chaining setter calls
      */
-    public void setMinValue(double minValue) {
-        setAttribute("minValue", minValue, true);
+    public Gauge setMinValue(double minValue) {
+        return (Gauge)setAttribute("minValue", minValue, true);
     }
 
     /**
@@ -471,9 +486,10 @@ public class Gauge extends DrawPane {
      * Sets the number of major tick lines. <p><b>NOTE:</b> To divide the dial into <i>n</i> regions, you will need <i>n</i> + 1 ticks. For example, if the minimum value is 0 and the maximum value is 100, then to place major tick lines at 0, 10, 20, 30, ..., 90, 100, you need 11 (10 + 1) major ticks.
      *
      * @param numMajorTicks the number of major tick lines to draw. Must be either 0 or an integer greater than or equal to 2. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.Gauge Gauge} instance, for chaining setter calls
      */
-    public void setNumMajorTicks(int numMajorTicks) {
-        setAttribute("numMajorTicks", numMajorTicks, true);
+    public Gauge setNumMajorTicks(int numMajorTicks) {
+        return (Gauge)setAttribute("numMajorTicks", numMajorTicks, true);
     }
 
     /**
@@ -493,9 +509,10 @@ public class Gauge extends DrawPane {
      * Sets the number of minor tick lines. <p><b>NOTE:</b> To divide the dial into <i>n</i> regions, you will need <i>n</i> + 1 ticks. For example, if the minimum value is 0 and the maximum value is 100, then to place minor tick lines at 0, 1, 2, 3, 4, 5, ..., 99, 100, you need 101 (100 + 1) minor ticks.
      *
      * @param numMinorTicks the number of minor tick lines to draw. Must be either 0 or an integer greater than or equal to 2. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.Gauge Gauge} instance, for chaining setter calls
      */
-    public void setNumMinorTicks(int numMinorTicks) {
-        setAttribute("numMinorTicks", numMinorTicks, true);
+    public Gauge setNumMinorTicks(int numMinorTicks) {
+        return (Gauge)setAttribute("numMinorTicks", numMinorTicks, true);
     }
 
     /**
@@ -515,9 +532,10 @@ public class Gauge extends DrawPane {
      * All DrawItems currently associated with this Gauge are destroyed and  new DrawItems are created instead. <P> The pivot point is set by default by choosing 1/2 of width and 70% of height of the Gauge. See {@link com.smartgwt.client.widgets.drawing.Gauge#getPivotPointHeight pivotPointHeight}
      *
      * @param pivotPoint The pivot point of the needle. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.Gauge Gauge} instance, for chaining setter calls
      */
-    public void setPivotPoint(Point pivotPoint) {
-        setAttribute("pivotPoint", pivotPoint == null ? null : pivotPoint.getJsObj(), true);
+    public Gauge setPivotPoint(Point pivotPoint) {
+        return (Gauge)setAttribute("pivotPoint", pivotPoint == null ? null : pivotPoint.getJsObj(), true);
     }
 
     /**
@@ -535,10 +553,11 @@ public class Gauge extends DrawPane {
      * pivotPoint is specified. <P> Can be specified as a numeric pixel value, or a String percentage value.
      *
      * @param pivotPointHeight New pivotPointHeight value. Default value is "70%"
+     * @return {@link com.smartgwt.client.widgets.drawing.Gauge Gauge} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPivotPointHeight(int pivotPointHeight)  throws IllegalStateException {
-        setAttribute("pivotPointHeight", pivotPointHeight, false);
+    public Gauge setPivotPointHeight(int pivotPointHeight)  throws IllegalStateException {
+        return (Gauge)setAttribute("pivotPointHeight", pivotPointHeight, false);
     }
 
     /**
@@ -556,10 +575,11 @@ public class Gauge extends DrawPane {
      * pivotPoint is specified. <P> Can be specified as a numeric pixel value, or a String percentage value.
      *
      * @param pivotPointHeight New pivotPointHeight value. Default value is "70%"
+     * @return {@link com.smartgwt.client.widgets.drawing.Gauge Gauge} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setPivotPointHeight(String pivotPointHeight)  throws IllegalStateException {
-        setAttribute("pivotPointHeight", pivotPointHeight, false);
+    public Gauge setPivotPointHeight(String pivotPointHeight)  throws IllegalStateException {
+        return (Gauge)setAttribute("pivotPointHeight", pivotPointHeight, false);
     }
 
     /**
@@ -607,12 +627,13 @@ public class Gauge extends DrawPane {
      * style="vertical-align:middle">#800080</a></td>   </tr> </table>
      *
      * @param sectorColors New sectorColors value. Default value is [ "#AFFFFF", "#008080", "#AAAFFF", "#FF0000", "#FFCC99", "#800080" ]
+     * @return {@link com.smartgwt.client.widgets.drawing.Gauge Gauge} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setFillColor
      * @see com.smartgwt.client.docs.CSSColor CSSColor 
      */
-    public void setSectorColors(String... sectorColors)  throws IllegalStateException {
-        setAttribute("sectorColors", sectorColors, false);
+    public Gauge setSectorColors(String... sectorColors)  throws IllegalStateException {
+        return (Gauge)setAttribute("sectorColors", sectorColors, false);
     }
 
     /**
@@ -649,9 +670,10 @@ public class Gauge extends DrawPane {
      * Sets the sectors for this gauge.
      *
      * @param sectors the sectors to show on the gauge. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.Gauge Gauge} instance, for chaining setter calls
      */
-    public void setSectors(GaugeSector... sectors) {
-        setAttribute("sectors", sectors, true);
+    public Gauge setSectors(GaugeSector... sectors) {
+        return (Gauge)setAttribute("sectors", sectors, true);
     }
 
     /**
@@ -701,10 +723,11 @@ public class Gauge extends DrawPane {
      *
      * @param value the new dial value. Must be between {@link com.smartgwt.client.widgets.drawing.Gauge#getMinValue minValue} and {@link
      * com.smartgwt.client.widgets.drawing.Gauge#getMaxValue maxValue}. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.Gauge Gauge} instance, for chaining setter calls
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setValue(float value) {
-        setAttribute("value", value, true);
+    public Gauge setValue(float value) {
+        return (Gauge)setAttribute("value", value, true);
     }
 
     /**
@@ -725,9 +748,10 @@ public class Gauge extends DrawPane {
      *
      * @param value the new dial value. Must be between {@link com.smartgwt.client.widgets.drawing.Gauge#getMinValue minValue} and {@link
      * com.smartgwt.client.widgets.drawing.Gauge#getMaxValue maxValue}. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.Gauge Gauge} instance, for chaining setter calls
      */
-    public void setValue(double value) {
-        setAttribute("value", value, true);
+    public Gauge setValue(double value) {
+        return (Gauge)setAttribute("value", value, true);
     }
 
     /**

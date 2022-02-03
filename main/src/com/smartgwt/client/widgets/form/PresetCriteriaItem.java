@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * A FormItem for use with the {@link com.smartgwt.client.widgets.form.FilterBuilder}, allows the user to pick from a set
@@ -159,9 +162,10 @@ public class PresetCriteriaItem extends SelectItem {
      * The title to show for the {@link com.smartgwt.client.widgets.form.PresetCriteriaItem#getShowCustomOption custom option}.
      *
      * @param customOptionTitle New customOptionTitle value. Default value is "Custom..."
+     * @return {@link com.smartgwt.client.widgets.form.PresetCriteriaItem PresetCriteriaItem} instance, for chaining setter calls
      */
-    public void setCustomOptionTitle(String customOptionTitle) {
-        setAttribute("customOptionTitle", customOptionTitle);
+    public PresetCriteriaItem setCustomOptionTitle(String customOptionTitle) {
+        return (PresetCriteriaItem)setAttribute("customOptionTitle", customOptionTitle);
     }
 
     /**
@@ -190,9 +194,10 @@ public class PresetCriteriaItem extends SelectItem {
      * is logged, and      shouldSaveValue will be set to false. </li></ul>
      *
      * @param shouldSaveValue New shouldSaveValue value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.PresetCriteriaItem PresetCriteriaItem} instance, for chaining setter calls
      */
-    public void setShouldSaveValue(Boolean shouldSaveValue) {
-        setAttribute("shouldSaveValue", shouldSaveValue);
+    public PresetCriteriaItem setShouldSaveValue(Boolean shouldSaveValue) {
+        return (PresetCriteriaItem)setAttribute("shouldSaveValue", shouldSaveValue);
     }
 
     /**
@@ -223,9 +228,10 @@ public class PresetCriteriaItem extends SelectItem {
      * com.smartgwt.client.widgets.form.PresetCriteriaItem#getCustomCriteria getCustomCriteria()} to be called.
      *
      * @param showCustomOption New showCustomOption value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.PresetCriteriaItem PresetCriteriaItem} instance, for chaining setter calls
      */
-    public void setShowCustomOption(boolean showCustomOption) {
-        setAttribute("showCustomOption", showCustomOption);
+    public PresetCriteriaItem setShowCustomOption(boolean showCustomOption) {
+        return (PresetCriteriaItem)setAttribute("showCustomOption", showCustomOption);
     }
 
     /**

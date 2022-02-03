@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * A UI component that can participate in a DynamicForm, allowing editing or display of one of the {@link
@@ -184,10 +187,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <code>Ctrl+Opt</code> + <i>accessKey</i></li> </ul>
      *
      * @param accessKey New accessKey value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
      */
-    public void setAccessKey(String accessKey) {
-        setAttribute("accessKey", accessKey);
+    public FormItem setAccessKey(String accessKey) {
+        return (FormItem)setAttribute("accessKey", accessKey);
     }
 
     /**
@@ -218,11 +222,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <code>textAlign</code> setting, if unset, will default to the <code>align</code> setting if set.
      *
      * @param align New align value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setApplyAlignToText
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setAlign(Alignment align) {
-        setAttribute("align", align == null ? null : align.getValue());
+    public FormItem setAlign(Alignment align) {
+        return (FormItem)setAttribute("align", align == null ? null : align.getValue());
     }
 
     /**
@@ -278,10 +283,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * form.getValuesAsCriteria()}) to return {@link com.smartgwt.client.data.AdvancedCriteria}.
      *
      * @param allowExpressions New allowExpressions value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
-    public void setAllowExpressions(Boolean allowExpressions) {
-        setAttribute("allowExpressions", allowExpressions);
+    public FormItem setAllowExpressions(Boolean allowExpressions) {
+        return (FormItem)setAttribute("allowExpressions", allowExpressions);
     }
 
     /**
@@ -345,9 +351,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param alwaysFetchMissingValues New alwaysFetchMissingValues value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setAlwaysFetchMissingValues(Boolean alwaysFetchMissingValues) {
-        setAttribute("alwaysFetchMissingValues", alwaysFetchMissingValues);
+    public FormItem setAlwaysFetchMissingValues(Boolean alwaysFetchMissingValues) {
+        return (FormItem)setAttribute("alwaysFetchMissingValues", alwaysFetchMissingValues);
     }
 
     /**
@@ -391,9 +398,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param alwaysShowControlBox New alwaysShowControlBox value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setAlwaysShowControlBox(Boolean alwaysShowControlBox) {
-        setAttribute("alwaysShowControlBox", alwaysShowControlBox);
+    public FormItem setAlwaysShowControlBox(Boolean alwaysShowControlBox) {
+        return (FormItem)setAttribute("alwaysShowControlBox", alwaysShowControlBox);
     }
 
     /**
@@ -427,10 +435,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param applyAlignToText New applyAlignToText value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setApplyAlignToText(boolean applyAlignToText) {
-        setAttribute("applyAlignToText", applyAlignToText);
+    public FormItem setApplyAlignToText(boolean applyAlignToText) {
+        return (FormItem)setAttribute("applyAlignToText", applyAlignToText);
     }
 
     /**
@@ -457,9 +466,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param applyHeightToTextBox New applyHeightToTextBox value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setApplyHeightToTextBox(Boolean applyHeightToTextBox) {
-        setAttribute("applyHeightToTextBox", applyHeightToTextBox);
+    public FormItem setApplyHeightToTextBox(Boolean applyHeightToTextBox) {
+        return (FormItem)setAttribute("applyHeightToTextBox", applyHeightToTextBox);
     }
 
     /**
@@ -480,10 +490,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param ariaRole New ariaRole value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Accessibility Accessibility overview and related methods
      */
-    public void setAriaRole(String ariaRole) {
-        setAttribute("ariaRole", ariaRole);
+    public FormItem setAriaRole(String ariaRole) {
+        return (FormItem)setAttribute("ariaRole", ariaRole);
     }
 
     /**
@@ -526,10 +537,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      *  "Authentication" section of the Quick Start guide.
      *
      * @param autoComplete New autoComplete value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.DynamicForm#setAutoComplete
      */
-    public void setAutoComplete(AutoComplete autoComplete) {
-        setAttribute("autoComplete", autoComplete == null ? null : autoComplete.getValue());
+    public FormItem setAutoComplete(AutoComplete autoComplete) {
+        return (FormItem)setAttribute("autoComplete", autoComplete == null ? null : autoComplete.getValue());
     }
 
     /**
@@ -573,9 +585,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.fields.FormItem#getAutoComplete autoComplete} setting is ignored.
      *
      * @param autoCompleteKeywords New autoCompleteKeywords value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setAutoCompleteKeywords(String... autoCompleteKeywords) {
-        setAttribute("autoCompleteKeywords", autoCompleteKeywords);
+    public FormItem setAutoCompleteKeywords(String... autoCompleteKeywords) {
+        return (FormItem)setAttribute("autoCompleteKeywords", autoCompleteKeywords);
     }
 
     /**
@@ -596,9 +609,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param browserInputType New browserInputType value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setBrowserInputType(String browserInputType) {
-        setAttribute("browserInputType", browserInputType);
+    public FormItem setBrowserInputType(String browserInputType) {
+        return (FormItem)setAttribute("browserInputType", browserInputType);
     }
 
     /**
@@ -618,10 +632,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param browserSpellCheck New browserSpellCheck value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.DynamicForm#setBrowserSpellCheck
      */
-    public void setBrowserSpellCheck(Boolean browserSpellCheck) {
-        setAttribute("browserSpellCheck", browserSpellCheck);
+    public FormItem setBrowserSpellCheck(Boolean browserSpellCheck) {
+        return (FormItem)setAttribute("browserSpellCheck", browserSpellCheck);
     }
 
     /**
@@ -664,11 +679,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Is this form item editable (canEdit:true) or read-only (canEdit:false)? Setting the form item to non-editable causes it to render as read-only, using the appearance specified via {@link com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyDisplay readOnlyDisplay}. <P> The default appearance for canEdit:false items (<code>readOnlyDisplay:"readOnly"</code>) differs from the disabled state in that the form item is not rendered with disabled styling and most form items will allow copying of the contents while read-only but do not while disabled.
      *
      * @param canEdit Can this form item be edited?. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCanEdit
      * @see com.smartgwt.client.widgets.form.DynamicForm#setCanEdit
      */
-    public void setCanEdit(Boolean canEdit) {
-        setAttribute("canEdit", canEdit);
+    public FormItem setCanEdit(Boolean canEdit) {
+        return (FormItem)setAttribute("canEdit", canEdit);
     }
 
     /**
@@ -720,9 +736,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canEditOpaqueValues New canEditOpaqueValues value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setCanEditOpaqueValues(Boolean canEditOpaqueValues) {
-        setAttribute("canEditOpaqueValues", canEditOpaqueValues);
+    public FormItem setCanEditOpaqueValues(Boolean canEditOpaqueValues) {
+        return (FormItem)setAttribute("canEditOpaqueValues", canEditOpaqueValues);
     }
 
     /**
@@ -753,10 +770,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canFocus New canFocus value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
      */
-    public void setCanFocus(Boolean canFocus) {
-        setAttribute("canFocus", canFocus);
+    public FormItem setCanFocus(Boolean canFocus) {
+        return (FormItem)setAttribute("canFocus", canFocus);
     }
 
     /**
@@ -781,9 +799,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyCanSelectText readOnlyCanSelectText}
      *
      * @param canSelectText New canSelectText value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setCanSelectText(boolean canSelectText) {
-        setAttribute("canSelectText", canSelectText);
+    public FormItem setCanSelectText(boolean canSelectText) {
+        return (FormItem)setAttribute("canSelectText", canSelectText);
     }
 
     /**
@@ -810,9 +829,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canTabToIcons New canTabToIcons value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setCanTabToIcons(Boolean canTabToIcons) {
-        setAttribute("canTabToIcons", canTabToIcons);
+    public FormItem setCanTabToIcons(Boolean canTabToIcons) {
+        return (FormItem)setAttribute("canTabToIcons", canTabToIcons);
     }
 
     /**
@@ -837,9 +857,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * the containing DynamicForm sets <code>itemLayout:"absolute"</code>.
      *
      * @param cellHeight New cellHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
-    public void setCellHeight(Integer cellHeight) {
-        setAttribute("cellHeight", cellHeight);
+    public FormItem setCellHeight(Integer cellHeight) {
+        return (FormItem)setAttribute("cellHeight", cellHeight);
     }
 
     /**
@@ -847,6 +869,7 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * the containing DynamicForm sets <code>itemLayout:"absolute"</code>.
      *
      * @return Current cellHeight value. Default value is null
+     * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
     public Integer getCellHeight()  {
         return getAttributeAsInt("cellHeight");
@@ -863,11 +886,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Setter for {@link com.smartgwt.client.widgets.form.fields.FormItem#getCellStyle cellStyle}.
      *
      * @param cellStyle the new <code>cellStyle</code> value. Default value is "formCell"
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
      * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
-    public void setCellStyle(String cellStyle) {
-        setAttribute("cellStyle", cellStyle);
+    public FormItem setCellStyle(String cellStyle) {
+        return (FormItem)setAttribute("cellStyle", cellStyle);
     }
 
     /**
@@ -893,9 +917,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * item element as long as focus is in the form item element.
      *
      * @param changeOnKeypress New changeOnKeypress value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setChangeOnKeypress(Boolean changeOnKeypress) {
-        setAttribute("changeOnKeypress", changeOnKeypress);
+    public FormItem setChangeOnKeypress(Boolean changeOnKeypress) {
+        return (FormItem)setAttribute("changeOnKeypress", changeOnKeypress);
     }
 
     /**
@@ -921,10 +946,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.DynamicForm#getClipStaticValue DynamicForm.clipStaticValue} default.
      *
      * @param clipStaticValue New clipStaticValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.DynamicForm#setClipStaticValue
      */
-    public void setClipStaticValue(Boolean clipStaticValue) {
-        setAttribute("clipStaticValue", clipStaticValue);
+    public FormItem setClipStaticValue(Boolean clipStaticValue) {
+        return (FormItem)setAttribute("clipStaticValue", clipStaticValue);
     }
 
     /**
@@ -948,9 +974,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.DynamicForm#getClipItemTitles DynamicForm.clipItemTitles}.
      *
      * @param clipTitle New clipTitle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setClipTitle(Boolean clipTitle) {
-        setAttribute("clipTitle", clipTitle);
+    public FormItem setClipTitle(Boolean clipTitle) {
+        return (FormItem)setAttribute("clipTitle", clipTitle);
     }
 
     /**
@@ -990,12 +1017,13 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.docs.CompoundFormItem_skinning} discussion for special skinning considerations.
      *
      * @param controlStyle New controlStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
      * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
-    public void setControlStyle(String controlStyle) {
-        setAttribute("controlStyle", controlStyle);
+    public FormItem setControlStyle(String controlStyle) {
+        return (FormItem)setAttribute("controlStyle", controlStyle);
     }
 
     /**
@@ -1029,10 +1057,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * access, such as {@link com.smartgwt.client.widgets.form.DynamicForm#setValue DynamicForm.setValue()}.
      *
      * @param criteriaField New criteriaField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FieldName FieldName 
      */
-    public void setCriteriaField(String criteriaField) {
-        setAttribute("criteriaField", criteriaField);
+    public FormItem setCriteriaField(String criteriaField) {
+        return (FormItem)setAttribute("criteriaField", criteriaField);
     }
 
     /**
@@ -1062,10 +1091,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * order for its value to be validated and/or saved.
      *
      * @param dataPath New dataPath value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.DataPath DataPath 
      */
-    public void setDataPath(String dataPath) {
-        setAttribute("dataPath", dataPath);
+    public FormItem setDataPath(String dataPath) {
+        return (FormItem)setAttribute("dataPath", dataPath);
     }
 
     /**
@@ -1108,12 +1138,13 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param dateFormatter New dateFormatter value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setTimeFormatter
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setFormat
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue());
+    public FormItem setDateFormatter(DateDisplayFormat dateFormatter) {
+        return (FormItem)setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue());
     }
 
     /**
@@ -1157,10 +1188,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * original unpadded value is always shown when the value is edited.
      *
      * @param decimalPad New decimalPad value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setDecimalPad(Integer decimalPad) {
-        setAttribute("decimalPad", decimalPad);
+    public FormItem setDecimalPad(Integer decimalPad) {
+        return (FormItem)setAttribute("decimalPad", decimalPad);
     }
 
     /**
@@ -1184,10 +1216,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * shown with its original precision when edited.
      *
      * @param decimalPrecision New decimalPrecision value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setDecimalPrecision(Integer decimalPrecision) {
-        setAttribute("decimalPrecision", decimalPrecision);
+    public FormItem setDecimalPrecision(Integer decimalPrecision) {
+        return (FormItem)setAttribute("decimalPrecision", decimalPrecision);
     }
 
     /**
@@ -1215,10 +1248,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param defaultIconSrc New defaultIconSrc value. Default value is "[SKIN]/DynamicForm/default_formItem_icon.gif"
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setDefaultIconSrc(String defaultIconSrc) {
-        setAttribute("defaultIconSrc", defaultIconSrc);
+    public FormItem setDefaultIconSrc(String defaultIconSrc) {
+        return (FormItem)setAttribute("defaultIconSrc", defaultIconSrc);
     }
 
     /**
@@ -1242,10 +1276,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.fields.FormItem#getAllowExpressions filter-expressions}.
      *
      * @param defaultOperator New defaultOperator value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
-    public void setDefaultOperator(OperatorId defaultOperator) {
-        setAttribute("defaultOperator", defaultOperator == null ? null : defaultOperator.getValue());
+    public FormItem setDefaultOperator(OperatorId defaultOperator) {
+        return (FormItem)setAttribute("defaultOperator", defaultOperator == null ? null : defaultOperator.getValue());
     }
 
     /**
@@ -1283,12 +1318,47 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Set this item to be enabled or disabled at runtime.
      *
      * @param disabled true if this item should be disabled. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setDisabled
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_dep_enable_disable" target="examples">Enable & Disable Example</a>
      */
-    public void setDisabled(Boolean disabled) {
-        setAttribute("disabled", disabled);
+    public FormItem setDisabled(Boolean disabled) {
+        return (FormItem)setAttribute("disabled", disabled);
+    }
+    
+
+    /**
+     * This text is shown as a tooltip prompt when the cursor hovers over this item and the item is {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisabled disabled} or {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#setCanEdit read-only} with {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyDisplay readOnlyDisplay:disabled}. <P> You can also override
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#itemHoverHTML itemHoverHTML} on the item to show a custom hover,
+     * whether or not the item is disabled.   <P> Note that when the form itself is {@link
+     * com.smartgwt.client.widgets.Canvas#getDisabled disabled}, no prompt will be shown.
+     *
+     * @param disabledHover New disabledHover value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public FormItem setDisabledHover(String disabledHover) {
+        return (FormItem)setAttribute("disabledHover", disabledHover);
+    }
+
+    /**
+     * This text is shown as a tooltip prompt when the cursor hovers over this item and the item is {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisabled disabled} or {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#setCanEdit read-only} with {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyDisplay readOnlyDisplay:disabled}. <P> You can also override
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#itemHoverHTML itemHoverHTML} on the item to show a custom hover,
+     * whether or not the item is disabled.   <P> Note that when the form itself is {@link
+     * com.smartgwt.client.widgets.Canvas#getDisabled disabled}, no prompt will be shown.
+     *
+     * @return Current disabledHover value. Default value is null
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getDisabledHover()  {
+        return getAttributeAsString("disabledHover");
     }
     
 
@@ -1299,9 +1369,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * FormItemIcon.disableOnReadOnly}.
      *
      * @param disableIconsOnReadOnly New disableIconsOnReadOnly value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setDisableIconsOnReadOnly(Boolean disableIconsOnReadOnly) {
-        setAttribute("disableIconsOnReadOnly", disableIconsOnReadOnly);
+    public FormItem setDisableIconsOnReadOnly(Boolean disableIconsOnReadOnly) {
+        return (FormItem)setAttribute("disableIconsOnReadOnly", disableIconsOnReadOnly);
     }
 
     /**
@@ -1346,21 +1417,30 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.fields.FormItem#getForeignDisplayField foreignDisplayField} property  in addition to
      * <code>displayField</code>. This is useful for cases where the display field name in the local dataSource differs from
      * the display field name in the optionDataSource. See the documentation for {@link
-     * com.smartgwt.client.data.DataSourceField#getForeignDisplayField DataSourceField.foreignDisplayField} for more on this.
-     * <P> Note that if <code>optionDataSource</code> is set and no valid display field is specified, {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName getDisplayFieldName()} will return the dataSource
-     * title  field by default. <P> If a displayField is specified for a freeform text based item (such as a  {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem}), any user-entered value will be treated as a display value. In
-     * this scenario, items will derive the data value for the item from the first record where the displayField value matches
-     * the user-entered value. To avoid ambiguity, developers may wish to avoid this usage if display values are not unique.
+     * com.smartgwt.client.data.DataSourceField#getForeignDisplayField DataSourceField.foreignDisplayField} for more on
+     * this.<br> If a foreignDisplayField is specified, as with just displayField, if  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue local display values} are being used and
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getStoreDisplayValues storeDisplayValues} is true, when the user
+     * chooses a value the associated display-field value  on the record being edited will be updated. In this case it would be
+     * set to the  foreignDisplayField value from the related record. This means foreignDisplayField  is always expected to be
+     * set to the equivalent field in the related dataSources.<br> Developers looking to display some <i>other</i> arbitrary
+     * field(s) from the related dataSource during editing should consider using custom  PickList.pickListFields instead of
+     * setting a foreignDisplayField.  <P> Note that if <code>optionDataSource</code> is set and no valid display field is
+     * specified, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName getDisplayFieldName()} will
+     * return the dataSource title  field by default. <P> If a displayField is specified for a freeform text based item (such
+     * as a  {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem}), any user-entered value will be treated as a display
+     * value. In this scenario, items will derive the data value for the item from the first record where the displayField
+     * value matches the user-entered value. To avoid ambiguity, developers may wish to avoid this usage if display values are
+     * not unique.
      *
      * @param displayField New displayField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName
      * @see com.smartgwt.client.widgets.form.fields.FormItem#invalidateDisplayValueCache
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
-    public void setDisplayField(String displayField) {
-        setAttribute("displayField", displayField);
+    public FormItem setDisplayField(String displayField) {
+        return (FormItem)setAttribute("displayField", displayField);
     }
 
     /**
@@ -1391,13 +1471,21 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.fields.FormItem#getForeignDisplayField foreignDisplayField} property  in addition to
      * <code>displayField</code>. This is useful for cases where the display field name in the local dataSource differs from
      * the display field name in the optionDataSource. See the documentation for {@link
-     * com.smartgwt.client.data.DataSourceField#getForeignDisplayField DataSourceField.foreignDisplayField} for more on this.
-     * <P> Note that if <code>optionDataSource</code> is set and no valid display field is specified, {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName getDisplayFieldName()} will return the dataSource
-     * title  field by default. <P> If a displayField is specified for a freeform text based item (such as a  {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem}), any user-entered value will be treated as a display value. In
-     * this scenario, items will derive the data value for the item from the first record where the displayField value matches
-     * the user-entered value. To avoid ambiguity, developers may wish to avoid this usage if display values are not unique.
+     * com.smartgwt.client.data.DataSourceField#getForeignDisplayField DataSourceField.foreignDisplayField} for more on
+     * this.<br> If a foreignDisplayField is specified, as with just displayField, if  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue local display values} are being used and
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getStoreDisplayValues storeDisplayValues} is true, when the user
+     * chooses a value the associated display-field value  on the record being edited will be updated. In this case it would be
+     * set to the  foreignDisplayField value from the related record. This means foreignDisplayField  is always expected to be
+     * set to the equivalent field in the related dataSources.<br> Developers looking to display some <i>other</i> arbitrary
+     * field(s) from the related dataSource during editing should consider using custom  PickList.pickListFields instead of
+     * setting a foreignDisplayField.  <P> Note that if <code>optionDataSource</code> is set and no valid display field is
+     * specified, {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName getDisplayFieldName()} will
+     * return the dataSource title  field by default. <P> If a displayField is specified for a freeform text based item (such
+     * as a  {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem}), any user-entered value will be treated as a display
+     * value. In this scenario, items will derive the data value for the item from the first record where the displayField
+     * value matches the user-entered value. To avoid ambiguity, developers may wish to avoid this usage if display values are
+     * not unique.
      *
      * @return Returns the <code>displayField</code> for this item. <P> Behavior varies based on the configuration of this item, as
      * follows: <ul><li>If this item has an {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
@@ -1408,10 +1496,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * present in the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} for  the
      * item, we avoid returning the specified displayField value and instead return the  title field of the option DataSource.
      * We do this to  avoid confusion for the case where the displayField is intended as a display-field  value for showing
-     * another field value within the same record in the underlying  dataSource only.</li> <li>If no explicit foreignDisplay or
-     * displayField   specification was found, and the {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField
-     * valueField} for this item is hidden in the   {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
-     * optionDataSource}, this method will return the title field for   the <code>optionDataSource</code>.</li></ul>. Default value is null
+     * another field value within the same record in the underlying  dataSource only.</li> <li>If no explicit
+     * foreignDisplayField or displayField   specification was found, and the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} for this item is hidden in the   {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}, this method will return the
+     * title field for   the <code>optionDataSource</code>.</li></ul>. Default value is null
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName
      * @see com.smartgwt.client.widgets.form.fields.FormItem#invalidateDisplayValueCache
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
@@ -1428,11 +1517,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param editPendingCSSText New editPendingCSSText value. Default value is "color:#0066CC;"
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSText CSSText 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setEditPendingCSSText(String editPendingCSSText) {
-        setAttribute("editPendingCSSText", editPendingCSSText);
+    public FormItem setEditPendingCSSText(String editPendingCSSText) {
+        return (FormItem)setAttribute("editPendingCSSText", editPendingCSSText);
     }
 
     /**
@@ -1452,10 +1542,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "FormItemEditProxy"
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor) {
-        setAttribute("editProxyConstructor", editProxyConstructor);
+    public FormItem setEditProxyConstructor(String editProxyConstructor) {
+        return (FormItem)setAttribute("editProxyConstructor", editProxyConstructor);
     }
 
     /**
@@ -1478,9 +1569,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <code>emptyCellValue</code> will automatically be set to the <code>emptyDisplayValue</code>.
      *
      * @param emptyDisplayValue New emptyDisplayValue value. Default value is ""
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setEmptyDisplayValue(String emptyDisplayValue) {
-        setAttribute("emptyDisplayValue", emptyDisplayValue);
+    public FormItem setEmptyDisplayValue(String emptyDisplayValue) {
+        return (FormItem)setAttribute("emptyDisplayValue", emptyDisplayValue);
     }
 
     /**
@@ -1502,9 +1594,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * same way as any other valueIcon  (see {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons})
      *
      * @param emptyValueIcon New emptyValueIcon value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setEmptyValueIcon(String emptyValueIcon) {
-        setAttribute("emptyValueIcon", emptyValueIcon);
+    public FormItem setEmptyValueIcon(String emptyValueIcon) {
+        return (FormItem)setAttribute("emptyValueIcon", emptyValueIcon);
     }
 
     /**
@@ -1522,10 +1615,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Whether this item should end the row it's in in the form layout
      *
      * @param endRow New endRow value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
-    public void setEndRow(Boolean endRow) {
-        setAttribute("endRow", endRow);
+    public FormItem setEndRow(Boolean endRow) {
+        return (FormItem)setAttribute("endRow", endRow);
     }
 
     /**
@@ -1545,10 +1639,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Height of the error icon, if we're showing icons when validation errors occur.
      *
      * @param errorIconHeight New errorIconHeight value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setShowErrorIcon
      */
-    public void setErrorIconHeight(int errorIconHeight) {
-        setAttribute("errorIconHeight", errorIconHeight);
+    public FormItem setErrorIconHeight(int errorIconHeight) {
+        return (FormItem)setAttribute("errorIconHeight", errorIconHeight);
     }
 
     /**
@@ -1566,11 +1661,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * URL of the image to show as an error icon, if we're showing icons when validation errors occur.
      *
      * @param errorIconSrc New errorIconSrc value. Default value is "[SKIN]/DynamicForm/validation_error_icon.png"
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setShowErrorIcon
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setErrorIconSrc(String errorIconSrc) {
-        setAttribute("errorIconSrc", errorIconSrc);
+    public FormItem setErrorIconSrc(String errorIconSrc) {
+        return (FormItem)setAttribute("errorIconSrc", errorIconSrc);
     }
 
     /**
@@ -1589,10 +1685,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Height of the error icon, if we're showing icons when validation errors occur.
      *
      * @param errorIconWidth New errorIconWidth value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setShowErrorIcon
      */
-    public void setErrorIconWidth(int errorIconWidth) {
-        setAttribute("errorIconWidth", errorIconWidth);
+    public FormItem setErrorIconWidth(int errorIconWidth) {
+        return (FormItem)setAttribute("errorIconWidth", errorIconWidth);
     }
 
     /**
@@ -1613,10 +1710,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * errorMessageWidth is the amount to reduce the width of the editor to accommodate the error message and icon.
      *
      * @param errorMessageWidth New errorMessageWidth value. Default value is 80
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
-    public void setErrorMessageWidth(int errorMessageWidth) {
-        setAttribute("errorMessageWidth", errorMessageWidth);
+    public FormItem setErrorMessageWidth(int errorMessageWidth) {
+        return (FormItem)setAttribute("errorMessageWidth", errorMessageWidth);
     }
 
     /**
@@ -1635,15 +1733,44 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
     
 
     /**
+     * Controls whether HTML item value(s) should be rendered or shown as HTML source. <P> This property is supported by
+     * specific formItem sub-types (e.g. {@link com.smartgwt.client.widgets.form.fields.TextItem#getEscapeHTML TextItem}), and
+     * has no effect in others.  To understand the effects, look at the documentation for the specific formItem sub-type in
+     * question.
+     *
+     * @param escapeHTML New escapeHTML value. Default value is varies
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public FormItem setEscapeHTML(Boolean escapeHTML) {
+        return (FormItem)setAttribute("escapeHTML", escapeHTML);
+    }
+
+    /**
+     * Controls whether HTML item value(s) should be rendered or shown as HTML source. <P> This property is supported by
+     * specific formItem sub-types (e.g. {@link com.smartgwt.client.widgets.form.fields.TextItem#getEscapeHTML TextItem}), and
+     * has no effect in others.  To understand the effects, look at the documentation for the specific formItem sub-type in
+     * question.
+     *
+     * @return Current escapeHTML value. Default value is varies
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public Boolean getEscapeHTML()  {
+        return getAttributeAsBoolean("escapeHTML", true);
+    }
+    
+
+    /**
      * {@link com.smartgwt.client.docs.FormatString} used during exports for numeric or date formatting.  See {@link
      * com.smartgwt.client.data.DataSourceField#getExportFormat DataSourceField.exportFormat}.
      *
      * @param exportFormat New exportFormat value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormatString FormatString 
      * @see com.smartgwt.client.docs.ExportFormatting ExportFormatting overview and related methods
      */
-    public void setExportFormat(String exportFormat) {
-        setAttribute("exportFormat", exportFormat);
+    public FormItem setExportFormat(String exportFormat) {
+        return (FormItem)setAttribute("exportFormat", exportFormat);
     }
 
     /**
@@ -1679,12 +1806,13 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param fetchMissingValues New fetchMissingValues value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setOptionDataSource
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getSelectedRecord
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setFilterLocally
      */
-    public void setFetchMissingValues(Boolean fetchMissingValues) {
-        setAttribute("fetchMissingValues", fetchMissingValues);
+    public FormItem setFetchMissingValues(Boolean fetchMissingValues) {
+        return (FormItem)setAttribute("fetchMissingValues", fetchMissingValues);
     }
 
     /**
@@ -1728,9 +1856,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param filterLocally New filterLocally value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setFilterLocally(Boolean filterLocally) {
-        setAttribute("filterLocally", filterLocally);
+    public FormItem setFilterLocally(Boolean filterLocally) {
+        return (FormItem)setAttribute("filterLocally", filterLocally);
     }
 
     /**
@@ -1759,10 +1888,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * DataSourceField.foreignDisplayField} for additional details.
      *
      * @param foreignDisplayField New foreignDisplayField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName
      */
-    public void setForeignDisplayField(String foreignDisplayField) {
-        setAttribute("foreignDisplayField", foreignDisplayField);
+    public FormItem setForeignDisplayField(String foreignDisplayField) {
+        return (FormItem)setAttribute("foreignDisplayField", foreignDisplayField);
     }
 
     /**
@@ -1787,11 +1917,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.data.DataSourceField#getFormat DataSourceField.format}.
      *
      * @param format New format value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormatString FormatString 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setFormat(String format) {
-        setAttribute("format", format);
+    public FormItem setFormat(String format) {
+        return (FormItem)setAttribute("format", format);
     }
 
     /**
@@ -1820,10 +1951,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * prevent the formula field from storing the calculated value into the form's values.
      *
      * @param formula New formula value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormulaFields FormulaFields overview and related methods
      */
-    public void setFormula(UserFormula formula) {
-        setAttribute("formula", formula == null ? null : formula.getJsObj());
+    public FormItem setFormula(UserFormula formula) {
+        return (FormItem)setAttribute("formula", formula == null ? null : formula.getJsObj());
     }
 
     /**
@@ -1853,10 +1985,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param globalTabIndex New globalTabIndex value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
      */
-    public void setGlobalTabIndex(Integer globalTabIndex) {
-        setAttribute("globalTabIndex", globalTabIndex);
+    public FormItem setGlobalTabIndex(Integer globalTabIndex) {
+        return (FormItem)setAttribute("globalTabIndex", globalTabIndex);
     }
 
     /**
@@ -1896,13 +2029,14 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * property {@link com.smartgwt.client.widgets.form.fields.FormItem#getStaticHeight staticHeight} is used instead.
      *
      * @param height New height value. Default value is 20
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setWidth
      * @see com.smartgwt.client.widgets.form.DynamicForm#setItemLayout
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_filling" target="examples">Filling Example</a>
      */
-    public void setHeight(int height) {
-        setAttribute("height", height);
+    public FormItem setHeight(int height) {
+        return (FormItem)setAttribute("height", height);
     }
 
     /**
@@ -1968,13 +2102,14 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * property {@link com.smartgwt.client.widgets.form.fields.FormItem#getStaticHeight staticHeight} is used instead.
      *
      * @param height New height value. Default value is 20
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setWidth
      * @see com.smartgwt.client.widgets.form.DynamicForm#setItemLayout
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_filling" target="examples">Filling Example</a>
      */
-    public void setHeight(String height) {
-        setAttribute("height", height);
+    public FormItem setHeight(String height) {
+        return (FormItem)setAttribute("height", height);
     }
 
     /**
@@ -2024,9 +2159,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * even though the <code>hidden</code> property was set to true on the dataSourceField configuration object.
      *
      * @param hidden New hidden value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setHidden(Boolean hidden) {
-        setAttribute("hidden", hidden);
+    public FormItem setHidden(Boolean hidden) {
+        return (FormItem)setAttribute("hidden", hidden);
     }
 
     /**
@@ -2056,13 +2192,14 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Sets the {@link com.smartgwt.client.widgets.form.fields.FormItem#getHint hint} for this item.
      *
      * @param hint new hint for the item. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setHintStyle
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_hints" target="examples">Hints Example</a>
      */
-    public void setHint(String hint) {
-        setAttribute("hint", hint);
+    public FormItem setHint(String hint) {
+        return (FormItem)setAttribute("hint", hint);
     }
 
     /**
@@ -2090,12 +2227,13 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Set the hintStyle for this item
      *
      * @param hintStyle new style for hint text. Default value is "formHint"
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setHint
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
-    public void setHintStyle(String hintStyle) {
-        setAttribute("hintStyle", hintStyle);
+    public FormItem setHintStyle(String hintStyle) {
+        return (FormItem)setAttribute("hintStyle", hintStyle);
     }
 
     /**
@@ -2117,10 +2255,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Text alignment  for text displayed in this item's hover canvas, if shown.
      *
      * @param hoverAlign New hoverAlign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.DynamicForm#setItemHoverAlign
      */
-    public void setHoverAlign(Alignment hoverAlign) {
-        setAttribute("hoverAlign", hoverAlign == null ? null : hoverAlign.getValue());
+    public FormItem setHoverAlign(Alignment hoverAlign) {
+        return (FormItem)setAttribute("hoverAlign", hoverAlign == null ? null : hoverAlign.getValue());
     }
 
     /**
@@ -2140,9 +2279,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param hoverDelay New hoverDelay value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setHoverDelay(Integer hoverDelay) {
-        setAttribute("hoverDelay", hoverDelay);
+    public FormItem setHoverDelay(Integer hoverDelay) {
+        return (FormItem)setAttribute("hoverDelay", hoverDelay);
     }
 
     /**
@@ -2160,10 +2300,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Option to specify a height for any hover shown for this item.
      *
      * @param hoverHeight New hoverHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.DynamicForm#setItemHoverHeight
      */
-    public void setHoverHeight(Integer hoverHeight) {
-        setAttribute("hoverHeight", hoverHeight);
+    public FormItem setHoverHeight(Integer hoverHeight) {
+        return (FormItem)setAttribute("hoverHeight", hoverHeight);
     }
 
     /**
@@ -2175,16 +2316,38 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
     public Integer getHoverHeight()  {
         return getAttributeAsInt("hoverHeight");
     }
+
+    /**
+     * Option to specify a height for any hover shown for this item.
+     *
+     * @param hoverHeight New hoverHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.form.DynamicForm#setItemHoverHeight
+     */
+    public FormItem setHoverHeight(String hoverHeight) {
+        return (FormItem)setAttribute("hoverHeight", hoverHeight);
+    }
+
+    /**
+     * Option to specify a height for any hover shown for this item.
+     *
+     * @return Current hoverHeight value. Default value is null
+     * @see com.smartgwt.client.widgets.form.DynamicForm#getItemHoverHeight
+     */
+    public String getHoverHeightAsString()  {
+        return getAttributeAsString("hoverHeight");
+    }
     
 
     /**
      * Opacity for any hover shown for this item
      *
      * @param hoverOpacity New hoverOpacity value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.DynamicForm#setItemHoverOpacity
      */
-    public void setHoverOpacity(Integer hoverOpacity) {
-        setAttribute("hoverOpacity", hoverOpacity);
+    public FormItem setHoverOpacity(Integer hoverOpacity) {
+        return (FormItem)setAttribute("hoverOpacity", hoverOpacity);
     }
 
     /**
@@ -2202,11 +2365,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Explicit CSS Style for any hover shown for this item.
      *
      * @param hoverStyle New hoverStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.DynamicForm#setItemHoverStyle
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
-    public void setHoverStyle(String hoverStyle) {
-        setAttribute("hoverStyle", hoverStyle);
+    public FormItem setHoverStyle(String hoverStyle) {
+        return (FormItem)setAttribute("hoverStyle", hoverStyle);
     }
 
     /**
@@ -2225,10 +2389,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Vertical text alignment  for text displayed in this item's hover canvas, if shown.
      *
      * @param hoverVAlign New hoverVAlign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.DynamicForm#setItemHoverVAlign
      */
-    public void setHoverVAlign(VerticalAlignment hoverVAlign) {
-        setAttribute("hoverVAlign", hoverVAlign == null ? null : hoverVAlign.getValue());
+    public FormItem setHoverVAlign(VerticalAlignment hoverVAlign) {
+        return (FormItem)setAttribute("hoverVAlign", hoverVAlign == null ? null : hoverVAlign.getValue());
     }
 
     /**
@@ -2246,10 +2411,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Option to specify a width for any hover shown for this item.
      *
      * @param hoverWidth New hoverWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.DynamicForm#setItemHoverWidth
      */
-    public void setHoverWidth(Integer hoverWidth) {
-        setAttribute("hoverWidth", hoverWidth);
+    public FormItem setHoverWidth(Integer hoverWidth) {
+        return (FormItem)setAttribute("hoverWidth", hoverWidth);
     }
 
     /**
@@ -2261,6 +2427,27 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
     public Integer getHoverWidth()  {
         return getAttributeAsInt("hoverWidth");
     }
+
+    /**
+     * Option to specify a width for any hover shown for this item.
+     *
+     * @param hoverWidth New hoverWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.widgets.form.DynamicForm#setItemHoverWidth
+     */
+    public FormItem setHoverWidth(String hoverWidth) {
+        return (FormItem)setAttribute("hoverWidth", hoverWidth);
+    }
+
+    /**
+     * Option to specify a width for any hover shown for this item.
+     *
+     * @return Current hoverWidth value. Default value is null
+     * @see com.smartgwt.client.widgets.form.DynamicForm#getItemHoverWidth
+     */
+    public String getHoverWidthAsString()  {
+        return getAttributeAsString("hoverWidth");
+    }
     
 
     /**
@@ -2269,9 +2456,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param iconHeight New iconHeight value. Default value is 20
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setIconHeight(int iconHeight) {
-        setAttribute("iconHeight", iconHeight);
+    public FormItem setIconHeight(int iconHeight) {
+        return (FormItem)setAttribute("iconHeight", iconHeight);
     }
 
     /**
@@ -2291,9 +2479,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * FormItemIcon.hspace}. Must be non-negative.
      *
      * @param iconHSpace New iconHSpace value. Default value is 3
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setIconHSpace(int iconHSpace) {
-        setAttribute("iconHSpace", iconHSpace);
+    public FormItem setIconHSpace(int iconHSpace) {
+        return (FormItem)setAttribute("iconHSpace", iconHSpace);
     }
 
     /**
@@ -2313,10 +2502,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param iconPrompt New iconPrompt value. Default value is ""
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setIconPrompt(String iconPrompt) {
-        setAttribute("iconPrompt", iconPrompt);
+    public FormItem setIconPrompt(String iconPrompt) {
+        return (FormItem)setAttribute("iconPrompt", iconPrompt);
     }
 
     /**
@@ -2335,11 +2525,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * often used to display some kind of helper for   populating a form item.
      *
      * @param icons New icons value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItemIcon
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_details_icons" target="examples">Icons Example</a>
      */
-    public void setIcons(FormItemIcon... icons) {
-        setAttribute("icons", icons);
+    public FormItem setIcons(FormItemIcon... icons) {
+        return (FormItem)setAttribute("icons", icons);
     }
 
     /**
@@ -2360,9 +2551,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param iconVAlign New iconVAlign value. Default value is "bottom"
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setIconVAlign(VerticalAlignment iconVAlign) {
-        setAttribute("iconVAlign", iconVAlign == null ? null : iconVAlign.getValue());
+    public FormItem setIconVAlign(VerticalAlignment iconVAlign) {
+        return (FormItem)setAttribute("iconVAlign", iconVAlign == null ? null : iconVAlign.getValue());
     }
 
     /**
@@ -2381,9 +2573,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param iconWidth New iconWidth value. Default value is 20
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setIconWidth(int iconWidth) {
-        setAttribute("iconWidth", iconWidth);
+    public FormItem setIconWidth(int iconWidth) {
+        return (FormItem)setAttribute("iconWidth", iconWidth);
     }
 
     /**
@@ -2404,11 +2597,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * instantiation for any formItem where one is not provided.
      *
      * @param ID New ID value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.GlobalId GlobalId 
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
-    public void setID(String ID) {
-        setAttribute("ID", ID);
+    public FormItem setID(String ID) {
+        return (FormItem)setAttribute("ID", ID);
     }
 
     /**
@@ -2432,9 +2626,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param imageURLPrefix New imageURLPrefix value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setImageURLPrefix(String imageURLPrefix) {
-        setAttribute("imageURLPrefix", imageURLPrefix);
+    public FormItem setImageURLPrefix(String imageURLPrefix) {
+        return (FormItem)setAttribute("imageURLPrefix", imageURLPrefix);
     }
 
     /**
@@ -2455,9 +2650,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param imageURLSuffix New imageURLSuffix value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setImageURLSuffix(String imageURLSuffix) {
-        setAttribute("imageURLSuffix", imageURLSuffix);
+    public FormItem setImageURLSuffix(String imageURLSuffix) {
+        return (FormItem)setAttribute("imageURLSuffix", imageURLSuffix);
     }
 
     /**
@@ -2481,9 +2677,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * immediately on editorExit.
      *
      * @param implicitSave New implicitSave value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setImplicitSave(Boolean implicitSave) {
-        setAttribute("implicitSave", implicitSave);
+    public FormItem setImplicitSave(Boolean implicitSave) {
+        return (FormItem)setAttribute("implicitSave", implicitSave);
     }
 
     /**
@@ -2509,9 +2706,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * delay}, and when the entire form is submitted.
      *
      * @param implicitSaveOnBlur New implicitSaveOnBlur value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setImplicitSaveOnBlur(Boolean implicitSaveOnBlur) {
-        setAttribute("implicitSaveOnBlur", implicitSaveOnBlur);
+    public FormItem setImplicitSaveOnBlur(Boolean implicitSaveOnBlur) {
+        return (FormItem)setAttribute("implicitSaveOnBlur", implicitSaveOnBlur);
     }
 
     /**
@@ -2535,11 +2733,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param inputFormat New inputFormat value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setDateFormatter
      * @see com.smartgwt.client.docs.DateInputFormat DateInputFormat 
      */
-    public void setInputFormat(String inputFormat) {
-        setAttribute("inputFormat", inputFormat);
+    public FormItem setInputFormat(String inputFormat) {
+        return (FormItem)setAttribute("inputFormat", inputFormat);
     }
 
     /**
@@ -2565,9 +2764,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param left New left value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setLeft(int left) {
-        setAttribute("left", left);
+    public FormItem setLeft(int left) {
+        return (FormItem)setAttribute("left", left);
     }
 
     /**
@@ -2588,9 +2788,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <code>null</code> to show actual value until display value is loaded.
      *
      * @param loadingDisplayValue New loadingDisplayValue value. Default value is "Loading..."
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setLoadingDisplayValue(String loadingDisplayValue) {
-        setAttribute("loadingDisplayValue", loadingDisplayValue);
+    public FormItem setLoadingDisplayValue(String loadingDisplayValue) {
+        return (FormItem)setAttribute("loadingDisplayValue", loadingDisplayValue);
     }
 
     /**
@@ -2618,10 +2819,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param locateItemBy New locateItemBy value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.types.LocatorStrategy
      */
-    public void setLocateItemBy(String locateItemBy) {
-        setAttribute("locateItemBy", locateItemBy);
+    public FormItem setLocateItemBy(String locateItemBy) {
+        return (FormItem)setAttribute("locateItemBy", locateItemBy);
     }
 
     /**
@@ -2656,10 +2858,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.fields.TextItem#getShowHintInField shown in field}.
      *
      * @param minHintWidth New minHintWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setWrapHintText
      */
-    public void setMinHintWidth(Integer minHintWidth) {
-        setAttribute("minHintWidth", minHintWidth);
+    public FormItem setMinHintWidth(Integer minHintWidth) {
+        return (FormItem)setAttribute("minHintWidth", minHintWidth);
     }
 
     /**
@@ -2689,10 +2892,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * multiple:true is not set.
      *
      * @param multiple New multiple value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setMultiple(Boolean multiple) {
-        setAttribute("multiple", multiple);
+    public FormItem setMultiple(Boolean multiple) {
+        return (FormItem)setAttribute("multiple", multiple);
     }
 
     /**
@@ -2715,9 +2919,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * purposes.
      *
      * @param multipleValueSeparator New multipleValueSeparator value. Default value is ', '
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setMultipleValueSeparator(String multipleValueSeparator) {
-        setAttribute("multipleValueSeparator", multipleValueSeparator);
+    public FormItem setMultipleValueSeparator(String multipleValueSeparator) {
+        return (FormItem)setAttribute("multipleValueSeparator", multipleValueSeparator);
     }
 
     /**
@@ -2754,10 +2959,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param nullOriginalValueText New nullOriginalValueText value. Default value is "None"
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setNullOriginalValueText(String nullOriginalValueText) {
-        setAttribute("nullOriginalValueText", nullOriginalValueText);
+    public FormItem setNullOriginalValueText(String nullOriginalValueText) {
+        return (FormItem)setAttribute("nullOriginalValueText", nullOriginalValueText);
     }
 
     /**
@@ -2794,10 +3000,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <code>formItem.operator</code> will have no effect.
      *
      * @param operator New operator value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
      */
-    public void setOperator(OperatorId operator) {
-        setAttribute("operator", operator == null ? null : operator.getValue());
+    public FormItem setOperator(OperatorId operator) {
+        return (FormItem)setAttribute("operator", operator == null ? null : operator.getValue());
     }
 
     /**
@@ -2851,11 +3058,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Method to set the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} at runtime
      *
      * @param optionDataSource new optionDatasource. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#invalidateDisplayValueCache
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">List - Combo Box Example</a>
      */
-    public void setOptionDataSource(DataSource optionDataSource) {
-        setAttribute("optionDataSource", optionDataSource == null ? null : optionDataSource.getOrCreateJsObj());
+    public FormItem setOptionDataSource(DataSource optionDataSource) {
+        return (FormItem)setAttribute("optionDataSource", optionDataSource == null ? null : optionDataSource.getOrCreateJsObj());
     }
 
     /**
@@ -2909,11 +3117,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Method to set the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} at runtime
      *
      * @param optionDataSource new optionDatasource. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#invalidateDisplayValueCache
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_controls_various" target="examples">List - Combo Box Example</a>
      */
-    public void setOptionDataSource(String optionDataSource) {
-        setAttribute("optionDataSource", optionDataSource);
+    public FormItem setOptionDataSource(String optionDataSource) {
+        return (FormItem)setAttribute("optionDataSource", optionDataSource);
     }
 
     /**
@@ -2954,9 +3163,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param optionOperationId New optionOperationId value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
-    public void setOptionOperationId(String optionOperationId) {
-        setAttribute("optionOperationId", optionOperationId);
+    public FormItem setOptionOperationId(String optionOperationId) {
+        return (FormItem)setAttribute("optionOperationId", optionOperationId);
     }
 
     /**
@@ -2965,6 +3176,7 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * dataSource to pick up display value mapping.
      *
      * @return Current optionOperationId value. Default value is null
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public String getOptionOperationId()  {
         return getAttributeAsString("optionOperationId");
@@ -2978,10 +3190,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param optionTextMatchStyle New optionTextMatchStyle value. Default value is "exact"
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
-    public void setOptionTextMatchStyle(TextMatchStyle optionTextMatchStyle) {
-        setAttribute("optionTextMatchStyle", optionTextMatchStyle == null ? null : optionTextMatchStyle.getValue());
+    public FormItem setOptionTextMatchStyle(TextMatchStyle optionTextMatchStyle) {
+        return (FormItem)setAttribute("optionTextMatchStyle", optionTextMatchStyle == null ? null : optionTextMatchStyle.getValue());
     }
 
     /**
@@ -3005,10 +3218,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param originalValueMessage New originalValueMessage value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setOriginalValueMessage(String originalValueMessage) {
-        setAttribute("originalValueMessage", originalValueMessage);
+    public FormItem setOriginalValueMessage(String originalValueMessage) {
+        return (FormItem)setAttribute("originalValueMessage", originalValueMessage);
     }
 
     /**
@@ -3057,9 +3271,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param pickerIconHeight New pickerIconHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setPickerIconHeight(Integer pickerIconHeight) {
-        setAttribute("pickerIconHeight", pickerIconHeight);
+    public FormItem setPickerIconHeight(Integer pickerIconHeight) {
+        return (FormItem)setAttribute("pickerIconHeight", pickerIconHeight);
     }
 
     /**
@@ -3085,10 +3300,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param pickerIconName New pickerIconName value. Default value is "picker"
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Identifier Identifier 
      */
-    public void setPickerIconName(String pickerIconName) {
-        setAttribute("pickerIconName", pickerIconName);
+    public FormItem setPickerIconName(String pickerIconName) {
+        return (FormItem)setAttribute("pickerIconName", pickerIconName);
     }
 
     /**
@@ -3108,10 +3324,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Prompt to show when the user hovers the mouse over the picker icon.
      *
      * @param pickerIconPrompt New pickerIconPrompt value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setPickerIconPrompt(String pickerIconPrompt) {
-        setAttribute("pickerIconPrompt", pickerIconPrompt);
+    public FormItem setPickerIconPrompt(String pickerIconPrompt) {
+        return (FormItem)setAttribute("pickerIconPrompt", pickerIconPrompt);
     }
 
     /**
@@ -3131,13 +3348,14 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param pickerIconProperties New pickerIconProperties value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setPickerIconProperties(FormItemIcon pickerIconProperties) {
+    public FormItem setPickerIconProperties(FormItemIcon pickerIconProperties) {
         JavaScriptObject config = JSOHelper.createObject();
         if (pickerIconProperties != null) {
             JSOHelper.addProperties(config, pickerIconProperties.getJsObj());
         }
-        setAttribute("pickerIconProperties", pickerIconProperties == null ? null : config);
+        return (FormItem)setAttribute("pickerIconProperties", pickerIconProperties == null ? null : config);
     }
 
     /**
@@ -3159,10 +3377,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param pickerIconSrc New pickerIconSrc value. Default value is ""
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setPickerIconSrc(String pickerIconSrc) {
-        setAttribute("pickerIconSrc", pickerIconSrc);
+    public FormItem setPickerIconSrc(String pickerIconSrc) {
+        return (FormItem)setAttribute("pickerIconSrc", pickerIconSrc);
     }
 
     /**
@@ -3184,12 +3403,13 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.fields.FormItem#getControlStyle controlStyle}.
      *
      * @param pickerIconStyle New pickerIconStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
      * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
-    public void setPickerIconStyle(String pickerIconStyle) {
-        setAttribute("pickerIconStyle", pickerIconStyle);
+    public FormItem setPickerIconStyle(String pickerIconStyle) {
+        return (FormItem)setAttribute("pickerIconStyle", pickerIconStyle);
     }
 
     /**
@@ -3217,9 +3437,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param pickerIconWidth New pickerIconWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setPickerIconWidth(Integer pickerIconWidth) {
-        setAttribute("pickerIconWidth", pickerIconWidth);
+    public FormItem setPickerIconWidth(Integer pickerIconWidth) {
+        return (FormItem)setAttribute("pickerIconWidth", pickerIconWidth);
     }
 
     /**
@@ -3240,22 +3461,65 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
     
 
     /**
-     * Base CSS class name for a form item's text box element when getting printable HTML for the form. If unset {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getTextBoxStyle textBoxStyle} will be used instead. Note that focused
-     * styling will never be displayed while printing, though error and disabled styling will.
+     * CSS class name to apply to the print view of an item's text box if the item is {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getCanEdit canEdit:false}, with {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyDisplay readOnlyDisplay:static}. <P> If specified this will
+     * take precedence over {@link com.smartgwt.client.widgets.form.fields.FormItem#getPrintTextBoxStyle printTextBoxStyle} for
+     * static readonly items.
      *
-     * @param printTextBoxStyle New printTextBoxStyle value. Default value is null
+     * @param printReadOnlyTextBoxStyle New printReadOnlyTextBoxStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
-    public void setPrintTextBoxStyle(String printTextBoxStyle) {
-        setAttribute("printTextBoxStyle", printTextBoxStyle);
+    public FormItem setPrintReadOnlyTextBoxStyle(String printReadOnlyTextBoxStyle) {
+        return (FormItem)setAttribute("printReadOnlyTextBoxStyle", printReadOnlyTextBoxStyle);
+    }
+
+    /**
+     * CSS class name to apply to the print view of an item's text box if the item is {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getCanEdit canEdit:false}, with {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyDisplay readOnlyDisplay:static}. <P> If specified this will
+     * take precedence over {@link com.smartgwt.client.widgets.form.fields.FormItem#getPrintTextBoxStyle printTextBoxStyle} for
+     * static readonly items.
+     *
+     * @return Current printReadOnlyTextBoxStyle value. Default value is null
+     * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
+     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
+     */
+    public String getPrintReadOnlyTextBoxStyle()  {
+        return getAttributeAsString("printReadOnlyTextBoxStyle");
+    }
+    
+
+    /**
+     * Base CSS class name for a form item's text box element when getting printable HTML for the form. If unset {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTextBoxStyle textBoxStyle} will be used instead. Note that focused
+     * styling will never be displayed while printing, though error and disabled styling will. <P> By default this style will
+     * be used for printHTML for the item even if the item is {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getCanEdit canEdit:false} with {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyDisplay readOnlyDisplay:static}.<br> To override this
+     * behavior, developers may also specify a custom print style for this  state via the  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getPrintReadOnlyTextBoxStyle printReadOnlyTextBoxStyle}.
+     *
+     * @param printTextBoxStyle New printTextBoxStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
+     * @see com.smartgwt.client.docs.Printing Printing overview and related methods
+     */
+    public FormItem setPrintTextBoxStyle(String printTextBoxStyle) {
+        return (FormItem)setAttribute("printTextBoxStyle", printTextBoxStyle);
     }
 
     /**
      * Base CSS class name for a form item's text box element when getting printable HTML for the form. If unset {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getTextBoxStyle textBoxStyle} will be used instead. Note that focused
-     * styling will never be displayed while printing, though error and disabled styling will.
+     * styling will never be displayed while printing, though error and disabled styling will. <P> By default this style will
+     * be used for printHTML for the item even if the item is {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getCanEdit canEdit:false} with {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyDisplay readOnlyDisplay:static}.<br> To override this
+     * behavior, developers may also specify a custom print style for this  state via the  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getPrintReadOnlyTextBoxStyle printReadOnlyTextBoxStyle}.
      *
      * @return Current printTextBoxStyle value. Default value is null
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
@@ -3271,11 +3535,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.fields.FormItem#getTitleStyle titleStyle} will be used instead.
      *
      * @param printTitleStyle New printTitleStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
-    public void setPrintTitleStyle(String printTitleStyle) {
-        setAttribute("printTitleStyle", printTitleStyle);
+    public FormItem setPrintTitleStyle(String printTitleStyle) {
+        return (FormItem)setAttribute("printTitleStyle", printTitleStyle);
     }
 
     /**
@@ -3292,25 +3557,34 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
     
 
     /**
-     * This text is shown as a tooltip prompt when the cursor hovers over this item. When item is {@link
+     * This text is shown as a tooltip prompt when the cursor hovers over this item. <P> When item is {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#setCanEdit read-only} a different hover can be shown with {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyHover readOnlyHover}.
+     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyHover readOnlyHover}. Or, when item is {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisabled disabled} or read-only with {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyDisplay readOnlyDisplay:disabled} a different hover can be
+     * shown with {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisabledHover disabledHover}. <P> Note that when
+     * the form is {@link com.smartgwt.client.widgets.Canvas#getDisabled disabled} this prompt will not be shown.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.form.fields.FormItem#getPrompt prompt} for this item.
      *
      * @param prompt new prompt for the item. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
-    public void setPrompt(String prompt) {
-        setAttribute("prompt", prompt);
+    public FormItem setPrompt(String prompt) {
+        return (FormItem)setAttribute("prompt", prompt);
     }
 
     /**
-     * This text is shown as a tooltip prompt when the cursor hovers over this item. When item is {@link
+     * This text is shown as a tooltip prompt when the cursor hovers over this item. <P> When item is {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#setCanEdit read-only} a different hover can be shown with {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyHover readOnlyHover}.
+     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyHover readOnlyHover}. Or, when item is {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisabled disabled} or read-only with {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyDisplay readOnlyDisplay:disabled} a different hover can be
+     * shown with {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisabledHover disabledHover}. <P> Note that when
+     * the form is {@link com.smartgwt.client.widgets.Canvas#getDisabled disabled} this prompt will not be shown.
      *
      * @return Current prompt value. Default value is null
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
@@ -3330,9 +3604,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.fields.FormItem#getDisabled disabled items},  where text selection is never enabled
      *
      * @param readOnlyCanSelectText New readOnlyCanSelectText value. Default value is ["static", "readOnly"]
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setReadOnlyCanSelectText(ReadOnlyDisplayAppearance... readOnlyCanSelectText) {
-        setAttribute("readOnlyCanSelectText", readOnlyCanSelectText);
+    public FormItem setReadOnlyCanSelectText(ReadOnlyDisplayAppearance... readOnlyCanSelectText) {
+        return (FormItem)setAttribute("readOnlyCanSelectText", readOnlyCanSelectText);
     }
 
     /**
@@ -3360,10 +3635,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Setter for {@link com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyDisplay readOnlyDisplay}. <P> Note that calling this method for a {@link com.smartgwt.client.widgets.form.fields.ButtonItem} with {@link com.smartgwt.client.widgets.form.fields.ButtonItem#getEnableWhen ButtonItem.enableWhen} set is an error, since {@link com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyDisplay readOnlyDisplay} is then considered to always be "disabled".
      *
      * @param readOnlyDisplay new <code>readOnlyDisplay</code> value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.DynamicForm#setReadOnlyDisplay
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setReadOnlyDisplay(ReadOnlyDisplayAppearance readOnlyDisplay) {
-        setAttribute("readOnlyDisplay", readOnlyDisplay == null ? null : readOnlyDisplay.getValue());
+    public FormItem setReadOnlyDisplay(ReadOnlyDisplayAppearance readOnlyDisplay) {
+        return (FormItem)setAttribute("readOnlyDisplay", readOnlyDisplay == null ? null : readOnlyDisplay.getValue());
     }
 
     /**
@@ -3373,6 +3650,7 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      *
      * @return Current readOnlyDisplay value. Default value is null
      * @see com.smartgwt.client.widgets.form.DynamicForm#getReadOnlyDisplay
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public ReadOnlyDisplayAppearance getReadOnlyDisplay()  {
         return EnumUtil.getEnum(ReadOnlyDisplayAppearance.values(), getAttribute("readOnlyDisplay"));
@@ -3381,18 +3659,21 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
 
     /**
      * This text is shown as a tooltip prompt when the cursor hovers over this item and the item is {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setCanEdit read-only}.
+     * com.smartgwt.client.widgets.form.fields.FormItem#setCanEdit read-only}. <P> Note that when the form is {@link
+     * com.smartgwt.client.widgets.Canvas#getDisabled disabled} this prompt will not be shown.
      *
      * @param readOnlyHover New readOnlyHover value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setReadOnlyHover(String readOnlyHover) {
-        setAttribute("readOnlyHover", readOnlyHover);
+    public FormItem setReadOnlyHover(String readOnlyHover) {
+        return (FormItem)setAttribute("readOnlyHover", readOnlyHover);
     }
 
     /**
      * This text is shown as a tooltip prompt when the cursor hovers over this item and the item is {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setCanEdit read-only}.
+     * com.smartgwt.client.widgets.form.fields.FormItem#setCanEdit read-only}. <P> Note that when the form is {@link
+     * com.smartgwt.client.widgets.Canvas#getDisabled disabled} this prompt will not be shown.
      *
      * @return Current readOnlyHover value. Default value is null
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
@@ -3409,11 +3690,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.DynamicForm#getReadOnlyTextBoxStyle DynamicForm.readOnlyTextBoxStyle} default.
      *
      * @param readOnlyTextBoxStyle New readOnlyTextBoxStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.DynamicForm#setReadOnlyTextBoxStyle
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
      */
-    public void setReadOnlyTextBoxStyle(String readOnlyTextBoxStyle) {
-        setAttribute("readOnlyTextBoxStyle", readOnlyTextBoxStyle);
+    public FormItem setReadOnlyTextBoxStyle(String readOnlyTextBoxStyle) {
+        return (FormItem)setAttribute("readOnlyTextBoxStyle", readOnlyTextBoxStyle);
     }
 
     /**
@@ -3445,13 +3727,14 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <code>false</code> to prevent the field from storing its value into the form's values.
      *
      * @param readOnlyWhen New readOnlyWhen value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.RuleCriteria RuleCriteria overview and related methods
      */
-    public void setReadOnlyWhen(AdvancedCriteria readOnlyWhen) {
+    public FormItem setReadOnlyWhen(AdvancedCriteria readOnlyWhen) {
         if (readOnlyWhen instanceof Criterion) {
             readOnlyWhen.setAttribute("_constructor", "AdvancedCriteria");
         }
-        setAttribute("readOnlyWhen", readOnlyWhen == null ? null : readOnlyWhen.getJsObj());
+        return (FormItem)setAttribute("readOnlyWhen", readOnlyWhen == null ? null : readOnlyWhen.getJsObj());
     }
 
     /**
@@ -3479,9 +3762,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * If true, this item will cause the entire form to be redrawn when the item's "elementChanged" event is done firing
      *
      * @param redrawOnChange New redrawOnChange value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setRedrawOnChange(Boolean redrawOnChange) {
-        setAttribute("redrawOnChange", redrawOnChange);
+    public FormItem setRedrawOnChange(Boolean redrawOnChange) {
+        return (FormItem)setAttribute("redrawOnChange", redrawOnChange);
     }
 
     /**
@@ -3501,9 +3785,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param rejectInvalidValueOnChange New rejectInvalidValueOnChange value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setRejectInvalidValueOnChange(Boolean rejectInvalidValueOnChange) {
-        setAttribute("rejectInvalidValueOnChange", rejectInvalidValueOnChange);
+    public FormItem setRejectInvalidValueOnChange(Boolean rejectInvalidValueOnChange) {
+        return (FormItem)setAttribute("rejectInvalidValueOnChange", rejectInvalidValueOnChange);
     }
 
     /**
@@ -3532,11 +3817,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Setter to mark this formItem as {@link com.smartgwt.client.widgets.form.fields.FormItem#getRequired required}, or not required at runtime. Note that an alternative approach to updating the <code>required</code> flag directly would be to simply use a {@link com.smartgwt.client.types.ValidatorType requiredIf} type validator. <P> Note that this method will not re-validate this item by default or clear any  existing validation errors. If desired, this may be achieved by calling {@link com.smartgwt.client.widgets.form.fields.FormItem#validate validate()} or {@link com.smartgwt.client.widgets.form.DynamicForm#clearErrors DynamicForm.clearErrors()}.
      *
      * @param required new {@link com.smartgwt.client.widgets.form.fields.FormItem#getRequired required} value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_dep_show_hide" target="examples">Show & Hide Example</a>
      */
-    public void setRequired(Boolean required) {
-        setAttribute("required", required);
+    public FormItem setRequired(Boolean required) {
+        return (FormItem)setAttribute("required", required);
     }
 
     /**
@@ -3563,11 +3849,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * The required message for required field errors.
      *
      * @param requiredMessage New requiredMessage value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      * @see com.smartgwt.client.docs.Validation Validation overview and related methods
      */
-    public void setRequiredMessage(String requiredMessage) {
-        setAttribute("requiredMessage", requiredMessage);
+    public FormItem setRequiredMessage(String requiredMessage) {
+        return (FormItem)setAttribute("requiredMessage", requiredMessage);
     }
 
     /**
@@ -3593,13 +3880,14 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * FormItem using requiredWhen must have a {@link com.smartgwt.client.widgets.form.fields.FormItem#getName name} defined.
      *
      * @param requiredWhen New requiredWhen value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.RuleCriteria RuleCriteria overview and related methods
      */
-    public void setRequiredWhen(Criteria requiredWhen) {
+    public FormItem setRequiredWhen(Criteria requiredWhen) {
         if (requiredWhen instanceof Criterion) {
             requiredWhen.setAttribute("_constructor", "AdvancedCriteria");
         }
-        setAttribute("requiredWhen", requiredWhen == null ? null : requiredWhen.getJsObj());
+        return (FormItem)setAttribute("requiredWhen", requiredWhen == null ? null : requiredWhen.getJsObj());
     }
 
     /**
@@ -3624,10 +3912,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Number of rows that this item spans
      *
      * @param rowSpan New rowSpan value. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
-    public void setRowSpan(int rowSpan) {
-        setAttribute("rowSpan", rowSpan);
+    public FormItem setRowSpan(int rowSpan) {
+        return (FormItem)setAttribute("rowSpan", rowSpan);
     }
 
     /**
@@ -3646,9 +3935,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.DynamicForm#getSaveOnEnter saveOnEnter} is true on the parent form.
      *
      * @param saveOnEnter New saveOnEnter value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setSaveOnEnter(Boolean saveOnEnter) {
-        setAttribute("saveOnEnter", saveOnEnter);
+    public FormItem setSaveOnEnter(Boolean saveOnEnter) {
+        return (FormItem)setAttribute("saveOnEnter", saveOnEnter);
     }
 
     /**
@@ -3668,10 +3958,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnClick DynamicForm.selectOnClick}.
      *
      * @param selectOnClick New selectOnClick value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
      */
-    public void setSelectOnClick(Boolean selectOnClick) {
-        setAttribute("selectOnClick", selectOnClick);
+    public FormItem setSelectOnClick(Boolean selectOnClick) {
+        return (FormItem)setAttribute("selectOnClick", selectOnClick);
     }
 
     /**
@@ -3693,10 +3984,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.DynamicForm#getSelectOnFocus DynamicForm.selectOnFocus}.
      *
      * @param selectOnFocus New selectOnFocus value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
      */
-    public void setSelectOnFocus(Boolean selectOnFocus) {
-        setAttribute("selectOnFocus", selectOnFocus);
+    public FormItem setSelectOnFocus(Boolean selectOnFocus) {
+        return (FormItem)setAttribute("selectOnFocus", selectOnFocus);
     }
 
     /**
@@ -3727,9 +4019,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * is logged, and      shouldSaveValue will be set to false. </li></ul>
      *
      * @param shouldSaveValue New shouldSaveValue value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setShouldSaveValue(Boolean shouldSaveValue) {
-        setAttribute("shouldSaveValue", shouldSaveValue);
+    public FormItem setShouldSaveValue(Boolean shouldSaveValue) {
+        return (FormItem)setAttribute("shouldSaveValue", shouldSaveValue);
     }
 
     /**
@@ -3761,9 +4054,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <code>FormItem</code> or the <code>DynamicForm</code>. See <code>setItemTitleHoverFormatter()</code>.
      *
      * @param showClippedTitleOnHover New showClippedTitleOnHover value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setShowClippedTitleOnHover(boolean showClippedTitleOnHover) {
-        setAttribute("showClippedTitleOnHover", showClippedTitleOnHover);
+    public FormItem setShowClippedTitleOnHover(boolean showClippedTitleOnHover) {
+        return (FormItem)setAttribute("showClippedTitleOnHover", showClippedTitleOnHover);
     }
 
     /**
@@ -3787,9 +4081,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <code>FormItem</code> or the <code>DynamicForm</code>. See <code>setItemValueHoverFormatter()</code>.
      *
      * @param showClippedValueOnHover New showClippedValueOnHover value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setShowClippedValueOnHover(Boolean showClippedValueOnHover) {
-        setAttribute("showClippedValueOnHover", showClippedValueOnHover);
+    public FormItem setShowClippedValueOnHover(Boolean showClippedValueOnHover) {
+        return (FormItem)setAttribute("showClippedValueOnHover", showClippedValueOnHover);
     }
 
     /**
@@ -3828,10 +4123,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showDeletions New showDeletions value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.DynamicForm#setShowDeletions
      */
-    public void setShowDeletions(Boolean showDeletions) {
-        setAttribute("showDeletions", showDeletions);
+    public FormItem setShowDeletions(Boolean showDeletions) {
+        return (FormItem)setAttribute("showDeletions", showDeletions);
     }
 
     /**
@@ -3871,11 +4167,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showDisabled new showDisabled setting. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
-    public void setShowDisabled(Boolean showDisabled) {
-        setAttribute("showDisabled", showDisabled);
+    public FormItem setShowDisabled(Boolean showDisabled) {
+        return (FormItem)setAttribute("showDisabled", showDisabled);
     }
 
     /**
@@ -3900,9 +4197,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showDisabledIconsOnFocus New showDisabledIconsOnFocus value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setShowDisabledIconsOnFocus(Boolean showDisabledIconsOnFocus) {
-        setAttribute("showDisabledIconsOnFocus", showDisabledIconsOnFocus);
+    public FormItem setShowDisabledIconsOnFocus(Boolean showDisabledIconsOnFocus) {
+        return (FormItem)setAttribute("showDisabledIconsOnFocus", showDisabledIconsOnFocus);
     }
 
     /**
@@ -3928,9 +4226,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showDisabledPickerIconOnFocus New showDisabledPickerIconOnFocus value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setShowDisabledPickerIconOnFocus(Boolean showDisabledPickerIconOnFocus) {
-        setAttribute("showDisabledPickerIconOnFocus", showDisabledPickerIconOnFocus);
+    public FormItem setShowDisabledPickerIconOnFocus(Boolean showDisabledPickerIconOnFocus) {
+        return (FormItem)setAttribute("showDisabledPickerIconOnFocus", showDisabledPickerIconOnFocus);
     }
 
     /**
@@ -3979,10 +4278,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * parts of the form item. See {@link com.smartgwt.client.docs.FormItemBaseStyle} for more on this.
      *
      * @param showErrorIcon New showErrorIcon value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowErrorIcon(Boolean showErrorIcon) {
-        setAttribute("showErrorIcon", showErrorIcon);
+    public FormItem setShowErrorIcon(Boolean showErrorIcon) {
+        return (FormItem)setAttribute("showErrorIcon", showErrorIcon);
     }
 
     /**
@@ -4054,11 +4354,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * parts of the form item. See {@link com.smartgwt.client.docs.FormItemBaseStyle} for more on this.
      *
      * @param showErrorStyle New showErrorStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowErrorStyle(Boolean showErrorStyle) {
-        setAttribute("showErrorStyle", showErrorStyle);
+    public FormItem setShowErrorStyle(Boolean showErrorStyle) {
+        return (FormItem)setAttribute("showErrorStyle", showErrorStyle);
     }
 
     /**
@@ -4131,10 +4432,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * parts of the form item. See {@link com.smartgwt.client.docs.FormItemBaseStyle} for more on this.
      *
      * @param showErrorText New showErrorText value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowErrorText(Boolean showErrorText) {
-        setAttribute("showErrorText", showErrorText);
+    public FormItem setShowErrorText(Boolean showErrorText) {
+        return (FormItem)setAttribute("showErrorText", showErrorText);
     }
 
     /**
@@ -4181,11 +4483,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showFocused New showFocused value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
-    public void setShowFocused(Boolean showFocused) {
-        setAttribute("showFocused", showFocused);
+    public FormItem setShowFocused(Boolean showFocused) {
+        return (FormItem)setAttribute("showFocused", showFocused);
     }
 
     /**
@@ -4207,11 +4510,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showFocusedErrorState New showFocusedErrorState value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowFocusedErrorState(Boolean showFocusedErrorState) {
-        setAttribute("showFocusedErrorState", showFocusedErrorState);
+    public FormItem setShowFocusedErrorState(Boolean showFocusedErrorState) {
+        return (FormItem)setAttribute("showFocusedErrorState", showFocusedErrorState);
     }
 
     /**
@@ -4233,9 +4537,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showFocusedIcons New showFocusedIcons value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setShowFocusedIcons(Boolean showFocusedIcons) {
-        setAttribute("showFocusedIcons", showFocusedIcons);
+    public FormItem setShowFocusedIcons(Boolean showFocusedIcons) {
+        return (FormItem)setAttribute("showFocusedIcons", showFocusedIcons);
     }
 
     /**
@@ -4254,9 +4559,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * should the picker icon show a focused image when the form item has focus?
      *
      * @param showFocusedPickerIcon New showFocusedPickerIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setShowFocusedPickerIcon(Boolean showFocusedPickerIcon) {
-        setAttribute("showFocusedPickerIcon", showFocusedPickerIcon);
+    public FormItem setShowFocusedPickerIcon(Boolean showFocusedPickerIcon) {
+        return (FormItem)setAttribute("showFocusedPickerIcon", showFocusedPickerIcon);
     }
 
     /**
@@ -4276,10 +4582,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showHint New showHint value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowHint(Boolean showHint) {
-        setAttribute("showHint", showHint);
+    public FormItem setShowHint(Boolean showHint) {
+        return (FormItem)setAttribute("showHint", showHint);
     }
 
     /**
@@ -4300,9 +4607,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showIcons New showIcons value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setShowIcons(Boolean showIcons) {
-        setAttribute("showIcons", showIcons);
+    public FormItem setShowIcons(Boolean showIcons) {
+        return (FormItem)setAttribute("showIcons", showIcons);
     }
 
     /**
@@ -4329,9 +4637,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showIconsOnFocus new value of {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowIconsOnFocus showIconsOnFocus}. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setShowIconsOnFocus(Boolean showIconsOnFocus) {
-        setAttribute("showIconsOnFocus", showIconsOnFocus);
+    public FormItem setShowIconsOnFocus(Boolean showIconsOnFocus) {
+        return (FormItem)setAttribute("showIconsOnFocus", showIconsOnFocus);
     }
 
     /**
@@ -4349,19 +4658,48 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
     
 
     /**
+     * For fields of {@link com.smartgwt.client.types.FormItemType type:"image"}, if the field is non editable, and being
+     * displayed with {@link com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyDisplay readOnlyDisplay:"static"},
+     * should the value (URL) be displayed as text, or should an image be rendered? <P> If unset, {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowImageAsURL DynamicForm.showImageAsURL} will be consulted instead.
+     *
+     * @param showImageAsURL New showImageAsURL value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
+     */
+    public FormItem setShowImageAsURL(Boolean showImageAsURL) {
+        return (FormItem)setAttribute("showImageAsURL", showImageAsURL);
+    }
+
+    /**
+     * For fields of {@link com.smartgwt.client.types.FormItemType type:"image"}, if the field is non editable, and being
+     * displayed with {@link com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyDisplay readOnlyDisplay:"static"},
+     * should the value (URL) be displayed as text, or should an image be rendered? <P> If unset, {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getShowImageAsURL DynamicForm.showImageAsURL} will be consulted instead.
+     *
+     * @return Current showImageAsURL value. Default value is null
+     */
+    public Boolean getShowImageAsURL()  {
+        return getAttributeAsBoolean("showImageAsURL", true);
+    }
+    
+
+    /**
      * Causes the original value to be shown to the end user when the user hovers over the FormItem as such (when the {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#addItemHoverHandler FormItem.itemHover()} event would fire). <p> When
      * {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowOldValueInHover showOldValueInHover} and the form's
      * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowOldValueInHover DynamicForm.showOldValueInHover} are both
      * unset, defaults to the value of {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPending showPending}. <p>
      * The message shown is controlled by {@link com.smartgwt.client.widgets.form.fields.FormItem#getOriginalValueMessage
-     * originalValueMessage}.
+     * originalValueMessage}, unless the item is  {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisabled disabled}
+     * and {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisabledHover disabledHover} is  set - in this case, the
+     * hover shows the <code>disabledHover</code> HTML.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showOldValueInHover New showOldValueInHover value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setShowOldValueInHover(Boolean showOldValueInHover) {
-        setAttribute("showOldValueInHover", showOldValueInHover);
+    public FormItem setShowOldValueInHover(Boolean showOldValueInHover) {
+        return (FormItem)setAttribute("showOldValueInHover", showOldValueInHover);
     }
 
     /**
@@ -4371,7 +4709,9 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * {@link com.smartgwt.client.widgets.form.DynamicForm#getShowOldValueInHover DynamicForm.showOldValueInHover} are both
      * unset, defaults to the value of {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPending showPending}. <p>
      * The message shown is controlled by {@link com.smartgwt.client.widgets.form.fields.FormItem#getOriginalValueMessage
-     * originalValueMessage}.
+     * originalValueMessage}, unless the item is  {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisabled disabled}
+     * and {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisabledHover disabledHover} is  set - in this case, the
+     * hover shows the <code>disabledHover</code> HTML.
      *
      * @return Current showOldValueInHover value. Default value is null
      */
@@ -4396,10 +4736,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showOver New showOver value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
-    public void setShowOver(boolean showOver) {
-        setAttribute("showOver", showOver);
+    public FormItem setShowOver(boolean showOver) {
+        return (FormItem)setAttribute("showOver", showOver);
     }
 
     /**
@@ -4432,9 +4773,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showOverIcons New showOverIcons value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setShowOverIcons(Boolean showOverIcons) {
-        setAttribute("showOverIcons", showOverIcons);
+    public FormItem setShowOverIcons(Boolean showOverIcons) {
+        return (FormItem)setAttribute("showOverIcons", showOverIcons);
     }
 
     /**
@@ -4466,11 +4808,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showPending New showPending value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.events.PendingStatusChangedEvent
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#form_pending_values" target="examples">Pending Values Example</a>
      */
-    public void setShowPending(Boolean showPending) {
-        setAttribute("showPending", showPending);
+    public FormItem setShowPending(Boolean showPending) {
+        return (FormItem)setAttribute("showPending", showPending);
     }
 
     /**
@@ -4505,9 +4848,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * will call {@link com.smartgwt.client.widgets.form.fields.FormItem#showPicker showPicker()}.
      *
      * @param showPickerIcon New showPickerIcon value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setShowPickerIcon(Boolean showPickerIcon) {
-        setAttribute("showPickerIcon", showPickerIcon);
+    public FormItem setShowPickerIcon(Boolean showPickerIcon) {
+        return (FormItem)setAttribute("showPickerIcon", showPickerIcon);
     }
 
     /**
@@ -4535,9 +4879,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showPickerIconOnFocus new value of {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIconOnFocus showPickerIconOnFocus}. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setShowPickerIconOnFocus(Boolean showPickerIconOnFocus) {
-        setAttribute("showPickerIconOnFocus", showPickerIconOnFocus);
+    public FormItem setShowPickerIconOnFocus(Boolean showPickerIconOnFocus) {
+        return (FormItem)setAttribute("showPickerIconOnFocus", showPickerIconOnFocus);
     }
 
     /**
@@ -4558,11 +4903,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showRTL New showRTL value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setShowRTL(boolean showRTL) {
-        setAttribute("showRTL", showRTL);
+    public FormItem setShowRTL(boolean showRTL) {
+        return (FormItem)setAttribute("showRTL", showRTL);
     }
 
     /**
@@ -4583,9 +4929,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * subclasses.
      *
      * @param showTitle New showTitle value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle);
+    public FormItem setShowTitle(Boolean showTitle) {
+        return (FormItem)setAttribute("showTitle", showTitle);
     }
 
     /**
@@ -4606,9 +4953,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showValueIconOnly New showValueIconOnly value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setShowValueIconOnly(Boolean showValueIconOnly) {
-        setAttribute("showValueIconOnly", showValueIconOnly);
+    public FormItem setShowValueIconOnly(Boolean showValueIconOnly) {
+        return (FormItem)setAttribute("showValueIconOnly", showValueIconOnly);
     }
 
     /**
@@ -4626,10 +4974,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Whether this item should always start a new row in the form layout.
      *
      * @param startRow New startRow value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
-    public void setStartRow(Boolean startRow) {
-        setAttribute("startRow", startRow);
+    public FormItem setStartRow(Boolean startRow) {
+        return (FormItem)setAttribute("startRow", startRow);
     }
 
     /**
@@ -4649,11 +4998,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * {@link com.smartgwt.client.widgets.form.fields.FormItem#getHeight height} is used if this property is not set.
      *
      * @param staticHeight New staticHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setHeight
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
-    public void setStaticHeight(Integer staticHeight) {
-        setAttribute("staticHeight", staticHeight);
+    public FormItem setStaticHeight(Integer staticHeight) {
+        return (FormItem)setAttribute("staticHeight", staticHeight);
     }
 
     /**
@@ -4678,9 +5028,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.fields.FormItem#getSynchronousValidation synchronousValidation} is forced on.
      *
      * @param stopOnError New stopOnError value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setStopOnError(Boolean stopOnError) {
-        setAttribute("stopOnError", stopOnError);
+    public FormItem setStopOnError(Boolean stopOnError) {
+        return (FormItem)setAttribute("stopOnError", stopOnError);
     }
 
     /**
@@ -4704,9 +5055,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param storeDisplayValues New storeDisplayValues value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setStoreDisplayValues(Boolean storeDisplayValues) {
-        setAttribute("storeDisplayValues", storeDisplayValues);
+    public FormItem setStoreDisplayValues(Boolean storeDisplayValues) {
+        return (FormItem)setAttribute("storeDisplayValues", storeDisplayValues);
     }
 
     /**
@@ -4729,14 +5081,14 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * browser menu options) using the {@link com.smartgwt.client.widgets.form.fields.FormItem#isCutEvent isCutEvent()} and
      * {@link com.smartgwt.client.widgets.form.fields.FormItem#isPasteEvent isPasteEvent()} methods. This allows custom
      * cut/paste handling to be added to the various change notification flow methods including  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler FormItem.change()}, {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#handleChange handleChange()} and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler FormItem.change()}, and {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#setInputTransformer FormItem.transformInput()}.
      *
      * @param supportsCutPasteEvents New supportsCutPasteEvents value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setSupportsCutPasteEvents(boolean supportsCutPasteEvents) {
-        setAttribute("supportsCutPasteEvents", supportsCutPasteEvents);
+    public FormItem setSupportsCutPasteEvents(boolean supportsCutPasteEvents) {
+        return (FormItem)setAttribute("supportsCutPasteEvents", supportsCutPasteEvents);
     }
 
     /**
@@ -4748,8 +5100,7 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * browser menu options) using the {@link com.smartgwt.client.widgets.form.fields.FormItem#isCutEvent isCutEvent()} and
      * {@link com.smartgwt.client.widgets.form.fields.FormItem#isPasteEvent isPasteEvent()} methods. This allows custom
      * cut/paste handling to be added to the various change notification flow methods including  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler FormItem.change()}, {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#handleChange handleChange()} and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#addChangeHandler FormItem.change()}, and {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#setInputTransformer FormItem.transformInput()}.
      *
      * @return Current supportsCutPasteEvents value. Default value is false
@@ -4766,9 +5117,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param suppressValueIcon New suppressValueIcon value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setSuppressValueIcon(Boolean suppressValueIcon) {
-        setAttribute("suppressValueIcon", suppressValueIcon);
+    public FormItem setSuppressValueIcon(Boolean suppressValueIcon) {
+        return (FormItem)setAttribute("suppressValueIcon", suppressValueIcon);
     }
 
     /**
@@ -4789,9 +5141,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * state could be affected by a server request that has not yet returned.
      *
      * @param synchronousValidation New synchronousValidation value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setSynchronousValidation(Boolean synchronousValidation) {
-        setAttribute("synchronousValidation", synchronousValidation);
+    public FormItem setSynchronousValidation(Boolean synchronousValidation) {
+        return (FormItem)setAttribute("synchronousValidation", synchronousValidation);
     }
 
     /**
@@ -4818,10 +5171,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Setter for {@link com.smartgwt.client.widgets.form.fields.FormItem#getTabIndex tabIndex}.
      *
      * @param tabIndex new tabIndex for the item. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Focus Focus overview and related methods
      */
-    public void setTabIndex(Integer tabIndex) {
-        setAttribute("tabIndex", tabIndex);
+    public FormItem setTabIndex(Integer tabIndex) {
+        return (FormItem)setAttribute("tabIndex", tabIndex);
     }
 
     /**
@@ -4853,11 +5207,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.util.Page#isRTL RTL mode}).
      *
      * @param textAlign New textAlign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setApplyAlignToText
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setTextAlign(Alignment textAlign) {
-        setAttribute("textAlign", textAlign == null ? null : textAlign.getValue());
+    public FormItem setTextAlign(Alignment textAlign) {
+        return (FormItem)setAttribute("textAlign", textAlign == null ? null : textAlign.getValue());
     }
 
     /**
@@ -4890,12 +5245,13 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * this item.
      *
      * @param textBoxStyle New textBoxStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
      * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
-    public void setTextBoxStyle(String textBoxStyle) {
-        setAttribute("textBoxStyle", textBoxStyle);
+    public FormItem setTextBoxStyle(String textBoxStyle) {
+        return (FormItem)setAttribute("textBoxStyle", textBoxStyle);
     }
 
     /**
@@ -4927,10 +5283,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * prevent the formula field from storing the calculated value into the form's values.
      *
      * @param textFormula New textFormula value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormulaFields FormulaFields overview and related methods
      */
-    public void setTextFormula(UserSummary textFormula) {
-        setAttribute("textFormula", textFormula == null ? null : textFormula.getJsObj());
+    public FormItem setTextFormula(UserSummary textFormula) {
+        return (FormItem)setAttribute("textFormula", textFormula == null ? null : textFormula.getJsObj());
     }
 
     /**
@@ -4962,11 +5319,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param timeFormatter New timeFormatter value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setFormat
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setTimeFormatter(TimeDisplayFormat timeFormatter) {
-        setAttribute("timeFormatter", timeFormatter == null ? null : timeFormatter.getValue());
+    public FormItem setTimeFormatter(TimeDisplayFormat timeFormatter) {
+        return (FormItem)setAttribute("timeFormatter", timeFormatter == null ? null : timeFormatter.getValue());
     }
 
     /**
@@ -4990,11 +5348,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * User visible title for this form item.
      *
      * @param title New title value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
      */
-    public void setTitle(String title) {
-        setAttribute("title", title);
+    public FormItem setTitle(String title) {
+        return (FormItem)setAttribute("title", title);
     }
 
     /**
@@ -5013,9 +5372,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Alignment of this item's title in its cell. <p> If null, dynamically set according to text direction.
      *
      * @param titleAlign New titleAlign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setTitleAlign(Alignment titleAlign) {
-        setAttribute("titleAlign", titleAlign == null ? null : titleAlign.getValue());
+    public FormItem setTitleAlign(Alignment titleAlign) {
+        return (FormItem)setAttribute("titleAlign", titleAlign == null ? null : titleAlign.getValue());
     }
 
     /**
@@ -5034,10 +5394,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * whose {@link com.smartgwt.client.types.TitleOrientation} is either "left" or "right".
      *
      * @param titleColSpan New titleColSpan value. Default value is 1
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      */
-    public void setTitleColSpan(int titleColSpan) {
-        setAttribute("titleColSpan", titleColSpan);
+    public FormItem setTitleColSpan(int titleColSpan) {
+        return (FormItem)setAttribute("titleColSpan", titleColSpan);
     }
 
     /**
@@ -5059,10 +5420,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * form layouts}, but titles on top do not.
      *
      * @param titleOrientation New titleOrientation value. Default value is Canvas.LEFT
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.DynamicForm#setTitleOrientation
      */
-    public void setTitleOrientation(TitleOrientation titleOrientation) {
-        setAttribute("titleOrientation", titleOrientation == null ? null : titleOrientation.getValue());
+    public FormItem setTitleOrientation(TitleOrientation titleOrientation) {
+        return (FormItem)setAttribute("titleOrientation", titleOrientation == null ? null : titleOrientation.getValue());
     }
 
     /**
@@ -5087,11 +5449,13 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.DynamicForm#getRequiredTitleSuffix requiredTitleSuffix}.
      *
      * @param titleStyle New titleStyle value. Default value is "formTitle"
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
+     * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
-    public void setTitleStyle(String titleStyle) {
-        setAttribute("titleStyle", titleStyle);
+    public FormItem setTitleStyle(String titleStyle) {
+        return (FormItem)setAttribute("titleStyle", titleStyle);
     }
 
     /**
@@ -5105,6 +5469,7 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * @return Current titleStyle value. Default value is "formTitle"
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getCellStyle
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
+     * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
     public String getTitleStyle()  {
         return getAttributeAsString("titleStyle");
@@ -5117,9 +5482,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <code>"right"</code>.
      *
      * @param titleVAlign New titleVAlign value. Default value is Canvas.CENTER
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setTitleVAlign(VerticalAlignment titleVAlign) {
-        setAttribute("titleVAlign", titleVAlign == null ? null : titleVAlign.getValue());
+    public FormItem setTitleVAlign(VerticalAlignment titleVAlign) {
+        return (FormItem)setAttribute("titleVAlign", titleVAlign == null ? null : titleVAlign.getValue());
     }
 
     /**
@@ -5143,9 +5509,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param top New top value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setTop(int top) {
-        setAttribute("top", top);
+    public FormItem setTop(int top) {
+        return (FormItem)setAttribute("top", top);
     }
 
     /**
@@ -5167,11 +5534,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param updateControlOnOver New updateControlOnOver value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setShowOver
      * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
-    public void setUpdateControlOnOver(Boolean updateControlOnOver) {
-        setAttribute("updateControlOnOver", updateControlOnOver);
+    public FormItem setUpdateControlOnOver(Boolean updateControlOnOver) {
+        return (FormItem)setAttribute("updateControlOnOver", updateControlOnOver);
     }
 
     /**
@@ -5193,11 +5561,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param updatePickerIconOnOver New updatePickerIconOnOver value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setShowOver
      * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
-    public void setUpdatePickerIconOnOver(Boolean updatePickerIconOnOver) {
-        setAttribute("updatePickerIconOnOver", updatePickerIconOnOver);
+    public FormItem setUpdatePickerIconOnOver(Boolean updatePickerIconOnOver) {
+        return (FormItem)setAttribute("updatePickerIconOnOver", updatePickerIconOnOver);
     }
 
     /**
@@ -5219,11 +5588,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param updateTextBoxOnOver New updateTextBoxOnOver value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setShowOver
      * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
-    public void setUpdateTextBoxOnOver(Boolean updateTextBoxOnOver) {
-        setAttribute("updateTextBoxOnOver", updateTextBoxOnOver);
+    public FormItem setUpdateTextBoxOnOver(Boolean updateTextBoxOnOver) {
+        return (FormItem)setAttribute("updateTextBoxOnOver", updateTextBoxOnOver);
     }
 
     /**
@@ -5246,10 +5616,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * level.
      *
      * @param useAdvancedCriteria New useAdvancedCriteria value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
      */
-    public void setUseAdvancedCriteria(Boolean useAdvancedCriteria) {
-        setAttribute("useAdvancedCriteria", useAdvancedCriteria);
+    public FormItem setUseAdvancedCriteria(Boolean useAdvancedCriteria) {
+        return (FormItem)setAttribute("useAdvancedCriteria", useAdvancedCriteria);
     }
 
     /**
@@ -5277,10 +5648,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * read-only fields without having to  use a general disabled appearance for those fields
      *
      * @param useDisabledHintStyleForReadOnly New useDisabledHintStyleForReadOnly value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setUseDisabledHintStyleForReadOnly(Boolean useDisabledHintStyleForReadOnly) {
-        setAttribute("useDisabledHintStyleForReadOnly", useDisabledHintStyleForReadOnly);
+    public FormItem setUseDisabledHintStyleForReadOnly(Boolean useDisabledHintStyleForReadOnly) {
+        return (FormItem)setAttribute("useDisabledHintStyleForReadOnly", useDisabledHintStyleForReadOnly);
     }
 
     /**
@@ -5318,9 +5690,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.fields.FormItem#getValueFieldName valueField} for the item</li> </ul>
      *
      * @param useLocalDisplayFieldValue New useLocalDisplayFieldValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setUseLocalDisplayFieldValue(Boolean useLocalDisplayFieldValue) {
-        setAttribute("useLocalDisplayFieldValue", useLocalDisplayFieldValue);
+    public FormItem setUseLocalDisplayFieldValue(Boolean useLocalDisplayFieldValue) {
+        return (FormItem)setAttribute("useLocalDisplayFieldValue", useLocalDisplayFieldValue);
     }
 
     /**
@@ -5353,10 +5726,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * - displaying errors and rejecting the change on validation failure.
      *
      * @param validateOnChange New validateOnChange value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.DynamicForm#setValidateOnChange
      */
-    public void setValidateOnChange(Boolean validateOnChange) {
-        setAttribute("validateOnChange", validateOnChange);
+    public FormItem setValidateOnChange(Boolean validateOnChange) {
+        return (FormItem)setAttribute("validateOnChange", validateOnChange);
     }
 
     /**
@@ -5380,10 +5754,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * validator will be fired on editorExit.
      *
      * @param validateOnExit New validateOnExit value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.DynamicForm#setValidateOnExit
      */
-    public void setValidateOnExit(Boolean validateOnExit) {
-        setAttribute("validateOnExit", validateOnExit);
+    public FormItem setValidateOnExit(Boolean validateOnExit) {
+        return (FormItem)setAttribute("validateOnExit", validateOnExit);
     }
 
     /**
@@ -5406,9 +5781,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * DataSourceField.validators}.
      *
      * @param validators New validators value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setValidators(Validator... validators) {
-        setAttribute("validators", validators);
+    public FormItem setValidators(Validator... validators) {
+        return (FormItem)setAttribute("validators", validators);
     }
     
 
@@ -5418,10 +5794,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * true, allowing the user to input expressions.
      *
      * @param validOperators New validOperators value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
-    public void setValidOperators(OperatorId... validOperators) {
-        setAttribute("validOperators", validOperators);
+    public FormItem setValidOperators(OperatorId... validOperators) {
+        return (FormItem)setAttribute("validOperators", validOperators);
     }
 
     /**
@@ -5448,9 +5825,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * DynamicForm.itemLayout} is set to <code>"absolute"</code> for the form.
      *
      * @param vAlign New vAlign value. Default value is Canvas.CENTER
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setVAlign(VerticalAlignment vAlign) {
-        setAttribute("vAlign", vAlign == null ? null : vAlign.getValue());
+    public FormItem setVAlign(VerticalAlignment vAlign) {
+        return (FormItem)setAttribute("vAlign", vAlign == null ? null : vAlign.getValue());
     }
 
     /**
@@ -5478,10 +5856,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param valueDeselectedCSSText New valueDeselectedCSSText value. Default value is "color:#A8A8A8;text-decoration:line-through;"
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSText CSSText 
      */
-    public void setValueDeselectedCSSText(String valueDeselectedCSSText) {
-        setAttribute("valueDeselectedCSSText", valueDeselectedCSSText);
+    public FormItem setValueDeselectedCSSText(String valueDeselectedCSSText) {
+        return (FormItem)setAttribute("valueDeselectedCSSText", valueDeselectedCSSText);
     }
 
     /**
@@ -5505,10 +5884,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.fields.FormItem#getValueFieldName getValueFieldName()}.
      *
      * @param valueField New valueField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
-    public void setValueField(String valueField) {
-        setAttribute("valueField", valueField);
+    public FormItem setValueField(String valueField) {
+        return (FormItem)setAttribute("valueField", valueField);
     }
 
     /**
@@ -5537,11 +5917,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * specify a height for the value icon written out.
      *
      * @param valueIconHeight New valueIconHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setValueIconWidth
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setValueIconSize
      */
-    public void setValueIconHeight(Integer valueIconHeight) {
-        setAttribute("valueIconHeight", valueIconHeight);
+    public FormItem setValueIconHeight(Integer valueIconHeight) {
+        return (FormItem)setAttribute("valueIconHeight", valueIconHeight);
     }
 
     /**
@@ -5563,10 +5944,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * icon.
      *
      * @param valueIconLeftPadding New valueIconLeftPadding value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setValueIcons
      */
-    public void setValueIconLeftPadding(int valueIconLeftPadding) {
-        setAttribute("valueIconLeftPadding", valueIconLeftPadding);
+    public FormItem setValueIconLeftPadding(int valueIconLeftPadding) {
+        return (FormItem)setAttribute("valueIconLeftPadding", valueIconLeftPadding);
     }
 
     /**
@@ -5587,10 +5969,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <b>NOTE:</b> In RTL mode, the valueIconRightPadding is applied to the <em>left</em> of the value icon.
      *
      * @param valueIconRightPadding New valueIconRightPadding value. Default value is 3
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setValueIcons
      */
-    public void setValueIconRightPadding(int valueIconRightPadding) {
-        setAttribute("valueIconRightPadding", valueIconRightPadding);
+    public FormItem setValueIconRightPadding(int valueIconRightPadding) {
+        return (FormItem)setAttribute("valueIconRightPadding", valueIconRightPadding);
     }
 
     /**
@@ -5614,11 +5997,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * specified.
      *
      * @param valueIconSize New valueIconSize value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setValueIconWidth
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setValueIconHeight
      */
-    public void setValueIconSize(int valueIconSize) {
-        setAttribute("valueIconSize", valueIconSize);
+    public FormItem setValueIconSize(int valueIconSize) {
+        return (FormItem)setAttribute("valueIconSize", valueIconSize);
     }
 
     /**
@@ -5642,11 +6026,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * specify a width for the value icon written out.
      *
      * @param valueIconWidth New valueIconWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setValueIconHeight
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setValueIconSize
      */
-    public void setValueIconWidth(Integer valueIconWidth) {
-        setAttribute("valueIconWidth", valueIconWidth);
+    public FormItem setValueIconWidth(Integer valueIconWidth) {
+        return (FormItem)setAttribute("valueIconWidth", valueIconWidth);
     }
 
     /**
@@ -5669,10 +6054,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.fields.FormItem#hide hide()} to manipulate visibility.
      *
      * @param visible New visible value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setVisible(Boolean visible) {
-        setAttribute("visible", visible);
+    public FormItem setVisible(Boolean visible) {
+        return (FormItem)setAttribute("visible", visible);
     }
 
     /**
@@ -5703,13 +6089,14 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * prevent the field from storing its value into the form's values.
      *
      * @param visibleWhen New visibleWhen value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setVisibleWhen(AdvancedCriteria visibleWhen) {
+    public FormItem setVisibleWhen(AdvancedCriteria visibleWhen) {
         if (visibleWhen instanceof Criterion) {
             visibleWhen.setAttribute("_constructor", "AdvancedCriteria");
         }
-        setAttribute("visibleWhen", visibleWhen == null ? null : visibleWhen.getJsObj());
+        return (FormItem)setAttribute("visibleWhen", visibleWhen == null ? null : visibleWhen.getJsObj());
     }
 
     /**
@@ -5744,13 +6131,14 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.docs.FormLayout} overview for details.
      *
      * @param width New width value. Default value is "*"
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setHeight
      * @see com.smartgwt.client.widgets.form.DynamicForm#setItemLayout
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_spanning" target="examples">Spanning Example</a>
      */
-    public void setWidth(int width) {
-        setAttribute("width", width);
+    public FormItem setWidth(int width) {
+        return (FormItem)setAttribute("width", width);
     }
 
     /**
@@ -5791,13 +6179,14 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.docs.FormLayout} overview for details.
      *
      * @param width New width value. Default value is "*"
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setHeight
      * @see com.smartgwt.client.widgets.form.DynamicForm#setItemLayout
      * @see com.smartgwt.client.docs.FormLayout FormLayout overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#layout_form_spanning" target="examples">Spanning Example</a>
      */
-    public void setWidth(String width) {
-        setAttribute("width", width);
+    public FormItem setWidth(String width) {
+        return (FormItem)setAttribute("width", width);
     }
 
     /**
@@ -5831,10 +6220,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * field}.
      *
      * @param wrapHintText New wrapHintText value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setMinHintWidth
      */
-    public void setWrapHintText(Boolean wrapHintText) {
-        setAttribute("wrapHintText", wrapHintText);
+    public FormItem setWrapHintText(Boolean wrapHintText) {
+        return (FormItem)setAttribute("wrapHintText", wrapHintText);
     }
 
     /**
@@ -5858,9 +6248,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.DynamicForm#getWrapItemTitles wrapItemTitles} at the DynamicForm level.
      *
      * @param wrapTitle New wrapTitle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for chaining setter calls
      */
-    public void setWrapTitle(Boolean wrapTitle) {
-        setAttribute("wrapTitle", wrapTitle);
+    public FormItem setWrapTitle(Boolean wrapTitle) {
+        return (FormItem)setAttribute("wrapTitle", wrapTitle);
     }
 
     /**
@@ -5985,7 +6376,14 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * change() and setValue() to accomplish the same thing.  Returning false from <code>change</code> is intended for
      * rejecting input entirely, such as typing invalid characters. <p> Note that if you ask the form for the current value in
      * this handler, you will get the old value because the change has not yet been committed.  The new value is available as a
-     * parameter to this method.
+     * parameter to this method. <p> Change/Changed notifications vs <i>"...When"</i> rules: the <code>change</code> and
+     * <code>changed</code> events only fire when an end user modifies a field value.  If you are trying to dynamically control
+     * the visibility or enabled state of other  components in response to these events, consider instead using properties 
+     * such as {@link com.smartgwt.client.widgets.Canvas#getVisibleWhen Canvas.visibleWhen}, {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyWhen item.readOnlyWhen}, {@link
+     * com.smartgwt.client.widgets.Canvas#getEnableWhen Canvas.enableWhen} on the target component. (Similar properties are 
+     * available on {@link com.smartgwt.client.widgets.form.fields.FormItem}, {@link com.smartgwt.client.widgets.Canvas},
+     * {@link com.smartgwt.client.widgets.menu.MenuItem} and other components).
      *
      * @param handler the change handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -6028,7 +6426,14 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Add a changed handler.
      * <p>
      * Called when a FormItem's value has been changed as the result of user interaction.  This method fires after the newly
-     * specified value has been stored.
+     * specified value has been stored. <p> Change/Changed notifications vs <i>"...When"</i> rules: the <code>change</code> and
+     * <code>changed</code> events only fire when an end user modifies a field value.  If you are trying to dynamically control
+     * the visibility or enabled state of other  components in response to these events, consider instead using properties 
+     * such as {@link com.smartgwt.client.widgets.Canvas#getVisibleWhen Canvas.visibleWhen}, {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyWhen item.readOnlyWhen}, {@link
+     * com.smartgwt.client.widgets.Canvas#getEnableWhen Canvas.enableWhen} on the target component. (Similar properties are 
+     * available on {@link com.smartgwt.client.widgets.form.fields.FormItem}, {@link com.smartgwt.client.widgets.Canvas},
+     * {@link com.smartgwt.client.widgets.menu.MenuItem} and other components).
      *
      * @param handler the changed handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -6418,10 +6823,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * present in the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} for  the
      * item, we avoid returning the specified displayField value and instead return the  title field of the option DataSource.
      * We do this to  avoid confusion for the case where the displayField is intended as a display-field  value for showing
-     * another field value within the same record in the underlying  dataSource only.</li> <li>If no explicit foreignDisplay or
-     * displayField   specification was found, and the {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField
-     * valueField} for this item is hidden in the   {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
-     * optionDataSource}, this method will return the title field for   the <code>optionDataSource</code>.</li></ul>
+     * another field value within the same record in the underlying  dataSource only.</li> <li>If no explicit
+     * foreignDisplayField or displayField   specification was found, and the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} for this item is hidden in the   {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}, this method will return the
+     * title field for   the <code>optionDataSource</code>.</li></ul>
      *
      * @return display field name, or null if there is no separate display field to                     use.
      * See {@link com.smartgwt.client.docs.FieldName FieldName}
@@ -7229,6 +7635,24 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
     }-*/;
 
 	/**
+     * Notification method fired for {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource data bound
+     * items} with {@link com.smartgwt.client.widgets.form.fields.FormItem#getFetchMissingValues fetchMissingValues} enabled
+     * when the {@link com.smartgwt.client.widgets.form.fields.FormItem#getSelectedRecord selected record} is updated as a
+     * result of the value changing or a fetch for a new record completing.<br> Note that a formItem with an optionDataSource
+     * may avoid fetching an associated record altogether in some cases. See {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getFetchMissingValues fetchMissingValues} and {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getAlwaysFetchMissingValues alwaysFetchMissingValues}. Developers
+     * should also be aware that if  PickList.fetchDisplayedFieldsOnly is set (or some custom  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionOperationId fetch operation} has been specified), the data
+     * returned from the server may include only a subset of dataSource fields rather than complete records.
+     * @param record new selected record. May be null if the item has been  set to a value with no associated record.
+     */
+    public native void selectedRecordChanged(ListGridRecord record) /*-{
+        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
+        self.selectedRecordChanged(record.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+	/**
      * Set an icon as enabled or disabled at runtime.
      * @param icon {@link com.smartgwt.client.widgets.form.fields.FormItemIcon#getName name} of the icon to be disabled/enabled.
      * See {@link com.smartgwt.client.docs.Identifier Identifier}
@@ -7256,7 +7680,7 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
 	/**
      * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getHeight height} is specified, should it be applied to the
      * item's text box element? If this method returns false, the text box will not have an explicit height applied, though the
-     * containing cell will be sized to accomodiate any specified height. <P> This is used in cases where the text box does not
+     * containing cell will be sized to accommodate any specified height. <P> This is used in cases where the text box does not
      * have distinctive styling (for example in standard {@link com.smartgwt.client.widgets.form.fields.StaticTextItem}s). As
      * the textBox has no explicit height, it fits the content. Since the text box is not visually distinct to  the user, this
      * makes {@link com.smartgwt.client.widgets.form.fields.FormItem#getVAlign vAlign} behave as expected with the  text value
@@ -7876,176 +8300,198 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
             return initHandler.@com.smartgwt.client.widgets.form.fields.events.FormItemInitHandler::onInit(Lcom/smartgwt/client/widgets/form/fields/FormItem;)(itemJ);
         }));
     }-*/;
-    public void setAttribute(String attribute, String value) {
+    public FormItem setAttribute(String attribute, String value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, value);
         } else {
             setProperty(attribute, value);
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, Map value) {
+    public FormItem setAttribute(String attribute, Map value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, JSOHelper.convertMapToJavascriptObject(value));
         } else {
             setProperty(attribute, JSOHelper.convertMapToJavascriptObject(value));
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, BaseClass[] value) {
+    public FormItem setAttribute(String attribute, BaseClass[] value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, JSOHelper.convertToJavaScriptArray(value));
         } else {
             setProperty(attribute, JSOHelper.convertToJavaScriptArray(value));
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, DataClass[] value) {
+    public FormItem setAttribute(String attribute, DataClass[] value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, JSOHelper.convertToJavaScriptArray(value));
         } else {
             setProperty(attribute, JSOHelper.convertToJavaScriptArray(value));
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, Date value) {
+    public FormItem setAttribute(String attribute, Date value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, value);
         } else {
             setProperty(attribute, JSOHelper.convertToJavaScriptDate(value));
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, ValueEnum[] value) {
+    public FormItem setAttribute(String attribute, ValueEnum[] value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, value);
         } else {
             setProperty(attribute, JSOHelper.convertToJavaScriptArray(value));
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, DataClass value) {
+    public FormItem setAttribute(String attribute, DataClass value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, value.getJsObj());
         } else {
             setProperty(attribute, value.getJsObj());
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, BaseClass value) {
+    public FormItem setAttribute(String attribute, BaseClass value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, value == null ? null : value.getOrCreateJsObj());
         } else {
             setProperty(attribute, value == null ? null : value.getOrCreateJsObj());
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, JavaScriptObject value) {
+    public FormItem setAttribute(String attribute, JavaScriptObject value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, value);
         } else {
             setProperty(attribute, value);
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, String[] value) {
+    public FormItem setAttribute(String attribute, String[] value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, JSOHelper.convertToJavaScriptArray(value));
         } else {
             setProperty(attribute, JSOHelper.convertToJavaScriptArray(value));
         }
+        return this;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////
     // The setAttribute signatures for primitive types must exactly override those specified in
     // DataClass.java to prevent Java from directly invoking a DataClass API due to autoboxing.
 
-    public void setAttribute(String attribute, boolean value) {
+    public FormItem setAttribute(String attribute, boolean value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, value);
         } else {
             setProperty(attribute, value);
         }
+        return this;
     }
-    public void setAttribute(String attribute, Boolean value) {
+    public FormItem setAttribute(String attribute, Boolean value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, value);
         } else {
             if (value == null) setNullProperty(attribute);
             else setProperty(attribute, value.booleanValue());
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, int value) {
+    public FormItem setAttribute(String attribute, int value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, value);
         } else {
             setProperty(attribute, value);
         }
+        return this;
     }
-    public void setAttribute(String attribute, Integer value) {
+    public FormItem setAttribute(String attribute, Integer value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, value);
         } else {
             if (value == null) setNullProperty(attribute);
             else setProperty(attribute, value.intValue());
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, long value) {
+    public FormItem setAttribute(String attribute, long value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, value);
         } else {
             setProperty(attribute, value);
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, Float value) {
+    public FormItem setAttribute(String attribute, Float value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, value);
         } else {
             if (value == null) setNullProperty(attribute);
             else setProperty(attribute, value.floatValue());
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, double value) {
+    public FormItem setAttribute(String attribute, double value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, value);
         } else {
             setProperty(attribute, value);
         }
+        return this;
     }
-    public void setAttribute(String attribute, Double value) {
+    public FormItem setAttribute(String attribute, Double value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, value);
         } else {
             if (value == null) setNullProperty(attribute);
             else setProperty(attribute, value.doubleValue());
         }
+        return this;
     }
 
-    public void setAttribute(String attribute, int[] value) {
+    public FormItem setAttribute(String attribute, int[] value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, JSOHelper.convertToJavaScriptArray(value));
         } else {
             setProperty(attribute, JSOHelper.convertToJavaScriptArray(value));
         }
-    }
-    public void setAttribute(String attribute, Integer[] value) {
-        if (!isCreated()) {
-            JSOHelper.setAttribute(jsObj, attribute, JSOHelper.convertToJavaScriptArray(value));
-        } else {
-            setProperty(attribute, JSOHelper.convertToJavaScriptArray(value));
-        }
+        return this;
     }
 
-    public void setAttribute(String attribute, double[] value) {
+    public FormItem setAttribute(String attribute, Integer[] value) {
         if (!isCreated()) {
             JSOHelper.setAttribute(jsObj, attribute, JSOHelper.convertToJavaScriptArray(value));
         } else {
             setProperty(attribute, JSOHelper.convertToJavaScriptArray(value));
         }
+        return this;
+    }
+
+    public FormItem setAttribute(String attribute, double[] value) {
+        if (!isCreated()) {
+            JSOHelper.setAttribute(jsObj, attribute, JSOHelper.convertToJavaScriptArray(value));
+        } else {
+            setProperty(attribute, JSOHelper.convertToJavaScriptArray(value));
+        }
+        return this;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -8409,9 +8855,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * {@link com.smartgwt.client.types.TitleOrientation} is either "left" or "right".
      *
      * @param colSpan colSpan Default value is 1
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for
+     * chaining setter calls
      */
-    public void setColSpan(String colSpan) {
-        setAttribute("colSpan", colSpan);
+    public FormItem setColSpan(String colSpan) {
+        return (FormItem)setAttribute("colSpan", colSpan);
     }
 
     /**
@@ -8421,9 +8869,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * {@link com.smartgwt.client.types.TitleOrientation} is either "left" or "right".
      *
      * @param colSpan colSpan Default value is 1
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for
+     * chaining setter calls
      */
-    public void setColSpan(int colSpan) {
-        setAttribute("colSpan", colSpan);
+    public FormItem setColSpan(int colSpan) {
+        return (FormItem)setAttribute("colSpan", colSpan);
     }
 
     /**
@@ -8443,9 +8893,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * is to provide an initial value for a field in a form rather  than a value to use in place of <code>null</code>.
      *
      * @param defaultValue defaultValue Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for
+     * chaining setter calls
      */
-    public void setDefaultValue(String defaultValue) {
-        setAttribute("defaultValue", defaultValue);
+    public FormItem setDefaultValue(String defaultValue) {
+        return (FormItem)setAttribute("defaultValue", defaultValue);
     }
 
     /**
@@ -8479,9 +8931,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * is to provide an initial value for a field in a form rather  than a value to use in place of <code>null</code>.
      *
      * @param defaultValue defaultValue Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for
+     * chaining setter calls
      */
-    public void setDefaultValue(Boolean defaultValue) {
-        setAttribute("defaultValue", defaultValue);
+    public FormItem setDefaultValue(Boolean defaultValue) {
+        return (FormItem)setAttribute("defaultValue", defaultValue);
     }
 
     /**
@@ -9423,12 +9877,14 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param displayFormat displayFormat Default value is null
+     * @return {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem} instance, for
+     * chaining setter calls
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setInputFormat
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setDateFormatter
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setTimeFormatter
      */
-    public void setDisplayFormat(DateDisplayFormat displayFormat) {
-        setAttribute("displayFormat", displayFormat.getValue());
+    public FormItem setDisplayFormat(DateDisplayFormat displayFormat) {
+        return (FormItem)setAttribute("displayFormat", displayFormat.getValue());
     }
 
     /**

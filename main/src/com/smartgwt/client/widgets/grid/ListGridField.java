@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * An ordinary JavaScript object containing properties that configures the display of and interaction with the columns of a
@@ -148,10 +151,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * set at the {@link com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterExpressions ListGrid level}.
      *
      * @param allowFilterExpressions New allowFilterExpressions value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
-    public void setAllowFilterExpressions(Boolean allowFilterExpressions) {
-        setAttribute("allowFilterExpressions", allowFilterExpressions);
+    public ListGridField setAllowFilterExpressions(Boolean allowFilterExpressions) {
+        return (ListGridField)setAttribute("allowFilterExpressions", allowFilterExpressions);
     }
 
     /**
@@ -176,9 +180,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * setting is enabled.
      *
      * @param allowFilterOperators New allowFilterOperators value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setAllowFilterOperators(Boolean allowFilterOperators) {
-        setAttribute("allowFilterOperators", allowFilterOperators);
+    public ListGridField setAllowFilterOperators(Boolean allowFilterOperators) {
+        return (ListGridField)setAttribute("allowFilterOperators", allowFilterOperators);
     }
 
     /**
@@ -201,9 +206,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * the default {@link com.smartgwt.client.widgets.grid.ListGridField#getFilterOperator search operator}.
      *
      * @param alwaysShowOperatorIcon New alwaysShowOperatorIcon value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setAlwaysShowOperatorIcon(Boolean alwaysShowOperatorIcon) {
-        setAttribute("alwaysShowOperatorIcon", alwaysShowOperatorIcon);
+    public ListGridField setAlwaysShowOperatorIcon(Boolean alwaysShowOperatorIcon) {
+        return (ListGridField)setAttribute("alwaysShowOperatorIcon", alwaysShowOperatorIcon);
     }
 
     /**
@@ -229,9 +235,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * ListGrid.applyFormulaAfterSummary}
      *
      * @param applyAfterSummary New applyAfterSummary value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setApplyAfterSummary(Boolean applyAfterSummary) {
-        setAttribute("applyAfterSummary", applyAfterSummary);
+    public ListGridField setApplyAfterSummary(Boolean applyAfterSummary) {
+        return (ListGridField)setAttribute("applyAfterSummary", applyAfterSummary);
     }
 
     /**
@@ -255,10 +262,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGrid#getArrowKeyEditAction ListGrid.getArrowKeyEditAction()}.
      *
      * @param arrowKeyEditAction New arrowKeyEditAction value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
-    public void setArrowKeyEditAction(ArrowKeyEditAction arrowKeyEditAction) {
-        setAttribute("arrowKeyEditAction", arrowKeyEditAction == null ? null : arrowKeyEditAction.getValue());
+    public ListGridField setArrowKeyEditAction(ArrowKeyEditAction arrowKeyEditAction) {
+        return (ListGridField)setAttribute("arrowKeyEditAction", arrowKeyEditAction == null ? null : arrowKeyEditAction.getValue());
     }
 
     /**
@@ -277,10 +285,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * Whether to allow browser autoComplete when editing this field. <p> If unset, defaults to listGrid.autoComplete
      *
      * @param autoComplete New autoComplete value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#setAutoComplete
      */
-    public void setAutoComplete(AutoComplete autoComplete) {
-        setAttribute("autoComplete", autoComplete == null ? null : autoComplete.getValue());
+    public ListGridField setAutoComplete(AutoComplete autoComplete) {
+        return (ListGridField)setAttribute("autoComplete", autoComplete == null ? null : autoComplete.getValue());
     }
 
     /**
@@ -301,10 +310,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * per-field basis.
      *
      * @param autoFetchDisplayMap New autoFetchDisplayMap value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#setAutoFetchDisplayMap
      */
-    public void setAutoFetchDisplayMap(Boolean autoFetchDisplayMap) {
-        setAttribute("autoFetchDisplayMap", autoFetchDisplayMap);
+    public ListGridField setAutoFetchDisplayMap(Boolean autoFetchDisplayMap) {
+        return (ListGridField)setAttribute("autoFetchDisplayMap", autoFetchDisplayMap);
     }
 
     /**
@@ -336,11 +346,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * "within", in which case cells' content is often empty or completely covered by record-components.
      *
      * @param autoFitWidth New autoFitWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#setAutoFitDateFields
      * @see com.smartgwt.client.widgets.grid.ListGrid#setAutoFitTimeFields
      */
-    public void setAutoFitWidth(Boolean autoFitWidth) {
-        setAttribute("autoFitWidth", autoFitWidth);
+    public ListGridField setAutoFitWidth(Boolean autoFitWidth) {
+        return (ListGridField)setAttribute("autoFitWidth", autoFitWidth);
     }
 
     /**
@@ -373,9 +384,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * this setting overrides the autoFitWidthApproach specified at the ListGrid level.
      *
      * @param autoFitWidthApproach New autoFitWidthApproach value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setAutoFitWidthApproach(AutoFitWidthApproach autoFitWidthApproach) {
-        setAttribute("autoFitWidthApproach", autoFitWidthApproach == null ? null : autoFitWidthApproach.getValue());
+    public ListGridField setAutoFitWidthApproach(AutoFitWidthApproach autoFitWidthApproach) {
+        return (ListGridField)setAttribute("autoFitWidthApproach", autoFitWidthApproach == null ? null : autoFitWidthApproach.getValue());
     }
 
     /**
@@ -401,10 +413,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * a {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFreezePosition getAutoFreezePosition()} implementation.
      *
      * @param autoFreeze New autoFreeze value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FrozenFields FrozenFields overview and related methods
      */
-    public void setAutoFreeze(Boolean autoFreeze) {
-        setAttribute("autoFreeze", autoFreeze);
+    public ListGridField setAutoFreeze(Boolean autoFreeze) {
+        return (ListGridField)setAttribute("autoFreeze", autoFreeze);
     }
 
     /**
@@ -431,13 +444,14 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * record[listGrid.recordBaseStyleProperty]}  instead.
      *
      * @param baseStyle New baseStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#setRecordBaseStyleProperty
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_lf_grid_cells" target="examples">Grid cells Example</a>
      */
-    public void setBaseStyle(String baseStyle) {
-        setAttribute("baseStyle", baseStyle);
+    public ListGridField setBaseStyle(String baseStyle) {
+        return (ListGridField)setAttribute("baseStyle", baseStyle);
     }
 
     /**
@@ -481,11 +495,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * "within", in which case cells' content is often empty or completely covered by record-components.
      *
      * @param canAutoFitWidth New canAutoFitWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#setAutoFitDateFields
      * @see com.smartgwt.client.widgets.grid.ListGrid#setAutoFitTimeFields
      */
-    public void setCanAutoFitWidth(Boolean canAutoFitWidth) {
-        setAttribute("canAutoFitWidth", canAutoFitWidth);
+    public ListGridField setCanAutoFitWidth(Boolean canAutoFitWidth) {
+        return (ListGridField)setAttribute("canAutoFitWidth", canAutoFitWidth);
     }
 
     /**
@@ -525,9 +540,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGrid#getCanResizeFields ListGrid.canResizeFields}.
      *
      * @param canDragResize New canDragResize value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setCanDragResize(Boolean canDragResize) {
-        setAttribute("canDragResize", canDragResize);
+    public ListGridField setCanDragResize(Boolean canDragResize) {
+        return (ListGridField)setAttribute("canDragResize", canDragResize);
     }
 
     /**
@@ -552,14 +568,15 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <code>true</code> or <code>false</code> as to whether editing is possible by default.
      *
      * @param canEdit New canEdit value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#setCanEdit
      * @see com.smartgwt.client.widgets.grid.ListGrid#setRecordEditProperty
      * @see com.smartgwt.client.widgets.grid.ListGrid#canEditCell
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_editing_disable" target="examples">Disable editing Example</a>
      */
-    public void setCanEdit(Boolean canEdit) {
-        setAttribute("canEdit", canEdit);
+    public ListGridField setCanEdit(Boolean canEdit) {
+        return (ListGridField)setAttribute("canEdit", canEdit);
     }
 
     /**
@@ -590,9 +607,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGrid#getCanAddFormulaFields ListGrid.canAddFormulaFields} is <code>false</code>.
      *
      * @param canEditFormula New canEditFormula value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setCanEditFormula(Boolean canEditFormula) {
-        setAttribute("canEditFormula", canEditFormula);
+    public ListGridField setCanEditFormula(Boolean canEditFormula) {
+        return (ListGridField)setAttribute("canEditFormula", canEditFormula);
     }
 
     /**
@@ -613,9 +631,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGrid#getCanAddSummaryFields ListGrid.canAddSummaryFields} is <code>false</code>.
      *
      * @param canEditSummary New canEditSummary value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setCanEditSummary(Boolean canEditSummary) {
-        setAttribute("canEditSummary", canEditSummary);
+    public ListGridField setCanEditSummary(Boolean canEditSummary) {
+        return (ListGridField)setAttribute("canEditSummary", canEditSummary);
     }
 
     /**
@@ -636,9 +655,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * canExport: false.
      *
      * @param canExport New canExport value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setCanExport(Boolean canExport) {
-        setAttribute("canExport", canExport);
+    public ListGridField setCanExport(Boolean canExport) {
+        return (ListGridField)setAttribute("canExport", canExport);
     }
 
     /**
@@ -657,10 +677,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * If showing a filter row for this ListGrid, should the filter criteria for this      field be editable
      *
      * @param canFilter New canFilter value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_sortfilter_disable_filter" target="examples">Disable filter Example</a>
      */
-    public void setCanFilter(Boolean canFilter) {
-        setAttribute("canFilter", canFilter);
+    public ListGridField setCanFilter(Boolean canFilter) {
+        return (ListGridField)setAttribute("canFilter", canFilter);
     }
 
     /**
@@ -679,11 +700,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.docs.FrozenFields}.
      *
      * @param canFreeze New canFreeze value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderContextMenuItems
      * @see com.smartgwt.client.docs.FrozenFields FrozenFields overview and related methods
      */
-    public void setCanFreeze(Boolean canFreeze) {
-        setAttribute("canFreeze", canFreeze);
+    public ListGridField setCanFreeze(Boolean canFreeze) {
+        return (ListGridField)setAttribute("canFreeze", canFreeze);
     }
 
     /**
@@ -703,10 +725,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * Determines whether this field will be groupable in the header context menu.
      *
      * @param canGroupBy New canGroupBy value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#groupBy
      */
-    public void setCanGroupBy(Boolean canGroupBy) {
-        setAttribute("canGroupBy", canGroupBy);
+    public ListGridField setCanGroupBy(Boolean canGroupBy) {
+        return (ListGridField)setAttribute("canGroupBy", canGroupBy);
     }
 
     /**
@@ -731,11 +754,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * currently visible fields, but the advanced field picker user interface will disallow hiding it.
      *
      * @param canHide New canHide value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderContextMenuItems
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setCanHide(Boolean canHide) {
-        setAttribute("canHide", canHide);
+    public ListGridField setCanHide(Boolean canHide) {
+        return (ListGridField)setAttribute("canHide", canHide);
     }
 
     /**
@@ -760,9 +784,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * Determines whether this field can be hilited.  Set to false to prevent this field from appearing in HiliteEditor.
      *
      * @param canHilite New canHilite value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setCanHilite(Boolean canHilite) {
-        setAttribute("canHilite", canHilite);
+    public ListGridField setCanHilite(Boolean canHilite) {
+        return (ListGridField)setAttribute("canHilite", canHilite);
     }
 
     /**
@@ -788,9 +813,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * themselves may not be drag-reordered.
      *
      * @param canReorder New canReorder value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setCanReorder(Boolean canReorder) {
-        setAttribute("canReorder", canReorder);
+    public ListGridField setCanReorder(Boolean canReorder) {
+        return (ListGridField)setAttribute("canReorder", canReorder);
     }
 
     /**
@@ -818,11 +844,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGrid#setSort setSort()} will work as  expected.
      *
      * @param canSort New canSort value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#sort
      * @see com.smartgwt.client.widgets.grid.ListGrid#setCanSort
      */
-    public void setCanSort(Boolean canSort) {
-        setAttribute("canSort", canSort);
+    public ListGridField setCanSort(Boolean canSort) {
+        return (ListGridField)setAttribute("canSort", canSort);
     }
 
     /**
@@ -844,9 +871,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * When true, this field can only be used for sorting if the data is entirely client-side.
      *
      * @param canSortClientOnly New canSortClientOnly value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setCanSortClientOnly(Boolean canSortClientOnly) {
-        setAttribute("canSortClientOnly", canSortClientOnly);
+    public ListGridField setCanSortClientOnly(Boolean canSortClientOnly) {
+        return (ListGridField)setAttribute("canSortClientOnly", canSortClientOnly);
     }
 
     /**
@@ -877,10 +905,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param canToggle New canToggle value. Default value is varies
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
-    public void setCanToggle(Boolean canToggle) {
-        setAttribute("canToggle", canToggle);
+    public ListGridField setCanToggle(Boolean canToggle) {
+        return (ListGridField)setAttribute("canToggle", canToggle);
     }
 
     /**
@@ -912,10 +941,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * cells in the body will also be reflected in any editors for the field.
      *
      * @param cellAlign New cellAlign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setCellAlign(Alignment cellAlign) {
-        setAttribute("cellAlign", cellAlign == null ? null : cellAlign.getValue());
+    public ListGridField setCellAlign(Alignment cellAlign) {
+        return (ListGridField)setAttribute("cellAlign", cellAlign == null ? null : cellAlign.getValue());
     }
 
     /**
@@ -939,10 +969,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGrid#setFieldCellIcon ListGrid.setFieldCellIcon()}.
      *
      * @param cellIcon New cellIcon value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setCellIcon(String cellIcon) {
-        setAttribute("cellIcon", cellIcon);
+    public ListGridField setCellIcon(String cellIcon) {
+        return (ListGridField)setAttribute("cellIcon", cellIcon);
     }
 
     /**
@@ -961,14 +992,41 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
     
 
     /**
+     * HTML to show in a hover over cells in this field.  Useful for fixed hover text, such as  a tooltip for an icon in a
+     * field of type "icon".  To show a custom prompt per cell, see {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#hoverHTML hoverHTML}.
+     *
+     * @param cellPrompt New cellPrompt value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public ListGridField setCellPrompt(String cellPrompt) {
+        return (ListGridField)setAttribute("cellPrompt", cellPrompt);
+    }
+
+    /**
+     * HTML to show in a hover over cells in this field.  Useful for fixed hover text, such as  a tooltip for an icon in a
+     * field of type "icon".  To show a custom prompt per cell, see {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#hoverHTML hoverHTML}.
+     *
+     * @return Current cellPrompt value. Default value is null
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getCellPrompt()  {
+        return getAttributeAsString("cellPrompt");
+    }
+    
+
+    /**
      * dataPath for this field. This property allows the grid to display details of nested data structures in a flat list of
      * columns.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param dataPath New dataPath value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setDataPath(String dataPath) {
-        setAttribute("dataPath", dataPath);
+    public ListGridField setDataPath(String dataPath) {
+        return (ListGridField)setAttribute("dataPath", dataPath);
     }
 
     /**
@@ -1001,12 +1059,13 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * by the Smart GWT system for standard DateDisplayFormats.
      *
      * @param dateFormatter New dateFormatter value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#setDateFormatter
      * @see com.smartgwt.client.widgets.grid.ListGrid#setDatetimeFormatter
      * @see com.smartgwt.client.widgets.grid.ListGridField#setTimeFormatter
      */
-    public void setDateFormatter(DateDisplayFormat dateFormatter) {
-        setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue());
+    public ListGridField setDateFormatter(DateDisplayFormat dateFormatter) {
+        return (ListGridField)setAttribute("dateFormatter", dateFormatter == null ? null : dateFormatter.getValue());
     }
 
     /**
@@ -1043,10 +1102,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * original unpadded value is always shown when the value is edited.
      *
      * @param decimalPad New decimalPad value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setDecimalPad(Integer decimalPad) {
-        setAttribute("decimalPad", decimalPad);
+    public ListGridField setDecimalPad(Integer decimalPad) {
+        return (ListGridField)setAttribute("decimalPad", decimalPad);
     }
 
     /**
@@ -1070,10 +1130,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * shown with its original precision when edited.
      *
      * @param decimalPrecision New decimalPrecision value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setDecimalPrecision(Integer decimalPrecision) {
-        setAttribute("decimalPrecision", decimalPrecision);
+    public ListGridField setDecimalPrecision(Integer decimalPrecision) {
+        return (ListGridField)setAttribute("decimalPrecision", decimalPrecision);
     }
 
     /**
@@ -1098,10 +1159,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGridField#getGroupingModes field.groupingModes}.
      *
      * @param defaultGroupingMode New defaultGroupingMode value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Identifier Identifier 
      */
-    public void setDefaultGroupingMode(String defaultGroupingMode) {
-        setAttribute("defaultGroupingMode", defaultGroupingMode);
+    public ListGridField setDefaultGroupingMode(String defaultGroupingMode) {
+        return (ListGridField)setAttribute("defaultGroupingMode", defaultGroupingMode);
     }
 
     /**
@@ -1123,11 +1185,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param defaultIconSrc New defaultIconSrc value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setIcons
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
-    public void setDefaultIconSrc(String defaultIconSrc) {
-        setAttribute("defaultIconSrc", defaultIconSrc);
+    public ListGridField setDefaultIconSrc(String defaultIconSrc) {
+        return (ListGridField)setAttribute("defaultIconSrc", defaultIconSrc);
     }
 
     /**
@@ -1150,9 +1213,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * autoFit size for the field's content.
      *
      * @param defaultWidth New defaultWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setDefaultWidth(Integer defaultWidth) {
-        setAttribute("defaultWidth", defaultWidth);
+    public ListGridField setDefaultWidth(Integer defaultWidth) {
+        return (ListGridField)setAttribute("defaultWidth", defaultWidth);
     }
 
     /**
@@ -1182,9 +1246,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * ListGrid.getDisplayValue()}.
      *
      * @param displayField New displayField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setDisplayField(String displayField) {
-        setAttribute("displayField", displayField);
+    public ListGridField setDisplayField(String displayField) {
+        return (ListGridField)setAttribute("displayField", displayField);
     }
 
     /**
@@ -1226,9 +1291,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param displayValueFromRecord New displayValueFromRecord value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setDisplayValueFromRecord(Boolean displayValueFromRecord) {
-        setAttribute("displayValueFromRecord", displayValueFromRecord);
+    public ListGridField setDisplayValueFromRecord(Boolean displayValueFromRecord) {
+        return (ListGridField)setAttribute("displayValueFromRecord", displayValueFromRecord);
     }
 
     /**
@@ -1259,9 +1325,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGrid#getCanEdit edited}.
      *
      * @param editorFormula New editorFormula value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setEditorFormula(UserFormula editorFormula) {
-        setAttribute("editorFormula", editorFormula == null ? null : editorFormula.getJsObj());
+    public ListGridField setEditorFormula(UserFormula editorFormula) {
+        return (ListGridField)setAttribute("editorFormula", editorFormula == null ? null : editorFormula.getJsObj());
     }
 
     /**
@@ -1284,11 +1351,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param editorIconHeight New editorIconHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setIcons
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
-    public void setEditorIconHeight(Integer editorIconHeight) {
-        setAttribute("editorIconHeight", editorIconHeight);
+    public ListGridField setEditorIconHeight(Integer editorIconHeight) {
+        return (ListGridField)setAttribute("editorIconHeight", editorIconHeight);
     }
 
     /**
@@ -1314,11 +1382,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param editorIconWidth New editorIconWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setIcons
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
-    public void setEditorIconWidth(Integer editorIconWidth) {
-        setAttribute("editorIconWidth", editorIconWidth);
+    public ListGridField setEditorIconWidth(Integer editorIconWidth) {
+        return (ListGridField)setAttribute("editorIconWidth", editorIconWidth);
     }
 
     /**
@@ -1345,10 +1414,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param editorImageURLPrefix New editorImageURLPrefix value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
-    public void setEditorImageURLPrefix(String editorImageURLPrefix) {
-        setAttribute("editorImageURLPrefix", editorImageURLPrefix);
+    public ListGridField setEditorImageURLPrefix(String editorImageURLPrefix) {
+        return (ListGridField)setAttribute("editorImageURLPrefix", editorImageURLPrefix);
     }
 
     /**
@@ -1375,10 +1445,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param editorImageURLSuffix New editorImageURLSuffix value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
-    public void setEditorImageURLSuffix(String editorImageURLSuffix) {
-        setAttribute("editorImageURLSuffix", editorImageURLSuffix);
+    public ListGridField setEditorImageURLSuffix(String editorImageURLSuffix) {
+        return (ListGridField)setAttribute("editorImageURLSuffix", editorImageURLSuffix);
     }
 
     /**
@@ -1403,9 +1474,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGrid#getCanEdit edited}.
      *
      * @param editorTextFormula New editorTextFormula value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setEditorTextFormula(UserSummary editorTextFormula) {
-        setAttribute("editorTextFormula", editorTextFormula == null ? null : editorTextFormula.getJsObj());
+    public ListGridField setEditorTextFormula(UserSummary editorTextFormula) {
+        return (ListGridField)setAttribute("editorTextFormula", editorTextFormula == null ? null : editorTextFormula.getJsObj());
     }
 
     /**
@@ -1427,10 +1499,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * static cell.
      *
      * @param editorValueIconHeight New editorValueIconHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
-    public void setEditorValueIconHeight(Integer editorValueIconHeight) {
-        setAttribute("editorValueIconHeight", editorValueIconHeight);
+    public ListGridField setEditorValueIconHeight(Integer editorValueIconHeight) {
+        return (ListGridField)setAttribute("editorValueIconHeight", editorValueIconHeight);
     }
 
     /**
@@ -1451,10 +1524,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * cell's editor. If unset, the editor's valueIcons will be determined in the same way as it would be for a static cell.
      *
      * @param editorValueIcons New editorValueIcons value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
-    public void setEditorValueIcons(Map<String,String> editorValueIcons) {
-        setAttribute("editorValueIcons", editorValueIcons);
+    public ListGridField setEditorValueIcons(Map<String,String> editorValueIcons) {
+        return (ListGridField)setAttribute("editorValueIcons", editorValueIcons);
     }
     
 
@@ -1464,10 +1538,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * cell.
      *
      * @param editorValueIconWidth New editorValueIconWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
-    public void setEditorValueIconWidth(Integer editorValueIconWidth) {
-        setAttribute("editorValueIconWidth", editorValueIconWidth);
+    public ListGridField setEditorValueIconWidth(Integer editorValueIconWidth) {
+        return (ListGridField)setAttribute("editorValueIconWidth", editorValueIconWidth);
     }
 
     /**
@@ -1490,12 +1565,13 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * ListGrid.getEditorValueMap()}.
      *
      * @param editorValueMap New editorValueMap value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#getEditorValueMap
      * @see com.smartgwt.client.widgets.grid.ListGrid#setEditorValueMap
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
-    public void setEditorValueMap(Map editorValueMap) {
-        setAttribute("editorValueMap", editorValueMap);
+    public ListGridField setEditorValueMap(Map editorValueMap) {
+        return (ListGridField)setAttribute("editorValueMap", editorValueMap);
     }
     
 
@@ -1506,12 +1582,13 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * empty fields in the grid.
      *
      * @param emptyCellValue New emptyCellValue value. Default value is "&amp;nbsp;"
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#setEmptyCellValue
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_appearance_empty_values" target="examples">Empty values Example</a>
      */
-    public void setEmptyCellValue(String emptyCellValue) {
-        setAttribute("emptyCellValue", emptyCellValue);
+    public ListGridField setEmptyCellValue(String emptyCellValue) {
+        return (ListGridField)setAttribute("emptyCellValue", emptyCellValue);
     }
 
     /**
@@ -1535,10 +1612,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * specified at the listGrid level while focus is in this field.
      *
      * @param enterKeyEditAction New enterKeyEditAction value. Default value is "done"
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
-    public void setEnterKeyEditAction(EnterKeyEditAction enterKeyEditAction) {
-        setAttribute("enterKeyEditAction", enterKeyEditAction == null ? null : enterKeyEditAction.getValue());
+    public ListGridField setEnterKeyEditAction(EnterKeyEditAction enterKeyEditAction) {
+        return (ListGridField)setAttribute("enterKeyEditAction", enterKeyEditAction == null ? null : enterKeyEditAction.getValue());
     }
 
     /**
@@ -1559,10 +1637,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * displayed to the user rather than the interpreted HTML (for example <code>"<b>AAA</b>"</code>)
      *
      * @param escapeHTML New escapeHTML value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setSkipLineBreaks
      */
-    public void setEscapeHTML(Boolean escapeHTML) {
-        setAttribute("escapeHTML", escapeHTML);
+    public ListGridField setEscapeHTML(Boolean escapeHTML) {
+        return (ListGridField)setAttribute("escapeHTML", escapeHTML);
     }
 
     /**
@@ -1583,10 +1662,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * specified at the listGrid level while focus is in this field.
      *
      * @param escapeKeyEditAction New escapeKeyEditAction value. Default value is "cancel"
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
-    public void setEscapeKeyEditAction(EscapeKeyEditAction escapeKeyEditAction) {
-        setAttribute("escapeKeyEditAction", escapeKeyEditAction == null ? null : escapeKeyEditAction.getValue());
+    public ListGridField setEscapeKeyEditAction(EscapeKeyEditAction escapeKeyEditAction) {
+        return (ListGridField)setAttribute("escapeKeyEditAction", escapeKeyEditAction == null ? null : escapeKeyEditAction.getValue());
     }
 
     /**
@@ -1608,10 +1688,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * DataBoundComponent.titleField} is not provided.
      *
      * @param excludeFromState New excludeFromState value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#getViewState
      */
-    public void setExcludeFromState(Boolean excludeFromState) {
-        setAttribute("excludeFromState", excludeFromState);
+    public ListGridField setExcludeFromState(Boolean excludeFromState) {
+        return (ListGridField)setAttribute("excludeFromState", excludeFromState);
     }
 
     /**
@@ -1637,9 +1718,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <code>listGrid.exportFieldWidths</code> is not set.
      *
      * @param exportFieldWidth New exportFieldWidth value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setExportFieldWidth(boolean exportFieldWidth) {
-        setAttribute("exportFieldWidth", exportFieldWidth);
+    public ListGridField setExportFieldWidth(boolean exportFieldWidth) {
+        return (ListGridField)setAttribute("exportFieldWidth", exportFieldWidth);
     }
 
     /**
@@ -1663,11 +1745,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.data.DataSourceField#getExportFormat DataSourceField.exportFormat}.
      *
      * @param exportFormat New exportFormat value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormatString FormatString 
      * @see com.smartgwt.client.docs.ExportFormatting ExportFormatting overview and related methods
      */
-    public void setExportFormat(String exportFormat) {
-        setAttribute("exportFormat", exportFormat);
+    public ListGridField setExportFormat(String exportFormat) {
+        return (ListGridField)setAttribute("exportFormat", exportFormat);
     }
 
     /**
@@ -1697,9 +1780,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * the {@link com.smartgwt.client.widgets.grid.ListGrid#getExportRawNumbers grid} level.
      *
      * @param exportRawNumbers New exportRawNumbers value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setExportRawNumbers(Boolean exportRawNumbers) {
-        setAttribute("exportRawNumbers", exportRawNumbers);
+    public ListGridField setExportRawNumbers(Boolean exportRawNumbers) {
+        return (ListGridField)setAttribute("exportRawNumbers", exportRawNumbers);
     }
 
     /**
@@ -1728,9 +1812,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * in the field-formatters will not be executed for data in this field. Decreases the time taken for large exports.
      *
      * @param exportRawValues New exportRawValues value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setExportRawValues(Boolean exportRawValues) {
-        setAttribute("exportRawValues", exportRawValues);
+    public ListGridField setExportRawValues(Boolean exportRawValues) {
+        return (ListGridField)setAttribute("exportRawValues", exportRawValues);
     }
 
     /**
@@ -1752,9 +1837,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * display values to be in the appropriate filter  row form item.
      *
      * @param filterEditorValueMap New filterEditorValueMap value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setFilterEditorValueMap(Map filterEditorValueMap) {
-        setAttribute("filterEditorValueMap", filterEditorValueMap);
+    public ListGridField setFilterEditorValueMap(Map filterEditorValueMap) {
+        return (ListGridField)setAttribute("filterEditorValueMap", filterEditorValueMap);
     }
     
 
@@ -1766,9 +1852,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param filterOnKeypress New filterOnKeypress value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setFilterOnKeypress(Boolean filterOnKeypress) {
-        setAttribute("filterOnKeypress", filterOnKeypress);
+    public ListGridField setFilterOnKeypress(Boolean filterOnKeypress) {
+        return (ListGridField)setAttribute("filterOnKeypress", filterOnKeypress);
     }
 
     /**
@@ -1796,10 +1883,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * AdvancedCriteria.
      *
      * @param filterOperator New filterOperator value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setOperator
      */
-    public void setFilterOperator(OperatorId filterOperator) {
-        setAttribute("filterOperator", filterOperator == null ? null : filterOperator.getValue());
+    public ListGridField setFilterOperator(OperatorId filterOperator) {
+        return (ListGridField)setAttribute("filterOperator", filterOperator == null ? null : filterOperator.getValue());
     }
 
     /**
@@ -1826,11 +1914,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.data.DataSourceField#getFormat DataSourceField.format}.
      *
      * @param format New format value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormatString FormatString 
      * @see com.smartgwt.client.docs.ExportFormatting ExportFormatting overview and related methods
      */
-    public void setFormat(String format) {
-        setAttribute("format", format);
+    public ListGridField setFormat(String format) {
+        return (ListGridField)setAttribute("format", format);
     }
 
     /**
@@ -1853,10 +1942,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.docs.FrozenFields}.
      *
      * @param frozen New frozen value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FrozenFields FrozenFields overview and related methods
      */
-    public void setFrozen(Boolean frozen) {
-        setAttribute("frozen", frozen);
+    public ListGridField setFrozen(Boolean frozen) {
+        return (ListGridField)setAttribute("frozen", frozen);
     }
 
     /**
@@ -1876,9 +1966,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <code>groupGranularity</code>.  For example, if groupGranularity were 1000, groups would be 0-1000, 1000-2000, etc.
      *
      * @param groupGranularity New groupGranularity value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setGroupGranularity(Integer groupGranularity) {
-        setAttribute("groupGranularity", groupGranularity);
+    public ListGridField setGroupGranularity(Integer groupGranularity) {
+        return (ListGridField)setAttribute("groupGranularity", groupGranularity);
     }
 
     /**
@@ -1898,10 +1989,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * ListGrid creation to affect the initial grouping.
      *
      * @param groupingMode New groupingMode value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Identifier Identifier 
      */
-    public void setGroupingMode(String groupingMode) {
-        setAttribute("groupingMode", groupingMode);
+    public ListGridField setGroupingMode(String groupingMode) {
+        return (ListGridField)setAttribute("groupingMode", groupingMode);
     }
 
     /**
@@ -1933,9 +2025,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.docs.BuiltinGroupingModes builtin grouping modes} for more information.
      *
      * @param groupingModes New groupingModes value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setGroupingModes(Map groupingModes) {
-        setAttribute("groupingModes", groupingModes);
+    public ListGridField setGroupingModes(Map groupingModes) {
+        return (ListGridField)setAttribute("groupingModes", groupingModes);
     }
 
     /**
@@ -1967,9 +2060,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * grouping by broader ranges.
      *
      * @param groupPrecision New groupPrecision value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setGroupPrecision(Integer groupPrecision) {
-        setAttribute("groupPrecision", groupPrecision);
+    public ListGridField setGroupPrecision(Integer groupPrecision) {
+        return (ListGridField)setAttribute("groupPrecision", groupPrecision);
     }
 
     /**
@@ -1992,11 +2086,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGridField#getHeaderTitleStyle headerTitleStyle} as well.
      *
      * @param headerBaseStyle New headerBaseStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setHeaderBaseStyle(String headerBaseStyle) {
-        setAttribute("headerBaseStyle", headerBaseStyle);
+    public ListGridField setHeaderBaseStyle(String headerBaseStyle) {
+        return (ListGridField)setAttribute("headerBaseStyle", headerBaseStyle);
     }
 
     /**
@@ -2015,14 +2110,57 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
     
 
     /**
+     * {@link com.smartgwt.client.widgets.Canvas#getAriaRole Aria role} for the header button for this field.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param headerButtonAriaRole New headerButtonAriaRole value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
+     */
+    public ListGridField setHeaderButtonAriaRole(String headerButtonAriaRole) {
+        return (ListGridField)setAttribute("headerButtonAriaRole", headerButtonAriaRole);
+    }
+
+    /**
+     * {@link com.smartgwt.client.widgets.Canvas#getAriaRole Aria role} for the header button for this field.
+     *
+     * @return Current headerButtonAriaRole value. Default value is null
+     */
+    public String getHeaderButtonAriaRole()  {
+        return getAttributeAsString("headerButtonAriaRole");
+    }
+    
+
+    /**
+     * {@link com.smartgwt.client.widgets.Canvas#getAriaState Aria state} for the header button for this field.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param headerButtonAriaState New headerButtonAriaState value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
+     */
+    public ListGridField setHeaderButtonAriaState(Map headerButtonAriaState) {
+        return (ListGridField)setAttribute("headerButtonAriaState", headerButtonAriaState);
+    }
+
+    /**
+     * {@link com.smartgwt.client.widgets.Canvas#getAriaState Aria state} for the header button for this field.
+     *
+     * @return Current headerButtonAriaState value. Default value is null
+     */
+    public Map getHeaderButtonAriaState()  {
+        return getAttributeAsMap("headerButtonAriaState");
+    }
+    
+
+    /**
      * Delay in ms for hovers shown over this field's header. <P> If unset, any {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getHoverDelay hoverDelay} will be used for both header hovers and hovers
      * shown over cells in the grid's body.
      *
      * @param headerHoverDelay New headerHoverDelay value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setHeaderHoverDelay(Integer headerHoverDelay) {
-        setAttribute("headerHoverDelay", headerHoverDelay);
+    public ListGridField setHeaderHoverDelay(Integer headerHoverDelay) {
+        return (ListGridField)setAttribute("headerHoverDelay", headerHoverDelay);
     }
 
     /**
@@ -2044,11 +2182,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * button entirely.
      *
      * @param headerTitle New headerTitle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setTitle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setHeaderTitle(String headerTitle) {
-        setAttribute("headerTitle", headerTitle);
+    public ListGridField setHeaderTitle(String headerTitle) {
+        return (ListGridField)setAttribute("headerTitle", headerTitle);
     }
 
     /**
@@ -2073,11 +2212,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * ListGrid.headerButtonConstructor} is set to {@link com.smartgwt.client.widgets.StretchImgButton} or a subclass thereof.
      *
      * @param headerTitleStyle New headerTitleStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setHeaderTitleStyle(String headerTitleStyle) {
-        setAttribute("headerTitleStyle", headerTitleStyle);
+    public ListGridField setHeaderTitleStyle(String headerTitleStyle) {
+        return (ListGridField)setAttribute("headerTitleStyle", headerTitleStyle);
     }
 
     /**
@@ -2103,10 +2243,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * {@link com.smartgwt.client.data.DataSourceField#getHidden DataSourceField.hidden} instead.
      *
      * @param hidden New hidden value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setHidden(Boolean hidden) {
-        setAttribute("hidden", hidden);
+    public ListGridField setHidden(Boolean hidden) {
+        return (ListGridField)setAttribute("hidden", hidden);
     }
 
     /**
@@ -2125,6 +2266,78 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
     
 
     /**
+     * Set this property to true to suppress showing this field on mobile phones  (handset-sized devices). To update this
+     * property at runtime use  {@link com.smartgwt.client.widgets.grid.ListGrid#setHideOnPhone ListGrid.setHideOnPhone()} <P>
+     * Note that if {@link com.smartgwt.client.widgets.grid.ListGridField#getHidden hidden} is set, or an explicit {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#showIf showIf()}  function exists that will take precedence over this
+     * setting.  Similarly, an explicit call to {@link com.smartgwt.client.widgets.grid.ListGrid#showField
+     * ListGrid.showField()} or {@link com.smartgwt.client.widgets.grid.ListGrid#hideField ListGrid.hideField()} will clear
+     * this setting. <P> See also the related property {@link com.smartgwt.client.widgets.grid.ListGridField#getHideOnTablet
+     * hideOnTablet}.
+     *
+     * @param hideOnPhone New hideOnPhone value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public ListGridField setHideOnPhone(Boolean hideOnPhone) {
+        return (ListGridField)setAttribute("hideOnPhone", hideOnPhone);
+    }
+
+    /**
+     * Set this property to true to suppress showing this field on mobile phones  (handset-sized devices). To update this
+     * property at runtime use  {@link com.smartgwt.client.widgets.grid.ListGrid#setHideOnPhone ListGrid.setHideOnPhone()} <P>
+     * Note that if {@link com.smartgwt.client.widgets.grid.ListGridField#getHidden hidden} is set, or an explicit {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#showIf showIf()}  function exists that will take precedence over this
+     * setting.  Similarly, an explicit call to {@link com.smartgwt.client.widgets.grid.ListGrid#showField
+     * ListGrid.showField()} or {@link com.smartgwt.client.widgets.grid.ListGrid#hideField ListGrid.hideField()} will clear
+     * this setting. <P> See also the related property {@link com.smartgwt.client.widgets.grid.ListGridField#getHideOnTablet
+     * hideOnTablet}.
+     *
+     * @return Current hideOnPhone value. Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public Boolean getHideOnPhone()  {
+        return getAttributeAsBoolean("hideOnPhone", true);
+    }
+    
+
+    /**
+     * Set this property to true to suppress showing this field on tablets  (tablet-sized devices). To update this property at
+     * runtime use  {@link com.smartgwt.client.widgets.grid.ListGrid#setHideOnTablet ListGrid.setHideOnTablet()} <P> Note that
+     * if {@link com.smartgwt.client.widgets.grid.ListGridField#getHidden hidden} is set, or an explicit {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#showIf showIf()}  function exists that will take precedence over this
+     * setting.  Similarly, an explicit call to {@link com.smartgwt.client.widgets.grid.ListGrid#showField
+     * ListGrid.showField()} or {@link com.smartgwt.client.widgets.grid.ListGrid#hideField ListGrid.hideField()} will clear
+     * this setting. <P> See also the related property {@link com.smartgwt.client.widgets.grid.ListGridField#getHideOnPhone
+     * hideOnPhone}.
+     *
+     * @param hideOnTablet New hideOnTablet value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public ListGridField setHideOnTablet(Boolean hideOnTablet) {
+        return (ListGridField)setAttribute("hideOnTablet", hideOnTablet);
+    }
+
+    /**
+     * Set this property to true to suppress showing this field on tablets  (tablet-sized devices). To update this property at
+     * runtime use  {@link com.smartgwt.client.widgets.grid.ListGrid#setHideOnTablet ListGrid.setHideOnTablet()} <P> Note that
+     * if {@link com.smartgwt.client.widgets.grid.ListGridField#getHidden hidden} is set, or an explicit {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#showIf showIf()}  function exists that will take precedence over this
+     * setting.  Similarly, an explicit call to {@link com.smartgwt.client.widgets.grid.ListGrid#showField
+     * ListGrid.showField()} or {@link com.smartgwt.client.widgets.grid.ListGrid#hideField ListGrid.hideField()} will clear
+     * this setting. <P> See also the related property {@link com.smartgwt.client.widgets.grid.ListGridField#getHideOnPhone
+     * hideOnPhone}.
+     *
+     * @return Current hideOnTablet value. Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public Boolean getHideOnTablet()  {
+        return getAttributeAsBoolean("hideOnTablet", true);
+    }
+    
+
+    /**
      * If set to true, custom HTML applied as part of hiliting will be applied after {@link
      * com.smartgwt.client.widgets.grid.ListGrid#setCellFormatter formatting} for each cell in this column. If false, hilite
      * HTML will be applied before formatting. <P> This attribute overrides {@link
@@ -2132,9 +2345,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * component level.
      *
      * @param hiliteHTMLAfterFormat New hiliteHTMLAfterFormat value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setHiliteHTMLAfterFormat(Boolean hiliteHTMLAfterFormat) {
-        setAttribute("hiliteHTMLAfterFormat", hiliteHTMLAfterFormat);
+    public ListGridField setHiliteHTMLAfterFormat(Boolean hiliteHTMLAfterFormat) {
+        return (ListGridField)setAttribute("hiliteHTMLAfterFormat", hiliteHTMLAfterFormat);
     }
 
     /**
@@ -2157,10 +2371,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * ListGrid.hiliteIconHeight}, and {@link com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconSize hiliteIconSize}.
      *
      * @param hiliteIconHeight New hiliteIconHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setHiliteIconHeight(Integer hiliteIconHeight) {
-        setAttribute("hiliteIconHeight", hiliteIconHeight);
+    public ListGridField setHiliteIconHeight(Integer hiliteIconHeight) {
+        return (ListGridField)setAttribute("hiliteIconHeight", hiliteIconHeight);
     }
 
     /**
@@ -2182,10 +2397,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * ListGrid.hiliteIconLeftPadding}
      *
      * @param hiliteIconLeftPadding New hiliteIconLeftPadding value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setHiliteIconLeftPadding(Integer hiliteIconLeftPadding) {
-        setAttribute("hiliteIconLeftPadding", hiliteIconLeftPadding);
+    public ListGridField setHiliteIconLeftPadding(Integer hiliteIconLeftPadding) {
+        return (ListGridField)setAttribute("hiliteIconLeftPadding", hiliteIconLeftPadding);
     }
 
     /**
@@ -2207,10 +2423,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getHiliteIconPosition ListGrid.hiliteIconPosition}.
      *
      * @param hiliteIconPosition New hiliteIconPosition value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setHiliteIconPosition(HiliteIconPosition hiliteIconPosition) {
-        setAttribute("hiliteIconPosition", hiliteIconPosition == null ? null : hiliteIconPosition.getValue());
+    public ListGridField setHiliteIconPosition(HiliteIconPosition hiliteIconPosition) {
+        return (ListGridField)setAttribute("hiliteIconPosition", hiliteIconPosition == null ? null : hiliteIconPosition.getValue());
     }
 
     /**
@@ -2232,10 +2449,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * ListGrid.hiliteIconRightPadding}
      *
      * @param hiliteIconRightPadding New hiliteIconRightPadding value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setHiliteIconRightPadding(Integer hiliteIconRightPadding) {
-        setAttribute("hiliteIconRightPadding", hiliteIconRightPadding);
+    public ListGridField setHiliteIconRightPadding(Integer hiliteIconRightPadding) {
+        return (ListGridField)setAttribute("hiliteIconRightPadding", hiliteIconRightPadding);
     }
 
     /**
@@ -2258,13 +2476,14 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconHeight hiliteIconHeight}
      *
      * @param hiliteIconSize New hiliteIconSize value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#setHiliteIconSize
      * @see com.smartgwt.client.widgets.grid.ListGridField#setHiliteIconWidth
      * @see com.smartgwt.client.widgets.grid.ListGridField#setHiliteIconHeight
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setHiliteIconSize(Integer hiliteIconSize) {
-        setAttribute("hiliteIconSize", hiliteIconSize);
+    public ListGridField setHiliteIconSize(Integer hiliteIconSize) {
+        return (ListGridField)setAttribute("hiliteIconSize", hiliteIconSize);
     }
 
     /**
@@ -2290,10 +2509,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * and {@link com.smartgwt.client.widgets.grid.ListGridField#getHiliteIconSize hiliteIconSize}.
      *
      * @param hiliteIconWidth New hiliteIconWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public void setHiliteIconWidth(Integer hiliteIconWidth) {
-        setAttribute("hiliteIconWidth", hiliteIconWidth);
+    public ListGridField setHiliteIconWidth(Integer hiliteIconWidth) {
+        return (ListGridField)setAttribute("hiliteIconWidth", hiliteIconWidth);
     }
 
     /**
@@ -2316,9 +2536,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * to this property.
      *
      * @param hoverDelay New hoverDelay value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setHoverDelay(Integer hoverDelay) {
-        setAttribute("hoverDelay", hoverDelay);
+    public ListGridField setHoverDelay(Integer hoverDelay) {
+        return (ListGridField)setAttribute("hoverDelay", hoverDelay);
     }
 
     /**
@@ -2339,9 +2560,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * is derived from {@link com.smartgwt.client.widgets.grid.ListGrid#getHeaderHoverWidth ListGrid.headerHoverWidth}.
      *
      * @param hoverWidth New hoverWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setHoverWidth(Integer hoverWidth) {
-        setAttribute("hoverWidth", hoverWidth);
+    public ListGridField setHoverWidth(Integer hoverWidth) {
+        return (ListGridField)setAttribute("hoverWidth", hoverWidth);
     }
 
     /**
@@ -2362,9 +2584,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * ListGrid.headerHoverWrap}.
      *
      * @param hoverWrap New hoverWrap value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setHoverWrap(Boolean hoverWrap) {
-        setAttribute("hoverWrap", hoverWrap);
+    public ListGridField setHoverWrap(Boolean hoverWrap) {
+        return (ListGridField)setAttribute("hoverWrap", hoverWrap);
     }
 
     /**
@@ -2390,10 +2613,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGrid#setFieldIcon ListGrid.setFieldIcon()}.
      *
      * @param icon New icon value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
-    public void setIcon(String icon) {
-        setAttribute("icon", icon);
+    public ListGridField setIcon(String icon) {
+        return (ListGridField)setAttribute("icon", icon);
     }
 
     /**
@@ -2414,6 +2638,37 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
     
 
     /**
+     * Specifies the cursor to display when the mouse pointer is over an icon image in a cell for either a field of type {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getIcon icon} or a  {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getValueIcons valueIcon}. <P> If not explicitly specified, see {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getIconCursor ListGrid.getIconCursor()} for how <code>"icon"</code> fields
+     * determine icon image cursors, and {@link com.smartgwt.client.widgets.grid.ListGrid#getValueIconCursor
+     * ListGrid.getValueIconCursor()} for how value icon image cursors are determined.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param iconCursor New iconCursor value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
+     */
+    public ListGridField setIconCursor(Cursor iconCursor) {
+        return (ListGridField)setAttribute("iconCursor", iconCursor == null ? null : iconCursor.getValue());
+    }
+
+    /**
+     * Specifies the cursor to display when the mouse pointer is over an icon image in a cell for either a field of type {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getIcon icon} or a  {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getValueIcons valueIcon}. <P> If not explicitly specified, see {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getIconCursor ListGrid.getIconCursor()} for how <code>"icon"</code> fields
+     * determine icon image cursors, and {@link com.smartgwt.client.widgets.grid.ListGrid#getValueIconCursor
+     * ListGrid.getValueIconCursor()} for how value icon image cursors are determined.
+     *
+     * @return Current iconCursor value. Default value is null
+     */
+    public Cursor getIconCursor()  {
+        return EnumUtil.getEnum(Cursor.values(), getAttribute("iconCursor"));
+    }
+    
+
+    /**
      * If {@link com.smartgwt.client.widgets.grid.ListGridField#getIcon icon} is specified, this property can be used to
      * specify the height of the icon to be displayed in the ListGrid header button. (See {@link
      * com.smartgwt.client.widgets.StatefulCanvas#getIconHeight StatefulCanvas.iconHeight})<br> If this field is editable, and
@@ -2423,11 +2678,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGridField#getIcons icons} displayed in the editor.
      *
      * @param iconHeight New iconHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setIcon
      * @see com.smartgwt.client.widgets.grid.ListGridField#setIcons
      */
-    public void setIconHeight(Integer iconHeight) {
-        setAttribute("iconHeight", iconHeight);
+    public ListGridField setIconHeight(Integer iconHeight) {
+        return (ListGridField)setAttribute("iconHeight", iconHeight);
     }
 
     /**
@@ -2453,10 +2709,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <code>"left"</code> or <code>"right"</code>
      *
      * @param iconOrientation New iconOrientation value. Default value is "left"
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setIcon
      */
-    public void setIconOrientation(String iconOrientation) {
-        setAttribute("iconOrientation", iconOrientation);
+    public ListGridField setIconOrientation(String iconOrientation) {
+        return (ListGridField)setAttribute("iconOrientation", iconOrientation);
     }
 
     /**
@@ -2477,10 +2734,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param icons New icons value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
-    public void setIcons(FormItemIcon... icons) {
-        setAttribute("icons", icons);
+    public ListGridField setIcons(FormItemIcon... icons) {
+        return (ListGridField)setAttribute("icons", icons);
     }
     
 
@@ -2490,10 +2748,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.StatefulCanvas#getIconSize StatefulCanvas.iconSize})
      *
      * @param iconSize New iconSize value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setIcon
      */
-    public void setIconSize(Integer iconSize) {
-        setAttribute("iconSize", iconSize);
+    public ListGridField setIconSize(Integer iconSize) {
+        return (ListGridField)setAttribute("iconSize", iconSize);
     }
 
     /**
@@ -2513,11 +2772,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * Pixels between icon and title text.
      *
      * @param iconSpacing New iconSpacing value. Default value is 6
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setIcon
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setIconSpacing(int iconSpacing) {
-        setAttribute("iconSpacing", iconSpacing);
+    public ListGridField setIconSpacing(int iconSpacing) {
+        return (ListGridField)setAttribute("iconSpacing", iconSpacing);
     }
 
     /**
@@ -2538,11 +2798,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param iconVAlign New iconVAlign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setIcons
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
-    public void setIconVAlign(String iconVAlign) {
-        setAttribute("iconVAlign", iconVAlign);
+    public ListGridField setIconVAlign(String iconVAlign) {
+        return (ListGridField)setAttribute("iconVAlign", iconVAlign);
     }
 
     /**
@@ -2568,11 +2829,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGridField#getIcons icons} displayed in the editor.
      *
      * @param iconWidth New iconWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setIcon
      * @see com.smartgwt.client.widgets.grid.ListGridField#setIcons
      */
-    public void setIconWidth(Integer iconWidth) {
-        setAttribute("iconWidth", iconWidth);
+    public ListGridField setIconWidth(Integer iconWidth) {
+        return (ListGridField)setAttribute("iconWidth", iconWidth);
     }
 
     /**
@@ -2604,9 +2866,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * ensures that this field will never be considered the target for a keyboard click event.
      *
      * @param ignoreKeyboardClicks New ignoreKeyboardClicks value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setIgnoreKeyboardClicks(Boolean ignoreKeyboardClicks) {
-        setAttribute("ignoreKeyboardClicks", ignoreKeyboardClicks);
+    public ListGridField setIgnoreKeyboardClicks(Boolean ignoreKeyboardClicks) {
+        return (ListGridField)setAttribute("ignoreKeyboardClicks", ignoreKeyboardClicks);
     }
 
     /**
@@ -2632,13 +2895,14 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <code>record.logoHeight</code> will control the height of the image.
      *
      * @param imageHeight New imageHeight value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#setImageSize
      * @see com.smartgwt.client.widgets.grid.ListGridField#setImageSize
      * @see com.smartgwt.client.widgets.grid.ListGridField#setImageWidth
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
-    public void setImageHeight(int imageHeight) {
-        setAttribute("imageHeight", imageHeight);
+    public ListGridField setImageHeight(int imageHeight) {
+        return (ListGridField)setAttribute("imageHeight", imageHeight);
     }
 
     /**
@@ -2664,12 +2928,13 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * is "logoSize", <code>record.logoSize</code> will control the size of the image.
      *
      * @param imageSize New imageSize value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setImageWidth
      * @see com.smartgwt.client.widgets.grid.ListGridField#setImageHeight
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
-    public void setImageSize(int imageSize) {
-        setAttribute("imageSize", imageSize);
+    public ListGridField setImageSize(int imageSize) {
+        return (ListGridField)setAttribute("imageSize", imageSize);
     }
 
     /**
@@ -2696,11 +2961,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param imageURLPrefix New imageURLPrefix value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_datatypes_image" target="examples">Image Example</a>
      */
-    public void setImageURLPrefix(String imageURLPrefix) {
-        setAttribute("imageURLPrefix", imageURLPrefix);
+    public ListGridField setImageURLPrefix(String imageURLPrefix) {
+        return (ListGridField)setAttribute("imageURLPrefix", imageURLPrefix);
     }
 
     /**
@@ -2721,27 +2987,28 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
     /**
      * If any cells in this field are showing a value icon (see: {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getValueIcons valueIcons}) or this is has {@link
-     * com.smartgwt.client.types.ListGridFieldType} set to <code>"image"</code>, this the value of this property will be
-     * appended to the end of the URL for the icon displayed.<br> Typical usage might be to append a file type such as
-     * <code>".gif"</code> to the filename of the image.<br> For editable fields, this property will also be passed through to
-     * any editors as {@link com.smartgwt.client.widgets.form.fields.FormItem#getImageURLSuffix FormItem.imageURLSuffix}.
+     * com.smartgwt.client.types.ListGridFieldType} set to <code>"image"</code>, the value of this property will be appended to
+     * the end of the URL for the icon displayed.<br> Typical usage might be to append a file type such as <code>".gif"</code>
+     * to the filename of the image.<br> For editable fields, this property will also be passed through to any editors as
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getImageURLSuffix FormItem.imageURLSuffix}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param imageURLSuffix New imageURLSuffix value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_datatypes_image" target="examples">Image Example</a>
      */
-    public void setImageURLSuffix(String imageURLSuffix) {
-        setAttribute("imageURLSuffix", imageURLSuffix);
+    public ListGridField setImageURLSuffix(String imageURLSuffix) {
+        return (ListGridField)setAttribute("imageURLSuffix", imageURLSuffix);
     }
 
     /**
      * If any cells in this field are showing a value icon (see: {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getValueIcons valueIcons}) or this is has {@link
-     * com.smartgwt.client.types.ListGridFieldType} set to <code>"image"</code>, this the value of this property will be
-     * appended to the end of the URL for the icon displayed.<br> Typical usage might be to append a file type such as
-     * <code>".gif"</code> to the filename of the image.<br> For editable fields, this property will also be passed through to
-     * any editors as {@link com.smartgwt.client.widgets.form.fields.FormItem#getImageURLSuffix FormItem.imageURLSuffix}.
+     * com.smartgwt.client.types.ListGridFieldType} set to <code>"image"</code>, the value of this property will be appended to
+     * the end of the URL for the icon displayed.<br> Typical usage might be to append a file type such as <code>".gif"</code>
+     * to the filename of the image.<br> For editable fields, this property will also be passed through to any editors as
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getImageURLSuffix FormItem.imageURLSuffix}.
      *
      * @return Current imageURLSuffix value. Default value is null
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
@@ -2758,13 +3025,14 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <code>record.logoWidth</code> will control the width of the image.
      *
      * @param imageWidth New imageWidth value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#setImageSize
      * @see com.smartgwt.client.widgets.grid.ListGridField#setImageSize
      * @see com.smartgwt.client.widgets.grid.ListGridField#setImageHeight
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
-    public void setImageWidth(int imageWidth) {
-        setAttribute("imageWidth", imageWidth);
+    public ListGridField setImageWidth(int imageWidth) {
+        return (ListGridField)setAttribute("imageWidth", imageWidth);
     }
 
     /**
@@ -2808,9 +3076,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * avoiding the issue.
      *
      * @param includeFrom New includeFrom value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setIncludeFrom(String includeFrom) {
-        setAttribute("includeFrom", includeFrom);
+    public ListGridField setIncludeFrom(String includeFrom) {
+        return (ListGridField)setAttribute("includeFrom", includeFrom);
     }
 
     /**
@@ -2851,9 +3120,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGridField#getIncludeInRecordSummaryFields includeInRecordSummaryFields}.
      *
      * @param includeInRecordSummary New includeInRecordSummary value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setIncludeInRecordSummary(Boolean includeInRecordSummary) {
-        setAttribute("includeInRecordSummary", includeInRecordSummary);
+    public ListGridField setIncludeInRecordSummary(Boolean includeInRecordSummary) {
+        return (ListGridField)setAttribute("includeInRecordSummary", includeInRecordSummary);
     }
 
     /**
@@ -2877,10 +3147,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * calculations for summary fields who's name is included in this array.
      *
      * @param includeInRecordSummaryFields New includeInRecordSummaryFields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FieldName FieldName 
      */
-    public void setIncludeInRecordSummaryFields(String... includeInRecordSummaryFields) {
-        setAttribute("includeInRecordSummaryFields", includeInRecordSummaryFields);
+    public ListGridField setIncludeInRecordSummaryFields(String... includeInRecordSummaryFields) {
+        return (ListGridField)setAttribute("includeInRecordSummaryFields", includeInRecordSummaryFields);
     }
 
     /**
@@ -2906,10 +3177,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * that <i>does not specify the <code>initialValues</code></i> argument.
      *
      * @param initialValue New initialValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
-    public void setInitialValue(Object initialValue) {
-        setAttribute("initialValue", initialValue);
+    public ListGridField setInitialValue(Object initialValue) {
+        return (ListGridField)setAttribute("initialValue", initialValue);
     }
 
     /**
@@ -2936,10 +3208,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param isRemoveField New isRemoveField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#setCanRemoveRecords
      */
-    public void setIsRemoveField(Boolean isRemoveField) {
-        setAttribute("isRemoveField", isRemoveField);
+    public ListGridField setIsRemoveField(Boolean isRemoveField) {
+        return (ListGridField)setAttribute("isRemoveField", isRemoveField);
     }
 
     /**
@@ -2969,9 +3242,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param leaveHeaderMenuButtonSpace New leaveHeaderMenuButtonSpace value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setLeaveHeaderMenuButtonSpace(Boolean leaveHeaderMenuButtonSpace) {
-        setAttribute("leaveHeaderMenuButtonSpace", leaveHeaderMenuButtonSpace);
+    public ListGridField setLeaveHeaderMenuButtonSpace(Boolean leaveHeaderMenuButtonSpace) {
+        return (ListGridField)setAttribute("leaveHeaderMenuButtonSpace", leaveHeaderMenuButtonSpace);
     }
     
 
@@ -2981,6 +3255,7 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGridRecord#getLinkText ListGridRecord.linkText}.
      *
      * @param linkText New linkText value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.types.ListGridFieldType
      * @see com.smartgwt.client.types.FieldType
      * @see com.smartgwt.client.widgets.grid.ListGridRecord#setLinkText
@@ -2988,8 +3263,8 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * @see com.smartgwt.client.widgets.grid.ListGridField#setLinkTextProperty
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_datatypes_link_image" target="examples">Link (image) Example</a>
      */
-    public void setLinkText(String linkText) {
-        setAttribute("linkText", linkText);
+    public ListGridField setLinkText(String linkText) {
+        return (ListGridField)setAttribute("linkText", linkText);
     }
 
     /**
@@ -3015,14 +3290,15 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * to "link".
      *
      * @param linkTextProperty New linkTextProperty value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.types.ListGridFieldType
      * @see com.smartgwt.client.types.FieldType
      * @see com.smartgwt.client.widgets.grid.ListGridRecord#setLinkText
      * @see com.smartgwt.client.widgets.grid.ListGridField#setLinkText
      * @see com.smartgwt.client.widgets.grid.ListGrid#setLinkTextProperty
      */
-    public void setLinkTextProperty(String linkTextProperty) {
-        setAttribute("linkTextProperty", linkTextProperty);
+    public ListGridField setLinkTextProperty(String linkTextProperty) {
+        return (ListGridField)setAttribute("linkTextProperty", linkTextProperty);
     }
 
     /**
@@ -3047,9 +3323,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param linkURLPrefix New linkURLPrefix value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setLinkURLPrefix(String linkURLPrefix) {
-        setAttribute("linkURLPrefix", linkURLPrefix);
+    public ListGridField setLinkURLPrefix(String linkURLPrefix) {
+        return (ListGridField)setAttribute("linkURLPrefix", linkURLPrefix);
     }
 
     /**
@@ -3069,9 +3346,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param linkURLSuffix New linkURLSuffix value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setLinkURLSuffix(String linkURLSuffix) {
-        setAttribute("linkURLSuffix", linkURLSuffix);
+    public ListGridField setLinkURLSuffix(String linkURLSuffix) {
+        return (ListGridField)setAttribute("linkURLSuffix", linkURLSuffix);
     }
 
     /**
@@ -3095,11 +3373,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGrid#getMinFieldWidth ListGrid.minFieldWidth} dominate this property.
      *
      * @param maxWidth New maxWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setWidth
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setMaxWidth(Integer maxWidth) {
-        setAttribute("maxWidth", maxWidth);
+    public ListGridField setMaxWidth(Integer maxWidth) {
+        return (ListGridField)setAttribute("maxWidth", maxWidth);
     }
 
     /**
@@ -3128,11 +3407,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGrid#getMinFieldWidth ListGrid.minFieldWidth} </ul>
      *
      * @param minWidth New minWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setWidth
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setMinWidth(Integer minWidth) {
-        setAttribute("minWidth", minWidth);
+    public ListGridField setMinWidth(Integer minWidth) {
+        return (ListGridField)setAttribute("minWidth", minWidth);
     }
 
     /**
@@ -3160,10 +3440,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * DataSourceField.multiple} rather than setting the property directly on the ListGridField object.
      *
      * @param multiple New multiple value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
-    public void setMultiple(Boolean multiple) {
-        setAttribute("multiple", multiple);
+    public ListGridField setMultiple(Boolean multiple) {
+        return (ListGridField)setAttribute("multiple", multiple);
     }
 
     /**
@@ -3192,10 +3473,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * overriding those on the DataSourceField.
      *
      * @param name New name value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FieldName FieldName 
      */
-    public void setName(String name) {
-        setAttribute("name", name);
+    public ListGridField setName(String name) {
+        return (ListGridField)setAttribute("name", name);
     }
 
     /**
@@ -3213,50 +3495,29 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
         return getAttributeAsString("name");
     }
     
-
-    /**
-     * This value is managed by the menu item titled {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterUsingText
-     * "Filter using"}
-     *  in the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu headerContextMenu} that appears when  
-     *  {@link com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterOperators allowFilterOperators} has been set to true.
-     *  <p>
-     * If you need to reset this filter operator you should call {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#setFieldProperties listGrid.setFieldProperties}, as in this example:
-     *  <pre>
-     *     listGrid.setFieldProperties(fieldName, {operator: null});</pre>
-     *  Note that this property is not listed as "initializable" and is not intended as a means
-     *  of applying a default operator to the field.  Rather, it simply reflects any non-default
-     * operator already applied to menu item {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterUsingText "Filter
-     * using"}.
-     * Use {@link com.smartgwt.client.widgets.grid.ListGridField#getFilterOperator filterOperator} to specify the default
-     * operator for the field.
-     *
-     * @return Current operator value. Default value is null
-     * @see com.smartgwt.client.widgets.grid.ListGridField#getFilterOperator
-     */
-    public String getOperator()  {
-        return getAttributeAsString("operator");
-    }
     
 
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} is set for this
      * ListGridField, criteria specified in this attribute will be passed to the dataSource when performing the fetch operation
-     * to determine data-value to display-value mappings
+     * to determine data-value to display-value mappings <P> See also {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getOptionTextMatchStyle optionTextMatchStyle}.
      *
      * @param optionCriteria New optionCriteria value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setOptionCriteria(Criteria optionCriteria) {
+    public ListGridField setOptionCriteria(Criteria optionCriteria) {
         if (optionCriteria instanceof Criterion) {
             optionCriteria.setAttribute("_constructor", "AdvancedCriteria");
         }
-        setAttribute("optionCriteria", optionCriteria == null ? null : optionCriteria.getJsObj());
+        return (ListGridField)setAttribute("optionCriteria", optionCriteria == null ? null : optionCriteria.getJsObj());
     }
 
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGridField#getOptionDataSource optionDataSource} is set for this
      * ListGridField, criteria specified in this attribute will be passed to the dataSource when performing the fetch operation
-     * to determine data-value to display-value mappings
+     * to determine data-value to display-value mappings <P> See also {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getOptionTextMatchStyle optionTextMatchStyle}.
      *
      * @return Current optionCriteria value. Default value is null
      */
@@ -3274,9 +3535,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * to <code>dataSource.fetchData()</code> when retrieving the display map from the option dataSource.
      *
      * @param optionOperationId New optionOperationId value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setOptionOperationId(String optionOperationId) {
-        setAttribute("optionOperationId", optionOperationId);
+    public ListGridField setOptionOperationId(String optionOperationId) {
+        return (ListGridField)setAttribute("optionOperationId", optionOperationId);
     }
 
     /**
@@ -3300,9 +3562,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * be used as a basis for this field's valueMap.
      *
      * @param optionTextMatchStyle New optionTextMatchStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setOptionTextMatchStyle(TextMatchStyle optionTextMatchStyle) {
-        setAttribute("optionTextMatchStyle", optionTextMatchStyle == null ? null : optionTextMatchStyle.getValue());
+    public ListGridField setOptionTextMatchStyle(TextMatchStyle optionTextMatchStyle) {
+        return (ListGridField)setAttribute("optionTextMatchStyle", optionTextMatchStyle == null ? null : optionTextMatchStyle.getValue());
     }
 
     /**
@@ -3326,9 +3589,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGrid#getCanReorderFields canReorderFields:false}
      *
      * @param partialSummary New partialSummary value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setPartialSummary(Boolean partialSummary) {
-        setAttribute("partialSummary", partialSummary);
+    public ListGridField setPartialSummary(Boolean partialSummary) {
+        return (ListGridField)setAttribute("partialSummary", partialSummary);
     }
 
     /**
@@ -3349,10 +3613,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.Canvas#getPrompt Canvas.prompt} for the header).
      *
      * @param prompt New prompt value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setPrompt(String prompt) {
-        setAttribute("prompt", prompt);
+    public ListGridField setPrompt(String prompt) {
+        return (ListGridField)setAttribute("prompt", prompt);
     }
 
     /**
@@ -3374,11 +3639,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * enabling both client and server side validation.
      *
      * @param required New required value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setValidators
      * @see com.smartgwt.client.docs.GridValidation GridValidation overview and related methods
      */
-    public void setRequired(Boolean required) {
-        setAttribute("required", required);
+    public ListGridField setRequired(Boolean required) {
+        return (ListGridField)setAttribute("required", required);
     }
 
     /**
@@ -3401,10 +3667,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * derived from {@link com.smartgwt.client.widgets.grid.ListGrid#getRotateHeaderTitles ListGrid.rotateHeaderTitles}.
      *
      * @param rotateTitle New rotateTitle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#setRotateHeaderTitles
      */
-    public void setRotateTitle(Boolean rotateTitle) {
-        setAttribute("rotateTitle", rotateTitle);
+    public ListGridField setRotateTitle(Boolean rotateTitle) {
+        return (ListGridField)setAttribute("rotateTitle", rotateTitle);
     }
 
     /**
@@ -3424,9 +3691,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGrid#getSelectCellTextOnClick ListGrid.selectCellTextOnClick} for more information.
      *
      * @param selectCellTextOnClick New selectCellTextOnClick value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setSelectCellTextOnClick(Boolean selectCellTextOnClick) {
-        setAttribute("selectCellTextOnClick", selectCellTextOnClick);
+    public ListGridField setSelectCellTextOnClick(Boolean selectCellTextOnClick) {
+        return (ListGridField)setAttribute("selectCellTextOnClick", selectCellTextOnClick);
     }
 
     /**
@@ -3444,10 +3712,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * Whether this field should be included in the printable representation of the grid.
      *
      * @param shouldPrint New shouldPrint value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Printing Printing overview and related methods
      */
-    public void setShouldPrint(Boolean shouldPrint) {
-        setAttribute("shouldPrint", shouldPrint);
+    public ListGridField setShouldPrint(Boolean shouldPrint) {
+        return (ListGridField)setAttribute("shouldPrint", shouldPrint);
     }
 
     /**
@@ -3466,9 +3735,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showAlternateStyle New showAlternateStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setShowAlternateStyle(Boolean showAlternateStyle) {
-        setAttribute("showAlternateStyle", showAlternateStyle);
+    public ListGridField setShowAlternateStyle(Boolean showAlternateStyle) {
+        return (ListGridField)setAttribute("showAlternateStyle", showAlternateStyle);
     }
 
     /**
@@ -3485,9 +3755,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * When set to false, this field will not show a context menu in its header.
      *
      * @param showDefaultContextMenu New showDefaultContextMenu value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setShowDefaultContextMenu(Boolean showDefaultContextMenu) {
-        setAttribute("showDefaultContextMenu", showDefaultContextMenu);
+    public ListGridField setShowDefaultContextMenu(Boolean showDefaultContextMenu) {
+        return (ListGridField)setAttribute("showDefaultContextMenu", showDefaultContextMenu);
     }
 
     /**
@@ -3505,11 +3776,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * If using an icon for this button, whether to switch the icon image if the button becomes disabled.
      *
      * @param showDisabledIcon New showDisabledIcon value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setIcon
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowDisabledIcon(Boolean showDisabledIcon) {
-        setAttribute("showDisabledIcon", showDisabledIcon);
+    public ListGridField setShowDisabledIcon(Boolean showDisabledIcon) {
+        return (ListGridField)setAttribute("showDisabledIcon", showDisabledIcon);
     }
 
     /**
@@ -3529,11 +3801,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * If using an icon for this button, whether to switch the icon image when the mouse goes down on the button.
      *
      * @param showDownIcon New showDownIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setIcon
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowDownIcon(Boolean showDownIcon) {
-        setAttribute("showDownIcon", showDownIcon);
+    public ListGridField setShowDownIcon(Boolean showDownIcon) {
+        return (ListGridField)setAttribute("showDownIcon", showDownIcon);
     }
 
     /**
@@ -3554,9 +3827,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * {@link com.smartgwt.client.widgets.grid.ListGrid#getShowEllipsisWhenClipped ListGrid.showEllipsisWhenClipped}
      *
      * @param showEllipsisWhenClipped New showEllipsisWhenClipped value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setShowEllipsisWhenClipped(Boolean showEllipsisWhenClipped) {
-        setAttribute("showEllipsisWhenClipped", showEllipsisWhenClipped);
+    public ListGridField setShowEllipsisWhenClipped(Boolean showEllipsisWhenClipped) {
+        return (ListGridField)setAttribute("showEllipsisWhenClipped", showEllipsisWhenClipped);
     }
 
     /**
@@ -3575,9 +3849,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * Download icons.
      *
      * @param showFileInline New showFileInline value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setShowFileInline(Boolean showFileInline) {
-        setAttribute("showFileInline", showFileInline);
+    public ListGridField setShowFileInline(Boolean showFileInline) {
+        return (ListGridField)setAttribute("showFileInline", showFileInline);
     }
 
     /**
@@ -3598,11 +3873,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * will be displayed
      *
      * @param showFocusedIcon New showFocusedIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setIcon
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowFocusedIcon(Boolean showFocusedIcon) {
-        setAttribute("showFocusedIcon", showFocusedIcon);
+    public ListGridField setShowFocusedIcon(Boolean showFocusedIcon) {
+        return (ListGridField)setAttribute("showFocusedIcon", showFocusedIcon);
     }
 
     /**
@@ -3629,9 +3905,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * field type.
      *
      * @param showGridSummary New showGridSummary value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setShowGridSummary(Boolean showGridSummary) {
-        setAttribute("showGridSummary", showGridSummary);
+    public ListGridField setShowGridSummary(Boolean showGridSummary) {
+        return (ListGridField)setAttribute("showGridSummary", showGridSummary);
     }
 
     /**
@@ -3656,9 +3933,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * defined for the specified field type.
      *
      * @param showGroupSummary New showGroupSummary value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setShowGroupSummary(Boolean showGroupSummary) {
-        setAttribute("showGroupSummary", showGroupSummary);
+    public ListGridField setShowGroupSummary(Boolean showGroupSummary) {
+        return (ListGridField)setAttribute("showGroupSummary", showGroupSummary);
     }
 
     /**
@@ -3681,9 +3959,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGrid#getShowHilitesInGroupSummary ListGrid.showHilitesInGroupSummary} property.
      *
      * @param showHilitesInGroupSummary New showHilitesInGroupSummary value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setShowHilitesInGroupSummary(Boolean showHilitesInGroupSummary) {
-        setAttribute("showHilitesInGroupSummary", showHilitesInGroupSummary);
+    public ListGridField setShowHilitesInGroupSummary(Boolean showHilitesInGroupSummary) {
+        return (ListGridField)setAttribute("showHilitesInGroupSummary", showHilitesInGroupSummary);
     }
 
     /**
@@ -3707,10 +3986,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGrid#getShowHover ListGrid.showHover} to false.
      *
      * @param showHover New showHover value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_value_hover" target="examples">Value hover tips Example</a>
      */
-    public void setShowHover(Boolean showHover) {
-        setAttribute("showHover", showHover);
+    public ListGridField setShowHover(Boolean showHover) {
+        return (ListGridField)setAttribute("showHover", showHover);
     }
 
     /**
@@ -3736,9 +4016,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showHoverComponents New showHoverComponents value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setShowHoverComponents(Boolean showHoverComponents) {
-        setAttribute("showHoverComponents", showHoverComponents);
+    public ListGridField setShowHoverComponents(Boolean showHoverComponents) {
+        return (ListGridField)setAttribute("showHoverComponents", showHoverComponents);
     }
 
     /**
@@ -3757,11 +4038,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * If using an icon for this button, whether to switch the icon image on mouse rollover.
      *
      * @param showRollOverIcon New showRollOverIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setIcon
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowRollOverIcon(Boolean showRollOverIcon) {
-        setAttribute("showRollOverIcon", showRollOverIcon);
+    public ListGridField setShowRollOverIcon(Boolean showRollOverIcon) {
+        return (ListGridField)setAttribute("showRollOverIcon", showRollOverIcon);
     }
 
     /**
@@ -3781,11 +4063,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * If using an icon for this button, whether to switch the icon image when the button becomes selected.
      *
      * @param showSelectedIcon New showSelectedIcon value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setIcon
      * @see com.smartgwt.client.docs.ButtonIcon ButtonIcon overview and related methods
      */
-    public void setShowSelectedIcon(Boolean showSelectedIcon) {
-        setAttribute("showSelectedIcon", showSelectedIcon);
+    public ListGridField setShowSelectedIcon(Boolean showSelectedIcon) {
+        return (ListGridField)setAttribute("showSelectedIcon", showSelectedIcon);
     }
 
     /**
@@ -3806,9 +4089,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * button for the field.
      *
      * @param showTitle New showTitle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle);
+    public ListGridField setShowTitle(Boolean showTitle) {
+        return (ListGridField)setAttribute("showTitle", showTitle);
     }
 
     /**
@@ -3831,12 +4115,13 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * to editors displayed in this field.
      *
      * @param showValueIconOnly New showValueIconOnly value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setValueIcons
      * @see com.smartgwt.client.widgets.grid.ListGridField#setSuppressValueIcon
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
-    public void setShowValueIconOnly(Boolean showValueIconOnly) {
-        setAttribute("showValueIconOnly", showValueIconOnly);
+    public ListGridField setShowValueIconOnly(Boolean showValueIconOnly) {
+        return (ListGridField)setAttribute("showValueIconOnly", showValueIconOnly);
     }
 
     /**
@@ -3865,10 +4150,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * is determined by {@link com.smartgwt.client.widgets.grid.ListGrid#getSkipLineBreaks ListGrid.skipLineBreaks}.
      *
      * @param skipLineBreaks New skipLineBreaks value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setEscapeHTML
      */
-    public void setSkipLineBreaks(Boolean skipLineBreaks) {
-        setAttribute("skipLineBreaks", skipLineBreaks);
+    public ListGridField setSkipLineBreaks(Boolean skipLineBreaks) {
+        return (ListGridField)setAttribute("skipLineBreaks", skipLineBreaks);
     }
 
     /**
@@ -3891,9 +4177,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * value? Unless explicitly set to <code>false</code> the display field value is used.
      *
      * @param sortByDisplayField New sortByDisplayField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setSortByDisplayField(Boolean sortByDisplayField) {
-        setAttribute("sortByDisplayField", sortByDisplayField);
+    public ListGridField setSortByDisplayField(Boolean sortByDisplayField) {
+        return (ListGridField)setAttribute("sortByDisplayField", sortByDisplayField);
     }
 
     /**
@@ -3915,9 +4202,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGridField#sortNormalizer sortNormalizer()} has been specified.
      *
      * @param sortByMappedValue New sortByMappedValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setSortByMappedValue(Boolean sortByMappedValue) {
-        setAttribute("sortByMappedValue", sortByMappedValue);
+    public ListGridField setSortByMappedValue(Boolean sortByMappedValue) {
+        return (ListGridField)setAttribute("sortByMappedValue", sortByMappedValue);
     }
 
     /**
@@ -3942,10 +4230,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * Overrides ListGrid.sortDirection
      *
      * @param sortDirection New sortDirection value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.types.SortDirection
      */
-    public void setSortDirection(SortDirection sortDirection) {
-        setAttribute("sortDirection", sortDirection == null ? null : sortDirection.getValue());
+    public ListGridField setSortDirection(SortDirection sortDirection) {
+        return (ListGridField)setAttribute("sortDirection", sortDirection == null ? null : sortDirection.getValue());
     }
 
     /**
@@ -3969,11 +4258,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * showing header spans.<br>
      *
      * @param spannedHeaderBaseStyle New spannedHeaderBaseStyle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setSpannedHeaderBaseStyle(String spannedHeaderBaseStyle) {
-        setAttribute("spannedHeaderBaseStyle", spannedHeaderBaseStyle);
+    public ListGridField setSpannedHeaderBaseStyle(String spannedHeaderBaseStyle) {
+        return (ListGridField)setAttribute("spannedHeaderBaseStyle", spannedHeaderBaseStyle);
     }
 
     /**
@@ -4000,14 +4290,15 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param summaryTitle New summaryTitle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setTitle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      * @deprecated Rather than customizing the summaryTitle developers should typically use  the {@link
      * com.smartgwt.client.widgets.grid.ListGridField#getHeaderTitle headerTitle} attribute to show a different  title in the
      * column header button than the title used elsewhere.
      */
-    public void setSummaryTitle(String summaryTitle) {
-        setAttribute("summaryTitle", summaryTitle);
+    public ListGridField setSummaryTitle(String summaryTitle) {
+        return (ListGridField)setAttribute("summaryTitle", summaryTitle);
     }
 
     /**
@@ -4037,10 +4328,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * is to show a blank value (a non-breaking space).
      *
      * @param summaryValue New summaryValue value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setSummaryValue(String summaryValue) {
-        setAttribute("summaryValue", summaryValue);
+    public ListGridField setSummaryValue(String summaryValue) {
+        return (ListGridField)setAttribute("summaryValue", summaryValue);
     }
 
     /**
@@ -4065,9 +4357,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGridField#getTitle title} will show up in the summary.
      *
      * @param summaryValueTitle New summaryValueTitle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setSummaryValueTitle(String summaryValueTitle) {
-        setAttribute("summaryValueTitle", summaryValueTitle);
+    public ListGridField setSummaryValueTitle(String summaryValueTitle) {
+        return (ListGridField)setAttribute("summaryValueTitle", summaryValueTitle);
     }
 
     /**
@@ -4092,12 +4385,13 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <code>boolean</code>.
      *
      * @param suppressValueIcon New suppressValueIcon value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setValueIcons
      * @see com.smartgwt.client.widgets.grid.ListGridField#setShowValueIconOnly
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
-    public void setSuppressValueIcon(Boolean suppressValueIcon) {
-        setAttribute("suppressValueIcon", suppressValueIcon);
+    public ListGridField setSuppressValueIcon(Boolean suppressValueIcon) {
+        return (ListGridField)setAttribute("suppressValueIcon", suppressValueIcon);
     }
 
     /**
@@ -4126,9 +4420,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * cell.
      *
      * @param target New target value. Default value is "_blank"
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setTarget(String target) {
-        setAttribute("target", target);
+    public ListGridField setTarget(String target) {
+        return (ListGridField)setAttribute("target", target);
     }
 
     /**
@@ -4158,10 +4453,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param timeFormatter New timeFormatter value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setTimeFormatter(TimeDisplayFormat timeFormatter) {
-        setAttribute("timeFormatter", timeFormatter == null ? null : timeFormatter.getValue());
+    public ListGridField setTimeFormatter(TimeDisplayFormat timeFormatter) {
+        return (ListGridField)setAttribute("timeFormatter", timeFormatter == null ? null : timeFormatter.getValue());
     }
 
     /**
@@ -4195,11 +4491,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * the field title.
      *
      * @param title New title value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#getFieldTitle
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setTitle(String title) {
-        setAttribute("title", title);
+    public ListGridField setTitle(String title) {
+        return (ListGridField)setAttribute("title", title);
     }
 
     /**
@@ -4228,12 +4525,13 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.types.ListGridFieldType} for a summary of how types are rendered.
      *
      * @param type New type value. Default value is "text"
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.types.ListGridFieldType
      * @see com.smartgwt.client.types.FieldType
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setType(ListGridFieldType type) {
-        setAttribute("type", type == null ? null : type.getValue());
+    public ListGridField setType(ListGridFieldType type) {
+        return (ListGridField)setAttribute("type", type == null ? null : type.getValue());
     }
 
     /**
@@ -4255,12 +4553,20 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGrid#getViewState viewState} can provide a {@link
      * com.smartgwt.client.widgets.UserFormula} as part of the field definition, and may subsequently access the formula is
      * updated via the {@link com.smartgwt.client.widgets.grid.ListGrid#addFormulaUpdatedHandler ListGrid.formulaUpdated()}
-     * notification.
+     * notification. <p> Note that the current implementation of UserFormula simply executes {@link
+     * com.smartgwt.client.widgets.UserFormula#getText UserFormula.text} as a JavaScript string after making special variables
+     * and methods available to the formula. It is safe to allow users to define formulas for themselves (since an end user can
+     * always execute whatever JavaScript they want via the browser's built-in developer tools), and is safe to allow formulas
+     * to be shared between trusted users.  However it would not be safe to allow an untrusted user to create formulas that are
+     * shared to other users. <p> Also, while the current implementation would allow creation of a formula that calls
+     * JavaScript functions that are not part of the standard or custom  MathFunctions, this should not be relied upon, as
+     * future versions of the formula engine may prohibit such calls.
      *
      * @param userFormula New userFormula value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setUserFormula(UserFormula userFormula) {
-        setAttribute("userFormula", userFormula == null ? null : userFormula.getJsObj());
+    public ListGridField setUserFormula(UserFormula userFormula) {
+        return (ListGridField)setAttribute("userFormula", userFormula == null ? null : userFormula.getJsObj());
     }
 
     /**
@@ -4268,7 +4574,14 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGrid#getViewState viewState} can provide a {@link
      * com.smartgwt.client.widgets.UserFormula} as part of the field definition, and may subsequently access the formula is
      * updated via the {@link com.smartgwt.client.widgets.grid.ListGrid#addFormulaUpdatedHandler ListGrid.formulaUpdated()}
-     * notification.
+     * notification. <p> Note that the current implementation of UserFormula simply executes {@link
+     * com.smartgwt.client.widgets.UserFormula#getText UserFormula.text} as a JavaScript string after making special variables
+     * and methods available to the formula. It is safe to allow users to define formulas for themselves (since an end user can
+     * always execute whatever JavaScript they want via the browser's built-in developer tools), and is safe to allow formulas
+     * to be shared between trusted users.  However it would not be safe to allow an untrusted user to create formulas that are
+     * shared to other users. <p> Also, while the current implementation would allow creation of a formula that calls
+     * JavaScript functions that are not part of the standard or custom  MathFunctions, this should not be relied upon, as
+     * future versions of the formula engine may prohibit such calls.
      *
      * @return Current userFormula value. Default value is null
      */
@@ -4284,9 +4597,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * updated via the {@link com.smartgwt.client.widgets.grid.ListGrid#summaryUpdated ListGrid.summaryUpdated()} notification.
      *
      * @param userSummary New userSummary value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setUserSummary(UserSummary userSummary) {
-        setAttribute("userSummary", userSummary == null ? null : userSummary.getJsObj());
+    public ListGridField setUserSummary(UserSummary userSummary) {
+        return (ListGridField)setAttribute("userSummary", userSummary == null ? null : userSummary.getJsObj());
     }
 
     /**
@@ -4308,10 +4622,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.form.fields.FormItem#getValidateOnChange FormItem.validateOnChange} property.
      *
      * @param validateOnChange New validateOnChange value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.GridValidation GridValidation overview and related methods
      */
-    public void setValidateOnChange(Boolean validateOnChange) {
-        setAttribute("validateOnChange", validateOnChange);
+    public ListGridField setValidateOnChange(Boolean validateOnChange) {
+        return (ListGridField)setAttribute("validateOnChange", validateOnChange);
     }
 
     /**
@@ -4334,13 +4649,14 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * validation.
      *
      * @param validators New validators value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.form.validator.Validator
      * @see com.smartgwt.client.widgets.grid.ListGridField#setRequired
      * @see com.smartgwt.client.docs.GridValidation GridValidation overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_editing_data_validation" target="examples">Data validation Example</a>
      */
-    public void setValidators(Validator... validators) {
-        setAttribute("validators", validators);
+    public ListGridField setValidators(Validator... validators) {
+        return (ListGridField)setAttribute("validators", validators);
     }
     
 
@@ -4351,10 +4667,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * ListGrid.headerTitleVAlign}.
      *
      * @param valign New valign value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#setRotateHeaderTitles
      */
-    public void setValign(VerticalAlignment valign) {
-        setAttribute("valign", valign == null ? null : valign.getValue());
+    public ListGridField setValign(VerticalAlignment valign) {
+        return (ListGridField)setAttribute("valign", valign == null ? null : valign.getValue());
     }
 
     /**
@@ -4378,9 +4695,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * will also be applied to this field's editors.
      *
      * @param valueField New valueField value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      */
-    public void setValueField(String valueField) {
-        setAttribute("valueField", valueField);
+    public ListGridField setValueField(String valueField) {
+        return (ListGridField)setAttribute("valueField", valueField);
     }
 
     /**
@@ -4403,10 +4721,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGridField#getValueIconSize valueIconSize}.
      *
      * @param valueIconHeight New valueIconHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
-    public void setValueIconHeight(Integer valueIconHeight) {
-        setAttribute("valueIconHeight", valueIconHeight);
+    public ListGridField setValueIconHeight(Integer valueIconHeight) {
+        return (ListGridField)setAttribute("valueIconHeight", valueIconHeight);
     }
 
     /**
@@ -4428,11 +4747,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGrid#getValueIconLeftPadding ListGrid.valueIconLeftPadding}
      *
      * @param valueIconLeftPadding New valueIconLeftPadding value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setValueIcons
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
-    public void setValueIconLeftPadding(Integer valueIconLeftPadding) {
-        setAttribute("valueIconLeftPadding", valueIconLeftPadding);
+    public ListGridField setValueIconLeftPadding(Integer valueIconLeftPadding) {
+        return (ListGridField)setAttribute("valueIconLeftPadding", valueIconLeftPadding);
     }
 
     /**
@@ -4454,10 +4774,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * effect if {@link com.smartgwt.client.widgets.grid.ListGridField#getShowValueIconOnly showValueIconOnly} is true
      *
      * @param valueIconOrientation New valueIconOrientation value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
-    public void setValueIconOrientation(String valueIconOrientation) {
-        setAttribute("valueIconOrientation", valueIconOrientation);
+    public ListGridField setValueIconOrientation(String valueIconOrientation) {
+        return (ListGridField)setAttribute("valueIconOrientation", valueIconOrientation);
     }
 
     /**
@@ -4478,11 +4799,12 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGrid#getValueIconRightPadding ListGrid.valueIconRightPadding}
      *
      * @param valueIconRightPadding New valueIconRightPadding value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGridField#setValueIcons
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
-    public void setValueIconRightPadding(Integer valueIconRightPadding) {
-        setAttribute("valueIconRightPadding", valueIconRightPadding);
+    public ListGridField setValueIconRightPadding(Integer valueIconRightPadding) {
+        return (ListGridField)setAttribute("valueIconRightPadding", valueIconRightPadding);
     }
 
     /**
@@ -4552,10 +4874,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      *  method will execute when the user clicks the icon.
      *
      * @param valueIcons New valueIcons value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
-    public void setValueIcons(Map<String,String> valueIcons) {
-        setAttribute("valueIcons", valueIcons);
+    public ListGridField setValueIcons(Map<String,String> valueIcons) {
+        return (ListGridField)setAttribute("valueIcons", valueIcons);
     }
     
 
@@ -4565,13 +4888,14 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGridField#getValueIconWidth valueIconWidth} and {ListGridField.valueIconHeight}
      *
      * @param valueIconSize New valueIconSize value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#setValueIconSize
      * @see com.smartgwt.client.widgets.grid.ListGridField#setValueIconWidth
      * @see com.smartgwt.client.widgets.grid.ListGridField#setValueIconHeight
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
-    public void setValueIconSize(Integer valueIconSize) {
-        setAttribute("valueIconSize", valueIconSize);
+    public ListGridField setValueIconSize(Integer valueIconSize) {
+        return (ListGridField)setAttribute("valueIconSize", valueIconSize);
     }
 
     /**
@@ -4597,10 +4921,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.widgets.grid.ListGridField#getValueIconSize valueIconSize}.
      *
      * @param valueIconWidth New valueIconWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ImageColumns ImageColumns overview and related methods
      */
-    public void setValueIconWidth(Integer valueIconWidth) {
-        setAttribute("valueIconWidth", valueIconWidth);
+    public ListGridField setValueIconWidth(Integer valueIconWidth) {
+        return (ListGridField)setAttribute("valueIconWidth", valueIconWidth);
     }
 
     /**
@@ -4626,12 +4951,13 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.data.DataSourceField#getValueMap DataSourceField.valueMap}.
      *
      * @param valueMap New valueMap value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#setValueMap
      * @see com.smartgwt.client.widgets.grid.ListGrid#getDisplayValue
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_datatypes_list" target="examples">List Example</a>
      */
-    public void setValueMap(Map valueMap) {
-        setAttribute("valueMap", valueMap);
+    public ListGridField setValueMap(Map valueMap) {
+        return (ListGridField)setAttribute("valueMap", valueMap);
     }
 
     /**
@@ -4643,12 +4969,13 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * com.smartgwt.client.data.DataSourceField#getValueMap DataSourceField.valueMap}.
      *
      * @param valueMap New valueMap value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#setValueMap
      * @see com.smartgwt.client.widgets.grid.ListGrid#getDisplayValue
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_datatypes_list" target="examples">List Example</a>
      */
-    public void setValueMap(String... valueMap) {
-        setAttribute("valueMap", valueMap);
+    public ListGridField setValueMap(String... valueMap) {
+        return (ListGridField)setAttribute("valueMap", valueMap);
     }
     
     
@@ -4664,10 +4991,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * <code>clipHeaderTitles</code> will be disabled for wrapping fields.</ul>
      *
      * @param wrap New wrap value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance, for chaining setter calls
      * @see com.smartgwt.client.widgets.grid.ListGrid#setMinFieldWidth
      */
-    public void setWrap(Boolean wrap) {
-        setAttribute("wrap", wrap);
+    public ListGridField setWrap(Boolean wrap) {
+        return (ListGridField)setAttribute("wrap", wrap);
     }
 
     /**
@@ -5055,6 +5383,9 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * Optional function to return the value that should be used when sorting this field. <P> Note that, if the dataset
      * exceeds {@link com.smartgwt.client.widgets.grid.ListGrid#getDataPageSize dataPageSize} and hence paging is
      * introduced, the grid relies on the server to provide sorting, and the sortNormalizer will no longer be called.
+     * <p>
+     * For custom sort orders that can be executed both client and server, consider 
+     * {@link com.smartgwt.client.data.DataSourceField#setSortByField sortByField}.
      *
      * @param normalizer the sort normalizer
      */
@@ -5147,10 +5478,35 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
     }
 
     /**
-     * The width of this field, specified as either an absolute number of pixels,  a percentage of the remaining space,
-     * or "*" to allocate an equal portion of the  remaining space. <br>  ListGrid field widths may also be set when the
-     * fields are instantiated via the   listGrid.setFields() method by passing an array of numbers (absolute pixel
-     * sizes only)   as the second parameter
+     * The width of this field, specified as either an absolute number of pixels,
+     * a percentage of the remaining space like "25%", or "*" to split remaining space among
+     * all fields which have "*". <P>
+     * Caution: stretch sizes are currently ignored if the field is being autofitted
+     * (see {@link com.smartgwt.client.widgets.grid.ListGrid#setAutoFitFieldWidths autoFitFieldWidths}), 
+     * unless {@link com.smartgwt.client.widgets.grid.ListGrid#setShowHeader showHeader} is false.
+     * <P>
+     * Note: if autofitting is active for a field, the width will default to the numerical
+     * autofit width for that field (so it will not be stretched larger to fill available
+     * space).  Otherwise, if not autofitting, the width will default to "*" causing it to be
+     * automatically stretched.
+     * <P>
+     * The width may be defaulted to a numerical value based on 
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#setLength length}
+     * if no {@link com.smartgwt.client.widgets.grid.ListGridField#setValueMap valueMap} is set, 
+     * subject to the initial values of
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#setMinWidth minWidth}
+     * and {@link com.smartgwt.client.widgets.grid.ListGrid#setMinFieldWidth minFieldWidth}.
+     * If you'd rather have the field
+     * stretched-sized to fit the available space, set its initial width to "*".
+     * <P>
+     * See also {@link com.smartgwt.client.widgets.grid.ListGrid#setMinFieldWidth minFieldWidth}
+     * to ensure no field goes below a minimum size.
+     * <P>
+     * Use {@link com.smartgwt.client.widgets.grid.ListGrid#setResizeField resizeField} to 
+     *programmatically change field width after creation.
+     * <P>
+     * Use {@link com.smartgwt.client.widgets.grid.ListGrid#getFieldWidth getFieldWidth} to access 
+     * the rendered field width after the ListGrid is drawn.
      *
      * @param width width Default value is "*"
      */
@@ -5159,10 +5515,35 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
     }
 
     /**
-     * The width of this field, specified as either an absolute number of pixels,  a percentage of the remaining space,
-     * or "*" to allocate an equal portion of the  remaining space. <br>  ListGrid field widths may also be set when the
-     * fields are instantiated via the   listGrid.setFields() method by passing an array of numbers (absolute pixel
-     * sizes only)   as the second parameter
+     * The width of this field, specified as either an absolute number of pixels,
+     * a percentage of the remaining space like "25%", or "*" to split remaining space among
+     * all fields which have "*". <P>
+     * Caution: stretch sizes are currently ignored if the field is being autofitted
+     * (see {@link com.smartgwt.client.widgets.grid.ListGrid#setAutoFitFieldWidths autoFitFieldWidths}), 
+     * unless {@link com.smartgwt.client.widgets.grid.ListGrid#setShowHeader showHeader} is false.
+     * <P>
+     * Note: if autofitting is active for a field, the width will default to the numerical
+     * autofit width for that field (so it will not be stretched larger to fill available
+     * space).  Otherwise, if not autofitting, the width will default to "*" causing it to be
+     * automatically stretched.
+     * <P>
+     * The width may be defaulted to a numerical value based on 
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#setLength length}
+     * if no {@link com.smartgwt.client.widgets.grid.ListGridField#setValueMap valueMap} is set, 
+     * subject to the initial values of
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#setMinWidth minWidth}
+     * and {@link com.smartgwt.client.widgets.grid.ListGrid#setMinFieldWidth minFieldWidth}.
+     * If you'd rather have the field
+     * stretched-sized to fit the available space, set its initial width to "*".
+     * <P>
+     * See also {@link com.smartgwt.client.widgets.grid.ListGrid#setMinFieldWidth minFieldWidth}
+     * to ensure no field goes below a minimum size.
+     * <P>
+     * Use {@link com.smartgwt.client.widgets.grid.ListGrid#setResizeField resizeField} to 
+     *programmatically change field width after creation.
+     * <P>
+     * Use {@link com.smartgwt.client.widgets.grid.ListGrid#getFieldWidth getFieldWidth} to access 
+     * the rendered field width after the ListGrid is drawn.
      *
      * @param width width Default value is "*"
      */
@@ -5171,7 +5552,35 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
     }
 
     /**
-     * Return the width of the field.
+     * The width of this field, specified as either an absolute number of pixels,
+     * a percentage of the remaining space like "25%", or "*" to split remaining space among
+     * all fields which have "*". <P>
+     * Caution: stretch sizes are currently ignored if the field is being autofitted
+     * (see {@link com.smartgwt.client.widgets.grid.ListGrid#setAutoFitFieldWidths autoFitFieldWidths}), 
+     * unless {@link com.smartgwt.client.widgets.grid.ListGrid#setShowHeader showHeader} is false.
+     * <P>
+     * Note: if autofitting is active for a field, the width will default to the numerical
+     * autofit width for that field (so it will not be stretched larger to fill available
+     * space).  Otherwise, if not autofitting, the width will default to "*" causing it to be
+     * automatically stretched.
+     * <P>
+     * The width may be defaulted to a numerical value based on 
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#setLength length}
+     * if no {@link com.smartgwt.client.widgets.grid.ListGridField#setValueMap valueMap} is set, 
+     * subject to the initial values of
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#setMinWidth minWidth}
+     * and {@link com.smartgwt.client.widgets.grid.ListGrid#setMinFieldWidth minFieldWidth}.
+     * If you'd rather have the field
+     * stretched-sized to fit the available space, set its initial width to "*".
+     * <P>
+     * See also {@link com.smartgwt.client.widgets.grid.ListGrid#setMinFieldWidth minFieldWidth}
+     * to ensure no field goes below a minimum size.
+     * <P>
+     * Use {@link com.smartgwt.client.widgets.grid.ListGrid#setResizeField resizeField} to 
+     *programmatically change field width after creation.
+     * <P>
+     * Use {@link com.smartgwt.client.widgets.grid.ListGrid#getFieldWidth getFieldWidth} to access 
+     * the rendered field width after the ListGrid is drawn.
      *
      * @return the field width as a String
      */
@@ -5201,6 +5610,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
     }
 
     /**
+     * If this field {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit can be edited}, 
+     * this property can be used to specify a default value for this field's editor when adding 
+     * new rows to the grid.
+     *
      * @see #setDefaultValue(String)
      */
     public void setDefaultValue(Integer defaultValue) {
@@ -5208,6 +5621,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
     }
 
     /**
+     * If this field {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit can be edited}, 
+     * this property can be used to specify a default value for this field's editor when adding 
+     * new rows to the grid.
+     *
      * @see #setDefaultValue(String)
      */
     public void setDefaultValue(Long defaultValue) {
@@ -5215,6 +5632,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
     }
 
     /**
+     * If this field {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit can be edited}, 
+     * this property can be used to specify a default value for this field's editor when adding 
+     * new rows to the grid.
+     *
      * @see #setDefaultValue(String)
      */
     public void setDefaultValue(Boolean defaultValue) {
@@ -5222,6 +5643,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
     }
 
     /**
+     * If this field {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit can be edited}, 
+     * this property can be used to specify a default value for this field's editor when adding 
+     * new rows to the grid.
+     *
      * @see #setDefaultValue(String)
      */
     public void setDefaultValue(Float defaultValue) {
@@ -5229,6 +5654,10 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
     }
 
     /**
+     * If this field {@link com.smartgwt.client.widgets.grid.ListGrid#getCanEdit can be edited}, 
+     * this property can be used to specify a default value for this field's editor when adding 
+     * new rows to the grid.
+     *
      * @see #setDefaultValue(String)
      */
     public void setDefaultValue(Date defaultValue) {
@@ -5426,33 +5855,63 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
         setAttribute("filterEditorProperties", editorConfig);
     }
 
-    /**
-     * Derive a ValueMap by fetching records from another DataSource and extracting the
-     * {@link com.smartgwt.client.widgets.grid.ListGridField#getValueField valueField} and
-     * {@link com.smartgwt.client.widgets.grid.ListGridField#getDisplayField displayField} in the loaded records,
-     * to derive one valueMap entry per record loaded from the optionDataSource. <P> Unlike the similar use of
-     * {@link com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource optionDataSource} for
-     * pickLists used during editing or filtering, <code>listGridField.optionDataSource</code> causes the entire set of
-     * records from the optionDataSource to be fetched, without paging.   Hence listGridField.optionDataSource is
-     * appropriate only for smaller valueMaps.  For very large valueMap situations, such as an accountId field that should be
-     * displayed as an accountName where there are thousands of accounts, the recommended approach is: <ul> <li> do not set
-     * listGridField.optionDataSource <li> declare two fields in the DataSource, eg "accountId" and "accountName". <li>
-     * Set the {@link com.smartgwt.client.widgets.grid.ListGridField#getDisplayField displayField} attribute on the data field to the
-     * name of the display field. <li> When fetching records for display in a grid, have your server send back values for both fields,
-     * but show only the data field ("accountId") in the grid. </ul> In this case the cells in the accountId field will show the record
-     * value from the accountName field. This approach means the valueMap will never be loaded in its entirety, instead, each loaded
-     * record contains the valueMapping for that one record, as a pair of fields within the record. <P> Note that it is key that the server
-     * return <b>both</b> the underlying stored value <b>and</b> the display value, as suggested above, because this approach allows the
-     * {@link com.smartgwt.client.widgets.form.fields.PickList#getOptionDataSource optionDataSource} property to be used to provide paged valueMaps during inline
-     * editing and {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor showFilterEditor}.  Note that pickList.optionDataSource
-     * is a distinct setting from listGridField.optionDataSource, settable via {@link com.smartgwt.client.widgets.grid.ListGridField#getEditorProperties editorProperties}
-     * (for editing) and  {@link com.smartgwt.client.widgets.grid.ListGridField#getFilterEditorProperties filterEditorProperties} (for filtering).
+ /**
+     * Derive a {@link com.smartgwt.client.types.ValueMap} by fetching records from another DataSource and extracting the
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#getValueField valueField} and {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getDisplayField displayField} in the loaded records, to derive one
+     * valueMap entry per record loaded from the optionDataSource. <P> Unlike the similar use of  PickList.optionDataSource for
+     * pickLists used during editing or filtering, <code>listGridField.optionDataSource</code> causes the <b>entire set of
+     * records from the optionDataSource to be fetched</b>, without paging. Hence listGridField.optionDataSource is appropriate
+     * only for smaller valueMaps.  For very large valueMap situations, such as an accountId field that should be displayed as
+     * an accountName where there are thousands of accounts, the correct approach is: <ul> <li> do not set
+     * listGridField.optionDataSource <li> declare two fields in the DataSource, eg "accountId" and "accountName". <li> Set the
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#getDisplayField displayField} attribute on the data field to the  
+     * name of the display field. <li> When fetching records for display in a grid, have your server send back values for     
+     * both fields, but show only the data field ("accountId") in the grid. </ul> In this case the cells in the accountId field
+     * will show the record value from the accountName field.  This approach means the valueMap will never be loaded in its
+     * entirety, instead, each loaded record contains the valueMapping for that one record, as a pair of fields within the
+     * record. <p> If you are using the Smart GWT Server Framework with the SQL or JPA/Hibernate built-in connectors, this
+     * entire approach can be achieved very easily using the {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#includeFrom DataSourceField.includeFrom} setting - see the {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#includeFrom docs for includeFrom} for details. <P> Notes: <ul>
+     * <li>When using the above approach, it is key that the server return <b>both</b> the underlying stored value <b>and</b>
+     * the display value, as suggested above. This approach allows the  PickList.optionDataSource property to be used to
+     * provide paged valueMaps during inline editing and {@link com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor
+     * inline filtering}. This can be achieved by setting the <code>optionDataSource</code> attribute on the form item used to
+     * edit the field via {@link com.smartgwt.client.widgets.grid.ListGridField#getEditorProperties editorProperties} (for
+     * editing) or {@link com.smartgwt.client.widgets.grid.ListGridField#getFilterEditorProperties
+     * field.filterEditorProperties} (for filtering), without specifying an optionDataSource at the listGridField level.
+     * Alternatively developers can use {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap
+     * autoFetchDisplayMap} to suppress the fetch against the optionDataSource at the listGrid level.</li> <li>Setting
+     * <code>listGridField.optionDataSource</code> to the same dataSource as the listGrid is not the same as omitting the
+     * optionDataSource setting entirely. Unless {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap
+     * autoFetchDisplayMap} has been set to explicitly disable fetching, a fetch will be performed against the dataSource to
+     * build a valueMap which will be used as the definitive mapping from data to display values, rather than picking up the
+     * display values from the records themselves. This distinction is required to support cases where the {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getValueField valueField} points to a different field in the grid (useful
+     * for hierarchical relationships, for example), or where {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getOptionCriteria optionCriteria} or {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getOptionOperationId optionOperationId} are specified and return
+     * different data from the records displayed within the grid.</li> <li>If a displayField is specified, with no associated
+     * optionDataSource, and the field is editable, updating the edit value for the field may not automatically update the
+     * displayField edit value, meaning the user may not realize the edit value has been modified. If the new value came from
+     * the user editing the field, and the edit item has a valueMap or optionDataSource specified, the display value is picked
+     * up automatically and stored out on the displayField for the record. However if the value was set programmatically, the
+     * developer should also set the edit value for the display field to ensure the displayed value reflects the new edit
+     * value. Note that when this occurs, a warning will be logged which can be disabled via {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getWarnOnUnmappedValueFieldChange
+     * ListGrid.warnOnUnmappedValueFieldChange}.</li> <li>For very advanced usage a developer can use {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getDisplayValueFromRecord displayValueFromRecord} to explicitly tell the
+     * grid whether or not to display the display field value for the record in this field when a displayField is specified.
+     * See documentation on that property for more information</li> </ul>
      *
      * @param optionDataSource optionDataSource Default value is null
+     * @return {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField} instance,
+     * for chaining setter calls
      */
-    public void setOptionDataSource(DataSource optionDataSource) {
+    public ListGridField setOptionDataSource(DataSource optionDataSource) {
         optionDataSource.getOrCreateJsObj();
-        setAttribute("optionDataSource", optionDataSource.getID());
+        return (ListGridField)setAttribute("optionDataSource", optionDataSource.getID());
     }
 
     /**
@@ -5479,6 +5938,7 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
 
     /**
      * If this field has an optionDataSource specified and &#010 {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap} is set, this attribute&#010 provides a way to customize the dataSource request issued to fetch the display map from&#010 the option dataSource.
+     * This provides, among other capabilities, a way to trigger the server to return summary records.
      *
      * @param optionFilterContext optionFilterContext Default value is null
      */
@@ -5488,6 +5948,7 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
 
     /**
      * If this field has an optionDataSource specified and &#010 {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFetchDisplayMap autoFetchDisplayMap} is set, this attribute&#010 provides a way to customize the dataSource request issued to fetch the display map from&#010 the option dataSource.
+     * This provides, among other capabilities, a way to trigger the server to return summary records.
      *
      * @return DSRequest Properties
      */
@@ -5664,6 +6125,9 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * this method can be used to
      * specify a {@link com.smartgwt.client.types.SummaryFunctionType}
      * for calculating the summary value to display.
+     * <P>
+     * If an array of summaryFunctions is specified, they will be executed in turn and the grid will show 
+     * multiple summary rows at the grid or group level (or both) containing the resulting values.
      *
      * @param summaryFunction summaryFunction
      */
@@ -5678,6 +6142,9 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * this method can be used to
      * specify the name of a summary function registered via {@link com.smartgwt.client.data.SimpleType#registerSummaryFunction}
      * for calculating the summary value to display.
+     * <P>
+     * If an array of summaryFunctions is specified, they will be executed in turn and the grid will show 
+     * multiple summary rows at the grid or group level (or both) containing the resulting values.
      *
      * @param summaryFunction summaryFunction
      */
@@ -5691,8 +6158,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * this method can be used to
      * specify a {@link com.smartgwt.client.widgets.grid.SummaryFunction}
      * for calculating the summary value to display.
+     * <P>
+     * If an array of summaryFunctions is specified, they will be executed in turn and the grid will show 
+     * multiple summary rows at the grid or group level (or both) containing the resulting values.
      *
-     * @param summaryFunction summaryFunctio
+     * @param summaryFunction summaryFunction
      */
     public native void setSummaryFunction(SummaryFunction summaryFunction) /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
@@ -5781,8 +6251,17 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * Only applies to fields of type <code>"summary"</code>. Fields of this type will display a calculated value based on the
      * other field values within the current record. <P> This attribute specifies how the summary field value will be
      * calculated. See  {@link com.smartgwt.client.types.RecordSummaryFunctionType} for valid options. <P> A subset of the
-     * ListGrid's fields will be passed to the RecordSummaryFunction.  Which fields to include is determined based on {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getIncludeInRecordSummary includeInRecordSummary} <P> If {@link
+     * ListGrid's fields will be passed to the RecordSummaryFunction. <P> The fields to be used for the summary calculation can 
+     * be determined either by explicitly listing them ({@link com.smartgwt.client.widgets.grid.ListGridField#getIncludeInRecordSummaryFields includeInRecordSummaryFields}),
+     * or by setting {@link com.smartgwt.client.widgets.grid.ListGridField#getIncludeInRecordSummary includeInRecordSummary} to 
+     * true on fields that should be included and false on fields that should not.
+     * <p>
+     * By default, all visible fields of numeric type are used. Note that, in this mode, if the user is able to hide some fields, 
+     * this could change the formula. If this isn't desirable, consider setting {@link com.smartgwt.client.grid.ListGridField#setCanHide canHide}
+     * to prevent fields from being hidden. 
+     * Consider this even if fields to include in the summary are explicitly listed, as hidden fields involved in a visible 
+     * calculation can be confusing for an end user. 
+     *<P> If {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} or {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true, this field's value in the
      * summary row[s] will still be calculated by calling this method. In this case, the record object passed in will contain
@@ -5800,8 +6279,17 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * Only applies to fields of type <code>"summary"</code>. Fields of this type will display a calculated value based on the
      * other field values within the current record. <P> This attribute specifies how the summary field value will be
      * calculated. See  {@link com.smartgwt.client.types.RecordSummaryFunctionType} for valid options. <P> A subset of the
-     * ListGrid's fields will be passed to the RecordSummaryFunction.  Which fields to include is determined based on {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getIncludeInRecordSummary includeInRecordSummary} <P> If {@link
+     * ListGrid's fields will be passed to the RecordSummaryFunction. <P> The fields to be used for the summary calculation can 
+     * be determined either by explicitly listing them ({@link com.smartgwt.client.widgets.grid.ListGridField#getIncludeInRecordSummaryFields includeInRecordSummaryFields}),
+     * or by setting {@link com.smartgwt.client.widgets.grid.ListGridField#getIncludeInRecordSummary includeInRecordSummary} to 
+     * true on fields that should be included and false on fields that should not.
+     * <p>
+     * By default, all visible fields of numeric type are used. Note that, in this mode, if the user is able to hide some fields, 
+     * this could change the formula. If this isn't desirable, consider setting {@link com.smartgwt.client.grid.ListGridField#setCanHide canHide}
+     * to prevent fields from being hidden. 
+     * Consider this even if fields to include in the summary are explicitly listed, as hidden fields involved in a visible 
+     * calculation can be confusing for an end user. 
+     *<P> If {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getShowGridSummary showGridSummary} or {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getShowGroupSummary showGroupSummary} is true, this field's value in the
      * summary row[s] will still be calculated by calling this method. In this case, the record object passed in will contain
@@ -5877,6 +6365,32 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
     private static boolean isListGridField(JavaScriptObject jsObj) {
         Object ref = JSOHelper.getAttributeAsObject(jsObj, SC.REF);
         return ref != null && ref instanceof ListGridField;
+    }
+
+    /**
+     * This value is managed by the menu item titled {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterUsingText
+     * "Filter using"}
+     *  in the {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu headerContextMenu} that appears when  
+     *  {@link com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterOperators allowFilterOperators} has been set to true.
+     *  <p>
+     * If you need to reset this filter operator you should call {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#setFieldProperties listGrid.setFieldProperties}, as in this example:
+     *  <pre>
+     *     listGrid.setFieldProperties(fieldName, {operator: null});</pre>
+     *  Note that this property is not listed as "initializable" and is not intended as a means
+     *  of applying a default operator to the field.  Rather, it simply reflects any non-default
+     * operator already applied to menu item {@link com.smartgwt.client.widgets.grid.ListGrid#getFilterUsingText "Filter
+     * using"}.
+     * Use {@link com.smartgwt.client.widgets.grid.ListGridField#getFilterOperator filterOperator} to specify the default
+     * operator for the field.
+     * <p>
+     * The value returned is from the {@link com.smartgwt.client.types.OperatorId OperatorId} enum.
+     *
+     * @return Current operator value. Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getFilterOperator
+     */
+    public String getOperator()  {
+        return getAttributeAsString("operator");
     }
 
 

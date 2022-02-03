@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -193,10 +196,11 @@ public class DrawLinePath extends DrawItem {
      * The ConnectorOrientation controlling the orientation and behavior of this line's  tail segments.
      *
      * @param connectorOrientation New connectorOrientation value. Default value is "auto"
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLinePath DrawLinePath} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setConnectorOrientation(ConnectorOrientation connectorOrientation)  throws IllegalStateException {
-        setAttribute("connectorOrientation", connectorOrientation == null ? null : connectorOrientation.getValue(), false);
+    public DrawLinePath setConnectorOrientation(ConnectorOrientation connectorOrientation)  throws IllegalStateException {
+        return (DrawLinePath)setAttribute("connectorOrientation", connectorOrientation == null ? null : connectorOrientation.getValue(), false);
     }
 
     /**
@@ -213,10 +217,11 @@ public class DrawLinePath extends DrawItem {
      * The ConnectorStyle controlling the presentation and behavior of this line's  tail segments.
      *
      * @param connectorStyle New connectorStyle value. Default value is "diagonal"
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLinePath DrawLinePath} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setConnectorStyle(ConnectorStyle connectorStyle)  throws IllegalStateException {
-        setAttribute("connectorStyle", connectorStyle == null ? null : connectorStyle.getValue(), false);
+    public DrawLinePath setConnectorStyle(ConnectorStyle connectorStyle)  throws IllegalStateException {
+        return (DrawLinePath)setAttribute("connectorStyle", connectorStyle == null ? null : connectorStyle.getValue(), false);
     }
 
     /**
@@ -236,9 +241,10 @@ public class DrawLinePath extends DrawItem {
      * Sets the coordinates of the controlPoint1 knob and by extension the coordinates of this DrawLinePath's leading tail segment.
      *
      * @param controlPoint1 left coordinate for start point, in pixels. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLinePath DrawLinePath} instance, for chaining setter calls
      */
-    public void setControlPoint1(Point controlPoint1) {
-        setAttribute("controlPoint1", controlPoint1 == null ? null : controlPoint1.getJsObj(), true);
+    public DrawLinePath setControlPoint1(Point controlPoint1) {
+        return (DrawLinePath)setAttribute("controlPoint1", controlPoint1 == null ? null : controlPoint1.getJsObj(), true);
     }
 
     /**
@@ -259,9 +265,10 @@ public class DrawLinePath extends DrawItem {
      * Sets the coordinates of the controlPoint2 knob and by extension the coordinates of this DrawLinePath's trailing tail segment.
      *
      * @param controlPoint2 left coordinate for start point, in pixels. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLinePath DrawLinePath} instance, for chaining setter calls
      */
-    public void setControlPoint2(Point controlPoint2) {
-        setAttribute("controlPoint2", controlPoint2 == null ? null : controlPoint2.getJsObj(), true);
+    public DrawLinePath setControlPoint2(Point controlPoint2) {
+        return (DrawLinePath)setAttribute("controlPoint2", controlPoint2 == null ? null : controlPoint2.getJsObj(), true);
     }
 
     /**
@@ -279,10 +286,11 @@ public class DrawLinePath extends DrawItem {
      * Style of arrow head to draw at the end of the line or path.
      *
      * @param endArrow New endArrow value. Default value is "open", IRW
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLinePath DrawLinePath} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#lines_and_arrowheads" target="examples">Lines & Arrowheads Example</a>
      */
-    public void setEndArrow(ArrowStyle endArrow) {
-        setAttribute("endArrow", endArrow == null ? null : endArrow.getValue(), true);
+    public DrawLinePath setEndArrow(ArrowStyle endArrow) {
+        return (DrawLinePath)setAttribute("endArrow", endArrow == null ? null : endArrow.getValue(), true);
     }
 
     /**
@@ -301,10 +309,11 @@ public class DrawLinePath extends DrawItem {
      * com.smartgwt.client.widgets.drawing.DrawLinePath#getEndPoint endPoint} if both are set.
      *
      * @param endLeft New endLeft value. Default value is 0 , IRW
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLinePath DrawLinePath} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEndLeft(int endLeft)  throws IllegalStateException {
-        setAttribute("endLeft", endLeft, false);
+    public DrawLinePath setEndLeft(int endLeft)  throws IllegalStateException {
+        return (DrawLinePath)setAttribute("endLeft", endLeft, false);
     }
 
     /**
@@ -335,9 +344,10 @@ public class DrawLinePath extends DrawItem {
      * Update the endPoint
      *
      * @param endPoint left coordinate for end point, in pixels. Default value is [100,100]
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLinePath DrawLinePath} instance, for chaining setter calls
      */
-    public void setEndPoint(Point endPoint) {
-        setAttribute("endPoint", endPoint == null ? null : endPoint.getJsObj(), true);
+    public DrawLinePath setEndPoint(Point endPoint) {
+        return (DrawLinePath)setAttribute("endPoint", endPoint == null ? null : endPoint.getJsObj(), true);
     }
 
     /**
@@ -355,10 +365,11 @@ public class DrawLinePath extends DrawItem {
      * com.smartgwt.client.widgets.drawing.DrawLinePath#getEndPoint endPoint} if both are set.
      *
      * @param endTop New endTop value. Default value is 0 , IRW
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLinePath DrawLinePath} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setEndTop(int endTop)  throws IllegalStateException {
-        setAttribute("endTop", endTop, false);
+    public DrawLinePath setEndTop(int endTop)  throws IllegalStateException {
+        return (DrawLinePath)setAttribute("endTop", endTop, false);
     }
 
     /**
@@ -392,13 +403,14 @@ public class DrawLinePath extends DrawItem {
      * types.
      *
      * @param knobs New knobs value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLinePath DrawLinePath} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setKnobs
      * 
      * 
      */
-    public void setKnobs(KnobType... knobs)  throws IllegalStateException {
-        setAttribute("knobs", knobs, false);
+    public DrawLinePath setKnobs(KnobType... knobs)  throws IllegalStateException {
+        return (DrawLinePath)setAttribute("knobs", knobs, false);
     }
 
     /**
@@ -429,10 +441,11 @@ public class DrawLinePath extends DrawItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showTitleLabelBackground New showTitleLabelBackground value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLinePath DrawLinePath} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowTitleLabelBackground(boolean showTitleLabelBackground)  throws IllegalStateException {
-        setAttribute("showTitleLabelBackground", showTitleLabelBackground, false);
+    public DrawLinePath setShowTitleLabelBackground(boolean showTitleLabelBackground)  throws IllegalStateException {
+        return (DrawLinePath)setAttribute("showTitleLabelBackground", showTitleLabelBackground, false);
     }
 
     /**
@@ -454,10 +467,11 @@ public class DrawLinePath extends DrawItem {
      * com.smartgwt.client.widgets.drawing.DrawLinePath#getStartPoint startPoint} if both are set.
      *
      * @param startLeft New startLeft value. Default value is 0 , IRW
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLinePath DrawLinePath} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setStartLeft(int startLeft)  throws IllegalStateException {
-        setAttribute("startLeft", startLeft, false);
+    public DrawLinePath setStartLeft(int startLeft)  throws IllegalStateException {
+        return (DrawLinePath)setAttribute("startLeft", startLeft, false);
     }
 
     /**
@@ -488,9 +502,10 @@ public class DrawLinePath extends DrawItem {
      * Update the startPoint
      *
      * @param startPoint left coordinate for start point, in pixels. Default value is [0,0]
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLinePath DrawLinePath} instance, for chaining setter calls
      */
-    public void setStartPoint(Point startPoint) {
-        setAttribute("startPoint", startPoint == null ? null : startPoint.getJsObj(), true);
+    public DrawLinePath setStartPoint(Point startPoint) {
+        return (DrawLinePath)setAttribute("startPoint", startPoint == null ? null : startPoint.getJsObj(), true);
     }
 
     /**
@@ -508,10 +523,11 @@ public class DrawLinePath extends DrawItem {
      * com.smartgwt.client.widgets.drawing.DrawLinePath#getStartPoint startPoint} if both are set.
      *
      * @param startTop New startTop value. Default value is 0 , IRW
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLinePath DrawLinePath} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setStartTop(int startTop)  throws IllegalStateException {
-        setAttribute("startTop", startTop, false);
+    public DrawLinePath setStartTop(int startTop)  throws IllegalStateException {
+        return (DrawLinePath)setAttribute("startTop", startTop, false);
     }
 
     /**
@@ -540,10 +556,11 @@ public class DrawLinePath extends DrawItem {
      * connecting center segment.
      *
      * @param tailSize New tailSize value. Default value is 30
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLinePath DrawLinePath} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setTailSize(int tailSize)  throws IllegalStateException {
-        setAttribute("tailSize", tailSize, false);
+    public DrawLinePath setTailSize(int tailSize)  throws IllegalStateException {
+        return (DrawLinePath)setAttribute("tailSize", tailSize, false);
     }
 
     /**
@@ -573,12 +590,13 @@ public class DrawLinePath extends DrawItem {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param titleRotationMode New titleRotationMode value. Default value is "withLineAlwaysUp"
+     * @return {@link com.smartgwt.client.widgets.drawing.DrawLinePath DrawLinePath} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.drawing.DrawItem#setTitle
      * 
      */
-    public void setTitleRotationMode(TitleRotationMode titleRotationMode)  throws IllegalStateException {
-        setAttribute("titleRotationMode", titleRotationMode == null ? null : titleRotationMode.getValue(), false);
+    public DrawLinePath setTitleRotationMode(TitleRotationMode titleRotationMode)  throws IllegalStateException {
+        return (DrawLinePath)setAttribute("titleRotationMode", titleRotationMode == null ? null : titleRotationMode.getValue(), false);
     }
 
     /**

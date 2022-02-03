@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * A checkbox for manipulating 2-valued fields based on the native checkbox element.
@@ -157,9 +160,10 @@ public class NativeCheckboxItem extends FormItem {
      * Should we show the label text next to the checkbox item.
      *
      * @param showLabel New showLabel value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.form.fields.NativeCheckboxItem NativeCheckboxItem} instance, for chaining setter calls
      */
-    public void setShowLabel(Boolean showLabel) {
-        setAttribute("showLabel", showLabel);
+    public NativeCheckboxItem setShowLabel(Boolean showLabel) {
+        return (NativeCheckboxItem)setAttribute("showLabel", showLabel);
     }
 
     /**
@@ -177,11 +181,12 @@ public class NativeCheckboxItem extends FormItem {
      * Base CSS class applied to this item's title text (rendered next to the checkbox element).
      *
      * @param textBoxStyle New textBoxStyle value. Default value is "labelAnchor"
+     * @return {@link com.smartgwt.client.widgets.form.fields.NativeCheckboxItem NativeCheckboxItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setTextBoxStyle(String textBoxStyle) {
-        setAttribute("textBoxStyle", textBoxStyle);
+    public NativeCheckboxItem setTextBoxStyle(String textBoxStyle) {
+        return (NativeCheckboxItem)setAttribute("textBoxStyle", textBoxStyle);
     }
 
     /**

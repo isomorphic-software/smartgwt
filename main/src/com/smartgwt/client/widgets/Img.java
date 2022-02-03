@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 import com.smartgwt.logicalstructure.core.*;
 import com.smartgwt.logicalstructure.widgets.*;
 import com.smartgwt.logicalstructure.widgets.drawing.*;
@@ -95,6 +98,7 @@ import com.smartgwt.logicalstructure.widgets.tools.*;
 
 /**
  * The Img widget class implements a simple widget that displays a single image.
+ * @see com.smartgwt.client.docs.StatefulImages StatefulImages overview and related methods
  */
 @BeanFactory.FrameworkClass
 @BeanFactory.ScClassName("Img")
@@ -197,10 +201,11 @@ public class Img extends StatefulCanvas {
      * will be ignored in favor of the altText in this case.
      *
      * @param altText New altText value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Img Img} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Accessibility Accessibility overview and related methods
      */
-    public void setAltText(String altText) {
-        setAttribute("altText", altText, true);
+    public Img setAltText(String altText) {
+        return (Img)setAttribute("altText", altText, true);
     }
 
     /**
@@ -228,11 +233,12 @@ public class Img extends StatefulCanvas {
      * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
      *
      * @param editProxyConstructor New editProxyConstructor value. Default value is "ImgEditProxy"
+     * @return {@link com.smartgwt.client.widgets.Img Img} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
      */
-    public void setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
-        setAttribute("editProxyConstructor", editProxyConstructor, false);
+    public Img setEditProxyConstructor(String editProxyConstructor)  throws IllegalStateException {
+        return (Img)setAttribute("editProxyConstructor", editProxyConstructor, false);
     }
 
     /**
@@ -253,10 +259,12 @@ public class Img extends StatefulCanvas {
      * "center" and "normal" only).
      *
      * @param imageHeight New imageHeight value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Img Img} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setImageHeight(Integer imageHeight)  throws IllegalStateException {
-        setAttribute("imageHeight", imageHeight, false);
+    public Img setImageHeight(Integer imageHeight)  throws IllegalStateException {
+        return (Img)setAttribute("imageHeight", imageHeight, false);
     }
 
     /**
@@ -265,6 +273,7 @@ public class Img extends StatefulCanvas {
      * "center" and "normal" only).
      *
      * @return Current imageHeight value. Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Integer getImageHeight()  {
         return getAttributeAsInt("imageHeight");
@@ -281,10 +290,11 @@ public class Img extends StatefulCanvas {
      * Change the style of image rendering.
      *
      * @param imageType new style of image rendering. Default value is Img.STRETCH
+     * @return {@link com.smartgwt.client.widgets.Img Img} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setImageType(ImageStyle imageType) {
-        setAttribute("imageType", imageType == null ? null : imageType.getValue(), true);
+    public Img setImageType(ImageStyle imageType) {
+        return (Img)setAttribute("imageType", imageType == null ? null : imageType.getValue(), true);
     }
 
     /**
@@ -307,10 +317,12 @@ public class Img extends StatefulCanvas {
      * "center" and "normal" only).
      *
      * @param imageWidth New imageWidth value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Img Img} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setImageWidth(Integer imageWidth)  throws IllegalStateException {
-        setAttribute("imageWidth", imageWidth, false);
+    public Img setImageWidth(Integer imageWidth)  throws IllegalStateException {
+        return (Img)setAttribute("imageWidth", imageWidth, false);
     }
 
     /**
@@ -319,6 +331,7 @@ public class Img extends StatefulCanvas {
      * "center" and "normal" only).
      *
      * @return Current imageWidth value. Default value is null
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Integer getImageWidth()  {
         return getAttributeAsInt("imageWidth");
@@ -331,10 +344,11 @@ public class Img extends StatefulCanvas {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param name New name value. Default value is "main"
+     * @return {@link com.smartgwt.client.widgets.Img Img} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setName(String name)  throws IllegalStateException {
-        setAttribute("name", name, false);
+    public Img setName(String name)  throws IllegalStateException {
+        return (Img)setAttribute("name", name, false);
     }
     
 
@@ -342,11 +356,12 @@ public class Img extends StatefulCanvas {
      * Prompt displayed in hover canvas if {@link com.smartgwt.client.widgets.Canvas#getShowHover showHover} is true.
      *
      * @param prompt New prompt value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Img Img} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#basics_interaction_hovers" target="examples">Hovers / Tooltips Example</a>
      */
-    public void setPrompt(String prompt) {
-        setAttribute("prompt", prompt, true);
+    public Img setPrompt(String prompt) {
+        return (Img)setAttribute("prompt", prompt, true);
     }
 
     /**
@@ -362,15 +377,347 @@ public class Img extends StatefulCanvas {
     
 
     /**
+     * Should we visibly change state when disabled? <P> This will impact the {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle styling} of the component  when disabled. It may also impact the
+     * {@link com.smartgwt.client.widgets.Img#getSrc image being displayed} - see also {@link
+     * com.smartgwt.client.widgets.Img#getShowImageDisabled showImageDisabled}.
+     *
+     * @param showDisabled New showDisabled value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Img Img} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.State State overview and related methods
+     */
+    public Img setShowDisabled(Boolean showDisabled) {
+        return (Img)setAttribute("showDisabled", showDisabled, true);
+    }
+
+    /**
+     * Should we visibly change state when disabled? <P> This will impact the {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle styling} of the component  when disabled. It may also impact the
+     * {@link com.smartgwt.client.widgets.Img#getSrc image being displayed} - see also {@link
+     * com.smartgwt.client.widgets.Img#getShowImageDisabled showImageDisabled}.
+     *
+     * @return Current showDisabled value. Default value is true
+     * @see com.smartgwt.client.docs.State State overview and related methods
+     */
+    public Boolean getShowDisabled()  {
+        Boolean result = getAttributeAsBoolean("showDisabled");
+        return result == null ? true : result;
+    }
+    
+
+    /**
+     * Should we visibly change state when the mouse goes down in this object? This will impact the {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle styling} of the component on mouse down. It may also impact the
+     * {@link com.smartgwt.client.widgets.Img#getSrc image being displayed} - see also {@link
+     * com.smartgwt.client.widgets.Img#getShowImageDown showImageDown}.
+     *
+     * @param showDown New showDown value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Img Img} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.State State overview and related methods
+     */
+    public Img setShowDown(Boolean showDown) {
+        return (Img)setAttribute("showDown", showDown, true);
+    }
+
+    /**
+     * Should we visibly change state when the mouse goes down in this object? This will impact the {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle styling} of the component on mouse down. It may also impact the
+     * {@link com.smartgwt.client.widgets.Img#getSrc image being displayed} - see also {@link
+     * com.smartgwt.client.widgets.Img#getShowImageDown showImageDown}.
+     *
+     * @return Current showDown value. Default value is false
+     * @see com.smartgwt.client.docs.State State overview and related methods
+     */
+    public Boolean getShowDown()  {
+        Boolean result = getAttributeAsBoolean("showDown");
+        return result == null ? false : result;
+    }
+    
+
+    /**
+     * Should we visibly change state when the canvas receives focus?  If {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver StatefulCanvas.showFocusedAsOver} is <code>true</code>,
+     * then <b><code>"over"</code></b> will be used to indicate focus. Otherwise a separate <b><code>"focused"</code></b> state
+     * will be used. <P> This will impact the {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle styling} of the
+     * component on focus. It may also impact the {@link com.smartgwt.client.widgets.Img#getSrc image being displayed} - see
+     * also {@link com.smartgwt.client.widgets.Img#getShowImageFocused showImageFocused}.
+     *
+     * @param showFocused New showFocused value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Img Img} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.State State overview and related methods
+     */
+    public Img setShowFocused(Boolean showFocused) {
+        return (Img)setAttribute("showFocused", showFocused, true);
+    }
+
+    /**
+     * Should we visibly change state when the canvas receives focus?  If {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver StatefulCanvas.showFocusedAsOver} is <code>true</code>,
+     * then <b><code>"over"</code></b> will be used to indicate focus. Otherwise a separate <b><code>"focused"</code></b> state
+     * will be used. <P> This will impact the {@link com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle styling} of the
+     * component on focus. It may also impact the {@link com.smartgwt.client.widgets.Img#getSrc image being displayed} - see
+     * also {@link com.smartgwt.client.widgets.Img#getShowImageFocused showImageFocused}.
+     *
+     * @return Current showFocused value. Default value is false
+     * @see com.smartgwt.client.docs.State State overview and related methods
+     */
+    public Boolean getShowFocused()  {
+        Boolean result = getAttributeAsBoolean("showFocused");
+        return result == null ? false : result;
+    }
+    
+
+    /**
+     * If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused showFocused} is true for this widget, should the
+     * <code>"over"</code> state be used to indicate the widget as focused. If set to false, a separate <code>"focused"</code>
+     * state will be used. <P> This property effects the css styling for the focused state.<br> If {@link
+     * com.smartgwt.client.widgets.Img#getSrc src} is specified as a string it will also cause the "Over" media to be displayed
+     * to indicate focus, unless explicitly overridden by  {@link com.smartgwt.client.widgets.Img#getShowImageFocusedAsOver
+     * showImageFocusedAsOver}. Note that this has no impact on the image to be displayed if {@link
+     * com.smartgwt.client.widgets.Img#getSrc src} is specified as a {@link com.smartgwt.client.widgets.SCStatefulImgConfig}.
+     *
+     * @param showFocusedAsOver New showFocusedAsOver value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Img Img} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.State State overview and related methods
+     */
+    public Img setShowFocusedAsOver(Boolean showFocusedAsOver) {
+        return (Img)setAttribute("showFocusedAsOver", showFocusedAsOver, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused showFocused} is true for this widget, should the
+     * <code>"over"</code> state be used to indicate the widget as focused. If set to false, a separate <code>"focused"</code>
+     * state will be used. <P> This property effects the css styling for the focused state.<br> If {@link
+     * com.smartgwt.client.widgets.Img#getSrc src} is specified as a string it will also cause the "Over" media to be displayed
+     * to indicate focus, unless explicitly overridden by  {@link com.smartgwt.client.widgets.Img#getShowImageFocusedAsOver
+     * showImageFocusedAsOver}. Note that this has no impact on the image to be displayed if {@link
+     * com.smartgwt.client.widgets.Img#getSrc src} is specified as a {@link com.smartgwt.client.widgets.SCStatefulImgConfig}.
+     *
+     * @return Current showFocusedAsOver value. Default value is true
+     * @see com.smartgwt.client.docs.State State overview and related methods
+     */
+    public Boolean getShowFocusedAsOver()  {
+        Boolean result = getAttributeAsBoolean("showFocusedAsOver");
+        return result == null ? true : result;
+    }
+    
+
+    /**
+     * Should the image be updated when disabled as described in {@link com.smartgwt.client.docs.StatefulImages}? <P> If not
+     * explicitly set, behavior is as follows:<br> If {@link com.smartgwt.client.widgets.Img#getSrc src} is specified as a
+     * string, {@link com.smartgwt.client.widgets.Img#getShowDisabled showDisabled} will be used to  determine whether to show
+     * a disabled image.<br> If {@link com.smartgwt.client.widgets.Img#getSrc src} is specified as a {@link
+     * com.smartgwt.client.widgets.SCStatefulImgConfig}, the appropriate  {@link
+     * com.smartgwt.client.widgets.SCStatefulImgConfig#getDisabled SCStatefulImgConfig.Disabled} state image will be displayed
+     * if defined.
+     *
+     * @param showImageDisabled New showImageDisabled value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Img Img} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.State State overview and related methods
+     */
+    public Img setShowImageDisabled(Boolean showImageDisabled) {
+        return (Img)setAttribute("showImageDisabled", showImageDisabled, true);
+    }
+
+    /**
+     * Should the image be updated when disabled as described in {@link com.smartgwt.client.docs.StatefulImages}? <P> If not
+     * explicitly set, behavior is as follows:<br> If {@link com.smartgwt.client.widgets.Img#getSrc src} is specified as a
+     * string, {@link com.smartgwt.client.widgets.Img#getShowDisabled showDisabled} will be used to  determine whether to show
+     * a disabled image.<br> If {@link com.smartgwt.client.widgets.Img#getSrc src} is specified as a {@link
+     * com.smartgwt.client.widgets.SCStatefulImgConfig}, the appropriate  {@link
+     * com.smartgwt.client.widgets.SCStatefulImgConfig#getDisabled SCStatefulImgConfig.Disabled} state image will be displayed
+     * if defined.
+     *
+     * @return Current showImageDisabled value. Default value is null
+     * @see com.smartgwt.client.docs.State State overview and related methods
+     */
+    public Boolean getShowImageDisabled()  {
+        return getAttributeAsBoolean("showImageDisabled");
+    }
+    
+
+    /**
+     * Should the image be updated on mouse down as described in {@link com.smartgwt.client.docs.StatefulImages}? <P> If not
+     * explicitly set, behavior is as follows:<br> If {@link com.smartgwt.client.widgets.Img#getSrc src} is specified as a
+     * string, {@link com.smartgwt.client.widgets.Img#getShowDown showDown} will be used to  determine whether to show a mouse
+     * down image.<br> If {@link com.smartgwt.client.widgets.Img#getSrc src} is specified as a {@link
+     * com.smartgwt.client.widgets.SCStatefulImgConfig}, the appropriate  {@link
+     * com.smartgwt.client.widgets.SCStatefulImgConfig#getDown SCStatefulImgConfig.Down} state image will be displayed if
+     * defined.
+     *
+     * @param showImageDown New showImageDown value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Img Img} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.State State overview and related methods
+     */
+    public Img setShowImageDown(Boolean showImageDown) {
+        return (Img)setAttribute("showImageDown", showImageDown, true);
+    }
+
+    /**
+     * Should the image be updated on mouse down as described in {@link com.smartgwt.client.docs.StatefulImages}? <P> If not
+     * explicitly set, behavior is as follows:<br> If {@link com.smartgwt.client.widgets.Img#getSrc src} is specified as a
+     * string, {@link com.smartgwt.client.widgets.Img#getShowDown showDown} will be used to  determine whether to show a mouse
+     * down image.<br> If {@link com.smartgwt.client.widgets.Img#getSrc src} is specified as a {@link
+     * com.smartgwt.client.widgets.SCStatefulImgConfig}, the appropriate  {@link
+     * com.smartgwt.client.widgets.SCStatefulImgConfig#getDown SCStatefulImgConfig.Down} state image will be displayed if
+     * defined.
+     *
+     * @return Current showImageDown value. Default value is null
+     * @see com.smartgwt.client.docs.State State overview and related methods
+     */
+    public Boolean getShowImageDown()  {
+        return getAttributeAsBoolean("showImageDown");
+    }
+    
+
+    /**
+     * Should the image be updated on focus as described in {@link com.smartgwt.client.docs.StatefulImages}? <P> If not
+     * explicitly set, behavior is as follows:<br> If {@link com.smartgwt.client.widgets.Img#getSrc src} is specified as a
+     * string, {@link com.smartgwt.client.widgets.Img#getShowFocused showFocused} will be used to determine whether to show a
+     * focused image.<br> If {@link com.smartgwt.client.widgets.Img#getSrc src} is specified as a {@link
+     * com.smartgwt.client.widgets.SCStatefulImgConfig}, the appropriate  {@link
+     * com.smartgwt.client.widgets.SCStatefulImgConfig#getOver SCStatefulImgConfig.Over} state image will be displayed if
+     * defined. <P> Note that if {@link com.smartgwt.client.widgets.Img#getSrc src} is defined as a string, the "Over" media
+     * may be used  to indicate a focused state. See {@link com.smartgwt.client.widgets.Img#getShowFocusedAsOver
+     * showFocusedAsOver} and {@link com.smartgwt.client.widgets.Img#getShowImageFocusedAsOver showImageFocusedAsOver}.<br>
+     * This is not the case for components with {@link com.smartgwt.client.widgets.Img#getSrc src} defined as a {@link
+     * com.smartgwt.client.widgets.SCStatefulImgConfig} configuration.
+     *
+     * @param showImageFocused New showImageFocused value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Img Img} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.State State overview and related methods
+     */
+    public Img setShowImageFocused(Boolean showImageFocused) {
+        return (Img)setAttribute("showImageFocused", showImageFocused, true);
+    }
+
+    /**
+     * Should the image be updated on focus as described in {@link com.smartgwt.client.docs.StatefulImages}? <P> If not
+     * explicitly set, behavior is as follows:<br> If {@link com.smartgwt.client.widgets.Img#getSrc src} is specified as a
+     * string, {@link com.smartgwt.client.widgets.Img#getShowFocused showFocused} will be used to determine whether to show a
+     * focused image.<br> If {@link com.smartgwt.client.widgets.Img#getSrc src} is specified as a {@link
+     * com.smartgwt.client.widgets.SCStatefulImgConfig}, the appropriate  {@link
+     * com.smartgwt.client.widgets.SCStatefulImgConfig#getOver SCStatefulImgConfig.Over} state image will be displayed if
+     * defined. <P> Note that if {@link com.smartgwt.client.widgets.Img#getSrc src} is defined as a string, the "Over" media
+     * may be used  to indicate a focused state. See {@link com.smartgwt.client.widgets.Img#getShowFocusedAsOver
+     * showFocusedAsOver} and {@link com.smartgwt.client.widgets.Img#getShowImageFocusedAsOver showImageFocusedAsOver}.<br>
+     * This is not the case for components with {@link com.smartgwt.client.widgets.Img#getSrc src} defined as a {@link
+     * com.smartgwt.client.widgets.SCStatefulImgConfig} configuration.
+     *
+     * @return Current showImageFocused value. Default value is null
+     * @see com.smartgwt.client.docs.State State overview and related methods
+     */
+    public Boolean getShowImageFocused()  {
+        return getAttributeAsBoolean("showImageFocused");
+    }
+    
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Img#getSrc src} is defined as a string, and this component is configured to {@link
+     * com.smartgwt.client.widgets.Img#getShowImageFocused show focused state images}, this property will cause the 
+     * <code>"over"</code> state image to be used to indicate focused state. (If unset, {@link
+     * com.smartgwt.client.widgets.Img#getShowFocusedAsOver showFocusedAsOver} will be consulted instead). <P> Note that this
+     * has no impact on the image to be displayed if {@link com.smartgwt.client.widgets.Img#getSrc src} is specified as a
+     * {@link com.smartgwt.client.widgets.SCStatefulImgConfig}.
+     *
+     * @param showImageFocusedAsOver New showImageFocusedAsOver value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Img Img} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.State State overview and related methods
+     */
+    public Img setShowImageFocusedAsOver(Boolean showImageFocusedAsOver) {
+        return (Img)setAttribute("showImageFocusedAsOver", showImageFocusedAsOver, true);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.Img#getSrc src} is defined as a string, and this component is configured to {@link
+     * com.smartgwt.client.widgets.Img#getShowImageFocused show focused state images}, this property will cause the 
+     * <code>"over"</code> state image to be used to indicate focused state. (If unset, {@link
+     * com.smartgwt.client.widgets.Img#getShowFocusedAsOver showFocusedAsOver} will be consulted instead). <P> Note that this
+     * has no impact on the image to be displayed if {@link com.smartgwt.client.widgets.Img#getSrc src} is specified as a
+     * {@link com.smartgwt.client.widgets.SCStatefulImgConfig}.
+     *
+     * @return Current showImageFocusedAsOver value. Default value is null
+     * @see com.smartgwt.client.docs.State State overview and related methods
+     */
+    public Boolean getShowImageFocusedAsOver()  {
+        return getAttributeAsBoolean("showImageFocusedAsOver");
+    }
+    
+
+    /**
+     * Should the image be updated on rollOver as described in {@link com.smartgwt.client.docs.StatefulImages}? <P> If not
+     * explicitly set, behavior is as follows:<br> If {@link com.smartgwt.client.widgets.Img#getSrc src} is specified as a
+     * string, {@link com.smartgwt.client.widgets.Img#getShowRollOver showRollOver} will be used to  determine whether to show
+     * a roll-over image.<br> If {@link com.smartgwt.client.widgets.Img#getSrc src} is specified as a {@link
+     * com.smartgwt.client.widgets.SCStatefulImgConfig}, the appropriate  {@link
+     * com.smartgwt.client.widgets.SCStatefulImgConfig#getOver SCStatefulImgConfig.Over} state image will be displayed if
+     * defined.
+     *
+     * @param showImageRollOver New showImageRollOver value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Img Img} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.State State overview and related methods
+     */
+    public Img setShowImageRollOver(Boolean showImageRollOver) {
+        return (Img)setAttribute("showImageRollOver", showImageRollOver, true);
+    }
+
+    /**
+     * Should the image be updated on rollOver as described in {@link com.smartgwt.client.docs.StatefulImages}? <P> If not
+     * explicitly set, behavior is as follows:<br> If {@link com.smartgwt.client.widgets.Img#getSrc src} is specified as a
+     * string, {@link com.smartgwt.client.widgets.Img#getShowRollOver showRollOver} will be used to  determine whether to show
+     * a roll-over image.<br> If {@link com.smartgwt.client.widgets.Img#getSrc src} is specified as a {@link
+     * com.smartgwt.client.widgets.SCStatefulImgConfig}, the appropriate  {@link
+     * com.smartgwt.client.widgets.SCStatefulImgConfig#getOver SCStatefulImgConfig.Over} state image will be displayed if
+     * defined.
+     *
+     * @return Current showImageRollOver value. Default value is null
+     * @see com.smartgwt.client.docs.State State overview and related methods
+     */
+    public Boolean getShowImageRollOver()  {
+        return getAttributeAsBoolean("showImageRollOver");
+    }
+    
+
+    /**
+     * Should we visibly change state when the mouse goes over this object? <P> This will impact the {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle styling} of the component on roll over. It may also impact the
+     * {@link com.smartgwt.client.widgets.Img#getSrc image being displayed} - see also {@link
+     * com.smartgwt.client.widgets.Img#getShowImageRollOver showImageRollOver}.
+     *
+     * @param showRollOver New showRollOver value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Img Img} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.State State overview and related methods
+     */
+    public Img setShowRollOver(Boolean showRollOver) {
+        return (Img)setAttribute("showRollOver", showRollOver, true);
+    }
+
+    /**
+     * Should we visibly change state when the mouse goes over this object? <P> This will impact the {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getBaseStyle styling} of the component on roll over. It may also impact the
+     * {@link com.smartgwt.client.widgets.Img#getSrc image being displayed} - see also {@link
+     * com.smartgwt.client.widgets.Img#getShowImageRollOver showImageRollOver}.
+     *
+     * @return Current showRollOver value. Default value is false
+     * @see com.smartgwt.client.docs.State State overview and related methods
+     */
+    public Boolean getShowRollOver()  {
+        Boolean result = getAttributeAsBoolean("showRollOver");
+        return result == null ? false : result;
+    }
+    
+
+    /**
      * Determines whether any specified {@link com.smartgwt.client.widgets.StatefulCanvas#getTitle title} will be  displayed
      * for this component.<br> Applies to Image-based components only, where the title will be rendered out in a label floating
      * over the component
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param showTitle New showTitle value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.Img Img} instance, for chaining setter calls
      */
-    public void setShowTitle(Boolean showTitle) {
-        setAttribute("showTitle", showTitle, true);
+    public Img setShowTitle(Boolean showTitle) {
+        return (Img)setAttribute("showTitle", showTitle, true);
     }
 
     /**
@@ -390,11 +737,12 @@ public class Img extends StatefulCanvas {
      * Convenience for setting height and width to the same value, at init time only
      *
      * @param size New size value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.Img Img} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
      */
-    public void setSize(Integer size)  throws IllegalStateException {
-        setAttribute("size", size, false);
+    public Img setSize(Integer size)  throws IllegalStateException {
+        return (Img)setAttribute("size", size, false);
     }
 
     /**
@@ -409,83 +757,26 @@ public class Img extends StatefulCanvas {
     
 
     /**
-     * The base filename for the image. <P> This value will be combined with any specified {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getState state} to form a combined URL, changing the appearance of the
-     * component as the state changes. <P> The following table lists out the standard set of combined URLs that  may be
-     * generated. Subclasses may support additional state-derived media of course. Note that the src URL will be split such
-     * that the extension is always applied to the end of the combined string. For example in the following table, if
-     * <code>src</code> was set to <code>"blank.gif"</code>, the Selected+Focused URL would be 
-     * <code>"blank_Selected_Focused.gif"</code>. <table> <tr><td><b>URL for Img
-     * source</b></td><td><b>Description</b></td></tr> <tr><td><code><i>src</i>+<i>extension</i></code></td><td>Default
-     * URL</td></tr> <tr><td><code><i>src</i>+"_Selected"+<i>extension</i></code></td>      <td>Applied when {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getSelected StatefulCanvas.selected} is set to true</td></tr>
-     * <tr><td><code><i>src</i>+"_Focused"+<i>extension</i></code></td>      <td>Applied when the component has keyboard focus,
-     * if       {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused StatefulCanvas.showFocused} is true, and      
-     * {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver StatefulCanvas.showFocusedAsOver} is not
-     * true.</td></tr> <tr><td><code><i>src</i>+"_Over"+<i>extension</i></code></td>      <td>Applied when the user rolls over
-     * the component if          {@link com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver StatefulCanvas.showRollOver}
-     * is set to true</td></tr> <tr><td><code><i>src</i>+"_Down"+<i>extension</i></code></td>      <td>Applied when the user
-     * presses the mouse button over over the component if          {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowDown StatefulCanvas.showDown} is set to true</td></tr>
-     * <tr><td><code><i>src</i>+"_Disabled"+<i>extension</i></code></td>      <td>Applied to {@link
-     * com.smartgwt.client.widgets.Canvas#getDisabled Canvas.disabled} component       if {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowDisabled StatefulCanvas.showDisabled} is true.</td></tr> <tr><td
-     * colspan=2><i>Combined states</i></td></tr> <tr><td><code><i>src</i>+"_Selected_Focused"+<i>extension</i></code></td>    
-     * <td>Combined Selected and focused state</td></tr> <tr><td><code><i>src</i>+"_Selected_Over"+<i>extension</i></code></td>
-     * <td>Combined Selected and rollOver state</td></tr> <tr><td><code><i>src</i>+"_Focused_Over"+<i>extension</i></code></td>
-     * <td>Combined Focused and rollOver state</td></tr>
-     * <tr><td><code><i>src</i>+"_Selected_Focused_Over"+<i>extension</i></code></td>      <td>Combined Selected, Focused and
-     * rollOver state</td></tr> <tr><td><code><i>src</i>+"_Selected_Down"+<i>extension</i></code></td>      <td>Combined
-     * Selected and mouse-down state</td></tr> <tr><td><code><i>src</i>+"_Focused_Down"+<i>extension</i></code></td>     
-     * <td>Combined Focused and mouse-down state</td></tr>
-     * <tr><td><code><i>src</i>+"_Selected_Focused_Down"+<i>extension</i></code></td>      <td>Combined Selected, Focused and
-     * mouse-down state</td></tr> <tr><td><code><i>src</i>+"_Selected_Disabled"+<i>extension</i></code></td>      <td>Combined
-     * Selected and Disabled state</td></tr> </table>
+     * The base filename or stateful image configuration for the image.  Note that as the {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getState state}  of the component changes, the image displayed will be
+     * updated as described in {@link com.smartgwt.client.docs.StatefulImages}.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Changes the URL of this image and redraws it. <P> Does nothing if the src has not changed - if <code>src</code> has not changed but other state has changed such that the image needs updating, call {@link com.smartgwt.client.widgets.Img#resetSrc resetSrc()} instead.
      *
      * @param src new URL for the image. Default value is "blank.gif"
+     * @return {@link com.smartgwt.client.widgets.Img Img} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
-    public void setSrc(String src) {
-        setAttribute("src", src, true);
+    public Img setSrc(String src) {
+        return (Img)setAttribute("src", src, true);
     }
 
     /**
-     * The base filename for the image. <P> This value will be combined with any specified {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getState state} to form a combined URL, changing the appearance of the
-     * component as the state changes. <P> The following table lists out the standard set of combined URLs that  may be
-     * generated. Subclasses may support additional state-derived media of course. Note that the src URL will be split such
-     * that the extension is always applied to the end of the combined string. For example in the following table, if
-     * <code>src</code> was set to <code>"blank.gif"</code>, the Selected+Focused URL would be 
-     * <code>"blank_Selected_Focused.gif"</code>. <table> <tr><td><b>URL for Img
-     * source</b></td><td><b>Description</b></td></tr> <tr><td><code><i>src</i>+<i>extension</i></code></td><td>Default
-     * URL</td></tr> <tr><td><code><i>src</i>+"_Selected"+<i>extension</i></code></td>      <td>Applied when {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getSelected StatefulCanvas.selected} is set to true</td></tr>
-     * <tr><td><code><i>src</i>+"_Focused"+<i>extension</i></code></td>      <td>Applied when the component has keyboard focus,
-     * if       {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocused StatefulCanvas.showFocused} is true, and      
-     * {@link com.smartgwt.client.widgets.StatefulCanvas#getShowFocusedAsOver StatefulCanvas.showFocusedAsOver} is not
-     * true.</td></tr> <tr><td><code><i>src</i>+"_Over"+<i>extension</i></code></td>      <td>Applied when the user rolls over
-     * the component if          {@link com.smartgwt.client.widgets.StatefulCanvas#getShowRollOver StatefulCanvas.showRollOver}
-     * is set to true</td></tr> <tr><td><code><i>src</i>+"_Down"+<i>extension</i></code></td>      <td>Applied when the user
-     * presses the mouse button over over the component if          {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowDown StatefulCanvas.showDown} is set to true</td></tr>
-     * <tr><td><code><i>src</i>+"_Disabled"+<i>extension</i></code></td>      <td>Applied to {@link
-     * com.smartgwt.client.widgets.Canvas#getDisabled Canvas.disabled} component       if {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getShowDisabled StatefulCanvas.showDisabled} is true.</td></tr> <tr><td
-     * colspan=2><i>Combined states</i></td></tr> <tr><td><code><i>src</i>+"_Selected_Focused"+<i>extension</i></code></td>    
-     * <td>Combined Selected and focused state</td></tr> <tr><td><code><i>src</i>+"_Selected_Over"+<i>extension</i></code></td>
-     * <td>Combined Selected and rollOver state</td></tr> <tr><td><code><i>src</i>+"_Focused_Over"+<i>extension</i></code></td>
-     * <td>Combined Focused and rollOver state</td></tr>
-     * <tr><td><code><i>src</i>+"_Selected_Focused_Over"+<i>extension</i></code></td>      <td>Combined Selected, Focused and
-     * rollOver state</td></tr> <tr><td><code><i>src</i>+"_Selected_Down"+<i>extension</i></code></td>      <td>Combined
-     * Selected and mouse-down state</td></tr> <tr><td><code><i>src</i>+"_Focused_Down"+<i>extension</i></code></td>     
-     * <td>Combined Focused and mouse-down state</td></tr>
-     * <tr><td><code><i>src</i>+"_Selected_Focused_Down"+<i>extension</i></code></td>      <td>Combined Selected, Focused and
-     * mouse-down state</td></tr> <tr><td><code><i>src</i>+"_Selected_Disabled"+<i>extension</i></code></td>      <td>Combined
-     * Selected and Disabled state</td></tr> </table>
+     * The base filename or stateful image configuration for the image.  Note that as the {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getState state}  of the component changes, the image displayed will be
+     * updated as described in {@link com.smartgwt.client.docs.StatefulImages}.
      *
      * @return Current src value. Default value is "blank.gif"
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
@@ -494,16 +785,47 @@ public class Img extends StatefulCanvas {
     public String getSrc()  {
         return getAttributeAsString("src");
     }
+
+    /**
+     * The base filename or stateful image configuration for the image.  Note that as the {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getState state}  of the component changes, the image displayed will be
+     * updated as described in {@link com.smartgwt.client.docs.StatefulImages}.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Changes the URL of this image and redraws it. <P> Does nothing if the src has not changed - if <code>src</code> has not changed but other state has changed such that the image needs updating, call {@link com.smartgwt.client.widgets.Img#resetSrc resetSrc()} instead.
+     *
+     * @param src new URL for the image. Default value is "blank.gif"
+     * @return {@link com.smartgwt.client.widgets.Img Img} instance, for chaining setter calls
+     * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public Img setSrc(SCStatefulImgConfig src) {
+        return (Img)setAttribute("src", src == null ? null : src.getJsObj(), true);
+    }
+
+    /**
+     * The base filename or stateful image configuration for the image.  Note that as the {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getState state}  of the component changes, the image displayed will be
+     * updated as described in {@link com.smartgwt.client.docs.StatefulImages}.
+     *
+     * @return Current src value. Default value is "blank.gif"
+     * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public SCStatefulImgConfig getSrcAsSCStatefulImgConfig()  {
+        return new SCStatefulImgConfig(getAttributeAsJavaScriptObject("src"));
+    }
     
 
     /**
      * If false, never apply the png fix needed in Internet Explorer to make png transparency work correctly.
      *
      * @param usePNGFix New usePNGFix value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.Img Img} instance, for chaining setter calls
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setUsePNGFix(Boolean usePNGFix)  throws IllegalStateException {
-        setAttribute("usePNGFix", usePNGFix, false);
+    public Img setUsePNGFix(Boolean usePNGFix)  throws IllegalStateException {
+        return (Img)setAttribute("usePNGFix", usePNGFix, false);
     }
 
     /**
@@ -631,6 +953,56 @@ public class Img extends StatefulCanvas {
             s.logicalStructureErrors += "Img.prompt:" + t.getMessage() + "\n";
         }
         try {
+            s.showDisabled = getAttributeAsString("showDisabled");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Img.showDisabled:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showDown = getAttributeAsString("showDown");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Img.showDown:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showFocused = getAttributeAsString("showFocused");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Img.showFocused:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showFocusedAsOver = getAttributeAsString("showFocusedAsOver");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Img.showFocusedAsOver:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showImageDisabled = getAttributeAsString("showImageDisabled");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Img.showImageDisabled:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showImageDown = getAttributeAsString("showImageDown");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Img.showImageDown:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showImageFocused = getAttributeAsString("showImageFocused");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Img.showImageFocused:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showImageFocusedAsOver = getAttributeAsString("showImageFocusedAsOver");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Img.showImageFocusedAsOver:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showImageRollOver = getAttributeAsString("showImageRollOver");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Img.showImageRollOver:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showRollOver = getAttributeAsString("showRollOver");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Img.showRollOver:" + t.getMessage() + "\n";
+        }
+        try {
             s.showTitle = getAttributeAsString("showTitle");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Img.showTitle:" + t.getMessage() + "\n";
@@ -639,11 +1011,6 @@ public class Img extends StatefulCanvas {
             s.size = getAttributeAsString("size");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Img.size:" + t.getMessage() + "\n";
-        }
-        try {
-            s.src = getAttributeAsString("src");
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "Img.src:" + t.getMessage() + "\n";
         }
         try {
             s.usePNGFix = getAttributeAsString("usePNGFix");

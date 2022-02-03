@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Definition of a linear gradient between two points, ({@link com.smartgwt.client.widgets.drawing.LinearGradient#getX1
@@ -106,9 +109,10 @@ public class LinearGradient extends Gradient {
      * to which it is applied.
      *
      * @param x1 New x1 value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.LinearGradient LinearGradient} instance, for chaining setter calls
      */
-    public void setX1(String x1) {
-        setAttribute("x1", x1);
+    public LinearGradient setX1(String x1) {
+        return (LinearGradient)setAttribute("x1", x1);
     }
 
     /**
@@ -127,9 +131,10 @@ public class LinearGradient extends Gradient {
      * which it is applied.
      *
      * @param x2 New x2 value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.LinearGradient LinearGradient} instance, for chaining setter calls
      */
-    public void setX2(String x2) {
-        setAttribute("x2", x2);
+    public LinearGradient setX2(String x2) {
+        return (LinearGradient)setAttribute("x2", x2);
     }
 
     /**
@@ -148,9 +153,10 @@ public class LinearGradient extends Gradient {
      * to which it is applied.
      *
      * @param y1 New y1 value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.LinearGradient LinearGradient} instance, for chaining setter calls
      */
-    public void setY1(String y1) {
-        setAttribute("y1", y1);
+    public LinearGradient setY1(String y1) {
+        return (LinearGradient)setAttribute("y1", y1);
     }
 
     /**
@@ -169,9 +175,10 @@ public class LinearGradient extends Gradient {
      * which it is applied.
      *
      * @param y2 New y2 value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.LinearGradient LinearGradient} instance, for chaining setter calls
      */
-    public void setY2(String y2) {
-        setAttribute("y2", y2);
+    public LinearGradient setY2(String y2) {
+        return (LinearGradient)setAttribute("y2", y2);
     }
 
     /**

@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Definition of a radial gradient.
@@ -102,9 +105,10 @@ public class RadialGradient extends Gradient {
      * x coordinate of outer radial
      *
      * @param cx New cx value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.RadialGradient RadialGradient} instance, for chaining setter calls
      */
-    public void setCx(String cx) {
-        setAttribute("cx", cx);
+    public RadialGradient setCx(String cx) {
+        return (RadialGradient)setAttribute("cx", cx);
     }
 
     /**
@@ -121,9 +125,10 @@ public class RadialGradient extends Gradient {
      * y coordinate of outer radial
      *
      * @param cy New cy value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.RadialGradient RadialGradient} instance, for chaining setter calls
      */
-    public void setCy(String cy) {
-        setAttribute("cy", cy);
+    public RadialGradient setCy(String cy) {
+        return (RadialGradient)setAttribute("cy", cy);
     }
 
     /**
@@ -140,9 +145,10 @@ public class RadialGradient extends Gradient {
      * x coordinate of inner radial
      *
      * @param fx New fx value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.RadialGradient RadialGradient} instance, for chaining setter calls
      */
-    public void setFx(String fx) {
-        setAttribute("fx", fx);
+    public RadialGradient setFx(String fx) {
+        return (RadialGradient)setAttribute("fx", fx);
     }
 
     /**
@@ -159,9 +165,10 @@ public class RadialGradient extends Gradient {
      * y coordinate of inner radial
      *
      * @param fy New fy value. Default value is 0
+     * @return {@link com.smartgwt.client.widgets.drawing.RadialGradient RadialGradient} instance, for chaining setter calls
      */
-    public void setFy(String fy) {
-        setAttribute("fy", fy);
+    public RadialGradient setFy(String fy) {
+        return (RadialGradient)setAttribute("fy", fy);
     }
 
     /**
@@ -178,9 +185,10 @@ public class RadialGradient extends Gradient {
      * radius
      *
      * @param r New r value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.drawing.RadialGradient RadialGradient} instance, for chaining setter calls
      */
-    public void setR(String r) {
-        setAttribute("r", r);
+    public RadialGradient setR(String r) {
+        return (RadialGradient)setAttribute("r", r);
     }
 
     /**

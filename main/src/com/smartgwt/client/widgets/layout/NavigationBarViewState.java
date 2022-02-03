@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Encapsulates state of a {@link com.smartgwt.client.widgets.layout.NavigationBar}'s view. A
@@ -107,9 +110,10 @@ public class NavigationBarViewState extends DataClass {
      * changed.
      *
      * @param alwaysShowLeftButtonTitle New alwaysShowLeftButtonTitle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavigationBarViewState NavigationBarViewState} instance, for chaining setter calls
      */
-    public void setAlwaysShowLeftButtonTitle(Boolean alwaysShowLeftButtonTitle) {
-        setAttribute("alwaysShowLeftButtonTitle", alwaysShowLeftButtonTitle);
+    public NavigationBarViewState setAlwaysShowLeftButtonTitle(Boolean alwaysShowLeftButtonTitle) {
+        return (NavigationBarViewState)setAttribute("alwaysShowLeftButtonTitle", alwaysShowLeftButtonTitle);
     }
 
     /**
@@ -129,9 +133,10 @@ public class NavigationBarViewState extends DataClass {
      * the <code>controls</code> array is not changed.
      *
      * @param controls New controls value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavigationBarViewState NavigationBarViewState} instance, for chaining setter calls
      */
-    public void setControls(String... controls) {
-        setAttribute("controls", controls);
+    public NavigationBarViewState setControls(String... controls) {
+        return (NavigationBarViewState)setAttribute("controls", controls);
     }
 
     /**
@@ -149,9 +154,10 @@ public class NavigationBarViewState extends DataClass {
      * the <code>controls</code> array is not changed.
      *
      * @param controls New controls value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavigationBarViewState NavigationBarViewState} instance, for chaining setter calls
      */
-    public void setControls(Canvas... controls) {
-        setAttribute("controls", controls);
+    public NavigationBarViewState setControls(Canvas... controls) {
+        return (NavigationBarViewState)setAttribute("controls", controls);
     }
 
     /**
@@ -170,10 +176,11 @@ public class NavigationBarViewState extends DataClass {
      * setting. If unset, the <code>leftButtonTitle</code> is not changed.
      *
      * @param leftButtonTitle New leftButtonTitle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavigationBarViewState NavigationBarViewState} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setLeftButtonTitle(String leftButtonTitle) {
-        setAttribute("leftButtonTitle", leftButtonTitle);
+    public NavigationBarViewState setLeftButtonTitle(String leftButtonTitle) {
+        return (NavigationBarViewState)setAttribute("leftButtonTitle", leftButtonTitle);
     }
 
     /**
@@ -193,10 +200,11 @@ public class NavigationBarViewState extends DataClass {
      * NavigationBar.shortLeftButtonTitle} setting. If unset, the <code>shortLeftButtonTitle</code> is not changed.
      *
      * @param shortLeftButtonTitle New shortLeftButtonTitle value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavigationBarViewState NavigationBarViewState} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setShortLeftButtonTitle(String shortLeftButtonTitle) {
-        setAttribute("shortLeftButtonTitle", shortLeftButtonTitle);
+    public NavigationBarViewState setShortLeftButtonTitle(String shortLeftButtonTitle) {
+        return (NavigationBarViewState)setAttribute("shortLeftButtonTitle", shortLeftButtonTitle);
     }
 
     /**
@@ -216,9 +224,10 @@ public class NavigationBarViewState extends DataClass {
      * If unset, the <code>showLeftButton</code> setting is not changed.
      *
      * @param showLeftButton New showLeftButton value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavigationBarViewState NavigationBarViewState} instance, for chaining setter calls
      */
-    public void setShowLeftButton(Boolean showLeftButton) {
-        setAttribute("showLeftButton", showLeftButton);
+    public NavigationBarViewState setShowLeftButton(Boolean showLeftButton) {
+        return (NavigationBarViewState)setAttribute("showLeftButton", showLeftButton);
     }
 
     /**
@@ -237,10 +246,11 @@ public class NavigationBarViewState extends DataClass {
      * <code>title</code> is not changed.
      *
      * @param title New title value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.layout.NavigationBarViewState NavigationBarViewState} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setTitle(String title) {
-        setAttribute("title", title);
+    public NavigationBarViewState setTitle(String title) {
+        return (NavigationBarViewState)setAttribute("title", title);
     }
 
     /**

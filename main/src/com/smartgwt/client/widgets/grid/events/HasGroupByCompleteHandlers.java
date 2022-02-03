@@ -29,7 +29,15 @@ public interface HasGroupByCompleteHandlers extends HasHandlers {
      * com.smartgwt.client.widgets.grid.ListGrid#getGroupTree groupTree} will have been updated to reflect the grouped data.
      * <P> Note that the <code>fields</code> argument may be an empty array if the data is not grouped. This implies that a
      * user or developer explicitly ungrouped the grid, or that a groupBy attempt failed due to the data length exceeding 
-     * {@link com.smartgwt.client.widgets.grid.ListGrid#getGroupByMaxRecords groupByMaxRecords}.
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getGroupByMaxRecords groupByMaxRecords}. <P> By design, this method is
+     * not called when the data is regrouped, either  {@link com.smartgwt.client.widgets.grid.ListGrid#regroup
+     * programmatically}, or in response to new data arriving from the server. You can use the callback {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#addGroupTreeChangedHandler ListGrid.groupTreeChanged()} to be notified in that
+     * situation. <P> If you monitor only this method and call {@link com.smartgwt.client.widgets.grid.ListGrid#groupBy
+     * groupBy()} before data is fetched, the notification that you'll receive will be for grouping the initial (perhaps empty)
+     * data set only.  To have this method actually trigger when grouping of the fetched data is done, you should avoid calling
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#groupBy groupBy()} before the initial fetch, and instead do it in the
+     * the {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData fetch callback}.
      *
      * @param handler the groupByComplete handler
      * @return {@link HandlerRegistration} used to remove this handler

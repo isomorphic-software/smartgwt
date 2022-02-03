@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Request sent to the server to initiate a  {@link com.smartgwt.client.docs.DataSourceOperations DataSource operation}. 
@@ -175,9 +178,10 @@ public class DSRequest extends RPCRequest {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param additionalOutputs New additionalOutputs value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setAdditionalOutputs(String additionalOutputs) {
-        setAttribute("additionalOutputs", additionalOutputs);
+    public DSRequest setAdditionalOutputs(String additionalOutputs) {
+        return (DSRequest)setAttribute("additionalOutputs", additionalOutputs);
     }
 
     /**
@@ -231,9 +235,10 @@ public class DSRequest extends RPCRequest {
      * assessing {@link com.smartgwt.client.docs.DsRequestEquivalence request equivalence}.
      *
      * @param componentId New componentId value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setComponentId(String componentId) {
-        setAttribute("componentId", componentId);
+    public DSRequest setComponentId(String componentId) {
+        return (DSRequest)setAttribute("componentId", componentId);
     }
 
     /**
@@ -270,9 +275,10 @@ public class DSRequest extends RPCRequest {
      * com.smartgwt.client.data.DataSource#getDataProtocol dataSource} levels.
      *
      * @param dataProtocol New dataProtocol value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setDataProtocol(DSProtocol dataProtocol) {
-        setAttribute("dataProtocol", dataProtocol == null ? null : dataProtocol.getValue());
+    public DSRequest setDataProtocol(DSProtocol dataProtocol) {
+        return (DSRequest)setAttribute("dataProtocol", dataProtocol == null ? null : dataProtocol.getValue());
     }
 
     /**
@@ -301,9 +307,10 @@ public class DSRequest extends RPCRequest {
      * target DataSource.
      *
      * @param dataSource New dataSource value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setDataSource(String dataSource) {
-        setAttribute("dataSource", dataSource);
+    public DSRequest setDataSource(String dataSource) {
+        return (DSRequest)setAttribute("dataSource", dataSource);
     }
 
     /**
@@ -324,9 +331,10 @@ public class DSRequest extends RPCRequest {
      * first record.
      *
      * @param endRow New endRow value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setEndRow(Integer endRow) {
-        setAttribute("endRow", endRow);
+    public DSRequest setEndRow(Integer endRow) {
+        return (DSRequest)setAttribute("endRow", endRow);
     }
 
     /**
@@ -342,18 +350,19 @@ public class DSRequest extends RPCRequest {
     
 
     /**
-     * The format in which the data should be exported.  See {@link com.smartgwt.client.types.ExportFormat} for more 
-     * information.
+     * The format in which the data should be exported.  Note that 'JSON' is not allowed as a client-side option.  See {@link
+     * com.smartgwt.client.types.ExportFormat} for more information.
      *
      * @param exportAs New exportAs value. Default value is "csv"
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setExportAs(ExportFormat exportAs) {
-        setAttribute("exportAs", exportAs == null ? null : exportAs.getValue());
+    public DSRequest setExportAs(ExportFormat exportAs) {
+        return (DSRequest)setAttribute("exportAs", exportAs == null ? null : exportAs.getValue());
     }
 
     /**
-     * The format in which the data should be exported.  See {@link com.smartgwt.client.types.ExportFormat} for more 
-     * information.
+     * The format in which the data should be exported.  Note that 'JSON' is not allowed as a client-side option.  See {@link
+     * com.smartgwt.client.types.ExportFormat} for more information.
      *
      * @return Current exportAs value. Default value is "csv"
      */
@@ -371,9 +380,10 @@ public class DSRequest extends RPCRequest {
      * <code>exportCSS</code> to cause the generated PDF to use landscape mode, so that all content fits without clipping.
      *
      * @param exportCSS New exportCSS value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setExportCSS(String exportCSS) {
-        setAttribute("exportCSS", exportCSS);
+    public DSRequest setExportCSS(String exportCSS) {
+        return (DSRequest)setAttribute("exportCSS", exportCSS);
     }
 
     /**
@@ -396,9 +406,10 @@ public class DSRequest extends RPCRequest {
      * ListGrid.exportClientData()}. If specified this property contains an arbitrary set of data to be exported.
      *
      * @param exportData New exportData value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setExportData(Record... exportData) {
-        setAttribute("exportData", exportData);
+    public DSRequest setExportData(Record... exportData) {
+        return (DSRequest)setAttribute("exportData", exportData);
     }
 
     /**
@@ -429,11 +440,12 @@ public class DSRequest extends RPCRequest {
      * spreadsheet program will not recognize the value as a date.
      *
      * @param exportDatesAsFormattedString New exportDatesAsFormattedString value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.data.DataSourceField#setExportFormat
      * @see com.smartgwt.client.docs.ExportFormatting ExportFormatting overview and related methods
      */
-    public void setExportDatesAsFormattedString(Boolean exportDatesAsFormattedString) {
-        setAttribute("exportDatesAsFormattedString", exportDatesAsFormattedString);
+    public DSRequest setExportDatesAsFormattedString(Boolean exportDatesAsFormattedString) {
+        return (DSRequest)setAttribute("exportDatesAsFormattedString", exportDatesAsFormattedString);
     }
 
     /**
@@ -465,9 +477,10 @@ public class DSRequest extends RPCRequest {
      * The character to use as a field-separator in CSV exports.  The default delimiter is comma.
      *
      * @param exportDelimiter New exportDelimiter value. Default value is ","
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setExportDelimiter(String exportDelimiter) {
-        setAttribute("exportDelimiter", exportDelimiter);
+    public DSRequest setExportDelimiter(String exportDelimiter) {
+        return (DSRequest)setAttribute("exportDelimiter", exportDelimiter);
     }
 
     /**
@@ -485,9 +498,10 @@ public class DSRequest extends RPCRequest {
      * {@link com.smartgwt.client.types.ExportDisplay} for more information.
      *
      * @param exportDisplay New exportDisplay value. Default value is "download"
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setExportDisplay(ExportDisplay exportDisplay) {
-        setAttribute("exportDisplay", exportDisplay == null ? null : exportDisplay.getValue());
+    public DSRequest setExportDisplay(ExportDisplay exportDisplay) {
+        return (DSRequest)setAttribute("exportDisplay", exportDisplay == null ? null : exportDisplay.getValue());
     }
 
     /**
@@ -516,9 +530,10 @@ public class DSRequest extends RPCRequest {
      * for field "foo" only in row 57, we will not output a column "foo" at all)</li>  </ul>
      *
      * @param exportFields New exportFields value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setExportFields(String... exportFields) {
-        setAttribute("exportFields", exportFields);
+    public DSRequest setExportFields(String... exportFields) {
+        return (DSRequest)setAttribute("exportFields", exportFields);
     }
 
     /**
@@ -553,11 +568,12 @@ public class DSRequest extends RPCRequest {
      * com.smartgwt.client.types.ExportFormat exportFormat}, see example.
      *
      * @param exportFilename New exportFilename value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.data.DSRequest#setExportPath
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#custom_export_custom_response" target="examples">Custom Export (Custom Response) Example</a>
      */
-    public void setExportFilename(String exportFilename) {
-        setAttribute("exportFilename", exportFilename);
+    public DSRequest setExportFilename(String exportFilename) {
+        return (DSRequest)setAttribute("exportFilename", exportFilename);
     }
 
     /**
@@ -583,9 +599,10 @@ public class DSRequest extends RPCRequest {
      * Optional text to appear at the end of the file.
      *
      * @param exportFooter New exportFooter value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setExportFooter(String exportFooter) {
-        setAttribute("exportFooter", exportFooter);
+    public DSRequest setExportFooter(String exportFooter) {
+        return (DSRequest)setAttribute("exportFooter", exportFooter);
     }
 
     /**
@@ -602,9 +619,10 @@ public class DSRequest extends RPCRequest {
      * Optional text to appear at the beginning of the file.
      *
      * @param exportHeader New exportHeader value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setExportHeader(String exportHeader) {
-        setAttribute("exportHeader", exportHeader);
+    public DSRequest setExportHeader(String exportHeader) {
+        return (DSRequest)setAttribute("exportHeader", exportHeader);
     }
 
     /**
@@ -621,9 +639,10 @@ public class DSRequest extends RPCRequest {
      * This property allows omitting column names from CSV and Excel exports (no effect on JSON or XML exports).
      *
      * @param exportHeaderless New exportHeaderless value. Default value is false
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setExportHeaderless(Boolean exportHeaderless) {
-        setAttribute("exportHeaderless", exportHeaderless);
+    public DSRequest setExportHeaderless(Boolean exportHeaderless) {
+        return (DSRequest)setAttribute("exportHeaderless", exportHeaderless);
     }
 
     /**
@@ -641,9 +660,10 @@ public class DSRequest extends RPCRequest {
      * The image format in which the SVG graphic should be exported.
      *
      * @param exportImageFormat New exportImageFormat value. Default value is "png"
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setExportImageFormat(ExportImageFormat exportImageFormat) {
-        setAttribute("exportImageFormat", exportImageFormat == null ? null : exportImageFormat.getValue());
+    public DSRequest setExportImageFormat(ExportImageFormat exportImageFormat) {
+        return (DSRequest)setAttribute("exportImageFormat", exportImageFormat == null ? null : exportImageFormat.getValue());
     }
 
     /**
@@ -661,10 +681,11 @@ public class DSRequest extends RPCRequest {
      * a number from 0 to 1, with 1 representing the best quality and 0 representing the least quality but smallest file size.
      *
      * @param exportImageQuality New exportImageQuality value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      * @deprecated  {@link com.smartgwt.client.docs.GwtFloatVsDouble GwtFloatVsDouble}
      */
-    public void setExportImageQuality(Float exportImageQuality) {
-        setAttribute("exportImageQuality", exportImageQuality);
+    public DSRequest setExportImageQuality(Float exportImageQuality) {
+        return (DSRequest)setAttribute("exportImageQuality", exportImageQuality);
     }
 
     /**
@@ -683,9 +704,10 @@ public class DSRequest extends RPCRequest {
      * a number from 0 to 1, with 1 representing the best quality and 0 representing the least quality but smallest file size.
      *
      * @param exportImageQuality New exportImageQuality value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setExportImageQuality(Double exportImageQuality) {
-        setAttribute("exportImageQuality", exportImageQuality);
+    public DSRequest setExportImageQuality(Double exportImageQuality) {
+        return (DSRequest)setAttribute("exportImageQuality", exportImageQuality);
     }
 
     /**
@@ -716,11 +738,12 @@ public class DSRequest extends RPCRequest {
      * spreadsheet program will not recognize the value as a number.
      *
      * @param exportNumbersAsFormattedString New exportNumbersAsFormattedString value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.data.DataSourceField#setExportFormat
      * @see com.smartgwt.client.docs.ExportFormatting ExportFormatting overview and related methods
      */
-    public void setExportNumbersAsFormattedString(Boolean exportNumbersAsFormattedString) {
-        setAttribute("exportNumbersAsFormattedString", exportNumbersAsFormattedString);
+    public DSRequest setExportNumbersAsFormattedString(Boolean exportNumbersAsFormattedString) {
+        return (DSRequest)setAttribute("exportNumbersAsFormattedString", exportNumbersAsFormattedString);
     }
 
     /**
@@ -760,10 +783,11 @@ public class DSRequest extends RPCRequest {
      * com.smartgwt.client.data.DSRequest#getExportToFilesystem exportToFilesystem} is set.
      *
      * @param exportPath New exportPath value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.data.DSRequest#setExportFilename
      */
-    public void setExportPath(String exportPath) {
-        setAttribute("exportPath", exportPath);
+    public DSRequest setExportPath(String exportPath) {
+        return (DSRequest)setAttribute("exportPath", exportPath);
     }
 
     /**
@@ -800,10 +824,11 @@ public class DSRequest extends RPCRequest {
      * used</li>  </ul>
      *
      * @param exportPropertyIdentifier New exportPropertyIdentifier value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ExportFormatting ExportFormatting overview and related methods
      */
-    public void setExportPropertyIdentifier(PropertyIdentifier exportPropertyIdentifier) {
-        setAttribute("exportPropertyIdentifier", exportPropertyIdentifier == null ? null : exportPropertyIdentifier.getValue());
+    public DSRequest setExportPropertyIdentifier(PropertyIdentifier exportPropertyIdentifier) {
+        return (DSRequest)setAttribute("exportPropertyIdentifier", exportPropertyIdentifier == null ? null : exportPropertyIdentifier.getValue());
     }
 
     /**
@@ -834,10 +859,11 @@ public class DSRequest extends RPCRequest {
      * overview}.
      *
      * @param exportRawValues New exportRawValues value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ExportFormatting ExportFormatting overview and related methods
      */
-    public void setExportRawValues(Boolean exportRawValues) {
-        setAttribute("exportRawValues", exportRawValues);
+    public DSRequest setExportRawValues(Boolean exportRawValues) {
+        return (DSRequest)setAttribute("exportRawValues", exportRawValues);
     }
 
     /**
@@ -914,9 +940,10 @@ public class DSRequest extends RPCRequest {
      *  </pre>
      *
      * @param exportResults New exportResults value. Default value is false
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setExportResults(Boolean exportResults) {
-        setAttribute("exportResults", exportResults);
+    public DSRequest setExportResults(Boolean exportResults) {
+        return (DSRequest)setAttribute("exportResults", exportResults);
     }
 
     /**
@@ -996,9 +1023,10 @@ public class DSRequest extends RPCRequest {
      * titles are appended to the headerSpan titles (and used for fields without headerSpans).
      *
      * @param exportShowHeaderSpanTitles New exportShowHeaderSpanTitles value. Default value is true
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setExportShowHeaderSpanTitles(Boolean exportShowHeaderSpanTitles) {
-        setAttribute("exportShowHeaderSpanTitles", exportShowHeaderSpanTitles);
+    public DSRequest setExportShowHeaderSpanTitles(Boolean exportShowHeaderSpanTitles) {
+        return (DSRequest)setAttribute("exportShowHeaderSpanTitles", exportShowHeaderSpanTitles);
     }
 
     /**
@@ -1030,9 +1058,10 @@ public class DSRequest extends RPCRequest {
      * when constructing these amalgamated headers.
      *
      * @param exportSpanTitleSeparator New exportSpanTitleSeparator value. Default value is " - "
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setExportSpanTitleSeparator(String exportSpanTitleSeparator) {
-        setAttribute("exportSpanTitleSeparator", exportSpanTitleSeparator);
+    public DSRequest setExportSpanTitleSeparator(String exportSpanTitleSeparator) {
+        return (DSRequest)setAttribute("exportSpanTitleSeparator", exportSpanTitleSeparator);
     }
 
     /**
@@ -1067,9 +1096,10 @@ public class DSRequest extends RPCRequest {
      * limited to 65535 rows.
      *
      * @param exportStreaming New exportStreaming value. Default value is true
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setExportStreaming(boolean exportStreaming) {
-        setAttribute("exportStreaming", exportStreaming);
+    public DSRequest setExportStreaming(boolean exportStreaming) {
+        return (DSRequest)setAttribute("exportStreaming", exportStreaming);
     }
 
     /**
@@ -1097,9 +1127,10 @@ public class DSRequest extends RPCRequest {
      * server uses "".
      *
      * @param exportTitleSeparatorChar New exportTitleSeparatorChar value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setExportTitleSeparatorChar(String exportTitleSeparatorChar) {
-        setAttribute("exportTitleSeparatorChar", exportTitleSeparatorChar);
+    public DSRequest setExportTitleSeparatorChar(String exportTitleSeparatorChar) {
+        return (DSRequest)setAttribute("exportTitleSeparatorChar", exportTitleSeparatorChar);
     }
 
     /**
@@ -1114,26 +1145,31 @@ public class DSRequest extends RPCRequest {
     
 
     /**
-     * If set, Smart GWT Server will export data back to the client, either as a file download  or as content in a new browser
-     * window, depending on the setting of {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay}. <p> Note
-     * that it is perfectly valid to specify both this property and  {@link
-     * com.smartgwt.client.data.DSRequest#getExportToFilesystem exportToFilesystem}; in this case the data is both  exported to
-     * a file on the server filesystem, and downloaded to the client.  If you specify  <em>neither</em> property, the export
-     * no-ops.
+     * If set to true (the default), Smart GWT Server will export data back to the client, either as a file download or as
+     * content in a new browser window, depending on the setting of {@link com.smartgwt.client.data.DSRequest#getExportDisplay
+     * exportDisplay}. <p> Setting this property to false disables this. This may be useful when developers  wish to {@link
+     * com.smartgwt.client.data.DSRequest#getExportToFilesystem export the data to a file on the server fileSystem}, but do not
+     * need to display it in the browser in response to the export request. <p> Note that it is perfectly valid to have both
+     * this property and  {@link com.smartgwt.client.data.DSRequest#getExportToFilesystem exportToFilesystem} set to true; in
+     * this case the data is both  exported to a file on the server filesystem, and downloaded to the client.  If you specify 
+     * <em>neither</em> property, the export no-ops.
      *
      * @param exportToClient New exportToClient value. Default value is true
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setExportToClient(Boolean exportToClient) {
-        setAttribute("exportToClient", exportToClient);
+    public DSRequest setExportToClient(Boolean exportToClient) {
+        return (DSRequest)setAttribute("exportToClient", exportToClient);
     }
 
     /**
-     * If set, Smart GWT Server will export data back to the client, either as a file download  or as content in a new browser
-     * window, depending on the setting of {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay}. <p> Note
-     * that it is perfectly valid to specify both this property and  {@link
-     * com.smartgwt.client.data.DSRequest#getExportToFilesystem exportToFilesystem}; in this case the data is both  exported to
-     * a file on the server filesystem, and downloaded to the client.  If you specify  <em>neither</em> property, the export
-     * no-ops.
+     * If set to true (the default), Smart GWT Server will export data back to the client, either as a file download or as
+     * content in a new browser window, depending on the setting of {@link com.smartgwt.client.data.DSRequest#getExportDisplay
+     * exportDisplay}. <p> Setting this property to false disables this. This may be useful when developers  wish to {@link
+     * com.smartgwt.client.data.DSRequest#getExportToFilesystem export the data to a file on the server fileSystem}, but do not
+     * need to display it in the browser in response to the export request. <p> Note that it is perfectly valid to have both
+     * this property and  {@link com.smartgwt.client.data.DSRequest#getExportToFilesystem exportToFilesystem} set to true; in
+     * this case the data is both  exported to a file on the server filesystem, and downloaded to the client.  If you specify 
+     * <em>neither</em> property, the export no-ops.
      *
      * @return Current exportToClient value. Default value is true
      */
@@ -1159,9 +1195,10 @@ public class DSRequest extends RPCRequest {
      * <code>DSRequest.setExportTo()</code>.
      *
      * @param exportToFilesystem New exportToFilesystem value. Default value is false
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setExportToFilesystem(Boolean exportToFilesystem) {
-        setAttribute("exportToFilesystem", exportToFilesystem);
+    public DSRequest setExportToFilesystem(Boolean exportToFilesystem) {
+        return (DSRequest)setAttribute("exportToFilesystem", exportToFilesystem);
     }
 
     /**
@@ -1191,36 +1228,43 @@ public class DSRequest extends RPCRequest {
      * For server-side export with {@link com.smartgwt.client.types.ExportFormat} "xls" or "ooxml" only, timezone to use when
      * saving values from {@link com.smartgwt.client.types.FieldType} "datetime" to the spreadsheet. <p> This setting exists
      * because MS Excel&trade; has no concept of providing a true datetime value that is timezone-independent and will display
-     * in the local timezone where the Excel program is launched.  Instead, datetime values must be provided as a rendered
-     * string, which implies rendering in a particular timezone when the spreadsheet is generated. <p> <code>exportTZ</code>
-     * can either be specified as a timezone offset in the same format expected by String (for example, "+01:00" for one hour
-     * after GMT) or as the special constants "client" (meaning the current client display timezone) or "server" (meaning the
-     * timezone of the server). <p> Default if unspecified is "server". <p> This setting does not affect fields of type "date"
-     * or "time", which are timezone-independent values.  See {@link com.smartgwt.client.docs.DateFormatAndStorage} for more
-     * information on how Smart GWT handles date, time and datetime values. <p> All non-spreadsheet export formats always use
-     * UTC.  This setting also does not affect client-driven exports ({@link
-     * com.smartgwt.client.data.DataSource#exportClientData DataSource.exportClientData()}), which always use client-side time.
+     * in the local timezone where the Excel program is launched. This setting sets the timezone of the Excel workbook, so that
+     * it will display dates in the same timezone regardless of the local timezone where the Excel program is launched.
+     * Alternative approach is to set {@link com.smartgwt.client.data.DSRequest#getExportDatesAsFormattedString
+     * exportDatesAsFormattedString=true} telling datetime values must be provided as a rendered string, which implies
+     * rendering in a particular timezone when the spreadsheet is generated. <p> <code>exportTZ</code> can either be specified
+     * as a timezone offset in the same format expected by String (for example, "+01:00" for one hour after GMT) or as the
+     * special constants "client" (meaning the current client display timezone) or "server" (meaning the timezone of the
+     * server). <p> Default if unspecified is "server". <p> This setting does not affect fields of type "date" or "time", which
+     * are timezone-independent values.  See {@link com.smartgwt.client.docs.DateFormatAndStorage} for more information on how
+     * Smart GWT handles date, time and datetime values. <p> All non-spreadsheet export formats always use UTC.  This setting
+     * also does not affect client-driven exports ({@link com.smartgwt.client.data.DataSource#exportClientData
+     * DataSource.exportClientData()}), which always use client-side time.
      *
      * @param exportTZ New exportTZ value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.ExportFormatting ExportFormatting overview and related methods
      */
-    public void setExportTZ(String exportTZ) {
-        setAttribute("exportTZ", exportTZ);
+    public DSRequest setExportTZ(String exportTZ) {
+        return (DSRequest)setAttribute("exportTZ", exportTZ);
     }
 
     /**
      * For server-side export with {@link com.smartgwt.client.types.ExportFormat} "xls" or "ooxml" only, timezone to use when
      * saving values from {@link com.smartgwt.client.types.FieldType} "datetime" to the spreadsheet. <p> This setting exists
      * because MS Excel&trade; has no concept of providing a true datetime value that is timezone-independent and will display
-     * in the local timezone where the Excel program is launched.  Instead, datetime values must be provided as a rendered
-     * string, which implies rendering in a particular timezone when the spreadsheet is generated. <p> <code>exportTZ</code>
-     * can either be specified as a timezone offset in the same format expected by String (for example, "+01:00" for one hour
-     * after GMT) or as the special constants "client" (meaning the current client display timezone) or "server" (meaning the
-     * timezone of the server). <p> Default if unspecified is "server". <p> This setting does not affect fields of type "date"
-     * or "time", which are timezone-independent values.  See {@link com.smartgwt.client.docs.DateFormatAndStorage} for more
-     * information on how Smart GWT handles date, time and datetime values. <p> All non-spreadsheet export formats always use
-     * UTC.  This setting also does not affect client-driven exports ({@link
-     * com.smartgwt.client.data.DataSource#exportClientData DataSource.exportClientData()}), which always use client-side time.
+     * in the local timezone where the Excel program is launched. This setting sets the timezone of the Excel workbook, so that
+     * it will display dates in the same timezone regardless of the local timezone where the Excel program is launched.
+     * Alternative approach is to set {@link com.smartgwt.client.data.DSRequest#getExportDatesAsFormattedString
+     * exportDatesAsFormattedString=true} telling datetime values must be provided as a rendered string, which implies
+     * rendering in a particular timezone when the spreadsheet is generated. <p> <code>exportTZ</code> can either be specified
+     * as a timezone offset in the same format expected by String (for example, "+01:00" for one hour after GMT) or as the
+     * special constants "client" (meaning the current client display timezone) or "server" (meaning the timezone of the
+     * server). <p> Default if unspecified is "server". <p> This setting does not affect fields of type "date" or "time", which
+     * are timezone-independent values.  See {@link com.smartgwt.client.docs.DateFormatAndStorage} for more information on how
+     * Smart GWT handles date, time and datetime values. <p> All non-spreadsheet export formats always use UTC.  This setting
+     * also does not affect client-driven exports ({@link com.smartgwt.client.data.DataSource#exportClientData
+     * DataSource.exportClientData()}), which always use client-side time.
      *
      * @return Current exportTZ value. Default value is null
      * @see com.smartgwt.client.docs.ExportFormatting ExportFormatting overview and related methods
@@ -1256,9 +1300,10 @@ public class DSRequest extends RPCRequest {
      * backwards compatibility.
      *
      * @param exportValueFields New exportValueFields value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setExportValueFields(Boolean exportValueFields) {
-        setAttribute("exportValueFields", exportValueFields);
+    public DSRequest setExportValueFields(Boolean exportValueFields) {
+        return (DSRequest)setAttribute("exportValueFields", exportValueFields);
     }
 
     /**
@@ -1337,10 +1382,11 @@ public class DSRequest extends RPCRequest {
      *  <pre>   dataSource.allowClientFieldValueExpressions: false</pre>
      *
      * @param fieldValueExpressions New fieldValueExpressions value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.TransactionChaining TransactionChaining overview and related methods
      */
-    public void setFieldValueExpressions(Map fieldValueExpressions) {
-        setAttribute("fieldValueExpressions", fieldValueExpressions);
+    public DSRequest setFieldValueExpressions(Map fieldValueExpressions) {
+        return (DSRequest)setAttribute("fieldValueExpressions", fieldValueExpressions);
     }
 
     /**
@@ -1422,9 +1468,10 @@ public class DSRequest extends RPCRequest {
      * <P> Note that Many-to-Many works the same way as One-to-Many.
      *
      * @param generateRelatedUpdates New generateRelatedUpdates value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setGenerateRelatedUpdates(Boolean generateRelatedUpdates) {
-        setAttribute("generateRelatedUpdates", generateRelatedUpdates);
+    public DSRequest setGenerateRelatedUpdates(Boolean generateRelatedUpdates) {
+        return (DSRequest)setAttribute("generateRelatedUpdates", generateRelatedUpdates);
     }
 
     /**
@@ -1467,11 +1514,12 @@ public class DSRequest extends RPCRequest {
      * overview} for details and examples of usage.
      *
      * @param groupBy New groupBy value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.data.DSRequest#setSummaryFunctions
      * @see com.smartgwt.client.docs.ServerSummaries ServerSummaries overview and related methods
      */
-    public void setGroupBy(String... groupBy) {
-        setAttribute("groupBy", groupBy);
+    public DSRequest setGroupBy(String... groupBy) {
+        return (DSRequest)setAttribute("groupBy", groupBy);
     }
 
     /**
@@ -1499,9 +1547,10 @@ public class DSRequest extends RPCRequest {
      * com.smartgwt.client.rpc.RPCRequest#getHttpHeaders RPCRequest.httpHeaders}.
      *
      * @param headerData New headerData value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setHeaderData(Map headerData) {
-        setAttribute("headerData", headerData);
+    public DSRequest setHeaderData(Map headerData) {
+        return (DSRequest)setAttribute("headerData", headerData);
     }
 
     /**
@@ -1532,10 +1581,11 @@ public class DSRequest extends RPCRequest {
      * connectors (SQL, JPA, Hibernate) implement support for the keepParentsOnFilter flag.
      *
      * @param keepParentsOnFilter New keepParentsOnFilter value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.TreeDataBinding TreeDataBinding overview and related methods
      */
-    public void setKeepParentsOnFilter(Boolean keepParentsOnFilter) {
-        setAttribute("keepParentsOnFilter", keepParentsOnFilter);
+    public DSRequest setKeepParentsOnFilter(Boolean keepParentsOnFilter) {
+        return (DSRequest)setAttribute("keepParentsOnFilter", keepParentsOnFilter);
     }
 
     /**
@@ -1561,9 +1611,10 @@ public class DSRequest extends RPCRequest {
      * information.
      *
      * @param lineBreakStyle New lineBreakStyle value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setLineBreakStyle(String lineBreakStyle) {
-        setAttribute("lineBreakStyle", lineBreakStyle);
+    public DSRequest setLineBreakStyle(String lineBreakStyle) {
+        return (DSRequest)setAttribute("lineBreakStyle", lineBreakStyle);
     }
 
     /**
@@ -1574,6 +1625,38 @@ public class DSRequest extends RPCRequest {
      */
     public String getLineBreakStyle()  {
         return getAttributeAsString("lineBreakStyle");
+    }
+    
+
+    /**
+     * For a databound {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}, this is the 
+     * <code>operationId</code> to use for the separate fetch on the {@link
+     * com.smartgwt.client.widgets.tree.ResultTree#getLinkDataSource ResultTree.linkDataSource} that will be generated if
+     * {@link com.smartgwt.client.types.LinkDataFetchMode} is "separate".  This property  overrides the {@link
+     * com.smartgwt.client.widgets.tree.ResultTree#getLinkDataFetchOperation linkDataFetchOperation} property on  {@link
+     * com.smartgwt.client.widgets.tree.ResultTree}, for this fetch only. <p> Ignored if this DSRequest is not a fetch against
+     * a multi-link tree.
+     *
+     * @param linkDataFetchOperation New linkDataFetchOperation value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
+     */
+    public DSRequest setLinkDataFetchOperation(String linkDataFetchOperation) {
+        return (DSRequest)setAttribute("linkDataFetchOperation", linkDataFetchOperation);
+    }
+
+    /**
+     * For a databound {@link com.smartgwt.client.widgets.tree.Tree#isMultiLinkTree multi-link tree}, this is the 
+     * <code>operationId</code> to use for the separate fetch on the {@link
+     * com.smartgwt.client.widgets.tree.ResultTree#getLinkDataSource ResultTree.linkDataSource} that will be generated if
+     * {@link com.smartgwt.client.types.LinkDataFetchMode} is "separate".  This property  overrides the {@link
+     * com.smartgwt.client.widgets.tree.ResultTree#getLinkDataFetchOperation linkDataFetchOperation} property on  {@link
+     * com.smartgwt.client.widgets.tree.ResultTree}, for this fetch only. <p> Ignored if this DSRequest is not a fetch against
+     * a multi-link tree.
+     *
+     * @return Current linkDataFetchOperation value. Default value is null
+     */
+    public String getLinkDataFetchOperation()  {
+        return getAttributeAsString("linkDataFetchOperation");
     }
     
 
@@ -1589,9 +1672,10 @@ public class DSRequest extends RPCRequest {
      * the operation, discarding edits, or reconciling new and old values in a special interface.
      *
      * @param oldValues New oldValues value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setOldValues(Record oldValues) {
-        setAttribute("oldValues", oldValues == null ? null : oldValues.getJsObj());
+    public DSRequest setOldValues(Record oldValues) {
+        return (DSRequest)setAttribute("oldValues", oldValues == null ? null : oldValues.getJsObj());
     }
 
     /**
@@ -1639,10 +1723,11 @@ public class DSRequest extends RPCRequest {
      * com.smartgwt.client.docs.DsRequestEquivalence}.
      *
      * @param operationId New operationId value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.Operations Operations overview and related methods
      */
-    public void setOperationId(String operationId) {
-        setAttribute("operationId", operationId);
+    public DSRequest setOperationId(String operationId) {
+        return (DSRequest)setAttribute("operationId", operationId);
     }
 
     /**
@@ -1686,9 +1771,10 @@ public class DSRequest extends RPCRequest {
      * are always fired by your code.
      *
      * @param operationType New operationType value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setOperationType(DSOperationType operationType) {
-        setAttribute("operationType", operationType == null ? null : operationType.getValue());
+    public DSRequest setOperationType(DSOperationType operationType) {
+        return (DSRequest)setAttribute("operationType", operationType == null ? null : operationType.getValue());
     }
 
     /**
@@ -1713,11 +1799,12 @@ public class DSRequest extends RPCRequest {
      * com.smartgwt.client.data.DataSource} descriptor; it cannot be altered on the fly from the client side.
      *
      * @param outputs New outputs value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.serverds.OperationBinding#outputs
      * @see com.smartgwt.client.data.DSRequest#setAdditionalOutputs
      */
-    public void setOutputs(String outputs) {
-        setAttribute("outputs", outputs);
+    public DSRequest setOutputs(String outputs) {
+        return (DSRequest)setAttribute("outputs", outputs);
     }
 
     /**
@@ -1764,9 +1851,10 @@ public class DSRequest extends RPCRequest {
      * DynamicForm.validateOnChange} is in force.
      *
      * @param pendingAdd New pendingAdd value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setPendingAdd(Boolean pendingAdd) {
-        setAttribute("pendingAdd", pendingAdd);
+    public DSRequest setPendingAdd(Boolean pendingAdd) {
+        return (DSRequest)setAttribute("pendingAdd", pendingAdd);
     }
 
     /**
@@ -1793,13 +1881,14 @@ public class DSRequest extends RPCRequest {
      * request.
      *
      * @param progressiveLoading New progressiveLoading value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      * @see com.smartgwt.client.data.DataSource#setProgressiveLoading
      * @see com.smartgwt.client.docs.serverds.DataSource#progressiveLoadingThreshold
      * @see com.smartgwt.client.docs.serverds.OperationBinding#progressiveLoading
      * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
      */
-    public void setProgressiveLoading(Boolean progressiveLoading) {
-        setAttribute("progressiveLoading", progressiveLoading);
+    public DSRequest setProgressiveLoading(Boolean progressiveLoading) {
+        return (DSRequest)setAttribute("progressiveLoading", progressiveLoading);
     }
 
     /**
@@ -1866,9 +1955,10 @@ public class DSRequest extends RPCRequest {
      * DataSource.cacheAcrossOperationIds} for caching management for all requests of a  dataSource.
      *
      * @param shouldUseCache New shouldUseCache value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setShouldUseCache(Boolean shouldUseCache) {
-        setAttribute("shouldUseCache", shouldUseCache);
+    public DSRequest setShouldUseCache(Boolean shouldUseCache) {
+        return (DSRequest)setAttribute("shouldUseCache", shouldUseCache);
     }
 
     /**
@@ -1892,9 +1982,10 @@ public class DSRequest extends RPCRequest {
      * is a request for the first record.
      *
      * @param startRow New startRow value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setStartRow(Integer startRow) {
-        setAttribute("startRow", startRow);
+    public DSRequest setStartRow(Integer startRow) {
+        return (DSRequest)setAttribute("startRow", startRow);
     }
 
     /**
@@ -1926,9 +2017,10 @@ public class DSRequest extends RPCRequest {
      * Such fields will be skipped.
      *
      * @param streamResults New streamResults value. Default value is false
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setStreamResults(boolean streamResults) {
-        setAttribute("streamResults", streamResults);
+    public DSRequest setStreamResults(boolean streamResults) {
+        return (DSRequest)setAttribute("streamResults", streamResults);
     }
 
     /**
@@ -1972,9 +2064,10 @@ public class DSRequest extends RPCRequest {
      * client-side filtering}, a huge performance loss.
      *
      * @param textMatchStyle New textMatchStyle value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setTextMatchStyle(TextMatchStyle textMatchStyle) {
-        setAttribute("textMatchStyle", textMatchStyle == null ? null : textMatchStyle.getValue());
+    public DSRequest setTextMatchStyle(TextMatchStyle textMatchStyle) {
+        return (DSRequest)setAttribute("textMatchStyle", textMatchStyle == null ? null : textMatchStyle.getValue());
     }
 
     /**
@@ -2065,9 +2158,10 @@ public class DSRequest extends RPCRequest {
      *  XML message.
      *
      * @param useFlatFields New useFlatFields value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setUseFlatFields(Boolean useFlatFields) {
-        setAttribute("useFlatFields", useFlatFields);
+    public DSRequest setUseFlatFields(Boolean useFlatFields) {
+        return (DSRequest)setAttribute("useFlatFields", useFlatFields);
     }
 
     /**
@@ -2148,9 +2242,10 @@ public class DSRequest extends RPCRequest {
      * headerData}.
      *
      * @param useFlatHeaderFields New useFlatHeaderFields value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setUseFlatHeaderFields(Boolean useFlatHeaderFields) {
-        setAttribute("useFlatHeaderFields", useFlatHeaderFields);
+    public DSRequest setUseFlatHeaderFields(Boolean useFlatHeaderFields) {
+        return (DSRequest)setAttribute("useFlatHeaderFields", useFlatHeaderFields);
     }
 
     /**
@@ -2172,9 +2267,10 @@ public class DSRequest extends RPCRequest {
      * com.smartgwt.client.data.DataSource#getDataFormat DataSource.dataFormat} set to "json" or "iscServer".
      *
      * @param useStrictJSON New useStrictJSON value. Default value is null
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setUseStrictJSON(Boolean useStrictJSON) {
-        setAttribute("useStrictJSON", useStrictJSON);
+    public DSRequest setUseStrictJSON(Boolean useStrictJSON) {
+        return (DSRequest)setAttribute("useStrictJSON", useStrictJSON);
     }
 
     /**
@@ -2194,9 +2290,10 @@ public class DSRequest extends RPCRequest {
      * Mode of validation for entered data.
      *
      * @param validationMode New validationMode value. Default value is "full"
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining setter calls
      */
-    public void setValidationMode(ValidationMode validationMode) {
-        setAttribute("validationMode", validationMode == null ? null : validationMode.getValue());
+    public DSRequest setValidationMode(ValidationMode validationMode) {
+        return (DSRequest)setAttribute("validationMode", validationMode == null ? null : validationMode.getValue());
     }
 
     /**
@@ -2240,14 +2337,16 @@ public class DSRequest extends RPCRequest {
      *
      * @param property the attribute name
      * @param value the attribute value.
+     * @return {@link com.smartgwt.client.data.DSRequest DSRequest} instance, for chaining
+     * setter calls
      */
     @Override
-    public void setAttribute(String property, Object value) {
-        super.setAttribute(property, value);
+    public DSRequest setAttribute(String property, Object value) {
+        return (DSRequest)super.setAttribute(property, value);
     }
 
-    public void setParams(Map params) {
-        setAttribute("params", params);
+    public DSRequest setParams(Map params) {
+        return (DSRequest)setAttribute("params", params);
     }
 
     public final native void setCallback(DSCallback callback) /*-{

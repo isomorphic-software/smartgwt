@@ -22,6 +22,7 @@ import com.smartgwt.client.event.*;
 import com.smartgwt.client.core.*;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
 import com.smartgwt.client.callbacks.*;
@@ -64,14 +65,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.gwt.event.shared.*;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
-import com.google.gwt.event.shared.*;
-import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
+
 
 /**
  * Object specifying an item in a {@link com.smartgwt.client.widgets.menu.Menu}.  Each <code>MenuItem</code> can have a
@@ -157,9 +160,10 @@ public class MenuItem extends ListGridRecord implements com.smartgwt.client.widg
      * com.smartgwt.client.widgets.menu.Menu#getAutoDismiss Menu.autoDismiss}.
      *
      * @param autoDismiss New autoDismiss value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.MenuItem MenuItem} instance, for chaining setter calls
      */
-    public void setAutoDismiss(Boolean autoDismiss) {
-        setAttribute("autoDismiss", autoDismiss);
+    public MenuItem setAutoDismiss(Boolean autoDismiss) {
+        return (MenuItem)setAttribute("autoDismiss", autoDismiss);
     }
 
     /**
@@ -178,9 +182,10 @@ public class MenuItem extends ListGridRecord implements com.smartgwt.client.widg
      * the item shows the submenu.  Setting canSelectParent:true allows a menu item with a submenu to be selected directly.
      *
      * @param canSelectParent New canSelectParent value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.MenuItem MenuItem} instance, for chaining setter calls
      */
-    public void setCanSelectParent(Boolean canSelectParent) {
-        setAttribute("canSelectParent", canSelectParent);
+    public MenuItem setCanSelectParent(Boolean canSelectParent) {
+        return (MenuItem)setAttribute("canSelectParent", canSelectParent);
     }
 
     /**
@@ -200,10 +205,11 @@ public class MenuItem extends ListGridRecord implements com.smartgwt.client.widg
      * state dynamically, use {@link com.smartgwt.client.widgets.menu.MenuItem#checkIf checkIf()} instead.
      *
      * @param checked New checked value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.MenuItem MenuItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
      */
-    public void setChecked(Boolean checked) {
-        setAttribute("checked", checked);
+    public MenuItem setChecked(Boolean checked) {
+        return (MenuItem)setAttribute("checked", checked);
     }
 
     /**
@@ -227,10 +233,11 @@ public class MenuItem extends ListGridRecord implements com.smartgwt.client.widg
      * com.smartgwt.client.widgets.menu.MenuItem#dynamicIcon dynamicIcon()} instead.
      *
      * @param disabledIcon New disabledIcon value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.MenuItem MenuItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
      */
-    public void setDisabledIcon(String disabledIcon) {
-        setAttribute("disabledIcon", disabledIcon);
+    public MenuItem setDisabledIcon(String disabledIcon) {
+        return (MenuItem)setAttribute("disabledIcon", disabledIcon);
     }
 
     /**
@@ -255,7 +262,7 @@ public class MenuItem extends ListGridRecord implements com.smartgwt.client.widg
      * behaviors apply: <ul> <li> {@link com.smartgwt.client.widgets.menu.MenuItem#getAutoDismiss autoDismiss} defaults to
      * false and clicks on embeddedComponents are       not bubbled to the menuItem - if an interaction with an
      * embeddedComponent is       expected to dismiss the menu, custom code should call menu.{@link
-     * com.smartgwt.client.widgets.menu.Menu#hide hide} or       {@link com.smartgwt.client.widgets.menu.Menu#hideAllMenus
+     * com.smartgwt.client.widgets.Canvas#hide hide} or       {@link com.smartgwt.client.widgets.menu.Menu#hideAllMenus
      * hideAllMenus} as appropriate, before proceeding <li> the default behavior for {@link
      * com.smartgwt.client.widgets.menu.MenuItem#getEmbeddedComponentPosition embeddedComponentPosition} is "expand". <li> the
      * component is placed over the title and key fields by default - use {@link
@@ -264,9 +271,10 @@ public class MenuItem extends ListGridRecord implements com.smartgwt.client.widg
      * ListGridRecord.showRollOver} were set to false) </ul>
      *
      * @param embeddedComponent New embeddedComponent value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.MenuItem MenuItem} instance, for chaining setter calls
      */
-    public void setEmbeddedComponent(Canvas embeddedComponent) {
-        setAttribute("embeddedComponent", embeddedComponent == null ? null : embeddedComponent.getOrCreateJsObj());
+    public MenuItem setEmbeddedComponent(Canvas embeddedComponent) {
+        return (MenuItem)setAttribute("embeddedComponent", embeddedComponent == null ? null : embeddedComponent.getOrCreateJsObj());
     }
 
     /**
@@ -276,7 +284,7 @@ public class MenuItem extends ListGridRecord implements com.smartgwt.client.widg
      * behaviors apply: <ul> <li> {@link com.smartgwt.client.widgets.menu.MenuItem#getAutoDismiss autoDismiss} defaults to
      * false and clicks on embeddedComponents are       not bubbled to the menuItem - if an interaction with an
      * embeddedComponent is       expected to dismiss the menu, custom code should call menu.{@link
-     * com.smartgwt.client.widgets.menu.Menu#hide hide} or       {@link com.smartgwt.client.widgets.menu.Menu#hideAllMenus
+     * com.smartgwt.client.widgets.Canvas#hide hide} or       {@link com.smartgwt.client.widgets.menu.Menu#hideAllMenus
      * hideAllMenus} as appropriate, before proceeding <li> the default behavior for {@link
      * com.smartgwt.client.widgets.menu.MenuItem#getEmbeddedComponentPosition embeddedComponentPosition} is "expand". <li> the
      * component is placed over the title and key fields by default - use {@link
@@ -297,9 +305,10 @@ public class MenuItem extends ListGridRecord implements com.smartgwt.client.widg
      * and submenu fields visible.
      *
      * @param embeddedComponentFields New embeddedComponentFields value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.MenuItem MenuItem} instance, for chaining setter calls
      */
-    public void setEmbeddedComponentFields(String... embeddedComponentFields) {
-        setAttribute("embeddedComponentFields", embeddedComponentFields);
+    public MenuItem setEmbeddedComponentFields(String... embeddedComponentFields) {
+        return (MenuItem)setAttribute("embeddedComponentFields", embeddedComponentFields);
     }
 
     /**
@@ -320,9 +329,10 @@ public class MenuItem extends ListGridRecord implements com.smartgwt.client.widg
      * com.smartgwt.client.types.EmbeddedPosition} "expand".
      *
      * @param embeddedComponentPosition New embeddedComponentPosition value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.MenuItem MenuItem} instance, for chaining setter calls
      */
-    public void setEmbeddedComponentPosition(EmbeddedPosition embeddedComponentPosition) {
-        setAttribute("embeddedComponentPosition", embeddedComponentPosition == null ? null : embeddedComponentPosition.getValue());
+    public MenuItem setEmbeddedComponentPosition(EmbeddedPosition embeddedComponentPosition) {
+        return (MenuItem)setAttribute("embeddedComponentPosition", embeddedComponentPosition == null ? null : embeddedComponentPosition.getValue());
     }
 
     /**
@@ -343,9 +353,10 @@ public class MenuItem extends ListGridRecord implements com.smartgwt.client.widg
      * com.smartgwt.client.widgets.menu.MenuItem#enableIf enableIf()} instead.
      *
      * @param enabled New enabled value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.menu.MenuItem MenuItem} instance, for chaining setter calls
      */
-    public void setEnabled(Boolean enabled) {
-        setAttribute("enabled", enabled);
+    public MenuItem setEnabled(Boolean enabled) {
+        return (MenuItem)setAttribute("enabled", enabled);
     }
 
     /**
@@ -368,13 +379,14 @@ public class MenuItem extends ListGridRecord implements com.smartgwt.client.widg
      * criteria.
      *
      * @param enableWhen New enableWhen value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.MenuItem MenuItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.RuleCriteria RuleCriteria overview and related methods
      */
-    public void setEnableWhen(AdvancedCriteria enableWhen) {
+    public MenuItem setEnableWhen(AdvancedCriteria enableWhen) {
         if (enableWhen instanceof Criterion) {
             enableWhen.setAttribute("_constructor", "AdvancedCriteria");
         }
-        setAttribute("enableWhen", enableWhen == null ? null : enableWhen.getJsObj());
+        return (MenuItem)setAttribute("enableWhen", enableWhen == null ? null : enableWhen.getJsObj());
     }
 
     /**
@@ -396,9 +408,10 @@ public class MenuItem extends ListGridRecord implements com.smartgwt.client.widg
      * com.smartgwt.client.widgets.menu.Menu#getFetchSubmenus Menu.fetchSubmenus}.
      *
      * @param fetchSubmenus New fetchSubmenus value. Default value is true
+     * @return {@link com.smartgwt.client.widgets.menu.MenuItem MenuItem} instance, for chaining setter calls
      */
-    public void setFetchSubmenus(Boolean fetchSubmenus) {
-        setAttribute("fetchSubmenus", fetchSubmenus);
+    public MenuItem setFetchSubmenus(Boolean fetchSubmenus) {
+        return (MenuItem)setAttribute("fetchSubmenus", fetchSubmenus);
     }
 
     /**
@@ -422,10 +435,11 @@ public class MenuItem extends ListGridRecord implements com.smartgwt.client.widg
      * com.smartgwt.client.widgets.menu.MenuItem#dynamicIcon dynamicIcon()} instead.
      *
      * @param icon New icon value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.MenuItem MenuItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
      */
-    public void setIcon(String icon) {
-        setAttribute("icon", icon);
+    public MenuItem setIcon(String icon) {
+        return (MenuItem)setAttribute("icon", icon);
     }
 
     /**
@@ -449,9 +463,10 @@ public class MenuItem extends ListGridRecord implements com.smartgwt.client.widg
      * {@link com.smartgwt.client.widgets.menu.Menu#getIconHeight Menu.iconHeight}.
      *
      * @param iconHeight New iconHeight value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.menu.MenuItem MenuItem} instance, for chaining setter calls
      */
-    public void setIconHeight(int iconHeight) {
-        setAttribute("iconHeight", iconHeight);
+    public MenuItem setIconHeight(int iconHeight) {
+        return (MenuItem)setAttribute("iconHeight", iconHeight);
     }
 
     /**
@@ -470,9 +485,10 @@ public class MenuItem extends ListGridRecord implements com.smartgwt.client.widg
      * {@link com.smartgwt.client.widgets.menu.Menu#getIconWidth Menu.iconWidth}.
      *
      * @param iconWidth New iconWidth value. Default value is 16
+     * @return {@link com.smartgwt.client.widgets.menu.MenuItem MenuItem} instance, for chaining setter calls
      */
-    public void setIconWidth(int iconWidth) {
-        setAttribute("iconWidth", iconWidth);
+    public MenuItem setIconWidth(int iconWidth) {
+        return (MenuItem)setAttribute("iconWidth", iconWidth);
     }
 
     /**
@@ -492,10 +508,11 @@ public class MenuItem extends ListGridRecord implements com.smartgwt.client.widg
      * item, since the separator will not respond to mouse events.
      *
      * @param isSeparator New isSeparator value. Default value is false
+     * @return {@link com.smartgwt.client.widgets.menu.MenuItem MenuItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
      */
-    public void setIsSeparator(Boolean isSeparator) {
-        setAttribute("isSeparator", isSeparator);
+    public MenuItem setIsSeparator(Boolean isSeparator) {
+        return (MenuItem)setAttribute("isSeparator", isSeparator);
     }
 
     /**
@@ -518,10 +535,11 @@ public class MenuItem extends ListGridRecord implements com.smartgwt.client.widg
      * com.smartgwt.client.widgets.menu.MenuItem#getKeys keys} will be used by default.
      *
      * @param keyTitle New keyTitle value. Default value is see below
+     * @return {@link com.smartgwt.client.widgets.menu.MenuItem MenuItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
      */
-    public void setKeyTitle(String keyTitle) {
-        setAttribute("keyTitle", keyTitle);
+    public MenuItem setKeyTitle(String keyTitle) {
+        return (MenuItem)setAttribute("keyTitle", keyTitle);
     }
 
     /**
@@ -541,9 +559,10 @@ public class MenuItem extends ListGridRecord implements com.smartgwt.client.widg
      * com.smartgwt.client.widgets.menu.MenuItem#getIcon icon} when displayed inline?
      *
      * @param showIconOnlyInline New showIconOnlyInline value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.MenuItem MenuItem} instance, for chaining setter calls
      */
-    public void setShowIconOnlyInline(Boolean showIconOnlyInline) {
-        setAttribute("showIconOnlyInline", showIconOnlyInline);
+    public MenuItem setShowIconOnlyInline(Boolean showIconOnlyInline) {
+        return (MenuItem)setAttribute("showIconOnlyInline", showIconOnlyInline);
     }
 
     /**
@@ -561,10 +580,11 @@ public class MenuItem extends ListGridRecord implements com.smartgwt.client.widg
      * A reference to another menu, to display as a submenu when the mouse cursor hovers over this menu item.
      *
      * @param submenu New submenu value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.MenuItem MenuItem} instance, for chaining setter calls
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#menus_category_appearance" target="examples">Appearance Example</a>
      */
-    public void setSubmenu(Menu submenu) {
-        setAttribute("submenu", submenu == null ? null : submenu.getOrCreateJsObj());
+    public MenuItem setSubmenu(Menu submenu) {
+        return (MenuItem)setAttribute("submenu", submenu == null ? null : submenu.getOrCreateJsObj());
     }
     
 
@@ -572,10 +592,11 @@ public class MenuItem extends ListGridRecord implements com.smartgwt.client.widg
      * The text displayed for the menu item
      *
      * @param title New title value. Default value is null
+     * @return {@link com.smartgwt.client.widgets.menu.MenuItem MenuItem} instance, for chaining setter calls
      * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setTitle(String title) {
-        setAttribute("title", title);
+    public MenuItem setTitle(String title) {
+        return (MenuItem)setAttribute("title", title);
     }
 
     /**

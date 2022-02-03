@@ -21,7 +21,7 @@ import com.google.gwt.event.shared.EventHandler;
 
 public interface FieldStateChangedHandler extends EventHandler {
     /**
-     * Notification method executed when columns are resized or reordered, or fields are shown or hidden. frozen or unfrozen. 
+     * Notification method executed when columns are resized or reordered, or fields are shown or hidden, frozen or unfrozen. 
      * Has no default implementation.
      *
      * @param event the event

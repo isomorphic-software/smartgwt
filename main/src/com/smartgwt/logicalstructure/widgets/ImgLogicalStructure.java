@@ -5,8 +5,10 @@ import com.smartgwt.client.i18n.*;
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.util.*;
 import com.smartgwt.client.util.workflow.*;
+import com.smartgwt.client.util.workflow.Process; // required to override java.lang.Process
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.fields.*;
 import com.smartgwt.client.tools.*;
 import com.smartgwt.client.widgets.*;
@@ -50,8 +52,17 @@ public class ImgLogicalStructure extends StatefulCanvasLogicalStructure {
     public String imageType;
     public String imageWidth;
     public String prompt;
+    public String showDisabled;
+    public String showDown;
+    public String showFocused;
+    public String showFocusedAsOver;
+    public String showImageDisabled;
+    public String showImageDown;
+    public String showImageFocused;
+    public String showImageFocusedAsOver;
+    public String showImageRollOver;
+    public String showRollOver;
     public String showTitle;
     public String size;
-    public String src;
     public String usePNGFix;
 }

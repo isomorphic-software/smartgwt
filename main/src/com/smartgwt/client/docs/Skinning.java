@@ -87,8 +87,8 @@ package com.smartgwt.client.docs;
  *  Using images is a less efficient approach - it leads to a more complex DOM structure and
  *  increased server load to retrieve media.
  *  <P>
- *  The most modern Smart GWT skins, <b>Tahoe</b>, <b>Obsidian</b>, <b>Stratus</b> and 
- *  <b>Cascade</b>, will always rely on CSS3 features for certain appearance details. If loaded 
+ *  The most modern Smart GWT skins, <b>Tahoe</b>, <b>Obsidian</b> and <b>Stratus</b>, will 
+ *  always rely on CSS3 features for certain appearance details. If loaded 
  *  in a browser with no CSS3 support (such as Internet Explorer 8), developers can expect to 
  *  see some degredation in appearance (lack of certain drop-shadows, rounded edges becoming 
  *  square, etc).
@@ -162,7 +162,7 @@ package com.smartgwt.client.docs;
  * specified, allowing the image to
  *  be rendered at various sizes.
  *  <P>
- *  The <b>Tahoe</b>, <b>Obsidian</b>, <b>Stratus</b> and <b>Cascade</b> skins makes use of the 
+ *  The <b>Tahoe</b>, <b>Obsidian</b> and <b>Stratus</b> skins make use of the 
  *  sprite-URL capability to ensure that sprited images appear correctly regardless of the size 
  *  at which they are being drawn.<br>
  *  The <b>Enterprise</b>, <b>EnterpriseBlue</b>, and <b>Graphite</b> skins 
@@ -184,7 +184,15 @@ package com.smartgwt.client.docs;
  *    <li>"off" :<br>Spriting will not be used</li>
  *  </ul>
  *  <h4>Modifying Skins</h4>
- *  <P>
+ *  <h3>Skin Editor</h3>
+ *  To create new skins and easily make bulk changes to details like colors and fonts, see our
+ * {@link com.smartgwt.client.docs.SkinEditor Skin Editor} tool, which can be accessed online, or
+ * locally in your
+ * environment if you have a <a href='https://www.smartclient.com/product/' target='_blank'>Pro or
+ * better</a> 
+ *  license. 
+ *  <p>
+ *  <h3>Manually</h3>
  *  To modify a skin, first create a copy of one of the skins that comes with the Smart GWT
  *  SDK, then modify the copy.  Full instructions are provided in Chapter 9 of the
  *  
@@ -192,11 +200,14 @@ package com.smartgwt.client.docs;
  *  <a href='http://docs.smartclient.com' target='_blank'>QuickStart Guide</a>.
  *  
  *  <P>
- *  For the most modern skins, <b>Tahoe</b>, <b>Obsidian</b>, <b>Stratus</b> and <b>Cascade</b>,
- *  the recommended approach is to take advantage of the Sass templates provided with those 
- * skins.  See the {@link com.smartgwt.client.docs.CustomSassSkins Custom Sass Skinning}
- * discussion for more 
- *  detail on leveraging that mechanism to customize a skin.
+ *  For the most modern skins, <b>Tahoe</b>, <b>Obsidian</b> and <b>Stratus</b>,
+ * the recommended approach is to use the {@link com.smartgwt.client.docs.SkinEditor Skin Editor}
+ * tool, which 
+ *  provides UI for the majority of the skin CSS and takes advantage of the Sass templates 
+ *  provided with those skins.  You can also manually affect the Sass templates - see the 
+ * {@link com.smartgwt.client.docs.CustomSassSkins Custom Sass Skinning} discussion for more
+ * detail on leveraging 
+ *  that mechanism to customize a skin.
  *  <h4>Locating Skinning Properties</h4>
  *  <P>
  *  <b>Starting from the name of the component</b>
@@ -321,11 +332,11 @@ package com.smartgwt.client.docs;
  *  <P>
  *  <h4>StretchImg: 3-segment stretchable images</h4>
  *  <P>
- * A {@link com.smartgwt.client.widgets.StretchImg} is Smart GWT component that renders out a
- * compound image composed of 3
- *  image files: two fixed-size endcaps images and a stretchable center segment.  Like stateful
- *  components, the names of each image segment is appended to the image URL as a suffix.  See
- *  {@link com.smartgwt.client.widgets.StretchImg#getSrc StretchImg.src} for details.
+ * A {@link com.smartgwt.client.widgets.StretchImg} is a Smart GWT component that renders out a
+ * compound image composed 
+ *  of 3 image files: two fixed-size end-cap images and a stretchable center segment.  Like 
+ *  stateful components, the names of each image segment is appended to the image URL as a 
+ *  suffix.  See {@link com.smartgwt.client.widgets.StretchImg#getSrc StretchImg.src} for details.
  *  <P>
  *  <h4>EdgedCanvas</h4>
  *  <P>
@@ -334,8 +345,8 @@ package com.smartgwt.client.docs;
  *  around and/or behind another component, with up to 9 segments (a 3x3 grid).  Decorative
  * edges can be added to any component by setting {@link
  * com.smartgwt.client.widgets.Canvas#getShowEdges showEdges:true}.
- *  EdgedCanvas is also used to construct dropshadows, which can be enabled on any component via
- *  {@link com.smartgwt.client.widgets.Canvas#getShowShadow showShadow:true}.
+ *  EdgedCanvas is also used to construct drop-shadows, which can be enabled on any component 
+ *  via {@link com.smartgwt.client.widgets.Canvas#getShowShadow showShadow:true}.
  *  <P>
  *  
  *  
