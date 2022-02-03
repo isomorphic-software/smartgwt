@@ -13,15 +13,17 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.tab.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface TabSelectedHandler extends EventHandler {
     /**
      * Notification fired when a tab is selected. Note that this will only fire if  this tabSet is drawn. If a tab is selected
-     * before <code>TabSet.draw()</code>  is called, the <code>tabSelected()</code> notification will fire on 
-     * <code>draw()</code>
+     * before {@link com.smartgwt.client.widgets.Canvas#draw draw}  is called,  {@link
+     * com.smartgwt.client.widgets.tab.events.TabSelectedEventl} will fire on <code>draw()</code>.
      *
      * @param event the event
      */

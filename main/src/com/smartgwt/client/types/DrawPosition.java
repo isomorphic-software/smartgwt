@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,33 +16,46 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  */
 public enum DrawPosition implements ValueEnum {
     /**
      * insert before the target element
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "beforeBegin".
      */
     BEFOREBEGIN("beforeBegin"),
     /**
      * insert as the target element's first child
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "afterBegin".
      */
     AFTERBEGIN("afterBegin"),
     /**
      * insert as the target element's last child
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "beforeEnd".
      */
     BEFOREEND("beforeEnd"),
     /**
      * insert after the target element
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "afterEnd".
      */
     AFTEREND("afterEnd"),
     /**
      * replace the target element
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "replace".
      */
     REPLACE("replace");
-
     private String value;
 
     DrawPosition(String value) {

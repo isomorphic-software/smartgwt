@@ -13,15 +13,16 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.drawing.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface DragStopHandler extends EventHandler {
     /**
-     * If {@link com.smartgwt.client.widgets.drawing.DrawItem#getCanDrag canDrag} is true and {@link
-     * com.smartgwt.client.widgets.drawing.DrawPane#getCanDrag canDrag} is true, this notification method will be fired when
-     * the user completes a drag on the drawItem
+     * If {@link com.smartgwt.client.widgets.drawing.DrawItem#getCanDrag canDrag} is true, this notification method will be
+     * fired when the user completes a drag on the draw item.
      *
      * @param event the event
      */

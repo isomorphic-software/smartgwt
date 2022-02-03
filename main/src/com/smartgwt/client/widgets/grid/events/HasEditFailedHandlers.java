@@ -13,20 +13,20 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.grid.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasEditFailedHandlers extends HasHandlers {
     /**
      * Called when an attempt to save inline edits fails, due to a validation error or other server error. <P> The default
      * implementation of editFailed does nothing for normal validation errors, which are displayed before editFailed() is
      * called.  For any other errors, the default implementation will call {@link
-     * com.smartgwt.client.rpc.RPCManager#handleError RPCManager.handleError}, which by default will result in a warning
-     * dialog.
+     * com.smartgwt.client.rpc.HandleErrorCallback#handleError HandleErrorCallback.handleError()}, which by default will result
+     * in a warning dialog.
      *
      * @param handler the editFailed handler
      * @return {@link HandlerRegistration} used to remove this handler

@@ -38,4 +38,3 @@ public interface SimpleTypeParser {
      */
     Object parseInput(String value, DataClass field, DataBoundComponent component, Record record);
 }
-

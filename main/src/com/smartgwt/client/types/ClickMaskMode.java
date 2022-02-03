@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,24 +16,28 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
- * Passed as a parameter to {@link com.smartgwt.client.widgets.Canvas#showClickMask Canvas.showClickMask} to determine the
- * masks behavior when clicked.
+ * Passed as a parameter to {@link com.smartgwt.client.widgets.Canvas#showClickMask Canvas.showClickMask()} to determine
+ * the masks behavior when clicked.
  */
 public enum ClickMaskMode implements ValueEnum {
     /**
      * When the mask receives a click, it will fire its click action, and cancel the event, leaving the clickMask up.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "hard".
      */
     HARD("hard"),
     /**
      * When the mask receives a click, it will fire its click action, then dismiss the clickMask and allow the event to proceed
      * to its target.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "soft".
      */
     SOFT("soft");
-
     private String value;
 
     ClickMaskMode(String value) {

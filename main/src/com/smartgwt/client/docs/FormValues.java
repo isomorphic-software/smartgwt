@@ -32,10 +32,17 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.ValuesManager#getValue
  * @see com.smartgwt.client.widgets.form.ValuesManager#setValue
  * @see com.smartgwt.client.widgets.form.ValuesManager#clearValue
+ * @see com.smartgwt.client.widgets.form.fields.RichTextItem#getShouldSaveValue
  * @see com.smartgwt.client.widgets.form.DynamicForm#getValues
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getShouldSaveValue
  * @see com.smartgwt.client.widgets.form.fields.TextItem#getEmptyStringValue
  * @see com.smartgwt.client.widgets.form.fields.TextAreaItem#getEmptyStringValue
+ * @see com.smartgwt.client.widgets.form.fields.MultiComboBoxItem#getShouldSaveValue
+ * @see com.smartgwt.client.widgets.form.fields.FileItem#getShouldSaveValue
+ * @see com.smartgwt.client.widgets.form.fields.SliderItem#getShouldSaveValue
+ * @see com.smartgwt.client.widgets.form.fields.PickTreeItem#getShouldSaveValue
+ * @see com.smartgwt.client.widgets.form.fields.RelativeDateItem#getShouldSaveValue
+ * @see com.smartgwt.client.widgets.form.PresetCriteriaItem#getShouldSaveValue
  */
 public interface FormValues {
 }

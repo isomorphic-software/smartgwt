@@ -13,17 +13,18 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasDropOutHandlers extends HasHandlers {
     /**
-     * Executed when the dragged object is moved out of the rectangle of this drop target. If you have set a visual indication
-     * in dropOver or dropMove, you should reset it to its normal state in dropOut.
+     * Executed when the dragged object is no longer over this drop target, including when the drag interaction is ending with
+     * a drop on this drop target. If you have set a visual indication  in dropOver or dropMove, you should reset it to its
+     * normal state in dropOut.
      *
      * @param handler the dropOut handler
      * @return {@link HandlerRegistration} used to remove this handler

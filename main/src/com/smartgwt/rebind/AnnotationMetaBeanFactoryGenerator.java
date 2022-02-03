@@ -24,8 +24,6 @@ import com.google.gwt.core.ext.typeinfo.*;
 import com.google.gwt.user.rebind.ClassSourceFileComposerFactory;
 import com.google.gwt.user.rebind.SourceWriter;
 import com.smartgwt.client.bean.BeanFactory;
-import com.smartgwt.client.widgets.BaseWidget;
-import com.smartgwt.client.core.DataClass;
 import com.smartgwt.rebind.BeanClass;
 
 import java.io.PrintWriter;

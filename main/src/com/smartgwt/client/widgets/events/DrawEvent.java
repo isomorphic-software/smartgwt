@@ -20,6 +20,8 @@ import com.google.gwt.event.shared.HasHandlers;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerManager;
 
+import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.BaseWidget;
 
 public class DrawEvent extends GwtEvent<DrawHandler> {
 
@@ -38,6 +40,14 @@ public class DrawEvent extends GwtEvent<DrawHandler> {
      */
     private static Type<DrawHandler> TYPE;
 
+
+    /**
+     * Returns the {@link com.smartgwt.client.widgets.Canvas Canvas} firing the event.
+     * @return Canvas firing the event
+     */
+    public Canvas getFiringCanvas() {
+        return this.ID != null ? Canvas.getById(this.ID) : null;
+    }
 
     /**
      * Fires a close event on all registered handlers in the handler manager.

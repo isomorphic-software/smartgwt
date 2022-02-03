@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,22 +16,26 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Settings for whether multiple sections can be in the expanded state simultaneously.
  */
 public enum VisibilityMode implements ValueEnum {
     /**
      * Only one section can be expanded at a time.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "mutex".
      */
     MUTEX("mutex"),
     /**
      * Multiple sections can be expanded at the same time, and will share space.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "multiple".
      */
     MULTIPLE("multiple");
-
     private String value;
 
     VisibilityMode(String value) {

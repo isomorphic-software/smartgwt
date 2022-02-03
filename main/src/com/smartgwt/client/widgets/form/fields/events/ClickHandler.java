@@ -13,14 +13,15 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.form.fields.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface ClickHandler extends EventHandler {
     /**
-     * Called when this FormItem is clicked on. <P> Note: <code>click()</code> is available on StaticTextItem, BlurbItems,
-     * ButtonItem, and derivatives.  Other form items (such as HiddenItem) do not support <code>click()</code>.
+     * Called when a ButtonItem is clicked on.
      *
      * @param event the event
      */

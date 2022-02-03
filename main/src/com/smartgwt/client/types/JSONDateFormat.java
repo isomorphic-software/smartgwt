@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,19 +16,21 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Format for encoding dates in JSON.  Note you can override {@link com.smartgwt.client.util.JSONEncoder#encodeDate
- * JSONEncoder.encodeDate} for a custom format.
+ * JSONEncoder.encodeDate()} for a custom format.
  */
 public enum JSONDateFormat implements ValueEnum {
     /**
      * dates are is encoded as a String in <a target=_blank href="http://www.w3.org/TR/xmlschema-2/#dateTime">XML Schema date
      * format</a> in UTC, for example, "2005-08-02" for logical date fields or "2005-08-01T21:35:48.350" for
-     * <code>datetime</code> fields. See {@link com.smartgwt.client.docs.DateFormatAndStorage Date format and storage} for more
-     * information.
+     * <code>datetime</code> fields. See {@link com.smartgwt.client.docs.DateFormatAndStorage Date format and\n storage} for
+     * more information.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "xmlSchema".
      */
     XML_SCHEMA("xmlSchema"),
     /**
@@ -34,10 +39,24 @@ public enum JSONDateFormat implements ValueEnum {
      *  new Date(1238792738633)
      *  </pre>
      *  This is not strictly valid JSON, but if eval()d, will result in an identical date object,
-     *  regardless of timezone.
+     *  regardless of timezone. However, it does not preserve the distinction between
+     *  logical dates vs full datetime values - use "logicalDateConstructor" mode for that.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "dateConstructor".
      */
-    DATE_CONSTRUCTOR("dateConstructor");
-
+    DATE_CONSTRUCTOR("dateConstructor"),
+    /**
+     * serializes Date instances in a way that preserves the distinction between logical dates, logical times, and full
+     * datetime values, as explained {@link com.smartgwt.client.docs.DateFormatAndStorage here}. Like 'dateConstructor' mode,
+     * this does not produce strictly valid JSON, and instead embeds JavaScript calls.  <p> In addition, unlike
+     * 'dateConstructor' mode, using eval() to reconstruct the original JavaScript objects will only work in the presence of
+     * Smart GWT, and not just in a generic JavaScript interpreter.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "logicalDateConstructor".
+     */
+    LOGICAL_DATE_CONSTRUCTOR("logicalDateConstructor");
     private String value;
 
     JSONDateFormat(String value) {

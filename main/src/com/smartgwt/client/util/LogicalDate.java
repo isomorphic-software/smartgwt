@@ -23,9 +23,9 @@ public class LogicalDate extends Date {
     }
 
     public native final JsDate toJavaScriptDate() /*-{
-        // Use $wnd.Date.create() instead of JsDate.create() so that instance methods like
-        // duplicate() are added to the resulting JavaScript date object.
-        var jsD = $wnd.Date.create();
+        // Use $wnd.isc.DateUtil.create() instead of JsDate.create() so that instance methods
+        // like duplicate() are added to the resulting JavaScript date object.
+        var jsD = $wnd.isc.DateUtil.create();
         jsD.setTime(this.@com.smartgwt.client.util.LogicalDate::getTimeAsDouble()());
         jsD.logicalDate = true;
         return jsD;

@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,22 +16,33 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Method to use for displaying the exported data.
  */
 public enum ExportDisplay implements ValueEnum {
     /**
      * Show the Save As dialog and download the file
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "download".
      */
     DOWNLOAD("download"),
     /**
      * Show the data in a new browser window
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "window".
      */
-    WINDOW("window");
-
+    WINDOW("window"),
+    /**
+     * Return the data for further programmatic processing in the browser
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "return".
+     */
+    RETURN("return");
     private String value;
 
     ExportDisplay(String value) {

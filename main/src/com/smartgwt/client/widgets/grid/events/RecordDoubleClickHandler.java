@@ -13,8 +13,10 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.grid.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface RecordDoubleClickHandler extends EventHandler {
@@ -26,8 +28,8 @@ public interface RecordDoubleClickHandler extends EventHandler {
      * something specific if a particular field is double clicked, add a recordDoubleClick method or string of script to that
      * field (same parameters) when you're setting up the list.<br> <b>Notes:</b><ul> <li>This will not be called if the click
      * is below the last item of the list.</li> <li>This method is called from the default implementation of {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#rowDoubleClick ListGrid.rowDoubleClick}, so if that method is overridden this
-     * method may not be fired.</li></ul>
+     * com.smartgwt.client.widgets.grid.ListGrid#rowDoubleClick rowDoubleClick()}, so if that method is overridden this method
+     * may not be fired.</li></ul>
      *
      * @param event the event
      */

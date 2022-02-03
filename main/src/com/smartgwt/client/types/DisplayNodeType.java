@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Flag passed to functions as displayNodeType, telling the function whether it should work on folders, leaves or both at
  * once.
@@ -27,13 +29,18 @@ public enum DisplayNodeType implements ValueEnum {
     NULL(null),
     /**
      * operate on folders only, ignoring leaves
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "folders".
      */
     FOLDERS("folders"),
     /**
      * operate on leaves only, ignoring folders
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "leaves".
      */
     LEAVES("leaves");
-
     private String value;
 
     DisplayNodeType(String value) {

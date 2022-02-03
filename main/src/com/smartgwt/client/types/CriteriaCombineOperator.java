@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,17 +16,15 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * The logical operator to use when combining criteria objects with the  {@link
- * com.smartgwt.client.data.DataSource#combineCriteria DataSource.combineCriteria} method.
+ * com.smartgwt.client.data.DataSource#combineCriteria DataSource.combineCriteria()} method.
  */
 public enum CriteriaCombineOperator implements ValueEnum {
     AND("and"),
     OR("or");
-
     private String value;
 
     CriteriaCombineOperator(String value) {

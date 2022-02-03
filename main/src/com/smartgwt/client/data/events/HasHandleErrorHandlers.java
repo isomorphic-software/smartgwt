@@ -13,20 +13,20 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.data.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasHandleErrorHandlers extends HasHandlers {
     /**
      * If you define this method on a DataSource, it will be called whenever the server returns a DSResponse with a status
      * other than {@link com.smartgwt.client.rpc.RPCResponse#STATUS_SUCCESS STATUS_SUCCESS}.  You can use this hook to do
-     * DataSource-specific error handling.  Unless you return <code>false</code> from this method, {@link
-     * com.smartgwt.client.rpc.RPCManager#handleError RPCManager.handleError} will be called by Smart GWT right after this
-     * method completes.
+     * DataSource-specific error handling.    Unless you call {@link com.smartgwt.client.data.events.ErrorEvent#cancel()}, 
+     * {@link com.smartgwt.client.rpc.HandleErrorCallback#handleError HandleErrorCallback.handleError()} will be called by
+     * Smart GWT right after this method completes.
      *
      * @param handler the handleError handler
      * @return {@link HandlerRegistration} used to remove this handler

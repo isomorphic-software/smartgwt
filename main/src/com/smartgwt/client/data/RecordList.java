@@ -24,6 +24,7 @@ import java.util.Map;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.shared.HandlerRegistration;
+
 import com.smartgwt.client.core.BaseClass;
 import com.smartgwt.client.util.JSOHelper;
 
@@ -994,7 +995,7 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
             obj = this.@com.smartgwt.client.core.BaseClass::getConfig()();
         }
         obj.onDataChanged = $entry(function () {
-            var param = {};
+            var param = {"_this": this};
             var event = @com.smartgwt.client.data.events.DataChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
             selfJ.@com.smartgwt.client.core.BaseClass::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
         });
@@ -1034,6 +1035,3 @@ public class RecordList extends BaseClass implements com.smartgwt.client.data.ev
         return @com.smartgwt.client.data.RecordList::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 }
-
-
-

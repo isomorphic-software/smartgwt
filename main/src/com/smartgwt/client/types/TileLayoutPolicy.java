@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Policy for laying out tiles.  <P> Because a TileLayout can be either horizontally or vertically oriented, the general
  * term "line" is used to mean either a row or column of tiles.  <P> <b>NOTE</b>: for typical form layouts (a variety of
@@ -25,19 +27,25 @@ package com.smartgwt.client.types;
 public enum TileLayoutPolicy implements ValueEnum {
     /**
      * Each line has the same number of tiles, based on {@link com.smartgwt.client.widgets.tile.TileLayout#getTilesPerLine
-     * tilesPerLine} if set, otherwise, based on fitting as many tiles per line as possible consistent with {@link
+     * TileLayout.tilesPerLine} if set, otherwise, based on fitting as many tiles per line as possible consistent with {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize} and {@link
-     * com.smartgwt.client.widgets.tile.TileLayout#getTileMargin tileMargin}.  <P> Tiles that do not specify a size will be
-     * sized to fill available space.
+     * com.smartgwt.client.widgets.tile.TileLayout#getTileMargin TileLayout.tileMargin}.  <P> Tiles that do not specify a size
+     * will be sized to fill available space.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "fit".
      */
     FIT("fit"),
     /**
      * Tiles are laid out with varying numbers of tiles per line according to each tile's size, the {@link
      * com.smartgwt.client.widgets.tile.TileLayout#getTileMargin tileMargin}, and the available space. <P> Tiles are never
-     * resized by the TileLayout and {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize tileSize} is ignored.
+     * resized by the TileLayout and {@link com.smartgwt.client.widgets.tile.TileLayout#getTileSize TileLayout.tileSize} is
+     * ignored.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "flow".
      */
     FLOW("flow");
-
     private String value;
 
     TileLayoutPolicy(String value) {

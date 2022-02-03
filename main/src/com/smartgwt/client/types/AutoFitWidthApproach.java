@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,27 +16,34 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * How should field width be determined when {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFitWidth
- * autoFitWidth} is true?
+ * ListGridField.autoFitWidth} is true?
  */
 public enum AutoFitWidthApproach implements ValueEnum {
     /**
      * Size field to fit to the data value(s) contained in the field.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "value".
      */
     VALUE("value"),
     /**
      * Size field to fit the field title
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "title".
      */
     TITLE("title"),
     /**
      * Size field to fit either the field title or the data values in the field (whichever requires more space).
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "both".
      */
     BOTH("both");
-
     private String value;
 
     AutoFitWidthApproach(String value) {

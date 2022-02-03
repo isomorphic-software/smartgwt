@@ -1,17 +1,38 @@
 package com.smartgwt.client.data;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.smartgwt.client.core.JsObject;
+import com.smartgwt.client.core.BaseClass;
 
 /**
  * A set of schema derived from the <code>&lt;xsd:schema&gt;</code> element in a WSDL or XML schema file loaded by
  * {@link com.smartgwt.client.data.XMLTools#loadWSDL} or {@link XMLTools#loadXMLSchema}.
  */
-public class SchemaSet extends JsObject {
+public class SchemaSet extends BaseClass {
+
+    public static SchemaSet getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
+        BaseClass obj = BaseClass.getRef(jsObj);
+        if(obj != null) {
+            return (SchemaSet) obj;
+        } else {
+            return new SchemaSet(jsObj);
+        }
+    }
+
+    public SchemaSet() {
+        scClassName = "SchemaSet";
+    }
 
     public SchemaSet(JavaScriptObject jsObj) {
-        super(jsObj);
+        scClassName = "SchemaSet";
+        setJavaScriptObject(jsObj);
     }
+
+    public native JavaScriptObject create()/*-{
+        var config = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+        var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
+        return $wnd.isc[scClassName].create(config);
+    }-*/;
 
     /**
      * Get the schema definition of any complexType or element of complexType defined within the <schema> element this
@@ -21,7 +42,7 @@ public class SchemaSet extends JsObject {
      * @return the data source if schema found, or null
      */
     public native DataSource getSchema(String schemaName)/*-{
-        var self  = this.@com.smartgwt.client.core.JsObject::getJsObj()();
+        var self  = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
         var ds = self.getSchema(schemaName);
 
         if(ds == null || ds === undefined) {
@@ -43,7 +64,7 @@ public class SchemaSet extends JsObject {
      * @return the data source if schema found, or null
      */
     public native DataSource getSchema(String schemaName, String schemaType)/*-{
-        var self  = this.@com.smartgwt.client.core.JsObject::getJsObj()();
+        var self  = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
         var ds = self.getSchema(schemaName, schemaType);
         return ds == null || ds === undefined ? null : @com.smartgwt.client.data.DataSource::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ds);
     }-*/;

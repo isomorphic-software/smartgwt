@@ -13,16 +13,16 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.toolbar.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasItemClickHandlers extends HasHandlers {
     /**
-     * Called when one of the buttons receives a click event
+     * Called when one of the buttons receives a click event.
      *
      * @param handler the itemClick handler
      * @return {@link HandlerRegistration} used to remove this handler

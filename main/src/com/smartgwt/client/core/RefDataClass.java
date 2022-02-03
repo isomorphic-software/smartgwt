@@ -17,6 +17,7 @@
 package com.smartgwt.client.core;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.smartgwt.client.widgets.form.fields.FormItem;
 import com.smartgwt.client.bean.BeanFactory;
 import com.smartgwt.client.util.IDManager;
 import com.smartgwt.client.util.JSOHelper;
@@ -31,10 +32,15 @@ public class RefDataClass extends DataClass {
 
     public RefDataClass(JavaScriptObject jsObj) {
         super(jsObj);
-        //when we're being constructed using the JSO directly, make sure we clear out any other
-        //SC.REF attributes to make sure this object is represented by a different GWT object ref
-        JSOHelper.deleteAttribute(jsObj, SC.REF);
-        JSOHelper.deleteAttribute(jsObj, SC.MODULE);
+        // For non-FormItem RefDataClass objects, clear out the SC.REF/sc.MODULE attirbutes to
+        // ensure that new values are installed that reference this instance and module:
+        // - The wiping was originally added to deal with handling the switch between Record
+        //   and ListGridRecord wrappers for the same underlying JSO.
+        // - For a FormItem, these two attributes are manually set in the FormItem constructor.
+        if (!(this instanceof FormItem)) {
+            JSOHelper.deleteAttribute(jsObj, SC.REF);
+            JSOHelper.deleteAttribute(jsObj, SC.MODULE);
+        }
     }
 
     public static RefDataClass getRef(String jsObj) {
@@ -42,15 +48,14 @@ public class RefDataClass extends DataClass {
     }
 
     public static RefDataClass getRef(JavaScriptObject jsObj) {
-
         if (jsObj == null) {
             return null;
         } else {
             Object ref = JSOHelper.getAttributeAsObject((JavaScriptObject) jsObj, SC.REF);
-            if (ref != null && !(ref instanceof RefDataClass)) {
-                return null;
-            } else {
+            if (ref instanceof RefDataClass) {
                 return (RefDataClass) ref;
+            } else {
+                return null;
             }
         }
     }

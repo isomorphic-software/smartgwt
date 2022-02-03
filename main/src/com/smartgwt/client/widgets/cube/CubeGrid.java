@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.cube;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,55 +40,90 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
+import com.smartgwt.client.widgets.ace.*;
+import com.smartgwt.client.widgets.ace.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
 import com.smartgwt.client.widgets.tree.events.*;
+import com.smartgwt.client.widgets.tableview.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.events.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.rte.*;
+import com.smartgwt.logicalstructure.widgets.ace.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
+import com.smartgwt.logicalstructure.widgets.tools.*;
 
 /**
  * The CubeGrid is an interactive grid component that presents very large, multi-dimensional data sets (also known as data
- * cubes) for reporting or analytic applications. <P> <var class="SmartGWT"> Note that the CubeGrid is implemented as part
- * of the optional Analytics module. Attempting to create a CubeGrid without having the module loaded will throw a
- * RuntimeException. <P> </var> CubeGrids are often called crosstabs, for their cross-tabular display of data dimensions in
- * stacked/nested rows and columns, or pivot tables, for their ability to "pivot" dimensions between rows and columns to
- * view a data cube from different perspectives. They are typically used in the querying and reporting front-ends of data
- * warehousing, decision support, OLAP, and business intelligence systems. <P> <B>Multi-Dimensional Data Terminology</B>
- * <P> The CubeGrid refers to the dimensions of a data cube as facets, to the possible values in each facet as facet
- * values, and to the values within the data cube as data values or cell values. Equivalent terms that are commonly used in
- * data warehousing or business intelligence systems include:<br> <b>facet:</b> dimension, attribute, feature<br> <b>facet
- * value:</b> dimension member, attribute value, feature value<br> <b>cell value:</b> data value, metric value, measure <P>
- * <B>Visual Structure</B> <P> Like the ListGrid and TreeGrid components, the CubeGrid displays data values in a tabular
- * "body" with adjacent "headers".  While the ListGrid and TreeGrid display rows of records with field values, the CubeGrid
- * displays a body of individual cell values, each associated with a combination of facet values. The facet values for a
- * cell are displayed in the column headers above the cell and row headers to the left of the cell. CubeGrids can display
- * an arbitrary number of facets, by stacking multiple levels of row and/or column headers. <P> Except for the innermost
- * column facet, each facet in a CubeGrid has a facet label adjacent to its row or column headers. The facet labels serve
- * two main purposes: they display the titles of the facets, and they provide drag-and-drop reordering or pivoting of
- * facets within the CubeGrid. The row facet labels also provide interactive selection, resizing, and other operations on
- * the columns of row facet values. <P> The innermost column headers provide special behaviors and controls for
- * manipulating the columns of data in a CubeGrid. End users may select, resize, reorder, minimize, maximize, or auto-fit
- * the columns of data via mouse interactions with these headers. Customizable indicators and controls may be included at
- * the top of each innermost column header. <P> If a CubeGrid is not large enough to display all of its cell values,
- * horizontal and/or vertical scrollbars will appear below and to the right of the body. The body of the CubeGrid may be
- * scrolled on either axis. The headers are "frozen" from scrolling on one axis - row headers only scroll vertically, while
- * column headers only scroll horizontally - so the facet values for the visible cells are always displayed. <P> <B>Data
- * Loading</B> <P> Data can be provided to the Cube via  data as an Array of {@link
+ * cubes) for reporting or analytic applications. <P> CubeGrids are often called crosstabs, for their cross-tabular display
+ * of data dimensions in stacked/nested rows and columns, or pivot tables, for their ability to "pivot" dimensions between
+ * rows and columns to view a data cube from different perspectives. They are typically used in the querying and reporting
+ * front-ends of data warehousing, decision support, OLAP, and business intelligence systems. <P> For example, CubeGrids
+ * can be connected to Pentaho Mondrian, Jasper Reports, Microsoft Analysis Services and any other OLAP technology that
+ * supports the XMLA standard - the Isomorphic public wiki has  <a
+ * href='http://wiki.smartclient.com/pages/viewpage.action?pageId=1441839' target='_blank'>examples</a>. of such
+ * integration. <P> <b>NOTE:</b> you must load the Analytics  {@link com.smartgwt.client.docs.LoadingOptionalModules
+ * Optional Module} before you can use CubeGrid. <P> <B>Multi-Dimensional Data Terminology</B> <P> The CubeGrid refers to
+ * the dimensions of a data cube as facets, to the possible values in each facet as facet values, and to the values within
+ * the data cube as data values or cell values. Equivalent terms that are commonly used in data warehousing or business
+ * intelligence systems include:<br> <b>facet:</b> dimension, attribute, feature<br> <b>facet value:</b> dimension member,
+ * attribute value, feature value<br> <b>cell value:</b> data value, metric value, measure <P> <B>Visual Structure</B> <P>
+ * Like the ListGrid and TreeGrid components, the CubeGrid displays data values in a tabular "body" with adjacent
+ * "headers".  While the ListGrid and TreeGrid display rows of records with field values, the CubeGrid displays a body of
+ * individual cell values, each associated with a combination of facet values. The facet values for a cell are displayed in
+ * the column headers above the cell and row headers to the left of the cell. CubeGrids can display an arbitrary number of
+ * facets, by stacking multiple levels of row and/or column headers. <P> Except for the innermost column facet, each facet
+ * in a CubeGrid has a facet label adjacent to its row or column headers. The facet labels serve two main purposes: they
+ * display the titles of the facets, and they provide drag-and-drop reordering or pivoting of facets within the CubeGrid.
+ * The row facet labels also provide interactive selection, resizing, and other operations on the columns of row facet
+ * values. <P> The innermost column headers provide special behaviors and controls for manipulating the columns of data in
+ * a CubeGrid. End users may select, resize, reorder, minimize, maximize, or auto-fit the columns of data via mouse
+ * interactions with these headers. Customizable indicators and controls may be included at the top of each innermost
+ * column header. <P> If a CubeGrid is not large enough to display all of its cell values, horizontal and/or vertical
+ * scrollbars will appear below and to the right of the body. The body of the CubeGrid may be scrolled on either axis. The
+ * headers are "frozen" from scrolling on one axis - row headers only scroll vertically, while column headers only scroll
+ * horizontally - so the facet values for the visible cells are always displayed. <P> <B>Data Loading</B> <P> Data can be
+ * provided to the Cube via {@link com.smartgwt.client.widgets.cube.CubeGrid#getData data} as an Array of {@link
  * com.smartgwt.client.widgets.cube.CellRecord CellRecords}, each representing the data for one cell. <P> For large
  * datasets, {@link com.smartgwt.client.widgets.cube.CubeGrid#getDataSource provide a DataSource} with one field per
  * facetId, and the CubeGrid will load data on demand to fill the visible area, including lazily loading data for
@@ -105,17 +143,68 @@ import com.google.gwt.event.shared.HasHandlers;
  * @see com.smartgwt.client.widgets.cube.Facet
  * @see com.smartgwt.client.widgets.cube.FacetValue
  */
-public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.cube.events.HasFacetAddedHandlers, com.smartgwt.client.widgets.cube.events.HasFacetMovedHandlers, com.smartgwt.client.widgets.cube.events.HasFacetRemovedHandlers, com.smartgwt.client.widgets.cube.events.HasFixedFacetValueChangedHandlers, com.smartgwt.client.widgets.cube.events.HasFacetValueSelectionChangedHandlers, com.smartgwt.client.widgets.cube.events.HasSortByFacetIdHandlers, com.smartgwt.client.widgets.cube.events.HasSortByFacetValuesHandlers {
+@BeanFactory.FrameworkClass
+@BeanFactory.ScClassName("CubeGrid")
+public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cube.events.HasFacetAddedHandlers, com.smartgwt.client.widgets.cube.events.HasFacetContextClickHandlers, com.smartgwt.client.widgets.cube.events.HasFacetLabelClickHandlers, com.smartgwt.client.widgets.cube.events.HasFacetMovedHandlers, com.smartgwt.client.widgets.cube.events.HasFacetRemovedHandlers, com.smartgwt.client.widgets.cube.events.HasFacetValueContextClickHandlers, com.smartgwt.client.widgets.cube.events.HasFacetValueSelectionChangedHandlers, com.smartgwt.client.widgets.cube.events.HasFixedFacetValueChangedHandlers, com.smartgwt.client.widgets.cube.events.HasSortByFacetIdHandlers, com.smartgwt.client.widgets.cube.events.HasSortByFacetValuesHandlers {
 
     public static CubeGrid getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (CubeGrid) obj;
-        } else {
+        if (jsObj == null) return null;
+        final BaseWidget refInstance = BaseWidget.getRef(jsObj);
+        if (refInstance == null) {
             return new CubeGrid(jsObj);
+        } else {
+            assert refInstance instanceof CubeGrid;
+            return (CubeGrid)refInstance;
         }
     }
+
+    private static final CubeGrid TEST_INSTANCE = new CubeGrid();
+    static {
+        TEST_INSTANCE.setID("isc_CubeGrid_testInstance");
+    }
+
+    @Override
+    protected CubeGrid getTestInstance() {
+        return TEST_INSTANCE;
+    }
+        
+
+
+    /**
+     * Changes the defaults for Canvas AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults Canvas defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.  For usage tips on this
+     * param, see {@link com.smartgwt.client.docs.SGWTProperties}.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, Canvas defaults) /*-{
+        if (defaults.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPreConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(CubeGrid.@java.lang.Object::getClass()(), "changeAutoChildDefaults", "Canvas");
+        }
+        defaults.@com.smartgwt.client.widgets.BaseWidget::setConfigOnly(Z)(true);
+        var cleanDefaultsJS = @com.smartgwt.client.util.JSOHelper::cleanProperties(Lcom/google/gwt/core/client/JavaScriptObject;Z)(defaults.@com.smartgwt.client.widgets.BaseWidget::getConfig()(), true);
+        $wnd.isc.CubeGrid.changeDefaults(autoChildName + "Defaults", cleanDefaultsJS);
+    }-*/;
+
+    /**
+     * Changes the defaults for FormItem AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults FormItem defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.  For usage tips on this
+     * param, see {@link com.smartgwt.client.docs.SGWTProperties}.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, FormItem defaults) /*-{
+        if (defaults.@com.smartgwt.client.widgets.form.fields.FormItem::isCreated()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPreConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(CubeGrid.@java.lang.Object::getClass()(), "changeAutoChildDefaults", "FormItem");
+        }
+        defaults.@com.smartgwt.client.widgets.form.fields.FormItem::setConfigOnly(Z)(true);
+    	var cleanDefaultsJS = defaults.@com.smartgwt.client.widgets.form.fields.FormItem::getEditorTypeConfig()();
+        $wnd.isc.CubeGrid.changeDefaults(autoChildName + "Defaults", cleanDefaultsJS);
+    }-*/;
 
     public CubeGrid(){
         checkAnalyticsLoaded();
@@ -124,23 +213,26 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     }
 
     public CubeGrid(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "CubeGrid";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
         var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
         var widget = $wnd.isc[scClassName].create(config);
+        if ($wnd.isc.keepGlobals) this.@com.smartgwt.client.widgets.BaseWidget::internalSetID(Lcom/google/gwt/core/client/JavaScriptObject;)(widget);
         this.@com.smartgwt.client.widgets.BaseWidget::doInit()();
         return widget;
     }-*/;
+
     // ********************* Properties / Attributes ***********************
 
     /**
      * Whether alternating rows should be drawn in alternating styles, in order to create a "ledger" effect for easier reading.
      *  If enabled, the cell style for alternate rows will have "Dark" appended to it.
      *
-     * @param alternateRecordStyles alternateRecordStyles Default value is true
+     * @param alternateRecordStyles New alternateRecordStyles value. Default value is true
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setAlternateRecordStyles(Boolean alternateRecordStyles) {
@@ -151,19 +243,47 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * Whether alternating rows should be drawn in alternating styles, in order to create a "ledger" effect for easier reading.
      *  If enabled, the cell style for alternate rows will have "Dark" appended to it.
      *
-     *
-     * @return Boolean
+     * @return Current alternateRecordStyles value. Default value is true
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public Boolean getAlternateRecordStyles()  {
-        return getAttributeAsBoolean("alternateRecordStyles");
+        Boolean result = getAttributeAsBoolean("alternateRecordStyles");
+        return result == null ? true : result;
     }
+    
+    
+
+    /**
+     * If {@link com.smartgwt.client.widgets.cube.CubeGrid#getAutoFetchData autoFetchData} is <code>true</code>, this attribute
+     * allows the developer to specify a textMatchStyle for the initial {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchData fetchData()} call.
+     *
+     * @param autoFetchTextMatchStyle New autoFetchTextMatchStyle value. Default value is "exact"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
+    public void setAutoFetchTextMatchStyle(TextMatchStyle autoFetchTextMatchStyle)  throws IllegalStateException {
+        setAttribute("autoFetchTextMatchStyle", autoFetchTextMatchStyle == null ? null : autoFetchTextMatchStyle.getValue(), false);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.cube.CubeGrid#getAutoFetchData autoFetchData} is <code>true</code>, this attribute
+     * allows the developer to specify a textMatchStyle for the initial {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchData fetchData()} call.
+     *
+     * @return Current autoFetchTextMatchStyle value. Default value is "exact"
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
+    public TextMatchStyle getAutoFetchTextMatchStyle()  {
+        return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("autoFetchTextMatchStyle"));
+    }
+    
 
     /**
      * If true, when multiple facets appear on one side in a nested headers presentation, the selection state of parent/child
      * headers are automatically kept in sync.
      *
-     * @param autoSelectHeaders autoSelectHeaders Default value is true
+     * @param autoSelectHeaders New autoSelectHeaders value. Default value is true
      */
     public void setAutoSelectHeaders(Boolean autoSelectHeaders) {
         setAttribute("autoSelectHeaders", autoSelectHeaders, true);
@@ -173,17 +293,18 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * If true, when multiple facets appear on one side in a nested headers presentation, the selection state of parent/child
      * headers are automatically kept in sync.
      *
-     *
-     * @return Boolean
+     * @return Current autoSelectHeaders value. Default value is true
      */
     public Boolean getAutoSelectHeaders()  {
-        return getAttributeAsBoolean("autoSelectHeaders");
+        Boolean result = getAttributeAsBoolean("autoSelectHeaders");
+        return result == null ? true : result;
     }
+    
 
     /**
      * Whether to select cells in the body when row or column headers are selected.
      *
-     * @param autoSelectValues autoSelectValues Default value is "both"
+     * @param autoSelectValues New autoSelectValues value. Default value is "both"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setAutoSelectValues(AutoSelectionModel autoSelectValues)  throws IllegalStateException {
@@ -193,17 +314,17 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * Whether to select cells in the body when row or column headers are selected.
      *
-     *
-     * @return AutoSelectionModel
+     * @return Current autoSelectValues value. Default value is "both"
      */
     public AutoSelectionModel getAutoSelectValues()  {
         return EnumUtil.getEnum(AutoSelectionModel.values(), getAttribute("autoSelectValues"));
     }
+    
 
     /**
      * Automatically size row headers to fit wrapped text.
      *
-     * @param autoSizeHeaders autoSizeHeaders Default value is false
+     * @param autoSizeHeaders New autoSizeHeaders value. Default value is false
      */
     public void setAutoSizeHeaders(Boolean autoSizeHeaders) {
         setAttribute("autoSizeHeaders", autoSizeHeaders, true);
@@ -212,21 +333,25 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * Automatically size row headers to fit wrapped text.
      *
-     *
-     * @return Boolean
+     * @return Current autoSizeHeaders value. Default value is false
      */
     public Boolean getAutoSizeHeaders()  {
-        return getAttributeAsBoolean("autoSizeHeaders");
+        Boolean result = getAttributeAsBoolean("autoSizeHeaders");
+        return result == null ? false : result;
     }
+    
 
     /**
-     * {@link com.smartgwt.client.grid.GridRenderer#getBaseStyle base cell style} for this listGrid. If this property is unset,
-     * base style may be derived from {@link com.smartgwt.client.widgets.grid.ListGrid#getNormalBaseStyle normalBaseStyle} or
-     * {@link com.smartgwt.client.widgets.grid.ListGrid#getTallBaseStyle tallBaseStyle} as described in {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle ListGrid.getBaseStyle}.
+     * {@link com.smartgwt.client.widgets.grid.GridRenderer#getBaseStyle base cell style} for this listGrid. If this property
+     * is unset, base style may be derived from {@link com.smartgwt.client.widgets.grid.ListGrid#getNormalBaseStyle
+     * ListGrid.normalBaseStyle} or {@link com.smartgwt.client.widgets.grid.ListGrid#getTallBaseStyle ListGrid.tallBaseStyle}
+     * as described in {@link com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle ListGrid.getBaseStyle()}. <P> See {@link
+     * com.smartgwt.client.docs.CellStyleSuffixes} for details on how stateful suffixes are combined with the base style to
+     * generate stateful cell styles.
      *
-     * @param baseStyle baseStyle Default value is "cubeCell"
+     * @param baseStyle New baseStyle value. Default value is "cubeCell"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setBaseStyle(String baseStyle)  throws IllegalStateException {
@@ -234,25 +359,28 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     }
 
     /**
-     * {@link com.smartgwt.client.grid.GridRenderer#getBaseStyle base cell style} for this listGrid. If this property is unset,
-     * base style may be derived from {@link com.smartgwt.client.widgets.grid.ListGrid#getNormalBaseStyle normalBaseStyle} or
-     * {@link com.smartgwt.client.widgets.grid.ListGrid#getTallBaseStyle tallBaseStyle} as described in {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle ListGrid.getBaseStyle}.
-     *
+     * {@link com.smartgwt.client.widgets.grid.GridRenderer#getBaseStyle base cell style} for this listGrid. If this property
+     * is unset, base style may be derived from {@link com.smartgwt.client.widgets.grid.ListGrid#getNormalBaseStyle
+     * ListGrid.normalBaseStyle} or {@link com.smartgwt.client.widgets.grid.ListGrid#getTallBaseStyle ListGrid.tallBaseStyle}
+     * as described in {@link com.smartgwt.client.widgets.grid.ListGrid#getBaseStyle ListGrid.getBaseStyle()}. <P> See {@link
+     * com.smartgwt.client.docs.CellStyleSuffixes} for details on how stateful suffixes are combined with the base style to
+     * generate stateful cell styles.
      *
      * @return Return the base stylename for this cell.  Default implementation just returns this.baseStyle. See {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getCellStyle getCellStyle()} for a general discussion of how to style cells.
+     * com.smartgwt.client.widgets.grid.ListGrid#getCellStyle getCellStyle()} for a general discussion of how to style cells. Default value is "cubeCell"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getBaseStyle()  {
         return getAttributeAsString("baseStyle");
     }
+    
 
     /**
      * Minimum height for the body of this cubeGrid.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param bodyMinHeight bodyMinHeight Default value is null
+     * @param bodyMinHeight New bodyMinHeight value. Default value is null
      */
     public void setBodyMinHeight(Integer bodyMinHeight) {
         setAttribute("bodyMinHeight", bodyMinHeight, true);
@@ -261,18 +389,18 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * Minimum height for the body of this cubeGrid.
      *
-     *
-     * @return Integer
+     * @return Current bodyMinHeight value. Default value is null
      */
     public Integer getBodyMinHeight()  {
         return getAttributeAsInt("bodyMinHeight");
     }
+    
 
     /**
      * Minimum width for the body of this cubeGrid.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param bodyMinWidth bodyMinWidth Default value is null
+     * @param bodyMinWidth New bodyMinWidth value. Default value is null
      */
     public void setBodyMinWidth(Integer bodyMinWidth) {
         setAttribute("bodyMinWidth", bodyMinWidth, true);
@@ -281,17 +409,18 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * Minimum width for the body of this cubeGrid.
      *
-     *
-     * @return Integer
+     * @return Current bodyMinWidth value. Default value is null
      */
     public Integer getBodyMinWidth()  {
         return getAttributeAsInt("bodyMinWidth");
     }
+    
 
     /**
      * CSS class for the CubeGrid body
      *
-     * @param bodyStyleName bodyStyleName Default value is "cubeGridBody"
+     * @param bodyStyleName New bodyStyleName value. Default value is "cubeGridBody"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setBodyStyleName(String bodyStyleName) {
@@ -301,19 +430,21 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * CSS class for the CubeGrid body
      *
-     *
-     * @return String
+     * @return Current bodyStyleName value. Default value is "cubeGridBody"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getBodyStyleName()  {
         return getAttributeAsString("bodyStyleName");
     }
+    
 
     /**
      * If true, hierarchical facets will show expand/collapse controls to allow the user to expand and collapse the tree of
      * facetValues for that facet.
      *
-     * @param canCollapseFacets canCollapseFacets Default value is false
+     * @param canCollapseFacets New canCollapseFacets value. Default value is false
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#setRowHeaderGridMode
      */
     public void setCanCollapseFacets(Boolean canCollapseFacets) {
         setAttribute("canCollapseFacets", canCollapseFacets, true);
@@ -323,17 +454,53 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * If true, hierarchical facets will show expand/collapse controls to allow the user to expand and collapse the tree of
      * facetValues for that facet.
      *
-     *
-     * @return Boolean
+     * @return Current canCollapseFacets value. Default value is false
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#getRowHeaderGridMode
      */
     public Boolean getCanCollapseFacets()  {
-        return getAttributeAsBoolean("canCollapseFacets");
+        Boolean result = getAttributeAsBoolean("canCollapseFacets");
+        return result == null ? false : result;
     }
+    
+
+    /**
+     * For {@link com.smartgwt.client.util.Browser#isTouch touch browsers}, <code>canDragSelect</code> defaults to false so
+     * that touch scrolling can be used to navigate scrollable CubeGrids.  In all other browsers it defaults to true. <p>
+     * <strong>NOTE:</strong> If <code>canDragSelect</code> is enabled, it may be desirable to disable {@link
+     * com.smartgwt.client.widgets.Canvas#getUseTouchScrolling touch scrolling} so that touch-dragging cells of the CubeGrid
+     * selects them rather than starting a scroll. If {@link com.smartgwt.client.widgets.Canvas#getDisableTouchScrollingForDrag
+     * Canvas.disableTouchScrollingForDrag} is set to <code>true</code>, then touch scrolling will be disabled automatically.
+     * However, for {@link com.smartgwt.client.docs.Accessibility accessibility} reasons, it is recommended to leave touch
+     * scrolling enabled and provide an alternative set of controls that can be used to perform drag-selection.
+     *
+     * @param canDragSelect New canDragSelect value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setCanDragSelect(Boolean canDragSelect)  throws IllegalStateException {
+        setAttribute("canDragSelect", canDragSelect, false);
+    }
+
+    /**
+     * For {@link com.smartgwt.client.util.Browser#isTouch touch browsers}, <code>canDragSelect</code> defaults to false so
+     * that touch scrolling can be used to navigate scrollable CubeGrids.  In all other browsers it defaults to true. <p>
+     * <strong>NOTE:</strong> If <code>canDragSelect</code> is enabled, it may be desirable to disable {@link
+     * com.smartgwt.client.widgets.Canvas#getUseTouchScrolling touch scrolling} so that touch-dragging cells of the CubeGrid
+     * selects them rather than starting a scroll. If {@link com.smartgwt.client.widgets.Canvas#getDisableTouchScrollingForDrag
+     * Canvas.disableTouchScrollingForDrag} is set to <code>true</code>, then touch scrolling will be disabled automatically.
+     * However, for {@link com.smartgwt.client.docs.Accessibility accessibility} reasons, it is recommended to leave touch
+     * scrolling enabled and provide an alternative set of controls that can be used to perform drag-selection.
+     *
+     * @return Current canDragSelect value. Default value is null
+     */
+    public Boolean getCanDragSelect()  {
+        return getAttributeAsBoolean("canDragSelect");
+    }
+    
 
     /**
      * Whether cells can be edited in this grid.  Can be overridden on a per-facetValue basis.
      *
-     * @param canEdit canEdit Default value is false
+     * @param canEdit New canEdit value. Default value is false
      */
     public void setCanEdit(Boolean canEdit) {
         setAttribute("canEdit", canEdit, true);
@@ -342,18 +509,19 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * Whether cells can be edited in this grid.  Can be overridden on a per-facetValue basis.
      *
-     *
-     * @return Boolean
+     * @return Current canEdit value. Default value is false
      */
     public Boolean getCanEdit()  {
-        return getAttributeAsBoolean("canEdit");
+        Boolean result = getAttributeAsBoolean("canEdit");
+        return result == null ? false : result;
     }
+    
 
     /**
      * If true, allow columns in the grid body to be minimized (reduced to the width of the minimize control) by clicking on a
      * minimize control in the innermost column headers.
      *
-     * @param canMinimizeColumns canMinimizeColumns Default value is null
+     * @param canMinimizeColumns New canMinimizeColumns value. Default value is null
      */
     public void setCanMinimizeColumns(Boolean canMinimizeColumns) {
         setAttribute("canMinimizeColumns", canMinimizeColumns, true);
@@ -363,20 +531,20 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * If true, allow columns in the grid body to be minimized (reduced to the width of the minimize control) by clicking on a
      * minimize control in the innermost column headers.
      *
-     *
-     * @return Boolean
+     * @return Current canMinimizeColumns value. Default value is null
      */
     public Boolean getCanMinimizeColumns()  {
         return getAttributeAsBoolean("canMinimizeColumns");
     }
+    
 
     /**
      * If true, when multiple facets are shown on a side, all facetValues in the second level of headers or higher will show
      * controls to "minimize" the values of the next facet. Minimizing means showing only one, or very few, of the next facet's
-     * values. <P> Set {@link com.smartgwt.client.widgets.cube.FacetValue#getIsMinimizeValue isMinimizeValue} to indicate which
-     * facetValues should be shown when a facet is minimized.
+     * values. <P> Set {@link com.smartgwt.client.widgets.cube.FacetValue#getIsMinimizeValue FacetValue.isMinimizeValue} to
+     * indicate which facetValues should be shown when a facet is minimized.
      *
-     * @param canMinimizeFacets canMinimizeFacets Default value is false
+     * @param canMinimizeFacets New canMinimizeFacets value. Default value is false
      */
     public void setCanMinimizeFacets(Boolean canMinimizeFacets) {
         setAttribute("canMinimizeFacets", canMinimizeFacets, true);
@@ -385,20 +553,21 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * If true, when multiple facets are shown on a side, all facetValues in the second level of headers or higher will show
      * controls to "minimize" the values of the next facet. Minimizing means showing only one, or very few, of the next facet's
-     * values. <P> Set {@link com.smartgwt.client.widgets.cube.FacetValue#getIsMinimizeValue isMinimizeValue} to indicate which
-     * facetValues should be shown when a facet is minimized.
+     * values. <P> Set {@link com.smartgwt.client.widgets.cube.FacetValue#getIsMinimizeValue FacetValue.isMinimizeValue} to
+     * indicate which facetValues should be shown when a facet is minimized.
      *
-     *
-     * @return Boolean
+     * @return Current canMinimizeFacets value. Default value is false
      */
     public Boolean getCanMinimizeFacets()  {
-        return getAttributeAsBoolean("canMinimizeFacets");
+        Boolean result = getAttributeAsBoolean("canMinimizeFacets");
+        return result == null ? false : result;
     }
+    
 
     /**
      * Whether row and column facets can be rearranged by the user, by dragging and dropping the facet labels.
      *
-     * @param canMoveFacets canMoveFacets Default value is false
+     * @param canMoveFacets New canMoveFacets value. Default value is false
      */
     public void setCanMoveFacets(Boolean canMoveFacets) {
         setAttribute("canMoveFacets", canMoveFacets, true);
@@ -407,17 +576,18 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * Whether row and column facets can be rearranged by the user, by dragging and dropping the facet labels.
      *
-     *
-     * @return Boolean
+     * @return Current canMoveFacets value. Default value is false
      */
     public Boolean getCanMoveFacets()  {
-        return getAttributeAsBoolean("canMoveFacets");
+        Boolean result = getAttributeAsBoolean("canMoveFacets");
+        return result == null ? false : result;
     }
+    
 
     /**
      * If true, body columns can be reordered via the innermost column headers.
      *
-     * @param canReorderColumns canReorderColumns Default value is null
+     * @param canReorderColumns New canReorderColumns value. Default value is null
      */
     public void setCanReorderColumns(Boolean canReorderColumns) {
         setAttribute("canReorderColumns", canReorderColumns, true);
@@ -426,17 +596,17 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * If true, body columns can be reordered via the innermost column headers.
      *
-     *
-     * @return Boolean
+     * @return Current canReorderColumns value. Default value is null
      */
     public Boolean getCanReorderColumns()  {
         return getAttributeAsBoolean("canReorderColumns");
     }
+    
 
     /**
      * If true, body columns can be resized via the innermost column headers.
      *
-     * @param canResizeColumns canResizeColumns Default value is null
+     * @param canResizeColumns New canResizeColumns value. Default value is null
      */
     public void setCanResizeColumns(Boolean canResizeColumns) {
         setAttribute("canResizeColumns", canResizeColumns, true);
@@ -445,17 +615,17 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * If true, body columns can be resized via the innermost column headers.
      *
-     *
-     * @return Boolean
+     * @return Current canResizeColumns value. Default value is null
      */
     public Boolean getCanResizeColumns()  {
         return getAttributeAsBoolean("canResizeColumns");
     }
+    
 
     /**
      * Determines whether row or column facetValue headers can be selected.
      *
-     * @param canSelectHeaders canSelectHeaders Default value is true
+     * @param canSelectHeaders New canSelectHeaders value. Default value is true
      */
     public void setCanSelectHeaders(Boolean canSelectHeaders) {
         setAttribute("canSelectHeaders", canSelectHeaders, true);
@@ -464,17 +634,18 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * Determines whether row or column facetValue headers can be selected.
      *
-     *
-     * @return Boolean
+     * @return Current canSelectHeaders value. Default value is true
      */
     public Boolean getCanSelectHeaders()  {
-        return getAttributeAsBoolean("canSelectHeaders");
+        Boolean result = getAttributeAsBoolean("canSelectHeaders");
+        return result == null ? true : result;
     }
+    
 
     /**
      * Determines whether cell values in the body can be selected.
      *
-     * @param canSelectValues canSelectValues Default value is true
+     * @param canSelectValues New canSelectValues value. Default value is true
      */
     public void setCanSelectValues(Boolean canSelectValues) {
         setAttribute("canSelectValues", canSelectValues, true);
@@ -483,18 +654,19 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * Determines whether cell values in the body can be selected.
      *
-     *
-     * @return Boolean
+     * @return Current canSelectValues value. Default value is true
      */
     public Boolean getCanSelectValues()  {
-        return getAttributeAsBoolean("canSelectValues");
+        Boolean result = getAttributeAsBoolean("canSelectValues");
+        return result == null ? true : result;
     }
+    
 
     /**
      * If true, sort controls will be shown on facet values. <P> When clicked, sort controls call {@link
-     * com.smartgwt.client.widgets.cube.CubeGrid#addSortByFacetValuesHandler CubeGrid.sortByFacetValues}.
+     * com.smartgwt.client.widgets.cube.CubeGrid#addSortByFacetValuesHandler CubeGrid.sortByFacetValues()}.
      *
-     * @param canSortData canSortData Default value is null
+     * @param canSortData New canSortData value. Default value is null
      */
     public void setCanSortData(Boolean canSortData) {
         setAttribute("canSortData", canSortData, true);
@@ -502,20 +674,20 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
 
     /**
      * If true, sort controls will be shown on facet values. <P> When clicked, sort controls call {@link
-     * com.smartgwt.client.widgets.cube.CubeGrid#addSortByFacetValuesHandler CubeGrid.sortByFacetValues}.
+     * com.smartgwt.client.widgets.cube.CubeGrid#addSortByFacetValuesHandler CubeGrid.sortByFacetValues()}.
      *
-     *
-     * @return Boolean
+     * @return Current canSortData value. Default value is null
      */
     public Boolean getCanSortData()  {
         return getAttributeAsBoolean("canSortData");
     }
+    
 
     /**
      * If true, sort controls will be shown on FacetHeaders. <P> When clicked, sort controls call {@link
-     * com.smartgwt.client.widgets.cube.CubeGrid#addSortByFacetIdHandler CubeGrid.sortByFacetId}.
+     * com.smartgwt.client.widgets.cube.CubeGrid#addSortByFacetIdHandler CubeGrid.sortByFacetId()}.
      *
-     * @param canSortFacets canSortFacets Default value is null
+     * @param canSortFacets New canSortFacets value. Default value is null
      */
     public void setCanSortFacets(Boolean canSortFacets) {
         setAttribute("canSortFacets", canSortFacets, true);
@@ -523,19 +695,19 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
 
     /**
      * If true, sort controls will be shown on FacetHeaders. <P> When clicked, sort controls call {@link
-     * com.smartgwt.client.widgets.cube.CubeGrid#addSortByFacetIdHandler CubeGrid.sortByFacetId}.
+     * com.smartgwt.client.widgets.cube.CubeGrid#addSortByFacetIdHandler CubeGrid.sortByFacetId()}.
      *
-     *
-     * @return Boolean
+     * @return Current canSortFacets value. Default value is null
      */
     public Boolean getCanSortFacets()  {
         return getAttributeAsBoolean("canSortFacets");
     }
+    
 
     /**
      * Default align for cell values (in body).
      *
-     * @param cellAlign cellAlign Default value is "center"
+     * @param cellAlign New cellAlign value. Default value is "center"
      */
     public void setCellAlign(Alignment cellAlign) {
         setAttribute("cellAlign", cellAlign == null ? null : cellAlign.getValue(), true);
@@ -544,18 +716,19 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * Default align for cell values (in body).
      *
-     *
-     * @return Alignment
+     * @return Current cellAlign value. Default value is "center"
      */
     public Alignment getCellAlign()  {
         return EnumUtil.getEnum(Alignment.values(), getAttribute("cellAlign"));
     }
+    
 
     /**
      * Name of the property in a cell record that holds it's unique ID.  Note cell record IDs are optional.
      *
-     * @param cellIdProperty cellIdProperty Default value is "ID"
+     * @param cellIdProperty New cellIdProperty value. Default value is "ID"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Identifier Identifier 
      */
     public void setCellIdProperty(String cellIdProperty)  throws IllegalStateException {
         setAttribute("cellIdProperty", cellIdProperty, false);
@@ -564,19 +737,20 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * Name of the property in a cell record that holds it's unique ID.  Note cell record IDs are optional.
      *
-     *
-     * @return String
+     * @return Current cellIdProperty value. Default value is "ID"
+     * @see com.smartgwt.client.docs.Identifier Identifier 
      */
     public String getCellIdProperty()  {
         return getAttributeAsString("cellIdProperty");
     }
+    
 
     /**
-     * If {@link com.smartgwt.client.widgets.cube.CubeGrid#makeChart CubeGrid.makeChart} is called with a chart specification
-     * that will show more than <code>chartConfirmThreshold</code> data elements, the user will be presented with a {@link
+     * If {@link com.smartgwt.client.widgets.cube.CubeGrid#makeChart makeChart()} is called with a chart specification that
+     * will show more than <code>chartConfirmThreshold</code> data elements, the user will be presented with a {@link
      * com.smartgwt.client.util.isc#confirm confirmation dialog}. <P> Set to 0 to disable this confirmation.
      *
-     * @param chartConfirmThreshold chartConfirmThreshold Default value is 2000
+     * @param chartConfirmThreshold New chartConfirmThreshold value. Default value is 2000
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setChartConfirmThreshold(int chartConfirmThreshold)  throws IllegalStateException {
@@ -584,21 +758,21 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     }
 
     /**
-     * If {@link com.smartgwt.client.widgets.cube.CubeGrid#makeChart CubeGrid.makeChart} is called with a chart specification
-     * that will show more than <code>chartConfirmThreshold</code> data elements, the user will be presented with a {@link
+     * If {@link com.smartgwt.client.widgets.cube.CubeGrid#makeChart makeChart()} is called with a chart specification that
+     * will show more than <code>chartConfirmThreshold</code> data elements, the user will be presented with a {@link
      * com.smartgwt.client.util.isc#confirm confirmation dialog}. <P> Set to 0 to disable this confirmation.
      *
-     *
-     * @return int
+     * @return Current chartConfirmThreshold value. Default value is 2000
      */
     public int getChartConfirmThreshold()  {
         return getAttributeAsInt("chartConfirmThreshold");
     }
+    
 
     /**
      * Name of the Smart GWT Class to be used when creating charts.  Must support the Chart interface.
      *
-     * @param chartConstructor chartConstructor Default value is "FacetChart"
+     * @param chartConstructor New chartConstructor value. Default value is "FacetChart"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setChartConstructor(String chartConstructor)  throws IllegalStateException {
@@ -608,17 +782,17 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * Name of the Smart GWT Class to be used when creating charts.  Must support the Chart interface.
      *
-     *
-     * @return String
+     * @return Current chartConstructor value. Default value is "FacetChart"
      */
     public String getChartConstructor()  {
         return getAttributeAsString("chartConstructor");
     }
+    
 
     /**
      * Default type of chart to plot.
      *
-     * @param chartType chartType Default value is "Column"
+     * @param chartType New chartType value. Default value is "Column"
      */
     public void setChartType(ChartType chartType) {
         setAttribute("chartType", chartType == null ? null : chartType.getValue(), true);
@@ -627,20 +801,21 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * Default type of chart to plot.
      *
-     *
-     * @return ChartType
+     * @return Current chartType value. Default value is "Column"
      */
     public ChartType getChartType()  {
         return EnumUtil.getEnum(ChartType.values(), getAttribute("chartType"));
     }
+    
 
     /**
      * {@link com.smartgwt.client.widgets.Button#getBaseStyle baseStyle} for the buttons in this grid's column headers. <P>
      * Exception: The innermost column header will always be styled using {@link
      * com.smartgwt.client.widgets.cube.CubeGrid#getInnerHeaderBaseStyle innerHeaderBaseStyle}.
      *
-     * @param colHeaderBaseStyle colHeaderBaseStyle Default value is colHeader
+     * @param colHeaderBaseStyle New colHeaderBaseStyle value. Default value is colHeader
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setColHeaderBaseStyle(String colHeaderBaseStyle)  throws IllegalStateException {
@@ -652,18 +827,19 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * Exception: The innermost column header will always be styled using {@link
      * com.smartgwt.client.widgets.cube.CubeGrid#getInnerHeaderBaseStyle innerHeaderBaseStyle}.
      *
-     *
-     * @return String
+     * @return Current colHeaderBaseStyle value. Default value is colHeader
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getColHeaderBaseStyle()  {
         return getAttributeAsString("colHeaderBaseStyle");
     }
+    
 
     /**
      * The list of {@link com.smartgwt.client.widgets.cube.Facet#getId ids} for facets that will appear on top of the body.
      *
-     * @param columnFacets columnFacets Default value is null
+     * @param columnFacets New columnFacets value. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setColumnFacets(String... columnFacets)  throws IllegalStateException {
@@ -673,17 +849,19 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * The list of {@link com.smartgwt.client.widgets.cube.Facet#getId ids} for facets that will appear on top of the body.
      *
-     *
-     * @return String
+     * @return Current columnFacets value. Default value is null
      */
     public String[] getColumnFacets()  {
-        return getAttributeAsStringArray("columnFacets");
+        return com.smartgwt.client.util.ConvertTo.arrayOfString(getAttributeAsJavaScriptObject("columnFacets"));
     }
+    
+    
+    
 
     /**
      * Default width of inner column headers.
      *
-     * @param defaultFacetWidth defaultFacetWidth Default value is 100
+     * @param defaultFacetWidth New defaultFacetWidth value. Default value is 100
      */
     public void setDefaultFacetWidth(int defaultFacetWidth) {
         setAttribute("defaultFacetWidth", defaultFacetWidth, true);
@@ -692,33 +870,199 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * Default width of inner column headers.
      *
-     *
-     * @return int
+     * @return Current defaultFacetWidth value. Default value is 100
      */
     public int getDefaultFacetWidth()  {
         return getAttributeAsInt("defaultFacetWidth");
     }
-
+    
 
     /**
      * CubeGrids only support editing by cell.
-     *
+     * <p>
      * <b>Note :</b> This method should be called only after the widget has been rendered.
      *
-     * @return Boolean
-     * @throws IllegalStateException if widget has not yet been rendered.
+     * @return Current editByCell value. Default value is true
+     * @throws IllegalStateException if this widget has not yet been rendered.
      */
     public Boolean getEditByCell() throws IllegalStateException {
         errorIfNotCreated("editByCell");
-        return getAttributeAsBoolean("editByCell");
+        Boolean result = getAttributeAsBoolean("editByCell");
+        return result == null ? true : result;
     }
+    
+    
+
+    /**
+     * Sets the background color for the column headers of the cube. See also {@link com.smartgwt.client.docs.ExportBGColor}.
+     *
+     * @param exportColumnFacetBGColor New exportColumnFacetBGColor value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSColor CSSColor 
+     */
+    public void setExportColumnFacetBGColor(String exportColumnFacetBGColor)  throws IllegalStateException {
+        setAttribute("exportColumnFacetBGColor", exportColumnFacetBGColor, false);
+    }
+
+    /**
+     * Sets the background color for the column headers of the cube. See also {@link com.smartgwt.client.docs.ExportBGColor}.
+     *
+     * @return Current exportColumnFacetBGColor value. Default value is null
+     * @see com.smartgwt.client.docs.CSSColor CSSColor 
+     */
+    public String getExportColumnFacetBGColor()  {
+        return getAttributeAsString("exportColumnFacetBGColor");
+    }
+    
+
+    /**
+     * Sets the text color for the column headers of the cube.
+     *
+     * @param exportColumnFacetTextColor New exportColumnFacetTextColor value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSColor CSSColor 
+     */
+    public void setExportColumnFacetTextColor(String exportColumnFacetTextColor)  throws IllegalStateException {
+        setAttribute("exportColumnFacetTextColor", exportColumnFacetTextColor, false);
+    }
+
+    /**
+     * Sets the text color for the column headers of the cube.
+     *
+     * @return Current exportColumnFacetTextColor value. Default value is null
+     * @see com.smartgwt.client.docs.CSSColor CSSColor 
+     */
+    public String getExportColumnFacetTextColor()  {
+        return getAttributeAsString("exportColumnFacetTextColor");
+    }
+    
+
+    /**
+     * Sets the background color for the row and column headers of the cube, if not otherwise set by a more specific property.
+     * (see {@link com.smartgwt.client.widgets.cube.CubeGrid#getExportRowFacetBGColor exportRowFacetBGColor()} and {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getExportColumnFacetBGColor exportColumnFacetBGColor()}). See also {@link
+     * com.smartgwt.client.docs.ExportBGColor}.
+     *
+     * @param exportFacetBGColor New exportFacetBGColor value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSColor CSSColor 
+     */
+    public void setExportFacetBGColor(String exportFacetBGColor)  throws IllegalStateException {
+        setAttribute("exportFacetBGColor", exportFacetBGColor, false);
+    }
+
+    /**
+     * Sets the background color for the row and column headers of the cube, if not otherwise set by a more specific property.
+     * (see {@link com.smartgwt.client.widgets.cube.CubeGrid#getExportRowFacetBGColor exportRowFacetBGColor()} and {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getExportColumnFacetBGColor exportColumnFacetBGColor()}). See also {@link
+     * com.smartgwt.client.docs.ExportBGColor}.
+     *
+     * @return Current exportFacetBGColor value. Default value is null
+     * @see com.smartgwt.client.docs.CSSColor CSSColor 
+     */
+    public String getExportFacetBGColor()  {
+        return getAttributeAsString("exportFacetBGColor");
+    }
+    
+
+    /**
+     * Default separator string used by {@link com.smartgwt.client.widgets.cube.CubeGrid#exportClientData exportClientData()}
+     * to separate column and row facet value titles.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param exportFacetSeparatorString New exportFacetSeparatorString value. Default value is " - "
+     */
+    public void setExportFacetSeparatorString(String exportFacetSeparatorString) {
+        setAttribute("exportFacetSeparatorString", exportFacetSeparatorString, true);
+    }
+
+    /**
+     * Default separator string used by {@link com.smartgwt.client.widgets.cube.CubeGrid#exportClientData exportClientData()}
+     * to separate column and row facet value titles.
+     *
+     * @return Current exportFacetSeparatorString value. Default value is " - "
+     */
+    public String getExportFacetSeparatorString()  {
+        return getAttributeAsString("exportFacetSeparatorString");
+    }
+    
+
+    /**
+     * Sets the text color for the row and column headers of the cube,  if not otherwise set by a more specific property. (see
+     * {@link com.smartgwt.client.widgets.cube.CubeGrid#getExportRowFacetTextColor exportRowFacetTextColor()} and {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getExportColumnFacetTextColor exportColumnFacetTextColor()}).
+     *
+     * @param exportFacetTextColor New exportFacetTextColor value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSColor CSSColor 
+     */
+    public void setExportFacetTextColor(String exportFacetTextColor)  throws IllegalStateException {
+        setAttribute("exportFacetTextColor", exportFacetTextColor, false);
+    }
+
+    /**
+     * Sets the text color for the row and column headers of the cube,  if not otherwise set by a more specific property. (see
+     * {@link com.smartgwt.client.widgets.cube.CubeGrid#getExportRowFacetTextColor exportRowFacetTextColor()} and {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getExportColumnFacetTextColor exportColumnFacetTextColor()}).
+     *
+     * @return Current exportFacetTextColor value. Default value is null
+     * @see com.smartgwt.client.docs.CSSColor CSSColor 
+     */
+    public String getExportFacetTextColor()  {
+        return getAttributeAsString("exportFacetTextColor");
+    }
+    
+
+    /**
+     * Sets the background color for the row headers of the cube. See also {@link com.smartgwt.client.docs.ExportBGColor}.
+     *
+     * @param exportRowFacetBGColor New exportRowFacetBGColor value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSColor CSSColor 
+     */
+    public void setExportRowFacetBGColor(String exportRowFacetBGColor)  throws IllegalStateException {
+        setAttribute("exportRowFacetBGColor", exportRowFacetBGColor, false);
+    }
+
+    /**
+     * Sets the background color for the row headers of the cube. See also {@link com.smartgwt.client.docs.ExportBGColor}.
+     *
+     * @return Current exportRowFacetBGColor value. Default value is null
+     * @see com.smartgwt.client.docs.CSSColor CSSColor 
+     */
+    public String getExportRowFacetBGColor()  {
+        return getAttributeAsString("exportRowFacetBGColor");
+    }
+    
+
+    /**
+     * Sets the text color for the row headers of the cube.
+     *
+     * @param exportRowFacetTextColor New exportRowFacetTextColor value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSColor CSSColor 
+     */
+    public void setExportRowFacetTextColor(String exportRowFacetTextColor)  throws IllegalStateException {
+        setAttribute("exportRowFacetTextColor", exportRowFacetTextColor, false);
+    }
+
+    /**
+     * Sets the text color for the row headers of the cube.
+     *
+     * @return Current exportRowFacetTextColor value. Default value is null
+     * @see com.smartgwt.client.docs.CSSColor CSSColor 
+     */
+    public String getExportRowFacetTextColor()  {
+        return getAttributeAsString("exportRowFacetTextColor");
+    }
+    
 
     /**
      * Allows the developer to override the horizontal text alignment of hover tips shown for facetLabels.  If unspecified the
      * hover canvas content alignment will be set by <code>this.hoverAlign</code> if specified.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param facetLabelHoverAlign facetLabelHoverAlign Default value is null
+     * @param facetLabelHoverAlign New facetLabelHoverAlign value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#setHoverAlign
      */
     public void setFacetLabelHoverAlign(Alignment facetLabelHoverAlign) {
@@ -729,20 +1073,20 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * Allows the developer to override the horizontal text alignment of hover tips shown for facetLabels.  If unspecified the
      * hover canvas content alignment will be set by <code>this.hoverAlign</code> if specified.
      *
-     *
-     * @return Alignment
+     * @return Current facetLabelHoverAlign value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#getHoverAlign
      */
     public Alignment getFacetLabelHoverAlign()  {
         return EnumUtil.getEnum(Alignment.values(), getAttribute("facetLabelHoverAlign"));
     }
+    
 
     /**
      * If specified and <code>this.showHover</code> is true, this is the default height to apply to hover tips shown for
      * facetLabels. If unset, the hover canvas will be sized to  <code>this.hoverHeight</code> if specified instead.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param facetLabelHoverHeight facetLabelHoverHeight Default value is null
+     * @param facetLabelHoverHeight New facetLabelHoverHeight value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#setHoverHeight
      */
     public void setFacetLabelHoverHeight(Integer facetLabelHoverHeight) {
@@ -753,21 +1097,22 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * If specified and <code>this.showHover</code> is true, this is the default height to apply to hover tips shown for
      * facetLabels. If unset, the hover canvas will be sized to  <code>this.hoverHeight</code> if specified instead.
      *
-     *
-     * @return Integer
+     * @return Current facetLabelHoverHeight value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#getHoverHeight
      */
     public Integer getFacetLabelHoverHeight()  {
         return getAttributeAsInt("facetLabelHoverHeight");
     }
+    
 
     /**
      * Allows the developer to override the css class applied to  hover tips shown for facet labels.  If unspecified, and
      * <code>this.hoverStyle</code> is not null, that  css class will be applied to facet label hovers instead.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param facetLabelHoverStyle facetLabelHoverStyle Default value is null
+     * @param facetLabelHoverStyle New facetLabelHoverStyle value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#setHoverStyle
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
     public void setFacetLabelHoverStyle(String facetLabelHoverStyle) {
         setAttribute("facetLabelHoverStyle", facetLabelHoverStyle, true);
@@ -777,20 +1122,21 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * Allows the developer to override the css class applied to  hover tips shown for facet labels.  If unspecified, and
      * <code>this.hoverStyle</code> is not null, that  css class will be applied to facet label hovers instead.
      *
-     *
-     * @return String
+     * @return Current facetLabelHoverStyle value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#getHoverStyle
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
     public String getFacetLabelHoverStyle()  {
         return getAttributeAsString("facetLabelHoverStyle");
     }
+    
 
     /**
      * Allows the developer to override the vertical text alignment of hover tips shown for facetLabels.  If unspecified the
      * hover canvas content alignment will be set by <code>this.hoverVAlign</code> if specified.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param facetLabelHoverVAlign facetLabelHoverVAlign Default value is null
+     * @param facetLabelHoverVAlign New facetLabelHoverVAlign value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#setHoverVAlign
      */
     public void setFacetLabelHoverVAlign(VerticalAlignment facetLabelHoverVAlign) {
@@ -801,20 +1147,20 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * Allows the developer to override the vertical text alignment of hover tips shown for facetLabels.  If unspecified the
      * hover canvas content alignment will be set by <code>this.hoverVAlign</code> if specified.
      *
-     *
-     * @return VerticalAlignment
+     * @return Current facetLabelHoverVAlign value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#getHoverVAlign
      */
     public VerticalAlignment getFacetLabelHoverVAlign()  {
         return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("facetLabelHoverVAlign"));
     }
+    
 
     /**
      * If specified and <code>this.showHover</code> is true, this is the default width to apply to hover tips shown for
      * facetLabels. If unset, the hover canvas will be sized to  <code>this.hoverWidth</code> if specified instead.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param facetLabelHoverWidth facetLabelHoverWidth Default value is null
+     * @param facetLabelHoverWidth New facetLabelHoverWidth value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#setHoverWidth
      */
     public void setFacetLabelHoverWidth(Integer facetLabelHoverWidth) {
@@ -825,13 +1171,13 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * If specified and <code>this.showHover</code> is true, this is the default width to apply to hover tips shown for
      * facetLabels. If unset, the hover canvas will be sized to  <code>this.hoverWidth</code> if specified instead.
      *
-     *
-     * @return Integer
+     * @return Current facetLabelHoverWidth value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#getHoverWidth
      */
     public Integer getFacetLabelHoverWidth()  {
         return getAttributeAsInt("facetLabelHoverWidth");
     }
+    
 
     /**
      * Facet definitions for this CubeGrid.  Facets, also called "dimensions", are orthogonal aspects of the data model. <P>
@@ -839,9 +1185,15 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * number, because the facets - plant and product - are the same. What would change the profit numbers would be to remove a
      * facet, called "summarizing", or add a new facet, called "drilling down".  For example, showing profit by plant and
      * product, you could "drill down" by adding the region facet, which would divide profit among each region.  Or you could
-     * remove the "plant" facet, showing total profit for each "product", summed across all plants.
+     * remove the "plant" facet, showing total profit for each "product", summed across all plants. <P> This property need not
+     * be set and will automatically be constructed during widget initialization if data is provided up front and {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getRowFacets rowFacets} and  {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getColumnFacets columnFacets} have been set.  If {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getFacets facets} is not set and there is no initial data but a DataSource is
+     * present, drawing the grid will automatically issue a fetch to allow {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getFacets facets} to be resolved.
      *
-     * @param facets facets Default value is null
+     * @param facets New facets value. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.cube.CubeGrid#getFacet
      * @see com.smartgwt.client.widgets.cube.Facet
@@ -851,6 +1203,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     public void setFacets(Facet... facets)  throws IllegalStateException {
         setAttribute("facets", facets, false);
     }
+    
 
     /**
      * Default alignment for facet labels.
@@ -867,17 +1220,17 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * Default alignment for facet labels.
      *
-     *
-     * @return Alignment
+     * @return Current facetTitleAlign value. Default value is "center"
      */
     public Alignment getFacetTitleAlign()  {
         return EnumUtil.getEnum(Alignment.values(), getAttribute("facetTitleAlign"));
     }
+    
 
     /**
      * Default alignment for facet values (in headers).
      *
-     * @param facetValueAlign facetValueAlign Default value is "center"
+     * @param facetValueAlign New facetValueAlign value. Default value is "center"
      */
     public void setFacetValueAlign(Alignment facetValueAlign) {
         setAttribute("facetValueAlign", facetValueAlign == null ? null : facetValueAlign.getValue(), true);
@@ -886,19 +1239,42 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * Default alignment for facet values (in headers).
      *
-     *
-     * @return Alignment
+     * @return Current facetValueAlign value. Default value is "center"
      */
     public Alignment getFacetValueAlign()  {
         return EnumUtil.getEnum(Alignment.values(), getAttribute("facetValueAlign"));
     }
+    
+
+    /**
+     * Array of MenuItem to replace the default menu.  Call {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getDefaultFacetValueContextItems getDefaultFacetValueContextItems()} to get a
+     * default set of items to start with.
+     *
+     * @param facetValueContextItems New facetValueContextItems value. Default value is null
+     */
+    public void setFacetValueContextItems(MenuItem... facetValueContextItems) {
+        setAttribute("facetValueContextItems", facetValueContextItems, true);
+    }
+
+    /**
+     * Array of MenuItem to replace the default menu.  Call {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getDefaultFacetValueContextItems getDefaultFacetValueContextItems()} to get a
+     * default set of items to start with.
+     *
+     * @return Current facetValueContextItems value. Default value is null
+     */
+    public MenuItem[] getFacetValueContextItems()  {
+        return com.smartgwt.client.util.ConvertTo.arrayOfMenuItem(getAttributeAsJavaScriptObject("facetValueContextItems"));
+    }
+    
 
     /**
      * Allows the developer to override the horizontal text alignment of hover tips shown for facet values.  If unspecified the
      * hover canvas content alignment will be set by <code>this.hoverAlign</code> if specified.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param facetValueHoverAlign facetValueHoverAlign Default value is null
+     * @param facetValueHoverAlign New facetValueHoverAlign value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#setHoverAlign
      */
     public void setFacetValueHoverAlign(Alignment facetValueHoverAlign) {
@@ -909,20 +1285,20 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * Allows the developer to override the horizontal text alignment of hover tips shown for facet values.  If unspecified the
      * hover canvas content alignment will be set by <code>this.hoverAlign</code> if specified.
      *
-     *
-     * @return Alignment
+     * @return Current facetValueHoverAlign value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#getHoverAlign
      */
     public Alignment getFacetValueHoverAlign()  {
         return EnumUtil.getEnum(Alignment.values(), getAttribute("facetValueHoverAlign"));
     }
+    
 
     /**
      * If specified and <code>this.showHover</code> is true, this is the default height to apply to hover tips shown for
      * facetValues. If unset, the hover canvas will be sized to  <code>this.hoverHeight</code> if specified instead.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param facetValueHoverHeight facetValueHoverHeight Default value is null
+     * @param facetValueHoverHeight New facetValueHoverHeight value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#setHoverHeight
      */
     public void setFacetValueHoverHeight(Integer facetValueHoverHeight) {
@@ -933,21 +1309,22 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * If specified and <code>this.showHover</code> is true, this is the default height to apply to hover tips shown for
      * facetValues. If unset, the hover canvas will be sized to  <code>this.hoverHeight</code> if specified instead.
      *
-     *
-     * @return Integer
+     * @return Current facetValueHoverHeight value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#getHoverHeight
      */
     public Integer getFacetValueHoverHeight()  {
         return getAttributeAsInt("facetValueHoverHeight");
     }
+    
 
     /**
      * Allows the developer to override the css class applied to  hover tips shown for facet values.  If unspecified, and
      * <code>this.hoverStyle</code> is not null, that  css class will be applied to facet value hovers instead.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param facetValueHoverStyle facetValueHoverStyle Default value is null
+     * @param facetValueHoverStyle New facetValueHoverStyle value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#setHoverStyle
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
     public void setFacetValueHoverStyle(String facetValueHoverStyle) {
         setAttribute("facetValueHoverStyle", facetValueHoverStyle, true);
@@ -957,20 +1334,21 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * Allows the developer to override the css class applied to  hover tips shown for facet values.  If unspecified, and
      * <code>this.hoverStyle</code> is not null, that  css class will be applied to facet value hovers instead.
      *
-     *
-     * @return String
+     * @return Current facetValueHoverStyle value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#getHoverStyle
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
     public String getFacetValueHoverStyle()  {
         return getAttributeAsString("facetValueHoverStyle");
     }
+    
 
     /**
      * Allows the developer to override the vertical text alignment of hover tips shown for facet values.  If unspecified the
      * hover canvas content alignment will be set by <code>this.hoverVAlign</code> if specified.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param facetValueHoverVAlign facetValueHoverVAlign Default value is null
+     * @param facetValueHoverVAlign New facetValueHoverVAlign value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#setHoverVAlign
      */
     public void setFacetValueHoverVAlign(VerticalAlignment facetValueHoverVAlign) {
@@ -981,20 +1359,20 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * Allows the developer to override the vertical text alignment of hover tips shown for facet values.  If unspecified the
      * hover canvas content alignment will be set by <code>this.hoverVAlign</code> if specified.
      *
-     *
-     * @return VerticalAlignment
+     * @return Current facetValueHoverVAlign value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#getHoverVAlign
      */
     public VerticalAlignment getFacetValueHoverVAlign()  {
         return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("facetValueHoverVAlign"));
     }
+    
 
     /**
      * If specified and <code>this.showHover</code> is true, this is the default width to apply to hover tips shown for
      * facetValues. If unset, the hover canvas will be sized to  <code>this.hoverWidth</code> if specified instead.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param facetValueHoverWidth facetValueHoverWidth Default value is null
+     * @param facetValueHoverWidth New facetValueHoverWidth value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#setHoverWidth
      */
     public void setFacetValueHoverWidth(Integer facetValueHoverWidth) {
@@ -1005,26 +1383,26 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * If specified and <code>this.showHover</code> is true, this is the default width to apply to hover tips shown for
      * facetValues. If unset, the hover canvas will be sized to  <code>this.hoverWidth</code> if specified instead.
      *
-     *
-     * @return Integer
+     * @return Current facetValueHoverWidth value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#getHoverWidth
      */
     public Integer getFacetValueHoverWidth()  {
         return getAttributeAsInt("facetValueHoverWidth");
     }
+    
 
     /**
      * A {@link com.smartgwt.client.widgets.cube.FacetValueMap} describing the set of facet values that should be regarded as
      * "fixed" in this cubeGrid.  These are used as fixed criteria for load on demand, and also allow using a dataset with more
      * facets in it than are currently shown in the grid.
      *
-     * @param fixedFacetValues fixedFacetValues Default value is null
+     * @param fixedFacetValues New fixedFacetValues value. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.cube.CubeGrid#addFacet
      * @see com.smartgwt.client.widgets.cube.CubeGrid#removeFacet
      */
     public void setFixedFacetValues(FacetValueMap fixedFacetValues)  throws IllegalStateException {
-        setAttribute("fixedFacetValues", fixedFacetValues.getJsObj(), false);
+        setAttribute("fixedFacetValues", fixedFacetValues == null ? null : fixedFacetValues.getJsObj(), false);
     }
 
     /**
@@ -1032,21 +1410,21 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * "fixed" in this cubeGrid.  These are used as fixed criteria for load on demand, and also allow using a dataset with more
      * facets in it than are currently shown in the grid.
      *
-     *
-     * @return FacetValueMap
+     * @return Current fixedFacetValues value. Default value is null
      * @see com.smartgwt.client.widgets.cube.CubeGrid#addFacet
      * @see com.smartgwt.client.widgets.cube.CubeGrid#removeFacet
      */
     public FacetValueMap getFixedFacetValues()  {
         return new FacetValueMap(getAttributeAsJavaScriptObject("fixedFacetValues"));
     }
+    
 
     /**
      * With {@link com.smartgwt.client.widgets.cube.CubeGrid#getHideEmptyFacetValues hideEmptyFacetValues}, controls on which
      * axis hiding of empty values is applied, "row" (only empty rows are hidden), "column" (only empty columns are hidden) or
      * both (the default).
      *
-     * @param hideEmptyAxis hideEmptyAxis Default value is null
+     * @param hideEmptyAxis New hideEmptyAxis value. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setHideEmptyAxis(Axis hideEmptyAxis)  throws IllegalStateException {
@@ -1058,18 +1436,25 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * axis hiding of empty values is applied, "row" (only empty rows are hidden), "column" (only empty columns are hidden) or
      * both (the default).
      *
-     *
-     * @return Axis
+     * @return Current hideEmptyAxis value. Default value is null
      */
     public Axis getHideEmptyAxis()  {
         return EnumUtil.getEnum(Axis.values(), getAttribute("hideEmptyAxis"));
     }
+    
 
     /**
-     * This causes the headers for any combination of facetValues for which there are no  cellRecords to be suppressed. (Note:
-     * Valid only for CubeGrids that specify the complete dataset upfront -   don't use load on demand)
+     * This causes the headers for any combination of facetValues for which there are no  cellRecords to be suppressed. <P> To
+     * use this feature, either: <ul> <li> all must be provided via {@link com.smartgwt.client.widgets.grid.ListGrid#setData
+     * setData()} before the CubeGrid is first drawn, OR <li> all data must be returned by the first DataSource fetch, OR <li>
+     * {@link com.smartgwt.client.widgets.cube.CubeGrid#getHideEmptyAxis hideEmptyAxis} must be set to either "row" or "column"
+     * so that empty values are only automatically hidden for one axis </ul> This last point is required because there is no
+     * way to determine whether a row is empty unless data for all columns of the row has been loaded (and vice-versa).  For
+     * this reason if you set hideEmptyFacetValues but do not set hideEmptyAxis, the default behavior of {@link
+     * com.smartgwt.client.data.DataSource loading only visible data} is automatically disabled and only {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getFixedFacetValues fixedFacetValues} will be sent as criteria.
      *
-     * @param hideEmptyFacetValues hideEmptyFacetValues Default value is null
+     * @param hideEmptyFacetValues New hideEmptyFacetValues value. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setHideEmptyFacetValues(Boolean hideEmptyFacetValues)  throws IllegalStateException {
@@ -1077,20 +1462,27 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     }
 
     /**
-     * This causes the headers for any combination of facetValues for which there are no  cellRecords to be suppressed. (Note:
-     * Valid only for CubeGrids that specify the complete dataset upfront -   don't use load on demand)
+     * This causes the headers for any combination of facetValues for which there are no  cellRecords to be suppressed. <P> To
+     * use this feature, either: <ul> <li> all must be provided via {@link com.smartgwt.client.widgets.grid.ListGrid#setData
+     * setData()} before the CubeGrid is first drawn, OR <li> all data must be returned by the first DataSource fetch, OR <li>
+     * {@link com.smartgwt.client.widgets.cube.CubeGrid#getHideEmptyAxis hideEmptyAxis} must be set to either "row" or "column"
+     * so that empty values are only automatically hidden for one axis </ul> This last point is required because there is no
+     * way to determine whether a row is empty unless data for all columns of the row has been loaded (and vice-versa).  For
+     * this reason if you set hideEmptyFacetValues but do not set hideEmptyAxis, the default behavior of {@link
+     * com.smartgwt.client.data.DataSource loading only visible data} is automatically disabled and only {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getFixedFacetValues fixedFacetValues} will be sent as criteria.
      *
-     *
-     * @return Boolean
+     * @return Current hideEmptyFacetValues value. Default value is null
      */
     public Boolean getHideEmptyFacetValues()  {
         return getAttributeAsBoolean("hideEmptyFacetValues");
     }
+    
 
     /**
      * Hilites to be applied to the data for this component.  See {@link com.smartgwt.client.docs.Hiliting}.
      *
-     * @param hilites hilites Default value is null
+     * @param hilites New hilites value. Default value is null
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
     public void setHilites(Hilite... hilites) {
@@ -1100,20 +1492,21 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * Hilites to be applied to the data for this component.  See {@link com.smartgwt.client.docs.Hiliting}.
      *
-     *
-     * @return Hilite
+     * @return Current hilites value. Default value is null
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
     public Hilite[] getHilites()  {
-        return Hilite.convertToHiliteArray(getAttributeAsJavaScriptObject("hilites"));
+        return com.smartgwt.client.util.ConvertTo.arrayOfHilite(getAttributeAsJavaScriptObject("hilites"));
     }
+    
 
     /**
      * {@link com.smartgwt.client.widgets.Button#getBaseStyle baseStyle} for the buttons in the innermost column header for 
      * this cubeGrid.
      *
-     * @param innerHeaderBaseStyle innerHeaderBaseStyle Default value is innerHeader
+     * @param innerHeaderBaseStyle New innerHeaderBaseStyle value. Default value is innerHeader
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setInnerHeaderBaseStyle(String innerHeaderBaseStyle)  throws IllegalStateException {
@@ -1124,13 +1517,14 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * {@link com.smartgwt.client.widgets.Button#getBaseStyle baseStyle} for the buttons in the innermost column header for 
      * this cubeGrid.
      *
-     *
-     * @return String
+     * @return Current innerHeaderBaseStyle value. Default value is innerHeader
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getInnerHeaderBaseStyle()  {
         return getAttributeAsString("innerHeaderBaseStyle");
     }
+    
 
     /**
      * In a CubeGrid that displays values of different types (eg "Revenue" and "Income"), the different types of values on
@@ -1141,7 +1535,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * meaningful descriptions of values shown in cells for use in hovers and other situations; see {@link
      * com.smartgwt.client.widgets.cube.CubeGrid#getValueTitle valueTitle} for a full explanation.
      *
-     * @param metricFacetId metricFacetId Default value is "metric"
+     * @param metricFacetId New metricFacetId value. Default value is "metric"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setMetricFacetId(String metricFacetId)  throws IllegalStateException {
@@ -1157,17 +1551,17 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * meaningful descriptions of values shown in cells for use in hovers and other situations; see {@link
      * com.smartgwt.client.widgets.cube.CubeGrid#getValueTitle valueTitle} for a full explanation.
      *
-     *
-     * @return String
+     * @return Current metricFacetId value. Default value is "metric"
      */
     public String getMetricFacetId()  {
         return getAttributeAsString("metricFacetId");
     }
+    
 
     /**
      * Whether to pad titles so they aren't flush with header borders.
      *
-     * @param padTitles padTitles Default value is true
+     * @param padTitles New padTitles value. Default value is true
      */
     public void setPadTitles(Boolean padTitles) {
         setAttribute("padTitles", padTitles, true);
@@ -1176,17 +1570,18 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * Whether to pad titles so they aren't flush with header borders.
      *
-     *
-     * @return Boolean
+     * @return Current padTitles value. Default value is true
      */
     public Boolean getPadTitles()  {
-        return getAttributeAsBoolean("padTitles");
+        Boolean result = getAttributeAsBoolean("padTitles");
+        return result == null ? true : result;
     }
+    
 
     /**
      * facetValueId of the default rollupValue for each facet.  Can be overridden per facet via facet.rollupValue.
      *
-     * @param rollupValue rollupValue Default value is "sum"
+     * @param rollupValue New rollupValue value. Default value is "sum"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setRollupValue(String rollupValue)  throws IllegalStateException {
@@ -1196,21 +1591,22 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * facetValueId of the default rollupValue for each facet.  Can be overridden per facet via facet.rollupValue.
      *
-     *
      * @return Get the facetValue definition for the facetValue to show when this facet is "rolled up" under another facet, during a
      * breakout.<br><br> A facet is not required to have a rollup value, and if it does not have one, then rollups will simply
-     * be blank rows.  The facetValueId of the rollup value can be declared as cubeGrid.rollupValue or facet.rollupValue.
+     * be blank rows.  The facetValueId of the rollup value can be declared as cubeGrid.rollupValue or facet.rollupValue. Default value is "sum"
      */
     public String getRollupValue()  {
         return getAttributeAsString("rollupValue");
     }
+    
 
     /**
      * The list of {@link com.smartgwt.client.widgets.cube.Facet#getId ids} for facets that will appear to the left of the
      * body.
      *
-     * @param rowFacets rowFacets Default value is null
+     * @param rowFacets New rowFacets value. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#setRowHeaderGridMode
      */
     public void setRowFacets(String... rowFacets)  throws IllegalStateException {
         setAttribute("rowFacets", rowFacets, false);
@@ -1220,18 +1616,20 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * The list of {@link com.smartgwt.client.widgets.cube.Facet#getId ids} for facets that will appear to the left of the
      * body.
      *
-     *
-     * @return String
+     * @return Current rowFacets value. Default value is null
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#getRowHeaderGridMode
      */
     public String[] getRowFacets()  {
-        return getAttributeAsStringArray("rowFacets");
+        return com.smartgwt.client.util.ConvertTo.arrayOfString(getAttributeAsJavaScriptObject("rowFacets"));
     }
+    
 
     /**
      * {@link com.smartgwt.client.widgets.Button#getBaseStyle baseStyle} for the buttons in this grid's row headers.
      *
-     * @param rowHeaderBaseStyle rowHeaderBaseStyle Default value is rowHeader
+     * @param rowHeaderBaseStyle New rowHeaderBaseStyle value. Default value is rowHeader
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setRowHeaderBaseStyle(String rowHeaderBaseStyle)  throws IllegalStateException {
@@ -1241,55 +1639,110 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * {@link com.smartgwt.client.widgets.Button#getBaseStyle baseStyle} for the buttons in this grid's row headers.
      *
-     *
-     * @return String
+     * @return Current rowHeaderBaseStyle value. Default value is rowHeader
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getRowHeaderBaseStyle()  {
         return getAttributeAsString("rowHeaderBaseStyle");
     }
+    
 
     /**
-     * If enabled row headers for this cubeGrid will be rendered using a {@link com.smartgwt.client.grid.GridRenderer}
-     * component. This improves performance for very large cubeGrids.
+     * If enabled row headers for this cubeGrid will be rendered using a {@link com.smartgwt.client.widgets.grid.GridRenderer}
+     * component. This improves performance for very large cubeGrids. <P> Note that this attribute must be set for hierarchical
+     * row facets to be indented properly.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param rowHeaderGridMode rowHeaderGridMode Default value is false
+     * @param rowHeaderGridMode New rowHeaderGridMode value. Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#setRowFacets
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#setCanCollapseFacets
      */
     public void setRowHeaderGridMode(Boolean rowHeaderGridMode)  throws IllegalStateException {
         setAttribute("rowHeaderGridMode", rowHeaderGridMode, false);
     }
 
     /**
-     * If enabled row headers for this cubeGrid will be rendered using a {@link com.smartgwt.client.grid.GridRenderer}
-     * component. This improves performance for very large cubeGrids.
+     * If enabled row headers for this cubeGrid will be rendered using a {@link com.smartgwt.client.widgets.grid.GridRenderer}
+     * component. This improves performance for very large cubeGrids. <P> Note that this attribute must be set for hierarchical
+     * row facets to be indented properly.
      *
-     *
-     * @return Boolean
+     * @return Current rowHeaderGridMode value. Default value is false
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#getRowFacets
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#getCanCollapseFacets
      */
     public Boolean getRowHeaderGridMode()  {
-        return getAttributeAsBoolean("rowHeaderGridMode");
+        Boolean result = getAttributeAsBoolean("rowHeaderGridMode");
+        return result == null ? false : result;
     }
-
+    
 
     /**
      * CubeGrids only support editing by cell.
-     *
+     * <p>
      * <b>Note :</b> This method should be called only after the widget has been rendered.
      *
-     * @return Boolean
-     * @throws IllegalStateException if widget has not yet been rendered.
+     * @return Current saveByCell value. Default value is true
+     * @throws IllegalStateException if this widget has not yet been rendered.
      */
     public Boolean getSaveByCell() throws IllegalStateException {
         errorIfNotCreated("saveByCell");
-        return getAttributeAsBoolean("saveByCell");
+        Boolean result = getAttributeAsBoolean("saveByCell");
+        return result == null ? true : result;
     }
+    
+
+    /**
+     * If true, show facet label context menus with some built-in operations. Otherwise, use generic context menu handling.
+     *
+     * @param showFacetContextMenus New showFacetContextMenus value. Default value is false
+     */
+    public void setShowFacetContextMenus(boolean showFacetContextMenus) {
+        setAttribute("showFacetContextMenus", showFacetContextMenus, true);
+    }
+
+    /**
+     * If true, show facet label context menus with some built-in operations. Otherwise, use generic context menu handling.
+     *
+     * @return Current showFacetContextMenus value. Default value is false
+     */
+    public boolean getShowFacetContextMenus()  {
+        Boolean result = getAttributeAsBoolean("showFacetContextMenus");
+        return result == null ? false : result;
+    }
+    
+
+    /**
+     * If true, show facet value context menus with some built-in operations. Otherwise, use generic context menu handling. Use
+     * this in place of {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu
+     * ListGrid.showHeaderContextMenu} and {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderMenuButton
+     * ListGrid.showHeaderMenuButton} for CubeGrids.
+     *
+     * @param showFacetValueContextMenus New showFacetValueContextMenus value. Default value is true
+     */
+    public void setShowFacetValueContextMenus(boolean showFacetValueContextMenus) {
+        setAttribute("showFacetValueContextMenus", showFacetValueContextMenus, true);
+    }
+
+    /**
+     * If true, show facet value context menus with some built-in operations. Otherwise, use generic context menu handling. Use
+     * this in place of {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderContextMenu
+     * ListGrid.showHeaderContextMenu} and {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderMenuButton
+     * ListGrid.showHeaderMenuButton} for CubeGrids.
+     *
+     * @return Current showFacetValueContextMenus value. Default value is true
+     */
+    public boolean getShowFacetValueContextMenus()  {
+        Boolean result = getAttributeAsBoolean("showFacetValueContextMenus");
+        return result == null ? true : result;
+    }
+    
 
     /**
      * If true, clicking on the existing selection causes it to be entirely deselected.
      *
-     * @param simpleDeselect simpleDeselect Default value is false
+     * @param simpleDeselect New simpleDeselect value. Default value is false
      */
     public void setSimpleDeselect(Boolean simpleDeselect) {
         setAttribute("simpleDeselect", simpleDeselect, true);
@@ -1298,19 +1751,21 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * If true, clicking on the existing selection causes it to be entirely deselected.
      *
-     *
-     * @return Boolean
+     * @return Current simpleDeselect value. Default value is false
      */
     public Boolean getSimpleDeselect()  {
-        return getAttributeAsBoolean("simpleDeselect");
+        Boolean result = getAttributeAsBoolean("simpleDeselect");
+        return result == null ? false : result;
     }
+    
 
     /**
      * Default directory for skin images (those defined by the class), relative to the Page-wide {@link
      * com.smartgwt.client.util.Page#getSkinDir skinDir}.
      *
-     * @param skinImgDir skinImgDir Default value is "images/CubeGrid/"
+     * @param skinImgDir New skinImgDir value. Default value is "images/CubeGrid/"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
     public void setSkinImgDir(String skinImgDir)  throws IllegalStateException {
@@ -1321,18 +1776,19 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * Default directory for skin images (those defined by the class), relative to the Page-wide {@link
      * com.smartgwt.client.util.Page#getSkinDir skinDir}.
      *
-     *
-     * @return String
+     * @return Current skinImgDir value. Default value is "images/CubeGrid/"
+     * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      * @see com.smartgwt.client.docs.Images Images overview and related methods
      */
     public String getSkinImgDir()  {
         return getAttributeAsString("skinImgDir");
     }
+    
 
     /**
      * Direction of sorting if sortedFacet or sortedFacetValues is specified.
      *
-     * @param sortDirection sortDirection Default value is Array.ASCENDING
+     * @param sortDirection New sortDirection value. Default value is "ascending"
      */
     public void setSortDirection(SortDirection sortDirection) {
         setAttribute("sortDirection", sortDirection == null ? null : sortDirection.getValue(), true);
@@ -1341,38 +1797,39 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * Direction of sorting if sortedFacet or sortedFacetValues is specified.
      *
-     *
-     * @return SortDirection
+     * @return Current sortDirection value. Default value is "ascending"
      */
     public SortDirection getSortDirection()  {
         return EnumUtil.getEnum(SortDirection.values(), getAttribute("sortDirection"));
     }
+    
 
     /**
      * {@link com.smartgwt.client.widgets.cube.FacetValueMap} of facet values representing a set of facetValues by which the
      * cubeGrid data is sorted.
      *
-     * @param sortedFacetValues sortedFacetValues Default value is null
+     * @param sortedFacetValues New sortedFacetValues value. Default value is null
      */
     public void setSortedFacetValues(FacetValueMap sortedFacetValues) {
-        setAttribute("sortedFacetValues", sortedFacetValues.getJsObj(), true);
+        setAttribute("sortedFacetValues", sortedFacetValues == null ? null : sortedFacetValues.getJsObj(), true);
     }
 
     /**
      * {@link com.smartgwt.client.widgets.cube.FacetValueMap} of facet values representing a set of facetValues by which the
      * cubeGrid data is sorted.
      *
-     *
-     * @return FacetValueMap
+     * @return Current sortedFacetValues value. Default value is null
      */
     public FacetValueMap getSortedFacetValues()  {
         return new FacetValueMap(getAttributeAsJavaScriptObject("sortedFacetValues"));
     }
+    
 
     /**
      * CSS class for the CubeGrid as a whole
      *
-     * @param styleName styleName Default value is "normal"
+     * @param styleName New styleName value. Default value is "normal"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public void setStyleName(String styleName) {
@@ -1382,19 +1839,73 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * CSS class for the CubeGrid as a whole
      *
-     *
-     * @return String
+     * @return Current styleName value. Default value is "normal"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
      */
     public String getStyleName()  {
         return getAttributeAsString("styleName");
     }
+    
+
+    /**
+     * {@link com.smartgwt.client.docs.FormatString} used during exports for numeric or date formatting.  See {@link
+     * com.smartgwt.client.data.DataSourceField#getExportFormat DataSourceField.exportFormat}.
+     *
+     * @param valueExportFormat New valueExportFormat value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.FormatString FormatString 
+     * @see com.smartgwt.client.docs.ExportFormatting ExportFormatting overview and related methods
+     */
+    public void setValueExportFormat(String valueExportFormat)  throws IllegalStateException {
+        setAttribute("valueExportFormat", valueExportFormat, false);
+    }
+
+    /**
+     * {@link com.smartgwt.client.docs.FormatString} used during exports for numeric or date formatting.  See {@link
+     * com.smartgwt.client.data.DataSourceField#getExportFormat DataSourceField.exportFormat}.
+     *
+     * @return Current valueExportFormat value. Default value is null
+     * @see com.smartgwt.client.docs.FormatString FormatString 
+     * @see com.smartgwt.client.docs.ExportFormatting ExportFormatting overview and related methods
+     */
+    public String getValueExportFormat()  {
+        return getAttributeAsString("valueExportFormat");
+    }
+    
+
+    /**
+     * {@link com.smartgwt.client.docs.FormatString} for numeric or date formatting.  See {@link
+     * com.smartgwt.client.data.DataSourceField#getFormat DataSourceField.format}.
+     *
+     * @param valueFormat New valueFormat value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.FormatString FormatString 
+     * @see com.smartgwt.client.docs.ExportFormatting ExportFormatting overview and related methods
+     */
+    public void setValueFormat(String valueFormat)  throws IllegalStateException {
+        setAttribute("valueFormat", valueFormat, false);
+    }
+
+    /**
+     * {@link com.smartgwt.client.docs.FormatString} for numeric or date formatting.  See {@link
+     * com.smartgwt.client.data.DataSourceField#getFormat DataSourceField.format}.
+     *
+     * @return Current valueFormat value. Default value is null
+     * @see com.smartgwt.client.docs.FormatString FormatString 
+     * @see com.smartgwt.client.docs.ExportFormatting ExportFormatting overview and related methods
+     */
+    public String getValueFormat()  {
+        return getAttributeAsString("valueFormat");
+    }
+    
 
     /**
      * Name of the property in a cell record that holds the cell value.
      *
-     * @param valueProperty valueProperty Default value is "_value"
+     * @param valueProperty New valueProperty value. Default value is "_value"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.Identifier Identifier 
      */
     public void setValueProperty(String valueProperty)  throws IllegalStateException {
         setAttribute("valueProperty", valueProperty, false);
@@ -1403,12 +1914,13 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * Name of the property in a cell record that holds the cell value.
      *
-     *
-     * @return String
+     * @return Current valueProperty value. Default value is "_value"
+     * @see com.smartgwt.client.docs.Identifier Identifier 
      */
     public String getValueProperty()  {
         return getAttributeAsString("valueProperty");
     }
+    
 
     /**
      * A label for the data values shown in cells, such as "Sales in Thousands", typically used
@@ -1425,7 +1937,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      *  For CubeGrids that show multiple types of values at once (eg both "Revenue" and
      *  "Income") see {@link com.smartgwt.client.widgets.cube.CubeGrid#getMetricFacetId metricFacetId}.
      *
-     * @param valueTitle valueTitle Default value is null
+     * @param valueTitle New valueTitle value. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setValueTitle(String valueTitle)  throws IllegalStateException {
@@ -1447,17 +1959,17 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      *  For CubeGrids that show multiple types of values at once (eg both "Revenue" and
      *  "Income") see {@link com.smartgwt.client.widgets.cube.CubeGrid#getMetricFacetId metricFacetId}.
      *
-     *
-     * @return String
+     * @return Current valueTitle value. Default value is null
      */
     public String getValueTitle()  {
         return getAttributeAsString("valueTitle");
     }
+    
 
     /**
      * Whether to allow text wrapping on facet titles.
      *
-     * @param wrapFacetTitles wrapFacetTitles Default value is false
+     * @param wrapFacetTitles New wrapFacetTitles value. Default value is false
      */
     public void setWrapFacetTitles(Boolean wrapFacetTitles) {
         setAttribute("wrapFacetTitles", wrapFacetTitles, true);
@@ -1466,17 +1978,18 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * Whether to allow text wrapping on facet titles.
      *
-     *
-     * @return Boolean
+     * @return Current wrapFacetTitles value. Default value is false
      */
     public Boolean getWrapFacetTitles()  {
-        return getAttributeAsBoolean("wrapFacetTitles");
+        Boolean result = getAttributeAsBoolean("wrapFacetTitles");
+        return result == null ? false : result;
     }
+    
 
     /**
      * Whether to allow text wrapping on facet value titles.
      *
-     * @param wrapFacetValueTitles wrapFacetValueTitles Default value is false
+     * @param wrapFacetValueTitles New wrapFacetValueTitles value. Default value is false
      */
     public void setWrapFacetValueTitles(Boolean wrapFacetValueTitles) {
         setAttribute("wrapFacetValueTitles", wrapFacetValueTitles, true);
@@ -1485,108 +1998,160 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     /**
      * Whether to allow text wrapping on facet value titles.
      *
-     *
-     * @return Boolean
+     * @return Current wrapFacetValueTitles value. Default value is false
      */
     public Boolean getWrapFacetValueTitles()  {
-        return getAttributeAsBoolean("wrapFacetValueTitles");
+        Boolean result = getAttributeAsBoolean("wrapFacetValueTitles");
+        return result == null ? false : result;
     }
+    
 
     // ********************* Methods ***********************
-            
-    /**
+	/**
      * Add a column facet to the view at index "index".  Handles the facet already being in the view (does a pivot).<br><br>
      * The facet being added should currently have a fixed facet value (unless it's already part of the view), which will be
      * removed from cubeGrid.fixedFacetValues. <br><i>methodType</i>  action
      * @param facetId facetId to add.  Definition must have been provided at init time.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#removeFacet
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#getFixedFacetValues
+     * @see com.smartgwt.client.docs.Identifier Identifier
      */
     public native void addColumnFacet(String facetId) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "addColumnFacet", "String");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addColumnFacet(facetId);
     }-*/;
 
-    /**
+	/**
      * Add a column facet to the view at index "index".  Handles the facet already being in the view (does a pivot).<br><br>
      * The facet being added should currently have a fixed facet value (unless it's already part of the view), which will be
      * removed from cubeGrid.fixedFacetValues. <br><i>methodType</i>  action
      * @param facetId facetId to add.  Definition must have been provided at init time.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
      * @param index index to add the facet at.  0 = outermost (default innermost)
      * @see com.smartgwt.client.widgets.cube.CubeGrid#removeFacet
      * @see com.smartgwt.client.widgets.cube.CubeGrid#getFixedFacetValues
      */
-    public native void addColumnFacet(String facetId, int index) /*-{
+    public native void addColumnFacet(String facetId, Integer index) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "addColumnFacet", "String,Integer");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.addColumnFacet(facetId, index);
+        self.addColumnFacet(facetId, index == null ? null : index.@java.lang.Integer::intValue()());
     }-*/;
-            
-    /**
+	
+	/**
      * Add a facet to the view, into the row or column facets (intoRows true or false), at index "index".  Handles the facet
      * already being in the view (does a pivot). <P> The facet being added should currently have a fixed facet value (unless
      * it's already part of the view), which will be removed from cubeGrid.fixedFacetValues.
      * @param facetId facetId to add.  Definition must have been provided at init time.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#removeFacet
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#getFixedFacetValues
+     * @see com.smartgwt.client.docs.Identifier Identifier
      */
     public native void addFacet(String facetId) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "addFacet", "String");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addFacet(facetId);
     }-*/;
 
     /**
+     * @see CubeGrid#addFacet
+     */
+    public void addFacet(String facetId, Boolean intoRows){
+        addFacet(facetId, intoRows, (Integer) null);
+    }
+
+	/**
      * Add a facet to the view, into the row or column facets (intoRows true or false), at index "index".  Handles the facet
      * already being in the view (does a pivot). <P> The facet being added should currently have a fixed facet value (unless
      * it's already part of the view), which will be removed from cubeGrid.fixedFacetValues.
      * @param facetId facetId to add.  Definition must have been provided at init time.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
      * @param intoRows whether to add facet as a row facet
      * @param index index to add the facet at.  0 = outermost (default innermost)
      * @see com.smartgwt.client.widgets.cube.CubeGrid#removeFacet
      * @see com.smartgwt.client.widgets.cube.CubeGrid#getFixedFacetValues
      */
-    public native void addFacet(String facetId, boolean intoRows, int index) /*-{
+    public native void addFacet(String facetId, Boolean intoRows, Integer index) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "addFacet", "String,Boolean,Integer");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.addFacet(facetId, intoRows, index);
+        self.addFacet(facetId, intoRows == null ? null : intoRows.@java.lang.Boolean::booleanValue()(), index == null ? null : index.@java.lang.Integer::intValue()());
     }-*/;
-            
-    /**
+	
+	/**
      * Add a row facet to the view at index "index".  Handles the facet already being in the view (does a pivot).<br><br> The
      * facet being added should currently have a fixed facet value (unless it's already part of the view), which will be
      * removed from cubeGrid.fixedFacetValues. <br><i>methodType</i>  action
      * @param facetId facetId to add.  Definition must have been provided at init time.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#removeFacet
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#getFixedFacetValues
+     * @see com.smartgwt.client.docs.Identifier Identifier
      */
     public native void addRowFacet(String facetId) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "addRowFacet", "String");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.addRowFacet(facetId);
     }-*/;
 
-    /**
+	/**
      * Add a row facet to the view at index "index".  Handles the facet already being in the view (does a pivot).<br><br> The
      * facet being added should currently have a fixed facet value (unless it's already part of the view), which will be
      * removed from cubeGrid.fixedFacetValues. <br><i>methodType</i>  action
      * @param facetId facetId to add.  Definition must have been provided at init time.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
      * @param index index to add the facet at.  0 = outermost (default innermost)
      * @see com.smartgwt.client.widgets.cube.CubeGrid#removeFacet
      * @see com.smartgwt.client.widgets.cube.CubeGrid#getFixedFacetValues
      */
-    public native void addRowFacet(String facetId, int index) /*-{
+    public native void addRowFacet(String facetId, Integer index) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "addRowFacet", "String,Integer");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.addRowFacet(facetId, index);
+        self.addRowFacet(facetId, index == null ? null : index.@java.lang.Integer::intValue()());
     }-*/;
-            
-    /**
+	
+	/**
      * Determine whether any cells are selected in this cubeGrid.  <br><i>methodType</i> tester
      *
      * @return true if any cells are selected
      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
     public native Boolean anyCellSelected() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.anyCellSelected();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "anyCellSelected", "");
         }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.anyCellSelected();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
-            
-    /**
+
+	/**
+     * auto-size the header facet horizontally
+     * @param facetId ID of facet to resize.
+     */
+    public native void autoSizeFacet(String facetId) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "autoSizeFacet", "String");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.autoSizeFacet(facetId);
+    }-*/;
+
+	/**
      * Determine whether the cell passed in is selected in this cubeGrid.  <br><i>methodType</i> tester
      * @param cell cell to test
      *
@@ -1594,69 +2159,238 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
     public native Boolean cellIsSelected(CellRecord cell) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.cellIsSelected(cell.@com.smartgwt.client.core.DataClass::getJsObj()());
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "cellIsSelected", "CellRecord");
         }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.cellIsSelected(cell.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
-            
-    /**
+
+	/**
      * Handler fired when facet is closed      <br><i>methodType</i> handler
      * @param facetId ID of facet that was closed
      */
     public native void closeFacet(String facetId) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "closeFacet", "String");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.closeFacet(facetId);
     }-*/;
-            
-    /**
+
+	/**
+     * Collapses the specified field.  No-ops if it's not showing, or it it's already collapsed.
+     * @param facetValueMap field specified as a facetValueMap
+     *
+     * @return whether specified field was actually collapsed
+     */
+    public native Boolean collapseField(FacetValueMap facetValueMap) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "collapseField", "FacetValueMap");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.collapseField(facetValueMap == null ? null : facetValueMap.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+	/**
+     * Notification method fired when new data arrives from the server to be displayed in this CubeGrid.  For example in
+     * response to the user openng a collapsed facet, or as a result of an initial fetch request for all data from a CubeGrid
+     * where {@link com.smartgwt.client.widgets.cube.CubeGrid#getFacets facets} is not set and there is no initial data.  Only
+     * applies to databound CubeGrids.
+     */
+    public native void dataArrived() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "dataArrived", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.dataArrived();
+    }-*/;
+
+	/**
      * Deselect all cells and facetValues.      <br><i>methodType</i> action
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
     public native void deselectAll() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "deselectAll", "");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.deselectAll();
     }-*/;
-            
-    /**
-     * Deselect all cells.      <br><i>methodType</i> action
+
+	/**
+     * Deselect all cells.
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
     public native void deselectAllCells() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "deselectAllCells", "");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.deselectAllCells();
     }-*/;
-            
-    /**
+
+	/**
      * Deselect all headers in a headerBar (specified by facetId) or all headerBars (if no facetId).  <br><i>methodType</i>
      * action
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
     public native void deselectAllFacetValues() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "deselectAllFacetValues", "");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.deselectAllFacetValues();
     }-*/;
 
-    /**
+	/**
      * Deselect all headers in a headerBar (specified by facetId) or all headerBars (if no facetId).  <br><i>methodType</i>
      * action
      * @param facetId ID of facet - if null, selects all headerbars' headers
      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
     public native void deselectAllFacetValues(String facetId) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "deselectAllFacetValues", "String");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.deselectAllFacetValues(facetId);
     }-*/;
-            
-    /**
+	
+	/**
+     * Deselect cells that match a {@link com.smartgwt.client.widgets.cube.FacetValueMap}. Also supports an explicit list of
+     * CellRecords or cell IDs.
+     * @param cellList cells to deselect
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
+     */
+    public native void deselectCells(CellRecord[] cellList) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "deselectCells", "CellRecord[]");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.deselectCells(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(cellList));
+    }-*/;
+
+	/**
+     * Deselect cells that match a {@link com.smartgwt.client.widgets.cube.FacetValueMap}. Also supports an explicit list of
+     * CellRecords or cell IDs.
+     * @param cellList cells to deselect
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
+     */
+    public native void deselectCells(FacetValueMap cellList) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "deselectCells", "FacetValueMap");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.deselectCells(cellList == null ? null : cellList.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+	/**
+     * Deselect cells that match a {@link com.smartgwt.client.widgets.cube.FacetValueMap}. Also supports an explicit list of
+     * CellRecords or cell IDs.
+     * @param cellList cells to deselect
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
+     */
+    public native void deselectCells(String... cellList) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "deselectCells", "String...");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.deselectCells(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(cellList));
+    }-*/;
+
+	/**
      * Deselect the header for a given facet value.  <br><i>methodType</i> action
      * @param facetId ID of facet
      * @param facetValueId ID of facetValue to select
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
     public native void deselectFacetValue(String facetId, String facetValueId) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "deselectFacetValue", "String,String");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.deselectFacetValue(facetId, facetValueId);
     }-*/;
+
+	/**
+     * Expands the specified field.  No-ops if it's not showing, or if it's already expanded.
+     * @param facetValueMap field specified as a facetValueMap
+     *
+     * @return whether specified field was actually expanded
+     */
+    public native Boolean expandField(FacetValueMap facetValueMap) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "expandField", "FacetValueMap");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.expandField(facetValueMap == null ? null : facetValueMap.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+	/**
+     * Exports this component's data with client-side formatters applied, so is suitable for direct display to users.  This
+     * feature requires the Smart GWT server. <P> The export format will combine the column facet value titles, generating a
+     * single row of column headers at the top with titles such as "All Years - Budget" if Time and Scenario were column
+     * facets.  The row facet value titles for separate facets won't be combined, so that each row facet will have a separate
+     * column, with the facet titles at the top in the  "column header" row, and the row facet value titles below their
+     * corresponding facet title. Data values each get their own row and column position.
+     * @param settings contains configuration settings for the export, including: <ul> <li>facetSeparatorString (String) - if specified, the
+     * separator to use in favor     of {@link com.smartgwt.client.widgets.cube.CubeGrid#getExportFacetSeparatorString
+     * exportFacetSeparatorString} when combining titles from multiple     facet values.</li> </ul>
+     * @see com.smartgwt.client.widgets.grid.ListGrid#exportClientData
+     */
+    public native void exportClientData(Map settings) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "exportClientData", "Map");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportClientData(settings == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(settings));
+    }-*/;
+
+    /**
+     * @see CubeGrid#exportClientData
+     */
+    public void exportClientData(Map settings, DSRequest requestProperties){
+        exportClientData(settings, requestProperties, null);
+    }
+
+	/**
+     * Exports this component's data with client-side formatters applied, so is suitable for direct display to users.  This
+     * feature requires the Smart GWT server. <P> The export format will combine the column facet value titles, generating a
+     * single row of column headers at the top with titles such as "All Years - Budget" if Time and Scenario were column
+     * facets.  The row facet value titles for separate facets won't be combined, so that each row facet will have a separate
+     * column, with the facet titles at the top in the  "column header" row, and the row facet value titles below their
+     * corresponding facet title. Data values each get their own row and column position.
+     * @param settings contains configuration settings for the export, including: <ul> <li>facetSeparatorString (String) - if specified, the
+     * separator to use in favor     of {@link com.smartgwt.client.widgets.cube.CubeGrid#getExportFacetSeparatorString
+     * exportFacetSeparatorString} when combining titles from multiple     facet values.</li> </ul>
+     * @param requestProperties Request properties for the export.
+     * @param callback Optional callback.  If  you specify {@link com.smartgwt.client.data.DSRequest#getExportToClient exportToClient}: false
+     * in the request  properties, this callback will fire after export completes.  Otherwise the callback will  fire right
+     * before the download request is made to the server.
+     * @see com.smartgwt.client.widgets.grid.ListGrid#exportClientData
+     */
+    public native void exportClientData(Map settings, DSRequest requestProperties, RPCCallback callback) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "exportClientData", "Map,DSRequest,RPCCallback");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportClientData(settings == null ? null : @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(settings), requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()(), 
+			$entry( function(response, rawData, request) { 
+				if(callback!=null) callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(
+					@com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(response), 
+					rawData, 
+					@com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(request)
+				);
+			}));
+    }-*/;
+	
     /**
      * Add a facetAdded handler.
      * <p>
@@ -1671,27 +2405,93 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     }
 
     private native void setupFacetAddedEvent() /*-{
-        var obj = null;
+        var obj;
         var selfJ = this;
+        var hasDefaultHandler;
+        var facetAdded = $entry(function(){
+            var param = {"_this": this, "facetId" : arguments[0]};
+            var event = @com.smartgwt.client.widgets.cube.events.FacetAddedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            selfJ.@com.smartgwt.client.widgets.cube.CubeGrid::handleTearDownFacetAddedEvent()();
+            if (hasDefaultHandler) this.Super("facetAdded", arguments);
+        });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({facetAdded:$entry(function(){
-                        var param = {"facetId" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.cube.events.FacetAddedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            hasDefaultHandler = $wnd.isc.isA.Function(obj.getProperty("facetAdded"));
+            obj.addProperties({facetAdded:  facetAdded              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.facetAdded = $entry(function(){
-                   var param = {"facetId" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.cube.events.FacetAddedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+            hasDefaultHandler = $wnd.isc.isA.Function($wnd.isc[scClassName].getInstanceProperty("facetAdded"));
+            obj.facetAdded =  facetAdded             ;
         }
-   }-*/;
-            
+    }-*/;
+
+    private void handleTearDownFacetAddedEvent() {
+        if (getHandlerCount(com.smartgwt.client.widgets.cube.events.FacetAddedEvent.getType()) == 0) tearDownFacetAddedEvent();
+    }
+
+    private native void tearDownFacetAddedEvent() /*-{
+        var obj;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        }
+        if (obj && obj.hasOwnProperty("facetAdded")) delete obj.facetAdded;
+    }-*/;
+
     /**
+     * Add a facetContextClick handler.
+     * <p>
+     * StringMethod handler fired when the user right clicks on a facet label.
+     *
+     * @param handler the facetContextClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addFacetContextClickHandler(com.smartgwt.client.widgets.cube.events.FacetContextClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.cube.events.FacetContextClickEvent.getType()) == 0) setupFacetContextClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.cube.events.FacetContextClickEvent.getType());
+    }
+
+    private native void setupFacetContextClickEvent() /*-{
+        var obj;
+        var selfJ = this;
+        var hasDefaultHandler;
+        var facetContextClick = $entry(function(){
+            var param = {"_this": this, "facetId" : arguments[0]};
+            var event = @com.smartgwt.client.widgets.cube.events.FacetContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            selfJ.@com.smartgwt.client.widgets.cube.CubeGrid::handleTearDownFacetContextClickEvent()();
+            if (hasDefaultHandler) this.Super("facetContextClick", arguments);
+        });
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            hasDefaultHandler = $wnd.isc.isA.Function(obj.getProperty("facetContextClick"));
+            obj.addProperties({facetContextClick:  facetContextClick              });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+            hasDefaultHandler = $wnd.isc.isA.Function($wnd.isc[scClassName].getInstanceProperty("facetContextClick"));
+            obj.facetContextClick =  facetContextClick             ;
+        }
+    }-*/;
+
+    private void handleTearDownFacetContextClickEvent() {
+        if (getHandlerCount(com.smartgwt.client.widgets.cube.events.FacetContextClickEvent.getType()) == 0) tearDownFacetContextClickEvent();
+    }
+
+    private native void tearDownFacetContextClickEvent() /*-{
+        var obj;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        }
+        if (obj && obj.hasOwnProperty("facetContextClick")) delete obj.facetContextClick;
+    }-*/;
+
+	/**
      * Return whether any facet value for this facet is selected in headers.  If no facetId passed, return whether any facet
      * has a selection.  <br><i>methodType</i> tester
      * @param facetId Id for facet to test
@@ -1700,14 +2500,65 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
     public native Boolean facetHasSelection(String facetId) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "facetHasSelection", "String");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.facetHasSelection(facetId);
-        if(retVal == null || retVal === undefined) {
-            return null;
+        var ret = self.facetHasSelection(facetId);
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+    /**
+     * Add a facetLabelClick handler.
+     * <p>
+     * Method handler fired when the user clicks on a facet label.
+     *
+     * @param handler the facetLabelClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addFacetLabelClickHandler(com.smartgwt.client.widgets.cube.events.FacetLabelClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.cube.events.FacetLabelClickEvent.getType()) == 0) setupFacetLabelClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.cube.events.FacetLabelClickEvent.getType());
+    }
+
+    private native void setupFacetLabelClickEvent() /*-{
+        var obj;
+        var selfJ = this;
+        var hasDefaultHandler;
+        var facetLabelClick = $entry(function(){
+            var param = {"_this": this};
+            var event = @com.smartgwt.client.widgets.cube.events.FacetLabelClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            selfJ.@com.smartgwt.client.widgets.cube.CubeGrid::handleTearDownFacetLabelClickEvent()();
+            if (hasDefaultHandler) this.Super("facetLabelClick", arguments);
+        });
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            hasDefaultHandler = $wnd.isc.isA.Function(obj.getProperty("facetLabelClick"));
+            obj.addProperties({facetLabelClick:  facetLabelClick              });
         } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+            hasDefaultHandler = $wnd.isc.isA.Function($wnd.isc[scClassName].getInstanceProperty("facetLabelClick"));
+            obj.facetLabelClick =  facetLabelClick             ;
         }
     }-*/;
+
+    private void handleTearDownFacetLabelClickEvent() {
+        if (getHandlerCount(com.smartgwt.client.widgets.cube.events.FacetLabelClickEvent.getType()) == 0) tearDownFacetLabelClickEvent();
+    }
+
+    private native void tearDownFacetLabelClickEvent() /*-{
+        var obj;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        }
+        if (obj && obj.hasOwnProperty("facetLabelClick")) delete obj.facetLabelClick;
+    }-*/;
+
     /**
      * Add a facetMoved handler.
      * <p>
@@ -1722,25 +2573,42 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     }
 
     private native void setupFacetMovedEvent() /*-{
-        var obj = null;
+        var obj;
         var selfJ = this;
+        var hasDefaultHandler;
+        var facetMoved = $entry(function(){
+            var param = {"_this": this, "facetId" : arguments[0]};
+            var event = @com.smartgwt.client.widgets.cube.events.FacetMovedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            selfJ.@com.smartgwt.client.widgets.cube.CubeGrid::handleTearDownFacetMovedEvent()();
+            if (hasDefaultHandler) this.Super("facetMoved", arguments);
+        });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({facetMoved:$entry(function(){
-                        var param = {"facetId" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.cube.events.FacetMovedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            hasDefaultHandler = $wnd.isc.isA.Function(obj.getProperty("facetMoved"));
+            obj.addProperties({facetMoved:  facetMoved              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.facetMoved = $entry(function(){
-                   var param = {"facetId" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.cube.events.FacetMovedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+            hasDefaultHandler = $wnd.isc.isA.Function($wnd.isc[scClassName].getInstanceProperty("facetMoved"));
+            obj.facetMoved =  facetMoved             ;
         }
-   }-*/;
+    }-*/;
+
+    private void handleTearDownFacetMovedEvent() {
+        if (getHandlerCount(com.smartgwt.client.widgets.cube.events.FacetMovedEvent.getType()) == 0) tearDownFacetMovedEvent();
+    }
+
+    private native void tearDownFacetMovedEvent() /*-{
+        var obj;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        }
+        if (obj && obj.hasOwnProperty("facetMoved")) delete obj.facetMoved;
+    }-*/;
+
     /**
      * Add a facetRemoved handler.
      * <p>
@@ -1755,25 +2623,92 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     }
 
     private native void setupFacetRemovedEvent() /*-{
-        var obj = null;
+        var obj;
         var selfJ = this;
+        var hasDefaultHandler;
+        var facetRemoved = $entry(function(){
+            var param = {"_this": this, "facetId" : arguments[0]};
+            var event = @com.smartgwt.client.widgets.cube.events.FacetRemovedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            selfJ.@com.smartgwt.client.widgets.cube.CubeGrid::handleTearDownFacetRemovedEvent()();
+            if (hasDefaultHandler) this.Super("facetRemoved", arguments);
+        });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({facetRemoved:$entry(function(){
-                        var param = {"facetId" : arguments[0]};
-                        var event = @com.smartgwt.client.widgets.cube.events.FacetRemovedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            hasDefaultHandler = $wnd.isc.isA.Function(obj.getProperty("facetRemoved"));
+            obj.addProperties({facetRemoved:  facetRemoved              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.facetRemoved = $entry(function(){
-                   var param = {"facetId" : arguments[0]};
-                   var event = @com.smartgwt.client.widgets.cube.events.FacetRemovedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+            hasDefaultHandler = $wnd.isc.isA.Function($wnd.isc[scClassName].getInstanceProperty("facetRemoved"));
+            obj.facetRemoved =  facetRemoved             ;
         }
-   }-*/;
+    }-*/;
+
+    private void handleTearDownFacetRemovedEvent() {
+        if (getHandlerCount(com.smartgwt.client.widgets.cube.events.FacetRemovedEvent.getType()) == 0) tearDownFacetRemovedEvent();
+    }
+
+    private native void tearDownFacetRemovedEvent() /*-{
+        var obj;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        }
+        if (obj && obj.hasOwnProperty("facetRemoved")) delete obj.facetRemoved;
+    }-*/;
+
+    /**
+     * Add a facetValueContextClick handler.
+     * <p>
+     * StringMethod handler fired when context click occurs over a facetValue button in a header.
+     *
+     * @param handler the facetValueContextClick handler
+     * @return {@link HandlerRegistration} used to remove this handler
+     */
+    public HandlerRegistration addFacetValueContextClickHandler(com.smartgwt.client.widgets.cube.events.FacetValueContextClickHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.cube.events.FacetValueContextClickEvent.getType()) == 0) setupFacetValueContextClickEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.cube.events.FacetValueContextClickEvent.getType());
+    }
+
+    private native void setupFacetValueContextClickEvent() /*-{
+        var obj;
+        var selfJ = this;
+        var hasDefaultHandler;
+        var facetValueContextClick = $entry(function(){
+            var param = {"_this": this, "facetValues" : arguments[0]};
+            var event = @com.smartgwt.client.widgets.cube.events.FacetValueContextClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            selfJ.@com.smartgwt.client.widgets.cube.CubeGrid::handleTearDownFacetValueContextClickEvent()();
+            if (hasDefaultHandler) this.Super("facetValueContextClick", arguments);
+        });
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            hasDefaultHandler = $wnd.isc.isA.Function(obj.getProperty("facetValueContextClick"));
+            obj.addProperties({facetValueContextClick:  facetValueContextClick              });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+            hasDefaultHandler = $wnd.isc.isA.Function($wnd.isc[scClassName].getInstanceProperty("facetValueContextClick"));
+            obj.facetValueContextClick =  facetValueContextClick             ;
+        }
+    }-*/;
+
+    private void handleTearDownFacetValueContextClickEvent() {
+        if (getHandlerCount(com.smartgwt.client.widgets.cube.events.FacetValueContextClickEvent.getType()) == 0) tearDownFacetValueContextClickEvent();
+    }
+
+    private native void tearDownFacetValueContextClickEvent() /*-{
+        var obj;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        }
+        if (obj && obj.hasOwnProperty("facetValueContextClick")) delete obj.facetValueContextClick;
+    }-*/;
+
     /**
      * Add a facetValueSelectionChanged handler.
      * <p>
@@ -1788,25 +2723,42 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     }
 
     private native void setupFacetValueSelectionChangedEvent() /*-{
-        var obj = null;
+        var obj;
         var selfJ = this;
+        var hasDefaultHandler;
+        var facetValueSelectionChanged = $entry(function(){
+            var param = {"_this": this, "facetValues" : arguments[0], "newState" : arguments[1]};
+            var event = @com.smartgwt.client.widgets.cube.events.FacetValueSelectionChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            selfJ.@com.smartgwt.client.widgets.cube.CubeGrid::handleTearDownFacetValueSelectionChangedEvent()();
+            if (hasDefaultHandler) this.Super("facetValueSelectionChanged", arguments);
+        });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({facetValueSelectionChanged:$entry(function(){
-                        var param = {"facetValues" : arguments[0], "newState" : arguments[1]};
-                        var event = @com.smartgwt.client.widgets.cube.events.FacetValueSelectionChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            hasDefaultHandler = $wnd.isc.isA.Function(obj.getProperty("facetValueSelectionChanged"));
+            obj.addProperties({facetValueSelectionChanged:  facetValueSelectionChanged              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.facetValueSelectionChanged = $entry(function(){
-                   var param = {"facetValues" : arguments[0], "newState" : arguments[1]};
-                   var event = @com.smartgwt.client.widgets.cube.events.FacetValueSelectionChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+            hasDefaultHandler = $wnd.isc.isA.Function($wnd.isc[scClassName].getInstanceProperty("facetValueSelectionChanged"));
+            obj.facetValueSelectionChanged =  facetValueSelectionChanged             ;
         }
-   }-*/;
+    }-*/;
+
+    private void handleTearDownFacetValueSelectionChangedEvent() {
+        if (getHandlerCount(com.smartgwt.client.widgets.cube.events.FacetValueSelectionChangedEvent.getType()) == 0) tearDownFacetValueSelectionChangedEvent();
+    }
+
+    private native void tearDownFacetValueSelectionChangedEvent() /*-{
+        var obj;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        }
+        if (obj && obj.hasOwnProperty("facetValueSelectionChanged")) delete obj.facetValueSelectionChanged;
+    }-*/;
+
     /**
      * Add a fixedFacetValueChanged handler.
      * <p>
@@ -1821,53 +2773,76 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     }
 
     private native void setupFixedFacetValueChangedEvent() /*-{
-        var obj = null;
+        var obj;
         var selfJ = this;
+        var hasDefaultHandler;
+        var fixedFacetValueChanged = $entry(function(){
+            var param = {"_this": this, "facetId" : arguments[0], "facetValueId" : arguments[1]};
+            var event = @com.smartgwt.client.widgets.cube.events.FixedFacetValueChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            selfJ.@com.smartgwt.client.widgets.cube.CubeGrid::handleTearDownFixedFacetValueChangedEvent()();
+            if (hasDefaultHandler) this.Super("fixedFacetValueChanged", arguments);
+        });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({fixedFacetValueChanged:$entry(function(){
-                        var param = {"facetId" : arguments[0], "facetValueId" : arguments[1]};
-                        var event = @com.smartgwt.client.widgets.cube.events.FixedFacetValueChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            hasDefaultHandler = $wnd.isc.isA.Function(obj.getProperty("fixedFacetValueChanged"));
+            obj.addProperties({fixedFacetValueChanged:  fixedFacetValueChanged              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.fixedFacetValueChanged = $entry(function(){
-                   var param = {"facetId" : arguments[0], "facetValueId" : arguments[1]};
-                   var event = @com.smartgwt.client.widgets.cube.events.FixedFacetValueChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+            hasDefaultHandler = $wnd.isc.isA.Function($wnd.isc[scClassName].getInstanceProperty("fixedFacetValueChanged"));
+            obj.fixedFacetValueChanged =  fixedFacetValueChanged             ;
         }
-   }-*/;
-            
-    /**
+    }-*/;
+
+    private void handleTearDownFixedFacetValueChangedEvent() {
+        if (getHandlerCount(com.smartgwt.client.widgets.cube.events.FixedFacetValueChangedEvent.getType()) == 0) tearDownFixedFacetValueChangedEvent();
+    }
+
+    private native void tearDownFixedFacetValueChangedEvent() /*-{
+        var obj;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        }
+        if (obj && obj.hasOwnProperty("fixedFacetValueChanged")) delete obj.fixedFacetValueChanged;
+    }-*/;
+
+	/**
      * Given a record in this grid, this method returns the colNum in which the record is displayed.
      * @param cellRecord record to find coordinates for
      *
      * @return Column number for the record. Returns -1 if the record is not found.
      */
     public native int getCellColumn(CellRecord cellRecord) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getCellColumn", "CellRecord");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getCellColumn(cellRecord.@com.smartgwt.client.core.DataClass::getJsObj()());
+        var ret = self.getCellColumn(cellRecord.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return ret;
     }-*/;
-            
-    /**
-     * Given a cell coordinate within this CubeGrid return a {@link com.smartgwt.client.widgets.cube.FacetValueMap
-     * FacetValueMap} indicating the facet values for the cell.
+
+	/**
+     * Given a cell coordinate within this CubeGrid return a {@link com.smartgwt.client.widgets.cube.FacetValueMap} indicating
+     * the facet values for the cell.
      * @param rowNum row index of the cell
      * @param colNum column index of the cell
      *
      * @return facet values for the specified cell. Returns null if the specified cell    is not present in the grid.
      */
     public native FacetValueMap getCellFacetValues(int rowNum, int colNum) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getCellFacetValues", "int,int");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getCellFacetValues(rowNum, colNum);
-        if(ret == null || ret === undefined) return null;
-        return @com.smartgwt.client.widgets.cube.FacetValueMap::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.cube.FacetValueMap::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-            
-    /**
+
+	/**
      * Return the pointer to a particular record by record and column number.<br>
      * @param rowNum row index of record to return.
      * @param colNum column index of record to return.
@@ -1877,42 +2852,66 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @see com.smartgwt.client.widgets.grid.ListGrid#getEditedRecord
      */
     public native ListGridRecord getCellRecord(int rowNum, int colNum) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getCellRecord", "int,int");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getCellRecord(rowNum, colNum);
-        if(ret == null || ret === undefined) return null;
-        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.grid.ListGridRecord::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
-        return retVal;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-            
-    /**
+
+	/**
      * Given a record in this grid, this method returns the rowNum on which the record is displayed.
      * @param cellRecord record to find coordinates for
      *
      * @return Row number for the record. Returns -1 if the record is not found.
      */
     public native int getCellRow(CellRecord cellRecord) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getCellRow", "CellRecord");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getCellRow(cellRecord.@com.smartgwt.client.core.DataClass::getJsObj()());
+        var ret = self.getCellRow(cellRecord.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return ret;
     }-*/;
-            
-    /**
-     * Return a {@link com.smartgwt.client.widgets.cube.FacetValueMap FacetValueMap} indicating the facet values for a specific
-     *  column in the grid.
+
+	/**
+     * Return a {@link com.smartgwt.client.widgets.cube.FacetValueMap} indicating the facet values for a specific  column in
+     * the grid.
      * @param colNum index of the column
      *
      * @return facet values for the specified column. Returns null if the specified       column is not present in the grid.
      */
     public native FacetValueMap getColumnFacetValues(int colNum) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getColumnFacetValues", "int");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getColumnFacetValues(colNum);
-        if(ret == null || ret === undefined) return null;
-        return @com.smartgwt.client.widgets.cube.FacetValueMap::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.cube.FacetValueMap::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-            
-    /**
+
+	/**
+     * Returns a default set of items, which can be updated/modified, and then assigned to  {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getFacetValueContextItems facetValueContextItems} to be used in the context
+     * menu of the appropriate   header button.
+     * @param facetValues FacetValueMap for the appropriate header button
+     *
+     * @return Return standard context menu items                               for these facet values.
+     */
+    public native MenuItem[] getDefaultFacetValueContextItems(FacetValueMap facetValues) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getDefaultFacetValueContextItems", "FacetValueMap");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getDefaultFacetValueContextItems(facetValues == null ? null : facetValues.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.ConvertTo::arrayOfMenuItem(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
      * Returns the current temporary locally stored edit value for a cell being edited. Note this is the {@link
      * com.smartgwt.client.widgets.cube.CubeGrid#getValueProperty valueProperty} that will be saved for the cell in question.
      * @param rowNum index of the row for which the editValue should be returned
@@ -1922,23 +2921,30 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
     public native Object getEditValue(int rowNum, int colNum) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getEditValue", "int,int");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getEditValue(rowNum, colNum);
         return $wnd.SmartGWT.convertToJavaType(ret);
     }-*/;
-            
-    /**
+
+	/**
      * Returns the column number of the most recent mouse event.
      *
      * @return column number, or -2 if beyond last drawn column
      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
     public native int getEventColumn() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getEventColumn", "");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getEventColumn();
+        var ret = self.getEventColumn();
+        return ret;
     }-*/;
 
-    /**
+	/**
      * Returns the column number of the most recent mouse event.
      * @param x optional x-coordinate to obtain column number for, in lieu of the x                        coordinate of the last mouse
      * event
@@ -1946,35 +2952,47 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @return column number, or -2 if beyond last drawn column
      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
-    public native int getEventColumn(int x) /*-{
+    public native int getEventColumn(Integer x) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getEventColumn", "Integer");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getEventColumn(x);
+        var ret = self.getEventColumn(x == null ? null : x.@java.lang.Integer::intValue()());
+        return ret;
     }-*/;
-            
-    /**
+	
+	/**
      * Returns the row number of the most recent mouse event.
      *
      * @return row number, or -2 if beyond last drawn row
      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
     public native int getEventRow() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getEventRow", "");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getEventRow();
+        var ret = self.getEventRow();
+        return ret;
     }-*/;
 
-    /**
+	/**
      * Returns the row number of the most recent mouse event.
      * @param y optional y-coordinate to obtain row number, in lieu of the y                        coordinate of the last mouse event
      *
      * @return row number, or -2 if beyond last drawn row
      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
-    public native int getEventRow(int y) /*-{
+    public native int getEventRow(Integer y) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getEventRow", "Integer");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getEventRow(y);
+        var ret = self.getEventRow(y == null ? null : y.@java.lang.Integer::intValue()());
+        return ret;
     }-*/;
-            
-    /**
+	
+	/**
      * Get a facet definition by facetId.  Constant time.
      * @param facetId the id of the facet to retrieve
      *
@@ -1982,17 +3000,32 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @see com.smartgwt.client.widgets.cube.Facet
      */
     public native Facet getFacet(String facetId) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getFacet", "String");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getFacet(facetId);
-        if(ret == null || ret === undefined) return null;
-        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.cube.Facet::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
-        return retVal;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.cube.Facet::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-            
-    /**
+
+	/**
+     * Return the list of facets that have any selection in their headers.  <br><i>methodType</i> getter
+     *
+     * @return list of facets that have any selection in their headers
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
+     */
+    public native String[] getFacetsHavingSelection() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getFacetsHavingSelection", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getFacetsHavingSelection();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.ConvertTo::arrayOfString(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
      * Get a facet value definition by facetId and facetValueId.  Constant time.
      * @param facetId the id of the facet to retrieve
      * @param facetValueId the id of the facet value to retrieve
@@ -2001,17 +3034,16 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @see com.smartgwt.client.widgets.cube.FacetValue
      */
     public native FacetValue getFacetValue(String facetId, String facetValueId) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getFacetValue", "String,String");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getFacetValue(facetId, facetValueId);
-        if(ret == null || ret === undefined) return null;
-        var retVal = @com.smartgwt.client.core.RefDataClass::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        if(retVal == null) {
-            retVal = @com.smartgwt.client.widgets.cube.FacetValue::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-        }
-        return retVal;
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.cube.FacetValue::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-            
-    /**
+
+	/**
      * Get the index of the first column in the grid that matches the specified FacetValueMap. <P> The facetValues passed in
      * should contain values for at least one column facet.  It may contain properties other than column facets, which will be
      * ignored.  If values are  sparse (values not specified for every column facet), the first column matching the specified
@@ -2021,11 +3053,15 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @return index of first column in the grid that matches the facet values passed in,                   or -1 if not found
      */
     public native int getFacetValuesColumn(FacetValueMap facetValues) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getFacetValuesColumn", "FacetValueMap");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getFacetValuesColumn(facetValues.@com.smartgwt.client.core.DataClass::getJsObj()());
+        var ret = self.getFacetValuesColumn(facetValues == null ? null : facetValues.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return ret;
     }-*/;
-            
-    /**
+
+	/**
      * Get the index of the first row in the grid that matches the specified FacetValueMap. <P> The facetValues passed in
      * should contain values for at least one row facet. It may contain properties other than row facets, which will be
      * ignored.  If values are  sparse (values not specified for every row facet), the first row matching the specified facet
@@ -2035,41 +3071,132 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @return index of first row in the grid that matches the facet values passed in, or                   -1 if not found
      */
     public native int getFacetValuesRow(FacetValueMap facetValues) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getFacetValuesRow", "FacetValueMap");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getFacetValuesRow(facetValues.@com.smartgwt.client.core.DataClass::getJsObj()());
+        var ret = self.getFacetValuesRow(facetValues == null ? null : facetValues.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return ret;
     }-*/;
-            
-    /**
-     * Return a {@link com.smartgwt.client.widgets.cube.FacetValueMap FacetValueMap} indicating the facet values for a specific
-     *  row in the grid.
+
+	/**
+     * Return a {@link com.smartgwt.client.widgets.cube.FacetValueMap} indicating the facet values for a specific  row in the
+     * grid.
      * @param rowNum index of the row
      *
      * @return facet values for the specified row. Returns null if the specified row    is not present in the grid.
      */
     public native FacetValueMap getRowFacetValues(int rowNum) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getRowFacetValues", "int");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getRowFacetValues(rowNum);
-        if(ret == null || ret === undefined) return null;
-        return @com.smartgwt.client.widgets.cube.FacetValueMap::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.cube.FacetValueMap::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
-            
-    /**
+
+	/**
+     * Returns an array of the IDs of all selected cell records.  <br><i>methodType</i> getter
+     *
+     * @return array of the selected cell IDs
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
+     */
+    public native String[] getSelectedCellIds() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getSelectedCellIds", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getSelectedCellIds();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.ConvertTo::arrayOfString(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * Returns an array of the selected cell records.  <br><i>methodType</i> getter
+     *
+     * @return array of the selected cell records
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
+     */
+    public native CellRecord[] getSelectedCells() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getSelectedCells", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getSelectedCells();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.ConvertTo::arrayOfCellRecord(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * Returns an array of facetValues objects indicating the headers that are selected in the headerBar for this facet.  If
+     * facetId is not passed, returns selection for all facets.
+     *
+     * @return selected facetValues
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
+     */
+    public native FacetValueMap[] getSelectedFacetValues() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getSelectedFacetValues", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getSelectedFacetValues();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.ConvertTo::arrayOfFacetValueMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * Returns an array of facetValues objects indicating the headers that are selected in the headerBar for this facet.  If
+     * facetId is not passed, returns selection for all facets.
+     * @param facetId id for facet for which we are getting selected facetValues
+     *
+     * @return selected facetValues
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
+     */
+    public native FacetValueMap[] getSelectedFacetValues(String facetId) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getSelectedFacetValues", "String");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getSelectedFacetValues(facetId);
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.ConvertTo::arrayOfFacetValueMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+	
+	/**
+     * <b>Note</b>: This is a ListGrid feature which is inapplicable on this class.
+     *
+     * @return current view state for the grid.
+     * See {@link com.smartgwt.client.docs.ListGridViewState ListGridViewState}
+     * @see com.smartgwt.client.docs.ListGridViewState
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setViewState
+     */
+    public native String getViewState() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getViewState", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getViewState();
+        return ret;
+    }-*/;
+
+	/**
      * Determines whether any cells in this cubeGrid have been edited but not yet saved to the underlying data set.
      *
      * @return true if any record in the grid has been edited but not yet saved
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
     public native Boolean hasChanges() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.hasChanges();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "hasChanges", "");
         }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.hasChanges();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
-            
-    /**
+
+	/**
      * Apply a hilite to all cells corresponding to a facetValue.      <br><i>methodType</i> action
      * @param facetID facet ID
      * @param facetValueID facet value ID
@@ -2079,16 +3206,16 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
     public native Boolean hiliteFacetValue(String facetID, String facetValueID, String hiliteID) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.hiliteFacetValue(facetID, facetValueID, hiliteID);
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "hiliteFacetValue", "String,String,String");
         }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.hiliteFacetValue(facetID, facetValueID, hiliteID);
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
-            
-    /**
+
+	/**
      * If this cubeGrid can be edited, this method will return true if the record passed in has been edited, but the edits have
      * not yet been saved to the CubeGrid's data object.
      * @param rowNum row index of record to check for changes
@@ -2098,154 +3225,294 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
     public native Boolean recordHasChanges(int rowNum, int colNum) /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var retVal =self.recordHasChanges(rowNum, colNum);
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "recordHasChanges", "int,int");
         }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.recordHasChanges(rowNum, colNum);
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
-            
-    /**
+
+	/**
      * Remove a facet from the current view, using a fixed value from that facet.  For example, remove the "months" facet from
      * the view, collapsing to just January, or total for all months.
-     * @param facetId facetId to remove
+     * @param facetId facetId to remove.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#addFacet
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#getFixedFacetValues
+     * @see com.smartgwt.client.docs.Identifier Identifier
      */
     public native void removeFacet(String facetId) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "removeFacet", "String");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeFacet(facetId);
     }-*/;
 
-    /**
+	/**
      * Remove a facet from the current view, using a fixed value from that facet.  For example, remove the "months" facet from
      * the view, collapsing to just January, or total for all months.
-     * @param facetId facetId to remove
-     * @param fixedFacetValueId New fixed value for the facet, to be added to cubeGrid.fixedFacetValues.  Default is the     rollup value for the facet.
+     * @param facetId facetId to remove.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
+     * @param fixedFacetValueId New fixed value for the facet, to be added to                          {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getFixedFacetValues fixedFacetValues}.  Default is the rollup value for the
+     * facet.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
      * @see com.smartgwt.client.widgets.cube.CubeGrid#addFacet
      * @see com.smartgwt.client.widgets.cube.CubeGrid#getFixedFacetValues
      */
     public native void removeFacet(String facetId, String fixedFacetValueId) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "removeFacet", "String,String");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.removeFacet(facetId, fixedFacetValueId);
     }-*/;
-            
-    /**
+	
+	/**
      * Resizes all columns for the provided facetValueId, which must be a facetValueId from the innermost column facet.
-     * @param facetValueId facetValueId of columns to be resized
+     * @param facetValueId facetValueId of columns to be resized.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
      * @param newWidth column's new width
      */
     public native void resizeFacetValue(String facetValueId, int newWidth) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "resizeFacetValue", "String,int");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.resizeFacetValue(facetValueId, newWidth);
     }-*/;
-            
-    /**
-     * Select all cells.      <br><i>methodType</i> action
+
+	/**
+     * Select all cells.
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
     public native void selectAllCells() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "selectAllCells", "");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.selectAllCells();
     }-*/;
-            
-    /**
+
+	/**
      * Select/deselect all headers in a headerBar (specified by facetId) or all headerBars (if no facetId). 
      * <br><i>methodType</i> action
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
     public native void selectAllFacetValues() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "selectAllFacetValues", "");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.selectAllFacetValues();
     }-*/;
 
     /**
+     * @see CubeGrid#selectAllFacetValues
+     */
+    public void selectAllFacetValues(String facetId){
+        selectAllFacetValues(facetId, null);
+    }
+
+	/**
      * Select/deselect all headers in a headerBar (specified by facetId) or all headerBars (if no facetId). 
      * <br><i>methodType</i> action
      * @param facetId ID of facet - if null, selects all headerbars' headers
      * @param newState new selection state - if null defaults to true
      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
-    public native void selectAllFacetValues(String facetId, boolean newState) /*-{
+    public native void selectAllFacetValues(String facetId, Boolean newState) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "selectAllFacetValues", "String,Boolean");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.selectAllFacetValues(facetId, newState);
+        self.selectAllFacetValues(facetId, newState == null ? null : newState.@java.lang.Boolean::booleanValue()());
     }-*/;
-            
-    /**
+	
+	/**
+     * Select/deselect cells that match a {@link com.smartgwt.client.widgets.cube.FacetValueMap}. Also supports an explicit
+     * list of CellRecords or cell IDs.
+     * @param cellList cells to select
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
+     */
+    public native void selectCells(CellRecord[] cellList) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "selectCells", "CellRecord[]");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.selectCells(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(cellList));
+    }-*/;
+
+	/**
+     * Select/deselect cells that match a {@link com.smartgwt.client.widgets.cube.FacetValueMap}. Also supports an explicit
+     * list of CellRecords or cell IDs.
+     * @param cellList cells to select
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
+     */
+    public native void selectCells(FacetValueMap cellList) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "selectCells", "FacetValueMap");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.selectCells(cellList == null ? null : cellList.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+	/**
+     * Select/deselect cells that match a {@link com.smartgwt.client.widgets.cube.FacetValueMap}. Also supports an explicit
+     * list of CellRecords or cell IDs.
+     * @param cellList cells to select
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
+     */
+    public native void selectCells(String... cellList) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "selectCells", "String...");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.selectCells(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(cellList));
+    }-*/;
+
+	/**
+     * Select/deselect cells that match a {@link com.smartgwt.client.widgets.cube.FacetValueMap}. Also supports an explicit
+     * list of CellRecords or cell IDs.
+     * @param cellList cells to select
+     * @param newState new selection state (if null, defaults to true)
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
+     */
+    public native void selectCells(CellRecord[] cellList, boolean newState) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "selectCells", "CellRecord[],boolean");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.selectCells(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(cellList), newState);
+    }-*/;
+	
+	/**
      * Select/deselect the header for a given facet value.  <br><i>methodType</i> action
      * @param facetId ID of facet
      * @param facetValueId ID of facetValue to select
+     * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
     public native void selectFacetValue(String facetId, String facetValueId) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "selectFacetValue", "String,String");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.selectFacetValue(facetId, facetValueId);
     }-*/;
 
-    /**
+	/**
      * Select/deselect the header for a given facet value.  <br><i>methodType</i> action
      * @param facetId ID of facet
      * @param facetValueId ID of facetValue to select
      * @param newState new selection state - if null defaults to true
      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
      */
-    public native void selectFacetValue(String facetId, String facetValueId, boolean newState) /*-{
+    public native void selectFacetValue(String facetId, String facetValueId, Boolean newState) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "selectFacetValue", "String,String,Boolean");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.selectFacetValue(facetId, facetValueId, newState);
+        self.selectFacetValue(facetId, facetValueId, newState == null ? null : newState.@java.lang.Boolean::booleanValue()());
     }-*/;
-            
-    /**
+	
+	/**
      * Set the edit value for some cell in the cube grid.<p> Note that cubeGrids display one record per cell - the value passed
      * in should be the  desired edit value for the {@link com.smartgwt.client.widgets.cube.CubeGrid#getValueProperty
      * valueProperty} of the record.
      * @param rowNum Row number
      * @param colNum Column number
      * @param value New value for the record
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
      */
     public native void setEditValue(int rowNum, int colNum, Object value) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setEditValue", "int,int,Object");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setEditValue(rowNum, colNum, value);
     }-*/;
-            
-    /**
+
+	/**
      * Set the title of a facet (appears in facet label).
-     * @param facetId facet to update
+     * @param facetId facet to update.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
      * @param newTitle title for the facet
      */
     public native void setFacetTitle(String facetId, String newTitle) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setFacetTitle", "String,String");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setFacetTitle(facetId, newTitle);
     }-*/;
-            
-    /**
+
+	/**
      * Set the title for a facet value.
-     * @param facetId facet to update
-     * @param facetValueId facetValue to update
+     * @param facetId facet to update.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
+     * @param facetValueId facetValue to update.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
      * @param newTitle title for the facet
      */
     public native void setFacetValueTitle(String facetId, String facetValueId, String newTitle) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setFacetValueTitle", "String,String,String");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setFacetValueTitle(facetId, facetValueId, newTitle);
     }-*/;
-            
-    /**
+
+	/**
      * Set the align for the title for a facet value.
-     * @param facetId facet to update
-     * @param facetValueId facetValue to update
+     * @param facetId facet to update.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
+     * @param facetValueId facetValue to update.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
      * @param align new alignment for facet value title
      */
     public native void setFacetValueTitleAlign(String facetId, String facetValueId, Alignment align) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setFacetValueTitleAlign", "String,String,Alignment");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setFacetValueTitleAlign(facetId, facetValueId, align.@com.smartgwt.client.types.Alignment::getValue()());
     }-*/;
-            
-    /**
+
+	/**
      * Modify fixedFacetValues for this cubeGrid.
-     * @param facetId facetId
-     * @param fixedFacetValueId fixedFacetValue     New fixed value for the facet, to be added to cubeGrid.fixedFacetValues.  Default is the     rollup
-     * value for the facet.
+     * @param facetId facetId.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
+     * @param fixedFacetValueId New fixed value for the facet, to be added to                          {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getFixedFacetValues fixedFacetValues}.  Default is the rollup value for the
+     * facet.
+     * See {@link com.smartgwt.client.docs.Identifier Identifier}
      */
     public native void setFixedFacetValue(String facetId, String fixedFacetValueId) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setFixedFacetValue", "String,String");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setFixedFacetValue(facetId, fixedFacetValueId);
     }-*/;
+
+	/**
+     * <b>Note</b>: This is a ListGrid feature which is inapplicable on this class.
+     * @param viewState Object describing the desired view state for the grid.
+     * See {@link com.smartgwt.client.docs.ListGridViewState ListGridViewState}
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getViewState
+     * @see com.smartgwt.client.docs.ListGridViewState ListGridViewState
+     */
+    public native void setViewState(String viewState) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setViewState", "String");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setViewState(viewState);
+    }-*/;
+
     /**
      * Add a sortByFacetId handler.
      * <p>
@@ -2260,25 +3527,42 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     }
 
     private native void setupSortByFacetIdEvent() /*-{
-        var obj = null;
+        var obj;
         var selfJ = this;
+        var hasDefaultHandler;
+        var sortByFacetId = $entry(function(){
+            var param = {"_this": this, "facetId" : arguments[0], "sortDirection" : arguments[1]};
+            var event = @com.smartgwt.client.widgets.cube.events.SortByFacetIdEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            selfJ.@com.smartgwt.client.widgets.cube.CubeGrid::handleTearDownSortByFacetIdEvent()();
+            if (hasDefaultHandler) this.Super("sortByFacetId", arguments);
+        });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({sortByFacetId:$entry(function(){
-                        var param = {"facetId" : arguments[0], "sortDirection" : arguments[1]};
-                        var event = @com.smartgwt.client.widgets.cube.events.SortByFacetIdEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            hasDefaultHandler = $wnd.isc.isA.Function(obj.getProperty("sortByFacetId"));
+            obj.addProperties({sortByFacetId:  sortByFacetId              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.sortByFacetId = $entry(function(){
-                   var param = {"facetId" : arguments[0], "sortDirection" : arguments[1]};
-                   var event = @com.smartgwt.client.widgets.cube.events.SortByFacetIdEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+            hasDefaultHandler = $wnd.isc.isA.Function($wnd.isc[scClassName].getInstanceProperty("sortByFacetId"));
+            obj.sortByFacetId =  sortByFacetId             ;
         }
-   }-*/;
+    }-*/;
+
+    private void handleTearDownSortByFacetIdEvent() {
+        if (getHandlerCount(com.smartgwt.client.widgets.cube.events.SortByFacetIdEvent.getType()) == 0) tearDownSortByFacetIdEvent();
+    }
+
+    private native void tearDownSortByFacetIdEvent() /*-{
+        var obj;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        }
+        if (obj && obj.hasOwnProperty("sortByFacetId")) delete obj.sortByFacetId;
+    }-*/;
+
     /**
      * Add a sortByFacetValues handler.
      * <p>
@@ -2293,111 +3577,133 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     }
 
     private native void setupSortByFacetValuesEvent() /*-{
-        var obj = null;
+        var obj;
         var selfJ = this;
+        var hasDefaultHandler;
+        var sortByFacetValues = $entry(function(){
+            var param = {"_this": this, "facetValues" : arguments[0], "sortDirection" : arguments[1]};
+            var event = @com.smartgwt.client.widgets.cube.events.SortByFacetValuesEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            selfJ.@com.smartgwt.client.widgets.cube.CubeGrid::handleTearDownSortByFacetValuesEvent()();
+            if (hasDefaultHandler) this.Super("sortByFacetValues", arguments);
+        });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({sortByFacetValues:$entry(function(){
-                        var param = {"facetValues" : arguments[0], "sortDirection" : arguments[1]};
-                        var event = @com.smartgwt.client.widgets.cube.events.SortByFacetValuesEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            hasDefaultHandler = $wnd.isc.isA.Function(obj.getProperty("sortByFacetValues"));
+            obj.addProperties({sortByFacetValues:  sortByFacetValues              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.sortByFacetValues = $entry(function(){
-                   var param = {"facetValues" : arguments[0], "sortDirection" : arguments[1]};
-                   var event = @com.smartgwt.client.widgets.cube.events.SortByFacetValuesEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+            hasDefaultHandler = $wnd.isc.isA.Function($wnd.isc[scClassName].getInstanceProperty("sortByFacetValues"));
+            obj.sortByFacetValues =  sortByFacetValues             ;
         }
-   }-*/;
-
-    // ********************* Static Methods ***********************
-    /**
-     * Class level method to set the default properties of this class. If set, then all subsequent instances of this
-     * class will automatically have the default properties that were set when this method was called. This is a powerful
-     * feature that eliminates the need for users to create a separate hierarchy of subclasses that only alter the default
-     * properties of this class. Can also be used for skinning / styling purposes.
-     * <P>
-     * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
-     * underlying class (including those automatically generated in JavaScript). 
-     * This method should not be used to apply standard EventHandlers or override methods for
-     * a class - use a custom subclass instead.
-     *
-     * @param cubeGridProperties properties that should be used as new defaults when instances of this class are created
-     */
-    public static native void setDefaultProperties(CubeGrid cubeGridProperties) /*-{
-    	var properties = $wnd.isc.addProperties({},cubeGridProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()());
-    	delete properties.ID;
-        $wnd.isc.CubeGrid.addProperties(properties);
     }-*/;
-        
-    // ***********************************************************        
 
+    private void handleTearDownSortByFacetValuesEvent() {
+        if (getHandlerCount(com.smartgwt.client.widgets.cube.events.SortByFacetValuesEvent.getType()) == 0) tearDownSortByFacetValuesEvent();
+    }
+
+    private native void tearDownSortByFacetValuesEvent() /*-{
+        var obj;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        }
+        if (obj && obj.hasOwnProperty("sortByFacetValues")) delete obj.sortByFacetValues;
+    }-*/;
 
 	/**
-     * An array of "cellRecords", each of which represents data for one cell of the body area.
+     * Toggles the open state of the specified field.  No-ops if it's not showing.
+     * @param facetValueMap field specified as a facetValueMap
      *
-     * @param data data Default value is null
-     * @see com.smartgwt.client.widgets.cube.CubeGrid#setFixedFacetValues
+     * @return whether specified field's open state was toggled
      */
-    public void setData(CellRecord[] data) {
-        setAttribute("data", data, true);
-    }
+    public native Boolean toggleFieldOpenState(FacetValueMap facetValueMap) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "toggleFieldOpenState", "FacetValueMap");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.toggleFieldOpenState(facetValueMap == null ? null : facetValueMap.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+
+    // ********************* Static Methods ***********************
+
+    /** 
+     * Class level method to set the default properties of this class.  If set, then all
+     * existing and subsequently created instances of this class will automatically have
+     * default properties corresponding to
+     * the properties set on the SmartGWT class instance passed to this function before its
+     * underlying SmartClient JS object was created.
+     * This is a powerful feature that eliminates the need for users to create a separate
+     * hierarchy of subclasses that only alter the default properties of this class. Can also
+     * be used for skinning / styling purposes.  <P> <b>Note:</b> This method is intended for
+     * setting default attributes only and will affect all instances of the underlying class
+     * (including those automatically generated in JavaScript).  This method should not be used
+     * to apply standard EventHandlers or override methods for a class - use a custom subclass
+     * instead.  Calling this method after instances have been created can result in undefined
+     * behavior, since it bypasses any setters and a class instance may have already examined 
+     * a particular property and not be expecting any changes through this route.
+     *
+     * @param cubeGridProperties properties that should be used as new defaults when instances of this class are created
+     * @see com.smartgwt.client.docs.SGWTProperties
+     */
+    public static native void setDefaultProperties(CubeGrid cubeGridProperties) /*-{
+        if (cubeGridProperties.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPreConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/Class;)(CubeGrid.@java.lang.Object::getClass()(), "setDefaultProperties", cubeGridProperties.@java.lang.Object::getClass()());
+        }
+        cubeGridProperties.@com.smartgwt.client.widgets.BaseWidget::setConfigOnly(Z)(true);
+    	var properties = cubeGridProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        properties = @com.smartgwt.client.util.JSOHelper::cleanProperties(Lcom/google/gwt/core/client/JavaScriptObject;Z)(properties,true);
+        $wnd.isc.CubeGrid.addProperties(properties);
+    }-*/;
+
+    // ***********************************************************
+
+
 
 
     /**
-     * An array of "cellRecords", each of which represents data for one cell of the body area.
+     * Apply a hilite to a specific cell.      Note: can be called either as           hiliteCell(cellObject, hiliteID) or     
+     *      hiliteCell(row, column, hiliteID)      <br><i>methodType</i> action
+     * @param row of cell to hilite
+     * @param column of cell to hilite
+     * @param hilite id
      *
-     *
-     * @return CellRecord
-     * @see com.smartgwt.client.widgets.cube.CubeGrid#getFixedFacetValues
+     * @return true if the cell was successfully hilited.
+     * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
      */
-    public CellRecord[] getData()  {
+    public native Boolean hiliteCell(int rowNum, int colNum, String hiliteID) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var retVal = self.hiliteCell(rowNum, colNum, hiliteID);
+        if(retVal == null) {
+            return null;
+        } else {
+            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
+        }
+    }-*/;
 
-        return convertToCellRecordArray(getAttributeAsJavaScriptObject("data"));
-    }
+    /**
+     * Deselect a single cell - accepts cell ID.
+     * @param cell cell to deselect
+     */
+    public native void deselectCell(String cell) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.deselectCell(cell);
+    }-*/;
     
-     /**
-      * Deselect a single cell - accepts cell ID.
-      * @param cell cell to deselect
-      */
-     public native void deselectCell(String cell) /*-{
-         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-         self.deselectCell(cell);
-     }-*/;
-     
-     /**
-      * Deselect a single cell - accepts cellRecord.
-      * @param cell cell to deselect
-      */
-     public native void deselectCell(CellRecord cell) /*-{
-         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-         self.deselectCell(cell.@com.smartgwt.client.widgets.cube.CellRecord::getJsObj()());
-     }-*/;
-     
-     /**
-      * Deselect cells that match a list of facetValues.  Also supports an explicit list of cells or cellIds.     
-      * <br><i>methodType</i> action
-      * @param cellList cells to deselect
-      */
-     public native void deselectCells(String... cellList) /*-{
-         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-         self.deselectCells(cellList);
-     }-*/;
-     
-     /**
-      * Deselect cells that match a list of facetValues.  Also supports an explicit list of cells or cellIds.     
-      * <br><i>methodType</i> action
-      * @param cellList cells to deselect
-      */
-     public native void deselectCells(FacetValueMap cellList) /*-{
-     	if (cellList == null) return;
-         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-         self.deselectCells(cellList.@com.smartgwt.client.widgets.cube.FacetValueMap::getJsObj()());
-     }-*/;
-     
+    /**
+     * Deselect a single cell - accepts cellRecord.
+     * @param cell cell to deselect
+     */
+    public native void deselectCell(CellRecord cell) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.deselectCell(cell.@com.smartgwt.client.widgets.cube.CellRecord::getJsObj()());
+    }-*/;
+    
      /**
       * Select a single cell - accepts cell ID or cell record.      <br><i>methodType</i> action
       * @param cell cell to select
@@ -2406,7 +3712,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
          var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
          self.selectCell(cell);
      }-*/;
-
+    
      /**
       * Select a single cell - accepts cell ID or cell record.      <br><i>methodType</i> action
       * @param cell cell to select
@@ -2415,16 +3721,6 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
          var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
          self.selectCell(cell.@com.smartgwt.client.data.Record::getJsObj()());
      }-*/;
-     
-     /**
-      * Select cells that match a list of facetValues.    Also supports an explicit list of cells or cellIds.     
-      * <br><i>methodType</i> action
-      * @param cellList cells to select
-      */
-     public native void selectCells(String... cellList) /*-{
-	      var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-	      self.selectCells(cellList);
-	  }-*/;
 
      /**
       * Given a record in this grid, this method returns the coordinates of the cell in which the  record is displayed as a 2
@@ -2438,14 +3734,14 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
          com.google.gwt.core.client.JsArrayInteger cellCoodJS = doGetCellCoordinates(cellRecord.getJsObj());
          return new int[]{cellCoodJS.get(0), cellCoodJS.get(1)};
      }
-
+    
      private native com.google.gwt.core.client.JsArrayInteger doGetCellCoordinates(JavaScriptObject cellRecord) /*-{
          var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
          var coords = self.getCellCoordinates(cellRecord);
          if (coords == null) return [-1,-1];
          return coords;
      }-*/;
-
+    
      /**
       * Returns the current value of a cell. If the cell has an outstanding edit value, this will be returned, otherwise the
       * underlying value of the record will be returned.
@@ -2460,7 +3756,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
          var ret = self.getEditedCell(rowNum, colNum);
          return $wnd.SmartGWT.convertToJavaType(ret);
      }-*/;
-     
+    
      /**
       * Returns the current value of a cell. If the cell has an outstanding edit value, this will be returned, otherwise the
       * underlying value of the record will be returned.
@@ -2476,7 +3772,7 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
          var ret = self.getEditedCell(record.@com.smartgwt.client.data.Record::getJsObj()());
          return $wnd.SmartGWT.convertToJavaType(ret);
      }-*/;
-     
+    
      /**
       * Returns the combination of unsaved edits (if any) and original values (if any) for a given cell being edited. <P> The
       * returned value is never null, and can be freely modified.
@@ -2492,129 +3788,22 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
          if (record == null) return null;
          return @com.smartgwt.client.widgets.cube.CellRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
      }-*/;
-     
-     /**
-      * Returns the combination of unsaved edits (if any) and original values (if any) for a given cell being edited. <P> The
-      * returned value is never null, and can be freely modified.
-      * @param record being edited
-      *
-      * @return A copy of the record with unsaved edits included
-      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
-      */
-     public native CellRecord getEditedRecord(Record baseRecord) /*-{
-         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-         var record = self.getEditedRecord(baseRecord.@com.smartgwt.client.data.Record::getJsObj()());
-         if (record == null) return null;
-         return @com.smartgwt.client.widgets.cube.CellRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
-     }-*/;
-     
-     
-     /**
-      * Apply a hilite to a specific cell.      Note: can be called either as           hiliteCell(cellObject, hiliteID) or     
-      *      hiliteCell(row, column, hiliteID)      <br><i>methodType</i> action
-      * @param row of cell to hilite
-      * @param column of cell to hilite
-      * @param hilite id
-      *
-      * @return true if the cell was successfully hilited.
-      * @see com.smartgwt.client.docs.Hiliting Hiliting overview and related methods
-      */
-     public native Boolean hiliteCell(int rowNum, int colNum, String hiliteID) /*-{
-         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-         var retVal =self.hiliteCell(cellObj, hiliteID);
-         if(retVal == null || retVal === undefined) {
-             return null;
-         } else {
-             return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-         }
-     }-*/;
 
-     /**
-      * Return the list of facets that have any selection in their headers.  <br><i>methodType</i> getter
-      *
-      * @return list of facets that have any selection in their headers
-      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
-      */
-     public native String[] getFacetsHavingSelection() /*-{
-         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-         var facets = self.getFacetsHavingSelection();
-         if (facets == null) return null;
-         return @com.smartgwt.client.util.JSOHelper::convertToArray(Lcom/google/gwt/core/client/JavaScriptObject;)(facets);
-     }-*/;
-     
-     /**
-      * Returns an array of the IDs of all selected cell records.  <br><i>methodType</i> getter
-      *
-      * @return array of the selected cell IDs
-      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
-      */
-     public native String[] getSelectedCellIds() /*-{
-         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-         var cells = self.getSelectedCellIds();
-         if (cells == null) return null;
-         return @com.smartgwt.client.util.JSOHelper::convertToArray(Lcom/google/gwt/core/client/JavaScriptObject;)(cells);
-     }-*/;
-             
-     
-     
-     /**
-      * Returns an array of the selected cell records.  <br><i>methodType</i> getter
-      *
-      * @return array of the selected cell records
-      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
-      */
-     public native CellRecord[] getSelectedCells() /*-{
-         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-         var cells = self.getSelectedCells();
-         if (cells == null) return cells;
-         return @com.smartgwt.client.widgets.cube.CubeGrid::convertToCellRecordArray(Lcom/google/gwt/core/client/JavaScriptObject;)(cells);
-     }-*/;
-     
-     /**
-      * Returns an array of facetValues objects indicating the headers that are selected in the  headerBar for this facet.  If
-      * facetId is not passed, returns selection for all  facets.  <br><i>methodType</i> getter
-      * @param facetId Id for facet for which we are getting selected facetValues.
-      *
-      * @return selected facetValues
-      * @see com.smartgwt.client.docs.Selection Selection overview and related methods
-      */
-     public native FacetValueMap[] getSelectedFacetValues(String facetId) /*-{
-         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-         var fvs = self.getSelectedFacetValues(facetId);
-         if (fvs == null) return null;
-         return @com.smartgwt.client.widgets.cube.CubeGrid::convertToFacetValueMapArray(Lcom/google/gwt/core/client/JavaScriptObject;)(fvs);
-     }-*/;
+    /**
+     * Returns the combination of unsaved edits (if any) and original values (if any) for a given cell being edited. <P> The
+     * returned value is never null, and can be freely modified.
+     * @param record being edited
+     *
+     * @return A copy of the record with unsaved edits included
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
+     */
+    public native CellRecord getEditedRecord(Record baseRecord) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var record = self.getEditedRecord(baseRecord.@com.smartgwt.client.data.Record::getJsObj()());
+        if (record == null) return null;
+        return @com.smartgwt.client.widgets.cube.CellRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+    }-*/;
 
-     
-     private static CellRecord[] convertToCellRecordArray(JavaScriptObject nativeArray) {
-    	if (nativeArray == null) {
-            return new CellRecord[]{};
-        }
-        JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
-        CellRecord[] objects = new CellRecord[componentsj.length];
-        for (int i = 0; i < componentsj.length; i++) {
-            JavaScriptObject componentJS = componentsj[i];
-            CellRecord obj = (CellRecord) RefDataClass.getRef(componentJS);
-            if (obj == null) obj = new CellRecord(componentJS);
-            objects[i] = obj;
-        }
-        return objects;
-    }
-
-    private static FacetValueMap[] convertToFacetValueMapArray(JavaScriptObject nativeArray) {
-    	if (nativeArray == null) {
-            return new FacetValueMap[]{};
-        }
-        JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
-        FacetValueMap[] objects = new FacetValueMap[componentsj.length];
-        for (int i = 0; i < componentsj.length; i++) {
-            JavaScriptObject componentJS = componentsj[i];
-            FacetValueMap obj = new FacetValueMap(componentJS);
-            objects[i] = obj;
-        }
-        return objects;
-    }
-    
     /**
      * If set to true, context menu items will be included on the cells and headers providing the user with an option to create
      * a chart of the cubeGrid's data set. See {@link com.smartgwt.client.widgets.cube.CubeGrid#getChartData chartData} for
@@ -2646,6 +3835,29 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
     }
 
 
+    /**
+     * Set the customizer for the HTML to be shown in hovers over facet values. 
+     *
+     * @param hoverCustomizer the hover customizer
+     */
+    public native void setFacetValueHoverCustomizer(FacetValueHoverCustomizer hoverCustomizer) /*-{
+        var self;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            self =  this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        } else {
+            self = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        }
+        self.facetValueHoverHTML = $debox($entry(function(facetValues) {
+            var facetValueMapJ   = @com.smartgwt.client.widgets.cube.FacetValueMap::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(facetValues);
+            var gridJ     = @com.smartgwt.client.widgets.BaseWidget::getRef(Lcom/google/gwt/core/client/JavaScriptObject;)(this);
+            
+            hoverCustomizer.@com.smartgwt.client.widgets.cube.FacetValueHoverCustomizer::setGrid(Lcom/smartgwt/client/widgets/cube/CubeGrid;)(gridJ);
+            var ret = hoverCustomizer.@com.smartgwt.client.widgets.cube.FacetValueHoverCustomizer::hoverHTML(Lcom/smartgwt/client/widgets/cube/FacetValueMap;)(facetValueMapJ);
+            if(ret == null) return null;
+            return ret;
+        }));
+    }-*/;
+
     private void checkAnalyticsLoaded () {
         if (!analyticsLoaded()) {
             String errorMessage = "Attempt to create CubeGrid. This class requires the optional " +
@@ -2664,7 +3876,432 @@ public class CubeGrid extends ListGrid  implements com.smartgwt.client.widgets.c
         return ($wnd.isc.CubeGrid != null);
     }-*/;
 
+    /**
+     * Chart the portion of the dataset indicated by <code>fixedFacetValues</code>, for all
+     * values of the <code>variableFacets</code>.
+     * <P>
+     * One, two or more variableFacets may be passed.  Two variable facets for a column chart will
+     * result in {@link com.smartgwt.client.widgets.chart.FacetChart#setStacked stacking} or clustering.  Three facets or more may be
+     * supported by some {@link com.smartgwt.client.widgets.cube.CubeGrid#setChartType chartTypes} or
+     * {@link com.smartgwt.client.widgets.cube.CubeGrid#setChartConstructor charting engines}.
+     *
+     * @param fixedFacetValues (FacetValueMap) set of facet values to hold constant.  Pass null to
+     *                                         chart the entire dataset.
+     * @param variableFacets (Array of FacetIds) set of facets to be charted
+     * @param chartProperties (FacetChart properties) properties to pass through to the created {@link com.smartgwt.client.widgets.chart.FacetChart}
+     * @return (FacetChart) created Chart instance
+     */
+    public native FacetChart makeChart(FacetValueMap fixedFacetValues, String[] variableFacets, FacetChart chartProperties) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var fixedFacedValuesJS = (fixedFacetValues == null) ? null : fixedFacetValues.@com.smartgwt.client.core.DataClass::getJsObj()();
+        var variableFacetsJS = (variableFacets == null) ? null : @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(variableFacets);
+        var chartPropertiesJS = (chartProperties == null) ? null : chartProperties.@com.smartgwt.client.widgets.chart.FacetChart::getConfig()();
+        var facetChartJS = self.makeChart(fixedFacedValuesJS, variableFacetsJS, chartPropertiesJS);
+        return @com.smartgwt.client.widgets.chart.FacetChart::new(Lcom/google/gwt/core/client/JavaScriptObject;)(facetChartJS);
+    }-*/;
+
+
+    /**
+     * Setter implementing the {@link com.smartgwt.client.core.LogicalStructure} interface,
+     * which supports Eclipse's logical structure debugging facility.
+     */
+    public LogicalStructureObject setLogicalStructure(CubeGridLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.alternateRecordStyles = getAttributeAsString("alternateRecordStyles");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.alternateRecordStyles:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoFetchTextMatchStyle = getAttributeAsString("autoFetchTextMatchStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.autoFetchTextMatchStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoSelectHeaders = getAttributeAsString("autoSelectHeaders");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.autoSelectHeaders:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoSelectValues = getAttributeAsString("autoSelectValues");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.autoSelectValues:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoSizeHeaders = getAttributeAsString("autoSizeHeaders");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.autoSizeHeaders:" + t.getMessage() + "\n";
+        }
+        try {
+            s.baseStyle = getAttributeAsString("baseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.baseStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.bodyMinHeight = getAttributeAsString("bodyMinHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.bodyMinHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.bodyMinWidth = getAttributeAsString("bodyMinWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.bodyMinWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.bodyStyleName = getAttributeAsString("bodyStyleName");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.bodyStyleName:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canCollapseFacets = getAttributeAsString("canCollapseFacets");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.canCollapseFacets:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canDragSelect = getAttributeAsString("canDragSelect");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.canDragSelect:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canEdit = getAttributeAsString("canEdit");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.canEdit:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canMinimizeColumns = getAttributeAsString("canMinimizeColumns");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.canMinimizeColumns:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canMinimizeFacets = getAttributeAsString("canMinimizeFacets");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.canMinimizeFacets:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canMoveFacets = getAttributeAsString("canMoveFacets");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.canMoveFacets:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canReorderColumns = getAttributeAsString("canReorderColumns");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.canReorderColumns:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canResizeColumns = getAttributeAsString("canResizeColumns");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.canResizeColumns:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canSelectHeaders = getAttributeAsString("canSelectHeaders");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.canSelectHeaders:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canSelectValues = getAttributeAsString("canSelectValues");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.canSelectValues:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canSortData = getAttributeAsString("canSortData");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.canSortData:" + t.getMessage() + "\n";
+        }
+        try {
+            s.canSortFacets = getAttributeAsString("canSortFacets");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.canSortFacets:" + t.getMessage() + "\n";
+        }
+        try {
+            s.cellAlign = getAttributeAsString("cellAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.cellAlign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.cellIdProperty = getAttributeAsString("cellIdProperty");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.cellIdProperty:" + t.getMessage() + "\n";
+        }
+        try {
+            s.chartConfirmThreshold = getAttributeAsString("chartConfirmThreshold");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.chartConfirmThreshold:" + t.getMessage() + "\n";
+        }
+        try {
+            s.chartConstructor = getAttributeAsString("chartConstructor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.chartConstructor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.chartType = getAttributeAsString("chartType");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.chartType:" + t.getMessage() + "\n";
+        }
+        try {
+            s.colHeaderBaseStyle = getAttributeAsString("colHeaderBaseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.colHeaderBaseStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.columnFacets = getAttributeAsStringArray("columnFacets");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.columnFacetsArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dataSource = getDataSource();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.dataSource:" + t.getMessage() + "\n";
+        }
+        try {
+            s.defaultFacetWidth = getAttributeAsString("defaultFacetWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.defaultFacetWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.editByCell = getAttributeAsString("editByCell");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.editByCell:" + t.getMessage() + "\n";
+        }
+        try {
+            s.enableCharting = getAttributeAsString("enableCharting");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.enableCharting:" + t.getMessage() + "\n";
+        }
+        try {
+            s.exportColumnFacetBGColor = getAttributeAsString("exportColumnFacetBGColor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.exportColumnFacetBGColor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.exportColumnFacetTextColor = getAttributeAsString("exportColumnFacetTextColor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.exportColumnFacetTextColor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.exportFacetBGColor = getAttributeAsString("exportFacetBGColor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.exportFacetBGColor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.exportFacetSeparatorString = getAttributeAsString("exportFacetSeparatorString");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.exportFacetSeparatorString:" + t.getMessage() + "\n";
+        }
+        try {
+            s.exportFacetTextColor = getAttributeAsString("exportFacetTextColor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.exportFacetTextColor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.exportRowFacetBGColor = getAttributeAsString("exportRowFacetBGColor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.exportRowFacetBGColor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.exportRowFacetTextColor = getAttributeAsString("exportRowFacetTextColor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.exportRowFacetTextColor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.facetLabelHoverAlign = getAttributeAsString("facetLabelHoverAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.facetLabelHoverAlign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.facetLabelHoverHeight = getAttributeAsString("facetLabelHoverHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.facetLabelHoverHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.facetLabelHoverStyle = getAttributeAsString("facetLabelHoverStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.facetLabelHoverStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.facetLabelHoverVAlign = getAttributeAsString("facetLabelHoverVAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.facetLabelHoverVAlign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.facetLabelHoverWidth = getAttributeAsString("facetLabelHoverWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.facetLabelHoverWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.facetTitleAlign = getAttributeAsString("facetTitleAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.facetTitleAlign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.facetValueAlign = getAttributeAsString("facetValueAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.facetValueAlign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.facetValueContextItems = getFacetValueContextItems();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.facetValueContextItemsArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.facetValueHoverAlign = getAttributeAsString("facetValueHoverAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.facetValueHoverAlign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.facetValueHoverHeight = getAttributeAsString("facetValueHoverHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.facetValueHoverHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.facetValueHoverStyle = getAttributeAsString("facetValueHoverStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.facetValueHoverStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.facetValueHoverVAlign = getAttributeAsString("facetValueHoverVAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.facetValueHoverVAlign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.facetValueHoverWidth = getAttributeAsString("facetValueHoverWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.facetValueHoverWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.fixedFacetValues = getFixedFacetValues();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.fixedFacetValues:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hideEmptyAxis = getAttributeAsString("hideEmptyAxis");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.hideEmptyAxis:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hideEmptyFacetValues = getAttributeAsString("hideEmptyFacetValues");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.hideEmptyFacetValues:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hilites = getHilites();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.hilitesArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.innerHeaderBaseStyle = getAttributeAsString("innerHeaderBaseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.innerHeaderBaseStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.metricFacetId = getAttributeAsString("metricFacetId");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.metricFacetId:" + t.getMessage() + "\n";
+        }
+        try {
+            s.padTitles = getAttributeAsString("padTitles");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.padTitles:" + t.getMessage() + "\n";
+        }
+        try {
+            s.rollupValue = getAttributeAsString("rollupValue");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.rollupValue:" + t.getMessage() + "\n";
+        }
+        try {
+            s.rowFacets = getAttributeAsStringArray("rowFacets");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.rowFacetsArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.rowHeaderBaseStyle = getAttributeAsString("rowHeaderBaseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.rowHeaderBaseStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.rowHeaderGridMode = getAttributeAsString("rowHeaderGridMode");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.rowHeaderGridMode:" + t.getMessage() + "\n";
+        }
+        try {
+            s.saveByCell = getAttributeAsString("saveByCell");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.saveByCell:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showFacetContextMenus = getAttributeAsString("showFacetContextMenus");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.showFacetContextMenus:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showFacetValueContextMenus = getAttributeAsString("showFacetValueContextMenus");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.showFacetValueContextMenus:" + t.getMessage() + "\n";
+        }
+        try {
+            s.simpleDeselect = getAttributeAsString("simpleDeselect");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.simpleDeselect:" + t.getMessage() + "\n";
+        }
+        try {
+            s.skinImgDir = getAttributeAsString("skinImgDir");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.skinImgDir:" + t.getMessage() + "\n";
+        }
+        try {
+            s.sortDirection = getAttributeAsString("sortDirection");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.sortDirection:" + t.getMessage() + "\n";
+        }
+        try {
+            s.sortedFacetValues = getSortedFacetValues();
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.sortedFacetValues:" + t.getMessage() + "\n";
+        }
+        try {
+            s.styleName = getAttributeAsString("styleName");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.styleName:" + t.getMessage() + "\n";
+        }
+        try {
+            s.valueExportFormat = getAttributeAsString("valueExportFormat");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.valueExportFormat:" + t.getMessage() + "\n";
+        }
+        try {
+            s.valueFormat = getAttributeAsString("valueFormat");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.valueFormat:" + t.getMessage() + "\n";
+        }
+        try {
+            s.valueProperty = getAttributeAsString("valueProperty");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.valueProperty:" + t.getMessage() + "\n";
+        }
+        try {
+            s.valueTitle = getAttributeAsString("valueTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.valueTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.wrapFacetTitles = getAttributeAsString("wrapFacetTitles");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.wrapFacetTitles:" + t.getMessage() + "\n";
+        }
+        try {
+            s.wrapFacetValueTitles = getAttributeAsString("wrapFacetValueTitles");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.wrapFacetValueTitles:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+
+    /**
+     * Getter implementing the {@link com.smartgwt.client.core.LogicalStructure} interface,
+     * which supports Eclipse's logical structure debugging facility.
+     */
+    public LogicalStructureObject getLogicalStructure() {
+        CubeGridLogicalStructure s = new CubeGridLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
-

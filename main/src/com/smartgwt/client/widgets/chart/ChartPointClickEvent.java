@@ -15,8 +15,15 @@ public class ChartPointClickEvent {
 	public void setRecord(Record record) {
 		this.record = record;
 	}
+	public String getMetricId() {
+		return metricId;
+	}
+	public void setMetricId(String metricId) {
+		this.metricId = metricId;
+	}
 	private Float value;
 	private Record record;
+	private String metricId;
 	ChartPointClickEvent(Float value, Record record) {
 		this.value = value;
 		this.record = record;

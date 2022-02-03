@@ -65,6 +65,16 @@ public class ChangeEvent extends AbstractSmartEvent<ChangeHandler>  implements C
     private static Type<ChangeHandler> TYPE;
 
     /**
+     * Returns the {@link com.smartgwt.client.core.DataClass DataClass} firing the event.
+     * @return DataClass firing the event
+     */
+    public DataClass getFiringDataClass() {
+        JavaScriptObject dataClassJS = getFiringInstanceAsJavaScriptObject();
+        return dataClassJS != null ? (DataClass) ListGridField.getOrCreateRef(dataClassJS) :
+                              null;
+    }
+
+    /**
      * Fires a open event on all registered handlers in the handler manager.If no
      * such handlers exist, this method will do nothing.
      *

@@ -3,8 +3,12 @@ package com.smartgwt.client.widgets;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.Element;
+
 import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.util.JSOHelper;
+import com.smartgwt.client.widgets.events.ClearEvent;
+import com.smartgwt.client.widgets.events.ClearHandler;
 
 public class WidgetCanvas extends Canvas {
     private Widget widget;
@@ -28,14 +32,50 @@ public class WidgetCanvas extends Canvas {
         if (height != null && !height.equals("")) {
             setHeight(height);
         }
+        
+    		addClearHandler(new ClearHandler() {
+			
+			@Override
+			public void onClear(ClearEvent event) {
+				removeWidget();			
+			}
+		});
+    }
+    
+    private void removeWidget() {
+        
+        if (widget.isAttached()) {
+            // Sanity check: GWT.isAttached can return true even if the widget has been
+            // removed from the DOM. We've seen this come in some cases where the WidgetCanvas
+            // has been cleared.
+            // If we go ahead and call removeFromParent() in this case, IE will throw an
+            // error.
+            // Therefore check for the case where the widget was embedded in our inner 
+            // element, but we've been cleared and skip the removeFromParent call in this case.
+            Widget widgetParent = widget.getParent();
+            Element widgetParentElement = widgetParent == null ? null : widgetParent.getElement();
+            String parentID = widgetParentElement == null ? null : widgetParentElement.getId();
+            String innerElementID = this.getID() + "_widget";
+            if (parentID != null && parentID.equals(innerElementID)) {
+                if (this.isDrawn()) {
+                    widget.removeFromParent();
+                }
+            } else {
+                widget.removeFromParent();
+            }
+        }
+
     }
 
     public String getInnerHTML() {
+    
         //if this canvas is being redrawn, detach underlying gwt widget so that onDraw()
         //can correctly reassociate it with container div
-        if(widget.isAttached()) widget.removeFromParent();
+        String innerElementID = this.getID() + "_widget";
+        
+        removeWidget();
 
-        return "<DIV STYLE='width:100%;height:100%' ID=" + this.getID() + "_widget></DIV>";
+        return "<DIV STYLE='width:100%;height:100%' ID='" + innerElementID + "'></DIV>";
     }
 
     protected void onDraw() {

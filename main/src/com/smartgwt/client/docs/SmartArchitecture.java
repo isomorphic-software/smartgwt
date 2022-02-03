@@ -43,7 +43,8 @@ package com.smartgwt.client.docs;
  *  However, let's say that the first pane of the wizard is going to incorporate some dynamic
  *  user-specific data, such as the current user's name.  To load the username, we'll use an RPC
  *  operation targetting a .jsp called "getUserName.jsp" and show the wizard when it completes
- *  (see {@link com.smartgwt.client.rpc.RPCManager} for information on RPCs and how to construct a .jsp that can
+ * (see {@link com.smartgwt.client.rpc.RPCManager} for information on RPCs and how to construct a
+ * .jsp that can
  *  send an RPC response).
  *  <pre>
  *     function showNewUserWizard() {
@@ -86,7 +87,8 @@ package com.smartgwt.client.docs;
  *  and contained within a JSP is still a separately cacheable resource when loaded via a
  *  &lt;SCRIPT SRC&gt; tag and advertised as a cacheable resource via HTTP headers, because it
  *  is ultimately delivered to the browser as simple JavaScript.  Hence standard 
- *  {@link i18n internationalization} techniques such as using JSTL tags in a JSP remain
+ * {@link com.smartgwt.client.docs.I18n internationalization} techniques such as using JSTL tags
+ * in a JSP remain
  *  applicable.
  *  <br>
  *  The Smart GWT Architecture even allows you to capture all the gradations of cacheability
@@ -171,7 +173,7 @@ package com.smartgwt.client.docs;
  *  A view may incorporate multiple components, each of which requires data.  In the following
  *  example, a DataBound ListGrid has been incorporated into the wizard, and we'd like to fetch
  *  the user's name and the beginning dataset for the grid in the same batch.  We use 
- *  {@link com.smartgwt.client.rpc.RPCManager#startQueue RPCManager.startQueue} to do so.
+ *  {@link com.smartgwt.client.rpc.RPCManager#startQueue RPCManager.startQueue()} to do so.
  *  <pre>
  *     function showNewUserWizard() {
  *         if (!window.myWindow) {
@@ -210,7 +212,7 @@ package com.smartgwt.client.docs;
  *  given user in a typical session, for the fastest loading performance you should consider
  *  loading only the most commonly used views initially then loading further views on demand.
  *  <P>
- *  You can use  FileLoader.loadJSFiles to load a set of JavaScript files
+ *  You can use  FileLoader.loadJSFiles() to load a set of JavaScript files
  *  compromising an application module that defines a set of related views.  The loaded
  *  JavaScript files may define new component classes and new DataSources in addition to
  *  defining new views and their associated logic.

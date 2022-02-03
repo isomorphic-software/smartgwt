@@ -13,13 +13,18 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.tab.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface TabDeselectedHandler extends EventHandler {
     /**
-     * Notification fired when a tab is deselected.
+     * Optional handler to fire when a tab is deselected. Calling {@link
+     * com.smartgwt.client.widgets.tab.events.TabDeselectedEvent#cancel}  will cancel the new selection, leaving tab
+     * <code>ID</code> selected.  As with  {@link com.smartgwt.client.widgets.tab.events.TabSelectedEventl} this method only
+     * fires when the tabset is drawn.
      *
      * @param event the event
      */

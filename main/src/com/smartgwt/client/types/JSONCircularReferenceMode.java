@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * What the {@link com.smartgwt.client.util.JSONEncoder} should do when it encounters a circular reference in an object
  * structure.
@@ -23,19 +25,27 @@ package com.smartgwt.client.types;
 public enum JSONCircularReferenceMode implements ValueEnum {
     /**
      * circular references in Arrays will be represented as a null entry, and objects will have a property with a null value
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "omit".
      */
     OMIT("omit"),
     /**
      * leave a string marker, the {@link com.smartgwt.client.util.JSONEncoder#getCircularReferenceMarker
-     * circularReferenceMarker}, wherever a circular reference is found
+     * JSONEncoder.circularReferenceMarker}, wherever a circular reference is found
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "marker".
      */
     MARKER("marker"),
     /**
      * leave a string marker <i>followed by</i> the path to the first occurrence of the circular reference from the top of the
      * object tree that was serialized. This potentially allows the original object graph to be reconstructed.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "path".
      */
     PATH("path");
-
     private String value;
 
     JSONCircularReferenceMode(String value) {

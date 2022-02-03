@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,34 +16,38 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  */
 public enum TreeModelType implements ValueEnum {
     /**
      * In this model, each node has an ID unique across the whole tree and a parent ID that points to its parent. The name of
-     * the unique ID property can be specified via {@link com.smartgwt.client.widgets.tree.Tree#getIdField idField} and the
-     * name of the parent ID property can be specified via {@link com.smartgwt.client.widgets.tree.Tree#getParentIdField
-     * parentIdField}. The initial set of nodes can be passed in as a list to {@link
-     * com.smartgwt.client.widgets.tree.Tree#getData data} and also added as a list later via {@link
-     * com.smartgwt.client.widgets.tree.Tree#linkNodes Tree.linkNodes}. Whether or not a given node is a folder is determined
+     * the unique ID property can be specified via {@link com.smartgwt.client.widgets.tree.Tree#getIdField Tree.idField} and
+     * the name of the parent ID property can be specified via {@link com.smartgwt.client.widgets.tree.Tree#getParentIdField
+     * Tree.parentIdField}. The initial set of nodes can be passed in as a list to {@link
+     * com.smartgwt.client.widgets.tree.Tree#getData Tree.data} and also added as a list later via {@link
+     * com.smartgwt.client.widgets.tree.Tree#linkNodes Tree.linkNodes()}. Whether or not a given node is a folder is determined
      * by the value of the property specified by {@link com.smartgwt.client.widgets.tree.Tree#getIsFolderProperty
-     * isFolderProperty}. <br><br> The "parent" modelType is best for integrating with relational storage (because nodes can
-     * map easily to rows in a table) and collections of Beans and is the model used for DataBound trees.
+     * Tree.isFolderProperty}. <br><br> The "parent" modelType is best for integrating with relational storage (because nodes
+     * can map easily to rows in a table) and collections of Beans and is the model used for DataBound trees.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "parent".
      */
     PARENT("parent"),
     /**
      * In this model, nodes specify their children as a list of nodes. The property that holds the children nodes is determined
-     * by {@link com.smartgwt.client.widgets.tree.Tree#getChildrenProperty childrenProperty}. Nodes are not required to have an
-     * ID that is unique across the whole tree (in fact, no ID is required at all). Node names (specified by the {@link
-     * com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty}, unique within their siblings, are optional but not
-     * required. Whether or not a given node is a folder is determined by the presence of the children list ({@link
-     * com.smartgwt.client.widgets.tree.Tree#getChildrenProperty childrenProperty}).
+     * by {@link com.smartgwt.client.widgets.tree.Tree#getChildrenProperty Tree.childrenProperty}. Nodes are not required to
+     * have an ID that is unique across the whole tree (in fact, no ID is required at all). Node names (specified by the {@link
+     * com.smartgwt.client.widgets.tree.Tree#getNameProperty Tree.nameProperty}, unique within their siblings, are optional but
+     * not required. Whether or not a given node is a folder is determined by the presence of the children list ({@link
+     * com.smartgwt.client.widgets.tree.Tree#getChildrenProperty Tree.childrenProperty}).
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "children".
      */
     CHILDREN("children");
-
     private String value;
 
     TreeModelType(String value) {

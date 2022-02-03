@@ -16,19 +16,30 @@
 
 package com.smartgwt.client.widgets.events;
 
-
-
 import com.smartgwt.client.event.*;
 import com.smartgwt.client.data.*;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.shared.HasHandlers;
+
+import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.BaseWidget;
+
 public class FetchDataEvent extends BrowserEvent<FetchDataHandler> {
 
   /**
    * Handler type.
    */
   private static Type<FetchDataHandler> TYPE;
+
+  /**
+   * Returns the {@link com.smartgwt.client.widgets.Canvas Canvas} firing the event.
+   * @return Canvas firing the event
+   */
+  public Canvas getFiringCanvas() {
+      JavaScriptObject canvasJS = getFiringInstanceAsJavaScriptObject();
+      return canvasJS != null ? Canvas.getByJSObject(canvasJS) : null;
+  }
 
   /**
    * Fires a open event on all registered handlers in the handler manager.If no

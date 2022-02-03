@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.form;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,26 +40,58 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
+import com.smartgwt.client.widgets.ace.*;
+import com.smartgwt.client.widgets.ace.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
 import com.smartgwt.client.widgets.tree.events.*;
+import com.smartgwt.client.widgets.tableview.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.events.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.rte.*;
+import com.smartgwt.logicalstructure.widgets.ace.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
+import com.smartgwt.logicalstructure.widgets.tools.*;
 
 /**
  * The ColorPicker widget allows the user to select a color from anywhere in the  color spectrum. It also supports
@@ -66,39 +101,83 @@ import com.google.gwt.event.shared.HasHandlers;
  * widget provides very similar functionality to the color picker dialogs found in graphics packages and other desktop
  * software.
  */
-public class ColorPicker extends Window  implements com.smartgwt.client.widgets.form.events.HasColorSelectedHandlers {
+@BeanFactory.FrameworkClass
+@BeanFactory.ScClassName("ColorPicker")
+public class ColorPicker extends Window implements com.smartgwt.client.widgets.form.events.HasColorChangedHandlers, com.smartgwt.client.widgets.form.events.HasColorSelectedHandlers {
 
     public static ColorPicker getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        BaseWidget obj = BaseWidget.getRef(jsObj);
-        if(obj != null) {
-            return (ColorPicker) obj;
-        } else {
+        if (jsObj == null) return null;
+        final BaseWidget refInstance = BaseWidget.getRef(jsObj);
+        if (refInstance == null) {
             return new ColorPicker(jsObj);
+        } else {
+            assert refInstance instanceof ColorPicker;
+            return (ColorPicker)refInstance;
         }
     }
+        
+
+
+    /**
+     * Changes the defaults for Canvas AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults Canvas defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.  For usage tips on this
+     * param, see {@link com.smartgwt.client.docs.SGWTProperties}.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, Canvas defaults) /*-{
+        if (defaults.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPreConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(ColorPicker.@java.lang.Object::getClass()(), "changeAutoChildDefaults", "Canvas");
+        }
+        defaults.@com.smartgwt.client.widgets.BaseWidget::setConfigOnly(Z)(true);
+        var cleanDefaultsJS = @com.smartgwt.client.util.JSOHelper::cleanProperties(Lcom/google/gwt/core/client/JavaScriptObject;Z)(defaults.@com.smartgwt.client.widgets.BaseWidget::getConfig()(), true);
+        $wnd.isc.ColorPicker.changeDefaults(autoChildName + "Defaults", cleanDefaultsJS);
+    }-*/;
+
+    /**
+     * Changes the defaults for FormItem AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults FormItem defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.  For usage tips on this
+     * param, see {@link com.smartgwt.client.docs.SGWTProperties}.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, FormItem defaults) /*-{
+        if (defaults.@com.smartgwt.client.widgets.form.fields.FormItem::isCreated()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPreConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(ColorPicker.@java.lang.Object::getClass()(), "changeAutoChildDefaults", "FormItem");
+        }
+        defaults.@com.smartgwt.client.widgets.form.fields.FormItem::setConfigOnly(Z)(true);
+    	var cleanDefaultsJS = defaults.@com.smartgwt.client.widgets.form.fields.FormItem::getEditorTypeConfig()();
+        $wnd.isc.ColorPicker.changeDefaults(autoChildName + "Defaults", cleanDefaultsJS);
+    }-*/;
 
     public ColorPicker(){
         scClassName = "ColorPicker";
     }
 
     public ColorPicker(JavaScriptObject jsObj){
-        super(jsObj);
+        scClassName = "ColorPicker";
+        setJavaScriptObject(jsObj);
     }
 
     protected native JavaScriptObject create()/*-{
         var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
         var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
         var widget = $wnd.isc[scClassName].create(config);
+        if ($wnd.isc.keepGlobals) this.@com.smartgwt.client.widgets.BaseWidget::internalSetID(Lcom/google/gwt/core/client/JavaScriptObject;)(widget);
         this.@com.smartgwt.client.widgets.BaseWidget::doInit()();
         return widget;
     }-*/;
+
     // ********************* Properties / Attributes ***********************
 
     /**
      * Should the "complex" mode be allowed for this ColorPicker? If false, no "More" button is shown on the simple picker
      *
-     * @param allowComplexMode allowComplexMode Default value is true
+     * @param allowComplexMode New allowComplexMode value. Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setAllowComplexMode(Boolean allowComplexMode)  throws IllegalStateException {
@@ -108,18 +187,19 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
     /**
      * Should the "complex" mode be allowed for this ColorPicker? If false, no "More" button is shown on the simple picker
      *
-     *
-     * @return Boolean
+     * @return Current allowComplexMode value. Default value is true
      */
     public Boolean getAllowComplexMode()  {
-        return getAttributeAsBoolean("allowComplexMode");
+        Boolean result = getAttributeAsBoolean("allowComplexMode");
+        return result == null ? true : result;
     }
+    
 
     /**
      * If {@link com.smartgwt.client.widgets.form.ColorPicker#getAutoPosition autoPosition} is false, this property controls
-     * whether to automatically center the colorPicker every time it is reshown with the show() method.
+     * whether to automatically center the colorPicker every time it is redisplayed with the show() method.
      *
-     * @param autoCenterOnShow autoCenterOnShow Default value is true
+     * @param autoCenterOnShow New autoCenterOnShow value. Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.form.ColorPicker#setAutoPosition
      */
@@ -129,15 +209,44 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
 
     /**
      * If {@link com.smartgwt.client.widgets.form.ColorPicker#getAutoPosition autoPosition} is false, this property controls
-     * whether to automatically center the colorPicker every time it is reshown with the show() method.
+     * whether to automatically center the colorPicker every time it is redisplayed with the show() method.
      *
-     *
-     * @return Boolean
+     * @return Current autoCenterOnShow value. Default value is true
      * @see com.smartgwt.client.widgets.form.ColorPicker#getAutoPosition
      */
     public Boolean getAutoCenterOnShow()  {
-        return getAttributeAsBoolean("autoCenterOnShow");
+        Boolean result = getAttributeAsBoolean("autoCenterOnShow");
+        return result == null ? true : result;
     }
+    
+
+    /**
+     * When this property is set to true, the <code>ColorPicker</code> will automatically hide when a color has been selected
+     * using the swatch picker, even in "complex" mode. By default it will only hide the <code>ColorPicker</code> in "simple"
+     * defaultPickMode. <p> Set this property to false to disable the <code>ColorPicker</code> from automatically hiding, this
+     * can be especially useful when for instance embedding this component inside another component.
+     *
+     * @param autoHide New autoHide value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.form.ColorPicker#setDefaultPickMode
+     */
+    public void setAutoHide(Boolean autoHide)  throws IllegalStateException {
+        setAttribute("autoHide", autoHide, false);
+    }
+
+    /**
+     * When this property is set to true, the <code>ColorPicker</code> will automatically hide when a color has been selected
+     * using the swatch picker, even in "complex" mode. By default it will only hide the <code>ColorPicker</code> in "simple"
+     * defaultPickMode. <p> Set this property to false to disable the <code>ColorPicker</code> from automatically hiding, this
+     * can be especially useful when for instance embedding this component inside another component.
+     *
+     * @return Current autoHide value. Default value is null
+     * @see com.smartgwt.client.widgets.form.ColorPicker#getDefaultPickMode
+     */
+    public Boolean getAutoHide()  {
+        return getAttributeAsBoolean("autoHide");
+    }
+    
 
     /**
      * If true, causes the ColorPicker to appear near where the mouse was last clicked. If false, the ColorPicker is centered
@@ -145,7 +254,7 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * autoCenterOnShow}, it either reappears wherever it was last shown after hide/show(),  or centered regardless of where it
      * was last shown.
      *
-     * @param autoPosition autoPosition Default value is true
+     * @param autoPosition New autoPosition value. Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.widgets.form.ColorPicker#setAutoCenterOnShow
      */
@@ -159,19 +268,21 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * autoCenterOnShow}, it either reappears wherever it was last shown after hide/show(),  or centered regardless of where it
      * was last shown.
      *
-     *
-     * @return Boolean
+     * @return Current autoPosition value. Default value is true
      * @see com.smartgwt.client.widgets.form.ColorPicker#getAutoCenterOnShow
      */
     public Boolean getAutoPosition()  {
-        return getAttributeAsBoolean("autoPosition");
+        Boolean result = getAttributeAsBoolean("autoPosition");
+        return result == null ? true : result;
     }
+    
 
     /**
      * The label shown above the basic color blocks.
      *
-     * @param basicColorLabel basicColorLabel Default value is "Basic Colors:"
+     * @param basicColorLabel New basicColorLabel value. Default value is "Basic Colors:"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
     public void setBasicColorLabel(String basicColorLabel)  throws IllegalStateException {
         setAttribute("basicColorLabel", basicColorLabel, false);
@@ -180,18 +291,122 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
     /**
      * The label shown above the basic color blocks.
      *
-     *
-     * @return String
+     * @return Current basicColorLabel value. Default value is "Basic Colors:"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
     public String getBasicColorLabel()  {
         return getAttributeAsString("basicColorLabel");
     }
+    
+
+    /**
+     * The text to show when the mouse hovers over the 'Blue' field in the complex chooser.
+     *
+     * @param blueFieldPrompt New blueFieldPrompt value. Default value is "The Blue component of the selected color"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public void setBlueFieldPrompt(String blueFieldPrompt)  throws IllegalStateException {
+        setAttribute("blueFieldPrompt", blueFieldPrompt, false);
+    }
+
+    /**
+     * The text to show when the mouse hovers over the 'Blue' field in the complex chooser.
+     *
+     * @return Current blueFieldPrompt value. Default value is "The Blue component of the selected color"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getBlueFieldPrompt()  {
+        return getAttributeAsString("blueFieldPrompt");
+    }
+    
+
+    /**
+     * The title for the 'Blue' field in the complex chooser.
+     *
+     * @param blueFieldTitle New blueFieldTitle value. Default value is "Blue"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public void setBlueFieldTitle(String blueFieldTitle)  throws IllegalStateException {
+        setAttribute("blueFieldTitle", blueFieldTitle, false);
+    }
+
+    /**
+     * The title for the 'Blue' field in the complex chooser.
+     *
+     * @return Current blueFieldTitle value. Default value is "Blue"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getBlueFieldTitle()  {
+        return getAttributeAsString("blueFieldTitle");
+    }
+    
+
+    /**
+     * Cancel button for the ColorPicker
+     * <p>
+     * This component is an AutoChild named "cancelButton".  For an overview of how to use and
+     * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return Current cancelButton value. Default value is null
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public IButton getCancelButton() throws IllegalStateException {
+        errorIfNotCreated("cancelButton");
+        return (IButton)IButton.getByJSObject(getAttributeAsJavaScriptObject("cancelButton"));
+    }
+    
+    
+
+    /**
+     * The title for the 'Cancel' button.
+     *
+     * @param cancelButtonTitle New cancelButtonTitle value. Default value is "Cancel"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public void setCancelButtonTitle(String cancelButtonTitle)  throws IllegalStateException {
+        setAttribute("cancelButtonTitle", cancelButtonTitle, false);
+    }
+
+    /**
+     * The title for the 'Cancel' button.
+     *
+     * @return Current cancelButtonTitle value. Default value is "Cancel"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getCancelButtonTitle()  {
+        return getAttributeAsString("cancelButtonTitle");
+    }
+    
+
+    /**
+     * Array of 40 HTML color strings, used to render the basic color selection boxes.
+     *
+     * @param colorArray New colorArray value. Default value is [...]
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setColorArray(String[] colorArray)  throws IllegalStateException {
+        setAttribute("colorArray", colorArray, false);
+    }
+
+    /**
+     * Array of 40 HTML color strings, used to render the basic color selection boxes.
+     *
+     * @return Current colorArray value. Default value is [...]
+     */
+    public String[] getColorArray()  {
+        return com.smartgwt.client.util.ConvertTo.arrayOfString(getAttributeAsJavaScriptObject("colorArray"));
+    }
+    
 
     /**
      * Base CSS style applied to the basic color boxes
      *
-     * @param colorButtonBaseStyle colorButtonBaseStyle Default value is "ColorChooserCell"
+     * @param colorButtonBaseStyle New colorButtonBaseStyle value. Default value is "ColorChooserCell"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
     public void setColorButtonBaseStyle(String colorButtonBaseStyle)  throws IllegalStateException {
         setAttribute("colorButtonBaseStyle", colorButtonBaseStyle, false);
@@ -200,17 +415,18 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
     /**
      * Base CSS style applied to the basic color boxes
      *
-     *
-     * @return String
+     * @return Current colorButtonBaseStyle value. Default value is "ColorChooserCell"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
     public String getColorButtonBaseStyle()  {
         return getAttributeAsString("colorButtonBaseStyle");
     }
+    
 
     /**
      * Width and height of the basic color boxes (they are always square, and they are all the same size).
      *
-     * @param colorButtonSize colorButtonSize Default value is 20
+     * @param colorButtonSize New colorButtonSize value. Default value is 20
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setColorButtonSize(int colorButtonSize)  throws IllegalStateException {
@@ -220,18 +436,19 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
     /**
      * Width and height of the basic color boxes (they are always square, and they are all the same size).
      *
-     *
-     * @return int
+     * @return Current colorButtonSize value. Default value is 20
      */
     public int getColorButtonSize()  {
         return getAttributeAsInt("colorButtonSize");
     }
+    
 
     /**
      * The location of the crosshair image file
      *
-     * @param crosshairImageURL crosshairImageURL Default value is "[SKIN]ColorPicker/crosshair.png"
+     * @param crosshairImageURL New crosshairImageURL value. Default value is "[SKIN]ColorPicker/crosshair.png"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
     public void setCrosshairImageURL(String crosshairImageURL)  throws IllegalStateException {
         setAttribute("crosshairImageURL", crosshairImageURL, false);
@@ -240,17 +457,18 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
     /**
      * The location of the crosshair image file
      *
-     *
-     * @return String
+     * @return Current crosshairImageURL value. Default value is "[SKIN]ColorPicker/crosshair.png"
+     * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
     public String getCrosshairImageURL()  {
         return getAttributeAsString("crosshairImageURL");
     }
+    
 
     /**
      * The default color. This is the color that is selected when the picker first loads
      *
-     * @param defaultColor defaultColor Default value is #808080
+     * @param defaultColor New defaultColor value. Default value is #808080
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setDefaultColor(String defaultColor)  throws IllegalStateException {
@@ -260,17 +478,17 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
     /**
      * The default color. This is the color that is selected when the picker first loads
      *
-     *
-     * @return String
+     * @return Current defaultColor value. Default value is #808080
      */
     public String getDefaultColor()  {
         return getAttributeAsString("defaultColor");
     }
+    
 
     /**
      * The initial opacity value for the component, as a percentage value between 0 and 100
      *
-     * @param defaultOpacity defaultOpacity Default value is 100
+     * @param defaultOpacity New defaultOpacity value. Default value is 100
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setDefaultOpacity(int defaultOpacity)  throws IllegalStateException {
@@ -280,43 +498,246 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
     /**
      * The initial opacity value for the component, as a percentage value between 0 and 100
      *
-     *
-     * @return int
+     * @return Current defaultOpacity value. Default value is 100
      */
     public int getDefaultOpacity()  {
         return getAttributeAsInt("defaultOpacity");
     }
+    
 
     /**
-     * The ColorPicker can operate in either a "simple" mode (where it displays just the 40 basic colors and allows the user to
-     * click one), or a "complex" mode (where the user can specify a color from anywhere in the spectrum, with an optional
-     * alpha  element). The defaultPickMode attribute specifies which of these two modes is  in force when the picker first
-     * loads.
+     * The <code>ColorPicker</code> can operate in either a "simple" mode (where it displays just the 40 basic colors and
+     * allows the user to click one), or a "complex" mode (where the user can specify a color from anywhere in the spectrum,
+     * with an optional alpha element). The <code>defaultPickMode</code> attribute specifies which of these two modes is in
+     * force when the picker first loads.
      *
-     * @param defaultPickMode defaultPickMode Default value is "simple"
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Changes the pick mode of this <code>ColorPicker</code> to <code>pickMode</code>. <p> Note: It is not allowed to set the pick mode to  {@link com.smartgwt.client.types.ColorPickerMode#COMPLEX} if {@link com.smartgwt.client.widgets.form.ColorPicker#getAllowComplexMode allowComplexMode} is <code>false</code>.
+     *
+     * @param defaultPickMode the new pick mode. Default value is "simple"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.form.ColorPicker#setAllowComplexMode
      */
-    public void setDefaultPickMode(String defaultPickMode)  throws IllegalStateException {
-        setAttribute("defaultPickMode", defaultPickMode, false);
+    public void setDefaultPickMode(ColorPickerMode defaultPickMode)  throws IllegalStateException {
+        setAttribute("defaultPickMode", defaultPickMode == null ? null : defaultPickMode.getValue(), false);
     }
 
     /**
-     * The ColorPicker can operate in either a "simple" mode (where it displays just the 40 basic colors and allows the user to
-     * click one), or a "complex" mode (where the user can specify a color from anywhere in the spectrum, with an optional
-     * alpha  element). The defaultPickMode attribute specifies which of these two modes is  in force when the picker first
-     * loads.
+     * The <code>ColorPicker</code> can operate in either a "simple" mode (where it displays just the 40 basic colors and
+     * allows the user to click one), or a "complex" mode (where the user can specify a color from anywhere in the spectrum,
+     * with an optional alpha element). The <code>defaultPickMode</code> attribute specifies which of these two modes is in
+     * force when the picker first loads.
      *
-     *
-     * @return String
+     * @return Current defaultPickMode value. Default value is "simple"
+     * @see com.smartgwt.client.widgets.form.ColorPicker#getAllowComplexMode
      */
-    public String getDefaultPickMode()  {
-        return getAttributeAsString("defaultPickMode");
+    public ColorPickerMode getDefaultPickMode()  {
+        return EnumUtil.getEnum(ColorPickerMode.values(), getAttribute("defaultPickMode"));
     }
+    
+
+    /**
+     * The text to show when the mouse hovers over the 'Green' field in the complex chooser.
+     *
+     * @param greenFieldPrompt New greenFieldPrompt value. Default value is "The Green component of the selected color"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public void setGreenFieldPrompt(String greenFieldPrompt)  throws IllegalStateException {
+        setAttribute("greenFieldPrompt", greenFieldPrompt, false);
+    }
+
+    /**
+     * The text to show when the mouse hovers over the 'Green' field in the complex chooser.
+     *
+     * @return Current greenFieldPrompt value. Default value is "The Green component of the selected color"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getGreenFieldPrompt()  {
+        return getAttributeAsString("greenFieldPrompt");
+    }
+    
+
+    /**
+     * The title for the 'Green' field in the complex chooser.
+     *
+     * @param greenFieldTitle New greenFieldTitle value. Default value is "Green"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public void setGreenFieldTitle(String greenFieldTitle)  throws IllegalStateException {
+        setAttribute("greenFieldTitle", greenFieldTitle, false);
+    }
+
+    /**
+     * The title for the 'Green' field in the complex chooser.
+     *
+     * @return Current greenFieldTitle value. Default value is "Green"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getGreenFieldTitle()  {
+        return getAttributeAsString("greenFieldTitle");
+    }
+    
+
+    /**
+     * The text to show when the mouse hovers over the 'HTML' field in the complex chooser.
+     *
+     * @param htmlFieldPrompt New htmlFieldPrompt value. Default value is "The selected color''s HTML coding"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public void setHtmlFieldPrompt(String htmlFieldPrompt)  throws IllegalStateException {
+        setAttribute("htmlFieldPrompt", htmlFieldPrompt, false);
+    }
+
+    /**
+     * The text to show when the mouse hovers over the 'HTML' field in the complex chooser.
+     *
+     * @return Current htmlFieldPrompt value. Default value is "The selected color''s HTML coding"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getHtmlFieldPrompt()  {
+        return getAttributeAsString("htmlFieldPrompt");
+    }
+    
+
+    /**
+     * The title for the 'HTML' field in the complex chooser.
+     *
+     * @param htmlFieldTitle New htmlFieldTitle value. Default value is "HTML"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public void setHtmlFieldTitle(String htmlFieldTitle)  throws IllegalStateException {
+        setAttribute("htmlFieldTitle", htmlFieldTitle, false);
+    }
+
+    /**
+     * The title for the 'HTML' field in the complex chooser.
+     *
+     * @return Current htmlFieldTitle value. Default value is "HTML"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getHtmlFieldTitle()  {
+        return getAttributeAsString("htmlFieldTitle");
+    }
+    
+
+    /**
+     * The text to show when the mouse hovers over the 'Hue' field in the complex chooser.
+     *
+     * @param hueFieldPrompt New hueFieldPrompt value. Default value is "The Hue (base tone) of the selected color"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public void setHueFieldPrompt(String hueFieldPrompt)  throws IllegalStateException {
+        setAttribute("hueFieldPrompt", hueFieldPrompt, false);
+    }
+
+    /**
+     * The text to show when the mouse hovers over the 'Hue' field in the complex chooser.
+     *
+     * @return Current hueFieldPrompt value. Default value is "The Hue (base tone) of the selected color"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getHueFieldPrompt()  {
+        return getAttributeAsString("hueFieldPrompt");
+    }
+    
+
+    /**
+     * The title for the 'Hue' field in the complex chooser.
+     *
+     * @param hueFieldTitle New hueFieldTitle value. Default value is "Hue"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public void setHueFieldTitle(String hueFieldTitle)  throws IllegalStateException {
+        setAttribute("hueFieldTitle", hueFieldTitle, false);
+    }
+
+    /**
+     * The title for the 'Hue' field in the complex chooser.
+     *
+     * @return Current hueFieldTitle value. Default value is "Hue"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getHueFieldTitle()  {
+        return getAttributeAsString("hueFieldTitle");
+    }
+    
+
+    /**
+     * The title for the button that switches to a less complex view.
+     *
+     * @param lessButtonTitle New lessButtonTitle value. Default value is "&lt;&lt; Less"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public void setLessButtonTitle(String lessButtonTitle)  throws IllegalStateException {
+        setAttribute("lessButtonTitle", lessButtonTitle, false);
+    }
+
+    /**
+     * The title for the button that switches to a less complex view.
+     *
+     * @return Current lessButtonTitle value. Default value is "&lt;&lt; Less"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getLessButtonTitle()  {
+        return getAttributeAsString("lessButtonTitle");
+    }
+    
+
+    /**
+     * The text to show when the mouse hovers over the 'Luminosity' field in the complex chooser.
+     *
+     * @param lumFieldPrompt New lumFieldPrompt value. Default value is "The Luminosity (brightness) of the selected color"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public void setLumFieldPrompt(String lumFieldPrompt)  throws IllegalStateException {
+        setAttribute("lumFieldPrompt", lumFieldPrompt, false);
+    }
+
+    /**
+     * The text to show when the mouse hovers over the 'Luminosity' field in the complex chooser.
+     *
+     * @return Current lumFieldPrompt value. Default value is "The Luminosity (brightness) of the selected color"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getLumFieldPrompt()  {
+        return getAttributeAsString("lumFieldPrompt");
+    }
+    
+
+    /**
+     * The title for the 'Luminosity' field in the complex chooser.
+     *
+     * @param lumFieldTitle New lumFieldTitle value. Default value is "Lum"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public void setLumFieldTitle(String lumFieldTitle)  throws IllegalStateException {
+        setAttribute("lumFieldTitle", lumFieldTitle, false);
+    }
+
+    /**
+     * The title for the 'Luminosity' field in the complex chooser.
+     *
+     * @return Current lumFieldTitle value. Default value is "Lum"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getLumFieldTitle()  {
+        return getAttributeAsString("lumFieldTitle");
+    }
+    
 
     /**
      * Width of the Luminosity bar
      *
-     * @param lumWidth lumWidth Default value is 15
+     * @param lumWidth New lumWidth value. Default value is 15
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setLumWidth(int lumWidth)  throws IllegalStateException {
@@ -326,19 +747,96 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
     /**
      * Width of the Luminosity bar
      *
-     *
-     * @return int
+     * @return Current lumWidth value. Default value is 15
      */
     public int getLumWidth()  {
         return getAttributeAsInt("lumWidth");
     }
+    
+
+    /**
+     * "More"/"Less" button for the ColorPicker
+     * <p>
+     * This component is an AutoChild named "modeToggleButton".  For an overview of how to use and
+     * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return Current modeToggleButton value. Default value is null
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public IButton getModeToggleButton() throws IllegalStateException {
+        errorIfNotCreated("modeToggleButton");
+        return (IButton)IButton.getByJSObject(getAttributeAsJavaScriptObject("modeToggleButton"));
+    }
+    
+    
+
+    /**
+     * The title for the button that switches to a more complex view.
+     *
+     * @param moreButtonTitle New moreButtonTitle value. Default value is "More &gt;&gt;"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public void setMoreButtonTitle(String moreButtonTitle)  throws IllegalStateException {
+        setAttribute("moreButtonTitle", moreButtonTitle, false);
+    }
+
+    /**
+     * The title for the button that switches to a more complex view.
+     *
+     * @return Current moreButtonTitle value. Default value is "More &gt;&gt;"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getMoreButtonTitle()  {
+        return getAttributeAsString("moreButtonTitle");
+    }
+    
+
+    /**
+     * "OK" button for the ColorPicker
+     * <p>
+     * This component is an AutoChild named "okButton".  For an overview of how to use and
+     * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return Current okButton value. Default value is null
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public IButton getOkButton() throws IllegalStateException {
+        errorIfNotCreated("okButton");
+        return (IButton)IButton.getByJSObject(getAttributeAsJavaScriptObject("okButton"));
+    }
+    
+    
+
+    /**
+     * The title for the 'OK' button.
+     *
+     * @param okButtonTitle New okButtonTitle value. Default value is "OK"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public void setOkButtonTitle(String okButtonTitle)  throws IllegalStateException {
+        setAttribute("okButtonTitle", okButtonTitle, false);
+    }
+
+    /**
+     * The title for the 'OK' button.
+     *
+     * @return Current okButtonTitle value. Default value is "OK"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getOkButtonTitle()  {
+        return getAttributeAsString("okButtonTitle");
+    }
+    
 
     /**
      * The label shown next to the opacity slider. Ignored if  {@link
      * com.smartgwt.client.widgets.form.ColorPicker#getSupportsTransparency supportsTransparency} is false.
      *
-     * @param opacitySliderLabel opacitySliderLabel Default value is "Opacity"
+     * @param opacitySliderLabel New opacitySliderLabel value. Default value is "Opacity:"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
     public void setOpacitySliderLabel(String opacitySliderLabel)  throws IllegalStateException {
         setAttribute("opacitySliderLabel", opacitySliderLabel, false);
@@ -348,22 +846,24 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * The label shown next to the opacity slider. Ignored if  {@link
      * com.smartgwt.client.widgets.form.ColorPicker#getSupportsTransparency supportsTransparency} is false.
      *
-     *
-     * @return String
+     * @return Current opacitySliderLabel value. Default value is "Opacity:"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
     public String getOpacitySliderLabel()  {
         return getAttributeAsString("opacitySliderLabel");
     }
+    
 
     /**
      * The text to show underneath the selected color box, so that it can  be seen through semi-transparent colors. If you do
      * not want such text, set  this value to blank. This value is irrelevant if  {@link
      * com.smartgwt.client.widgets.form.ColorPicker#getSupportsTransparency supportsTransparency} is false.
      *
-     * @param opacityText opacityText Default value is true
+     * @param opacityText New opacityText value. Default value is "Lorem ipsum dolor sit amet, consectetuer adipiscing elit."
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public void setOpacityText(Boolean opacityText)  throws IllegalStateException {
+    public void setOpacityText(String opacityText)  throws IllegalStateException {
         setAttribute("opacityText", opacityText, false);
     }
 
@@ -372,18 +872,108 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * not want such text, set  this value to blank. This value is irrelevant if  {@link
      * com.smartgwt.client.widgets.form.ColorPicker#getSupportsTransparency supportsTransparency} is false.
      *
-     *
-     * @return Boolean
+     * @return Current opacityText value. Default value is "Lorem ipsum dolor sit amet, consectetuer adipiscing elit."
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
-    public Boolean getOpacityText()  {
-        return getAttributeAsBoolean("opacityText");
+    public String getOpacityText()  {
+        return getAttributeAsString("opacityText");
     }
+    
+
+    /**
+     * The text to show when the mouse hovers over the 'Red' field in the complex chooser.
+     *
+     * @param redFieldPrompt New redFieldPrompt value. Default value is "The Red component of the selected color"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public void setRedFieldPrompt(String redFieldPrompt)  throws IllegalStateException {
+        setAttribute("redFieldPrompt", redFieldPrompt, false);
+    }
+
+    /**
+     * The text to show when the mouse hovers over the 'Red' field in the complex chooser.
+     *
+     * @return Current redFieldPrompt value. Default value is "The Red component of the selected color"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getRedFieldPrompt()  {
+        return getAttributeAsString("redFieldPrompt");
+    }
+    
+
+    /**
+     * The title for the 'Red' field in the complex chooser.
+     *
+     * @param redFieldTitle New redFieldTitle value. Default value is "Red"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public void setRedFieldTitle(String redFieldTitle)  throws IllegalStateException {
+        setAttribute("redFieldTitle", redFieldTitle, false);
+    }
+
+    /**
+     * The title for the 'Red' field in the complex chooser.
+     *
+     * @return Current redFieldTitle value. Default value is "Red"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getRedFieldTitle()  {
+        return getAttributeAsString("redFieldTitle");
+    }
+    
+
+    /**
+     * The text to show when the mouse hovers over the 'Saturation' field in the complex chooser.
+     *
+     * @param satFieldPrompt New satFieldPrompt value. Default value is "The Saturation (color purity) of the selected color"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public void setSatFieldPrompt(String satFieldPrompt)  throws IllegalStateException {
+        setAttribute("satFieldPrompt", satFieldPrompt, false);
+    }
+
+    /**
+     * The text to show when the mouse hovers over the 'Saturation' field in the complex chooser.
+     *
+     * @return Current satFieldPrompt value. Default value is "The Saturation (color purity) of the selected color"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getSatFieldPrompt()  {
+        return getAttributeAsString("satFieldPrompt");
+    }
+    
+
+    /**
+     * The title for the 'Sat' field in the complex chooser.
+     *
+     * @param satFieldTitle New satFieldTitle value. Default value is "Sat"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public void setSatFieldTitle(String satFieldTitle)  throws IllegalStateException {
+        setAttribute("satFieldTitle", satFieldTitle, false);
+    }
+
+    /**
+     * The title for the 'Sat' field in the complex chooser.
+     *
+     * @return Current satFieldTitle value. Default value is "Sat"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getSatFieldTitle()  {
+        return getAttributeAsString("satFieldTitle");
+    }
+    
 
     /**
      * The label shown next to the selected color box.
      *
-     * @param selectedColorLabel selectedColorLabel Default value is "Selected Color"
+     * @param selectedColorLabel New selectedColorLabel value. Default value is "Selected Color:"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
     public void setSelectedColorLabel(String selectedColorLabel)  throws IllegalStateException {
         setAttribute("selectedColorLabel", selectedColorLabel, false);
@@ -392,12 +982,79 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
     /**
      * The label shown next to the selected color box.
      *
-     *
-     * @return String
+     * @return Current selectedColorLabel value. Default value is "Selected Color:"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
     public String getSelectedColorLabel()  {
         return getAttributeAsString("selectedColorLabel");
     }
+    
+
+    /**
+     * Should the Cancel button be visible. Set to false to hide the Cancel button.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showCancelButton New showCancelButton value. Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowCancelButton(Boolean showCancelButton)  throws IllegalStateException {
+        setAttribute("showCancelButton", showCancelButton, false);
+    }
+
+    /**
+     * Should the Cancel button be visible. Set to false to hide the Cancel button.
+     *
+     * @return Current showCancelButton value. Default value is true
+     */
+    public Boolean getShowCancelButton()  {
+        Boolean result = getAttributeAsBoolean("showCancelButton");
+        return result == null ? true : result;
+    }
+    
+
+    /**
+     * Should the Mode Toggle button be visible. Set to false to hide the Mode Toggle button.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showModeToggleButton New showModeToggleButton value. Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowModeToggleButton(Boolean showModeToggleButton)  throws IllegalStateException {
+        setAttribute("showModeToggleButton", showModeToggleButton, false);
+    }
+
+    /**
+     * Should the Mode Toggle button be visible. Set to false to hide the Mode Toggle button.
+     *
+     * @return Current showModeToggleButton value. Default value is true
+     */
+    public Boolean getShowModeToggleButton()  {
+        Boolean result = getAttributeAsBoolean("showModeToggleButton");
+        return result == null ? true : result;
+    }
+    
+
+    /**
+     * Should the OK button be visible. Set to false to hide the OK button.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showOkButton New showOkButton value. Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setShowOkButton(Boolean showOkButton)  throws IllegalStateException {
+        setAttribute("showOkButton", showOkButton, false);
+    }
+
+    /**
+     * Should the OK button be visible. Set to false to hide the OK button.
+     *
+     * @return Current showOkButton value. Default value is true
+     */
+    public Boolean getShowOkButton()  {
+        Boolean result = getAttributeAsBoolean("showOkButton");
+        return result == null ? true : result;
+    }
+    
 
     /**
      * Determines whether to show the opacity slider. This allows the user to select colors with an alpha element (ie,
@@ -419,18 +1076,19 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * semi-transparent colors). If this attribute is set to false, no opacity slider is shown, and all colors are completely
      * opaque.
      *
-     *
-     * @return Boolean
+     * @return Current supportsTransparency value. Default value is true
      */
     public Boolean getSupportsTransparency()  {
-        return getAttributeAsBoolean("supportsTransparency");
+        Boolean result = getAttributeAsBoolean("supportsTransparency");
+        return result == null ? true : result;
     }
+    
 
     /**
      * Displayed height of the color swatch image. The default height is approximately that used by the Windows&#174; XP color
      * picking window
      *
-     * @param swatchHeight swatchHeight Default value is 170
+     * @param swatchHeight New swatchHeight value. Default value is 170
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setSwatchHeight(int swatchHeight)  throws IllegalStateException {
@@ -441,18 +1099,19 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * Displayed height of the color swatch image. The default height is approximately that used by the Windows&#174; XP color
      * picking window
      *
-     *
-     * @return int
+     * @return Current swatchHeight value. Default value is 170
      */
     public int getSwatchHeight()  {
         return getAttributeAsInt("swatchHeight");
     }
+    
 
     /**
      * The location of the color swatch image file
      *
-     * @param swatchImageURL swatchImageURL Default value is "[SKIN]ColorPicker/spectrum.png"
+     * @param swatchImageURL New swatchImageURL value. Default value is "[SKIN]ColorPicker/spectrum.png"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
     public void setSwatchImageURL(String swatchImageURL)  throws IllegalStateException {
         setAttribute("swatchImageURL", swatchImageURL, false);
@@ -461,18 +1120,19 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
     /**
      * The location of the color swatch image file
      *
-     *
-     * @return String
+     * @return Current swatchImageURL value. Default value is "[SKIN]ColorPicker/spectrum.png"
+     * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
      */
     public String getSwatchImageURL()  {
         return getAttributeAsString("swatchImageURL");
     }
+    
 
     /**
      * Displayed width of the color swatch image. The default width is approximately that used by the Windows&#174; XP color
      * picking window
      *
-     * @param swatchWidth swatchWidth Default value is 170
+     * @param swatchWidth New swatchWidth value. Default value is 170
      * @throws IllegalStateException this property cannot be changed after the component has been created
      */
     public void setSwatchWidth(int swatchWidth)  throws IllegalStateException {
@@ -483,30 +1143,75 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * Displayed width of the color swatch image. The default width is approximately that used by the Windows&#174; XP color
      * picking window
      *
-     *
-     * @return int
+     * @return Current swatchWidth value. Default value is 170
      */
     public int getSwatchWidth()  {
         return getAttributeAsInt("swatchWidth");
     }
+    
 
     // ********************* Methods ***********************
-            
     /**
+     * Add a colorChanged handler.
+     * <p>
      * Override this method to be kept informed when the ColorPicker changes in real-time  (for example, if you need to update
      * your own GUI accordingly). Then use the  getXxxx() methods (for example, {@link
      * com.smartgwt.client.widgets.form.ColorPicker#getBlue getBlue()} or  {@link
      * com.smartgwt.client.widgets.form.ColorPicker#getLuminosity getLuminosity()})to obtain current state as required.
+     *
+     * @param handler the colorChanged handler
+     * @return {@link HandlerRegistration} used to remove this handler
      */
-    public native void colorChanged() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.colorChanged();
+    public HandlerRegistration addColorChangedHandler(com.smartgwt.client.widgets.form.events.ColorChangedHandler handler) {
+        if(getHandlerCount(com.smartgwt.client.widgets.form.events.ColorChangedEvent.getType()) == 0) setupColorChangedEvent();
+        return doAddHandler(handler, com.smartgwt.client.widgets.form.events.ColorChangedEvent.getType());
+    }
+
+    private native void setupColorChangedEvent() /*-{
+        var obj;
+        var selfJ = this;
+        var hasDefaultHandler;
+        var colorChanged = $entry(function(){
+            var param = {"_this": this};
+            var event = @com.smartgwt.client.widgets.form.events.ColorChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            selfJ.@com.smartgwt.client.widgets.form.ColorPicker::handleTearDownColorChangedEvent()();
+            if (hasDefaultHandler) this.Super("colorChanged", arguments);
+        });
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            hasDefaultHandler = $wnd.isc.isA.Function(obj.getProperty("colorChanged"));
+            obj.addProperties({colorChanged:  colorChanged              });
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+            var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+            hasDefaultHandler = $wnd.isc.isA.Function($wnd.isc[scClassName].getInstanceProperty("colorChanged"));
+            obj.colorChanged =  colorChanged             ;
+        }
     }-*/;
+
+    private void handleTearDownColorChangedEvent() {
+        if (getHandlerCount(com.smartgwt.client.widgets.form.events.ColorChangedEvent.getType()) == 0) tearDownColorChangedEvent();
+    }
+
+    private native void tearDownColorChangedEvent() /*-{
+        var obj;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        }
+        if (obj && obj.hasOwnProperty("colorChanged")) delete obj.colorChanged;
+    }-*/;
+
     /**
      * Add a colorSelected handler.
      * <p>
      * Override this method to be notified when the user selects a color either by clicking a basic color box in simple mode,
-     * or by clicking  the OK button in complex mode. It is not intended that client code  call this method.
+     * or by clicking  the OK button in complex mode. It is not intended that client code  call this method. The
+     * <code>ColorPicker</code> may automatically hide itself after calling this method depending on {@link
+     * com.smartgwt.client.widgets.form.ColorPicker#getAutoHide ColorPicker.autoHide} and {@link
+     * com.smartgwt.client.widgets.form.ColorPicker#getDefaultPickMode ColorPicker.defaultPickMode}.
      *
      * @param handler the colorSelected handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -517,49 +1222,73 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
     }
 
     private native void setupColorSelectedEvent() /*-{
-        var obj = null;
+        var obj;
         var selfJ = this;
+        var hasDefaultHandler;
+        var colorSelected = $entry(function(){
+            var param = {"_this": this, "color" : arguments[0], "opacity" : arguments[1]};
+            var event = @com.smartgwt.client.widgets.form.events.ColorSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
+            selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
+            selfJ.@com.smartgwt.client.widgets.form.ColorPicker::handleTearDownColorSelectedEvent()();
+            if (hasDefaultHandler) this.Super("colorSelected", arguments);
+        });
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
-            obj.addProperties({colorSelected:$entry(function(){
-                        var param = {"color" : arguments[0], "opacity" : arguments[1]};
-                        var event = @com.smartgwt.client.widgets.form.events.ColorSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                        selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-                    })
-             });
+            hasDefaultHandler = $wnd.isc.isA.Function(obj.getProperty("colorSelected"));
+            obj.addProperties({colorSelected:  colorSelected              });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-            obj.colorSelected = $entry(function(){
-                   var param = {"color" : arguments[0], "opacity" : arguments[1]};
-                   var event = @com.smartgwt.client.widgets.form.events.ColorSelectedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
-                   selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
-               });
+            var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+            hasDefaultHandler = $wnd.isc.isA.Function($wnd.isc[scClassName].getInstanceProperty("colorSelected"));
+            obj.colorSelected =  colorSelected             ;
         }
-   }-*/;
-            
-    /**
+    }-*/;
+
+    private void handleTearDownColorSelectedEvent() {
+        if (getHandlerCount(com.smartgwt.client.widgets.form.events.ColorSelectedEvent.getType()) == 0) tearDownColorSelectedEvent();
+    }
+
+    private native void tearDownColorSelectedEvent() /*-{
+        var obj;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        } else {
+            obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        }
+        if (obj && obj.hasOwnProperty("colorSelected")) delete obj.colorSelected;
+    }-*/;
+
+	/**
      * Returns the Blue element of the currently-selected color, as an integer from 0-255
      *
      * @return blue color component
      * @see com.smartgwt.client.widgets.form.ColorPicker#setBlue
      */
     public native int getBlue() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getBlue", "");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getBlue();
+        var ret = self.getBlue();
+        return ret;
     }-*/;
-            
-    /**
+
+	/**
      * Returns the Green element of the currently-selected color, as an integer from 0-255
      *
      * @return green color component
      * @see com.smartgwt.client.widgets.form.ColorPicker#setGreen
      */
     public native int getGreen() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getGreen", "");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getGreen();
+        var ret = self.getGreen();
+        return ret;
     }-*/;
-            
-    /**
+
+	/**
      * Returns the currently-selected color, in HTML color representation form, as a string. HTML color representation is a
      * hash sign, followed by the red, green and blue elements of the color in 2-digit hex form - for example "#F17F1D"
      *
@@ -567,151 +1296,449 @@ public class ColorPicker extends Window  implements com.smartgwt.client.widgets.
      * @see com.smartgwt.client.widgets.form.ColorPicker#setHtmlColor
      */
     public native String getHtmlColor() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getHtmlColor", "");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getHtmlColor();
+        var ret = self.getHtmlColor();
+        return ret;
     }-*/;
-            
-    /**
+
+	/**
      * Returns the Hue of the currently-selected color, as an integer from 0-239
      *
      * @return hue value
      * @see com.smartgwt.client.widgets.form.ColorPicker#setHue
      */
     public native int getHue() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getHue", "");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getHue();
+        var ret = self.getHue();
+        return ret;
     }-*/;
-            
-    /**
+
+	/**
      * Returns the Luminosity (brightness) of the currently-selected color, as an  integer from 0-240
      *
      * @return luminosity value
      * @see com.smartgwt.client.widgets.form.ColorPicker#setLuminosity
      */
     public native int getLuminosity() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getLuminosity", "");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getLuminosity();
+        var ret = self.getLuminosity();
+        return ret;
     }-*/;
-            
-    /**
+
+	/**
      * Returns the Red element of the currently-selected color, as an integer from 0-255
      *
      * @return red color component
      * @see com.smartgwt.client.widgets.form.ColorPicker#setRed
      */
     public native int getRed() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getRed", "");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getRed();
+        var ret = self.getRed();
+        return ret;
     }-*/;
-            
-    /**
+
+	/**
      * Returns the Saturation of the currently-selected color, as an integer from 0-240
      *
      * @return saturation value
      * @see com.smartgwt.client.widgets.form.ColorPicker#setSaturation
      */
     public native int getSaturation() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getSaturation", "");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return self.getSaturation();
+        var ret = self.getSaturation();
+        return ret;
     }-*/;
-            
-    /**
+
+	/**
      * Sets the Blue element of the selected color
      * @param newValue An integer between 0 and 255
+     * @see com.smartgwt.client.widgets.form.ColorPicker#getBlue
      */
     public native void setBlue(int newValue) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setBlue", "int");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setBlue(newValue);
     }-*/;
-            
-    /**
+
+	/**
+     * Changes the pick mode of this <code>ColorPicker</code> to <code>pickMode</code>. <p> Note: It is not allowed to set the
+     * pick mode to  {@link com.smartgwt.client.types.ColorPickerMode#COMPLEX} if {@link
+     * com.smartgwt.client.widgets.form.ColorPicker#getAllowComplexMode allowComplexMode} is <code>false</code>.
+     * @param pickMode the new pick mode.
+     */
+    public native void setCurrentPickMode(ColorPickerMode pickMode) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setCurrentPickMode", "ColorPickerMode");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setCurrentPickMode(pickMode.@com.smartgwt.client.types.ColorPickerMode::getValue()());
+    }-*/;
+
+	/**
      * Sets the Green element of the selected color
      * @param newValue An integer between 0 and 255
+     * @see com.smartgwt.client.widgets.form.ColorPicker#getGreen
      */
     public native void setGreen(int newValue) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setGreen", "int");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setGreen(newValue);
     }-*/;
-            
-    /**
-     * Changes the selected color to the one represented by the supplied HTML color  string. Note that ths method only accepts
+
+	/**
+     * Changes the selected color to the one represented by the supplied HTML color  string. Note that the method only accepts
      * the parameter if it represents a  valid color (otherwise it is simply ignored).
      * @param newValue A string in HTML color representation format (#RRGGBB)
+     * @see com.smartgwt.client.widgets.form.ColorPicker#getHtmlColor
      */
     public native void setHtmlColor(String newValue) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setHtmlColor", "String");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setHtmlColor(newValue);
     }-*/;
-            
-    /**
+
+	/**
      * Sets the Hue of the selected color
      * @param newValue An integer between 0 and 239
+     * @see com.smartgwt.client.widgets.form.ColorPicker#getHue
      */
     public native void setHue(int newValue) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setHue", "int");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setHue(newValue);
     }-*/;
-            
-    /**
+
+	/**
      * Sets the Luminosity (brightness) of the selected color
      * @param newValue An integer between 0 and 240
+     * @see com.smartgwt.client.widgets.form.ColorPicker#getLuminosity
      */
     public native void setLuminosity(int newValue) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setLuminosity", "int");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setLuminosity(newValue);
     }-*/;
-            
-    /**
+
+	/**
      * Sets the Opacity of the selected color. Ignored if opacity is switched off.
      * @param newValue An integer between 0 and 100
+     * @see com.smartgwt.client.widgets.form.ColorPicker#getOpacity
      */
     public native void setOpacity(int newValue) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setOpacity", "int");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setOpacity(newValue);
     }-*/;
-            
-    /**
+
+	/**
      * Sets the Red element of the selected color
      * @param newValue An integer between 0 and 255
+     * @see com.smartgwt.client.widgets.form.ColorPicker#getRed
      */
     public native void setRed(int newValue) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setRed", "int");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setRed(newValue);
     }-*/;
-            
-    /**
+
+	/**
      * Sets the Saturation of the selected color
      * @param newValue An integer between 0 and 240
+     * @see com.smartgwt.client.widgets.form.ColorPicker#getSaturation
      */
     public native void setSaturation(int newValue) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setSaturation", "int");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setSaturation(newValue);
     }-*/;
 
+
     // ********************* Static Methods ***********************
-    /**
-     * Class level method to set the default properties of this class. If set, then all subsequent instances of this
-     * class will automatically have the default properties that were set when this method was called. This is a powerful
-     * feature that eliminates the need for users to create a separate hierarchy of subclasses that only alter the default
-     * properties of this class. Can also be used for skinning / styling purposes.
-     * <P>
-     * <b>Note:</b> This method is intended for setting default attributes only and will effect all instances of the
-     * underlying class (including those automatically generated in JavaScript). 
-     * This method should not be used to apply standard EventHandlers or override methods for
-     * a class - use a custom subclass instead.
+
+
+    /** 
+     * Class level method to set the default properties of this class.  If set, then all
+     * existing and subsequently created instances of this class will automatically have
+     * default properties corresponding to
+     * the properties set on the SmartGWT class instance passed to this function before its
+     * underlying SmartClient JS object was created.
+     * This is a powerful feature that eliminates the need for users to create a separate
+     * hierarchy of subclasses that only alter the default properties of this class. Can also
+     * be used for skinning / styling purposes.  <P> <b>Note:</b> This method is intended for
+     * setting default attributes only and will affect all instances of the underlying class
+     * (including those automatically generated in JavaScript).  This method should not be used
+     * to apply standard EventHandlers or override methods for a class - use a custom subclass
+     * instead.  Calling this method after instances have been created can result in undefined
+     * behavior, since it bypasses any setters and a class instance may have already examined 
+     * a particular property and not be expecting any changes through this route.
      *
      * @param colorPickerProperties properties that should be used as new defaults when instances of this class are created
+     * @see com.smartgwt.client.docs.SGWTProperties
      */
     public static native void setDefaultProperties(ColorPicker colorPickerProperties) /*-{
-    	var properties = $wnd.isc.addProperties({},colorPickerProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()());
-    	delete properties.ID;
+        if (colorPickerProperties.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPreConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/Class;)(ColorPicker.@java.lang.Object::getClass()(), "setDefaultProperties", colorPickerProperties.@java.lang.Object::getClass()());
+        }
+        colorPickerProperties.@com.smartgwt.client.widgets.BaseWidget::setConfigOnly(Z)(true);
+    	var properties = colorPickerProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        properties = @com.smartgwt.client.util.JSOHelper::cleanProperties(Lcom/google/gwt/core/client/JavaScriptObject;Z)(properties,true);
         $wnd.isc.ColorPicker.addProperties(properties);
     }-*/;
-        
-    // ***********************************************************        
 
+    // ***********************************************************
+
+    /**
+     * Setter implementing the {@link com.smartgwt.client.core.LogicalStructure} interface,
+     * which supports Eclipse's logical structure debugging facility.
+     */
+    public LogicalStructureObject setLogicalStructure(ColorPickerLogicalStructure s) {
+        super.setLogicalStructure(s);
+        try {
+            s.allowComplexMode = getAttributeAsString("allowComplexMode");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.allowComplexMode:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoCenterOnShow = getAttributeAsString("autoCenterOnShow");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.autoCenterOnShow:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoHide = getAttributeAsString("autoHide");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.autoHide:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoPosition = getAttributeAsString("autoPosition");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.autoPosition:" + t.getMessage() + "\n";
+        }
+        try {
+            s.basicColorLabel = getAttributeAsString("basicColorLabel");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.basicColorLabel:" + t.getMessage() + "\n";
+        }
+        try {
+            s.blueFieldPrompt = getAttributeAsString("blueFieldPrompt");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.blueFieldPrompt:" + t.getMessage() + "\n";
+        }
+        try {
+            s.blueFieldTitle = getAttributeAsString("blueFieldTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.blueFieldTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.cancelButtonTitle = getAttributeAsString("cancelButtonTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.cancelButtonTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.colorArray = getAttributeAsStringArray("colorArray");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.colorArrayArray:" + t.getMessage() + "\n";
+        }
+        try {
+            s.colorButtonBaseStyle = getAttributeAsString("colorButtonBaseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.colorButtonBaseStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.colorButtonSize = getAttributeAsString("colorButtonSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.colorButtonSize:" + t.getMessage() + "\n";
+        }
+        try {
+            s.crosshairImageURL = getAttributeAsString("crosshairImageURL");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.crosshairImageURL:" + t.getMessage() + "\n";
+        }
+        try {
+            s.defaultColor = getAttributeAsString("defaultColor");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.defaultColor:" + t.getMessage() + "\n";
+        }
+        try {
+            s.defaultOpacity = getAttributeAsString("defaultOpacity");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.defaultOpacity:" + t.getMessage() + "\n";
+        }
+        try {
+            s.defaultPickMode = getAttributeAsString("defaultPickMode");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.defaultPickMode:" + t.getMessage() + "\n";
+        }
+        try {
+            s.greenFieldPrompt = getAttributeAsString("greenFieldPrompt");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.greenFieldPrompt:" + t.getMessage() + "\n";
+        }
+        try {
+            s.greenFieldTitle = getAttributeAsString("greenFieldTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.greenFieldTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.htmlFieldPrompt = getAttributeAsString("htmlFieldPrompt");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.htmlFieldPrompt:" + t.getMessage() + "\n";
+        }
+        try {
+            s.htmlFieldTitle = getAttributeAsString("htmlFieldTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.htmlFieldTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hueFieldPrompt = getAttributeAsString("hueFieldPrompt");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.hueFieldPrompt:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hueFieldTitle = getAttributeAsString("hueFieldTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.hueFieldTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.lessButtonTitle = getAttributeAsString("lessButtonTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.lessButtonTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.lumFieldPrompt = getAttributeAsString("lumFieldPrompt");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.lumFieldPrompt:" + t.getMessage() + "\n";
+        }
+        try {
+            s.lumFieldTitle = getAttributeAsString("lumFieldTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.lumFieldTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.lumWidth = getAttributeAsString("lumWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.lumWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.moreButtonTitle = getAttributeAsString("moreButtonTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.moreButtonTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.okButtonTitle = getAttributeAsString("okButtonTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.okButtonTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.opacitySliderLabel = getAttributeAsString("opacitySliderLabel");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.opacitySliderLabel:" + t.getMessage() + "\n";
+        }
+        try {
+            s.opacityText = getAttributeAsString("opacityText");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.opacityText:" + t.getMessage() + "\n";
+        }
+        try {
+            s.redFieldPrompt = getAttributeAsString("redFieldPrompt");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.redFieldPrompt:" + t.getMessage() + "\n";
+        }
+        try {
+            s.redFieldTitle = getAttributeAsString("redFieldTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.redFieldTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.satFieldPrompt = getAttributeAsString("satFieldPrompt");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.satFieldPrompt:" + t.getMessage() + "\n";
+        }
+        try {
+            s.satFieldTitle = getAttributeAsString("satFieldTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.satFieldTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.selectedColorLabel = getAttributeAsString("selectedColorLabel");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.selectedColorLabel:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showCancelButton = getAttributeAsString("showCancelButton");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.showCancelButton:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showModeToggleButton = getAttributeAsString("showModeToggleButton");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.showModeToggleButton:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showOkButton = getAttributeAsString("showOkButton");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.showOkButton:" + t.getMessage() + "\n";
+        }
+        try {
+            s.supportsTransparency = getAttributeAsString("supportsTransparency");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.supportsTransparency:" + t.getMessage() + "\n";
+        }
+        try {
+            s.swatchHeight = getAttributeAsString("swatchHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.swatchHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.swatchImageURL = getAttributeAsString("swatchImageURL");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.swatchImageURL:" + t.getMessage() + "\n";
+        }
+        try {
+            s.swatchWidth = getAttributeAsString("swatchWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ColorPicker.swatchWidth:" + t.getMessage() + "\n";
+        }
+        return s;
+    }
+
+    /**
+     * Getter implementing the {@link com.smartgwt.client.core.LogicalStructure} interface,
+     * which supports Eclipse's logical structure debugging facility.
+     */
+    public LogicalStructureObject getLogicalStructure() {
+        ColorPickerLogicalStructure s = new ColorPickerLogicalStructure();
+        setLogicalStructure(s);
+        return s;
+    }
 }
-
-
-
-

@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,22 +16,26 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Controls the navigation mode of records.
  */
 public enum NavigationMode implements ValueEnum {
     /**
      * Clicking anywhere on the record navigates
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "wholeRecord".
      */
     WHOLE_RECORD("wholeRecord"),
     /**
      * Only clicking directly on the navigation icon triggers navigation
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "navIconOnly".
      */
     NAVICON_ONLY("navIconOnly");
-
     private String value;
 
     NavigationMode(String value) {

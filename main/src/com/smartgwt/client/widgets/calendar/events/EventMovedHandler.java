@@ -13,15 +13,21 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.calendar.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
+/**
+ * @deprecated Please use addEventReposition[Move/Stop]Handler instead, this will be removed in a future release.
+ */
 public interface EventMovedHandler extends EventHandler {
     /**
-     * Called when an event is moved via dragging by a user.  Call {@link com.smartgwt.client.widgets.calendar.events.CalendarEventMoved#cancel()} from within {@link EventMovedHandler#onEventMoved} to disallow the move.
+     * Called when an event is moved via dragging by a user.  Call {@link com.smartgwt.client.widgets.calendar.events.CalendarEventMoved#cancel()} from within {@link com.smartgwt.client.widgets.calendar.events.EventMovedHandler#onEventMoved} to disallow the move.
      *
      * @param event the event
+     * @deprecated Please use addEventReposition[Move/Stop]Handler instead, this will be removed in a future release.
      */
     void onEventMoved(com.smartgwt.client.widgets.calendar.events.CalendarEventMoved event);
 }

@@ -31,7 +31,7 @@ package com.smartgwt.client.docs;
  *   <li>If Smart GWT detects that the object has a GWT Java wrapper object created by Smart GWT, that GWT wrapper object is returned</li>
  *   <li>If the object has a "_constructor" property set to "DateRange" convert to {@link com.smartgwt.client.data.DateRange}</li>
  *   <li>If the object has a "_constructor" property set to "RelativeDate" convert to {@link com.smartgwt.client.data.RelativeDate}</li>
- *   <li>If the SmartClient call "<code>isc.isA.Canvas(object)</code>" returns true, return the result of calling 
+ *   <li>If the object is an instance of the SmartClient <code>Canvas</code> class, return the result of calling
  *       {@link com.smartgwt.client.widgets.Canvas#getById(java.lang.String)}.  This will result in a Smart GWT Java object
  *       equivalent to the SmartClient Canvas - for example a SmartClient <code>ListGrid</code> will be returned as a 
  *       {@link com.smartgwt.client.widgets.grid.ListGrid}</li>
@@ -43,7 +43,10 @@ package com.smartgwt.client.docs;
  *         {@link com.smartgwt.client.widgets.form.fields.FormItem})</ul></li>
  *   <li>If the SmartClient call "<code>isc.isAn.Instance(object)</code>" returns true and the object has a <code>getClassName()</code>
  *       method, returns the result of passing the object as a parameter to 
- *       {@link com.smartgwt.client.util.ObjectFactory#createInstance(JavaScriptObject)}</li>
+ *       {@link com.smartgwt.client.util.ObjectFactory#createInstance createInstance()}</li>
+ *   <li>If the SmartClient call "<code>isc.isA.Class(object)</code>" returns true and the object has a <code>getClassName()</code>
+ *       method, returns the equivalent Java class if it exists; otherwise returns null,
+ *       calling {@link com.smartgwt.client.util.ObjectFactory#getSmartGWTClass getSmartGWTClass()}</li>
  *   <li>If none of the above conversions apply, the JavaScript object will be converted to a Java <code>Map</code> by running 
  *       each property of the JavaScript object through the conversion process.  Note, if SmartClient detects that the object 
  *       is the JS form of a {@link com.smartgwt.client.widgets.tree.TreeNode} (which is done by checking for the presence of an 

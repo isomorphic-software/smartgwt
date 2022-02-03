@@ -3,6 +3,14 @@ package com.smartgwt.client.docs;
 
 /**
  * Width and height of an object
+ * @see com.smartgwt.client.types.Overflow
+ * @see com.smartgwt.client.util.Page#resizeTo
+ * @see com.smartgwt.client.util.Page#getWidth
+ * @see com.smartgwt.client.util.Page#getHeight
+ * @see com.smartgwt.client.util.Page#getScrollWidth
+ * @see com.smartgwt.client.util.Page#getScrollHeight
+ * @see com.smartgwt.client.util.Page#getScrollLeft
+ * @see com.smartgwt.client.util.Page#getScrollTop
  * @see com.smartgwt.client.widgets.layout.Portlet#setHeight
  * @see com.smartgwt.client.widgets.layout.Portlet#setRowHeight
  * @see com.smartgwt.client.widgets.layout.PortalLayout#setCanStretchColumnWidths
@@ -18,6 +26,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#setWidth
  * @see com.smartgwt.client.widgets.Canvas#getHeight
  * @see com.smartgwt.client.widgets.Canvas#setHeight
+ * @see com.smartgwt.client.widgets.Canvas#setMinWidth
+ * @see com.smartgwt.client.widgets.Canvas#setMinHeight
  * @see com.smartgwt.client.widgets.Canvas#getRight
  * @see com.smartgwt.client.widgets.Canvas#setRight
  * @see com.smartgwt.client.widgets.Canvas#getBottom
@@ -39,24 +49,22 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#parentResized
  * @see com.smartgwt.client.widgets.Canvas#setOverflow
  * @see com.smartgwt.client.widgets.Canvas#adjustForContent
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getColumnLeft
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getColumnPageLeft
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getColumnWidth
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getCellPageRect
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getDrawnRowHeight
+ * @see com.smartgwt.client.widgets.grid.ListGrid#setHeaderHeight
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getRect
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getPageRect
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getVisibleHeight
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getIconHeight
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getWidth
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getVisibleWidth
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getVisibleTitleWidth
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getIconWidth
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getLeft
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getTop
- * @see com.smartgwt.client.widgets.grid.ListGrid#getDrawnRowHeight
- * @see com.smartgwt.client.widgets.grid.ListGrid#setHeaderHeight
- * @see com.smartgwt.client.util.Page#resizeTo
- * @see com.smartgwt.client.util.Page#getWidth
- * @see com.smartgwt.client.util.Page#getHeight
- * @see com.smartgwt.client.util.Page#getScrollWidth
- * @see com.smartgwt.client.util.Page#getScrollHeight
- * @see com.smartgwt.client.util.Page#getScrollLeft
- * @see com.smartgwt.client.util.Page#getScrollTop
  * @see com.smartgwt.client.widgets.layout.Portlet#getRowHeight
  * @see com.smartgwt.client.widgets.layout.PortalLayout#getOverflow
  * @see com.smartgwt.client.widgets.layout.PortalLayout#getColumnOverflow
@@ -73,9 +81,13 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#getDefaultWidth
  * @see com.smartgwt.client.widgets.Canvas#getDefaultHeight
  * @see com.smartgwt.client.widgets.Canvas#getMinWidth
- * @see com.smartgwt.client.widgets.Canvas#getMaxWidth
  * @see com.smartgwt.client.widgets.Canvas#getMinHeight
+ * @see com.smartgwt.client.widgets.Canvas#getMaxWidth
  * @see com.smartgwt.client.widgets.Canvas#getMaxHeight
+ * @see com.smartgwt.client.widgets.Canvas#getDragMinWidth
+ * @see com.smartgwt.client.widgets.Canvas#getDragMinHeight
+ * @see com.smartgwt.client.widgets.Canvas#getDragMaxWidth
+ * @see com.smartgwt.client.widgets.Canvas#getDragMaxHeight
  * @see com.smartgwt.client.widgets.Canvas#getOverflow
  * @see com.smartgwt.client.widgets.Canvas#getPercentSource
  * @see com.smartgwt.client.widgets.Canvas#getPercentBox
@@ -83,16 +95,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#getSnapEdge
  * @see com.smartgwt.client.widgets.Canvas#getSnapOffsetLeft
  * @see com.smartgwt.client.widgets.Canvas#getSnapOffsetTop
- * @see com.smartgwt.client.widgets.StatefulCanvas#getAutoFit
- * @see com.smartgwt.client.widgets.Button#getAutoFit
- * @see com.smartgwt.client.widgets.Img#getSize
- * @see com.smartgwt.client.widgets.Label#getWrap
- * @see com.smartgwt.client.widgets.Label#getAutoFit
- * @see com.smartgwt.client.widgets.ImgButton#getAutoFit
- * @see com.smartgwt.client.widgets.StretchImgButton#getAutoFit
- * @see com.smartgwt.client.widgets.toolbar.ToolStrip#getHeight
- * @see com.smartgwt.client.grid.GridRenderer#getFixedColumnWidths
- * @see com.smartgwt.client.grid.GridRenderer#getAutoFit
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getMinHeight
  * @see com.smartgwt.client.widgets.grid.ListGrid#getBodyOverflow
  * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderHeight
  * @see com.smartgwt.client.widgets.menu.Menu#getDefaultWidth
@@ -101,7 +104,14 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tile.TileLayout#getTileWidth
  * @see com.smartgwt.client.widgets.tile.TileLayout#getTileHeight
  * @see com.smartgwt.client.widgets.tile.TileLayout#getOverflow
- * @see com.smartgwt.client.types.Overflow
+ * @see com.smartgwt.client.widgets.StatefulCanvas#getAutoFit
+ * @see com.smartgwt.client.widgets.Button#getAutoFit
+ * @see com.smartgwt.client.widgets.Img#getSize
+ * @see com.smartgwt.client.widgets.Label#getWrap
+ * @see com.smartgwt.client.widgets.Label#getAutoFit
+ * @see com.smartgwt.client.widgets.ImgButton#getAutoFit
+ * @see com.smartgwt.client.widgets.StretchImgButton#getAutoFit
+ * @see com.smartgwt.client.widgets.toolbar.ToolStrip#getHeight
  */
 public interface Sizing {
 }

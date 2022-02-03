@@ -4,6 +4,7 @@ import java.util.Date;
 
 /**
  * Called to determine the hover HTML to be displayed when the user hovers over a cell displayed in the calendar month view tab.
+ * @deprecated deprecated in favor of {@link com.smartgwt.client.widgets.calendar.EventCanvasHoverHTMLCustomizer}
  */
 public abstract class EventHoverHTMLCustomizer {
     

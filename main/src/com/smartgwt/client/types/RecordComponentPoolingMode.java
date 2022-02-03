@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,31 +16,38 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
- * The method of component-pooling to employ for {@link
- * com.smartgwt.client.types.RecordComponentPoolingMode#getShowRecordComponents recordComponents}. <P>
+ * The method of component-pooling to employ for {@link com.smartgwt.client.widgets.grid.ListGrid#getShowRecordComponents
+ * recordComponents}. <P>
  */
 public enum RecordComponentPoolingMode implements ValueEnum {
     /**
      * components are destroyed when the record is not being rendered. Best for large datasets where embedded components differ
      * greatly per record.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "viewport".
      */
     VIEWPORT("viewport"),
     /**
-     * components are cleared when not in the viewport, but stay with a record until the record is dropped from cache. Best for
-     * guaranteed small datasets.
+     * components are {@link com.smartgwt.client.widgets.Canvas#clear clear()ed} when not in the viewport, but stay with a
+     * record until the record is dropped from cache. Best for guaranteed small datasets.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "data".
      */
     DATA("data"),
     /**
-     * components are pooled and will be passed to getEmbeddedComponent() with "recordChanged" set to true. Best for large
-     * datasets where embedded components  are uniform across different records and can be efficiently reconfigured to work 
-     * with a new record
+     * components are pooled and will be passed to {@link com.smartgwt.client.widgets.grid.ListGrid#updateRecordComponent
+     * updateRecordComponent()} with the <code>recordChanged</code> parameter set to true. Best for large datasets where
+     * embedded components are uniform across different records and can be efficiently reconfigured to work with a new record
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "recycle".
      */
     RECYCLE("recycle");
-
     private String value;
 
     RecordComponentPoolingMode(String value) {

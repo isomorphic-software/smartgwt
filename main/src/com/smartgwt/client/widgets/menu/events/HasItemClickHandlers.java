@@ -13,17 +13,17 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.menu.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasItemClickHandlers extends HasHandlers {
     /**
-     * Executed when a menu item with no click handler is clicked by the user. This          itemClick handler must be
-     * specified as a function. It is passed an item parameter that          is a reference to the clicked menu item.
+     * Executed when a menu item with no click handler is clicked by the user. This itemClick handler must be specified as a
+     * function. It is passed an item parameter that is a reference to the clicked menu item.
      *
      * @param handler the itemClick handler
      * @return {@link HandlerRegistration} used to remove this handler

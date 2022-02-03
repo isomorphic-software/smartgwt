@@ -13,14 +13,20 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface DropMoveHandler extends EventHandler {
     /**
      * Executed whenever the compatible dragged object is moved over this drop target. You can use this to show a custom visual
-     * indication of where the drop would occur within the widget.
+     * indication of where the drop would occur within the widget, or to show the {@link
+     * com.smartgwt.client.widgets.Canvas#getNoDropCursor no-drop cursor} to indicate that this is not a valid drop target,
+     * typically if {@link com.smartgwt.client.widgets.Canvas#willAcceptDrop willAcceptDrop()} returns false. <P> For details
+     * on showing a 'no drop' cursor when the user drags over all invalid drop targets, see {@link
+     * com.smartgwt.client.util.EventHandler#showNoDropIndicator showNoDropIndicator}.
      *
      * @param event the event
      */

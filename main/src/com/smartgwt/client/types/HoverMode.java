@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,40 +16,51 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
- * When {@link com.smartgwt.client.widgets.grid.ListGrid#getCanHover canHover} and  {@link
+ * When {@link com.smartgwt.client.widgets.grid.ListGrid#getCanHover canHover} and {@link
  * com.smartgwt.client.widgets.grid.ListGrid#getShowHoverComponents showHoverComponents} are both true, HoverMode dictates
  * the type of UI to be displayed when a user hovers over a row or cell. <P> There are a number of builtin HoverModes and
- * you can override  {@link com.smartgwt.client.widgets.grid.ListGrid#getCellHoverComponent getCellHoverComponent()} to
+ * you can override {@link com.smartgwt.client.widgets.grid.ListGrid#getCellHoverComponent getCellHoverComponent()} to
  * create your own hover behaviors.
  */
 public enum HoverMode implements ValueEnum {
     /**
      * Show a single field's value in an {@link com.smartgwt.client.widgets.HTMLFlow}. Field to use is {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getDetailField detailField}.
+     * com.smartgwt.client.widgets.grid.ListGrid#getDetailField ListGrid.detailField}.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "detailField".
      */
     DETAIL_FIELD("detailField"),
     /**
      * Show a {@link com.smartgwt.client.widgets.viewer.DetailViewer} displaying those fields from the record which are not
      * already displayed in the grid.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "details".
      */
     DETAILS("details"),
     /**
      * Show a separate {@link com.smartgwt.client.widgets.grid.ListGrid} containing related-records. See {@link
-     * com.smartgwt.client.widgets.grid.ListGridRecord#getDetailDS detailDS} and {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getRecordDetailDSProperty recordDetailDSProperty} for  more information.
+     * com.smartgwt.client.widgets.grid.ListGridRecord#getDetailDS ListGridRecord.detailDS} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getRecordDetailDSProperty ListGrid.recordDetailDSProperty} for more
+     * information.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "related".
      */
     RELATED("related"),
     /**
      * Show a {@link com.smartgwt.client.widgets.viewer.DetailViewer} displaying those fields from the record not already
      * displayed in the grid, together with a separate {@link com.smartgwt.client.widgets.grid.ListGrid} containing
      * related-records.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "detailRelated".
      */
     DETAIL_RELATED("detailRelated");
-
     private String value;
 
     HoverMode(String value) {

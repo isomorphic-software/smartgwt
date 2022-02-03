@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Trees that dynamically load nodes keep track of whether each node has loaded its children.
  */
@@ -26,17 +28,33 @@ public enum LoadState implements ValueEnum {
     UNLOADED(null),
     /**
      * currently in the process of loading
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "loading".
      */
     LOADING("loading"),
     /**
      * folders only are already loaded
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "foldersLoaded".
      */
     FOLDERS_LOADED("foldersLoaded"),
     /**
      * already fully loaded
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "loaded".
      */
-    LOADED("loaded");
-
+    LOADED("loaded"),
+    /**
+     * children form a ResultSet having only a partial cache (applies only to the "paged" {@link
+     * com.smartgwt.client.widgets.tree.ResultTree#getFetchMode fetchMode})
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "loadedPartialChildren".
+     */
+    LOADED_PARTIAL_CHILDREN("loadedPartialChildren");
     private String value;
 
     LoadState(String value) {

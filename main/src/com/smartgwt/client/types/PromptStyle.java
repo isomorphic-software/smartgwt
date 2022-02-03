@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,22 +16,27 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  */
 public enum PromptStyle implements ValueEnum {
     /**
-     * Displays a centered modal prompt with text specified by {@link com.smartgwt.client.rpc.RPCRequest#getPrompt prompt}
+     * Displays a centered modal prompt with text specified by {@link com.smartgwt.client.rpc.RPCRequest#getPrompt
+     * RPCRequest.prompt}
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "dialog".
      */
     DIALOG("dialog"),
     /**
      * Changes the current cursor to the style specified by {@link com.smartgwt.client.rpc.RPCRequest#getPromptCursor
-     * promptCursor}
+     * RPCRequest.promptCursor}
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "cursor".
      */
     CURSOR("cursor");
-
     private String value;
 
     PromptStyle(String value) {

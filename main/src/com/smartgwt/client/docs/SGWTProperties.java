@@ -35,6 +35,7 @@ package com.smartgwt.client.docs;
  * this with a FormItem-based properties object or DataClass-based properties object (such as
  * {@link com.smartgwt.client.widgets.grid.ListGridField}).
  * </ul>
+ * @see com.smartgwt.client.widgets.BaseWidget#completeCreation
  */
 public interface SGWTProperties {
 }

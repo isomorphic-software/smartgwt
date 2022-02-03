@@ -29,92 +29,203 @@ import com.smartgwt.client.types.FetchMode;
 import com.smartgwt.client.util.EnumUtil;
 import com.smartgwt.client.util.JSOHelper;
 import com.smartgwt.client.util.SC;
+import com.smartgwt.client.util.ConfigUtil;
 
 
 /**
- * ResultSets are a subclass implementation of {@link com.smartgwt.client.data.RecordList}  that automatically fetches &#010
- * DataSource records when items are requested from the List.  ResultSets provide robust,&#010 customizable,
- * high-performance cache management for ListGrids and other built-in SmartGWT&#010 components, and can be used as cache
- * managers by custom components.&#010 <P>&#010 ResultSets manage data paging, that is, loading records in batches as the
- * user navigates&#010 the data set.  A ResultSet will switch to using client-side sorting and filtering when&#010 possible
- * to improve responsiveness and reduce server load.  ResultSets also participate in&#010 automatic cache synchronization,
- * observing operations on DataSources and automatically&#010 updating their caches.&#010 <P>&#010 <b>Creation</b>&#010
- * <P>&#010 A ResultSet can be passed to any component that expects a List, and the List APIs can be&#010 called directly
- * on the ResultSet as long as the caller is able to deal with asynchronous&#010 loading; see {@link
- * ResultSet#getRange}.&#010 <P>&#010 Generally ResultSets do not need to be created directly, but
- * are created by DataBound&#010 components as an automatic consequence of calling &#010 {@link
- * com.smartgwt.client.docs.DataBoundComponentMethods 'DataBound Component Methods'}.  &#010 For example, the {@link
- * com.smartgwt.client.widgets.grid.ListGrid#fetchData} causes {@link com.smartgwt.client.widgets.grid.ListGrid#getData
- * data} to become an&#010 automatically created <code>ResultSet</code> object.  Automatically created ResultSets&#010 can
- * be customized via properties on ListGrids such as {@link com.smartgwt.client.widgets.grid.ListGrid#getDataPageSize
- * dataPageSize} and&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getDataProperties dataProperties}.  All
- * ResultSets for a given DataSource may also be &#010 customized via setting {@link
- * DataSource#getResultSetClass resultSetClass} to the name of a ResultSet &#010 {@link
- * com.smartgwt.client.util.isc#defineClass} in which &#010 {@link com.smartgwt.client..Class#addProperties}.&#010 <P>&#010
- * A ResultSet defaults to using data paging, setting {@link DSRequest#getStartRow startRow}
- * and&#010 {@link DSRequest#getEndRow endRow} in issued dsRequests.  Server code may always
- * return more rows than&#010 the ResultSet requests and the ResultSet will correctly integrate those rows based on&#010
- * {@link DSResponse#getStartRow startRow}/{@link DSResponse#getEndRow
- * 'endRow'}.  &#010 Hence the server can always avoid paging mode by simply returning all matching rows.&#010 <P>&#010 A
- * ResultSet can be created directly with just the ID of a {@link DataSource}:&#010 <pre>&#010
- * isc.ResultSet.create({&#010         dataSource : "<i>dataSourceID</i>"&#010     })&#010 </pre>&#010 <P>&#010 Directly
- * created ResultSets are typically used by custom components, or as a means of&#010 managing datasets that will be used by
- * several components.&#010 <P>&#010 When created directly rather than via a dataBoundComponent, a newly created ResultSet
- * will&#010 not issue it's first "fetch" {@link DSRequest} until data is accessed (for example,
- * via&#010 {@link ResultSet#get}).  &#010 <P>&#010 <b>Paging and total dataset length</b>&#010
- * <P>&#010 When using data paging, the server communicates the total number of records that match the&#010 current search
- * criteria by setting {@link DSResponse#getTotalRows totalRows}.  The ResultSet will then&#010
- * return this number from {@link ResultSet#getLength}, and ListGrids and other&#010 components
- * will show a scrollbar that allows the user to jump to the end of the dataset&#010 directly.&#010 <P>&#010 However, the
- * ResultSet does not require that the server calculate the true length of the&#010 dataset, which can be costly for an
- * extremely large, searchable dataset.  Instead, the&#010 server <i>may</i> simply advertise a <code>totalRows</code>
- * value that is one page larger&#010 than the last row loaded.  This results in a UI sometimes called "progressive
- * loading",&#010 where the user may load more rows by scrolling past the end of the currently loaded rows,&#010 but is not
- * allowed to skip to the end of the dataset.&#010 <P>&#010 No client-side settings are required to enable this mode - it
- * is entirely server-driven.&#010 However, it is usually coupled with {@link
- * com.smartgwt.client.widgets.grid.ListGrid#getCanSort 'disabling sorting'}, since&#010 server-side sorting would also
- * force the server to traverse the entire dataset.&#010 <P>&#010 <b>Client-side Sorting and Filtering</b>&#010 <P>&#010 If
- * a ResultSet obtains a full cache for the current set of filter criteria, it will &#010 automatically switch to
- * client-side sorting, and will also use client-side filtering &#010 if the filter criteria are later changed but appear
- * to be <i>more restrictive</i> than the&#010 criteria in use when the ResultSet obtained a full cache.&#010 <P>&#010 The
- * {@link ResultSet#getUseClientSorting 'useClientSorting'} and &#010 {@link
- * ResultSet#getUseClientFiltering 'useClientFiltering'} flags can be used to disable&#010
- * client-side sorting and filtering respectively if these behaviors don't match server-based&#010 sorting and filtering.
- * However, because client-side sorting and filtering radically improve&#010 responsiveness and reduce server load, it is
- * better to customize the ResultSet so that it&#010 can match server-side sorting and filtering behaviors.&#010 <P>&#010
- * Sorting behavior is primarily customized via the "sort normalizer" passed to&#010 {@link
- * ResultSet#sortByProperty}, either via direct calls on a standalone ResultSet, or via&#010
- * {@link com.smartgwt.client.widgets.grid.ListGridField#sortNormalizer} for a ListGrid-managed ResultSet.&#010 <P>&#010 By
- * default, client-side filtering interprets the {@link Criteria} passed to&#010 {@link
- * ResultSet#setCriteria} as a set of field values that records must match&#010 (similarly to the
- * built-in SQL/Hibernate connectors built into the SmartGWT Server).&#010 Custom client-side filtering logic can be
- * implemented by overriding&#010 {@link ResultSet#applyFilter}.  Overriding&#010 {@link
- * ResultSet#compareCriteria} allows you to control when the ResultSet&#010 uses client-side vs
- * server-side filtering, and the ResultSet has two default &#010 {@link
- * ResultSet#getCriteriaPolicy 'criteria policies'} built-in.&#010 <P>&#010 <b>Updates and
- * Automatic Cache Synchronization</b>&#010 <P>&#010 ResultSets observe any successful "update", "add" or "remove"
- * dsRequests against their&#010 DataSource, regardless of the component that initiated them.  A ResultSet with a full
- * cache&#010 for the current filter criteria will integrate updates into the cache automatically.&#010 <P>&#010 Updated
- * rows that no longer match the current filter criteria will be removed&#010 automatically.  To prevent this, you can set
- * {@link ResultSet#getNeverDropUpdatedRows neverDropUpdatedRows}.&#010 Added rows will similarly
- * be added to the cache only if they match current filter criteria.&#010 <P>&#010 Note that the client-side filtering
- * described above is also used to determine whether &#010 updated or added rows should be in the cache.  If any aspect of
- * automated cache update is&#010 ever incorrect, {@link ResultSet#getDropCacheOnUpdate
- * 'dropCacheOnUpdate'} can be set for the&#010 ResultSet or {@link DSResponse#getInvalidateCache
- * invalidateCache} can be set for an individual dsResponse.&#010 <P>&#010 <b>Data Paging with partial cache</b>&#010
- * <P>&#010 When in paging mode with a partial cache, a ResultSet relies on server side sorting, setting &#010 {@link
- * DSRequest#getSortBy sortBy} to the current sort field and direction.  In order for the cache to
- * &#010 remain coherent, row numbering must continue to agree between server and client as new&#010 fetches are issued,
- * otherwise, duplicate rows or missing rows may occur.  &#010 <P>&#010 If concurrent modifications by other users are
- * allowed, generally the server should set&#010 {@link DSResponse#getInvalidateCache
- * invalidateCache} to clear the cache when concurrent modification is&#010 detected.&#010 <P>&#010 In paging mode with a
- * partial cache, any successful "update" or "add" operation may cause&#010 client and server row numbering to become out
- * of sync.  This happens because the update&#010 may affect the sort order, and client and server cannot be guaranteed to
- * match for sets of&#010 records that have equivalent values for the sort field.&#010 <P>&#010 For this reason, after an
- * "add" or "update" operation with a partial cache, the ResultSet&#010 will automatically mark cache for invalidation the
- * next time a fetch operation is performed.&#010 Alternatively, if {@link
- * ResultSet#getUpdatePartialCache updatePartialCache} is set to false, the ResultSet will&#010
- * simply invalidate cache immediately in this circumstance.
+ * ResultSets are an implementation of the {@link com.smartgwt.client.data.List} interface that automatically fetches 
+ *  DataSource records when items are requested from the List.  ResultSets provide robust,
+ *  customizable, high-performance cache management for ListGrids and other built-in Smart GWT
+ *  components, and can be used as cache managers by custom components.
+ *  <P>
+ *  ResultSets manage data paging, that is, loading records in batches as the user navigates
+ *  the data set.  A ResultSet will switch to using client-side sorting and filtering when
+ *  possible to improve responsiveness and reduce server load.  ResultSets also participate in
+ *  automatic cache synchronization, observing operations on DataSources and automatically
+ *  updating their caches.
+ *  <P>
+ *  <b>Creation</b>
+ *  <P>
+ *  A ResultSet can be passed to any component that expects a List, and the List APIs can be
+ *  called directly on the ResultSet as long as the caller is able to deal with asynchronous
+ *  loading; see {@link com.smartgwt.client.data.ResultSet#getRange getRange()}.
+ *  <P>
+ *  Generally ResultSets do not need to be created directly, but are created by DataBound
+ *  components as an automatic consequence of calling 
+ *  {@link com.smartgwt.client.docs.DataBoundComponentMethods DataBound Component Methods}.  
+ * For example, the {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData ListGrid.fetchData()} causes {@link
+ * com.smartgwt.client.widgets.grid.ListGrid#getData ListGrid.data} to become an
+ *  automatically created <code>ResultSet</code> object.  Automatically created ResultSets
+ * can be customized via properties on ListGrids such as {@link com.smartgwt.client.widgets.grid.ListGrid#getDataPageSize
+ * ListGrid.dataPageSize} and
+ * {@link com.smartgwt.client.widgets.grid.ListGrid#getDataProperties ListGrid.dataProperties}.  All ResultSets for a given
+ * DataSource may also be 
+ * customized via setting {@link com.smartgwt.client.data.DataSource#getResultSetClass DataSource.resultSetClass} to the
+ * name of a ResultSet 
+ *  {@link com.smartgwt.client.util.isc#defineClass subclass} in which 
+ *   defaults have been changed.
+ *  <P>
+ * A ResultSet defaults to using data paging, setting {@link com.smartgwt.client.data.DSRequest#getStartRow
+ * DSRequest.startRow} and
+ * {@link com.smartgwt.client.data.DSRequest#getEndRow DSRequest.endRow} in issued dsRequests.  Server code may always
+ * return more rows than
+ *  the ResultSet requests and the ResultSet will correctly integrate those rows based on
+ * {@link com.smartgwt.client.data.DSResponse#getStartRow DSResponse.startRow}/{@link
+ * com.smartgwt.client.data.DSResponse#getEndRow endRow}.  
+ *  Hence the server can always avoid paging mode by simply returning all matching rows.
+ *  <P>
+ *  A ResultSet can be created directly with just the ID of a {@link com.smartgwt.client.data.DataSource}:
+ *  <pre>
+ *      isc.ResultSet.create({
+ *          dataSource : "<i>dataSourceID</i>"
+ *      })
+ *  </pre>
+ *  <P>
+ *  Directly created ResultSets are typically used by custom components, or as a means of
+ *  managing datasets that will be used by several components.
+ *  <P>
+ *  When created directly rather than via a dataBoundComponent, a newly created ResultSet will
+ *  not issue it's first "fetch" {@link com.smartgwt.client.data.DSRequest} until data is accessed (for example, via
+ *  {@link com.smartgwt.client.data.ResultSet#get get()}).  
+ *  <P>
+ *  <b>Paging and total dataset length</b>
+ *  <P>
+ *  When using data paging, the server communicates the total number of records that match the
+ * current search criteria by setting {@link com.smartgwt.client.data.DSResponse#getTotalRows DSResponse.totalRows}.  The
+ * ResultSet will then
+ *  return this number from {@link com.smartgwt.client.data.ResultSet#getLength getLength()}, and ListGrids and other
+ *  components will show a scrollbar that allows the user to jump to the end of the dataset
+ *  directly.
+ *  <P>
+ *  However, the ResultSet does not require that the server calculate the true length of the
+ *  dataset, which can be costly for an extremely large, searchable dataset.  Instead, the
+ *  server <i>may</i> simply advertise a <code>totalRows</code> value that is one page larger
+ *  than the last row loaded.  This results in a UI sometimes called "progressive loading",
+ *  where the user may load more rows by scrolling past the end of the currently loaded rows,
+ *  but is not allowed to skip to the end of the dataset.
+ *  <P>
+ *  No client-side settings are required to enable this mode - it is entirely server-driven.
+ * However, it is usually coupled with {@link com.smartgwt.client.widgets.grid.ListGrid#getCanSort disabling sorting},
+ * since
+ *  server-side sorting would also force the server to traverse the entire dataset.  Note
+ * also the {@link com.smartgwt.client.data.DataSource#getProgressiveLoading progressiveLoading} flag, which can be applied
+ *  at a DataSource, operation, request, component or ResultSet level; if you are using the
+ *  built-in server-side DataSource implementations with Pro or better, this tells Smart GWT
+ *  Server to use its pre-built progressive loading mode for that DataSource, operation, 
+ *  request, component or ResultSet.
+ *  <P>
+ *  <b>Client-side Sorting and Filtering</b>
+ *  <P>
+ *  If a ResultSet obtains a full cache for the current set of filter criteria, it will 
+ *  automatically switch to client-side sorting, and will also use client-side filtering 
+ *  if the filter criteria are later changed but appear to be <i>more restrictive</i> than the
+ *  criteria in use when the ResultSet obtained a full cache.
+ *  <P>
+ *  The {@link com.smartgwt.client.data.ResultSet#getUseClientSorting useClientSorting} and 
+ *  {@link com.smartgwt.client.data.ResultSet#getUseClientFiltering useClientFiltering} flags can be used to disable
+ *  client-side sorting and filtering respectively if these behaviors don't match server-based
+ *  sorting and filtering.  However, because client-side sorting and filtering radically improve
+ *  responsiveness and reduce server load, it is better to customize the ResultSet so that it
+ *  can match server-side sorting and filtering behaviors.
+ *  <P>
+ *  Sorting behavior is primarily customized via the "sort normalizer" passed to
+ * {@link com.smartgwt.client.data.ResultSet#sortByProperty sortByProperty()}, either via direct calls on a standalone
+ * ResultSet, or via
+ * {@link com.smartgwt.client.widgets.grid.ListGridField#sortNormalizer ListGridField.sortNormalizer()} for a
+ * ListGrid-managed ResultSet.
+ *  <P>
+ *  By default, client-side filtering interprets the {@link com.smartgwt.client.data.Criteria criteria} passed to
+ *  {@link com.smartgwt.client.data.ResultSet#setCriteria setCriteria()} as a set of field values that records must match
+ *  (similarly to the built-in SQL/Hibernate connectors built into the Smart GWT Server).
+ *  Custom client-side filtering logic can be implemented by overriding
+ *  {@link com.smartgwt.client.data.ResultSet#applyFilter applyFilter()}.  Overriding
+ *  {@link com.smartgwt.client.data.ResultSet#compareCriteria compareCriteria()} allows you to control when the ResultSet
+ *  uses client-side vs server-side filtering, and the ResultSet has two default 
+ *  {@link com.smartgwt.client.data.ResultSet#getCriteriaPolicy criteria policies} built-in.
+ *  <P>
+ *  <b>Modifying ResultSets</b>
+ *  <P>
+ *  Records cannot be directly added or removed from a ResultSet via {@link com.smartgwt.client.data.List}
+ *  APIs such as {@link com.smartgwt.client.data.List#removeAt removeAt()}, since this would break the consistency of
+ *  server and client row numbering needed for data paging, and also
+ *  create some issues with automatic cache synchronization.
+ *  <P>
+ * Use {@link com.smartgwt.client.data.DataSource#addData DataSource.addData()}/{@link
+ * com.smartgwt.client.data.DataSource#removeData removeData()} to add/remove
+ *  rows from the {@link com.smartgwt.client.data.DataSource}, and the ResultSet will reflect the changes automatically.
+ * Alternatively, the {@link com.smartgwt.client.data.DataSource#updateCaches DataSource.updateCaches()} method may be
+ * called to only update
+ *  local caches of the DataSource in question, without generating any server traffic.
+ *  <P>
+ *  To create a locally modifiable cache of Records from a DataSource, you
+ * can use {@link com.smartgwt.client.data.DataSource#fetchData DataSource.fetchData()} to retrieve a List of Records which
+ * can
+ *  be modified directly, or you can create a client-only {@link com.smartgwt.client.data.DataSource} from
+ *  the retrieved data to share a modifiable cache between several
+ *  DataBoundComponents.
+ *  <P>
+ *  <b>Updates and Automatic Cache Synchronization</b>
+ *  <P>
+ *  Once a ResultSet has retrieved data or has been initialized with data, the ResultSet will observe any
+ *  successful "update", "add" or "remove" dsRequests against their DataSource, regardless of the
+ *  component that initiated them.  A ResultSet with a full cache for the current filter criteria will
+ *  integrate updates into the cache automatically.
+ *  <P>
+ *  Updated rows that no longer match the current filter criteria will be removed
+ * automatically.  To prevent this, you can set {@link com.smartgwt.client.data.ResultSet#getNeverDropUpdatedRows
+ * neverDropUpdatedRows}.
+ *  Added rows will similarly be added to the cache only if they match current filter criteria.
+ *  <P>
+ *  Note that the client-side filtering described above is also used to determine whether 
+ *  updated or added rows should be in the cache.  If any aspect of automated cache update is
+ *  ever incorrect, {@link com.smartgwt.client.data.ResultSet#getDropCacheOnUpdate dropCacheOnUpdate} can be set for the
+ * ResultSet or {@link com.smartgwt.client.data.DSResponse#getInvalidateCache DSResponse.invalidateCache} can be set for an
+ * individual dsResponse.
+ *  <P>
+ *  If automatic cache synchronization isn't working, troubleshoot the problem using the steps
+ * suggested <a href='http://forums.smartclient.com/showthread.php?t=8159#aGrid'
+ * target='_blank'>in the FAQ</a>.
+ *  <P>
+ *  Regarding {@link com.smartgwt.client.data.OperationBinding#getOperationId operationIds} and how they affect caching,
+ *  take into account that cache sync is based on the fetch used - any add or update operation
+ *  uses a fetch to retrieve updated data, and the operationId of that fetch can be set via
+ *  {@link com.smartgwt.client.data.OperationBinding#getCacheSyncOperation cacheSyncOperation}.
+ *  If the operationId of the cache is different from the operationId of the cache update data,
+ *  it won't be used to update the cache, since the fields included and other aspects of the
+ *  data are allowed to be different across different operationIds. This allows to maintain
+ *  distinct caches on a per component basis, so when two components are using separate
+ *  operationIds they are assumed to have distinct caches, because updates performed with
+ *  one operationId will not affect the cache obtained via another operationId.
+ *  Also, take into account that operationId must be unique per DataSource, across all
+ *  operationTypes for that DataSource.
+ * 
+ *  <P>
+ *  <b>Data Paging with partial cache</b>
+ *  <P>
+ *  When in paging mode with a partial cache, a ResultSet relies on server side sorting, setting 
+ * {@link com.smartgwt.client.data.DSRequest#getSortBy DSRequest.sortBy} to the current sort field and direction.  In order
+ * for the cache to 
+ *  remain coherent, row numbering must continue to agree between server and client as new
+ *  fetches are issued, otherwise, duplicate rows or missing rows may occur.  
+ *  <P>
+ *  If concurrent modifications by other users are allowed, generally the server should set
+ * {@link com.smartgwt.client.data.DSResponse#getInvalidateCache DSResponse.invalidateCache} to clear the cache when
+ * concurrent modification is
+ *  detected.
+ *  <P>
+ *  In paging mode with a partial cache, any successful "update" or "add" operation may cause
+ *  client and server row numbering to become out of sync.  This happens because the update
+ *  may affect the sort order, and client and server cannot be guaranteed to match for sets of
+ *  records that have equivalent values for the sort field.
+ *  <P>
+ *  For this reason, after an "add" or "update" operation with a partial cache, the ResultSet
+ *  will automatically mark cache for invalidation the next time a fetch operation is performed.
+ * Alternatively, if {@link com.smartgwt.client.data.ResultSet#getUpdatePartialCache updatePartialCache} is set to false,
+ * the ResultSet will
+ *  simply invalidate cache immediately in this circumstance.
+ * @see com.smartgwt.client.widgets.DataBoundComponent
+ * @see com.smartgwt.client.data.DataSource#getResultSetClass
+ * @see com.smartgwt.client.data.ResultSet#getRange
  */
 public class ResultSet extends RecordList implements com.smartgwt.client.data.events.HasDataArrivedHandlers {
 
@@ -203,6 +314,23 @@ public class ResultSet extends RecordList implements com.smartgwt.client.data.ev
         this.ensuringCreated = true;
         getOrCreateJsObj();
         this.ensuringCreated = false;
+    }
+
+    /** 
+     * This method returns a Map of config properties suitable for use as the "defaults" 
+     * attribute of a {@link com.smartgwt.client.tools.PaletteNode}.  Use it when you need to
+     * work with PaletteNodes indirectly, such when setting up 
+     * {@link com.smartgwt.client.widgets.tile.TileRecord}s that will be used in a 
+     * {@link com.smartgwt.client.tools.TilePalette}.  See 
+     * {@link com.smartgwt.client.docs.DevTools the dev tools overview} for examples of how to
+     * assemble and acquire a suitable defaults object when you are creating a PaletteNode 
+     * indirectly
+     */
+    public Map getPaletteDefaults() {
+        if (isCreated()) {
+            ConfigUtil.warnOfPreConfigInstantiation(this.getClass(), "getPaletteDefaults", (String)null);
+        }
+        return JSOHelper.convertToMap(JSOHelper.cleanProperties(getConfig(), true));
     }
 
     // ********************* Properties / Attributes ***********************

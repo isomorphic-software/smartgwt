@@ -32,18 +32,32 @@ import com.smartgwt.client.util.SC;
  * before the users EntryPoint is run.
  */
 public class SmartGwtEntryPoint implements EntryPoint {
-    private static boolean initialized = false;
+    protected static boolean superDevMode;
 
     private static native void init() /*-{
         
         // If we can't find window.isc, the JavaScript libs are not present.
         if ($wnd.isc == null) {
-            var message = "Core SmartClient JavaScript libraries appear not to be loaded.\nIf inheriting the NoScript SmartGWT modules, verify that " +
-                            "the HTML file includes <script src=...> tags to load the SmartClient module .js files from the appropriate location within the " +
-                            "WAR.\nBy default these files are present under [GWT app name]/sc/modules/. ";
+            var message = "Core SmartClient JavaScript libraries appear not to be loaded.  " + 
+                "If inheriting the NoScript SmartGWT modules, verify that the HTML file " + 
+                "includes <script src=...> tags to load the SmartClient module .js files " + 
+                "from the appropriate location within the WAR.  By default these files are " + 
+                "present under [GWT app name]/sc/modules/.";
+           if (@com.smartgwt.client.SmartGwtEntryPoint::superDevMode) {
+               message += "\n\n" + 
+                   "In SuperDevMode, the cause may be that the SmartClient resources have " +
+                   "not been extracted from the SmartGWT JARs, or the loadScriptTagFiles.js " +
+                   "file that works around the SDM linker's rules by force-loading your " +
+                   "script tag content hasn't been generated.  To resolve these issues, if " +
+                   "running SDM in Eclipse, go to the GWT tab in your Run Configuration, " +
+                   "temporary toggle the mode to Classic Dev Mode and run it once (also " + 
+                   "switching to at least GWT 2.7), then switch back to SDM and restart it." +
+                   "\n\nSee the SuperDevModeTroubleShooting help topic for further details.";
+           }
             @com.google.gwt.core.client.GWT::log(Ljava/lang/String;Ljava/lang/Throwable;)(message, @com.smartgwt.client.core.JsObject.SGWT_WARN::new(Ljava/lang/String;)(message));
+            // display a dialog since this is a fatal error
+            alert(message);
             return;
-
         }
 
         var asBuiltSCVersionNumber = @com.smartgwt.client.Version::getSCVersionNumber()();
@@ -84,9 +98,6 @@ public class SmartGwtEntryPoint implements EntryPoint {
         $wnd.Array.LOADING = loadingRecord.@com.smartgwt.client.data.Record::getJsObj()();
         $wnd.Array.LOADING.loadingMarker = true;
         
-        // Set a flag so SC code can easily determine that SGWT is running
-        $wnd.isc.Browser.isSGWT = true;
-
         //convert javascript data types into corresponding Java wrapper types
         //int -> Integer, float -> Float, boolean -> Boolean and date - > java.util.Date
         $wnd.SmartGWT ={};
@@ -94,9 +105,10 @@ public class SmartGwtEntryPoint implements EntryPoint {
         // In JSNI, we may be passed GWT Java Object references.
         // These typically can not be directly manipulated -- this check will test for such objects.
         $wnd.SmartGWT.isNativeJavaObject = function (object) {
-            // From observation "typeof" reports "function" for native Java objects in Firefox in development mode
-            // and in OmniWeb, in development mode
-            // In all other browsers, typeof reports as "object"
+            if (object == null) return false;
+            // From observation "typeof" reports "function" for native Java objects in Firefox
+            // in development mode and in OmniWeb, in development mode.
+            // In all other browsers, typeof reports as "object".
             var type = typeof object;
             if (type != "function" && type != "object") return false;
             if (@com.smartgwt.client.util.JSOHelper::isJSO(Ljava/lang/Object;)(object)) return false;
@@ -116,6 +128,11 @@ public class SmartGwtEntryPoint implements EntryPoint {
         	@com.smartgwt.client.util.JSOHelper::throwUnconvertibleObjectException(Ljava/lang/Object;Ljava/lang/String;)(object,message);
         }
 
+        // GWT has isScript() but doesn't provide a way to check for SuperDevMode
+        $wnd.SmartGWT.isSuperDevMode = function () {
+            return @com.smartgwt.client.SmartGwtEntryPoint::superDevMode;
+        }
+
         if(!@com.google.gwt.core.client.GWT::isScript()()){
             $wnd.isc.Log.addClassMethods({
               warningLogged : function (message) {
@@ -126,6 +143,9 @@ public class SmartGwtEntryPoint implements EntryPoint {
             //support option of triggering JS debugger by default in hosted mode if JS error is encountered
             @com.smartgwt.client.util.SC::setEnableJSDebugger(Z)(true);
             
+            // firebug trace causes crashes in GWT DevMode
+            $wnd.isc.Log.showFireBugTrace = false;
+
             // Log a warning about the known issues with Chrome / Hosted Mode
             if ($wnd.isc.Browser.isChrome) {
                 $wnd.isc.Log.logWarn("WARNING: due to bugs in Chrome, GWT development mode in Chrome is not reliable and should not be used.  " +
@@ -173,6 +193,21 @@ public class SmartGwtEntryPoint implements EntryPoint {
             };
 
             $wnd.isc.Canvas.validateFieldNames = true;
+
+        } else if (!$wnd.isc.isA._jsArray) { // avoid infinite recursion if init() called twice
+
+            // Modify isAn.Array to return false if we're looking at a native Java
+            // Object. This is required as even the native Array.isArray() test returns true
+            // for the JS representation of a native Java array (presumably because a native js 
+            // array created in the scope of the GWT frame is actually used to store the object
+            $wnd.isc.isA._jsArray = $wnd.isc.isA.Array;
+		           
+		   	$wnd.isc.isA.Array = function (object) {
+               if (object == null) return false;
+               if ($wnd.SmartGWT.isNativeJavaObject(object)) return false;
+               
+               return $wnd.isc.isA._jsArray(object);
+		    };
         }
 
         // helper routine for convertToJavaType(); not wrapped with $entry()
@@ -206,14 +241,34 @@ public class SmartGwtEntryPoint implements EntryPoint {
                 
                 var objType = typeof obj;
 
-                if(objType == 'string') {
+                if (objType == 'string') {
                     return obj;
                 } else if (objType == 'number') {
-                    if(obj.toString().indexOf('.') == -1) {
-                        if(obj <= @java.lang.Integer::MAX_VALUE && obj >= @java.lang.Integer::MIN_VALUE) {
+
+                    // If a specific numeric type has been passed, we can avoid trying to guess
+                    // it below, and just definitively return either an Integer, Long, or Double.
+                    // For backcompat, provide a way to disable looking at the passed type, and
+                    // allow the old actual value logic to run if the type isn't numeric - we've
+                    // seen this in a few cases where a field typed as 'text' contains numbers.
+                    var useInteger;
+                    if (!$wnd.isc.smartGWTIgnoreNumericTyping) switch (type) {
+                        case 'integer':
+                        case 'localeInt':
+                            useInteger = true;
+                            break;
+                        case 'float':
+                        case 'localeFloat':
+                            useInteger = false;
+                            break;
+                    }
+
+                    // return Java Integer, Long, or Double based on useInteger or actual value
+                    if (useInteger || useInteger != false && obj.toString().indexOf('.') == -1)
+                    {
+                        if (obj <= @java.lang.Integer::MAX_VALUE && obj >= @java.lang.Integer::MIN_VALUE) {
                             return @com.smartgwt.client.util.JSOHelper::toInteger(I)(obj);
                         } else {
-                          return @com.smartgwt.client.util.JSOHelper::toLong(D)(obj);
+                            return @com.smartgwt.client.util.JSOHelper::toLong(D)(obj);
                         }
                     } else {
                         // Convert non-integral JS numbers to Java `Double's to prevent a loss
@@ -234,7 +289,12 @@ public class SmartGwtEntryPoint implements EntryPoint {
                     return @com.smartgwt.client.util.JSOHelper::convertToJavaDate(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
                 } else if (obj._constructor && obj._constructor == 'DateRange') {
                     return @com.smartgwt.client.widgets.form.fields.DateRangeItem::convertToDateRange(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
-                } else if($wnd.isc.isA.Array(obj) && type !== null) {
+                //>IDocument
+                // The smartGWTSkipArrayConversion flag is a backcompat measure, to support
+                // customers that depend on the old behavior of returning a JS array as a 
+                // JavaScriptObject.  Implemented for Sofico and exposed to them June 12 2015
+                //<IDocument
+                } else if($wnd.isc.isA.Array(obj) && type !== null && !$wnd.isc.smartGWTSkipArrayConversion) {
                     return this._convertToJavaArrayType(obj, type);
                 } else if(@com.smartgwt.client.util.JSOHelper::isJSO(Ljava/lang/Object;)(obj)) {
                     return obj;
@@ -242,6 +302,15 @@ public class SmartGwtEntryPoint implements EntryPoint {
                 	// We were unable to determine the type - return the object unmodified.
                     return obj;
                 }
+        });
+
+        // shortcut for calling convertToJavaType() on a DBC with the right field type
+        $wnd.SmartGWT.convertToDBCFieldJavaType = $entry(function(obj, component, fieldId) {
+            var field = component.getField(fieldId),
+                fieldType
+            ;
+            if (field && field.type) fieldType = field.type;
+            return this.convertToJavaType(obj, fieldType);
         });
 
         $wnd.SmartGWT.convertToJavaObject = $entry(function (object, listAsArray, forceMap) {
@@ -282,7 +351,7 @@ public class SmartGwtEntryPoint implements EntryPoint {
                     if (object[refProperty] != null) {
                         return object[refProperty];
                     }
-                    if ($wnd.isc.isA.Canvas(object)) {
+                    if ($wnd.isc.isA.Canvas(object) && $wnd.isc.isAn.Instance(object)) {
                         return @com.smartgwt.client.widgets.Canvas::getById(Ljava/lang/String;)(object.getID());
                     }
 
@@ -300,8 +369,12 @@ public class SmartGwtEntryPoint implements EntryPoint {
                         // a `Map' for the advanced criteria JSO.
                     }
 
-                    if ($wnd.isc.isAn.Instance(object) && object.getClassName != null) {
-                        return (object[refProperty] = @com.smartgwt.client.util.ObjectFactory::createInstance(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)(object.getClassName(), object));
+                    if (object.getClassName != null) {
+                        if ($wnd.isc.isAn.Instance(object)) {
+                            return object[refProperty] = @com.smartgwt.client.util.ObjectFactory::createInstance(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)(object.getClassName(), object);
+                        } else if ($wnd.isc.isA.Class(object)) {
+                            return @com.smartgwt.client.util.ObjectFactory::getSmartGWTClass(Ljava/lang/String;)(object.getClassName());                        
+                        }
                     }
                 } else {
                     if (object[refProperty] != null) {
@@ -315,10 +388,12 @@ public class SmartGwtEntryPoint implements EntryPoint {
 	    	 	var javaMap = @java.util.LinkedHashMap::new()();
 	    	 	// If it's a tree node, clean it up before converting otherwise we may end up serializing out
 	    	 	// all parents and children!
-                var treeProp = $wnd.isc.Tree.getPrototype().treeProperty;
-                if (object[treeProp] != null) {
-	    	 	    object = $wnd.isc.Tree.getCleanNodeData(object);
-	    	 	}
+                if ($wnd.isc.Tree != null) {
+                    var treeProp = $wnd.isc.Tree.getPrototype().treeProperty;
+                    if (object[treeProp] != null) {
+                        object = $wnd.isc.Tree.getCleanNodeData(object);
+                    }
+                }
 
                 // remove SGWT backrefs if appropriate
                 // see http://forums.smartclient.com/showthread.php?p=127912
@@ -370,6 +445,13 @@ public class SmartGwtEntryPoint implements EntryPoint {
                 //in certain browser versions, GWT hosted mode returns 'typeof obj' as object even for strings that originated from a object.toString() call in GWT java
                 //see http://code.google.com/p/google-web-toolkit/issues/detail?id=4301 workaround this issue by explicitly casting to a String object
                 if(@com.smartgwt.client.util.JSOHelper::isJavaString(Ljava/lang/Object;)(object)) return @com.smartgwt.client.util.JSOHelper::convertToString(Ljava/lang/Object;)(object);
+
+                // handle case where we're called on a Java Array; convert elements to primitives
+                if(@com.smartgwt.client.util.JSOHelper::isJavaArray(Ljava/lang/Object;)(object)) {
+                    var jsArray = @com.smartgwt.client.util.JSOHelper::arrayConvert([Ljava/lang/Object;)(object);
+                    for (var i = 0; i < jsArray.length; i++) jsArray[i] = this.convertToPrimitiveType(jsArray[i]);
+                    return jsArray;
+                }
             }
 
             return object;
@@ -384,10 +466,19 @@ public class SmartGwtEntryPoint implements EntryPoint {
             	}
             	return this.__fireReplyCallback(callback, request, response, data);
             }
-        }        
+        }
+
+        // Set a flag so SC code can easily determine that SGWT is running
+        $wnd.isc.Browser.isSGWT = true;
+
+        // Set flags to allow quick identification of Legacy and Super Development Modes
+        $wnd.isc.Browser.isSGWTLegacyDevMode = !@com.google.gwt.core.client.GWT::isScript()();
+        $wnd.isc.Browser.isSGWTSuperDevMode = @com.smartgwt.client.SmartGwtEntryPoint::superDevMode;
+
     }-*/;
 
-    private boolean hasUncaughtExceptions;
+    private static boolean initialized;
+    private static boolean hasUncaughtExceptions;
 
     public void onModuleLoad() {
         // added boolean init check flag because GWT for some reason invokes this entry point

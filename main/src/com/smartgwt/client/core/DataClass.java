@@ -83,17 +83,6 @@ public class DataClass extends JsObject implements HasHandlers {
         return factoryCreated;
     }
 
-    // if this instance has been used to set the properties of another object, mark it as
-    // read-only so that no further changes can be made (lest a warning be generated).
-    protected boolean readOnly;
-
-    public void setReadOnly() {
-        readOnly = true;
-    }
-    public boolean getReadOnly() {
-        return readOnly;
-    }
-
     public DataClass() {
         super(JSOHelper.createObject());
 
@@ -600,15 +589,6 @@ public class DataClass extends JsObject implements HasHandlers {
 
     public int getHandlerCount(GwtEvent.Type<?> type) {
         return manager == null? 0 : manager.getHandlerCount(type);
-    }
-
-    public void logConfiguration(Class callerClass, String callerMethodName) {
-        String configTypeName = ConfigUtil.getSimpleClassName(this.getClass());
-        if (readOnly) {
-            ConfigUtil.warnOfReconfiguration(callerClass, callerMethodName, configTypeName);
-        } else {
-            ConfigUtil.debugInitialConfiguration(callerClass, callerMethodName, configTypeName);
-        }            
     }
 
 }

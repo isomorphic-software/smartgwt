@@ -27,6 +27,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.client.JsDate;
 import com.google.gwt.user.client.Element;
+import com.smartgwt.client.core.JsObject;
 import com.smartgwt.client.core.BaseClass;
 import com.smartgwt.client.core.DataClass;
 import com.smartgwt.client.core.Function;
@@ -853,9 +854,9 @@ public class JSOHelper {
     }
 
     private static native JsDate createJavaScriptDate(double time) /*-{
-        // Use $wnd.Date.create() instead of JsDate.create() so that instance methods like
-        // duplicate() are added to the resulting JavaScript date object.
-        var jsD = $wnd.Date.create();
+        // Use $wnd.isc.DateUtil.create() instead of JsDate.create() so that instance methods
+        // like duplicate() are added to the resulting JavaScript date object.
+        var jsD = $wnd.isc.DateUtil.create();
         jsD.setTime(time);
         return jsD;
     }-*/;
@@ -1139,16 +1140,16 @@ public class JSOHelper {
         return getJSLogicalDate(date.getYear(), date.getMonth(), date.getDate());
     }
     public static native JsDate getJSLogicalDate(int year, int month, int date) /*-{
-        return $wnd.Date.createLogicalDate(year, month, date);
+        return $wnd.isc.DateUtil.createLogicalDate(year, month, date);
     }-*/;
 
     public static native JsDate getJSLogicalTime(Date date) /*-{
         var time = @com.smartgwt.client.util.JSOHelper::getTime(Ljava/util/Date;)(date);
-        var jsDate = $wnd.Date.create().setTime(time);
-        return $wnd.Date.createLogicalTime(jsDate.getHours(), jsDate.getMinutes(), jsDate.getSeconds(), jsDate.getMilliseconds());
+        var jsDate = $wnd.isc.DateUtil.create().setTime(time);
+        return $wnd.isc.DateUtil.createLogicalTime(jsDate.getHours(), jsDate.getMinutes(), jsDate.getSeconds(), jsDate.getMilliseconds());
     }-*/;
     public static native JsDate getJSLogicalTime(int hour, int minute, int second, int millisecond) /*-{
-        return $wnd.Date.createLogicalTime(hour, minute, second, millisecond);
+        return $wnd.isc.DateUtil.createLogicalTime(hour, minute, second, millisecond);
     }-*/;
 
     public static Boolean toBoolean(boolean value) {
@@ -1211,8 +1212,8 @@ public class JSOHelper {
     }-*/;
 
     public static native Object getObjectArrayValue(JavaScriptObject array, int index) /*-{
-        var result = array[index];
-        return (result == null ? null : result);
+        var ret = array[index];
+        return ret == null ? null : $wnd.SmartGWT.convertToJavaType(ret);
     }-*/;
 
     public static native Boolean getBooleanArrayValue(JavaScriptObject array, int index) /*-{
@@ -1386,26 +1387,41 @@ public class JSOHelper {
         return convertMapToJavascriptObject(valueMap, false);
     }
 
-
     public static JavaScriptObject convertMapToJavascriptObject(Map valueMap, boolean strict) {
         if(valueMap == null) return null;
         JavaScriptObject valueJS = JSOHelper.createObject();
         for (Iterator iterator = valueMap.keySet().iterator(); iterator.hasNext();) {
-            String key = (String) iterator.next();
-            if (key == null) {
+            Object objKey = iterator.next();
+
+            // skip specific invalid keys
+            if (objKey == null) {
                 SC.logWarn("JSO::convertMapToJavascriptObject : Map contains null key - dropping this entry.");
                 continue;
             }
-            if(key.equals("__ref")) {
+            if(objKey.equals("__ref")) {
                 SC.logWarn("JSO::convertMapToJavascriptObject : skipping __ref in map");
                 continue;
             }
-            if (key.equals("__module")) {
+            if (objKey.equals("__module")) {
                 SC.logWarn("JSO::convertMapToJavascriptObject : skipping __module in map");
                 continue;
             }
 
-            Object value = valueMap.get(key);
+            String key;
+
+            // convert to String from integral types; skip other types
+            if      (objKey instanceof String)  key =   (String)objKey;
+            else if (objKey instanceof Integer) key = ((Integer)objKey).toString();
+            else if (objKey instanceof Short)   key =   ((Short)objKey).toString();
+            else if (objKey instanceof Byte)    key =    ((Byte)objKey).toString();
+            else {
+                SC.logWarn("JSO::convertMapToJavascriptObject : Value maps can only " + 
+                           "map from integral or String stored key values to String " + 
+                           "display values.  Key " + objKey + " is not allowed.");
+                continue;
+            }
+
+            Object value = valueMap.get(objKey);
 
             if (value instanceof JavaScriptObject) {
                 setAttribute(valueJS, key, (JavaScriptObject) value);
@@ -1436,12 +1452,15 @@ public class JSOHelper {
             	setAttribute(valueJS, key, innerMapJS);
             } else if (value instanceof List){
                 setAttribute(valueJS, key, JSOHelper.convertToJavaScriptArray(((List)value).toArray(), strict));
-            } else if (value instanceof DataClass) {
-                setAttribute(valueJS, key, ((DataClass) value).getJsObj());
+
+            // use the SC JS object as value for SGWT BaseWidget, BaseClass, DataClass/JsObject
+            } else if (value instanceof JsObject) {
+                setAttribute(valueJS, key, ((JsObject) value).getJsObj());
             } else if (value instanceof BaseClass) {
-                setAttribute(valueJS, key, ((BaseClass) value).getJsObj());
+                setAttribute(valueJS, key, ((BaseClass) value).getOrCreateJsObj());
             } else if (value instanceof BaseWidget) {
                 setAttribute(valueJS, key, ((BaseWidget) value).getOrCreateJsObj());
+
             } else if (value instanceof ValueEnum) {
                 setAttribute(valueJS, key, ((ValueEnum) value).getValue());
             } else {
@@ -1504,6 +1523,7 @@ public class JSOHelper {
             delete properties.ID;
             delete properties.__ref;
             delete properties.__module;
+            delete properties.__sgwtRelink;
             delete properties._autoAssignedID;
         }
         return properties;

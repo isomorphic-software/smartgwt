@@ -13,17 +13,17 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.grid.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasFieldStateChangedHandlers extends HasHandlers {
     /**
-     * Notification method executed when columns are resized or reordered, or fields are  shown or hidden. Has no default
-     * implementation.
+     * Notification method executed when columns are resized or reordered, or fields are shown or hidden. frozen or unfrozen. 
+     * Has no default implementation.
      *
      * @param handler the fieldStateChanged handler
      * @return {@link HandlerRegistration} used to remove this handler

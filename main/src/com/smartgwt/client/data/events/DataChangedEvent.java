@@ -20,12 +20,24 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.shared.HasHandlers;
 import com.smartgwt.client.event.AbstractSmartEvent;
 
+import com.smartgwt.client.core.BaseClass;
+import com.smartgwt.client.data.RecordList;
+
 public class DataChangedEvent extends AbstractSmartEvent<DataChangedHandler>  {
 
     /**
      * Handler type.
      */
     private static Type<DataChangedHandler> TYPE;
+
+    /**
+     * Returns the {@link com.smartgwt.client.core.BaseClass BaseClass} firing the event.
+     * @return BaseClass firing the event
+     */
+    public BaseClass getFiringBaseClass() {
+        JavaScriptObject smartClassJS = getFiringInstanceAsJavaScriptObject();
+        return smartClassJS != null ? (BaseClass) RecordList.getOrCreateRef(smartClassJS) : null;
+    }
 
     /**
      * Fires a open event on all registered handlers in the handler manager.If no

@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.form.fields;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,43 +40,102 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
+import com.smartgwt.client.widgets.ace.*;
+import com.smartgwt.client.widgets.ace.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
 import com.smartgwt.client.widgets.tree.events.*;
+import com.smartgwt.client.widgets.tableview.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.events.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
- * Provides a compact interface for editing a date range, by providing a read-only display of  the current selected date
- * range with an icon to launch a DateRangeDialog to edit the  range.
+ * Provides a compact interface for editing a date range, by providing a formatted, read-only display of the current
+ * selected date range with an icon to launch a {@link com.smartgwt.client.widgets.DateRangeDialog}  to edit the range.
  */
+@BeanFactory.FrameworkClass
 public class MiniDateRangeItem extends StaticTextItem {
 
     public static MiniDateRangeItem getOrCreateRef(JavaScriptObject jsObj) {
-        if(jsObj == null) return null;
-        RefDataClass obj = RefDataClass.getRef(jsObj);
-        if(obj != null) {
-            obj.setJsObj(jsObj);
-            return (MiniDateRangeItem) obj;
-        } else {
+        if (jsObj == null) return null;
+
+        final RefDataClass existingObj = RefDataClass.getRef(jsObj);
+
+        if (existingObj instanceof MiniDateRangeItem) {
+            existingObj.setJsObj(jsObj);
+            return (MiniDateRangeItem)existingObj;
+        } else
+
+        {
             return new MiniDateRangeItem(jsObj);
         }
     }
+        
+
+
+    /**
+     * Changes the defaults for Canvas AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults Canvas defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.  For usage tips on this
+     * param, see {@link com.smartgwt.client.docs.SGWTProperties}.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, Canvas defaults) /*-{
+        if (defaults.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPreConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(MiniDateRangeItem.@java.lang.Object::getClass()(), "changeAutoChildDefaults", "Canvas");
+        }
+        defaults.@com.smartgwt.client.widgets.BaseWidget::setConfigOnly(Z)(true);
+        var cleanDefaultsJS = @com.smartgwt.client.util.JSOHelper::cleanProperties(Lcom/google/gwt/core/client/JavaScriptObject;Z)(defaults.@com.smartgwt.client.widgets.BaseWidget::getConfig()(), true);
+        $wnd.isc.MiniDateRangeItem.changeDefaults(autoChildName + "Defaults", cleanDefaultsJS);
+    }-*/;
+
+    /**
+     * Changes the defaults for FormItem AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults FormItem defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.  For usage tips on this
+     * param, see {@link com.smartgwt.client.docs.SGWTProperties}.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, FormItem defaults) /*-{
+        if (defaults.@com.smartgwt.client.widgets.form.fields.FormItem::isCreated()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPreConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(MiniDateRangeItem.@java.lang.Object::getClass()(), "changeAutoChildDefaults", "FormItem");
+        }
+        defaults.@com.smartgwt.client.widgets.form.fields.FormItem::setConfigOnly(Z)(true);
+    	var cleanDefaultsJS = defaults.@com.smartgwt.client.widgets.form.fields.FormItem::getEditorTypeConfig()();
+        $wnd.isc.MiniDateRangeItem.changeDefaults(autoChildName + "Defaults", cleanDefaultsJS);
+    }-*/;
+
+    public static native void changePickerIconDefaults(FormItemIcon defaults) /*-{
+        $wnd.isc.MiniDateRangeItem.changeDefaults("pickerIconDefaults", defaults.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
 
     public MiniDateRangeItem(){
         setAttribute("editorType", "MiniDateRangeItem");
@@ -83,89 +145,194 @@ public class MiniDateRangeItem extends StaticTextItem {
         super(jsObj);
     }
 
+
     public MiniDateRangeItem(String name) {
         setName(name);
-        setAttribute("editorType", "MiniDateRangeItem");
+                setAttribute("editorType", "MiniDateRangeItem");
     }
+
 
     public MiniDateRangeItem(String name, String title) {
         setName(name);
 		setTitle(title);
-        setAttribute("editorType", "MiniDateRangeItem");
+                setAttribute("editorType", "MiniDateRangeItem");
     }
+
 
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Mini DateRangeItems are marked as canFocus:true, and set up with properties such that focus will always go to the icon
-     * to launch the dateRange dialog. Set canFocus to false to  suppress this behavior.
+     * Whether the {@link com.smartgwt.client.widgets.DateRangeDialog} opened when the  {@link
+     * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getPickerIcon pickerIcon} is clicked should display  {@link
+     * com.smartgwt.client.widgets.form.fields.RelativeDateItem}s or {@link com.smartgwt.client.widgets.form.fields.DateItem}s.
      *
-     * @param canFocus canFocus Default value is true
+     * @param allowRelativeDates New allowRelativeDates value. Default value is true
+     */
+    public void setAllowRelativeDates(Boolean allowRelativeDates) {
+        setAttribute("allowRelativeDates", allowRelativeDates);
+    }
+
+    /**
+     * Whether the {@link com.smartgwt.client.widgets.DateRangeDialog} opened when the  {@link
+     * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getPickerIcon pickerIcon} is clicked should display  {@link
+     * com.smartgwt.client.widgets.form.fields.RelativeDateItem}s or {@link com.smartgwt.client.widgets.form.fields.DateItem}s.
+     *
+     * @return Current allowRelativeDates value. Default value is true
+     */
+    public Boolean getAllowRelativeDates()  {
+        Boolean result = getAttributeAsBoolean("allowRelativeDates", true);
+        return result == null ? true : result;
+    }
+    
+
+    /**
+     * If this attribute is set to true, the pop up date range dialog will automatically validate the user-entered <i>"to"</i>
+     * and <i>"from"</i> values on  <code>"OK"</code>-click, and refuse to dismiss if these items contain invalid values.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Setter for {@link com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getAutoValidate autoValidate}
+     *
+     * @param autoValidate New auto-validate setting. Default value is true
+     */
+    public void setAutoValidate(Boolean autoValidate) {
+        setAttribute("autoValidate", autoValidate);
+    }
+
+    /**
+     * If this attribute is set to true, the pop up date range dialog will automatically validate the user-entered <i>"to"</i>
+     * and <i>"from"</i> values on  <code>"OK"</code>-click, and refuse to dismiss if these items contain invalid values.
+     *
+     * @return Current autoValidate value. Default value is true
+     */
+    public Boolean getAutoValidate()  {
+        Boolean result = getAttributeAsBoolean("autoValidate", true);
+        return result == null ? true : result;
+    }
+    
+
+    /**
+     * MiniDateRangeItems are marked as canFocus:true, and set up with properties such that focus will always go to the icon to
+     * launch the dateRange dialog. Set canFocus to false to  suppress this behavior.
+     *
+     * @param canFocus New canFocus value. Default value is true
      */
     public void setCanFocus(Boolean canFocus) {
         setAttribute("canFocus", canFocus);
     }
 
     /**
-     * Mini DateRangeItems are marked as canFocus:true, and set up with properties such that focus will always go to the icon
-     * to launch the dateRange dialog. Set canFocus to false to  suppress this behavior.
+     * MiniDateRangeItems are marked as canFocus:true, and set up with properties such that focus will always go to the icon to
+     * launch the dateRange dialog. Set canFocus to false to  suppress this behavior.
      *
-     *
-     * @return Boolean
+     * @return Current canFocus value. Default value is true
      */
     public Boolean getCanFocus()  {
-        return getAttributeAsBoolean("canFocus");
+        Boolean result = getAttributeAsBoolean("canFocus", true);
+        return result == null ? true : result;
+    }
+    
+
+    /**
+     * MiniDateRangeItems rely on their icon being able to receive focus for normal user interaction as they have no other
+     * focusable element. <code>canTabToIcons</code> is overridden to achieve this even if the property has been set to
+     * <code>false</code> at the {@link com.smartgwt.client.widgets.form.DynamicForm#getCanTabToIcons form level}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param canTabToIcons New canTabToIcons value. Default value is true
+     */
+    public void setCanTabToIcons(Boolean canTabToIcons) {
+        setAttribute("canTabToIcons", canTabToIcons);
     }
 
     /**
-     * Format for displaying dates in to the user.   <P> If this attribute is unset, the display value is formatted
-     * intelligently according to the dates involved.  For example, if both dates appear in the same month, the value will be 
-     * formatted as <code>Month date1 - date2, Year</code> and, if in different months of the same year, <code>Month1 date1 -
-     * Month2 date2, Year</code>.
+     * MiniDateRangeItems rely on their icon being able to receive focus for normal user interaction as they have no other
+     * focusable element. <code>canTabToIcons</code> is overridden to achieve this even if the property has been set to
+     * <code>false</code> at the {@link com.smartgwt.client.widgets.form.DynamicForm#getCanTabToIcons form level}.
      *
-     * @param dateDisplayFormat dateDisplayFormat Default value is null
+     * @return Current canTabToIcons value. Default value is true
+     */
+    public Boolean getCanTabToIcons()  {
+        Boolean result = getAttributeAsBoolean("canTabToIcons", true);
+        return result == null ? true : result;
+    }
+    
+
+    /**
+     * Format for displaying dates to the user.   <P> If this attribute is unset, the display value is formatted intelligently
+     * according to the dates involved.  For example, if both dates appear in the same month, the value will be  formatted as 
+     * <P><code>Month date1 - date2, Year</code>  <P>and, if in different months of the same year,  <P><code>Month1 date1 -
+     * Month2 date2, Year</code>. <P>If either date-value is unset, the display-value is formatted according to  {@link
+     * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getFromDateOnlyPrefix fromDateOnlyPrefix} and  {@link
+     * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getToDateOnlyPrefix toDateOnlyPrefix}.
+     *
+     * @param dateDisplayFormat New dateDisplayFormat value. Default value is null
      */
     public void setDateDisplayFormat(DateDisplayFormat dateDisplayFormat) {
         setAttribute("dateDisplayFormat", dateDisplayFormat == null ? null : dateDisplayFormat.getValue());
     }
 
     /**
-     * Format for displaying dates in to the user.   <P> If this attribute is unset, the display value is formatted
-     * intelligently according to the dates involved.  For example, if both dates appear in the same month, the value will be 
-     * formatted as <code>Month date1 - date2, Year</code> and, if in different months of the same year, <code>Month1 date1 -
-     * Month2 date2, Year</code>.
+     * Format for displaying dates to the user.   <P> If this attribute is unset, the display value is formatted intelligently
+     * according to the dates involved.  For example, if both dates appear in the same month, the value will be  formatted as 
+     * <P><code>Month date1 - date2, Year</code>  <P>and, if in different months of the same year,  <P><code>Month1 date1 -
+     * Month2 date2, Year</code>. <P>If either date-value is unset, the display-value is formatted according to  {@link
+     * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getFromDateOnlyPrefix fromDateOnlyPrefix} and  {@link
+     * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getToDateOnlyPrefix toDateOnlyPrefix}.
      *
-     *
-     * @return DateDisplayFormat
+     * @return Current dateDisplayFormat value. Default value is null
      */
     public DateDisplayFormat getDateDisplayFormat()  {
         return EnumUtil.getEnum(DateDisplayFormat.values(), getAttribute("dateDisplayFormat"));
     }
+    
+    
+
+    /**
+     * The text to prepend to the formatted date when only a {@link
+     * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getFromDate fromDate} is supplied.
+     *
+     * @param fromDateOnlyPrefix New fromDateOnlyPrefix value. Default value is "Since"
+     */
+    public void setFromDateOnlyPrefix(String fromDateOnlyPrefix) {
+        setAttribute("fromDateOnlyPrefix", fromDateOnlyPrefix);
+    }
+
+    /**
+     * The text to prepend to the formatted date when only a {@link
+     * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getFromDate fromDate} is supplied.
+     *
+     * @return Current fromDateOnlyPrefix value. Default value is "Since"
+     */
+    public String getFromDateOnlyPrefix()  {
+        return getAttributeAsString("fromDateOnlyPrefix");
+    }
+    
 
     /**
      * Icon that launches a {@link com.smartgwt.client.widgets.DateChooser} for choosing an absolute date.
      *
-     * @param pickerIcon pickerIcon Default value is null
+     * @param pickerIcon New pickerIcon value. Default value is null
      */
     public void setPickerIcon(FormItemIcon pickerIcon) {
-        setAttribute("pickerIcon", pickerIcon.getJsObj());
+        setAttribute("pickerIcon", pickerIcon == null ? null : pickerIcon.getJsObj());
     }
 
     /**
      * Icon that launches a {@link com.smartgwt.client.widgets.DateChooser} for choosing an absolute date.
      *
-     *
-     * @return FormItemIcon
+     * @return Current pickerIcon value. Default value is null
      */
     public FormItemIcon getPickerIcon()  {
         return new FormItemIcon(getAttributeAsJavaScriptObject("pickerIcon"));
     }
+    
 
     /**
      * The prompt to show when the mouse is hovered over the {@link
      * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getPickerIcon pickerIcon}.
      *
-     * @param pickerIconPrompt pickerIconPrompt Default value is "Show Date Chooser"
+     * @param pickerIconPrompt New pickerIconPrompt value. Default value is "Show Date Chooser"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
     public void setPickerIconPrompt(String pickerIconPrompt) {
         setAttribute("pickerIconPrompt", pickerIconPrompt);
@@ -175,19 +342,33 @@ public class MiniDateRangeItem extends StaticTextItem {
      * The prompt to show when the mouse is hovered over the {@link
      * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getPickerIcon pickerIcon}.
      *
-     *
-     * @return String
+     * @return Current pickerIconPrompt value. Default value is "Show Date Chooser"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
      */
     public String getPickerIconPrompt()  {
         return getAttributeAsString("pickerIconPrompt");
     }
+    
+
+    /**
+     * Pop-up {@link com.smartgwt.client.widgets.DateRangeDialog} for entering a date range.
+     * <p>
+     * This component is an AutoChild named "rangeDialog".  For an overview of how to use and
+     * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return Current rangeDialog value. Default value is null
+     */
+    public DateRangeDialog getRangeDialog()  {
+        return (DateRangeDialog)DateRangeDialog.getByJSObject(getAttributeAsJavaScriptObject("rangeDialog"));
+    }
+    
 
     /**
      * Allow miniDateRangeItems' values to show up in the form's values array, or if  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria DynamicForm.getValuesAsCriteria} is called, for the
+     * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria DynamicForm.getValuesAsCriteria()} is called, for the
      * criterion to be included in the returned AdvancedCriteria object
      *
-     * @param shouldSaveValue shouldSaveValue Default value is true
+     * @param shouldSaveValue New shouldSaveValue value. Default value is true
      */
     public void setShouldSaveValue(Boolean shouldSaveValue) {
         setAttribute("shouldSaveValue", shouldSaveValue);
@@ -195,100 +376,74 @@ public class MiniDateRangeItem extends StaticTextItem {
 
     /**
      * Allow miniDateRangeItems' values to show up in the form's values array, or if  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria DynamicForm.getValuesAsCriteria} is called, for the
+     * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria DynamicForm.getValuesAsCriteria()} is called, for the
      * criterion to be included in the returned AdvancedCriteria object
      *
-     *
-     * @return Boolean
+     * @return Current shouldSaveValue value. Default value is true
      */
     public Boolean getShouldSaveValue()  {
-        return getAttributeAsBoolean("shouldSaveValue");
+        Boolean result = getAttributeAsBoolean("shouldSaveValue", true);
+        return result == null ? true : result;
     }
+    
 
     /**
-     * Base CSS class name for a form item's text box element. <P> NOTE: See the {@link CompoundFormItem_skinning} discussion
-     * for special skinning considerations.
+     * Base CSS class name for a form item's text box element. <p> See {@link com.smartgwt.client.docs.FormItemStyling} for an
+     * overview of formItem styling, and  the {@link com.smartgwt.client.docs.CompoundFormItem_skinning} discussion for special
+     * skinning considerations. <p> If the <code>textBoxStyle</code> is changed at runtime, {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#updateState updateState()} must be called to update the visual state of
+     * this item.
      *
-     * @param textBoxStyle textBoxStyle Default value is "textItem"
+     * @param textBoxStyle New textBoxStyle value. Default value is "textItem"
      * @see com.smartgwt.client.widgets.form.fields.FormItem#setCellStyle
-     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
+     * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
     public void setTextBoxStyle(String textBoxStyle) {
         setAttribute("textBoxStyle", textBoxStyle);
     }
 
     /**
-     * Base CSS class name for a form item's text box element. <P> NOTE: See the {@link CompoundFormItem_skinning} discussion
-     * for special skinning considerations.
+     * Base CSS class name for a form item's text box element. <p> See {@link com.smartgwt.client.docs.FormItemStyling} for an
+     * overview of formItem styling, and  the {@link com.smartgwt.client.docs.CompoundFormItem_skinning} discussion for special
+     * skinning considerations. <p> If the <code>textBoxStyle</code> is changed at runtime, {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#updateState updateState()} must be called to update the visual state of
+     * this item.
      *
-     *
-     * @return String
+     * @return Current textBoxStyle value. Default value is "textItem"
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getCellStyle
-     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     * @see com.smartgwt.client.docs.FormItemBaseStyle FormItemBaseStyle 
+     * @see com.smartgwt.client.docs.FormItemStyling FormItemStyling overview and related methods
      */
     public String getTextBoxStyle()  {
         return getAttributeAsString("textBoxStyle");
     }
+    
+    
+
+    /**
+     * The text to prepend to the formatted date when only a {@link
+     * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getToDate toDate} is supplied.
+     *
+     * @param toDateOnlyPrefix New toDateOnlyPrefix value. Default value is "Before"
+     */
+    public void setToDateOnlyPrefix(String toDateOnlyPrefix) {
+        setAttribute("toDateOnlyPrefix", toDateOnlyPrefix);
+    }
+
+    /**
+     * The text to prepend to the formatted date when only a {@link
+     * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getToDate toDate} is supplied.
+     *
+     * @return Current toDateOnlyPrefix value. Default value is "Before"
+     */
+    public String getToDateOnlyPrefix()  {
+        return getAttributeAsString("toDateOnlyPrefix");
+    }
+    
 
     // ********************* Methods ***********************
-            
-    /**
-     * Whether the DateRangeDialog opened when the  {@link
-     * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getPickerIcon pickerIcon} is clicked should display  {@link
-     * com.smartgwt.client.widgets.form.fields.RelativeDateItem}s or {@link com.smartgwt.client.widgets.form.fields.DateItem}s.
-     *
-     * @return true
-     */
-    public native Boolean allowRelativeDates() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var retVal =self.allowRelativeDates();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
-     * Returns true if the specified criterion contains: <ul><li>A single "lessOrEqual" or "greaterOrEqual" criterion on this
-     * field</li>     <li>An "and" type criterion containing a "lessOrEqual" and a "greaterOrEqual" criterion on         this
-     * field</li>     <li>A single "equals" criterion.  Internally, this will be converted into a range         by constructing
-     * an "and" type criterion containing both a "lessOrEqual" and          a "greaterOrEqual" criterion on this field.  Note
-     * that subsequent calls to          {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#getCriterion
-     * getCriterion()} will return this more complex          criterion.</li> </ul>
-     * @param criterion criterion to test
-     *
-     * @return returns true if this criterion can be edited by this item
-     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
-     */
-    public native Boolean canEditCriterion(Criterion criterion) /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var retVal =self.canEditCriterion(criterion.@com.smartgwt.client.core.DataClass::getJsObj()());
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
-     * Returns the Criterion entered in the fields shown in the  {@link
-     * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getRangeDialog rangeDialog}. <P> If both dates are entered, a
-     * Criterion with an "and" {@link com.smartgwt.client.types.OperatorId operator} will be returned with both a
-     * "greaterOrEqual" and "lessOrEqual" sub-criteria.  If either date is omitted, only the "greaterOrEqual" (from date) or
-     * "lessOrEqual" (to date) Criterion is returned.
-     *
-     * @return 
-     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
-     */
-    public native Criterion getCriterion() /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var ret = self.getCriterion();
-        if(ret == null || ret === undefined) return null;
-        return @com.smartgwt.client.data.Criterion::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-    }-*/;
-            
-    /**
+	/**
      * Overridden to return true: dateRangeItems always generate AdvancedCriteria.
      *
      * @return true
@@ -296,31 +451,43 @@ public class MiniDateRangeItem extends StaticTextItem {
      */
     public native Boolean hasAdvancedCriteria() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        var retVal =self.hasAdvancedCriteria();
-        if(retVal == null || retVal === undefined) {
-            return null;
-        } else {
-            return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(retVal);
-        }
-    }-*/;
-            
-    /**
-     * Applies the specified criterion to this item for editing. Applies any specified "greaterOrEqual" operator criterion or
-     * sub-criterion to our {@link com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getFromField fromField} and any
-     * specified "lessOrEqual" operator criterion or sub-criterion to our {@link
-     * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getToField toField}. <P> Note that a single "equals" criterion
-     * can also be passed.  See  {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#canEditCriterion
-     * canEditCriterion()} for more detail.
-     * @param criterion criterion to edit
-     */
-    public native void setCriterion(Criterion criterion) /*-{
-        var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
-        self.setCriterion(criterion.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if (!this.@com.smartgwt.client.widgets.form.fields.FormItem::isCreated()()) return null;
+        var ret = self.hasAdvancedCriteria();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
 
+
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    /** 
+     * Class level method to set the default properties of this class.  If set, then all
+     * existing and subsequently created instances of this class will automatically have
+     * default properties corresponding to
+     * the properties of the class instance passed to this function.
+     * This is a powerful feature that eliminates the need for users to create a separate
+     * hierarchy of subclasses that only alter the default properties of this class. Can also
+     * be used for skinning / styling purposes.  <P> <b>Note:</b> This method is intended for
+     * setting default attributes only and will affect all instances of the underlying class
+     * (including those automatically generated in JavaScript).  This method should not be used
+     * to apply standard EventHandlers or override methods for a class - use a custom subclass
+     * instead.  Calling this method after instances have been created can result in undefined
+     * behavior, since it bypasses any setters and a class instance may have already examined 
+     * a particular property and not be expecting any changes through this route.
+     *
+     * @param miniDateRangeItemProperties properties that should be used as new defaults when instances of this class are created
+     * @see com.smartgwt.client.docs.SGWTProperties
+     */
+    public static native void setDefaultProperties(MiniDateRangeItem miniDateRangeItemProperties) /*-{
+        if (miniDateRangeItemProperties.@com.smartgwt.client.widgets.form.fields.FormItem::isCreated()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPreConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/Class;)(MiniDateRangeItem.@java.lang.Object::getClass()(), "setDefaultProperties", miniDateRangeItemProperties.@java.lang.Object::getClass()());
+        }
+        miniDateRangeItemProperties.@com.smartgwt.client.widgets.form.fields.FormItem::setConfigOnly(Z)(true);
+    	var properties = miniDateRangeItemProperties.@com.smartgwt.client.widgets.form.fields.FormItem::getConfig()();
+        $wnd.isc.MiniDateRangeItem.addProperties(properties);
+    }-*/;
+
+    // ***********************************************************
 
 
     /**
@@ -392,7 +559,7 @@ public class MiniDateRangeItem extends StaticTextItem {
         var endJS = valueJS.end;
 
         var dateRangeJ = @com.smartgwt.client.data.DateRange::new()();
-        if(startJS == null || startJS === undefined) {
+        if(startJS == null) {
             //do nothing as null is the default
         } else {
             if($wnd.isc.isA.Date(startJS)) {
@@ -402,21 +569,21 @@ public class MiniDateRangeItem extends StaticTextItem {
                 var start = @com.smartgwt.client.data.RelativeDate::new(Ljava/lang/String;)(startJS);
                 dateRangeJ.@com.smartgwt.client.data.DateRange::setRelativeStartDate(Lcom/smartgwt/client/data/RelativeDate;)(start);
             } else if(startJS.value) {
-                var start = @com.smartgwt.client.data.RelativeDate::new(Ljava/lang/String;)(startJS.value);
+                var start = @com.smartgwt.client.data.RelativeDate::new(Lcom/google/gwt/core/client/JavaScriptObject;)(startJS);
                 dateRangeJ.@com.smartgwt.client.data.DateRange::setRelativeStartDate(Lcom/smartgwt/client/data/RelativeDate;)(start);
             }
         }
-        if(endJS == null || endJS === undefined) {
+        if(endJS == null) {
             //do nothing as null is the default
         } else {
             if($wnd.isc.isA.Date(endJS)) {
                 var end = @com.smartgwt.client.util.JSOHelper::toDate(D)(endJS.getTime());
                 dateRangeJ.@com.smartgwt.client.data.DateRange::setEndDate(Ljava/util/Date;)(end);
-            } else if($wnd.isc.isA.String(startJS)) {
+            } else if($wnd.isc.isA.String(endJS)) {
                 var end = @com.smartgwt.client.data.RelativeDate::new(Ljava/lang/String;)(endJS);
                 dateRangeJ.@com.smartgwt.client.data.DateRange::setRelativeEndDate(Lcom/smartgwt/client/data/RelativeDate;)(end);
             } else if(endJS.value) {
-                var end = @com.smartgwt.client.data.RelativeDate::new(Ljava/lang/String;)(endJS.value);
+                var end = @com.smartgwt.client.data.RelativeDate::new(Lcom/google/gwt/core/client/JavaScriptObject;)(endJS);
                 dateRangeJ.@com.smartgwt.client.data.DateRange::setRelativeEndDate(Lcom/smartgwt/client/data/RelativeDate;)(end);
             }
         }
@@ -439,7 +606,19 @@ public class MiniDateRangeItem extends StaticTextItem {
         }
     }-*/;
 
+    /**
+     * The default <code>getCriterion()</code> implementation returns the Criterion entered in the fields shown in the  {@link
+     * com.smartgwt.client.widgets.form.fields.MiniDateRangeItem#getRangeDialog rangeDialog}. <P> If both dates are entered, a
+     * Criterion with an "and" {@link com.smartgwt.client.types.OperatorId operator}  and both "greaterOrEqual" and
+     * "lessOrEqual" sub-criteria will be returned.  If either date is omitted, only the "greaterOrEqual" (from date) or
+     * "lessOrEqual" (to date)  Criterion is returned.
+     * @param getter provides a method to get a criterion object based on this field's current edited value(s).
+     *
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setCriterionGetter
+     * @see com.smartgwt.client.docs.CriteriaEditing CriteriaEditing overview and related methods
+     */
+    public void setCriterionGetter(FormItemCriterionGetter getter) {
+        super.setCriterionGetter(getter);
+    }
+
 }
-
-
-

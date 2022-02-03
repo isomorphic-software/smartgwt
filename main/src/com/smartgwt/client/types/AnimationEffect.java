@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,30 +16,40 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * String specifying effect to apply during an animated show or hide.
  */
 public enum AnimationEffect implements ValueEnum {
     /**
      * content slides into or out of view as the widget grows or shrinks
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "slide".
      */
     SLIDE("slide"),
     /**
      * content is revealed or wiped as the widget grows or shrinks
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "wipe".
      */
     WIPE("wipe"),
     /**
      * widget's opacity smoothly fades into or out of view
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "fade".
      */
     FADE("fade"),
     /**
      * widget moves into position from offscreen
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "fly".
      */
     FLY("fly");
-
     private String value;
 
     AnimationEffect(String value) {

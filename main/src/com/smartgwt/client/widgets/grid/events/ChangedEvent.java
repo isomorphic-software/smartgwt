@@ -64,6 +64,16 @@ public class ChangedEvent extends AbstractSmartEvent<ChangedHandler>  {
     private static Type<ChangedHandler> TYPE;
 
     /**
+     * Returns the {@link com.smartgwt.client.core.DataClass DataClass} firing the event.
+     * @return DataClass firing the event
+     */
+    public DataClass getFiringDataClass() {
+        JavaScriptObject dataClassJS = getFiringInstanceAsJavaScriptObject();
+        return dataClassJS != null ? (DataClass) ListGridField.getOrCreateRef(dataClassJS) :
+                              null;
+    }
+
+    /**
      * Fires a open event on all registered handlers in the handler manager.If no
      * such handlers exist, this method will do nothing.
      *

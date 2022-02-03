@@ -83,4 +83,3 @@ public class BeanMethod<BeanClass, ValueType> {
         setPropertyOnBean(bean, (ValueType) beanValueType.convertFrom(value));
     } 
 }
-

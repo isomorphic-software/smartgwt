@@ -193,5 +193,40 @@ public class Messaging {
         return SC.hasRealtimeMessaging();
     }
 
-    
+
+    /**
+     * Called when the messaging connection allowing the server to send messages to the client is disconnected.  This can occur
+     * either when you explicitly disconnect the connection or if a keepalive packet from the server does not arrive on time.
+     * This latter is defined as the {@link com.smartgwt.client.rpc.Messaging#getKeepaliveInterval keepaliveInterval}
+     * plus the {@link com.smartgwt.client.rpc.Messaging#getKeepaliveReestablishDelay keepaliveReestablishDelay}. With
+     * default settings, a maximum of 4 seconds will elapse between the connection actually going down and you receiving this
+     * callback.
+     *
+     * @param callback MessagingConnectionDownCallback the callback to set.
+     */
+        public static native void setConnectionDownCallback(MessagingConnectionDownCallback callback) /*-{
+        $wnd.isc.Messaging.addClassProperties({
+                connectionDown:
+                        $entry( function() {
+                                if(callback!=null) callback.@com.smartgwt.client.rpc.MessagingConnectionDownCallback::execute()(
+                                );
+                        })
+        });
+        }-*/;
+
+    /**
+     * Called when the messaging connection allowing the server to send messages to the client is established - whether that's
+     * the result of an initial connect() or a re-establishment after it is severed.
+     *
+     * @param callback MessagingConnectionUpCallback the callback to set.
+     */
+        public static native void setConnectionUpCallback(MessagingConnectionUpCallback callback) /*-{
+        $wnd.isc.Messaging.addClassProperties({
+                connectionUp:
+                        $entry( function() {
+                                if(callback!=null) callback.@com.smartgwt.client.rpc.MessagingConnectionUpCallback::execute()(
+                                );
+                        })
+        });
+        }-*/;    
 }

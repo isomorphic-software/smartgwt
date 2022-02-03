@@ -41,7 +41,7 @@ public class JsObject {
         this.jsObj = jsObj;
     }
 
-    public final void setJavaScriptObject(JavaScriptObject jsObj) {
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
         setJsObj(jsObj);
     }
 
@@ -55,8 +55,19 @@ public class JsObject {
 
     @Override
     public int hashCode() {
-        return (jsObj == null ? 0 : jsObj.hashCode());
+        if (jsObj == null) return 0;
+        int hashCode = jsObj.hashCode();
+        _hideHashCodeFromEnumeration();
+        return hashCode;
     }
+
+    private native void _hideHashCodeFromEnumeration() /*-{
+        var jsObj = this.@com.smartgwt.client.core.JsObject::jsObj;
+        // if the hashCode has been stored in $H, make sure it's not enumerable
+        if (jsObj.$H && jsObj.propertyIsEnumerable("$H") && Object.defineProperty) {
+            Object.defineProperty(jsObj, "$H", {enumerable: false});
+        }
+    }-*/;
 
     /**
      * Simple Exception class for the sole purpose of having SmartClient logs being

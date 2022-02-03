@@ -25,11 +25,12 @@ import com.smartgwt.client.widgets.DataBoundComponent;
  * year and monthNumber, you could sort first by year in descending order and then by monthNumber in ascending order. T
  * his would producing a grid sorted by year from largest (most recent) to smallest (least recent) and, within each year,
  * by monthNumber from smallest (January) to largest (December).
+ * @deprecated In favor of {@link com.smartgwt.client.widgets.MultiSortDialog}, from the "widgets" packags
  */
 public class MultiSortDialog {
 
     /**
-     * Set the title of the MultiSortDialog.
+     * Set the default title for the MultiSortDialog.
      * 
      * @param title the title
      */
@@ -44,8 +45,10 @@ public class MultiSortDialog {
      * @param initialSort The initial sort definition.
      * @param callback Called when the user defines and accepts one or more SortSpecifiers. Single parameter sortLevels is an Array
      * of SortSpecifier or null if the user cancelled the dialog.
+     * @deprecated In favor of the implementation in the "widgets" package - {@link com.smartgwt.client.widgets.MultiSortDialog.askForSort()}
      */
-    public static native void askForSort(DataBoundComponent dataBoundComponent, SortSpecifier[] initialSort, MultiSortCallback callback) /*-{
+    public static native void askForSort(DataBoundComponent dataBoundComponent, 
+    		SortSpecifier[] initialSort, MultiSortCallback callback) /*-{
         var dbcJS = dataBoundComponent.@com.smartgwt.client.widgets.DataBoundComponent::getOrCreateJsObj()();
         var initialSortJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(initialSort);
 

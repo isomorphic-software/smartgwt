@@ -68,6 +68,15 @@ public class DragCompleteEvent extends BrowserEvent<DragCompleteHandler>  {
     private static Type<DragCompleteHandler> TYPE;
 
     /**
+     * Returns the {@link com.smartgwt.client.widgets.Canvas Canvas} firing the event.
+     * @return Canvas firing the event
+     */
+    public Canvas getFiringCanvas() {
+        JavaScriptObject canvasJS = getFiringInstanceAsJavaScriptObject();
+        return canvasJS != null ? Canvas.getByJSObject(canvasJS) : null;
+    }
+
+    /**
      * Fires a open event on all registered handlers in the handler manager.If no
      * such handlers exist, this method will do nothing.
      *

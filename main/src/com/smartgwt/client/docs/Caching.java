@@ -26,7 +26,7 @@ package com.smartgwt.client.docs;
  *  <p>
  *  Because Smart GWT performs the assembly of image URLs dynamically, versioning of
  *  Smart GWT skins must be done with a path component.  You can do this by changing the base
- *  skinDir using {@link com.smartgwt.client.util.Page#setSkinDir Page.setSkinDir} - e.g:
+ *  skinDir using {@link com.smartgwt.client.util.Page#setSkinDir Page.setSkinDir()} - e.g:
  *  <pre>
  *  isc.Page.setSkinDir('/version/5.6/isomorphic/skins/Smart GWT/');
  *  </pre>
@@ -40,8 +40,7 @@ package com.smartgwt.client.docs;
  *  available, depending on your server of choice.  Microsoft's IIS has built-in caching
  *  capability, please check the reference manual for details.  If you're using Apache, you can
  * use <a href='http://httpd.apache.org/docs/2.0/mod/mod_expires.html'
- * onclick="window.open('http://httpd.apache.org/docs/2.0/mod/mod_expires.html');return false;">mod_expires</a>.  Some
- * servlet
+ * target='_blank'>mod_expires</a>.  Some servlet
  *  containers also natively support the setting of caching headers.
  *  <p>
  *  The Smart GWT Java back-end supports setting caching headers via the FileDownload service

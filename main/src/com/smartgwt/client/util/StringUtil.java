@@ -164,4 +164,3 @@ public class StringUtil {
         return string == null ? false : $wnd.String.isValidID(string);
     }-*/;
 }
-

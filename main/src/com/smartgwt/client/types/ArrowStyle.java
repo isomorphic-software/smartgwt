@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,27 +16,26 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
- * Supported styles for arrowheads
+ * Supported styles for arrowheads.
  */
 public enum ArrowStyle implements ValueEnum {
     /**
-     * Solid triangle
+     * Filled triangle.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "block".
      */
     BLOCK("block"),
     /**
-     * arrow rendered as an open triangle. Only applies to {@link com.smartgwt.client.widgets.drawing.DrawLinePath
-     * DrawLinePaths} - for other items this will be treated as <code>"block"</code>
+     * Two lines are drawn on each side of the path.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "open".
      */
-    OPEN("open"),
-    /**
-     * Don't render an arrowhead at all
-     */
-    NULL(null);
-
+    OPEN("open");
     private String value;
 
     ArrowStyle(String value) {

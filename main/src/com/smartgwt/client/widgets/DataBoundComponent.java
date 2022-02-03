@@ -59,16 +59,44 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
     FetchMode getDataFetchMode();
 
     /**
-     * When using data paging, how many records to fetch at a time.  The value of this&#010 attribute is passed on to the auto-constructed {@link com.smartgwt.client.data.ResultSet} object for this&#010 component.  In effect, this gives you control over the {@link com.smartgwt.client.data.ResultSet#getResultSize resultSize}&#010 attribute for this component.&#010 <P>&#010 <b>Note</b> that regardless of the <code>dataPageSize</code> setting, a component will always fetch&#010 all of data that it needs to draw.  Settings such as&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getShowAllRecords showAllRecords},&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawAllMaxCells drawAllMaxCells} and&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawAheadRatio drawAheadRatio} can cause more rows than the configured&#010 <code>dataPageSize</code> to be fetched.
+     * When using {@link com.smartgwt.client.widgets.DataBoundComponent#getDataFetchMode data
+     * paging}, how many records to fetch at a time.  If set to a positive integer,
+     * <code>dataPageSize</code> will override the default {@link
+     * com.smartgwt.client.data.ResultSet#getResultSize resultSize} for ResultSets
+     * automatically created when you call {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#fetchData fetchData()} (and similarly for
+     * the {@link com.smartgwt.client.widgets.tree.ResultTree#getResultSize resultSize} of
+     * ResultTrees).  The default of 0 means to just use the default page size of the data
+     * container. <P> <b>Note</b> that regardless of the <code>dataPageSize</code> setting,
+     * a component will always fetch all of data that it needs to draw.  Settings such as {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowAllRecords showAllRecords:true}, {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDrawAllMaxCells drawAllMaxCells} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDrawAheadRatio drawAheadRatio} can cause
+     * more rows than the configured <code>dataPageSize</code> to be fetched.
      *
-     * @param dataPageSize dataPageSize Default value is 75
+     * @param dataPageSize dataPageSize Default value is 0
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     void setDataPageSize(int dataPageSize);
 
     /**
-     * When using data paging, how many records to fetch at a time.  The value of this&#010 attribute is passed on to the auto-constructed {@link com.smartgwt.client.data.ResultSet} object for this&#010 component.  In effect, this gives you control over the {@link com.smartgwt.client.data.ResultSet#getResultSize resultSize}&#010 attribute for this component.&#010 <P>&#010 <b>Note</b> that regardless of the <code>dataPageSize</code> setting, a component will always fetch&#010 all of data that it needs to draw.  Settings such as&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getShowAllRecords showAllRecords},&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawAllMaxCells drawAllMaxCells} and&#010 {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawAheadRatio drawAheadRatio} can cause more rows than the configured&#010 <code>dataPageSize</code> to be fetched.
+     * When using {@link com.smartgwt.client.widgets.DataBoundComponent#getDataFetchMode data
+     * paging}, how many records to fetch at a time.  If set to a positive integer,
+     * <code>dataPageSize</code> will override the default {@link
+     * com.smartgwt.client.data.ResultSet#getResultSize resultSize} for ResultSets
+     * automatically created when you call {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#fetchData fetchData()} (and similarly for
+     * the {@link com.smartgwt.client.widgets.tree.ResultTree#getResultSize resultSize} of
+     * ResultTrees).  The default of 0 means to just use the default page size of the data
+     * container. <P> <b>Note</b> that regardless of the <code>dataPageSize</code> setting,
+     * a component will always fetch all of data that it needs to draw.  Settings such as {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowAllRecords showAllRecords:true}, {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDrawAllMaxCells drawAllMaxCells} and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDrawAheadRatio drawAheadRatio} can cause
+     * more rows than the configured <code>dataPageSize</code> to be fetched.
      *
      * @return int
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     int getDataPageSize();
 
@@ -226,6 +254,20 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * @return Boolean
      */
     Boolean getExportAll();
+
+    /**
+     * If Summary rows exist for this component, whether to include them when exporting client data.  Defaults to true if not set
+     *
+     * @param exportIncludeSummaries exportIncludeSummaries Default value is true
+     */
+    void setExportIncludeSummaries(Boolean exportIncludeSummaries);
+
+    /**
+     * If Summary rows exist for this component, whether to include them when exporting client data.  Defaults to true if not set
+     *
+     * @return Boolean
+     */
+    Boolean getExportIncludeSummaries();
 
     /**
      * If set, detect and prevent duplicate records from being transferred to this component, either via&#010 drag and drop or via {@link com.smartgwt.client.widgets.DataBoundComponent#transferSelectedData}.  
@@ -658,7 +700,7 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * them one after the other. If you want to be notified when a transfer process has actually completed, use {@link addDropCompleteHandler}.
      * See the {@link com.smartgwt.client.docs.Dragging} documentation for an overview of list grid drag/drop data transfer.
      *
-     * @param source source component from which the records will be tranferred
+     * @param source source component from which the records will be transferred
      * @param index  target index (drop position) of the rows within this grid.
      */
     void transferSelectedData(DataBoundComponent source, int index);
@@ -695,7 +737,7 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
 
     /**
      * Bind to a DataSource.  Binding to a DataSource means that the component will use the DataSource to provide default data for its fields.<P>
-     * When binding a previously-bound componenet to a new DataSource, if the component has any existing "fields" or has a dataset, these will be 
+     * When binding a previously-bound component to a new DataSource, if the component has any existing "fields" or has a dataset, these will be 
      * discarded by default, since it is assumed the new DataSource may represent a completely unrelated set of objects.  If the old "fields" are 
      * still relevant, you may be able to refer to setDataSource(dataSource, fields) as an alternative method if the widget has an implementation of it.
      *
@@ -705,7 +747,7 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
 
     /**
      * Bind to a DataSource.  Binding to a DataSource means that the component will use the DataSource to provide default data for its fields.<P>
-     * When binding a previously-bound componenet to a new DataSource, if the component has any existing "fields" or has a dataset, these will be 
+     * When binding a previously-bound component to a new DataSource, if the component has any existing "fields" or has a dataset, these will be 
      * discarded by default, since it is assumed the new DataSource may represent a completely unrelated set of objects.  If the old "fields" are 
      * still relevant, you may be able to refer to setDataSource(dataSource, fields) as an alternative method if the widget has an implementation of it.
      *
@@ -1044,7 +1086,56 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
     Criteria getInitialCriteria();
 
     /**
-     * Invalidate the current data cache for this databound component via a call to&#010 <code>this.data.invalidateCache()</code>. If necessary, this will cause a new fetch to &#010 be performed with the current set of criteria for this component.&#010 <P>&#010 Has no effect if this component is not showing a set of filtered data.&#010 &#010
+     * Criteria that are never shown to or edited by the user and are cumulative with any
+     * criteria provided via 
+     * {@link com.smartgwt.client.widgets.DataBoundComponent#getInitialCriteria DataBoundComponent.initialCriteria},
+     * {@link com.smartgwt.client.widgets.DataBoundComponent#setCriteria DataBoundComponent.setCriteria()} etc.
+     *
+     * @param implicitCriteria New implicitCriteria value. Default value is null
+     */
+    public void setImplicitCriteria(Criteria implicitCriteria);
+
+    /**
+     * Criteria that are never shown to or edited by the user and are cumulative with any
+     * criteria provided via
+     * {@link com.smartgwt.client.widgets.DataBoundComponent#getInitialCriteria DataBoundComponent.initialCriteria},
+     * {@link com.smartgwt.client.widgets.DataBoundComponent#setCriteria DataBoundComponent.setCriteria()} etc.
+     *
+     * @return Current implicitCriteria value. Default value is null
+     */
+    public Criteria getImplicitCriteria();
+    
+    /**
+     * Invalidate the current data cache for this databound component via a call to the dataset's
+     * <code>invalidateCache()</code> method, for example, 
+     * {@link com.smartgwt.client.data.ResultSet#invalidateCache ResultSet.invalidateCache()}.
+     * <P>
+     * <b>NOTE:</b> there is no need to call <code>invalidateCache()</code> when a save operation
+     * is performed on a DataSource.  Automatic cache synchronization features will automatically
+     * update caches - see {@link com.smartgwt.client.data.ResultSet} for details.  If automatic
+     * cache synchronization isn't working, troubleshoot the problem using the steps suggested
+     * <a href='http://forums.smartclient.com/showthread.php?t=8159#aGrid'
+     * target='_blank'>
+     * in the FAQ</a> rather than just calling invalidateCache().  Calling 
+     * <code>invalidateCache()</code> unnecessarily causes extra server load and added code
+     * complexity. <P> Calling <code>invalidateCache()</code> will automatically cause a new
+     * fetch to  be performed with the current set of criteria if data had been previously
+     * fetched and the component is currently drawn with data visible - there is no need to
+     * manually call fetchData() after invalidateCache() and this could result in duplicate
+     * fetches.
+     * <P>
+     * While data is being re-loaded after a call to <code>invalidateCache()</code>, the widget
+     * is in a state similar to initial data load - it doesn't know the total length of the
+     * dataset and any APIs that act on records or row indices will necessarily fail and should
+     * not be called.  To detect that the widget is in this state, call 
+     * {@link com.smartgwt.client.data.ResultSet#lengthIsKnown ResultSet.lengthIsKnown()}.
+     * <P>
+     * <code>invalidateCache()</code> only has an effect if this component's dataset is a data
+     * manager class that manages a cache (eg ResultSet or ResultTree).  If data was provided as
+     * a simple Array or List, invalidateCache() does nothing.
+     * @see com.smartgwt.client.widgets.grid.ListGrid#refreshData
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods
+     * overview and related methods
      */
     void invalidateCache();
 
@@ -1149,4 +1240,74 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      */
     Hilite[] getHilites();
 
+    /**
+     * Returna an array of field alignments for this grid
+     * @return array of Alignments
+     */
+    Alignment[] getFieldAlignments();
+    
+    
+    /**
+     * Before we start editing values in this DataBoundComponent, should we perform a deep clone 
+     * of the underlying values.  See {@link com.smartgwt.client.data.DataSource#getDeepCloneOnEdit()} for details of what this means.
+     * <p>
+     * If this value is not explicitly set, it defaults to the DataSource <code>deepCloneOnEdit</code> value.
+     * This value can also be overridden per-field with {@link com.smartgwt.client.data.DataSourceField#setDeepCloneOnEdit(java.lang.Boolean)}.
+     * <p>
+     * Like the other <code>deepCloneOnEdit</code> settings, this flag only has an effect if you are 
+     * editing a values object that contains nested objects or arrays, using {@link com.smartgwt.client.widgets.Canvas#setDataPath(java.lang.String)} 
+     */
+     Boolean getDeepCloneOnEdit();
+    
+    /**
+     * Before we start editing values in this DataBoundComponent, should we perform a deep clone 
+     * of the underlying values.  See {@link com.smartgwt.client.data.DataSource#getDeepCloneOnEdit()} for details of what this means.
+     * <p>
+     * If this value is not explicitly set, it defaults to the DataSource <code>deepCloneOnEdit</code> value.
+     * This value can also be overridden per-field with {@link com.smartgwt.client.data.DataSourceField#setDeepCloneOnEdit(java.lang.Boolean)}.
+     * <p>
+     * Like the other <code>deepCloneOnEdit</code> settings, this flag only has an effect if you are 
+     * editing a values object that contains nested objects or arrays, using {@link com.smartgwt.client.widgets.Canvas#setDataPath(java.lang.String)} 
+     */
+     void setDeepCloneOnEdit(Boolean deepCloneOnEdit);
+
+    /**
+     * Field setter variant (alternative to
+     * {@link com.smartgwt.client.widgets.form.DynamicForm#setFields setFields(FormItem...)},
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#setFields setFields(ListGridField...)}, 
+     * etc.) that will accept an array of JavaScriptObject, rather than an array of SmartGWT
+     * Java wrappers of the field class type (e.g. 
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem},
+     * {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField}, etc.)
+     * This is an advanced method and only for cases where you have the JavaScriptObject for
+     * each field but want to avoid having to create each associated SmartGWT Java wrapper.
+     * <P>
+     * Note: use {@link com.smartgwt.client.util.JSOHelper#toArray toArray()} to create a Java
+     * array of JavaScriptObject if you only have the array itself as a single JavaScriptObject.
+     *
+     * @param fields the component fields
+     */
+    public void setFields(JavaScriptObject... fields);
+
+    /**
+     * Return the fields as JavaScriptObjects rather than as SmartGWT Java wrappers of the field
+     * class type
+     * (e.g. {@link com.smartgwt.client.widgets.form.fields.FormItem FormItem},
+     * {@link com.smartgwt.client.widgets.grid.ListGridField ListGridField}, etc.)
+     * This avoids building the SmartGWT Java wrappers for the fields in situations where they
+     * aren't needed - and for FormItems in particular - where there may not be enough
+     * information to determine the correct subclass, such as before the SmartClient instance
+     * underlying the {@link com.smartgwt.client.widgets.form.DynamicForm DynamicForm} has been
+     * created.
+     *
+     * @return the component fields
+     */
+    public JavaScriptObject[] getFieldsAsJavaScriptObjects();
+
+    /**
+     * Return the number of fields.
+     *
+     * @return the number of fields
+     */
+    public int getFieldCount();
 }

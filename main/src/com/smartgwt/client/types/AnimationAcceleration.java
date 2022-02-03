@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Acceleration effect for animations. Can either be a ratio function or a string. Ratio functions take a value between 0
  * and 1 which represents how much of the  animation's duration has elapsed, and return another value between 0 and 1
@@ -26,21 +28,32 @@ package com.smartgwt.client.types;
 public enum AnimationAcceleration implements ValueEnum {
     /**
      * - animation will speed up as time elapses
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "smoothStart".
      */
     SMOOTH_START("smoothStart"),
     /**
      * - animation will slow down as time elapses
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "smoothEnd".
      */
     SMOOTH_END("smoothEnd"),
     /**
      * - animation will speed up in the middle
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "smoothStartEnd".
      */
     SMOOTH_START_END("smoothStartEnd"),
     /**
      * - no bias
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "none".
      */
     NONE("none");
-
     private String value;
 
     AnimationAcceleration(String value) {

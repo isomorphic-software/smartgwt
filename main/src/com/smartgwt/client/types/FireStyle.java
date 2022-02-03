@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Flags to set automatic removal of events from the page event registry.
  */
@@ -26,10 +28,12 @@ public enum FireStyle implements ValueEnum {
     NULL(null),
     /**
      * Call the registered handler the first time the event occurs, then unregister the handler as though {@link
-     * com.smartgwt.client.util.Page#clearEvent Page.clearEvent} had been called
+     * com.smartgwt.client.util.Page#clearEvent Page.clearEvent()} had been called
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "once".
      */
-    FIRE_ONCE("FIRE_ONCE");
-
+    FIRE_ONCE("once");
     private String value;
 
     FireStyle(String value) {

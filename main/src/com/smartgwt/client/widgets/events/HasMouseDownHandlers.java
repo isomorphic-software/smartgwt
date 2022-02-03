@@ -13,16 +13,16 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasMouseDownHandlers extends HasHandlers {
     /**
-     * Executed when the left mouse down is pressed on this widget.  No default implementation.
+     * Executed when the left mouse button is pressed on this widget.  No default implementation.
      *
      * @param handler the mouseDown handler
      * @return {@link HandlerRegistration} used to remove this handler

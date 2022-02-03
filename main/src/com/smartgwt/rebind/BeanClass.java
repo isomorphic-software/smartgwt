@@ -29,13 +29,14 @@ import com.google.gwt.core.ext.typeinfo.NotFoundException;
 import com.google.gwt.core.ext.typeinfo.TypeOracle;
 import com.google.gwt.user.rebind.ClassSourceFileComposerFactory;
 import com.google.gwt.user.rebind.SourceWriter;
-
 import com.smartgwt.rebind.BeanProperty;
 import com.smartgwt.rebind.BeanMethod;
 import com.smartgwt.rebind.BeanValueType;
 import com.smartgwt.client.widgets.BaseWidget;
+import com.smartgwt.client.core.BaseClass;
 import com.smartgwt.client.core.DataClass;
 import com.smartgwt.client.bean.BeanFactory;
+import com.smartgwt.client.bean.BeanFactoryForBaseClass;
 import com.smartgwt.client.bean.BeanFactoryForBaseWidget;
 import com.smartgwt.client.bean.BeanFactoryForDataClass;
 
@@ -52,7 +53,6 @@ import java.util.Map.Entry;
 import java.util.Collection;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
-
 import java.io.PrintWriter;
 
 // Class which represents a BeanClass for which a factory is being generated.
@@ -95,17 +95,20 @@ public class BeanClass {
 
         final JClassType baseWidgetType = typeOracle.findType(BaseWidget.class.getCanonicalName());
         final JClassType dataClassType = typeOracle.findType(DataClass.class.getCanonicalName());
+        final JClassType baseClassType = typeOracle.findType(BaseClass.class.getCanonicalName());
         
         if (beanClassType.isAssignableTo(baseWidgetType)) {
             this.factoryClass = typeOracle.findType(BeanFactoryForBaseWidget.class.getCanonicalName());
         } else if (beanClassType.isAssignableTo(dataClassType)) {
             this.factoryClass = typeOracle.findType(BeanFactoryForDataClass.class.getCanonicalName());
+        } else if (beanClassType.isAssignableTo(baseClassType)) {
+            this.factoryClass = typeOracle.findType(BeanFactoryForBaseClass.class.getCanonicalName());
         }
 
         // We'll look for superclasses up to BaseWidget or DataClass, and make sure that we
         // generate factories for them as well. That way, we can keep track of
         // just our own properties.
-        if (beanClassType != baseWidgetType && beanClassType != dataClassType) {
+        if (beanClassType != baseWidgetType && beanClassType != dataClassType && beanClassType != baseClassType) {
             JClassType beanSuperclassType = this.beanClassType.getSuperclass();
             if (beanSuperclassType != null) {
                 this.superclass = new BeanClass(beanSuperclassType);
@@ -232,12 +235,12 @@ public class BeanClass {
     }
 
     public String generateFactory (TreeLogger logger, GeneratorContext context) throws UnableToCompleteException {
-        // Must extend BaseWidget or DataCLass
+        // Must extend BaseWidget or DataCLass or BaseClass
         if (factoryClass == null) {
             logger.log(TreeLogger.ERROR, 
                 "Cannot generate a BeanFactory for " + 
                 beanClassType.getQualifiedSourceName() + 
-                " because it does not extend BaseWidget or DataClass"
+                " because it does not extend BaseWidget or DataClass or BaseClass"
             );
             throw new UnableToCompleteException();
         }
@@ -262,6 +265,7 @@ public class BeanClass {
         composer.addImport(com.smartgwt.client.bean.BeanFactory.class.getCanonicalName());
         composer.addImport(com.smartgwt.client.bean.BeanFactoryForBaseWidget.class.getCanonicalName());
         composer.addImport(com.smartgwt.client.bean.BeanFactoryForDataClass.class.getCanonicalName());
+        composer.addImport(com.smartgwt.client.bean.BeanFactoryForBaseClass.class.getCanonicalName());
         composer.addImport(com.google.gwt.core.client.JavaScriptObject.class.getCanonicalName());
         composer.addImport(com.google.gwt.core.client.JsArray.class.getCanonicalName());
         composer.addImport(com.google.gwt.core.client.UnsafeNativeLong.class.getCanonicalName());

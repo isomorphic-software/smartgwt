@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,58 +40,76 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
+import com.smartgwt.client.widgets.ace.*;
+import com.smartgwt.client.widgets.ace.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
 import com.smartgwt.client.widgets.tree.events.*;
+import com.smartgwt.client.widgets.tableview.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.events.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * A set of properties that can be used to create an image.
  */
+@BeanFactory.FrameworkClass
 public class ImgProperties extends DataClass {
 
     public static ImgProperties getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
         return new ImgProperties(jsObj);
     }
+        
+
 
     public ImgProperties(){
         
     }
 
     public ImgProperties(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
+
 
     public ImgProperties(String src, int width, int height) {
         setSrc(src);
 		setWidth(width);
 		setHeight(height);
-        
+                
     }
+
 
     // ********************* Properties / Attributes ***********************
 
     /**
      * Specifies the additional attributes to write in the tag.
      *
-     * @param extraStuff extraStuff Default value is null
+     * @param extraStuff New extraStuff value. Default value is null
      */
     public void setExtraStuff(String extraStuff) {
         setAttribute("extraStuff", extraStuff);
@@ -97,17 +118,17 @@ public class ImgProperties extends DataClass {
     /**
      * Specifies the additional attributes to write in the tag.
      *
-     *
-     * @return String
+     * @return Current extraStuff value. Default value is null
      */
     public String getExtraStuff()  {
         return getAttributeAsString("extraStuff");
     }
+    
 
     /**
      * Specifies the height of the image.
      *
-     * @param height height Default value is null
+     * @param height New height value. Default value is null
      */
     public void setHeight(Integer height) {
         setAttribute("height", height);
@@ -116,17 +137,18 @@ public class ImgProperties extends DataClass {
     /**
      * Specifies the height of the image.
      *
-     *
-     * @return Integer
+     * @return Current height value. Default value is null
      */
     public Integer getHeight()  {
         return getAttributeAsInt("height");
     }
+    
 
     /**
      * Specifies the image-specific image directory to override the default.
      *
-     * @param imgDir imgDir Default value is null
+     * @param imgDir New imgDir value. Default value is null
+     * @see com.smartgwt.client.docs.URL URL 
      */
     public void setImgDir(String imgDir) {
         setAttribute("imgDir", imgDir);
@@ -135,20 +157,21 @@ public class ImgProperties extends DataClass {
     /**
      * Specifies the image-specific image directory to override the default.
      *
-     *
-     * @return String
+     * @return Current imgDir value. Default value is null
+     * @see com.smartgwt.client.docs.URL URL 
      */
     public String getImgDir()  {
         return getAttributeAsString("imgDir");
     }
+    
 
     /**
      * Specifies the name of the image. This is an identifier unique to the canvas, and subsequent calls to <code>{@link
-     * com.smartgwt.client.widgets.Canvas#getImage Canvas.getImage}</code> and <code>{@link
-     * com.smartgwt.client.widgets.Canvas#setImage Canvas.setImage}</code>  with this name will act on the image object created
-     * using this ImgProperties object.
+     * com.smartgwt.client.widgets.Canvas#getImage Canvas.getImage()}</code> and <code>{@link
+     * com.smartgwt.client.widgets.Canvas#setImage Canvas.setImage()}</code> with this name will act on the image object
+     * created using this ImgProperties object.
      *
-     * @param name name Default value is null
+     * @param name New name value. Default value is null
      */
     public void setName(String name) {
         setAttribute("name", name);
@@ -156,21 +179,22 @@ public class ImgProperties extends DataClass {
 
     /**
      * Specifies the name of the image. This is an identifier unique to the canvas, and subsequent calls to <code>{@link
-     * com.smartgwt.client.widgets.Canvas#getImage Canvas.getImage}</code> and <code>{@link
-     * com.smartgwt.client.widgets.Canvas#setImage Canvas.setImage}</code>  with this name will act on the image object created
-     * using this ImgProperties object.
+     * com.smartgwt.client.widgets.Canvas#getImage Canvas.getImage()}</code> and <code>{@link
+     * com.smartgwt.client.widgets.Canvas#setImage Canvas.setImage()}</code> with this name will act on the image object
+     * created using this ImgProperties object.
      *
-     *
-     * @return String
+     * @return Current name value. Default value is null
      */
     public String getName()  {
         return getAttributeAsString("name");
     }
+    
 
     /**
      * Specifies the URL of the image local to the skin or application directory.
      *
-     * @param src src Default value is null
+     * @param src New src value. Default value is null
+     * @see com.smartgwt.client.docs.URL URL 
      */
     public void setSrc(String src) {
         setAttribute("src", src);
@@ -179,17 +203,18 @@ public class ImgProperties extends DataClass {
     /**
      * Specifies the URL of the image local to the skin or application directory.
      *
-     *
-     * @return String
+     * @return Current src value. Default value is null
+     * @see com.smartgwt.client.docs.URL URL 
      */
     public String getSrc()  {
         return getAttributeAsString("src");
     }
+    
 
     /**
      * Specifies the width of the image.
      *
-     * @param width width Default value is null
+     * @param width New width value. Default value is null
      */
     public void setWidth(Integer width) {
         setAttribute("width", width);
@@ -198,23 +223,17 @@ public class ImgProperties extends DataClass {
     /**
      * Specifies the width of the image.
      *
-     *
-     * @return Integer
+     * @return Current width value. Default value is null
      */
     public Integer getWidth()  {
         return getAttributeAsInt("width");
     }
+    
 
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
+
+    // ***********************************************************
 
 }
-
-
-
-
-
-

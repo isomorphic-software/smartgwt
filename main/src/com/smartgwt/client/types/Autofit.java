@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,26 +16,33 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
- * Possible values for to change the behavior of how data will fill the ListGrid.
+ * Possible values to change the behavior of how data will fill the ListGrid.
  */
 public enum Autofit implements ValueEnum {
     /**
      * expand vertically to accommodate records.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "vertical".
      */
     VERTICAL("vertical"),
     /**
      * expand horizontally to accommodate fields.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "horizontal".
      */
     HORIZONTAL("horizontal"),
     /**
      * expand horizontally and vertically to accommodate content.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "both".
      */
     BOTH("both");
-
     private String value;
 
     Autofit(String value) {

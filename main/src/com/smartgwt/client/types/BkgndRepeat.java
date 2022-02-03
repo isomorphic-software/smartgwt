@@ -46,4 +46,3 @@ public enum BkgndRepeat implements ValueEnum {
         return this.value;
     }
 }
-

@@ -4,4 +4,3 @@
  * allow interlinking with normal JavaDoc reference. Do not import this package in your Java code.
  */
 package com.smartgwt.client.docs;
-

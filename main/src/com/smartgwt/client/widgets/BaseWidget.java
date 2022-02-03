@@ -1,10 +1,10 @@
 /*
- * SmartGWT (GWT for SmartClient)
+ * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
  *
- * SmartGWT is free software; you can redistribute it and/or modify it
+ * Smart GWT is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License version 3
- * as published by the Free Software Foundation.  SmartGWT is also
+ * as published by the Free Software Foundation.  Smart GWT is also
  * available under typical commercial license terms - see
  * http://smartclient.com/license
  *
@@ -13,40 +13,230 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
-
+/* sgwtgen */
+ 
 package com.smartgwt.client.widgets;
 
+
+import com.smartgwt.client.event.*;
+import com.smartgwt.client.core.*;
+import com.smartgwt.client.types.*;
+import com.smartgwt.client.data.*;
+import com.smartgwt.client.data.events.*;
+import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
+import com.smartgwt.client.widgets.*;
+import com.smartgwt.client.widgets.events.*;
+import com.smartgwt.client.widgets.form.*;
+import com.smartgwt.client.widgets.form.validator.*;
+import com.smartgwt.client.widgets.form.fields.*;
+import com.smartgwt.client.widgets.tile.*;
+import com.smartgwt.client.widgets.tile.events.*;
+import com.smartgwt.client.widgets.grid.*;
+import com.smartgwt.client.widgets.grid.events.*;
+import com.smartgwt.client.widgets.chart.*;
+import com.smartgwt.client.widgets.layout.*;
+import com.smartgwt.client.widgets.layout.events.*;
+import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
+import com.smartgwt.client.widgets.ace.*;
+import com.smartgwt.client.widgets.ace.events.*;
+import com.smartgwt.client.widgets.tab.*;
+import com.smartgwt.client.widgets.toolbar.*;
+import com.smartgwt.client.widgets.tree.*;
+import com.smartgwt.client.widgets.tree.events.*;
+import com.smartgwt.client.widgets.tableview.*;
+import com.smartgwt.client.widgets.viewer.*;
+import com.smartgwt.client.widgets.calendar.*;
+import com.smartgwt.client.widgets.calendar.events.*;
+import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.event.shared.EventHandler;
-import com.google.gwt.event.shared.GwtEvent;
-import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.event.shared.HasHandlers;
-import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
-import com.smartgwt.client.bean.BeanFactory;
-import com.smartgwt.client.core.BaseClass;
-import com.smartgwt.client.core.DataClass;
-import com.smartgwt.client.core.Function;
-import com.smartgwt.client.core.LogicalStructure;
-import com.smartgwt.client.core.NativeObject;
-import com.smartgwt.client.data.Record;
-import com.smartgwt.client.types.ValueEnum;
-import com.smartgwt.client.util.IDManager;
-import com.smartgwt.client.util.JSOHelper;
-import com.smartgwt.client.util.SC;
-import com.smartgwt.client.widgets.events.DrawEvent;
-import com.smartgwt.client.widgets.events.DrawHandler;
-import com.smartgwt.logicalstructure.core.LogicalStructureObject;
-import com.smartgwt.logicalstructure.widgets.BaseWidgetLogicalStructure;
+import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.user.client.Element;
+import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.events.*;
+import com.smartgwt.client.util.workflow.*;
+import com.google.gwt.event.shared.*;
+import com.google.gwt.event.shared.HasHandlers;
+import com.smartgwt.logicalstructure.core.*;
+import com.smartgwt.logicalstructure.widgets.*;
+import com.smartgwt.logicalstructure.widgets.drawing.*;
+import com.smartgwt.logicalstructure.widgets.plugins.*;
+import com.smartgwt.logicalstructure.widgets.form.*;
+import com.smartgwt.logicalstructure.widgets.tile.*;
+import com.smartgwt.logicalstructure.widgets.grid.*;
+import com.smartgwt.logicalstructure.widgets.chart.*;
+import com.smartgwt.logicalstructure.widgets.layout.*;
+import com.smartgwt.logicalstructure.widgets.menu.*;
+import com.smartgwt.logicalstructure.widgets.rte.*;
+import com.smartgwt.logicalstructure.widgets.ace.*;
+import com.smartgwt.logicalstructure.widgets.tab.*;
+import com.smartgwt.logicalstructure.widgets.tableview.*;
+import com.smartgwt.logicalstructure.widgets.toolbar.*;
+import com.smartgwt.logicalstructure.widgets.tree.*;
+import com.smartgwt.logicalstructure.widgets.viewer.*;
+import com.smartgwt.logicalstructure.widgets.calendar.*;
+import com.smartgwt.logicalstructure.widgets.cube.*;
+import com.smartgwt.logicalstructure.widgets.tools.*;
 
-public abstract class BaseWidget extends Widget implements HasHandlers, LogicalStructure {
+/**
+ * Base class for {@link com.smartgwt.client.widgets.Canvas} and {@link com.smartgwt.client.widgets.drawing.DrawItem}.
+ */
+@BeanFactory.FrameworkClass
+@BeanFactory.ScClassName("BaseWidget")
+public class BaseWidget extends com.google.gwt.user.client.ui.Widget implements com.google.gwt.event.shared.HasHandlers, com.smartgwt.client.core.LogicalStructure {
 
-    private Function onRenderFn;
+    public static BaseWidget getOrCreateRef(JavaScriptObject jsObj) {
+        if (jsObj == null) return null;
+        final BaseWidget refInstance = BaseWidget.getRef(jsObj);
+        if (refInstance == null) {
+            return new BaseWidget(jsObj);
+        } else {
+            assert refInstance instanceof BaseWidget;
+            return (BaseWidget)refInstance;
+        }
+    }
+        
+
+
+    /**
+     * Changes the defaults for Canvas AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults Canvas defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.  For usage tips on this
+     * param, see {@link com.smartgwt.client.docs.SGWTProperties}.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, Canvas defaults) /*-{
+        if (defaults.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPreConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(BaseWidget.@java.lang.Object::getClass()(), "changeAutoChildDefaults", "Canvas");
+        }
+        defaults.@com.smartgwt.client.widgets.BaseWidget::setConfigOnly(Z)(true);
+        var cleanDefaultsJS = @com.smartgwt.client.util.JSOHelper::cleanProperties(Lcom/google/gwt/core/client/JavaScriptObject;Z)(defaults.@com.smartgwt.client.widgets.BaseWidget::getConfig()(), true);
+        $wnd.isc.BaseWidget.changeDefaults(autoChildName + "Defaults", cleanDefaultsJS);
+    }-*/;
+
+    /**
+     * Changes the defaults for FormItem AutoChildren named <code>autoChildName</code>.
+     *
+     * @param autoChildName name of an AutoChild to customize the defaults for.
+     * @param defaults FormItem defaults to apply. These defaults override any existing properties
+     * without destroying or wiping out non-overridden properties.  For usage tips on this
+     * param, see {@link com.smartgwt.client.docs.SGWTProperties}.
+     * @see com.smartgwt.client.docs.AutoChildUsage
+     */
+    public static native void changeAutoChildDefaults(String autoChildName, FormItem defaults) /*-{
+        if (defaults.@com.smartgwt.client.widgets.form.fields.FormItem::isCreated()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPreConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(BaseWidget.@java.lang.Object::getClass()(), "changeAutoChildDefaults", "FormItem");
+        }
+        defaults.@com.smartgwt.client.widgets.form.fields.FormItem::setConfigOnly(Z)(true);
+    	var cleanDefaultsJS = defaults.@com.smartgwt.client.widgets.form.fields.FormItem::getEditorTypeConfig()();
+        $wnd.isc.BaseWidget.changeDefaults(autoChildName + "Defaults", cleanDefaultsJS);
+    }-*/;
+
+    public BaseWidget(){
+        
+        // We immediately pick up any properties which BeanFactory has stashed.
+        // We can't pick them up later (for instance, at getOrCreateJsObj()
+        // time), because the constructor could create *other* objects first
+        // and trigger getOrCreateJsObj() on them -- in which case, the global
+        // would be applied to the wrong object. So, we need to pick up the
+        // global at the earliest moment after the constructor is called --
+        // which is here, since superclass constructors get called before
+        // subclass constructors.
+        //
+        // We only need to deal with the no-arg constructor because that is the
+        // one which BeanFactory uses. An alternative would be to use a
+        // constructor which takes a JavaScriptObject, but that would mean that
+        // developers would need to implement that constructor for custom
+        // classes, and it's undesirable to force them to do so.
+        //
+        // We don't apply the properties immediately, because we're at the very
+        // beginning of the base class constructor -- the setters may rely on
+        // further construction having taken place. So we delay as long as
+        // possible -- either until getOrCreateJsObj() is called, or the object
+        // is fully constructed, whichever comes first.
+        //
+        // We test the factoryPropertiesClass to avoid applying properties
+        // intended for a different class. This can occur if a static
+        // initializer creates objects, since the static initializer can run
+        // after the properties are stashed but before the constructor runs.
+        // Checking the factoryPropertiesClass at least limits the problem to
+        // cases where the static initializer creates objects of the same class.
+        if (getClass() == BeanFactory.getFactoryPropertiesClass()) {
+            factoryProperties = BeanFactory.getFactoryProperties();
+            BeanFactory.clearFactoryProperties();
+        }
+scClassName = "BaseWidget";
+    }
+
+    public BaseWidget(JavaScriptObject jsObj){
+        scClassName = "BaseWidget";
+        setJavaScriptObject(jsObj);
+    }
+
+    protected native JavaScriptObject create()/*-{
+        var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
+        var widget = $wnd.isc[scClassName].create(config);
+        if ($wnd.isc.keepGlobals) this.@com.smartgwt.client.widgets.BaseWidget::internalSetID(Lcom/google/gwt/core/client/JavaScriptObject;)(widget);
+        this.@com.smartgwt.client.widgets.BaseWidget::doInit()();
+        return widget;
+    }-*/;
+
+    // ********************* Properties / Attributes ***********************
+
+    // ********************* Methods ***********************
+
+    // ********************* Static Methods ***********************
+
+    /** 
+     * Class level method to set the default properties of this class.  If set, then all
+     * existing and subsequently created instances of this class will automatically have
+     * default properties corresponding to
+     * the properties set on the SmartGWT class instance passed to this function before its
+     * underlying SmartClient JS object was created.
+     * This is a powerful feature that eliminates the need for users to create a separate
+     * hierarchy of subclasses that only alter the default properties of this class. Can also
+     * be used for skinning / styling purposes.  <P> <b>Note:</b> This method is intended for
+     * setting default attributes only and will affect all instances of the underlying class
+     * (including those automatically generated in JavaScript).  This method should not be used
+     * to apply standard EventHandlers or override methods for a class - use a custom subclass
+     * instead.  Calling this method after instances have been created can result in undefined
+     * behavior, since it bypasses any setters and a class instance may have already examined 
+     * a particular property and not be expecting any changes through this route.
+     *
+     * @param baseWidgetProperties properties that should be used as new defaults when instances of this class are created
+     * @see com.smartgwt.client.docs.SGWTProperties
+     */
+    public static native void setDefaultProperties(BaseWidget baseWidgetProperties) /*-{
+        if (baseWidgetProperties.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPreConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/Class;)(BaseWidget.@java.lang.Object::getClass()(), "setDefaultProperties", baseWidgetProperties.@java.lang.Object::getClass()());
+        }
+        baseWidgetProperties.@com.smartgwt.client.widgets.BaseWidget::setConfigOnly(Z)(true);
+    	var properties = baseWidgetProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
+        properties = @com.smartgwt.client.util.JSOHelper::cleanProperties(Lcom/google/gwt/core/client/JavaScriptObject;Z)(properties,true);
+        $wnd.isc.BaseWidget.addProperties(properties);
+    }-*/;
+
+    // ***********************************************************
+
+
 
     static {
         init();
@@ -58,6 +248,31 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         $wnd.isc.setAutoDraw(false);
         @com.smartgwt.client.widgets.BaseWidget::FALSE_PLACEHOLDER = new String("false");
     }-*/;
+
+    /**
+     * Retrieve a BaseWidget by its global {@link com.smartgwt.client.widgets.Canvas#getID ID}.
+     * @param ID global ID of the BaseWidget
+     *
+     * @return the Canvas, or null if not found
+     */
+    public static native BaseWidget getById(String ID) /*-{
+        var ret = $wnd.isc.Canvas.getById(ID);
+        return @com.smartgwt.client.widgets.BaseWidget::getByJSObject(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+    /**
+     * Retrieve a BaseWidget from its {@link com.google.gwt.core.client.JavaScriptObject}.
+     * @param jsObj SmartClient object associated with Canvas
+     *
+     * @return the BaseWidget, or null if not found
+     */
+    public static native BaseWidget getByJSObject(JavaScriptObject jsObj) /*-{
+        if (jsObj == null || jsObj.getScClassName == null) return null;
+        // note that SC.REF will be set automatically on the JS object by the constructors that take a JavaScriptObject; no need to do it here
+        return @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.getScClassName(), jsObj);
+    }-*/;
+
+    private Function onRenderFn;
 
     protected String id;
     protected JavaScriptObject config = JSOHelper.createObject();
@@ -90,6 +305,11 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     // message).
     protected boolean factoryCreated;
 
+    public BaseWidget(String id) {
+        setID(id);
+        scClassName = "BaseWidget";
+    }
+
     public void setFactoryCreated (boolean createdByBeanFactory) {
         factoryCreated = createdByBeanFactory;
     }
@@ -106,51 +326,13 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
      * @param handler the handler
      * @return {@link HandlerRegistration} used to remove the handler
      */
-    protected final <H extends EventHandler> HandlerRegistration doAddHandler(final H handler, GwtEvent.Type<H> type) {
+    protected final <H extends com.google.gwt.event.shared.EventHandler> HandlerRegistration doAddHandler(final H handler, GwtEvent.Type<H> type) {
     	return addHandler(handler, type);
     }
 
     public int getHandlerCount(GwtEvent.Type<?> type) {
     	return super.getHandlerCount(type);
     };
-    
-    public BaseWidget() {
-        // We immediately pick up any properties which BeanFactory has stashed.
-        // We can't pick them up later (for instance, at getOrCreateJsObj()
-        // time), because the constructor could create *other* objects first
-        // and trigger getOrCreateJsObj() on them -- in which case, the global
-        // would be applied to the wrong object. So, we need to pick up the
-        // global at the earliest moment after the constructor is called --
-        // which is here, since superclass constructors get called before
-        // subclass constructors.
-        //
-        // We only need to deal with the no-arg constructor because that is the
-        // one which BeanFactory uses. An alternative would be to use a
-        // constructor which takes a JavaScriptObject, but that would mean that
-        // developers would need to implement that constructor for custom
-        // classes, and it's undesirable to force them to do so.
-        //
-        // We don't apply the properties immediately, because we're at the very
-        // beginning of the base class constructor -- the setters may rely on
-        // further construction having taken place. So we delay as long as
-        // possible -- either until getOrCreateJsObj() is called, or the object
-        // is fully constructed, whichever comes first.
-        //
-        // We test the factoryPropertiesClass to avoid applying properties
-        // intended for a different class. This can occur if a static
-        // initializer creates objects, since the static initializer can run
-        // after the properties are stashed but before the constructor runs.
-        // Checking the factoryPropertiesClass at least limits the problem to
-        // cases where the static initializer creates objects of the same class.
-        if (getClass() == BeanFactory.getFactoryPropertiesClass()) {
-            factoryProperties = BeanFactory.getFactoryProperties();
-            BeanFactory.clearFactoryProperties();
-        }
-    }
-
-    public BaseWidget(String id) {
-        setID(id);
-    }
 
     public void setJavaScriptObject(JavaScriptObject jsObj) {
         internalSetID(jsObj);
@@ -170,10 +352,10 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
             return null;
         } else {
             final Object ref = JSOHelper.getAttributeAsObject((JavaScriptObject)jsObj, SC.REF);
-            if (ref == null || !(ref instanceof BaseWidget)) {
-                return null;
-            } else {
+            if (ref instanceof BaseWidget) {
                 return (BaseWidget)ref;
+            } else {
+                return null;
             }
         }
     }
@@ -444,20 +626,25 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     }
 
     protected final void internalSetID(JavaScriptObject jsObj) {
+        boolean requireJsObjID = JSOHelper.isScClassInstance(jsObj);
+
         if (this.id != null) {
             IDManager.unregisterID(this, this.id);
         }
-        String  id   = JSOHelper.getAttribute         (jsObj,      "ID");
+        String id = JSOHelper.getAttribute(jsObj, "ID");
         if (this.id != null && !this.id.equals(id) && getAttributeAsBoolean(SC.AUTOID)) {
             SC.releaseID(getClass().getName(), this.id);
         }
-        String className = JSOHelper.getAttribute(jsObj, SC.AUTOIDCLASS);
         boolean auto = JSOHelper.getAttributeAsBoolean(jsObj, SC.AUTOID);
-        IDManager.registerID(this, id, true);
-        if (id != null) this.id = id;
+        String className = JSOHelper.getAttribute(jsObj, SC.AUTOIDCLASS);
+
+        // always try to register an Instance's ID, and skip Framework-side unique ID check
+        if (id != null || requireJsObjID) IDManager.registerID(this, id, requireJsObjID);
+        this.id = id;
+
+        JSOHelper.setAttribute(config,       "ID",       id);
+        JSOHelper.setAttribute(config, SC.AUTOID,      auto);
         JSOHelper.setAttribute(config, SC.AUTOIDCLASS, className);
-        JSOHelper.setAttribute(config,      "ID",   id);
-        JSOHelper.setAttribute(config, SC.AUTOID, auto);
     }
 
     protected final void internalSetID(String id, boolean autoAssigned) {
@@ -497,16 +684,25 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     public native boolean isCreated()/*-{
         var id = this.@com.smartgwt.client.widgets.BaseWidget::id;
         var obj;
-        return id != null && (obj = $wnd.window[id]) != null && obj !== undefined && $wnd.isc.isA.Canvas(obj) === true;
+        return id != null && (obj = $wnd.window[id]) != null && obj !== undefined && $wnd.isc.isA.BaseWidget(obj) === true;
     }-*/;
 
-    protected Boolean isDrawn() {
+	/**
+     * Returns the boolean true if the widget has been completely drawn, and false otherwise.
+     *
+     * @return true if drawn, false if not drawn
+     * @see com.smartgwt.client.docs.Drawing Drawing overview and related methods
+     */
+    public Boolean isDrawn() {
         return isCreated() && doIsDrawn();
     }
 
     private native boolean doIsDrawn()/*-{
-        var widget = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        return widget.isDrawn();
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "isDrawn", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        return self.isDrawn();
     }-*/;
 
     public native JavaScriptObject getJsObj()/*-{
@@ -549,10 +745,36 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         }
     }
 
-    protected native JavaScriptObject create()/*-{
-        var config = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
-        return $wnd.isc.Canvas.create(config);
-    }-*/;
+    /**
+     * Commits a widget to being an actual live instance instead of being used as a
+     * configuration template with various APIs that accept a properties object.
+     * <P>
+     * A widget will be automatically instantiated in some circumstances, such as:<ul>
+     * <li>when it's drawn
+     * <li>when it's added as a member of a <code>Layout</code> or child of a parent widget
+     * <li>when it's asked to perform any kind of network request (e.g.
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#fetchData listGrid.fetchData()}, etc.)
+     * </ul><P>
+     * In general, completeCreation() will also occur automatically as a result of methods that
+     * require the object to derive or calculate any kind of value.  The object will remain in
+     * the uncreated state (still usable as just a configuration object) as long as the only
+     * methods that are called either set properties or retrieve properties previously set.
+     * <P>
+     * Note that if the object has already been used as a configuration template, say by being
+     * passed to a method such as {@link
+     * com.smartgwt.client.widgets.Canvas#changeAutoChildDefaults Canvas.changeAutoChildDfaults()}
+     * as the properties object argument, then it is an error to call this method.
+     * <P>
+     * For a discussion of when a widget should  be treated as a properties object rather than a
+     * live instance, see {@link com.smartgwt.client.docs.SGWTProperties SmartGWT Properties}.
+     */
+    public void completeCreation() {
+        if (isConfigOnly()) {
+            ConfigUtil.warnOfPostConfigInstantiation(getClass(), "completeCreation", "");
+        }
+        // force creation, discard result
+        getOrCreateJsObj();
+    }
 
     // Apply any properties provided by BeanFactory before it called the no-arg
     // constructor. We call this before constructing the jsObj. Otherwise, the
@@ -596,7 +818,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
                ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
-        return ret == null || ret === undefined ? null : String(ret) ;
+        return ret == null ? null : String(ret) ;
     }-*/;
 
     protected native String[] getAttributeAsStringArray(String property)/*-{
@@ -664,7 +886,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
                ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
-        return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
+        return ret == null ? null : @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
     }-*/;
 
     protected native Date[] getAttributeAsDateArray(String property)/*-{
@@ -702,7 +924,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
                ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
-        return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
+        return ret == null ? null : @com.smartgwt.client.util.JSOHelper::toInteger(I)(ret);
     }-*/;
 
     protected native Double getAttributeAsDouble(String property)/*-{
@@ -719,7 +941,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
                ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
-        return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toDouble(D)(ret);
+        return ret == null ? null : @com.smartgwt.client.util.JSOHelper::toDouble(D)(ret);
     }-*/;
 
     protected native Element getAttributeAsElement(String property)/*-{
@@ -770,7 +992,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
                ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
-        return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toFloat(F)(ret);
+        return ret == null ? null : @com.smartgwt.client.util.JSOHelper::toFloat(F)(ret);
     }-*/;
 
     protected native Boolean getAttributeAsBoolean(String property)/*-{
@@ -787,7 +1009,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
                ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
-        return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+        return ret == null ? null : @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
 
     protected native Map getAttributeAsMap(String property)/*-{
@@ -804,7 +1026,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
                ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
-        return ret == null || ret === undefined ? null : @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        return ret == null ? null : @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
     protected native Record getAttributeAsRecord(String property)/*-{
@@ -821,7 +1043,7 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
                ret = $wnd.isc[scClassName].getInstanceProperty(property);
             }
         }
-        return ret == null || ret === undefined ? null : @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        return ret == null ? null : @com.smartgwt.client.data.Record::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
     private void error(String attribute, String value) throws IllegalStateException {
@@ -835,8 +1057,8 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
     }
 
     protected void error(String message) throws IllegalStateException {
-        if (!GWT.isScript()) {
-            Window.alert("Error :" + message);
+        if (!com.google.gwt.core.client.GWT.isScript()) {
+            com.google.gwt.user.client.Window.alert("Error :" + message);
             throw new IllegalStateException(message);
         } else {
             SC.logWarn(message);
@@ -1172,13 +1394,26 @@ public abstract class BaseWidget extends Widget implements HasHandlers, LogicalS
         return s;
     }
 
+    public void initNativeObject() {
+        this.nativeObject = new NativeObject(this);
+    }
+
+    /**
+     * Setter implementing the {@link com.smartgwt.client.core.LogicalStructure} interface,
+     * which supports Eclipse's logical structure debugging facility.
+     */
+    public LogicalStructureObject setLogicalStructure(BaseWidgetLogicalStructure s) {
+        s.scClassName = getScClassName();
+        return s;
+    }
+
+    /**
+     * Getter implementing the {@link com.smartgwt.client.core.LogicalStructure} interface,
+     * which supports Eclipse's logical structure debugging facility.
+     */
     public LogicalStructureObject getLogicalStructure() {
         BaseWidgetLogicalStructure s = new BaseWidgetLogicalStructure();
         setLogicalStructure(s);
         return s;
-    }
-
-    public void initNativeObject() {
-        this.nativeObject = new NativeObject(this);
     }
 }

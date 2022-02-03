@@ -13,18 +13,18 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasMovedHandlers extends HasHandlers {
     /**
      * Notification method fired when this component is explicitly moved. Note that a component's position on the screen may
      * also changed due to an ancestor being moved. The {@link com.smartgwt.client.widgets.Canvas#addParentMovedHandler
-     * Canvas.parentMoved} method provides a notification entry point to catch that case as well.
+     * Canvas.parentMoved()} method provides a notification entry point to catch that case as well.
      *
      * @param handler the moved handler
      * @return {@link HandlerRegistration} used to remove this handler

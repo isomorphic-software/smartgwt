@@ -13,13 +13,15 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface RightMouseDownHandler extends EventHandler {
     /**
-     * Executed when the right mouse down is pressed on this widget.  No default implementation.
+     * Executed when the right mouse button is pressed on this widget.  No default implementation.
      *
      * @param event the event
      */

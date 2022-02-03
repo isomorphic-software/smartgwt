@@ -13,15 +13,17 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.tree.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface FolderClosedHandler extends EventHandler {
     /**
      * This method is called when a folder is closed either via the user manipulating the expand/collapse control in the UI or
-     * via {@link com.smartgwt.client.widgets.tree.TreeGrid#closeFolder TreeGrid.closeFolder}.  You can return
-     * <code>false</code> to cancel the close.
+     * via {@link com.smartgwt.client.widgets.tree.TreeGrid#closeFolder closeFolder()}.  You can return <code>false</code> to
+     * cancel the close.
      *
      * @param event the event
      */

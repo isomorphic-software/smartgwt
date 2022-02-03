@@ -15,10 +15,17 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#scrollBy
  * @see com.smartgwt.client.widgets.Canvas#scrollByPercent
  * @see com.smartgwt.client.widgets.Canvas#scrollTo
- * @see com.smartgwt.client.widgets.events.ScrolledEvent
  * @see com.smartgwt.client.widgets.Canvas#scrollToPercent
+ * @see com.smartgwt.client.widgets.events.ScrolledEvent
+ * @see com.smartgwt.client.widgets.grid.ListGrid#scrollToColumn
+ * @see com.smartgwt.client.widgets.grid.ListGrid#scrollToRow
+ * @see com.smartgwt.client.widgets.grid.ListGrid#scrollToCell
  * @see com.smartgwt.client.widgets.Canvas#getShowCustomScrollbars
+ * @see com.smartgwt.client.widgets.Canvas#getAlwaysShowScrollbars
+ * @see com.smartgwt.client.widgets.Canvas#getUseTouchScrolling
+ * @see com.smartgwt.client.widgets.Canvas#getDisableTouchScrollingForDrag
  * @see com.smartgwt.client.widgets.Canvas#getScrollbarSize
+ * @see com.smartgwt.client.widgets.Canvas#getScrollbarConstructor
  */
 public interface Scrolling {
 }

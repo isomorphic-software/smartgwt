@@ -13,9 +13,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.data;
-
 
 
 import com.smartgwt.client.event.*;
@@ -24,6 +24,9 @@ import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
 import com.smartgwt.client.data.events.*;
 import com.smartgwt.client.rpc.*;
+import com.smartgwt.client.callbacks.*;
+import com.smartgwt.client.tools.*;
+import com.smartgwt.client.bean.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.form.*;
@@ -37,91 +40,134 @@ import com.smartgwt.client.widgets.chart.*;
 import com.smartgwt.client.widgets.layout.*;
 import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
+import com.smartgwt.client.widgets.rte.*;
+import com.smartgwt.client.widgets.rte.events.*;
+import com.smartgwt.client.widgets.ace.*;
+import com.smartgwt.client.widgets.ace.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
 import com.smartgwt.client.widgets.tree.events.*;
+import com.smartgwt.client.widgets.tableview.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
 import com.smartgwt.client.widgets.cube.*;
+import com.smartgwt.client.widgets.drawing.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.events.*;
+import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
 /**
  * An operationBinding tells a DataSource how to execute one of the basic DS operations: fetch, add, update, remove.  See
- * {@link com.smartgwt.client.data.DataSource#getOperationBindings operationBindings}.
+ * {@link com.smartgwt.client.data.DataSource#getOperationBindings DataSource.operationBindings}.
  */
+@BeanFactory.FrameworkClass
 public class OperationBinding extends DataClass {
 
     public static OperationBinding getOrCreateRef(JavaScriptObject jsObj) {
         if(jsObj == null) return null;
         return new OperationBinding(jsObj);
     }
+        
+
 
     public OperationBinding(){
         
     }
 
     public OperationBinding(JavaScriptObject jsObj){
-        super(jsObj);
+        
+        setJavaScriptObject(jsObj);
     }
+
 
     public OperationBinding(DSOperationType operationType, String dataURL) {
         setOperationType(operationType);
 		setDataURL(dataURL);
-        
+                
     }
+
 
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Ordinarily, "update" and "remove" operations are only allowed for {@link com.smartgwt.client.data.DataSource}s that have
-     * a {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey}, and all primary key values are present in
-     * the request.  This is because an update of a DataSource with no primary key,  or an update request that has missing
-     * primary key values, cannot be guaranteed to affect  only one record. <p> Setting this property on an operationBinding
-     * circumvents this restriction for that operation only. <p> <b>Warning:</b> Be aware that this is a potentially dangerous
-     * setting and should be used with care.  With this flag set, you have no guarantee that an update will not change or 
-     * remove every row in a table.
+     * This property indicates whether this operation supports AdvancedCriteria. This setting  overrides {@link
+     * com.smartgwt.client.data.DataSource#getAllowAdvancedCriteria DataSource.allowAdvancedCriteria} for this operation only.
+     * See {@link com.smartgwt.client.data.DataSource#supportsAdvancedCriteria DataSource.supportsAdvancedCriteria()} for
+     * further information. <p> <b>NOTE:</b> If you specify this property in a DataSource descriptor  (<code>.ds.xml</code>
+     * file), it is enforced on the server.  This means that if you run  a request containing AdvancedCriteria against an
+     * OperationBinding that advertises itself as <code>allowAdvancedCriteria:false</code>, it will be rejected.
+     * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param allowMultiUpdate allowMultiUpdate Default value is null
+     * @param allowAdvancedCriteria New allowAdvancedCriteria value. Default value is null
+     * @see com.smartgwt.client.data.DataSource#setAllowAdvancedCriteria
      */
-    public void setAllowMultiUpdate(Boolean allowMultiUpdate) {
-        setAttribute("allowMultiUpdate", allowMultiUpdate);
+    public void setAllowAdvancedCriteria(Boolean allowAdvancedCriteria) {
+        setAttribute("allowAdvancedCriteria", allowAdvancedCriteria);
     }
 
     /**
-     * Ordinarily, "update" and "remove" operations are only allowed for {@link com.smartgwt.client.data.DataSource}s that have
-     * a {@link com.smartgwt.client.data.DataSourceField#getPrimaryKey primaryKey}, and all primary key values are present in
-     * the request.  This is because an update of a DataSource with no primary key,  or an update request that has missing
-     * primary key values, cannot be guaranteed to affect  only one record. <p> Setting this property on an operationBinding
-     * circumvents this restriction for that operation only. <p> <b>Warning:</b> Be aware that this is a potentially dangerous
-     * setting and should be used with care.  With this flag set, you have no guarantee that an update will not change or 
-     * remove every row in a table.
+     * This property indicates whether this operation supports AdvancedCriteria. This setting  overrides {@link
+     * com.smartgwt.client.data.DataSource#getAllowAdvancedCriteria DataSource.allowAdvancedCriteria} for this operation only.
+     * See {@link com.smartgwt.client.data.DataSource#supportsAdvancedCriteria DataSource.supportsAdvancedCriteria()} for
+     * further information. <p> <b>NOTE:</b> If you specify this property in a DataSource descriptor  (<code>.ds.xml</code>
+     * file), it is enforced on the server.  This means that if you run  a request containing AdvancedCriteria against an
+     * OperationBinding that advertises itself as <code>allowAdvancedCriteria:false</code>, it will be rejected.
      *
-     *
-     * @return Boolean
+     * @return Current allowAdvancedCriteria value. Default value is null
+     * @see com.smartgwt.client.data.DataSource#getAllowAdvancedCriteria
      */
-    public Boolean getAllowMultiUpdate()  {
-        return getAttributeAsBoolean("allowMultiUpdate");
+    public Boolean getAllowAdvancedCriteria()  {
+        return getAttributeAsBoolean("allowAdvancedCriteria", true);
     }
+    
+    
+
+    /**
+     * A per-operationBinding setting for beanClassName, otherwise also settable at the top-level DataSource configuration.
+     *
+     * @param beanClassName New beanClassName value. Default value is null
+     * @see com.smartgwt.client.docs.serverds.DataSource#beanClassName
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     */
+    public void setBeanClassName(String beanClassName) {
+        setAttribute("beanClassName", beanClassName);
+    }
+
+    /**
+     * A per-operationBinding setting for beanClassName, otherwise also settable at the top-level DataSource configuration.
+     *
+     * @return Current beanClassName value. Default value is null
+     * @see com.smartgwt.client.docs.serverds.DataSource#beanClassName
+     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     */
+    public String getBeanClassName()  {
+        return getAttributeAsString("beanClassName");
+    }
+    
 
     /**
      * Applies only to dataFormat: "json".  Specifies the name of the query parameter that tells your JSON service what
      * function to call as part of the response for this operation. <P> Typically set once for the DataSource as a whole via
-     * {@link com.smartgwt.client.data.DataSource#getCallbackParam callbackParam}.
+     * {@link com.smartgwt.client.data.DataSource#getCallbackParam DataSource.callbackParam}.
      *
-     * @param callbackParam callbackParam Default value is "callback"
+     * @param callbackParam New callbackParam value. Default value is "callback"
      * @see com.smartgwt.client.data.DataSource#setCallbackParam
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
@@ -132,22 +178,24 @@ public class OperationBinding extends DataClass {
     /**
      * Applies only to dataFormat: "json".  Specifies the name of the query parameter that tells your JSON service what
      * function to call as part of the response for this operation. <P> Typically set once for the DataSource as a whole via
-     * {@link com.smartgwt.client.data.DataSource#getCallbackParam callbackParam}.
+     * {@link com.smartgwt.client.data.DataSource#getCallbackParam DataSource.callbackParam}.
      *
-     *
-     * @return String
+     * @return Current callbackParam value. Default value is "callback"
      * @see com.smartgwt.client.data.DataSource#getCallbackParam
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public String getCallbackParam()  {
         return getAttributeAsString("callbackParam");
     }
+    
+    
+    
 
     /**
      * Format for response data for this operation. <P> Typically set once for the DataSource as a whole via {@link
-     * com.smartgwt.client.data.DataSource#getDataFormat dataFormat}.
+     * com.smartgwt.client.data.DataSource#getDataFormat DataSource.dataFormat}.
      *
-     * @param dataFormat dataFormat Default value is "iscServer"
+     * @param dataFormat New dataFormat value. Default value is "iscServer"
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setDataFormat(DSDataFormat dataFormat) {
@@ -156,34 +204,35 @@ public class OperationBinding extends DataClass {
 
     /**
      * Format for response data for this operation. <P> Typically set once for the DataSource as a whole via {@link
-     * com.smartgwt.client.data.DataSource#getDataFormat dataFormat}.
+     * com.smartgwt.client.data.DataSource#getDataFormat DataSource.dataFormat}.
      *
-     *
-     * @return DSDataFormat
+     * @return Current dataFormat value. Default value is "iscServer"
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public DSDataFormat getDataFormat()  {
         return EnumUtil.getEnum(DSDataFormat.values(), getAttribute("dataFormat"));
     }
+    
 
     /**
      * Controls the format in which inputs are sent to the dataURL. <p> When a DataSource operation such as fetchData() is
      * invoked on this DataSource or a component bound to this DataSource, the data passed to the operation, if any, will be
      * sent to the <code>dataURL</code>.  The <code>dataProtocol</code> property controls the format in which the data is sent:
      * SOAP message, HTTP GET or POST of parameters, etc. <P> The <code>dataProtocol</code> property need not be set for a
-     * DataSource with a WebService ( {@link com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace} is set),
-     * in this case, SOAP messaging is used by default. <P> Developers may completely bypass the Smart GWT comm system by
-     * setting dataProtocol to <code>"clientCustom"</code>. In this case Smart GWT will not attempt to send any data to the
-     * server after calling {@link com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest}. Instead
-     * the developer is expected to implement <code>transformRequest()</code> such that it performs the necessary data action
-     * outside of Smart GWT, and then calls {@link com.smartgwt.client.data.DataSource#processResponse
-     * DataSource.processResponse},  passing in the {@link com.smartgwt.client.data.DSRequest#getRequestId requestId} and an
-     * appropriate set of DSResponse properties to indicate the result of the action. <P> NOTE: when {@link
-     * com.smartgwt.client.data.OperationBinding#getDataFormat dataFormat} is "iscServer", <code>dataProtocol</code> is not
-     * consulted. Instead, Smart GWT uses a proprietary wire format to communicate with the Smart GWT server, and the
-     * server-side DSRequest and DSResponse objects should be used to access request data and form responses.
+     * DataSource with a WebService ( {@link com.smartgwt.client.data.DataSource#getServiceNamespace
+     * DataSource.serviceNamespace} is set), in this case, SOAP messaging is used by default. <P> Developers may completely
+     * bypass the Smart GWT comm system by setting dataProtocol to <code>"clientCustom"</code>. In this case Smart GWT will not
+     * attempt to send any data to the server after calling {@link com.smartgwt.client.data.DataSource#transformRequest
+     * DataSource.transformRequest()}. Instead the developer is expected to implement <code>transformRequest()</code> such that
+     * it performs the necessary data action outside of Smart GWT, and then calls {@link
+     * com.smartgwt.client.data.DataSource#processResponse DataSource.processResponse()},  passing in the {@link
+     * com.smartgwt.client.data.DSRequest#getRequestId DSRequest.requestId} and an appropriate set of DSResponse properties to
+     * indicate the result of the action. <P> NOTE: when {@link com.smartgwt.client.data.OperationBinding#getDataFormat
+     * dataFormat} is "iscServer", <code>dataProtocol</code> is not consulted. Instead, Smart GWT uses a proprietary wire
+     * format to communicate with the Smart GWT server, and the server-side DSRequest and DSResponse objects should be used to
+     * access request data and form responses.
      *
-     * @param dataProtocol dataProtocol Default value is "getParams"
+     * @param dataProtocol New dataProtocol value. Default value is "getParams"
      * @see com.smartgwt.client.types.DSProtocol
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
@@ -196,37 +245,38 @@ public class OperationBinding extends DataClass {
      * invoked on this DataSource or a component bound to this DataSource, the data passed to the operation, if any, will be
      * sent to the <code>dataURL</code>.  The <code>dataProtocol</code> property controls the format in which the data is sent:
      * SOAP message, HTTP GET or POST of parameters, etc. <P> The <code>dataProtocol</code> property need not be set for a
-     * DataSource with a WebService ( {@link com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace} is set),
-     * in this case, SOAP messaging is used by default. <P> Developers may completely bypass the Smart GWT comm system by
-     * setting dataProtocol to <code>"clientCustom"</code>. In this case Smart GWT will not attempt to send any data to the
-     * server after calling {@link com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest}. Instead
-     * the developer is expected to implement <code>transformRequest()</code> such that it performs the necessary data action
-     * outside of Smart GWT, and then calls {@link com.smartgwt.client.data.DataSource#processResponse
-     * DataSource.processResponse},  passing in the {@link com.smartgwt.client.data.DSRequest#getRequestId requestId} and an
-     * appropriate set of DSResponse properties to indicate the result of the action. <P> NOTE: when {@link
-     * com.smartgwt.client.data.OperationBinding#getDataFormat dataFormat} is "iscServer", <code>dataProtocol</code> is not
-     * consulted. Instead, Smart GWT uses a proprietary wire format to communicate with the Smart GWT server, and the
-     * server-side DSRequest and DSResponse objects should be used to access request data and form responses.
+     * DataSource with a WebService ( {@link com.smartgwt.client.data.DataSource#getServiceNamespace
+     * DataSource.serviceNamespace} is set), in this case, SOAP messaging is used by default. <P> Developers may completely
+     * bypass the Smart GWT comm system by setting dataProtocol to <code>"clientCustom"</code>. In this case Smart GWT will not
+     * attempt to send any data to the server after calling {@link com.smartgwt.client.data.DataSource#transformRequest
+     * DataSource.transformRequest()}. Instead the developer is expected to implement <code>transformRequest()</code> such that
+     * it performs the necessary data action outside of Smart GWT, and then calls {@link
+     * com.smartgwt.client.data.DataSource#processResponse DataSource.processResponse()},  passing in the {@link
+     * com.smartgwt.client.data.DSRequest#getRequestId DSRequest.requestId} and an appropriate set of DSResponse properties to
+     * indicate the result of the action. <P> NOTE: when {@link com.smartgwt.client.data.OperationBinding#getDataFormat
+     * dataFormat} is "iscServer", <code>dataProtocol</code> is not consulted. Instead, Smart GWT uses a proprietary wire
+     * format to communicate with the Smart GWT server, and the server-side DSRequest and DSResponse objects should be used to
+     * access request data and form responses.
      *
-     *
-     * @return DSProtocol
+     * @return Current dataProtocol value. Default value is "getParams"
      * @see com.smartgwt.client.types.DSProtocol
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public DSProtocol getDataProtocol()  {
         return EnumUtil.getEnum(DSProtocol.values(), getAttribute("dataProtocol"));
     }
+    
 
     /**
      * Transport to use for this operation.  Defaults to {@link com.smartgwt.client.data.DataSource#getDataTransport
-     * dataTransport}, which in turn defaults to {@link com.smartgwt.client.rpc.RPCManager#defaultTransport defaultTransport}. 
-     * This would typically only be set to enable "scriptInclude" transport for contacting {@link
+     * DataSource.dataTransport}, which in turn defaults to {@link com.smartgwt.client.rpc.RPCManager#defaultTransport
+     * defaultTransport}.  This would typically only be set to enable "scriptInclude" transport for contacting {@link
      * com.smartgwt.client.data.DataSource#getDataFormat JSON} web services hosted on servers other than the origin server. <p>
      * When using the "scriptInclude" transport, be sure to set {@link com.smartgwt.client.data.DataSource#getCallbackParam
-     * callbackParam} or {@link com.smartgwt.client.data.OperationBinding#getCallbackParam callbackParam} to match the name of
-     * the query parameter name expected by your JSON service provider.
+     * DataSource.callbackParam} or {@link com.smartgwt.client.data.OperationBinding#getCallbackParam callbackParam} to match
+     * the name of the query parameter name expected by your JSON service provider.
      *
-     * @param dataTransport dataTransport Default value is RPCManager.defaultTransport
+     * @param dataTransport New dataTransport value. Default value is RPCManager.defaultTransport
      * @see com.smartgwt.client.types.RPCTransport
      * @see com.smartgwt.client.data.DataSource#setCallbackParam
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
@@ -237,15 +287,14 @@ public class OperationBinding extends DataClass {
 
     /**
      * Transport to use for this operation.  Defaults to {@link com.smartgwt.client.data.DataSource#getDataTransport
-     * dataTransport}, which in turn defaults to {@link com.smartgwt.client.rpc.RPCManager#defaultTransport defaultTransport}. 
-     * This would typically only be set to enable "scriptInclude" transport for contacting {@link
+     * DataSource.dataTransport}, which in turn defaults to {@link com.smartgwt.client.rpc.RPCManager#defaultTransport
+     * defaultTransport}.  This would typically only be set to enable "scriptInclude" transport for contacting {@link
      * com.smartgwt.client.data.DataSource#getDataFormat JSON} web services hosted on servers other than the origin server. <p>
      * When using the "scriptInclude" transport, be sure to set {@link com.smartgwt.client.data.DataSource#getCallbackParam
-     * callbackParam} or {@link com.smartgwt.client.data.OperationBinding#getCallbackParam callbackParam} to match the name of
-     * the query parameter name expected by your JSON service provider.
+     * DataSource.callbackParam} or {@link com.smartgwt.client.data.OperationBinding#getCallbackParam callbackParam} to match
+     * the name of the query parameter name expected by your JSON service provider.
      *
-     *
-     * @return RPCTransport
+     * @return Current dataTransport value. Default value is RPCManager.defaultTransport
      * @see com.smartgwt.client.types.RPCTransport
      * @see com.smartgwt.client.data.DataSource#getCallbackParam
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
@@ -253,14 +302,16 @@ public class OperationBinding extends DataClass {
     public RPCTransport getDataTransport()  {
         return EnumUtil.getEnum(RPCTransport.values(), getAttribute("dataTransport"));
     }
+    
 
     /**
      * URL to contact to fulfill DSRequests for this operationBinding. <P> <code>dataURL</code> is typically set as
      * DataSource.dataURL rather than on each individual operationBinding. <P> <code>dataURL</code> can be omitted for a
-     * DataSource using a Web Service ({@link com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace} is
-     * set).
+     * DataSource using a Web Service ({@link com.smartgwt.client.data.DataSource#getServiceNamespace
+     * DataSource.serviceNamespace} is set).
      *
-     * @param dataURL dataURL Default value is null
+     * @param dataURL New dataURL value. Default value is null
+     * @see com.smartgwt.client.docs.URL URL 
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setDataURL(String dataURL) {
@@ -270,23 +321,24 @@ public class OperationBinding extends DataClass {
     /**
      * URL to contact to fulfill DSRequests for this operationBinding. <P> <code>dataURL</code> is typically set as
      * DataSource.dataURL rather than on each individual operationBinding. <P> <code>dataURL</code> can be omitted for a
-     * DataSource using a Web Service ({@link com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace} is
-     * set).
+     * DataSource using a Web Service ({@link com.smartgwt.client.data.DataSource#getServiceNamespace
+     * DataSource.serviceNamespace} is set).
      *
-     *
-     * @return String
+     * @return Current dataURL value. Default value is null
+     * @see com.smartgwt.client.docs.URL URL 
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public String getDataURL()  {
         return getAttributeAsString("dataURL");
     }
+    
 
     /**
      * HTTP parameters that should be submitted with every DSRequest. <P> Useful for authenticated services that require a
      * sessionId with every request. <P> Can be set for all operations of a given DataSource as DataSource.defaultParams.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param defaultParams defaultParams Default value is null
+     * @param defaultParams New defaultParams value. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setDefaultParams(Map defaultParams) {
@@ -297,19 +349,19 @@ public class OperationBinding extends DataClass {
      * HTTP parameters that should be submitted with every DSRequest. <P> Useful for authenticated services that require a
      * sessionId with every request. <P> Can be set for all operations of a given DataSource as DataSource.defaultParams.
      *
-     *
-     * @return Map
+     * @return Current defaultParams value. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public Map getDefaultParams()  {
         return getAttributeAsMap("defaultParams");
     }
+    
 
     /**
      * The format in which the data should be exported.  Default is "csv". See {@link com.smartgwt.client.types.ExportFormat}
      * for more information.
      *
-     * @param exportAs exportAs Default value is "csv"
+     * @param exportAs New exportAs value. Default value is "csv"
      */
     public void setExportAs(ExportFormat exportAs) {
         setAttribute("exportAs", exportAs == null ? null : exportAs.getValue());
@@ -319,19 +371,19 @@ public class OperationBinding extends DataClass {
      * The format in which the data should be exported.  Default is "csv". See {@link com.smartgwt.client.types.ExportFormat}
      * for more information.
      *
-     *
-     * @return ExportFormat
+     * @return Current exportAs value. Default value is "csv"
      */
     public ExportFormat getExportAs()  {
         return EnumUtil.getEnum(ExportFormat.values(), getAttribute("exportAs"));
     }
+    
 
     /**
      * The list of field-names to export.  If provided, the field-list in the exported output is  limited and sorted as per the
      * list. <P> If exportFields is not provided, the exported output includes all visible fields  from the DataSource
      * (field.hidden=false), sorted in the order they're defined.
      *
-     * @param exportFields exportFields Default value is null
+     * @param exportFields New exportFields value. Default value is null
      */
     public void setExportFields(String... exportFields) {
         setAttribute("exportFields", exportFields);
@@ -342,17 +394,17 @@ public class OperationBinding extends DataClass {
      * list. <P> If exportFields is not provided, the exported output includes all visible fields  from the DataSource
      * (field.hidden=false), sorted in the order they're defined.
      *
-     *
-     * @return String
+     * @return Current exportFields value. Default value is null
      */
     public String[] getExportFields()  {
-        return getAttributeAsStringArray("exportFields");
+        return com.smartgwt.client.util.ConvertTo.arrayOfString(getAttributeAsJavaScriptObject("exportFields"));
     }
+    
 
     /**
      * The name of the file to save the exported data into.
      *
-     * @param exportFilename exportFilename Default value is null
+     * @param exportFilename New exportFilename value. Default value is null
      */
     public void setExportFilename(String exportFilename) {
         setAttribute("exportFilename", exportFilename);
@@ -361,12 +413,12 @@ public class OperationBinding extends DataClass {
     /**
      * The name of the file to save the exported data into.
      *
-     *
-     * @return String
+     * @return Current exportFilename value. Default value is null
      */
     public String getExportFilename()  {
         return getAttributeAsString("exportFilename");
     }
+    
 
     /**
      * When set, causes the results of the DataSource Operation to be exported to a file, whose 
@@ -374,20 +426,20 @@ public class OperationBinding extends DataClass {
      * {@link com.smartgwt.client.data.OperationBinding#getExportAs exportAs} respectively.  When no exportFilename is
      * provided, the 
      *  default is <i>Results</i> and the default value of exportAs is <i>csv</i>.  Once the Operation 
-     *  completes, {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay} specifies whether the 
+     *  completes, {@link com.smartgwt.client.data.DSRequest#getExportDisplay DSRequest.exportDisplay} specifies whether the 
      *  exported data will be downloaded to the file-system or displayed in a new window.   The 
      *  default value of exportDisplay is "download" which displays the Save As dialog.  See 
      *  {@link com.smartgwt.client.types.ExportDisplay} for more information.
      *  <P>
      * The export field-list can also be configured, see {@link com.smartgwt.client.data.DSRequest#getExportFields
-     * exportFields}.
+     * DSRequest.exportFields}.
      *  <P>
      *  You can also configure the style of line-breaks to use when generating the output.  See
-     *  LineBreakStyle for more information.
+     *  {@link com.smartgwt.client.types.LineBreakStyle} for more information.
      *  <P>
      *  As well as setting this and other properties on the {@link com.smartgwt.client.data.OperationBinding}, Exports can be 
      *  initiated in two other ways.  You can set properties on the dsRequest by passing 
-     * <i>requestProperties</i> into {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.  Note that
+     * <i>requestProperties</i> into {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData()}.  Note that
      * this method does
      *  not support exporting to JSON format (see 
      *  <a href="http://forums.smartclient.com/showthread.php?t=235">this post</a> for more detail).
@@ -417,9 +469,9 @@ public class OperationBinding extends DataClass {
      *      10101,"Record 10101"
      *  </pre>
      *
-     * @param exportResults exportResults Default value is false
+     * @param exportResults New exportResults value. Default value is false
      */
-    public void setExportResults(Boolean exportResults) {
+    public void setExportResults(boolean exportResults) {
         setAttribute("exportResults", exportResults);
     }
 
@@ -429,20 +481,20 @@ public class OperationBinding extends DataClass {
      * {@link com.smartgwt.client.data.OperationBinding#getExportAs exportAs} respectively.  When no exportFilename is
      * provided, the 
      *  default is <i>Results</i> and the default value of exportAs is <i>csv</i>.  Once the Operation 
-     *  completes, {@link com.smartgwt.client.data.DSRequest#getExportDisplay exportDisplay} specifies whether the 
+     *  completes, {@link com.smartgwt.client.data.DSRequest#getExportDisplay DSRequest.exportDisplay} specifies whether the 
      *  exported data will be downloaded to the file-system or displayed in a new window.   The 
      *  default value of exportDisplay is "download" which displays the Save As dialog.  See 
      *  {@link com.smartgwt.client.types.ExportDisplay} for more information.
      *  <P>
      * The export field-list can also be configured, see {@link com.smartgwt.client.data.DSRequest#getExportFields
-     * exportFields}.
+     * DSRequest.exportFields}.
      *  <P>
      *  You can also configure the style of line-breaks to use when generating the output.  See
-     *  LineBreakStyle for more information.
+     *  {@link com.smartgwt.client.types.LineBreakStyle} for more information.
      *  <P>
      *  As well as setting this and other properties on the {@link com.smartgwt.client.data.OperationBinding}, Exports can be 
      *  initiated in two other ways.  You can set properties on the dsRequest by passing 
-     * <i>requestProperties</i> into {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.  Note that
+     * <i>requestProperties</i> into {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData()}.  Note that
      * this method does
      *  not support exporting to JSON format (see 
      *  <a href="http://forums.smartclient.com/showthread.php?t=235">this post</a> for more detail).
@@ -472,18 +524,21 @@ public class OperationBinding extends DataClass {
      *      10101,"Record 10101"
      *  </pre>
      *
-     *
-     * @return Boolean
+     * @return Current exportResults value. Default value is false
      */
-    public Boolean getExportResults()  {
-        return getAttributeAsBoolean("exportResults");
+    public boolean getExportResults()  {
+        Boolean result = getAttributeAsBoolean("exportResults", true);
+        return result == null ? false : result;
     }
+    
+    
+    
 
     /**
      * If set, every invocation of this operationBinding will invalidate the local cache, forcing a server visit to refresh the
      * data.
      *
-     * @param invalidateCache invalidateCache Default value is null
+     * @param invalidateCache New invalidateCache value. Default value is null
      */
     public void setInvalidateCache(Boolean invalidateCache) {
         setAttribute("invalidateCache", invalidateCache);
@@ -493,38 +548,42 @@ public class OperationBinding extends DataClass {
      * If set, every invocation of this operationBinding will invalidate the local cache, forcing a server visit to refresh the
      * data.
      *
-     *
-     * @return Boolean
+     * @return Current invalidateCache value. Default value is null
      */
     public Boolean getInvalidateCache()  {
-        return getAttributeAsBoolean("invalidateCache");
+        return getAttributeAsBoolean("invalidateCache", true);
     }
+    
 
     /**
-     * The style of line-breaks to use in the exported output.  See LineBreakStyle for more information.
+     * The style of line-breaks to use in the exported output.  See {@link com.smartgwt.client.types.LineBreakStyle} for more
+     * information.
      *
-     * @param lineBreakStyle lineBreakStyle Default value is null
+     * @param lineBreakStyle New lineBreakStyle value. Default value is null
      */
     public void setLineBreakStyle(String lineBreakStyle) {
         setAttribute("lineBreakStyle", lineBreakStyle);
     }
 
     /**
-     * The style of line-breaks to use in the exported output.  See LineBreakStyle for more information.
+     * The style of line-breaks to use in the exported output.  See {@link com.smartgwt.client.types.LineBreakStyle} for more
+     * information.
      *
-     *
-     * @return String
+     * @return Current lineBreakStyle value. Default value is null
      */
     public String getLineBreakStyle()  {
         return getAttributeAsString("lineBreakStyle");
     }
+    
+    
+    
 
     /**
      * Optional operationId if this DataSource supports two or more variants of one of the basic DataSource operations, for
      * instance, a "fetch" that uses full text search and a "fetch" that accepts per-field search criteria.  See {@link
-     * com.smartgwt.client.data.DSRequest#getOperationId operationId} for usage.
+     * com.smartgwt.client.data.DSRequest#getOperationId DSRequest.operationId} for usage.
      *
-     * @param operationId operationId Default value is null
+     * @param operationId New operationId value. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setOperationId(String operationId) {
@@ -534,21 +593,21 @@ public class OperationBinding extends DataClass {
     /**
      * Optional operationId if this DataSource supports two or more variants of one of the basic DataSource operations, for
      * instance, a "fetch" that uses full text search and a "fetch" that accepts per-field search criteria.  See {@link
-     * com.smartgwt.client.data.DSRequest#getOperationId operationId} for usage.
+     * com.smartgwt.client.data.DSRequest#getOperationId DSRequest.operationId} for usage.
      *
-     *
-     * @return String
+     * @return Current operationId value. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public String getOperationId()  {
         return getAttributeAsString("operationId");
     }
+    
 
     /**
      * Which operationType this operationBinding is for.  This property is only settable on an operationBinding, not a
      * DataSource as a whole.
      *
-     * @param operationType operationType Default value is null
+     * @param operationType New operationType value. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setOperationType(DSOperationType operationType) {
@@ -559,34 +618,39 @@ public class OperationBinding extends DataClass {
      * Which operationType this operationBinding is for.  This property is only settable on an operationBinding, not a
      * DataSource as a whole.
      *
-     *
-     * @return DSOperationType
+     * @return Current operationType value. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public DSOperationType getOperationType()  {
         return EnumUtil.getEnum(DSOperationType.values(), getAttribute("operationType"));
     }
+    
+    
+    
 
     /**
-     * Configures {@link com.smartgwt.client.data.DataSource#getPreventHTTPCaching preventHTTPCaching} on a per-operationType
-     * basis.
+     * Configures {@link com.smartgwt.client.data.DataSource#getPreventHTTPCaching DataSource.preventHTTPCaching} on a
+     * per-operationType basis.
      *
-     * @param preventHTTPCaching preventHTTPCaching Default value is null
+     * @param preventHTTPCaching New preventHTTPCaching value. Default value is null
      */
     public void setPreventHTTPCaching(Boolean preventHTTPCaching) {
         setAttribute("preventHTTPCaching", preventHTTPCaching);
     }
 
     /**
-     * Configures {@link com.smartgwt.client.data.DataSource#getPreventHTTPCaching preventHTTPCaching} on a per-operationType
-     * basis.
+     * Configures {@link com.smartgwt.client.data.DataSource#getPreventHTTPCaching DataSource.preventHTTPCaching} on a
+     * per-operationType basis.
      *
-     *
-     * @return Boolean
+     * @return Current preventHTTPCaching value. Default value is null
      */
     public Boolean getPreventHTTPCaching()  {
-        return getAttributeAsBoolean("preventHTTPCaching");
+        return getAttributeAsBoolean("preventHTTPCaching", true);
     }
+    
+    
+    
+    
 
     /**
      * For an XML DataSource, tagName of the elements to be used as records. <p> This is a simple alternative to {@link
@@ -594,9 +658,9 @@ public class OperationBinding extends DataClass {
      * a tagName. <p> When a DataSource has a WebService, <code>recordName</code> can also be set to the name of any
      * <code>complexType</code> declared within the WebService's WSDL file.
      *
-     * @param recordName recordName Default value is null
+     * @param recordName New recordName value. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
-     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_generic" target="examples">Weather SOAP Search Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_weather" target="examples">Weather SOAP Search Example</a>
      */
     public void setRecordName(String recordName) {
         setAttribute("recordName", recordName);
@@ -608,21 +672,21 @@ public class OperationBinding extends DataClass {
      * a tagName. <p> When a DataSource has a WebService, <code>recordName</code> can also be set to the name of any
      * <code>complexType</code> declared within the WebService's WSDL file.
      *
-     *
-     * @return String
+     * @return Current recordName value. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
-     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_generic" target="examples">Weather SOAP Search Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_weather" target="examples">Weather SOAP Search Example</a>
      */
     public String getRecordName()  {
         return getAttributeAsString("recordName");
     }
+    
 
     /**
      * For an XML or JSON DataSource, XPath expression used to retrieve the objects that will become DataSource records. <p>
      * For example, an "ItemSearch" web service might return a "Results" structure containing metadata along with the set of
      * Items that one might want to display in a grid.  An XPath expression like "/Results/Items" could be used to retrieve
      * just the Items, which would then become DataSource records. <p> For a JSON web service, the <code>recordXPath</code> is
-     * applied to the returned JSON data via {@link com.smartgwt.client.data.XMLTools#selectObjects XMLTools.selectObjects}. 
+     * applied to the returned JSON data via {@link com.smartgwt.client.data.XMLTools#selectObjects XMLTools.selectObjects()}. 
      * Only limited XPath syntax is allowed; see  {@link com.smartgwt.client.data.XMLTools#selectObjects selectObjects()} for
      * details. <P> For processing XML results, see {@link com.smartgwt.client.data.OperationBinding#getXmlNamespaces
      * xmlNamespaces} for information on the namespaces that are available in this XPath expression.  If you are contacting a
@@ -631,7 +695,8 @@ public class OperationBinding extends DataClass {
      * about XPath, try the following search: <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank"
      * >http://www.google.com/search?q=xpath+tutorial</a>
      *
-     * @param recordXPath recordXPath Default value is null
+     * @param recordXPath New recordXPath value. Default value is null
+     * @see com.smartgwt.client.docs.XPathExpression XPathExpression 
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setRecordXPath(String recordXPath) {
@@ -643,7 +708,7 @@ public class OperationBinding extends DataClass {
      * For example, an "ItemSearch" web service might return a "Results" structure containing metadata along with the set of
      * Items that one might want to display in a grid.  An XPath expression like "/Results/Items" could be used to retrieve
      * just the Items, which would then become DataSource records. <p> For a JSON web service, the <code>recordXPath</code> is
-     * applied to the returned JSON data via {@link com.smartgwt.client.data.XMLTools#selectObjects XMLTools.selectObjects}. 
+     * applied to the returned JSON data via {@link com.smartgwt.client.data.XMLTools#selectObjects XMLTools.selectObjects()}. 
      * Only limited XPath syntax is allowed; see  {@link com.smartgwt.client.data.XMLTools#selectObjects selectObjects()} for
      * details. <P> For processing XML results, see {@link com.smartgwt.client.data.OperationBinding#getXmlNamespaces
      * xmlNamespaces} for information on the namespaces that are available in this XPath expression.  If you are contacting a
@@ -652,44 +717,52 @@ public class OperationBinding extends DataClass {
      * about XPath, try the following search: <a href="http://www.google.com/search?q=xpath+tutorial" target="_blank"
      * >http://www.google.com/search?q=xpath+tutorial</a>
      *
-     *
-     * @return String
+     * @return Current recordXPath value. Default value is null
+     * @see com.smartgwt.client.docs.XPathExpression XPathExpression 
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public String getRecordXPath()  {
         return getAttributeAsString("recordXPath");
     }
+    
 
     /**
      * Additional properties to pass through to the {@link com.smartgwt.client.data.DSRequest} created for this operation. Note
      * that these will be cumulative with and will override on a per-property basis any properties set via {@link
-     * com.smartgwt.client.data.DataSource#getRequestProperties requestProperties}. <p> These properties are applied before
-     * {@link com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest} is called.
+     * com.smartgwt.client.data.DataSource#getRequestProperties DataSource.requestProperties}. <p> These properties are applied
+     * before {@link com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest()} is called.
      *
-     * @param requestProperties requestProperties Default value is null
+     * @param requestProperties New requestProperties value. Default value is null
      * @see com.smartgwt.client.data.DSRequest
      * @see com.smartgwt.client.data.DataSource#setRequestProperties
-     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
      */
     public void setRequestProperties(DSRequest requestProperties) {
-        setAttribute("requestProperties", requestProperties.getJsObj());
+        JavaScriptObject config = JSOHelper.createObject();
+        if (requestProperties != null) {
+            JSOHelper.addProperties(config, requestProperties.getJsObj());
+        }
+        setAttribute("requestProperties", requestProperties == null ? null : config);
     }
 
     /**
      * Additional properties to pass through to the {@link com.smartgwt.client.data.DSRequest} created for this operation. Note
      * that these will be cumulative with and will override on a per-property basis any properties set via {@link
-     * com.smartgwt.client.data.DataSource#getRequestProperties requestProperties}. <p> These properties are applied before
-     * {@link com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest} is called.
+     * com.smartgwt.client.data.DataSource#getRequestProperties DataSource.requestProperties}. <p> These properties are applied
+     * before {@link com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest()} is called.
      *
-     *
-     * @return DSRequest
+     * @return Current requestProperties value. Default value is null
      * @see com.smartgwt.client.data.DSRequest
      * @see com.smartgwt.client.data.DataSource#getRequestProperties
-     * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
+     * @see com.smartgwt.client.docs.ServerDataIntegration ServerDataIntegration overview and related methods
      */
     public DSRequest getRequestProperties()  {
         return new DSRequest(getAttributeAsJavaScriptObject("requestProperties"));
     }
+    
+    
+    
+    
 
     /**
      * Optional schema describing how to extract DataSource records from the XML elements selected. <P> Once a set of XML
@@ -700,7 +773,7 @@ public class OperationBinding extends DataClass {
      * field.valueXPath} may be necessary to extract the same DataSource record from slightly different XML structures.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
-     * @param responseDataSchema responseDataSchema Default value is null
+     * @param responseDataSchema New responseDataSchema value. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setResponseDataSchema(DataSource responseDataSchema) {
@@ -715,13 +788,17 @@ public class OperationBinding extends DataClass {
      * operations, such that different values for {@link com.smartgwt.client.data.DataSourceField#getValueXPath
      * field.valueXPath} may be necessary to extract the same DataSource record from slightly different XML structures.
      *
-     *
-     * @return DataSource
+     * @return Current responseDataSchema value. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public DataSource getResponseDataSchema()  {
         return DataSource.getOrCreateRef(getAttributeAsJavaScriptObject("responseDataSchema"));
     }
+    
+    
+    
+    
+    
 
     /**
      * For a DataSource contacting a {@link com.smartgwt.client.data.DataSource#getServiceNamespace WSDL web service}, setting
@@ -733,10 +810,10 @@ public class OperationBinding extends DataClass {
      * partial response.  To use a hand-generated sample response, just save an XML file to disk and use the {@link
      * com.smartgwt.client.data.OperationBinding#getDataURL dataURL} setting to point to it.
      *
-     * @param spoofResponses spoofResponses Default value is false
+     * @param spoofResponses New spoofResponses value. Default value is false
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public void setSpoofResponses(Boolean spoofResponses) {
+    public void setSpoofResponses(boolean spoofResponses) {
         setAttribute("spoofResponses", spoofResponses);
     }
 
@@ -750,19 +827,24 @@ public class OperationBinding extends DataClass {
      * partial response.  To use a hand-generated sample response, just save an XML file to disk and use the {@link
      * com.smartgwt.client.data.OperationBinding#getDataURL dataURL} setting to point to it.
      *
-     *
-     * @return Boolean
+     * @return Current spoofResponses value. Default value is false
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public Boolean getSpoofResponses()  {
-        return getAttributeAsBoolean("spoofResponses");
+    public boolean getSpoofResponses()  {
+        Boolean result = getAttributeAsBoolean("spoofResponses", true);
+        return result == null ? false : result;
     }
+    
+    
+    
+    
+    
 
     /**
      * Setting <code>useFlatFields</code> on an operationBinding is equivalent to setting {@link
-     * com.smartgwt.client.data.DSRequest#getUseFlatFields useFlatFields} on all DataSource requests with the same {@link
-     * com.smartgwt.client.data.OperationBinding#getOperationType operationType} as this <code>operationBinding</code>. <P>
-     * Typical usage is to combine operationBinding.useFlatFields with  {@link
+     * com.smartgwt.client.data.DSRequest#getUseFlatFields DSRequest.useFlatFields} on all DataSource requests with the same
+     * {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} as this <code>operationBinding</code>.
+     * <P> Typical usage is to combine operationBinding.useFlatFields with  {@link
      * com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields searchForm.useFlatFields}, with the {@link
      * com.smartgwt.client.widgets.form.SearchForm} bound to the {@link com.smartgwt.client.data.WebService#getInputDS input
      * message} of the web service operation set as {@link com.smartgwt.client.data.OperationBinding#getWsOperation
@@ -772,18 +854,18 @@ public class OperationBinding extends DataClass {
      * name wins.  "first" means the first field encountered in a depth first search.  "wins" means only the first field will
      * be available in data binding, and only the first field will be populated in the generated XML message.
      *
-     * @param useFlatFields useFlatFields Default value is false
+     * @param useFlatFields New useFlatFields value. Default value is false
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public void setUseFlatFields(Boolean useFlatFields) {
+    public void setUseFlatFields(boolean useFlatFields) {
         setAttribute("useFlatFields", useFlatFields);
     }
 
     /**
      * Setting <code>useFlatFields</code> on an operationBinding is equivalent to setting {@link
-     * com.smartgwt.client.data.DSRequest#getUseFlatFields useFlatFields} on all DataSource requests with the same {@link
-     * com.smartgwt.client.data.OperationBinding#getOperationType operationType} as this <code>operationBinding</code>. <P>
-     * Typical usage is to combine operationBinding.useFlatFields with  {@link
+     * com.smartgwt.client.data.DSRequest#getUseFlatFields DSRequest.useFlatFields} on all DataSource requests with the same
+     * {@link com.smartgwt.client.data.OperationBinding#getOperationType operationType} as this <code>operationBinding</code>.
+     * <P> Typical usage is to combine operationBinding.useFlatFields with  {@link
      * com.smartgwt.client.widgets.DataBoundComponent#getUseFlatFields searchForm.useFlatFields}, with the {@link
      * com.smartgwt.client.widgets.form.SearchForm} bound to the {@link com.smartgwt.client.data.WebService#getInputDS input
      * message} of the web service operation set as {@link com.smartgwt.client.data.OperationBinding#getWsOperation
@@ -793,13 +875,14 @@ public class OperationBinding extends DataClass {
      * name wins.  "first" means the first field encountered in a depth first search.  "wins" means only the first field will
      * be available in data binding, and only the first field will be populated in the generated XML message.
      *
-     *
-     * @return Boolean
+     * @return Current useFlatFields value. Default value is false
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
-    public Boolean getUseFlatFields()  {
-        return getAttributeAsBoolean("useFlatFields");
+    public boolean getUseFlatFields()  {
+        Boolean result = getAttributeAsBoolean("useFlatFields", true);
+        return result == null ? false : result;
     }
+    
 
     /**
      * Whether to use the {@link com.smartgwt.client.rpc.RPCManager#sendProxied HttpProxy} servlet to send requests described
@@ -807,7 +890,7 @@ public class OperationBinding extends DataClass {
      * same-origin policy. <P> Valid only with {@link com.smartgwt.client.data.OperationBinding#getDataProtocol dataProtocol}
      * settings other than ISCServer.
      *
-     * @param useHttpProxy useHttpProxy Default value is null
+     * @param useHttpProxy New useHttpProxy value. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public void setUseHttpProxy(Boolean useHttpProxy) {
@@ -820,26 +903,28 @@ public class OperationBinding extends DataClass {
      * same-origin policy. <P> Valid only with {@link com.smartgwt.client.data.OperationBinding#getDataProtocol dataProtocol}
      * settings other than ISCServer.
      *
-     *
-     * @return Boolean
+     * @return Current useHttpProxy value. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      */
     public Boolean getUseHttpProxy()  {
-        return getAttributeAsBoolean("useHttpProxy");
+        return getAttributeAsBoolean("useHttpProxy", true);
     }
+    
+    
+    
 
     /**
      * Name of the web service operation that will be invoked in order to execute this DataSource operation. <P> Valid only for
-     * a DataSource that has a WebService ({@link com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace} is
-     * set).  Otherwise, use {@link com.smartgwt.client.data.OperationBinding#getDataURL dataURL}. <P> Setting
-     * <code>wsOperation</code> means that {@link com.smartgwt.client.data.DSRequest#getData data} will be serialized as the
-     * request message for the specified web service operation, with namespacing and soap encoding handled automatically.  See
-     * {@link com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest} for how to customize what data
-     * is sent to the server.
+     * a DataSource that has a WebService ({@link com.smartgwt.client.data.DataSource#getServiceNamespace
+     * DataSource.serviceNamespace} is set).  Otherwise, use {@link com.smartgwt.client.data.OperationBinding#getDataURL
+     * dataURL}. <P> Setting <code>wsOperation</code> means that {@link com.smartgwt.client.data.DSRequest#getData
+     * DSRequest.data} will be serialized as the request message for the specified web service operation, with namespacing and
+     * soap encoding handled automatically.  See {@link com.smartgwt.client.data.DataSource#transformRequest
+     * DataSource.transformRequest()} for how to customize what data is sent to the server.
      *
-     * @param wsOperation wsOperation Default value is null
+     * @param wsOperation New wsOperation value. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
-     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_generic" target="examples">Weather SOAP Search Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_weather" target="examples">Weather SOAP Search Example</a>
      */
     public void setWsOperation(String wsOperation) {
         setAttribute("wsOperation", wsOperation);
@@ -847,26 +932,26 @@ public class OperationBinding extends DataClass {
 
     /**
      * Name of the web service operation that will be invoked in order to execute this DataSource operation. <P> Valid only for
-     * a DataSource that has a WebService ({@link com.smartgwt.client.data.DataSource#getServiceNamespace serviceNamespace} is
-     * set).  Otherwise, use {@link com.smartgwt.client.data.OperationBinding#getDataURL dataURL}. <P> Setting
-     * <code>wsOperation</code> means that {@link com.smartgwt.client.data.DSRequest#getData data} will be serialized as the
-     * request message for the specified web service operation, with namespacing and soap encoding handled automatically.  See
-     * {@link com.smartgwt.client.data.DataSource#transformRequest DataSource.transformRequest} for how to customize what data
-     * is sent to the server.
+     * a DataSource that has a WebService ({@link com.smartgwt.client.data.DataSource#getServiceNamespace
+     * DataSource.serviceNamespace} is set).  Otherwise, use {@link com.smartgwt.client.data.OperationBinding#getDataURL
+     * dataURL}. <P> Setting <code>wsOperation</code> means that {@link com.smartgwt.client.data.DSRequest#getData
+     * DSRequest.data} will be serialized as the request message for the specified web service operation, with namespacing and
+     * soap encoding handled automatically.  See {@link com.smartgwt.client.data.DataSource#transformRequest
+     * DataSource.transformRequest()} for how to customize what data is sent to the server.
      *
-     *
-     * @return String
+     * @return Current wsOperation value. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
-     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_generic" target="examples">Weather SOAP Search Example</a>
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_wsdl_weather" target="examples">Weather SOAP Search Example</a>
      */
     public String getWsOperation()  {
         return getAttributeAsString("wsOperation");
     }
+    
 
     /**
      * Optional object declaring namespace prefixes for use in {@link com.smartgwt.client.data.OperationBinding#getRecordXPath
      * recordXPath} and
-     *  {@link com.smartgwt.client.data.DataSourceField#getValueXPath valueXPath} XPath expressions.
+     *  {@link com.smartgwt.client.data.DataSourceField#getValueXPath DataSourceField.valueXPath} XPath expressions.
      *  <P>
      *  <code>xmlNamespaces</code> should be specified as a mapping from namespace prefix to
      *  namespace URI, for example:
@@ -891,18 +976,18 @@ public class OperationBinding extends DataClass {
      *  <a href="http://www.google.com/search?q=XPath+xml+namespaces" target="_blank"
      *  >http://www.google.com/search?q=XPath+xml+namespaces</a>
      *
-     * @param xmlNamespaces xmlNamespaces Default value is null
+     * @param xmlNamespaces New xmlNamespaces value. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#yahoo_xml_integration_category" target="examples">Yahoo! XML Services Example</a>
      */
     public void setXmlNamespaces(XmlNamespaces xmlNamespaces) {
-        setAttribute("xmlNamespaces", xmlNamespaces.getJsObj());
+        setAttribute("xmlNamespaces", xmlNamespaces == null ? null : xmlNamespaces.getJsObj());
     }
 
     /**
      * Optional object declaring namespace prefixes for use in {@link com.smartgwt.client.data.OperationBinding#getRecordXPath
      * recordXPath} and
-     *  {@link com.smartgwt.client.data.DataSourceField#getValueXPath valueXPath} XPath expressions.
+     *  {@link com.smartgwt.client.data.DataSourceField#getValueXPath DataSourceField.valueXPath} XPath expressions.
      *  <P>
      *  <code>xmlNamespaces</code> should be specified as a mapping from namespace prefix to
      *  namespace URI, for example:
@@ -927,42 +1012,19 @@ public class OperationBinding extends DataClass {
      *  <a href="http://www.google.com/search?q=XPath+xml+namespaces" target="_blank"
      *  >http://www.google.com/search?q=XPath+xml+namespaces</a>
      *
-     *
-     * @return XmlNamespaces
+     * @return Current xmlNamespaces value. Default value is null
      * @see com.smartgwt.client.docs.ClientDataIntegration ClientDataIntegration overview and related methods
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#yahoo_xml_integration_category" target="examples">Yahoo! XML Services Example</a>
      */
     public XmlNamespaces getXmlNamespaces()  {
         return new XmlNamespaces(getAttributeAsJavaScriptObject("xmlNamespaces"));
     }
+    
 
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
-        
-    // ***********************************************************        
 
-
-    public static OperationBinding[] convertToOperationBindingArray(JavaScriptObject nativeArray) {
-        if (nativeArray == null) {
-            return new OperationBinding[]{};
-        }
-        if (JSOHelper.isArray(nativeArray)) {
-            JavaScriptObject[] componentsj = JSOHelper.toArray(nativeArray);
-            OperationBinding[] objects = new OperationBinding[componentsj.length];
-            for (int i = 0; i < componentsj.length; i++) {
-                JavaScriptObject componentJS = componentsj[i];
-                objects[i] = OperationBinding.getOrCreateRef(componentJS);
-            }
-            return objects;
-        } else {
-            OperationBinding[] ret = new OperationBinding[1];
-            ret[0] = OperationBinding.getOrCreateRef(nativeArray);
-            return ret;
-        }
-    }
+    // ***********************************************************
 
 }
-
-
-

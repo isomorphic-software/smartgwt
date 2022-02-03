@@ -13,19 +13,21 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.form.fields.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasShowValueHandlers extends HasHandlers {
     /**
-     * This method will be called whenever this form item's value is being set via a programmatic call to e.g: {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#setValues DynamicForm.setValues} or {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue} and may be overridden by CanvasItems
-     * intended to support displaying data values to update the embedded Canvas to reflect the value passed in.
+     * This method will be called whenever this FormItem's value is being set via a programmatic call to e.g: {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#setValues DynamicForm.setValues()} or {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#setValue FormItem.setValue()} and may be overridden by CanvasItems
+     * intended to support displaying data values to update the embedded Canvas to reflect the value passed in. Note that the
+     * first parameter will be a  formatted value - while the second parameter will contain the underlying data value for the
+     * item.
      *
      * @param handler the showValue handler
      * @return {@link HandlerRegistration} used to remove this handler

@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Policy for whether resize bars are shown on members by default.
  */
@@ -23,26 +25,37 @@ public enum LayoutResizeBarPolicy implements ValueEnum {
     /**
      * resize bars are only shown on members marked {@link com.smartgwt.client.widgets.Canvas#getShowResizeBar
      * showResizeBar:true}
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "marked".
      */
     MARKED("marked"),
     /**
      * resize bars are shown on all resizable members that are not explicitly marked showResizeBar:false, except the last
      * member. Appropriate for a {@link com.smartgwt.client.types.LayoutPolicy} of "fill" (VLayout, HLayout) since the overall
      * space will always be filled.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "middle".
      */
     MIDDLE("middle"),
     /**
      * resize bars are shown on all resizable members that are not explicitly marked showResizeBar:false, including the last
      * member. Can be appropriate for a {@link com.smartgwt.client.types.LayoutPolicy} of "none" (VStack, HStack) since the
      * overall size of the layout is dictated by it's member's sizes.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "all".
      */
     ALL("all"),
     /**
      * resize bars are not shown even if members are marked with {@link com.smartgwt.client.widgets.Canvas#getShowResizeBar
      * showResizeBar:true}
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "none".
      */
     NONE("none");
-
     private String value;
 
     LayoutResizeBarPolicy(String value) {

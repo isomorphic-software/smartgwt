@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Determines sizing model when sizing / positioning a canvas relative to its {@link
  * com.smartgwt.client.widgets.Canvas#getPercentBox percentBox}.
@@ -23,15 +25,20 @@ package com.smartgwt.client.types;
 public enum PercentBoxModel implements ValueEnum {
     /**
      * use coordinates relative to the {{@link com.smartgwt.client.widgets.Canvas#getVisibleHeight
-     * Canvas.getVisibleHeight},visibleHeight} and width of the other canvas
+     * Canvas.getVisibleHeight()},visibleHeight} and width of the other canvas
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "visible".
      */
     VISIBLE("visible"),
     /**
      * use coordinates relative to the {{@link com.smartgwt.client.widgets.Canvas#getViewportHeight
-     * Canvas.getViewportHeight},viewportHeight} and width of the other canvas
+     * Canvas.getViewportHeight()},viewportHeight} and width of the other canvas
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "viewport".
      */
     VIEWPORT("viewport");
-
     private String value;
 
     PercentBoxModel(String value) {

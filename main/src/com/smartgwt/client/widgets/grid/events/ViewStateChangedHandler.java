@@ -13,15 +13,17 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.grid.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface ViewStateChangedHandler extends EventHandler {
     /**
      * Notification method executed whenever the viewState of this grid changes. View state is accessible via {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getViewState ListGrid.getViewState}, and contains field state information,
-     * sort information, selection information, hiliting information and grouping information.
+     * com.smartgwt.client.widgets.grid.ListGrid#getViewState getViewState()}, and contains field state information, sort
+     * information, selection information, hiliting information and grouping information.
      *
      * @param event the event
      */

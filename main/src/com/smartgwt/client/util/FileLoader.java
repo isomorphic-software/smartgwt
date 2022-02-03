@@ -23,6 +23,19 @@ import java.util.List;
 
 /**
  * Helper class to preload skin images.
+ * <P>
+ * You can also use the FileLoader to start loading the core SmartClient runtime in the background 
+ * while your users are interacting with a non-SmartGWT login page or landing page, to reduce 
+ * application load time for first-time users who have not yet cached these files.
+ * <P>
+ * To do this, load the ISC_FileLoader.js file in your plain HTML login or landing page, and call 
+ * isc.FileLoader.cacheISC(). Refer to the <a href=https://www.smartclient.com/smartclient-release/isomorphic/system/reference/?id=object..FileLoader>SmartClient Reference for FileLoader</a> 
+ * for details of how to get this right (setting path to the files to load, etc), and also to 
+ * learn about other features of the FileLoader that can help you cache other resources.
+ * <P>
+ * Note that an alternative approach is to use &lt;script&gt; tags with the <code>defer</code> 
+ * attribute to load all the files of the SmartClient runtime into the current page, without 
+ * blocking rendering of plain HTML content such as a login form.
  */
 public class FileLoader {
 

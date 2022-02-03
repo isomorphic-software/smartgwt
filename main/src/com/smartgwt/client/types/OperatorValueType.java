@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,46 +16,66 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Indicates the kind of value expected in a {@link com.smartgwt.client.data.Criterion} that uses this operator.
  */
 public enum OperatorValueType implements ValueEnum {
     /**
-     * {@link com.smartgwt.client.data.Criterion#getValue value} should contain a value of the same type as the field.
+     * {@link com.smartgwt.client.data.Criterion#getValue Criterion.value} should contain a value of the same type as the
+     * field.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "fieldType".
      */
     FIELD_TYPE("fieldType"),
     /**
-     * {@link com.smartgwt.client.data.Criterion#getValue value} should be the name of another field in the record
+     * {@link com.smartgwt.client.data.Criterion#getValue Criterion.value} should be the name of another field in the record
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "fieldName".
      */
     FIELD_NAME("fieldName"),
     /**
-     * no criterion.value or other setting required (used for operators like isNull).
+     * no criterion.value or other setting required (used for operators like isBlank or isNull).
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "none".
      */
     NONE("none"),
     /**
-     * {@link com.smartgwt.client.data.Criterion#getCriteria criteria} should be an Array of criteria (used for logical
-     * operators like "and").
+     * {@link com.smartgwt.client.data.Criterion#getCriteria Criterion.criteria} should be an Array of criteria (used for
+     * logical operators like "and").
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "criteria".
      */
     CRITERIA("criteria"),
     /**
-     * {@link com.smartgwt.client.data.Criterion#getStart start} and {@link com.smartgwt.client.data.Criterion#getEnd end}
-     * should contain start and end values, both of the same type as the field.
+     * {@link com.smartgwt.client.data.Criterion#getStart Criterion.start} and {@link com.smartgwt.client.data.Criterion#getEnd
+     * Criterion.end} should contain start and end values, both of the same type as the field.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "valueRange".
      */
     VALUE_RANGE("valueRange"),
     /**
-     * {@link com.smartgwt.client.data.Criterion#getValue value} should contain an Array of valid field values.
+     * {@link com.smartgwt.client.data.Criterion#getValue Criterion.value} should contain an Array of valid field values.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "valueSet".
      */
     VALUE_SET("valueSet"),
     /**
-     * {@link com.smartgwt.client.data.Criterion#getValue value} should contain a value which is not necessarily the same type
-     * as the field (used for regexp and similar operators).   editorType can be specified as a FormItem to use to enter a
-     * value for the criterion.
+     * {@link com.smartgwt.client.data.Criterion#getValue Criterion.value} should contain a value which is not necessarily the
+     * same type as the field (used for regexp and similar operators).  {@link com.smartgwt.client.data.Operator#getEditorType
+     * Operator.editorType} can be specified as a FormItem to use to enter a value for the criterion.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "custom".
      */
     CUSTOM("custom");
-
     private String value;
 
     OperatorValueType(String value) {

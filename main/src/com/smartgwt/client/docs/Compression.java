@@ -11,16 +11,16 @@ package com.smartgwt.client.docs;
  *  If you're not using the Smart GWT Java back-end, there are several compression solutions
  *  available, depending on your server of choice.  Microsoft's IIS has built-in compression
  *  capability, please check the reference manual for details.  If you're using Apache, you can
- * use <a href='http://sourceforge.net/projects/mod-gzip/'
- * onclick="window.open('http://sourceforge.net/projects/mod-gzip/');return false;">mod_gzip</a> or 
+ *  use <a href='http://sourceforge.net/projects/mod-gzip/' target='_blank'>mod_gzip</a> or 
  * use <a href='http://httpd.apache.org/docs/2.0/mod/mod_deflate.html'
- * onclick="window.open('http://httpd.apache.org/docs/2.0/mod/mod_deflate.html');return false;">mod_deflate</a>.  Some
+ * target='_blank'>mod_deflate</a>.  Some
  *  servlet containers also natively support dynamic compression.
  *  <p>
- *  The Smart GWT Java back-end supports two types of response compression:
+ *  The Smart GWT Java back-end supports three types of response compression:
  *  <ul>
  *  <li>Pre-compressed static content served via the ISC FileDownload servlet.
  *  <li>On-the-fly compression of arbitrary content using the CompressionFilter.
+ *  <li>Automatic on-the-fly compression of DSRequest, RPCRequest and DataSourceLoader responses.
  *  </ul>
  *  <u>Serving pre-compressed files</u>
  *  <p>
@@ -76,14 +76,27 @@ package com.smartgwt.client.docs;
  *  You can register the CompressionFilter anywhere in your filter chain, but be aware that
  *  if any filters in front wrap and inspect the HttpServletResponse output stream, they will
  *  be inspecting the compressed response.  Filters are typically applied in the order in which
- *  they are listed in web.xml. 
+ *  they are listed in web.xml and it is advised to keep them that way, otherwise it may result 
+ *  in unexpected behavior. For example, if CompressionFilter would be listed after the 
+ *  JSSyntaxScannerFilter, the last one would stop working, since it relies on uncompressed data.
  *  <p>
+ *  <u>Automatic Compression of DSRequest, RPCRequest and DataSourceLoader responses</u>
+ *  <p>
+ * By default, Smart GWT Server compresses the responses to all {@link
+ * com.smartgwt.client.data.DSRequest}s, 
+ * {@link com.smartgwt.client.rpc.RPCRequest}s and <code>DataSourceLoader</code> requests, whether
+ * or not the 
+ *  <code>CompressionFilter</code> is registered.  If you want to switch off this automatic 
+ *  compression, add the following line to your <code>server.properties</code> file:<pre>
+ *     servlet.compress: false
+ *  </pre>
  *  <u>Compressible mime types and compatibility</u>
  *  <p>
  *  The FileDownload servlet and CompressionFilter filter can serve the following mime-types
  *  compressed: text/html, text/xml, application/x-javascript, text/javascript, text/ecmascript,
- *  image/svg+xml.  If your files are not being compressed, make sure your servlet container
- *  has a mime type mapping that identifies it as one of the above file types.
+ * image/svg+xml, application/javascript, application/json.  If your files are not being
+ * compressed, make sure your 
+ *  servlet container has a mime type mapping that identifies it as one of the above file types.
  *  <p>
  *  Compression for the mime types listed above is supported on all browsers supported by
  *  Smart GWT.  There is one exception: compression of javascript files for IE versions older

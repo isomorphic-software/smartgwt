@@ -49,4 +49,3 @@ public enum MenuFieldID implements ValueEnum {
         return this.value;
     }
 }
-

@@ -666,7 +666,7 @@ public abstract class BeanFactory<BeanClass> {
                             // If it's a tree node, clean it up before converting
                             // otherwise we may end up serializing out all parents and
                             // children!
-                            if (obj._isc_tree != null || obj.$42c != null) {
+                            if ($wnd.isc.Tree != null && obj._isc_tree != null || obj.$42c != null) {
                                 obj = $wnd.isc.Tree.getCleanNodeData(obj);
                             }
                             

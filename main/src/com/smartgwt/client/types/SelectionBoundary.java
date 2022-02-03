@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Boundary type for limiting where contiguous selection (via shift+click or drag selection) can be applied across {@link
  * com.smartgwt.client.widgets.cube.Facet#getSelectionBoundary facets} or  {@link
@@ -24,17 +26,25 @@ package com.smartgwt.client.types;
 public enum SelectionBoundary implements ValueEnum {
     /**
      * selection boundary applies to the bottom / right of the cells
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "after".
      */
     AFTER("after"),
     /**
      * selection boundary applies to the top / left of the cells
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "before".
      */
     BEFORE("before"),
     /**
      * selection boundary applies to both edges.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "both".
      */
     BOTH("both");
-
     private String value;
 
     SelectionBoundary(String value) {

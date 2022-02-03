@@ -28,10 +28,16 @@ public class SC {
     public static final String AUTOID = "_autoAssignedID";
     public static final String AUTOIDCLASS = "AUTOIDClass";
 
+    /**
+     * Internal method - do not call from Application code.
+     */
     public static native String getLicenseType() /*-{
         return $wnd.isc.licenseType;
     }-*/;
 
+    /**
+     * Internal method - do not call from Application code.
+     */
     public static native String getAUTOIDClass(String className) /*-{
         var simpleName = className.substring(className.lastIndexOf(".")+1);
         //replace any $ characters from inner class names with an underscore
@@ -39,18 +45,27 @@ public class SC {
         return simpleName;
     }-*/;
 
+    /**
+     * Internal method - do not call from Application code.
+     */
     public static native String generateID() /*-{        
         return $wnd.isc.ClassFactory.getNextGlobalID();
     }-*/;
     
+    /**
+     * Internal method - do not call from Application code.
+     */
     public static native String generateID(String className) /*-{
         return $wnd.isc.ClassFactory.getNextGlobalIDForClass(className);
     }-*/;
 
-    //>IDocument One complication is that in "keep globals" mode, the SGWT wrapper's current SC
+    /**
+     * Internal method - do not call from Application code.
+     */
+    // One complication is that in "keep globals" mode, the SGWT wrapper's current SC
     // jsObj will actually also be bound under the old ID!  To avoid problems in this case, we
     // don't immediately release it but merely update the ID class to the right value.  We also
-    // log a warning if we're not able to release the ID and it's not expected.//<IDocument
+    // log a warning if we're not able to release the ID and it's not expected.
     public static native void releaseID(String className, String id) /*-{
         var simpleName = @com.smartgwt.client.util.SC::getAUTOIDClass(Ljava/lang/String;)(className);
         // handle "keep globals" mode where spurious $wnd bindings are present
@@ -68,18 +83,36 @@ public class SC {
         }
     }-*/;
 
+    /**
+     * Internal method - do not call from Application code.
+     */
     public static native boolean keepGlobals() /*-{
         return !!$wnd.isc.keepGlobals;                                             
     }-*/;
-    
+
+    /**
+     * Get the root directory for Isomorphic-supplied SmartClient files - the directory
+     * containing the modules/ and system/ subdirectories extracted when the SmartGWT project is
+     * built.  This property is commonly specified directly in the bootstrap HTML file by
+     * setting <code>window.isomorphicDir</code> before loading the SmartClient library files.
+     * @return <code>isomorphicDir</code> {@link com.smartgwt.client.docs.URL URL}
+     */
     public static native String getHome() /*-{
         return $wnd.isomorphicDir;
     }-*/;
 
+    /**
+     * Launch the browser's JavaScript debugger.  See {@link com.smartgwt.client.docs.Debugging}
+     * for how to approach debugging a SmartGWT Application.
+     */
     public static native void debugger()/*-{
         debugger;
     }-*/;
 
+    /**
+     * Open the SmartClient Developer Console. See {@link com.smartgwt.client.docs.Debugging}
+     * for how to approach debugging a SmartGWT Application.
+     */
     public static native void showConsole()/*-{
         $wnd.isc.showConsole();
     }-*/;
@@ -158,6 +191,9 @@ public class SC {
                   ($wnd.isc.Browser.version <= 27 || $wnd.console.exception.toString().indexOf("[native code]") < 0))));
     }-*/;
 
+    /**
+     * Internal method - do not call from Application code.
+     */
     public static native boolean isIE()/*-{
          return $wnd.isc.Browser.isIE;
     }-*/;
@@ -175,7 +211,8 @@ public class SC {
 	}-*/;
 
     /**
-     * Show a modal dialog with a message, icon, and "OK" button. Intended for notifications which are not really warnings (default icon is less severe).
+     * Show a modal dialog with a message, icon, and "OK" button. Intended for notifications which are not 
+     * really warnings (default icon is less severe). See {@link com.smartgwt.client.widgets.Dialog#setSayIcon sayIcon}.
      *
      * @param message the message
      */
@@ -184,7 +221,8 @@ public class SC {
     }-*/;
 
     /**
-     * Show a modal dialog with a message, icon, and "OK" button. Intended for notifications which are not really warnings (default icon is less severe).
+     * Show a modal dialog with a message, icon, and "OK" button. Intended for notifications which are not 
+     * really warnings (default icon is less severe). See {@link com.smartgwt.client.widgets.Dialog#setSayIcon sayIcon}.
      *
      * @param title the title of the message box
      * @param message the message
@@ -196,7 +234,9 @@ public class SC {
 
 
     /**
-     * Show a modal dialog with a message, icon, and "OK" button. Intended for notifications which are not really warnings (default icon is less severe).
+     * Show a modal dialog with a message, icon, and "OK" button. Intended for notifications which are not 
+     * really warnings (default icon is less severe). See {@link com.smartgwt.client.widgets.Dialog#setSayIcon sayIcon}.
+     * <p>
      * The callback will receive boolean true for an OK button click, or null if the Dialog is dismissed via the close button.
      *
      * @param message the message
@@ -210,7 +250,9 @@ public class SC {
     }-*/;
 
     /**
-     * Show a modal dialog with a message, icon, and "OK" button. Intended for notifications which are not really warnings (default icon is less severe).
+     * Show a modal dialog with a message, icon, and "OK" button. Intended for notifications which are not 
+     * really warnings (default icon is less severe). See {@link com.smartgwt.client.widgets.Dialog#setSayIcon sayIcon}.
+     * <p>
      * The callback will receive boolean true for an OK button click, or null if the Dialog is dismissed via the close button.
      *
      * @param title the title of the message box
@@ -225,7 +267,9 @@ public class SC {
     }-*/;
 
     /**
-     * Show a modal dialog with a message, icon, and "Yes" and "No" buttons. The callback will receive boolean true for an OK
+     * Show a modal dialog with a message, icon, and "Yes" and "No" buttons. See {@link com.smartgwt.client.widgets.Dialog#setAskIcon askIcon}.
+     * <P>
+     * The callback will receive boolean true for a Yes
      * button click, boolean false for a No button click, or null if the Dialog is dismissed via the close button.
      * 
      * @param message the message
@@ -239,7 +283,9 @@ public class SC {
     }-*/;
 
     /**
-     * Show a modal dialog with a message, icon, and "Yes" and "No" buttons. The callback will receive boolean true for an OK
+     * Show a modal dialog with a message, icon, and "Yes" and "No" buttons. See {@link com.smartgwt.client.widgets.Dialog#setAskIcon askIcon}.
+     * <P>
+     * The callback will receive boolean true for a Yes
      * button click, boolean false for a No button click, or null if the Dialog is dismissed via the close button.
      *
      * @param title the title of the message box
@@ -254,7 +300,9 @@ public class SC {
     }-*/;
 
     /**
-     * Show a modal dialog with a message, icon, and "Yes" and "No" buttons. The callback will receive boolean true for an OK
+     * Show a modal dialog with a message, icon, and "Yes" and "No" buttons. See {@link com.smartgwt.client.widgets.Dialog#setAskIcon askIcon}.
+     * <P>
+     * The callback will receive boolean true for a Yes
      * button click, boolean false for a No button click, or null if the Dialog is dismissed via the close button.
      *
      * @param title the title of the message box
@@ -418,7 +466,7 @@ public class SC {
     }-*/;
 
     /**
-     * Show a modal dialog with a message, icon, and "OK" and "Cancel" buttons.
+     * Show a modal dialog with a message, icon, and "OK" and "Cancel" buttons. See {@link com.smartgwt.client.widgets.Dialog#setConfirmIcon confirmIcon}.
      * <p>
      * The callback will receive boolean true for an OK button click, or null for a Cancel click or if the Dialog is dismissed via the close button.
      *
@@ -433,7 +481,7 @@ public class SC {
     }-*/;
 
     /**
-     * Show a modal dialog with a message, icon, and "OK" and "Cancel" buttons.
+     * Show a modal dialog with a message, icon, and "OK" and "Cancel" buttons. See {@link com.smartgwt.client.widgets.Dialog#setConfirmIcon confirmIcon}.
      * <p>
      * The callback will receive boolean true for an OK button click, or null for a Cancel click or if the Dialog is dismissed via the close button.
      *
@@ -449,7 +497,7 @@ public class SC {
 	}-*/;
 
     /**
-     * Show a modal dialog with a message, icon, and "OK" and "Cancel" buttons.
+     * Show a modal dialog with a message, icon, and "OK" and "Cancel" buttons. See {@link com.smartgwt.client.widgets.Dialog#setConfirmIcon confirmIcon}.
      * <p>
      * The callback will receive boolean true for an OK button click, or null for a Cancel click or if the Dialog is dismissed via the close button.
      *
@@ -468,7 +516,7 @@ public class SC {
 	}-*/;
 
     /**
-     * Show a modal dialog with a message, icon, and "OK" button.
+     * Show a modal dialog with a message, icon, and "OK" button. See {@link com.smartgwt.client.widgets.Dialog#setWarnIcon warnIcon}.
      *
      * @param message the message
      */
@@ -477,7 +525,7 @@ public class SC {
     }
 
     /**
-     * Show a modal dialog with a message, icon, and "OK" button.
+     * Show a modal dialog with a message, icon, and "OK" button. See {@link com.smartgwt.client.widgets.Dialog#setWarnIcon warnIcon}.
      * <p>
      *
      * @param title the title of the dialog
@@ -488,7 +536,7 @@ public class SC {
     }-*/;
 
     /**
-     * Show a modal dialog with a message, icon, and "OK" button.
+     * Show a modal dialog with a message, icon, and "OK" button. See {@link com.smartgwt.client.widgets.Dialog#setWarnIcon warnIcon}.
      * <p>
      * The callback will receive boolean true for an OK button click, or null if the Dialog is dismissed via the close button.
      *
@@ -503,7 +551,7 @@ public class SC {
     }-*/;
 
     /**
-     * Show a modal dialog with a message, icon, and "OK" button.
+     * Show a modal dialog with a message, icon, and "OK" button. See {@link com.smartgwt.client.widgets.Dialog#setWarnIcon warnIcon}.
      * <p>
      * The callback will receive boolean true for an OK button click, or null if the Dialog is dismissed via the close button.
      *
@@ -666,6 +714,37 @@ public class SC {
         return $wnd.isc.Log.logIsDebugEnabled(category);
     }-*/;
 
+   /**
+     * Returns the current stack trace, from a JavaScript perspective.  This should provide
+     * meaningful JS stack frames for Java code in Super Development Mode, and in Production
+     * Mode, if GWT compilation has been configured with options such as "&#8209;optimize&nbsp;0"
+     * and/or "&#8209;style&nbsp;PRETTY" to disable obfuscation.  Frames corresponding to the
+     * native SmartClient Framework will be obfuscated unless the GWT project is 
+     * {@link com.smartgwt.client.docs.DebugModules configured for debugging}.
+     * <P>
+     * In Classic DevMode, this API will provide very limited information - stack frames
+     * corresponding to Java code will likely be displayed as anonymous functions, and many or
+     * most such frames will be missing.  For DevMode, it's preferable to use GWT-supported Java
+     * APIs to capture the stack, such as for example:
+     * <pre>
+     *     Throwable t = new Throwable();
+     *
+     *     String stack = "";
+     *     for (StackTraceElement element : t.getStackTrace()) {
+     *         stack += element + "\n";
+     *     }
+     *
+     *     SC.logDebug("Current location: " + stack);
+     * </pre>
+     * Grabbing Java <ocde>StackTraceElement</code>s in Super Development Mode or Production
+     * Mode will work, but won't provide any added benefit as in DevMode.
+     *
+     * @see com.smartgwt.client.docs.Debugging
+     */
+    public static native String getJSStackTrace() /*-{
+        return $wnd.isc.Class.getStackTrace();
+    }-*/;
+
     /**
      * Setting this to true will result in the IE / Firebug / Safari debugger being invoked when a JavaScript error is encountered.
      * This is done by the execution of the commend "debugger;" when the error occurs. Setting this to true is useful
@@ -695,6 +774,7 @@ public class SC {
     public static native String echo(JavaScriptObject object) /*-{
     	return $wnd.isc.Log.echo(object);
     }-*/;
+
     /**
      * Returns the passed in JavaScript object as a string (including serializing members
      * one level deep for javascript arrays and nested objects)
@@ -822,4 +902,83 @@ public class SC {
     public static native void markUnsupportedMethods(String className, String messageTemplate, String[] methodNames) /*-{
         $wnd.isc[className].markUnsupportedMethods(messageTemplate, @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(methodNames));
     }-*/;
+
+    /**
+     *  Causes a stack trace to be logged any time a message containing the provided pattern is
+     *  logged.  This can help figure out the origin of warnings or other mysterious logs in a large
+     *  complex application.
+     *  <p>
+     *  The passed <code>messagePattern</code> is interpreted as a JavaScript regular expression.
+     *  
+     * @param messagePattern
+     */
+    public static native void traceLogMessage(String messagePattern) /*-{
+    	$wnd.isc.Log.traceLogMessage(messagePattern);
+    }-*/;
+
+    /**
+     *  Causes a stack trace to be logged any time a message containing the provided pattern is
+     *  logged.  This can help figure out the origin of warnings or other mysterious logs in a large
+     *  complex application.
+     *  <p>
+     *  The passed <code>messagePattern</code> is interpreted as a JavaScript regular expression.
+     *  
+     * @param messagePattern
+     * @param prefix value to prefix the message
+     */
+    public static native void traceLogMessage(String messagePattern, String prefix) /*-{
+    	$wnd.isc.Log.traceLogMessage(messagePattern, prefix);
+    }-*/;
+
+
+    /**
+     * Internal method - do not call from Application code.
+     */
+    public static native String getScVersion() /*-{
+        return $wnd.isc.scVersion;
+    }-*/;
+
+    /**
+     * Internal method - do not call from Application code.
+     */
+    public static native String getScVersionNumber() /*-{
+        return $wnd.isc.scVersionNumber;
+    }-*/;
+
+    /**
+     * Internal method - do not call from Application code.
+     */
+    public static native String getSgwtVersion() /*-{
+        return $wnd.isc.sgwtVersion;
+    }-*/;
+
+
+    /**
+     * Internal method - do not call from Application code.
+     */
+    public static native String getSgwtVersionNumber() /*-{
+        return $wnd.isc.sgwtVersionNumber;
+    }-*/;
+
+    /**
+     * Internal method - do not call from Application code.
+     */
+    public static native String getScParityStableVersionNumber() /*-{
+        return $wnd.isc.scParityStableVersionNumber;
+    }-*/;
+
+    /**
+     * Internal method - do not call from Application code.
+     */
+    public static native String getSgwtParityStableVersionNumber() /*-{
+        return $wnd.isc.sgwtParityStableVersionNumber;
+    }-*/;
+
+
+    /**
+     * Internal method - do not call from Application code.
+     */
+    public static boolean isStable() {
+        return getSgwtVersion().endsWith("p");
+    }
 }

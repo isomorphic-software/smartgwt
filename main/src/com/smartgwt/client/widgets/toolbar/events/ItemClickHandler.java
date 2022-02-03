@@ -13,13 +13,15 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.toolbar.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
 public interface ItemClickHandler extends EventHandler {
     /**
-     * Called when one of the buttons receives a click event
+     * Called when one of the buttons receives a click event.
      *
      * @param event the event
      */

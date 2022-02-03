@@ -175,6 +175,20 @@ public interface PickList {
     public int getPickListHeaderHeight();
 
     /**
+     * Cell Height for this item's pickList.
+     *
+     * @param pickListCellHeight pickListCellHeight Default value is 16
+     */
+    public void setPickListCellHeight(int pickListCellHeight);
+
+    /**
+     * Cell Height for this item's pickList.
+     *
+     * @return int
+     */
+    public int getPickListCellHeight();
+    
+    /**
      * If this form item maps data values to display values by retrieving the  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} values from an  {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}, this property  denotes
@@ -206,7 +220,7 @@ public interface PickList {
      * optionDataSource} where the  {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField}
      * matches this item's value, and displaying the  <code>displayField</code> value from that record.<br> This
      * essentially enables the specified <code>optionDataSource</code> to be used as a server based
-     * ${isc.DocUtils.linkForRef('group:valueMap')}.
+     * {@link com.smartgwt.client.docs.ValueMap ValueMap}.
      *
      * @param displayField displayField Default value is null
      */
@@ -221,7 +235,7 @@ public interface PickList {
      * optionDataSource} where the  {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField}
      * matches this item's value, and displaying the  <code>displayField</code> value from that record.<br> This
      * essentially enables the specified <code>optionDataSource</code> to be used as a server based
-     * ${isc.DocUtils.linkForRef('group:valueMap')}.
+     * {@link com.smartgwt.client.docs.ValueMap ValueMap}.
      *
      * @return String
      */
@@ -449,6 +463,3 @@ public interface PickList {
     */
     void setOptionFilterContext(DSRequest dsRequestProperties);
 }
-
-
-

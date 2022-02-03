@@ -16,6 +16,9 @@
 
 package com.smartgwt.client.widgets.form.fields;
 
+import com.smartgwt.client.types.PickerIconName;
+import com.smartgwt.client.util.JSOHelper;
+import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.form.fields.events.FormItemClickHandler;
 
 /**
@@ -28,47 +31,32 @@ import com.smartgwt.client.widgets.form.fields.events.FormItemClickHandler;
  */
 public class PickerIcon extends FormItemIcon {
 
-    private static String IMG_TYPE = getImgType();
-
-    private static native String getImgType() /*-{
-        var imgType = $wnd.isc.pickerImgType;
-        return imgType == null || imgType === undefined ? "png" : imgType;
-    }-*/;
-
-    public static Picker CLEAR = new Picker("[SKIN]/pickers/clear_picker." + IMG_TYPE);
-    public static Picker COMBO_BOX = new Picker("[SKIN]/pickers/comboBoxPicker." + IMG_TYPE);
-    public static Picker DATE = new Picker("[SKIN]/pickers/date_picker." + IMG_TYPE);
-    public static Picker REFRESH = new Picker("[SKIN]/pickers/refresh_picker." + IMG_TYPE);
-    public static Picker SEARCH = new Picker("[SKIN]/pickers/search_picker." + IMG_TYPE);
+    public static PickerIconName CLEAR = PickerIconName.CLEAR;
+    public static PickerIconName COMBO_BOX = PickerIconName.COMBOBOX;
+    public static PickerIconName DATE = PickerIconName.DATE;
+    public static PickerIconName REFRESH = PickerIconName.REFRESH;
+    public static PickerIconName SEARCH = PickerIconName.SEARCH;
 
     /**
-     * Create a new HeaderControl with the specific icon.
+     * Create a new FormItemIcon with the specific icon.
      *
-     * @param icon the icon
+     * @param name  the icon name
      */
-    public PickerIcon(Picker icon) {
-        setSrc(icon.url);
-        setWidth(18);
-        setHeight(22);
-        setAttribute("hspace", 0);
+    public PickerIcon(PickerIconName name) {
+    	FormItemIcon icon = FormItem.getPickerIcon(name);
+        if (icon != null) {
+    	    JSOHelper.addProperties(getJsObj(), JSOHelper.cleanProperties(icon.getJsObj(), false));
+        }
     }
 
     /**
-     * Create a new HeaderControl with the specific icon.
+     * Create a new FormItemIcon with the specific icon.
      *
-     * @param icon         the icon
+     * @param name         the icon
      * @param clickHandler the header control click handler
      */
-    public PickerIcon(Picker icon, FormItemClickHandler clickHandler) {
-        this(icon);
+    public PickerIcon(PickerIconName name, FormItemClickHandler clickHandler) {
+        this(name);
         addFormItemClickHandler(clickHandler);
-    }
-
-    public static class Picker {
-        private String url;
-
-        public Picker(String url) {
-            this.url = url;
-        }
     }
 }

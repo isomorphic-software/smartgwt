@@ -39,4 +39,3 @@ public interface SimpleTypeFormatter {
      */
     String format(Object value, DataClass field, DataBoundComponent component, Record record);
 }
-

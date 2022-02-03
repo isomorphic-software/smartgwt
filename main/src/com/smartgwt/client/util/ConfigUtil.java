@@ -23,6 +23,7 @@ public class ConfigUtil {
 
     // java.lang.Class.getSimpleName() is only supported in GWT 2.6+
     public static String getSimpleClassName(Class targetClass) {
+        if (targetClass == null) return null;
         String className = targetClass.getName();
         return className.replaceFirst(".*\\.", "");
     }
@@ -42,10 +43,18 @@ public class ConfigUtil {
         String className = getSimpleClassName(callerClass),
                callerDesc = className + "." + callerMethodName + "()";
 
-        String message = callerDesc + ": the " + configTypeName + " passed as configuration " +
+        String message;
+        if (configTypeName != null) {
+            message = callerDesc + ": the " + configTypeName + " passed as configuration " +
             "properties has been initialized and/or drawn.  Calling draw(), fetchData() " +
-            "and other key methods will force a component to initialize after which it " +
+            "and other key methods will force a component to initialize, after which it " +
             "cannot be used as configuration properties.";
+        } else {
+            message = callerDesc + ": your code is trying to treat an object as configuration " +
+            "properties, but it has already been initialized and/or drawn.  Calling draw(), " +
+            "fetchData() and other key methods will force a component to initialize, after " +
+            "which it cannot be used as configuration properties.";
+        }
 
         if (useWarnings) SC.logWarn(message, CONFIG_PROPERTIES);
         else throw new IllegalStateException(message);
@@ -61,47 +70,6 @@ public class ConfigUtil {
             "a component has been used as configuration properties, you may not invoke " + 
             "methods on it that force it to initialize, such as draw(), fetchData(), " + 
             "or similar.", CONFIG_PROPERTIES);
-    }
-
-    // DataClass
-
-    public static void warnOfPostConfigHandlerAdd(Class callerClass, String callerMethodName, 
-                                                  Class argumentType) 
-    {
-        String className = getSimpleClassName(callerClass),
-               callerDesc = className + "." + callerMethodName + "()",
-               configTypeName = argumentType.getName();
-        SC.logWarn(callerDesc + ": unable to add the " + configTypeName + " handler to the " +
-                   className + " instance because the instance was previously used to " +
-                   "configure the properties of another Object", CONFIG_PROPERTIES);
-    }
-
-    public static void warnOfPostConfigModification(Class callerClass, String callerMethodName, 
-                                                    String configTypeName) 
-    {
-        String className = getSimpleClassName(callerClass),
-               callerDesc = className + "." + callerMethodName + "()";
-        SC.logWarn(callerDesc + ": unable to apply the " + configTypeName + " argument to " +
-                   "the " + className + " instance because the instance was previously used " +
-                   "to configure the properties of another Object", CONFIG_PROPERTIES);
-    }
-
-    public static void warnOfReconfiguration(Class callerClass, String callerMethodName,
-                                             String configTypeName)
-    {
-        String className = getSimpleClassName(callerClass),
-               callerDesc = className + "." + callerMethodName + "()";
-        SC.logWarn(callerDesc + ": the " + configTypeName + " passed has already been " +
-                   "applied to an Object; unable to apply it again", CONFIG_PROPERTIES);
-    }
-
-    public static void debugInitialConfiguration(Class callerClass, String callerMethodName,
-                                                 String configTypeName)
-    {
-        String className = getSimpleClassName(callerClass),
-               callerDesc = className + "." + callerMethodName + "()";
-            SC.logDebug(callerDesc + ": the " + configTypeName + " passed will be applied to " +
-                        "this " + className + " instance", CONFIG_PROPERTIES);
     }
 
     private static boolean useWarnings;

@@ -2,6 +2,9 @@ package com.smartgwt.client.widgets.grid.events;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.shared.EventHandler;
+
+import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.BaseWidget;
 import com.smartgwt.client.widgets.events.BrowserEvent;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 
@@ -9,6 +12,15 @@ public abstract class GridRowColEvent<H extends EventHandler> extends BrowserEve
 
     protected GridRowColEvent(JavaScriptObject jsObj) {
         super(jsObj);
+    }
+
+    /**
+     * Returns the {@link com.smartgwt.client.widgets.Canvas Canvas} firing the event.
+     * @return Canvas firing the event
+     */
+    public Canvas getFiringCanvas() {
+        JavaScriptObject canvasJS = getFiringInstanceAsJavaScriptObject();
+        return canvasJS != null ? Canvas.getByJSObject(canvasJS) : null;
     }
 
     /**

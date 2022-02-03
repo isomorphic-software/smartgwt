@@ -13,6 +13,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  package com.smartgwt.client.types;
 
 public interface KeyNames {
@@ -53,4 +54,3 @@ public interface KeyNames {
 
     String ALT = "Alt";
 }
-

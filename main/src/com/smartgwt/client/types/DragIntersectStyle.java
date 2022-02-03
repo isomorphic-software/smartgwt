@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,22 +16,26 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Different styles of determining intersection: with mouse or entire rect of target
  */
 public enum DragIntersectStyle implements ValueEnum {
     /**
      * Look for drop targets that are under the current mouse cursor position.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "mouse".
      */
     MOUSE("mouse"),
     /**
      * Look for drop targets by intersection of the entire rect of the drag target with the droppable target.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "rect".
      */
     RECT("rect");
-
     private String value;
 
     DragIntersectStyle(String value) {

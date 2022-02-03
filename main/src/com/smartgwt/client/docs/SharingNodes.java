@@ -19,9 +19,9 @@ package com.smartgwt.client.docs;
  *  <b>sharing nodes or subtrees across Trees</b>
  *  <P>
  *  Individual nodes within differing tree structures can be shared by two Trees only if
- * {@link com.smartgwt.client.widgets.tree.Tree#getNameProperty nameProperty}, {@link
- * com.smartgwt.client.widgets.tree.Tree#getChildrenProperty childrenProperty}, and {@link
- * com.smartgwt.client.widgets.tree.Tree#getOpenProperty openProperty} have
+ * {@link com.smartgwt.client.widgets.tree.Tree#getNameProperty Tree.nameProperty}, {@link
+ * com.smartgwt.client.widgets.tree.Tree#getChildrenProperty Tree.childrenProperty}, and {@link
+ * com.smartgwt.client.widgets.tree.Tree#getOpenProperty Tree.openProperty} have
  *  different values in each Tree.
  *  <P>
  *  As a special case of this, two Trees can maintain different open state across a single

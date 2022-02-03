@@ -3,6 +3,8 @@ package com.smartgwt.client.docs;
 
 /**
  * The following APIs are all related to AutoFitData.
+ * @see com.smartgwt.client.types.Autofit
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxWidth
  * @see com.smartgwt.client.widgets.grid.ListGrid#setAutoFitData
  * @see com.smartgwt.client.widgets.grid.ListGrid#setAutoFitExtraRecords
  * @see com.smartgwt.client.widgets.grid.ListGrid#setAutoFitMaxRecords
@@ -15,7 +17,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFitExtraRecords
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxWidth
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFitMaxColumns
- * @see com.smartgwt.client.types.Autofit
  */
 public interface AutoFitData {
 }

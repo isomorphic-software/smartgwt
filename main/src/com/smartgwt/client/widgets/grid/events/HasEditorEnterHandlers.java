@@ -13,18 +13,18 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.grid.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasEditorEnterHandlers extends HasHandlers {
     /**
      * Callback fired when the user first starts editing a cell. <P> This callback is typically used to establish dynamic
-     * default values via {@link com.smartgwt.client.widgets.grid.ListGrid#setEditValue ListGrid.setEditValue} or {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#setEditValues ListGrid.setEditValues}.
+     * default values via {@link com.smartgwt.client.widgets.grid.ListGrid#setEditValue ListGrid.setEditValue()} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#setEditValues ListGrid.setEditValues()}.
      *
      * @param handler the editorEnter handler
      * @return {@link HandlerRegistration} used to remove this handler

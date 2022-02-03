@@ -13,6 +13,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.events;
 
@@ -42,10 +43,13 @@ import com.smartgwt.client.widgets.layout.events.*;
 import com.smartgwt.client.widgets.menu.*;
 import com.smartgwt.client.widgets.rte.*;
 import com.smartgwt.client.widgets.rte.events.*;
+import com.smartgwt.client.widgets.ace.*;
+import com.smartgwt.client.widgets.ace.events.*;
 import com.smartgwt.client.widgets.tab.*;
 import com.smartgwt.client.widgets.toolbar.*;
 import com.smartgwt.client.widgets.tree.*;
 import com.smartgwt.client.widgets.tree.events.*;
+import com.smartgwt.client.widgets.tableview.*;
 import com.smartgwt.client.widgets.viewer.*;
 import com.smartgwt.client.widgets.calendar.*;
 import com.smartgwt.client.widgets.calendar.events.*;
@@ -65,6 +69,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.user.client.Element;
 import com.smartgwt.client.util.*;
+import com.smartgwt.client.util.events.*;
 import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
@@ -75,6 +80,15 @@ public class ButtonClickEvent extends BrowserEvent<ButtonClickHandler>  {
      * Handler type.
      */
     private static Type<ButtonClickHandler> TYPE;
+
+    /**
+     * Returns the {@link com.smartgwt.client.widgets.Canvas Canvas} firing the event.
+     * @return Canvas firing the event
+     */
+    public Canvas getFiringCanvas() {
+        JavaScriptObject canvasJS = getFiringInstanceAsJavaScriptObject();
+        return canvasJS != null ? Canvas.getByJSObject(canvasJS) : null;
+    }
 
     /**
      * Fires a open event on all registered handlers in the handler manager.If no
@@ -128,10 +142,10 @@ public class ButtonClickEvent extends BrowserEvent<ButtonClickHandler>  {
      *
      * @return button that was clicked
      */
-    public native Button getButton() /*-{
+    public native StatefulCanvas getTargetCanvas() /*-{
         var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var ret = self.button;
-        return @com.smartgwt.client.widgets.Button::getByJSObject(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        var ret = self.targetCanvas;
+        return @com.smartgwt.client.widgets.Canvas::getByJSObject(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
 	/**
@@ -144,5 +158,25 @@ public class ButtonClickEvent extends BrowserEvent<ButtonClickHandler>  {
         var ret = self.index;
         return ret;
     }-*/;
+
+
+	/**
+     * button that was clicked
+     *
+     * @return button that was clicked
+     * @deprecated in favor of {@link #getTargetCanvas}
+     */
+    @Deprecated
+    public native Button getButton() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.targetCanvas;
+
+        var canvasJ = @com.smartgwt.client.widgets.Canvas::getByJSObject(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+        @com.smartgwt.client.widgets.Button::assertIsButton(Lcom/smartgwt/client/widgets/Canvas;Ljava/lang/String;)(canvasJ,
+            "Instead of getButton(), which has been deprecated, try getTargetCanvas(), which returns a StatefulCanvas.");
+        return canvasJ;
+    }-*/;
+
+
 
 }

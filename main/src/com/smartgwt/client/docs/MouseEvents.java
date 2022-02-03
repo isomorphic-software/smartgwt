@@ -9,6 +9,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.util.EventHandler#getY
  * @see com.smartgwt.client.util.EventHandler#leftButtonDown
  * @see com.smartgwt.client.util.EventHandler#rightButtonDown
+ * @see com.smartgwt.client.util.EventHandler#middleButtonDown
  */
 public interface MouseEvents {
 }

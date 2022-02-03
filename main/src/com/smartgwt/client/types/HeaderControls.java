@@ -13,6 +13,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  package com.smartgwt.client.types;
 
 
@@ -34,4 +35,3 @@ public enum HeaderControls implements ValueEnum {
         return this.value;
     }
 }
-

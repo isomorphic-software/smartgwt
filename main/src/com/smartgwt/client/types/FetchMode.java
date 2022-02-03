@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * Mode of fetching records from the server. <P> Generally, "paged" mode should be used unless the maximum number of
  * records is guaranteed to be small.
@@ -23,18 +25,26 @@ package com.smartgwt.client.types;
 public enum FetchMode implements ValueEnum {
     /**
      * All records that match the current filter are fetched. Sorting is performed on the client.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "basic".
      */
     BASIC("basic"),
     /**
      * Only requested ranges of records are fetched, with predictive fetch ahead. Sorting is performed on the server.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "paged".
      */
     PAGED("paged"),
     /**
      * All records available from the DataSource are fetched. Filtering by search criteria and sorting are both performed on
      * the client.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "local".
      */
     LOCAL("local");
-
     private String value;
 
     FetchMode(String value) {

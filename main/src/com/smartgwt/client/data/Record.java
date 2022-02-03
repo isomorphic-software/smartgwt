@@ -114,6 +114,20 @@ public class Record extends RefDataClass {
         }
     }
 
+    /** 
+     * This method returns a Map of config properties suitable for use as the "defaults" 
+     * attribute of a {@link com.smartgwt.client.tools.PaletteNode}.  Use it when you need to
+     * work with PaletteNodes indirectly, such when setting up 
+     * {@link com.smartgwt.client.widgets.tile.TileRecord}s that will be used in a 
+     * {@link com.smartgwt.client.tools.TilePalette}.  See 
+     * {@link com.smartgwt.client.docs.DevTools the dev tools overview} for examples of how to
+     * assemble and acquire a suitable defaults object when you are creating a PaletteNode 
+     * indirectly
+     */
+    public Map getPaletteDefaults() {
+        return JSOHelper.convertToMap(JSOHelper.cleanProperties(jsObj, true));
+    }
+
     /**
      * Returns the nested structure as Record array.
      *

@@ -16,6 +16,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.DynamicForm#getValidatedValues
  * @see com.smartgwt.client.widgets.form.DynamicForm#showErrors
  * @see com.smartgwt.client.widgets.form.DynamicForm#showFieldErrors
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getErrors
  * @see com.smartgwt.client.widgets.form.ValuesManager#getValidatedValues
  * @see com.smartgwt.client.widgets.form.ValuesManager#setErrors
  * @see com.smartgwt.client.widgets.form.ValuesManager#addFieldErrors

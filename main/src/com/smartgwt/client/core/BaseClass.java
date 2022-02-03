@@ -36,6 +36,59 @@ import com.smartgwt.client.util.ObjectFactory;
 import com.smartgwt.client.util.SC;
 
 public abstract class BaseClass implements HasHandlers {
+	
+
+    // Properties stashed by BeanFactory when calling the no-arg constructor.
+    // We pick them up immediately in the constructor so that they don't get
+    // applied to the wrong object (in case the constructor of a subclass
+    // triggers the construction of some other object -- which, admittedly,
+    // is unlikely in the case of DataClass, but better safe than sorry).
+    protected Map<String, Object> factoryProperties;
+
+    // Called by the generated BeanFactory once the instance is fully
+    // constructed.  Unlike the implementation in BaseWidget, we don't call
+    // this before creating the jsObj, because we're not supplying any
+    // properties to the SmartClient constructor. So, this is here just so that
+    // BeanFactory doesn't need to care whether it's dealing with a BaseWidget
+    // or a DataClass.
+    public void applyFactoryProperties () {
+        if (factoryProperties != null) {
+            // Make sure that this is re-entrant without infinite loop
+            Map<String, Object> properties = factoryProperties;
+            factoryProperties = null;
+
+            BeanFactory.setProperties(this, properties);
+        }
+    }
+    
+    // Tracks whether this object was created by a BeanFactory. The BeanFactory
+    // code will set this property via the reflection mechanism when creating
+    // an instance. Thus, it can check whether the property has been correctly
+    // applied. (That is, if factoryCreated is false for an object which 
+    // BeanFactory creates, then BeanFactory knows something went wrong).
+    //
+    // There is one known case where properties are not correctly applied via
+    // reflection: when (a) a class has a static initializer; (b) the static
+    // initializer is not triggered before the use of reflection to create an
+    // object of that class; and (c) the static initializer itself creates an
+    // object of that class. 
+    //
+    // We can't detect that case directly, but we can at least detect the
+    // resulting failure and try to recover (and generate a useful error
+    // message).
+    protected boolean factoryCreated;
+
+    public void setFactoryCreated (boolean createdByBeanFactory) {
+        factoryCreated = createdByBeanFactory;
+    }
+
+    public boolean isFactoryCreated () {
+        return factoryCreated;
+    }
+
+    protected BaseClass getTestInstance() {
+        return null;
+    }
 
     protected String id;
     protected JavaScriptObject config = JSOHelper.createObject();
@@ -46,6 +99,14 @@ public abstract class BaseClass implements HasHandlers {
         final String className = SC.getAUTOIDClass(getClass().getName());
         setAttribute(SC.AUTOIDCLASS, className, false);
         internalSetID(SC.generateID(className), true);
+
+        // Stash any properties supplied by BeanFactory, if intended for an
+        // object of this class. The properties will be applied by generated
+        // BeanFactory code once the object is fully constructed.
+        if (getClass() == BeanFactory.getFactoryPropertiesClass()) {
+            factoryProperties = BeanFactory.getFactoryProperties();
+            BeanFactory.clearFactoryProperties();
+        }
     }
 
     protected BaseClass(JavaScriptObject jsObj) {
@@ -88,17 +149,24 @@ public abstract class BaseClass implements HasHandlers {
                   " to " + id + " after the SC instance has already been created");
             return;
         }
+
         if (this.id != null) {
             IDManager.unregisterID(this, this.id);
         }
-        String className = JSOHelper.getAttribute(jsObj, SC.AUTOIDCLASS);
-        String  id   = JSOHelper.getAttribute         (jsObj,      "ID");
+        String id = JSOHelper.getAttribute(jsObj, "ID");
+        if (this.id != null && !this.id.equals(id) && getAttributeAsBoolean(SC.AUTOID)) {
+            SC.releaseID(getClass().getName(), this.id);
+        }
         boolean auto = JSOHelper.getAttributeAsBoolean(jsObj, SC.AUTOID);
-        if (id != null) registerID(id, true);
+        String className = JSOHelper.getAttribute(jsObj, SC.AUTOIDCLASS);
+
+        // skip Framework-side unique ID check if we're passed an instance
+        if (id != null) registerID(id, JSOHelper.isScClassInstance(jsObj));
         this.id = id;
+
+        JSOHelper.setAttribute(config,       "ID",       id);
+        JSOHelper.setAttribute(config, SC.AUTOID,      auto);
         JSOHelper.setAttribute(config, SC.AUTOIDCLASS, className);
-        JSOHelper.setAttribute(config,      "ID",   id);
-        JSOHelper.setAttribute(config, SC.AUTOID, auto);
     }
 
     protected void internalSetID(String id, boolean autoAssigned) {

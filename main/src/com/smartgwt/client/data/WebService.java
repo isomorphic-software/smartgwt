@@ -1,10 +1,13 @@
 package com.smartgwt.client.data;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.smartgwt.client.core.JsObject;
+import com.smartgwt.client.core.BaseClass;
+import com.smartgwt.client.bean.BeanFactory;
+import com.smartgwt.client.util.JSOHelper;
+import com.smartgwt.client.util.SC;
+
 
 import java.util.Map;
-
 
 /**
  *  Class representing a WebService definition derived from a WSDL file.
@@ -19,17 +22,75 @@ import java.util.Map;
  *  data to be loaded and saved to the web service using
  *  {@link OperationBinding operationBindings}.
  */
-public class WebService extends JsObject {
+public class WebService extends BaseClass {
+
+    protected JavaScriptObject jsObj;
+
+    public static WebService getOrCreateRef(JavaScriptObject jsObj) {
+        if(jsObj == null) return null;
+        BaseClass obj = BaseClass.getRef(jsObj);
+        if(obj != null) {
+            return (WebService) obj;
+        } else {
+            return new WebService(jsObj);
+        }
+    }
+
+    public WebService() {
+        scClassName = "WebService";
+    }
 
     public WebService(JavaScriptObject jsObj) {
-        super(jsObj);
+        scClassName = "WebService";
+        setJavaScriptObject(jsObj);
     }
+
+    @Override
+    public JavaScriptObject getJsObj() {
+        return jsObj;
+    }
+
+    @Override
+    public boolean isCreated() {
+        return jsObj != null;
+    }
+
+    @Override
+    public JavaScriptObject getOrCreateJsObj() {
+        if (!isCreated()) {
+            this.jsObj = createJsObj();
+            doInit();
+        }
+        return getJsObj();
+    }
+
+    @Override
+    public void setJavaScriptObject(JavaScriptObject jsObj) {
+        internalSetID(jsObj);
+        JSOHelper.setObjectAttribute(jsObj, SC.REF, this);
+        JSOHelper.setObjectAttribute(jsObj, SC.MODULE, BeanFactory.getSGWTModule());
+        if (!JSOHelper.isScClassInstance(jsObj)) {
+            setConfig(jsObj);
+            return;
+        }
+        JSOHelper.setObjectAttribute(getConfig(), SC.REF, this);
+        JSOHelper.setObjectAttribute(getConfig(), SC.MODULE, BeanFactory.getSGWTModule());
+        this.jsObj = jsObj;
+        onBind();
+    }
+
+    public native JavaScriptObject create()/*-{
+        var config = this.@com.smartgwt.client.core.BaseClass::getConfig()();
+        var scClassName = this.@com.smartgwt.client.core.BaseClass::scClassName;
+        return $wnd.isc[scClassName].create(config);
+    }-*/;
+
 
     /**
      * Invoke a web service operation.
      * <p>
      * The <code>data</code> parameter will be serialized to XML to form the input message for<br>
-     * the operation, as described by ${isc.DocUtils.linkForRef('method:DataSource.xmlSerialize')}.  Namespacing,
+     * the operation, as described by {@link com.smartgwt.client.docs.XmlSerialize XmlSerialize}.  Namespacing,
      * <br> element ordering, and SOAP encoding rules are automatically followed.  If the web
      * <br> service you are trying to contact requires a complicated nested structure, consider<br> using
      * {@link com.smartgwt.client.data.WSRequest#setUseFlatFields(Boolean)}  to simplify the required JavaScript input data.<br>
@@ -60,7 +121,7 @@ public class WebService extends JsObject {
      * Invoke a web service operation.
      * <p>
      * The <code>data</code> parameter will be serialized to XML to form the input message for<br>
-     * the operation, as described by ${isc.DocUtils.linkForRef('method:DataSource.xmlSerialize')}.  Namespacing,
+     * the operation, as described by {@link com.smartgwt.client.docs.XmlSerialize XmlSerialize}.  Namespacing,
      * <br> element ordering, and SOAP encoding rules are automatically followed.  If the web
      * <br> service you are trying to contact requires a complicated nested structure, consider<br> using
      * {@link com.smartgwt.client.data.WSRequest#setUseFlatFields(Boolean)}  to simplify the required JavaScript input data.<br>
@@ -85,7 +146,7 @@ public class WebService extends JsObject {
      * @param wsRequestProperties Additional properties for the WSRequest, such as HTTPHeaders
      */
     public native void callOperation(String operationName, Map paramData, String resultType, WebServiceCallback callback, WSRequest wsRequestProperties) /*-{
-        var self  = this.@com.smartgwt.client.core.JsObject::getJsObj()();
+        var self  = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
         var paramDataJS = @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(paramData);
 
         self.callOperation(operationName, paramDataJS, resultType, function(data, xmlDoc, rpcResponse, wsRequest) {
@@ -109,7 +170,7 @@ public class WebService extends JsObject {
      * @param url the URL where web service can be contacted
      */
     public native void setLocation(String url) /*-{
-        var self  = this.@com.smartgwt.client.core.JsObject::getJsObj()();
+        var self  = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
         self.setLocation(url);
     }-*/;
 
@@ -122,7 +183,7 @@ public class WebService extends JsObject {
      * @param operation optional operation name to set the location for, for debugging only
      */
     public native void setLocation(String url, String operation) /*-{
-        var self  = this.@com.smartgwt.client.core.JsObject::getJsObj()();
+        var self  = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
         self.setLocation(url, operation);
     }-*/;
 
@@ -135,7 +196,7 @@ public class WebService extends JsObject {
      * @return  DataSource representing the input message of a web service operation
      */
     public native DataSource getInputDS(String operationName)/*-{
-        var self  = this.@com.smartgwt.client.core.JsObject::getJsObj()();
+        var self  = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
         var ds = self.getInputDS(operationName);
 
         if(ds == null || ds === undefined) {
@@ -160,7 +221,7 @@ public class WebService extends JsObject {
      * @return dDataSource representing the fetch message of a web service operation
      */
     public native DataSource getFetchDS(String operationName, String resultType)/*-{
-        var self  = this.@com.smartgwt.client.core.JsObject::getJsObj()();
+        var self  = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
         var ds = self.getFetchDS(operationName, resultType);
 
         if(ds == null || ds === undefined) {
@@ -187,7 +248,7 @@ public class WebService extends JsObject {
      * @return dDataSource representing the fetch message of a web service operation
      */
     public native DataSource getFetchDS(String operationName, String resultType, OperationBinding operationBindingProperties)/*-{        
-        var self  = this.@com.smartgwt.client.core.JsObject::getJsObj()();
+        var self  = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
         var operationBindingPropertiesJS = operationBindingProperties == null ? null : operationBindingProperties.@com.smartgwt.client.data.OperationBinding::getJsObj()();
         var ds = self.getFetchDS(operationName, resultType);
         if(ds == null || ds === undefined) {
@@ -205,7 +266,7 @@ public class WebService extends JsObject {
      * @return requested schema
      */
     public native DataSource getSchema(String schemaName)/*-{
-        var self  = this.@com.smartgwt.client.core.JsObject::getJsObj()();
+        var self  = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
         var ds = self.getSchema(schemaName);
 
         if(ds == null || ds === undefined) {
@@ -226,7 +287,7 @@ public class WebService extends JsObject {
      * @return requested schema
      */
     public native DataSource getSchema(String schemaName, String schemaType)/*-{
-        var self  = this.@com.smartgwt.client.core.JsObject::getJsObj()();
+        var self  = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
         var ds = self.getSchema(schemaName, schemaType);
         return ds == null || ds === undefined ? null : @com.smartgwt.client.data.DataSource::new(Lcom/google/gwt/core/client/JavaScriptObject;)(ds);
     }-*/;
@@ -250,7 +311,7 @@ public class WebService extends JsObject {
      * @return SOAP message
      */
     public native String getSoapMessage(WSRequest wsRequestProperties) /*-{
-        var self  = this.@com.smartgwt.client.core.JsObject::getJsObj()();
+        var self  = this.@com.smartgwt.client.core.BaseClass::getJsObj()();
         var wsRequestPropertiesJS = wsRequestProperties == null ? null : wsRequestProperties.@com.smartgwt.client.data.WSRequest::getJsObj()();
         return self.getSoapMessage(wsRequestPropertiesJS);
     }-*/;

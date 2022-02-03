@@ -13,15 +13,22 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.calendar.events;
+
 import com.google.gwt.event.shared.EventHandler;
 
+/**
+ * @deprecated Please use addEventResize[Move/Stop]Handler instead, this will be removed in a future release.
+ */
 public interface EventResizedHandler extends EventHandler {
     /**
-     * Called when an event is resized via dragging by a user.  Call {@link com.smartgwt.client.widgets.calendar.events.CalendarEventResized#cancel()} from within {@link EventResizedHandler#onEventResized} to disallow the resize.
+     * Called when an event is resized with the mouse.  The passed date value is the new *end* date for the event, since
+     * resizing can only be performed on the bottom edge of an event in normal calendar views.
      *
      * @param event the event
+     * @deprecated Please use addEventResize[Move/Stop]Handler instead, this will be removed in a future release.
      */
     void onEventResized(com.smartgwt.client.widgets.calendar.events.CalendarEventResized event);
 }

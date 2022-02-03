@@ -1,3 +1,6 @@
+package com.smartgwt.client.types;
+
+
 /*
  * Smart GWT (GWT for SmartClient)
  * Copyright 2008 and beyond, Isomorphic Software, Inc.
@@ -13,9 +16,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
-package com.smartgwt.client.types;
-
 /**
  * When attempting to identify a component from within a list of possible candidates as described {@link
  * com.smartgwt.client.types.LocatorStrategy here}, if we are unable to find a unique match by name or title, we will use
@@ -30,21 +32,32 @@ package com.smartgwt.client.types;
 public enum LocatorTypeStrategy implements ValueEnum {
     /**
      * Match by class if possible
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "Class".
      */
     CLASS("Class"),
     /**
      * Ignore specific class and match by the Smart GWT framework superclass.
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "scClass".
      */
     SCCLASS("scClass"),
     /**
      * Ignore class altogether and attempt to match by role
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "role".
      */
     ROLE("role"),
     /**
      * Don't attempt to compare type in any way
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "none".
      */
     NONE("none");
-
     private String value;
 
     LocatorTypeStrategy(String value) {

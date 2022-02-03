@@ -13,17 +13,19 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
+/* sgwtgen */
  
 package com.smartgwt.client.widgets.form.fields.events;
 
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-
 public interface HasFormItemClickHandlers extends HasHandlers {
     /**
-     * StringMethod action to fire when this icon is clicked      If unset the form item's <code>iconClick</code> method will
-     * be fired instead (if      specified).
+     * Click handler for this icon. <P>   This event may be cancelled.   If this event is not cancelled by the icon-level click
+     * handler, it may also be handled at the FormItem level via {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#addPickerIconClickHandler FormItem.pickerIconClick()} [for the picker
+     * icon only], and then {@link com.smartgwt.client.widgets.form.fields.FormItem#addIconClickHandler FormItem.iconClick()}
      *
      * @param handler the formItemClick handler
      * @return {@link HandlerRegistration} used to remove this handler
