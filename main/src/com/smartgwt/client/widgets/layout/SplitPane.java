@@ -326,7 +326,7 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
 
     /**
      * If set, the <code>SplitPane</code> will automatically monitor selection changes in the {@link
-     * com.smartgwt.client.widgets.layout.SplitPane#getNavigationPane navigationPane} or {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#getNavigationPane navigationPane} and {@link
      * com.smartgwt.client.widgets.layout.SplitPane#getListPane listPane}, and call {@link
      * com.smartgwt.client.widgets.layout.SplitPane#navigateListPane navigateListPane()} or {@link
      * com.smartgwt.client.widgets.layout.SplitPane#navigateDetailPane navigateDetailPane()} when selections are changed. <p>
@@ -343,7 +343,7 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
 
     /**
      * If set, the <code>SplitPane</code> will automatically monitor selection changes in the {@link
-     * com.smartgwt.client.widgets.layout.SplitPane#getNavigationPane navigationPane} or {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#getNavigationPane navigationPane} and {@link
      * com.smartgwt.client.widgets.layout.SplitPane#getListPane listPane}, and call {@link
      * com.smartgwt.client.widgets.layout.SplitPane#navigateListPane navigateListPane()} or {@link
      * com.smartgwt.client.widgets.layout.SplitPane#navigateDetailPane navigateDetailPane()} when selections are changed. <p>
@@ -908,6 +908,34 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
     
 
     /**
+     * Whether or not to call {@link com.smartgwt.client.widgets.layout.SplitPane#addNavigationClickHandler
+     * SplitPane.navigationClick()}, if present, after navigation has already occurred.  This may be set false to allow {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#addNavigationClickHandler SplitPane.navigationClick()} to be canceled.
+     *
+     * @param notifyAfterNavigationClick New notifyAfterNavigationClick value. Default value is true
+     * @see com.smartgwt.client.widgets.layout.events.PaneChangedEvent
+     * @see com.smartgwt.client.widgets.layout.events.NavigationClickEvent
+     */
+    public void setNotifyAfterNavigationClick(boolean notifyAfterNavigationClick) {
+        setAttribute("notifyAfterNavigationClick", notifyAfterNavigationClick, true);
+    }
+
+    /**
+     * Whether or not to call {@link com.smartgwt.client.widgets.layout.SplitPane#addNavigationClickHandler
+     * SplitPane.navigationClick()}, if present, after navigation has already occurred.  This may be set false to allow {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#addNavigationClickHandler SplitPane.navigationClick()} to be canceled.
+     *
+     * @return Current notifyAfterNavigationClick value. Default value is true
+     * @see com.smartgwt.client.widgets.layout.events.PaneChangedEvent
+     * @see com.smartgwt.client.widgets.layout.events.NavigationClickEvent
+     */
+    public boolean getNotifyAfterNavigationClick()  {
+        Boolean result = getAttributeAsBoolean("notifyAfterNavigationClick");
+        return result == null ? true : result;
+    }
+    
+
+    /**
      * Current {@link com.smartgwt.client.types.PageOrientation}.  The default behavior of the <code>SplitPane</code> is to
      * register for orientation change notifications from the device (see {@link com.smartgwt.client.util.Page#getOrientation
      * Page.getOrientation()}) and automatically change orientation based on the {@link
@@ -1323,7 +1351,9 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
      * Add a navigationClick handler.
      * <p>
      * Notification method fired when the user clicks the default back / forward buttons on the navigation bar for this
-     * <code>SplitPane</code>.
+     * <code>SplitPane</code>. <P> Note that the return value will be ignored and cancelation won't be possible unless {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#getNotifyAfterNavigationClick SplitPane.notifyAfterNavigationClick} has
+     * been set false so that the notification occurs <i>before</i> navigation.
      *
      * @param handler the navigationClick handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -1337,22 +1367,40 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
         var obj;
         var selfJ = this;
         var hasDefaultHandler;
-        var navigationClick = $entry(function(){
-            var param = {"_this": this, "direction" : arguments[0]};
+        var navigationClick = $debox($entry(function(param){
             var event = @com.smartgwt.client.widgets.layout.events.NavigationClickEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
             selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             selfJ.@com.smartgwt.client.widgets.layout.SplitPane::handleTearDownNavigationClickEvent()();
-            if (hasDefaultHandler) this.Super("navigationClick", arguments);
-        });
+            var ret = event.@com.smartgwt.client.event.Cancellable::isCancelled()();
+            return !ret;
+        }));
         if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
             hasDefaultHandler = $wnd.isc.isA.Function(obj.getProperty("navigationClick"));
-            obj.addProperties({navigationClick:  navigationClick              });
+            obj.addProperties({navigationClick: 
+                function () {
+                    var param = {"_this": this, "direction" : arguments[0]};
+                    var ret = navigationClick(param) == true;
+                    if (ret && hasDefaultHandler) {
+                        ret = this.Super("navigationClick", arguments);
+                    }
+                    return ret;
+                }
+             });
         } else {
             obj = this.@com.smartgwt.client.widgets.BaseWidget::getConfig()();
             var scClassName = this.@com.smartgwt.client.widgets.BaseWidget::scClassName;
             hasDefaultHandler = $wnd.isc.isA.Function($wnd.isc[scClassName].getInstanceProperty("navigationClick"));
-            obj.navigationClick =  navigationClick             ;
+            obj.navigationClick = 
+                function () {
+                    var param = {"_this": this, "direction" : arguments[0]};
+                    var ret = navigationClick(param) == true;
+                    if (ret && hasDefaultHandler) {
+                        ret = this.Super("navigationClick", arguments);
+                    }
+                    return ret;
+                }
+            ;
         }
     }-*/;
 
@@ -1393,7 +1441,7 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
         var selfJ = this;
         var hasDefaultHandler;
         var paneChanged = $entry(function(){
-            var param = {"_this": this, "pane" : arguments[0]};
+            var param = {"_this": this, "newPane" : arguments[0], "oldPane" : arguments[1], "navigationMethod" : arguments[2]};
             var event = @com.smartgwt.client.widgets.layout.events.PaneChangedEvent::new(Lcom/google/gwt/core/client/JavaScriptObject;)(param);
             selfJ.@com.smartgwt.client.widgets.BaseWidget::fireEvent(Lcom/google/gwt/event/shared/GwtEvent;)(event);
             selfJ.@com.smartgwt.client.widgets.layout.SplitPane::handleTearDownPaneChangedEvent()();
@@ -1782,6 +1830,11 @@ public class SplitPane extends Layout implements com.smartgwt.client.widgets.lay
             s.navigationTitle = getAttributeAsString("navigationTitle");
         } catch (Throwable t) {
             s.logicalStructureErrors += "SplitPane.navigationTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.notifyAfterNavigationClick = getAttributeAsString("notifyAfterNavigationClick");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SplitPane.notifyAfterNavigationClick:" + t.getMessage() + "\n";
         }
         try {
             s.pageOrientation = getAttributeAsString("pageOrientation");

@@ -535,6 +535,26 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
     
 
     /**
+     * Whether to show a Down version of the {@link com.smartgwt.client.widgets.IconButton#getMenuIconSrc menuIcon}.
+     *
+     * @param showMenuIconDown New showMenuIconDown value. Default value is false
+     */
+    public void setShowMenuIconDown(Boolean showMenuIconDown) {
+        setAttribute("showMenuIconDown", showMenuIconDown, true);
+    }
+
+    /**
+     * Whether to show a Down version of the {@link com.smartgwt.client.widgets.IconButton#getMenuIconSrc menuIcon}.
+     *
+     * @return Current showMenuIconDown value. Default value is false
+     */
+    public Boolean getShowMenuIconDown()  {
+        Boolean result = getAttributeAsBoolean("showMenuIconDown");
+        return result == null ? false : result;
+    }
+    
+
+    /**
      * Whether to show an Over version of the {@link com.smartgwt.client.widgets.IconButton#getMenuIconSrc menuIcon}.
      *
      * @param showMenuIconOver New showMenuIconOver value. Default value is true
@@ -556,9 +576,12 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
 
     /**
      * If set to true, shows this button's {@link com.smartgwt.client.widgets.menu.Menu menu} when a user clicks anywhere  in
-     * the button, rather than specifically on the {@link com.smartgwt.client.widgets.IconButton#getMenuIconSrc menuIcon}.
+     * the button, rather than specifically on the {@link com.smartgwt.client.widgets.IconButton#getMenuIconSrc menuIcon}. <P>
+     * Note that this property has a different meaning than {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getShowMenuOnClick showMenuOnClick} in the ancestor class {@link
+     * com.smartgwt.client.widgets.StatefulCanvas}.
      *
-     * @param showMenuOnClick New showMenuOnClick value. Default value is null
+     * @param showMenuOnClick New showMenuOnClick value. Default value is false
      */
     public void setShowMenuOnClick(Boolean showMenuOnClick) {
         setAttribute("showMenuOnClick", showMenuOnClick, true);
@@ -566,12 +589,16 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
 
     /**
      * If set to true, shows this button's {@link com.smartgwt.client.widgets.menu.Menu menu} when a user clicks anywhere  in
-     * the button, rather than specifically on the {@link com.smartgwt.client.widgets.IconButton#getMenuIconSrc menuIcon}.
+     * the button, rather than specifically on the {@link com.smartgwt.client.widgets.IconButton#getMenuIconSrc menuIcon}. <P>
+     * Note that this property has a different meaning than {@link
+     * com.smartgwt.client.widgets.StatefulCanvas#getShowMenuOnClick showMenuOnClick} in the ancestor class {@link
+     * com.smartgwt.client.widgets.StatefulCanvas}.
      *
-     * @return Current showMenuOnClick value. Default value is null
+     * @return Current showMenuOnClick value. Default value is false
      */
     public Boolean getShowMenuOnClick()  {
-        return getAttributeAsBoolean("showMenuOnClick");
+        Boolean result = getAttributeAsBoolean("showMenuOnClick");
+        return result == null ? false : result;
     }
     
 
@@ -845,6 +872,11 @@ public class IconButton extends Button implements com.smartgwt.client.widgets.me
             s.showMenuIconDisabled = getAttributeAsString("showMenuIconDisabled");
         } catch (Throwable t) {
             s.logicalStructureErrors += "IconButton.showMenuIconDisabled:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showMenuIconDown = getAttributeAsString("showMenuIconDown");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "IconButton.showMenuIconDown:" + t.getMessage() + "\n";
         }
         try {
             s.showMenuIconOver = getAttributeAsString("showMenuIconOver");

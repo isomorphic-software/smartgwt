@@ -28,8 +28,7 @@ package com.smartgwt.client.docs;
  *  <tr>
  *  <td><b>PluginBridges</b> (included in <code>smartgwt.jar</code>)<br>
  * Required for all {@link com.smartgwt.client.widgets.plugins.BrowserPlugin} derivatives (such as
- * {@link com.smartgwt.client.widgets.plugins.Applet} and {@link
- * com.smartgwt.client.widgets.plugins.Flashlet}) and
+ *  LoadingOptionalModules.Applet and {@link com.smartgwt.client.widgets.plugins.Flashlet}) and
  *  also for FusionChart support.
  *  </td>
  *  <td><pre>&lt;inherits name="com.smartgwt.PluginBridgesWidgets"/&gt;</pre></td>
@@ -65,9 +64,22 @@ package com.smartgwt.client.docs;
  *  <td><pre>&lt;inherits name="com.smartgwt.Workflow"/&gt;</pre></td>
  *  </tr>
  *  <tr>
+ *  <td><b>SmartGwtTools</b> (included in <code>smartgwt.jar</code>)<br>
+ * Required for the {@link com.smartgwt.client.docs.Debugging developer console}.  Imports
+ * <code>/development</code>
+ *  Framework, including the tools module.  This module should always be listed <i>before</i> the
+ *  SmartGwtXXX module and any other modules from above in your <i>moduleName</i>.gwt.xml file.
+ *  <BR><BR>
+ *  Note that the developer console has minor functionality issues unless Enterprise skin is
+ *  used, so by default inheriting the <pre style="display:inline">SmartGwtTools</pre> module
+ *  pulls it in.  Using <pre style="display:inline">SmartGwtToolsNoTheme</pre> instead will cause 
+ *  the developer console to pick up the skin used by your project.<BR>
+ *  </td><td>
+ *  <pre style="display:inline;">&lt;inherits name="com.smartgwt.tools.SmartGwtTools"/&gt;</pre>
+ *  </td><tr>
  *  <td><b>Tools</b> (included in <code>smartgwt.jar</code>)<br>
  * Required for {@link com.smartgwt.client.docs.DevTools}. This module should always be listed
- * after any
+ * <i>after</i> any
  *  other modules from above in your <i>moduleName</i>.gwt.xml file.
  *  <P>
  *  Using these tools to edit hierarchies of Smart GWT components and generate Component XML
@@ -79,8 +91,23 @@ package com.smartgwt.client.docs;
  *  <i>HTML tag:</i><pre>
  *  &lt;SCRIPT SRC="../isomorphic/DataSourceLoader?dataSource=$systemSchema"&gt;
  *  &lt;/SCRIPT&gt;</pre>
+ *  Certain SGWT Pro/Power/Enterprise tools pulled in by the
+ *  <pre style="display:inline">com.smartgwtee.tools.Tools</pre> module may require tool skin
+ *  resources:<BR>
+ *  <BR>
+ *  <pre style="display:inline"
+ *  >&lt;inherits name="com.smartclientee.toolskin.ToolSkinResources"/&gt;</pre>
+ *  <pre>&lt;inherits name="com.smartclientee.toolskinnative.ToolSkinNativeResources"/&gt;</pre>
+ *  <P>
+ *  VisualBuilder requires inheriting Tahoe Resources:<P>
+ *  <pre>&lt;inherits name="com.smartclient.theme.tahoe.TahoeResources"/&gt;</pre>
+ *  See the {@link com.smartgwt.client.docs.Skinning} help topic for an overview.
  *  </td>
- *  <td><pre>&lt;inherits name="com.smartgwt.Tools"/&gt;</pre></td>
+ *  <td><pre style="display:inline;">&lt;inherits name="com.smartgwt.Tools"/&gt;</pre>
+ *  <br>(imports "first class" tools module under /modules)<br><br><br><br>
+ *  <pre style="display:inline;">&lt;inherits name="com.smartgwtee.tools.Tools"/&gt;</pre>
+ *  <br>(imports SGWT Pro/Power/Enterprise Edition tools)
+ *  </td>
  *  </tr>
  *  </table>
  * 

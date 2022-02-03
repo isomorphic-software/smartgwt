@@ -65,8 +65,10 @@ public class RichTextEditorLogicalStructure extends VLayoutLogicalStructure {
     public String outdentPrompt;
     public String pasteSelectionPrompt;
     public String strikethroughSelectionPrompt;
+    public String styleWithCSS;
     public String toolbarBackgroundColor;
     public String underlineSelectionPrompt;
     public String unorderedListPrompt;
+    public String useDesignMode;
     public String value;
 }

@@ -142,6 +142,41 @@ public class ResultTree extends Tree {
     // ********************* Properties / Attributes ***********************
 
     /**
+     * Which nodes should be opened automatically - applied whenever  {@link com.smartgwt.client.widgets.tree.Tree#setRoot
+     * setRoot()} is called, including during initialization and as part of  a re-fetch caused, for example, by {@link
+     * com.smartgwt.client.widgets.tree.Tree#duplicate duplicate()} or  {@link
+     * com.smartgwt.client.widgets.tree.ResultTree#invalidateCache invalidateCache()}. <P> Options are: <ul> <li>"none" - no
+     * nodes are opened automatically</li> <li>"root" - opens the {@link
+     * com.smartgwt.client.widgets.tree.ResultTree#getRootNode top-level node} - in databound               trees, this node is
+     * always hidden</li> <li>"all" - when {@link com.smartgwt.client.widgets.tree.ResultTree#getLoadDataOnDemand loading data
+     * on demand}, opens the             {@link com.smartgwt.client.widgets.tree.ResultTree#getRootNode top-level node} and all
+     * of it's direct             descendants - otherwise, opens all loaded nodes </li> </ul>
+     *
+     * @param autoOpen New autoOpen value. Default value is "none"
+     */
+    public void setAutoOpen(String autoOpen) {
+        setAttribute("autoOpen", autoOpen, true);
+    }
+
+    /**
+     * Which nodes should be opened automatically - applied whenever  {@link com.smartgwt.client.widgets.tree.Tree#setRoot
+     * setRoot()} is called, including during initialization and as part of  a re-fetch caused, for example, by {@link
+     * com.smartgwt.client.widgets.tree.Tree#duplicate duplicate()} or  {@link
+     * com.smartgwt.client.widgets.tree.ResultTree#invalidateCache invalidateCache()}. <P> Options are: <ul> <li>"none" - no
+     * nodes are opened automatically</li> <li>"root" - opens the {@link
+     * com.smartgwt.client.widgets.tree.ResultTree#getRootNode top-level node} - in databound               trees, this node is
+     * always hidden</li> <li>"all" - when {@link com.smartgwt.client.widgets.tree.ResultTree#getLoadDataOnDemand loading data
+     * on demand}, opens the             {@link com.smartgwt.client.widgets.tree.ResultTree#getRootNode top-level node} and all
+     * of it's direct             descendants - otherwise, opens all loaded nodes </li> </ul>
+     *
+     * @return Current autoOpen value. Default value is "none"
+     */
+    public String getAutoOpen()  {
+        return getAttributeAsString("autoOpen");
+    }
+    
+
+    /**
      * Controls what happens to the {@link com.smartgwt.client.widgets.tree.ResultTree#getOpenState "open state"} - the set of 
      * nodes opened or closed by the end user after tree data is loaded - when an entirely new tree of nodes is loaded from the
      * server, as a consequence of calling  {@link com.smartgwt.client.widgets.tree.ResultTree#invalidateCache

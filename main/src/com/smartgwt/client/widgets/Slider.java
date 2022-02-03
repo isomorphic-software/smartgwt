@@ -183,10 +183,26 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Optional CSS style for the part of the track between it's minimum and current values. <P> Will have the suffix
-     * "Disabled" added when the slider is disabled.
+     * A styled canvas used to highlight the {@link com.smartgwt.client.widgets.Slider#getShowActiveTrack active} part of the
+     * slider track.
+     * <p>
+     * This component is an AutoChild named "activeTrack".  For an overview of how to use and
+     * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
      *
-     * @param activeTrackStyle New activeTrackStyle value. Default value is null
+     * @return Current activeTrack value. Default value is null
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public StatefulCanvas getActiveTrack() throws IllegalStateException {
+        errorIfNotCreated("activeTrack");
+        return (StatefulCanvas)StatefulCanvas.getByJSObject(getAttributeAsJavaScriptObject("activeTrack"));
+    }
+    
+
+    /**
+     * CSS style used to highlight the {@link com.smartgwt.client.widgets.Slider#getShowActiveTrack active} part of the slider
+     * track. <P> Will have the suffix "Disabled" added when the slider is disabled.
+     *
+     * @param activeTrackStyle New activeTrackStyle value. Default value is "sliderTrackActive"
      * @throws IllegalStateException this property cannot be changed after the component has been created
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
@@ -195,10 +211,10 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     }
 
     /**
-     * Optional CSS style for the part of the track between it's minimum and current values. <P> Will have the suffix
-     * "Disabled" added when the slider is disabled.
+     * CSS style used to highlight the {@link com.smartgwt.client.widgets.Slider#getShowActiveTrack active} part of the slider
+     * track. <P> Will have the suffix "Disabled" added when the slider is disabled.
      *
-     * @return Current activeTrackStyle value. Default value is null
+     * @return Current activeTrackStyle value. Default value is "sliderTrackActive"
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
      */
     public String getActiveTrackStyle()  {
@@ -289,7 +305,8 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
 
     /**
      * Specifies whether the value range of the slider should be flipped so that values increase as the thumb is moved down
-     * (for a vertical slider) or to the left (for a horizontal slider).
+     * (for a {@link com.smartgwt.client.widgets.Slider#getVertical vertical} slider) or to the left  (for a horizontal
+     * slider).
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getFlipValues flipValues} property of the slider
@@ -302,7 +319,8 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
 
     /**
      * Specifies whether the value range of the slider should be flipped so that values increase as the thumb is moved down
-     * (for a vertical slider) or to the left (for a horizontal slider).
+     * (for a {@link com.smartgwt.client.widgets.Slider#getVertical vertical} slider) or to the left  (for a horizontal
+     * slider).
      *
      * @return Current flipValues value. Default value is false
      */
@@ -313,8 +331,34 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     
 
     /**
-     * Optional CSS style for the thumb for a horizontally oriented slider. <P> Will have the suffix "down" added when the
-     * mouse is down on the thumb, and "Disabled" added when the slider is disabled.
+     * The space around the labels used to display the  {@link com.smartgwt.client.widgets.Slider#getRangeLabel minimum,
+     * maximum} and {@link com.smartgwt.client.widgets.Slider#getValueLabel current} values  of the slider, when {@link
+     * com.smartgwt.client.widgets.Slider#getVertical vertical} is false.  If unset, defaults to  {@link
+     * com.smartgwt.client.widgets.Slider#getLabelSpacing labelSpacing}.
+     *
+     * @param hLabelSpacing New hLabelSpacing value. Default value is null
+     */
+    public void setHLabelSpacing(Integer hLabelSpacing) {
+        setAttribute("hLabelSpacing", hLabelSpacing, true);
+    }
+
+    /**
+     * The space around the labels used to display the  {@link com.smartgwt.client.widgets.Slider#getRangeLabel minimum,
+     * maximum} and {@link com.smartgwt.client.widgets.Slider#getValueLabel current} values  of the slider, when {@link
+     * com.smartgwt.client.widgets.Slider#getVertical vertical} is false.  If unset, defaults to  {@link
+     * com.smartgwt.client.widgets.Slider#getLabelSpacing labelSpacing}.
+     *
+     * @return Current hLabelSpacing value. Default value is null
+     */
+    public Integer getHLabelSpacing()  {
+        return getAttributeAsInt("hLabelSpacing");
+    }
+    
+
+    /**
+     * Optional CSS style for the thumb for a {@link com.smartgwt.client.widgets.Slider#getVertical horizontally oriented}
+     * slider. <P> Will have the suffix "down" added when the mouse is down on the thumb, and "Disabled" added when the slider
+     * is disabled.
      *
      * @param hThumbStyle New hThumbStyle value. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -325,8 +369,9 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     }
 
     /**
-     * Optional CSS style for the thumb for a horizontally oriented slider. <P> Will have the suffix "down" added when the
-     * mouse is down on the thumb, and "Disabled" added when the slider is disabled.
+     * Optional CSS style for the thumb for a {@link com.smartgwt.client.widgets.Slider#getVertical horizontally oriented}
+     * slider. <P> Will have the suffix "down" added when the mouse is down on the thumb, and "Disabled" added when the slider
+     * is disabled.
      *
      * @return Current hThumbStyle value. Default value is null
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
@@ -337,8 +382,8 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     
 
     /**
-     * Optional CSS style for the track for a horizontally oriented slider. <P> Will have the suffix "Disabled" added when the
-     * slider is disabled.
+     * Optional CSS style for the track for a {@link com.smartgwt.client.widgets.Slider#getVertical horizontally oriented} 
+     * slider. <P> Will have the suffix "Disabled" added when the slider is disabled.
      *
      * @param hTrackStyle New hTrackStyle value. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -349,8 +394,8 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     }
 
     /**
-     * Optional CSS style for the track for a horizontally oriented slider. <P> Will have the suffix "Disabled" added when the
-     * slider is disabled.
+     * Optional CSS style for the track for a {@link com.smartgwt.client.widgets.Slider#getVertical horizontally oriented} 
+     * slider. <P> Will have the suffix "Disabled" added when the slider is disabled.
      *
      * @return Current hTrackStyle value. Default value is null
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
@@ -361,7 +406,34 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     
 
     /**
-     * The height of the labels used to display the minimum, maximum and current values of the slider.
+     * Optional CSS style for the floating {@link com.smartgwt.client.widgets.Slider#getValueLabel valueLabel}, visible when
+     * {@link com.smartgwt.client.widgets.Slider#getShowValue showValue} is true and {@link
+     * com.smartgwt.client.widgets.Slider#getVertical vertical} is false.
+     *
+     * @param hValueStyle New hValueStyle value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public void setHValueStyle(String hValueStyle)  throws IllegalStateException {
+        setAttribute("hValueStyle", hValueStyle, false);
+    }
+
+    /**
+     * Optional CSS style for the floating {@link com.smartgwt.client.widgets.Slider#getValueLabel valueLabel}, visible when
+     * {@link com.smartgwt.client.widgets.Slider#getShowValue showValue} is true and {@link
+     * com.smartgwt.client.widgets.Slider#getVertical vertical} is false.
+     *
+     * @return Current hValueStyle value. Default value is null
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public String getHValueStyle()  {
+        return getAttributeAsString("hValueStyle");
+    }
+    
+
+    /**
+     * The height of the labels used to display the  {@link com.smartgwt.client.widgets.Slider#getRangeLabel minimum, maximum}
+     * and {@link com.smartgwt.client.widgets.Slider#getValueLabel current} values  of the slider.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getLabelHeight labelHeight} property of the slider
@@ -373,7 +445,8 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     }
 
     /**
-     * The height of the labels used to display the minimum, maximum and current values of the slider.
+     * The height of the labels used to display the  {@link com.smartgwt.client.widgets.Slider#getRangeLabel minimum, maximum}
+     * and {@link com.smartgwt.client.widgets.Slider#getValueLabel current} values  of the slider.
      *
      * @return Current labelHeight value. Default value is 20
      */
@@ -383,7 +456,8 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     
 
     /**
-     * The space around the labels used to display the minimum, maximum and current values of the slider.
+     * The space around the labels used to display the  {@link com.smartgwt.client.widgets.Slider#getRangeLabel minimum,
+     * maximum} and {@link com.smartgwt.client.widgets.Slider#getValueLabel current} values  of the slider.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getLabelSpacing labelSpacing} property of the slider
@@ -395,7 +469,8 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     }
 
     /**
-     * The space around the labels used to display the minimum, maximum and current values of the slider.
+     * The space around the labels used to display the  {@link com.smartgwt.client.widgets.Slider#getRangeLabel minimum,
+     * maximum} and {@link com.smartgwt.client.widgets.Slider#getValueLabel current} values  of the slider.
      *
      * @return Current labelSpacing value. Default value is 5
      */
@@ -648,6 +723,71 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     
 
     /**
+     * {@link com.smartgwt.client.docs.FormatString} for numeric formatting of the range labels.  If unset, defaults to  {@link
+     * com.smartgwt.client.widgets.Slider#getValueFormat valueFormat}
+     *
+     * @param rangeFormat New rangeFormat value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.FormatString FormatString 
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setRangeFormat(String rangeFormat)  throws IllegalStateException {
+        setAttribute("rangeFormat", rangeFormat, false);
+    }
+
+    /**
+     * {@link com.smartgwt.client.docs.FormatString} for numeric formatting of the range labels.  If unset, defaults to  {@link
+     * com.smartgwt.client.widgets.Slider#getValueFormat valueFormat}
+     *
+     * @return Current rangeFormat value. Default value is null
+     * @see com.smartgwt.client.docs.FormatString FormatString 
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public String getRangeFormat()  {
+        return getAttributeAsString("rangeFormat");
+    }
+    
+
+    /**
+     * <b>Note :</b> This API is non-functional (always returns null) and exists only to make
+     * you aware that this MultiAutoChild exists.  See {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}
+     * for details.
+     * <p>
+     * Used to create both of the min and max range-labels, via the {@link com.smartgwt.client.types.AutoChild} pattern, hence
+     * <code>rangeLabelConstructor</code>, <code>rangeLabelDefaults</code> and <code>rangeLabelProperties</code> are valid.
+     *
+     * @return null
+     */
+    public Label getRangeLabel()  {
+        return null;
+    }
+    
+
+    /**
+     * CSS style for the {@link com.smartgwt.client.widgets.Slider#getRangeLabel min and max} range-labels, when  {@link
+     * com.smartgwt.client.widgets.Slider#getShowRange showRange} is true.
+     *
+     * @param rangeStyle New rangeStyle value. Default value is "sliderRange"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public void setRangeStyle(String rangeStyle)  throws IllegalStateException {
+        setAttribute("rangeStyle", rangeStyle, false);
+    }
+
+    /**
+     * CSS style for the {@link com.smartgwt.client.widgets.Slider#getRangeLabel min and max} range-labels, when  {@link
+     * com.smartgwt.client.widgets.Slider#getShowRange showRange} is true.
+     *
+     * @return Current rangeStyle value. Default value is "sliderRange"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public String getRangeStyle()  {
+        return getAttributeAsString("rangeStyle");
+    }
+    
+
+    /**
      * If {@link com.smartgwt.client.widgets.Slider#getRoundValues roundValues} is false, the slider value will be rounded to
      * this number of decimal places. If set to null the value will not be rounded
      *
@@ -699,31 +839,32 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     
 
     /**
-     * If true, applies a separate {@link com.smartgwt.client.widgets.Slider#getActiveTrackStyle CSS style} to the part of the
-     * track between the minimum and current values.
+     * Whether to show the {@link com.smartgwt.client.widgets.Slider#getActiveTrack activeTrack}, which highlights the 'active'
+     *  portion of a slider, from its minimum to its current {@link com.smartgwt.client.widgets.Slider#getValue value}.
      *
-     * @param showActiveTrack New showActiveTrack value. Default value is null
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
+     * @param showActiveTrack New showActiveTrack value. Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
      */
-    public void setShowActiveTrack(Boolean showActiveTrack) {
-        setAttribute("showActiveTrack", showActiveTrack, true);
+    public void setShowActiveTrack(Boolean showActiveTrack)  throws IllegalStateException {
+        setAttribute("showActiveTrack", showActiveTrack, false);
     }
 
     /**
-     * If true, applies a separate {@link com.smartgwt.client.widgets.Slider#getActiveTrackStyle CSS style} to the part of the
-     * track between the minimum and current values.
+     * Whether to show the {@link com.smartgwt.client.widgets.Slider#getActiveTrack activeTrack}, which highlights the 'active'
+     *  portion of a slider, from its minimum to its current {@link com.smartgwt.client.widgets.Slider#getValue value}.
      *
-     * @return Current showActiveTrack value. Default value is null
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#controls_category_slider" target="examples">Slider Example</a>
+     * @return Current showActiveTrack value. Default value is false
      */
     public Boolean getShowActiveTrack()  {
-        return getAttributeAsBoolean("showActiveTrack");
+        Boolean result = getAttributeAsBoolean("showActiveTrack");
+        return result == null ? false : result;
     }
     
 
     /**
-     * Indicates whether labels for the min and max values of the slider should be displayed. The default positions for these
-     * labels are below the start/end of a horizontal slider, or to the right of the start/end of a vertical slider.
+     * Indicates whether labels for the {@link com.smartgwt.client.widgets.Slider#getRangeLabel min and max values} of the 
+     * slider should be displayed. The default positions for these labels are below the  start/end of a horizontal slider, or
+     * to the right of the start/end of a  {@link com.smartgwt.client.widgets.Slider#getVertical vertical} slider.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getShowRange showRange} property of the slider
@@ -737,8 +878,9 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     }
 
     /**
-     * Indicates whether labels for the min and max values of the slider should be displayed. The default positions for these
-     * labels are below the start/end of a horizontal slider, or to the right of the start/end of a vertical slider.
+     * Indicates whether labels for the {@link com.smartgwt.client.widgets.Slider#getRangeLabel min and max values} of the 
+     * slider should be displayed. The default positions for these labels are below the  start/end of a horizontal slider, or
+     * to the right of the start/end of a  {@link com.smartgwt.client.widgets.Slider#getVertical vertical} slider.
      *
      * @return Current showRange value. Default value is true
      * @see com.smartgwt.client.widgets.Slider#getMinValueLabel
@@ -751,8 +893,9 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     
 
     /**
-     * Indicates whether the slider's title should be displayed. The default position for this label is to the left of a
-     * horizontal slider, or above a vertical slider.
+     * Indicates whether the slider's {@link com.smartgwt.client.widgets.Slider#getTitle title} should be displayed. The 
+     * default position for the title-label is to the left of a horizontal slider, or above a  {@link
+     * com.smartgwt.client.widgets.Slider#getVertical vertical} slider.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getShowTitle showTitle} property of the slider
@@ -765,8 +908,9 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     }
 
     /**
-     * Indicates whether the slider's title should be displayed. The default position for this label is to the left of a
-     * horizontal slider, or above a vertical slider.
+     * Indicates whether the slider's {@link com.smartgwt.client.widgets.Slider#getTitle title} should be displayed. The 
+     * default position for the title-label is to the left of a horizontal slider, or above a  {@link
+     * com.smartgwt.client.widgets.Slider#getVertical vertical} slider.
      *
      * @return Current showTitle value. Default value is true
      * @see com.smartgwt.client.widgets.Slider#getTitle
@@ -778,8 +922,9 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     
 
     /**
-     * Indicates whether a label for the value of the slider should be displayed. The default position for this label is to the
-     * right of a vertical slider, or below a horizontal  slider.
+     * Indicates whether a {@link com.smartgwt.client.widgets.Slider#getValueLabel label} for the value of the slider should 
+     * be displayed. The default position for this label is to the right of a  {@link
+     * com.smartgwt.client.widgets.Slider#getVertical vertical} slider,  or below a horizontal slider.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getShowValue showValue} property of the slider
@@ -792,8 +937,9 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     }
 
     /**
-     * Indicates whether a label for the value of the slider should be displayed. The default position for this label is to the
-     * right of a vertical slider, or below a horizontal  slider.
+     * Indicates whether a {@link com.smartgwt.client.widgets.Slider#getValueLabel label} for the value of the slider should 
+     * be displayed. The default position for this label is to the right of a  {@link
+     * com.smartgwt.client.widgets.Slider#getVertical vertical} slider,  or below a horizontal slider.
      *
      * @return Current showValue value. Default value is true
      * @see com.smartgwt.client.widgets.Slider#getValue
@@ -959,7 +1105,7 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     
 
     /**
-     * The space between the title and the track.
+     * The space between the {@link com.smartgwt.client.widgets.Slider#getShowTitle title} and the track.
      *
      * @param titleSpacing New titleSpacing value. Default value is 5
      */
@@ -968,7 +1114,7 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     }
 
     /**
-     * The space between the title and the track.
+     * The space between the {@link com.smartgwt.client.widgets.Slider#getShowTitle title} and the track.
      *
      * @return Current titleSpacing value. Default value is 5
      */
@@ -978,7 +1124,32 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     
 
     /**
-     * The height of vertical slider start and end images, or width of horizontal slider start and end images.
+     * CSS style for the {@link com.smartgwt.client.widgets.Slider#getTitle title-text}, when  {@link
+     * com.smartgwt.client.widgets.Slider#getShowTitle showTitle} is true.
+     *
+     * @param titleStyle New titleStyle value. Default value is "sliderTitle"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public void setTitleStyle(String titleStyle)  throws IllegalStateException {
+        setAttribute("titleStyle", titleStyle, false);
+    }
+
+    /**
+     * CSS style for the {@link com.smartgwt.client.widgets.Slider#getTitle title-text}, when  {@link
+     * com.smartgwt.client.widgets.Slider#getShowTitle showTitle} is true.
+     *
+     * @return Current titleStyle value. Default value is "sliderTitle"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public String getTitleStyle()  {
+        return getAttributeAsString("titleStyle");
+    }
+    
+
+    /**
+     * The height of {@link com.smartgwt.client.widgets.Slider#getVertical vertical} slider start and end images, or width of 
+     * horizontal slider start and end images.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackCapSize trackCapSize} property of the slider
@@ -990,7 +1161,8 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     }
 
     /**
-     * The height of vertical slider start and end images, or width of horizontal slider start and end images.
+     * The height of {@link com.smartgwt.client.widgets.Slider#getVertical vertical} slider start and end images, or width of 
+     * horizontal slider start and end images.
      *
      * @return Current trackCapSize value. Default value is 6
      */
@@ -1082,7 +1254,8 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     
 
     /**
-     * The thickness of the track. This is the width, for a vertical slider, or the height, for a horizontal slider.
+     * The thickness of the track. This is the width, for a {@link com.smartgwt.client.widgets.Slider#getVertical vertical} 
+     * slider, or the height, for a horizontal slider.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the {@link com.smartgwt.client.widgets.Slider#getTrackWidth trackWidth} property of the slider
@@ -1094,7 +1267,8 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     }
 
     /**
-     * The thickness of the track. This is the width, for a vertical slider, or the height, for a horizontal slider.
+     * The thickness of the track. This is the width, for a {@link com.smartgwt.client.widgets.Slider#getVertical vertical} 
+     * slider, or the height, for a horizontal slider.
      *
      * @return Current trackWidth value. Default value is 7
      */
@@ -1171,6 +1345,94 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     
 
     /**
+     * {@link com.smartgwt.client.docs.FormatString} for numeric formatting of the value and range labels.
+     *
+     * @param valueFormat New valueFormat value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.FormatString FormatString 
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public void setValueFormat(String valueFormat)  throws IllegalStateException {
+        setAttribute("valueFormat", valueFormat, false);
+    }
+
+    /**
+     * {@link com.smartgwt.client.docs.FormatString} for numeric formatting of the value and range labels.
+     *
+     * @return Current valueFormat value. Default value is null
+     * @see com.smartgwt.client.docs.FormatString FormatString 
+     * @see com.smartgwt.client.docs.Appearance Appearance overview and related methods
+     */
+    public String getValueFormat()  {
+        return getAttributeAsString("valueFormat");
+    }
+    
+
+    /**
+     * {@link com.smartgwt.client.types.AutoChild} displaying the current value as a floating label when  {@link
+     * com.smartgwt.client.widgets.Slider#getShowValue showValue} is true.
+     * <p>
+     * This component is an AutoChild named "valueLabel".  For an overview of how to use and
+     * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return Current valueLabel value. Default value is null
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public Label getValueLabel() throws IllegalStateException {
+        errorIfNotCreated("valueLabel");
+        return (Label)Label.getByJSObject(getAttributeAsJavaScriptObject("valueLabel"));
+    }
+    
+
+    /**
+     * CSS style for the floating {@link com.smartgwt.client.widgets.Slider#getValueLabel valueLabel}, visible when {@link
+     * com.smartgwt.client.widgets.Slider#getShowValue showValue} is true.
+     *
+     * @param valueStyle New valueStyle value. Default value is "sliderValue"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public void setValueStyle(String valueStyle)  throws IllegalStateException {
+        setAttribute("valueStyle", valueStyle, false);
+    }
+
+    /**
+     * CSS style for the floating {@link com.smartgwt.client.widgets.Slider#getValueLabel valueLabel}, visible when {@link
+     * com.smartgwt.client.widgets.Slider#getShowValue showValue} is true.
+     *
+     * @return Current valueStyle value. Default value is "sliderValue"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public String getValueStyle()  {
+        return getAttributeAsString("valueStyle");
+    }
+    
+
+    /**
+     * CSS style for the text in the floating {@link com.smartgwt.client.widgets.Slider#getValueLabel valueLabel},  visible
+     * when {@link com.smartgwt.client.widgets.Slider#getShowValue showValue} is true.
+     *
+     * @param valueTextStyle New valueTextStyle value. Default value is "sliderValueText"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public void setValueTextStyle(String valueTextStyle)  throws IllegalStateException {
+        setAttribute("valueTextStyle", valueTextStyle, false);
+    }
+
+    /**
+     * CSS style for the text in the floating {@link com.smartgwt.client.widgets.Slider#getValueLabel valueLabel},  visible
+     * when {@link com.smartgwt.client.widgets.Slider#getShowValue showValue} is true.
+     *
+     * @return Current valueTextStyle value. Default value is "sliderValueText"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public String getValueTextStyle()  {
+        return getAttributeAsString("valueTextStyle");
+    }
+    
+
+    /**
      * Indicates whether this is a vertical or horizontal slider.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
@@ -1196,8 +1458,33 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     
 
     /**
-     * Optional CSS style for the thumb for a vertically oriented slider.  See {@link
-     * com.smartgwt.client.widgets.Slider#getHThumbStyle hThumbStyle} for state suffixes.
+     * The space around the labels used to display the  {@link com.smartgwt.client.widgets.Slider#getRangeLabel minimum,
+     * maximum} and {@link com.smartgwt.client.widgets.Slider#getValueLabel current} values  of the slider, when {@link
+     * com.smartgwt.client.widgets.Slider#getVertical vertical} is true.  If unset, defaults to  {@link
+     * com.smartgwt.client.widgets.Slider#getLabelSpacing labelSpacing}.
+     *
+     * @param vLabelSpacing New vLabelSpacing value. Default value is null
+     */
+    public void setVLabelSpacing(Integer vLabelSpacing) {
+        setAttribute("vLabelSpacing", vLabelSpacing, true);
+    }
+
+    /**
+     * The space around the labels used to display the  {@link com.smartgwt.client.widgets.Slider#getRangeLabel minimum,
+     * maximum} and {@link com.smartgwt.client.widgets.Slider#getValueLabel current} values  of the slider, when {@link
+     * com.smartgwt.client.widgets.Slider#getVertical vertical} is true.  If unset, defaults to  {@link
+     * com.smartgwt.client.widgets.Slider#getLabelSpacing labelSpacing}.
+     *
+     * @return Current vLabelSpacing value. Default value is null
+     */
+    public Integer getVLabelSpacing()  {
+        return getAttributeAsInt("vLabelSpacing");
+    }
+    
+
+    /**
+     * Optional CSS style for the thumb for a {@link com.smartgwt.client.widgets.Slider#getVertical vertically oriented} 
+     * slider.  See {@link com.smartgwt.client.widgets.Slider#getHThumbStyle hThumbStyle} for state suffixes.
      *
      * @param vThumbStyle New vThumbStyle value. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -1208,8 +1495,8 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     }
 
     /**
-     * Optional CSS style for the thumb for a vertically oriented slider.  See {@link
-     * com.smartgwt.client.widgets.Slider#getHThumbStyle hThumbStyle} for state suffixes.
+     * Optional CSS style for the thumb for a {@link com.smartgwt.client.widgets.Slider#getVertical vertically oriented} 
+     * slider.  See {@link com.smartgwt.client.widgets.Slider#getHThumbStyle hThumbStyle} for state suffixes.
      *
      * @return Current vThumbStyle value. Default value is null
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
@@ -1220,8 +1507,8 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     
 
     /**
-     * Optional CSS style for the track for a vertically oriented slider. <P> Will have the suffix "Disabled" added when the
-     * slider is disabled.
+     * Optional CSS style for the track for a {@link com.smartgwt.client.widgets.Slider#getVertical vertically oriented} 
+     * slider. <P> Will have the suffix "Disabled" added when the slider is disabled.
      *
      * @param vTrackStyle New vTrackStyle value. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -1232,8 +1519,8 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     }
 
     /**
-     * Optional CSS style for the track for a vertically oriented slider. <P> Will have the suffix "Disabled" added when the
-     * slider is disabled.
+     * Optional CSS style for the track for a {@link com.smartgwt.client.widgets.Slider#getVertical vertically oriented} 
+     * slider. <P> Will have the suffix "Disabled" added when the slider is disabled.
      *
      * @return Current vTrackStyle value. Default value is null
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
@@ -1243,13 +1530,39 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
     }
     
 
+    /**
+     * Optional CSS style for the floating {@link com.smartgwt.client.widgets.Slider#getValueLabel valueLabel}, visible when
+     * {@link com.smartgwt.client.widgets.Slider#getShowValue showValue} is true and {@link
+     * com.smartgwt.client.widgets.Slider#getVertical vertical} is true.
+     *
+     * @param vValueStyle New vValueStyle value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public void setVValueStyle(String vValueStyle)  throws IllegalStateException {
+        setAttribute("vValueStyle", vValueStyle, false);
+    }
+
+    /**
+     * Optional CSS style for the floating {@link com.smartgwt.client.widgets.Slider#getValueLabel valueLabel}, visible when
+     * {@link com.smartgwt.client.widgets.Slider#getShowValue showValue} is true and {@link
+     * com.smartgwt.client.widgets.Slider#getVertical vertical} is true.
+     *
+     * @return Current vValueStyle value. Default value is null
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public String getVValueStyle()  {
+        return getAttributeAsString("vValueStyle");
+    }
+    
+
     // ********************* Methods ***********************
     /**
      * Add a valueChanged handler.
      * <p>
      * This method is called when the slider value changes. This occurs when the {@link
-     * com.smartgwt.client.widgets.Slider#setValue setValue()} method is called, or when the slider is moved. Observe this
-     * method to be notified when the slider value changes.
+     * com.smartgwt.client.widgets.Slider#setValue setValue()} method is called, or when the slider is moved. Add a
+     * notification to be fired whenever the slider value changes.
      *
      * @param handler the valueChanged handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -1385,6 +1698,11 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
             s.logicalStructureErrors += "Slider.flipValues:" + t.getMessage() + "\n";
         }
         try {
+            s.hLabelSpacing = getAttributeAsString("hLabelSpacing");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.hLabelSpacing:" + t.getMessage() + "\n";
+        }
+        try {
             s.hThumbStyle = getAttributeAsString("hThumbStyle");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Slider.hThumbStyle:" + t.getMessage() + "\n";
@@ -1393,6 +1711,11 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
             s.hTrackStyle = getAttributeAsString("hTrackStyle");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Slider.hTrackStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.hValueStyle = getAttributeAsString("hValueStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.hValueStyle:" + t.getMessage() + "\n";
         }
         try {
             s.labelHeight = getAttributeAsString("labelHeight");
@@ -1428,6 +1751,16 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
             s.numValues = getAttributeAsString("numValues");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Slider.numValues:" + t.getMessage() + "\n";
+        }
+        try {
+            s.rangeFormat = getAttributeAsString("rangeFormat");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.rangeFormat:" + t.getMessage() + "\n";
+        }
+        try {
+            s.rangeStyle = getAttributeAsString("rangeStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.rangeStyle:" + t.getMessage() + "\n";
         }
         try {
             s.roundPrecision = getAttributeAsString("roundPrecision");
@@ -1485,6 +1818,11 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
             s.logicalStructureErrors += "Slider.titleSpacing:" + t.getMessage() + "\n";
         }
         try {
+            s.titleStyle = getAttributeAsString("titleStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.titleStyle:" + t.getMessage() + "\n";
+        }
+        try {
             s.trackCapSize = getAttributeAsString("trackCapSize");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Slider.trackCapSize:" + t.getMessage() + "\n";
@@ -1505,9 +1843,29 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
             s.logicalStructureErrors += "Slider.trackWidth:" + t.getMessage() + "\n";
         }
         try {
+            s.valueFormat = getAttributeAsString("valueFormat");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.valueFormat:" + t.getMessage() + "\n";
+        }
+        try {
+            s.valueStyle = getAttributeAsString("valueStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.valueStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.valueTextStyle = getAttributeAsString("valueTextStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.valueTextStyle:" + t.getMessage() + "\n";
+        }
+        try {
             s.vertical = getAttributeAsString("vertical");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Slider.vertical:" + t.getMessage() + "\n";
+        }
+        try {
+            s.vLabelSpacing = getAttributeAsString("vLabelSpacing");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.vLabelSpacing:" + t.getMessage() + "\n";
         }
         try {
             s.vThumbStyle = getAttributeAsString("vThumbStyle");
@@ -1518,6 +1876,11 @@ public class Slider extends Canvas implements com.smartgwt.client.widgets.events
             s.vTrackStyle = getAttributeAsString("vTrackStyle");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Slider.vTrackStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.vValueStyle = getAttributeAsString("vValueStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Slider.vValueStyle:" + t.getMessage() + "\n";
         }
         return s;
     }

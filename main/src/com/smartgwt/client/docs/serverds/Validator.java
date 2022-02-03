@@ -51,12 +51,25 @@ import java.util.Map;
 public class Validator {
 
     /**
-     * Applies only to the "isUnique" validator and controls whether the search for existing records
-     * is case sensitive or not.
+     * Applies only to the "isUnique" and "hasRelatedRecord" validators and controls whether the
+     * search for existing records is case sensitive or not.
      *
      * <p>Default value is false
      */
     public boolean caseSensitive;
+
+    /**
+     * Indicates the minimum value for range-based validators. By default, range-validators are 
+     * inclusive, meaning that values that equal the <code>min</code> value will pass validation.   To
+     * make a validator-range exclusive, and have equal values fail validation, set  {@link
+     * com.smartgwt.client.docs.serverds.Validator#exclusive validator.exclusive} to true and provide
+     * a  {@link com.smartgwt.client.docs.serverds.Validator#errorMessage custom message}.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.serverds.Validator#max
+     * @see com.smartgwt.client.docs.serverds.Validator#exclusive
+     */
+    public Object min;
 
     /**
      * For validators of type "serverCustom" only, a {@link
@@ -165,6 +178,19 @@ public class Validator {
      * <p>Default value is null
      */
     public Boolean stopOnError;
+
+    /**
+     * Indicates the maximum value for range-based validators. By default, range-validators are 
+     * inclusive, meaning that values that equal the <code>max</code> value will pass validation.   To
+     * make a validator-range exclusive, and have equal values fail validation, set  {@link
+     * com.smartgwt.client.docs.serverds.Validator#exclusive validator.exclusive} to true and provide
+     * a  {@link com.smartgwt.client.docs.serverds.Validator#errorMessage custom message}.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.serverds.Validator#min
+     * @see com.smartgwt.client.docs.serverds.Validator#exclusive
+     */
+    public Object max;
 
     /**
      * Used to create a conditional validator based on {@link
@@ -347,6 +373,19 @@ public class Validator {
      * <p>Default value is false
      */
     public Boolean stopIfFalse;
+
+    /**
+     * When set to true, values that equal the specified {@link
+     * com.smartgwt.client.docs.serverds.Validator#min min} or  {@link
+     * com.smartgwt.client.docs.serverds.Validator#max max} values will fail validation.  When setting
+     * this property, consider also adding a {@link
+     * com.smartgwt.client.docs.serverds.Validator#errorMessage custom message}.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.serverds.Validator#min
+     * @see com.smartgwt.client.docs.serverds.Validator#max
+     */
+    public Boolean exclusive;
 
     /**
      * Type of the validator. <p> This can be one of the built-in {@link

@@ -36,7 +36,14 @@ public enum HashAlgorithm implements ValueEnum {
      * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
      * file or server-side DataSource descriptor (.ds.xml file), use the value "SHA".
      */
-    SHA("SHA");
+    SHA("SHA"),
+    /**
+     * bcrypt is a password hashing function designed by Niels Provos and David Mazi�res, based on the Blowfish cipher
+     * <P>
+     * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
+     * file or server-side DataSource descriptor (.ds.xml file), use the value "bcrypt".
+     */
+    BCRYPT("bcrypt");
     private String value;
 
     HashAlgorithm(String value) {

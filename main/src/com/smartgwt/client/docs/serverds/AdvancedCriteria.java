@@ -157,6 +157,7 @@ public class AdvancedCriteria {
      * detail.
      *
      * <p>Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public Boolean strictSQLFiltering;
 

@@ -61,6 +61,7 @@ public class SplitPaneLogicalStructure extends LayoutLogicalStructure {
     public Canvas navigationPane;
     public String navigationPaneWidth;
     public String navigationTitle;
+    public String notifyAfterNavigationClick;
     public String pageOrientation;
     public String showDetailToolStrip;
     public String showLeftButton;

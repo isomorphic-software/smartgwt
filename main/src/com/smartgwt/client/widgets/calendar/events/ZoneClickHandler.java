@@ -19,15 +19,12 @@ package com.smartgwt.client.widgets.calendar.events;
 
 import com.google.gwt.event.shared.EventHandler;
 
-/**
- * @deprecated Please use addEventReposition[Move/Stop]Handler instead, this will be removed in a future release.
- */
-public interface TimelineEventMovedHandler extends EventHandler {
+public interface ZoneClickHandler extends EventHandler {
     /**
-     * Called when a Timeline event is moved via dragging by a user.  Call {@link com.smartgwt.client.widgets.calendar.events.TimelineEventMoved#cancel()} from within {@link com.smartgwt.client.widgets.calendar.events.TimelineEventMovedHandler#onTimelineEventMoved} to disallow the  move.
+     * Called whenever a {@link com.smartgwt.client.widgets.calendar.ZoneCanvas} is clicked in the  {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getTimelineView timelineView}.  There is no default implementation.
      *
      * @param event the event
-     * @deprecated Please use addEventReposition[Move/Stop]Handler instead, this will be removed in a future release.
      */
-    void onTimelineEventMoved(com.smartgwt.client.widgets.calendar.events.TimelineEventMoved event);
+    void onZoneClick(com.smartgwt.client.widgets.calendar.events.ZoneClick event);
 }

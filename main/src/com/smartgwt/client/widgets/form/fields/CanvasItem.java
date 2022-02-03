@@ -998,17 +998,13 @@ public class CanvasItem extends FormItem implements com.smartgwt.client.widgets.
      *  A complex Advanced criteria object may have nested sub criteria using the <code>"and"</code>
      *  or <code>"or"</code> operators. For example:
      *  <pre>
-     *  { _constructor:"AdvancedCriteria",
-     *    operator:"and",
-     *    criteria:[
-     *       {fieldName:"field1", value:"value1", operator:"iContains"},
-     *       {operator:"or", criteria:[
-     *           {fieldName:"innerField1", value:"value1", operator:"equals"},
-     *           {fieldName:"innerField2", value:"value2", operator:"iContains"}
-     *        ]
-     *       }
-     *    ]
-     *  }
+     *      AdvancedCriteria criteria = new AdvancedCriteria(OperatorId.AND, new Criterion[] {
+     *          new Criterion("field1", OperatorId.ICONTAINS, "value1"),
+     *          new AdvancedCriteria(OperatorId.OR, new Criterion[] {
+     *                  new Criterion("innerField1", OperatorId.EQUALS, "value1"),
+     *                  new Criterion("innerField2", OperatorId.ICONTAINS, "value2")
+     *          })
+     *      });
      *  </pre>
      *  To create a form capable of editing the above criteria without providing a custom
      * {@link com.smartgwt.client.widgets.form.fields.FormItem#setCriterionGetter FormItemCriterionGetter} et al, you would create a
@@ -1019,20 +1015,21 @@ public class CanvasItem extends FormItem implements com.smartgwt.client.widgets.
      *  inner criteria, and whose operator was specified as "or".<br>
      *  For example:
      *  <pre>
-     *   isc.DynamicForm.create({
-     *       items:[
-     *           {name:"field1", type:"TextItem"},
-     *           {name:"nestedItem", shouldSaveValue:true, type:"CanvasItem",
-     *               canvas:isc.DynamicForm.create({
-     *                   operator:"or",
-     *                   items:[
-     *                       {name:"innerField1", type:"TextItem", operator:"equals"},
-     *                       {name:"innerField2", type:"TextItem"}
-     *                   ]
-     *               })
-     *           }
-     *       ]
-     *   });
+     *      DynamicForm form = new DynamicForm();
+     *
+     *      DynamicForm innerForm = new DynamicForm();
+     *      innerForm.setOperator(OperatorId.OR);
+     *      TextItem innerField1 = new TextItem();
+     *      innerField1.setOperator(OperatorId.EQUALS);
+     *      TextItem innerField2 = new TextItem();
+     *      innerForm.setFields(innerField1, innerField2);
+     *
+     *      TextItem field1 = new TextItem();
+     *      CanvasItem nestedItem = new CanvasItem();
+     *      nestedItem.setShouldSaveValue(true);
+     *      nestedItem.setCanvas(innerForm);
+     *
+     *      form.setFields(field1, nestedItem);
      *   </pre>
      *  This form would be able to edit the above advanced criteria object via
      * {@link com.smartgwt.client.widgets.form.DynamicForm#setValuesAsCriteria DynamicForm.setValuesAsCriteria}. Edited values

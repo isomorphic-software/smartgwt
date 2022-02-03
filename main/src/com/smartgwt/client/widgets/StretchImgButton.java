@@ -249,11 +249,57 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
     
 
     /**
-     * Base CSS style className applied to the component.  <P> As the component changes {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getState StatefulCanvas.state} and/or is selected,  suffixes will be added to
-     * the base style. In some cases more than one suffix will  be appended to reflect a combined state ("Selected" +
-     * "Disabled", for example). <P> See {@link com.smartgwt.client.widgets.StatefulCanvas#getStateSuffix
-     * StatefulCanvas.getStateSuffix()} for a description of the default set of suffixes which may be applied to the baseStyle
+     * Base CSS style className applied to the component. 
+     *  <P>
+     * As the component changes {@link com.smartgwt.client.widgets.StatefulCanvas#getState StatefulCanvas.state} and/or is
+     * selected, 
+     *  suffixes will be added to the base style. In some cases more than one suffix will 
+     *  be appended to reflect a combined state ("Selected" + "Disabled", for example).
+     *  <P>
+     * See {@link com.smartgwt.client.widgets.StatefulCanvas#getStateSuffix StatefulCanvas.getStateSuffix()} for a description
+     * of the default set
+     *  of suffixes which may be applied to the baseStyle
+     *  <P>
+     *  <h4>Rotated Titles</h4>
+     *  <p>
+     *  The Framework doesn't have built-in support for rotating button titles in a fashion
+     * similar to {@link com.smartgwt.client.widgets.chart.FacetChart#getRotateLabels FacetChart.rotateLabels}.  However, you
+     * can manually configure
+     *  a button to render with a rotated title by applying custom CSS via this property.
+     *  <P>
+     *  For example, given a button with a height of 120 and a width of 48, if you
+     *  copied the existing buttonXXX style declarations from skin_styles.css as new,
+     *  rotatedTitleButtonXXX declarations, and then added the lines:
+     *  <pre>
+     *      -ms-transform:     translate(-38px,0px) rotate(270deg);
+     *      -webkit-transform: translate(-38px,0px) rotate(270deg);
+     *      transform:         translate(-38px,0px) rotate(270deg);
+     *      overflow: hidden;
+     *      text-overflow: ellipsis;
+     *      width:116px;</pre>
+     *  in the declaration section beginning:
+     *  <pre>
+     *  .rotatedTitleButton,
+     *  .rotatedTitleButtonSelected,
+     *  .rotatedTitleButtonSelectedOver,
+     *  .rotatedTitleButtonSelectedDown,
+     *  .rotatedTitleButtonSelectedDisabled,
+     *  .rotatedTitleButtonOver,
+     *  .rotatedTitleButtonDown,
+     *  .rotatedTitleButtonDisabled {</pre>
+     *  then applying that style to the button with {@link com.smartgwt.client.widgets.Canvas#getOverflow overflow}: "clip_h"
+     *  would yield a vertically-rendered title with overflow via ellipsis as expected, and also
+     *  wrap with {@link com.smartgwt.client.widgets.Button#getWrap Button.wrap}.
+     *  
+     *  Note that:<ul>
+     *  <li> The explicit width applied via CSS is needed because rotated
+     *  elements don't inherit dimensions in their new orientation from the DOM - 
+     *  the transform/rotation occurs independently of layout.
+     *  <li> The translation transform required along the x-axis is roughly
+     *  (width - height) / 2, but may need slight offsetting for optimal centering.
+     *  <li>We've explicitly avoided describing an approach based on CSS "writing-mode", since
+     *  support is incomplete and bugs are present in popular browsers such as Firefox and
+     *  Safari that would prevent it from being used without Framework assistance.</ul>
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the base CSS style.  As the component changes state and/or is selected, suffixes will be added to the base style.
@@ -266,11 +312,57 @@ public class StretchImgButton extends StretchImg implements com.smartgwt.client.
     }
 
     /**
-     * Base CSS style className applied to the component.  <P> As the component changes {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getState StatefulCanvas.state} and/or is selected,  suffixes will be added to
-     * the base style. In some cases more than one suffix will  be appended to reflect a combined state ("Selected" +
-     * "Disabled", for example). <P> See {@link com.smartgwt.client.widgets.StatefulCanvas#getStateSuffix
-     * StatefulCanvas.getStateSuffix()} for a description of the default set of suffixes which may be applied to the baseStyle
+     * Base CSS style className applied to the component. 
+     *  <P>
+     * As the component changes {@link com.smartgwt.client.widgets.StatefulCanvas#getState StatefulCanvas.state} and/or is
+     * selected, 
+     *  suffixes will be added to the base style. In some cases more than one suffix will 
+     *  be appended to reflect a combined state ("Selected" + "Disabled", for example).
+     *  <P>
+     * See {@link com.smartgwt.client.widgets.StatefulCanvas#getStateSuffix StatefulCanvas.getStateSuffix()} for a description
+     * of the default set
+     *  of suffixes which may be applied to the baseStyle
+     *  <P>
+     *  <h4>Rotated Titles</h4>
+     *  <p>
+     *  The Framework doesn't have built-in support for rotating button titles in a fashion
+     * similar to {@link com.smartgwt.client.widgets.chart.FacetChart#getRotateLabels FacetChart.rotateLabels}.  However, you
+     * can manually configure
+     *  a button to render with a rotated title by applying custom CSS via this property.
+     *  <P>
+     *  For example, given a button with a height of 120 and a width of 48, if you
+     *  copied the existing buttonXXX style declarations from skin_styles.css as new,
+     *  rotatedTitleButtonXXX declarations, and then added the lines:
+     *  <pre>
+     *      -ms-transform:     translate(-38px,0px) rotate(270deg);
+     *      -webkit-transform: translate(-38px,0px) rotate(270deg);
+     *      transform:         translate(-38px,0px) rotate(270deg);
+     *      overflow: hidden;
+     *      text-overflow: ellipsis;
+     *      width:116px;</pre>
+     *  in the declaration section beginning:
+     *  <pre>
+     *  .rotatedTitleButton,
+     *  .rotatedTitleButtonSelected,
+     *  .rotatedTitleButtonSelectedOver,
+     *  .rotatedTitleButtonSelectedDown,
+     *  .rotatedTitleButtonSelectedDisabled,
+     *  .rotatedTitleButtonOver,
+     *  .rotatedTitleButtonDown,
+     *  .rotatedTitleButtonDisabled {</pre>
+     *  then applying that style to the button with {@link com.smartgwt.client.widgets.Canvas#getOverflow overflow}: "clip_h"
+     *  would yield a vertically-rendered title with overflow via ellipsis as expected, and also
+     *  wrap with {@link com.smartgwt.client.widgets.Button#getWrap Button.wrap}.
+     *  
+     *  Note that:<ul>
+     *  <li> The explicit width applied via CSS is needed because rotated
+     *  elements don't inherit dimensions in their new orientation from the DOM - 
+     *  the transform/rotation occurs independently of layout.
+     *  <li> The translation transform required along the x-axis is roughly
+     *  (width - height) / 2, but may need slight offsetting for optimal centering.
+     *  <li>We've explicitly avoided describing an approach based on CSS "writing-mode", since
+     *  support is incomplete and bugs are present in popular browsers such as Firefox and
+     *  Safari that would prevent it from being used without Framework assistance.</ul>
      *
      * @return Current baseStyle value. Default value is "stretchImgButton"
      * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 

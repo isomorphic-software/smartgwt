@@ -370,6 +370,7 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode ResultSet.fetchMode} applies.
      *
      * @param dataFetchMode New dataFetchMode value. Default value is "paged"
+     * @see com.smartgwt.client.widgets.tile.TileGrid#setShowAllRecords
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public void setDataFetchMode(FetchMode dataFetchMode) {
@@ -383,6 +384,7 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
      * instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode ResultSet.fetchMode} applies.
      *
      * @return Current dataFetchMode value. Default value is "paged"
+     * @see com.smartgwt.client.widgets.tile.TileGrid#getShowAllRecords
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public FetchMode getDataFetchMode()  {
@@ -600,6 +602,52 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
     
 
     /**
+     * The string to display in the body of a tileGrid while data is being loaded. Use <code>"&#36;{loadingImage}"</code> to
+     * include {@link com.smartgwt.client.widgets.Canvas#loadingImageSrc a loading image}.
+     *
+     * @param loadingDataMessage New loadingDataMessage value. Default value is "${loadingImage}&amp;nbsp;Loading data..."
+     * @see com.smartgwt.client.widgets.tile.TileGrid#setLoadingDataMessageStyle
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public void setLoadingDataMessage(String loadingDataMessage) {
+        setAttribute("loadingDataMessage", loadingDataMessage, true);
+    }
+
+    /**
+     * The string to display in the body of a tileGrid while data is being loaded. Use <code>"&#36;{loadingImage}"</code> to
+     * include {@link com.smartgwt.client.widgets.Canvas#loadingImageSrc a loading image}.
+     *
+     * @return Current loadingDataMessage value. Default value is "${loadingImage}&amp;nbsp;Loading data..."
+     * @see com.smartgwt.client.widgets.tile.TileGrid#getLoadingDataMessageStyle
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getLoadingDataMessage()  {
+        return getAttributeAsString("loadingDataMessage");
+    }
+    
+
+    /**
+     * The CSS style name applied to the loadingDataMessage string if displayed.
+     *
+     * @param loadingDataMessageStyle New loadingDataMessageStyle value. Default value is "loadingDataMessage"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public void setLoadingDataMessageStyle(String loadingDataMessageStyle) {
+        setAttribute("loadingDataMessageStyle", loadingDataMessageStyle, true);
+    }
+
+    /**
+     * The CSS style name applied to the loadingDataMessage string if displayed.
+     *
+     * @return Current loadingDataMessageStyle value. Default value is "loadingDataMessage"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public String getLoadingDataMessageStyle()  {
+        return getAttributeAsString("loadingDataMessageStyle");
+    }
+    
+
+    /**
      * If you have a databound tileGrid and you scroll out of the currently loaded dataset, by default you will see blank tiles
      * until the server returns the data for those rows.  The loadingMessage attribute allows you to specify arbitrary html
      * that will be shown in each such "blank" tile while the data for that tile is loading. (e.g. "&lt;DIV
@@ -712,7 +760,9 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
     
 
     /**
-     * Whether tiles are created and drawn for all records, or only for those currently visible.
+     * Whether tiles are created and drawn for all records, or only for those currently visible. <P> This setting is
+     * incompatible with {@link com.smartgwt.client.widgets.tile.TileGrid#getDataFetchMode dataFetchMode}: "paged" as it
+     * requires all records matching the criteria to be fetched from the server at once.
      *
      * @param showAllRecords New showAllRecords value. Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -723,7 +773,9 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
     }
 
     /**
-     * Whether tiles are created and drawn for all records, or only for those currently visible.
+     * Whether tiles are created and drawn for all records, or only for those currently visible. <P> This setting is
+     * incompatible with {@link com.smartgwt.client.widgets.tile.TileGrid#getDataFetchMode dataFetchMode}: "paged" as it
+     * requires all records matching the criteria to be fetched from the server at once.
      *
      * @return Current showAllRecords value. Default value is false
      * @see com.smartgwt.client.docs.Basics Basics overview and related methods
@@ -2644,14 +2696,32 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
     	
     }-*/;
 
-    public native void exportData() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.exportData();
-    }-*/;
+    public void exportData() {
+        exportData(null);
+    }
 
     public native void exportData(DSRequest requestProperties) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "exportData", "DSRequest,RPCCallback");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+        self.exportData(requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+
+    public native void exportData(DSRequest requestProperties, RPCCallback callback) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "exportData", "DSRequest,RPCCallback");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportData(requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()(),
+			$entry( function(response, rawData, request) {
+				if(callback!=null) callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(
+					@com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(response), 
+					rawData, 
+					@com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(request)
+				);
+			}));
     }-*/;
 
     /**
@@ -2789,7 +2859,25 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
         return fields != null ? fields.length : 0;
     }
     
-    /**
+    public native void transferRecords(Record[] records, Record targetRecord, Integer index, Canvas sourceWidget, TransferRecordsCallback callback) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
+        var targetRecordJS = targetRecord == null ? null : targetRecord.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        var indexJS = index == null ? null : index.@java.lang.Integer::intValue()();
+        var sourceWidgetJS = sourceWidget == null ? null : sourceWidget.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.transferRecords(recordsJS, targetRecordJS, indexJS, sourceWidgetJS, $entry(function(records) {
+            if(callback != null) {
+	    		var convertedArray = [];
+	    		for (var i = 0; i < records.length; i++) {
+	    			convertedArray[i] =  @com.smartgwt.client.data.Record::new(Lcom/google/gwt/core/client/JavaScriptObject;)(records[i]);
+	    		}
+                var recordsJ = @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(convertedArray);
+                callback.@com.smartgwt.client.widgets.TransferRecordsCallback::execute([Lcom/smartgwt/client/data/Record;)(recordsJ);
+            }
+        }));
+    }-*/;
+
+	/**
      * During a drag-and-drop interaction, this method returns the set of records being dragged
      * out of the component.  In the default implementation, this is the list of currently
      * selected records.<p>
@@ -2857,6 +2945,16 @@ public class TileGrid extends TileLayout implements DataBoundComponent, com.smar
             s.emptyMessageStyle = getAttributeAsString("emptyMessageStyle");
         } catch (Throwable t) {
             s.logicalStructureErrors += "TileGrid.emptyMessageStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.loadingDataMessage = getAttributeAsString("loadingDataMessage");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.loadingDataMessage:" + t.getMessage() + "\n";
+        }
+        try {
+            s.loadingDataMessageStyle = getAttributeAsString("loadingDataMessageStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TileGrid.loadingDataMessageStyle:" + t.getMessage() + "\n";
         }
         try {
             s.loadingMessage = getAttributeAsString("loadingMessage");

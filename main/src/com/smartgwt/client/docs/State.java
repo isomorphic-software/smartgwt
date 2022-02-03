@@ -6,6 +6,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.types.State
  * @see com.smartgwt.client.types.SelectionType
  * @see com.smartgwt.client.types.Selected
+ * @see com.smartgwt.client.util.isc#setRadioGroup
  * @see com.smartgwt.client.widgets.StatefulCanvas#setState
  * @see com.smartgwt.client.widgets.StatefulCanvas#getState
  * @see com.smartgwt.client.widgets.StatefulCanvas#setSelected

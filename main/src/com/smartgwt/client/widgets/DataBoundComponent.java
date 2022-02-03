@@ -3,6 +3,7 @@ package com.smartgwt.client.widgets;
 import com.smartgwt.client.types.DragDataAction;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.data.*;
+import com.smartgwt.client.rpc.*;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.widgets.events.*;
 
@@ -1175,35 +1176,44 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
     JavaScriptObject getDataAsJSList();
 
     /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
-     * to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data
-     * to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
-     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} and {@link com.smartgwt.client.data.DSRequest#getExportFilename
-     * exportFilename}, affect the  exporting process: see {@link com.smartgwt.client.data.DSRequest#getExportResults
-     * exportResults} for further detail. <P> Note that data exported via this method does not include any client-side
-     * formatting and relies on both the Smart GWT server and server-side DataSources.  To export client-data  with formatters
-     * applied,  see {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData}, which still
-     * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
-     * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
-     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     * See {@link #exportData(com.smartgwt.client.data.DSRequest,com.smartgwt.client.rpc.RPCCallback)}
      */
     void exportData();
 
     /**
-     * Uses a "fetch" operation on the current {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
-     * to  retrieve data that matches the current filter and sort criteria for this component, then  exports the resulting data
-     * to a file or window in the requested format. <P> A variety of DSRequest settings, such as  {@link
-     * com.smartgwt.client.data.DSRequest#getExportAs exportAs} and {@link com.smartgwt.client.data.DSRequest#getExportFilename
-     * exportFilename}, affect the  exporting process: see {@link com.smartgwt.client.data.DSRequest#getExportResults
-     * exportResults} for further detail. <P> Note that data exported via this method does not include any client-side
-     * formatting and relies on both the Smart GWT server and server-side DataSources.  To export client-data  with formatters
-     * applied,  see {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData}, which still
-     * requires the Smart GWT server but does not rely on server-side DataSources. <P> For more information on exporting data,
-     * see {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
-     * @param requestProperties additional properties to set on the DSRequest                                            that will be issued
-     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods overview and related methods
+     * See {@link #exportData(com.smartgwt.client.data.DSRequest,com.smartgwt.client.rpc.RPCCallback)}
      */
-    void exportData(DSRequest requestProperties);    
+    void exportData(DSRequest requestProperties);
+
+    /**
+     * Uses a "fetch" operation on the current
+     * {@link com.smartgwt.client.widgets.DataBoundComponent#getDataSource DataSource}
+     * to retrieve data that matches the current filter and sort criteria for this component,
+     * then exports the resulting data to a file or window in the requested format.
+     * <P>
+     * A variety of DSRequest settings, such as
+     * {@link com.smartgwt.client.data.DSRequest#getExportAs exportAs} and
+     * {@link com.smartgwt.client.data.DSRequest#getExportFilename exportFilename}, affect the
+     * exporting process: see
+     * {@link com.smartgwt.client.data.DSRequest#getExportResults exportResults} for further
+     * detail.
+     * <P>
+     * Note that data exported via this method does not include any client-side formatting and
+     * relies on both the Smart GWT server and server-side DataSources.  To export client-data
+     * with formatters applied, see
+     * {@link com.smartgwt.client.widgets.DataBoundComponent#exportClientData exportClientData},
+     * which still requires the Smart GWT server but does not rely on server-side DataSources.
+     * <P>
+     * For more information on exporting data, see
+     * {@link com.smartgwt.client.data.DataSource#exportData DataSource.exportData}.
+     * @param requestProperties additional properties to set on DSRequest that will be issued
+     * @param callback Optional callback.  Note that this parameter only applies if you specify
+     * {@link com.smartgwt.client.data.DSRequest#getExportToClient exportToClient}: false in
+     * the request properties, because file downloads don't provide ordinary framework callbacks
+     * @see com.smartgwt.client.docs.DataBoundComponentMethods DataBoundComponentMethods
+     * overview and related methods
+     */
+    void exportData(DSRequest requestProperties, RPCCallback callback);
 
     /**
      * Shows a HiliteEditor interface allowing end-users to edit the data-hilites currently in use by this DataBoundComponent.
@@ -1310,4 +1320,37 @@ public interface DataBoundComponent extends HasFetchDataHandlers,
      * @return the number of fields
      */
     public int getFieldCount();
+    
+    /** 
+     * Transfer a list of {@link com.smartgwt.client.data.Record Record}s from another component 
+     * (does not have to be a databound component) into this component.  This method is only 
+     * applicable to list-type components, such as {@link com.smartgwt.client.widgets.grid.ListGrid ListGrid}
+     * or {@link com.smartgwt.client.widgets.tile.TileGridTileGrid}.  Notably, it does not apply to
+     * {@link com.smartgwt.client.widgets.tree.TreeGrid TreeGrid}; the equivalent for treeGrids is
+     * {@link com.smartgwt.client.widgets.tree.TreeGrid#transferNodes(TreeNode[], TreeNode, int, Canvas, TransferNodesCallback) transferNodes}.
+     * <P>
+     * This method implements the automatic drag-copy and drag-move behaviors of components like
+     * <code>ListGrid</code>, and calling it is equivalent to completing a drag and drop of the
+     * <code>dropRecords</code> (the default record drop behavior is simply to call 
+     * <code>transferRecords()</code>, passing in the dropped nodes)
+     * <P>
+     * Note that this method is asynchronous - it may need to perform server turnarounds to prevent
+     * duplicates in the target component's data.  If you wish to be notified when the transfer 
+     * process has completed, you can either pass a non-null callback to this method or add a 
+     * {@link com.smartgwt.client.widgets.events.DropCompleteHandler DropCompleteHandler} to this component.
+     * <P>
+     * See also {@link com.smartgwt.client.widgets.DataBoundComponent#transferSelectedData(DataBoundComponent) transferSelectedData()}
+     *
+     * @param records Recordss to transfer to this component
+     * @param targetRecord The target record (eg, of a drop interaction), for context
+     * @param index Insert point relative to the target record for the transferred records
+     * @param sourceWidget The databound or non-databound component from which the records
+     *                              are to be transferred.
+     * @param callback optional TransferRecordsCallback to be fired when the transfer process has
+     *                       completed (pass null if your code does not need to be called back).  
+     *                       The callback will be passed the list of records actually transferred 
+     *                       to this component
+     */
+    public void transferRecords(Record[] records, Record targetRecord, Integer index, Canvas sourceWidget, TransferRecordsCallback callback);
+     
 }

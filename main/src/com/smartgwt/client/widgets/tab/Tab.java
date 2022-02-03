@@ -132,7 +132,8 @@ public class Tab extends RefDataClass implements com.smartgwt.client.widgets.tab
 
     /**
      * If enabled, the tab will collapse to show just its icon when showing the title would cause overflow of a containing
-     * {@link com.smartgwt.client.widgets.tab.TabBar}.
+     * {@link com.smartgwt.client.widgets.tab.TabBar}.  While collapsed, the tab will show its title on hover, unless an
+     * explicit hover has been specified such as by {@link com.smartgwt.client.widgets.tab.Tab#getPrompt prompt}.
      *
      * @param canAdaptWidth New canAdaptWidth value. Default value is false
      * @see com.smartgwt.client.widgets.Button#setCanAdaptWidth
@@ -144,7 +145,8 @@ public class Tab extends RefDataClass implements com.smartgwt.client.widgets.tab
 
     /**
      * If enabled, the tab will collapse to show just its icon when showing the title would cause overflow of a containing
-     * {@link com.smartgwt.client.widgets.tab.TabBar}.
+     * {@link com.smartgwt.client.widgets.tab.TabBar}.  While collapsed, the tab will show its title on hover, unless an
+     * explicit hover has been specified such as by {@link com.smartgwt.client.widgets.tab.Tab#getPrompt prompt}.
      *
      * @return Current canAdaptWidth value. Default value is false
      * @see com.smartgwt.client.widgets.Button#getCanAdaptWidth

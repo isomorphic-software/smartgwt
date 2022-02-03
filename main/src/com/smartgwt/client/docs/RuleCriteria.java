@@ -11,15 +11,16 @@ package com.smartgwt.client.docs;
  * selected in an adjacent grid) they are not generally used to filter DataSource records, since
  * such criteria would not be able to be evaluated on the server. <p> All RuleCriteria are also
  * {@link com.smartgwt.client.docs.DynamicCriteria Dynamic Criteria} unless otherwise noted.
- * @see com.smartgwt.client.widgets.tab.Tab#getEnableWhen
+ * @see com.smartgwt.client.widgets.menu.MenuItem#getEnableWhen
  * @see com.smartgwt.client.widgets.Canvas#getVisibleWhen
  * @see com.smartgwt.client.widgets.Canvas#getEnableWhen
- * @see com.smartgwt.client.widgets.menu.MenuItem#getEnableWhen
+ * @see com.smartgwt.client.widgets.tab.Tab#getEnableWhen
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getRequiredWhen
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getVisibleWhen
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyWhen
  * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#getEnableWhen
  * @see com.smartgwt.client.widgets.form.fields.FormItemIcon#getVisibleWhen
+ * @see com.smartgwt.client.widgets.form.fields.ButtonItem#getEnableWhen
  */
 public interface RuleCriteria {
 }

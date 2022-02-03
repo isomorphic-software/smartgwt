@@ -476,20 +476,27 @@ public class RPCRequest extends DataClass {
      *  views and new Smart GWT class definitions.
      *  <p>
      *  <i>Example usage with {@link com.smartgwt.client.rpc.RPCManager#sendRequest RPCManager.sendRequest()}:</i>
+     *  
+     *  
      *  <pre>
-     *  isc.RPCManager.sendRequest({
-     *      evalResult:true,
-     *      actionURL:"js/loadLabel.js",
-     *      evalVars:{var1:"A Value"}
-     *  });
+     *       RPCRequest rpcRequestProperties = new RPCRequest();
+     *       rpcRequestProperties.setEvalResult(true);
+     *       rpcRequestProperties.setActionURL("js/loadLabel.js");
+     *       Map evalVars = new HashMap();
+     *       evalVars.put(var1, "A Value");
+     *       rpcRequestProperties.setEvalVars(evalVars);
+     *       RPCManager.sendRequest(rpcRequestProperties);     
      *  </pre>
+     *  
      *  This call would execute the code from <code>loadLabel.js</code>, and make the variable
      *  <code>var1</code> available to that code. Therefore if the .js file contained this code:
+     *  
+     *  
      *  <pre>
-     *  isc.Label.create({
-     *      contents:var1
-     *  })
+     *       Label label = new Label();
+     *       label.setContents(var1);
      *  </pre>
+     *  
      *  A label would be created with contents set to the value of <code>var1</code> - the string
      *  <code>"A Value"</code>.
      *  
@@ -520,20 +527,27 @@ public class RPCRequest extends DataClass {
      *  views and new Smart GWT class definitions.
      *  <p>
      *  <i>Example usage with {@link com.smartgwt.client.rpc.RPCManager#sendRequest RPCManager.sendRequest()}:</i>
+     *  
+     *  
      *  <pre>
-     *  isc.RPCManager.sendRequest({
-     *      evalResult:true,
-     *      actionURL:"js/loadLabel.js",
-     *      evalVars:{var1:"A Value"}
-     *  });
+     *       RPCRequest rpcRequestProperties = new RPCRequest();
+     *       rpcRequestProperties.setEvalResult(true);
+     *       rpcRequestProperties.setActionURL("js/loadLabel.js");
+     *       Map evalVars = new HashMap();
+     *       evalVars.put(var1, "A Value");
+     *       rpcRequestProperties.setEvalVars(evalVars);
+     *       RPCManager.sendRequest(rpcRequestProperties);     
      *  </pre>
+     *  
      *  This call would execute the code from <code>loadLabel.js</code>, and make the variable
      *  <code>var1</code> available to that code. Therefore if the .js file contained this code:
+     *  
+     *  
      *  <pre>
-     *  isc.Label.create({
-     *      contents:var1
-     *  })
+     *       Label label = new Label();
+     *       label.setContents(var1);
      *  </pre>
+     *  
      *  A label would be created with contents set to the value of <code>var1</code> - the string
      *  <code>"A Value"</code>.
      *  
@@ -656,6 +670,29 @@ public class RPCRequest extends DataClass {
     public Boolean getIgnoreTimeout()  {
         Boolean result = getAttributeAsBoolean("ignoreTimeout", true);
         return result == null ? false : result;
+    }
+    
+
+    /**
+     * If enabled and request is applied to {@link com.smartgwt.client.rpc.RPCManager#cacheScreens RPCManager.cacheScreens()}
+     * or {@link com.smartgwt.client.rpc.RPCManager#loadScreen RPCManager.loadScreen()} indicates that referenced DataSources
+     * should be loaded in mock mode.
+     *
+     * @param mockMode New mockMode value. Default value is null
+     */
+    public void setMockMode(Boolean mockMode) {
+        setAttribute("mockMode", mockMode);
+    }
+
+    /**
+     * If enabled and request is applied to {@link com.smartgwt.client.rpc.RPCManager#cacheScreens RPCManager.cacheScreens()}
+     * or {@link com.smartgwt.client.rpc.RPCManager#loadScreen RPCManager.loadScreen()} indicates that referenced DataSources
+     * should be loaded in mock mode.
+     *
+     * @return Current mockMode value. Default value is null
+     */
+    public Boolean getMockMode()  {
+        return getAttributeAsBoolean("mockMode", true);
     }
     
 
@@ -1100,6 +1137,36 @@ public class RPCRequest extends DataClass {
      */
     public RPCTransport getTransport()  {
         return EnumUtil.getEnum(RPCTransport.values(), getAttribute("transport"));
+    }
+    
+
+    /**
+     * If true, an image is shown to the right of the cursor when {@link com.smartgwt.client.rpc.RPCRequest#getPromptStyle
+     * promptStyle} is set to "cursor", otherwise the cursor itself is modified via css to the value of {@link
+     * com.smartgwt.client.rpc.RPCRequest#getPromptCursor promptCursor}. <p> If left unspecified, the default value is set by
+     * {@link com.smartgwt.client.rpc.RPCManager#useCursorTracker useCursorTracker}.
+     *
+     * @param useCursorTracker New useCursorTracker value. Default value is false
+     * @see com.smartgwt.client.rpc.RPCManager#useCursorTracker
+     * @see com.smartgwt.client.docs.RpcPrompt RpcPrompt overview and related methods
+     */
+    public void setUseCursorTracker(boolean useCursorTracker) {
+        setAttribute("useCursorTracker", useCursorTracker);
+    }
+
+    /**
+     * If true, an image is shown to the right of the cursor when {@link com.smartgwt.client.rpc.RPCRequest#getPromptStyle
+     * promptStyle} is set to "cursor", otherwise the cursor itself is modified via css to the value of {@link
+     * com.smartgwt.client.rpc.RPCRequest#getPromptCursor promptCursor}. <p> If left unspecified, the default value is set by
+     * {@link com.smartgwt.client.rpc.RPCManager#useCursorTracker useCursorTracker}.
+     *
+     * @return Current useCursorTracker value. Default value is false
+     * @see com.smartgwt.client.rpc.RPCManager#useCursorTracker
+     * @see com.smartgwt.client.docs.RpcPrompt RpcPrompt overview and related methods
+     */
+    public boolean getUseCursorTracker()  {
+        Boolean result = getAttributeAsBoolean("useCursorTracker", true);
+        return result == null ? false : result;
     }
     
 

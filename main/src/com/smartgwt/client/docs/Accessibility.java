@@ -137,13 +137,13 @@ package com.smartgwt.client.docs;
  * target='_blank'>Freedom Scientific Bulletin 1404 - In ARIA&#44; what is the difference in how
  * JAWS treats role="application" and role="document"?</a>
  * @see com.smartgwt.client.widgets.Canvas#setAriaState
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getCanTabToHeader
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getScreenReaderCellSeparator
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getScreenReaderRowSeparator
  * @see com.smartgwt.client.widgets.Canvas#getAriaRole
  * @see com.smartgwt.client.widgets.Canvas#getAriaState
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getAriaRole
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getAriaState
- * @see com.smartgwt.client.widgets.grid.ListGrid#getCanTabToHeader
- * @see com.smartgwt.client.widgets.grid.ListGrid#getScreenReaderCellSeparator
- * @see com.smartgwt.client.widgets.grid.ListGrid#getScreenReaderRowSeparator
  * @see com.smartgwt.client.widgets.Img#getAltText
  */
 public interface Accessibility {

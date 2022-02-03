@@ -45,5 +45,7 @@ import com.smartgwt.logicalstructure.widgets.drawing.*;
 
 public class IconMenuButtonLogicalStructure extends IconButtonLogicalStructure {
     public Menu menu;
+    public String menuAlign;
     public String menuAnimationEffect;
+    public String showMenuBelow;
 }

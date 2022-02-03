@@ -20,17 +20,13 @@ package com.smartgwt.client.widgets.calendar.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-/**
- * @deprecated Please use setEventHoverHTMLCustomizer instead, this will be removed in a future release.
- */
-public interface HasEventHoverHTMLHandlers extends HasHandlers {
+public interface HasZoneClickHandlers extends HasHandlers {
     /**
-     * Gets the hover HTML for an event being hovered over. Override here to return custom  HTML based upon the parameter event
-     * object.
+     * Called whenever a {@link com.smartgwt.client.widgets.calendar.ZoneCanvas} is clicked in the  {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getTimelineView timelineView}.  There is no default implementation.
      *
-     * @param handler the eventHoverHTML handler
+     * @param handler the zoneClick handler
      * @return {@link HandlerRegistration} used to remove this handler
-     * @deprecated Please use setEventHoverHTMLCustomizer instead, this will be removed in a future release.
      */
-    HandlerRegistration addEventHoverHTMLHandler(EventHoverHTMLHandler handler);
+    HandlerRegistration addZoneClickHandler(ZoneClickHandler handler);
 }

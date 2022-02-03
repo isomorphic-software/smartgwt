@@ -47,5 +47,7 @@ public class RecordEditorLogicalStructure extends ListGridLogicalStructure {
     public String actionButtonStyle;
     public String baseStyle;
     public String filterImg;
+    public String recordSummaryBaseStyle;
     public String skinImgDir;
+    public String suppressNullValueFormat;
 }

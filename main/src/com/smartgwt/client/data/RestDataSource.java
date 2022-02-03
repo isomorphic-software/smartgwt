@@ -224,7 +224,8 @@ import com.google.gwt.event.shared.HasHandlers;
  * error causes all response processing to be skipped and {@link com.smartgwt.client.rpc.HandleErrorCallback#handleError
  * HandleErrorCallback.handleError()} to be
  *  invoked, which by default will show the provided error message as an alert using
- *  {@link com.smartgwt.client.util.isc#warn isc.warn()}.
+ *  
+ *  {@link com.smartgwt.client.util.SC#warn SC.warn()}.
  *  <p>
  *  <b>JSON formatted responses:</b>
  *  <P>

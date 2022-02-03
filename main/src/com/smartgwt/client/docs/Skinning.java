@@ -74,6 +74,8 @@ package com.smartgwt.client.docs;
  *  
  *  load_skin.js loads the stylesheet and sets the CSS styleNames and media URLs that
  *  Smart GWT components will use.
+ *  <li><b>Some skins also provide Sass templates for easier customization via variables - see 
+ *  the {@link com.smartgwt.client.docs.CustomSassSkins Custom Sass Skinning} discussion</b>
  *  </ul>
  *  <P>
  *  <h4>CSS3 mode</h4>
@@ -85,10 +87,11 @@ package com.smartgwt.client.docs;
  *  Using images is a less efficient approach - it leads to a more complex DOM structure and
  *  increased server load to retrieve media.
  *  <P>
- *  The most modern Smart GWT skin, <b>Tahoe</b>, will always rely on CSS3 features for
- *  certain appearance details. If loaded in a browser with no CSS3 support (such as
- *  Internet Explorer 8), developers can expect to see some degredation in appearance
- *  (lack of certain drop-shadows, rounded edges becoming square, etc).
+ *  The most modern Smart GWT skins, <b>Tahoe</b>, <b>Obsidian</b>, <b>Stratus</b> and 
+ *  <b>Cascade</b>, will always rely on CSS3 features for certain appearance details. If loaded 
+ *  in a browser with no CSS3 support (such as Internet Explorer 8), developers can expect to 
+ *  see some degredation in appearance (lack of certain drop-shadows, rounded edges becoming 
+ *  square, etc).
  *  <P>
  *  Three of Smart GWT's other most commonly used skins, <b>Enterprise</b>, 
  *  <b>EnterpriseBlue</b> and <b>Graphite</b> will conditionally make use of CSS3 features.
@@ -159,15 +162,16 @@ package com.smartgwt.client.docs;
  * specified, allowing the image to
  *  be rendered at various sizes.
  *  <P>
- *  The <b>Tahoe</b> skin makes use of the sprite-URL capability to ensure that sprited
- *  images appear correctly regardless of the size at which they are being drawn.<br>
+ *  The <b>Tahoe</b>, <b>Obsidian</b>, <b>Stratus</b> and <b>Cascade</b> skins makes use of the 
+ *  sprite-URL capability to ensure that sprited images appear correctly regardless of the size 
+ *  at which they are being drawn.<br>
  *  The <b>Enterprise</b>, <b>EnterpriseBlue</b>, and <b>Graphite</b> skins 
- *  also support spriting of user 
- *  interface images, but do so via settings embedded in the css applied to certain elements
- *  instead of using the sprite-URL capability. As such if certain component metrics 
- *  (such as the height of a component or padding) are changed, then the image sprites may
- *  no longer work. In this case, spriting can be disabled by setting the JavaScript global
- *  variable <code>isc_spriting</code> to "off" before any of the Smart GWT libraries are loaded.
+ *  also support spriting of user interface images, but do so via settings embedded in the css 
+ *  applied to certain elements instead of using the sprite-URL capability. As such if certain 
+ *  component metrics (such as the height of a component or padding) are changed, then the image 
+ *  sprites may no longer work. In this case, spriting can be disabled by setting the JavaScript 
+ *  global variable <code>isc_spriting</code> to "off" before any of the Smart GWT libraries 
+ *  are loaded.
  *  For example:
  *  <pre>
  *    &lt;script&gt;isc_spriting = "off";&lt;/script&gt;
@@ -188,6 +192,11 @@ package com.smartgwt.client.docs;
  *  <a href='http://docs.smartclient.com' target='_blank'>QuickStart Guide</a>.
  *  
  *  <P>
+ *  For the most modern skins, <b>Tahoe</b>, <b>Obsidian</b>, <b>Stratus</b> and <b>Cascade</b>,
+ *  the recommended approach is to take advantage of the Sass templates provided with those 
+ * skins.  See the {@link com.smartgwt.client.docs.CustomSassSkins Custom Sass Skinning}
+ * discussion for more 
+ *  detail on leveraging that mechanism to customize a skin.
  *  <h4>Locating Skinning Properties</h4>
  *  <P>
  *  <b>Starting from the name of the component</b>

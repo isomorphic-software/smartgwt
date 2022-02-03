@@ -63,10 +63,12 @@ public class BatchUploaderLogicalStructure extends VStackLogicalStructure {
     public String errorMessageRowsNotParsed;
     public String errorMessageUndeterminedDelimiter;
     public String errorMessageUnterminatedQuote;
+    public String nextButtonTitle;
     public String partialCommit;
     public String partialCommitConfirmationMessage;
     public String partialCommitError;
     public String partialCommitPrompt;
+    public String previousButtonTitle;
     public DSRequest requestProperties;
     public String showCommitConfirmation;
     public String updatesRolledBackMessage;

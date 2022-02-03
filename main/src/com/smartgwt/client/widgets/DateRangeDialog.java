@@ -322,12 +322,16 @@ public class DateRangeDialog extends Window {
      * com.smartgwt.client.widgets.form.fields.RelativeDateItem}s, default true
      * @param rangeItemProperties properties for the DateRangeItem
      * @param windowProperties properties for the Window
-     * @param callback method to fire once user has input values, with a single parameter                           "criterion" of type {@link
-     * com.smartgwt.client.data.Criterion}.
-     * See {@link com.smartgwt.client.docs.Callback Callback}
+     * @param callback method to fire once user has input values, with a single                                     parameter "criterion" of
+     * type {@link com.smartgwt.client.data.Criterion}
      */
-    public static native void askForRange(boolean allowRelativeDates, DateRangeItem rangeItemProperties, DateRangeDialog windowProperties, String callback) /*-{
-        $wnd.isc.DateRangeDialog.askForRange(allowRelativeDates, rangeItemProperties.@com.smartgwt.client.core.DataClass::getJsObj()(), windowProperties == null ? null : windowProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()(), callback);
+    public static native void askForRange(boolean allowRelativeDates, DateRangeItem rangeItemProperties, DateRangeDialog windowProperties, DateRangeCallback callback) /*-{
+        $wnd.isc.DateRangeDialog.askForRange(allowRelativeDates, rangeItemProperties.@com.smartgwt.client.core.DataClass::getJsObj()(), windowProperties == null ? null : windowProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()(), 
+			$entry( function(criterion) { 
+				if(callback!=null) callback.@com.smartgwt.client.callbacks.DateRangeCallback::execute(Lcom/smartgwt/client/data/Criterion;)(
+					@com.smartgwt.client.data.Criterion::new(Lcom/google/gwt/core/client/JavaScriptObject;)(criterion)
+				);
+			}));
     }-*/;
 
 
@@ -361,6 +365,27 @@ public class DateRangeDialog extends Window {
     }-*/;
 
     // ***********************************************************
+
+
+
+    /**
+     * Helper method to launch a DateRangeDialog to have a date range input by the user.
+     * @param allowRelativeDates whether to allow relative date entry via 
+     * {@link com.smartgwt.client.widgets.form.fields.RelativeDateItem}s, default true
+     * @param rangeItemProperties properties for the DateRangeItem
+     * @param windowProperties properties for the Window
+     * @param callback method to fire once user has input values, with a single parameter
+     * "criterion" of type {@link com.smartgwt.client.data.Criterion}.
+     * See {@link com.smartgwt.client.docs.Callback Callback}
+     * @deprecated use 
+     * {@link #askForRange(boolean,DateRangeItem,DateRangeDialog,DateRangeCallback)} instead.
+     */
+    @Deprecated
+    public static native void askForRange(boolean allowRelativeDates, DateRangeItem rangeItemProperties, DateRangeDialog windowProperties, String callback) /*-{
+        $wnd.isc.DateRangeDialog.askForRange(allowRelativeDates, rangeItemProperties.@com.smartgwt.client.core.DataClass::getJsObj()(), 
+                                             windowProperties == null ? null : windowProperties.@com.smartgwt.client.widgets.BaseWidget::getConfig()(), callback);
+    }-*/;
+
 
     /**
      * Setter implementing the {@link com.smartgwt.client.core.LogicalStructure} interface,

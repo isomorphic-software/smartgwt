@@ -225,6 +225,73 @@ public class ButtonItem extends CanvasItem implements com.smartgwt.client.widget
     
 
     /**
+     * Default class used to construct the {@link com.smartgwt.client.tools.EditProxy} for this component when the component is
+     * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
+     *
+     * @param editProxyConstructor New editProxyConstructor value. Default value is "ButtonItemEditProxy"
+     * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     */
+    public void setEditProxyConstructor(String editProxyConstructor) {
+        setAttribute("editProxyConstructor", editProxyConstructor);
+    }
+
+    /**
+     * Default class used to construct the {@link com.smartgwt.client.tools.EditProxy} for this component when the component is
+     * {@link com.smartgwt.client.widgets.Canvas#setEditMode first placed into edit mode}.
+     *
+     * @return Current editProxyConstructor value. Default value is "ButtonItemEditProxy"
+     * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     */
+    public String getEditProxyConstructor()  {
+        return getAttributeAsString("editProxyConstructor");
+    }
+    
+
+    /**
+     * Criteria to be evaluated to determine whether this item should be enabled.  This property is incompatible with {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyWhen readOnlyWhen} and any setting you provide for the
+     * latter will be ignored if this property is set. <P> Criteria are evaluated against the {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValues form's current values} as well as the current {@link
+     * com.smartgwt.client.widgets.Canvas#getRuleScope rule context}.  Criteria are re-evaluated every time form values or the
+     * rule context changes, whether by end user action or by programmatic calls. <P> A basic criteria uses
+     * textMatchStyle:"exact". When specified in {@link com.smartgwt.client.docs.ComponentXML Component XML} this property
+     * allows {@link com.smartgwt.client.docs.XmlCriteriaShorthand shorthand formats} for defining criteria. <p> Note: A
+     * ButtonItem using enableWhen must have a {@link com.smartgwt.client.widgets.form.fields.FormItem#getName name} defined.
+     * {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getShouldSaveValue shouldSaveValue} can be set to
+     * <code>false</code> to prevent the field from storing its value into the form's values.
+     *
+     * @param enableWhen New enableWhen value. Default value is null
+     * @see com.smartgwt.client.docs.RuleCriteria RuleCriteria overview and related methods
+     */
+    public void setEnableWhen(AdvancedCriteria enableWhen) {
+        if (enableWhen instanceof Criterion) {
+            enableWhen.setAttribute("_constructor", "AdvancedCriteria");
+        }
+        setAttribute("enableWhen", enableWhen == null ? null : enableWhen.getJsObj());
+    }
+
+    /**
+     * Criteria to be evaluated to determine whether this item should be enabled.  This property is incompatible with {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyWhen readOnlyWhen} and any setting you provide for the
+     * latter will be ignored if this property is set. <P> Criteria are evaluated against the {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValues form's current values} as well as the current {@link
+     * com.smartgwt.client.widgets.Canvas#getRuleScope rule context}.  Criteria are re-evaluated every time form values or the
+     * rule context changes, whether by end user action or by programmatic calls. <P> A basic criteria uses
+     * textMatchStyle:"exact". When specified in {@link com.smartgwt.client.docs.ComponentXML Component XML} this property
+     * allows {@link com.smartgwt.client.docs.XmlCriteriaShorthand shorthand formats} for defining criteria. <p> Note: A
+     * ButtonItem using enableWhen must have a {@link com.smartgwt.client.widgets.form.fields.FormItem#getName name} defined.
+     * {@link com.smartgwt.client.widgets.form.fields.CanvasItem#getShouldSaveValue shouldSaveValue} can be set to
+     * <code>false</code> to prevent the field from storing its value into the form's values.
+     *
+     * @return Current enableWhen value. Default value is null
+     * @see com.smartgwt.client.docs.RuleCriteria RuleCriteria overview and related methods
+     */
+    public AdvancedCriteria getEnableWhen()  {
+        return new AdvancedCriteria(getAttributeAsJavaScriptObject("enableWhen"));
+    }
+    
+
+    /**
      * These items are in a row by themselves by default
      *
      * @param endRow New endRow value. Default value is true

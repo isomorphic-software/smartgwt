@@ -319,6 +319,33 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
     
 
     /**
+     * When this item is showing a  tree-based picker, which  nodes should be opened automatically.  Options are: <ul>
+     * <li>"none" - no nodes are opened automatically</li> <li>"root" - opens the  top-level node - in databound              
+     * tree-pickers, this node is always hidden</li> <li>"all" - when {@link
+     * com.smartgwt.client.widgets.tree.ResultTree#getLoadDataOnDemand loading data on demand}, opens the             
+     * top-level node and all of it's direct             descendants - otherwise, opens all loaded nodes </li> </ul>
+     *
+     * @param autoOpenTree New autoOpenTree value. Default value is "none"
+     */
+    public void setAutoOpenTree(String autoOpenTree) {
+        setAttribute("autoOpenTree", autoOpenTree);
+    }
+
+    /**
+     * When this item is showing a  tree-based picker, which  nodes should be opened automatically.  Options are: <ul>
+     * <li>"none" - no nodes are opened automatically</li> <li>"root" - opens the  top-level node - in databound              
+     * tree-pickers, this node is always hidden</li> <li>"all" - when {@link
+     * com.smartgwt.client.widgets.tree.ResultTree#getLoadDataOnDemand loading data on demand}, opens the             
+     * top-level node and all of it's direct             descendants - otherwise, opens all loaded nodes </li> </ul>
+     *
+     * @return Current autoOpenTree value. Default value is "none"
+     */
+    public String getAutoOpenTree()  {
+        return getAttributeAsString("autoOpenTree");
+    }
+    
+
+    /**
      * For databound pickLists (see  PickList.optionDataSource), by default Smart GWT will cache and re-use datasets shown by
      * pickLists in an LRU (least recently used) caching pattern. <P> Setting this flag to false avoids this caching for
      * situations where it is too aggressive.
@@ -396,6 +423,27 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
     
 
     /**
+     * Whether to show the picker as a flat list, or a collapsible tree. <p> The default value, "list", will use an instance of
+     * the  pickListConstructor as the picker - "tree" will  show an instance of  pickTreeConstructor.
+     *
+     * @param dataSetType New dataSetType value. Default value is "list"
+     */
+    public void setDataSetType(String dataSetType) {
+        setAttribute("dataSetType", dataSetType);
+    }
+
+    /**
+     * Whether to show the picker as a flat list, or a collapsible tree. <p> The default value, "list", will use an instance of
+     * the  pickListConstructor as the picker - "tree" will  show an instance of  pickTreeConstructor.
+     *
+     * @return Current dataSetType value. Default value is "list"
+     */
+    public String getDataSetType()  {
+        return getAttributeAsString("dataSetType");
+    }
+    
+
+    /**
      * Select the first option as the default value for this SelectItem.  <P> If options are derived from a dataSource, the
      * first value returned by the server will be used, otherwise the first value in the valueMap.  Note that setting this
      * property to true will trigger a fetch at soon as the form is created, because the form will try to establish a default
@@ -438,21 +486,33 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
 
     /**
      * If set, this item will display a value from another field to the user instead of showing the underlying data value for
-     * the {@link com.smartgwt.client.widgets.form.fields.FormItem#getName field name}. <P> The display value can be derived in
-     * two ways: <P> The item will display the displayField value from the  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValues record currently being edited} if  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue FormItem.useLocalDisplayFieldValue} is
-     * true, (or if unset and the conditions outlined in the documentation for that property are met).<br> Note that {@link
-     * com.smartgwt.client.data.DataSourceField#getUseLocalDisplayFieldValue DataSourceField.useLocalDisplayFieldValue} will
-     * default to true if not explicitly set in some cases, as described in the documentation for that property. <P> Otherwise
-     * this item will perform a fetch against the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
-     * FormItem.optionDataSource} to find a record where the {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getValueFieldName value field} matches this item's value, and use the
-     * <code>displayField</code>, or {@link com.smartgwt.client.widgets.form.fields.FormItem#getForeignDisplayField
-     * FormItem.foreignDisplayField}  value from that record.<br> Note that the specified displayField must be explicitly
-     * defined in the  optionDataSource to be used - see {@link
-     * com.smartgwt.client.widgets.form.fields.SelectItem#getDisplayFieldName getDisplayFieldName()} for more on this behavior.
-     * <P> This essentially allows the specified <code>optionDataSource</code> to be used as a server based {@link valueMap}.
+     * the {@link com.smartgwt.client.widgets.form.fields.FormItem#getName field name}. <P> This property is used in two ways:
+     * <P> The item will display the displayField value from the  {@link com.smartgwt.client.widgets.form.DynamicForm#getValues
+     * record currently being edited} if  {@link com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue
+     * FormItem.useLocalDisplayFieldValue} is true, (or if unset and the conditions outlined in the documentation for that
+     * property are met). <P> If this field has an {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
+     * FormItem.optionDataSource}, this property is used by default to identify which value to use as a display value in
+     * records from this related dataSource. In this usage the specified displayField must be  explicitly defined in the
+     * optionDataSource to be used - see  {@link com.smartgwt.client.widgets.form.fields.SelectItem#getDisplayFieldName
+     * getDisplayFieldName()} for more on this behavior.<br> If not using {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue local display values}, the display value
+     * for this item will be derived by performing a fetch against the  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource option dataSource}  to find a record where the
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueFieldName value field} matches  this item's value, and
+     * use the <code>displayField</code> value from that record.<br> In addition to this, PickList-based form items that
+     * provide a list of possible options such as the {@link com.smartgwt.client.widgets.form.fields.SelectItem} or {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem} will show the  <code>displayField</code> values to the user by
+     * default, allowing them to choose a new data value (see {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueField FormItem.valueField}) from a list of user-friendly
+     * display values. <P> This essentially allows the specified <code>optionDataSource</code> to be used as a server based
+     * {@link valueMap}. <P> If {@link com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue local
+     * display values} are being used and {@link com.smartgwt.client.widgets.form.fields.FormItem#getStoreDisplayValues
+     * FormItem.storeDisplayValues} is true, selecting a new value will update both the value for this field and the associated
+     * display-field value on the record being edited. <P> Note: Developers may specify the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getForeignDisplayField FormItem.foreignDisplayField} property  in
+     * addition to <code>displayField</code>. This is useful for cases where the display field name in the local dataSource
+     * differs from the display field name in the optionDataSource. See the documentation for {@link
+     * com.smartgwt.client.data.DataSourceField#getForeignDisplayField DataSourceField.foreignDisplayField} for more on this.
      * <P> Note that if <code>optionDataSource</code> is set and no valid display field is specified, {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName FormItem.getDisplayFieldName()} will return the
      * dataSource title  field by default. <P> If a displayField is specified for a freeform text based item (such as a  {@link
@@ -472,21 +532,33 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
 
     /**
      * If set, this item will display a value from another field to the user instead of showing the underlying data value for
-     * the {@link com.smartgwt.client.widgets.form.fields.FormItem#getName field name}. <P> The display value can be derived in
-     * two ways: <P> The item will display the displayField value from the  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValues record currently being edited} if  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue FormItem.useLocalDisplayFieldValue} is
-     * true, (or if unset and the conditions outlined in the documentation for that property are met).<br> Note that {@link
-     * com.smartgwt.client.data.DataSourceField#getUseLocalDisplayFieldValue DataSourceField.useLocalDisplayFieldValue} will
-     * default to true if not explicitly set in some cases, as described in the documentation for that property. <P> Otherwise
-     * this item will perform a fetch against the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
-     * FormItem.optionDataSource} to find a record where the {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getValueFieldName value field} matches this item's value, and use the
-     * <code>displayField</code>, or {@link com.smartgwt.client.widgets.form.fields.FormItem#getForeignDisplayField
-     * FormItem.foreignDisplayField}  value from that record.<br> Note that the specified displayField must be explicitly
-     * defined in the  optionDataSource to be used - see {@link
-     * com.smartgwt.client.widgets.form.fields.SelectItem#getDisplayFieldName getDisplayFieldName()} for more on this behavior.
-     * <P> This essentially allows the specified <code>optionDataSource</code> to be used as a server based {@link valueMap}.
+     * the {@link com.smartgwt.client.widgets.form.fields.FormItem#getName field name}. <P> This property is used in two ways:
+     * <P> The item will display the displayField value from the  {@link com.smartgwt.client.widgets.form.DynamicForm#getValues
+     * record currently being edited} if  {@link com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue
+     * FormItem.useLocalDisplayFieldValue} is true, (or if unset and the conditions outlined in the documentation for that
+     * property are met). <P> If this field has an {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
+     * FormItem.optionDataSource}, this property is used by default to identify which value to use as a display value in
+     * records from this related dataSource. In this usage the specified displayField must be  explicitly defined in the
+     * optionDataSource to be used - see  {@link com.smartgwt.client.widgets.form.fields.SelectItem#getDisplayFieldName
+     * getDisplayFieldName()} for more on this behavior.<br> If not using {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue local display values}, the display value
+     * for this item will be derived by performing a fetch against the  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource option dataSource}  to find a record where the
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueFieldName value field} matches  this item's value, and
+     * use the <code>displayField</code> value from that record.<br> In addition to this, PickList-based form items that
+     * provide a list of possible options such as the {@link com.smartgwt.client.widgets.form.fields.SelectItem} or {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem} will show the  <code>displayField</code> values to the user by
+     * default, allowing them to choose a new data value (see {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueField FormItem.valueField}) from a list of user-friendly
+     * display values. <P> This essentially allows the specified <code>optionDataSource</code> to be used as a server based
+     * {@link valueMap}. <P> If {@link com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue local
+     * display values} are being used and {@link com.smartgwt.client.widgets.form.fields.FormItem#getStoreDisplayValues
+     * FormItem.storeDisplayValues} is true, selecting a new value will update both the value for this field and the associated
+     * display-field value on the record being edited. <P> Note: Developers may specify the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getForeignDisplayField FormItem.foreignDisplayField} property  in
+     * addition to <code>displayField</code>. This is useful for cases where the display field name in the local dataSource
+     * differs from the display field name in the optionDataSource. See the documentation for {@link
+     * com.smartgwt.client.data.DataSourceField#getForeignDisplayField DataSourceField.foreignDisplayField} for more on this.
      * <P> Note that if <code>optionDataSource</code> is set and no valid display field is specified, {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName FormItem.getDisplayFieldName()} will return the
      * dataSource title  field by default. <P> If a displayField is specified for a freeform text based item (such as a  {@link
@@ -1101,8 +1173,8 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
     
 
     /**
-     * The Class to use when creating the pickList for a FormItem.  Must be a subclass of the builtin default, {@link
-     * com.smartgwt.client.widgets.form.PickListMenu PickListMenu}.
+     * The Class to use when creating a picker of  type "list" for  a FormItem.  Must be a subclass of the builtin default, 
+     * {@link com.smartgwt.client.widgets.form.PickListMenu PickListMenu}.
      *
      * @param pickListConstructor New pickListConstructor value. Default value is "PickListMenu"
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
@@ -1112,8 +1184,8 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
     }
 
     /**
-     * The Class to use when creating the pickList for a FormItem.  Must be a subclass of the builtin default, {@link
-     * com.smartgwt.client.widgets.form.PickListMenu PickListMenu}.
+     * The Class to use when creating a picker of  type "list" for  a FormItem.  Must be a subclass of the builtin default, 
+     * {@link com.smartgwt.client.widgets.form.PickListMenu PickListMenu}.
      *
      * @return Current pickListConstructor value. Default value is "PickListMenu"
      * @see com.smartgwt.client.docs.SCClassName SCClassName 
@@ -1295,6 +1367,29 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
     
 
     /**
+     * The Class to use when creating a picker of  type "tree" for  a FormItem.  Must be a subclass of the builtin default,  
+     * PickTreeMenu.
+     *
+     * @param pickTreeConstructor New pickTreeConstructor value. Default value is "PickTreeMenu"
+     * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     */
+    public void setPickTreeConstructor(String pickTreeConstructor) {
+        setAttribute("pickTreeConstructor", pickTreeConstructor);
+    }
+
+    /**
+     * The Class to use when creating a picker of  type "tree" for  a FormItem.  Must be a subclass of the builtin default,  
+     * PickTreeMenu.
+     *
+     * @return Current pickTreeConstructor value. Default value is "PickTreeMenu"
+     * @see com.smartgwt.client.docs.SCClassName SCClassName 
+     */
+    public String getPickTreeConstructor()  {
+        return getAttributeAsString("pickTreeConstructor");
+    }
+    
+
+    /**
      * Indicates whether or not this SelectItem will load its list of options  {@link
      * com.smartgwt.client.data.DataSource#getProgressiveLoading progressively}.  This property is copied onto the underlying
      * PickList.
@@ -1318,6 +1413,51 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
      */
     public Boolean getProgressiveLoading()  {
         return getAttributeAsBoolean("progressiveLoading", true);
+    }
+    
+
+    /**
+     * When this item is showing a  tree-based picker, this is  the {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getValueField id} of the record to use as the  {@link
+     * com.smartgwt.client.widgets.tree.Tree#getRootValue root} node.
+     *
+     * @param rootNodeId New rootNodeId value. Default value is null
+     */
+    public void setRootNodeId(String rootNodeId) {
+        setAttribute("rootNodeId", rootNodeId);
+    }
+
+    /**
+     * When this item is showing a  tree-based picker, this is  the {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getValueField id} of the record to use as the  {@link
+     * com.smartgwt.client.widgets.tree.Tree#getRootValue root} node.
+     *
+     * @return Current rootNodeId value. Default value is null
+     */
+    public String getRootNodeId()  {
+        return getAttributeAsString("rootNodeId");
+    }
+
+    /**
+     * When this item is showing a  tree-based picker, this is  the {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getValueField id} of the record to use as the  {@link
+     * com.smartgwt.client.widgets.tree.Tree#getRootValue root} node.
+     *
+     * @param rootNodeId New rootNodeId value. Default value is null
+     */
+    public void setRootNodeId(Integer rootNodeId) {
+        setAttribute("rootNodeId", rootNodeId);
+    }
+
+    /**
+     * When this item is showing a  tree-based picker, this is  the {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem#getValueField id} of the record to use as the  {@link
+     * com.smartgwt.client.widgets.tree.Tree#getRootValue root} node.
+     *
+     * @return Current rootNodeId value. Default value is null
+     */
+    public Integer getRootNodeIdAsInt()  {
+        return getAttributeAsInt("rootNodeId");
     }
     
 
@@ -2014,9 +2154,8 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
 	/**
      * Method to show a picker for this item. By default this method is called if the user clicks on a {@link
      * com.smartgwt.client.widgets.form.fields.SelectItem#getShowPickerIcon pickerIcon}.  May also be called programmatically.
-     * <P> Default implementation lazily creates and shows the {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getPicker Picker Autochild}. May be overridden to implement some custom
-     * picker for this item.
+     * <P> Overridden from the default {@link com.smartgwt.client.widgets.form.fields.FormItem#showPicker
+     * FormItem.showPicker()} implementation to show the PickList
      */
     public native void showPicker() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
@@ -2569,31 +2708,31 @@ public class SelectItem extends FormItem implements PickList, com.smartgwt.clien
 
 
     /**
-     * Set the properties to be applied to the pickList created for this Form Item.
+     * Allows developers to designate a {@link com.smartgwt.client.widgets.form.PickListMenu} 
+     * as a template containing arbitrary properties to apply to the pickList that will be
+     * created for this FormItem.
      * <P>
-     * <i>Note</i>: Not every ListGrid property is supported when assigned to a pickList.
-     * Where there is a dedicated API on the form item (such as 
-     * {@link com.smartgwt.client.widgets.form.fields.PickList#setPickListCellHeight setPickListCellHeight()}),
-     * we recommend that be used in favor of setting the equivalent property on the 
-     * <code>pickListProperties</code> block.
+     * <i>Note</i>: Not every PickListMenu / ListGrid property is supported when assigned to a pickList.
+     * Where there is a dedicated API on the form item (such as
+     * {@link com.smartgwt.client.widgets.form.fields.PickList#setPickListCellHeight}), we recommend
+     * that be used in favor of setting the equivalent property directly using this API.
      * <P>
-     * <i>PickLists and {@link com.smartgwt.client.widgets.ListGrid#setShowFilterEditor setShowFilterEditor()}:</i>
+     * <i>PickLists and {@link com.smartgwt.client.widgets.grid.ListGrid#setShowFilterEditor}:</i>
      * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem ComboBoxItems} do not support 
      * setting <code>showFilterEditor</code> to true on pickListProperties. 
-     * This combination of settings leads to an ambiguous user
-     * exprience as the two sets of filter-criteria (those from the text-box and those from the 
-     * pickList filter editor) interact with each other.<br>
-     * {@link com.smartgwt.client.widgets.form.fields.SelectItem#setPickListProperties setPickListProperties()}
-     * is a valid way to create a filterable pickList, on 
-     * a SelectItem, but this setting is not supported on a SelectItem with 
-     * {@link com.smartgwt.client.widgets.form.fields.SelectItem#setMultiple setMultiple()} set to true - 
-     * this combination of settings can cause a 
-     * selected value to be filtered out of view at which point further selection changes will 
-     * discard that value.<br>
-     * In general we recommend the ComboBoxItem class 
-     * (with {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#setAddUnknownValues setAddUnknownValues()} 
-     * set as appropriate) as a better interface for filtering pickList data.
-     *
+     * This combination of settings leads to an ambiguous user experience as the two sets of
+     * filter-criteria (those from the text-box and those from the pickList filter editor) interact 
+     * with each other.<br>
+     * Calling {@link com.smartgwt.client.widgets.grids.ListGrid#setShowFilterEditor setShowFilterEditor}
+     * on the PickListMenu passed to {@link com.smartgwt.client.widgets.form.fields.SelectItem#setPickListProperties}
+     * is a valid way to create a filterable pickList, on a SelectItem, but this setting is not 
+     * supported on a SelectItem with {@link com.smartgwt.client.widgets.form.fields.SelectItem#setMultiple multiple set to true}
+     * - this combination of settings can cause a selected value to be filtered out of view at which
+     * point further selection changes will discard that value.<br>
+     * In general we recommend the ComboBoxItem class (with 
+     * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem#setAddUnknownValues addUnknownValues set as appropriate})
+     * as a better interface for filtering pickList data.
+     * 
      * @param pickListProperties the pick list properties
      */
     public void setPickListProperties(ListGrid pickListProperties) {

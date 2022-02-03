@@ -72,6 +72,7 @@ public class ListGridLogicalStructure extends VLayoutLogicalStructure {
     public String applyFormulaAfterSummary;
     public String applyRowNumberStyle;
     public String arrowKeyAction;
+    public String arrowKeyEditAction;
     public String asynchGroupingPrompt;
     public String autoComplete;
     public String autoConfirmSaveEdits;
@@ -176,6 +177,9 @@ public class ListGridLogicalStructure extends VLayoutLogicalStructure {
     public String detailField;
     public String discardEditsOnHideField;
     public String discardEditsSaveButtonTitle;
+    public String dragHandleFieldTitle;
+    public String dragHandleIcon;
+    public String dragHandleIconSize;
     public String dragScrollRedrawDelay;
     public String dragTrackerMode;
     public String drawAllMaxCells;
@@ -216,6 +220,8 @@ public class ListGridLogicalStructure extends VLayoutLogicalStructure {
     public String exportFieldAlignments;
     public String exportFieldWidths;
     public String exportHeaderHeights;
+    public String exportHiddenFieldWidth;
+    public String exportRawNumbers;
     public String exportRawValues;
     public String exportWidthScale;
     public String exportWrapHeaderTitles;
@@ -286,6 +292,7 @@ public class ListGridLogicalStructure extends VLayoutLogicalStructure {
     public String headerShadowVOffset;
     public String headerSpanHeight;
     public String headerTitleStyle;
+    public String headerTitleVAlign;
     public String hideEmptySummaryRow;
     public String hiliteCanReplaceValue;
     public String hiliteEditorSpanTitleSeparator;
@@ -368,6 +375,9 @@ public class ListGridLogicalStructure extends VLayoutLogicalStructure {
     public String reselectOnUpdateNotifications;
     public String resizeFieldsInRealTime;
     public String reverseRTLAlign;
+    public String rotatedHeaderMenuButtonHeight;
+    public String rotatedHeaderMenuButtonWidth;
+    public String rotateHeaderTitles;
     public String rowEndEditAction;
     public String rowNumberStart;
     public String rowNumberStyle;
@@ -419,6 +429,7 @@ public class ListGridLogicalStructure extends VLayoutLogicalStructure {
     public String showHilitesInGroupSummary;
     public String showHover;
     public String showHoverComponents;
+    public String showInitialDragHandles;
     public String showPartialSelection;
     public String showRecordComponents;
     public String showRollOver;
@@ -437,6 +448,7 @@ public class ListGridLogicalStructure extends VLayoutLogicalStructure {
     public String shrinkForFreeze;
     public String singleCellValueProperty;
     public String skinImgDir;
+    public String skipLineBreaks;
     public String sortArrowMenuButtonSpaceOffset;
     public ImgProperties sortAscendingImage;
     public String sortBinaryByFileName;

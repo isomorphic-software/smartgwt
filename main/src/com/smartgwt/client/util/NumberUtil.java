@@ -227,11 +227,14 @@ public class NumberUtil {
 	/**
      * Returns a clamped number between a min and max.
      *  <p>
+     *  
+     *  
      *  <pre>
-     *  var clamped = isc.NumberUtil.clamp(10, 0, 5); // Returns 5 because 10 is greater than 5
-     *  var clamped = isc.NumberUtil.clamp(-3, 0, 5); // Returns 0 because -3 is less than 0
-     *  var clamped = isc.NumberUtil.clamp(4, 0, 5); // Returns 4 because 4 is between 0 and 5
+     *  int clamped = NumberUtil.clamp(10, 0, 5); // Returns 5 because 10 is greater than 5
+     *  int clamped = NumberUtil.clamp(-3, 0, 5); // Returns 0 because -3 is less than 0
+     *  int clamped = NumberUtil.clamp(4, 0, 5); // Returns 4 because 4 is between 0 and 5
      *  </pre>
+     *  
      * 
      * @param number the number to clamp
      * @param min the number to return if the number is lower than min

@@ -210,6 +210,7 @@ public class AdvancedCriteria extends Criterion {
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param strictSQLFiltering New strictSQLFiltering value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public void setStrictSQLFiltering(Boolean strictSQLFiltering) {
         setAttribute("strictSQLFiltering", strictSQLFiltering);
@@ -220,6 +221,7 @@ public class AdvancedCriteria extends Criterion {
      * See {@link com.smartgwt.client.data.DataSource#getStrictSQLFiltering this discussion} for more detail.
      *
      * @return Current strictSQLFiltering value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public Boolean getStrictSQLFiltering()  {
         return getAttributeAsBoolean("strictSQLFiltering", true);

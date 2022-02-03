@@ -95,7 +95,7 @@ import com.smartgwt.logicalstructure.widgets.tools.*;
 
 /**
  * {@link com.smartgwt.client.widgets.grid.ListGrid} subclass used, by default, by FormItems which implement PickList to
- * display a list of selectable options.  Can be subclassed, customized and assigned to FormItems  via the {@link
+ * display a  flat list of selectable  options. <P> Can be subclassed, customized and assigned to FormItems  via the {@link
  * com.smartgwt.client.widgets.form.fields.ComboBoxItem#getPickListConstructor pickListConstructor} attribute.
  */
 @BeanFactory.FrameworkClass

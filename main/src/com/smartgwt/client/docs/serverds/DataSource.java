@@ -480,18 +480,30 @@ public class DataSource {
      *  For example, this code accomplishes part of the binding to the 
      * <a href='http://www.google.com/search?q=sforce+partner+wsdl' target='_blank'>SalesForce partner
      * web services</a>
+     *  
+     *  
      *  <pre>
-     *  isc.DataSource.create({
-     *     serviceNamespace : "urn:partner.soap.sforce.com",
-     *     operationBindings : [
-     *         { operationType:"fetch", wsOperation:"query", recordName: "sObject" },
-     *         { operationType:"update", wsOperation:"update", recordName: "SaveResult" },
-     *         { operationType:"add", wsOperation:"create", recordName: "SaveResult" },
-     *         { operationType:"remove", wsOperation:"delete", recordName: "DeleteResult" }
-     *     ],
-     *     ...
-     *  }); 
+     *       DataSource dataSource = new DataSource();
+     *       dataSource.setServiceNamespace("urn:partner.soap.sforce.com");
+     *       OperationBinding fetch = new OperationBinding();
+     *       fetch.setOperationType(DSOperationType.FETCH);
+     *       fetch.setWsOperation("query");
+     *       fetch.setRecordName("sObject");
+     *       OperationBinding add = new OperationBinding();
+     *       add.setOperationType(DSOperationType.ADD);
+     *       add.setWsOperation("create");
+     *       add.setRecordName("SaveResult");
+     *       OperationBinding update = new OperationBinding();
+     *       update.setOperationType(DSOperationType.UPDATE);
+     *       update.setWsOperation("update");
+     *       update.setRecordName("SaveResult");
+     *       OperationBinding remove = new OperationBinding();
+     *       remove.setOperationType(DSOperationType.REMOVE);
+     *       remove.setWsOperation("delete");
+     *       remove.setRecordName("DeleteResult");
+     *       dataSource.setOperationBindings(fetch, add, update, remove);
      *  </pre>
+     *  
      *  NOTE: additional code is required to handle authentication and other details, see the
      *  complete code in smartclientSDK/examples/databinding/SalesForce.
      *  <P>
@@ -508,11 +520,11 @@ public class DataSource {
      *  <P>
      *  This also means that for a read-only DataSource, that is, a DataSource only capable of fetch
      *  operations, operationBindings need not be specified, and instead all operationBinding
-     *  properties can be set on the DataSource itself.  An example of using OperationBinding
-     *  properties directly on the DataSource in order to read an RSS feed can be found here:
-     *  <P>
-     * ${isc.DocUtils.linkForStandaloneExample('/examples/databinding/rss_databinding.html',
-     * '/examples/databinding/rss_databinding.html')}
+     * properties can be set on the DataSource itself. In the <a
+     * href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_rss"
+     * target="examples">RSS Feed</a>
+     *  sample, you can see an example of using OperationBinding properties directly on the 
+     *  DataSource in order to read an RSS feed.
      *
      * <p>Default value is null
      * @see com.smartgwt.client.data.OperationBinding
@@ -866,13 +878,24 @@ public class DataSource {
     public String auditTimeStampFieldName;
 
     /**
+     * When {@link com.smartgwt.client.data.DataSource#getMockMode mockMode} is enabled, criteria to
+     * use in an initial "fetch" DSRequest to retrieve sample data.
+     *
+     * <p>Default value is null
+     */
+    public Criteria mockDataCriteria;
+
+    /**
      * Indicates the dataset size that will cause Smart GWT Server to automatically switch into {@link
      * com.smartgwt.client.docs.serverds.DataSource#progressiveLoading progressive loading mode} for
      * this DataSource. To prevent automatic switching to progressive loading, set this property to
-     * -1.
+     * -1. This may also be prevented on a per-request basis by setting {@link
+     * com.smartgwt.client.data.DSRequest#getProgressiveLoading DSRequest.progressiveLoading} to
+     * <code>false</code>.
      *
      * <p>Default value is 200000
      * @see com.smartgwt.client.docs.serverds.DataSource#progressiveLoading
+     * @see com.smartgwt.client.data.DSRequest#getProgressiveLoading
      * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
      */
     public int progressiveLoadingThreshold;
@@ -1945,6 +1968,15 @@ public class DataSource {
      * @see com.smartgwt.client.data.OperationBinding#getDataTransport
      */
     public String jsonPrefix;
+
+    /**
+     * When {@link com.smartgwt.client.data.DataSource#getMockMode mockMode} is enabled, number of
+     * rows of data to retrieve via an initial "fetch" DSRequest, for use as sample data.  Set to null
+     * to retrieve all available rows.
+     *
+     * <p>Default value is 75
+     */
+    public Integer mockDataRows;
 
     /**
      * For DataSources with type {@link com.smartgwt.client.types.DSServerType

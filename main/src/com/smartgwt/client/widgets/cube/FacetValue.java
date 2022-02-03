@@ -325,6 +325,29 @@ public class FacetValue extends RefDataClass {
     
 
     /**
+     * Initial {@link com.smartgwt.client.widgets.cube.CubeGrid#getCanMinimizeFacets minimize state} for this node.  Defaults
+     * to {@link com.smartgwt.client.widgets.cube.Facet#getMinimized Facet.minimized}. <P> <b>Note:</b>  This property is
+     * specific to {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrids}.
+     *
+     * @param minimized New minimized value. Default value is facet.minimized
+     */
+    public void setMinimized(Boolean minimized) {
+        setAttribute("minimized", minimized);
+    }
+
+    /**
+     * Initial {@link com.smartgwt.client.widgets.cube.CubeGrid#getCanMinimizeFacets minimize state} for this node.  Defaults
+     * to {@link com.smartgwt.client.widgets.cube.Facet#getMinimized Facet.minimized}. <P> <b>Note:</b>  This property is
+     * specific to {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrids}.
+     *
+     * @return Current minimized value. Default value is facet.minimized
+     */
+    public Boolean getMinimized()  {
+        return getAttributeAsBoolean("minimized", true);
+    }
+    
+
+    /**
      * For tree facets ({@link com.smartgwt.client.widgets.cube.Facet#getIsTree facet.isTree}), id of this facetValue's parent
      * facetValue. <P> <b>Note:</b>  This property is specific to {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrids}.
      * <p><b>Note : </b> This is an advanced setting</p>

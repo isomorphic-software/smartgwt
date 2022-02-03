@@ -29,4 +29,3 @@ public interface TitleFormatter {
      */
 	public String formatTitle(StatefulCanvas component, String title);
 } 
-

@@ -548,6 +548,30 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     
 
     /**
+     * When to update the {@link com.smartgwt.client.widgets.Canvas#layoutChildren child layout} for a {@link
+     * com.smartgwt.client.widgets.Canvas#animateResize size animation}.  Updating the child layout more often may improve
+     * appearance, but risks prohibitive overhead with more complicated widget hierarchies.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param animateResizeLayoutMode New animateResizeLayoutMode value. Default value is "atEnd"
+     */
+    public void setAnimateResizeLayoutMode(AnimationLayoutMode animateResizeLayoutMode) {
+        setAttribute("animateResizeLayoutMode", animateResizeLayoutMode == null ? null : animateResizeLayoutMode.getValue(), true);
+    }
+
+    /**
+     * When to update the {@link com.smartgwt.client.widgets.Canvas#layoutChildren child layout} for a {@link
+     * com.smartgwt.client.widgets.Canvas#animateResize size animation}.  Updating the child layout more often may improve
+     * appearance, but risks prohibitive overhead with more complicated widget hierarchies.
+     *
+     * @return Current animateResizeLayoutMode value. Default value is "atEnd"
+     */
+    public AnimationLayoutMode getAnimateResizeLayoutMode()  {
+        return EnumUtil.getEnum(AnimationLayoutMode.values(), getAttribute("animateResizeLayoutMode"));
+    }
+    
+
+    /**
      * Default time for performing an animated resize.  If unset, <code>this.animateTime</code> will be used by default instead
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -726,98 +750,6 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     }
     
     
-
-    /**
-     * If true, this canvas will draw itself immediately after it is created.
-     *  <P>
-     *  <b>Note</b> that you should turn this OFF for any canvases that are provided as children
-     *  of other canvases, or they will draw initially, then be clear()ed and drawn again when
-     *  added as children, causing a large performance penalty.
-     *  <P>
-     *  For example, the following code is incorrect and will cause extra draw()s:
-     *  <P>
-     *  <pre>
-     *      isc.Layout.create({
-     *          members : [
-     *              isc.ListGrid.create()
-     *          ]
-     *      });
-     *  </pre>
-     *  It should instead be:
-     *  <pre>
-     *      isc.Layout.create({
-     *          members : [
-     *              isc.ListGrid.create(<b>{ autoDraw: false }</b>)
-     *          ]
-     *      });
-     *  </pre>
-     *  In order to avoid unwanted autoDrawing systematically, it is recommend that you call
-     *  {@link com.smartgwt.client.util.isc#setAutoDraw isc.setAutoDraw(false)} immediately after Smart GWT is loaded
-     *  and before any components are created, then set <code>autoDraw:true</code> or call
-     *  draw() explicitly to draw components.
-     *  <P>
-     *  Otherwise, if the global setting for autoDraw remains <code>true</code>, you must set
-     *  autoDraw:false, as shown above, on every component in your application that
-     *  should not immediately draw: all Canvas children, Layout members, Window items, Tab
-     *  panes, etc, however deeply nested.  Forgetting to set autoDraw:false will result in one
-     *  more clear()s - these are reported on the Results tab of the
-     *  {@link com.smartgwt.client.docs.Debugging Developer Console}, and can be tracked to individual components by
-     *  using the "clears" log category in the Developer Console.
-     *
-     * @param autoDraw New autoDraw value. Default value is true
-     * @throws IllegalStateException this property cannot be changed after the component has been created
-     * @see com.smartgwt.client.docs.Drawing Drawing overview and related methods
-     * 
-     */
-    public void setAutoDraw(Boolean autoDraw)  throws IllegalStateException {
-        setAttribute("autoDraw", autoDraw, false);
-    }
-
-    /**
-     * If true, this canvas will draw itself immediately after it is created.
-     *  <P>
-     *  <b>Note</b> that you should turn this OFF for any canvases that are provided as children
-     *  of other canvases, or they will draw initially, then be clear()ed and drawn again when
-     *  added as children, causing a large performance penalty.
-     *  <P>
-     *  For example, the following code is incorrect and will cause extra draw()s:
-     *  <P>
-     *  <pre>
-     *      isc.Layout.create({
-     *          members : [
-     *              isc.ListGrid.create()
-     *          ]
-     *      });
-     *  </pre>
-     *  It should instead be:
-     *  <pre>
-     *      isc.Layout.create({
-     *          members : [
-     *              isc.ListGrid.create(<b>{ autoDraw: false }</b>)
-     *          ]
-     *      });
-     *  </pre>
-     *  In order to avoid unwanted autoDrawing systematically, it is recommend that you call
-     *  {@link com.smartgwt.client.util.isc#setAutoDraw isc.setAutoDraw(false)} immediately after Smart GWT is loaded
-     *  and before any components are created, then set <code>autoDraw:true</code> or call
-     *  draw() explicitly to draw components.
-     *  <P>
-     *  Otherwise, if the global setting for autoDraw remains <code>true</code>, you must set
-     *  autoDraw:false, as shown above, on every component in your application that
-     *  should not immediately draw: all Canvas children, Layout members, Window items, Tab
-     *  panes, etc, however deeply nested.  Forgetting to set autoDraw:false will result in one
-     *  more clear()s - these are reported on the Results tab of the
-     *  {@link com.smartgwt.client.docs.Debugging Developer Console}, and can be tracked to individual components by
-     *  using the "clears" log category in the Developer Console.
-     *
-     * @return Current autoDraw value. Default value is true
-     * @see com.smartgwt.client.docs.Drawing Drawing overview and related methods
-     * 
-     */
-    public Boolean getAutoDraw()  {
-        Boolean result = getAttributeAsBoolean("autoDraw");
-        return result == null ? true : result;
-    }
     
 
     /**
@@ -1836,54 +1768,79 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *  if a DataSource is specified on either the component or a parent thereof.
      *  <P>
      *  To provide a simple example - if a complex object existed with the following format:
+     *  
+     *  
      *  <pre>
-     *  { companyName:"Some Company",
-     *    address:{    street:"123 Main Street", city:"New York", state:"NY"  }
-     *  }
+     *       Map values = new HashMap();
+     *       values.put("companyName", "Some company");
+     *       Map addressMap = new HashMap();
+     *       addressMap.put("street", "123 Main Street");
+     *       addressMap.put("city", "New York");
+     *       addressMap.put("state", "NY");
+     *       values.put("address", addressMap);
      *  </pre>
+     *  
      *  a developer could specify a DynamicForm instance with 'dataPath' set to "address" to edit
      *  the nested address object:
+     *  
+     *  
      *  <pre>
-     *  isc.ValuesManager.create({
-     *       ID:'vm',
-     *       values: { companyName:"Some Company",
-     *               address:{    street:"123 Main Street", city:"New York", state:"NY"  }
-     *       }
-     *  });
+     *       ValuesManager vm = new ValuesManager();
+     *       Map values = new HashMap();
+     *       values.put("companyName", "Some company");
+     *       Map addressMap = new HashMap();
+     *       addressMap.put("street", "123 Main Street");
+     *       addressMap.put("city", "New York");
+     *       addressMap.put("state", "NY");
+     *       values.put("address", addressMap);
+     *       vm.setValues(values);
      * 
-     *  isc.DynamicForm.create({
-     *       valuesManager:"vm",
-     *       dataPath:"address",
-     *       items:[{name:"street"}, {name:"city"}, {name:"state"}]
-     *  });
+     *       DynamicForm form = new DynamicForm();
+     *       form.setValuesManager(vm);
+     *       form.setDataPath("address");  
+     *       TextItem streetField = new TextItem("street");
+     *       TextItem cityField = new TextItem("city");
+     *       TextItem stateField = new TextItem("state");
+     *       form.setItems(streetField, cityField, stateField);
      *  </pre>
+     *  
      *  If a component is specified with a <code>dataPath</code> attribute but does not have an
      *  explicitly specified valuesManager, it will check its parent element chain for a specified
      *  valuesManager and automatically bind to that. This simplifies binding multiple components used
      *  to view or edit a nested data structure as the valuesManager needs only be defined once at a
      *  reasonably high level component. Here's an example of this approach:
+     *  
+     *  
      *  <pre>
-     *  isc.ValuesManager.create({
-     *       ID:'vm',
-     *       values: { companyName:"Some Company",
-     *               address:{    street:"123 Main Street", city:"New York", state:"NY"  }
-     *       }
-     *  });
+     *       ValuesManager vm = new ValuesManager();
+     *       Map values = new HashMap();
+     *       values.put("companyName", "Some company");
+     *       Map addressMap = new HashMap();
+     *       addressMap.put("street", "123 Main Street");
+     *       addressMap.put("city", "New York");
+     *       addressMap.put("state", "NY");
+     *       values.put("address", addressMap);
+     *       vm.setValues(values);
      * 
-     *  isc.Layout.create({
-     *       valuesManager:vm,
-     *       members:[
-     *           isc.DynamicForm.create({
-     *               dataPath:"/",
-     *               items:[{name:"companyName"}]
-     *           }),
-     *           isc.DynamicForm.create({
-     *               dataPath:"address",
-     *               items:[{name:"street"}, {name:"city"}, {name:"state"}]
-     *           })
-     *       ]
-     *  });
+     *       Layout layout = new Layout();
+     *       layout.setValuesManager(vm);
+     * 
+     *       DynamicForm form = new DynamicForm();
+     *       form.setDataPath("/");  
+     *       TextItem companyNameField = new TextItem("companyName");
+     *       form.setItems(companyNameField);
+     * 
+     *       DynamicForm form1 = new DynamicForm();
+     *       form1.setDataPath("address");  
+     *       TextItem streetField = new TextItem("street");
+     *       TextItem cityField = new TextItem("city");
+     *       TextItem stateField = new TextItem("state");
+     *       form1.setItems(streetField, cityField, stateField);
+     * 
+     *       layout.addMember(form);
+     *       layout.addMember(form1);
      *  </pre>
+     *  
      *  Note that in this case the valuesManager is specified on a Layout, which has no 'values'
      *  management behavior of its own, but contains items with a specified dataPath which do. In this
      *  example you'd see 2 forms allowing editing of the nested data structure.
@@ -2008,54 +1965,79 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *  if a DataSource is specified on either the component or a parent thereof.
      *  <P>
      *  To provide a simple example - if a complex object existed with the following format:
+     *  
+     *  
      *  <pre>
-     *  { companyName:"Some Company",
-     *    address:{    street:"123 Main Street", city:"New York", state:"NY"  }
-     *  }
+     *       Map values = new HashMap();
+     *       values.put("companyName", "Some company");
+     *       Map addressMap = new HashMap();
+     *       addressMap.put("street", "123 Main Street");
+     *       addressMap.put("city", "New York");
+     *       addressMap.put("state", "NY");
+     *       values.put("address", addressMap);
      *  </pre>
+     *  
      *  a developer could specify a DynamicForm instance with 'dataPath' set to "address" to edit
      *  the nested address object:
+     *  
+     *  
      *  <pre>
-     *  isc.ValuesManager.create({
-     *       ID:'vm',
-     *       values: { companyName:"Some Company",
-     *               address:{    street:"123 Main Street", city:"New York", state:"NY"  }
-     *       }
-     *  });
+     *       ValuesManager vm = new ValuesManager();
+     *       Map values = new HashMap();
+     *       values.put("companyName", "Some company");
+     *       Map addressMap = new HashMap();
+     *       addressMap.put("street", "123 Main Street");
+     *       addressMap.put("city", "New York");
+     *       addressMap.put("state", "NY");
+     *       values.put("address", addressMap);
+     *       vm.setValues(values);
      * 
-     *  isc.DynamicForm.create({
-     *       valuesManager:"vm",
-     *       dataPath:"address",
-     *       items:[{name:"street"}, {name:"city"}, {name:"state"}]
-     *  });
+     *       DynamicForm form = new DynamicForm();
+     *       form.setValuesManager(vm);
+     *       form.setDataPath("address");  
+     *       TextItem streetField = new TextItem("street");
+     *       TextItem cityField = new TextItem("city");
+     *       TextItem stateField = new TextItem("state");
+     *       form.setItems(streetField, cityField, stateField);
      *  </pre>
+     *  
      *  If a component is specified with a <code>dataPath</code> attribute but does not have an
      *  explicitly specified valuesManager, it will check its parent element chain for a specified
      *  valuesManager and automatically bind to that. This simplifies binding multiple components used
      *  to view or edit a nested data structure as the valuesManager needs only be defined once at a
      *  reasonably high level component. Here's an example of this approach:
+     *  
+     *  
      *  <pre>
-     *  isc.ValuesManager.create({
-     *       ID:'vm',
-     *       values: { companyName:"Some Company",
-     *               address:{    street:"123 Main Street", city:"New York", state:"NY"  }
-     *       }
-     *  });
+     *       ValuesManager vm = new ValuesManager();
+     *       Map values = new HashMap();
+     *       values.put("companyName", "Some company");
+     *       Map addressMap = new HashMap();
+     *       addressMap.put("street", "123 Main Street");
+     *       addressMap.put("city", "New York");
+     *       addressMap.put("state", "NY");
+     *       values.put("address", addressMap);
+     *       vm.setValues(values);
      * 
-     *  isc.Layout.create({
-     *       valuesManager:vm,
-     *       members:[
-     *           isc.DynamicForm.create({
-     *               dataPath:"/",
-     *               items:[{name:"companyName"}]
-     *           }),
-     *           isc.DynamicForm.create({
-     *               dataPath:"address",
-     *               items:[{name:"street"}, {name:"city"}, {name:"state"}]
-     *           })
-     *       ]
-     *  });
+     *       Layout layout = new Layout();
+     *       layout.setValuesManager(vm);
+     * 
+     *       DynamicForm form = new DynamicForm();
+     *       form.setDataPath("/");  
+     *       TextItem companyNameField = new TextItem("companyName");
+     *       form.setItems(companyNameField);
+     * 
+     *       DynamicForm form1 = new DynamicForm();
+     *       form1.setDataPath("address");  
+     *       TextItem streetField = new TextItem("street");
+     *       TextItem cityField = new TextItem("city");
+     *       TextItem stateField = new TextItem("state");
+     *       form1.setItems(streetField, cityField, stateField);
+     * 
+     *       layout.addMember(form);
+     *       layout.addMember(form1);
      *  </pre>
+     *  
      *  Note that in this case the valuesManager is specified on a Layout, which has no 'values'
      *  management behavior of its own, but contains items with a specified dataPath which do. In this
      *  example you'd see 2 forms allowing editing of the nested data structure.
@@ -4520,6 +4502,36 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     
 
     /**
+     * Optional name for the canvas, which can later be used to reference it.  Need not be globally unique, but should be
+     * unique within the {@link com.smartgwt.client.widgets.Canvas#getParentCanvas parent} to get defined results for {@link
+     * com.smartgwt.client.widgets.layout.Layout#getMember Layout.getMember()} and {@link
+     * com.smartgwt.client.widgets.layout.Layout#getMemberNumber Layout.getMemberNumber()}.
+     *
+     * @param name New name value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.Canvas#setID
+     * @see com.smartgwt.client.docs.Identifier Identifier 
+     */
+    public void setName(String name)  throws IllegalStateException {
+        setAttribute("name", name, false);
+    }
+
+    /**
+     * Optional name for the canvas, which can later be used to reference it.  Need not be globally unique, but should be
+     * unique within the {@link com.smartgwt.client.widgets.Canvas#getParentCanvas parent} to get defined results for {@link
+     * com.smartgwt.client.widgets.layout.Layout#getMember Layout.getMember()} and {@link
+     * com.smartgwt.client.widgets.layout.Layout#getMemberNumber Layout.getMemberNumber()}.
+     *
+     * @return Current name value. Default value is null
+     * @see com.smartgwt.client.widgets.Canvas#getID
+     * @see com.smartgwt.client.docs.Identifier Identifier 
+     */
+    public String getName()  {
+        return getAttributeAsString("name");
+    }
+    
+
+    /**
      * If true, this canvas will receive all mouse-clicks as single {@link com.smartgwt.client.widgets.Canvas#addClickHandler
      * click} events rather than as {@link com.smartgwt.client.widgets.Canvas#addDoubleClickHandler doubleClick} events.
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -5008,6 +5020,37 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      */
     public ProportionalResizeMode getProportionalResizing()  {
         return EnumUtil.getEnum(ProportionalResizeMode.values(), getAttribute("proportionalResizing"));
+    }
+    
+
+    /**
+     * Whether this canvas should receive {@link eventHandling events} from its scrollbars, which are {@link
+     * com.smartgwt.client.widgets.Canvas#getPeers peers}.  Normally, a canvas only gets bubbled events from its {@link
+     * com.smartgwt.client.widgets.Canvas#getChildren children}. <P> Note that this property only has an impact if {@link
+     * com.smartgwt.client.widgets.Canvas#getShowCustomScrollbars showCustomScrollbars} is true.
+     *
+     * @param receiveScrollbarEvents New receiveScrollbarEvents value. Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.Canvas#setShowCustomScrollbars
+     * @see com.smartgwt.client.docs.Scrolling Scrolling overview and related methods
+     */
+    public void setReceiveScrollbarEvents(boolean receiveScrollbarEvents)  throws IllegalStateException {
+        setAttribute("receiveScrollbarEvents", receiveScrollbarEvents, false);
+    }
+
+    /**
+     * Whether this canvas should receive {@link eventHandling events} from its scrollbars, which are {@link
+     * com.smartgwt.client.widgets.Canvas#getPeers peers}.  Normally, a canvas only gets bubbled events from its {@link
+     * com.smartgwt.client.widgets.Canvas#getChildren children}. <P> Note that this property only has an impact if {@link
+     * com.smartgwt.client.widgets.Canvas#getShowCustomScrollbars showCustomScrollbars} is true.
+     *
+     * @return Current receiveScrollbarEvents value. Default value is true
+     * @see com.smartgwt.client.widgets.Canvas#getShowCustomScrollbars
+     * @see com.smartgwt.client.docs.Scrolling Scrolling overview and related methods
+     */
+    public boolean getReceiveScrollbarEvents()  {
+        Boolean result = getAttributeAsBoolean("receiveScrollbarEvents");
+        return result == null ? true : result;
     }
     
 
@@ -5610,12 +5653,16 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *  <P>
      *  The <code>showCustomScrollbars</code> setting is typically overridden in load_skin.js in
      *  order to change the default for all Smart GWT components at once.
-     * This may be achieved via the static {@link com.smartgwt.client.widgets.Canvas#setShowCustomScrollbars
-     * setShowCustomScrollbars()} method or
-     *  via a simple addProperties block, like so:
+     *  This may be achieved via the static {@link com.smartgwt.client.widgets.Canvas#setDefaultShowCustomScrollbars}
+     *   method or 
+     *  calling setProperty() , like so:
+     *  
+     *  
      *  <pre>
-     *      isc.Canvas.addProperties({ showCustomScrollbars:false });
+     *       Canvas canvas = new Canvas();
+     *       canvas.setProperty("showCustomScrollbars", false);
      *  </pre>
+     *  
      *  <p>
      *  On {@link com.smartgwt.client.util.Browser#isTouch touch devices}, custom scrollbars are disabled in favor of enabling
      *  native touch scrolling if available. However, custom scrollbars <em>and</em> native touch
@@ -5626,6 +5673,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *
      * @param showCustomScrollbars New showCustomScrollbars value. Default value is true
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.Canvas#setReceiveScrollbarEvents
      * @see com.smartgwt.client.docs.Scrolling Scrolling overview and related methods
      */
     public void setShowCustomScrollbars(boolean showCustomScrollbars)  throws IllegalStateException {
@@ -5654,12 +5702,16 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *  <P>
      *  The <code>showCustomScrollbars</code> setting is typically overridden in load_skin.js in
      *  order to change the default for all Smart GWT components at once.
-     * This may be achieved via the static {@link com.smartgwt.client.widgets.Canvas#setShowCustomScrollbars
-     * setShowCustomScrollbars()} method or
-     *  via a simple addProperties block, like so:
+     *  This may be achieved via the static {@link com.smartgwt.client.widgets.Canvas#setDefaultShowCustomScrollbars}
+     *   method or 
+     *  calling setProperty() , like so:
+     *  
+     *  
      *  <pre>
-     *      isc.Canvas.addProperties({ showCustomScrollbars:false });
+     *       Canvas canvas = new Canvas();
+     *       canvas.setProperty("showCustomScrollbars", false);
      *  </pre>
+     *  
      *  <p>
      *  On {@link com.smartgwt.client.util.Browser#isTouch touch devices}, custom scrollbars are disabled in favor of enabling
      *  native touch scrolling if available. However, custom scrollbars <em>and</em> native touch
@@ -5668,6 +5720,7 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      *  to <code>true</code>.
      *
      * @return Current showCustomScrollbars value. Default value is true
+     * @see com.smartgwt.client.widgets.Canvas#getReceiveScrollbarEvents
      * @see com.smartgwt.client.docs.Scrolling Scrolling overview and related methods
      */
     public boolean getShowCustomScrollbars()  {
@@ -6888,7 +6941,9 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * com.smartgwt.client.widgets.Button}. <P> Rendering via &lt;object&gt; tag provides the maximum support for CSS in SVG,
      * but may result in a flicker at the browser level when changing images - either manually such as with {@link
      * com.smartgwt.client.widgets.Canvas#setImage setImage()} or via state change from rollover, mouseDown, etc.  Using
-     * &lt;image&gt; tags to inline the images breaks CSS support but may avoid flickering. <P> Note that if multiple icons are
+     * &lt;image&gt; tags to inline the images breaks CSS support but may avoid flickering. <P> If this property is <i>not</i>
+     * set, then you can also control whether an SVG image is rendered in an object or image tag by setting the query param
+     * "tag" on the image URL - see {@link com.smartgwt.client.docs.SCImgURL} for details. <P> Note that if multiple icons are
      * potentially present in a canvas (e.g. {@link com.smartgwt.client.widgets.grid.ListGrid#getRemoveIcon removeIcons} in the
      * cells of a grid body), then setting this property on the widget instance may have no effect.  In such case, the {@link
      * com.smartgwt.client.widgets.Canvas} prototype is consulted.
@@ -6911,7 +6966,9 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * com.smartgwt.client.widgets.Button}. <P> Rendering via &lt;object&gt; tag provides the maximum support for CSS in SVG,
      * but may result in a flicker at the browser level when changing images - either manually such as with {@link
      * com.smartgwt.client.widgets.Canvas#setImage setImage()} or via state change from rollover, mouseDown, etc.  Using
-     * &lt;image&gt; tags to inline the images breaks CSS support but may avoid flickering. <P> Note that if multiple icons are
+     * &lt;image&gt; tags to inline the images breaks CSS support but may avoid flickering. <P> If this property is <i>not</i>
+     * set, then you can also control whether an SVG image is rendered in an object or image tag by setting the query param
+     * "tag" on the image URL - see {@link com.smartgwt.client.docs.SCImgURL} for details. <P> Note that if multiple icons are
      * potentially present in a canvas (e.g. {@link com.smartgwt.client.widgets.grid.ListGrid#getRemoveIcon removeIcons} in the
      * cells of a grid body), then setting this property on the widget instance may have no effect.  In such case, the {@link
      * com.smartgwt.client.widgets.Canvas} prototype is consulted.
@@ -6946,9 +7003,9 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * instead, eligibility can only be determined based on the {@link com.smartgwt.client.widgets.Canvas#getDragType dragType}
      * / {@link com.smartgwt.client.widgets.Canvas#getDropTypes dropTypes} system. For this reason, a {@link
      * com.smartgwt.client.widgets.Canvas#getDragType dragType} <b>must</b> be set on the source of a drag. <p> NOTE: Although
-     * Internet Explorer 10+ supports a subset of the <a href='http://www.w3.org/TR/html5/editing.html#dnd'
-     * target='_blank'>HTML5 drag and drop standard</a>, native drag and drop is disabled in IE because cross-window
-     * drags&mdash;the primary purpose of this API&mdash;are not possible.
+     * Internet Explorer 10+ and Edge support a subset of the  <a href='http://www.w3.org/TR/html5/editing.html#dnd'
+     * target='_blank'>HTML5 drag and drop standard</a>, native drag and drop is disabled in IE and Edge because cross-window
+     * drags&mdash;the  primary purpose of this API&mdash;are not possible.
      *
      * @param useNativeDrag New useNativeDrag value. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -6978,9 +7035,9 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * instead, eligibility can only be determined based on the {@link com.smartgwt.client.widgets.Canvas#getDragType dragType}
      * / {@link com.smartgwt.client.widgets.Canvas#getDropTypes dropTypes} system. For this reason, a {@link
      * com.smartgwt.client.widgets.Canvas#getDragType dragType} <b>must</b> be set on the source of a drag. <p> NOTE: Although
-     * Internet Explorer 10+ supports a subset of the <a href='http://www.w3.org/TR/html5/editing.html#dnd'
-     * target='_blank'>HTML5 drag and drop standard</a>, native drag and drop is disabled in IE because cross-window
-     * drags&mdash;the primary purpose of this API&mdash;are not possible.
+     * Internet Explorer 10+ and Edge support a subset of the  <a href='http://www.w3.org/TR/html5/editing.html#dnd'
+     * target='_blank'>HTML5 drag and drop standard</a>, native drag and drop is disabled in IE and Edge because cross-window
+     * drags&mdash;the  primary purpose of this API&mdash;are not possible.
      *
      * @return Current useNativeDrag value. Default value is null
      * @see com.smartgwt.client.docs.Dragdrop Dragdrop overview and related methods
@@ -7493,8 +7550,9 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
 	/**
      * Animate a change in opacity from the widget's current opacity to the specified opacity.
      * @param opacity desired final opacity
-     * @param callback When the fade completes this callback will be fired. Single                              'earlyFinish' parameter will be
-     * passed if the animation was                              cut short by a call to finishAnimation
+     * @param callback When the fade completes this callback will be                       fired.  Single 'earlyFinish' parameter will be
+     * passed if the                       animation was cut short, for example by a call to the non-animated                  
+     *     API {@link com.smartgwt.client.widgets.Canvas#setOpacity setOpacity()}.
      * @param duration Duration in ms of the animated fade
      * @param acceleration Optional animation acceleration to bias the ratios
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_fade" target="examples">Fade Show & Hide Example</a>
@@ -7544,8 +7602,10 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * Animate a reposition of this canvas from its current position to the specified position
      * @param left new left position (or null for unchanged)
      * @param top new top position (or null for unchanged)
-     * @param callback When the move completes this callback will be fired. Single                            'earlyFinish' parameter will be
-     * passed if the animation was                            cut short by a call to finishAnimation
+     * @param callback When the move completes this callback will be                       fired. Single 'earlyFinish' parameter will be passed
+     * if the                       animation was cut short, for example by a call to the non-animated                      
+     * APIs {@link com.smartgwt.client.widgets.Canvas#moveTo moveTo()} or {@link com.smartgwt.client.widgets.Canvas#moveBy
+     * moveBy()}.
      * @param duration Duration in ms of the animated move
      * @param acceleration Optional acceleration effect to bias the ratios
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_move" target="examples">Fly Onscreen Example</a>
@@ -7599,8 +7659,9 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * @param top new top position (or null for unchanged)
      * @param width new width (or null for unchanged)
      * @param height new height (or null for unchanged)
-     * @param callback When the setRect completes this callback will be fired. Single                              'earlyFinish' parameter will
-     * be passed if the animation was                              cut short by a call to finishAnimation
+     * @param callback When the setRect completes this callback will be                       fired. Single 'earlyFinish' parameter will be
+     * passed if the                       animation was cut short, for example by a call to the non-animated                  
+     *     API {@link com.smartgwt.client.widgets.Canvas#setRect setRect()}.
      * @param duration Duration in ms of the animated setRect
      * @param acceleration Optional acceleration effect to apply to the animation
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_zoom" target="examples">Zoom & Shrink Example</a>
@@ -7619,7 +7680,10 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     }-*/;
 	
 	/**
-     * Animate a resize of this canvas from its current size to the specified size
+     * Animate a resize of this canvas from its current size to the specified size <p> Note that {@link
+     * com.smartgwt.client.widgets.Canvas#getAnimateResizeLayoutMode animateResizeLayoutMode} allows you to control whether
+     * child layout is rerun during every step of the animation, or just at the end, since the former may incur significant
+     * overhead depending on the widget hierarchy.
      * @param width new width (or null for unchanged)
      * @param height new height (or null for unchanged)
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_resize" target="examples">Resize Example</a>
@@ -7647,11 +7711,16 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
     }
 
 	/**
-     * Animate a resize of this canvas from its current size to the specified size
+     * Animate a resize of this canvas from its current size to the specified size <p> Note that {@link
+     * com.smartgwt.client.widgets.Canvas#getAnimateResizeLayoutMode animateResizeLayoutMode} allows you to control whether
+     * child layout is rerun during every step of the animation, or just at the end, since the former may incur significant
+     * overhead depending on the widget hierarchy.
      * @param width new width (or null for unchanged)
      * @param height new height (or null for unchanged)
-     * @param callback When the resize completes this callback will be fired. Single                              'earlyFinish' parameter will
-     * be passed if the animation was                              cut short by a call to finishAnimation
+     * @param callback When the resize completes this callback will be                       fired. Single 'earlyFinish' parameter will be
+     * passed if the                       animation was cut short, for example by a call to the non-animated                  
+     * APIs {@link com.smartgwt.client.widgets.Canvas#resizeTo resizeTo()} or {@link
+     * com.smartgwt.client.widgets.Canvas#resizeBy resizeBy()}.
      * @param duration Duration in ms of the animated resize
      * @param acceleration Optional acceleration effect to apply to the resize
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_animation_resize" target="examples">Resize Example</a>
@@ -7700,8 +7769,10 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * Animate a scroll from the current scroll position to the specified position.
      * @param scrollLeft desired final left scroll position
      * @param scrollTop desired final top scroll position
-     * @param callback When the scroll completes this callback will be fired. Single                              'earlyFinish' parameter will
-     * be passed if the animation was                              cut short by a call to finishAnimation
+     * @param callback When the scroll completes this callback will be                       fired. Single 'earlyFinish' parameter will be
+     * passed if the                       animation was cut short, for example by a call to the non-animated                  
+     * APIs {@link com.smartgwt.client.widgets.Canvas#scrollTo scrollTo()} or {@link
+     * com.smartgwt.client.widgets.Canvas#scrollBy scrollBy()}.
      * @param duration Duration in ms of the animated scroll
      * @param acceleration Optional acceleration to bias the animation ratios
      */
@@ -12297,15 +12368,14 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
      * Notification  fired when this canvas becomes visible or hidden to the user. Note - this method is fired when the {@link
      * com.smartgwt.client.widgets.Canvas#isVisible Canvas.isVisible()} state of this component changes. It may be fired in
      * response an explicit call to {@link com.smartgwt.client.widgets.Canvas#show Canvas.show()} or {@link
-     * com.smartgwt.client.widgets.Canvas#hide Canvas.hide()} or {@link com.smartgwt.client.widgets.Canvas#setVisibility
-     * Canvas.setVisibility()}, or in response to a parent component being shown or hidden when this widgets {@link
-     * com.smartgwt.client.widgets.Canvas#getVisibility Canvas.visibility} is set to "inherit". <P> Note that a call to {@link
-     * com.smartgwt.client.widgets.Canvas#show Canvas.show()} or {@link com.smartgwt.client.widgets.Canvas#hide Canvas.hide()}
-     * will not <b>always</b> fire this notification. If this widget has a hidden parent, show or hide would change this
-     * components {@link com.smartgwt.client.widgets.Canvas#getVisibility Canvas.visibility} property, and may update the CSS
-     * visibility attribute of the drawn handle in the DOM, but would not actually hide or reveal the component to the user and
-     * as such the notification would not fire. <P> Note also that this notification will only be fired for components which
-     * have been {@link com.smartgwt.client.widgets.Canvas#draw drawn}.
+     * com.smartgwt.client.widgets.Canvas#hide Canvas.hide()}, or in response to a parent component being shown or hidden when
+     * this widgets {@link com.smartgwt.client.widgets.Canvas#getVisibility Canvas.visibility} is set to "inherit". <P> Note
+     * that a call to {@link com.smartgwt.client.widgets.Canvas#show Canvas.show()} or {@link
+     * com.smartgwt.client.widgets.Canvas#hide Canvas.hide()} will not <b>always</b> fire this notification. If this widget has
+     * a hidden parent, show or hide would change this components {@link com.smartgwt.client.widgets.Canvas#getVisibility
+     * Canvas.visibility} property, and may update the CSS visibility attribute of the drawn handle in the DOM, but would not
+     * actually hide or reveal the component to the user and as such the notification would not fire. <P> Note also that this
+     * notification will only be fired for components which have been {@link com.smartgwt.client.widgets.Canvas#draw drawn}.
      *
      * @param handler the visibilityChanged handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -12437,6 +12507,43 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
 
 
 
+	/**
+     * Registers one or more CSS classes to have their padding adjusted (independently on all edges)
+     * according to the {@link com.smartgwt.client.widgets.Canvas#resizePadding padding size change} applied to the page.  Each
+     * class
+     *  to be registered is provided along with a corresponding baseline class, and a single
+     *  <code>targetSizeChange</code> is specified for all the classes.  The padding in each
+     *  registered class is adjusted downward towards the baseline as the padding size change
+     *  approaches 0 (no resizing), and upward as it increases, so that it exactly equals the
+     *  declared style's padding at a padding size change of <code>targetSizeChange</code>.
+     *  <P>
+     *  Note that each call to this method replaces the registration of the previous call (if any),
+     *  and will have no effect until {@link com.smartgwt.client.widgets.Canvas#resizePadding resizePadding()} is called.
+     *  <P>
+     *  For example:<pre>
+     *     isc.Canvas.registerFontScaledPaddingStyles(
+     *         [        "tabButtonTop",         "tabButtonBottom"], 
+     *         ["iconOnlyTabButtonTop", "iconOnlyTabButtonBottom"],
+     *         3
+     *     );
+     *  </pre>
+     *  In this case, the CSS style "tabButtonTop" will have its padding adjusted downward to the
+     *  padding from the baseline CSS style "iconOnlyTabButtonTop" style at a <code>sizeChange</code>
+     *  of 0, and be left unchanged at a <code>sizeChange</code> of 3.
+     * 
+     * @param scaledStyles styles whose padding should be adjusted
+     * @param baselineStyles corresponding baseline reference styles
+     * @param targetSizeChange sizeChange at which scaledStyles are unchanged
+     * @see com.smartgwt.client.widgets.Canvas#resizeFonts
+     * @see com.smartgwt.client.widgets.Canvas#resizePadding
+     * @see com.smartgwt.client.widgets.Canvas#resizeControls
+     * @see com.smartgwt.client.widgets.Canvas#registerIconSizingAttributes
+     */
+    public static native void registerFontScaledPaddingStyles(String[] scaledStyles, String[] baselineStyles, int targetSizeChange) /*-{
+        $wnd.isc.Canvas.registerFontScaledPaddingStyles(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(scaledStyles), @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(baselineStyles), targetSizeChange);
+    }-*/;
+
+
 
 	/**
      * Change the value of attributes registered via {@link
@@ -12546,6 +12653,50 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
         $wnd.isc.Canvas.resizeIcons(policy, delta);
     }-*/;
 
+
+	/**
+     * Modify the amount of padding for some CSS styles defined for the page.  Only CSS styles registered by {@link
+     * com.smartgwt.client.widgets.Canvas#registerFontScaledPaddingStyles registerFontScaledPaddingStyles()} are modified. <p>
+     * <code>resizePadding()</code> must be called after the skin has been loaded, and before any components have been created.
+     * Calling <code>resizePadding()</code> at a later time is not supported (you will notice that padding is modified,
+     * however, this approach is not supported). <p> This method has similar browser security limitations as {@link
+     * com.smartgwt.client.widgets.Canvas#resizeFonts resizeFonts()}. <P> The intent is that the same font size change be
+     * passed to this method as is passed to {@link com.smartgwt.client.widgets.Canvas#resizeFonts resizeFonts()}, so that the
+     * <code>targetSizeChange</code> in the call to {@link com.smartgwt.client.widgets.Canvas#registerFontScaledPaddingStyles
+     * registerFontScaledPaddingStyles()} represents the right font size for the unadjusted styles being registered.
+     * @param fontSizeChange size change to apply to the padding of registered styles, so that                             they aren't changed at all
+     * at the size change passed to                              {@link
+     * com.smartgwt.client.widgets.Canvas#registerFontScaledPaddingStyles registerFontScaledPaddingStyles()}, and the padding
+     * is                             reduced to baseline style levels at a zero size change.
+     * @see com.smartgwt.client.widgets.Canvas#resizeFonts
+     * @see com.smartgwt.client.widgets.Canvas#resizeControls
+     */
+    public static native void resizePadding(int fontSizeChange) /*-{
+        $wnd.isc.Canvas.resizePadding(fontSizeChange);
+    }-*/;
+
+	/**
+     * Modify the amount of padding for some CSS styles defined for the page.  Only CSS styles registered by {@link
+     * com.smartgwt.client.widgets.Canvas#registerFontScaledPaddingStyles registerFontScaledPaddingStyles()} are modified. <p>
+     * <code>resizePadding()</code> must be called after the skin has been loaded, and before any components have been created.
+     * Calling <code>resizePadding()</code> at a later time is not supported (you will notice that padding is modified,
+     * however, this approach is not supported). <p> This method has similar browser security limitations as {@link
+     * com.smartgwt.client.widgets.Canvas#resizeFonts resizeFonts()}. <P> The intent is that the same font size change be
+     * passed to this method as is passed to {@link com.smartgwt.client.widgets.Canvas#resizeFonts resizeFonts()}, so that the
+     * <code>targetSizeChange</code> in the call to {@link com.smartgwt.client.widgets.Canvas#registerFontScaledPaddingStyles
+     * registerFontScaledPaddingStyles()} represents the right font size for the unadjusted styles being registered.
+     * @param fontSizeChange size change to apply to the padding of registered styles, so that                             they aren't changed at all
+     * at the size change passed to                              {@link
+     * com.smartgwt.client.widgets.Canvas#registerFontScaledPaddingStyles registerFontScaledPaddingStyles()}, and the padding
+     * is                             reduced to baseline style levels at a zero size change.
+     * @param styleSheets optional regular expression pattern for matching stylesheets
+     * @see com.smartgwt.client.widgets.Canvas#resizeFonts
+     * @see com.smartgwt.client.widgets.Canvas#resizeControls
+     */
+    public static native void resizePadding(int fontSizeChange, String styleSheets) /*-{
+        $wnd.isc.Canvas.resizePadding(fontSizeChange, styleSheets);
+    }-*/;
+	
 
 	/**
      * Changes the system-wide {@link com.smartgwt.client.widgets.Canvas#allowExternalFilters allowExternalFilters} setting.
@@ -14497,6 +14648,18 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
         self.__revealChild(childJS);
     }-*/;
 
+    /**
+     * Whether to use the browser's native scrollbars or SmartClient-based scrollbars by default
+     * for all canvases.
+     * <P>
+     * This method changes the default value of {@link com.smartgwt.client.widgets.Canvas#showCustomScrollbars}.
+     * 
+     * @param showCS whether to show custom (SmartGWT-based) scrollbars rather than css-scrollbars by default.
+     * 
+     */
+    public static native void setDefaultShowCustomScrollbars(boolean showCS)  /*-{
+        $wnd.isc.Canvas.setShowCustomScrollbars(showCS);
+    }-*/;
 
     /**
      * Setter implementing the {@link com.smartgwt.client.core.LogicalStructure} interface,
@@ -14570,6 +14733,11 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
             s.logicalStructureErrors += "Canvas.animateResizeAcceleration:" + t.getMessage() + "\n";
         }
         try {
+            s.animateResizeLayoutMode = getAttributeAsString("animateResizeLayoutMode");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.animateResizeLayoutMode:" + t.getMessage() + "\n";
+        }
+        try {
             s.animateResizeTime = getAttributeAsString("animateResizeTime");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Canvas.animateResizeTime:" + t.getMessage() + "\n";
@@ -14608,11 +14776,6 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
             s.ariaRole = getAttributeAsString("ariaRole");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Canvas.ariaRole:" + t.getMessage() + "\n";
-        }
-        try {
-            s.autoDraw = getAttributeAsString("autoDraw");
-        } catch (Throwable t) {
-            s.logicalStructureErrors += "Canvas.autoDraw:" + t.getMessage() + "\n";
         }
         try {
             s.autoMaskComponents = getAttributeAsString("autoMaskComponents");
@@ -15175,6 +15338,11 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
             s.logicalStructureErrors += "Canvas.mouseStillDownInitialDelay:" + t.getMessage() + "\n";
         }
         try {
+            s.name = getAttributeAsString("name");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.name:" + t.getMessage() + "\n";
+        }
+        try {
             s.noDoubleClicks = getAttributeAsString("noDoubleClicks");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Canvas.noDoubleClicks:" + t.getMessage() + "\n";
@@ -15248,6 +15416,11 @@ public class Canvas extends BaseWidget implements com.smartgwt.client.widgets.ev
             s.proportionalResizing = getAttributeAsString("proportionalResizing");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Canvas.proportionalResizing:" + t.getMessage() + "\n";
+        }
+        try {
+            s.receiveScrollbarEvents = getAttributeAsString("receiveScrollbarEvents");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Canvas.receiveScrollbarEvents:" + t.getMessage() + "\n";
         }
         try {
             s.redrawOnResize = getAttributeAsString("redrawOnResize");

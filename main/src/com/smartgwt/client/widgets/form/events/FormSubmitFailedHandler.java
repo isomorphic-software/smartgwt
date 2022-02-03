@@ -24,7 +24,11 @@ public interface FormSubmitFailedHandler extends EventHandler {
      * Method called when an attempt to {@link com.smartgwt.client.widgets.form.DynamicForm#submitForm natively submit} a form
      * is unable to submit to the server. Default behavior is to display the {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getFormSubmitFailedWarning formSubmitFailedWarning} in a warning dialog.
-     * The most common cause for this failure is that the user has typed an invalid file-path into an upload type field.
+     * The most common cause for this failure is that the user has typed an invalid file-path into an upload type field. <P>
+     * <b>Note:</b> This is very unlikely to occur with modern versions of IE, which don't allow the path of a file to be
+     * edited by hand (only selected via file navigation).  It was last seen in IE6-7 under Windows XP. <P> Rather than
+     * throwing an exception on the client during submit(), normally all failures in native form submission are handled by the
+     * server.  For further information, see {@link com.smartgwt.client.docs.Upload File Uploading}.
      *
      * @param event the event
      */

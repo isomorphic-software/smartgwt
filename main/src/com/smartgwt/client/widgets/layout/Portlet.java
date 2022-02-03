@@ -171,7 +171,7 @@ public class Portlet extends Window {
     
 
     /**
-     * If specified, this properties block will be passed to {@link com.smartgwt.client.util.isc#confirm isc.confirm()} as the
+     * If specified, this properties block will be passed to {@link com.smartgwt.client.util.SC#confirm SC.confirm()} as the
      * properties parameter when the {@link com.smartgwt.client.widgets.layout.Portlet#getCloseConfirmationMessage
      * closeConfirmationMessage} is shown,  allowing developers to customize the appear of the confirmation dialog (modifying
      * its title, etc).
@@ -191,7 +191,7 @@ public class Portlet extends Window {
     }
 
     /**
-     * If specified, this properties block will be passed to {@link com.smartgwt.client.util.isc#confirm isc.confirm()} as the
+     * If specified, this properties block will be passed to {@link com.smartgwt.client.util.SC#confirm SC.confirm()} as the
      * properties parameter when the {@link com.smartgwt.client.widgets.layout.Portlet#getCloseConfirmationMessage
      * closeConfirmationMessage} is shown,  allowing developers to customize the appear of the confirmation dialog (modifying
      * its title, etc).
@@ -362,13 +362,17 @@ public class Portlet extends Window {
      * com.smartgwt.client.widgets.layout.Portlet#close close()}. <P>  Developers may use <code>addCloseClickHandler()</code>
      * to provide custom handling when the user clicks this button. Custom implementations may call <code>close()</code> to
      * trigger the default behavior.
+     *
+     * @return Return false to cancel bubbling the click event
      */
-    public native void closeClick() /*-{
+    public native Boolean closeClick() /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
             @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "closeClick", "");
         }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.closeClick();
+        var ret = self.closeClick();
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
 
 	/**

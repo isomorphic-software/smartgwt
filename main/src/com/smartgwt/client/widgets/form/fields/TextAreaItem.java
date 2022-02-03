@@ -634,6 +634,35 @@ public class TextAreaItem extends FormItem {
     
 
     /**
+     * When set to false, prevents this item's input element from being written into the DOM. If there are {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} or a  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon picker icon}, these are displayed as normal, and the
+     * item will auto-sizing to that content if its {@link com.smartgwt.client.widgets.form.fields.FormItem#getWidth width} is
+     * set to null.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showInputElement New showInputElement value. Default value is true
+     */
+    public void setShowInputElement(boolean showInputElement) {
+        setAttribute("showInputElement", showInputElement);
+    }
+
+    /**
+     * When set to false, prevents this item's input element from being written into the DOM. If there are {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} or a  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon picker icon}, these are displayed as normal, and the
+     * item will auto-sizing to that content if its {@link com.smartgwt.client.widgets.form.fields.FormItem#getWidth width} is
+     * set to null.
+     *
+     * @return Current showInputElement value. Default value is true
+     */
+    public boolean getShowInputElement()  {
+        Boolean result = getAttributeAsBoolean("showInputElement", true);
+        return result == null ? true : result;
+    }
+    
+
+    /**
      * Height of the FormItem when <code>canEdit</code> is false and <code>readOnlyDisplay</code> is "static". The normal
      * {@link com.smartgwt.client.widgets.form.fields.TextAreaItem#getHeight height} is used if this property is not set.
      *

@@ -25,6 +25,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.util.AutoTest
  * @see com.smartgwt.client.util.AutoTest#implicitNetworkWait
  * @see com.smartgwt.client.util.AutoTest#testRoot
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getLocateRowsBy
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getLocateColumnsBy
  * @see com.smartgwt.client.widgets.Canvas#getLocateChildrenBy
  * @see com.smartgwt.client.widgets.Canvas#getLocateChildrenType
  * @see com.smartgwt.client.widgets.Canvas#getLocatePeersBy
@@ -35,8 +37,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.layout.SectionStack#getLocateSectionsType
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getLocateItemBy
  * @see com.smartgwt.client.widgets.tab.TabSet#getLocateTabsBy
- * @see com.smartgwt.client.widgets.grid.ListGrid#getLocateRowsBy
- * @see com.smartgwt.client.widgets.grid.ListGrid#getLocateColumnsBy
  */
 public interface AutoTest {
 }

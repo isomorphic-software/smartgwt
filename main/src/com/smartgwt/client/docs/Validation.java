@@ -8,13 +8,15 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.form.validator.Validator#addValidators
  * @see com.smartgwt.client.widgets.form.validator.Validator#addValidatorDefinition
  * @see com.smartgwt.client.widgets.form.validator.Validator#addValidatorDefinitions
- * @see com.smartgwt.client.widgets.form.DynamicForm#validateData
  * @see com.smartgwt.client.widgets.grid.ListGrid#clearRowErrors
+ * @see com.smartgwt.client.widgets.form.DynamicForm#validateData
  * @see com.smartgwt.client.widgets.form.DynamicForm#getErrorsHTML
  * @see com.smartgwt.client.widgets.form.DynamicForm#getItemErrorHTML
  * @see com.smartgwt.client.widgets.form.DynamicForm#validate
  * @see com.smartgwt.client.widgets.form.DynamicForm#valuesAreValid
  * @see com.smartgwt.client.widgets.form.DynamicForm#checkForValidationErrors
+ * @see com.smartgwt.client.widgets.form.ValuesManager#valuesAreValid
+ * @see com.smartgwt.client.widgets.form.ValuesManager#checkForValidationErrors
  * @see com.smartgwt.client.data.DataSource#getUseLocalValidators
  * @see com.smartgwt.client.data.DataSourceField#getValidators
  * @see com.smartgwt.client.data.SimpleType#getValidators

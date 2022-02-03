@@ -320,6 +320,31 @@ public class Facet extends RefDataClass {
     
 
     /**
+     * Controls indenting for a {@link com.smartgwt.client.widgets.cube.Facet#getIsTree hierarchical} column facet if set
+     * non-null, overrriding the value of {@link com.smartgwt.client.widgets.cube.CubeGrid#getIndentVTreeFacets
+     * CubeGrid.indentVTreeFacets}.
+     *
+     * @param indentVTree New indentVTree value. Default value is null
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#setVTreeFacetIndentDirection
+     */
+    public void setIndentVTree(Boolean indentVTree) {
+        setAttribute("indentVTree", indentVTree);
+    }
+
+    /**
+     * Controls indenting for a {@link com.smartgwt.client.widgets.cube.Facet#getIsTree hierarchical} column facet if set
+     * non-null, overrriding the value of {@link com.smartgwt.client.widgets.cube.CubeGrid#getIndentVTreeFacets
+     * CubeGrid.indentVTreeFacets}.
+     *
+     * @return Current indentVTree value. Default value is null
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#getVTreeFacetIndentDirection
+     */
+    public Boolean getIndentVTree()  {
+        return getAttributeAsBoolean("indentVTree", true);
+    }
+    
+
+    /**
      * When applied to a Chart, does the chart's data contain multiple values per record for this facet. See  Chart.data for a
      * full overview of <code>inlinedValues</code> behavior.
      *
@@ -404,6 +429,28 @@ public class Facet extends RefDataClass {
      */
     public Integer getLabelHeight()  {
         return getAttributeAsInt("labelHeight");
+    }
+    
+
+    /**
+     * Default {@link com.smartgwt.client.widgets.cube.CubeGrid#getCanMinimizeFacets minimize state} for parent nodes. <P>
+     * <b>Note:</b>  This property is specific to {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrids}.
+     *
+     * @param minimized New minimized value. Default value is false
+     */
+    public void setMinimized(Boolean minimized) {
+        setAttribute("minimized", minimized);
+    }
+
+    /**
+     * Default {@link com.smartgwt.client.widgets.cube.CubeGrid#getCanMinimizeFacets minimize state} for parent nodes. <P>
+     * <b>Note:</b>  This property is specific to {@link com.smartgwt.client.widgets.cube.CubeGrid CubeGrids}.
+     *
+     * @return Current minimized value. Default value is false
+     */
+    public Boolean getMinimized()  {
+        Boolean result = getAttributeAsBoolean("minimized", true);
+        return result == null ? false : result;
     }
     
 

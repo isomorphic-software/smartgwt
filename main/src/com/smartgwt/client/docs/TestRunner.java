@@ -59,7 +59,7 @@ package com.smartgwt.client.docs;
  *  TestRunner currently supports tests written in Selenese, Selenium's HTML-based format for
  *  recording automated tests.  The Selenium IDE can be used to record tests and save them in
  *  Selenese format.  For more background on the Selenium IDE, Smart GWT's extensions, and
- *  the use of WebDriver / Selenium 2, see the 
+ *  the use of Selenium WebDriver, see the 
  *  {@link com.smartgwt.client.docs.AutomatedTesting Automated Testing Overview}.
  *  <P>
  *  Test files should be saved with the extension .rctest.html.  They should all appear under
@@ -111,8 +111,8 @@ package com.smartgwt.client.docs;
  *  the required resources are:
  *  <ul>
  *     <li> the batch report email template, by default at mailTemplats/batchReport.template
- *     <li> the selenium test template, user extensions, and batchRun/testResult dataSource
- *          XML files, by default in tools/selenium
+ *     <li> the selenium test template and batchRun/testResult dataSource XML files, by default
+ *          in tools/selenium
  *     <li> the dataSource XML schema files, by default in isomorphic/system/schema
  *  </ul>
  *  <P>
@@ -123,7 +123,7 @@ package com.smartgwt.client.docs;
  *  <pre>
  *  java com.isomorphic.autotest.TestRunner</pre>
  *  This assumes your classpath environment has been set to include the isomorphic SDK JARs;
- *  you may invoke the convenience script test_runner.sh/.bat/.command in the SDK root directory
+ *  you may invoke the convenience script test_runner.sh|.bat|.command in the SDK root directory
  *  to run the TestRunner Java class without having to set the classpath.
  *  <P>
  *  The following command-line would execute TestRunner as above, but run all tests under the

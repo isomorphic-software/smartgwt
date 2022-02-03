@@ -175,7 +175,7 @@ package com.smartgwt.client.docs;
  *      sql.defaultDatabase: AppDatabase
  *      sql.AppDatabase.database.type: mysql
  *      sql.AppDatabase.driver: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
- *      <b>sql.AppDatabase.useUTCDataTimes: true</b>
+ *      <b>sql.AppDatabase.useUTCDateTimes: true</b>
  *      etc
  *  </pre>
  *  If the <code>useUTCDateTimes</code> flag is set, Smart GWT generates SQL that renders 

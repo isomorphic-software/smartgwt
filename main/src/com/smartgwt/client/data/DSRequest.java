@@ -429,6 +429,7 @@ public class DSRequest extends RPCRequest {
      * spreadsheet program will not recognize the value as a date.
      *
      * @param exportDatesAsFormattedString New exportDatesAsFormattedString value. Default value is null
+     * @see com.smartgwt.client.data.DataSourceField#setExportFormat
      * @see com.smartgwt.client.docs.ExportFormatting ExportFormatting overview and related methods
      */
     public void setExportDatesAsFormattedString(Boolean exportDatesAsFormattedString) {
@@ -452,6 +453,7 @@ public class DSRequest extends RPCRequest {
      * spreadsheet program will not recognize the value as a date.
      *
      * @return Current exportDatesAsFormattedString value. Default value is null
+     * @see com.smartgwt.client.data.DataSourceField#getExportFormat
      * @see com.smartgwt.client.docs.ExportFormatting ExportFormatting overview and related methods
      */
     public Boolean getExportDatesAsFormattedString()  {
@@ -552,6 +554,7 @@ public class DSRequest extends RPCRequest {
      *
      * @param exportFilename New exportFilename value. Default value is null
      * @see com.smartgwt.client.data.DSRequest#setExportPath
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#custom_export_custom_response" target="examples">Custom Export (Custom Response) Example</a>
      */
     public void setExportFilename(String exportFilename) {
         setAttribute("exportFilename", exportFilename);
@@ -569,6 +572,7 @@ public class DSRequest extends RPCRequest {
      *
      * @return Current exportFilename value. Default value is null
      * @see com.smartgwt.client.data.DSRequest#getExportPath
+     * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#custom_export_custom_response" target="examples">Custom Export (Custom Response) Example</a>
      */
     public String getExportFilename()  {
         return getAttributeAsString("exportFilename");
@@ -692,6 +696,55 @@ public class DSRequest extends RPCRequest {
      */
     public Double getExportImageQualityAsDouble()  {
         return getAttributeAsDouble("exportImageQuality");
+    }
+    
+
+    /**
+     * When exporting via {@link com.smartgwt.client.widgets.grid.ListGrid#exportClientData ListGrid.exportClientData()} to an
+     * <code>XLS</code> or <code>OOXML</code> spreadsheet, forces numbers to export as a string rather than a true numerical
+     * value. <p> If a number is provided to a spreadsheet as a string, Excel or other spreadsheet applications may not
+     * recognize them as being numbers that are valid for use in numerical formulas, filters, etc. <p> For this reason, the
+     * default behavior of <code>exportClientData</code> is to provide numerical values to the spreadsheet as true numbers.  If
+     * {@link com.smartgwt.client.docs.FormatString Format Strings} are provided via properties like {@link
+     * com.smartgwt.client.data.DataSourceField#getFormat dataSourceField.format} these will be translated to Excel /
+     * OpenOffice format strings and used when generating spreadsheets.  Other formatting logic, such as {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#setCellFormatter cell formatters}, will not be used since they cannot be
+     * automatically translated to an Excel format string.  If no translatable format string is available, numbers will be
+     * provided to the spreadsheet with no formatter and the spreadsheet program's default formatting for numerical values will
+     * be used. <p> If <code>exportNumbersAsFormattedString</code> is set to true, numbers will appear as strings that exactly
+     * match the formatting shown in the {@link com.smartgwt.client.widgets.DataBoundComponent}. As noted above, this means the
+     * spreadsheet program will not recognize the value as a number.
+     *
+     * @param exportNumbersAsFormattedString New exportNumbersAsFormattedString value. Default value is null
+     * @see com.smartgwt.client.data.DataSourceField#setExportFormat
+     * @see com.smartgwt.client.docs.ExportFormatting ExportFormatting overview and related methods
+     */
+    public void setExportNumbersAsFormattedString(Boolean exportNumbersAsFormattedString) {
+        setAttribute("exportNumbersAsFormattedString", exportNumbersAsFormattedString);
+    }
+
+    /**
+     * When exporting via {@link com.smartgwt.client.widgets.grid.ListGrid#exportClientData ListGrid.exportClientData()} to an
+     * <code>XLS</code> or <code>OOXML</code> spreadsheet, forces numbers to export as a string rather than a true numerical
+     * value. <p> If a number is provided to a spreadsheet as a string, Excel or other spreadsheet applications may not
+     * recognize them as being numbers that are valid for use in numerical formulas, filters, etc. <p> For this reason, the
+     * default behavior of <code>exportClientData</code> is to provide numerical values to the spreadsheet as true numbers.  If
+     * {@link com.smartgwt.client.docs.FormatString Format Strings} are provided via properties like {@link
+     * com.smartgwt.client.data.DataSourceField#getFormat dataSourceField.format} these will be translated to Excel /
+     * OpenOffice format strings and used when generating spreadsheets.  Other formatting logic, such as {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#setCellFormatter cell formatters}, will not be used since they cannot be
+     * automatically translated to an Excel format string.  If no translatable format string is available, numbers will be
+     * provided to the spreadsheet with no formatter and the spreadsheet program's default formatting for numerical values will
+     * be used. <p> If <code>exportNumbersAsFormattedString</code> is set to true, numbers will appear as strings that exactly
+     * match the formatting shown in the {@link com.smartgwt.client.widgets.DataBoundComponent}. As noted above, this means the
+     * spreadsheet program will not recognize the value as a number.
+     *
+     * @return Current exportNumbersAsFormattedString value. Default value is null
+     * @see com.smartgwt.client.data.DataSourceField#getExportFormat
+     * @see com.smartgwt.client.docs.ExportFormatting ExportFormatting overview and related methods
+     */
+    public Boolean getExportNumbersAsFormattedString()  {
+        return getAttributeAsBoolean("exportNumbersAsFormattedString", true);
     }
     
 
@@ -1193,7 +1246,14 @@ public class DSRequest extends RPCRequest {
      * (server-driven), we ordinarily export the underlying data value of all fields.  However, if you set the 
      * <code>exportValueFields</code> property explicitly to <code>false</code>, any fields that have a DataSource-defined
      * {@link com.smartgwt.client.data.DataSourceField#getValueMap valueMap} will have the mapped value exported instead.  This
-     * is similar to the client-side treatment of valueMaps, except that the defaults are reversed.
+     * is similar to the client-side treatment of valueMaps, except that the defaults are reversed. <p> For
+     * <code>exportData()</code> calls, if we encounter a field that has an in-record  {@link
+     * com.smartgwt.client.data.DataSourceField#getDisplayField displayField} declared <i>in the DataSource</i>, by   default
+     * we export both the underlying value and the display value, so you end up with two columns in the exported data for that
+     * field.  You can influence this by setting  <code>exportValueFields</code> explicitly: if set <code>true</code> we export
+     * only the  value field, and if set <code>false</code> we export only the display field.  Note, the  reason for the
+     * similar but not identical behavior of this flag between <code>exportData()</code> and <code>exportClientData()</code> is
+     * backwards compatibility.
      *
      * @param exportValueFields New exportValueFields value. Default value is null
      */
@@ -1217,7 +1277,14 @@ public class DSRequest extends RPCRequest {
      * (server-driven), we ordinarily export the underlying data value of all fields.  However, if you set the 
      * <code>exportValueFields</code> property explicitly to <code>false</code>, any fields that have a DataSource-defined
      * {@link com.smartgwt.client.data.DataSourceField#getValueMap valueMap} will have the mapped value exported instead.  This
-     * is similar to the client-side treatment of valueMaps, except that the defaults are reversed.
+     * is similar to the client-side treatment of valueMaps, except that the defaults are reversed. <p> For
+     * <code>exportData()</code> calls, if we encounter a field that has an in-record  {@link
+     * com.smartgwt.client.data.DataSourceField#getDisplayField displayField} declared <i>in the DataSource</i>, by   default
+     * we export both the underlying value and the display value, so you end up with two columns in the exported data for that
+     * field.  You can influence this by setting  <code>exportValueFields</code> explicitly: if set <code>true</code> we export
+     * only the  value field, and if set <code>false</code> we export only the display field.  Note, the  reason for the
+     * similar but not identical behavior of this flag between <code>exportData()</code> and <code>exportClientData()</code> is
+     * backwards compatibility.
      *
      * @return Current exportValueFields value. Default value is null
      */
@@ -1242,7 +1309,9 @@ public class DSRequest extends RPCRequest {
      *  requests, only the following bindings are allowed - see the 
      *  {@link com.smartgwt.client.docs.VelocitySupport Velocity overview} for details of what these values mean:<ul>
      *    <li>$currentDate</li>
+     *    <li>$currentDateUTC</li>
      *    <li>$transactionDate</li>
+     *    <li>$transactionDateUTC</li>
      *    <li>$userId</li>
      * <li>$masterId - see {@link com.smartgwt.client.docs.serverds.DSRequestModifier#value DSRequestModifier.value} for
      * details</li>
@@ -1290,7 +1359,9 @@ public class DSRequest extends RPCRequest {
      *  requests, only the following bindings are allowed - see the 
      *  {@link com.smartgwt.client.docs.VelocitySupport Velocity overview} for details of what these values mean:<ul>
      *    <li>$currentDate</li>
+     *    <li>$currentDateUTC</li>
      *    <li>$transactionDate</li>
+     *    <li>$transactionDateUTC</li>
      *    <li>$userId</li>
      * <li>$masterId - see {@link com.smartgwt.client.docs.serverds.DSRequestModifier#value DSRequestModifier.value} for
      * details</li>
@@ -1713,12 +1784,17 @@ public class DSRequest extends RPCRequest {
     
 
     /**
-     * Sets {@link com.smartgwt.client.data.DataSource#getProgressiveLoading progressive loading mode} for this specific
-     * request, overriding the OperationBinding- and DataSource-level settings.  Note that this  setting applies only to fetch
-     * requests - it has no effect if specified on any other kind  of request.
+     * Sets {@link com.smartgwt.client.data.DataSource#getProgressiveLoading progressive loading mode} for this particular
+     * request, overriding the OperationBinding- and DataSource-level settings. This setting overrides the {@link
+     * com.smartgwt.client.docs.serverds.DataSource#progressiveLoadingThreshold progressiveLoadingThreshold} setting as well,
+     * meaning that if <code>DSRequest.progressiveLoading</code> is explicitly set to <code>false</code> Smart GWT won't
+     * automatically switch to loading data progressively even if <code>DataSource.progressiveLoadingThreshold</code> is
+     * exceeded. <p> Note that this setting applies only to fetch requests - it has no effect if specified on any other kind of
+     * request.
      *
      * @param progressiveLoading New progressiveLoading value. Default value is null
      * @see com.smartgwt.client.data.DataSource#setProgressiveLoading
+     * @see com.smartgwt.client.docs.serverds.DataSource#progressiveLoadingThreshold
      * @see com.smartgwt.client.docs.serverds.OperationBinding#progressiveLoading
      * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
      */
@@ -1727,12 +1803,17 @@ public class DSRequest extends RPCRequest {
     }
 
     /**
-     * Sets {@link com.smartgwt.client.data.DataSource#getProgressiveLoading progressive loading mode} for this specific
-     * request, overriding the OperationBinding- and DataSource-level settings.  Note that this  setting applies only to fetch
-     * requests - it has no effect if specified on any other kind  of request.
+     * Sets {@link com.smartgwt.client.data.DataSource#getProgressiveLoading progressive loading mode} for this particular
+     * request, overriding the OperationBinding- and DataSource-level settings. This setting overrides the {@link
+     * com.smartgwt.client.docs.serverds.DataSource#progressiveLoadingThreshold progressiveLoadingThreshold} setting as well,
+     * meaning that if <code>DSRequest.progressiveLoading</code> is explicitly set to <code>false</code> Smart GWT won't
+     * automatically switch to loading data progressively even if <code>DataSource.progressiveLoadingThreshold</code> is
+     * exceeded. <p> Note that this setting applies only to fetch requests - it has no effect if specified on any other kind of
+     * request.
      *
      * @return Current progressiveLoading value. Default value is null
      * @see com.smartgwt.client.data.DataSource#getProgressiveLoading
+     * @see com.smartgwt.client.docs.serverds.DataSource#progressiveLoadingThreshold
      * @see com.smartgwt.client.docs.serverds.OperationBinding#progressiveLoading
      * @see com.smartgwt.client.docs.ProgressiveLoading ProgressiveLoading overview and related methods
      */

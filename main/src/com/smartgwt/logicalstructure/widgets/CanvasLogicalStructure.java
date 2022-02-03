@@ -57,6 +57,7 @@ public class CanvasLogicalStructure extends BaseWidgetLogicalStructure {
     public String animateRectAcceleration;
     public String animateRectTime;
     public String animateResizeAcceleration;
+    public String animateResizeLayoutMode;
     public String animateResizeTime;
     public String animateScrollAcceleration;
     public String animateScrollTime;
@@ -65,7 +66,6 @@ public class CanvasLogicalStructure extends BaseWidgetLogicalStructure {
     public String animateTime;
     public String appImgDir;
     public String ariaRole;
-    public String autoDraw;
     public String autoMaskComponents;
     public String autoParent;
     public String autoShowParent;
@@ -178,6 +178,7 @@ public class CanvasLogicalStructure extends BaseWidgetLogicalStructure {
     public String momentumScrollMinSpeed;
     public String mouseStillDownDelay;
     public String mouseStillDownInitialDelay;
+    public String name;
     public String noDoubleClicks;
     public String noDropCursor;
     public String opacity;
@@ -193,6 +194,7 @@ public class CanvasLogicalStructure extends BaseWidgetLogicalStructure {
     public String prompt;
     public String[] proportionalResizeModifiers;
     public String proportionalResizing;
+    public String receiveScrollbarEvents;
     public String redrawOnResize;
     public String resizeBarTarget;
     public String[] resizeFrom;

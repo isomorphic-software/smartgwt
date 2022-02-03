@@ -50,6 +50,7 @@ public class Criterion {
      * Operator this criterion applies.
      *
      * <p>Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public OperatorId operator;
 
@@ -57,6 +58,7 @@ public class Criterion {
      * End value of a criterion with an operator of type <code>"valueRange"</code>.
      *
      * <p>Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public Object end;
 
@@ -64,6 +66,7 @@ public class Criterion {
      * Start value of a criterion with an operator of type <code>"valueRange"</code>.
      *
      * <p>Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public Object start;
 
@@ -75,6 +78,7 @@ public class Criterion {
      * com.smartgwt.client.docs.DataPath dataPath} for more information.
      *
      * <p>Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public String fieldName;
 
@@ -83,6 +87,7 @@ public class Criterion {
      * sub-criteria that are grouped together by the operator.
      *
      * <p>Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public Criterion[] criteria;
 
@@ -92,6 +97,7 @@ public class Criterion {
      * com.smartgwt.client.types.OperatorValueType} of the operator.
      *
      * <p>Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public Object value;
 

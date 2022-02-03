@@ -19,8 +19,10 @@ package com.smartgwt.client.docs;
 /* sgwtgen */
  
 /**
- * Name of a Smart GWT Class, that is, a Class that has been created via {@link com.smartgwt.client.util.isc#defineClass
- * isc.defineClass()}, including Classes built into Smart GWT, such as "ListGrid".
+ * Name of a SmartGWT class, including framework classes such as "ListGrid", or custom subclasses you  have created. For
+ * your own custom classes, the classes must have  <a
+ * href='https://www.smartclient.com/smartgwt/javadoc/com/smartgwt/client/docs/Reflection.html'
+ * target='_blank'>Reflection</a>  enabled.
  */
 public interface SCClassName  {
 }

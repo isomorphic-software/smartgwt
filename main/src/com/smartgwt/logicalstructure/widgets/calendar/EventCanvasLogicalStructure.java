@@ -52,11 +52,13 @@ public class EventCanvasLogicalStructure extends VLayoutLogicalStructure {
     public String headerHeight;
     public String headerStyle;
     public String headerWrap;
+    public String isIndicatorCanvas;
+    public String isZoneCanvas;
     public String showBody;
     public String showGripper;
     public String showHeader;
     public String showLabel;
     public String showRolloverControls;
     public String styleName;
-    public String vertical;
+    public String verticalResize;
 }

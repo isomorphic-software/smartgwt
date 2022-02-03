@@ -46,4 +46,5 @@ import com.smartgwt.logicalstructure.widgets.drawing.*;
 public class SearchFormLogicalStructure extends DynamicFormLogicalStructure {
     public String canEditFieldAttribute;
     public String showFilterFieldsOnly;
+    public String storeDisplayValues;
 }

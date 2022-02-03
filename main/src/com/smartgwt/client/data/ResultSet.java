@@ -76,9 +76,8 @@ import com.smartgwt.client.util.ConfigUtil;
  *  <P>
  *  A ResultSet can be created directly with just the ID of a {@link com.smartgwt.client.data.DataSource}:
  *  <pre>
- *      isc.ResultSet.create({
- *          dataSource : "<i>dataSourceID</i>"
- *      })
+ *      ResultSet resultSet = new ResultSet();
+ *      resultSet.setDataSource(dataSourceID);
  *  </pre>
  *  <P>
  *  Directly created ResultSets are typically used by custom components, or as a means of

@@ -311,8 +311,8 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
     /**
      * If true, the headers for the sections (if shown) will be included in the page's tab order for accessibility.  May be
      * overridden at the Section level via {@link com.smartgwt.client.widgets.layout.SectionStackSection#getCanTabToHeader
-     * SectionStackSection.canTabToHeader} <P> If unset, section headers will be focusable if {@link
-     * com.smartgwt.client.util.isc#setScreenReaderMode isc.setScreenReaderMode()} has been called. See {@link
+     * SectionStackSection.canTabToHeader} <P> If unset, section headers will be focusable if  {@link
+     * com.smartgwt.client.util.SC#setScreenReaderMode SC.setScreenReaderMode()}  has been called. See {@link
      * com.smartgwt.client.docs.Accessibility}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -326,8 +326,8 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
     /**
      * If true, the headers for the sections (if shown) will be included in the page's tab order for accessibility.  May be
      * overridden at the Section level via {@link com.smartgwt.client.widgets.layout.SectionStackSection#getCanTabToHeader
-     * SectionStackSection.canTabToHeader} <P> If unset, section headers will be focusable if {@link
-     * com.smartgwt.client.util.isc#setScreenReaderMode isc.setScreenReaderMode()} has been called. See {@link
+     * SectionStackSection.canTabToHeader} <P> If unset, section headers will be focusable if  {@link
+     * com.smartgwt.client.util.SC#setScreenReaderMode SC.setScreenReaderMode()}  has been called. See {@link
      * com.smartgwt.client.docs.Accessibility}.
      *
      * @return Current canTabToHeaders value. Default value is null
@@ -1030,6 +1030,21 @@ public class SectionStack extends VLayout implements com.smartgwt.client.widgets
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.sectionIsVisible(section);
         return ret == null ? false : ret;
+    }-*/;
+
+	/**
+     * Sets a new list of canvii as items into the specified section by removing the existing items, then adding the new ones. 
+     * Initial items for a section should be specified using the property {@link
+     * com.smartgwt.client.widgets.layout.SectionStackSection#getItems SectionStackSection.items}.
+     * @param section ID or index of the section to remove item from
+     * @param items new items to add
+     */
+    public native void setItems(String section, Canvas... items) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setItems", "String,Canvas...");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.setItems(section, @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(items));
     }-*/;
 
 	/**

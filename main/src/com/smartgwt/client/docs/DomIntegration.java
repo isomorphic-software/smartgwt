@@ -84,7 +84,7 @@ package com.smartgwt.client.docs;
  *  essentially miniature charts, into cells of a ListGrid.  You could use
  * {@link com.smartgwt.client.widgets.grid.ListGridField#setCellFormatter a cell formatter} to
  * write out &lt;div&gt; elements with
- *  known IDs into the cells, then target them with JQuery.
+ *  known IDs into the cells, then target them with JQuery.<br>
  *  <P>
  *  <i>Note:</i> Developers embedding third party text editing components into Smart GWT widgets
  * should typically set {@link com.smartgwt.client.widgets.Canvas#getCanSelectText
@@ -96,8 +96,7 @@ package com.smartgwt.client.docs;
  *  <h3>Resizing and Redraw</h3>
  *  <P>
  *  When implementing <code>canvas.getInnerHTML()</code>, your getInnerHTML() function will be
- * called every time the component redraw()s, and the new HTML will replace the old.  This is also
- *  true of something like a ListGrid cell formatter.
+ *  called every time the component redraw()s, and the new HTML will replace the old.
  *  <P>
  *  Also by default, your component will redraw() if it is resized.  In the example above with
  * CKEditor, we wouldn't want this because it would wipe out the CKEditor widget every time it was
@@ -128,6 +127,27 @@ package com.smartgwt.client.docs;
  * troubleshoot, you
  *  can enable the "redraws" log category in the Developer Console - this will log the source of
  *  any redraws in the system.
+ *  <P>
+ *  <h3>Component-specific considerations</h3>
+ *  In addition to complete redraws, certain components will refresh areas of the DOM dynamically
+ *  without a full redraw. For example if you are using a ListGrid cell formatter to write out
+ *  a particular DOM structure in a grid cell, this structure may be removed from the DOM or
+ * regenerated in a number of ways including explicit calls to {@link
+ * com.smartgwt.client.widgets.grid.ListGrid#refreshCell ListGrid.refreshCell()},
+ *  automatic cell refresh due to data changing, cells being shown or hidden due to
+ * {@link com.smartgwt.client.widgets.grid.ListGrid#getShowAllRecords incremental rendering}, etc.
+ * Developers will need to
+ *  consider how best to handle the lifecycle of the DOM elements they create<br>
+ *  HTML customization within other components may require similar consideration.
+ *  <P>
+ *  Another consideration specific to ListGrids is that fact that in some circumstances the
+ *  HTML returned by a cell formatter may be rendered outside the grid body. An example
+ * of this is the drag tracker HTML generated when {@link
+ * com.smartgwt.client.widgets.grid.ListGrid#getDragTrackerMode ListGrid.dragTrackerMode} is
+ * set to "record". The {@link com.smartgwt.client.widgets.grid.ListGrid#formatInactiveCellValue
+ * inactive cell formatter} 
+ *  may be provided to emit alternative HTML for rendering these 'inactive' versions of
+ *  the cell content (allowing developers to, for example, exclude explicit element IDs).
  *  <P>
  *  <h3>Masking during drags</h3>
  *  <P>
@@ -188,19 +208,31 @@ package com.smartgwt.client.docs;
  *  appear above, then set a higher value.
  *  <P>
  *  Finally, as a last resort and completely unsupported approach, you can modify the zIndex
- *  range used by Smart GWT using the following JavaScript code:
+ *  range used by Smart GWT 
+ *  by executing the following JavaScript code via JSNI, in your onModuleLoad() function
+ *  :
+ *  
+ *  
  *  <pre>
- *  isc.Canvas.addClassProperties({
- *     // default zIndex for the next item to be drawn
- *     _nextZIndex:200000,
- * 
- *     // zIndex of the next item to be sent to the back
- *     _SMALL_Z_INDEX:199950,
- * 
- *     // zIndex of the next item to be brought to the front
- *     _BIG_Z_INDEX:800000
- *  });
+ *       private native void adjustZIndexRange() &#47;*-{
+ *           $wnd.isc.Canvas.addClassProperties({
+ *               // default zIndex for the next item to be drawn
+ *               _nextZIndex:200000,
+ *     
+ *               // zIndex of the next item to be sent to the back
+ *               _SMALL_Z_INDEX:199950,
+ *     
+ *               // zIndex of the next item to be brought to the front
+ *               _BIG_Z_INDEX:800000
+ *           });
+ *       }-*&#47;;
+ *       
+ *       public void onModuleLoad() {
+ *           adjustZIndexRange();
+ *           .......
+ *       }     
  *  </pre>
+ *  
  *  <P>
  *  <h3>Other issues</h3>
  *  <P>
@@ -218,13 +250,18 @@ package com.smartgwt.client.docs;
  *  <ul>
  *  <li> <b>tabbing order / accessibility</b>: a correct tabbing order that visits all
  *  components on the page is a requirement for your application to be considered accessible, as
- * is ARIA markup (for more information, see {@link com.smartgwt.client.docs.Accessibility}). 
- * Third-party
- *  widgets may completely lack ARIA markup, such that you may be required to modify them or
- *  reach into their DOM to add ARIA attributes.  It may be necessary to add manual keyDown or
- *  keyPress event handlers to handle focus moving from Smart GWT components to third-party
- *  widgets and back.
- * 
+ *  is ARIA markup (for more information, see {@link com.smartgwt.client.docs.Accessibility}).<br>
+ * The {@link com.smartgwt.client.widgets.TabIndexManager} class can be used to integrate
+ * arbitrary HTML elements into
+ *  the page level tab sequence, by both providing a numeric tab-index to assign to the
+ *  element, and allowing the developer to implement programmatic callback to shift focus
+ *  to the element (which will then be called automatically by the framework where appropriate).
+ * See {@link com.smartgwt.client.docs.TabOrderOverview} for more on this. In some cases it may
+ * also be necessary to 
+ *  add manual keyDown or keyPress event handlers to handle focus moving from Smart GWT
+ *  components to third-party widgets and back.<br>
+ *  Third party widgets may or may not write out ARIA markup. This may require you to
+ *  modify them or reach into their DOM to add ARIA attributes.
  *  <li> <b>modality</b>: aside from zIndex issues covered above, modality means that the tab
  *  order should be a closed loop that reaches only active widgets, which can create additional
  *  complexity in getting tabbing to work correctly.  Also, keyboard shortcuts should be

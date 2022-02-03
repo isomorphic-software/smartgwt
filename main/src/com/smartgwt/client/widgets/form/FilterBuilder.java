@@ -1827,7 +1827,7 @@ public class FilterBuilder extends Layout implements com.smartgwt.client.widgets
             var defaultsJS = null;
             if (this.__getFieldOperators != null) defaultsJS = this.__getFieldOperators(fieldName);
             var defaultsJ = null;
-            if (defaultsJS != null) {   
+            if (defaultsJS != null) {
                 defaultsJ = @com.smartgwt.client.util.ConvertTo::arrayOfOperatorId(Lcom/google/gwt/core/client/JavaScriptObject;)(defaultsJS);
             }
                         

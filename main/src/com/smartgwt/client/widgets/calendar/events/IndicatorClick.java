@@ -74,16 +74,13 @@ import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
-/**
- * @deprecated Please use addEventResize[Move/Stop]Handler instead, this will be removed in a future release.
- */
-public class TimelineEventResized extends BrowserEvent<TimelineEventResizedHandler>  implements Cancellable {
+public class IndicatorClick extends BrowserEvent<IndicatorClickHandler>  implements Cancellable {
     private boolean cancel = false;
 
     /**
      * Handler type.
      */
-    private static Type<TimelineEventResizedHandler> TYPE;
+    private static Type<IndicatorClickHandler> TYPE;
 
     /**
      * Returns the {@link com.smartgwt.client.widgets.Canvas Canvas} firing the event.
@@ -102,10 +99,10 @@ public class TimelineEventResized extends BrowserEvent<TimelineEventResizedHandl
      * @param source the source of the handlers
      * @param jsObj the native event
      */
-    public static <S extends HasTimelineEventResizedHandlers & HasHandlers> void fire(
+    public static <S extends HasIndicatorClickHandlers & HasHandlers> void fire(
         S source, JavaScriptObject jsObj) {
         if (TYPE != null) {
-            TimelineEventResized event = new TimelineEventResized(jsObj);
+            IndicatorClick event = new IndicatorClick(jsObj);
             source.fireEvent(event);
         }
     }
@@ -115,16 +112,16 @@ public class TimelineEventResized extends BrowserEvent<TimelineEventResizedHandl
      *
      * @return returns the handler type
      */
-    public static Type<TimelineEventResizedHandler> getType() {
+    public static Type<IndicatorClickHandler> getType() {
         if (TYPE == null) {
-            TYPE = new Type<TimelineEventResizedHandler>();
+            TYPE = new Type<IndicatorClickHandler>();
         }
         return TYPE;
     }
 
     @Override
-    protected void dispatch(TimelineEventResizedHandler handler) {
-        handler.onTimelineEventResized(this);
+    protected void dispatch(IndicatorClickHandler handler) {
+        handler.onIndicatorClick(this);
     }
 
     // Because of type erasure, our static type is
@@ -132,16 +129,16 @@ public class TimelineEventResized extends BrowserEvent<TimelineEventResizedHandl
 
     @SuppressWarnings("unchecked")
     @Override
-    public final Type<TimelineEventResizedHandler> getAssociatedType() {
+    public final Type<IndicatorClickHandler> getAssociatedType() {
         return TYPE;
     }
 
-    public TimelineEventResized(JavaScriptObject jsObj) {
+    public IndicatorClick(JavaScriptObject jsObj) {
         super(jsObj);
     }
 
     /**
-     * Call this method to disallow the resize
+     * Call this method to cancel the default action
      */
     public void cancel() {
         cancel = true;
@@ -155,39 +152,28 @@ public class TimelineEventResized extends BrowserEvent<TimelineEventResizedHandl
     }
 
 	/**
-     * the event that was resized
+     * indicator that was clicked on
      *
-     * @return the event that was resized
+     * @return indicator that was clicked on
      */
-    public native CalendarEvent getEvent() /*-{
+    public native CalendarEvent getIndicatorEvent() /*-{
         var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var ret = self.event;
+        var ret = self.indicatorEvent;
         if(ret == null) return null;
         return @com.smartgwt.client.widgets.calendar.CalendarEvent::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
 	/**
-     * new start date of the passed event, after the resize
+     * view where the event's canvas was clicked
      *
-     * @return new start date of the passed event, after the resize
+     * @return view where the event's canvas was clicked
      */
-    public native Date getStartDate() /*-{
+    public native ViewName getViewName() /*-{
         var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var ret = self.startDate;
+        var ret = self.viewName;
         if(ret == null) return null;
-        return @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
-    }-*/;
-
-	/**
-     * new end date of the passed event, after the resize
-     *
-     * @return new end date of the passed event, after the resize
-     */
-    public native Date getEndDate() /*-{
-        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var ret = self.endDate;
-        if(ret == null) return null;
-        return @com.smartgwt.client.util.JSOHelper::toDate(D)(ret.getTime());
+        var enumValues = @com.smartgwt.client.types.ViewName::values()();
+        return @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(enumValues, ret);
     }-*/;
 
 }

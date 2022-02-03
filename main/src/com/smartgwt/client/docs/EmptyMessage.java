@@ -14,6 +14,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getLoadingDataMessage
  * @see com.smartgwt.client.widgets.grid.ListGrid#getLoadingDataMessageStyle
  * @see com.smartgwt.client.widgets.grid.ListGrid#getLoadingMessage
+ * @see com.smartgwt.client.widgets.tile.TileGrid#getLoadingDataMessage
+ * @see com.smartgwt.client.widgets.tile.TileGrid#getLoadingDataMessageStyle
  * @see com.smartgwt.client.widgets.tile.TileGrid#getLoadingMessage
  * @see com.smartgwt.client.widgets.tile.TileGrid#getShowEmptyMessage
  * @see com.smartgwt.client.widgets.tile.TileGrid#getEmptyMessage

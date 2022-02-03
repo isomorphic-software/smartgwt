@@ -27,9 +27,12 @@ package com.smartgwt.client.docs;
  *  Because Smart GWT performs the assembly of image URLs dynamically, versioning of
  *  Smart GWT skins must be done with a path component.  You can do this by changing the base
  *  skinDir using {@link com.smartgwt.client.util.Page#setSkinDir Page.setSkinDir()} - e.g:
+ *  
+ *  
  *  <pre>
- *  isc.Page.setSkinDir('/version/5.6/isomorphic/skins/Smart GWT/');
+ *  Page.setSkinDir('/version/5.6/isomorphic/skins/SmartGWT/');
  *  </pre>
+ *  
  *  You can then either deploy the new skins under the versioned directory above or use a URL
  *  rewriting engine such as mod_rewrite for Apache to map all such versions into a single
  *  deploy directory.

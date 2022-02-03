@@ -25,20 +25,15 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#printComponents
  * @see com.smartgwt.client.widgets.Canvas#getPrintPreview
  * @see com.smartgwt.client.widgets.Canvas#showPrintPreview
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getPrintHTML
- * @see com.smartgwt.client.widgets.Canvas#getPrintHTML
- * @see com.smartgwt.client.widgets.drawing.DrawPane#getPrintHTML
  * @see com.smartgwt.client.widgets.chart.FacetChart#getPrintHTML
+ * @see com.smartgwt.client.widgets.drawing.DrawPane#getPrintHTML
+ * @see com.smartgwt.client.widgets.Canvas#getPrintHTML
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getPrintHTML
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getPrintValueIconStyle
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getPrintValueIcon
  * @see com.smartgwt.client.util.PrintProperties
  * @see com.smartgwt.client.widgets.PrintCanvas
  * @see com.smartgwt.client.widgets.PrintWindow
- * @see com.smartgwt.client.widgets.Canvas#getPrintChildrenAbsolutelyPositioned
- * @see com.smartgwt.client.widgets.Canvas#getShouldPrint
- * @see com.smartgwt.client.util.PrintProperties#getOmitControls
- * @see com.smartgwt.client.util.PrintProperties#getIncludeControls
- * @see com.smartgwt.client.util.PrintProperties#getPrintForExport
  * @see com.smartgwt.client.widgets.viewer.DetailViewer#getPrintCellStyle
  * @see com.smartgwt.client.widgets.viewer.DetailViewer#getPrintLabelStyle
  * @see com.smartgwt.client.widgets.viewer.DetailViewer#getPrintHeaderStyle
@@ -57,6 +52,11 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getPrintBaseStyle
  * @see com.smartgwt.client.widgets.grid.ListGrid#getPrintMaxRows
  * @see com.smartgwt.client.widgets.chart.FacetChart#getPrintZoomChart
+ * @see com.smartgwt.client.widgets.Canvas#getPrintChildrenAbsolutelyPositioned
+ * @see com.smartgwt.client.widgets.Canvas#getShouldPrint
+ * @see com.smartgwt.client.util.PrintProperties#getOmitControls
+ * @see com.smartgwt.client.util.PrintProperties#getIncludeControls
+ * @see com.smartgwt.client.util.PrintProperties#getPrintForExport
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getPrintTitleStyle
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getPrintTextBoxStyle
  * @see com.smartgwt.client.widgets.form.fields.TextItem#getPrintFullText

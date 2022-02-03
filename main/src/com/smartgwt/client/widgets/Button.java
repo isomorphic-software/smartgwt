@@ -260,11 +260,57 @@ public class Button extends StatefulCanvas implements com.smartgwt.client.widget
     
 
     /**
-     * Base CSS style className applied to the component.  <P> As the component changes {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getState StatefulCanvas.state} and/or is selected,  suffixes will be added to
-     * the base style. In some cases more than one suffix will  be appended to reflect a combined state ("Selected" +
-     * "Disabled", for example). <P> See {@link com.smartgwt.client.widgets.StatefulCanvas#getStateSuffix
-     * StatefulCanvas.getStateSuffix()} for a description of the default set of suffixes which may be applied to the baseStyle
+     * Base CSS style className applied to the component. 
+     *  <P>
+     * As the component changes {@link com.smartgwt.client.widgets.StatefulCanvas#getState StatefulCanvas.state} and/or is
+     * selected, 
+     *  suffixes will be added to the base style. In some cases more than one suffix will 
+     *  be appended to reflect a combined state ("Selected" + "Disabled", for example).
+     *  <P>
+     * See {@link com.smartgwt.client.widgets.StatefulCanvas#getStateSuffix StatefulCanvas.getStateSuffix()} for a description
+     * of the default set
+     *  of suffixes which may be applied to the baseStyle
+     *  <P>
+     *  <h4>Rotated Titles</h4>
+     *  <p>
+     *  The Framework doesn't have built-in support for rotating button titles in a fashion
+     * similar to {@link com.smartgwt.client.widgets.chart.FacetChart#getRotateLabels FacetChart.rotateLabels}.  However, you
+     * can manually configure
+     *  a button to render with a rotated title by applying custom CSS via this property.
+     *  <P>
+     *  For example, given a button with a height of 120 and a width of 48, if you
+     *  copied the existing buttonXXX style declarations from skin_styles.css as new,
+     *  rotatedTitleButtonXXX declarations, and then added the lines:
+     *  <pre>
+     *      -ms-transform:     translate(-38px,0px) rotate(270deg);
+     *      -webkit-transform: translate(-38px,0px) rotate(270deg);
+     *      transform:         translate(-38px,0px) rotate(270deg);
+     *      overflow: hidden;
+     *      text-overflow: ellipsis;
+     *      width:116px;</pre>
+     *  in the declaration section beginning:
+     *  <pre>
+     *  .rotatedTitleButton,
+     *  .rotatedTitleButtonSelected,
+     *  .rotatedTitleButtonSelectedOver,
+     *  .rotatedTitleButtonSelectedDown,
+     *  .rotatedTitleButtonSelectedDisabled,
+     *  .rotatedTitleButtonOver,
+     *  .rotatedTitleButtonDown,
+     *  .rotatedTitleButtonDisabled {</pre>
+     *  then applying that style to the button with {@link com.smartgwt.client.widgets.Canvas#getOverflow overflow}: "clip_h"
+     *  would yield a vertically-rendered title with overflow via ellipsis as expected, and also
+     *  wrap with {@link com.smartgwt.client.widgets.Button#getWrap wrap}.
+     *  
+     *  Note that:<ul>
+     *  <li> The explicit width applied via CSS is needed because rotated
+     *  elements don't inherit dimensions in their new orientation from the DOM - 
+     *  the transform/rotation occurs independently of layout.
+     *  <li> The translation transform required along the x-axis is roughly
+     *  (width - height) / 2, but may need slight offsetting for optimal centering.
+     *  <li>We've explicitly avoided describing an approach based on CSS "writing-mode", since
+     *  support is incomplete and bugs are present in popular browsers such as Firefox and
+     *  Safari that would prevent it from being used without Framework assistance.</ul>
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Sets the base CSS style.  As the component changes state and/or is selected, suffixes will be added to the base style.
@@ -278,11 +324,57 @@ public class Button extends StatefulCanvas implements com.smartgwt.client.widget
     }
 
     /**
-     * Base CSS style className applied to the component.  <P> As the component changes {@link
-     * com.smartgwt.client.widgets.StatefulCanvas#getState StatefulCanvas.state} and/or is selected,  suffixes will be added to
-     * the base style. In some cases more than one suffix will  be appended to reflect a combined state ("Selected" +
-     * "Disabled", for example). <P> See {@link com.smartgwt.client.widgets.StatefulCanvas#getStateSuffix
-     * StatefulCanvas.getStateSuffix()} for a description of the default set of suffixes which may be applied to the baseStyle
+     * Base CSS style className applied to the component. 
+     *  <P>
+     * As the component changes {@link com.smartgwt.client.widgets.StatefulCanvas#getState StatefulCanvas.state} and/or is
+     * selected, 
+     *  suffixes will be added to the base style. In some cases more than one suffix will 
+     *  be appended to reflect a combined state ("Selected" + "Disabled", for example).
+     *  <P>
+     * See {@link com.smartgwt.client.widgets.StatefulCanvas#getStateSuffix StatefulCanvas.getStateSuffix()} for a description
+     * of the default set
+     *  of suffixes which may be applied to the baseStyle
+     *  <P>
+     *  <h4>Rotated Titles</h4>
+     *  <p>
+     *  The Framework doesn't have built-in support for rotating button titles in a fashion
+     * similar to {@link com.smartgwt.client.widgets.chart.FacetChart#getRotateLabels FacetChart.rotateLabels}.  However, you
+     * can manually configure
+     *  a button to render with a rotated title by applying custom CSS via this property.
+     *  <P>
+     *  For example, given a button with a height of 120 and a width of 48, if you
+     *  copied the existing buttonXXX style declarations from skin_styles.css as new,
+     *  rotatedTitleButtonXXX declarations, and then added the lines:
+     *  <pre>
+     *      -ms-transform:     translate(-38px,0px) rotate(270deg);
+     *      -webkit-transform: translate(-38px,0px) rotate(270deg);
+     *      transform:         translate(-38px,0px) rotate(270deg);
+     *      overflow: hidden;
+     *      text-overflow: ellipsis;
+     *      width:116px;</pre>
+     *  in the declaration section beginning:
+     *  <pre>
+     *  .rotatedTitleButton,
+     *  .rotatedTitleButtonSelected,
+     *  .rotatedTitleButtonSelectedOver,
+     *  .rotatedTitleButtonSelectedDown,
+     *  .rotatedTitleButtonSelectedDisabled,
+     *  .rotatedTitleButtonOver,
+     *  .rotatedTitleButtonDown,
+     *  .rotatedTitleButtonDisabled {</pre>
+     *  then applying that style to the button with {@link com.smartgwt.client.widgets.Canvas#getOverflow overflow}: "clip_h"
+     *  would yield a vertically-rendered title with overflow via ellipsis as expected, and also
+     *  wrap with {@link com.smartgwt.client.widgets.Button#getWrap wrap}.
+     *  
+     *  Note that:<ul>
+     *  <li> The explicit width applied via CSS is needed because rotated
+     *  elements don't inherit dimensions in their new orientation from the DOM - 
+     *  the transform/rotation occurs independently of layout.
+     *  <li> The translation transform required along the x-axis is roughly
+     *  (width - height) / 2, but may need slight offsetting for optimal centering.
+     *  <li>We've explicitly avoided describing an approach based on CSS "writing-mode", since
+     *  support is incomplete and bugs are present in popular browsers such as Firefox and
+     *  Safari that would prevent it from being used without Framework assistance.</ul>
      *
      * @return Current baseStyle value. Default value is "button"
      * @see com.smartgwt.client.widgets.Button#getIconOnlyBaseStyle
@@ -295,10 +387,12 @@ public class Button extends StatefulCanvas implements com.smartgwt.client.widget
 
     /**
      * If enabled, the button will collapse to show just its icon when showing the title would cause overflow of a containing
-     * Layout.  See {@link com.smartgwt.client.widgets.Canvas#getCanAdaptWidth Canvas.canAdaptWidth}.
+     * Layout.  While collapsed, the button will show its title on hover, unless an explicit hover has been specified such as
+     * by overriding {@link com.smartgwt.client.widgets.Button#titleHoverHTML titleHoverHTML()}.
      *
      * @param canAdaptWidth New canAdaptWidth value. Default value is false
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.Canvas#setCanAdaptWidth
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_adaptive_width" target="examples">Button Adaptive Width Example</a>
      */
     public void setCanAdaptWidth(Boolean canAdaptWidth)  throws IllegalStateException {
@@ -307,9 +401,11 @@ public class Button extends StatefulCanvas implements com.smartgwt.client.widget
 
     /**
      * If enabled, the button will collapse to show just its icon when showing the title would cause overflow of a containing
-     * Layout.  See {@link com.smartgwt.client.widgets.Canvas#getCanAdaptWidth Canvas.canAdaptWidth}.
+     * Layout.  While collapsed, the button will show its title on hover, unless an explicit hover has been specified such as
+     * by overriding {@link com.smartgwt.client.widgets.Button#titleHoverHTML titleHoverHTML()}.
      *
      * @return Current canAdaptWidth value. Default value is false
+     * @see com.smartgwt.client.widgets.Canvas#getCanAdaptWidth
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#buttons_adaptive_width" target="examples">Button Adaptive Width Example</a>
      */
     public Boolean getCanAdaptWidth()  {
@@ -341,6 +437,63 @@ public class Button extends StatefulCanvas implements com.smartgwt.client.widget
      */
     public Cursor getDisabledIconCursor()  {
         return EnumUtil.getEnum(Cursor.values(), getAttribute("disabledIconCursor"));
+    }
+    
+
+    /**
+     * Size for this component's vertical dimension.  See {@link com.smartgwt.client.widgets.Canvas#getHeight Canvas.height}
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Button#getAutoFit autoFit} is set on non-{@link
+     * com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the widget is always
+     * sized just large enough to accommodate the title.
+     *
+     * @param height New height value. Default value is null
+     * @see com.smartgwt.client.widgets.Button#setAutoFit
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public void setHeight(Integer height) {
+        setAttribute("height", height, true);
+    }
+
+    /**
+     * Size for this component's vertical dimension.  See {@link com.smartgwt.client.widgets.Canvas#getHeight Canvas.height}
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Button#getAutoFit autoFit} is set on non-{@link
+     * com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the widget is always
+     * sized just large enough to accommodate the title.
+     *
+     * @return Current height value. Default value is null
+     * @see com.smartgwt.client.widgets.Button#getAutoFit
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public Integer getHeight()  {
+        return getAttributeAsInt("height");
+    }
+
+    /**
+     * Size for this component's vertical dimension.  See {@link com.smartgwt.client.widgets.Canvas#getHeight Canvas.height}
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Button#getAutoFit autoFit} is set on non-{@link
+     * com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the widget is always
+     * sized just large enough to accommodate the title.
+     *
+     * @param height New height value. Default value is null
+     * @see com.smartgwt.client.widgets.Button#setAutoFit
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public void setHeight(String height) {
+        setAttribute("height", height, true);
+    }
+
+    /**
+     * Size for this component's vertical dimension.  See {@link com.smartgwt.client.widgets.Canvas#getHeight Canvas.height}
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Button#getAutoFit autoFit} is set on non-{@link
+     * com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the widget is always
+     * sized just large enough to accommodate the title.
+     *
+     * @return Current height value. Default value is null
+     * @see com.smartgwt.client.widgets.Button#getAutoFit
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public String getHeightAsString()  {
+        return getAttributeAsString("height");
     }
     
 
@@ -1090,6 +1243,59 @@ public class Button extends StatefulCanvas implements com.smartgwt.client.widget
     
 
     /**
+     * Size for this component's horizontal dimension.  See {@link com.smartgwt.client.widgets.Canvas#getWidth Canvas.width}
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Button#getAutoFit autoFit} is set, this property
+     * will be ignored so that the widget is always sized just large enough to accommodate the title.
+     *
+     * @param width New width value. Default value is null
+     * @see com.smartgwt.client.widgets.Button#setAutoFit
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public void setWidth(Integer width) {
+        setAttribute("width", width, true);
+    }
+
+    /**
+     * Size for this component's horizontal dimension.  See {@link com.smartgwt.client.widgets.Canvas#getWidth Canvas.width}
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Button#getAutoFit autoFit} is set, this property
+     * will be ignored so that the widget is always sized just large enough to accommodate the title.
+     *
+     * @return Current width value. Default value is null
+     * @see com.smartgwt.client.widgets.Button#getAutoFit
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public Integer getWidth()  {
+        return getAttributeAsInt("width");
+    }
+
+    /**
+     * Size for this component's horizontal dimension.  See {@link com.smartgwt.client.widgets.Canvas#getWidth Canvas.width}
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Button#getAutoFit autoFit} is set, this property
+     * will be ignored so that the widget is always sized just large enough to accommodate the title.
+     *
+     * @param width New width value. Default value is null
+     * @see com.smartgwt.client.widgets.Button#setAutoFit
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public void setWidth(String width) {
+        setAttribute("width", width, true);
+    }
+
+    /**
+     * Size for this component's horizontal dimension.  See {@link com.smartgwt.client.widgets.Canvas#getWidth Canvas.width}
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Button#getAutoFit autoFit} is set, this property
+     * will be ignored so that the widget is always sized just large enough to accommodate the title.
+     *
+     * @return Current width value. Default value is null
+     * @see com.smartgwt.client.widgets.Button#getAutoFit
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public String getWidthAsString()  {
+        return getAttributeAsString("width");
+    }
+    
+
+    /**
      * A boolean indicating whether the button's title should word-wrap, if necessary.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
@@ -1476,6 +1682,11 @@ public class Button extends StatefulCanvas implements com.smartgwt.client.widget
             s.logicalStructureErrors += "Button.disabledIconCursor:" + t.getMessage() + "\n";
         }
         try {
+            s.heightAsString = getAttributeAsString("height");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Button.heightAsString:" + t.getMessage() + "\n";
+        }
+        try {
             s.hiliteAccessKey = getAttributeAsString("hiliteAccessKey");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Button.hiliteAccessKey:" + t.getMessage() + "\n";
@@ -1604,6 +1815,11 @@ public class Button extends StatefulCanvas implements com.smartgwt.client.widget
             s.valign = getAttributeAsString("valign");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Button.valign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.widthAsString = getAttributeAsString("width");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Button.widthAsString:" + t.getMessage() + "\n";
         }
         try {
             s.wrap = getAttributeAsString("wrap");

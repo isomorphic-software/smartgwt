@@ -4,21 +4,27 @@ package com.smartgwt.client.docs;
 /**
  * <h3>Debugging</h3>
  * 
- *  <h4>Development and Super Dev Modes</h4>
- *  GWT
- * <a href='http://www.gwtproject.org/doc/latest/DevGuideCompilingAndDebugging.html#dev_mode'
+ *  <h4>Development Modes in GWT</h4>
+ *  GWT applications are written in Java but compiled to JavaScript to be run on the browser.
+ *  During application development, code is typically deployed for testing using either
+ *  Development Mode (formerly known as "Super Dev Mode"), or Legacy Development Mode.
+ *  <P>
+ * Legacy <a
+ * href='http://www.gwtproject.org/doc/latest/DevGuideCompilingAndDebugging.html#dev_mode'
  * target='_blank'>Development Mode</a>,
- *  which runs your Java code in an actual Java VM attached to the browser via a browser plugin,
- *  is being phased out of the GWT project in favor of
- * <a href='http://www.gwtproject.org/articles/superdevmode.html' target='_blank'>Super Dev
- * Mode</a>, which
- *  translates your Java code into JavaScript before running it, even when debugging.
+ *  runs your Java code in an actual Java VM attached to the browser via a browser plugin,
+ *  and is being phased out of the GWT project in favor of a new Development Mode approach
+ *  which translates your Java code into JavaScript before running it, 
+ *  even when debugging.
  *  <p>
- *  In Super Dev Mode,
+ *  In the new
+ * <a href='http://www.gwtproject.org/articles/superdevmode.html' target='_blank'>Development
+ * mode</a>
+ *  (formerly referred to as Super Dev Mode), 
  * <a href='https://developer.chrome.com/devtools/docs/javascript-debugging#source-maps'
  * target='_blank'>source maps</a> 
  *  provided by a GWT Code Server Java app allow breakpoints to be placed at chosen locations
- *  within the Java source code.  Running Super Dev Mode in GWT 2.7.0+ is possible by just
+ *  within the Java source code.  Running this mode in GWT 2.7.0+ is possible by just
  *  launching the (Super) Dev Mode Server in Eclipse using a <i>Web Application</i> Run
  *  Configuration.  This should be available under Run Configurations if the 
  * <a href='http://www.gwtproject.org/download.html' target='_blank'>GWT 2.7.0 Eclipse Plugin</a>
@@ -52,9 +58,12 @@ package com.smartgwt.client.docs;
  * Dev Mode} for more
  *  detailed help running Super Dev Mode.</i>
  *  <P>
- *  Classic Development Mode can now only be used with older versions of Firefox, such as 
- * <a href='https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/latest-24.0esr/'
- * target='_blank'>Firefox 24ESR</a>
+ *  Legacy Development Mode is deprecated and support may disappear in future releases of GWT.
+ *  The only current browser that works with Legacy Dev Mode is IE11 on Windows, and it does
+ *  seem to hit fewer runtime exceptions and crash less often during debugging of Legacy Dev Mode
+ *  than the next best choice, an older version of Firefox, such as
+ * <a href='https://ftp.mozilla.org/pub/firefox/releases/24.8.1esr/' target='_blank'>Firefox
+ * 24ESR</a>
  *  (which is only supported until 10/14/2014).  There are no plans to re-add support in current
  *  versions of Firefox.  Chrome's Development Mode also cannot be used because of
  * <a href='http://forums.smartclient.com/showthread.php?t=8159#aChrome'

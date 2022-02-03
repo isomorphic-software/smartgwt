@@ -49,6 +49,7 @@ public class LabelLogicalStructure extends ButtonLogicalStructure {
     public String contents;
     public String dynamicContents;
     public String editProxyConstructor;
+    public String heightAsString;
     public String icon;
     public String iconAlign;
     public String iconHeight;
@@ -63,5 +64,6 @@ public class LabelLogicalStructure extends ButtonLogicalStructure {
     public String showSelectedIcon;
     public String styleName;
     public String valign;
+    public String widthAsString;
     public String wrap;
 }

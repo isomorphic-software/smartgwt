@@ -259,22 +259,27 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      *  <P>
      *  If you want to dynamically create a component to be added to the Layout in response to a
      *  drop event you can do so as follows: 
+     *  
+     *  
      *  <pre>
-     *  isc.VLayout.create({
-     *    ...various layout properties...
-     *    canDropComponents: true,
-     *    drop : function () {
-     *      // create the new component 
-     *      var newMember = isc.Canvas.create(); 
-     *      // add to the layout at the current drop position 
-     *      // (the dropLine will be showing here)
-     *      this.addMember(newMember, this.getDropPosition());  
-     *      // hide the dropLine that was automatically shown 
-     *      // by builtin Smart GWT methods
-     *      this.hideDropLine();
-     *    }
-     *  });
+     *   final VLayout vLayout = new VLayout();
+     *   //...various layout properties...
+     *   vLayout.setCanDropComponents(true);
+     *   vLayout.addDropHandler(new DropHandler() {
+     *       &#64;Override
+     *       public void onDrop(DropEvent event) {
+     *           // create the new component 
+     *           Canvas newMember = new Canvas();
+     *           // add to the layout at the current drop position  
+     *           // (the dropLine will be showing here)
+     *           vLayout.addMember(newMember, vLayout.getDropPosition());
+     *           // hide the dropLine that was automatically shown 
+     *           // by builtin SmartGWT methods
+     *           vLayout.hideDropLine();
+     *       }
+     *   });
      *  </pre>
+     *  
      *  If you want to completely suppress the builtin drag and drop logic, but still receive drag
      * and drop events for your own custom implementation, set {@link com.smartgwt.client.widgets.Canvas#getCanAcceptDrop
      * Canvas.canAcceptDrop} to
@@ -313,22 +318,27 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
      *  <P>
      *  If you want to dynamically create a component to be added to the Layout in response to a
      *  drop event you can do so as follows: 
+     *  
+     *  
      *  <pre>
-     *  isc.VLayout.create({
-     *    ...various layout properties...
-     *    canDropComponents: true,
-     *    drop : function () {
-     *      // create the new component 
-     *      var newMember = isc.Canvas.create(); 
-     *      // add to the layout at the current drop position 
-     *      // (the dropLine will be showing here)
-     *      this.addMember(newMember, this.getDropPosition());  
-     *      // hide the dropLine that was automatically shown 
-     *      // by builtin Smart GWT methods
-     *      this.hideDropLine();
-     *    }
-     *  });
+     *   final VLayout vLayout = new VLayout();
+     *   //...various layout properties...
+     *   vLayout.setCanDropComponents(true);
+     *   vLayout.addDropHandler(new DropHandler() {
+     *       &#64;Override
+     *       public void onDrop(DropEvent event) {
+     *           // create the new component 
+     *           Canvas newMember = new Canvas();
+     *           // add to the layout at the current drop position  
+     *           // (the dropLine will be showing here)
+     *           vLayout.addMember(newMember, vLayout.getDropPosition());
+     *           // hide the dropLine that was automatically shown 
+     *           // by builtin SmartGWT methods
+     *           vLayout.hideDropLine();
+     *       }
+     *   });
      *  </pre>
+     *  
      *  If you want to completely suppress the builtin drag and drop logic, but still receive drag
      * and drop events for your own custom implementation, set {@link com.smartgwt.client.widgets.Canvas#getCanAcceptDrop
      * Canvas.canAcceptDrop} to
@@ -1330,8 +1340,10 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
     }-*/;
 
 	/**
-     * Given a numerical index or a member name or member ID, return a pointer to the appropriate member. <p> If passed a
-     * member Canvas, just returns it.
+     * Given a numerical index or a member {@link com.smartgwt.client.widgets.Canvas#getName name} or member {@link
+     * com.smartgwt.client.widgets.Canvas#getID ID}, return a pointer to the appropriate member.  If passed a member Canvas,
+     * just returns it. <p> Note that if more than one member has the same <code>name</code>, passing in a <code>name</code>
+     * has an undefined result.
      * @param memberID identifier for the required member
      *
      * @return member widget
@@ -1364,8 +1376,10 @@ public class Layout extends Canvas implements com.smartgwt.client.widgets.layout
     }-*/;
 
 	/**
-     * Given a member Canvas or member ID or name, return the index of that member within this layout's members array <p> If
-     * passed a number, just returns it.
+     * Given a member Canvas or member {@link com.smartgwt.client.widgets.Canvas#getID ID} or {@link
+     * com.smartgwt.client.widgets.Canvas#getName name}, return the index of that member within this layout's members array. 
+     * If passed a number, just returns it. <p> Note that if more than one member has the same <code>name</code>, passing in a
+     * <code>name</code> has an undefined result.
      * @param memberID identifier for the required member
      *
      * @return index of the member canvas (or -1 if not found)

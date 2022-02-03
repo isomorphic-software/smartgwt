@@ -219,6 +219,28 @@ public class SimpleType extends BaseClass {
         return getAttributeAsString("defaultGroupingMode");
     }
     
+
+    /**
+     * The default search-operator for this data-type.
+     *
+     * @param defaultOperator New defaultOperator value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
+     */
+    public void setDefaultOperator(OperatorId defaultOperator)  throws IllegalStateException {
+        setAttribute("defaultOperator", defaultOperator == null ? null : defaultOperator.getValue(), false);
+    }
+
+    /**
+     * The default search-operator for this data-type.
+     *
+     * @return Current defaultOperator value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
+     */
+    public OperatorId getDefaultOperator()  {
+        return EnumUtil.getEnum(OperatorId.values(), getAttribute("defaultOperator"));
+    }
+    
     
 
     /**
@@ -398,6 +420,7 @@ public class SimpleType extends BaseClass {
      *
      * @param validOperators New validOperators value. Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public void setValidOperators(OperatorId... validOperators)  throws IllegalStateException {
         setAttribute("validOperators", validOperators, false);

@@ -3,9 +3,10 @@ package com.smartgwt.client.docs;
 
 /**
  * The following APIs are all related to Sorting.
- * @see com.smartgwt.client.types.SortDirection
  * @see com.smartgwt.client.types.SortArrow
+ * @see com.smartgwt.client.types.SortDirection
  * @see com.smartgwt.client.widgets.grid.ListGridField#sortNormalizer
+ * @see com.smartgwt.client.widgets.grid.ListGrid#groupSortNormalizer
  * @see com.smartgwt.client.widgets.grid.ListGrid#headerClick
  * @see com.smartgwt.client.widgets.grid.events.SorterContextClickEvent
  * @see com.smartgwt.client.widgets.grid.events.SorterClickEvent

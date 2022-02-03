@@ -56,7 +56,6 @@ public final class ObjectFactory {
             , "RangeSlider": @com.smartgwt.client.widgets.RangeSlider::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)
             , "Button": @com.smartgwt.client.widgets.Button::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)
             , "Portlet": @com.smartgwt.client.widgets.layout.Portlet::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)
-            , "Applet": @com.smartgwt.client.widgets.plugins.Applet::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)
             , "Scrollbar": @com.smartgwt.client.widgets.Scrollbar::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)
             , "DrawPolygon": @com.smartgwt.client.widgets.drawing.DrawPolygon::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)
             , "DateRangeDialog": @com.smartgwt.client.widgets.DateRangeDialog::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)
@@ -110,6 +109,7 @@ public final class ObjectFactory {
             , "ColorPicker": @com.smartgwt.client.widgets.form.ColorPicker::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)
             , "EditPane": @com.smartgwt.client.tools.EditPane::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)
             , "Deck": @com.smartgwt.client.widgets.layout.Deck::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)
+            , "Toolbar": @com.smartgwt.client.widgets.toolbar.Toolbar::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)
             , "DrawLinePath": @com.smartgwt.client.widgets.drawing.DrawLinePath::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)
             , "DrawImage": @com.smartgwt.client.widgets.drawing.DrawImage::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)
             , "RichTextEditor": @com.smartgwt.client.widgets.RichTextEditor::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)
@@ -372,6 +372,8 @@ public final class ObjectFactory {
             dataJsObj = @com.smartgwt.client.widgets.drawing.Gradient::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("DrawShapeCommand" === smartClientClassName) {
             dataJsObj = @com.smartgwt.client.widgets.drawing.DrawShapeCommand::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("DSLoadSettings" === smartClientClassName) {
+            dataJsObj = @com.smartgwt.client.data.DSLoadSettings::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("DiscoverTreeSettings" === smartClientClassName) {
             dataJsObj = @com.smartgwt.client.widgets.tree.DiscoverTreeSettings::new(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("EditNode" === smartClientClassName) {
@@ -508,10 +510,10 @@ public final class ObjectFactory {
             instance = @com.smartgwt.client.data.ResultSet::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("Task" === smartClientClassName) {
             instance = @com.smartgwt.client.util.workflow.Task::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
-        } else         if ("SelectItemEditProxy" === smartClientClassName) {
-            instance = @com.smartgwt.client.tools.SelectItemEditProxy::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("Process" === smartClientClassName) {
             instance = @com.smartgwt.client.util.workflow.Process::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
+        } else         if ("SelectItemEditProxy" === smartClientClassName) {
+            instance = @com.smartgwt.client.tools.SelectItemEditProxy::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("GridEditProxy" === smartClientClassName) {
             instance = @com.smartgwt.client.tools.GridEditProxy::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(javaScriptObject);
         } else         if ("SyntaxHiliter" === smartClientClassName) {
@@ -693,8 +695,6 @@ public final class ObjectFactory {
 			return "com.smartgwt.client.widgets.form.fields.CanvasItem";
 		} else     	if("Portlet"===smartClientClassName) {
 			return "com.smartgwt.client.widgets.layout.Portlet";
-		} else     	if("Applet"===smartClientClassName) {
-			return "com.smartgwt.client.widgets.plugins.Applet";
 		} else     	if("Scrollbar"===smartClientClassName) {
 			return "com.smartgwt.client.widgets.Scrollbar";
 		} else     	if("DrawPolygon"===smartClientClassName) {
@@ -831,6 +831,8 @@ public final class ObjectFactory {
 			return "com.smartgwt.client.widgets.form.fields.HiddenItem";
 		} else     	if("Deck"===smartClientClassName) {
 			return "com.smartgwt.client.widgets.layout.Deck";
+		} else     	if("Toolbar"===smartClientClassName) {
+			return "com.smartgwt.client.widgets.toolbar.Toolbar";
 		} else     	if("DrawLinePath"===smartClientClassName) {
 			return "com.smartgwt.client.widgets.drawing.DrawLinePath";
 		} else     	if("DrawImage"===smartClientClassName) {
@@ -1080,8 +1082,6 @@ public final class ObjectFactory {
 			return com.smartgwt.client.widgets.form.fields.CanvasItem.class;
 		} else     	if("Portlet".equals(smartClientClassName)){
 			return com.smartgwt.client.widgets.layout.Portlet.class;
-		} else     	if("Applet".equals(smartClientClassName)){
-			return com.smartgwt.client.widgets.plugins.Applet.class;
 		} else     	if("Scrollbar".equals(smartClientClassName)){
 			return com.smartgwt.client.widgets.Scrollbar.class;
 		} else     	if("DrawPolygon".equals(smartClientClassName)){
@@ -1218,6 +1218,8 @@ public final class ObjectFactory {
 			return com.smartgwt.client.widgets.form.fields.HiddenItem.class;
 		} else     	if("Deck".equals(smartClientClassName)){
 			return com.smartgwt.client.widgets.layout.Deck.class;
+		} else     	if("Toolbar".equals(smartClientClassName)){
+			return com.smartgwt.client.widgets.toolbar.Toolbar.class;
 		} else     	if("DrawLinePath".equals(smartClientClassName)){
 			return com.smartgwt.client.widgets.drawing.DrawLinePath.class;
 		} else     	if("DrawImage".equals(smartClientClassName)){

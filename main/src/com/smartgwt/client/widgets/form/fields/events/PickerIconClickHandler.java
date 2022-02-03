@@ -26,7 +26,8 @@ public interface PickerIconClickHandler extends EventHandler {
      * com.smartgwt.client.widgets.form.fields.FormItemIcon#addFormItemClickHandler FormItemIcon.formItemClick()} handler for
      * the {@link com.smartgwt.client.widgets.form.fields.FormItem#getPickerIconProperties pickerIcon}. If the event is not
      * cancelled,  the standard {@link com.smartgwt.client.widgets.form.fields.FormItem#addIconClickHandler
-     * FormItem.iconClick()} will also fire.
+     * FormItem.iconClick()} will also fire. <P> The default implementation will call {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#showPicker showPicker()}.
      *
      * @param event the event
      */

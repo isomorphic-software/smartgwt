@@ -102,16 +102,19 @@ import com.smartgwt.logicalstructure.widgets.tools.*;
  */
 @BeanFactory.FrameworkClass
 @BeanFactory.ScClassName("Toolbar")
-public abstract class Toolbar extends Layout implements com.smartgwt.client.widgets.toolbar.events.HasItemDragResizedHandlers, com.smartgwt.client.widgets.toolbar.events.HasItemClickHandlers {
+public class Toolbar extends Layout implements com.smartgwt.client.widgets.toolbar.events.HasItemDragResizedHandlers, com.smartgwt.client.widgets.toolbar.events.HasItemClickHandlers {
 
-    public native static Toolbar getOrCreateRef(JavaScriptObject jsObj) /*-{
-        if (jsObj == null || jsObj.getClassName == null) return null;
-        var instance = jsObj["__ref"];
-        if (instance == null) {
-            instance = @com.smartgwt.client.util.ObjectFactory::createCanvas(Ljava/lang/String;Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.getClassName(),jsObj);
-        } 
-        return instance;
-    }-*/;
+    public static Toolbar getOrCreateRef(JavaScriptObject jsObj) {
+        if (jsObj == null) return null;
+        final BaseWidget refInstance = BaseWidget.getRef(jsObj);
+        if (refInstance == null) {
+            return new Toolbar(jsObj);
+        } else {
+            assert refInstance instanceof Toolbar;
+            return (Toolbar)refInstance;
+        }
+    }
+        
 
 
     /**

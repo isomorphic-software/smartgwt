@@ -32,7 +32,6 @@ public class WidgetCanvas extends Canvas {
         if (height != null && !height.equals("")) {
             setHeight(height);
         }
-        
     		addClearHandler(new ClearHandler() {
 			
 			@Override
@@ -43,7 +42,7 @@ public class WidgetCanvas extends Canvas {
     }
     
     private void removeWidget() {
-        
+    
         if (widget.isAttached()) {
             // Sanity check: GWT.isAttached can return true even if the widget has been
             // removed from the DOM. We've seen this come in some cases where the WidgetCanvas

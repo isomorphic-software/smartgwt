@@ -24,7 +24,14 @@ public interface DataArrivedHandler extends EventHandler {
      * Notification fired when data has arrived from the server and has been successfully integrated into the cache. <P> When
      * <code>dataArrived()</code> fires, an immediate call to <code>getRange()</code> with the <code>startRow</code> and
      * <code>endRow</code> passed as arguments will return a List with no {@link
-     * com.smartgwt.client.data.ResultSet#getLoadingMarker loading markers}.
+     * com.smartgwt.client.data.ResultSet#getLoadingMarker loading markers}. <P> Note that <code>dataArrived()</code> won't
+     * fire in the case of the owning component filtering with unchanged criteria (for example using {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#fetchData ListGrid.fetchData()} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#filterData ListGrid.filterData()}).  To support backward compatibility, the
+     * property {@link com.smartgwt.client.data.ResultSet#getReapplyUnchangedLocalFilter reapplyUnchangedLocalFilter} can be
+     * set to force <code>dataArrived()</code> to be called if the ResultSet is {@link
+     * com.smartgwt.client.data.ResultSet#filterLocalData filtering locally} and the criteria haven't changed but are narrower
+     * than the criteria used to fetch the current cache.
      *
      * @param event the event
      */

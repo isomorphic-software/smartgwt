@@ -512,6 +512,9 @@ public class ColumnTree extends Layout implements  com.smartgwt.client.widgets.g
     /**
      * The filename of the default icon for all leaf nodes in this grid. To specify a  custom image for an individual node, set
      * the {@link com.smartgwt.client.widgets.grid.ColumnTree#getCustomIconProperty customIconProperty} directly on the node.
+     * <P> See {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowNodeIcons TreeGrid.showNodeIcons} and {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getShowFolderIcons TreeGrid.showFolderIcons} for details on suppressing 
+     * display of icons
      *
      * @param nodeIcon New nodeIcon value. Default value is "[SKIN]file.gif"
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
@@ -524,6 +527,9 @@ public class ColumnTree extends Layout implements  com.smartgwt.client.widgets.g
     /**
      * The filename of the default icon for all leaf nodes in this grid. To specify a  custom image for an individual node, set
      * the {@link com.smartgwt.client.widgets.grid.ColumnTree#getCustomIconProperty customIconProperty} directly on the node.
+     * <P> See {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowNodeIcons TreeGrid.showNodeIcons} and {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getShowFolderIcons TreeGrid.showFolderIcons} for details on suppressing 
+     * display of icons
      *
      * @return Current nodeIcon value. Default value is "[SKIN]file.gif"
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
@@ -743,9 +749,11 @@ public class ColumnTree extends Layout implements  com.smartgwt.client.widgets.g
      * com.smartgwt.client.widgets.grid.ColumnTree#getFolderIcon folderIcon} and {@link
      * com.smartgwt.client.widgets.grid.ColumnTree#getNodeIcon nodeIcon}. Custom icons for individual nodes can be overridden
      * by setting the {@link com.smartgwt.client.widgets.grid.ColumnTree#getCustomIconProperty customIconProperty} on a node.
-     * <p> If you want to suppress icons altogether, provide an override of this method that simply returns null. <p>  Note
-     * that the full icon URL will be derived by applying {@link com.smartgwt.client.widgets.Canvas#getImgURL
-     * Canvas.getImgURL()} to the value returned from this method.
+     * <P> To suppress icons altogether, set {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowNodeIcons
+     * showNodeIcons:false}, or,  for folder icons only {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFolderIcons
+     * showFolderIcons:false}.<br> You can also provide an override of this method that returns null to suppress icons for
+     * specific nodes. <p>  Note that the full icon URL will be derived by applying {@link
+     * com.smartgwt.client.widgets.Canvas#getImgURL Canvas.getImgURL()} to the value returned from this method.
      * @param node tree node in question
      *
      * @return URL for the icon to show for this node.
@@ -760,6 +768,33 @@ public class ColumnTree extends Layout implements  com.smartgwt.client.widgets.g
         return ret;
     }-*/;
 
+	/**
+     * Get the appropriate icon for a node. <P> By default icons are derived from {@link
+     * com.smartgwt.client.widgets.grid.ColumnTree#getFolderIcon folderIcon} and {@link
+     * com.smartgwt.client.widgets.grid.ColumnTree#getNodeIcon nodeIcon}. Custom icons for individual nodes can be overridden
+     * by setting the {@link com.smartgwt.client.widgets.grid.ColumnTree#getCustomIconProperty customIconProperty} on a node.
+     * <P> To suppress icons altogether, set {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowNodeIcons
+     * showNodeIcons:false}, or,  for folder icons only {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFolderIcons
+     * showFolderIcons:false}.<br> You can also provide an override of this method that returns null to suppress icons for
+     * specific nodes. <p>  Note that the full icon URL will be derived by applying {@link
+     * com.smartgwt.client.widgets.Canvas#getImgURL Canvas.getImgURL()} to the value returned from this method.
+     * @param node tree node in question
+     * @param rowNum the row number of the node in the TreeGrid.  This additional                              context is required for {@link
+     * com.smartgwt.client.widgets.tree.Tree#getMultiLinkTree multi-link trees}                             because the same
+     * node can appear in multiple places
+     *
+     * @return URL for the icon to show for this node.
+     * See {@link com.smartgwt.client.docs.URL URL}
+     */
+    public native String getIcon(TreeNode node, Integer rowNum) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getIcon", "TreeNode,Integer");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getIcon(node.@com.smartgwt.client.core.DataClass::getJsObj()(), rowNum == null ? null : rowNum.@java.lang.Integer::intValue()());
+        return ret;
+    }-*/;
+	
 	/**
      * Retrieve a record by index.   <P> If <code>colNum</code> is passed, returns the record found in that column at that
      * index, or null if the column doesn't exist or the index is too high. <P> With no <code>colNum</code> parameter, a
@@ -1943,14 +1978,32 @@ public class ColumnTree extends Layout implements  com.smartgwt.client.widgets.g
     	
     }-*/;
 
-    public native void exportData() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.exportData();
-    }-*/;
+    public void exportData() {
+        exportData(null);
+    }
 
     public native void exportData(DSRequest requestProperties) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "exportData", "DSRequest,RPCCallback");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+        self.exportData(requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+
+    public native void exportData(DSRequest requestProperties, RPCCallback callback) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "exportData", "DSRequest,RPCCallback");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportData(requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()(),
+			$entry( function(response, rawData, request) {
+				if(callback!=null) callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(
+					@com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(response), 
+					rawData, 
+					@com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(request)
+				);
+			}));
     }-*/;
 
     /**
@@ -2088,7 +2141,25 @@ public class ColumnTree extends Layout implements  com.smartgwt.client.widgets.g
         return fields != null ? fields.length : 0;
     }
     
-    /**
+    public native void transferRecords(Record[] records, Record targetRecord, Integer index, Canvas sourceWidget, TransferRecordsCallback callback) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
+        var targetRecordJS = targetRecord == null ? null : targetRecord.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        var indexJS = index == null ? null : index.@java.lang.Integer::intValue()();
+        var sourceWidgetJS = sourceWidget == null ? null : sourceWidget.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.transferRecords(recordsJS, targetRecordJS, indexJS, sourceWidgetJS, $entry(function(records) {
+            if(callback != null) {
+	    		var convertedArray = [];
+	    		for (var i = 0; i < records.length; i++) {
+	    			convertedArray[i] =  @com.smartgwt.client.data.Record::new(Lcom/google/gwt/core/client/JavaScriptObject;)(records[i]);
+	    		}
+                var recordsJ = @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(convertedArray);
+                callback.@com.smartgwt.client.widgets.TransferRecordsCallback::execute([Lcom/smartgwt/client/data/Record;)(recordsJ);
+            }
+        }));
+    }-*/;
+
+	/**
      * During a drag-and-drop interaction, this method returns the set of records being dragged
      * out of the component.  In the default implementation, this is the list of currently
      * selected records.<p>

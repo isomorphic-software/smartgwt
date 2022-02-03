@@ -124,6 +124,8 @@ public class DynamicFormLogicalStructure extends CanvasLogicalStructure {
     public String showPending;
     public String showTitlesWithErrorMessages;
     public String stopOnError;
+    public String storeDisplayValues;
+    public String suppressBrowserClearIcons;
     public String suppressValidationErrorCallback;
     public String synchronousValidation;
     public String target;

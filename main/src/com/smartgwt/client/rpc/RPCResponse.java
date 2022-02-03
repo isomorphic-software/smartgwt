@@ -180,7 +180,6 @@ public class RPCResponse extends DataClass {
      *      &lt;Set name="maxFormContentSize"&gt;2000000&lt;/Set&gt;
      *  &lt;/Configure&gt;
      *  </pre>
-     *  <p>
      *  <b>NOTE</b>: this status code is used whenever the server framework receives a request
      *  where the POST data has been removed, however, there are other possible causes,
      *  including:

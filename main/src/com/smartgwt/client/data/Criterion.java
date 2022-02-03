@@ -110,6 +110,7 @@ public class Criterion extends Criteria {
      * together by the operator.
      *
      * @param criteria New criteria value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public void setCriteria(Criterion... criteria) {
         setAttribute("criteria", criteria);
@@ -120,6 +121,7 @@ public class Criterion extends Criteria {
      * together by the operator.
      *
      * @return Current criteria value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public Criterion[] getCriteria()  {
         return com.smartgwt.client.util.ConvertTo.arrayOfCriterion(getAttributeAsJavaScriptObject("criteria"));
@@ -134,6 +136,7 @@ public class Criterion extends Criteria {
      * dataPath} for more information.
      *
      * @param fieldName New fieldName value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public void setFieldName(String fieldName) {
         setAttribute("fieldName", fieldName);
@@ -146,6 +149,7 @@ public class Criterion extends Criteria {
      * dataPath} for more information.
      *
      * @return Current fieldName value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public String getFieldName()  {
         return getAttributeAsString("fieldName");
@@ -156,6 +160,7 @@ public class Criterion extends Criteria {
      * Operator this criterion applies.
      *
      * @param operator New operator value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public void setOperator(OperatorId operator) {
         setAttribute("operator", operator == null ? null : operator.getValue());
@@ -165,6 +170,7 @@ public class Criterion extends Criteria {
      * Operator this criterion applies.
      *
      * @return Current operator value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public OperatorId getOperator()  {
         return EnumUtil.getEnum(OperatorId.values(), getAttribute("operator"));

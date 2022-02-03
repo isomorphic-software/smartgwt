@@ -196,7 +196,7 @@ public class DateItem extends FormItem {
 
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true and browserInputType is
-     * set to "date", then a native <a href='http://www.w3.org/TR/html5/forms.html#date-state-(type=date)'
+     * set to "date", then a native  <a href='http://www.w3.org/TR/html5/forms.html#date-state-(type=date)'
      * target='_blank'>HTML5 date input</a> is used in place of a text input. <p> The use of a native HTML5 date input causes
      * certain features to be disabled. Input masks, the picker icon, and a custom {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getDateFormatter dateFormatter} are not supported. {@link
@@ -214,7 +214,7 @@ public class DateItem extends FormItem {
 
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.DateItem#getUseTextField useTextField} is true and browserInputType is
-     * set to "date", then a native <a href='http://www.w3.org/TR/html5/forms.html#date-state-(type=date)'
+     * set to "date", then a native  <a href='http://www.w3.org/TR/html5/forms.html#date-state-(type=date)'
      * target='_blank'>HTML5 date input</a> is used in place of a text input. <p> The use of a native HTML5 date input causes
      * certain features to be disabled. Input masks, the picker icon, and a custom {@link
      * com.smartgwt.client.widgets.form.fields.DateItem#getDateFormatter dateFormatter} are not supported. {@link

@@ -4,32 +4,35 @@ package com.smartgwt.client.docs;
 /**
  * <h3>Drag and Drop</h3>
  * Dragging objects and dropping them onto other objects
+ * @see com.smartgwt.client.types.ReorderPosition
  * @see com.smartgwt.client.types.DragAppearance
  * @see com.smartgwt.client.types.DragIntersectStyle
  * @see com.smartgwt.client.types.ProportionalResizeMode
  * @see com.smartgwt.client.types.DragMaskType
  * @see com.smartgwt.client.types.DragDataAction
- * @see com.smartgwt.client.types.ReorderPosition
  * @see com.smartgwt.client.util.EventHandler#setDragTrackerImage
+ * @see com.smartgwt.client.util.EventHandler#setDragOffset
  * @see com.smartgwt.client.util.EventHandler#setDragTracker
  * @see com.smartgwt.client.util.EventHandler#getDragRect
  * @see com.smartgwt.client.widgets.Canvas#getEventEdge
- * @see com.smartgwt.client.widgets.layout.PortalLayout#setPortletDropTypes
- * @see com.smartgwt.client.widgets.layout.PortalLayout#willAcceptPortletDrop
+ * @see com.smartgwt.client.widgets.grid.ListGrid#transferSelectedData
+ * @see com.smartgwt.client.widgets.tile.TileGrid#transferSelectedData
  * @see com.smartgwt.client.widgets.Canvas#setDragTracker
  * @see com.smartgwt.client.widgets.Canvas#shouldDragScroll
  * @see com.smartgwt.client.widgets.Canvas#willAcceptDrop
  * @see com.smartgwt.client.widgets.Canvas#getHSnapPosition
  * @see com.smartgwt.client.widgets.Canvas#getVSnapPosition
  * @see com.smartgwt.client.widgets.Canvas#shouldSnapOnDrop
- * @see com.smartgwt.client.widgets.grid.ListGrid#transferSelectedData
- * @see com.smartgwt.client.widgets.tile.TileGrid#transferSelectedData
- * @see com.smartgwt.client.widgets.Window#getKeepInParentRect
- * @see com.smartgwt.client.widgets.Window#getResizeFrom
- * @see com.smartgwt.client.widgets.layout.Portlet#getDragType
- * @see com.smartgwt.client.widgets.layout.PortalLayout#getPortletDropTypes
- * @see com.smartgwt.client.widgets.layout.PortalLayout#getDropTypes
- * @see com.smartgwt.client.widgets.tab.TabSet#getCanReorderTabs
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#setPortletDropTypes
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#willAcceptPortletDrop
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getCanDropInEmptyArea
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanDragRecordsOut
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanAcceptDroppedRecords
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getManyItemsImage
+ * @see com.smartgwt.client.widgets.tile.TileGrid#getTileDragAppearance
+ * @see com.smartgwt.client.widgets.drawing.DrawItem#getDragStartDistance
  * @see com.smartgwt.client.widgets.Canvas#getUseNativeDrag
  * @see com.smartgwt.client.widgets.Canvas#getCanDrag
  * @see com.smartgwt.client.widgets.Canvas#getDragStartDistance
@@ -66,14 +69,12 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#getSnapVDirection
  * @see com.smartgwt.client.widgets.Canvas#getSnapAxis
  * @see com.smartgwt.client.widgets.Canvas#getSnapOnDrop
- * @see com.smartgwt.client.widgets.drawing.DrawItem#getDragStartDistance
- * @see com.smartgwt.client.widgets.grid.ListGrid#getCanDropInEmptyArea
- * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanDragRecordsOut
- * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanAcceptDroppedRecords
- * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanReorderRecords
- * @see com.smartgwt.client.widgets.tree.TreeGrid#getCanReparentNodes
- * @see com.smartgwt.client.widgets.tree.TreeGrid#getManyItemsImage
- * @see com.smartgwt.client.widgets.tile.TileGrid#getTileDragAppearance
+ * @see com.smartgwt.client.widgets.Window#getKeepInParentRect
+ * @see com.smartgwt.client.widgets.Window#getResizeFrom
+ * @see com.smartgwt.client.widgets.layout.Portlet#getDragType
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#getPortletDropTypes
+ * @see com.smartgwt.client.widgets.layout.PortalLayout#getDropTypes
+ * @see com.smartgwt.client.widgets.tab.TabSet#getCanReorderTabs
  * @see com.smartgwt.client.widgets.layout.Layout#getCanDropComponents
  * @see com.smartgwt.client.widgets.layout.Layout#getDropLineThickness
  * @see com.smartgwt.client.widgets.layout.Layout#getShowDropLines

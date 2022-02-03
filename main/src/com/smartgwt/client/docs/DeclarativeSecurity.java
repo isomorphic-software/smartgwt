@@ -6,7 +6,7 @@ package com.smartgwt.client.docs;
  * The Declarative Security system allows you to attach role based access control to DataSource
  * operations and DataSource fields, as well as create a mix of authenticated and non
  * authenticated operations for applications that support limited publicly accessible
- * functionality. <p> See the <a href='/docs/SmartGWT_Quick_Start_Guide.pdf'
+ * functionality. <p> See the  <a href='/smartgwt-release/doc/SmartGWT_Quick_Start_Guide.pdf'
  * target='_blank'>QuickStart Guide</a> for more in depth documentation on how declarative
  * security works and how to use it in your application. <p> See {@link
  * com.smartgwt.client.docs.StandaloneDataSourceUsage Standalone DataSource Usage} for information

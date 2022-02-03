@@ -47,6 +47,7 @@ public class CalendarLogicalStructure extends CanvasLogicalStructure {
     public String addEventButtonHoverText;
     public String allowDurationEvents;
     public String alternateLaneStyles;
+    public String alwaysShowEventHovers;
     public String backButtonTitle;
     public String baseStyle;
     public String bringEventsToFront;
@@ -70,6 +71,7 @@ public class CalendarLogicalStructure extends CanvasLogicalStructure {
     public String canResizeEventField;
     public String canResizeEvents;
     public String canResizeTimelineEvents;
+    public String canSelectEvents;
     public String chosenDate;
     public String columnsPerPage;
     public String currentViewName;
@@ -139,6 +141,7 @@ public class CalendarLogicalStructure extends CanvasLogicalStructure {
     public SortSpecifier[] overlapSortSpecifiers;
     public String previousButtonHoverText;
     public String removeButtonTitle;
+    public String renderEventsOnDemand;
     public String rowHeight;
     public String rowTitleFrequency;
     public String saveButtonTitle;
@@ -152,6 +155,7 @@ public class CalendarLogicalStructure extends CanvasLogicalStructure {
     public String showDatePickerButton;
     public String showDayHeaders;
     public String showDayLanes;
+    public String showDayView;
     public String showDetailFields;
     public String showDragHovers;
     public String showEventDescriptions;
@@ -160,9 +164,11 @@ public class CalendarLogicalStructure extends CanvasLogicalStructure {
     public String showHeaderHovers;
     public String showIndicators;
     public String showIndicatorsInFront;
+    public String showLabelColumn;
     public String showLaneFieldHovers;
     public String showLaneRollOver;
     public String showMonthButton;
+    public String showMonthView;
     public String showNextButton;
     public String showOtherDays;
     public String showPreviousButton;
@@ -170,6 +176,7 @@ public class CalendarLogicalStructure extends CanvasLogicalStructure {
     public String showTimelineView;
     public String showViewHovers;
     public String showWeekends;
+    public String showWeekView;
     public String showWorkday;
     public String showZoneHovers;
     public String showZones;

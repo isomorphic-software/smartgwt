@@ -743,12 +743,14 @@ public class OperationBinding {
      * only one record. <p> Setting this property on an operationBinding circumvents this restriction
      * for that operation only. <p> <b>Warning:</b> Be aware that this is a potentially dangerous
      * setting and should be used with care.  With this flag set, you have no guarantee that an update
-     * will not change or  remove every row in a table. <p> Also, running
-     * <code>allowMultiUpdate</code> operations directly from the client is not  straightforward
-     * because it requires the ability to specify criteria and values separately in the request, which
-     * is not currently supported.  This can be worked around in various ways, but really
-     * <code>allowMultiUpdate</code> is primarily intended for server-side  operations.  Therefore,
-     * the recommended pattern is to use a  {@link
+     * will not change or  remove every row in a table. <p> Note, in the case of doing an update or
+     * delete operation with a primary key  <b><i>and additional criteria</i></b>, allowMultiUpdate
+     * must be set or additional criteria  will be dropped and just the primary key fields will be
+     * used in criteria. <p> Also, running <code>allowMultiUpdate</code> operations directly from the
+     * client is not  straightforward because it requires the ability to specify criteria and values
+     * separately in the request, which is not currently supported.  This can be worked around in
+     * various ways, but really <code>allowMultiUpdate</code> is primarily intended for server-side 
+     * operations.  Therefore, the recommended pattern is to use a  {@link
      * com.smartgwt.client.data.DataSource#performCustomOperation custom operation} from the client to
      * invoke a DMI on the server which performs the multi-update operation via a second, server-side
      * DSRequest.

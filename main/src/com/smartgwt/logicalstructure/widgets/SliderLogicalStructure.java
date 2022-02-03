@@ -50,8 +50,10 @@ public class SliderLogicalStructure extends CanvasLogicalStructure {
     public String animateThumbTime;
     public String canFocus;
     public String flipValues;
+    public String hLabelSpacing;
     public String hThumbStyle;
     public String hTrackStyle;
+    public String hValueStyle;
     public String labelHeight;
     public String labelSpacing;
     public String labelWidth;
@@ -59,6 +61,8 @@ public class SliderLogicalStructure extends CanvasLogicalStructure {
     public String maxValueLabel;
     public String minValueLabel;
     public String numValues;
+    public String rangeFormat;
+    public String rangeStyle;
     public String roundPrecision;
     public String roundValues;
     public String showActiveTrack;
@@ -70,11 +74,17 @@ public class SliderLogicalStructure extends CanvasLogicalStructure {
     public String thumbThinWidth;
     public String title;
     public String titleSpacing;
+    public String titleStyle;
     public String trackCapSize;
     public String trackImageType;
     public String trackSrc;
     public String trackWidth;
+    public String valueFormat;
+    public String valueStyle;
+    public String valueTextStyle;
     public String vertical;
+    public String vLabelSpacing;
     public String vThumbStyle;
     public String vTrackStyle;
+    public String vValueStyle;
 }

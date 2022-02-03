@@ -220,6 +220,47 @@ public class SearchForm extends DynamicForm {
     }
     
 
+    /**
+     * For editable fields with a specified {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField
+     * FormItem.displayField} and  {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
+     * FormItem.optionDataSource}, if the user selects a new value (typically from PickList based item such as a SelectItem),
+     * should the selected displayValue be updated on the record being edited in addition to the value for the actual item.<br>
+     * Note that this only applies for fields using  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue local display field values}. <P> Overriden
+     * to be false for <code>searchForm</code>s. It is typically not necessary to have the display value as well as the data
+     * value be included in generated criteria when a user selects a new value from a field with a specified {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField FormItem.displayField}. <P> See {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getStoreDisplayValues DynamicForm.storeDisplayValues} for more information
+     * on this property.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param storeDisplayValues New storeDisplayValues value. Default value is false
+     */
+    public void setStoreDisplayValues(Boolean storeDisplayValues) {
+        setAttribute("storeDisplayValues", storeDisplayValues, true);
+    }
+
+    /**
+     * For editable fields with a specified {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField
+     * FormItem.displayField} and  {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
+     * FormItem.optionDataSource}, if the user selects a new value (typically from PickList based item such as a SelectItem),
+     * should the selected displayValue be updated on the record being edited in addition to the value for the actual item.<br>
+     * Note that this only applies for fields using  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue local display field values}. <P> Overriden
+     * to be false for <code>searchForm</code>s. It is typically not necessary to have the display value as well as the data
+     * value be included in generated criteria when a user selects a new value from a field with a specified {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField FormItem.displayField}. <P> See {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getStoreDisplayValues DynamicForm.storeDisplayValues} for more information
+     * on this property.
+     *
+     * @return Current storeDisplayValues value. Default value is false
+     */
+    public Boolean getStoreDisplayValues()  {
+        Boolean result = getAttributeAsBoolean("storeDisplayValues");
+        return result == null ? false : result;
+    }
+    
+
     // ********************* Methods ***********************
 
     // ********************* Static Methods ***********************
@@ -270,6 +311,11 @@ public class SearchForm extends DynamicForm {
             s.showFilterFieldsOnly = getAttributeAsString("showFilterFieldsOnly");
         } catch (Throwable t) {
             s.logicalStructureErrors += "SearchForm.showFilterFieldsOnly:" + t.getMessage() + "\n";
+        }
+        try {
+            s.storeDisplayValues = getAttributeAsString("storeDisplayValues");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "SearchForm.storeDisplayValues:" + t.getMessage() + "\n";
         }
         return s;
     }

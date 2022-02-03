@@ -69,7 +69,7 @@ package com.smartgwt.client.docs;
  *  This is analogous to the result of a SQL query like:
  *  <pre>
  *  SELECT
- *   max(order.orderData)
+ *   max(order.orderDate)
  *   order.customerName
  *  FROM
  *   order

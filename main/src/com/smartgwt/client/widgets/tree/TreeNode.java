@@ -234,6 +234,30 @@ public class TreeNode extends ListGridRecord {
         return getAttributeAsString("icon");
     }
     
+
+    /**
+     * Developers may customize the padding between the folder or leaf node icon and the text content of the tree cell for
+     * individual nodes. <P> You can change the name of this property by setting {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getIconPaddingProperty TreeGrid.iconPaddingProperty}
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param iconPadding New iconPadding value. Default value is null
+     */
+    public void setIconPadding(Integer iconPadding) {
+        setAttribute("iconPadding", iconPadding);
+    }
+
+    /**
+     * Developers may customize the padding between the folder or leaf node icon and the text content of the tree cell for
+     * individual nodes. <P> You can change the name of this property by setting {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getIconPaddingProperty TreeGrid.iconPaddingProperty}
+     *
+     * @return Current iconPadding value. Default value is null
+     */
+    public Integer getIconPadding()  {
+        return getAttributeAsInt("iconPadding");
+    }
+    
     
     
 

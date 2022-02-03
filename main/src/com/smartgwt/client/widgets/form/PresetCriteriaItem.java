@@ -246,7 +246,7 @@ public class PresetCriteriaItem extends SelectItem {
 	/**
      * This method is called when {@link com.smartgwt.client.widgets.form.PresetCriteriaItem#getShowCustomOption
      * showCustomOption} is true and the user selects the  custom option.  Implement this method by allowing the user to enter
-     * custom criteria, for example, by opening a modal dialog.  Once the user has input customer criteria, fire the callback
+     * custom criteria, for example, by opening a modal dialog.  Once the user has input custom criteria, fire the callback
      * method with the resulting criteria.
      * @param callback callback to fire when custom criteria has been gathered.              Expects parameters "criteria,title".  The "title"
      * will be displayed as the               currently selected value when custom criteria have been chosen.

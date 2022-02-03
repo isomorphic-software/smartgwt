@@ -154,10 +154,7 @@ public class DataSourceField {
      *  a 1-to-1 relationship or a many-to-1 relationship from this DataSource to the related
      *  DataSource.  The inclusion can be indirect (traverse multiple DataSources) so long as there
      *  is a chain of <code>foreignKey</code> declarations from the target DataSource to the
-     *  DataSource where the <code>includeFrom</code> field is declared.  For including from a
-     *  related DataSource where there are multiple related records, see
-     * {@link com.smartgwt.client.docs.serverds.DataSourceField#includeSummaryFunction
-     * includeSummaryFunction}.
+     *  DataSource where the <code>includeFrom</code> field is declared.
      *  <P>
      * {@link com.smartgwt.client.docs.serverds.DataSourceField#name name} will default to the name of
      * the included field, or you can
@@ -198,23 +195,28 @@ public class DataSourceField {
      *  To correctly set up this scenario, declare an <code>includeFrom</code> field that is hidden,
      * but is used as the {@link com.smartgwt.client.docs.serverds.DataSourceField#displayField
      * displayField} for the foreign key
-     *  field. Setting <code>useLocalDisplayFieldValue</code> to true will ensure the
-     *  display field value is picked up from the record currently being edited:
+     *  field:
      *  <pre>
-     *  &lt;field name="managerId" foreignKey="employee.id" displayField="managerName"  useLocalDisplayFieldValue="true"/&gt; 
+     *  &lt;field name="managerId" foreignKey="employee.id" displayField="managerName" /&gt; 
      *  &lt;field name="managerName" includeFrom="employee.name" hidden="true"/&gt; 
      *  </pre>
      *  Now:
      *  <ul>
      *  <li> the "managerId" foreignKey field is shown in grids and forms, but takes its displayed
-     *  value from the hidden <code>includeFrom</code> field.
+     *  value from the hidden <code>includeFrom</code> field. Note that when the
+     *  <code>foreignKey</code> and <code>displayField</code> are specified, the 
+     * framework automatically defaults {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#useLocalDisplayFieldValue
+     * useLocalDisplayFieldValue} to 
+     *  true to ensure the displayed value is picked up from the record being edited.
      *  <li> the automatically chosen editor will be a SelectItem with
      * {@link com.smartgwt.client.widgets.form.fields.SelectItem#getOptionDataSource optionDataSource}
      * set to "employees": it will allow
-     *  picking a different "employee" record from the "employee" DataSource
+     *  picking a different "employee" record from the "employee" DataSource.
      *  <li> saving will save the ID of a new "employee" record to the "managerId" foreign key
      *  field, as intended
      *  </ul>
+     * 
      *  You can alternatively set <code>editorType="ComboBoxItem"</code> on the
      *  "managerId" field to allow typeahead search of the "employee" DataSource.
      *  <P>
@@ -222,6 +224,19 @@ public class DataSourceField {
      * foreignDisplayField} attribute allows developers to have a different
      *  fieldName be used locally as a displayField from the field name for the display field
      *  in the foreign dataSource.
+     *  <P>
+     *  <b>Including fields that use summary functions</b>
+     *  <p>
+     * The {@link com.smartgwt.client.docs.serverds.DataSourceField#includeSummaryFunction Include
+     * Summary Function} feature is used
+     *  for including from a related DataSource where there are multiple related records. It applies
+     * a {@link com.smartgwt.client.types.SummaryFunctionType} to the related records aggregating them
+     * into single value.
+     *  It is regularly used on directly included fields, but it supports indirect inclusions as well,
+     * when entire <code>includeFrom</code>+<code>includeSummaryFunction</code> setup is included from
+     * another DataSource. See {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#includeSummaryFunction
+     * includeSummaryFunction} docs for more details.
      *
      * <p>Default value is null
      * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
@@ -268,7 +283,7 @@ public class DataSourceField {
      * is needed to join the target table, and {@link
      * com.smartgwt.client.docs.serverds.DataSourceField#includeVia includeVia} is missing, generated
      * alias is a concatenation of <code>relatedTableAlias</code> and FK field names starting with the
-     * first <code>relatedTableAlias</code>  met in chain of relations leading to the target table.
+     * first <code>relatedTableAlias</code> met in chain of relations leading to the target table.
      *
      * <p>Default value is null
      * @see com.smartgwt.client.docs.serverds.DataSourceField#includeVia
@@ -277,18 +292,20 @@ public class DataSourceField {
     public String relatedTableAlias;
 
     /**
-     * If this field has a specified {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#displayField displayField}, this attribute
-     * allows you to explicitly tell editor components to pick up the display-field value from the
-     * record currently being edited, rather than fetching against a specified {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
-     * FormItem.optionDataSource}. <P> See {@link
+     * The {@link com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue
+     * FormItem.useLocalDisplayFieldValue} attribute may be specified within a dataSource
+     * configuration. <P> This property governs whether, when displaying a record in an editor
+     * component, the <code>displayField</code> value for this field should be picked up directly from
+     * the record value (as opposed to being retrieved via an explicit fetch operation against the
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
+     * FormItem.optionDataSource}). See {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue
-     * FormItem.useLocalDisplayFieldValue} for more detail. <P> Note that for the common pattern
-     * described {@link com.smartgwt.client.docs.serverds.DataSourceField#includeFrom here} of having
-     * an editable foreignKey field with a static display value (derived from a displayField with
-     * 'includeFrom' set), the framework will automatically default this property to true if not
-     * explicitly specified in the dataSource configuration file.
+     * FormItem.useLocalDisplayFieldValue} for further details. <P> If not explicitly set, dataSources
+     * backed by the  {@link com.smartgwt.client.docs.ServerDataIntegration Smart GWT server} will set
+     * this property to true automatically for fields where the specified {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#displayField displayField} values are
+     * retrieved from another dataSource using the {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#includeFrom includeFrom}  feature.
      *
      * <p>Default value is null
      */
@@ -425,75 +442,78 @@ public class DataSourceField {
      * com.smartgwt.client.widgets.DataBoundComponent#exportData exporting} data to spreadsheet
      * formats (XLS and  OOXML/XLSX), XML, JSON or CSV.   You can use this property to override the
      * normal {@link com.smartgwt.client.docs.serverds.DataSourceField#format format} of this field,
-     * if any, specifically for exports.   <p> Note, for server-driven exports you can specify default
-     * formats for date, time and  datetime fields by specifying properties
-     * <code>export.format.default.date</code>,  <code>export.format.default.time</code> and
-     * <code>export.format.default.datetime</code> in your <code>server.properties</code> file.  These
-     * formats will be used for fields  that do not have a "format" or "exportFormat" property
-     * specified in the  <code>.ds.xml</code> file. <p> Specifically when exporting to spreadsheet
-     * formats, the <code>FormatString</code> is translated to the type of format string used by
-     * spreadsheet programs like Excel.  A handful of features are not present in Excel format
-     * strings, and some features behave slightly differently.  These differences are explained below.
-     * <p> <h3>Excel cannot handle dates prior to January 1st 1900</h3> This is a well-known
-     * limitation of Excel dates; it is not a formatting issue as such. <p> <h3>Currency symbols
-     * become fixed to the current locale at export time</h3> The placeholder currency symbol
-     * "&#x00A4" (\u00A4) in a numeric format string is rendered as the    localized currency symbol
-     * returned by GWT's built-in NumberFormat class.  When exporting, the format string provided to
-     * Excel contains the currency symbol for the current locale of the Smart GWT application, and not
-     * a placeholder currency symbol that would make Excel pick up a currency symbol based on the
-     * operating system locale.  We do this to ensure that the spreadsheet reflects the
-     * <em>application's</em> localization, rather than the localization of the current user's
-     * computer, because they may be different. <p> <h3>Rounding differences</h3> The approach to
-     * rounding a positive number to a set number of decimal places is fairly  universally agreed upon
-     * for non-specialized requirements: add 0.5 (or 0.05, or 0.005, or  whatever) to the number and
-     * then truncate.  This leads to the well understood convention  that numbers exactly halfway
-     * between two possible rounding outcomes, go to the larger one.  So 7.5 becomes 8 and 7.15
-     * becomes 7.2. <p> However, there is no such universal agreement when it come to rounding
-     * negative numbers.   Some take the view that you should round by taking the number to the larger
-     * absolute value, so -7.15 becomes -7.2.  Others feel that you should round by taking the number
-     * to the larger value in the sense of it being "less negative", so -7.15 becomes -7.1. <p> Smart
-     * GWT formatting takes the first approach and rounds negative numbers away from zero. We do this
-     * simply because that is what Java DecimalFormat does.  Unfortunately, Excel does the opposite. 
-     * Therefore, you will see rounding differences on negative numbers on exact  50% boundaries:
-     * Smart GWT will format -7.15 as -7.2, while Excel will format the same  value as -7.1. <p>
-     * <h3>Different treatment of '#'</h3> Both Smart GWT and Excel use '#' to mean "digit, do not
-     * show zeroes".  However, Excel does not implement this strictly in the integer part when the
-     * number it is formatting has a value of 0 in the integer part.  So, with a format of "#.##", the
-     * value 0.25 is formatted  as "0.25".  Smart GWT (like Java DecimalFormat) is strict: with that
-     * format, 0.25 is  formatted as ".25"; if you want to match Excel's output, you must use the
-     * format "0.##". <p> <h3>Miscellaneous edge cases</h3> There is quite a lot of variation in
-     * behavior between Java DecimalFormat and Excel around  the edges.  For actual error cases - for
-     * example, a format string that just contains  nonsense - it is normal and expected that the
-     * Smart GWT behavior and the Excel behavior do not match - this is just two systems producing
-     * different garbage out for the same  garbage in, which is to be expected.  For valid but weird
-     * usages - for example, a format  with multiple percent signs - Smart GWT's formatting is in line
-     * with what DecimalFormat  does, unless DecimalFormat throws an Exception, in which case we just
-     * do the thing that  seems most sensible, or the thing that was easiest to implement. <p> Known
-     * differences in behavior in edge cases include:<ul> <li>Smart GWT ignores formatting characters
-     * in the number part of the format string,  whereas Excel rejects the format (this behavior may
-     * vary with different releases of Excel and supposedly compatible libraries: POI, for example,
-     * will accept such format strings).   If you attempt to format 5.175 with the format string
-     * "#b0.#a#", Smart GWT will return "5.72", and Excel will reject the format</li> <li>Smart GWT
-     * ignores quoted characters in the number part of the format string,  whereas Excel preserves
-     * them.  If you attempt to format 5.175 with the format string  "#'b'0.#'a'#", Smart GWT will
-     * return "5.72", and Excel will return "b5.7a2"</li> <li>If you specify the empty string as a
-     * format string, Smart GWT returns the result of  calling toString() on the number; Excel uses
-     * the built-in "General" format.  These two  approaches will generally give the same or very
-     * similar results, but that is really a  coincidence: the correct way to obtain matching results
-     * in the browser and the spreadsheet is to specify a valid format string</li> <li>If you specify
-     * a format string that contains no number part (ie, no '#' or '0'  characters), Smart GWT does
-     * what DecimalFormat does, which is to output the integer part of the number alongside the fixed
-     * part of the format.  Excel just outputs the fixed part. So, if you attempt to format -5.3 with
-     * the format string "'Hello world'", Smart GWT will output "-Hello world5", whereas Excel will
-     * output just "Hello world"</li> <li>If you specify multiple percent signs in the format, Smart
-     * GWT treats all but the  first one as static text, so 0.5 formatted with "#%%%" is "50%%%" (ie,
-     * all the signs are  preserved but there is only one multiplcation by 100).  Excel multiplies for
-     * each percent sign, so 0.5 formatted with "#%%%" is "500000%%%"</li> </ul> <p> <h3>Date format
-     * functionality not supported by Excel</h3> The following date/time/datetime functionality is not
-     * supported by Excel; if you use  formatters that use any of this functionality, your values will
-     * be exported to Excel  incorrectly formatted.  In cases like this, we recommend that you use a
-     * separate  <code>exportFormat</code>, with the intent of exporting your values in a way that is 
-     * similar to your application formatting (which would be specified with the  {@link
+     * if any, specifically for exports, for both server-based and client-driven exports.  <p> Note,
+     * for server-driven exports you can specify default formats for date, time and  datetime fields
+     * by specifying properties <code>export.format.default.date</code>, 
+     * <code>export.format.default.time</code> and <code>export.format.default.datetime</code> in your
+     * <code>server.properties</code> file.  Similarly, default formats for float and integer fields
+     * can be specified with <code>export.format.default.float</code> and 
+     * <code>export.format.default.integer</code>, respectively.  These formats will be used for
+     * fields that do not have a "format" or "exportFormat" property specified in the 
+     * <code>.ds.xml</code> file. <p> Specifically when exporting to spreadsheet formats, the
+     * <code>FormatString</code> is translated to the type of format string used by spreadsheet
+     * programs like Excel.  A handful of features are not present in Excel format strings, and some
+     * features behave slightly differently.  These differences are explained below. <p> <h3>Excel
+     * cannot handle dates prior to January 1st 1900</h3> This is a well-known limitation of Excel
+     * dates; it is not a formatting issue as such. <p> <h3>Currency symbols become fixed to the
+     * current locale at export time</h3> The placeholder currency symbol "&#x00A4" (\u00A4) in a
+     * numeric format string is rendered as the    localized currency symbol returned by GWT's
+     * built-in NumberFormat class.  When exporting, the format string provided to Excel contains the
+     * currency symbol for the current locale of the Smart GWT application, and not a placeholder
+     * currency symbol that would make Excel pick up a currency symbol based on the operating system
+     * locale.  We do this to ensure that the spreadsheet reflects the <em>application's</em>
+     * localization, rather than the localization of the current user's computer, because they may be
+     * different. <p> <h3>Rounding differences</h3> The approach to rounding a positive number to a
+     * set number of decimal places is fairly  universally agreed upon for non-specialized
+     * requirements: add 0.5 (or 0.05, or 0.005, or  whatever) to the number and then truncate.  This
+     * leads to the well understood convention  that numbers exactly halfway between two possible
+     * rounding outcomes, go to the larger one.  So 7.5 becomes 8 and 7.15 becomes 7.2. <p> However,
+     * there is no such universal agreement when it come to rounding negative numbers.   Some take the
+     * view that you should round by taking the number to the larger absolute value, so -7.15 becomes
+     * -7.2.  Others feel that you should round by taking the number to the larger value in the sense
+     * of it being "less negative", so -7.15 becomes -7.1. <p> Smart GWT formatting takes the first
+     * approach and rounds negative numbers away from zero. We do this simply because that is what
+     * Java DecimalFormat does.  Unfortunately, Excel does the opposite.  Therefore, you will see
+     * rounding differences on negative numbers on exact  50% boundaries: Smart GWT will format -7.15
+     * as -7.2, while Excel will format the same  value as -7.1. <p> <h3>Different treatment of
+     * '#'</h3> Both Smart GWT and Excel use '#' to mean "digit, do not show zeroes".  However, Excel
+     * does not implement this strictly in the integer part when the number it is formatting has a
+     * value of 0 in the integer part.  So, with a format of "#.##", the value 0.25 is formatted  as
+     * "0.25".  Smart GWT (like Java DecimalFormat) is strict: with that format, 0.25 is  formatted as
+     * ".25"; if you want to match Excel's output, you must use the format "0.##". <p>
+     * <h3>Miscellaneous edge cases</h3> There is quite a lot of variation in behavior between Java
+     * DecimalFormat and Excel around  the edges.  For actual error cases - for example, a format
+     * string that just contains  nonsense - it is normal and expected that the Smart GWT behavior and
+     * the Excel behavior do not match - this is just two systems producing different garbage out for
+     * the same  garbage in, which is to be expected.  For valid but weird usages - for example, a
+     * format  with multiple percent signs - Smart GWT's formatting is in line with what DecimalFormat
+     * does, unless DecimalFormat throws an Exception, in which case we just do the thing that  seems
+     * most sensible, or the thing that was easiest to implement. <p> Known differences in behavior in
+     * edge cases include:<ul> <li>Smart GWT ignores formatting characters in the number part of the
+     * format string,  whereas Excel rejects the format (this behavior may vary with different
+     * releases of Excel and supposedly compatible libraries: POI, for example, will accept such
+     * format strings).   If you attempt to format 5.175 with the format string "#b0.#a#", Smart GWT
+     * will return "5.72", and Excel will reject the format</li> <li>Smart GWT ignores quoted
+     * characters in the number part of the format string,  whereas Excel preserves them.  If you
+     * attempt to format 5.175 with the format string  "#'b'0.#'a'#", Smart GWT will return "5.72",
+     * and Excel will return "b5.7a2"</li> <li>If you specify the empty string as a format string,
+     * Smart GWT returns the result of  calling toString() on the number; Excel uses the built-in
+     * "General" format.  These two  approaches will generally give the same or very similar results,
+     * but that is really a  coincidence: the correct way to obtain matching results in the browser
+     * and the spreadsheet is to specify a valid format string</li> <li>If you specify a format string
+     * that contains no number part (ie, no '#' or '0'  characters), Smart GWT does what DecimalFormat
+     * does, which is to output the integer part of the number alongside the fixed part of the format.
+     * Excel just outputs the fixed part. So, if you attempt to format -5.3 with the format string
+     * "'Hello world'", Smart GWT will output "-Hello world5", whereas Excel will output just "Hello
+     * world"</li> <li>If you specify multiple percent signs in the format, Smart GWT treats all but
+     * the  first one as static text, so 0.5 formatted with "#%%%" is "50%%%" (ie, all the signs are 
+     * preserved but there is only one multiplcation by 100).  Excel multiplies for  each percent
+     * sign, so 0.5 formatted with "#%%%" is "500000%%%"</li> </ul> <p> <h3>Date format functionality
+     * not supported by Excel</h3> The following date/time/datetime functionality is not supported by
+     * Excel; if you use  formatters that use any of this functionality, your values will be exported
+     * to Excel  incorrectly formatted.  In cases like this, we recommend that you use a separate 
+     * <code>exportFormat</code>, with the intent of exporting your values in a way that is  similar
+     * to your application formatting (which would be specified with the  {@link
      * com.smartgwt.client.docs.serverds.DataSourceField#format format} property), but within the
      * confines of what Excel  supports. <ul> <li>Fiscal year, week and day (LL, LLLL, C, CC, c,
      * cc)</li> <li>Week in year (w, ww)</li> <li>Day in year (D, DD)</li> <li>Day number in week
@@ -507,7 +527,19 @@ public class DataSourceField {
      * somewhere between 200 and 250, depending on your locale and language.  Hitting this limit in an
      * export would require hundreds of field definitions, each defining unique
      * <code>FormatStrings</code>.  If you do hit the limit, the only workaround is to use fewer
-     * unique <code>FormatStrings</code>.
+     * unique <code>FormatStrings</code>. <p> <h3>Controlling number format</h3> If we give Excel a
+     * formatted number like "500,000" it will not treat that value as a number, so sums and other
+     * basic spreadsheet features won't work. So we use the heuristic that if your formatted value
+     * parses as a number, you probably want it treated as a number in the spreadsheet, so we give
+     * Excel the unformatted numeric value and tell Excel it's a numeric data value. <p> You might
+     * expect that we would give Excel <i>both</i> the formatted value and the numeric value, but this
+     * is only possible by creating what's called a "custom format" for that cell, which as the
+     * section above mentions, is limited in that only a few hundred can be created. <p> With this
+     * Excel limitation in mind, it makes sense to just go with the default behavior. If you decide
+     * otherwise, one option is to use  {@link
+     * com.smartgwt.client.data.DSRequest#getExportNumbersAsFormattedString
+     * exportNumbersAsFormattedString}, but see the docs for that property for the drawbacks of doing
+     * this.
      *
      * <p>Default value is null
      * @see com.smartgwt.client.docs.serverds.DataSourceField#format
@@ -562,12 +594,12 @@ public class DataSourceField {
      * <code>java.util.ArrayList</code> is used for fields of type <code>List</code> <li>
      * <code>java.util.HashSet</code> is used for fields of type <code>Set</code> <li>
      * <code>java.util.LinkedList</code> is used for fields of type <code>Queue</code> <li>
-     * <code>org.apache.commons.collections.map.LinkedMap</code> is used for fields of type
-     * <code>Map</code> <li> <code>java.util.ArrayList</code> is used for fields that are otherwise of
-     * type <code>Collection</code> </ul> Note that this value is used even if the target Collection
-     * or Map is declared as a concrete class.  So, for example, if you set
-     * <code>javaCollectionClass</code> to  <code>java.util.LinkedList</code> but your setter method
-     * accepts a  <code>java.util.ArrayList</code>, you will get a ClassCastException.
+     * <code>java.util.LinkedHashMap</code> is used for fields of type <code>Map</code> <li>
+     * <code>java.util.ArrayList</code> is used for fields that are otherwise of type
+     * <code>Collection</code> </ul> Note that this value is used even if the target Collection or Map
+     * is declared as a concrete class.  So, for example, if you set <code>javaCollectionClass</code>
+     * to  <code>java.util.LinkedList</code> but your setter method accepts a 
+     * <code>java.util.ArrayList</code>, you will get a ClassCastException.
      *
      * <p>Default value is null
      */
@@ -641,13 +673,15 @@ public class DataSourceField {
      * does not have any of the roles listed, the system will not allow this field to be  initialized
      * or updated.  Please see {@link com.smartgwt.client.docs.serverds.OperationBinding#requiresRole
      * OperationBinding.requiresRole} for further  details of Smart GWT's declarative role-based
-     * security.  Please also see  {@link
+     * security. Please see  {@link
      * com.smartgwt.client.docs.serverds.DataSourceField#editRequiresAuthentication
-     * editRequiresAuthentication} for details of how declarative field-level security settings can be
-     * overridden per-request. <p> <b>NOTE:</b> This property prevents both initialization and updates
-     * for a field.  If you  have a need to prevent <em>just</em> initialization or <em>just</em>
-     * updates, you can use {@link com.smartgwt.client.docs.serverds.DataSourceField#initRequiresRole
-     * initRequiresRole} or {@link
+     * editRequiresAuthentication} [or  {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#viewRequiresAuthentication
+     * viewRequiresAuthentication} for viewRequiresRole] for the UI consequences if the user does not
+     * have the required roles, as well as for information  on customizing field-level security. <p>
+     * <b>NOTE:</b> This property prevents both initialization and updates for a field.  If you  have
+     * a need to prevent <em>just</em> initialization or <em>just</em> updates, you can use {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#initRequiresRole initRequiresRole} or {@link
      * com.smartgwt.client.docs.serverds.DataSourceField#updateRequiresRole updateRequiresRole}.
      *
      * <p>Default value is null
@@ -658,6 +692,17 @@ public class DataSourceField {
      * @see com.smartgwt.client.docs.FieldLevelAuth FieldLevelAuth overview and related methods
      */
     public String editRequiresRole;
+
+    /**
+     * Applies to the "fetch" operation that is used to look up key values for fields with {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#importStrategy importStrategy.display} while
+     * importing data using {@link com.smartgwt.client.widgets.BatchUploader} or
+     * <code>DataImport</code> server-side API. Controls whether look up for key values is case
+     * sensitive or not. Default value is "false".
+     *
+     * <p>Default value is false
+     */
+    public Boolean batchUploadCaseSensitive;
 
     /**
      * Dictates whether the data in this field be exported.  Explicitly setting  <i>canExport</i> to
@@ -682,10 +727,12 @@ public class DataSourceField {
      * Comma-separated list of user roles that are allowed to fetch this field. If the current user
      * has any of the roles listed, values for the field will be fetched.  Please see  {@link
      * com.smartgwt.client.docs.serverds.OperationBinding#requiresRole OperationBinding.requiresRole}
-     * for further details of Smart GWT's declarative  role-based security.  Please also see  {@link
+     * for further details of Smart GWT's declarative  role-based security. Please see  {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#editRequiresAuthentication
+     * editRequiresAuthentication} [or  {@link
      * com.smartgwt.client.docs.serverds.DataSourceField#viewRequiresAuthentication
-     * viewRequiresAuthentication} for details of how declarative field-level security settings can be
-     * overridden per-request.
+     * viewRequiresAuthentication} for viewRequiresRole] for the UI consequences if the user does not
+     * have the required roles, as well as for information  on customizing field-level security.
      *
      * <p>Default value is null
      * @see com.smartgwt.client.docs.serverds.DataSourceField#viewRequiresAuthentication
@@ -901,14 +948,14 @@ public class DataSourceField {
      * precision.  This setting overrides both the  <code>stringInBrowser</code> field setting and the
      * <code>datasource.defaultStringInBrowser server.properties</code> flag. <p>
      * <b><code>stringInBrowser</code> and client-side DataSources</b> <p> For DataSources that are
-     * not based on the Smart GWT Server, the client-side behaviors described above (such as leaving 
-     * user input in string form if precision would be lost) are active by default.   <p> In addition,
+     * not based on the Smart GWT Server, the client-side behaviors described above (such as leaving
+     * user input in string form if precision would be lost) are active by default. <p> In addition,
      * if {@link com.smartgwt.client.docs.serverds.DataSource#dataFormat dataSource.dataFormat:"xml"}
-     * is used, values that would lose precision remain as strings.  For JSON,  if behavior similar to
+     * is used, values that would lose precision remain as strings.  For JSON, if behavior similar to
      * <code>stringInBrowser</code> is desired, your server response must send the values as JSON
-     * strings  rather than JSON numeric literals. <p> You can use {@link
+     * strings rather than JSON numeric literals. <p> You can use {@link
      * com.smartgwt.client.data.DataSource#defaultStringInBrowser defaultStringInBrowser} to disable
-     * these behaviors.  <b>NOTE:</b> don't use this setting if  you are using the Smart GWT Server,
+     * these behaviors.  <b>NOTE:</b> don't use this setting if you are using the Smart GWT Server,
      * use the server.properties approach described above instead.
      *
      * <p>Default value is null
@@ -1093,7 +1140,7 @@ public class DataSourceField {
      *  <b>This feature is available with Power or better licenses only.</b> 
      *  See <a href="http://smartclient.com/product">smartclient.com/product</a> for details.
      *  <p>
-     *  For example, give a DataSource "order" and related DataSource "orderItem", the "itemCount"
+     *  For example, given a DataSource "order" and related DataSource "orderItem", the "itemCount"
      *  field below will show the total number of items in each order.
      *  <pre>
      *   &lt;DataSource ID="order"&gt;
@@ -1105,18 +1152,66 @@ public class DataSourceField {
      *      &lt;/fields&gt;
      *   &lt;/DataSource&gt;
      *  </pre>
-     *  This is analogous to the following SQL statement: 
+     *  This is analogous to the following SQL statement:
      *  <pre>
      *  SELECT
      *       order.orderID,
      *       order.customerName,
      *       order.orderDate,
-     *       (select sum(orderItem.quantity)
-     *           from orderItem
-     *           where orderItem.orderID = order.orderID) as itemsCount
+     *       (select sum(_itemsCount.quantity)
+     *           from orderItem _itemsCount
+     *           where _itemsCount.orderID = order.orderID) as itemsCount
      *  FROM
      *       order
      *  </pre>
+     * The <code>includeSummaryFunction</code> feature supports indirect inclusion as well, when the
+     * field using
+     * it is included from the other DataSource via regular <code>includeFrom</code>. For example,
+     * given the
+     * "order" DataSource above and related "orderItem" DataSource, the "orderItemsCount" field below
+     * will show the
+     *  total number of items in the order each order item record belongs to:
+     *  <pre>
+     *   &lt;DataSource ID="orderItem"&gt;
+     *      &lt;fields&gt;
+     *         &lt;field name="id" type="integer" primaryKey="true" /&gt;
+     *         &lt;field name="orderID" type="integer" foreignKey="order.orderID"/&gt;
+     *         &lt;field name="quantity" type="integer" /&gt;
+     *         &lt;field name="unitPrice" type="float" /&gt;
+     *         &lt;field name="orderItemsCount" includeFrom="order.itemsCount" /&gt;
+     *      &lt;/fields&gt;
+     *   &lt;/DataSource&gt;
+     *  </pre>
+     *  This is analogous to the following SQL statement:
+     *  <pre>
+     *  SELECT
+     *       orderItem.id,
+     *       orderItem.orderID,
+     *       orderItem.quantity,
+     *       orderItem.unitPrice,
+     *       (select sum(_orderItemsCount_orderID.quantity) AS itemsCount
+     *          from order _orderItemsCount
+     *                   join orderItem _orderItemsCount_orderID
+     *                       on _orderItemsCount.orderID = _orderItemsCount_orderID.orderID
+     *          where orderItem.orderID = _orderItemsCount.orderID) as orderItemsCount
+     *  FROM
+     *       orderItem
+     *  </pre>
+     *  <p>
+     * Note that tables in sub-select will always use {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#relatedTableAlias relatedTableAlias} if set
+     * or automatically
+     * generated aliases. Automatic aliases are generated according to the rule: first table in
+     * possible chain of
+     * relations being the name of the field sub-select is getting value for (with underscore "_" in
+     * front) and the
+     * rest aliases are built up using foreign key field names in the chained relations leading to the
+     * target table.
+     * This allows to avoid any conflicts with the tables/aliases from the main query. Like in the
+     * second example
+     *  table "orderItem" is used in both main query without alias and sub-select under
+     *  <code>_orderItemsCount_orderID</code> alias.
+     *  <p>
      *  Some other common uses:
      *  <ul>
      *  <li> using "max" to show the most recent "order" for a "customer"
@@ -1125,7 +1220,7 @@ public class DataSourceField {
      *      "concat" has limited support - see {@link com.smartgwt.client.types.SummaryFunctionType}).
      *  </ul>
      *  <p>
-     *  <b>NOTE</b>: <code>includeSummaryFunction</code> and 
+     *  <b>NOTE</b>: <code>includeSummaryFunction</code> and
      * {@link com.smartgwt.client.docs.ServerSummaries Server Summaries} cannot be used in the same
      * {@link com.smartgwt.client.data.DSRequest}.
      *  If both configurations are present, Server Summaries settings always take priority.
@@ -1525,16 +1620,19 @@ public class DataSourceField {
      *  For a foreignKey within the same dataSource, you can omit the <code>dataSourceId</code>
      *  and just specify <code><i>fieldName</i></code>.  For example, to create a tree relationship
      *  within a DataSource:
+     *  
+     *  
      *  <pre>
-     *    isc.DataSource.create({
-     *      ID:"supplyItem",
-     *      fields : [
-     *        {name:"itemId", type:"sequence", primaryKey:true},
-     *        {name:"parentId", type:"integer", foreignKey:"itemId"},
-     *        ...
-     *      ]
-     *    });
+     *       DataSource supplyItem = new DataSource();
+     *       DataSourceField itemId = new DataSourceField();
+     *       itemId.setType(FieldType.SEQUENCE);
+     *       itemId.setPrimaryKey(true);
+     *       DataSourceField parentId = new DataSourceField();
+     *       parentId.setType(FieldType.INTEGER);
+     *       parentId.setForeignKey("itemId");
+     *       supplyItem.setFields(itemId, parentId);
      *  </pre>
+     *  
      *  <P>
      *  <code>foreignKey</code> declarations also allow other automatic behaviors by
      * {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponents}, such as {@link
@@ -1550,10 +1648,11 @@ public class DataSourceField {
     public String foreignKey;
 
     /**
-     * List of operators valid on this field.   <P> If not specified, all operators that are valid for
-     * the field type are allowed.
+     * Set of search-operators valid for this field.   <P> If not specified, all operators that are
+     * valid for the field type are allowed.
      *
      * <p>Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public OperatorId[] validOperators;
 
@@ -1777,18 +1876,39 @@ public class DataSourceField {
     public VelocityExpression editRequires;
 
     /**
-     * Name of another field in a separate dataSource that should be used as the display value for
-     * this field in the case where a <code>foreignKey</code> relationship exists. <P> This property
-     * is useful for fields being edited in a FormItem where options are being retrieved from an
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
-     * FormItem.optionDataSource}, for the case where a separate {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#displayField displayField} name is used
-     * within the local dataSource than the field name for the display field within the foreign
-     * dataSource. <P> See {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getForeignDisplayField
-     * FormItem.foreignDisplayField} for more on this, and see  {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#includeFrom includeFrom} for a discussion
-     * about picking up dataSource field values from a related dataSource.
+     * Name of another field in a separate dataSource that should be used as the display
+     *  value for this field in the case where a <code>foreignKey</code> relationship
+     *  exists.
+     *  <P>
+     *  For a general overview on picking up display values from a separate field,
+     * see {@link com.smartgwt.client.docs.serverds.DataSourceField#displayField displayField}
+     * property.
+     *  <P>
+     *  The <code>foreignDisplayField</code> property is useful for editable fields, where the 
+     *  name of the display field within the record being edited differs from the display field 
+     *  for related records in the option dataSource.<br>
+     *  For example consider a "countryDS" dataSource with the following fields:
+     *  <pre>
+     *   &lt;field name="id"     type="sequence"   hidden="true"     primaryKey="true" /&gt;
+     *   &lt;field name="name"   type="text"       title="Country"   required="true" /&gt;
+     *  </pre>
+     *  ...and a "city" dataSource which uses a foreignKey relationship identify associated
+     *  country records:
+     *  <pre>
+     *   &lt;field name="id"        type="sequence" hidden="true"   primaryKey="true" /&gt;
+     *   &lt;field name="name"      type="text"     title="City"    required="true" /&gt;
+     *   &lt;field name="countryId" type="integer"  editorType="SelectItem" 
+     *              foreignKey="countryDS.id" 
+     *              displayField="countryName" foreignDisplayField="name" title="Country" /&gt;
+     *   &lt;field name="countryName" includeFrom="countryDS.name"  hidden="true"   /&gt;
+     *  </pre>
+     *  A DynamicForm bound to this "city" dataSource would display a SelectItem editor by
+     *  default for the country field. The initial display value would be the local value from
+     *  the "countryName" field, populated from the related countryDS automatically via the
+     *  {@link com.smartgwt.client.docs.serverds.DataSourceField#includeFrom includeFrom} feature.<br>
+     *  If the user showed the drop-down list of options for this field, the display values
+     *  within that list would be picked up from the "name" field values for the related
+     *  "countryDS" records.
      *
      * <p>Default value is null
      * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
@@ -1802,7 +1922,10 @@ public class DataSourceField {
      * <code>DataImport</code> server-side API. <p> Normally key values are looked up performing
      * "fetch" operation on related data source, but setting <code>batchUploadOperationId</code>
      * allows to control which operation will be performed. This can be useful to avoid unnecessary
-     * load when importing big data sets, if default "fetch" operation is too heavy.
+     * load when importing big data sets, if default "fetch" operation is too heavy. <p> By default
+     * the look up is not case sensitive but this can be controlled through the {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#batchUploadCaseSensitive
+     * batchUploadCaseSensitive} attribute.
      *
      * <p>Default value is null
      */
@@ -1816,17 +1939,37 @@ public class DataSourceField {
     public String exportTitle;
 
     /**
-     * Name of another field in this DataSource that should be used as the display value for this
-     * field. <P> Typically used for editable  {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#foreignKey foreignKey} fields: the
-     * <code>foreignKey</code> field stores an ID value, and this ID value is the right value to use
-     * when editing (typically by a {@link com.smartgwt.client.widgets.form.fields.SelectItem} with
-     * {@link com.smartgwt.client.widgets.form.fields.SelectItem#getOptionDataSource optionDataSource}
-     * set).  However, when the <code>foreignKey</code> field is viewed read-only, it should display a
-     * name, title or other friendly value from the related record.  In order to accomplish this, a
-     * second, hidden field carries the display value, and the <code>foreignKey</code> field has
-     * <code>displayField</code> set to this second, hidden field. <P> For a more in-depth discussion,
-     * see {@link com.smartgwt.client.docs.serverds.DataSourceField#includeFrom includeFrom}.
+     * When records from this dataSource are displayed in a dataBoundComponent such as a {@link
+     * com.smartgwt.client.widgets.grid.ListGrid}, the <code>displayField</code> attribute may be used
+     * to cause some  field to display a value from another field in the record. <P> This is typically
+     * used for editable {@link com.smartgwt.client.docs.serverds.DataSourceField#foreignKey
+     * foreignKey} fields.  In this scenario, a dataSource field has a foreignKey field which stores
+     * an ID value used to identify records in another, related dataSource. Rather than display this
+     * ID to users, developers may wish to display another, user-friendly field from the related
+     * record. This is easy to achieve by  having a second field on the dataSource which will be
+     * populated with the "display value" from this related dataSource, and using
+     * <code>dataSourceField.displayField</code>  to show this value.  The {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#includeFrom includeFrom} feature handles
+     * populating this field automatically for dataSources backed by the {@link
+     * com.smartgwt.client.docs.ServerDataIntegration Smart GWT Server}. See the "Editing included
+     * fields" section of the {@link com.smartgwt.client.docs.serverds.DataSourceField#includeFrom
+     * includeFrom} documentation for more on editing included foreignKey fields. <P> Editable
+     * dataSourceFields with a specified <code>displayField</code> and  <code>foreignKey</code> will
+     * typically be edited using a {@link com.smartgwt.client.widgets.form.fields.SelectItem}  or
+     * {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem}. In this case, in addition to
+     * identifying the field to use as a static display value within the record being edited,
+     * <code>displayField</code> will also identify which field on the related dataSource to use as a
+     * display field when showing a set of options to the user. This behavior may be modified in a
+     * couple of ways: <ul>  <li>A separate field name can be specified to identify the display field
+     * on the      related dataSource using the {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#foreignDisplayField foreignDisplayField}
+     * attribute</li>  <li>The {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#useLocalDisplayFieldValue
+     * useLocalDisplayFieldValue} attribute may be explicitly      set to false to avoid picking up a
+     * display value from the local record altogether.      Instead the displayField will be used only
+     * to derive the display value from      a related record from the optionDataSource</li> </ul> For
+     * more on how FormItems use the displayField property, see {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField FormItem.displayField}.
      *
      * <p>Default value is null
      * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
@@ -1945,6 +2088,16 @@ public class DataSourceField {
      * <p>Default value is null
      */
     public Integer imageSize;
+
+    /**
+     * The default search-operator for this field. <P> If not specified, falls back to the default
+     * specified for the field's {@link com.smartgwt.client.data.SimpleType#getDefaultOperator
+     * data-type}.
+     *
+     * <p>Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
+     */
+    public OperatorId defaultOperator;
 
     /**
      * Applies only to fields of type "float" or "integer" and affects how many significant digits are

@@ -704,6 +704,17 @@ public class SC {
     }-*/;
 
     /**
+     * Return a very short (generally less than 40 characters) string representation of any object, 
+     * suitable for viewing by a developer for debugging purposes.
+     *
+     * @param value object to echo
+     * @return a short string representation of the object.
+     */
+    public static native String echoLeaf(Object value) /*-{
+        return $wnd.isc.echoLeaf(value);
+    }-*/;
+    
+    /**
      * Check whether a message logged at "debug" priority would be visible in the log.
      * Use this method to avoid putting together expensive log messages if they will
      * never appear in the log.

@@ -579,26 +579,35 @@ public class TextItem extends FormItem {
     
 
     /**
-     * Input mask used to filter text entry. <P> Sample masks: <UL> <LI>Phone number: (###) ###-####</LI> <LI>Social Security
-     * number: ###-##-#### <LI>First name: &gt;?&lt;??????????</LI> <LI>Date: ##/##/####</LI> <LI>State: &gt;LL</LI> </UL>
-     * Overview of available mask characters <P> <table class="normal"> <tr><th>Character</th><th>Description</th></tr>
-     * <tr><td>0</td><td>Digit (0 through 9) or plus [+] or minus [-] signs</td></tr> <tr><td>9</td><td>Digit or
-     * space</td></tr> <tr><td>#</td><td>Digit</td></tr> <tr><td>L</td><td>Letter (A through Z)</td></tr>
-     * <tr><td>?</td><td>Letter (A through Z) or space</td></tr> <tr><td>A</td><td>Letter or digit</td></tr>
-     * <tr><td>a</td><td>Letter or digit</td></tr> <tr><td>C</td><td>Any character or space</td></tr> <tr><td>&nbsp;</td></tr>
-     * <tr><td>&lt;</td><td>Causes all characters that follow to be converted to lowercase</td></tr>
-     * <tr><td>&gt;</td><td>Causes all characters that follow to be converted to uppercase</td></tr> </table> <P> Any character
-     * not matching one of the above mask characters or that is escaped with a backslash (\) is considered to be a literal. <P>
-     * Custom mask characters can be defined by standard regular expression character set or range. For example, a hexadecimal
-     * color code mask could be: <UL> <LI>Color: \#>[0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F]</LI> </UL> <P> Note: input
-     * mask cannot be used at the same time as a {@link com.smartgwt.client.widgets.form.fields.TextItem#getKeyPressFilter
-     * keyPressFilter}. Also note that this property is not supported for {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem} or {@link com.smartgwt.client.widgets.form.fields.SpinnerItem}, or
-     * for items with {@link com.smartgwt.client.widgets.form.fields.TextItem#getBrowserInputType browserInputType} set to
-     * "digits" or "number".
+     * Input mask used to restrict and format text within this item. <P> Overview of available mask characters <P> <table
+     * class="normal"> <tr><th>Character</th><th>Description</th></tr> <tr><td>0</td><td>Digit (0 through 9) or plus [+] or
+     * minus [-] signs</td></tr> <tr><td>9</td><td>Digit or space</td></tr> <tr><td>#</td><td>Digit</td></tr>
+     * <tr><td>L</td><td>Letter (A through Z)</td></tr> <tr><td>?</td><td>Letter (A through Z) or space</td></tr>
+     * <tr><td>A</td><td>Letter or digit</td></tr> <tr><td>a</td><td>Letter or digit</td></tr> <tr><td>C</td><td>Any character
+     * or space</td></tr> <tr><td>&nbsp;</td></tr> <tr><td>&lt;</td><td>Causes all characters that follow to be converted to
+     * lowercase</td></tr> <tr><td>&gt;</td><td>Causes all characters that follow to be converted to uppercase</td></tr>
+     * <tr><td>&nbsp;</td></tr> <tr><td>[ ... ]</td><td>Square brakets denote the start and end of a custom       regular
+     * expression character set or range.</td></tr> </table> <P> The mask can also contain literals - arbitrary non editable
+     * characters  to be displayed as part of the formatted text. Any character not matching one of the above mask characters
+     * will be considered a literal. To use one of the mask characters as a literal, it must be escaped with a pair of
+     * backslashes (\\). By  default literals are formatting characters only and will not be saved as part of the  item's
+     * value.  This behavior is controlled via {@link com.smartgwt.client.widgets.form.fields.TextItem#getMaskSaveLiterals
+     * maskSaveLiterals}. <P> When a TextItem with a mask has focus, the formatted mask string will be displayed,  with the
+     * {@link com.smartgwt.client.widgets.form.fields.TextItem#getMaskPromptChar maskPromptChar} displayed as a placeholder for
+     * characters that have not yet been entered.<br> As the user types in the field, input will be restricted to the
+     * appropriate character class for each character, with uppercase/lowercase conversion occurring automatically. When focus
+     * is moved away from the field, the displayed value will be formatted to include any literals in the appropriate places.
+     * <P> Sample masks: <UL> <LI>Phone number: (###) ###-####</LI> <LI>Social Security number: ###-##-#### <LI>First name:
+     * &gt;?&lt;??????????</LI> <LI>Date: ##/##/####</LI> <LI>State: &gt;LL</LI> </UL> <P> Custom mask characters can be
+     * defined by standard regular expression character set or range. For example, a hexadecimal color code mask could be: <UL>
+     * <LI>Color: \\#&gt;[0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F]</LI> </UL> <P> Note: input mask cannot be used at the
+     * same time as a {@link com.smartgwt.client.widgets.form.fields.TextItem#getKeyPressFilter keyPressFilter}. Also note that
+     * this property is not supported for {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem} or {@link
+     * com.smartgwt.client.widgets.form.fields.SpinnerItem}, or for items with {@link
+     * com.smartgwt.client.widgets.form.fields.TextItem#getBrowserInputType browserInputType} set to "digits" or "number".
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
-     * Set the mask for this item.  Pass null to clear an existing mask. <P> Note that the current value of the field is cleared when changing the mask.
+     * Set the {@link com.smartgwt.client.widgets.form.fields.TextItem#getMask mask} for this item.  Pass null to clear an existing mask. <P> Note that the current value of the field is cleared when changing the mask.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param mask mask to apply to text item. Default value is null
@@ -610,23 +619,32 @@ public class TextItem extends FormItem {
     }
 
     /**
-     * Input mask used to filter text entry. <P> Sample masks: <UL> <LI>Phone number: (###) ###-####</LI> <LI>Social Security
-     * number: ###-##-#### <LI>First name: &gt;?&lt;??????????</LI> <LI>Date: ##/##/####</LI> <LI>State: &gt;LL</LI> </UL>
-     * Overview of available mask characters <P> <table class="normal"> <tr><th>Character</th><th>Description</th></tr>
-     * <tr><td>0</td><td>Digit (0 through 9) or plus [+] or minus [-] signs</td></tr> <tr><td>9</td><td>Digit or
-     * space</td></tr> <tr><td>#</td><td>Digit</td></tr> <tr><td>L</td><td>Letter (A through Z)</td></tr>
-     * <tr><td>?</td><td>Letter (A through Z) or space</td></tr> <tr><td>A</td><td>Letter or digit</td></tr>
-     * <tr><td>a</td><td>Letter or digit</td></tr> <tr><td>C</td><td>Any character or space</td></tr> <tr><td>&nbsp;</td></tr>
-     * <tr><td>&lt;</td><td>Causes all characters that follow to be converted to lowercase</td></tr>
-     * <tr><td>&gt;</td><td>Causes all characters that follow to be converted to uppercase</td></tr> </table> <P> Any character
-     * not matching one of the above mask characters or that is escaped with a backslash (\) is considered to be a literal. <P>
-     * Custom mask characters can be defined by standard regular expression character set or range. For example, a hexadecimal
-     * color code mask could be: <UL> <LI>Color: \#>[0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F]</LI> </UL> <P> Note: input
-     * mask cannot be used at the same time as a {@link com.smartgwt.client.widgets.form.fields.TextItem#getKeyPressFilter
-     * keyPressFilter}. Also note that this property is not supported for {@link
-     * com.smartgwt.client.widgets.form.fields.ComboBoxItem} or {@link com.smartgwt.client.widgets.form.fields.SpinnerItem}, or
-     * for items with {@link com.smartgwt.client.widgets.form.fields.TextItem#getBrowserInputType browserInputType} set to
-     * "digits" or "number".
+     * Input mask used to restrict and format text within this item. <P> Overview of available mask characters <P> <table
+     * class="normal"> <tr><th>Character</th><th>Description</th></tr> <tr><td>0</td><td>Digit (0 through 9) or plus [+] or
+     * minus [-] signs</td></tr> <tr><td>9</td><td>Digit or space</td></tr> <tr><td>#</td><td>Digit</td></tr>
+     * <tr><td>L</td><td>Letter (A through Z)</td></tr> <tr><td>?</td><td>Letter (A through Z) or space</td></tr>
+     * <tr><td>A</td><td>Letter or digit</td></tr> <tr><td>a</td><td>Letter or digit</td></tr> <tr><td>C</td><td>Any character
+     * or space</td></tr> <tr><td>&nbsp;</td></tr> <tr><td>&lt;</td><td>Causes all characters that follow to be converted to
+     * lowercase</td></tr> <tr><td>&gt;</td><td>Causes all characters that follow to be converted to uppercase</td></tr>
+     * <tr><td>&nbsp;</td></tr> <tr><td>[ ... ]</td><td>Square brakets denote the start and end of a custom       regular
+     * expression character set or range.</td></tr> </table> <P> The mask can also contain literals - arbitrary non editable
+     * characters  to be displayed as part of the formatted text. Any character not matching one of the above mask characters
+     * will be considered a literal. To use one of the mask characters as a literal, it must be escaped with a pair of
+     * backslashes (\\). By  default literals are formatting characters only and will not be saved as part of the  item's
+     * value.  This behavior is controlled via {@link com.smartgwt.client.widgets.form.fields.TextItem#getMaskSaveLiterals
+     * maskSaveLiterals}. <P> When a TextItem with a mask has focus, the formatted mask string will be displayed,  with the
+     * {@link com.smartgwt.client.widgets.form.fields.TextItem#getMaskPromptChar maskPromptChar} displayed as a placeholder for
+     * characters that have not yet been entered.<br> As the user types in the field, input will be restricted to the
+     * appropriate character class for each character, with uppercase/lowercase conversion occurring automatically. When focus
+     * is moved away from the field, the displayed value will be formatted to include any literals in the appropriate places.
+     * <P> Sample masks: <UL> <LI>Phone number: (###) ###-####</LI> <LI>Social Security number: ###-##-#### <LI>First name:
+     * &gt;?&lt;??????????</LI> <LI>Date: ##/##/####</LI> <LI>State: &gt;LL</LI> </UL> <P> Custom mask characters can be
+     * defined by standard regular expression character set or range. For example, a hexadecimal color code mask could be: <UL>
+     * <LI>Color: \\#&gt;[0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F]</LI> </UL> <P> Note: input mask cannot be used at the
+     * same time as a {@link com.smartgwt.client.widgets.form.fields.TextItem#getKeyPressFilter keyPressFilter}. Also note that
+     * this property is not supported for {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem} or {@link
+     * com.smartgwt.client.widgets.form.fields.SpinnerItem}, or for items with {@link
+     * com.smartgwt.client.widgets.form.fields.TextItem#getBrowserInputType browserInputType} set to "digits" or "number".
      *
      * @return Current mask value. Default value is null
      * @see com.smartgwt.client.widgets.form.fields.TextItem#getKeyPressFilter
@@ -638,8 +656,8 @@ public class TextItem extends FormItem {
     
 
     /**
-     * During entry into masked field, should keystrokes overwrite current position value? By default new keystrokes are
-     * inserted into the field.
+     * During entry into a {@link com.smartgwt.client.widgets.form.fields.TextItem#getMask masked field}, should keystrokes
+     * overwrite current position value? By default new keystrokes are inserted into the field.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param maskOverwriteMode New maskOverwriteMode value. Default value is null
@@ -649,8 +667,8 @@ public class TextItem extends FormItem {
     }
 
     /**
-     * During entry into masked field, should keystrokes overwrite current position value? By default new keystrokes are
-     * inserted into the field.
+     * During entry into a {@link com.smartgwt.client.widgets.form.fields.TextItem#getMask masked field}, should keystrokes
+     * overwrite current position value? By default new keystrokes are inserted into the field.
      *
      * @return Current maskOverwriteMode value. Default value is null
      */
@@ -660,7 +678,8 @@ public class TextItem extends FormItem {
     
 
     /**
-     * Character that is used to fill required empty mask positions to display text while control has no focus.
+     * Character that is used to fill required empty {@link com.smartgwt.client.widgets.form.fields.TextItem#getMask mask}
+     * positions to display text while control has no focus.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param maskPadChar New maskPadChar value. Default value is " "
@@ -670,7 +689,8 @@ public class TextItem extends FormItem {
     }
 
     /**
-     * Character that is used to fill required empty mask positions to display text while control has no focus.
+     * Character that is used to fill required empty {@link com.smartgwt.client.widgets.form.fields.TextItem#getMask mask}
+     * positions to display text while control has no focus.
      *
      * @return Current maskPadChar value. Default value is " "
      */
@@ -680,7 +700,8 @@ public class TextItem extends FormItem {
     
 
     /**
-     * Character that is used to fill required empty mask positions to display text while control has focus.
+     * Character that is used to fill required empty {@link com.smartgwt.client.widgets.form.fields.TextItem#getMask mask}
+     * positions to display text while control has focus.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param maskPromptChar New maskPromptChar value. Default value is "_"
@@ -690,7 +711,8 @@ public class TextItem extends FormItem {
     }
 
     /**
-     * Character that is used to fill required empty mask positions to display text while control has focus.
+     * Character that is used to fill required empty {@link com.smartgwt.client.widgets.form.fields.TextItem#getMask mask}
+     * positions to display text while control has focus.
      *
      * @return Current maskPromptChar value. Default value is "_"
      */
@@ -700,7 +722,8 @@ public class TextItem extends FormItem {
     
 
     /**
-     * Should entered mask value be saved with embedded literals?
+     * Should entered {@link com.smartgwt.client.widgets.form.fields.TextItem#getMask mask} value be saved with embedded
+     * literals?
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param maskSaveLiterals New maskSaveLiterals value. Default value is null
@@ -710,7 +733,8 @@ public class TextItem extends FormItem {
     }
 
     /**
-     * Should entered mask value be saved with embedded literals?
+     * Should entered {@link com.smartgwt.client.widgets.form.fields.TextItem#getMask mask} value be saved with embedded
+     * literals?
      *
      * @return Current maskSaveLiterals value. Default value is null
      */
@@ -906,6 +930,35 @@ public class TextItem extends FormItem {
     
 
     /**
+     * When set to false, prevents this item's input element from being written into the DOM. If there are {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} or a  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon picker icon}, these are displayed as normal, and the
+     * item will auto-sizing to that content if its {@link com.smartgwt.client.widgets.form.fields.FormItem#getWidth width} is
+     * set to null.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showInputElement New showInputElement value. Default value is true
+     */
+    public void setShowInputElement(boolean showInputElement) {
+        setAttribute("showInputElement", showInputElement);
+    }
+
+    /**
+     * When set to false, prevents this item's input element from being written into the DOM. If there are {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueIcons valueIcons} or a  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon picker icon}, these are displayed as normal, and the
+     * item will auto-sizing to that content if its {@link com.smartgwt.client.widgets.form.fields.FormItem#getWidth width} is
+     * set to null.
+     *
+     * @return Current showInputElement value. Default value is true
+     */
+    public boolean getShowInputElement()  {
+        Boolean result = getAttributeAsBoolean("showInputElement", true);
+        return result == null ? true : result;
+    }
+    
+
+    /**
      * Does the current formItem support native cut and paste events? <P> This attribute only applies to freeform text entry
      * fields such as {@link com.smartgwt.client.widgets.form.fields.TextItem} and {@link
      * com.smartgwt.client.widgets.form.fields.TextAreaItem}, and only if {@link
@@ -942,6 +995,48 @@ public class TextItem extends FormItem {
     public boolean getSupportsCutPasteEvents()  {
         Boolean result = getAttributeAsBoolean("supportsCutPasteEvents", true);
         return result == null ? true : result;
+    }
+    
+
+    /**
+     * This attribute currently only has an effect in Internet Explorer. That browser will dynamically add a native "clear"
+     * icon to <i>&lt;input type="text" &gt;</i> elements when the user enters a value. Setting
+     * <code>suppressBrowserClearIcon</code> to <code>true</code> will write out HTML to suppress this icon. This can be
+     * particularly useful for items which define their own clear icon as in  <a
+     * href="http://www.smartclient.com/smartgwtee/showcase/#inlineFormIcons" target="examples">this sample</a>. <P> If this
+     * property is not set at the item level, {@link com.smartgwt.client.widgets.form.DynamicForm#getSuppressBrowserClearIcons
+     * DynamicForm.suppressBrowserClearIcons} will be used instead. <P> Note that as an alternative to using this feature, the
+     * icon may also be suppressed  (or have other styling applied to it) directly via CSS, using the  <code>::-ms-clear</code>
+     * css pseudo-element (proprietary Internet Explorer feature). <P> Implementation note: This feature makes use of the
+     * automatically generated {@link com.smartgwt.client.widgets.form.fields.TextItem#suppressClearIconClassName
+     * suppressClearIconClassName} css class.
+     *
+     * <br><br>If this method is called after the component has been drawn/initialized:
+     * Setter for the {@link com.smartgwt.client.widgets.form.fields.TextItem#getSuppressBrowserClearIcon suppressBrowserClearIcon}
+     *
+     * @param suppressBrowserClearIcon new value for suppressBrowserClearIcon. Default value is null
+     */
+    public void setSuppressBrowserClearIcon(Boolean suppressBrowserClearIcon) {
+        setAttribute("suppressBrowserClearIcon", suppressBrowserClearIcon);
+    }
+
+    /**
+     * This attribute currently only has an effect in Internet Explorer. That browser will dynamically add a native "clear"
+     * icon to <i>&lt;input type="text" &gt;</i> elements when the user enters a value. Setting
+     * <code>suppressBrowserClearIcon</code> to <code>true</code> will write out HTML to suppress this icon. This can be
+     * particularly useful for items which define their own clear icon as in  <a
+     * href="http://www.smartclient.com/smartgwtee/showcase/#inlineFormIcons" target="examples">this sample</a>. <P> If this
+     * property is not set at the item level, {@link com.smartgwt.client.widgets.form.DynamicForm#getSuppressBrowserClearIcons
+     * DynamicForm.suppressBrowserClearIcons} will be used instead. <P> Note that as an alternative to using this feature, the
+     * icon may also be suppressed  (or have other styling applied to it) directly via CSS, using the  <code>::-ms-clear</code>
+     * css pseudo-element (proprietary Internet Explorer feature). <P> Implementation note: This feature makes use of the
+     * automatically generated {@link com.smartgwt.client.widgets.form.fields.TextItem#suppressClearIconClassName
+     * suppressClearIconClassName} css class.
+     *
+     * @return Current suppressBrowserClearIcon value. Default value is null
+     */
+    public Boolean getSuppressBrowserClearIcon()  {
+        return getAttributeAsBoolean("suppressBrowserClearIcon", true);
     }
     
 

@@ -107,7 +107,30 @@ public class ImgProperties extends DataClass {
     // ********************* Properties / Attributes ***********************
 
     /**
-     * Specifies the additional attributes to write in the tag.
+     * Specifies the additional event-related attributes to write in the tag.
+     *
+     * @param eventStuff New eventStuff value. Default value is null
+     * @see com.smartgwt.client.widgets.ImgProperties#setExtraStuff
+     */
+    public void setEventStuff(String eventStuff) {
+        setAttribute("eventStuff", eventStuff);
+    }
+
+    /**
+     * Specifies the additional event-related attributes to write in the tag.
+     *
+     * @return Current eventStuff value. Default value is null
+     * @see com.smartgwt.client.widgets.ImgProperties#getExtraStuff
+     */
+    public String getEventStuff()  {
+        return getAttributeAsString("eventStuff");
+    }
+    
+
+    /**
+     * Specifies the additional attributes to write in the tag.  Event-related attributes should be added to {@link
+     * com.smartgwt.client.widgets.ImgProperties#getEventStuff eventStuff} instead to guarantee proper behavior when using SVG
+     * images.
      *
      * @param extraStuff New extraStuff value. Default value is null
      */
@@ -116,7 +139,9 @@ public class ImgProperties extends DataClass {
     }
 
     /**
-     * Specifies the additional attributes to write in the tag.
+     * Specifies the additional attributes to write in the tag.  Event-related attributes should be added to {@link
+     * com.smartgwt.client.widgets.ImgProperties#getEventStuff eventStuff} instead to guarantee proper behavior when using SVG
+     * images.
      *
      * @return Current extraStuff value. Default value is null
      */

@@ -21,8 +21,11 @@ package com.smartgwt.client.types;
 /**
  * An operator is used as part of a {@link com.smartgwt.client.data.Criterion} when specifying {@link
  * com.smartgwt.client.data.AdvancedCriteria}. <P> This list of operators indicates the set of operators built into Smart
- * GWT DataSources, which can be used for both client and server-side filtering.   You can extend the list of operators
- * with {@link com.smartgwt.client.data.DataSource#addSearchOperator DataSource.addSearchOperator()}.
+ * GWT DataSources, which can be used for both client and server-side filtering.  Some operators offer  case-insensitive
+ * versions, prefixed with a lower-case <i>i</i>, such as  <code>iContains</code>.  <b>Note that such operators are
+ * intended for text-based searches and   are not available to numeric or date fields (integer/float/date/datetime and
+ * derivatives),  where there is no use for case.</b> <P> You can extend the list of operators with {@link
+ * com.smartgwt.client.data.DataSource#addSearchOperator DataSource.addSearchOperator()}.
  */
 public enum OperatorId implements ValueEnum {
     /**
@@ -61,7 +64,8 @@ public enum OperatorId implements ValueEnum {
      */
     GREATER_THAN("greaterThan"),
     /**
-     * Less than
+     * Less than. Note that <code>null</code> is treated as equivalent to an arbitrarily small value, so null field values will
+     *  always be returned by <code>lessThan</code> / <code>lessOrEqual</code>  filter operations by default.
      * <P>
      * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}
      * file or server-side DataSource descriptor (.ds.xml file), use the value "lessThan".

@@ -24,11 +24,10 @@ public interface VisibilityChangedHandler extends EventHandler {
      * Notification  fired when this canvas becomes visible or hidden to the user. Note - this method is fired when the {@link
      * com.smartgwt.client.widgets.Canvas#isVisible isVisible()} state of this component changes. It may be fired in response
      * an explicit call to {@link com.smartgwt.client.widgets.Canvas#show show()} or {@link
-     * com.smartgwt.client.widgets.Canvas#hide hide()} or {@link com.smartgwt.client.widgets.Canvas#setVisibility
-     * setVisibility()}, or in response to a parent component being shown or hidden when this widgets {@link
-     * com.smartgwt.client.widgets.Canvas#getVisibility visibility} is set to "inherit". <P> Note that a call to {@link
-     * com.smartgwt.client.widgets.Canvas#show show()} or {@link com.smartgwt.client.widgets.Canvas#hide hide()} will not
-     * <b>always</b> fire this notification. If this widget has a hidden parent, show or hide would change this components
+     * com.smartgwt.client.widgets.Canvas#hide hide()}, or in response to a parent component being shown or hidden when this
+     * widgets {@link com.smartgwt.client.widgets.Canvas#getVisibility visibility} is set to "inherit". <P> Note that a call to
+     * {@link com.smartgwt.client.widgets.Canvas#show show()} or {@link com.smartgwt.client.widgets.Canvas#hide hide()} will
+     * not <b>always</b> fire this notification. If this widget has a hidden parent, show or hide would change this components
      * {@link com.smartgwt.client.widgets.Canvas#getVisibility visibility} property, and may update the CSS visibility
      * attribute of the drawn handle in the DOM, but would not actually hide or reveal the component to the user and as such
      * the notification would not fire. <P> Note also that this notification will only be fired for components which have been

@@ -98,9 +98,10 @@ import com.smartgwt.logicalstructure.widgets.tools.*;
  *  a text message or a text mesage with some standard buttons.
  *  <P>
  *  Many typical modal dialogs such as alerts and confirmations are built into the system with
- * convenience APIs - see {@link com.smartgwt.client.util.isc#say isc.say()}, {@link com.smartgwt.client.util.isc#warn
- * isc.warn()} and
- *  {@link com.smartgwt.client.util.isc#askForValue isc.askForValue()}.
+ *  convenience APIs - see 
+ *  {@link com.smartgwt.client.util.SC#say SC.say()},
+ *  {@link com.smartgwt.client.util.SC#warn SC.warn()} and 
+ *  {@link com.smartgwt.client.util.SC#askforValue SC.askforValue()}.
  *  <P>
  *  Dialogs can be modal or non-modal according to {@link com.smartgwt.client.widgets.Window#getIsModal isModal}.
  *  <P>
@@ -683,8 +684,8 @@ public class Dialog extends Window implements com.smartgwt.client.widgets.events
      * {@link com.smartgwt.client.widgets.Dialog#getShowToolbar toolbar}, if shown.
      * <P>
      * The set of buttons to use is typically set by calling one of the shortcuts such as
-     * {@link com.smartgwt.client.util.isc#say isc.say()} or
-     * {@link com.smartgwt.client.util.isc#confirm isc.confirm()}.  A custom set of buttons can
+     * {@link com.smartgwt.client.util.SC#say SC.say()} or
+     * {@link com.smartgwt.client.util.SC#confirm SC.confirm()}.  A custom set of buttons can
      * be passed to these shortcuts methods via the "properties" argument, or to a directly
      * created Dialog.
      * <P>

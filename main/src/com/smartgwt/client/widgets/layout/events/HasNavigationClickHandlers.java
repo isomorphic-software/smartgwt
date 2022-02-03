@@ -23,7 +23,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public interface HasNavigationClickHandlers extends HasHandlers {
     /**
      * Notification method fired when the user clicks the default back / forward buttons on the navigation bar for this
-     * <code>SplitPane</code>.
+     * <code>SplitPane</code>. <P> Note that the return value will be ignored and cancelation won't be possible unless {@link
+     * com.smartgwt.client.widgets.layout.SplitPane#getNotifyAfterNavigationClick notifyAfterNavigationClick} has been set
+     * false so that the notification occurs <i>before</i> navigation.
      *
      * @param handler the navigationClick handler
      * @return {@link HandlerRegistration} used to remove this handler

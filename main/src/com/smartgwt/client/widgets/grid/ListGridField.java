@@ -148,6 +148,7 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * set at the {@link com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterExpressions ListGrid level}.
      *
      * @param allowFilterExpressions New allowFilterExpressions value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public void setAllowFilterExpressions(Boolean allowFilterExpressions) {
         setAttribute("allowFilterExpressions", allowFilterExpressions);
@@ -161,6 +162,7 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * set at the {@link com.smartgwt.client.widgets.grid.ListGrid#getAllowFilterExpressions ListGrid level}.
      *
      * @return Current allowFilterExpressions value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public Boolean getAllowFilterExpressions()  {
         return getAttributeAsBoolean("allowFilterExpressions", true);
@@ -245,6 +247,29 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      */
     public Boolean getApplyAfterSummary()  {
         return getAttributeAsBoolean("applyAfterSummary", true);
+    }
+    
+
+    /**
+     * What to do when a user hits arrow key while editing this field?<br> See {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getArrowKeyEditAction ListGrid.getArrowKeyEditAction()}.
+     *
+     * @param arrowKeyEditAction New arrowKeyEditAction value. Default value is null
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
+     */
+    public void setArrowKeyEditAction(ArrowKeyEditAction arrowKeyEditAction) {
+        setAttribute("arrowKeyEditAction", arrowKeyEditAction == null ? null : arrowKeyEditAction.getValue());
+    }
+
+    /**
+     * What to do when a user hits arrow key while editing this field?<br> See {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getArrowKeyEditAction ListGrid.getArrowKeyEditAction()}.
+     *
+     * @return Current arrowKeyEditAction value. Default value is null
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
+     */
+    public ArrowKeyEditAction getArrowKeyEditAction()  {
+        return EnumUtil.getEnum(ArrowKeyEditAction.values(), getAttribute("arrowKeyEditAction"));
     }
     
 
@@ -1534,6 +1559,7 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * displayed to the user rather than the interpreted HTML (for example <code>"<b>AAA</b>"</code>)
      *
      * @param escapeHTML New escapeHTML value. Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setSkipLineBreaks
      */
     public void setEscapeHTML(Boolean escapeHTML) {
         setAttribute("escapeHTML", escapeHTML);
@@ -1545,6 +1571,7 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      * displayed to the user rather than the interpreted HTML (for example <code>"<b>AAA</b>"</code>)
      *
      * @return Current escapeHTML value. Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getSkipLineBreaks
      */
     public Boolean getEscapeHTML()  {
         return getAttributeAsBoolean("escapeHTML", true);
@@ -1653,6 +1680,45 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      */
     public String getExportFormat()  {
         return getAttributeAsString("exportFormat");
+    }
+    
+
+    /**
+     * Dictates whether numeric values should be exported as raw numbers instead of formatted values when using {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#exportClientData exportClientData()}. <P> This property is only consulted if
+     * <code>exportRawValues</code> is not set to true at the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getExportRawValues grid} or {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getExportRawValues field} level. That property causes all values,
+     * including numeric values, to be exported unformatted. <P> This is useful for cases where an explicit ListGrid formatter
+     * function simply displays the number as a formatted string for the user (for example "1,234"). Exporting that formatted
+     * string rather than the underlying numeric value causes spreadsheet applications such as Excel to lose some
+     * functionality. <P> If this property is not explicitly set, numeric values will be exported as raw numbers for {@link
+     * com.smartgwt.client.data.DSRequest#getExportAs XLS and OOXML export} only. <P> This property overrides the setting at
+     * the {@link com.smartgwt.client.widgets.grid.ListGrid#getExportRawNumbers grid} level.
+     *
+     * @param exportRawNumbers New exportRawNumbers value. Default value is null
+     */
+    public void setExportRawNumbers(Boolean exportRawNumbers) {
+        setAttribute("exportRawNumbers", exportRawNumbers);
+    }
+
+    /**
+     * Dictates whether numeric values should be exported as raw numbers instead of formatted values when using {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#exportClientData exportClientData()}. <P> This property is only consulted if
+     * <code>exportRawValues</code> is not set to true at the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getExportRawValues grid} or {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getExportRawValues field} level. That property causes all values,
+     * including numeric values, to be exported unformatted. <P> This is useful for cases where an explicit ListGrid formatter
+     * function simply displays the number as a formatted string for the user (for example "1,234"). Exporting that formatted
+     * string rather than the underlying numeric value causes spreadsheet applications such as Excel to lose some
+     * functionality. <P> If this property is not explicitly set, numeric values will be exported as raw numbers for {@link
+     * com.smartgwt.client.data.DSRequest#getExportAs XLS and OOXML export} only. <P> This property overrides the setting at
+     * the {@link com.smartgwt.client.widgets.grid.ListGrid#getExportRawNumbers grid} level.
+     *
+     * @return Current exportRawNumbers value. Default value is null
+     */
+    public Boolean getExportRawNumbers()  {
+        return getAttributeAsBoolean("exportRawNumbers", true);
     }
     
 
@@ -3331,6 +3397,29 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
     
 
     /**
+     * Whether to rotate the field's title so it's rendered vertically from bottom to top. If unset, default behavior is
+     * derived from {@link com.smartgwt.client.widgets.grid.ListGrid#getRotateHeaderTitles ListGrid.rotateHeaderTitles}.
+     *
+     * @param rotateTitle New rotateTitle value. Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setRotateHeaderTitles
+     */
+    public void setRotateTitle(Boolean rotateTitle) {
+        setAttribute("rotateTitle", rotateTitle);
+    }
+
+    /**
+     * Whether to rotate the field's title so it's rendered vertically from bottom to top. If unset, default behavior is
+     * derived from {@link com.smartgwt.client.widgets.grid.ListGrid#getRotateHeaderTitles ListGrid.rotateHeaderTitles}.
+     *
+     * @return Current rotateTitle value. Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getRotateHeaderTitles
+     */
+    public Boolean getRotateTitle()  {
+        return getAttributeAsBoolean("rotateTitle", true);
+    }
+    
+
+    /**
      * Should the cell content be natively selected (ready for copying to clip-board)  on click? <P> See {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSelectCellTextOnClick ListGrid.selectCellTextOnClick} for more information.
      *
@@ -3765,6 +3854,35 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      */
     public Boolean getShowValueIconOnly()  {
         return getAttributeAsBoolean("showValueIconOnly", true);
+    }
+    
+
+    /**
+     * By default, when {@link com.smartgwt.client.widgets.grid.ListGridField#getEscapeHTML escaping HTML}, we convert line
+     * breaks (\r\n, \r, and \n) to HTML &lt;br&gt tags so that visible cell content respects the original break characters.
+     * Set this property true to instead show the content as a single line (or potentially wrapped to avoid clipping if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getWrapCells ListGrid.wrapCells} is true). <P> If defaulted to null, behavior
+     * is determined by {@link com.smartgwt.client.widgets.grid.ListGrid#getSkipLineBreaks ListGrid.skipLineBreaks}.
+     *
+     * @param skipLineBreaks New skipLineBreaks value. Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setEscapeHTML
+     */
+    public void setSkipLineBreaks(Boolean skipLineBreaks) {
+        setAttribute("skipLineBreaks", skipLineBreaks);
+    }
+
+    /**
+     * By default, when {@link com.smartgwt.client.widgets.grid.ListGridField#getEscapeHTML escaping HTML}, we convert line
+     * breaks (\r\n, \r, and \n) to HTML &lt;br&gt tags so that visible cell content respects the original break characters.
+     * Set this property true to instead show the content as a single line (or potentially wrapped to avoid clipping if {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getWrapCells ListGrid.wrapCells} is true). <P> If defaulted to null, behavior
+     * is determined by {@link com.smartgwt.client.widgets.grid.ListGrid#getSkipLineBreaks ListGrid.skipLineBreaks}.
+     *
+     * @return Current skipLineBreaks value. Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getEscapeHTML
+     */
+    public Boolean getSkipLineBreaks()  {
+        return getAttributeAsBoolean("skipLineBreaks", true);
     }
     
 
@@ -4223,6 +4341,33 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
      */
     public void setValidators(Validator... validators) {
         setAttribute("validators", validators);
+    }
+    
+
+    /**
+     * Specifies vertical alignment in the column header for a  {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getRotateTitle rotated title}: "top", "center", or "bottom".  If unset,
+     * default behavior is derived from {@link com.smartgwt.client.widgets.grid.ListGrid#getHeaderTitleVAlign
+     * ListGrid.headerTitleVAlign}.
+     *
+     * @param valign New valign value. Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setRotateHeaderTitles
+     */
+    public void setValign(VerticalAlignment valign) {
+        setAttribute("valign", valign == null ? null : valign.getValue());
+    }
+
+    /**
+     * Specifies vertical alignment in the column header for a  {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getRotateTitle rotated title}: "top", "center", or "bottom".  If unset,
+     * default behavior is derived from {@link com.smartgwt.client.widgets.grid.ListGrid#getHeaderTitleVAlign
+     * ListGrid.headerTitleVAlign}.
+     *
+     * @return Current valign value. Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getRotateHeaderTitles
+     */
+    public VerticalAlignment getValign()  {
+        return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("valign"));
     }
     
 
@@ -4974,8 +5119,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
     /**
      * Horizontal alignment for field's column header: "left", "right" or "center". Applied to the column header title
      * and cells by default. A separate alignment for cells can be specified via {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getCellAlign cellAlign}.<br> If null, values are left-aligned. If
-     * this field is editable, the alignment of cells in the body will also be reflected in any editors for the field.
+     * com.smartgwt.client.widgets.grid.ListGridField#getCellAlign cellAlign}.<br><br> If null, default alignment depends 
+     * on the field's declared {@link com.smartgwt.client.widgets.grid.ListGridField#setType type} - generally "left" 
+     * except for numbers which are "right" - and if {@link com.smartgwt.client.widgets.grid.ListGridField#setRotateTitle rotateTitle}
+     * has been specified, the default is always "center". <br><br>
+     * Note that if this field is editable, the alignment of cells in the body will also be reflected in any editors for the field.
      *
      * @param align align Default value is null
      */
@@ -4986,8 +5134,11 @@ public class ListGridField extends DBCField implements com.smartgwt.client.widge
     /**
      * Horizontal alignment for field's column header: "left", "right" or "center". Applied to the column header title
      * and cells by default. A separate alignment for cells can be specified via {@link
-     * com.smartgwt.client.widgets.grid.ListGridField#getCellAlign cellAlign}.<br> If null, values are left-aligned. If
-     * this field is editable, the alignment of cells in the body will also be reflected in any editors for the field.
+     * com.smartgwt.client.widgets.grid.ListGridField#getCellAlign cellAlign}.<br> If null, default alignment depends 
+     * on the field's declared {@link com.smartgwt.client.widgets.grid.ListGridField#getType type} - generally "left" 
+     * except for numbers which are "right" - and if {@link com.smartgwt.client.widgets.grid.ListGridField#getRotateTitle rotateTitle}
+     * has been specified, the default is always "center". <br><br>
+     * Note that if this field is editable, the alignment of cells in the body will also be reflected in any editors for the field.
      *
      * @return String
      */

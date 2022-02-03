@@ -29,20 +29,21 @@ package com.smartgwt.client.docs;
  * <li><i>javax.persistence</i> - if you plan to use the metadata-from-annotations feature.  Note
  * that if you are using JPA, or a recent version of Hibernate, then you are probably already
  * using this library.         <li><i>poi </i> -if you plan to export datasets in Microsoft Excel
- * 97 (xls) or 2007 (xlsx) formats.           <li><i>poi-ooxml</i> - also needed if you plan to
- * export data in Excel 2007 (xlsx) format         <li><i>isomorphic_contentexport</i> - if you
- * plan to export to PDF format         <li><i>isomorphic_jpa</i> - if you plan to use BatchDS
- * Generator (even if you are not using JPA, although the generated DataSources will not require
- * JPA at runtime if you are not using JPA).         <li><i>log4j</i> - if you plan to use log4j
- * logging (used by default)         <li><i>slf4j-log4j12</i> - if you plan to use slf4j with
- * log4j (for example), or any other slf4j bridge library depending on which logging framework
- * will be used.  See {@link com.smartgwt.client.docs.ServerLogging} for information on
- * server-side logging and how to configure it.         <li><i>groovy</i> -if you plan to use
- * Groovy with the {@link com.smartgwt.client.docs.ServerScript} feature.  Note, we also recommend
- * that you use Groovy as the evaluation engine if you intend to use Java as an inline scripting
- * language.  See the "Server Scripting" documentation.         <li><i>commons-digester and
- * commons-beanutils</i> - if you plan to use Velocity Tools.        </ul>      </td>   </tr>    
- * <tr>     <td class="jmd-module"><a target="_blank"
+ * 97 (xls) or 2007 (xlsx) formats.           <li><i>poi-ooxml, poi-ooxml-schemas, and
+ * commons-compress</i> - also needed if you plan to export data in Excel 2007 (xlsx) format      
+ * <li><i>isomorphic_contentexport</i> - if you plan to export to PDF format        
+ * <li><i>isomorphic_jpa</i> - if you plan to use BatchDS Generator (even if you are not using
+ * JPA, although the generated DataSources will not require JPA at runtime if you are not using
+ * JPA).         <li><i>log4j</i> - if you plan to use log4j logging (used by default)        
+ * <li><i>slf4j-log4j12</i> - if you plan to use slf4j with log4j (for example), or any other
+ * slf4j bridge library depending on which logging framework will be used.  See {@link
+ * com.smartgwt.client.docs.ServerLogging} for information on server-side logging and how to
+ * configure it.         <li><i>groovy</i> -if you plan to use Groovy with the {@link
+ * com.smartgwt.client.docs.ServerScript} feature.  Note, we also recommend that you use Groovy as
+ * the evaluation engine if you intend to use Java as an inline scripting language.  See the
+ * "Server Scripting" documentation.         <li><i>commons-digester and commons-beanutils</i> -
+ * if you plan to use Velocity Tools.        </ul>      </td>   </tr>     <tr>     <td
+ * class="jmd-module"><a target="_blank"
  * href="./mavendoc/isomorphic-contentexport.html">isomorphic_contentexport</a></td>     <td>     
  * Provides support for PDF Export.       <div class="jmd-optional">       Optional Dependencies  
  * </div>       <ul>         <li><i>batik-anim, batik-awt-util, batik-bridge, batik-css,
@@ -91,7 +92,7 @@ package com.smartgwt.client.docs;
  * {@link com.smartgwt.client.docs.AutomatedTesting automated testing and Continuous Integration} 
  * <div class="jmd-optional">     Optional Dependencies     </div>     <ul>       <li><i>jna</i> -
  * if testing with IE on Windows environments       <li><i>servlet-api</i> - needed only if you
- * intend to run Selenium RC from a standalone process (ie, from a normal Java program, not a
+ * intend to run TestRunner from a standalone process (ie, from a normal Java program, not a
  * webapp).           <p/>         However, it should <u>not</u> be deployed to a servlet
  * container such as Tomcat or Jetty.           The best case is that the file will be unused and
  * a source of confusion for anybody looking at the webapp's library usage;          the worst

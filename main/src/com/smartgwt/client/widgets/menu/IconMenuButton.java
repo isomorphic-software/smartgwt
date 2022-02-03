@@ -212,6 +212,28 @@ public class IconMenuButton extends IconButton {
     
 
     /**
+     * The horizontal alignment of this button's menu, in relation to the button.  When unset, default behavior is to align the
+     * right edges of button and menu if the page is in RTL  mode, and the left edges otherwise.
+     *
+     * @param menuAlign New menuAlign value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setMenuAlign(Alignment menuAlign)  throws IllegalStateException {
+        setAttribute("menuAlign", menuAlign == null ? null : menuAlign.getValue(), false);
+    }
+
+    /**
+     * The horizontal alignment of this button's menu, in relation to the button.  When unset, default behavior is to align the
+     * right edges of button and menu if the page is in RTL  mode, and the left edges otherwise.
+     *
+     * @return Current menuAlign value. Default value is null
+     */
+    public Alignment getMenuAlign()  {
+        return EnumUtil.getEnum(Alignment.values(), getAttribute("menuAlign"));
+    }
+    
+
+    /**
      * Allows you to specify an animation effect to apply to the menu when it is being shown. Valid options are "none" (no
      * animation), "fade", "slide" and "wipe". If unspecified falls through to <code>menu.showAnimationEffect</code>
      * <p><b>Note : </b> This is an advanced setting</p>
@@ -230,6 +252,26 @@ public class IconMenuButton extends IconButton {
      */
     public String getMenuAnimationEffect()  {
         return getAttributeAsString("menuAnimationEffect");
+    }
+    
+
+    /**
+     * The menu drops down below the menu button. Set to false if the menu should appear above the menu button.
+     *
+     * @param showMenuBelow New showMenuBelow value. Default value is true
+     */
+    public void setShowMenuBelow(Boolean showMenuBelow) {
+        setAttribute("showMenuBelow", showMenuBelow, true);
+    }
+
+    /**
+     * The menu drops down below the menu button. Set to false if the menu should appear above the menu button.
+     *
+     * @return Current showMenuBelow value. Default value is true
+     */
+    public Boolean getShowMenuBelow()  {
+        Boolean result = getAttributeAsBoolean("showMenuBelow");
+        return result == null ? true : result;
     }
     
 
@@ -296,9 +338,19 @@ public class IconMenuButton extends IconButton {
             s.logicalStructureErrors += "IconMenuButton.menu:" + t.getMessage() + "\n";
         }
         try {
+            s.menuAlign = getAttributeAsString("menuAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "IconMenuButton.menuAlign:" + t.getMessage() + "\n";
+        }
+        try {
             s.menuAnimationEffect = getAttributeAsString("menuAnimationEffect");
         } catch (Throwable t) {
             s.logicalStructureErrors += "IconMenuButton.menuAnimationEffect:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showMenuBelow = getAttributeAsString("showMenuBelow");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "IconMenuButton.showMenuBelow:" + t.getMessage() + "\n";
         }
         return s;
     }

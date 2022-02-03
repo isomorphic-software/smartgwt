@@ -2,22 +2,26 @@
 package com.smartgwt.client.docs;
 
 /**
- * <h3>Troubleshooting Super Dev Mode</h3>
- * This topic provides details on configuring and running Super Dev Mode, and troubleshooting
- * any problems.  For an overview see {@link com.smartgwt.client.docs.Debugging Debugging: Dev
- * Mode and Super Dev Mode}.
+ * <h3>Troubleshooting GWT Development Mode (formerly Super Dev Mode)</h3>
+ * This topic provides details on configuring and running Development Mode and troubleshooting
+ *  any problems.  For an overview, including a discussion of the difference between 
+ *  the new Development Mode (formerly known as Super Dev Mode) and Legacy Development Mode,
+ *  see {@link com.smartgwt.client.docs.Debugging Debugging: Development Modes in GWT}.
  *  Note that GWT 2.6.x is the minimum supported GWT version as of SmartGWT 6.1.
  *  <P>
- *  <h3>Super Dev Mode in GWT 2.7.0+</h3>
+ *  <h3>Development Mode in GWT 2.7.0+</h3>
  *  <P>
- *  The recommended way of running Super Dev Mode in GWT 2.7.0+ is by installing the
- * <a href='http://www.gwtproject.org/download.html' target='_blank'>GWT (Super) Dev Mode
- * Plugin</a>
+ *  The recommended way of running (Super) Dev Mode in GWT 2.7.0+ is by installing the
+ *  <a href='http://www.gwtproject.org/download.html' target='_blank'>GWT Eclipse Plugin</a>
  *  and launching the 
  * <a href='http://www.gwtproject.org/articles/superdevmode.html' target='_blank'>Super Dev Mode
  * Server</a>
- *  using a Web Application Run Configuration.  For more guidance beyond the overview in the
- *  previous link, see 
+ *  using a <i>GWT Development Mode (DevMode)</i> Run Configuration (if using GWT Plugin v3) or
+ *  a <i>Web Application</i> Run Configuration (if using GWT Plugin v2).  In the remainder of
+ *  this troubleshooting overview, we'll use <i>Web Application</i> as a generic term to refer to
+ *  your Run Configuration, no matter which GWT Plugin version you have.
+ *  <P>
+ *  For more guidance beyond the overview in the links above, see
  * <a href='http://www.gwtproject.org/usingeclipse.html' target='_blank'>Using GWT with
  * Eclipse</a>.
  *  Note that this approach can also be used with GWT 2.6.x <i>if you have installed GWT Plugin
@@ -96,6 +100,25 @@ package com.smartgwt.client.docs;
  *  <p>
  *  If you make code changes, you can update Super Dev Mode using the "Dev Mode On" bookmark.
  *  <P>
+ *  <h3>Super Dev Mode in Java 9+</h3>
+ *  Starting with Java 9, it has been reported that the built-in Jetty server used by the GWT
+ *  Plugin v3 no longer works, even with the latest GWT SDK 2.8.2, throwing either a
+ *  <code>ClassNotFoundException</code> or <code>NoClassDefFoundError</code>, and potentially
+ *  reporting, "Found resouce but unrecognized URL format."  Java 8 is still receiving updates,
+ *  but may not be an option due to Oracle's 
+ * <a
+ * href='https://upperedge.com/oracle/using-java-heres-how-oracles-new-2019-java-se-licensing-affects-you/'
+ * target='_blank'>new licensing requirements</a>.
+ *  <P>
+ *  Until the GWT Plugin v3 is updated, one solution is to use Tomcat Web Server as a replacement
+ *  for Jetty.  You can read how to set up the GWT CodeServer to work with Tomcat
+ * <a
+ * href='https://gwt-plugins.github.io/documentation/gwt-eclipse-plugin/debugging/GWTDevModeAndTomcatWebServer.html'
+ * target='_blank'>here</a>.  You can also add a comment to the
+ * <a href='https://github.com/gwtproject/gwt/issues/9582' target='_blank'>GWT Jetty bug
+ * report</a> to let them
+ *  know you're affected.
+ *  <P>
  *  <h3>Script Tags in Super Dev Mode</h3>
  *  <P>
  *  The official GWT Super Dev Mode linker (the default linker in GWT 2.7.0+) does not support
@@ -159,15 +182,36 @@ package com.smartgwt.client.docs;
  *  <p>
  *  <i>How do you make sure the needed Smart GWT Framework script files are loaded when running
  *  SDM as a Web Application - that <code>loadScriptTagFiles.js</code> is valid?  The easiest way
- *  is probably just to run the GWT Plugin in Classic Dev Mode once before running SDM (and again
+ *  is probably just to run the GWT Plugin in Legacy Dev Mode once before running SDM (and again
  *  if you change your script tags).</i>  That mode can be toggled in the GWT Plugin tab of the
  *  Run or Debug Configuration in Eclipse.  This won't work if you're running SuperDevMode in GWT
- *  2.6.1, since the non-SDM linker for that release accepts script tags and thus Classic Dev
+ *  2.6.1, since the non-SDM linker for that release accepts script tags and thus Legacy Dev
  *  Mode doesn't generate <code>loadScriptTagFiles.js</code>.  In this case you should either run
  *  SDM using the older CodeServer approach, or you can navigate to the generated
  *  <code>loadScriptTagFiles.js</code> file (after you've attempted to run SDM at least once)
  *  using the URL <code>http://localhost:9876/&lt;moduleName&gt;/loadScriptTagFiles.js</code>,
  *  and "save as" the page into your Eclipse war directory.
+ *  <p>
+ *  <h4>Using Script Tags in IntelliJ IDEA</h4>
+ *  <p>
+ *  You may run into problems using script tags with the IntelliJ IDEA GWT Plugin that aren't
+ *  fixed by following the advice above (for Eclipse).  The problem is that in IntelliJ, the
+ *  <code>loadScriptTagFiles.js</code> file generated during GWT compilation is never persisted
+ *  to the file system, even in "Legacy Dev Mode", which differs from the behavior in Eclipse.
+ *  <p>
+ *  To ensure that script tags are loaded properly, follow these steps:<ul>
+ *  <li>Start "Legacy Dev Mode" just as we suggest for Eclipse
+ *  <li>Create a directory for your module under the "war" directory in your project, either via
+ *  an OS command shell, or via right-clicking on the "war" directory and selecting New >>
+ *  Directory.  The directory name must match the module name defined at the top of your GWT
+ *  module file.  For our BuiltInDS sample project, the name is "builtinds".
+ *  <li>Open the module directory you just created in a browser (Firefox tested).  You don't need
+ *  the Classic GWT Plugin.  For the BuiltInDS sample project, it will be at URL: 
+ *  "http://127.0.0.1:8888/builtinds/".  You should see the file 
+ *  <code>loadScriptTagFiles.js</code>.  Right click to "save link as" a file inside the module
+ *  directory in the actual file system.
+ *  <li>Now if you stop the server, and switch to SuperDevMode, that file should be present after
+ *  the compile, and the required Framework files should get loaded.</ul>
  *  <p>
  *  <h3> Browser Source Map Support</h3>
  *  Most current browsers should support source maps, required for source debugging, as discussed
@@ -227,6 +271,20 @@ package com.smartgwt.client.docs;
  *  "Web Application" Run Configuration template (intended originally for Dev Mode) to launch
  *  your Web Application.  You may deploy your Web Application manually outside of Eclipse.</td>
  *  </tr><tr>
+ *  <td>Skins aren't loaded when the application loads, resulting in missing icons and missized
+ *  controls and fonts.  Failed file requests are logged by the browser, but no errors are
+ *  reported by GWT in Eclipse.</td>
+ *  <td>You've failed to set global variable <code>isomorphicDir</code> in the application's root
+ *  HTML page, so the Framework is unable to locate the skin files.</td>
+ *  <td>Add a <code>&lt;script&gt;</code> declaration in the root HTML page defining
+ *  <code>isomorphicDir</code> to be "[MODULE_NAME]/sc", where the actual name of
+ *  your project is substituted for the variable, as it appears in the
+ *  <code>&lt;module&gt;</code> declaration in your project (gwt.xml) file.
+ *  <p><br>
+ *  For example, see the file <p><pre>helloworld-2.0/war/HelloWorld.html</pre><p> in the "Hello
+ *  World" sample for SGWT LGPL, or the file <p><pre>built-in-ds/war/BuiltInDS.html</pre><p>
+ *  in the "Built-in DS" sample for  SGWT EE.</td>
+ *  </tr><tr>
  *  <td>When the SDM Server is launched in Eclipse, the SGWT Application fails to
  *  load, resource or configuration files are reported missing, or browser errors are hit
  *  because the core Smart GWT JavaScript Framework files haven't been loaded properly.  
@@ -237,7 +295,7 @@ package com.smartgwt.client.docs;
  *  script tags, but SGWT generates code to load them for you automatically.  However, this
  *  requires that your app's HTML load the file loadScriptTagFiles.js as in the BuiltInDS Sample
  *  Project.</td>
- *  <td>Make sure to run the GWT Plugin in <i>Classic Dev Mode</i> at least once, to install the
+ *  <td>Make sure to run the GWT Plugin in <i>Legacy Dev Mode</i> at least once, to install the
  *  Framework resources and generate loadScriptTagFiles.js.  Then, if not already present, merge
  *  the line loading loadScriptTagFiles.js into your application's main HTML page from the
  *  BuiltInDS Sample Project.  (If you hit the latter issue, please add your opinion to the

@@ -30,6 +30,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getDefaultTimeFieldWidth
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldText
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFitAllText
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getAutoFitFieldWidths
  */
 public interface AutoFitFields {
 }

@@ -819,18 +819,66 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
     
 
     /**
+     * When editing values in {@link com.smartgwt.client.widgets.DataBoundComponent}s bound to this dataSource, should we
+     * perform a deep clone of values that are not associated with a field (ie, attributes on the record that do not map to a
+     * component field either directly by name, or by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getDataPath
+     * dataPath}).  If this flag is not explicitly set, it defaults to the value of the same-named static property,  {@link
+     * com.smartgwt.client.data.DataSource#deepCloneNonFieldValuesOnEdit deepCloneNonFieldValuesOnEdit}.  This flag can also be
+     * overridden per-component - see  {@link com.smartgwt.client.widgets.DataBoundComponent#getDeepCloneNonFieldValuesOnEdit
+     * DataBoundComponent.deepCloneNonFieldValuesOnEdit}. <p> Note, a "deep clone" is one created by traversing the original
+     * values object  recursively, cloning the contents of nested objects and arrays; a "shallow clone" is a copy created by
+     * simply copying the top-level attributes of an object; if you have  nested objects that are copied like this, the
+     * "copies" are actual references to the  original objects. <p> Like the other <code>deepCloneOnEdit</code> settings, this
+     * flag only has an effect if you are  editing a values object that contains nested objects or arrays.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param deepCloneNonFieldValuesOnEdit New deepCloneNonFieldValuesOnEdit value. Default value is null
+     * @see com.smartgwt.client.widgets.Canvas#setDataPath
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#setDataPath
+     * @see com.smartgwt.client.widgets.form.ValuesManager#setDeepCloneOnEdit
+     */
+    public void setDeepCloneNonFieldValuesOnEdit(Boolean deepCloneNonFieldValuesOnEdit) {
+        setAttribute("deepCloneNonFieldValuesOnEdit", deepCloneNonFieldValuesOnEdit, true);
+    }
+
+    /**
+     * When editing values in {@link com.smartgwt.client.widgets.DataBoundComponent}s bound to this dataSource, should we
+     * perform a deep clone of values that are not associated with a field (ie, attributes on the record that do not map to a
+     * component field either directly by name, or by  {@link com.smartgwt.client.widgets.form.fields.FormItem#getDataPath
+     * dataPath}).  If this flag is not explicitly set, it defaults to the value of the same-named static property,  {@link
+     * com.smartgwt.client.data.DataSource#deepCloneNonFieldValuesOnEdit deepCloneNonFieldValuesOnEdit}.  This flag can also be
+     * overridden per-component - see  {@link com.smartgwt.client.widgets.DataBoundComponent#getDeepCloneNonFieldValuesOnEdit
+     * DataBoundComponent.deepCloneNonFieldValuesOnEdit}. <p> Note, a "deep clone" is one created by traversing the original
+     * values object  recursively, cloning the contents of nested objects and arrays; a "shallow clone" is a copy created by
+     * simply copying the top-level attributes of an object; if you have  nested objects that are copied like this, the
+     * "copies" are actual references to the  original objects. <p> Like the other <code>deepCloneOnEdit</code> settings, this
+     * flag only has an effect if you are  editing a values object that contains nested objects or arrays.
+     *
+     * @return Current deepCloneNonFieldValuesOnEdit value. Default value is null
+     * @see com.smartgwt.client.widgets.Canvas#getDataPath
+     * @see com.smartgwt.client.widgets.form.fields.FormItem#getDataPath
+     * @see com.smartgwt.client.widgets.form.ValuesManager#getDeepCloneOnEdit
+     */
+    public Boolean getDeepCloneNonFieldValuesOnEdit()  {
+        return getAttributeAsBoolean("deepCloneNonFieldValuesOnEdit");
+    }
+    
+
+    /**
      * Before we start editing values in {@link com.smartgwt.client.widgets.DataBoundComponent}s bound to this  dataSource,
      * should we perform a deep clone of the underlying values (a "deep clone" is  one created by traversing the original
      * values object recursively, cloning the contents  of nested objects and arrays).  If this flag is explicitly set to
      * false, we perform a  shallow clone of the underlying values before edit (a "shallow clone" is a copy created  by simply
-     * copying the top-level attributes of an object).   <p> If this flag is not explicitly set, it defaults to the value of
-     * the same-named static  property, {@link com.smartgwt.client.data.DataSource#deepCloneOnEdit deepCloneOnEdit}.  This flag
-     * can also be overridden  per-component and per-field - see {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getDeepCloneOnEdit DataBoundComponent.deepCloneOnEdit} and  {@link
-     * com.smartgwt.client.data.DataSourceField#getDeepCloneOnEdit DataSourceField.deepCloneOnEdit}. <p> Note, this flag only
-     * has an effect if you are editing a values object that contains nested  objects or arrays, using {@link
-     * com.smartgwt.client.widgets.Canvas#getDataPath dataPath}s.  When editing "flat" data - the mainstream case - there is no
-     * difference between a deep clone and a shallow clone.
+     * copying the top-level attributes of an object).  Note, this setting only  affects deep-cloning of attributes that are
+     * bound to a field; for other, non-field  values, see {@link
+     * com.smartgwt.client.data.DataSource#getDeepCloneNonFieldValuesOnEdit deepCloneNonFieldValuesOnEdit}. <p> If this flag is
+     * not explicitly set, it defaults to the value of the same-named static  property, {@link
+     * com.smartgwt.client.data.DataSource#deepCloneOnEdit deepCloneOnEdit}.  This flag can also be overridden  per-component
+     * and per-field - see {@link com.smartgwt.client.widgets.DataBoundComponent#getDeepCloneOnEdit
+     * DataBoundComponent.deepCloneOnEdit} and  {@link com.smartgwt.client.data.DataSourceField#getDeepCloneOnEdit
+     * DataSourceField.deepCloneOnEdit}. <p> Note, this flag only has an effect if you are editing a values object that
+     * contains nested  objects or arrays, using {@link com.smartgwt.client.widgets.Canvas#getDataPath dataPath}s.  When
+     * editing "flat" data - the mainstream case - there is no difference between a deep clone and a shallow clone.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param deepCloneOnEdit New deepCloneOnEdit value. Default value is null
@@ -848,14 +896,16 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * should we perform a deep clone of the underlying values (a "deep clone" is  one created by traversing the original
      * values object recursively, cloning the contents  of nested objects and arrays).  If this flag is explicitly set to
      * false, we perform a  shallow clone of the underlying values before edit (a "shallow clone" is a copy created  by simply
-     * copying the top-level attributes of an object).   <p> If this flag is not explicitly set, it defaults to the value of
-     * the same-named static  property, {@link com.smartgwt.client.data.DataSource#deepCloneOnEdit deepCloneOnEdit}.  This flag
-     * can also be overridden  per-component and per-field - see {@link
-     * com.smartgwt.client.widgets.DataBoundComponent#getDeepCloneOnEdit DataBoundComponent.deepCloneOnEdit} and  {@link
-     * com.smartgwt.client.data.DataSourceField#getDeepCloneOnEdit DataSourceField.deepCloneOnEdit}. <p> Note, this flag only
-     * has an effect if you are editing a values object that contains nested  objects or arrays, using {@link
-     * com.smartgwt.client.widgets.Canvas#getDataPath dataPath}s.  When editing "flat" data - the mainstream case - there is no
-     * difference between a deep clone and a shallow clone.
+     * copying the top-level attributes of an object).  Note, this setting only  affects deep-cloning of attributes that are
+     * bound to a field; for other, non-field  values, see {@link
+     * com.smartgwt.client.data.DataSource#getDeepCloneNonFieldValuesOnEdit deepCloneNonFieldValuesOnEdit}. <p> If this flag is
+     * not explicitly set, it defaults to the value of the same-named static  property, {@link
+     * com.smartgwt.client.data.DataSource#deepCloneOnEdit deepCloneOnEdit}.  This flag can also be overridden  per-component
+     * and per-field - see {@link com.smartgwt.client.widgets.DataBoundComponent#getDeepCloneOnEdit
+     * DataBoundComponent.deepCloneOnEdit} and  {@link com.smartgwt.client.data.DataSourceField#getDeepCloneOnEdit
+     * DataSourceField.deepCloneOnEdit}. <p> Note, this flag only has an effect if you are editing a values object that
+     * contains nested  objects or arrays, using {@link com.smartgwt.client.widgets.Canvas#getDataPath dataPath}s.  When
+     * editing "flat" data - the mainstream case - there is no difference between a deep clone and a shallow clone.
      *
      * @return Current deepCloneOnEdit value. Default value is null
      * @see com.smartgwt.client.widgets.Canvas#getDataPath
@@ -1397,6 +1447,96 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
     
     
     
+
+    /**
+     * When {@link com.smartgwt.client.data.DataSource#getMockMode mockMode} is enabled, criteria to use in an initial "fetch"
+     * DSRequest to retrieve sample data.
+     *
+     * @param mockDataCriteria New mockDataCriteria value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setMockDataCriteria(Criteria mockDataCriteria)  throws IllegalStateException {
+        if (mockDataCriteria instanceof Criterion) {
+            mockDataCriteria.setAttribute("_constructor", "AdvancedCriteria");
+        }
+        setAttribute("mockDataCriteria", mockDataCriteria == null ? null : mockDataCriteria.getJsObj(), false);
+    }
+
+    /**
+     * When {@link com.smartgwt.client.data.DataSource#getMockMode mockMode} is enabled, criteria to use in an initial "fetch"
+     * DSRequest to retrieve sample data.
+     *
+     * @return Current mockDataCriteria value. Default value is null
+     */
+    public Criteria getMockDataCriteria()  {
+        return new Criteria(getAttributeAsJavaScriptObject("mockDataCriteria"));
+    }
+    
+
+    /**
+     * When {@link com.smartgwt.client.data.DataSource#getMockMode mockMode} is enabled, number of rows of data to retrieve via
+     * an initial "fetch" DSRequest, for use as sample data.  Set to null to retrieve all available rows.
+     *
+     * @param mockDataRows New mockDataRows value. Default value is 75
+     * @throws IllegalStateException this property cannot be changed after the underlying component has been created
+     */
+    public void setMockDataRows(Integer mockDataRows)  throws IllegalStateException {
+        setAttribute("mockDataRows", mockDataRows, false);
+    }
+
+    /**
+     * When {@link com.smartgwt.client.data.DataSource#getMockMode mockMode} is enabled, number of rows of data to retrieve via
+     * an initial "fetch" DSRequest, for use as sample data.  Set to null to retrieve all available rows.
+     *
+     * @return Current mockDataRows value. Default value is 75
+     */
+    public Integer getMockDataRows()  {
+        return getAttributeAsInt("mockDataRows");
+    }
+    
+
+    /**
+     * If set, causes this DataSource to use a read-only "mock" or "test" dataset, if specified, or if no test data is
+     * available, then to load data normally but then operate similarly to a {@link
+     * com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource, never writing changes back to the server. <p>
+     * <code>mockMode</code> has no effect on {@link com.smartgwt.client.data.MockDataSource} or a {@link
+     * com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource.   <p> For other DataSources, a one-time fetch
+     * will be performed to retrieve sample data, similar to a {@link com.smartgwt.client.data.DataSource#getCacheAllData
+     * cacheAllData} DataSource, except that changes will never be saved back to the server.  Only a subset of data will be
+     * retrieved, based on {@link com.smartgwt.client.data.DataSource#getMockDataRows mockDataRows}.  {@link
+     * com.smartgwt.client.data.DataSource#getMockDataCriteria mockDataCriteria} can optionally be set to retrieve specific
+     * data. <p> Alternatively, mock data can be provided with {@link com.smartgwt.client.data.DataSource#getCacheData
+     * cacheData}. <p> DataSources can be loaded in <code>mockMode</code> via passing settings to {@link
+     * com.smartgwt.client.data.DataSource#load load()}, or if loaded with a screen or project, by passing settings to {@link
+     * com.smartgwt.client.rpc.RPCManager#loadScreen RPCManager.loadScreen()} or the server-side Project.load() API.
+     *
+     * @param mockMode New mockMode value. Default value is null
+     */
+    public void setMockMode(Boolean mockMode) {
+        setAttribute("mockMode", mockMode, true);
+    }
+
+    /**
+     * If set, causes this DataSource to use a read-only "mock" or "test" dataset, if specified, or if no test data is
+     * available, then to load data normally but then operate similarly to a {@link
+     * com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource, never writing changes back to the server. <p>
+     * <code>mockMode</code> has no effect on {@link com.smartgwt.client.data.MockDataSource} or a {@link
+     * com.smartgwt.client.data.DataSource#getClientOnly clientOnly} DataSource.   <p> For other DataSources, a one-time fetch
+     * will be performed to retrieve sample data, similar to a {@link com.smartgwt.client.data.DataSource#getCacheAllData
+     * cacheAllData} DataSource, except that changes will never be saved back to the server.  Only a subset of data will be
+     * retrieved, based on {@link com.smartgwt.client.data.DataSource#getMockDataRows mockDataRows}.  {@link
+     * com.smartgwt.client.data.DataSource#getMockDataCriteria mockDataCriteria} can optionally be set to retrieve specific
+     * data. <p> Alternatively, mock data can be provided with {@link com.smartgwt.client.data.DataSource#getCacheData
+     * cacheData}. <p> DataSources can be loaded in <code>mockMode</code> via passing settings to {@link
+     * com.smartgwt.client.data.DataSource#load load()}, or if loaded with a screen or project, by passing settings to {@link
+     * com.smartgwt.client.rpc.RPCManager#loadScreen RPCManager.loadScreen()} or the server-side Project.load() API.
+     *
+     * @return Current mockMode value. Default value is null
+     */
+    public Boolean getMockMode()  {
+        return getAttributeAsBoolean("mockMode");
+    }
+    
     
     
     
@@ -1429,18 +1569,30 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      *  <P>
      *  For example, this code accomplishes part of the binding to the 
      *  <a href='http://www.google.com/search?q=sforce+partner+wsdl' target='_blank'>SalesForce partner web services</a>
+     *  
+     *  
      *  <pre>
-     *  isc.DataSource.create({
-     *     serviceNamespace : "urn:partner.soap.sforce.com",
-     *     operationBindings : [
-     *         { operationType:"fetch", wsOperation:"query", recordName: "sObject" },
-     *         { operationType:"update", wsOperation:"update", recordName: "SaveResult" },
-     *         { operationType:"add", wsOperation:"create", recordName: "SaveResult" },
-     *         { operationType:"remove", wsOperation:"delete", recordName: "DeleteResult" }
-     *     ],
-     *     ...
-     *  }); 
+     *       DataSource dataSource = new DataSource();
+     *       dataSource.setServiceNamespace("urn:partner.soap.sforce.com");
+     *       OperationBinding fetch = new OperationBinding();
+     *       fetch.setOperationType(DSOperationType.FETCH);
+     *       fetch.setWsOperation("query");
+     *       fetch.setRecordName("sObject");
+     *       OperationBinding add = new OperationBinding();
+     *       add.setOperationType(DSOperationType.ADD);
+     *       add.setWsOperation("create");
+     *       add.setRecordName("SaveResult");
+     *       OperationBinding update = new OperationBinding();
+     *       update.setOperationType(DSOperationType.UPDATE);
+     *       update.setWsOperation("update");
+     *       update.setRecordName("SaveResult");
+     *       OperationBinding remove = new OperationBinding();
+     *       remove.setOperationType(DSOperationType.REMOVE);
+     *       remove.setWsOperation("delete");
+     *       remove.setRecordName("DeleteResult");
+     *       dataSource.setOperationBindings(fetch, add, update, remove);
      *  </pre>
+     *  
      *  NOTE: additional code is required to handle authentication and other details, see the
      *  complete code in smartclientSDK/examples/databinding/SalesForce.
      *  <P>
@@ -1456,11 +1608,10 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      *  <P>
      *  This also means that for a read-only DataSource, that is, a DataSource only capable of fetch
      *  operations, operationBindings need not be specified, and instead all operationBinding
-     *  properties can be set on the DataSource itself.  An example of using OperationBinding
-     *  properties directly on the DataSource in order to read an RSS feed can be found here:
-     *  <P>
-     * ${isc.DocUtils.linkForStandaloneExample('/examples/databinding/rss_databinding.html',
-     * '/examples/databinding/rss_databinding.html')}
+     * properties can be set on the DataSource itself. In the <a
+     * href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_rss" target="examples">RSS Feed</a>
+     *  sample, you can see an example of using OperationBinding properties directly on the 
+     *  DataSource in order to read an RSS feed.
      *
      * @param operationBindings New operationBindings value. Default value is null
      * @throws IllegalStateException this property cannot be changed after the underlying component has been created
@@ -1494,18 +1645,30 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      *  <P>
      *  For example, this code accomplishes part of the binding to the 
      *  <a href='http://www.google.com/search?q=sforce+partner+wsdl' target='_blank'>SalesForce partner web services</a>
+     *  
+     *  
      *  <pre>
-     *  isc.DataSource.create({
-     *     serviceNamespace : "urn:partner.soap.sforce.com",
-     *     operationBindings : [
-     *         { operationType:"fetch", wsOperation:"query", recordName: "sObject" },
-     *         { operationType:"update", wsOperation:"update", recordName: "SaveResult" },
-     *         { operationType:"add", wsOperation:"create", recordName: "SaveResult" },
-     *         { operationType:"remove", wsOperation:"delete", recordName: "DeleteResult" }
-     *     ],
-     *     ...
-     *  }); 
+     *       DataSource dataSource = new DataSource();
+     *       dataSource.setServiceNamespace("urn:partner.soap.sforce.com");
+     *       OperationBinding fetch = new OperationBinding();
+     *       fetch.setOperationType(DSOperationType.FETCH);
+     *       fetch.setWsOperation("query");
+     *       fetch.setRecordName("sObject");
+     *       OperationBinding add = new OperationBinding();
+     *       add.setOperationType(DSOperationType.ADD);
+     *       add.setWsOperation("create");
+     *       add.setRecordName("SaveResult");
+     *       OperationBinding update = new OperationBinding();
+     *       update.setOperationType(DSOperationType.UPDATE);
+     *       update.setWsOperation("update");
+     *       update.setRecordName("SaveResult");
+     *       OperationBinding remove = new OperationBinding();
+     *       remove.setOperationType(DSOperationType.REMOVE);
+     *       remove.setWsOperation("delete");
+     *       remove.setRecordName("DeleteResult");
+     *       dataSource.setOperationBindings(fetch, add, update, remove);
      *  </pre>
+     *  
      *  NOTE: additional code is required to handle authentication and other details, see the
      *  complete code in smartclientSDK/examples/databinding/SalesForce.
      *  <P>
@@ -1521,11 +1684,10 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      *  <P>
      *  This also means that for a read-only DataSource, that is, a DataSource only capable of fetch
      *  operations, operationBindings need not be specified, and instead all operationBinding
-     *  properties can be set on the DataSource itself.  An example of using OperationBinding
-     *  properties directly on the DataSource in order to read an RSS feed can be found here:
-     *  <P>
-     * ${isc.DocUtils.linkForStandaloneExample('/examples/databinding/rss_databinding.html',
-     * '/examples/databinding/rss_databinding.html')}
+     * properties can be set on the DataSource itself. In the <a
+     * href="http://www.smartclient.com/smartgwtee/showcase/#data_integration_server_rss" target="examples">RSS Feed</a>
+     *  sample, you can see an example of using OperationBinding properties directly on the 
+     *  DataSource in order to read an RSS feed.
      *
      * @return Current operationBindings value. Default value is null
      * @see com.smartgwt.client.data.OperationBinding
@@ -3037,6 +3199,7 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * @param criterion criterion to use
      *
      * @return whether the record meets the supplied {@link com.smartgwt.client.data.Criterion}
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public native boolean evaluateCriterion(Record record, Criterion criterion) /*-{
         if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
@@ -3222,7 +3385,10 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      *  with modifiable caches representing subsets of the data available from a DataSource.
      *  <P>
      *  See also the server-side com.isomorphic.js.JSTranslater class in the
-     *  ${isc.DocUtils.linkForDocNode('javaServerReference', 'Java Server Reference')} for other, similar approaches
+     *  
+     *  
+     *  <a href='https://www.smartclient.com/smartgwtee-release/server/javadoc/' target='_blank'>Java Server Reference</a>
+     *   for other, similar approaches
      *  involving dumping data into the page during initial page load.  <b>Note:</b> care should
      *  be taken when using this approach.  Large datasets degrade the basic performance of some
      *  browsers, so use  optionDataSource and similar
@@ -3517,9 +3683,9 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * com.smartgwt.client.data.DataSource#getCacheAllData cacheAllData} DataSource. <P> The default implementation will use
      * {@link com.smartgwt.client.data.DataSource#getCacheData cacheData} to provide an appropriate response, by using {@link
      * com.smartgwt.client.data.DataSource#applyFilter client-side filtering} for a "fetch" request, and by modifying the
-     * <code>testData</code> for other requests. <P> Override this method to provide simulations of other server-side behavior,
-     * such as modifying other records, or to implement <b>synchronous</b> client-side data providers (such as Google Gears). 
-     * For <b>asynchronous</b> third-party data providers, such as GWT-RPC, HTML5 sockets, or bridges to plug-in based
+     * <code>cacheData</code> for other requests. <P> Override this method to provide simulations of other server-side
+     * behavior, such as modifying other records, or to implement <b>synchronous</b> client-side data providers (such as Google
+     * Gears).  For <b>asynchronous</b> third-party data providers, such as GWT-RPC, HTML5 sockets, or bridges to plug-in based
      * protocols (Java, Flash, Silverlight..), use {@link com.smartgwt.client.types.DSProtocol dataProtocol:"clientCustom"}
      * instead.  <P> Overriding this method is also a means of detecting that a normal DataSource (not clientOnly) would be
      * contacting the server.
@@ -3638,6 +3804,46 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
         var ret = self.getFieldCriterion(criterion == null ? null : criterion.@com.smartgwt.client.core.DataClass::getJsObj()(), fieldName);
         if(ret == null) return null;
         return @com.smartgwt.client.data.Criteria::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * Get the default {@link com.smartgwt.client.types.OperatorId} for this field. <P> By default, if {@link
+     * com.smartgwt.client.data.DataSourceField#getDefaultOperator field.defaultOperator} is set, returns that value, otherwise
+     * returns the data-type default from  {@link com.smartgwt.client.data.SimpleType#getDefaultOperator
+     * SimpleType.defaultOperator}.
+     * @param field Field (or field name) to obtain the default                                          operator for
+     *
+     * @return available Operators
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
+     */
+    public native OperatorId[] getFieldDefaultOperator(String field) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getFieldDefaultOperator", "String");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getFieldDefaultOperator(field);
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.ConvertTo::arrayOfOperatorId(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * Get the default {@link com.smartgwt.client.types.OperatorId} for this field. <P> By default, if {@link
+     * com.smartgwt.client.data.DataSourceField#getDefaultOperator field.defaultOperator} is set, returns that value, otherwise
+     * returns the data-type default from  {@link com.smartgwt.client.data.SimpleType#getDefaultOperator
+     * SimpleType.defaultOperator}.
+     * @param field Field (or field name) to obtain the default                                          operator for
+     *
+     * @return available Operators
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
+     */
+    public native OperatorId[] getFieldDefaultOperator(DataSourceField field) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getFieldDefaultOperator", "DataSourceField");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.getFieldDefaultOperator(field.@com.smartgwt.client.core.DataClass::getJsObj()());
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.ConvertTo::arrayOfOperatorId(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
 	/**
@@ -3894,6 +4100,7 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * addSearchOperator()}.
      *
      * @return available Operators
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public native OperatorId[] getTypeOperators() /*-{
         if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
@@ -3916,6 +4123,7 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * @param typeName Defaults to "text" if not passed.
      *
      * @return available Operators
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public native OperatorId[] getTypeOperators(FieldType typeName) /*-{
         if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
@@ -3938,6 +4146,7 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * @param typeName Defaults to "text" if not passed.
      *
      * @return available Operators
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public native OperatorId[] getTypeOperators(String typeName) /*-{
         if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
@@ -4691,6 +4900,7 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * Set the list of {@link com.smartgwt.client.types.OperatorId}s valid for a given FieldType.
      * @param typeName 
      * @param operators available Operators
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public native void setTypeOperators(FieldType typeName, OperatorId[] operators) /*-{
         if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
@@ -4787,21 +4997,20 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      *  <P>
      *  As an example, if you have a dataURL that can return paged data given URL parameters
      *  "start" and "end", you could implement transformRequest like so:
+     *  
+     *  
      *  <pre>
-     *    isc.DataSource.create({
-     *       ... 
-     *       transformRequest : function (dsRequest) {
-     *          if (dsRequest.operationType == "fetch") {
-     *              var params = {
-     *                 start : dsRequest.startRow,
-     *                 end : dsRequest.endRow
-     *              };
-     *              // combine paging parameters with criteria
-     *              return isc.addProperties({}, dsRequest.data, params);
-     *          }
+     *       &#64;Override
+     *       protected Object transformRequest (DSRequest dsRequest) {
+     *           JavaScriptObject data = dsRequest.getData();
+     *           if (dsRequest.getOperationType () == DSOperationType.FETCH) {
+     *               JSOHelper.setAttribute (data, "start", dsRequest.getStartRow());
+     *               JSOHelper.setAttribute (data, "end", dsRequest.getEndRow());
+     *           }
+     *           return data;
      *       }
-     *    });
      *  </pre>
+     *  
      *  Other reasons to implement transformRequest():
      *  <ul>
      *  <li> transform a {@link com.smartgwt.client.data.Criteria} object into the custom query language of a web
@@ -4888,10 +5097,11 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * totalRows}
      *       to allow paging for a service that supports it.  For example, if an XML service
      *       returns a "resultRow" tag that contained the row number of the first row of the
-     *       returned results:<pre>
-     *     dsResponse.startRow = 
-     *         isc.XMLTools.selectNumber(xmlData, "//resultRow");
-     *  </pre>
+     *       returned results:
+     *     
+     *     <pre>
+     *       dsResponse.setStartRow(XMLTools.selectNumber(xmlData, "//resultRow"));
+     *     </pre>
      * <li> setting {@link com.smartgwt.client.data.DSResponse#getStatus DSResponse.status} to recognized ISC error values
      * based on
      *       service-specific errors, in order to trigger standard ISC error handling.  For
@@ -5559,6 +5769,7 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
      * Set the list of valid {@link com.smartgwt.client.types.OperatorId}s for a given FieldType.
      * @param typeName 
      * @param operators available Operators
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public static native void setTypeOperators(String typeName, OperatorId[] operators) /*-{
         $wnd.isc.DataSource.setTypeOperators(typeName, @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(operators));
@@ -5975,19 +6186,57 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
         return dsFields;
     }
 
-   /**
-    * Serialize a JavaScript object as XML.&#010 <P>&#010 The JavaScript Object passed to {@link com.smartgwt.client.data.DataSource#xmlSerialize} becomes an XML&#010 element named after the {@link com.smartgwt.client.data.DataSource#getTagName tagName} (or {@link com.smartgwt.client.data.DataSource#getID ID} if&#010 tagName is unset).  Each property of the object becomes a subElement.  For example,&#010 using a DataSource to serialize like this:&#010 <pre>&#010     var inputObject = {&#010        startRow : 5,&#010        endRow : 50,&#010        data : [&#010           { field1 : "value1", field2: new Date() },&#010           { field1 : "value3", field2: null }&#010        ]&#010     };&#010     var myDS = isc.DataSource.create({ tagName:"DSRequest" });&#010     myDS.xmlSerialize(inputObject);&#010 </pre>&#010 .. produces the following XML:&#010 <pre>&#010     &lt;DSRequest&gt;&#010         &lt;startRow&gt;5&lt;/startRow&gt;&#010         &lt;endRow&gt;50&lt;/endRow&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value1&lt;/field1&gt;&#010             &lt;field2&gt;2005-10-14T18:01:16&lt;/field2&gt;&#010         &lt;/data&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value3&lt;/field1&gt;&#010             &lt;field2&gt;&lt;/field2&gt;&#010         &lt;/data&gt;&#010     &lt;/DSRequest&gt;&#010 </pre>&#010 <P>&#010 If you are working with a WSDL-described web service, XML serialization is performed&#010 automatically by APIs like {@link com.smartgwt.client.data.WebService#callOperation} - you only need to&#010 know about serialization in order to understand how to put together JavaScript data that&#010 will fill in an XML message properly.   &#010 <br>&#010 <b>Note:</b> when trying to send data to a web service, it is best to avoid putting&#010 together any XML yourself, instead modify the JavaScript data being fed to ISC's SOAP&#010 engine.  This is because the WSDL and SOAP rules for correctly namespacing and encoding&#010 Web Service messages are very complex and are subject to change with new versions of the&#010 web service you are contacting, whereas the data itself is easy to manipulate and less&#010 likely to change.&#010 <br>&#010 To troubleshoot message formation, you can set the log category "xmlComm" to &#010 <code>DEBUG</code> level in order to see the XML message formed by Smart GWT reported&#010 in log statements in the Developer Console.&#010&#010
-    * @param data data to be serialized
-    *
-    * @return data as serialized to XML
-    */
+    /**
+     * Serialize a JavaScript object as XML.&#010 <P>&#010 The JavaScript Object passed to {@link com.smartgwt.client.data.DataSource#xmlSerialize} becomes an XML&#010 element named after the {@link com.smartgwt.client.data.DataSource#getTagName tagName} (or {@link com.smartgwt.client.data.DataSource#getID ID} if&#010 tagName is unset).  Each property of the object becomes a subElement.  For example,&#010 using a DataSource to serialize like this:&#010
+     * <pre>
+     *      DSRequest inputObject = new DSRequest();
+     *      inputObject.setStartRow(5);
+     *      inputObject.setEndRow(50);
+     *  
+     *      Record records[] = new Record[2];
+     *      records[0] = new Record();
+     *      records[0].setAttribute("field1", "value1");
+     *      records[0].setAttribute("field2", new Date());
+     *      records[1] = new Record();
+     *      records[1].setAttribute("field1", "value3");
+     *      records[1].setAttribute("field2", (String)null);
+     *     
+     *      inputObject.setAttribute("data", records);
+     *     
+     *      DataSource myDS = new DataSource();
+     *      myDS.setTagName("DSRequest");
+     *      myDS.xmlSerialize(inputObject.getJsObj());
+     * </pre>&#010 .. produces the following XML:&#010 <pre>&#010     &lt;DSRequest&gt;&#010         &lt;startRow&gt;5&lt;/startRow&gt;&#010         &lt;endRow&gt;50&lt;/endRow&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value1&lt;/field1&gt;&#010             &lt;field2&gt;2005-10-14T18:01:16&lt;/field2&gt;&#010         &lt;/data&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value3&lt;/field1&gt;&#010             &lt;field2&gt;&lt;/field2&gt;&#010         &lt;/data&gt;&#010     &lt;/DSRequest&gt;&#010 </pre>&#010 <P>&#010 If you are working with a WSDL-described web service, XML serialization is performed&#010 automatically by APIs like {@link com.smartgwt.client.data.WebService#callOperation} - you only need to&#010 know about serialization in order to understand how to put together JavaScript data that&#010 will fill in an XML message properly.   &#010 <br>&#010 <b>Note:</b> when trying to send data to a web service, it is best to avoid putting&#010 together any XML yourself, instead modify the JavaScript data being fed to ISC's SOAP&#010 engine.  This is because the WSDL and SOAP rules for correctly namespacing and encoding&#010 Web Service messages are very complex and are subject to change with new versions of the&#010 web service you are contacting, whereas the data itself is easy to manipulate and less&#010 likely to change.&#010 <br>&#010 To troubleshoot message formation, you can set the log category "xmlComm" to &#010 <code>DEBUG</code> level in order to see the XML message formed by Smart GWT reported&#010 in log statements in the Developer Console.&#010&#010
+     * @param data data to be serialized
+     *
+     * @return data as serialized to XML
+     */
     public native String xmlSerialize(JavaScriptObject data) /*-{
         var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
         return self.xmlSerialize(data);
     }-*/;
 
     /**
-     * Serialize a JavaScript object as XML.&#010 <P>&#010 The JavaScript Object passed to {@link com.smartgwt.client.data.DataSource#xmlSerialize} becomes an XML&#010 element named after the {@link com.smartgwt.client.data.DataSource#getTagName tagName} (or {@link com.smartgwt.client.data.DataSource#getID ID} if&#010 tagName is unset).  Each property of the object becomes a subElement.  For example,&#010 using a DataSource to serialize like this:&#010 <pre>&#010     var inputObject = {&#010        startRow : 5,&#010        endRow : 50,&#010        data : [&#010           { field1 : "value1", field2: new Date() },&#010           { field1 : "value3", field2: null }&#010        ]&#010     };&#010     var myDS = isc.DataSource.create({ tagName:"DSRequest" });&#010     myDS.xmlSerialize(inputObject);&#010 </pre>&#010 .. produces the following XML:&#010 <pre>&#010     &lt;DSRequest&gt;&#010         &lt;startRow&gt;5&lt;/startRow&gt;&#010         &lt;endRow&gt;50&lt;/endRow&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value1&lt;/field1&gt;&#010             &lt;field2&gt;2005-10-14T18:01:16&lt;/field2&gt;&#010         &lt;/data&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value3&lt;/field1&gt;&#010             &lt;field2&gt;&lt;/field2&gt;&#010         &lt;/data&gt;&#010     &lt;/DSRequest&gt;&#010 </pre>&#010 <P>&#010 If you are working with a WSDL-described web service, XML serialization is performed&#010 automatically by APIs like {@link com.smartgwt.client.data.WebService#callOperation} - you only need to&#010 know about serialization in order to understand how to put together JavaScript data that&#010 will fill in an XML message properly.   &#010 <br>&#010 <b>Note:</b> when trying to send data to a web service, it is best to avoid putting&#010 together any XML yourself, instead modify the JavaScript data being fed to ISC's SOAP&#010 engine.  This is because the WSDL and SOAP rules for correctly namespacing and encoding&#010 Web Service messages are very complex and are subject to change with new versions of the&#010 web service you are contacting, whereas the data itself is easy to manipulate and less&#010 likely to change.&#010 <br>&#010 To troubleshoot message formation, you can set the log category "xmlComm" to &#010 <code>DEBUG</code> level in order to see the XML message formed by Smart GWT reported&#010 in log statements in the Developer Console.&#010&#010
+     * Serialize a JavaScript object as XML.&#010 <P>&#010 The JavaScript Object passed to {@link com.smartgwt.client.data.DataSource#xmlSerialize} becomes an XML&#010 element named after the {@link com.smartgwt.client.data.DataSource#getTagName tagName} (or {@link com.smartgwt.client.data.DataSource#getID ID} if&#010 tagName is unset).  Each property of the object becomes a subElement.  For example,&#010 using a DataSource to serialize like this:&#010
+     * <pre>
+     *      DSRequest inputObject = new DSRequest();
+     *      inputObject.setStartRow(5);
+     *      inputObject.setEndRow(50);
+     *  
+     *      Record records[] = new Record[2];
+     *      records[0] = new Record();
+     *      records[0].setAttribute("field1", "value1");
+     *      records[0].setAttribute("field2", new Date());
+     *      records[1] = new Record();
+     *      records[1].setAttribute("field1", "value3");
+     *      records[1].setAttribute("field2", (String)null);
+     *     
+     *      inputObject.setAttribute("data", records);
+     *     
+     *      DataSource myDS = new DataSource();
+     *      myDS.setTagName("DSRequest");
+     *      myDS.xmlSerialize(inputObject.getJsObj());
+     * </pre>&#010 .. produces the following XML:&#010 <pre>&#010     &lt;DSRequest&gt;&#010         &lt;startRow&gt;5&lt;/startRow&gt;&#010         &lt;endRow&gt;50&lt;/endRow&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value1&lt;/field1&gt;&#010             &lt;field2&gt;2005-10-14T18:01:16&lt;/field2&gt;&#010         &lt;/data&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value3&lt;/field1&gt;&#010             &lt;field2&gt;&lt;/field2&gt;&#010         &lt;/data&gt;&#010     &lt;/DSRequest&gt;&#010 </pre>&#010 <P>&#010 If you are working with a WSDL-described web service, XML serialization is performed&#010 automatically by APIs like {@link com.smartgwt.client.data.WebService#callOperation} - you only need to&#010 know about serialization in order to understand how to put together JavaScript data that&#010 will fill in an XML message properly.   &#010 <br>&#010 <b>Note:</b> when trying to send data to a web service, it is best to avoid putting&#010 together any XML yourself, instead modify the JavaScript data being fed to ISC's SOAP&#010 engine.  This is because the WSDL and SOAP rules for correctly namespacing and encoding&#010 Web Service messages are very complex and are subject to change with new versions of the&#010 web service you are contacting, whereas the data itself is easy to manipulate and less&#010 likely to change.&#010 <br>&#010 To troubleshoot message formation, you can set the log category "xmlComm" to &#010 <code>DEBUG</code> level in order to see the XML message formed by Smart GWT reported&#010 in log statements in the Developer Console.&#010&#010
      * @param data data to be serialized
      * @param flags options for the serialization engine
      *
@@ -6000,7 +6249,26 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
     }-*/;
 
     /**
-     * Serialize a JavaScript object as XML.&#010 <P>&#010 The JavaScript Object passed to {@link com.smartgwt.client.data.DataSource#xmlSerialize} becomes an XML&#010 element named after the {@link com.smartgwt.client.data.DataSource#getTagName tagName} (or {@link com.smartgwt.client.data.DataSource#getID ID} if&#010 tagName is unset).  Each property of the object becomes a subElement.  For example,&#010 using a DataSource to serialize like this:&#010 <pre>&#010     var inputObject = {&#010        startRow : 5,&#010        endRow : 50,&#010        data : [&#010           { field1 : "value1", field2: new Date() },&#010           { field1 : "value3", field2: null }&#010        ]&#010     };&#010     var myDS = isc.DataSource.create({ tagName:"DSRequest" });&#010     myDS.xmlSerialize(inputObject);&#010 </pre>&#010 .. produces the following XML:&#010 <pre>&#010     &lt;DSRequest&gt;&#010         &lt;startRow&gt;5&lt;/startRow&gt;&#010         &lt;endRow&gt;50&lt;/endRow&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value1&lt;/field1&gt;&#010             &lt;field2&gt;2005-10-14T18:01:16&lt;/field2&gt;&#010         &lt;/data&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value3&lt;/field1&gt;&#010             &lt;field2&gt;&lt;/field2&gt;&#010         &lt;/data&gt;&#010     &lt;/DSRequest&gt;&#010 </pre>&#010 <P>&#010 If you are working with a WSDL-described web service, XML serialization is performed&#010 automatically by APIs like {@link com.smartgwt.client.data.WebService#callOperation} - you only need to&#010 know about serialization in order to understand how to put together JavaScript data that&#010 will fill in an XML message properly.   &#010 <br>&#010 <b>Note:</b> when trying to send data to a web service, it is best to avoid putting&#010 together any XML yourself, instead modify the JavaScript data being fed to ISC's SOAP&#010 engine.  This is because the WSDL and SOAP rules for correctly namespacing and encoding&#010 Web Service messages are very complex and are subject to change with new versions of the&#010 web service you are contacting, whereas the data itself is easy to manipulate and less&#010 likely to change.&#010 <br>&#010 To troubleshoot message formation, you can set the log category "xmlComm" to &#010 <code>DEBUG</code> level in order to see the XML message formed by Smart GWT reported&#010 in log statements in the Developer Console.&#010&#010
+     * Serialize a JavaScript object as XML.&#010 <P>&#010 The JavaScript Object passed to {@link com.smartgwt.client.data.DataSource#xmlSerialize} becomes an XML&#010 element named after the {@link com.smartgwt.client.data.DataSource#getTagName tagName} (or {@link com.smartgwt.client.data.DataSource#getID ID} if&#010 tagName is unset).  Each property of the object becomes a subElement.  For example,&#010 using a DataSource to serialize like this:&#010
+     * <pre>
+     *      DSRequest inputObject = new DSRequest();
+     *      inputObject.setStartRow(5);
+     *      inputObject.setEndRow(50);
+     *  
+     *      Record records[] = new Record[2];
+     *      records[0] = new Record();
+     *      records[0].setAttribute("field1", "value1");
+     *      records[0].setAttribute("field2", new Date());
+     *      records[1] = new Record();
+     *      records[1].setAttribute("field1", "value3");
+     *      records[1].setAttribute("field2", (String)null);
+     *     
+     *      inputObject.setAttribute("data", records);
+     *     
+     *      DataSource myDS = new DataSource();
+     *      myDS.setTagName("DSRequest");
+     *      myDS.xmlSerialize(inputObject.getJsObj());
+     * </pre>&#010 .. produces the following XML:&#010 <pre>&#010     &lt;DSRequest&gt;&#010         &lt;startRow&gt;5&lt;/startRow&gt;&#010         &lt;endRow&gt;50&lt;/endRow&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value1&lt;/field1&gt;&#010             &lt;field2&gt;2005-10-14T18:01:16&lt;/field2&gt;&#010         &lt;/data&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value3&lt;/field1&gt;&#010             &lt;field2&gt;&lt;/field2&gt;&#010         &lt;/data&gt;&#010     &lt;/DSRequest&gt;&#010 </pre>&#010 <P>&#010 If you are working with a WSDL-described web service, XML serialization is performed&#010 automatically by APIs like {@link com.smartgwt.client.data.WebService#callOperation} - you only need to&#010 know about serialization in order to understand how to put together JavaScript data that&#010 will fill in an XML message properly.   &#010 <br>&#010 <b>Note:</b> when trying to send data to a web service, it is best to avoid putting&#010 together any XML yourself, instead modify the JavaScript data being fed to ISC's SOAP&#010 engine.  This is because the WSDL and SOAP rules for correctly namespacing and encoding&#010 Web Service messages are very complex and are subject to change with new versions of the&#010 web service you are contacting, whereas the data itself is easy to manipulate and less&#010 likely to change.&#010 <br>&#010 To troubleshoot message formation, you can set the log category "xmlComm" to &#010 <code>DEBUG</code> level in order to see the XML message formed by Smart GWT reported&#010 in log statements in the Developer Console.&#010&#010
      * @param data data to be serialized
      * @param flags options for the serialization engine
      *
@@ -6013,7 +6281,26 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
     }-*/;
 
     /**
-     * Serialize a JavaScript object as XML.&#010 <P>&#010 The JavaScript Object passed to {@link com.smartgwt.client.data.DataSource#xmlSerialize} becomes an XML&#010 element named after the {@link com.smartgwt.client.data.DataSource#getTagName tagName} (or {@link com.smartgwt.client.data.DataSource#getID ID} if&#010 tagName is unset).  Each property of the object becomes a subElement.  For example,&#010 using a DataSource to serialize like this:&#010 <pre>&#010     var inputObject = {&#010        startRow : 5,&#010        endRow : 50,&#010        data : [&#010           { field1 : "value1", field2: new Date() },&#010           { field1 : "value3", field2: null }&#010        ]&#010     };&#010     var myDS = isc.DataSource.create({ tagName:"DSRequest" });&#010     myDS.xmlSerialize(inputObject);&#010 </pre>&#010 .. produces the following XML:&#010 <pre>&#010     &lt;DSRequest&gt;&#010         &lt;startRow&gt;5&lt;/startRow&gt;&#010         &lt;endRow&gt;50&lt;/endRow&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value1&lt;/field1&gt;&#010             &lt;field2&gt;2005-10-14T18:01:16&lt;/field2&gt;&#010         &lt;/data&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value3&lt;/field1&gt;&#010             &lt;field2&gt;&lt;/field2&gt;&#010         &lt;/data&gt;&#010     &lt;/DSRequest&gt;&#010 </pre>&#010 <P>&#010 If you are working with a WSDL-described web service, XML serialization is performed&#010 automatically by APIs like {@link com.smartgwt.client.data.WebService#callOperation} - you only need to&#010 know about serialization in order to understand how to put together JavaScript data that&#010 will fill in an XML message properly.   &#010 <br>&#010 <b>Note:</b> when trying to send data to a web service, it is best to avoid putting&#010 together any XML yourself, instead modify the JavaScript data being fed to ISC's SOAP&#010 engine.  This is because the WSDL and SOAP rules for correctly namespacing and encoding&#010 Web Service messages are very complex and are subject to change with new versions of the&#010 web service you are contacting, whereas the data itself is easy to manipulate and less&#010 likely to change.&#010 <br>&#010 To troubleshoot message formation, you can set the log category "xmlComm" to &#010 <code>DEBUG</code> level in order to see the XML message formed by Smart GWT reported&#010 in log statements in the Developer Console.&#010&#010
+     * Serialize a JavaScript object as XML.&#010 <P>&#010 The JavaScript Object passed to {@link com.smartgwt.client.data.DataSource#xmlSerialize} becomes an XML&#010 element named after the {@link com.smartgwt.client.data.DataSource#getTagName tagName} (or {@link com.smartgwt.client.data.DataSource#getID ID} if&#010 tagName is unset).  Each property of the object becomes a subElement.  For example,&#010 using a DataSource to serialize like this:&#010
+     * <pre>
+     *      DSRequest inputObject = new DSRequest();
+     *      inputObject.setStartRow(5);
+     *      inputObject.setEndRow(50);
+     *  
+     *      Record records[] = new Record[2];
+     *      records[0] = new Record();
+     *      records[0].setAttribute("field1", "value1");
+     *      records[0].setAttribute("field2", new Date());
+     *      records[1] = new Record();
+     *      records[1].setAttribute("field1", "value3");
+     *      records[1].setAttribute("field2", (String)null);
+     *     
+     *      inputObject.setAttribute("data", records);
+     *     
+     *      DataSource myDS = new DataSource();
+     *      myDS.setTagName("DSRequest");
+     *      myDS.xmlSerialize(inputObject.getJsObj());
+     * </pre>&#010 .. produces the following XML:&#010 <pre>&#010     &lt;DSRequest&gt;&#010         &lt;startRow&gt;5&lt;/startRow&gt;&#010         &lt;endRow&gt;50&lt;/endRow&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value1&lt;/field1&gt;&#010             &lt;field2&gt;2005-10-14T18:01:16&lt;/field2&gt;&#010         &lt;/data&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value3&lt;/field1&gt;&#010             &lt;field2&gt;&lt;/field2&gt;&#010         &lt;/data&gt;&#010     &lt;/DSRequest&gt;&#010 </pre>&#010 <P>&#010 If you are working with a WSDL-described web service, XML serialization is performed&#010 automatically by APIs like {@link com.smartgwt.client.data.WebService#callOperation} - you only need to&#010 know about serialization in order to understand how to put together JavaScript data that&#010 will fill in an XML message properly.   &#010 <br>&#010 <b>Note:</b> when trying to send data to a web service, it is best to avoid putting&#010 together any XML yourself, instead modify the JavaScript data being fed to ISC's SOAP&#010 engine.  This is because the WSDL and SOAP rules for correctly namespacing and encoding&#010 Web Service messages are very complex and are subject to change with new versions of the&#010 web service you are contacting, whereas the data itself is easy to manipulate and less&#010 likely to change.&#010 <br>&#010 To troubleshoot message formation, you can set the log category "xmlComm" to &#010 <code>DEBUG</code> level in order to see the XML message formed by Smart GWT reported&#010 in log statements in the Developer Console.&#010&#010
      * @param data data to be serialized
      * @param flags options for the serialization engine
      *
@@ -6027,7 +6314,26 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
     }-*/;
 
     /**
-     * Serialize a JavaScript object as XML.&#010 <P>&#010 The JavaScript Object passed to {@link com.smartgwt.client.data.DataSource#xmlSerialize} becomes an XML&#010 element named after the {@link com.smartgwt.client.data.DataSource#getTagName tagName} (or {@link com.smartgwt.client.data.DataSource#getID ID} if&#010 tagName is unset).  Each property of the object becomes a subElement.  For example,&#010 using a DataSource to serialize like this:&#010 <pre>&#010     var inputObject = {&#010        startRow : 5,&#010        endRow : 50,&#010        data : [&#010           { field1 : "value1", field2: new Date() },&#010           { field1 : "value3", field2: null }&#010        ]&#010     };&#010     var myDS = isc.DataSource.create({ tagName:"DSRequest" });&#010     myDS.xmlSerialize(inputObject);&#010 </pre>&#010 .. produces the following XML:&#010 <pre>&#010     &lt;DSRequest&gt;&#010         &lt;startRow&gt;5&lt;/startRow&gt;&#010         &lt;endRow&gt;50&lt;/endRow&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value1&lt;/field1&gt;&#010             &lt;field2&gt;2005-10-14T18:01:16&lt;/field2&gt;&#010         &lt;/data&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value3&lt;/field1&gt;&#010             &lt;field2&gt;&lt;/field2&gt;&#010         &lt;/data&gt;&#010     &lt;/DSRequest&gt;&#010 </pre>&#010 <P>&#010 If you are working with a WSDL-described web service, XML serialization is performed&#010 automatically by APIs like {@link com.smartgwt.client.data.WebService#callOperation} - you only need to&#010 know about serialization in order to understand how to put together JavaScript data that&#010 will fill in an XML message properly.   &#010 <br>&#010 <b>Note:</b> when trying to send data to a web service, it is best to avoid putting&#010 together any XML yourself, instead modify the JavaScript data being fed to ISC's SOAP&#010 engine.  This is because the WSDL and SOAP rules for correctly namespacing and encoding&#010 Web Service messages are very complex and are subject to change with new versions of the&#010 web service you are contacting, whereas the data itself is easy to manipulate and less&#010 likely to change.&#010 <br>&#010 To troubleshoot message formation, you can set the log category "xmlComm" to &#010 <code>DEBUG</code> level in order to see the XML message formed by Smart GWT reported&#010 in log statements in the Developer Console.&#010&#010
+     * Serialize a JavaScript object as XML.&#010 <P>&#010 The JavaScript Object passed to {@link com.smartgwt.client.data.DataSource#xmlSerialize} becomes an XML&#010 element named after the {@link com.smartgwt.client.data.DataSource#getTagName tagName} (or {@link com.smartgwt.client.data.DataSource#getID ID} if&#010 tagName is unset).  Each property of the object becomes a subElement.  For example,&#010 using a DataSource to serialize like this:&#010
+     * <pre>
+     *      DSRequest inputObject = new DSRequest();
+     *      inputObject.setStartRow(5);
+     *      inputObject.setEndRow(50);
+     *  
+     *      Record records[] = new Record[2];
+     *      records[0] = new Record();
+     *      records[0].setAttribute("field1", "value1");
+     *      records[0].setAttribute("field2", new Date());
+     *      records[1] = new Record();
+     *      records[1].setAttribute("field1", "value3");
+     *      records[1].setAttribute("field2", (String)null);
+     *     
+     *      inputObject.setAttribute("data", records);
+     *     
+     *      DataSource myDS = new DataSource();
+     *      myDS.setTagName("DSRequest");
+     *      myDS.xmlSerialize(inputObject.getJsObj());
+     * </pre>&#010 .. produces the following XML:&#010 <pre>&#010     &lt;DSRequest&gt;&#010         &lt;startRow&gt;5&lt;/startRow&gt;&#010         &lt;endRow&gt;50&lt;/endRow&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value1&lt;/field1&gt;&#010             &lt;field2&gt;2005-10-14T18:01:16&lt;/field2&gt;&#010         &lt;/data&gt;&#010         &lt;data&gt;&#010             &lt;field1&gt;value3&lt;/field1&gt;&#010             &lt;field2&gt;&lt;/field2&gt;&#010         &lt;/data&gt;&#010     &lt;/DSRequest&gt;&#010 </pre>&#010 <P>&#010 If you are working with a WSDL-described web service, XML serialization is performed&#010 automatically by APIs like {@link com.smartgwt.client.data.WebService#callOperation} - you only need to&#010 know about serialization in order to understand how to put together JavaScript data that&#010 will fill in an XML message properly.   &#010 <br>&#010 <b>Note:</b> when trying to send data to a web service, it is best to avoid putting&#010 together any XML yourself, instead modify the JavaScript data being fed to ISC's SOAP&#010 engine.  This is because the WSDL and SOAP rules for correctly namespacing and encoding&#010 Web Service messages are very complex and are subject to change with new versions of the&#010 web service you are contacting, whereas the data itself is easy to manipulate and less&#010 likely to change.&#010 <br>&#010 To troubleshoot message formation, you can set the log category "xmlComm" to &#010 <code>DEBUG</code> level in order to see the XML message formed by Smart GWT reported&#010 in log statements in the Developer Console.&#010&#010
      * @param data data to be serialized
      * @param flags options for the serialization engine
      *
@@ -6098,6 +6404,22 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
     }-*/;
 
     /**
+     * Load a DataSource or an array of DataSources using the DataSourceLoader servlet.  When a callback is specified, this is
+     * fired after the DataSources are loaded.  If no loading occurs because the requested DataSource(s) are already loaded, a
+     * warning is  logged and the callback is fired.
+     * @param dsID Array of DataSource IDs
+     * @param callback Callback to fire after DataSource loading completes
+     * @param settings {@link com.smartgwt.client.data.DSLoadSettings} to control load features
+     */
+    public static native void load(String[] dsID, Function callback, DSLoadSettings settings) /*-{
+        $wnd.isc.DataSource.load(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(dsID),
+                $entry(function() {
+                    if(callback != null) callback.@com.smartgwt.client.core.Function::execute()();
+                }),
+                settings.@com.smartgwt.client.data.DSLoadSettings::getJsObj()());
+    }-*/;
+
+    /**
      * Variation of {@link com.smartgwt.client.data.DataSource#load DataSource.load} that will also automatically load any
      * DataSources that the requested DataSources inherit from
      * (via {@link com.smartgwt.client.data.DataSource#getInheritsFrom() DataSource.inheritsFrom})
@@ -6114,6 +6436,22 @@ public class DataSource extends BaseClass implements com.smartgwt.client.data.ev
                     if(callback != null) callback.@com.smartgwt.client.core.Function::execute()();
                 }),
                 forceReload);
+    }-*/;
+
+    /**
+     * Variation of {@link com.smartgwt.client.data.DataSource#load DataSource.load} that will also automatically load any
+     * DataSources that the requested DataSources inherit from
+     * (via {@link com.smartgwt.client.data.DataSource#getInheritsFrom() DataSource.inheritsFrom}).
+     * @param dsID DataSource ID
+     * @param callback Callback to fire after DataSource loading completes
+     * @param settings {@link com.smartgwt.client.data.DSLoadSettings} to control load features
+     */
+    public static native void loadWithParents(String[] dsID, Function callback, DSLoadSettings settings) /*-{
+        $wnd.isc.DataSource.loadWithParents(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(dsID),
+                $entry(function() {
+                    if(callback != null) callback.@com.smartgwt.client.core.Function::execute()();
+                }),
+                settings.@com.smartgwt.client.data.DSLoadSettings::getJsObj()());
     }-*/;
 
     /**

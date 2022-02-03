@@ -23,7 +23,11 @@ public interface AnimationCallback {
     /** 
      * A {@link com.smartgwt.client.docs.Callback} called when the move completes.
      *
-     * @param earlyFinish parameter will be passed if the animation was                               cut short by a call to finishAnimation
+     * @param earlyFinish true if the animation was cut short.  To quit an animation                               early, simply call the
+     * non-animated version of the same                               API, so for example call {@link
+     * com.smartgwt.client.widgets.Canvas#hide Canvas.hide()} to cut short                               an animation from
+     * {@link com.smartgwt.client.widgets.Canvas#animateHide Canvas.animateHide()} already in                              
+     * progress.
      */
 	public void execute(boolean earlyFinish);
 } 

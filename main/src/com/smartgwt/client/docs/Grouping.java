@@ -6,6 +6,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.calendar.Calendar#groupLanesBy
  * @see com.smartgwt.client.widgets.grid.ListGridField#getGroupValue
  * @see com.smartgwt.client.widgets.grid.ListGridField#getGroupTitle
+ * @see com.smartgwt.client.widgets.grid.ListGrid#groupSortNormalizer
  * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupMembers
  * @see com.smartgwt.client.widgets.grid.ListGrid#groupBy
  * @see com.smartgwt.client.widgets.grid.ListGrid#getOriginalData

@@ -421,18 +421,17 @@ public class SectionStackSection extends RefDataClass {
     }
 
     /**
-     * List of Canvases that constitute the section. These Canvases will be shown and hidden together.
-     *
+     * Assign a new set of Canvases to this section.  These Canvases will be shown and hidden
+     * together.
      * @param items list of Canvases that constitute the section
      */
     public void setItems(Canvas... items) {
-        // warn/throw exception for illegal post-create property modification;
-        // precedent is to just fall through if we're merely warning, for backcompat
-        if (stack != null && stack.isCreated()) {
-            stack.warnOfPostCreateModification(this, "items");
-        }
-        for (Canvas item : items) {
-            addItem(item);
+        if (stack == null || !stack.isCreated()) {
+            for (Canvas item : items) {
+                addItem(item);
+            }
+        } else {
+            stack.setItems(getName(), items);
         }
     }
 
@@ -450,8 +449,16 @@ public class SectionStackSection extends RefDataClass {
         return @com.smartgwt.client.util.ConvertTo::arrayOfCanvas(Lcom/google/gwt/core/client/JavaScriptObject;)(jsObj.items);
     }-*/;
 
+    /**
+     * Adds a new Canvas to this section, at the end.
+     * @param new Canvas to add as item
+     */
     public void addItem(Canvas item) {
-        addItemJS(item.getOrCreateJsObj());
+        if (stack == null || !stack.isCreated()) {
+            addItemJS(item.getOrCreateJsObj());
+        } else {
+            stack.addItem(getName(), item, getItems().length);
+        }
     }
 
     private native void addItemJS(JavaScriptObject componentJS) /*-{

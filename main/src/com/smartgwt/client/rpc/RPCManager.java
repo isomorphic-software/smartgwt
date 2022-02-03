@@ -928,13 +928,18 @@ public class RPCManager {
      * can't be queued</b> <p> When using queuing, all requests in a given queue must go to the same {@link
      * com.smartgwt.client.rpc.RPCRequest#getActionURL RPCRequest.actionURL} and use the same transport (XMLHttp or frames). 
      * If a request specifies a different actionURL or transport than that of the requests currently on the queue, it will be
-     * sent to the server separately, ahead of the queue, and a warning will be logged to the Developer Console. <p>
-     * <b>Implementing your own Queuing</b> <p> If you are in the rare situation that: <ul> <li> you can't use the Smart GWT
-     * Server framework <li> the server you are integrating with some pre-existing support for combining      operations in a
-     * flexible way, similar to queuing <li> you are totally unable to implement the RestDataSource protocol for this server,  
-     * even through approaches such as adding it as an additional service while leaving      the original services unchanged,
-     * or going through an intermediate server </ul> .. then you can implement a crude version of the built-in queuing feature
-     * by using {@link com.smartgwt.client.data.DataSource#getDataProtocol dataProtocol:"clientCustom"} to avoid HTTP requests
+     * sent to the server separately, ahead of the queue, and a warning will be logged to the Developer Console. <p> Due to
+     * browser security restrictions, at most one request with a {@link com.smartgwt.client.rpc.RPCManager#getUpload file\n
+     * upload} can be sent in a queue.  If you attempt to add another, the existing queue will be sent immediately, logging a
+     * warning, and queueing restarted for the new request. <p> Note that whenever requests are not sent in a single queue,
+     * order is not guaranteed, and the callback provided to {@link com.smartgwt.client.rpc.RPCManager#sendQueue sendQueue()}
+     * at the end of your transaction may fire before requests not sent in the final queue have completed. <p> <b>Implementing
+     * your own Queuing</b> <p> If you are in the rare situation that: <ul> <li> you can't use the Smart GWT Server framework
+     * <li> the server you are integrating with some pre-existing support for combining      operations in a flexible way,
+     * similar to queuing <li> you are totally unable to implement the RestDataSource protocol for this server,      even
+     * through approaches such as adding it as an additional service while leaving      the original services unchanged, or
+     * going through an intermediate server </ul> .. then you can implement a crude version of the built-in queuing feature by
+     * using {@link com.smartgwt.client.data.DataSource#getDataProtocol dataProtocol:"clientCustom"} to avoid HTTP requests
      * being immediately sent when a DataSource executes.  In outline: <ul> <li> create an API similar to
      * <code>startQueue()</code> for managing a global setting      reflecting whether your special queuing system is active. 
      * Your DataSources should      check for this global setting in {@link
@@ -993,13 +998,18 @@ public class RPCManager {
      * can't be queued</b> <p> When using queuing, all requests in a given queue must go to the same {@link
      * com.smartgwt.client.rpc.RPCRequest#getActionURL RPCRequest.actionURL} and use the same transport (XMLHttp or frames). 
      * If a request specifies a different actionURL or transport than that of the requests currently on the queue, it will be
-     * sent to the server separately, ahead of the queue, and a warning will be logged to the Developer Console. <p>
-     * <b>Implementing your own Queuing</b> <p> If you are in the rare situation that: <ul> <li> you can't use the Smart GWT
-     * Server framework <li> the server you are integrating with some pre-existing support for combining      operations in a
-     * flexible way, similar to queuing <li> you are totally unable to implement the RestDataSource protocol for this server,  
-     * even through approaches such as adding it as an additional service while leaving      the original services unchanged,
-     * or going through an intermediate server </ul> .. then you can implement a crude version of the built-in queuing feature
-     * by using {@link com.smartgwt.client.data.DataSource#getDataProtocol dataProtocol:"clientCustom"} to avoid HTTP requests
+     * sent to the server separately, ahead of the queue, and a warning will be logged to the Developer Console. <p> Due to
+     * browser security restrictions, at most one request with a {@link com.smartgwt.client.rpc.RPCManager#getUpload file\n
+     * upload} can be sent in a queue.  If you attempt to add another, the existing queue will be sent immediately, logging a
+     * warning, and queueing restarted for the new request. <p> Note that whenever requests are not sent in a single queue,
+     * order is not guaranteed, and the callback provided to {@link com.smartgwt.client.rpc.RPCManager#sendQueue sendQueue()}
+     * at the end of your transaction may fire before requests not sent in the final queue have completed. <p> <b>Implementing
+     * your own Queuing</b> <p> If you are in the rare situation that: <ul> <li> you can't use the Smart GWT Server framework
+     * <li> the server you are integrating with some pre-existing support for combining      operations in a flexible way,
+     * similar to queuing <li> you are totally unable to implement the RestDataSource protocol for this server,      even
+     * through approaches such as adding it as an additional service while leaving      the original services unchanged, or
+     * going through an intermediate server </ul> .. then you can implement a crude version of the built-in queuing feature by
+     * using {@link com.smartgwt.client.data.DataSource#getDataProtocol dataProtocol:"clientCustom"} to avoid HTTP requests
      * being immediately sent when a DataSource executes.  In outline: <ul> <li> create an API similar to
      * <code>startQueue()</code> for managing a global setting      reflecting whether your special queuing system is active. 
      * Your DataSources should      check for this global setting in {@link

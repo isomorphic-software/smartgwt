@@ -1467,7 +1467,7 @@ public class TimeItem extends FormItem {
     
 
     /**
-     * Whether to enforce 24-hour time in the UI.
+     * Whether to enforce 24-hour time in the UI.  If unset, assumes to the  String.
      *
      * @param use24HourTime New use24HourTime value. Default value is null
      */
@@ -1476,7 +1476,7 @@ public class TimeItem extends FormItem {
     }
 
     /**
-     * Whether to enforce 24-hour time in the UI.
+     * Whether to enforce 24-hour time in the UI.  If unset, assumes to the  String.
      *
      * @return Current use24HourTime value. Default value is null
      */

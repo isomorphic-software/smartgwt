@@ -52,6 +52,8 @@ public class TileGridLogicalStructure extends TileLayoutLogicalStructure {
     public String drawAllMaxTiles;
     public String emptyMessage;
     public String emptyMessageStyle;
+    public String loadingDataMessage;
+    public String loadingDataMessageStyle;
     public String loadingMessage;
     public String printTilesPerLine;
     public String recycleTiles;

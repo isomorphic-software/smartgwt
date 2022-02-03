@@ -409,5 +409,42 @@ public class XMLTools {
     public static native JavaScriptObject toJS(Object elements) /*-{
         return $wnd.isc.XMLTools.toJS(elements);
     }-*/;
+    
+    /**
+     * Retrieve a numeric value from an XML element or document based on an XPath expression.
+     * <P>
+     * If more than one node matches, only the first node's value will be returned.
+     * <P>
+     * Namespacing works as described under +link{XMLTools.selectNodes()}
+     * <P>
+     * <b>NOTE:</b> this API cannot be supported on the Safari web browser for versions prior to
+     * 3.0.3.
+     *  
+     * @param element  Native XMLElement, document or String xml to select from
+     * @param expression   XPath expression to use to select nodes
+     * @return result of the XPath, in int form
+     */
+    public static native int selectNumber(Object element, String expression) /*-{
+        return $wnd.isc.XMLTools.selectNumber(element, expression);
+    }-*/;
+
+    /**
+     * Retrieve a numeric value from an XML element or document based on an XPath expression.
+     * <P>
+     * If more than one node matches, only the first node's value will be returned.
+     * <P>
+     * Namespacing works as described under +link{XMLTools.selectNodes()}
+     * <P>
+     * <b>NOTE:</b> this API cannot be supported on the Safari web browser for versions prior to
+     * 3.0.3.
+     *  
+     * @param element  Native XMLElement, document or String xml to select from
+     * @param expression   XPath expression to use to select nodes
+     * @param namespaces namespaces 
+     * @return result of the XPath, in int form
+     */
+    public static native int selectNumber(Object element, String expression, Map namespaces) /*-{
+        return $wnd.isc.XMLTools.selectNumber(element, expression, @com.smartgwt.client.util.JSOHelper::convertMapToJavascriptObject(Ljava/util/Map;)(namespaces));
+    }-*/;
 
 }

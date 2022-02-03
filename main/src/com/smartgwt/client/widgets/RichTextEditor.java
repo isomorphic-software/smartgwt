@@ -723,6 +723,27 @@ public class RichTextEditor extends VLayout {
     
 
     /**
+     * When true, applies style attributes in markup instead of presentation elements.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param styleWithCSS New styleWithCSS value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setStyleWithCSS(Boolean styleWithCSS)  throws IllegalStateException {
+        setAttribute("styleWithCSS", styleWithCSS, false);
+    }
+
+    /**
+     * When true, applies style attributes in markup instead of presentation elements.
+     *
+     * @return Current styleWithCSS value. Default value is null
+     */
+    public Boolean getStyleWithCSS()  {
+        return getAttributeAsBoolean("styleWithCSS");
+    }
+    
+
+    /**
      * Layout used to contain all of the {@link com.smartgwt.client.widgets.RichTextEditor#getToolbar toolbar} AutoChildren 
      * that contain the {@link com.smartgwt.client.widgets.RichTextEditor#getControlGroups controlGroups}.
      * <p>
@@ -807,6 +828,31 @@ public class RichTextEditor extends VLayout {
      */
     public String getUnorderedListPrompt()  {
         return getAttributeAsString("unorderedListPrompt");
+    }
+    
+
+    /**
+     * Should this editor use a separate IFRAME with special cross-browser support for editing  HTML content?  By default, the
+     * value is auto-detected according to browser details.  If  set to false, the editor falls back to normal browser
+     * contentEditable behavior, which  may differ between browsers.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param useDesignMode New useDesignMode value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setUseDesignMode(Boolean useDesignMode)  throws IllegalStateException {
+        setAttribute("useDesignMode", useDesignMode, false);
+    }
+
+    /**
+     * Should this editor use a separate IFRAME with special cross-browser support for editing  HTML content?  By default, the
+     * value is auto-detected according to browser details.  If  set to false, the editor falls back to normal browser
+     * contentEditable behavior, which  may differ between browsers.
+     *
+     * @return Current useDesignMode value. Default value is null
+     */
+    public Boolean getUseDesignMode()  {
+        return getAttributeAsBoolean("useDesignMode");
     }
     
 
@@ -1157,6 +1203,11 @@ public class RichTextEditor extends VLayout {
             s.logicalStructureErrors += "RichTextEditor.strikethroughSelectionPrompt:" + t.getMessage() + "\n";
         }
         try {
+            s.styleWithCSS = getAttributeAsString("styleWithCSS");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "RichTextEditor.styleWithCSS:" + t.getMessage() + "\n";
+        }
+        try {
             s.toolbarBackgroundColor = getAttributeAsString("toolbarBackgroundColor");
         } catch (Throwable t) {
             s.logicalStructureErrors += "RichTextEditor.toolbarBackgroundColor:" + t.getMessage() + "\n";
@@ -1170,6 +1221,11 @@ public class RichTextEditor extends VLayout {
             s.unorderedListPrompt = getAttributeAsString("unorderedListPrompt");
         } catch (Throwable t) {
             s.logicalStructureErrors += "RichTextEditor.unorderedListPrompt:" + t.getMessage() + "\n";
+        }
+        try {
+            s.useDesignMode = getAttributeAsString("useDesignMode");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "RichTextEditor.useDesignMode:" + t.getMessage() + "\n";
         }
         try {
             s.value = getAttributeAsString("value");

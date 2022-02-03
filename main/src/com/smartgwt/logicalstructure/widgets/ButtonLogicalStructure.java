@@ -50,6 +50,7 @@ public class ButtonLogicalStructure extends StatefulCanvasLogicalStructure {
     public String baseStyle;
     public String canAdaptWidth;
     public String disabledIconCursor;
+    public String heightAsString;
     public String hiliteAccessKey;
     public String icon;
     public String iconAlign;
@@ -76,5 +77,6 @@ public class ButtonLogicalStructure extends StatefulCanvasLogicalStructure {
     public String state;
     public String title;
     public String valign;
+    public String widthAsString;
     public String wrap;
 }

@@ -1127,7 +1127,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} appended to indicate state changes if
      * appropriate -  see documentation on  {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons},
      * {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowSelectedIcons showSelectedIcons} and {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons}.
+     * com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons}. <P> See {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getShowNodeIcons showNodeIcons} and {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getShowFolderIcons showFolderIcons} for details on suppressing  display of
+     * icons
      *
      * @param folderIcon New folderIcon value. Default value is "[SKIN]folder.gif"
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
@@ -1144,7 +1147,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix dropIconSuffix} appended to indicate state changes if
      * appropriate -  see documentation on  {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons showOpenIcons},
      * {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowSelectedIcons showSelectedIcons} and {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons}.
+     * com.smartgwt.client.widgets.tree.TreeGrid#getShowDropIcons showDropIcons}. <P> See {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getShowNodeIcons showNodeIcons} and {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getShowFolderIcons showFolderIcons} for details on suppressing  display of
+     * icons
      *
      * @return Current folderIcon value. Default value is "[SKIN]folder.gif"
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
@@ -1154,6 +1160,82 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
         return getAttributeAsString("folderIcon");
     }
     
+
+    /**
+     * Default padding to show between folder icon and cell value in the tree cell. This property is only consulted for folder
+     * nodes. If unset, {@link com.smartgwt.client.widgets.tree.TreeGrid#getIconPadding iconPadding} will be applied to both
+     * folder and leaf nodes. <P> To set the icon padding for individual nodes, use {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getIconPaddingProperty iconPaddingProperty}
+     *
+     * @param folderIconPadding New folderIconPadding value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setFolderIconPadding(Integer folderIconPadding)  throws IllegalStateException {
+        setAttribute("folderIconPadding", folderIconPadding, false);
+    }
+
+    /**
+     * Default padding to show between folder icon and cell value in the tree cell. This property is only consulted for folder
+     * nodes. If unset, {@link com.smartgwt.client.widgets.tree.TreeGrid#getIconPadding iconPadding} will be applied to both
+     * folder and leaf nodes. <P> To set the icon padding for individual nodes, use {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getIconPaddingProperty iconPaddingProperty}
+     *
+     * @return Current folderIconPadding value. Default value is null
+     */
+    public Integer getFolderIconPadding()  {
+        return getAttributeAsInt("folderIconPadding");
+    }
+    
+    
+
+    /**
+     * Default padding to show between the folder or leaf node icon and cell value in the tree cell. <P> May be overridden for
+     * {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcons} by via {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getFolderIconPadding folderIconPadding}. May also be overridden for individual
+     * nodes by setting the {@link com.smartgwt.client.widgets.tree.TreeGrid#getIconPaddingProperty iconPaddingProperty}  value
+     * on individual nodes
+     *
+     * @param iconPadding New iconPadding value. Default value is 2
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setIconPadding(Integer iconPadding)  throws IllegalStateException {
+        setAttribute("iconPadding", iconPadding, false);
+    }
+
+    /**
+     * Default padding to show between the folder or leaf node icon and cell value in the tree cell. <P> May be overridden for
+     * {@link com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon folderIcons} by via {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getFolderIconPadding folderIconPadding}. May also be overridden for individual
+     * nodes by setting the {@link com.smartgwt.client.widgets.tree.TreeGrid#getIconPaddingProperty iconPaddingProperty}  value
+     * on individual nodes
+     *
+     * @return Current iconPadding value. Default value is 2
+     */
+    public Integer getIconPadding()  {
+        return getAttributeAsInt("iconPadding");
+    }
+    
+
+    /**
+     * This property allows the developer to specify custom  {@link com.smartgwt.client.widgets.tree.TreeGrid#getIconPadding
+     * iconPadding} for specific nodes
+     *
+     * @param iconPaddingProperty New iconPaddingProperty value. Default value is "iconPadding"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setIconPaddingProperty(String iconPaddingProperty)  throws IllegalStateException {
+        setAttribute("iconPaddingProperty", iconPaddingProperty, false);
+    }
+
+    /**
+     * This property allows the developer to specify custom  {@link com.smartgwt.client.widgets.tree.TreeGrid#getIconPadding
+     * iconPadding} for specific nodes
+     *
+     * @return Current iconPaddingProperty value. Default value is "iconPadding"
+     */
+    public String getIconPaddingProperty()  {
+        return getAttributeAsString("iconPaddingProperty");
+    }
     
 
     /**
@@ -1391,7 +1473,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
 
     /**
      * The filename of the default icon for all leaf nodes in this grid. To specify a  custom image for an individual node, set
-     * the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty} directly on the node.
+     * the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty} directly on the node. <P>
+     * See {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowNodeIcons showNodeIcons} and {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getShowFolderIcons showFolderIcons} for details on suppressing  display of
+     * icons
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Set the icon for a particular treenode to a specified URL
@@ -1406,7 +1491,10 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
 
     /**
      * The filename of the default icon for all leaf nodes in this grid. To specify a  custom image for an individual node, set
-     * the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty} directly on the node.
+     * the {@link com.smartgwt.client.widgets.tree.TreeGrid#getCustomIconProperty customIconProperty} directly on the node. <P>
+     * See {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowNodeIcons showNodeIcons} and {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getShowFolderIcons showFolderIcons} for details on suppressing  display of
+     * icons
      *
      * @return Current nodeIcon value. Default value is "[SKIN]file.gif"
      * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
@@ -1940,6 +2028,29 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
     
 
     /**
+     * Should folder nodes in this TreeGrid show icons by default? <P> If unset, folder node icons will be shown if {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getShowNodeIcons showNodeIcons} is true <P> See {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getIcon getIcon()} for more details on treeGrid icons
+     *
+     * @param showFolderIcons New showFolderIcons value. Default value is null
+     */
+    public void setShowFolderIcons(Boolean showFolderIcons) {
+        setAttribute("showFolderIcons", showFolderIcons, true);
+    }
+
+    /**
+     * Should folder nodes in this TreeGrid show icons by default? <P> If unset, folder node icons will be shown if {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getShowNodeIcons showNodeIcons} is true <P> See {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getIcon getIcon()} for more details on treeGrid icons
+     *
+     * @return Current showFolderIcons value. Default value is null
+     */
+    public Boolean getShowFolderIcons()  {
+        return getAttributeAsBoolean("showFolderIcons");
+    }
+    
+
+    /**
      * If {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowConnectors showConnectors} is true, this property determines
      * whether we should show vertical continuation lines for each level of indenting within the tree. Setting to false will
      * show only the hierarchy lines are only shown for the most indented path ("sparse" connectors).
@@ -1986,6 +2097,30 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      */
     public boolean getShowLoadingIcons()  {
         Boolean result = getAttributeAsBoolean("showLoadingIcons");
+        return result == null ? true : result;
+    }
+    
+
+    /**
+     * Should nodes in this TreeGrid show folder / leaf node icons by default? <P> May be overridden for folder nodes via
+     * {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFolderIcons showFolderIcons} <P> See {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getIcon getIcon()} for more details on treeGrid icons
+     *
+     * @param showNodeIcons New showNodeIcons value. Default value is true
+     */
+    public void setShowNodeIcons(Boolean showNodeIcons) {
+        setAttribute("showNodeIcons", showNodeIcons, true);
+    }
+
+    /**
+     * Should nodes in this TreeGrid show folder / leaf node icons by default? <P> May be overridden for folder nodes via
+     * {@link com.smartgwt.client.widgets.tree.TreeGrid#getShowFolderIcons showFolderIcons} <P> See {@link
+     * com.smartgwt.client.widgets.tree.TreeGrid#getIcon getIcon()} for more details on treeGrid icons
+     *
+     * @return Current showNodeIcons value. Default value is true
+     */
+    public Boolean getShowNodeIcons()  {
+        Boolean result = getAttributeAsBoolean("showNodeIcons");
         return result == null ? true : result;
     }
     
@@ -3147,11 +3282,13 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
     /**
      * Add a folderDrop handler.
      * <p>
-     * Process a drop of one or more nodes on a TreeGrid folder. <P> This method can be overridden to provide custom drop
-     * behaviors and is a more appropriate override point than the lower level {@link com.smartgwt.client.widgets.Canvas#drop
-     * Canvas.drop()} handler. <P> If this is a self-drop, nodes are simply reordered. An "update" operation will be submitted
-     * to update the {@link com.smartgwt.client.widgets.tree.Tree#getParentIdField parentId} field of the moved node(s).  <P>
-     * For a drop from another widget, {@link com.smartgwt.client.widgets.tree.TreeGrid#transferDragData
+     * Process a drop of one or more nodes on a TreeGrid folder.   Add logic in your drop handler to perform custom drop
+     * behaviors; to suppress the built-in  behavior described below, use <code>event.cancel()</code>  <P> The default behavior
+     * is to simply delegate to the {@link com.smartgwt.client.widgets.tree.TreeGrid#transferNodes TreeGrid.transferNodes()}
+     * method; thus, the  correct way to perform a programmatic folder drop, with all the built-in behaviors described below,
+     * is to call <code>transferNodes()</code> <P> If this is a self-drop, nodes are simply reordered. An "update" operation
+     * will be submitted to update the {@link com.smartgwt.client.widgets.tree.Tree#getParentIdField parentId} field of the
+     * moved node(s).  <P> For a drop from another widget, {@link com.smartgwt.client.widgets.tree.TreeGrid#transferDragData
      * TreeGrid.transferDragData()} is called which, depending on the {@link
      * com.smartgwt.client.widgets.tree.TreeGrid#getDragDataAction dragDataAction} specified on the source widget, may either
      * remove the source nodes from the original list (<code>dragDataAction:"move"</code>) or just provide a copy to this tree
@@ -3170,11 +3307,9 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
      * <P> For multi-record drops, Queuing is automatically used to combine all DSRequests into a single HTTP Request (see
      * QuickStart Guide, Server Framework chapter).  This allows the server to persist all changes caused by the drop in a
      * single transaction (and this is automatically done when using the built-in server DataSources with Power Edition and
-     * above). <P> If these default persistence behaviors are undesirable, Call {@link
-     * com.smartgwt.client.widgets.tree.events.FolderDropEvent#cancel()} from within {@link
-     * com.smartgwt.client.widgets.tree.events.FolderDropHandler#onFolderDrop} to cancel them, then and implement your own
-     * behavior, typically by using grid.updateData() or addData() to add new records. <p><b>NOTE:</b> the records you receive
-     * in this event are the actual Records from the source component.  Use {@link
+     * above). <P> If these default persistence behaviors are undesirable,   use <code>event.cancel()</code>, then implement
+     * your own behavior,  typically by using grid.updateData() or addData() to add new records. <p><b>NOTE:</b> the records
+     * you receive in this event are the actual Records from the source component.  Use {@link
      * com.smartgwt.client.data.DataSource#copyRecords DataSource.copyRecords()} to create a copy before modifying the records
      * or using them with updateData() or addData().
      *
@@ -3318,61 +3453,6 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
         self.toggleFolder(node.@com.smartgwt.client.core.DataClass::getJsObj()());
     }-*/;
 
-	/**
-     * Transfer a list of {@link com.smartgwt.client.widgets.tree.TreeNode}s from another component (does not have to be a
-     * databound component) into this component.  This method is only applicable to list-type components, such as {@link
-     * com.smartgwt.client.widgets.grid.ListGrid listGrid}, {@link com.smartgwt.client.widgets.tree.TreeGrid treeGrid} or
-     * {@link com.smartgwt.client.widgets.tile.TileGrid tileGrid}. <P> This method implements the automatic drag-copy and
-     * drag-move behavior and calling it is equivalent to completing a drag and drop of the <code>nodes</code>. <P> Note that
-     * this method is asynchronous - it may need to perform server turnarounds to prevent duplicates in the target component's
-     * data.  If you wish to be notified when the transfer process has completed, you can either pass the optional callback to
-     * this method or implement the {@link com.smartgwt.client.widgets.DataBoundComponent#dropComplete
-     * DataBoundComponent.dropComplete()} method on this component. <P> See also {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#transferSelectedData transferSelectedData()}.
-     * @param nodes Nodes to transfer to this component
-     * @param folder The target folder (eg, of a drop interaction), for context
-     * @param index Insert point within the target folder data for the transferred nodes
-     * @param sourceWidget The databound or non-databound component from which the nodes                              are to be transferred.
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_interaction_drop_events" target="examples">Drop Events Example</a>
-     */
-    public native void transferNodes(TreeNode[] nodes, TreeNode folder, Integer index, Canvas sourceWidget) /*-{
-        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "transferNodes", "TreeNode[],TreeNode,Integer,Canvas");
-        }
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.transferNodes(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(nodes), folder.@com.smartgwt.client.core.DataClass::getJsObj()(), index == null ? null : index.@java.lang.Integer::intValue()(), sourceWidget == null ? null : sourceWidget.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
-    }-*/;
-
-	/**
-     * Transfer a list of {@link com.smartgwt.client.widgets.tree.TreeNode}s from another component (does not have to be a
-     * databound component) into this component.  This method is only applicable to list-type components, such as {@link
-     * com.smartgwt.client.widgets.grid.ListGrid listGrid}, {@link com.smartgwt.client.widgets.tree.TreeGrid treeGrid} or
-     * {@link com.smartgwt.client.widgets.tile.TileGrid tileGrid}. <P> This method implements the automatic drag-copy and
-     * drag-move behavior and calling it is equivalent to completing a drag and drop of the <code>nodes</code>. <P> Note that
-     * this method is asynchronous - it may need to perform server turnarounds to prevent duplicates in the target component's
-     * data.  If you wish to be notified when the transfer process has completed, you can either pass the optional callback to
-     * this method or implement the {@link com.smartgwt.client.widgets.DataBoundComponent#dropComplete
-     * DataBoundComponent.dropComplete()} method on this component. <P> See also {@link
-     * com.smartgwt.client.widgets.tree.TreeGrid#transferSelectedData transferSelectedData()}.
-     * @param nodes Nodes to transfer to this component
-     * @param folder The target folder (eg, of a drop interaction), for context
-     * @param index Insert point within the target folder data for the transferred nodes
-     * @param sourceWidget The databound or non-databound component from which the nodes                              are to be transferred.
-     * @param callback optional callback to be fired when the transfer process has                       completed.  The callback will be
-     * passed a single parameter "records",                       the list of nodes actually transferred to this component (it
-     * is called                       "records" because this is logic shared with {@link
-     * com.smartgwt.client.widgets.grid.ListGrid}).
-     * See {@link com.smartgwt.client.docs.Callback Callback}
-     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#tree_interaction_drop_events" target="examples">Drop Events Example</a>
-     */
-    public native void transferNodes(TreeNode[] nodes, TreeNode folder, Integer index, Canvas sourceWidget, String callback) /*-{
-        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "transferNodes", "TreeNode[],TreeNode,Integer,Canvas,String");
-        }
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.transferNodes(@com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(nodes), folder.@com.smartgwt.client.core.DataClass::getJsObj()(), index == null ? null : index.@java.lang.Integer::intValue()(), sourceWidget == null ? null : sourceWidget.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()(), callback);
-    }-*/;
-	
 
     // ********************* Static Methods ***********************
 
@@ -3971,6 +4051,51 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
     public Boolean willAcceptDrop() {
     	return super.willAcceptDrop();
     }
+    
+    
+    /**
+     * Transfer a list of {@link com.smartgwt.client.widgets.tree.TreeNode}s from another component (does not have to be a databound
+     * component) into this TreeGrid.
+     * <P>
+     * This method implements the automatic drag-copy and drag-move behavior and calling it is equivalent to completing a drag and drop 
+     * of the nodes (the default folder drop behavior is simply to call <code>transferNodes()</code>, passing in the dropped nodes)
+     * <P>
+     * Note that this method is asynchronous - it may need to perform server turnarounds to prevent
+     * duplicates in the target component's data.  If you wish to be notified when the transfer
+     * process has completed, you can either pass a non-null callback to this method or add a 
+     * {@link com.smartgwt.client.widgets.events.DropCompleteHandler DropCompleteHandler} to this component.
+     * <P>
+     * See also {@link com.smartgwt.client.widgets.DataBoundComponent#transferSelectedData(DataBoundComponent) transferSelectedData()}
+     *
+     * @param nodes Nodes to transfer to this component
+     * @param folder The target folder (eg, of a drop interaction), for context
+     * @param index (Insert point within the target folder data for the transferred nodes
+     * @param sourceWidget The databound or non-databound component from which the nodes
+     *                              are to be transferred.
+     * @param callback optional TransferNodesCallback to be fired when the transfer process has
+     *                       completed (pass null if your code does not need to be called back).  
+     *                       The callback will be passed the list of nodes actually transferred 
+     *                       to this component
+     */
+     
+    public native void transferNodes(TreeNode[] nodes, TreeNode folder, Integer index, Canvas sourceWidget, TransferNodesCallback callback) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var nodesJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(nodes);
+        var folderJS = folder == null ? null : folder.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        var indexJS = index == null ? null : index.@java.lang.Integer::intValue()();
+        var sourceWidgetJS = sourceWidget == null ? null : sourceWidget.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.transferNodes(nodesJS, folderJS, indexJS, sourceWidgetJS, $entry(function(records) {
+            if(callback != null) {
+	    		var convertedArray = [];
+	    		for (var i = 0; i < records.length; i++) {
+	    			convertedArray[i] =  @com.smartgwt.client.widgets.tree.TreeNode::new(Lcom/google/gwt/core/client/JavaScriptObject;)(records[i]);
+	    		}
+                var nodesJ = @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(convertedArray);
+                callback.@com.smartgwt.client.widgets.tree.TransferNodesCallback::execute([Lcom/smartgwt/client/widgets/tree/TreeNode;)(nodesJ);
+            }
+        }));
+    }-*/;
+
 
     /**
      * This ListGrid superclass event does not fire on a TreeGrid, use {@link #addFolderDropHandler(com.smartgwt.client.widgets.tree.events.FolderDropHandler)} instead.
@@ -4151,6 +4276,21 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
             s.logicalStructureErrors += "TreeGrid.folderIcon:" + t.getMessage() + "\n";
         }
         try {
+            s.folderIconPadding = getAttributeAsString("folderIconPadding");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.folderIconPadding:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconPadding = getAttributeAsString("iconPadding");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.iconPadding:" + t.getMessage() + "\n";
+        }
+        try {
+            s.iconPaddingProperty = getAttributeAsString("iconPaddingProperty");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.iconPaddingProperty:" + t.getMessage() + "\n";
+        }
+        try {
             s.iconSize = getAttributeAsString("iconSize");
         } catch (Throwable t) {
             s.logicalStructureErrors += "TreeGrid.iconSize:" + t.getMessage() + "\n";
@@ -4286,6 +4426,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
             s.logicalStructureErrors += "TreeGrid.showDropIcons:" + t.getMessage() + "\n";
         }
         try {
+            s.showFolderIcons = getAttributeAsString("showFolderIcons");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.showFolderIcons:" + t.getMessage() + "\n";
+        }
+        try {
             s.showFullConnectors = getAttributeAsString("showFullConnectors");
         } catch (Throwable t) {
             s.logicalStructureErrors += "TreeGrid.showFullConnectors:" + t.getMessage() + "\n";
@@ -4294,6 +4439,11 @@ public class TreeGrid extends ListGrid implements com.smartgwt.client.widgets.tr
             s.showLoadingIcons = getAttributeAsString("showLoadingIcons");
         } catch (Throwable t) {
             s.logicalStructureErrors += "TreeGrid.showLoadingIcons:" + t.getMessage() + "\n";
+        }
+        try {
+            s.showNodeIcons = getAttributeAsString("showNodeIcons");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "TreeGrid.showNodeIcons:" + t.getMessage() + "\n";
         }
         try {
             s.showOpener = getAttributeAsString("showOpener");

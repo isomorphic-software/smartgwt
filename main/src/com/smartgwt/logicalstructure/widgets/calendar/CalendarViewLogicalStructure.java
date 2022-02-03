@@ -45,6 +45,7 @@ import com.smartgwt.logicalstructure.widgets.drawing.*;
 
 public class CalendarViewLogicalStructure extends ListGridLogicalStructure {
     public Calendar calendar;
+    public String eventDragCanvasStyleName;
     public String eventStyleName;
     public String useEventCanvasPool;
     public String viewName;

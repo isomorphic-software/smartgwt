@@ -724,6 +724,41 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
     
 
     /**
+     * Button that scrolls grid to the next error.
+     * <p>
+     * This component is an AutoChild named "nextButton".  For an overview of how to use and
+     * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return Current nextButton value. Default value is null
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public IButton getNextButton() throws IllegalStateException {
+        errorIfNotCreated("nextButton");
+        return (IButton)IButton.getByJSObject(getAttributeAsJavaScriptObject("nextButton"));
+    }
+    
+
+    /**
+     * Title for the {@link com.smartgwt.client.widgets.BatchUploader#getNextButton next error button}.
+     *
+     * @param nextButtonTitle New nextButtonTitle value. Default value is "Next error"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setNextButtonTitle(String nextButtonTitle)  throws IllegalStateException {
+        setAttribute("nextButtonTitle", nextButtonTitle, false);
+    }
+
+    /**
+     * Title for the {@link com.smartgwt.client.widgets.BatchUploader#getNextButton next error button}.
+     *
+     * @return Current nextButtonTitle value. Default value is "Next error"
+     */
+    public String getNextButtonTitle()  {
+        return getAttributeAsString("nextButtonTitle");
+    }
+    
+
+    /**
      * Specifies what action to take if the user attempts to commit a partially validated set of data (ie, one that still
      * contains some errors).
      *
@@ -811,6 +846,41 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
      */
     public String getPartialCommitPrompt()  {
         return getAttributeAsString("partialCommitPrompt");
+    }
+    
+
+    /**
+     * Button that scrolls grid to the previous error.
+     * <p>
+     * This component is an AutoChild named "previousButton".  For an overview of how to use and
+     * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return Current previousButton value. Default value is null
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public IButton getPreviousButton() throws IllegalStateException {
+        errorIfNotCreated("previousButton");
+        return (IButton)IButton.getByJSObject(getAttributeAsJavaScriptObject("previousButton"));
+    }
+    
+
+    /**
+     * Title for the {@link com.smartgwt.client.widgets.BatchUploader#getPreviousButton previous error button}.
+     *
+     * @param previousButtonTitle New previousButtonTitle value. Default value is "Previous error"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setPreviousButtonTitle(String previousButtonTitle)  throws IllegalStateException {
+        setAttribute("previousButtonTitle", previousButtonTitle, false);
+    }
+
+    /**
+     * Title for the {@link com.smartgwt.client.widgets.BatchUploader#getPreviousButton previous error button}.
+     *
+     * @return Current previousButtonTitle value. Default value is "Previous error"
+     */
+    public String getPreviousButtonTitle()  {
+        return getAttributeAsString("previousButtonTitle");
     }
     
 
@@ -965,7 +1035,9 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
     
 
     /**
-     * The encoding to use when importing files.  The default is "UTF-8".
+     * On server-side, BatchUploader uses <code>DataImport</code> to import uploaded files, specifically APIs taking
+     * <code>java.io.Reader</code> parameter. <code>BatchUploader.uploadEncoding</code> setting defines the encoding, which
+     * will be used to create a <code>java.io.Reader</code> instance to read data from uploaded files. The default is "UTF-8".
      *
      * @param uploadEncoding New uploadEncoding value. Default value is "UTF-8"
      */
@@ -974,7 +1046,9 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
     }
 
     /**
-     * The encoding to use when importing files.  The default is "UTF-8".
+     * On server-side, BatchUploader uses <code>DataImport</code> to import uploaded files, specifically APIs taking
+     * <code>java.io.Reader</code> parameter. <code>BatchUploader.uploadEncoding</code> setting defines the encoding, which
+     * will be used to create a <code>java.io.Reader</code> instance to read data from uploaded files. The default is "UTF-8".
      *
      * @return Current uploadEncoding value. Default value is "UTF-8"
      */
@@ -1373,6 +1447,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
             s.logicalStructureErrors += "BatchUploader.errorMessageUnterminatedQuote:" + t.getMessage() + "\n";
         }
         try {
+            s.nextButtonTitle = getAttributeAsString("nextButtonTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "BatchUploader.nextButtonTitle:" + t.getMessage() + "\n";
+        }
+        try {
             s.partialCommit = getAttributeAsString("partialCommit");
         } catch (Throwable t) {
             s.logicalStructureErrors += "BatchUploader.partialCommit:" + t.getMessage() + "\n";
@@ -1391,6 +1470,11 @@ public class BatchUploader extends VStack implements com.smartgwt.client.widgets
             s.partialCommitPrompt = getAttributeAsString("partialCommitPrompt");
         } catch (Throwable t) {
             s.logicalStructureErrors += "BatchUploader.partialCommitPrompt:" + t.getMessage() + "\n";
+        }
+        try {
+            s.previousButtonTitle = getAttributeAsString("previousButtonTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "BatchUploader.previousButtonTitle:" + t.getMessage() + "\n";
         }
         try {
             s.requestProperties = getRequestProperties();

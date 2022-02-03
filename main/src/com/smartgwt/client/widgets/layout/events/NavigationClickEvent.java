@@ -74,7 +74,8 @@ import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
-public class NavigationClickEvent extends BrowserEvent<NavigationClickHandler>  {
+public class NavigationClickEvent extends BrowserEvent<NavigationClickHandler>  implements Cancellable {
+    private boolean cancel = false;
 
     /**
      * Handler type.
@@ -136,6 +137,19 @@ public class NavigationClickEvent extends BrowserEvent<NavigationClickHandler>  
         super(jsObj);
     }
 
+    /**
+     * Call this method to cancel navigation
+     */
+    public void cancel() {
+        cancel = true;
+    }
+
+    /**
+     * @return true if cancelled
+     */
+    public boolean isCancelled() {
+        return cancel;
+    }
 
 	/**
      * direction in which the user is attempting to navigate.

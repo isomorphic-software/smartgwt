@@ -16,10 +16,10 @@ package com.smartgwt.client.docs;
  * where each property in the Object maps a DataSource field name to the field value - hence the
  * DataSource operations below are in essence a way of exchanging records from client to server
  * and back. <P> If you are using {@link com.smartgwt.client.docs.ServerDataIntegration
- * server-side data integration} with the Smart GWT Java server, see the
- * ${isc.DocUtils.linkForDocNode('javaServerReference', 'Java Server Reference')} for information
- * about how DataSource Requests arrive on the server (specifically
- * com.isomorphic.datasource.DSRequest) and how to provide responses  (specifically
+ * server-side data integration} with the Smart GWT Java server, see the  <a
+ * href='https://www.smartclient.com/smartgwtee-release/server/javadoc/' target='_blank'>Java
+ * Server Reference</a>  for information about how DataSource Requests arrive on the server
+ * (specifically com.isomorphic.datasource.DSRequest) and how to provide responses  (specifically
  * com.isomorphic.datasource.DSResponse.setData()). <P> If you are using {@link
  * com.smartgwt.client.docs.ClientDataIntegration client-side data integration} to directly
  * consume services that use XML, JSON or other formats, see the "Editing and Saving" section of

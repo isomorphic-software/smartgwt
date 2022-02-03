@@ -4,10 +4,6 @@ package com.smartgwt.client.docs;
 /**
  * The following APIs are all related to TreeIcons.
  * @see com.smartgwt.client.widgets.tree.TreeGrid#setNodeIcon
- * @see com.smartgwt.client.widgets.tree.TreeNode#getIcon
- * @see com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon
- * @see com.smartgwt.client.widgets.tree.TreeNode#getShowDropIcon
- * @see com.smartgwt.client.widgets.tree.TreeNode#getShowSelectedIcon
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getIconSize
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getOpenerIconSize
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getOpenerIconWidth
@@ -15,10 +11,11 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowLoadingIcons
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getLoadingIcon
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getFolderIcon
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getIconPaddingProperty
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getDropIconSuffix
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getOpenIconSuffix
- * @see com.smartgwt.client.widgets.tree.TreeGrid#getSelectedIconSuffix
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getClosedIconSuffix
+ * @see com.smartgwt.client.widgets.tree.TreeGrid#getSelectedIconSuffix
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getNodeIcon
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowOpenIcons
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getShowSelectedIcons
@@ -46,6 +43,11 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ColumnTree#getShowCustomIconOpen
  * @see com.smartgwt.client.widgets.grid.ColumnTree#getCustomIconOpenProperty
  * @see com.smartgwt.client.widgets.grid.ColumnTree#getShowMultipleColumns
+ * @see com.smartgwt.client.widgets.tree.TreeNode#getIcon
+ * @see com.smartgwt.client.widgets.tree.TreeNode#getShowOpenIcon
+ * @see com.smartgwt.client.widgets.tree.TreeNode#getShowDropIcon
+ * @see com.smartgwt.client.widgets.tree.TreeNode#getShowSelectedIcon
+ * @see com.smartgwt.client.widgets.tree.TreeNode#getIconPadding
  */
 public interface TreeIcons {
 }

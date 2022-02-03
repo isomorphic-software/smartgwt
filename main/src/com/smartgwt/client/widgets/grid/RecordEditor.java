@@ -316,6 +316,30 @@ public class RecordEditor extends ListGrid {
     
 
     /**
+     * If showing any record summary fields (IE: fields of {@link com.smartgwt.client.types.ListGridFieldType type:"summary"}),
+     * this attribute specifies a custom base style to apply to cells in the summary field
+     *
+     * @param recordSummaryBaseStyle New recordSummaryBaseStyle value. Default value is "recordEditorCell"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public void setRecordSummaryBaseStyle(String recordSummaryBaseStyle)  throws IllegalStateException {
+        setAttribute("recordSummaryBaseStyle", recordSummaryBaseStyle, false);
+    }
+
+    /**
+     * If showing any record summary fields (IE: fields of {@link com.smartgwt.client.types.ListGridFieldType type:"summary"}),
+     * this attribute specifies a custom base style to apply to cells in the summary field
+     *
+     * @return Current recordSummaryBaseStyle value. Default value is "recordEditorCell"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public String getRecordSummaryBaseStyle()  {
+        return getAttributeAsString("recordSummaryBaseStyle");
+    }
+    
+
+    /**
      * Where do 'skin' images (those provided with the class) live?
      *
      * @param skinImgDir New skinImgDir value. Default value is "images/RecordEditor/"
@@ -334,6 +358,36 @@ public class RecordEditor extends ListGrid {
      */
     public String getSkinImgDir()  {
         return getAttributeAsString("skinImgDir");
+    }
+    
+
+    /**
+     * Should non-editable fields within this record-editor always display the  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getEmptyCellValue empty cell value} for null values rather than  running any
+     * specified {@link com.smartgwt.client.widgets.grid.ListGridField#setCellFormatter static formatters}? <P> This setting
+     * allows developers to easily account for the fact that a custom  formatter for empty cells in a listGrid is often not
+     * appropriate to display in the filter editor for a <code>canFilter:false</code> field with no specified criterion.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param suppressNullValueFormat New suppressNullValueFormat value. Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setSuppressNullValueFormat(boolean suppressNullValueFormat)  throws IllegalStateException {
+        setAttribute("suppressNullValueFormat", suppressNullValueFormat, false);
+    }
+
+    /**
+     * Should non-editable fields within this record-editor always display the  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getEmptyCellValue empty cell value} for null values rather than  running any
+     * specified {@link com.smartgwt.client.widgets.grid.ListGridField#setCellFormatter static formatters}? <P> This setting
+     * allows developers to easily account for the fact that a custom  formatter for empty cells in a listGrid is often not
+     * appropriate to display in the filter editor for a <code>canFilter:false</code> field with no specified criterion.
+     *
+     * @return Current suppressNullValueFormat value. Default value is true
+     */
+    public boolean getSuppressNullValueFormat()  {
+        Boolean result = getAttributeAsBoolean("suppressNullValueFormat");
+        return result == null ? true : result;
     }
     
 
@@ -453,9 +507,19 @@ public class RecordEditor extends ListGrid {
             s.logicalStructureErrors += "RecordEditor.filterImg:" + t.getMessage() + "\n";
         }
         try {
+            s.recordSummaryBaseStyle = getAttributeAsString("recordSummaryBaseStyle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "RecordEditor.recordSummaryBaseStyle:" + t.getMessage() + "\n";
+        }
+        try {
             s.skinImgDir = getAttributeAsString("skinImgDir");
         } catch (Throwable t) {
             s.logicalStructureErrors += "RecordEditor.skinImgDir:" + t.getMessage() + "\n";
+        }
+        try {
+            s.suppressNullValueFormat = getAttributeAsString("suppressNullValueFormat");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "RecordEditor.suppressNullValueFormat:" + t.getMessage() + "\n";
         }
         return s;
     }

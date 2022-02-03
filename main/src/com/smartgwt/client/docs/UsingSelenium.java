@@ -2,15 +2,22 @@
 package com.smartgwt.client.docs;
 
 /**
- * <h3>Using Selenium</h3>
+ * <h3>Using Selenium Scripts (Selenese)</h3>
  * <a href='http://seleniumhq.org/' target='_blank'>Selenium</a> is a powerful and popular tool
- * which can be used  to test your Smart GWT applications.  Selenium executes tests against your
- * running application in a browser emulating user interaction  and asserting various conditions.
- * Selenium provides a record/playback tool for authoring tests without  learning a test scripting
- * language. You must be familiar with <a href='http://seleniumhq.org/'
- * target='_blank'>Selenium</a> and use of <a href='http://seleniumhq.org/projects/ide/'
- * target='_blank'>Selenium IDE</a> before proceeding.  Refer to the documentation on the Selenium
- * site. <P> Selenium supports the concept of <a
+ * which can be used to test your Smart GWT applications.  Selenium executes tests against your
+ * running application in a browser emulating user interaction and asserting various conditions.
+ * Selenium provides a record/playback tool for authoring tests without learning a test scripting
+ * language - we refer to these as Selenium scripts or <i>Selenese</i>.  You must be familiar with
+ * <a href='http://seleniumhq.org/' target='_blank'>Selenium</a> and use of <a
+ * href='http://seleniumhq.org/projects/ide/' target='_blank'>Selenium IDE</a> before proceeding. 
+ * Refer to the documentation on the Selenium site. <P> <b>Note that Selenium IDE 3 for Firefox
+ * Quantum has been released, but only recently added plugin APIs that should eventually allow us
+ * to add support for our our custom locators and commands (replacing our JavaScript user
+ * extensions from Selenium IDE 2.9).  For now, if you want to write Selenese as this section
+ * describes, you must use Selenium IDE 2.9, which can be installed in  <a
+ * href='https://www.mozilla.org/en-US/firefox/organizations/' target='_blank'>Firefox 52 ESR</a>,
+ * the extended-support release of Firefox which is still receiving updates at the time of this
+ * writing.</b> <P> Selenium supports the concept of <a
  * href='http://seleniumhq.org/docs/02_selenium_ide.html#locating-elements'
  * target='_blank'>Locators</a> in order to specify the element you'd like a given Selenium
  * command to target. For example Selenium supports XPath based locators and DOM ID based
@@ -46,56 +53,55 @@ package com.smartgwt.client.docs;
  * target='_blank'>user extensions</a>  for more information. <li> Go to the WebDriver tab and
  * ensure that the "Enable WebDriver Playback" checkbox is unchecked. <li> Close and restart
  * Selenium IDE to load the new extensions. </ul> <P> That's it, we're done configuring the
- * environment. <P> Note: Tests recorded using Selenium IDE can be played back using <a
- * href='http://seleniumhq.org/projects/remote-control/' target='_blank'>Selenium Remote
- * Control</a>. The <code>user-extensions-ide.js</code> file is not required for playback of Smart
- * GWT-aware tests using Selenium RC, but the  <code>user-extensions.js</code> is. Instructions
- * for using <code>user-extensions.js</code> with Selenium RC can be found  <a
- * href='http://seleniumhq.org/docs/08_user_extensions.html#using-user-extensions-with-selenium-rc'
- * target='_blank'>here</a>. <P> <b>Recording Selenium tests with Selenium IDE</b> <P> Once you
- * have your application running in Firefox, open Selenium IDE from the Tools ==&gt; Selenium IDE
- * menu option. If the Selenium IDE is in record mode, then clicking or carrying out other
- * operations like typing in a text field with automatically record the  appropriate Selenium
- * commands with the Smart GWT locator. In most cases there's no need for you to manually enter
- * the locator,  the recorder does this for you! In fact, not only do the provided user extension
- * files record your clicks, drag operations, and  typing in the browser--they also try to ensure
- * that your script executes each operation only when the Smart GWT widgets it depends  upon exist
- * and are ready to be interacted with.  This ensures that when the test script is executed, then
- * even if one or more triggered  operations are asynchronous (delayed), it behaves as expected.
- * <P> In the screenshot below, note the <b>waitForElementClickable()</b> operation above the
- * click operation; it was added automatically by our  user extensions as the click itself was
- * recorded:  <P> <img src="skin/user-guide-images-selenium/selenium-ide-example.png"
- * width="1017px" height="853px"> <P> Sometimes users may also want finer grain control of what
- * Selenium command is created instead of having the Selenium IDE recorder  do this automatically.
- * For example if you want to verify the value of a particular cell in a ListGrid. Instead of
- * typing in the  command "verifyTable" and manually enter the Smart GWT Locator (scLocator), you
- * can simply right click on the table cell or any  other Smart GWT widget and the most suitable
- * Selenium commands will appear in the context menu along with the scLocator path for  the
- * clicked element. See image below. <P> <img
- * src="skin/user-guide-images-selenium/selenium-ide-example-verifyText.png" width="1211px"
- * height="737px"> <P> <b>Solving Ordering Issues in Selenium Scripts</b> <P> Fundamentally, the
- * reason we add <b>waitForElementClickable()</b> calls before each click is to deal with
- * asynchronous Smart GWT operations. Many operations on widgets or the network are asynchronous,
- * and a correctly coded test should wait for such operations to  complete as opposed to inserting
- * an arbitrary delay or using Selenium's <b>setSpeed()</b> function. Using such delays runs the
- * risk of  the test failing if replay occurs on a loaded machine or slow network, and also makes
- * the test run slower than needed.  <P> Asynchronous operations include: <P> <ul> <li> any actual
- * network operation, <li> any DataSource operation (even for a clientOnly DataSource), <li> any
- * situation where a widget can be marked "dirty" (see notes at <b>Canvas.isDirty()</b>), and then
- * asynchronously  redraw itself - this includes API calls like <b>ListGrid.setData()</b>,
- * <b>Canvas.setContents()</b> as well as user interactions like  ListGrid sort or filter,
- * regardless of whether the data is already present, <li> re-layout that occurs as a result of a
- * size change or new member being added to a Layout or subclass of Layout (eg SectionStack,
- * Window) </ul> <P> The following operations are synchronous and don't require waiting: <P> <ul>
- * <li>draw()ing any widget that has no parent - but note adding a widget to an already-drawn
- * Layout is asynchronous, as above </ul> <P> You may encounter cases where you have to manually
- * insert a <b>waitForElementClickable()</b> or <b>waitForElementNotPresent()</b> to get a script
- * to behave properly.  Looking at the Smart GWT Showcase Example (Grids / Filtering / Advanced
- * Filter), suppose  we wanted to filter by country names containing "Za" and wait for the filter
- * step to complete before proceeding.  Since the  ListGrid initially contains many entries and
- * Zaire is not among them, it is not visible and thus we can solve the original  problem by
- * manually adding a <b>waitForElementClickable()</b> on the locator for Zaire's ListGrid entry:
- * <P>
+ * environment. <P> Note: Tests recorded using Selenium IDE can be played back programmatically
+ * (e.g. from a test harness) using <a
+ * href='../../../../../server/javadoc/com/isomorphic/webdriver/SeleneseRunner.html'
+ * target='_blank'>SeleneseRunner</a>, a simulation tool that executes Selenese against Smart
+ * GWT's WebDriver wrappers.  This is required because Selenium 3 no longer supports executing
+ * Selenese using custom user extensions, as it no longer contains much of the Selenium RC code
+ * base. <P> <b>Recording Selenium tests with Selenium IDE</b> <P> Once you have your application
+ * running in Firefox, open Selenium IDE from the Tools ==&gt; Selenium IDE menu option. If the
+ * Selenium IDE is in record mode, then clicking or carrying out other operations like typing in a
+ * text field with automatically record the  appropriate Selenium commands with the Smart GWT
+ * locator. In most cases there's no need for you to manually enter the locator,  the recorder
+ * does this for you! In fact, not only do the provided user extension files record your clicks,
+ * drag operations, and  typing in the browser--they also try to ensure that your script executes
+ * each operation only when the Smart GWT widgets it depends  upon exist and are ready to be
+ * interacted with.  This ensures that when the test script is executed, then even if one or more
+ * triggered  operations are asynchronous (delayed), it behaves as expected. <P> In the screenshot
+ * below, note the <b>waitForElementClickable()</b> operation above the click operation; it was
+ * added automatically by our  user extensions as the click itself was recorded:  <P> <img
+ * src="skin/user-guide-images-selenium/selenium-ide-example.png" width="1017px" height="853px">
+ * <P> Sometimes users may also want finer grain control of what Selenium command is created
+ * instead of having the Selenium IDE recorder  do this automatically. For example if you want to
+ * verify the value of a particular cell in a ListGrid. Instead of typing in the  command
+ * "verifyTable" and manually enter the Smart GWT Locator (scLocator), you can simply right click
+ * on the table cell or any  other Smart GWT widget and the most suitable Selenium commands will
+ * appear in the context menu along with the scLocator path for  the clicked element. See image
+ * below. <P> <img src="skin/user-guide-images-selenium/selenium-ide-example-verifyText.png"
+ * width="1211px" height="737px"> <P> <b>Solving Ordering Issues in Selenium Scripts</b> <P>
+ * Fundamentally, the reason we add <b>waitForElementClickable()</b> calls before each click is to
+ * deal with asynchronous Smart GWT operations. Many operations on widgets or the network are
+ * asynchronous, and a correctly coded test should wait for such operations to  complete as
+ * opposed to inserting an arbitrary delay or using Selenium's <b>setSpeed()</b> function. Using
+ * such delays runs the risk of  the test failing if replay occurs on a loaded machine or slow
+ * network, and also makes the test run slower than needed.  <P> Asynchronous operations include:
+ * <P> <ul> <li> any actual network operation, <li> any DataSource operation (even for a
+ * clientOnly DataSource), <li> any situation where a widget can be marked "dirty" (see notes at
+ * <b>Canvas.isDirty()</b>), and then asynchronously  redraw itself - this includes API calls like
+ * <b>ListGrid.setData()</b>, <b>Canvas.setContents()</b> as well as user interactions like 
+ * ListGrid sort or filter, regardless of whether the data is already present, <li> re-layout that
+ * occurs as a result of a size change or new member being added to a Layout or subclass of Layout
+ * (eg SectionStack, Window) </ul> <P> The following operations are synchronous and don't require
+ * waiting: <P> <ul> <li>draw()ing any widget that has no parent - but note adding a widget to an
+ * already-drawn Layout is asynchronous, as above </ul> <P> You may encounter cases where you have
+ * to manually insert a <b>waitForElementClickable()</b> or <b>waitForElementNotPresent()</b> to
+ * get a script to behave properly.  Looking at the Smart GWT Showcase Example (Grids / Filtering
+ * / Advanced Filter), suppose  we wanted to filter by country names containing "Za" and wait for
+ * the filter step to complete before proceeding.  Since the  ListGrid initially contains many
+ * entries and Zaire is not among them, it is not visible and thus we can solve the original 
+ * problem by manually adding a <b>waitForElementClickable()</b> on the locator for Zaire's
+ * ListGrid entry: <P>
  * &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>scLocator=//ListGrid[ID="filterGrid"]/body/row[pk=216||countryCode=CG||215]/col[fieldName=countryCode||0]</b>
  * <P> Before the filter operation is issued, the locator is not clickable because the record is
  * not visible: <P> <img src="skin/user-guide-images-selenium/manual-wait-clickable-before.png"

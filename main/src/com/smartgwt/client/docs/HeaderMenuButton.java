@@ -13,6 +13,8 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderMenuButtonIconHeight
  * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderMenuButtonWidth
  * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderMenuButtonHeight
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getRotatedHeaderMenuButtonWidth
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getRotatedHeaderMenuButtonHeight
  */
 public interface HeaderMenuButton {
 }

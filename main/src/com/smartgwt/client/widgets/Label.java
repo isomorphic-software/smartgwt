@@ -396,6 +396,63 @@ public class Label extends Button {
     
 
     /**
+     * Size for this component's vertical dimension.  See {@link com.smartgwt.client.widgets.Canvas#getHeight Canvas.height}
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Label#getAutoFit autoFit} is set on non-{@link
+     * com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the widget is always
+     * sized just large enough to accommodate the title.
+     *
+     * @param height New height value. Default value is null
+     * @see com.smartgwt.client.widgets.Label#setAutoFit
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public void setHeight(Integer height) {
+        setAttribute("height", height, true);
+    }
+
+    /**
+     * Size for this component's vertical dimension.  See {@link com.smartgwt.client.widgets.Canvas#getHeight Canvas.height}
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Label#getAutoFit autoFit} is set on non-{@link
+     * com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the widget is always
+     * sized just large enough to accommodate the title.
+     *
+     * @return Current height value. Default value is null
+     * @see com.smartgwt.client.widgets.Label#getAutoFit
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public Integer getHeight()  {
+        return getAttributeAsInt("height");
+    }
+
+    /**
+     * Size for this component's vertical dimension.  See {@link com.smartgwt.client.widgets.Canvas#getHeight Canvas.height}
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Label#getAutoFit autoFit} is set on non-{@link
+     * com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the widget is always
+     * sized just large enough to accommodate the title.
+     *
+     * @param height New height value. Default value is null
+     * @see com.smartgwt.client.widgets.Label#setAutoFit
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public void setHeight(String height) {
+        setAttribute("height", height, true);
+    }
+
+    /**
+     * Size for this component's vertical dimension.  See {@link com.smartgwt.client.widgets.Canvas#getHeight Canvas.height}
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Label#getAutoFit autoFit} is set on non-{@link
+     * com.smartgwt.client.widgets.StretchImgButton} instances, this property will be ignored so that the widget is always
+     * sized just large enough to accommodate the title.
+     *
+     * @return Current height value. Default value is null
+     * @see com.smartgwt.client.widgets.Label#getAutoFit
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public String getHeightAsString()  {
+        return getAttributeAsString("height");
+    }
+    
+
+    /**
      * Optional icon to be shown with the button title text.   <P> Specify as the partial URL to an image, relative to the
      * imgDir of this component. A sprited image can be specified using the {@link com.smartgwt.client.docs.SCSpriteConfig}
      * format. <P> Note that the string "blank" is a valid setting for this attribute and will always  result in the system
@@ -751,6 +808,59 @@ public class Label extends Button {
     
 
     /**
+     * Size for this component's horizontal dimension.  See {@link com.smartgwt.client.widgets.Canvas#getWidth Canvas.width}
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Label#getAutoFit autoFit} is set, this property
+     * will be ignored so that the widget is always sized just large enough to accommodate the title.
+     *
+     * @param width New width value. Default value is null
+     * @see com.smartgwt.client.widgets.Label#setAutoFit
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public void setWidth(Integer width) {
+        setAttribute("width", width, true);
+    }
+
+    /**
+     * Size for this component's horizontal dimension.  See {@link com.smartgwt.client.widgets.Canvas#getWidth Canvas.width}
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Label#getAutoFit autoFit} is set, this property
+     * will be ignored so that the widget is always sized just large enough to accommodate the title.
+     *
+     * @return Current width value. Default value is null
+     * @see com.smartgwt.client.widgets.Label#getAutoFit
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public Integer getWidth()  {
+        return getAttributeAsInt("width");
+    }
+
+    /**
+     * Size for this component's horizontal dimension.  See {@link com.smartgwt.client.widgets.Canvas#getWidth Canvas.width}
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Label#getAutoFit autoFit} is set, this property
+     * will be ignored so that the widget is always sized just large enough to accommodate the title.
+     *
+     * @param width New width value. Default value is null
+     * @see com.smartgwt.client.widgets.Label#setAutoFit
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public void setWidth(String width) {
+        setAttribute("width", width, true);
+    }
+
+    /**
+     * Size for this component's horizontal dimension.  See {@link com.smartgwt.client.widgets.Canvas#getWidth Canvas.width}
+     * for more details. <P> Note that if {@link com.smartgwt.client.widgets.Label#getAutoFit autoFit} is set, this property
+     * will be ignored so that the widget is always sized just large enough to accommodate the title.
+     *
+     * @return Current width value. Default value is null
+     * @see com.smartgwt.client.widgets.Label#getAutoFit
+     * @see com.smartgwt.client.docs.Sizing Sizing overview and related methods
+     */
+    public String getWidthAsString()  {
+        return getAttributeAsString("width");
+    }
+    
+
+    /**
      * If false, the label text will not be wrapped to the next line.
      *
      * @param wrap New wrap value. Default value is true
@@ -839,6 +949,11 @@ public class Label extends Button {
             s.logicalStructureErrors += "Label.editProxyConstructor:" + t.getMessage() + "\n";
         }
         try {
+            s.heightAsString = getAttributeAsString("height");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Label.heightAsString:" + t.getMessage() + "\n";
+        }
+        try {
             s.icon = getAttributeAsString("icon");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Label.icon:" + t.getMessage() + "\n";
@@ -907,6 +1022,11 @@ public class Label extends Button {
             s.valign = getAttributeAsString("valign");
         } catch (Throwable t) {
             s.logicalStructureErrors += "Label.valign:" + t.getMessage() + "\n";
+        }
+        try {
+            s.widthAsString = getAttributeAsString("width");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "Label.widthAsString:" + t.getMessage() + "\n";
         }
         try {
             s.wrap = getAttributeAsString("wrap");

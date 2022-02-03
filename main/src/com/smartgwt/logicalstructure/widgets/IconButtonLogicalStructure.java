@@ -60,6 +60,7 @@ public class IconButtonLogicalStructure extends ButtonLogicalStructure {
     public String showIcon;
     public String showMenuIcon;
     public String showMenuIconDisabled;
+    public String showMenuIconDown;
     public String showMenuIconOver;
     public String showMenuOnClick;
     public String showTitle;

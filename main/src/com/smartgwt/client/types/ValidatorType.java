@@ -288,12 +288,14 @@ public enum ValidatorType implements ValueEnum {
      * validated, or you can specify it manually via  <code>validator.relatedDataSource</code> and
      * <code>validator.relatedField</code>. <p> You can specify at DataSource level that this validator should be automatically
      * applied to all fields that specify a {@link com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} - see
-     * {@link com.smartgwt.client.data.DataSource#getValidateRelatedRecords DataSource.validateRelatedRecords}. <p> Validators
-     * of this type have  requiresServer  set to <code>true</code> and do not run on the client. <p> Note that this validation
-     * is generally unnecessary for data coming from a UI. The  typical UI uses a {@link
-     * com.smartgwt.client.widgets.form.fields.SelectItem} or {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem} with
-     * an  {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} for user entry, such
-     * that the user  can't accidentally enter a related record if that doesn't exist, and a typical SQL  schema will include
+     * {@link com.smartgwt.client.data.DataSource#getValidateRelatedRecords DataSource.validateRelatedRecords}. <p> By default
+     * the uniqueness check is not case sensitive but this can be controlled through the {@link
+     * com.smartgwt.client.docs.serverds.Validator#caseSensitive caseSensitive} attribute. <p> Validators of this type have 
+     * requiresServer  set to <code>true</code> and do not run on the client. <p> Note that this validation is generally
+     * unnecessary for data coming from a UI. The  typical UI uses a {@link com.smartgwt.client.widgets.form.fields.SelectItem}
+     * or {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem} with an  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} for user entry, such that the
+     * user  can't accidentally enter a related record if that doesn't exist, and a typical SQL  schema will include
      * constraints that prevent a bad insert if the user attempts to  circumvent the UI. The primary purpose of declaring this
      * validation explicitly is  to provide clear, friendly error messages for use cases such as {@link
      * com.smartgwt.client.widgets.BatchUploader},  where values aren't individually chosen by the user. See also the example

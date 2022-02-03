@@ -186,7 +186,7 @@ public class ToolbarItem extends CanvasItem {
     
 
     /**
-     * List of buttons for the toolbar.  Each buttons should be specified as a simple JS object with properties to apply to the
+     * List of buttons for the toolbar.  Each button should be specified as a simple JS object with properties to apply to the 
      * button to be displayed. Note that any <code>click</code> stringMethod applied to the  button will be passed 2
      * parameters: <code>form</code> and <code>item</code>.
      *
@@ -200,7 +200,7 @@ public class ToolbarItem extends CanvasItem {
 
     /**
      * Space between the buttons of this toolbar. Configures the {@link
-     * com.smartgwt.client.widgets.layout.Layout#getMembersMargin Layout.membersMargin}   property on the creates {@link
+     * com.smartgwt.client.widgets.layout.Layout#getMembersMargin Layout.membersMargin}   property on the created {@link
      * com.smartgwt.client.widgets.form.fields.ToolbarItem#getCanvas canvas}.
      *
      * @param buttonSpace New buttonSpace value. Default value is 4
@@ -212,7 +212,7 @@ public class ToolbarItem extends CanvasItem {
 
     /**
      * Space between the buttons of this toolbar. Configures the {@link
-     * com.smartgwt.client.widgets.layout.Layout#getMembersMargin Layout.membersMargin}   property on the creates {@link
+     * com.smartgwt.client.widgets.layout.Layout#getMembersMargin Layout.membersMargin}   property on the created {@link
      * com.smartgwt.client.widgets.form.fields.ToolbarItem#getCanvas canvas}.
      *
      * @return Current buttonSpace value. Default value is 4
@@ -225,7 +225,7 @@ public class ToolbarItem extends CanvasItem {
 
     /**
      * This item is an autoChild generated {@link com.smartgwt.client.widgets.Canvas} displayed by the ToolbarItem and is an
-     * instance of {@link com.smartgwt.client.widgets.toolbar.Toolbar} by defaut, cuztomizeable  via the {@link
+     * instance of {@link com.smartgwt.client.widgets.toolbar.Toolbar} by default, customizable  via the {@link
      * com.smartgwt.client.widgets.form.fields.ToolbarItem#getCanvasConstructor canvasConstructor} attribute.
      * <p>
      * This component is an AutoChild named "canvas".  For an overview of how to use and

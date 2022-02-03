@@ -68,6 +68,33 @@ public class SmartGwtEntryPoint implements EntryPoint {
             @com.google.gwt.core.client.GWT::log(Ljava/lang/String;Ljava/lang/Throwable;)(message, @com.smartgwt.client.core.JsObject.SGWT_WARN::new(Ljava/lang/String;)(message));
         }
 
+        var moduleName = @com.google.gwt.core.client.GWT::getModuleName()();
+
+        // Debox Javascript objects that wrap primitives for the benefit of Java in hosted mode.
+        // E.g. JS Boolean or Number must be converted to primitives to return them from JSNI.
+        // Note: Java boxing (e.g. java.lang.Boolean) is separate & requires adding extra code.
+        $debox = function(val) {
+            return @com.google.gwt.core.client.GWT::isScript()() ? val : function() {
+            var v = val.apply(this, arguments);
+            // Dates can just be returned without deboxing
+            if ($wnd.isc.isA.Date(v)) return v;
+            return v == undefined || v == null ? null : v.valueOf();
+        }};
+
+        // if $wnd.SmartGWT is already defined, we're in the multi-module case, which requires
+        // special handling; see internal discussion at the top of SGWTFactory.js for details
+        if ($wnd.SmartGWT) {
+            if (!$wnd.SmartGWT._warnedOfMultipleModules) {
+                $wnd.SmartGWT._warnedOfMultipleModules = true;
+                $wnd.isc.Log.logWarn("Multiple modules detected.  GWT doesn't support " +
+                    "sharing Java objects between modules as Java types may not be " +
+                    "recognized properly.  This is unsupported usage.");
+            }
+            // If the primary module is already loaded, bail out now so that we don't overwrite
+            // the SmartGWT helper methods with methods from the current, non-primary module.
+            if ($wnd.SmartGWT._isPrimary) return;
+        }
+
         // these must be called after we verify the SC libs are loaded
         @com.smartgwt.client.util.LogUtil::setJSNIErrorHandler()();
         @com.smartgwt.client.util.LogUtil::addSGWTLoggerCategories()();
@@ -82,16 +109,6 @@ public class SmartGwtEntryPoint implements EntryPoint {
         if ($wnd.isc.Browser.isIE && $wnd.isc.Browser.version >= 7) {
             $wnd.isc.EventHandler._IECanSetKeyCode = {};
         }
-        // Debox Javascript objects that wrap primitives for the benefit of Java in hosted mode.
-        // E.g. JS Boolean or Number must be converted to primitives to return them from JSNI.
-        // Note: Java boxing (e.g. java.lang.Boolean) is separate & requires adding extra code.
-        $debox = function(val) {
-            return @com.google.gwt.core.client.GWT::isScript()() ? val : function() {
-            var v = val.apply(this, arguments);
-            // Dates can just be returned without deboxing
-            if ($wnd.isc.isA.Date(v)) return v;
-            return v == undefined || v == null ? null : v.valueOf();
-        }};
         
         // use a new Record as the array loading marker (this will allow new Record(...) to work with unloaded rows)
         var loadingRecord = @com.smartgwt.client.data.Record::new()();
@@ -289,11 +306,8 @@ public class SmartGwtEntryPoint implements EntryPoint {
                     return @com.smartgwt.client.util.JSOHelper::convertToJavaDate(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
                 } else if (obj._constructor && obj._constructor == 'DateRange') {
                     return @com.smartgwt.client.widgets.form.fields.DateRangeItem::convertToDateRange(Lcom/google/gwt/core/client/JavaScriptObject;)(obj);
-                //>IDocument
-                // The smartGWTSkipArrayConversion flag is a backcompat measure, to support
-                // customers that depend on the old behavior of returning a JS array as a 
-                // JavaScriptObject.  Implemented for Sofico and exposed to them June 12 2015
-                //<IDocument
+                // the smartGWTSkipArrayConversion flag is a backcompat measure for customers
+                // that depend on the old behavior of returning a JS array as a JavaScriptObject
                 } else if($wnd.isc.isA.Array(obj) && type !== null && !$wnd.isc.smartGWTSkipArrayConversion) {
                     return this._convertToJavaArrayType(obj, type);
                 } else if(@com.smartgwt.client.util.JSOHelper::isJSO(Ljava/lang/Object;)(obj)) {
@@ -456,7 +470,17 @@ public class SmartGwtEntryPoint implements EntryPoint {
 
             return object;
         });
-
+        
+        // provide access to GWT version and module owning SmartGWT helper methods
+        $wnd.SmartGWT.getGwtVersionString = function () {
+            return @com.google.gwt.core.client.GWT::getVersion()();
+        };
+        $wnd.SmartGWT.getGwtVersionAsFloat = function () {
+            var version = @com.google.gwt.core.client.GWT::getVersion()();
+            return parseFloat(version.replace(/\.([^.]+)$/, "$1"));
+        };
+        $wnd.SmartGWT._moduleName = moduleName;
+        
         if ($wnd.isc.RPCManager.__fireReplyCallback == null) {
             $wnd.isc.RPCManager.__fireReplyCallback = $wnd.isc.RPCManager.fireReplyCallback;
             $wnd.isc.RPCManager.fireReplyCallback = function (callback, request, response, data) {
@@ -541,4 +565,16 @@ public class SmartGwtEntryPoint implements EntryPoint {
             initialized = true;
         }
     }
+
+    // set this module as primary - see internal discussion at top of SGWTFactory.js for details
+    public static native void setAsPrimaryModule() /*-{
+        var moduleName = @com.google.gwt.core.client.GWT::getModuleName()();
+        if ($wnd.SmartGWT && $wnd.SmartGWT._moduleName == moduleName) {
+            $wnd.SmartGWT._isPrimary = true;
+        } else {
+            var message = "SmartGwtEntryPoint::setAsPrimaryModule() called before " +
+                          "SmartGwtEntryPoint::onModuleLoad() - ignoring";
+            @com.google.gwt.core.client.GWT::log(Ljava/lang/String;Ljava/lang/Throwable;)(message, @com.smartgwt.client.core.JsObject.SGWT_WARN::new(Ljava/lang/String;)(message));
+        }
+    }-*/;
 }

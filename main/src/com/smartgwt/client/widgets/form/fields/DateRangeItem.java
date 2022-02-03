@@ -555,10 +555,9 @@ public class DateRangeItem extends CanvasItem {
     
 
     /**
-     * If this attribute is set to <code>true</code> when {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getCriteriaValue getCriteria()} is called, the item will validate the
-     * <i>"to"</i> and <i>"from"</i> fields and return null if either field fails validation. See {@link
-     * com.smartgwt.client.widgets.form.fields.DateRangeItem#validateRange validateRange()}
+     * If this attribute is set to <code>true</code> when {@link com.smartgwt.client.widgets.form.fields.FormItem#getCriterion
+     * getCriterion()} is called, the item will validate the <i>"to"</i> and <i>"from"</i> fields and return null if either
+     * field fails validation. See {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#validateRange validateRange()}
      *
      * @param validateCriteria New validateCriteria value. Default value is false
      */
@@ -567,10 +566,9 @@ public class DateRangeItem extends CanvasItem {
     }
 
     /**
-     * If this attribute is set to <code>true</code> when {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getCriteriaValue getCriteria()} is called, the item will validate the
-     * <i>"to"</i> and <i>"from"</i> fields and return null if either field fails validation. See {@link
-     * com.smartgwt.client.widgets.form.fields.DateRangeItem#validateRange validateRange()}
+     * If this attribute is set to <code>true</code> when {@link com.smartgwt.client.widgets.form.fields.FormItem#getCriterion
+     * getCriterion()} is called, the item will validate the <i>"to"</i> and <i>"from"</i> fields and return null if either
+     * field fails validation. See {@link com.smartgwt.client.widgets.form.fields.DateRangeItem#validateRange validateRange()}
      *
      * @return Current validateCriteria value. Default value is false
      */

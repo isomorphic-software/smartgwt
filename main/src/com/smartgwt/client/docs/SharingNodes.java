@@ -10,11 +10,15 @@ package com.smartgwt.client.docs;
  *  <P>
  *  <b>using one node in two places in one Tree</b>
  *  <P>
- *  To do this, either clone the shared node like so:<pre>
- * 
- *      tree.add(isc.addProperties({}, sharedNode));
- * 
- *  </pre> or place the shared data in a shared subobject instead.
+ *  To do this, either clone the shared node like so:
+ *  
+ *  <pre>
+ *       Tree tree = new Tree();
+ *       TreeNode sharedNode = new TreeNode();
+ *       .....
+ *       tree.add(new Record(sharedNode.toMap()));
+ *  </pre>
+ *   or place the shared data in a shared subobject instead.
  *  <P>
  *  <b>sharing nodes or subtrees across Trees</b>
  *  <P>

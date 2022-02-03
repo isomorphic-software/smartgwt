@@ -7,18 +7,11 @@ package com.smartgwt.client.docs;
  * DataSource, so that a UI component displays, edits and saves DataSource records using
  * appropriate formatters, editors, validation rules, and persistence logic.
      * @see com.smartgwt.client.widgets.DataBoundComponent
- * @see com.smartgwt.client.widgets.tree.ResultTree#getDataSource
  * @see com.smartgwt.client.widgets.calendar.Calendar#getDataSource
  * @see com.smartgwt.client.widgets.calendar.Calendar#getAutoFetchData
  * @see com.smartgwt.client.widgets.calendar.Calendar#getAutoFetchTextMatchStyle
  * @see com.smartgwt.client.widgets.calendar.Calendar#getShowDetailFields
  * @see com.smartgwt.client.widgets.calendar.Calendar#getDataFetchMode
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getAutoFetchData
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getAutoFetchTextMatchStyle
- * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchData
- * @see com.smartgwt.client.widgets.viewer.DetailViewer#getAutoFetchData
- * @see com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchData
- * @see com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchTextMatchStyle
  * @see com.smartgwt.client.widgets.viewer.DetailViewer#getDataFetchMode
  * @see com.smartgwt.client.widgets.viewer.DetailViewer#getDataSource
  * @see com.smartgwt.client.widgets.viewer.DetailViewer#getShowDetailFields
@@ -54,9 +47,17 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ColumnTree#getDataFetchMode
  * @see com.smartgwt.client.widgets.grid.ColumnTree#getLoadDataOnDemand
  * @see com.smartgwt.client.widgets.grid.ColumnTree#getFields
+ * @see com.smartgwt.client.widgets.tree.ResultTree#getDataSource
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getAutoFetchData
+ * @see com.smartgwt.client.widgets.viewer.DetailViewer#getAutoFetchData
+ * @see com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchData
+ * @see com.smartgwt.client.widgets.form.DynamicForm#getAutoFetchTextMatchStyle
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getAutoFetchData
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getAutoFetchTextMatchStyle
  * @see com.smartgwt.client.widgets.form.DynamicForm#getDataFetchMode
  * @see com.smartgwt.client.widgets.form.DynamicForm#getDataSource
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getOptionCriteria
+ * @see com.smartgwt.client.widgets.form.fields.FormItem#getOptionTextMatchStyle
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getValueField
  * @see com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField
  * @see com.smartgwt.client.widgets.form.PickListMenu#getDataProperties

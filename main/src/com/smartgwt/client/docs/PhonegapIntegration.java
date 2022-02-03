@@ -153,6 +153,11 @@ package com.smartgwt.client.docs;
  * href='https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html#//apple_ref/doc/uid/TP40012582-CH8-SW1'
  * target='_blank'>Beta Testing Your iOS App</a>.
  * 
+ *  <p>Apple has deprecated UIWebView and we recommend switching to the officially supported
+ * <a href='https://github.com/apache/cordova-plugin-wkwebview-engine'
+ * target='_blank'>WKWebView</a> plugin to
+ *  resolve momentum scrolling issues and obtain more Safari-like behavior.
+ * 
  *  <h3>Android Platform</h3>
  *  To begin targeting Android devices, follow the instructions on the
  * <a href='http://docs.phonegap.com/en/edge/guide_platforms_android_index.md.html'

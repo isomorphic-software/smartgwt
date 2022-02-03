@@ -49,6 +49,7 @@ public class StatefulCanvasLogicalStructure extends CanvasLogicalStructure {
     public String autoFit;
     public String baseStyle;
     public String editProxyConstructor;
+    public String heightAsString;
     public String icon;
     public String iconHeight;
     public String iconOrientation;
@@ -77,4 +78,5 @@ public class StatefulCanvasLogicalStructure extends CanvasLogicalStructure {
     public String state;
     public String title;
     public String valign;
+    public String widthAsString;
 }

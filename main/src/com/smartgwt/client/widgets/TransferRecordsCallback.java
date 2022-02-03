@@ -13,22 +13,23 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
  */
-/* sgwtgen */
- 
-package com.smartgwt.client.widgets.calendar.events;
 
-import com.google.gwt.event.shared.EventHandler;
+package com.smartgwt.client.widgets;
+
+import com.smartgwt.client.data.Record;
 
 /**
- * @deprecated Please use setEventHoverHTMLCustomizer instead, this will be removed in a future release.
+ * Called when the transferRecords() method completes.  A callback is necessary because transferRecords() is an asynchronous process that may require
+ * one or more server roundtrips
+ *
+ * @see com.smartgwt.client.DataBoundComponent#transferRecords(Record[], Record, int, Canvas, TransferRecordsCallback)
  */
-public interface EventHoverHTMLHandler extends EventHandler {
+public interface TransferRecordsCallback {
+
     /**
-     * Gets the hover HTML for an event being hovered over. Override here to return custom  HTML based upon the parameter event
-     * object.
+     * Called when the transferRecords() method completes.  A callback is necessary because transferRecords() is asynchronous 
      *
-     * @param event the event
-     * @deprecated Please use setEventHoverHTMLCustomizer instead, this will be removed in a future release.
+     * @param records the nodes we just transferred
      */
-    void onEventHoverHTML(com.smartgwt.client.widgets.calendar.events.EventHoverHTMLEvent event);
+    void execute(Record[] records);
 }

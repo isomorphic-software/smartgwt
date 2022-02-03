@@ -58,7 +58,7 @@ package com.smartgwt.client.docs;
  *  is required both to ensure the stateful suffix is incorporated into the generated HTML
  *  correctly and that logic to update the images state at runtime handles this HTML being
  *  present in the DOM rather than a simple &lt;img...&gt; element.<br>
- *  Where these are supported they will be documented as such. The handling will in these 
+ *  Where these are supported they will be documented as such. The handling in these 
  *  cases is as follows:
  *  <ul>
  *  <li>if the configuration includes an explicit image URL, stateful suffixes are combined

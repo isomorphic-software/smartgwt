@@ -136,6 +136,7 @@ public class DataSourceField extends DataClass {
     
     
     
+    
 
     /**
      * Dictates whether the data in this field be exported.  Explicitly setting  <i>canExport</i> to false overrides the
@@ -495,6 +496,29 @@ public class DataSourceField extends DataClass {
     
 
     /**
+     * The default search-operator for this field. <P> If not specified, falls back to the default specified for the field's
+     * {@link com.smartgwt.client.data.SimpleType#getDefaultOperator data-type}.
+     *
+     * @param defaultOperator New defaultOperator value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
+     */
+    public void setDefaultOperator(OperatorId defaultOperator) {
+        setAttribute("defaultOperator", defaultOperator == null ? null : defaultOperator.getValue());
+    }
+
+    /**
+     * The default search-operator for this field. <P> If not specified, falls back to the default specified for the field's
+     * {@link com.smartgwt.client.data.SimpleType#getDefaultOperator data-type}.
+     *
+     * @return Current defaultOperator value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
+     */
+    public OperatorId getDefaultOperator()  {
+        return EnumUtil.getEnum(OperatorId.values(), getAttribute("defaultOperator"));
+    }
+    
+
+    /**
      * Whether this field should be considered a "detail" field by a {@link com.smartgwt.client.widgets.DataBoundComponent}.
      * <P> Detail fields won't be shown by default in a DataBoundComponent where  {@link
      * com.smartgwt.client.widgets.DataBoundComponent#getShowDetailFields DataBoundComponent.showDetailFields} is false.  This
@@ -533,15 +557,30 @@ public class DataSourceField extends DataClass {
     
 
     /**
-     * Name of another field in this DataSource that should be used as the display value for this field. <P> Typically used for
-     * editable  {@link com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} fields: the <code>foreignKey</code>
-     * field stores an ID value, and this ID value is the right value to use when editing (typically by a {@link
-     * com.smartgwt.client.widgets.form.fields.SelectItem} with {@link
-     * com.smartgwt.client.widgets.form.fields.SelectItem#getOptionDataSource optionDataSource} set).  However, when the
-     * <code>foreignKey</code> field is viewed read-only, it should display a name, title or other friendly value from the
-     * related record.  In order to accomplish this, a second, hidden field carries the display value, and the
-     * <code>foreignKey</code> field has <code>displayField</code> set to this second, hidden field. <P> For a more in-depth
-     * discussion, see {@link com.smartgwt.client.docs.serverds.DataSourceField#includeFrom includeFrom}.
+     * When records from this dataSource are displayed in a dataBoundComponent such as a {@link
+     * com.smartgwt.client.widgets.grid.ListGrid}, the <code>displayField</code> attribute may be used to cause some  field to
+     * display a value from another field in the record. <P> This is typically used for editable {@link
+     * com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} fields.  In this scenario, a dataSource field has a
+     * foreignKey field which stores an ID value used to identify records in another, related dataSource. Rather than display
+     * this ID to users, developers may wish to display another, user-friendly field from the related record. This is easy to
+     * achieve by  having a second field on the dataSource which will be populated with the "display value" from this related
+     * dataSource, and using <code>dataSourceField.displayField</code>  to show this value.  The {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#includeFrom includeFrom} feature handles populating this field
+     * automatically for dataSources backed by the {@link com.smartgwt.client.docs.ServerDataIntegration Smart GWT Server}. See
+     * the "Editing included fields" section of the {@link com.smartgwt.client.docs.serverds.DataSourceField#includeFrom
+     * includeFrom} documentation for more on editing included foreignKey fields. <P> Editable dataSourceFields with a
+     * specified <code>displayField</code> and  <code>foreignKey</code> will typically be edited using a {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem}  or {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem}. In
+     * this case, in addition to identifying the field to use as a static display value within the record being edited,
+     * <code>displayField</code> will also identify which field on the related dataSource to use as a display field when
+     * showing a set of options to the user. This behavior may be modified in a couple of ways: <ul>  <li>A separate field name
+     * can be specified to identify the display field on the      related dataSource using the {@link
+     * com.smartgwt.client.data.DataSourceField#getForeignDisplayField foreignDisplayField} attribute</li>  <li>The {@link
+     * com.smartgwt.client.data.DataSourceField#getUseLocalDisplayFieldValue useLocalDisplayFieldValue} attribute may be
+     * explicitly      set to false to avoid picking up a display value from the local record altogether.      Instead the
+     * displayField will be used only to derive the display value from      a related record from the optionDataSource</li>
+     * </ul> For more on how FormItems use the displayField property, see {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField FormItem.displayField}.
      *
      * @param displayField New displayField value. Default value is null
      * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
@@ -551,15 +590,30 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * Name of another field in this DataSource that should be used as the display value for this field. <P> Typically used for
-     * editable  {@link com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} fields: the <code>foreignKey</code>
-     * field stores an ID value, and this ID value is the right value to use when editing (typically by a {@link
-     * com.smartgwt.client.widgets.form.fields.SelectItem} with {@link
-     * com.smartgwt.client.widgets.form.fields.SelectItem#getOptionDataSource optionDataSource} set).  However, when the
-     * <code>foreignKey</code> field is viewed read-only, it should display a name, title or other friendly value from the
-     * related record.  In order to accomplish this, a second, hidden field carries the display value, and the
-     * <code>foreignKey</code> field has <code>displayField</code> set to this second, hidden field. <P> For a more in-depth
-     * discussion, see {@link com.smartgwt.client.docs.serverds.DataSourceField#includeFrom includeFrom}.
+     * When records from this dataSource are displayed in a dataBoundComponent such as a {@link
+     * com.smartgwt.client.widgets.grid.ListGrid}, the <code>displayField</code> attribute may be used to cause some  field to
+     * display a value from another field in the record. <P> This is typically used for editable {@link
+     * com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey} fields.  In this scenario, a dataSource field has a
+     * foreignKey field which stores an ID value used to identify records in another, related dataSource. Rather than display
+     * this ID to users, developers may wish to display another, user-friendly field from the related record. This is easy to
+     * achieve by  having a second field on the dataSource which will be populated with the "display value" from this related
+     * dataSource, and using <code>dataSourceField.displayField</code>  to show this value.  The {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#includeFrom includeFrom} feature handles populating this field
+     * automatically for dataSources backed by the {@link com.smartgwt.client.docs.ServerDataIntegration Smart GWT Server}. See
+     * the "Editing included fields" section of the {@link com.smartgwt.client.docs.serverds.DataSourceField#includeFrom
+     * includeFrom} documentation for more on editing included foreignKey fields. <P> Editable dataSourceFields with a
+     * specified <code>displayField</code> and  <code>foreignKey</code> will typically be edited using a {@link
+     * com.smartgwt.client.widgets.form.fields.SelectItem}  or {@link com.smartgwt.client.widgets.form.fields.ComboBoxItem}. In
+     * this case, in addition to identifying the field to use as a static display value within the record being edited,
+     * <code>displayField</code> will also identify which field on the related dataSource to use as a display field when
+     * showing a set of options to the user. This behavior may be modified in a couple of ways: <ul>  <li>A separate field name
+     * can be specified to identify the display field on the      related dataSource using the {@link
+     * com.smartgwt.client.data.DataSourceField#getForeignDisplayField foreignDisplayField} attribute</li>  <li>The {@link
+     * com.smartgwt.client.data.DataSourceField#getUseLocalDisplayFieldValue useLocalDisplayFieldValue} attribute may be
+     * explicitly      set to false to avoid picking up a display value from the local record altogether.      Instead the
+     * displayField will be used only to derive the display value from      a related record from the optionDataSource</li>
+     * </ul> For more on how FormItems use the displayField property, see {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField FormItem.displayField}.
      *
      * @return Current displayField value. Default value is null
      * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
@@ -686,15 +740,17 @@ public class DataSourceField extends DataClass {
      * An optional {@link com.smartgwt.client.docs.FormatString} for this field, for use when  {@link
      * com.smartgwt.client.widgets.DataBoundComponent#exportData exporting} data to spreadsheet formats (XLS and  OOXML/XLSX),
      * XML, JSON or CSV.   You can use this property to override the normal {@link
-     * com.smartgwt.client.data.DataSourceField#getFormat format} of this field, if any, specifically for exports.   <p> Note,
-     * for server-driven exports you can specify default formats for date, time and  datetime fields by specifying properties
-     * <code>export.format.default.date</code>,  <code>export.format.default.time</code> and
-     * <code>export.format.default.datetime</code> in your <code>server.properties</code> file.  These formats will be used for
-     * fields  that do not have a "format" or "exportFormat" property specified in the  <code>.ds.xml</code> file. <p>
-     * Specifically when exporting to spreadsheet formats, the <code>FormatString</code> is translated to the type of format
-     * string used by spreadsheet programs like Excel.  A handful of features are not present in Excel format strings, and some
-     * features behave slightly differently.  These differences are explained below. <p> <h3>Excel cannot handle dates prior to
-     * January 1st 1900</h3> This is a well-known limitation of Excel dates; it is not a formatting issue as such. <p>
+     * com.smartgwt.client.data.DataSourceField#getFormat format} of this field, if any, specifically for exports, for both
+     * server-based and client-driven exports.  <p> Note, for server-driven exports you can specify default formats for date,
+     * time and  datetime fields by specifying properties <code>export.format.default.date</code>, 
+     * <code>export.format.default.time</code> and <code>export.format.default.datetime</code> in your
+     * <code>server.properties</code> file.  Similarly, default formats for float and integer fields can be specified with
+     * <code>export.format.default.float</code> and  <code>export.format.default.integer</code>, respectively.  These formats
+     * will be used for fields that do not have a "format" or "exportFormat" property specified in the  <code>.ds.xml</code>
+     * file. <p> Specifically when exporting to spreadsheet formats, the <code>FormatString</code> is translated to the type of
+     * format string used by spreadsheet programs like Excel.  A handful of features are not present in Excel format strings,
+     * and some features behave slightly differently.  These differences are explained below. <p> <h3>Excel cannot handle dates
+     * prior to January 1st 1900</h3> This is a well-known limitation of Excel dates; it is not a formatting issue as such. <p>
      * <h3>Currency symbols become fixed to the current locale at export time</h3> The placeholder currency symbol "&#x00A4"
      * (\u00A4) in a numeric format string is rendered as the    localized currency symbol returned by GWT's built-in
      * NumberFormat class.  When exporting, the format string provided to Excel contains the currency symbol for the current
@@ -751,7 +807,16 @@ public class DataSourceField extends DataClass {
      * custom Excel formats</h3> Excel limits the number of custom format strings in a single spreadsheet to somewhere between
      * 200 and 250, depending on your locale and language.  Hitting this limit in an export would require hundreds of field
      * definitions, each defining unique <code>FormatStrings</code>.  If you do hit the limit, the only workaround is to use
-     * fewer unique <code>FormatStrings</code>.
+     * fewer unique <code>FormatStrings</code>. <p> <h3>Controlling number format</h3> If we give Excel a formatted number like
+     * "500,000" it will not treat that value as a number, so sums and other basic spreadsheet features won't work. So we use
+     * the heuristic that if your formatted value parses as a number, you probably want it treated as a number in the
+     * spreadsheet, so we give Excel the unformatted numeric value and tell Excel it's a numeric data value. <p> You might
+     * expect that we would give Excel <i>both</i> the formatted value and the numeric value, but this is only possible by
+     * creating what's called a "custom format" for that cell, which as the section above mentions, is limited in that only a
+     * few hundred can be created. <p> With this Excel limitation in mind, it makes sense to just go with the default behavior.
+     * If you decide otherwise, one option is to use  {@link
+     * com.smartgwt.client.data.DSRequest#getExportNumbersAsFormattedString exportNumbersAsFormattedString}, but see the docs
+     * for that property for the drawbacks of doing this.
      *
      * @param exportFormat New exportFormat value. Default value is null
      * @see com.smartgwt.client.data.DataSourceField#setFormat
@@ -765,15 +830,17 @@ public class DataSourceField extends DataClass {
      * An optional {@link com.smartgwt.client.docs.FormatString} for this field, for use when  {@link
      * com.smartgwt.client.widgets.DataBoundComponent#exportData exporting} data to spreadsheet formats (XLS and  OOXML/XLSX),
      * XML, JSON or CSV.   You can use this property to override the normal {@link
-     * com.smartgwt.client.data.DataSourceField#getFormat format} of this field, if any, specifically for exports.   <p> Note,
-     * for server-driven exports you can specify default formats for date, time and  datetime fields by specifying properties
-     * <code>export.format.default.date</code>,  <code>export.format.default.time</code> and
-     * <code>export.format.default.datetime</code> in your <code>server.properties</code> file.  These formats will be used for
-     * fields  that do not have a "format" or "exportFormat" property specified in the  <code>.ds.xml</code> file. <p>
-     * Specifically when exporting to spreadsheet formats, the <code>FormatString</code> is translated to the type of format
-     * string used by spreadsheet programs like Excel.  A handful of features are not present in Excel format strings, and some
-     * features behave slightly differently.  These differences are explained below. <p> <h3>Excel cannot handle dates prior to
-     * January 1st 1900</h3> This is a well-known limitation of Excel dates; it is not a formatting issue as such. <p>
+     * com.smartgwt.client.data.DataSourceField#getFormat format} of this field, if any, specifically for exports, for both
+     * server-based and client-driven exports.  <p> Note, for server-driven exports you can specify default formats for date,
+     * time and  datetime fields by specifying properties <code>export.format.default.date</code>, 
+     * <code>export.format.default.time</code> and <code>export.format.default.datetime</code> in your
+     * <code>server.properties</code> file.  Similarly, default formats for float and integer fields can be specified with
+     * <code>export.format.default.float</code> and  <code>export.format.default.integer</code>, respectively.  These formats
+     * will be used for fields that do not have a "format" or "exportFormat" property specified in the  <code>.ds.xml</code>
+     * file. <p> Specifically when exporting to spreadsheet formats, the <code>FormatString</code> is translated to the type of
+     * format string used by spreadsheet programs like Excel.  A handful of features are not present in Excel format strings,
+     * and some features behave slightly differently.  These differences are explained below. <p> <h3>Excel cannot handle dates
+     * prior to January 1st 1900</h3> This is a well-known limitation of Excel dates; it is not a formatting issue as such. <p>
      * <h3>Currency symbols become fixed to the current locale at export time</h3> The placeholder currency symbol "&#x00A4"
      * (\u00A4) in a numeric format string is rendered as the    localized currency symbol returned by GWT's built-in
      * NumberFormat class.  When exporting, the format string provided to Excel contains the currency symbol for the current
@@ -830,7 +897,16 @@ public class DataSourceField extends DataClass {
      * custom Excel formats</h3> Excel limits the number of custom format strings in a single spreadsheet to somewhere between
      * 200 and 250, depending on your locale and language.  Hitting this limit in an export would require hundreds of field
      * definitions, each defining unique <code>FormatStrings</code>.  If you do hit the limit, the only workaround is to use
-     * fewer unique <code>FormatStrings</code>.
+     * fewer unique <code>FormatStrings</code>. <p> <h3>Controlling number format</h3> If we give Excel a formatted number like
+     * "500,000" it will not treat that value as a number, so sums and other basic spreadsheet features won't work. So we use
+     * the heuristic that if your formatted value parses as a number, you probably want it treated as a number in the
+     * spreadsheet, so we give Excel the unformatted numeric value and tell Excel it's a numeric data value. <p> You might
+     * expect that we would give Excel <i>both</i> the formatted value and the numeric value, but this is only possible by
+     * creating what's called a "custom format" for that cell, which as the section above mentions, is limited in that only a
+     * few hundred can be created. <p> With this Excel limitation in mind, it makes sense to just go with the default behavior.
+     * If you decide otherwise, one option is to use  {@link
+     * com.smartgwt.client.data.DSRequest#getExportNumbersAsFormattedString exportNumbersAsFormattedString}, but see the docs
+     * for that property for the drawbacks of doing this.
      *
      * @return Current exportFormat value. Default value is null
      * @see com.smartgwt.client.data.DataSourceField#getFormat
@@ -864,15 +940,38 @@ public class DataSourceField extends DataClass {
     
 
     /**
-     * Name of another field in a separate dataSource that should be used as the display value for this field in the case where
-     * a <code>foreignKey</code> relationship exists. <P> This property is useful for fields being edited in a FormItem where
-     * options are being retrieved from an {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
-     * FormItem.optionDataSource}, for the case where a separate {@link
-     * com.smartgwt.client.data.DataSourceField#getDisplayField displayField} name is used within the local dataSource than the
-     * field name for the display field within the foreign dataSource. <P> See {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getForeignDisplayField FormItem.foreignDisplayField} for more on this,
-     * and see  {@link com.smartgwt.client.docs.serverds.DataSourceField#includeFrom includeFrom} for a discussion about
-     * picking up dataSource field values from a related dataSource.
+     * Name of another field in a separate dataSource that should be used as the display
+     *  value for this field in the case where a <code>foreignKey</code> relationship
+     *  exists.
+     *  <P>
+     *  For a general overview on picking up display values from a separate field,
+     *  see {@link com.smartgwt.client.data.DataSourceField#getDisplayField displayField} property.
+     *  <P>
+     *  The <code>foreignDisplayField</code> property is useful for editable fields, where the 
+     *  name of the display field within the record being edited differs from the display field 
+     *  for related records in the option dataSource.<br>
+     *  For example consider a "countryDS" dataSource with the following fields:
+     *  <pre>
+     *   &lt;field name="id"     type="sequence"   hidden="true"     primaryKey="true" /&gt;
+     *   &lt;field name="name"   type="text"       title="Country"   required="true" /&gt;
+     *  </pre>
+     *  ...and a "city" dataSource which uses a foreignKey relationship identify associated
+     *  country records:
+     *  <pre>
+     *   &lt;field name="id"        type="sequence" hidden="true"   primaryKey="true" /&gt;
+     *   &lt;field name="name"      type="text"     title="City"    required="true" /&gt;
+     *   &lt;field name="countryId" type="integer"  editorType="SelectItem" 
+     *              foreignKey="countryDS.id" 
+     *              displayField="countryName" foreignDisplayField="name" title="Country" /&gt;
+     *   &lt;field name="countryName" includeFrom="countryDS.name"  hidden="true"   /&gt;
+     *  </pre>
+     *  A DynamicForm bound to this "city" dataSource would display a SelectItem editor by
+     *  default for the country field. The initial display value would be the local value from
+     *  the "countryName" field, populated from the related countryDS automatically via the
+     *  {@link com.smartgwt.client.docs.serverds.DataSourceField#includeFrom includeFrom} feature.<br>
+     *  If the user showed the drop-down list of options for this field, the display values
+     *  within that list would be picked up from the "name" field values for the related
+     *  "countryDS" records.
      *
      * @param foreignDisplayField New foreignDisplayField value. Default value is null
      * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
@@ -882,15 +981,38 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * Name of another field in a separate dataSource that should be used as the display value for this field in the case where
-     * a <code>foreignKey</code> relationship exists. <P> This property is useful for fields being edited in a FormItem where
-     * options are being retrieved from an {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
-     * FormItem.optionDataSource}, for the case where a separate {@link
-     * com.smartgwt.client.data.DataSourceField#getDisplayField displayField} name is used within the local dataSource than the
-     * field name for the display field within the foreign dataSource. <P> See {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getForeignDisplayField FormItem.foreignDisplayField} for more on this,
-     * and see  {@link com.smartgwt.client.docs.serverds.DataSourceField#includeFrom includeFrom} for a discussion about
-     * picking up dataSource field values from a related dataSource.
+     * Name of another field in a separate dataSource that should be used as the display
+     *  value for this field in the case where a <code>foreignKey</code> relationship
+     *  exists.
+     *  <P>
+     *  For a general overview on picking up display values from a separate field,
+     *  see {@link com.smartgwt.client.data.DataSourceField#getDisplayField displayField} property.
+     *  <P>
+     *  The <code>foreignDisplayField</code> property is useful for editable fields, where the 
+     *  name of the display field within the record being edited differs from the display field 
+     *  for related records in the option dataSource.<br>
+     *  For example consider a "countryDS" dataSource with the following fields:
+     *  <pre>
+     *   &lt;field name="id"     type="sequence"   hidden="true"     primaryKey="true" /&gt;
+     *   &lt;field name="name"   type="text"       title="Country"   required="true" /&gt;
+     *  </pre>
+     *  ...and a "city" dataSource which uses a foreignKey relationship identify associated
+     *  country records:
+     *  <pre>
+     *   &lt;field name="id"        type="sequence" hidden="true"   primaryKey="true" /&gt;
+     *   &lt;field name="name"      type="text"     title="City"    required="true" /&gt;
+     *   &lt;field name="countryId" type="integer"  editorType="SelectItem" 
+     *              foreignKey="countryDS.id" 
+     *              displayField="countryName" foreignDisplayField="name" title="Country" /&gt;
+     *   &lt;field name="countryName" includeFrom="countryDS.name"  hidden="true"   /&gt;
+     *  </pre>
+     *  A DynamicForm bound to this "city" dataSource would display a SelectItem editor by
+     *  default for the country field. The initial display value would be the local value from
+     *  the "countryName" field, populated from the related countryDS automatically via the
+     *  {@link com.smartgwt.client.docs.serverds.DataSourceField#includeFrom includeFrom} feature.<br>
+     *  If the user showed the drop-down list of options for this field, the display values
+     *  within that list would be picked up from the "name" field values for the related
+     *  "countryDS" records.
      *
      * @return Current foreignDisplayField value. Default value is null
      * @see com.smartgwt.client.docs.DataSourceRelations DataSourceRelations overview and related methods
@@ -911,16 +1033,19 @@ public class DataSourceField extends DataClass {
      *  For a foreignKey within the same dataSource, you can omit the <code>dataSourceId</code>
      *  and just specify <code><i>fieldName</i></code>.  For example, to create a tree relationship
      *  within a DataSource:
+     *  
+     *  
      *  <pre>
-     *    isc.DataSource.create({
-     *      ID:"supplyItem",
-     *      fields : [
-     *        {name:"itemId", type:"sequence", primaryKey:true},
-     *        {name:"parentId", type:"integer", foreignKey:"itemId"},
-     *        ...
-     *      ]
-     *    });
+     *       DataSource supplyItem = new DataSource();
+     *       DataSourceField itemId = new DataSourceField();
+     *       itemId.setType(FieldType.SEQUENCE);
+     *       itemId.setPrimaryKey(true);
+     *       DataSourceField parentId = new DataSourceField();
+     *       parentId.setType(FieldType.INTEGER);
+     *       parentId.setForeignKey("itemId");
+     *       supplyItem.setFields(itemId, parentId);
      *  </pre>
+     *  
      *  <P>
      *  <code>foreignKey</code> declarations also allow other automatic behaviors by
      * {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponents}, such as {@link
@@ -948,16 +1073,19 @@ public class DataSourceField extends DataClass {
      *  For a foreignKey within the same dataSource, you can omit the <code>dataSourceId</code>
      *  and just specify <code><i>fieldName</i></code>.  For example, to create a tree relationship
      *  within a DataSource:
+     *  
+     *  
      *  <pre>
-     *    isc.DataSource.create({
-     *      ID:"supplyItem",
-     *      fields : [
-     *        {name:"itemId", type:"sequence", primaryKey:true},
-     *        {name:"parentId", type:"integer", foreignKey:"itemId"},
-     *        ...
-     *      ]
-     *    });
+     *       DataSource supplyItem = new DataSource();
+     *       DataSourceField itemId = new DataSourceField();
+     *       itemId.setType(FieldType.SEQUENCE);
+     *       itemId.setPrimaryKey(true);
+     *       DataSourceField parentId = new DataSourceField();
+     *       parentId.setType(FieldType.INTEGER);
+     *       parentId.setForeignKey("itemId");
+     *       supplyItem.setFields(itemId, parentId);
      *  </pre>
+     *  
      *  <P>
      *  <code>foreignKey</code> declarations also allow other automatic behaviors by
      * {@link com.smartgwt.client.widgets.DataBoundComponent DataBoundComponents}, such as {@link
@@ -2188,12 +2316,12 @@ public class DataSourceField extends DataClass {
      * to a loss of precision.  This setting overrides both the  <code>stringInBrowser</code> field setting and the 
      * <code>datasource.defaultStringInBrowser server.properties</code> flag. <p> <b><code>stringInBrowser</code> and
      * client-side DataSources</b> <p> For DataSources that are not based on the Smart GWT Server, the client-side behaviors
-     * described above (such as leaving  user input in string form if precision would be lost) are active by default.   <p> In
+     * described above (such as leaving user input in string form if precision would be lost) are active by default. <p> In
      * addition, if {@link com.smartgwt.client.data.DataSource#getDataFormat dataSource.dataFormat:"xml"} is used, values that
-     * would lose precision remain as strings.  For JSON,  if behavior similar to <code>stringInBrowser</code> is desired, your
-     * server response must send the values as JSON strings  rather than JSON numeric literals. <p> You can use {@link
+     * would lose precision remain as strings.  For JSON, if behavior similar to <code>stringInBrowser</code> is desired, your
+     * server response must send the values as JSON strings rather than JSON numeric literals. <p> You can use {@link
      * com.smartgwt.client.data.DataSource#defaultStringInBrowser defaultStringInBrowser} to disable these behaviors. 
-     * <b>NOTE:</b> don't use this setting if  you are using the Smart GWT Server, use the server.properties approach described
+     * <b>NOTE:</b> don't use this setting if you are using the Smart GWT Server, use the server.properties approach described
      * above instead.
      *
      * @param stringInBrowser New stringInBrowser value. Default value is null
@@ -2246,12 +2374,12 @@ public class DataSourceField extends DataClass {
      * to a loss of precision.  This setting overrides both the  <code>stringInBrowser</code> field setting and the 
      * <code>datasource.defaultStringInBrowser server.properties</code> flag. <p> <b><code>stringInBrowser</code> and
      * client-side DataSources</b> <p> For DataSources that are not based on the Smart GWT Server, the client-side behaviors
-     * described above (such as leaving  user input in string form if precision would be lost) are active by default.   <p> In
+     * described above (such as leaving user input in string form if precision would be lost) are active by default. <p> In
      * addition, if {@link com.smartgwt.client.data.DataSource#getDataFormat dataSource.dataFormat:"xml"} is used, values that
-     * would lose precision remain as strings.  For JSON,  if behavior similar to <code>stringInBrowser</code> is desired, your
-     * server response must send the values as JSON strings  rather than JSON numeric literals. <p> You can use {@link
+     * would lose precision remain as strings.  For JSON, if behavior similar to <code>stringInBrowser</code> is desired, your
+     * server response must send the values as JSON strings rather than JSON numeric literals. <p> You can use {@link
      * com.smartgwt.client.data.DataSource#defaultStringInBrowser defaultStringInBrowser} to disable these behaviors. 
-     * <b>NOTE:</b> don't use this setting if  you are using the Smart GWT Server, use the server.properties approach described
+     * <b>NOTE:</b> don't use this setting if you are using the Smart GWT Server, use the server.properties approach described
      * above instead.
      *
      * @return Current stringInBrowser value. Default value is null
@@ -2397,15 +2525,17 @@ public class DataSourceField extends DataClass {
     
 
     /**
-     * If this field has a specified {@link com.smartgwt.client.data.DataSourceField#getDisplayField displayField}, this
-     * attribute allows you to explicitly tell editor components to pick up the display-field value from the record currently
-     * being edited, rather than fetching against a specified {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource FormItem.optionDataSource}. <P> See {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue FormItem.useLocalDisplayFieldValue} for
-     * more detail. <P> Note that for the common pattern described {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#includeFrom here} of having an editable foreignKey field with a static
-     * display value (derived from a displayField with 'includeFrom' set), the framework will automatically default this
-     * property to true if not explicitly specified in the dataSource configuration file.
+     * The {@link com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue
+     * FormItem.useLocalDisplayFieldValue} attribute may be specified within a dataSource configuration. <P> This property
+     * governs whether, when displaying a record in an editor component, the <code>displayField</code> value for this field
+     * should be picked up directly from the record value (as opposed to being retrieved via an explicit fetch operation
+     * against the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource FormItem.optionDataSource}). See
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue FormItem.useLocalDisplayFieldValue}
+     * for further details. <P> If not explicitly set, dataSources backed by the  {@link
+     * com.smartgwt.client.docs.ServerDataIntegration Smart GWT server} will set this property to true automatically for fields
+     * where the specified {@link com.smartgwt.client.data.DataSourceField#getDisplayField displayField} values are retrieved
+     * from another dataSource using the {@link com.smartgwt.client.docs.serverds.DataSourceField#includeFrom includeFrom} 
+     * feature.
      *
      * @param useLocalDisplayFieldValue New useLocalDisplayFieldValue value. Default value is null
      */
@@ -2414,15 +2544,17 @@ public class DataSourceField extends DataClass {
     }
 
     /**
-     * If this field has a specified {@link com.smartgwt.client.data.DataSourceField#getDisplayField displayField}, this
-     * attribute allows you to explicitly tell editor components to pick up the display-field value from the record currently
-     * being edited, rather than fetching against a specified {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource FormItem.optionDataSource}. <P> See {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue FormItem.useLocalDisplayFieldValue} for
-     * more detail. <P> Note that for the common pattern described {@link
-     * com.smartgwt.client.docs.serverds.DataSourceField#includeFrom here} of having an editable foreignKey field with a static
-     * display value (derived from a displayField with 'includeFrom' set), the framework will automatically default this
-     * property to true if not explicitly specified in the dataSource configuration file.
+     * The {@link com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue
+     * FormItem.useLocalDisplayFieldValue} attribute may be specified within a dataSource configuration. <P> This property
+     * governs whether, when displaying a record in an editor component, the <code>displayField</code> value for this field
+     * should be picked up directly from the record value (as opposed to being retrieved via an explicit fetch operation
+     * against the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource FormItem.optionDataSource}). See
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue FormItem.useLocalDisplayFieldValue}
+     * for further details. <P> If not explicitly set, dataSources backed by the  {@link
+     * com.smartgwt.client.docs.ServerDataIntegration Smart GWT server} will set this property to true automatically for fields
+     * where the specified {@link com.smartgwt.client.data.DataSourceField#getDisplayField displayField} values are retrieved
+     * from another dataSource using the {@link com.smartgwt.client.docs.serverds.DataSourceField#includeFrom includeFrom} 
+     * feature.
      *
      * @return Current useLocalDisplayFieldValue value. Default value is null
      */
@@ -2459,20 +2591,22 @@ public class DataSourceField extends DataClass {
     
 
     /**
-     * List of operators valid on this field.   <P> If not specified, all operators that are valid for the field type are
-     * allowed.
+     * Set of search-operators valid for this field.   <P> If not specified, all operators that are valid for the field type
+     * are allowed.
      *
      * @param validOperators New validOperators value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public void setValidOperators(OperatorId... validOperators) {
         setAttribute("validOperators", validOperators);
     }
 
     /**
-     * List of operators valid on this field.   <P> If not specified, all operators that are valid for the field type are
-     * allowed.
+     * Set of search-operators valid for this field.   <P> If not specified, all operators that are valid for the field type
+     * are allowed.
      *
      * @return Current validOperators value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public OperatorId[] getValidOperators()  {
         final String[] strings = getAttributeAsStringArray("validOperators");

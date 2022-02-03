@@ -26,8 +26,8 @@ package com.smartgwt.client.docs;
  * <li>Titanium.UI.createTab</li> <li>Titanium.UI.createTabGroup</li>
  * <li>Titanium.UI.createWebView</li> <li>Titanium.UI.createWindow</li>
  * <li>Titanium.UI.setBackgroundColor</li> </ul> <P> The following Smart GWT Components are used
- * <ul> <li>isc.DataSource</li> <li>isc.ListGrid</li>  </ul> <P> The following Smart GWT Resources
- * are bundled in the Titanium application <ul> <li>ISC_Containers.js</li> <li>ISC_Core.js</li>
+ * <ul>   <li>DataSource</li> <li>ListGrid</li>   </ul> <P> The following Smart GWT Resources are
+ * bundled in the Titanium application <ul> <li>ISC_Containers.js</li> <li>ISC_Core.js</li>
  * <li>ISC_DataBinding.js</li> <li>ISC_Foundation.js</li> <li>ISC_Grids.js</li>
  * <li>load_skin.js</li> <li>skins/Mobile/images/black.gif</li>
  * <li>skins/Mobile/images/blank.gif</li> <li>skins/Mobile/images/checked.png</li>

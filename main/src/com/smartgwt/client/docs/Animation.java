@@ -14,9 +14,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#animateHide
  * @see com.smartgwt.client.widgets.Canvas#loadingImageSrc
  * @see com.smartgwt.client.widgets.Canvas#loadingImageSize
- * @see com.smartgwt.client.widgets.Window#getAnimateMinimize
- * @see com.smartgwt.client.widgets.Window#getMinimizeTime
- * @see com.smartgwt.client.widgets.Window#getMinimizeAcceleration
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAnimateFolders
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAnimateFolderMaxRows
  * @see com.smartgwt.client.widgets.grid.ListGrid#getAnimateFolderTime
@@ -29,6 +26,9 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderTime
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderSpeed
  * @see com.smartgwt.client.widgets.tree.TreeGrid#getAnimateFolderEffect
+ * @see com.smartgwt.client.widgets.Window#getAnimateMinimize
+ * @see com.smartgwt.client.widgets.Window#getMinimizeTime
+ * @see com.smartgwt.client.widgets.Window#getMinimizeAcceleration
  * @see com.smartgwt.client.widgets.Canvas#getAnimateTime
  * @see com.smartgwt.client.widgets.Canvas#getAnimateAcceleration
  * @see com.smartgwt.client.widgets.Canvas#getAnimateShowEffect
@@ -46,6 +46,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#getAnimateScrollAcceleration
  * @see com.smartgwt.client.widgets.Canvas#getAnimateShowAcceleration
  * @see com.smartgwt.client.widgets.Canvas#getAnimateHideAcceleration
+ * @see com.smartgwt.client.widgets.Canvas#getAnimateResizeLayoutMode
  * @see com.smartgwt.client.widgets.layout.Layout#getAnimateMembers
  * @see com.smartgwt.client.widgets.layout.Layout#getAnimateMemberTime
  * @see com.smartgwt.client.widgets.layout.SectionStack#getAnimateSections

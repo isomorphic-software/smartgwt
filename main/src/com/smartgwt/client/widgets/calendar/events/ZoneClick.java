@@ -74,15 +74,13 @@ import com.smartgwt.client.util.workflow.*;
 import com.google.gwt.event.shared.*;
 import com.google.gwt.event.shared.HasHandlers;
 
-/**
- * @deprecated Please use setEventHoverHTMLCustomizer instead, this will be removed in a future release.
- */
-public class EventHoverHTMLEvent extends BrowserEvent<EventHoverHTMLHandler>  {
+public class ZoneClick extends BrowserEvent<ZoneClickHandler>  implements Cancellable {
+    private boolean cancel = false;
 
     /**
      * Handler type.
      */
-    private static Type<EventHoverHTMLHandler> TYPE;
+    private static Type<ZoneClickHandler> TYPE;
 
     /**
      * Returns the {@link com.smartgwt.client.widgets.Canvas Canvas} firing the event.
@@ -101,10 +99,10 @@ public class EventHoverHTMLEvent extends BrowserEvent<EventHoverHTMLHandler>  {
      * @param source the source of the handlers
      * @param jsObj the native event
      */
-    public static <S extends HasEventHoverHTMLHandlers & HasHandlers> void fire(
+    public static <S extends HasZoneClickHandlers & HasHandlers> void fire(
         S source, JavaScriptObject jsObj) {
         if (TYPE != null) {
-            EventHoverHTMLEvent event = new EventHoverHTMLEvent(jsObj);
+            ZoneClick event = new ZoneClick(jsObj);
             source.fireEvent(event);
         }
     }
@@ -114,16 +112,16 @@ public class EventHoverHTMLEvent extends BrowserEvent<EventHoverHTMLHandler>  {
      *
      * @return returns the handler type
      */
-    public static Type<EventHoverHTMLHandler> getType() {
+    public static Type<ZoneClickHandler> getType() {
         if (TYPE == null) {
-            TYPE = new Type<EventHoverHTMLHandler>();
+            TYPE = new Type<ZoneClickHandler>();
         }
         return TYPE;
     }
 
     @Override
-    protected void dispatch(EventHoverHTMLHandler handler) {
-        handler.onEventHoverHTML(this);
+    protected void dispatch(ZoneClickHandler handler) {
+        handler.onZoneClick(this);
     }
 
     // Because of type erasure, our static type is
@@ -131,58 +129,51 @@ public class EventHoverHTMLEvent extends BrowserEvent<EventHoverHTMLHandler>  {
 
     @SuppressWarnings("unchecked")
     @Override
-    public final Type<EventHoverHTMLHandler> getAssociatedType() {
+    public final Type<ZoneClickHandler> getAssociatedType() {
         return TYPE;
     }
 
-    public EventHoverHTMLEvent(JavaScriptObject jsObj) {
+    public ZoneClick(JavaScriptObject jsObj) {
         super(jsObj);
     }
 
+    /**
+     * Call this method to cancel the default action
+     */
+    public void cancel() {
+        cancel = true;
+    }
+
+    /**
+     * @return true if cancelled
+     */
+    public boolean isCancelled() {
+        return cancel;
+    }
 
 	/**
-     * The event being hovered
+     * zone that was clicked on
      *
-     * @return The event being hovered
+     * @return zone that was clicked on
      */
-    public native CalendarEvent getEvent() /*-{
+    public native CalendarEvent getZoneEvent() /*-{
         var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var ret = self.event;
+        var ret = self.zoneEvent;
         if(ret == null) return null;
         return @com.smartgwt.client.widgets.calendar.CalendarEvent::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
     }-*/;
 
 	/**
-     * the event canvas being hovered over
+     * view where the event's canvas was clicked
      *
-     * @return the event canvas being hovered over
+     * @return view where the event's canvas was clicked
      */
-    public native EventCanvas getEventCanvas() /*-{
+    public native ViewName getViewName() /*-{
         var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var ret = self.eventCanvas;
-        return @com.smartgwt.client.widgets.Canvas::getByJSObject(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-    }-*/;
-
-	/**
-     * the CalendarView in which the eventCanvas lives
-     *
-     * @return the CalendarView in which the eventCanvas lives
-     */
-    public native CalendarView getView() /*-{
-        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var ret = self.view;
-        return @com.smartgwt.client.widgets.Canvas::getByJSObject(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
-    }-*/;
-
-	/**
-     * the default HTML to show when hovering over the passed event
-     *
-     * @return the default HTML to show when hovering over the passed event
-     */
-    public native String getDefaultValue() /*-{
-        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var ret = self.defaultValue;
-        return ret == null ? null : ret;
+        var ret = self.viewName;
+        if(ret == null) return null;
+        var enumValues = @com.smartgwt.client.types.ViewName::values()();
+        return @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(enumValues, ret);
     }-*/;
 
 }

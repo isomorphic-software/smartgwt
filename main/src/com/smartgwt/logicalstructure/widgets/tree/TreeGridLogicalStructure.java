@@ -76,6 +76,9 @@ public class TreeGridLogicalStructure extends ListGridLogicalStructure {
     public String dropIconSuffix;
     public String extraIconGap;
     public String folderIcon;
+    public String folderIconPadding;
+    public String iconPadding;
+    public String iconPaddingProperty;
     public String iconSize;
     public String indentRecordComponents;
     public String indentSize;
@@ -104,8 +107,10 @@ public class TreeGridLogicalStructure extends ListGridLogicalStructure {
     public String showCustomIconSelected;
     public String showDisabledSelectionCheckbox;
     public String showDropIcons;
+    public String showFolderIcons;
     public String showFullConnectors;
     public String showLoadingIcons;
+    public String showNodeIcons;
     public String showOpener;
     public String showOpenIcons;
     public String showPartialSelection;

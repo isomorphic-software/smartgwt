@@ -1393,11 +1393,9 @@ public class DateUtil {
     }-*/;
 
     /**
-     * Set up a system wide default normal time formatting function.
-     * After calling this method, subsequent calls to <code>isc.Time.toTime()</code> will return
-     * a string formatted according to this formatter specification.
-     * <b>Note</b>: this will be the standard time format used by SmartGWT components.
-     * The initial default normal time display formatter is <code>DateUtil.TOTIME</code>.
+     * Set up a system wide default normal time formatting function. 
+     * After calling this method, times displayed in SmartGWT components will use the specified 
+     * format. The initial default normal time display formatter is <code>DateUtil.TOTIME</code>. 
      * <P>
      * SmartGWT includes several built-in DateDisplayFormatters for common formats - see
      * {@link DateDisplayFormatter} for details.

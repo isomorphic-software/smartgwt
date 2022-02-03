@@ -629,7 +629,7 @@ public class Tree extends RecordList implements com.smartgwt.client.widgets.tree
      *  auto-created for you.  You can then call {@link com.smartgwt.client.widgets.tree.Tree#add add()} to construct the tree.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
-     * Set the root node of the tree.
+     * Set the root node of the tree.  Called automatically on this Tree during initialization and on the Tree returned from a call to {@link com.smartgwt.client.widgets.tree.Tree#duplicate duplicate()}.
      *
      * @param root new root node. Default value is null
      * @see com.smartgwt.client.widgets.tree.Tree#setModelType

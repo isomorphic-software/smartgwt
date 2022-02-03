@@ -33,6 +33,16 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("batchUploader_cancelButtonTitle")
   String batchUploader_cancelButtonTitle();
 
+  /* batchUploader_previousButtonTitle value changed on Fri Jan  7 07:29:39 2022
+   Old value was 'Previous'.
+   See definition later in this file for new value.
+  */
+
+  /* batchUploader_nextButtonTitle value changed on Fri Jan  7 07:29:39 2022
+   Old value was 'Next'.
+   See definition later in this file for new value.
+  */
+
   /**
    * Translated "Upload File".
    * 
@@ -133,7 +143,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("batchUploader_errorMessageUnterminatedQuote")
   String batchUploader_errorMessageUnterminatedQuote();
 
-  /* batchUploader_errorMessageRowsNotParsed value changed on Sat Jan  8 03:28:26 2022
+  /* batchUploader_errorMessageRowsNotParsed value changed on Fri Jan  7 07:29:39 2022
    Old value was 'Some rows could not be parsed; the grid below shows $goodRowCount of $totalRows. Row number $firstBadRow was the first row to fail to be parsed.'.
    See definition later in this file for new value.
   */
@@ -430,6 +440,15 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String formItem_loadingDisplayValue();
 
   /**
+   * Translated "None".
+   * 
+   * @return translated "None"
+   */
+  @DefaultMessage("None")
+  @Key("formItem_nullOriginalValueText")
+  String formItem_nullOriginalValueText();
+
+  /**
    * Translated "Click to select a new color".
    * 
    * @return translated "Click to select a new color"
@@ -717,7 +736,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("dataBoundComponent_removeFormulaFieldText")
   String dataBoundComponent_removeFormulaFieldText();
 
-  /* dataBoundComponent_removeSummaryFieldText value changed on Sat Jan  8 03:28:26 2022
+  /* dataBoundComponent_removeSummaryFieldText value changed on Fri Jan  7 07:29:39 2022
    Old value was 'Remove summary column..'.
    See definition later in this file for new value.
   */
@@ -795,7 +814,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("dataSource_maxFileSizeExceededMessage")
   String dataSource_maxFileSizeExceededMessage();
 
-  /* dataSource_requiredFileMessage value changed on Sat Jan  8 03:28:26 2022
+  /* dataSource_requiredFileMessage value changed on Fri Jan  7 07:29:39 2022
    Old value was '''$uploadedFileName'' was empty, but empty files are not allowed'.
    See definition later in this file for new value.
   */
@@ -1968,7 +1987,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("dialog_YesButtonTitle")
   String dialog_YesButtonTitle();
 
-  /* dynamicForm_errorsPreamble value changed on Sat Jan  8 03:28:26 2022
+  /* dynamicForm_errorsPreamble value changed on Fri Jan  7 07:29:39 2022
    Old value was 'The following errors were found'.
    See definition later in this file for new value.
   */
@@ -2263,12 +2282,12 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   String filterClause_valueItemTextHint();
   
   
-    /* filterClause_valueItemListHint value changed on Sat Jan  8 03:28:26 2022
+    /* filterClause_valueItemListHint value changed on Fri Jan  7 07:29:39 2022
    Old value was 'Choose a value'.
    See definition later in this file for new value.
   */
 
-    /* filterClause_valueItemFieldHint value changed on Sat Jan  8 03:28:26 2022
+    /* filterClause_valueItemFieldHint value changed on Fri Jan  7 07:29:39 2022
    Old value was 'Choose a field'.
    See definition later in this file for new value.
   */
@@ -2507,7 +2526,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("formulaBuilder_defaultNewFieldTitle")
   String formulaBuilder_defaultNewFieldTitle();
 
-  /* formulaBuilder_helpTextIntro value changed on Sat Jan  8 03:28:26 2022
+  /* formulaBuilder_helpTextIntro value changed on Fri Jan  7 07:29:39 2022
    Old value was 'Building Formula Columns<p>For basic arithmetic, type in symbols (+, -, *, /, %, //) directly.<p>The following functions are available:'.
    See definition later in this file for new value.
   */
@@ -2656,7 +2675,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("formulaBuilder_defaultErrorText")
   String formulaBuilder_defaultErrorText();
   
-  /* formulaBuilder_saveAddAnotherButtonTitle value changed on Sat Jan  8 03:28:26 2022
+  /* formulaBuilder_saveAddAnotherButtonTitle value changed on Fri Jan  7 07:29:39 2022
    Old value was 'Save & Add Another'.
    See definition later in this file for new value.
   */
@@ -3184,7 +3203,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("listGrid_autoFitFieldText")
   String listGrid_autoFitFieldText();
 
-  /* listGrid_cancelEditingConfirmationMessage value changed on Sat Jan  8 03:28:26 2022
+  /* listGrid_cancelEditingConfirmationMessage value changed on Fri Jan  7 07:29:39 2022
    Old value was 'Cancelling this edit will clear unsaved edit values for this record. Continue?'.
    See definition later in this file for new value.
   */
@@ -3252,7 +3271,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("listGrid_configureGroupingText")
   String listGrid_configureGroupingText();
 
-  /* listGrid_confirmDiscardEditsMessage value changed on Sat Jan  8 03:28:26 2022
+  /* listGrid_confirmDiscardEditsMessage value changed on Fri Jan  7 07:29:39 2022
    Old value was 'This action will discard all unsaved edited values for this list.'.
    See definition later in this file for new value.
   */
@@ -3337,6 +3356,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Group by $title")
   @Key("listGrid_groupByText")
   String listGrid_groupByText();
+
+  /* listGrid_loadingDataMessage value changed on Fri Jan  7 07:29:39 2022
+   Old value was 'Loading data...'.
+   See definition later in this file for new value.
+  */
 
   /**
    * Translated "This grid is limited to $count simultaneously expanded records.  Please collapse some expanded records and retry.".
@@ -3427,6 +3451,11 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("Ungroup")
   @Key("listGrid_ungroupText")
   String listGrid_ungroupText();
+
+  /* listGrid_asynchGroupingPrompt value changed on Fri Jan  7 07:29:39 2022
+   Old value was 'Grouping data...'.
+   See definition later in this file for new value.
+  */
 
   /**
    * Translated "Replace value with".
@@ -4915,7 +4944,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("richTextEditor_boldSelectionPrompt")
   String richTextEditor_boldSelectionPrompt();
 
-  /* richTextEditor_colorPrompt value changed on Sat Jan  8 03:28:26 2022
+  /* richTextEditor_colorPrompt value changed on Fri Jan  7 07:29:39 2022
    Old value was 'Set selection color'.
    See definition later in this file for new value.
   */
@@ -5028,7 +5057,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("richTextEditor_listPropertiesWarningText")
   String richTextEditor_listPropertiesWarningText();
 
-  /* richTextEditor_linkPrompt value changed on Sat Jan  8 03:28:26 2022
+  /* richTextEditor_linkPrompt value changed on Fri Jan  7 07:29:39 2022
    Old value was 'Edit hyperlink'.
    See definition later in this file for new value.
   */
@@ -5160,10 +5189,14 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("selectOtherItem_selectOtherPrompt")
   String selectOtherItem_selectOtherPrompt();
 
-  /* selection_selectionRangeNotLoadedMessage value changed on Sat Jan  8 03:28:26 2022
-   Old value was 'Can''t select that many records at once.<br><br>Please try working in smaller batches.'.
-   See definition later in this file for new value.
-  */
+  /**
+   * Translated "Some records in the range you selected are not loaded.  Scroll through the entire range before selecting it.".
+   * 
+   * @return translated "Some records in the range you selected are not loaded.  Scroll through the entire range before selecting it."
+   */
+  @DefaultMessage("Some records in the range you selected are not loaded.  Scroll through the entire range before selecting it.")
+  @Key("selection_selectionRangeNotLoadedMessage")
+  String selection_selectionRangeNotLoadedMessage();
 
   /**
    * Translated "Auto hide fields used in summary".
@@ -5218,6 +5251,25 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @DefaultMessage("pm")
   @Key("time_PMIndicator")
   String time_PMIndicator();
+
+  /**
+   * Translated ":".
+   * 
+   * @return translated ":"
+   */
+  @DefaultMessage(":")
+  @Key("time_defaultTimeSeparator")
+  String time_defaultTimeSeparator();
+  
+  /**
+   * Translated ".".
+   * 
+   * @return translated "."
+   */
+  @DefaultMessage(".")
+  @Key("time_defaultMillisecondSeparator")
+  String time_defaultMillisecondSeparator();
+
 
   /**
    * Translated "You can''t drag an item into one of it''s children.".
@@ -5436,7 +5488,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   @Key("validator_notARegex")
   String validator_notARegex();
 
-  /* validator_notAString value changed on Sat Jan  8 03:28:26 2022
+  /* validator_notAString value changed on Fri Jan  7 07:29:39 2022
    Old value was 'Must be a String.'.
    See definition later in this file for new value.
   */
@@ -5533,16 +5585,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
   
 
 
-  /*  Generated on Mon May 24 08:58:36 2021 */
-
-  /**
-   * Translated "&nbsp;"
-   *
-   * @return translated "&nbsp;"
-   */
-   @DefaultMessage("&nbsp;")
-   @Key("gridRenderer_emptyCellValue")
-   String gridRenderer_emptyCellValue();
+  /*  Generated on Mon May 24 08:33:33 2021 */
 
   /**
    * Translated "Name"
@@ -5698,6 +5741,60 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    String facetChart_proportionalAxisLabel();
 
   /**
+   * Translated "This value comes from the ''$fieldName'' field in the nearby component [$componentName]"
+   *
+   * @return translated "This value comes from the ''$fieldName'' field in the nearby component [$componentName]"
+   */
+   @DefaultMessage("This value comes from the ''$fieldName'' field in the nearby component [$componentName]")
+   @Key("formulaBuilder_nearbyComponentFieldPrompt")
+   String formulaBuilder_nearbyComponentFieldPrompt();
+
+  /**
+   * Translated "This value comes from the ''$fieldName'' field in the current component [$componentName]"
+   *
+   * @return translated "This value comes from the ''$fieldName'' field in the current component [$componentName]"
+   */
+   @DefaultMessage("This value comes from the ''$fieldName'' field in the current component [$componentName]")
+   @Key("formulaBuilder_currentComponentFieldPrompt")
+   String formulaBuilder_currentComponentFieldPrompt();
+
+  /**
+   * Translated "This value comes from the ''$fieldName'' field in any nearby component that uses DataSource ''$dataSource''. Values that are edited by end users are preferred."
+   *
+   * @return translated "This value comes from the ''$fieldName'' field in any nearby component that uses DataSource ''$dataSource''. Values that are edited by end users are preferred."
+   */
+   @DefaultMessage("This value comes from the ''$fieldName'' field in any nearby component that uses DataSource ''$dataSource''. Values that are edited by end users are preferred.")
+   @Key("formulaBuilder_dataSourceFieldPrompt")
+   String formulaBuilder_dataSourceFieldPrompt();
+
+  /**
+   * Translated "&nbsp;"
+   *
+   * @return translated "&nbsp;"
+   */
+   @DefaultMessage("&nbsp;")
+   @Key("gridRenderer_emptyCellValue")
+   String gridRenderer_emptyCellValue();
+
+  /**
+   * Translated "Cancel"
+   *
+   * @return translated "Cancel"
+   */
+   @DefaultMessage("Cancel")
+   @Key("dynamicPropertyEditorItem_cancelButtonTitle")
+   String dynamicPropertyEditorItem_cancelButtonTitle();
+
+  /**
+   * Translated "Save"
+   *
+   * @return translated "Save"
+   */
+   @DefaultMessage("Save")
+   @Key("dynamicPropertyEditorItem_saveButtonTitle")
+   String dynamicPropertyEditorItem_saveButtonTitle();
+
+  /**
    * Translated "Dynamic: "
    *
    * @return translated "Dynamic: "
@@ -5736,7 +5833,8 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
 
 
 
-  /*  Generated on Tue May 25 02:40:35 2021 */
+
+  /*  Generated on Tue May 25 01:48:54 2021 */
 
   /**
    * Translated "Must be a whole number, percentage, ''*'' or ''auto''"
@@ -5751,7 +5849,7 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
 
 
 
-  /*  Generated on Sat Jan  8 03:28:26 2022 */
+  /*  Generated on Fri Jan  7 07:29:39 2022 */
 
   /**
    * Translated "Remove summary column..."
@@ -5772,15 +5870,6 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    String dataSource_requiredFileMessage();
 
   /**
-   * Translated "Can''t select that many records at once.&lt;br&gt;&lt;br&gt;Please try working in smaller batches."
-   *
-   * @return translated "Can''t select that many records at once.&lt;br&gt;&lt;br&gt;Please try working in smaller batches."
-   */
-   @DefaultMessage("Can''t select that many records at once.&lt;br&gt;&lt;br&gt;Please try working in smaller batches.")
-   @Key("selection_selectionRangeNotLoadedMessage")
-   String selection_selectionRangeNotLoadedMessage();
-
-  /**
    * Translated "Some rows could not be parsed; the grid below shows $goodRowCount of $totalRows data rows. Row number $firstBadRow was the first row to fail to be parsed."
    *
    * @return translated "Some rows could not be parsed; the grid below shows $goodRowCount of $totalRows data rows. Row number $firstBadRow was the first row to fail to be parsed."
@@ -5788,6 +5877,24 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
    @DefaultMessage("Some rows could not be parsed; the grid below shows $goodRowCount of $totalRows data rows. Row number $firstBadRow was the first row to fail to be parsed.")
    @Key("batchUploader_errorMessageRowsNotParsed")
    String batchUploader_errorMessageRowsNotParsed();
+
+  /**
+   * Translated "Previous error"
+   *
+   * @return translated "Previous error"
+   */
+   @DefaultMessage("Previous error")
+   @Key("batchUploader_previousButtonTitle")
+   String batchUploader_previousButtonTitle();
+
+  /**
+   * Translated "Next error"
+   *
+   * @return translated "Next error"
+   */
+   @DefaultMessage("Next error")
+   @Key("batchUploader_nextButtonTitle")
+   String batchUploader_nextButtonTitle();
 
   /**
    * Translated "Set selection text color"
@@ -5883,7 +5990,16 @@ public interface SmartGwtMessages extends com.google.gwt.i18n.client.Messages {
 
 
 
-  /*  Generated on Thu Jan 27 01:35:36 2022 */
+  /*  Generated on Thu Jan 27 01:30:24 2022 */
+
+  /**
+   * Translated "$loadingImage&nbsp;Loading data..."
+   *
+   * @return translated "$loadingImage&nbsp;Loading data..."
+   */
+   @DefaultMessage("$loadingImage&nbsp;Loading data...")
+   @Key("tileGrid_loadingDataMessage")
+   String tileGrid_loadingDataMessage();
 
   /**
    * Translated "$loadingImage&nbsp;Grouping data..."

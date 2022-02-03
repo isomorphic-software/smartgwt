@@ -2411,14 +2411,32 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
     	
     }-*/;
 
-    public native void exportData() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.exportData();
-    }-*/;
+    public void exportData() {
+        exportData(null);
+    }
 
     public native void exportData(DSRequest requestProperties) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "exportData", "DSRequest,RPCCallback");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+        self.exportData(requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+
+    public native void exportData(DSRequest requestProperties, RPCCallback callback) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "exportData", "DSRequest,RPCCallback");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportData(requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()(),
+			$entry( function(response, rawData, request) {
+				if(callback!=null) callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(
+					@com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(response), 
+					rawData, 
+					@com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(request)
+				);
+			}));
     }-*/;
 
     /**
@@ -2556,7 +2574,25 @@ public class DetailViewer extends Canvas implements DataBoundComponent {
         return fields != null ? fields.length : 0;
     }
     
-    /**
+    public native void transferRecords(Record[] records, Record targetRecord, Integer index, Canvas sourceWidget, TransferRecordsCallback callback) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
+        var targetRecordJS = targetRecord == null ? null : targetRecord.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        var indexJS = index == null ? null : index.@java.lang.Integer::intValue()();
+        var sourceWidgetJS = sourceWidget == null ? null : sourceWidget.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.transferRecords(recordsJS, targetRecordJS, indexJS, sourceWidgetJS, $entry(function(records) {
+            if(callback != null) {
+	    		var convertedArray = [];
+	    		for (var i = 0; i < records.length; i++) {
+	    			convertedArray[i] =  @com.smartgwt.client.data.Record::new(Lcom/google/gwt/core/client/JavaScriptObject;)(records[i]);
+	    		}
+                var recordsJ = @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(convertedArray);
+                callback.@com.smartgwt.client.widgets.TransferRecordsCallback::execute([Lcom/smartgwt/client/data/Record;)(recordsJ);
+            }
+        }));
+    }-*/;
+
+	/**
      * During a drag-and-drop interaction, this method returns the set of records being dragged
      * out of the component.  In the default implementation, this is the list of currently
      * selected records.<p>

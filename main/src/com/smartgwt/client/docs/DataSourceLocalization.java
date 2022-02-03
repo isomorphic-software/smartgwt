@@ -189,6 +189,12 @@ package com.smartgwt.client.docs;
  * (this is done for you when you pass a locale to the {@link
  * com.smartgwt.client.rpc.RPCManager#loadScreen RPCManager.loadScreen()} method).</li>
  *  </ul>
+ *  <h4>Troubleshooting</h4>
+ *  If something went wrong, we use fmt string as a value:
+ *  <code>&lt;fmt:message key="message_key"&gt;</code>.
+ *  Getting similar value instead of localized message means that either <code>bundle</code>
+ *  could not be found or the <code>key</code> is incorrect, look for warnings in server logs
+ *  for specific details.<br>
  */
 public interface DataSourceLocalization {
 }

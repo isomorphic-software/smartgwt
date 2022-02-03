@@ -265,25 +265,6 @@ public class Process extends Task {
     
 
     /**
-     * Set new process state.
-     *
-     * @param setState New setState value. Default value is null
-     */
-    public void setSetState(Record setState) {
-        setAttribute("setState", setState == null ? null : setState.getJsObj(), true);
-    }
-
-    /**
-     * Set new process state.
-     *
-     * @return Current setState value. Default value is null
-     */
-    public Record getSetState()  {
-        return Record.getOrCreateRef(getAttributeAsJavaScriptObject("setState"));
-    }
-    
-
-    /**
      * The ID of either a {@link com.smartgwt.client.util.workflow.Process#getSequences sequence} or an {@link
      * com.smartgwt.client.util.workflow.Process#getElements element} which should be the starting point of the process.  If
      * not specified, the first sequence is chosen, or if there are no sequences, the first element. - log a warning and do

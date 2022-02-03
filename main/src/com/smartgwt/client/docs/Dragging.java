@@ -11,11 +11,6 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tile.TileGrid#setCanDragTilesOut
  * @see com.smartgwt.client.widgets.tile.TileGrid#setCanAcceptDroppedRecords
  * @see com.smartgwt.client.widgets.tile.TileGrid#getDragData
- * @see com.smartgwt.client.widgets.Window#getCanDragReposition
- * @see com.smartgwt.client.widgets.Window#getCanDragResize
- * @see com.smartgwt.client.widgets.Window#getShowResizer
- * @see com.smartgwt.client.widgets.Canvas#getCanDragScroll
- * @see com.smartgwt.client.widgets.Canvas#getDragScrollDelay
  * @see com.smartgwt.client.widgets.grid.ListGridField#getCanReorder
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanDragRecordsOut
  * @see com.smartgwt.client.widgets.grid.ListGrid#getCanAcceptDroppedRecords
@@ -29,6 +24,11 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.tile.TileGrid#getCanDragTilesOut
  * @see com.smartgwt.client.widgets.tile.TileGrid#getCanAcceptDroppedRecords
  * @see com.smartgwt.client.widgets.tile.TileGrid#getDragDataAction
+ * @see com.smartgwt.client.widgets.Canvas#getCanDragScroll
+ * @see com.smartgwt.client.widgets.Canvas#getDragScrollDelay
+ * @see com.smartgwt.client.widgets.Window#getCanDragReposition
+ * @see com.smartgwt.client.widgets.Window#getCanDragResize
+ * @see com.smartgwt.client.widgets.Window#getShowResizer
  */
 public interface Dragging {
 }

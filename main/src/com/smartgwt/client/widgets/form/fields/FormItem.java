@@ -278,6 +278,7 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * form.getValuesAsCriteria()}) to return {@link com.smartgwt.client.data.AdvancedCriteria}.
      *
      * @param allowExpressions New allowExpressions value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public void setAllowExpressions(Boolean allowExpressions) {
         setAttribute("allowExpressions", allowExpressions);
@@ -318,6 +319,7 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * form.getValuesAsCriteria()}) to return {@link com.smartgwt.client.data.AdvancedCriteria}.
      *
      * @return Current allowExpressions value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public Boolean getAllowExpressions()  {
         return getAttributeAsBoolean("allowExpressions", true);
@@ -774,7 +776,9 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
     
 
     /**
-     * For items showing a text value, should the user be able to select the text in this item?
+     * For items showing a text value, should the user be able to select the text in this item?  <P> For {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getCanEdit canEdit:false} items, see {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyCanSelectText readOnlyCanSelectText}
      *
      * @param canSelectText New canSelectText value. Default value is true
      */
@@ -783,7 +787,9 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
     }
 
     /**
-     * For items showing a text value, should the user be able to select the text in this item?
+     * For items showing a text value, should the user be able to select the text in this item?  <P> For {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getCanEdit canEdit:false} items, see {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyCanSelectText readOnlyCanSelectText}
      *
      * @return Current canSelectText value. Default value is true
      */
@@ -1230,6 +1236,41 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
         return getAttributeAsString("defaultIconSrc");
     }
     
+
+    /**
+     * The default search-operator for this item when it or its form allow  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getAllowExpressions filter-expressions}.
+     *
+     * @param defaultOperator New defaultOperator value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
+     */
+    public void setDefaultOperator(OperatorId defaultOperator) {
+        setAttribute("defaultOperator", defaultOperator == null ? null : defaultOperator.getValue());
+    }
+
+    /**
+     * The default search-operator for this item when it or its form allow  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getAllowExpressions filter-expressions}.
+     *
+     * @return Current defaultOperator value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
+     */
+    public OperatorId getDefaultOperator()  {
+        return EnumUtil.getEnum(OperatorId.values(), getAttribute("defaultOperator"));
+    }
+    
+    
+
+    /**
+     * The destroyed attribute will be set to true if this item has been destroyed() Note that FormItem lifecycle is managed by
+     * the DynamicForm itself.  FormItem instances are created and destroyed automatically when new fields are  added to the
+     * form.
+     *
+     * @return Current destroyed value. Default value is null
+     */
+    public Boolean getDestroyed()  {
+        return getAttributeAsBoolean("destroyed", true);
+    }
     
 
     /**
@@ -1279,21 +1320,34 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
 
     /**
      * If set, this item will display a value from another field to the user instead of showing the underlying data value for
-     * the {@link com.smartgwt.client.widgets.form.fields.FormItem#getName field name}. <P> The display value can be derived in
-     * two ways: <P> The item will display the displayField value from the  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValues record currently being edited} if  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue useLocalDisplayFieldValue} is true, (or if
-     * unset and the conditions outlined in the documentation for that property are met).<br> Note that {@link
-     * com.smartgwt.client.data.DataSourceField#getUseLocalDisplayFieldValue DataSourceField.useLocalDisplayFieldValue} will
-     * default to true if not explicitly set in some cases, as described in the documentation for that property. <P> Otherwise
-     * this item will perform a fetch against the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
-     * optionDataSource} to find a record where the {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueFieldName
-     * value field} matches this item's value, and use the <code>displayField</code>, or {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getForeignDisplayField foreignDisplayField}  value from that
-     * record.<br> Note that the specified displayField must be explicitly defined in the  optionDataSource to be used - see
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName getDisplayFieldName()} for more on this
-     * behavior. <P> This essentially allows the specified <code>optionDataSource</code> to be used as a server based {@link
-     * valueMap}. <P> Note that if <code>optionDataSource</code> is set and no valid display field is specified, {@link
+     * the {@link com.smartgwt.client.widgets.form.fields.FormItem#getName field name}. <P> This property is used in two ways:
+     * <P> The item will display the displayField value from the  {@link com.smartgwt.client.widgets.form.DynamicForm#getValues
+     * record currently being edited} if  {@link com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue
+     * useLocalDisplayFieldValue} is true, (or if unset and the conditions outlined in the documentation for that property are
+     * met). <P> If this field has an {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
+     * optionDataSource}, this property is used by default to identify which value to use as a display value in records from
+     * this related dataSource. In this usage the specified displayField must be  explicitly defined in the optionDataSource to
+     * be used - see  {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName getDisplayFieldName()} for
+     * more on this behavior.<br> If not using {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue local display values}, the display value
+     * for this item will be derived by performing a fetch against the  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource option dataSource}  to find a record where the
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueFieldName value field} matches  this item's value, and
+     * use the <code>displayField</code> value from that record.<br> In addition to this, PickList-based form items that
+     * provide a list of possible options such as the {@link com.smartgwt.client.widgets.form.fields.SelectItem} or {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem} will show the  <code>displayField</code> values to the user by
+     * default, allowing them to choose a new data value (see {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField}) from a list of user-friendly display values.
+     * <P> This essentially allows the specified <code>optionDataSource</code> to be used as a server based {@link valueMap}.
+     * <P> If {@link com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue local display values} are
+     * being used and {@link com.smartgwt.client.widgets.form.fields.FormItem#getStoreDisplayValues storeDisplayValues} is
+     * true, selecting a new value will update both the value for this field and the associated display-field value on the
+     * record being edited. <P> Note: Developers may specify the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getForeignDisplayField foreignDisplayField} property  in addition to
+     * <code>displayField</code>. This is useful for cases where the display field name in the local dataSource differs from
+     * the display field name in the optionDataSource. See the documentation for {@link
+     * com.smartgwt.client.data.DataSourceField#getForeignDisplayField DataSourceField.foreignDisplayField} for more on this.
+     * <P> Note that if <code>optionDataSource</code> is set and no valid display field is specified, {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName getDisplayFieldName()} will return the dataSource
      * title  field by default. <P> If a displayField is specified for a freeform text based item (such as a  {@link
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem}), any user-entered value will be treated as a display value. In
@@ -1311,21 +1365,34 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
 
     /**
      * If set, this item will display a value from another field to the user instead of showing the underlying data value for
-     * the {@link com.smartgwt.client.widgets.form.fields.FormItem#getName field name}. <P> The display value can be derived in
-     * two ways: <P> The item will display the displayField value from the  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValues record currently being edited} if  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue useLocalDisplayFieldValue} is true, (or if
-     * unset and the conditions outlined in the documentation for that property are met).<br> Note that {@link
-     * com.smartgwt.client.data.DataSourceField#getUseLocalDisplayFieldValue DataSourceField.useLocalDisplayFieldValue} will
-     * default to true if not explicitly set in some cases, as described in the documentation for that property. <P> Otherwise
-     * this item will perform a fetch against the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
-     * optionDataSource} to find a record where the {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueFieldName
-     * value field} matches this item's value, and use the <code>displayField</code>, or {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getForeignDisplayField foreignDisplayField}  value from that
-     * record.<br> Note that the specified displayField must be explicitly defined in the  optionDataSource to be used - see
-     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName getDisplayFieldName()} for more on this
-     * behavior. <P> This essentially allows the specified <code>optionDataSource</code> to be used as a server based {@link
-     * valueMap}. <P> Note that if <code>optionDataSource</code> is set and no valid display field is specified, {@link
+     * the {@link com.smartgwt.client.widgets.form.fields.FormItem#getName field name}. <P> This property is used in two ways:
+     * <P> The item will display the displayField value from the  {@link com.smartgwt.client.widgets.form.DynamicForm#getValues
+     * record currently being edited} if  {@link com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue
+     * useLocalDisplayFieldValue} is true, (or if unset and the conditions outlined in the documentation for that property are
+     * met). <P> If this field has an {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
+     * optionDataSource}, this property is used by default to identify which value to use as a display value in records from
+     * this related dataSource. In this usage the specified displayField must be  explicitly defined in the optionDataSource to
+     * be used - see  {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName getDisplayFieldName()} for
+     * more on this behavior.<br> If not using {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue local display values}, the display value
+     * for this item will be derived by performing a fetch against the  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource option dataSource}  to find a record where the
+     * {@link com.smartgwt.client.widgets.form.fields.FormItem#getValueFieldName value field} matches  this item's value, and
+     * use the <code>displayField</code> value from that record.<br> In addition to this, PickList-based form items that
+     * provide a list of possible options such as the {@link com.smartgwt.client.widgets.form.fields.SelectItem} or {@link
+     * com.smartgwt.client.widgets.form.fields.ComboBoxItem} will show the  <code>displayField</code> values to the user by
+     * default, allowing them to choose a new data value (see {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField}) from a list of user-friendly display values.
+     * <P> This essentially allows the specified <code>optionDataSource</code> to be used as a server based {@link valueMap}.
+     * <P> If {@link com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue local display values} are
+     * being used and {@link com.smartgwt.client.widgets.form.fields.FormItem#getStoreDisplayValues storeDisplayValues} is
+     * true, selecting a new value will update both the value for this field and the associated display-field value on the
+     * record being edited. <P> Note: Developers may specify the {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getForeignDisplayField foreignDisplayField} property  in addition to
+     * <code>displayField</code>. This is useful for cases where the display field name in the local dataSource differs from
+     * the display field name in the optionDataSource. See the documentation for {@link
+     * com.smartgwt.client.data.DataSourceField#getForeignDisplayField DataSourceField.foreignDisplayField} for more on this.
+     * <P> Note that if <code>optionDataSource</code> is set and no valid display field is specified, {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName getDisplayFieldName()} will return the dataSource
      * title  field by default. <P> If a displayField is specified for a freeform text based item (such as a  {@link
      * com.smartgwt.client.widgets.form.fields.ComboBoxItem}), any user-entered value will be treated as a display value. In
@@ -1685,17 +1752,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
 
     /**
      * For items with an {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}, this
-     * property specifies an alternative  field from which display values should be retrieved for this item. <P> If present
-     * this item will attempt to map its underlying value to a display value by retrieving a record from the {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} where the  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} matches this item's value, and displaying the
-     * <code>foreignDisplayField</code> value from that record. <P> This essentially enables the specified
-     * <code>optionDataSource</code> to be used as a server based {@link valueMap}. <P> If unset, {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} may be used.  The
-     * <code>foreignDisplayField</code> attribute is particularly useful to allow developers to handle the case where one field
-     * name is used  as a displayField within the form's dataSource (for static display of a value within the current record),
-     * and a different field name is to be used to get the display value for records in the {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}.
+     * property specifies an explicit display field for records within the option dataSource. Typically this property will be
+     * set in conjunction with {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} in the
+     * case where the name of the displayField within the record being edited differs from the  displayField in the
+     * optionDataSource. <P> See {@link com.smartgwt.client.data.DataSourceField#getForeignDisplayField
+     * DataSourceField.foreignDisplayField} for additional details.
      *
      * @param foreignDisplayField New foreignDisplayField value. Default value is null
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName
@@ -1706,17 +1767,11 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
 
     /**
      * For items with an {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}, this
-     * property specifies an alternative  field from which display values should be retrieved for this item. <P> If present
-     * this item will attempt to map its underlying value to a display value by retrieving a record from the {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} where the  {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getValueField valueField} matches this item's value, and displaying the
-     * <code>foreignDisplayField</code> value from that record. <P> This essentially enables the specified
-     * <code>optionDataSource</code> to be used as a server based {@link valueMap}. <P> If unset, {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} may be used.  The
-     * <code>foreignDisplayField</code> attribute is particularly useful to allow developers to handle the case where one field
-     * name is used  as a displayField within the form's dataSource (for static display of a value within the current record),
-     * and a different field name is to be used to get the display value for records in the {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource}.
+     * property specifies an explicit display field for records within the option dataSource. Typically this property will be
+     * set in conjunction with {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} in the
+     * case where the name of the displayField within the record being edited differs from the  displayField in the
+     * optionDataSource. <P> See {@link com.smartgwt.client.data.DataSourceField#getForeignDisplayField
+     * DataSourceField.foreignDisplayField} for additional details.
      *
      * @return Current foreignDisplayField value. Default value is null
      * @see com.smartgwt.client.widgets.form.fields.FormItem#getDisplayFieldName
@@ -2693,6 +2748,32 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
     
 
     /**
+     * Text shown as the value in the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOriginalValueMessage
+     * originalValueMessage} when  {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowOldValueInHover
+     * showOldValueInHover} is enabled, and when  the value has been modified but was originally unset.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param nullOriginalValueText New nullOriginalValueText value. Default value is "None"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public void setNullOriginalValueText(String nullOriginalValueText) {
+        setAttribute("nullOriginalValueText", nullOriginalValueText);
+    }
+
+    /**
+     * Text shown as the value in the {@link com.smartgwt.client.widgets.form.fields.FormItem#getOriginalValueMessage
+     * originalValueMessage} when  {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowOldValueInHover
+     * showOldValueInHover} is enabled, and when  the value has been modified but was originally unset.
+     *
+     * @return Current nullOriginalValueText value. Default value is "None"
+     * @see com.smartgwt.client.docs.HTMLString HTMLString 
+     */
+    public String getNullOriginalValueText()  {
+        return getAttributeAsString("nullOriginalValueText");
+    }
+    
+
+    /**
      * {@link com.smartgwt.client.types.OperatorId} to be used when {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria DynamicForm.getValuesAsCriteria()} is called. <P>
      * <code>item.operator</code> can be used to create a form that offers search functions such as numeric range filtering,
@@ -2891,6 +2972,32 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
     
 
     /**
+     * If this item has a specified <code>optionDataSource</code>, this property determines the textMatchStyle to use when
+     * interpretating any {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionCriteria optionCriteria} during the
+     * fetch to map valueField values to displayField values.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param optionTextMatchStyle New optionTextMatchStyle value. Default value is "exact"
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
+    public void setOptionTextMatchStyle(TextMatchStyle optionTextMatchStyle) {
+        setAttribute("optionTextMatchStyle", optionTextMatchStyle == null ? null : optionTextMatchStyle.getValue());
+    }
+
+    /**
+     * If this item has a specified <code>optionDataSource</code>, this property determines the textMatchStyle to use when
+     * interpretating any {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionCriteria optionCriteria} during the
+     * fetch to map valueField values to displayField values.
+     *
+     * @return Current optionTextMatchStyle value. Default value is "exact"
+     * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
+     */
+    public TextMatchStyle getOptionTextMatchStyle()  {
+        return EnumUtil.getEnum(TextMatchStyle.values(), getAttribute("optionTextMatchStyle"));
+    }
+    
+
+    /**
      * Message shown when {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowOldValueInHover showOldValueInHover}
      * is enabled and the value has been modified. <p> If unset, defaults to the form's {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getOriginalValueMessage DynamicForm.originalValueMessage}. Otherwise,
@@ -2922,9 +3029,10 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * The component that will be displayed when {@link com.smartgwt.client.widgets.form.fields.FormItem#showPicker
      * showPicker()} is called due to a click on the {@link com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon
      * picker icon}. <P> Can be specified directly as a Canvas, or created automatically via the {@link
-     * com.smartgwt.client.types.AutoChild} pattern. <P> Note that the picker is not automatically destroyed with the FormItem
-     * that uses it, in order to allow recycling of picker components.  To destroy a single-use picker, override {@link
-     * com.smartgwt.client.widgets.Canvas#destroy Canvas.destroy()}.
+     * com.smartgwt.client.types.AutoChild} pattern. The default autoChild configuration for the picker is  a Canvas with
+     * backgroundColor set and no other modifications. <P> Note that the picker is not automatically destroyed with the
+     * FormItem that uses it, in order to allow recycling of picker components.  To destroy a single-use picker, override
+     * {@link com.smartgwt.client.widgets.Canvas#destroy Canvas.destroy()}.
      * <p>
      * This component is an AutoChild named "picker".  For an overview of how to use and
      * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
@@ -3214,12 +3322,42 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
     
 
     /**
+     * For items showing a text value with {@link com.smartgwt.client.widgets.form.fields.FormItem#getCanEdit canEdit} set to
+     * false,  should the user be able to select the text in the item? <P> Default behavior allows selection if {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyDisplay readOnlyDisplay} is  <code>"static"</code> or
+     * <code>"readOnly"</code> [but not <code>"disabled"</code>]. Developers may add or remove ReadOnlyDisplayAppearance values
+     * to change this behavior. <P> Note that this does not apply to {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisabled disabled items},  where text selection is never enabled
+     *
+     * @param readOnlyCanSelectText New readOnlyCanSelectText value. Default value is ["static", "readOnly"]
+     */
+    public void setReadOnlyCanSelectText(ReadOnlyDisplayAppearance... readOnlyCanSelectText) {
+        setAttribute("readOnlyCanSelectText", readOnlyCanSelectText);
+    }
+
+    /**
+     * For items showing a text value with {@link com.smartgwt.client.widgets.form.fields.FormItem#getCanEdit canEdit} set to
+     * false,  should the user be able to select the text in the item? <P> Default behavior allows selection if {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyDisplay readOnlyDisplay} is  <code>"static"</code> or
+     * <code>"readOnly"</code> [but not <code>"disabled"</code>]. Developers may add or remove ReadOnlyDisplayAppearance values
+     * to change this behavior. <P> Note that this does not apply to {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getDisabled disabled items},  where text selection is never enabled
+     *
+     * @return Current readOnlyCanSelectText value. Default value is ["static", "readOnly"]
+     */
+    public ReadOnlyDisplayAppearance[] getReadOnlyCanSelectText()  {
+        final String[] strings = getAttributeAsStringArray("readOnlyCanSelectText");
+        return EnumUtil.getEnums(ReadOnlyDisplayAppearance.values(), strings, strings == null ? null : new ReadOnlyDisplayAppearance[strings.length]);
+    }
+    
+
+    /**
      * If this item is {@link com.smartgwt.client.widgets.form.fields.FormItem#getCanEdit read-only}, how should this item be
      * displayed to the user? If set, overrides the form-level {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getReadOnlyDisplay DynamicForm.readOnlyDisplay} default.
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
-     * Setter for {@link com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyDisplay readOnlyDisplay}.
+     * Setter for {@link com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyDisplay readOnlyDisplay}. <P> Note that calling this method for a {@link com.smartgwt.client.widgets.form.fields.ButtonItem} with {@link com.smartgwt.client.widgets.form.fields.ButtonItem#getEnableWhen ButtonItem.enableWhen} set is an error, since {@link com.smartgwt.client.widgets.form.fields.FormItem#getReadOnlyDisplay readOnlyDisplay} is then considered to always be "disabled".
      *
      * @param readOnlyDisplay new <code>readOnlyDisplay</code> value. Default value is null
      * @see com.smartgwt.client.widgets.form.DynamicForm#setReadOnlyDisplay
@@ -4561,6 +4699,28 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
     
 
     /**
+     * If specified, this overrides the {@link com.smartgwt.client.widgets.form.DynamicForm#getStoreDisplayValues
+     * DynamicForm.storeDisplayValues} property for this field.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param storeDisplayValues New storeDisplayValues value. Default value is null
+     */
+    public void setStoreDisplayValues(Boolean storeDisplayValues) {
+        setAttribute("storeDisplayValues", storeDisplayValues);
+    }
+
+    /**
+     * If specified, this overrides the {@link com.smartgwt.client.widgets.form.DynamicForm#getStoreDisplayValues
+     * DynamicForm.storeDisplayValues} property for this field.
+     *
+     * @return Current storeDisplayValues value. Default value is null
+     */
+    public Boolean getStoreDisplayValues()  {
+        return getAttributeAsBoolean("storeDisplayValues", true);
+    }
+    
+
+    /**
      * Does the current formItem support native cut and paste events? <P> This attribute only applies to freeform text entry
      * fields such as {@link com.smartgwt.client.widgets.form.fields.TextItem} and {@link
      * com.smartgwt.client.widgets.form.fields.TextAreaItem}, and only if {@link
@@ -5144,15 +5304,18 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} is specified for a field,
      * should the display value for the field be picked up from the  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValues record currently being edited}? <br> If unset the  local display
-     * value will be used in the following cases: <ul> <li>The formItem has no explicit {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} (though     a dataSource may be
-     * derived from a foreignKey relationship as described     in {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource getOptionDataSource()}</li> <li>The {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getName name} matches the     {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getValueFieldName valueField} for the item</li> </ul> <P> Note that if
-     * not explicitly set, this property may defaulted to <code>true</code> for certain fields at the {@link
-     * com.smartgwt.client.data.DataSourceField#getUseLocalDisplayFieldValue dataSource level}.
+     * com.smartgwt.client.widgets.form.DynamicForm#getValues record currently being edited}? <P> This behavior is typically
+     * valuable for dataBound components where the displayField is specified at the DataSourceField level. See {@link
+     * com.smartgwt.client.data.DataSourceField#getDisplayField DataSourceField.displayField} for more on this. <P> Note that
+     * for DataSources backed by the {@link com.smartgwt.client.docs.ServerDataIntegration Smart GWT server}, fields with a
+     * specified {@link com.smartgwt.client.data.DataSourceField#getForeignKey DataSourceField.foreignKey} and {@link
+     * com.smartgwt.client.data.DataSourceField#getDisplayField DataSourceField.displayField} will automatically have this
+     * property set to true if not explicitly set to false in the dataSource configuration. <P> Otherwise, if not explicitly
+     * set, local display value will be used unless: <ul>  <li>This item has an explicitly specified optionDataSource, rather
+     * than      deriving its optionDataSource from a specified       {@link
+     * com.smartgwt.client.data.DataSourceField#getForeignKey DataSourceField.foreignKey} specification</li>  <li>The {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getName name} differs from the       {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueFieldName valueField} for the item</li> </ul>
      *
      * @param useLocalDisplayFieldValue New useLocalDisplayFieldValue value. Default value is null
      */
@@ -5163,15 +5326,18 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
     /**
      * If {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField displayField} is specified for a field,
      * should the display value for the field be picked up from the  {@link
-     * com.smartgwt.client.widgets.form.DynamicForm#getValues record currently being edited}? <br> If unset the  local display
-     * value will be used in the following cases: <ul> <li>The formItem has no explicit {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource optionDataSource} (though     a dataSource may be
-     * derived from a foreignKey relationship as described     in {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource getOptionDataSource()}</li> <li>The {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getName name} matches the     {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getValueFieldName valueField} for the item</li> </ul> <P> Note that if
-     * not explicitly set, this property may defaulted to <code>true</code> for certain fields at the {@link
-     * com.smartgwt.client.data.DataSourceField#getUseLocalDisplayFieldValue dataSource level}.
+     * com.smartgwt.client.widgets.form.DynamicForm#getValues record currently being edited}? <P> This behavior is typically
+     * valuable for dataBound components where the displayField is specified at the DataSourceField level. See {@link
+     * com.smartgwt.client.data.DataSourceField#getDisplayField DataSourceField.displayField} for more on this. <P> Note that
+     * for DataSources backed by the {@link com.smartgwt.client.docs.ServerDataIntegration Smart GWT server}, fields with a
+     * specified {@link com.smartgwt.client.data.DataSourceField#getForeignKey DataSourceField.foreignKey} and {@link
+     * com.smartgwt.client.data.DataSourceField#getDisplayField DataSourceField.displayField} will automatically have this
+     * property set to true if not explicitly set to false in the dataSource configuration. <P> Otherwise, if not explicitly
+     * set, local display value will be used unless: <ul>  <li>This item has an explicitly specified optionDataSource, rather
+     * than      deriving its optionDataSource from a specified       {@link
+     * com.smartgwt.client.data.DataSourceField#getForeignKey DataSourceField.foreignKey} specification</li>  <li>The {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getName name} differs from the       {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getValueFieldName valueField} for the item</li> </ul>
      *
      * @return Current useLocalDisplayFieldValue value. Default value is null
      */
@@ -5252,6 +5418,7 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * true, allowing the user to input expressions.
      *
      * @param validOperators New validOperators value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public void setValidOperators(OperatorId... validOperators) {
         setAttribute("validOperators", validOperators);
@@ -5263,6 +5430,7 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * true, allowing the user to input expressions.
      *
      * @return Current validOperators value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public OperatorId[] getValidOperators()  {
         final String[] strings = getAttributeAsStringArray("validOperators");
@@ -5294,7 +5462,9 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * expanded by another taller item. <P> Has no effect if {@link com.smartgwt.client.widgets.form.DynamicForm#getItemLayout
      * DynamicForm.itemLayout} is set to <code>"absolute"</code> for the form.
      *
-     * @return Current vAlign value. Default value is Canvas.CENTER
+     * @return Returns the vertical-alignment for this item within its cell.  By default, when {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getTitleOrientation titleOrientation} is "top", this method will 
+     * return "top", so that items of varying height are top-aligned, beneath their titles. Default value is Canvas.CENTER
      */
     public VerticalAlignment getVAlign()  {
         return EnumUtil.getEnum(VerticalAlignment.values(), getAttribute("vAlign"));
@@ -6981,7 +7151,8 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * com.smartgwt.client.widgets.form.fields.FormItemIcon#addFormItemClickHandler FormItemIcon.formItemClick()} handler for
      * the {@link com.smartgwt.client.widgets.form.fields.FormItem#getPickerIconProperties pickerIcon}. If the event is not
      * cancelled,  the standard {@link com.smartgwt.client.widgets.form.fields.FormItem#addIconClickHandler
-     * FormItem.iconClick()} will also fire.
+     * FormItem.iconClick()} will also fire. <P> The default implementation will call {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#showPicker FormItem.showPicker()}.
      *
      * @param handler the pickerIconClick handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -7241,8 +7412,12 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
      * Method to show a picker for this item. By default this method is called if the user clicks on a {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getShowPickerIcon pickerIcon}.  May also be called programmatically.
      * <P> Default implementation lazily creates and shows the {@link
-     * com.smartgwt.client.widgets.form.fields.FormItem#getPicker Picker Autochild}. May be overridden to implement some custom
-     * picker for this item.
+     * com.smartgwt.client.widgets.form.fields.FormItem#getPicker Picker Autochild}. <P> Developers wishing to show a custom
+     * picker widget can either implement a  {@link com.smartgwt.client.widgets.form.fields.FormItem#addPickerIconClickHandler
+     * FormItem.pickerIconClick()} handler with an entirely custom implementation (and bypass the call to
+     * <code>showPicker()</code> altogether),   or use the {@link com.smartgwt.client.types.AutoChild AutoChild pattern} to
+     * customize the automatically generated {@link com.smartgwt.client.widgets.form.fields.FormItem#getPicker picker
+     * autoChild}.
      */
     public native void showPicker() /*-{
         var self = this.@com.smartgwt.client.core.DataClass::getJsObj()();
@@ -9431,6 +9606,7 @@ public class FormItem extends RefDataClass implements com.smartgwt.client.widget
     public native void setCriterionSetter(FormItemCriterionSetter setter) /*-{
         var me = this,
             self = me.@com.smartgwt.client.core.DataClass::getJsObj()();
+     	self.useAdvancedCriteria = true;
         self.setCriterion = $entry(function (criterion) {
         	var itemJS = this,
         		itemJ = @com.smartgwt.client.widgets.form.fields.FormItem::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(itemJS),

@@ -280,6 +280,30 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     
 
     /**
+     * This property is not supported for <code>CubeGrid</code>. <P> Consider setting explicit widths via {@link
+     * com.smartgwt.client.widgets.cube.FacetValue#getWidth FacetValue.width} or {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getDefaultFacetWidth defaultFacetWidth}.
+     *
+     * @param autoFitFieldWidths New autoFitFieldWidths value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setAutoFitFieldWidths(Boolean autoFitFieldWidths)  throws IllegalStateException {
+        setAttribute("autoFitFieldWidths", autoFitFieldWidths, false);
+    }
+
+    /**
+     * This property is not supported for <code>CubeGrid</code>. <P> Consider setting explicit widths via {@link
+     * com.smartgwt.client.widgets.cube.FacetValue#getWidth FacetValue.width} or {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getDefaultFacetWidth defaultFacetWidth}.
+     *
+     * @return Current autoFitFieldWidths value. Default value is null
+     */
+    public Boolean getAutoFitFieldWidths()  {
+        return getAttributeAsBoolean("autoFitFieldWidths");
+    }
+    
+
+    /**
      * If true, when multiple facets appear on one side in a nested headers presentation, the selection state of parent/child
      * headers are automatically kept in sync.
      *
@@ -1501,6 +1525,49 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     
 
     /**
+     * Turns on indenting of any {@link com.smartgwt.client.widgets.cube.Facet#getIsTree hierarchical} column facets.  This can
+     * be overridden at the facet level via {@link com.smartgwt.client.widgets.cube.Facet#getIndentVTree Facet.indentVTree}. 
+     * Setting this property also ensures that the header is sized tall enough to accommodate the fully expanded facet.   <P>
+     * The amount of indenting per level can be set with {@link com.smartgwt.client.widgets.cube.CubeGrid#getVTreeFacetIndent
+     * vTreeFacetIndent}, and the direction of the indenting specified with {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getVTreeFacetIndentDirection vTreeFacetIndentDirection}. <P> Note that if you
+     * specify an explicit height for such a fscet, such as by setting {@link com.smartgwt.client.widgets.cube.Facet#getHeight
+     * Facet.height} or {@link com.smartgwt.client.widgets.cube.Facet#getLabelHeight Facet.labelHeight}, then the greater of
+     * that or the space required to accommodate the fully expanded facet will determine the actual height used.
+     *
+     * @param indentVTreeFacets New indentVTreeFacets value. Default value is false
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.cube.Facet#setIndentVTree
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#setVTreeFacetIndent
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#setVTreeFacetIndentDirection
+     */
+    public void setIndentVTreeFacets(boolean indentVTreeFacets)  throws IllegalStateException {
+        setAttribute("indentVTreeFacets", indentVTreeFacets, false);
+    }
+
+    /**
+     * Turns on indenting of any {@link com.smartgwt.client.widgets.cube.Facet#getIsTree hierarchical} column facets.  This can
+     * be overridden at the facet level via {@link com.smartgwt.client.widgets.cube.Facet#getIndentVTree Facet.indentVTree}. 
+     * Setting this property also ensures that the header is sized tall enough to accommodate the fully expanded facet.   <P>
+     * The amount of indenting per level can be set with {@link com.smartgwt.client.widgets.cube.CubeGrid#getVTreeFacetIndent
+     * vTreeFacetIndent}, and the direction of the indenting specified with {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getVTreeFacetIndentDirection vTreeFacetIndentDirection}. <P> Note that if you
+     * specify an explicit height for such a fscet, such as by setting {@link com.smartgwt.client.widgets.cube.Facet#getHeight
+     * Facet.height} or {@link com.smartgwt.client.widgets.cube.Facet#getLabelHeight Facet.labelHeight}, then the greater of
+     * that or the space required to accommodate the fully expanded facet will determine the actual height used.
+     *
+     * @return Current indentVTreeFacets value. Default value is false
+     * @see com.smartgwt.client.widgets.cube.Facet#getIndentVTree
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#getVTreeFacetIndent
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#getVTreeFacetIndentDirection
+     */
+    public boolean getIndentVTreeFacets()  {
+        Boolean result = getAttributeAsBoolean("indentVTreeFacets");
+        return result == null ? false : result;
+    }
+    
+
+    /**
      * {@link com.smartgwt.client.widgets.Button#getBaseStyle baseStyle} for the buttons in the innermost column header for 
      * this cubeGrid.
      *
@@ -1597,6 +1664,26 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
      */
     public String getRollupValue()  {
         return getAttributeAsString("rollupValue");
+    }
+    
+
+    /**
+     * This property is not supported for <code>CubeGrid</code>.
+     *
+     * @param rotateHeaderTitles New rotateHeaderTitles value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setRotateHeaderTitles(Boolean rotateHeaderTitles)  throws IllegalStateException {
+        setAttribute("rotateHeaderTitles", rotateHeaderTitles, false);
+    }
+
+    /**
+     * This property is not supported for <code>CubeGrid</code>.
+     *
+     * @return Current rotateHeaderTitles value. Default value is null
+     */
+    public Boolean getRotateHeaderTitles()  {
+        return getAttributeAsBoolean("rotateHeaderTitles");
     }
     
 
@@ -1967,6 +2054,53 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     
 
     /**
+     * Determines how many pixels to move for each level when {@link com.smartgwt.client.widgets.cube.Facet#getIsTree
+     * hierarchical} column facets are being {@link com.smartgwt.client.widgets.cube.CubeGrid#getIndentVTreeFacets indented}.
+     *
+     * @param vTreeFacetIndent New vTreeFacetIndent value. Default value is 8
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#setIndentVTreeFacets
+     */
+    public void setVTreeFacetIndent(int vTreeFacetIndent)  throws IllegalStateException {
+        setAttribute("vTreeFacetIndent", vTreeFacetIndent, false);
+    }
+
+    /**
+     * Determines how many pixels to move for each level when {@link com.smartgwt.client.widgets.cube.Facet#getIsTree
+     * hierarchical} column facets are being {@link com.smartgwt.client.widgets.cube.CubeGrid#getIndentVTreeFacets indented}.
+     *
+     * @return Current vTreeFacetIndent value. Default value is 8
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#getIndentVTreeFacets
+     */
+    public int getVTreeFacetIndent()  {
+        return getAttributeAsInt("vTreeFacetIndent");
+    }
+    
+
+    /**
+     * Determines layout of facet value titles in each column facet being  {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getIndentVTreeFacets indented}.
+     *
+     * @param vTreeFacetIndentDirection New vTreeFacetIndentDirection value. Default value is CubeGrid.DESCENDING
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#setIndentVTreeFacets
+     */
+    public void setVTreeFacetIndentDirection(FacetIndentDirection vTreeFacetIndentDirection) {
+        setAttribute("vTreeFacetIndentDirection", vTreeFacetIndentDirection == null ? null : vTreeFacetIndentDirection.getValue(), true);
+    }
+
+    /**
+     * Determines layout of facet value titles in each column facet being  {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getIndentVTreeFacets indented}.
+     *
+     * @return Current vTreeFacetIndentDirection value. Default value is CubeGrid.DESCENDING
+     * @see com.smartgwt.client.widgets.cube.CubeGrid#getIndentVTreeFacets
+     */
+    public FacetIndentDirection getVTreeFacetIndentDirection()  {
+        return EnumUtil.getEnum(FacetIndentDirection.values(), getAttribute("vTreeFacetIndentDirection"));
+    }
+    
+
+    /**
      * Whether to allow text wrapping on facet titles.
      *
      * @param wrapFacetTitles New wrapFacetTitles value. Default value is false
@@ -1987,7 +2121,8 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     
 
     /**
-     * Whether to allow text wrapping on facet value titles.
+     * Whether to allow text wrapping on facet value titles. <P> Note that this property is incompatible with {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getIndentVTreeFacets indented} column facets.
      *
      * @param wrapFacetValueTitles New wrapFacetValueTitles value. Default value is false
      */
@@ -1996,7 +2131,8 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     }
 
     /**
-     * Whether to allow text wrapping on facet value titles.
+     * Whether to allow text wrapping on facet value titles. <P> Note that this property is incompatible with {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getIndentVTreeFacets indented} column facets.
      *
      * @return Current wrapFacetValueTitles value. Default value is false
      */
@@ -2894,6 +3030,24 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     }-*/;
 
 	/**
+     * Return a {@link com.smartgwt.client.widgets.cube.FacetValueMap} of the facet values for the column field at the
+     * specified level containing the requested column number.  Note that outer column fields may span several grid columns.
+     * @param colNum 0-based index into the grid columns (and inner column header fields)
+     * @param level target header level; 0 represents the outer column header
+     *
+     * @return facet values for the targeted column header field
+     */
+    public native FacetValueMap getColumnHeaderFacetValues(int colNum, int level) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getColumnHeaderFacetValues", "int,int");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getColumnHeaderFacetValues(colNum, level);
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.cube.FacetValueMap::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
      * Returns a default set of items, which can be updated/modified, and then assigned to  {@link
      * com.smartgwt.client.widgets.cube.CubeGrid#getFacetValueContextItems facetValueContextItems} to be used in the context
      * menu of the appropriate   header button.
@@ -3097,6 +3251,24 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     }-*/;
 
 	/**
+     * Return a {@link com.smartgwt.client.widgets.cube.FacetValueMap} of the facet values for the row field at the specified
+     * level containing the requested row number.  Note that outer row fields may span several grid rows.
+     * @param rowNum 0-based index into the grid rows (and inner row header fields)
+     * @param level target header level; 0 represents the outer row header
+     *
+     * @return facet values for the targeted row header field
+     */
+    public native FacetValueMap getRowHeaderFacetValues(int rowNum, int level) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getRowHeaderFacetValues", "int,int");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getRowHeaderFacetValues(rowNum, level);
+        if(ret == null) return null;
+        return @com.smartgwt.client.widgets.cube.FacetValueMap::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
      * Returns an array of the IDs of all selected cell records.  <br><i>methodType</i> getter
      *
      * @return array of the selected cell IDs
@@ -3197,6 +3369,21 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     }-*/;
 
 	/**
+     * Hides the specified field if it is currently visible.  No-ops if it's already hidden.
+     * @param facetValueMap field specified as a facetValueMap
+     *
+     * @return whether specified field was actually hidden
+     */
+    public native boolean hideFacetValues(FacetValueMap facetValueMap) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "hideFacetValues", "FacetValueMap");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.hideFacetValues(facetValueMap == null ? null : facetValueMap.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return ret == null ? false : ret;
+    }-*/;
+
+	/**
      * Apply a hilite to all cells corresponding to a facetValue.      <br><i>methodType</i> action
      * @param facetID facet ID
      * @param facetValueID facet value ID
@@ -3211,6 +3398,36 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
         }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.hiliteFacetValue(facetID, facetValueID, hiliteID);
+        if(ret == null) return null;
+        return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+	/**
+     * Return whether the specified CubeGrid field is open, taking into account both {@link
+     * com.smartgwt.client.widgets.cube.Facet#getCanCollapse collapsing} and {@link
+     * com.smartgwt.client.widgets.cube.Facet#getCanMinimize minimizing}. <P> Note that if you don't already have a {@link
+     * com.smartgwt.client.widgets.cube.FacetValueMap} to the field in question, you can get one by calling {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getRowHeaderFacetValues getRowHeaderFacetValues()} or {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getColumnHeaderFacetValues getColumnHeaderFacetValues()}, <P> You can also
+     * construct a {@link com.smartgwt.client.widgets.cube.FacetValueMap} on your own by using the {@link
+     * com.smartgwt.client.widgets.cube.Facet#getId Facet.id}s from {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getRowFacets rowFacets} or {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getColumnFacets columnFacets} together with the {@link
+     * com.smartgwt.client.widgets.cube.FacetValue#getId FacetValue.id}s of the {@link
+     * com.smartgwt.client.widgets.cube.Facet#getValues Facet.values} for the row or column that you want to query.  Given a
+     * {@link com.smartgwt.client.widgets.cube.Facet#getId Facet.id}, you can use {@link
+     * com.smartgwt.client.widgets.cube.CubeGrid#getFacet getFacet()} to obtain the correponding {@link
+     * com.smartgwt.client.widgets.cube.Facet}.
+     * @param facetValueMap field specified as a facetValueMap
+     *
+     * @return whether field is open
+     */
+    public native Boolean isFieldOpen(FacetValueMap facetValueMap) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "isFieldOpen", "FacetValueMap");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.isFieldOpen(facetValueMap == null ? null : facetValueMap.@com.smartgwt.client.core.DataClass::getJsObj()());
         if(ret == null) return null;
         return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
     }-*/;
@@ -3511,6 +3728,21 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
         }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.setViewState(viewState);
+    }-*/;
+
+	/**
+     * Shows the specified field if it was previsouly hidden.  No-ops if it's already showing.
+     * @param facetValueMap field specified as a facetValueMap
+     *
+     * @return whether specified field was actually shown
+     */
+    public native boolean showFacetValues(FacetValueMap facetValueMap) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "showFacetValues", "FacetValueMap");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.showFacetValues(facetValueMap == null ? null : facetValueMap.@com.smartgwt.client.core.DataClass::getJsObj()());
+        return ret == null ? false : ret;
     }-*/;
 
     /**
@@ -3835,6 +4067,15 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
     }
 
 
+    private void checkAnalyticsLoaded () {
+        if (!analyticsLoaded()) {
+            String errorMessage = "Attempt to create CubeGrid. This class requires the optional " +
+            		                "Analytics module which is not present in this build.";
+            SC.logWarn(errorMessage);
+            throw new UnsupportedOperationException(errorMessage);
+        }
+    }
+    
     /**
      * Set the customizer for the HTML to be shown in hovers over facet values. 
      *
@@ -3857,15 +4098,6 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
             return ret;
         }));
     }-*/;
-
-    private void checkAnalyticsLoaded () {
-        if (!analyticsLoaded()) {
-            String errorMessage = "Attempt to create CubeGrid. This class requires the optional " +
-            		                "Analytics module which is not present in this build.";
-            SC.logWarn(errorMessage);
-            throw new UnsupportedOperationException(errorMessage);
-        }
-    }
 
     /**
      * Static method indicating whether the optional Analytics module is loaded for the page.
@@ -3916,6 +4148,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
             s.autoFetchTextMatchStyle = getAttributeAsString("autoFetchTextMatchStyle");
         } catch (Throwable t) {
             s.logicalStructureErrors += "CubeGrid.autoFetchTextMatchStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.autoFitFieldWidths = getAttributeAsString("autoFitFieldWidths");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.autoFitFieldWidths:" + t.getMessage() + "\n";
         }
         try {
             s.autoSelectHeaders = getAttributeAsString("autoSelectHeaders");
@@ -4188,6 +4425,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
             s.logicalStructureErrors += "CubeGrid.hilitesArray:" + t.getMessage() + "\n";
         }
         try {
+            s.indentVTreeFacets = getAttributeAsString("indentVTreeFacets");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.indentVTreeFacets:" + t.getMessage() + "\n";
+        }
+        try {
             s.innerHeaderBaseStyle = getAttributeAsString("innerHeaderBaseStyle");
         } catch (Throwable t) {
             s.logicalStructureErrors += "CubeGrid.innerHeaderBaseStyle:" + t.getMessage() + "\n";
@@ -4206,6 +4448,11 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
             s.rollupValue = getAttributeAsString("rollupValue");
         } catch (Throwable t) {
             s.logicalStructureErrors += "CubeGrid.rollupValue:" + t.getMessage() + "\n";
+        }
+        try {
+            s.rotateHeaderTitles = getAttributeAsString("rotateHeaderTitles");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.rotateHeaderTitles:" + t.getMessage() + "\n";
         }
         try {
             s.rowFacets = getAttributeAsStringArray("rowFacets");
@@ -4281,6 +4528,16 @@ public class CubeGrid extends ListGrid implements com.smartgwt.client.widgets.cu
             s.valueTitle = getAttributeAsString("valueTitle");
         } catch (Throwable t) {
             s.logicalStructureErrors += "CubeGrid.valueTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.vTreeFacetIndent = getAttributeAsString("vTreeFacetIndent");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.vTreeFacetIndent:" + t.getMessage() + "\n";
+        }
+        try {
+            s.vTreeFacetIndentDirection = getAttributeAsString("vTreeFacetIndentDirection");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CubeGrid.vTreeFacetIndentDirection:" + t.getMessage() + "\n";
         }
         try {
             s.wrapFacetTitles = getAttributeAsString("wrapFacetTitles");

@@ -387,6 +387,37 @@ public class EventCanvas extends VLayout {
     
 
     /**
+     * Readonly property dictating whether this is a special {@link com.smartgwt.client.widgets.calendar.IndicatorCanvas} 
+     * subclass.
+     * <p>
+     * <b>Note :</b> This method should be called only after the widget has been rendered.
+     *
+     * @return Current isIndicatorCanvas value. Default value is false
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public boolean getIsIndicatorCanvas() throws IllegalStateException {
+        errorIfNotCreated("isIndicatorCanvas");
+        Boolean result = getAttributeAsBoolean("isIndicatorCanvas");
+        return result == null ? false : result;
+    }
+    
+
+    /**
+     * Readonly property indicating whether this is a special {@link com.smartgwt.client.widgets.calendar.ZoneCanvas} subclass.
+     * <p>
+     * <b>Note :</b> This method should be called only after the widget has been rendered.
+     *
+     * @return Current isZoneCanvas value. Default value is false
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public boolean getIsZoneCanvas() throws IllegalStateException {
+        errorIfNotCreated("isZoneCanvas");
+        Boolean result = getAttributeAsBoolean("isZoneCanvas");
+        return result == null ? false : result;
+    }
+    
+
+    /**
      * When {@link com.smartgwt.client.widgets.calendar.EventCanvas#getShowLabel showLabel} is true, this autoChild is  used to
      * display the {@link com.smartgwt.client.widgets.calendar.EventCanvas#getHeaderHTML header text}, adjacent to this
      * eventCanvas.
@@ -578,21 +609,20 @@ public class EventCanvas extends VLayout {
      * Indicates the orientation of the event in its containing view.  Affects drag and resize orientation and which edges of
      * the canvas are available for resizing.
      *
-     * @param vertical New vertical value. Default value is true
+     * @param verticalResize New verticalResize value. Default value is null
      */
-    public void setVertical(Boolean vertical) {
-        setAttribute("vertical", vertical, true);
+    public void setVerticalResize(Boolean verticalResize) {
+        setAttribute("verticalResize", verticalResize, true);
     }
 
     /**
      * Indicates the orientation of the event in its containing view.  Affects drag and resize orientation and which edges of
      * the canvas are available for resizing.
      *
-     * @return Current vertical value. Default value is true
+     * @return Current verticalResize value. Default value is null
      */
-    public Boolean getVertical()  {
-        Boolean result = getAttributeAsBoolean("vertical");
-        return result == null ? true : result;
+    public Boolean getVerticalResize()  {
+        return getAttributeAsBoolean("verticalResize");
     }
     
 
@@ -631,23 +661,6 @@ public class EventCanvas extends VLayout {
         }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.getHeaderHTML();
-        return ret;
-    }-*/;
-
-	/**
-     * Returns the HTML to show in the EventCanvas as a whole.  By default, this method  generates one or two styled DIVs,
-     * depending on the values of  {@link com.smartgwt.client.widgets.calendar.EventCanvas#getShowHeader showHeader} and {@link
-     * com.smartgwt.client.widgets.calendar.EventCanvas#getShowBody showBody}.
-     *
-     * @return the innerHTML for this canvas.
-     * See {@link com.smartgwt.client.docs.HTMLString HTMLString}
-     */
-    public native String getInnerHTML() /*-{
-        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
-            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getInnerHTML", "");
-        }
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var ret = self.getInnerHTML();
         return ret;
     }-*/;
 
@@ -732,6 +745,16 @@ public class EventCanvas extends VLayout {
             s.logicalStructureErrors += "EventCanvas.headerWrap:" + t.getMessage() + "\n";
         }
         try {
+            s.isIndicatorCanvas = getAttributeAsString("isIndicatorCanvas");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "EventCanvas.isIndicatorCanvas:" + t.getMessage() + "\n";
+        }
+        try {
+            s.isZoneCanvas = getAttributeAsString("isZoneCanvas");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "EventCanvas.isZoneCanvas:" + t.getMessage() + "\n";
+        }
+        try {
             s.showBody = getAttributeAsString("showBody");
         } catch (Throwable t) {
             s.logicalStructureErrors += "EventCanvas.showBody:" + t.getMessage() + "\n";
@@ -762,9 +785,9 @@ public class EventCanvas extends VLayout {
             s.logicalStructureErrors += "EventCanvas.styleName:" + t.getMessage() + "\n";
         }
         try {
-            s.vertical = getAttributeAsString("vertical");
+            s.verticalResize = getAttributeAsString("verticalResize");
         } catch (Throwable t) {
-            s.logicalStructureErrors += "EventCanvas.vertical:" + t.getMessage() + "\n";
+            s.logicalStructureErrors += "EventCanvas.verticalResize:" + t.getMessage() + "\n";
         }
         return s;
     }

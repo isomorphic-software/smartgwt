@@ -48,6 +48,15 @@ public class GroupNode extends TreeNode {
     }
 
     /**
+     * The name of the field being grouped by this node.
+     *
+     * @return the group value
+     */
+    public String getGroupName() {
+        return getAttribute("groupName");
+    }
+
+    /**
      * The computed title for the group, which results from
      * {@link com.smartgwt.client.widgets.grid.GroupTitleRenderer#getGroupTitle(Object, GroupNode, ListGridField, String, ListGrid)}
      *

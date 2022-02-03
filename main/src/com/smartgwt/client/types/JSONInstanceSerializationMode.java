@@ -32,7 +32,7 @@ public enum JSONInstanceSerializationMode implements ValueEnum {
      */
     LONG("long"),
     /**
-     * instances will be shown in a shorter format via a call to {@link com.smartgwt.client.util.isc#echoLeaf isc.echoLeaf()}.
+     * instances will be shown in a shorter format via a call to  {@link com.smartgwt.client.util.SC#echoLeaf SC.echoLeaf()}.
      * Result is not expected to decode()/eval() successfully if instances are included.
      * <P>
      * If this enumerated value is used in a {@link com.smartgwt.client.docs.ComponentXML Component XML}

@@ -20,12 +20,12 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.Canvas#imgHTML
  * @see com.smartgwt.client.widgets.Canvas#getImage
  * @see com.smartgwt.client.widgets.Canvas#setImage
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getSkinImgDir
- * @see com.smartgwt.client.widgets.tab.TabSet#getSkinImgDir
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getSkinImgDir
  * @see com.smartgwt.client.widgets.Canvas#getAppImgDir
  * @see com.smartgwt.client.widgets.Canvas#getSkinImgDir
  * @see com.smartgwt.client.widgets.Canvas#getUseImageForSVG
- * @see com.smartgwt.client.widgets.grid.ListGrid#getSkinImgDir
+ * @see com.smartgwt.client.widgets.tab.TabSet#getSkinImgDir
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getSkinImgDir
  * @see com.smartgwt.client.widgets.Scrollbar#getSkinImgDir
  * @see com.smartgwt.client.widgets.Scrollbar#getCornerSrc
  * @see com.smartgwt.client.widgets.Scrollbar#getHSrc

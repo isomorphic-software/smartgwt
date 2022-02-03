@@ -5,41 +5,48 @@ package com.smartgwt.client.docs;
  * <h3>Automated Testing</h3>
  * Smart GWT supports automated testing with a variety of tools.
  *  <P>
- *  <h3>Selenium</h3>
+ *  <h3>Selenium / Selenese</h3>
  *  <P>
- *  Smart GWT includes a free, custom Selenium extension for robust record and playback of tests,
- *  including the ability to record on one browser and play back on others, support for Selenium
- *  Remote Control allowing tests to be written in a variety of programming languages and run as
- *  scripts, as well as Smart GWT-specific enhancements to the Selenium IDE.
+ * Smart GWT includes free support for <a href='https://docs.seleniumhq.org/'
+ * target='_blank'>Selenium</a>
+ *  for robust recording and playback of tests, including the ability to record on one browser
+ *  and play back on others, via 
+ * <a href='https://www.seleniumhq.org/docs/02_selenium_ide.jsp#selenium-commands-selenese'
+ * target='_blank'>Selenese</a>
+ *  enhanced with Smart GWT-specific locators and commands that provide a stable means of
+ *  locating Smart GWT widgets and ensuring they're ready for interaction.
  *  <P>
- *  These extensions can be found in the 
+ *  To write Selenese, we recommend Selenium IDE 2.9, which is compatible with
+ * <a href='https://www.mozilla.org/en-US/firefox/organizations/' target='_blank'>Firefox 52
+ * ESR</a>, and
+ *  can directly load our user extensions, located in the
  *  
  *  <code>selenium/</code>
- *  directory and a user guide can be found {@link com.smartgwt.client.docs.UsingSelenium here}. 
+ *  directory.  A user guide explaining how to create and interactively run selenese with the IDE
+ * can be found {@link com.smartgwt.client.docs.UsingSelenium here}.  Selenium IDE 3, which
+ * requires Firefox 
+ *  Quantum, has just released support for plugins that should allow the eventual migration of
+ *  our user extensions, but for now only Selenium IDE 2.9 can load Smart GWT locator and
+ *  command extensions.
  *  <P>
- *  Selenium supports writing test code in any programming language via
- * <a href='http://seleniumhq.org/projects/remote-control/' target='_blank'>Seleniun RC</a>.  By
- * writing
- *  Selenium RC test cases in Java, you can drive them from JUnit, hence creating automated
- *  tests that can be run from the command line or via Continuous Integration servers such as
- *  Hudson, allowing for running tests on checkins to source control or in overnight batch runs.
+ *  <b>SeleneseRunner</b>
  *  <P>
- * Services such as <a href='http://saucelabs.com/ondemand' target='_blank'>SauceLabs OnDemand</a>
- * allow you
- *  to run the actual browsers in the cloud, tunneling back to a private network via an
- *  encrypted channel, so that you do not need to set up Selenium RC servers with appropriate
- *  browsers installed.
+ *  For automated testing, Smart GWT provides
+ * <a href='../../../../../server/javadoc/com/isomorphic/webdriver/SeleneseRunner.html'
+ * target='_blank'>SeleneseRunner</a>, a tool that
+ *  executes Smart GWT-enhanced Selenese created by Selenium IDE via emulation, since Selenium
+ *  3 no longer supports the Selenium RC APIs and thus can't execute Selenese that requires
+ *  custom user extensions.  Internally, <code>SeleneseRunner</code> makes use of the APIs in
+ *  our WebDriver wrappers to resolve locators properly and execute Smart GWT-enhanced
+ *  Selenese.
  *  <P>
- *  For apps requiring load testing, also take a look at
- * <a href='http://browsermob.com' target='_blank'>BrowserMob</a>, which allows you to run
- * Selenium tests with
- *  thousands of browsers at once against a test deployment.
- *  <P>
- *  <b>JUnit + Selenium RC</b>
- *  <P>
- * Explore {@link com.smartgwt.client.docs.JUnitSeleniumRC JUnit + Selenium RC}, where we walk
- * through a JUnit test built
- *  using Selenium IDE and targeting a Smart GWT Showcase example.
+ *  <code>SeleneseRunner</code> can be used to:
+ *  <ul>
+ *  <li> execute Selenese directly from the command line
+ *  <li> execute Selenese from inside a Java program (eg, as part of a JUnit test)
+ *  <li> convert a Selenese test to Java code (as a JUnit test)
+ *  </ul><p>
+ *  See the server-side JavaDoc linked above for more information on how to use these features.
  *  <P>
  *  <h3>TestRunner</h3>
  *  <P>
@@ -82,66 +89,43 @@ package com.smartgwt.client.docs;
  *  have their <code>onModuleLoad()</code> method called normally.
  *  
  *  <P>
- *  <h3>WebDriver / "Selenium 2"</h3>
+ *  <h3>Selenium WebDriver</h3>
  *  <P>
- *  WebDriver, which is now part of Selenium 2, uses a different basic architecture in which
- *  extensions are added to each browser in order to drive tests, instead of doing so from
- *  JavaScript.
+ *  WebDriver, supported since Selenium 2, uses a different basic architecture in which a driver
+ *  is added to each browser to enable Selenium interaction, instead of doing so from JavaScript.
  *  <P>
  *  Support for WebDriver-based testing for Smart GWT is now available with the same custom
- *  locator strategies and custom commands as we provide for Selenium 1.0.  However, we continue
- *  to recommend Selenium 1.0 rather than WebDriver-based Selenium 2, because:
- *  <P>
- *  <ol>
- *  <li> <b>WebDriver is more complex to install</b>: WebDriver requires installing support for
- *  each browser where you want to run tests, and in some cases multiple WebDriver plugins for
- *  multiple versions of the browser
- *  <li> <b>WebDriver has version / browser support issues</b>: Selenium 1.0 generally works
- *  with any standards-compliant browser.  Because WebDriver requires deeper integration with
- *  the browser, new browser releases require updated WebDriver extensions.  This is a
- *  particular issue with the rapid pace of new releases of Firefox, where the WebDriver
- *  extension becomes disabled by an update of Firefox, but WebDriver test will still run in a
- *  "non-native" mode that behaves erratically.  Unfortunately, there is <b>no way we can
- *  detect and warn users about this</b>; this is a general issue with WebDriver and
- *  Firefox, not specific to Smart GWT.
- *  <li> <b>Mobile testing issues</b>: Mobile testing is supported only for certain devices,
- *  requires that an application be installed on the devices, doesn't run a normal browser
- *  (rather an embedded browser window inside an application), which can introduce spurious
- *  issues during playback.  In contrast, while Selenium RC doesn't support mobile, with
- *  Selenium 1.0 you can use Selenium Core to test any mobile device that supports JavaScript
- *  without installation of an app.  Both situations have drawbacks but we feel that Selenium
- *  1.0 has an overall advantage over WebDriver here.
- *  <li> <b>Java skills required</b>: Tests created in Selenium IDE and stored in Selenese can
- *  be executed by a variety of tools without requiring Java skills, including our own
+ *  locator strategies and custom commands as we provide for Selenese.  <b>However, we continue
+ *  to recommend Selenese rather than WebDriver-based Selenium, because Webdriver requires
+ *  Java programming skills.</b>  Tests created in Selenium IDE and stored in Selenese can be
+ *  executed by a variety of tools without requiring Java skills, including our own
  * {@link com.smartgwt.client.docs.TestRunner}.  Most ways of running WebDriver tests involve Java
- * coding
- *  skills or at least the ability to work with a Java IDE.  This tends to mean that all QA
- *  personnel must either have Java skills or drain the time of Java developers on repetitive
- *  tasks.
- *  </ol>
+ * coding skills or
+ *  at least the ability to work with a Java IDE.  This tends to mean that all QA personnel must
+ *  either have Java skills or drain the time of Java developers on repetitive tasks.
  *  <P>
- *  Ultimately, our current recommendation is to use Selenium 1.0 and Selenium RC exclusively or
+ *  Ultimately, our current recommendation is to use Selenium IDE and Selenese exclusively or
  *  at least primarily.  If there are critically important tests that you can only build via
- * WebDriver (rare: the most common such case is testing file upload - see below), use WebDriver
- * for
- *  those tests only, or use manual testing for those tests.
+ *  WebDriver, use WebDriver for those tests only, or use manual testing for those tests.
  *  <P>
  *  <b>WebDriver Usage</b>
  *  <P>
- *  When using WebDriver, we recommend using Selenum IDE to record tests, and storing tests in
- *  Selenese (as with Selenium RC / 1.0).  WebDriver is not normally able to execute Selenese
- *  tests, but we provide a Java class <code>SeleneseRunner</code> that can be used to:
- *  <ul>
- *  <li> execute Selenese directly from the command line
- *  <li> execute Selenese from inside a Java program (eg, as part of a JUnit test)
- *  <li> convert a Selenese test to Java code (as a JUnit test)
- *  </ul>
- *  See the server-side JavaDoc for com.isomorphic.webdriver.SeleneseRunner for more information
- *  on how to use these features.
+ *  When using WebDriver, we recommend using Selenum IDE as a starting point to record and store 
+ *  tests.  You can then call <code>SeleneseRunner</code> to convert that Selenese to Java code
+ *  that uses Smart GWT locators and invokes the appropriate APIs on our WebDriver wrappers.
+ *  <P>
+ *  Once you become familiar with what code is generated for common interactions, you may want to
+ *  write tests directly without using Selenium IDE.  In this case, you can use the
+ * {@link com.smartgwt.client.util.AutoTest} APIs, such as {@link
+ * com.smartgwt.client.util.AutoTest#getLocator AutoTest.getLocator()}, which takes a {@link
+ * com.smartgwt.client.widgets.Canvas} or
+ * DOM element, to get the locators you need from the {@link com.smartgwt.client.docs.Debugging
+ * Developer Console}.
  *  <p>
  *  <b>NOTE:</b> Selenium IDE has an option to export tests as WebDriver-compatible code.  <b>Do
  *  not use</b> this feature, it exports useless code that doesn't understand custom commands,
- *  custom locators, or other key features of Selenium IDE.  Use SeleneseRunner instead.
+ *  custom locators, or other key features of Selenium IDE.  Use <code>SeleneseRunner</code>
+ *  instead.
  *  <p>
  *  <b>WebDriver Classes overview</b>
  *  <p>
@@ -152,15 +136,18 @@ package com.smartgwt.client.docs;
  *  Smart GWT support for WebDriver is based around 3 different Java classes:
  *  <P>
  *  <ol>
- *  <li> <b>ByScLocator</b>: This implements the ability to find WebElements or WebDriver "By"
+ * <li> <a href='../../../../../server/javadoc/com/isomorphic/webdriver/ByScLocator.html'
+ * target='_blank'>ByScLocator</a>:
+ *  This implements the ability to find WebElements or WebDriver "By"
  * objects using Smart GWT Locator strings.  See {@link com.smartgwt.client.docs.UsingSelenium}
  * for more
  * background on Locator strings and how to obtain them.  Given a locator String, example usage
  * is:
  *  <pre>
- *  ByScLocator.scLocator("//ListGrid[ID=\"countryList\"]/body/row[countryCode=US||0]/col[fieldName=countryCode||0]")
- *  </pre>
- *  <li> <b>SmartClientWebDriver</b>: This is an abstract class which provides a number of
+ *  ByScLocator.scLocator("//ListGrid[ID=\"countryList\"]/body/row[countryCode=US||0]/col[fieldName=countryCode||0]")</pre>
+ * <li> <a href='../../../../../server/javadoc/com/isomorphic/webdriver/SmartClientWebDriver.html'
+ * target='_blank'>SmartClientWebDriver</a>:
+ *  This is an abstract class which provides a number of
  *  different methods for interacting with the browser, such as:
  *  <ul>
  *  <li> open a browser at a particular URL
@@ -174,8 +161,10 @@ package com.smartgwt.client.docs;
  * SmartClientChromeDriver and SmartClientIEDriver. There is also a SmartClientRemoteWebdriver
  * class
  *  which allows the injection of a manually configured RemoteWebDriver instance. This might be
- *  necessary, for example, for use with Selenium Grid.
- *  <li> <b>ScAction</b>: a Smart GWT-specific version of the standard WebDriver
+ *  necessary, for example, for use with Selenium Grid.<P>
+ * <li> <a href='../../../../../server/javadoc/com/isomorphic/webdriver/ScActions.html'
+ * target='_blank'>ScActions</a>:
+ *  a Smart GWT-specific version of the standard WebDriver
  *  "Action" class, providing a builder pattern to create a sequence of operations which can
  *  then be perform()ed.
  *  </ol>
@@ -187,14 +176,20 @@ package com.smartgwt.client.docs;
  *  <P>
  *  General information regarding WebDriver can be found
  * <a href='http://docs.seleniumhq.org/docs/03_webdriver.jsp#introducing-webdriver'
- * target='_blank'>here</a>. Setup for
- *  WebDriver is more complex than for classic Selenium: The basic Java package includes drivers
- * for FireFox (subject to important version limitations as described above), but additional
- * drivers must
- * be downloaded for <a href='http://code.google.com/p/chromium/downloads/list'
- * target='_blank'>Google Chrome</a> and 
- * <a href='http://code.google.com/p/selenium/downloads/list' target='_blank'>Internet
- * Explorer</a>.
+ * target='_blank'>here</a>.
+ *  Setup for WebDriver is more complex than for classic Selenium.  Drivers can be downloaded for
+ *  <a href='https://github.com/mozilla/geckodriver/' target='_blank'>Firefox</a>,
+ * <a href='https://sites.google.com/a/chromium.org/chromedriver/' target='_blank'>Google
+ * Chrome</a>, 
+ *  <a href='https://www.seleniumhq.org/download/' target='_blank'>Internet Explorer</a>, and
+ * <a href='https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/'
+ * target='_blank'>MS Edge</a>.
+ *  <P>
+ *  <b>JUnit + WebDriver</b>
+ *  <P>
+ * Explore {@link com.smartgwt.client.docs.JUnitWebDriver JUnit + Selenium WebDriver}, where we
+ * walk through a JUnit test
+ *  targeting a Smart GWT Showcase sample.
  *  <P>
  *  <b>File Upload Example Test</b>
  *  <P>

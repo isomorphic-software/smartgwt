@@ -222,6 +222,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      *
      * @param allowFilterExpressions New allowFilterExpressions value. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public void setAllowFilterExpressions(Boolean allowFilterExpressions)  throws IllegalStateException {
         setAttribute("allowFilterExpressions", allowFilterExpressions, false);
@@ -235,6 +236,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * level}.
      *
      * @return Current allowFilterExpressions value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public Boolean getAllowFilterExpressions()  {
         return getAttributeAsBoolean("allowFilterExpressions");
@@ -525,9 +527,24 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     
 
     /**
-     * When this attribute is set, editors will be rendered into every row of the grid rather than showing up in a single
-     * record at a time. This attribute is only valid when {@link com.smartgwt.client.widgets.grid.ListGrid#getEditByCell
-     * editByCell} is false
+     * When this attribute is set, editors will be appear to be present in every row of the  grid, allowing the user to
+     * immediately start editing any cell, rather thanshowing  up in a single record at a time.<br> This attribute is only
+     * valid when {@link com.smartgwt.client.widgets.grid.ListGrid#getEditByCell editByCell} is false. <P> This setting has
+     * some limitations and is typically only used for simple grids with  a limited set of fields and standard editors. <ul>
+     * <li>Not all formItem types are supported. Default editors for standard data types   (text, boolean, date, datetime,
+     * integer and float) are all supported, but custom   editorType, including CanvasItem based editors are not. Fields with
+     * an unsupported   editor type will show static values for all rows other than the current edit row, though   users can
+     * start editing these with a single click</li>  <li><code>alwaysShowEditors:true</code> grids do not support showing
+     * different   editor types for the same field in different rows</li> <li>In some cases there may be visual differences
+     * between the editor displayed in the   edit row and the editor displayed in other rows.</li> <li>From a design
+     * perspective, this mode presents a very "busy-looking" UI,     which can made it harder to read the actual data.
+     * Functionally having      {@link com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent} set to "click"
+     * provides the same single-click to edit     any cell user experience without the busy UI.</li> <li>In some cases there
+     * may be a performance penalty for writing out so many controls     (editors for every cell of the grid).</li> </ul> Note
+     * that in addition to alwaysShowEditors, listGrid support single-click editing via {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent:"click"}, and, for boolean fields,  {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getCanToggle ListGridField.canToggle}
+     * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param alwaysShowEditors New alwaysShowEditors value. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -538,9 +555,23 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * When this attribute is set, editors will be rendered into every row of the grid rather than showing up in a single
-     * record at a time. This attribute is only valid when {@link com.smartgwt.client.widgets.grid.ListGrid#getEditByCell
-     * editByCell} is false
+     * When this attribute is set, editors will be appear to be present in every row of the  grid, allowing the user to
+     * immediately start editing any cell, rather thanshowing  up in a single record at a time.<br> This attribute is only
+     * valid when {@link com.smartgwt.client.widgets.grid.ListGrid#getEditByCell editByCell} is false. <P> This setting has
+     * some limitations and is typically only used for simple grids with  a limited set of fields and standard editors. <ul>
+     * <li>Not all formItem types are supported. Default editors for standard data types   (text, boolean, date, datetime,
+     * integer and float) are all supported, but custom   editorType, including CanvasItem based editors are not. Fields with
+     * an unsupported   editor type will show static values for all rows other than the current edit row, though   users can
+     * start editing these with a single click</li>  <li><code>alwaysShowEditors:true</code> grids do not support showing
+     * different   editor types for the same field in different rows</li> <li>In some cases there may be visual differences
+     * between the editor displayed in the   edit row and the editor displayed in other rows.</li> <li>From a design
+     * perspective, this mode presents a very "busy-looking" UI,     which can made it harder to read the actual data.
+     * Functionally having      {@link com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent} set to "click"
+     * provides the same single-click to edit     any cell user experience without the busy UI.</li> <li>In some cases there
+     * may be a performance penalty for writing out so many controls     (editors for every cell of the grid).</li> </ul> Note
+     * that in addition to alwaysShowEditors, listGrid support single-click editing via {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getEditEvent editEvent:"click"}, and, for boolean fields,  {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getCanToggle ListGridField.canToggle}
      *
      * @return Current alwaysShowEditors value. Default value is null
      * @see com.smartgwt.client.docs.Editing Editing overview and related methods
@@ -988,7 +1019,9 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * changing the selection</li> <li><code>"activate"</code> : select and activate the next row in the list (calls 
      * <code>recordDoubleClick</code> handler)</li> <li><code>"none"</code> : no action</li> <li> <code>null</code> : if {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance} is "checkbox", behaves as if set 
-     * to "focus"; otherwise, behaves as if set to "select"</li> </ul>
+     * to "focus"; otherwise, behaves as if set to "select"</li> </ul> <P> Note: If this grid is editable, behavior while
+     * editing is governed by the result of  {@link com.smartgwt.client.widgets.grid.ListGrid#getArrowKeyEditAction
+     * getArrowKeyEditAction()}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param arrowKeyAction New arrowKeyAction value. Default value is null
@@ -1004,12 +1037,48 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * changing the selection</li> <li><code>"activate"</code> : select and activate the next row in the list (calls 
      * <code>recordDoubleClick</code> handler)</li> <li><code>"none"</code> : no action</li> <li> <code>null</code> : if {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSelectionAppearance selectionAppearance} is "checkbox", behaves as if set 
-     * to "focus"; otherwise, behaves as if set to "select"</li> </ul>
+     * to "focus"; otherwise, behaves as if set to "select"</li> </ul> <P> Note: If this grid is editable, behavior while
+     * editing is governed by the result of  {@link com.smartgwt.client.widgets.grid.ListGrid#getArrowKeyEditAction
+     * getArrowKeyEditAction()}.
      *
      * @return Current arrowKeyAction value. Default value is null
      */
     public String getArrowKeyAction()  {
         return getAttributeAsString("arrowKeyAction");
+    }
+    
+
+    /**
+     * What to do when a user hits arrow key while editing a field?<br> If not explicitly specified {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getArrowKeyEditAction getArrowKeyEditAction()}  will return an appropriate
+     * action depending on the field type.
+     *
+     * @param arrowKeyEditAction New arrowKeyEditAction value. Default value is null
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
+     */
+    public void setArrowKeyEditAction(ArrowKeyEditAction arrowKeyEditAction) {
+        setAttribute("arrowKeyEditAction", arrowKeyEditAction == null ? null : arrowKeyEditAction.getValue(), true);
+    }
+
+    /**
+     * What to do when a user hits arrow key while editing a field?<br> If not explicitly specified {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getArrowKeyEditAction getArrowKeyEditAction()}  will return an appropriate
+     * action depending on the field type.
+     *
+     * @return How should "Up" and "Down" arrow keypresses be handled when the user is editing an item in the grid. <P> Returning
+     * "none" will cause the grid to take no action and allow default up/down arrow key behavior within the editor to proceed.
+     * Returning "editNext" will create an appropriate {@link com.smartgwt.client.types.EditCompletionEvent} (<i>"arrow_up"</i>
+     * or <i>"arrow_down"</i> and cause the grid to start editing the previous or next row). <P> Default behavior varies by
+     * item type. For items where up and down arrows have significant functionality to the editor this method returns
+     * <i>"none"</i>, allowing that standard behavior to proceed. This includes:<br> - Multi line editors (such as
+     * TextAreaItems)<br> - SelectItems<br> - SpinnerItems<br> For other items, the default return value will be
+     * <i>"edit_next"</i> <P> To override these defaults, developers may specify an explicit arrowKeyEditAction at the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getArrowKeyEditAction grid}, or  {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getArrowKeyEditAction field} level. Default value is null
+     * @see com.smartgwt.client.docs.Editing Editing overview and related methods
+     */
+    public ArrowKeyEditAction getArrowKeyEditAction()  {
+        return EnumUtil.getEnum(ArrowKeyEditAction.values(), getAttribute("arrowKeyEditAction"));
     }
     
 
@@ -1424,7 +1493,12 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * com.smartgwt.client.widgets.grid.ListGrid#getDefaultFieldWidth getDefaultFieldWidth()} having to render out the data set
      * offscreen and measure the rendered content - it does not apply for cases where this method can return a simple fixed
      * values (as with icon fields). <P> Which fields are currently autofitting is saved as part of the {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getViewState view state} of the ListGrid.
+     * com.smartgwt.client.widgets.grid.ListGrid#getViewState view state} of the ListGrid. <P> Interaction with wrapping: If
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getWrapCells wrapping of cell values} is  enabled, autoFit behavior
+     * based on {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitWidthApproach cell content} will render fields wide
+     * enough to contain the <i>unwrapped</i> cell values. If {@link com.smartgwt.client.widgets.grid.ListGridField#getWrap
+     * wrapping of field titles} is enabled, when fitting to  a title, a field will render wide enough to accomodate the
+     * <i>wrapped</i> title without clipping (so wide enough for the natural wrap-point / longest word or unwrappable string).
      *
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitFieldWidths autoFitFieldWidths}. Modifies the default auto-fit-width behavior for fields in this grid. Note that this may be overridden at the field level via {@link com.smartgwt.client.widgets.grid.ListGridField#getAutoFitWidth ListGridField.autoFitWidth}.
@@ -1470,7 +1544,12 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * com.smartgwt.client.widgets.grid.ListGrid#getDefaultFieldWidth getDefaultFieldWidth()} having to render out the data set
      * offscreen and measure the rendered content - it does not apply for cases where this method can return a simple fixed
      * values (as with icon fields). <P> Which fields are currently autofitting is saved as part of the {@link
-     * com.smartgwt.client.widgets.grid.ListGrid#getViewState view state} of the ListGrid.
+     * com.smartgwt.client.widgets.grid.ListGrid#getViewState view state} of the ListGrid. <P> Interaction with wrapping: If
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getWrapCells wrapping of cell values} is  enabled, autoFit behavior
+     * based on {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitWidthApproach cell content} will render fields wide
+     * enough to contain the <i>unwrapped</i> cell values. If {@link com.smartgwt.client.widgets.grid.ListGridField#getWrap
+     * wrapping of field titles} is enabled, when fitting to  a title, a field will render wide enough to accomodate the
+     * <i>wrapped</i> title without clipping (so wide enough for the natural wrap-point / longest word or unwrappable string).
      *
      * @return Current autoFitFieldWidths value. Default value is null
      */
@@ -2444,6 +2523,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @param canDragRecordsOut New canDragRecordsOut value. Default value is false
      * @see com.smartgwt.client.widgets.grid.ListGridRecord#setCanDrag
      * @see com.smartgwt.client.widgets.grid.ListGridRecord#setCanAcceptDrop
+     * @see com.smartgwt.client.widgets.grid.ListGrid#showDragHandles
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_move_list" target="examples">Drag list (move) Example</a>
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_records_across_windows" target="examples">Records across Windows Example</a>
      */
@@ -2464,6 +2544,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @return Current canDragRecordsOut value. Default value is false
      * @see com.smartgwt.client.widgets.grid.ListGridRecord#getCanDrag
      * @see com.smartgwt.client.widgets.grid.ListGridRecord#getCanAcceptDrop
+     * @see com.smartgwt.client.widgets.grid.ListGrid#showDragHandles
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_move_list" target="examples">Drag list (move) Example</a>
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_records_across_windows" target="examples">Records across Windows Example</a>
      */
@@ -3130,6 +3211,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @param canReorderRecords new value for <code>this.canReorderRecords</code>. Default value is false
      * @see com.smartgwt.client.widgets.grid.ListGridRecord#setCanDrag
      * @see com.smartgwt.client.widgets.grid.ListGridRecord#setCanAcceptDrop
+     * @see com.smartgwt.client.widgets.grid.ListGrid#showDragHandles
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_move_list" target="examples">Drag list (move) Example</a>
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_drag_reorder" target="examples">Drag reorder Example</a>
      */
@@ -3151,6 +3233,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * @return Current canReorderRecords value. Default value is false
      * @see com.smartgwt.client.widgets.grid.ListGridRecord#getCanDrag
      * @see com.smartgwt.client.widgets.grid.ListGridRecord#getCanAcceptDrop
+     * @see com.smartgwt.client.widgets.grid.ListGrid#showDragHandles
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#effects_dd_move_list" target="examples">Drag list (move) Example</a>
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_drag_reorder" target="examples">Drag reorder Example</a>
      */
@@ -3319,7 +3402,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
 
     /**
      * Should the header be included in the tab-order for the page? If not explicitly specified, the header will be included in
-     * the tab order for the page if {@link com.smartgwt.client.util.isc#setScreenReaderMode isc.setScreenReaderMode()} is
+     * the tab order for the page if     {@link com.smartgwt.client.util.SC#setScreenReaderMode SC.setScreenReaderMode()}  is
      * called.
      *
      * @param canTabToHeader New canTabToHeader value. Default value is null
@@ -3332,7 +3415,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
 
     /**
      * Should the header be included in the tab-order for the page? If not explicitly specified, the header will be included in
-     * the tab order for the page if {@link com.smartgwt.client.util.isc#setScreenReaderMode isc.setScreenReaderMode()} is
+     * the tab order for the page if     {@link com.smartgwt.client.util.SC#setScreenReaderMode SC.setScreenReaderMode()}  is
      * called.
      *
      * @return Current canTabToHeader value. Default value is null
@@ -3948,6 +4031,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      *
      * @param dataFetchMode New dataFetchMode value. Default value is "paged"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setShowAllRecords
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public void setDataFetchMode(FetchMode dataFetchMode)  throws IllegalStateException {
@@ -3961,6 +4045,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * instead, it's existing setting for {@link com.smartgwt.client.data.ResultSet#getFetchMode ResultSet.fetchMode} applies.
      *
      * @return Current dataFetchMode value. Default value is "paged"
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getShowAllRecords
      * @see com.smartgwt.client.docs.Databinding Databinding overview and related methods
      */
     public FetchMode getDataFetchMode()  {
@@ -4468,6 +4553,98 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     
 
     /**
+     * An automatically generated field that can be dragged to drag the current selection (where otherwise the grid itself
+     * might be scrolled).  Visibility is controlled by  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowInitialDragHandles showInitialDragHandles}, {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#showDragHandles showDragHandles()}, and {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#hideDragHandles hideDragHandles()}.
+     * <p>
+     * This component is an AutoChild named "dragHandleField".  For an overview of how to use and
+     * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return Current dragHandleField value. Default value is null
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public ListGridField getDragHandleField() throws IllegalStateException {
+        errorIfNotCreated("dragHandleField");
+        return ListGridField.getOrCreateRef(getAttributeAsJavaScriptObject("dragHandleField"));
+    }
+    
+
+    /**
+     * The title to use for the {@link com.smartgwt.client.widgets.grid.ListGrid#getDragHandleField drag handle field}. <P> By
+     * default this title is not displayed in the drag column header button as the autochild defaults for the field set {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getShowTitle ListGridField.showTitle} to <code>false</code>.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param dragHandleFieldTitle New dragHandleFieldTitle value. Default value is "&amp;nbsp;"
+     * @see com.smartgwt.client.widgets.grid.ListGrid#showDragHandles
+     */
+    public void setDragHandleFieldTitle(String dragHandleFieldTitle) {
+        setAttribute("dragHandleFieldTitle", dragHandleFieldTitle, true);
+    }
+
+    /**
+     * The title to use for the {@link com.smartgwt.client.widgets.grid.ListGrid#getDragHandleField drag handle field}. <P> By
+     * default this title is not displayed in the drag column header button as the autochild defaults for the field set {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getShowTitle ListGridField.showTitle} to <code>false</code>.
+     *
+     * @return Current dragHandleFieldTitle value. Default value is "&amp;nbsp;"
+     * @see com.smartgwt.client.widgets.grid.ListGrid#showDragHandles
+     */
+    public String getDragHandleFieldTitle()  {
+        return getAttributeAsString("dragHandleFieldTitle");
+    }
+    
+
+    /**
+     * Default icon to show in the {@link com.smartgwt.client.widgets.grid.ListGrid#getDragHandleField drag handle field}..
+     *
+     * @param dragHandleIcon New dragHandleIcon value. Default value is "[SKIN]/actions/drag.png"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.grid.ListGrid#showDragHandles
+     * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
+     */
+    public void setDragHandleIcon(String dragHandleIcon)  throws IllegalStateException {
+        setAttribute("dragHandleIcon", dragHandleIcon, false);
+    }
+
+    /**
+     * Default icon to show in the {@link com.smartgwt.client.widgets.grid.ListGrid#getDragHandleField drag handle field}..
+     *
+     * @return Current dragHandleIcon value. Default value is "[SKIN]/actions/drag.png"
+     * @see com.smartgwt.client.widgets.grid.ListGrid#showDragHandles
+     * @see com.smartgwt.client.docs.SCImgURL SCImgURL 
+     */
+    public String getDragHandleIcon()  {
+        return getAttributeAsString("dragHandleIcon");
+    }
+    
+
+    /**
+     * Default width and height of {@link com.smartgwt.client.widgets.grid.ListGrid#getDragHandleIcon drag handle icons} for
+     * this ListGrid.
+     *
+     * @param dragHandleIconSize New dragHandleIconSize value. Default value is 16
+     * @see com.smartgwt.client.widgets.grid.ListGrid#showDragHandles
+     */
+    public void setDragHandleIconSize(int dragHandleIconSize) {
+        setAttribute("dragHandleIconSize", dragHandleIconSize, true);
+    }
+
+    /**
+     * Default width and height of {@link com.smartgwt.client.widgets.grid.ListGrid#getDragHandleIcon drag handle icons} for
+     * this ListGrid.
+     *
+     * @return Current dragHandleIconSize value. Default value is 16
+     * @see com.smartgwt.client.widgets.grid.ListGrid#showDragHandles
+     */
+    public int getDragHandleIconSize()  {
+        return getAttributeAsInt("dragHandleIconSize");
+    }
+    
+
+    /**
      * Like {@link com.smartgwt.client.widgets.grid.ListGrid#getScrollRedrawDelay scrollRedrawDelay}, but applies when the
      * component is being drag-scrolled (via a scrollbar).  This value is typically set higher than {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getScrollRedrawDelay scrollRedrawDelay} to avoid too many concurrent fetches
@@ -4519,9 +4696,10 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     
 
     /**
-     * How far should we render rows ahead of the currently visible area?  This is expressed as a ratio from viewport size to
-     * rendered area size. <P> Tweaking drawAheadRatio allows you to make tradeoffs between continuous scrolling speed vs
-     * initial render time and render time when scrolling by large amounts. <P> NOTE: Only applies when showAllRows is false.
+     * How far should we render records ahead of the currently visible area?  This is expressed as a ratio from viewport size
+     * to rendered area size. <P> Tweaking drawAheadRatio allows you to make tradeoffs between continuous scrolling speed vs
+     * initial render time and render time when scrolling by large amounts. <P> NOTE: Only applies when showAllRecords is
+     * false.
      *
      * @param drawAheadRatio New drawAheadRatio value. Default value is 2.0
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_dataoperations_fetch" target="examples">Databound fetch Example</a>
@@ -4531,9 +4709,10 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * How far should we render rows ahead of the currently visible area?  This is expressed as a ratio from viewport size to
-     * rendered area size. <P> Tweaking drawAheadRatio allows you to make tradeoffs between continuous scrolling speed vs
-     * initial render time and render time when scrolling by large amounts. <P> NOTE: Only applies when showAllRows is false.
+     * How far should we render records ahead of the currently visible area?  This is expressed as a ratio from viewport size
+     * to rendered area size. <P> Tweaking drawAheadRatio allows you to make tradeoffs between continuous scrolling speed vs
+     * initial render time and render time when scrolling by large amounts. <P> NOTE: Only applies when showAllRecords is
+     * false.
      *
      * @return Current drawAheadRatio value. Default value is 2.0
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_dataoperations_fetch" target="examples">Databound fetch Example</a>
@@ -4861,16 +5040,16 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
 
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectOnEdit selectOnEdit} is true, what should be the
-     * edit-selection behavior be? <P> If set to <code>null</code> behavior is as follows:<ul> <li>For grids with {@link
+     * edit-selection behavior be? <P> Default setting of <code>"single"</code> will cause the edit row to be automatically
+     * selected and any other selection in the grid to be dropped.<br> If set to <code>"multiple"</code>, selection will be
+     * additive (as a record goes  into edit mode, it is selected in addition to any pre-existant selection). <P> If set to
+     * <code>null</code> behavior is as follows:<ul> <li>For grids with {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSelectionType selectionType} set to <code>"simple"</code> edit rows will be
      * selected additively - this is the same behavior as if the <code>editSelectionType</code> was
      * <code>"multiple"</code></li> <li>Otherwise edit rows will be selected singly - this is the same behavior as if the
-     * <code>editSelectionType</code> was <code>"single"</code></li> </ul> <P> Setting to <code>"single"</code> will cause the
-     * edit row to be automatically selected and any other selection in the grid to be dropped.<br> If set to
-     * <code>"multiple"</code>, selection will be additive (as a record goes  into edit mode, it is selected in addition to any
-     * pre-existant selection). <P>
+     * <code>editSelectionType</code> was <code>"single"</code></li> </ul>
      *
-     * @param editSelectionType New editSelectionType value. Default value is null
+     * @param editSelectionType New editSelectionType value. Default value is "single"
      */
     public void setEditSelectionType(SelectionStyle editSelectionType) {
         setAttribute("editSelectionType", editSelectionType == null ? null : editSelectionType.getValue(), true);
@@ -4878,16 +5057,16 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
 
     /**
      * If {@link com.smartgwt.client.widgets.grid.ListGrid#getSelectOnEdit selectOnEdit} is true, what should be the
-     * edit-selection behavior be? <P> If set to <code>null</code> behavior is as follows:<ul> <li>For grids with {@link
+     * edit-selection behavior be? <P> Default setting of <code>"single"</code> will cause the edit row to be automatically
+     * selected and any other selection in the grid to be dropped.<br> If set to <code>"multiple"</code>, selection will be
+     * additive (as a record goes  into edit mode, it is selected in addition to any pre-existant selection). <P> If set to
+     * <code>null</code> behavior is as follows:<ul> <li>For grids with {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getSelectionType selectionType} set to <code>"simple"</code> edit rows will be
      * selected additively - this is the same behavior as if the <code>editSelectionType</code> was
      * <code>"multiple"</code></li> <li>Otherwise edit rows will be selected singly - this is the same behavior as if the
-     * <code>editSelectionType</code> was <code>"single"</code></li> </ul> <P> Setting to <code>"single"</code> will cause the
-     * edit row to be automatically selected and any other selection in the grid to be dropped.<br> If set to
-     * <code>"multiple"</code>, selection will be additive (as a record goes  into edit mode, it is selected in addition to any
-     * pre-existant selection). <P>
+     * <code>editSelectionType</code> was <code>"single"</code></li> </ul>
      *
-     * @return Current editSelectionType value. Default value is null
+     * @return Current editSelectionType value. Default value is "single"
      */
     public SelectionStyle getEditSelectionType()  {
         return EnumUtil.getEnum(SelectionStyle.values(), getAttribute("editSelectionType"));
@@ -5758,6 +5937,75 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     public boolean getExportHeaderHeights()  {
         Boolean result = getAttributeAsBoolean("exportHeaderHeights");
         return result == null ? false : result;
+    }
+    
+
+    /**
+     * Width to size non-visible fields (which may be specified with {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getExportFields exportFields} or {@link
+     * com.smartgwt.client.data.DSRequest#getExportFields DSRequest.exportFields}) during {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#exportData exportData()} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#exportClientData exportClientData()}.
+     *
+     * @param exportHiddenFieldWidth New exportHiddenFieldWidth value. Default value is 100
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setExportFieldWidth
+     */
+    public void setExportHiddenFieldWidth(int exportHiddenFieldWidth) {
+        setAttribute("exportHiddenFieldWidth", exportHiddenFieldWidth, true);
+    }
+
+    /**
+     * Width to size non-visible fields (which may be specified with {@link
+     * com.smartgwt.client.widgets.DataBoundComponent#getExportFields exportFields} or {@link
+     * com.smartgwt.client.data.DSRequest#getExportFields DSRequest.exportFields}) during {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#exportData exportData()} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#exportClientData exportClientData()}.
+     *
+     * @return Current exportHiddenFieldWidth value. Default value is 100
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getExportFieldWidth
+     */
+    public int getExportHiddenFieldWidth()  {
+        return getAttributeAsInt("exportHiddenFieldWidth");
+    }
+    
+
+    /**
+     * Dictates whether numeric values should be exported as raw numbers instead of formatted values when using {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#exportClientData exportClientData()}. <P> This property is only consulted if
+     * <code>exportRawValues</code> is not set to true at the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getExportRawValues grid} or {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getExportRawValues field} level. That property causes all values,
+     * including numeric values, to be exported unformatted. <P> This is useful for cases where an explicit ListGrid formatter
+     * function simply displays the number as a formatted string for the user (for example "1,234"). Exporting that formatted
+     * string rather than the underlying numeric value causes spreadsheet applications such as Excel to lose some
+     * functionality. <P> If this property is not explicitly set, numeric values will be exported as raw numbers for {@link
+     * com.smartgwt.client.data.DSRequest#getExportAs XLS and OOXML export} only. <P> May be overridden at the field level via
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#getExportRawNumbers ListGridField.exportRawNumbers}.
+     *
+     * @param exportRawNumbers New exportRawNumbers value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setExportRawNumbers(Boolean exportRawNumbers)  throws IllegalStateException {
+        setAttribute("exportRawNumbers", exportRawNumbers, false);
+    }
+
+    /**
+     * Dictates whether numeric values should be exported as raw numbers instead of formatted values when using {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#exportClientData exportClientData()}. <P> This property is only consulted if
+     * <code>exportRawValues</code> is not set to true at the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getExportRawValues grid} or {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getExportRawValues field} level. That property causes all values,
+     * including numeric values, to be exported unformatted. <P> This is useful for cases where an explicit ListGrid formatter
+     * function simply displays the number as a formatted string for the user (for example "1,234"). Exporting that formatted
+     * string rather than the underlying numeric value causes spreadsheet applications such as Excel to lose some
+     * functionality. <P> If this property is not explicitly set, numeric values will be exported as raw numbers for {@link
+     * com.smartgwt.client.data.DSRequest#getExportAs XLS and OOXML export} only. <P> May be overridden at the field level via
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#getExportRawNumbers ListGridField.exportRawNumbers}.
+     *
+     * @return Current exportRawNumbers value. Default value is null
+     */
+    public Boolean getExportRawNumbers()  {
+        return getAttributeAsBoolean("exportRawNumbers");
     }
     
 
@@ -7173,6 +7421,8 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * based on the current direction of user-configured sort, or is "ascending" if the  user has not sorted the data.
      *
      * @param groupSortDirection New groupSortDirection value. Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setSortByGroupFirst
+     * @see com.smartgwt.client.widgets.grid.ListGrid#groupSortNormalizer
      */
     public void setGroupSortDirection(SortDirection groupSortDirection) {
         setAttribute("groupSortDirection", groupSortDirection == null ? null : groupSortDirection.getValue(), true);
@@ -7184,6 +7434,8 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * based on the current direction of user-configured sort, or is "ascending" if the  user has not sorted the data.
      *
      * @return Current groupSortDirection value. Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getSortByGroupFirst
+     * @see com.smartgwt.client.widgets.grid.ListGrid#groupSortNormalizer
      */
     public SortDirection getGroupSortDirection()  {
         return EnumUtil.getEnum(SortDirection.values(), getAttribute("groupSortDirection"));
@@ -7447,46 +7699,9 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
 
     /**
      * {@link com.smartgwt.client.widgets.Button#getBaseStyle Button.baseStyle} to apply to the buttons in the header, and the
-     * sorter, for
-     *  this ListGrid.
-     * Note that, depending on the {@link com.smartgwt.client.widgets.grid.ListGrid#getHeaderButtonConstructor Class} of the
-     * header
-     * buttons, you may also need to set {@link com.smartgwt.client.widgets.grid.ListGrid#getHeaderTitleStyle
-     * headerTitleStyle}.
-     *  <P>
-     *  <h4>Rotated Titles</h4>
-     *  <p>
-     *  The Framework doesn't have built-in support for rotating header button titles in a
-     * fashion similar to {@link com.smartgwt.client.widgets.chart.FacetChart#getRotateLabels FacetChart.rotateLabels}. 
-     * However, you can manually configure
-     * a grid to render with rotated labels by applying a fixed {@link com.smartgwt.client.widgets.grid.ListGridField#getWidth
-     * ListGridField.width} to
-     * each button, a large {@link com.smartgwt.client.widgets.grid.ListGrid#getHeaderHeight headerHeight} to the grid, and
-     * custom CSS via this property.
-     *  <P>
-     *  For example, given a grid with a header height of 120 and field widths of 48, if you
-     *  copied the existing headerButtonXXX style declarations from skin_styles.css as new,
-     *  customHeaderButtonXXX declarations, and then added the lines:
-     *  <pre>
-     *      -ms-transform:     translate(-32px,0px) rotate(270deg);
-     *      -webkit-transform: translate(-32px,0px) rotate(270deg);
-     *      transform:         translate(-32px,0px) rotate(270deg);
-     *      width:110px;</pre>
-     *  in the declaration section beginning:
-     *  <pre>
-     *  .customHeaderButton,
-     *  .customHeaderButtonSelected,
-     *  .customHeaderButtonSelectedOver,
-     *  .customHeaderButtonSelectedDown,
-     *  .customHeaderButtonSelectedDisabled,
-     *  .customHeaderButtonOver,
-     *  .customHeaderButtonDown,
-     *  .customHeaderButtonDisabled {</pre>
-     *  you'd get vertically rendered titles with overflow via ellipsis as expected, and also
-     * wrap with {@link com.smartgwt.client.widgets.grid.ListGrid#getWrapHeaderTitles wrapHeaderTitles}.  The explicit width
-     * applied via CSS is needed because
-     *  rotated elements don't inherit dimensions in their new orientation from the DOM - the
-     *  transform/rotation occurs independently of layout.
+     * sorter, for this ListGrid. Note that, depending on the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getHeaderButtonConstructor Class} of the header buttons, you may also need to
+     * set {@link com.smartgwt.client.widgets.grid.ListGrid#getHeaderTitleStyle headerTitleStyle}.
      *
      * @param headerBaseStyle New headerBaseStyle value. Default value is null
      * @throws IllegalStateException this property cannot be changed after the component has been created
@@ -7501,46 +7716,9 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
 
     /**
      * {@link com.smartgwt.client.widgets.Button#getBaseStyle Button.baseStyle} to apply to the buttons in the header, and the
-     * sorter, for
-     *  this ListGrid.
-     * Note that, depending on the {@link com.smartgwt.client.widgets.grid.ListGrid#getHeaderButtonConstructor Class} of the
-     * header
-     * buttons, you may also need to set {@link com.smartgwt.client.widgets.grid.ListGrid#getHeaderTitleStyle
-     * headerTitleStyle}.
-     *  <P>
-     *  <h4>Rotated Titles</h4>
-     *  <p>
-     *  The Framework doesn't have built-in support for rotating header button titles in a
-     * fashion similar to {@link com.smartgwt.client.widgets.chart.FacetChart#getRotateLabels FacetChart.rotateLabels}. 
-     * However, you can manually configure
-     * a grid to render with rotated labels by applying a fixed {@link com.smartgwt.client.widgets.grid.ListGridField#getWidth
-     * ListGridField.width} to
-     * each button, a large {@link com.smartgwt.client.widgets.grid.ListGrid#getHeaderHeight headerHeight} to the grid, and
-     * custom CSS via this property.
-     *  <P>
-     *  For example, given a grid with a header height of 120 and field widths of 48, if you
-     *  copied the existing headerButtonXXX style declarations from skin_styles.css as new,
-     *  customHeaderButtonXXX declarations, and then added the lines:
-     *  <pre>
-     *      -ms-transform:     translate(-32px,0px) rotate(270deg);
-     *      -webkit-transform: translate(-32px,0px) rotate(270deg);
-     *      transform:         translate(-32px,0px) rotate(270deg);
-     *      width:110px;</pre>
-     *  in the declaration section beginning:
-     *  <pre>
-     *  .customHeaderButton,
-     *  .customHeaderButtonSelected,
-     *  .customHeaderButtonSelectedOver,
-     *  .customHeaderButtonSelectedDown,
-     *  .customHeaderButtonSelectedDisabled,
-     *  .customHeaderButtonOver,
-     *  .customHeaderButtonDown,
-     *  .customHeaderButtonDisabled {</pre>
-     *  you'd get vertically rendered titles with overflow via ellipsis as expected, and also
-     * wrap with {@link com.smartgwt.client.widgets.grid.ListGrid#getWrapHeaderTitles wrapHeaderTitles}.  The explicit width
-     * applied via CSS is needed because
-     *  rotated elements don't inherit dimensions in their new orientation from the DOM - the
-     *  transform/rotation occurs independently of layout.
+     * sorter, for this ListGrid. Note that, depending on the {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getHeaderButtonConstructor Class} of the header buttons, you may also need to
+     * set {@link com.smartgwt.client.widgets.grid.ListGrid#getHeaderTitleStyle headerTitleStyle}.
      *
      * @return Current headerBaseStyle value. Default value is null
      * @see com.smartgwt.client.widgets.grid.ListGrid#getClipHeaderTitles
@@ -7809,6 +7987,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      *
      * @param headerMenuButtonHeight New headerMenuButtonHeight value. Default value is "100%"
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setRotatedHeaderMenuButtonHeight
      */
     public void setHeaderMenuButtonHeight(int headerMenuButtonHeight)  throws IllegalStateException {
         setAttribute("headerMenuButtonHeight", headerMenuButtonHeight, false);
@@ -7819,6 +7998,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * governs the height of the auto-generated <code>headerMenuButton</code>
      *
      * @return Current headerMenuButtonHeight value. Default value is "100%"
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getRotatedHeaderMenuButtonHeight
      */
     public int getHeaderMenuButtonHeight()  {
         return getAttributeAsInt("headerMenuButtonHeight");
@@ -7903,6 +8083,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      *
      * @param headerMenuButtonWidth New headerMenuButtonWidth value. Default value is 16
      * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setRotatedHeaderMenuButtonWidth
      */
     public void setHeaderMenuButtonWidth(int headerMenuButtonWidth)  throws IllegalStateException {
         setAttribute("headerMenuButtonWidth", headerMenuButtonWidth, false);
@@ -7913,6 +8094,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * governs the width of the auto-generated <code>headerMenuButton</code>
      *
      * @return Current headerMenuButtonWidth value. Default value is 16
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getRotatedHeaderMenuButtonWidth
      */
     public int getHeaderMenuButtonWidth()  {
         return getAttributeAsInt("headerMenuButtonWidth");
@@ -8146,6 +8328,36 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      */
     public String getHeaderTitleStyle()  {
         return getAttributeAsString("headerTitleStyle");
+    }
+    
+
+    /**
+     * When using {@link com.smartgwt.client.widgets.grid.ListGrid#getRotateHeaderTitles rotated titles}, specifies vertical
+     * alignment in the column headers: "top", "center", or "bottom".  Can be overridden for individual fields by setting
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#getValign ListGridField.valign}.
+     *
+     * @param headerTitleVAlign New headerTitleVAlign value. Default value is Canvas.BOTTOM
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setValign
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setRotateHeaderTitles
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setRotateTitle
+     */
+    public void setHeaderTitleVAlign(Boolean headerTitleVAlign)  throws IllegalStateException {
+        setAttribute("headerTitleVAlign", headerTitleVAlign, false);
+    }
+
+    /**
+     * When using {@link com.smartgwt.client.widgets.grid.ListGrid#getRotateHeaderTitles rotated titles}, specifies vertical
+     * alignment in the column headers: "top", "center", or "bottom".  Can be overridden for individual fields by setting
+     * {@link com.smartgwt.client.widgets.grid.ListGridField#getValign ListGridField.valign}.
+     *
+     * @return Current headerTitleVAlign value. Default value is Canvas.BOTTOM
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getValign
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getRotateHeaderTitles
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getRotateTitle
+     */
+    public Boolean getHeaderTitleVAlign()  {
+        return getAttributeAsBoolean("headerTitleVAlign");
     }
     
 
@@ -10634,6 +10846,114 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     
 
     /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderMenuButton showHeaderMenuButton} is true, this property
+     * governs the height of the auto-generated <code>headerMenuButton</code> over a {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getRotateTitle rotated} header button.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param rotatedHeaderMenuButtonHeight New rotatedHeaderMenuButtonHeight value. Default value is "100%"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setHeaderMenuButtonHeight
+     */
+    public void setRotatedHeaderMenuButtonHeight(int rotatedHeaderMenuButtonHeight)  throws IllegalStateException {
+        setAttribute("rotatedHeaderMenuButtonHeight", rotatedHeaderMenuButtonHeight, false);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderMenuButton showHeaderMenuButton} is true, this property
+     * governs the height of the auto-generated <code>headerMenuButton</code> over a {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getRotateTitle rotated} header button.
+     *
+     * @return Current rotatedHeaderMenuButtonHeight value. Default value is "100%"
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderMenuButtonHeight
+     */
+    public int getRotatedHeaderMenuButtonHeight()  {
+        return getAttributeAsInt("rotatedHeaderMenuButtonHeight");
+    }
+    
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderMenuButton showHeaderMenuButton} is true, this property
+     * governs the width of the auto-generated <code>headerMenuButton</code> over a  {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getRotateTitle rotated} header button.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param rotatedHeaderMenuButtonWidth New rotatedHeaderMenuButtonWidth value. Default value is 16
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setHeaderMenuButtonWidth
+     */
+    public void setRotatedHeaderMenuButtonWidth(int rotatedHeaderMenuButtonWidth)  throws IllegalStateException {
+        setAttribute("rotatedHeaderMenuButtonWidth", rotatedHeaderMenuButtonWidth, false);
+    }
+
+    /**
+     * If {@link com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderMenuButton showHeaderMenuButton} is true, this property
+     * governs the width of the auto-generated <code>headerMenuButton</code> over a  {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getRotateTitle rotated} header button.
+     *
+     * @return Current rotatedHeaderMenuButtonWidth value. Default value is 16
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderMenuButtonWidth
+     */
+    public int getRotatedHeaderMenuButtonWidth()  {
+        return getAttributeAsInt("rotatedHeaderMenuButtonWidth");
+    }
+    
+
+    /**
+     * Whether to rotate the field titles so they're rendered vertically from bottom to top. Can be overridden for individual
+     * fields by setting {@link com.smartgwt.client.widgets.grid.ListGridField#getRotateTitle ListGridField.rotateTitle}. <P>
+     * Note that you can manually set the header height and field widths as you please when using this feature, but it's not
+     * compatible with {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitHeaderHeights autoFitHeaderHeights} or
+     * autofitting of field widths in any {@link com.smartgwt.client.types.AutoFitWidthApproach} other than "value". <P> You
+     * can use {@link com.smartgwt.client.widgets.grid.ListGrid#getHeaderTitleVAlign headerTitleVAlign} or {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getValign ListGridField.valign} to control vertical positioning of the
+     * titles, and {@link com.smartgwt.client.widgets.grid.ListGridField#getAlign ListGridField.align} to control the
+     * horizontal. You may also choose between {@link com.smartgwt.client.widgets.grid.ListGrid#getClipHeaderTitles clipping}
+     * or  {@link com.smartgwt.client.widgets.grid.ListGrid#getWrapHeaderTitles wrapping}, and set {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderMenuButton showHeaderMenuButton} as you please (which reserves
+     * space in each header button for the header menu button). <P> Note that this feature is incompatible with clipping via
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getClipHeaderTitles clipHeaderTitles}:false, and may not work with
+     * older browsers, particular IE versions before IE10.  The "TreeFrog" and "Basic" {@link com.smartgwt.client.docs.Skins
+     * skins} are not supported for this feature.
+     *
+     * @param rotateHeaderTitles New rotateHeaderTitles value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setHeaderTitleVAlign
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setValign
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setRotateTitle
+     */
+    public void setRotateHeaderTitles(Boolean rotateHeaderTitles)  throws IllegalStateException {
+        setAttribute("rotateHeaderTitles", rotateHeaderTitles, false);
+    }
+
+    /**
+     * Whether to rotate the field titles so they're rendered vertically from bottom to top. Can be overridden for individual
+     * fields by setting {@link com.smartgwt.client.widgets.grid.ListGridField#getRotateTitle ListGridField.rotateTitle}. <P>
+     * Note that you can manually set the header height and field widths as you please when using this feature, but it's not
+     * compatible with {@link com.smartgwt.client.widgets.grid.ListGrid#getAutoFitHeaderHeights autoFitHeaderHeights} or
+     * autofitting of field widths in any {@link com.smartgwt.client.types.AutoFitWidthApproach} other than "value". <P> You
+     * can use {@link com.smartgwt.client.widgets.grid.ListGrid#getHeaderTitleVAlign headerTitleVAlign} or {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getValign ListGridField.valign} to control vertical positioning of the
+     * titles, and {@link com.smartgwt.client.widgets.grid.ListGridField#getAlign ListGridField.align} to control the
+     * horizontal. You may also choose between {@link com.smartgwt.client.widgets.grid.ListGrid#getClipHeaderTitles clipping}
+     * or  {@link com.smartgwt.client.widgets.grid.ListGrid#getWrapHeaderTitles wrapping}, and set {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowHeaderMenuButton showHeaderMenuButton} as you please (which reserves
+     * space in each header button for the header menu button). <P> Note that this feature is incompatible with clipping via
+     * {@link com.smartgwt.client.widgets.grid.ListGrid#getClipHeaderTitles clipHeaderTitles}:false, and may not work with
+     * older browsers, particular IE versions before IE10.  The "TreeFrog" and "Basic" {@link com.smartgwt.client.docs.Skins
+     * skins} are not supported for this feature.
+     *
+     * @return Current rotateHeaderTitles value. Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getHeaderTitleVAlign
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getValign
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getRotateTitle
+     */
+    public Boolean getRotateHeaderTitles()  {
+        return getAttributeAsBoolean("rotateHeaderTitles");
+    }
+    
+
+    /**
      * If the user is editing a record in this listGrid, and attempts to navigate to a field beyond the end of the row, via tab
      * (or shift-tab off the first editable field), this property determines what action to take:<ul> <li>"next": start editing
      * the next (or previous) record in the list <li>"same": put focus back into the first editable field of the same record.
@@ -11102,14 +11422,14 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * <td>Cell contents will be natively selected on click.</td> </tr><tr>      <td><i>unset</i> or <code>false</code></td>   
      * <td>Cell contents will not be natively selected on click.</td> </tr><tr>  <td><code>false</code></td>     
      * <td><code>true</code>, <code>false</code> or <i>unset</i></td>          <td>Cell contents will not be natively selected
-     * on click.</td> </tr><table> <P> This is related to the {@link
+     * on click.</td> </tr></table> <P> This is related to the {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getCanDragSelectText canDragSelectText} attribute which enables native text
      * selection of grid content by standard browser interactions (drag selecting or double-click selecting). <P> Note that
      * developers may also be interested in the related formItem properties {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getSelectOnClick FormItem.selectOnClick} and {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getSelectOnFocus FormItem.selectOnFocus}.
      *
-     * @param selectCellTextOnClick New selectCellTextOnClick value. Default value is false
+     * @param selectCellTextOnClick New selectCellTextOnClick value. Default value is null
      */
     public void setSelectCellTextOnClick(Boolean selectCellTextOnClick) {
         setAttribute("selectCellTextOnClick", selectCellTextOnClick, true);
@@ -11127,18 +11447,17 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * <td>Cell contents will be natively selected on click.</td> </tr><tr>      <td><i>unset</i> or <code>false</code></td>   
      * <td>Cell contents will not be natively selected on click.</td> </tr><tr>  <td><code>false</code></td>     
      * <td><code>true</code>, <code>false</code> or <i>unset</i></td>          <td>Cell contents will not be natively selected
-     * on click.</td> </tr><table> <P> This is related to the {@link
+     * on click.</td> </tr></table> <P> This is related to the {@link
      * com.smartgwt.client.widgets.grid.ListGrid#getCanDragSelectText canDragSelectText} attribute which enables native text
      * selection of grid content by standard browser interactions (drag selecting or double-click selecting). <P> Note that
      * developers may also be interested in the related formItem properties {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getSelectOnClick FormItem.selectOnClick} and {@link
      * com.smartgwt.client.widgets.form.fields.FormItem#getSelectOnFocus FormItem.selectOnFocus}.
      *
-     * @return Current selectCellTextOnClick value. Default value is false
+     * @return Current selectCellTextOnClick value. Default value is null
      */
     public Boolean getSelectCellTextOnClick()  {
-        Boolean result = getAttributeAsBoolean("selectCellTextOnClick");
-        return result == null ? false : result;
+        return getAttributeAsBoolean("selectCellTextOnClick");
     }
     
 
@@ -11387,12 +11706,15 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     
 
     /**
-     * Whether all rows should be drawn all at once, or only rows visible in the viewport. <P> Drawing all rows causes longer
-     * initial rendering time, but allows smoother vertical scrolling. With a very large number of rows, showAllRows will
-     * become too slow. <P> See also {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawAheadRatio drawAheadRatio} and
-     * {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawAllMaxCells drawAllMaxCells}.
+     * Whether all records should be drawn all at once, or only records visible in the viewport. <P> Drawing all records causes
+     * longer initial rendering time, but allows smoother vertical scrolling.  With a very large number of records,
+     * showAllRecords will become too slow. <P> This setting is incompatible with {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDataFetchMode dataFetchMode}: "paged" as it requires all records matching
+     * the criteria to be fetched from the server at once.
      *
      * @param showAllRecords New showAllRecords value. Default value is false
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setDrawAheadRatio
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setDrawAllMaxCells
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_autofit_rows" target="examples">Rows Example</a>
      */
     public void setShowAllRecords(Boolean showAllRecords) {
@@ -11400,12 +11722,15 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     }
 
     /**
-     * Whether all rows should be drawn all at once, or only rows visible in the viewport. <P> Drawing all rows causes longer
-     * initial rendering time, but allows smoother vertical scrolling. With a very large number of rows, showAllRows will
-     * become too slow. <P> See also {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawAheadRatio drawAheadRatio} and
-     * {@link com.smartgwt.client.widgets.grid.ListGrid#getDrawAllMaxCells drawAllMaxCells}.
+     * Whether all records should be drawn all at once, or only records visible in the viewport. <P> Drawing all records causes
+     * longer initial rendering time, but allows smoother vertical scrolling.  With a very large number of records,
+     * showAllRecords will become too slow. <P> This setting is incompatible with {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getDataFetchMode dataFetchMode}: "paged" as it requires all records matching
+     * the criteria to be fetched from the server at once.
      *
      * @return Current showAllRecords value. Default value is false
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getDrawAheadRatio
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getDrawAllMaxCells
      * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_autofit_rows" target="examples">Rows Example</a>
      */
     public Boolean getShowAllRecords()  {
@@ -12368,6 +12693,35 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     
 
     /**
+     * When set to true, shows the {@link com.smartgwt.client.widgets.grid.ListGrid#getDragHandleField drag handle field} on
+     * initial draw.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param showInitialDragHandles New showInitialDragHandles value. Default value is null
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.widgets.grid.ListGrid#showDragHandles
+     * @see com.smartgwt.client.widgets.grid.ListGrid#hideDragHandles
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setDragHandleField
+     */
+    public void setShowInitialDragHandles(Boolean showInitialDragHandles)  throws IllegalStateException {
+        setAttribute("showInitialDragHandles", showInitialDragHandles, false);
+    }
+
+    /**
+     * When set to true, shows the {@link com.smartgwt.client.widgets.grid.ListGrid#getDragHandleField drag handle field} on
+     * initial draw.
+     *
+     * @return Current showInitialDragHandles value. Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#showDragHandles
+     * @see com.smartgwt.client.widgets.grid.ListGrid#hideDragHandles
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getDragHandleField
+     */
+    public Boolean getShowInitialDragHandles()  {
+        return getAttributeAsBoolean("showInitialDragHandles");
+    }
+    
+
+    /**
      * Should partially selected parents (in a Tree data set) be shown with special icon? This has an impact in grouped grids
      * where {@link com.smartgwt.client.widgets.grid.ListGrid#getCanSelectGroups canSelectGroups} is true. The partial icon
      * will show up for the group header node when a group is partially selected.
@@ -13062,6 +13416,31 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     
 
     /**
+     * Whether to skip line breaks for all fields by default when {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getEscapeHTML escaping HTML}.  This property can be overridden at the
+     * field level by {@link com.smartgwt.client.widgets.grid.ListGridField#getSkipLineBreaks ListGridField.skipLineBreaks}.
+     *
+     * @param skipLineBreaks New skipLineBreaks value. Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGridField#setEscapeHTML
+     */
+    public void setSkipLineBreaks(Boolean skipLineBreaks) {
+        setAttribute("skipLineBreaks", skipLineBreaks, true);
+    }
+
+    /**
+     * Whether to skip line breaks for all fields by default when {@link
+     * com.smartgwt.client.widgets.grid.ListGridField#getEscapeHTML escaping HTML}.  This property can be overridden at the
+     * field level by {@link com.smartgwt.client.widgets.grid.ListGridField#getSkipLineBreaks ListGridField.skipLineBreaks}.
+     *
+     * @return Current skipLineBreaks value. Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGridField#getEscapeHTML
+     */
+    public Boolean getSkipLineBreaks()  {
+        return getAttributeAsBoolean("skipLineBreaks");
+    }
+    
+
+    /**
      * When {@link com.smartgwt.client.widgets.grid.ListGrid#getLeaveHeaderMenuButtonSpace leaveHeaderMenuButtonSpace} is true,
      * configures the amount of space beyond the {@link com.smartgwt.client.widgets.grid.ListGrid#getHeaderMenuButtonWidth
      * headerMenuButtonWidth} on the right side of a ListGrid header button (left for {@link
@@ -13176,6 +13555,8 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * include the implicit sort  information.
      *
      * @param sortByGroupFirst New sortByGroupFirst value. Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#setGroupSortDirection
+     * @see com.smartgwt.client.widgets.grid.ListGrid#groupSortNormalizer
      */
     public void setSortByGroupFirst(Boolean sortByGroupFirst) {
         setAttribute("sortByGroupFirst", sortByGroupFirst, true);
@@ -13201,6 +13582,8 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
      * include the implicit sort  information.
      *
      * @return Current sortByGroupFirst value. Default value is null
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupSortDirection
+     * @see com.smartgwt.client.widgets.grid.ListGrid#groupSortNormalizer
      */
     public Boolean getSortByGroupFirst()  {
         return getAttributeAsBoolean("sortByGroupFirst");
@@ -17515,7 +17898,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getBaseStyle", "ListGridRecord,int,int");
         }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        var ret = self.__getBaseStyle(record != null ? record == null ? null : record.@com.smartgwt.client.core.DataClass::getJsObj()() : null, rowNum, colNum);
+        var ret = self.__getBaseStyle(record != null ? record.@com.smartgwt.client.core.DataClass::getJsObj()() : null, rowNum, colNum);
         return ret;
     }-*/;
 
@@ -18393,6 +18776,25 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     }-*/;
 	
 	/**
+     * Extracts and returns the criteria for the passed field from the  {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowFilterEditor filterEditor}.  The result can be an  {@link
+     * com.smartgwt.client.data.AdvancedCriteria}, if the field in question produces more than one restriction, such as
+     * separate <code>greaterThan</code> and <code>lessThan</code> criteria for a range.
+     * @param fieldName name of the field to get the criteria for
+     *
+     * @return the passed field's filterEditor criterion
+     */
+    public native Criterion getFilterEditorCriterion(String fieldName) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "getFilterEditorCriterion", "String");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.getFilterEditorCriterion(fieldName);
+        if(ret == null) return null;
+        return @com.smartgwt.client.data.Criterion::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
      * Get the row that currently has keyboard focus.  Arrow key navigation moves relative to this row.
      *
      * @return rowNum of the current focus row
@@ -19170,6 +19572,28 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
         if (obj && obj.hasOwnProperty("groupByComplete")) delete obj.groupByComplete;
     }-*/;
 
+	/**
+     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getSortByGroupFirst sortByGroupFirst} is active, the sorting 
+     * {@link com.smartgwt.client.data.SortSpecifier#getNormalizer normalizer} applied for implicit sorting by the field(s)
+     * used for grouping. <P> No default implementation.
+     * @param record record to normalize
+     * @param fieldName name of the field on which sorting occurred.
+     * See {@link com.smartgwt.client.docs.FieldName FieldName}
+     * @param context the grid is passed to allow property and method access
+     *
+     * @return normalized value for sorting
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getSortByGroupFirst
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupSortDirection
+     */
+    public native Object groupSortNormalizer(ListGridRecord record, String fieldName, ListGrid context) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "groupSortNormalizer", "ListGridRecord,String,ListGrid");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var ret = self.groupSortNormalizer(record.@com.smartgwt.client.core.DataClass::getJsObj()(), fieldName, context == null ? null : context.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()());
+        return $wnd.SmartGWT.convertToJavaType(ret);
+    }-*/;
+
     /**
      * Add a groupStateChanged handler.
      * <p>
@@ -19471,6 +19895,18 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         var ret = self.headerTitleClipped(fieldNum);
         return ret == null ? false : ret;
+    }-*/;
+
+	/**
+     * Hides the {@link com.smartgwt.client.widgets.grid.ListGrid#getDragHandleField drag handle field}, if currently shown.
+     * @see com.smartgwt.client.widgets.grid.ListGrid#showDragHandles
+     */
+    public native void hideDragHandles() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "hideDragHandles", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.hideDragHandles();
     }-*/;
 
 	/**
@@ -22710,6 +23146,45 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     }-*/;
 
 	/**
+     * Shows an additional field near the beginning of the field list (after any {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getShowRowNumbers row number} field) that can be dragged to drag the current
+     * selection.  This feature is useful in {@link com.smartgwt.client.util.Browser#isTouch touch environments} where both
+     * touch scrolling and dragging are needed on the same grid, and allows scrolling to be triggered on the other fields so
+     * that both operations are available.  Targeted touch environments include both mobile devices, and Windows hardware that
+     * supports {@link com.smartgwt.client.util.Browser#supportsDualInput Dual Input Mode} such as Microsoft Surface. <P> Note
+     * that the {@link com.smartgwt.client.widgets.grid.ListGrid#getDragHandleField drag handle field} will never be shown
+     * unless  {@link com.smartgwt.client.widgets.grid.ListGrid#getCanReorderRecords canReorderRecords} or {@link
+     * com.smartgwt.client.widgets.grid.ListGrid#getCanDragRecordsOut canDragRecordsOut} are true. <P> In IE11 or Microsoft
+     * Edge, dragging a record in a grid may not be possible using a touch device without enabling drag handles, or disabling
+     * native touch scrolling by setting &nbsp;<code>window.isc_useNativeTouchScrolling = false</code>&nbsp; before Smart GWT
+     * is loaded. <P> <h4>Background</h4> <P> One alternative to adding a drag handle field would be to use long touch to start
+     * a drag (with normal touch triggering scrolling).  However, this is unsupportable in IE11 or Edge on Microsoft Surface
+     * (with native scrolling) because native scrolling cannot be canceled on the fly using Event.preventDefault(), but instead
+     * must be disabled by applying the appropriate CSS at rendering time.  (Such limitations are not present elsewhere, such
+     * as on Android or IPhone browsers.) <P> For more details, some links are provided below.  Note that while IE10 is
+     * mentioned in some of the links, the reasoning is still relevant now for IE11 and Edge as the limitations remain: <ul>
+     * <li><a href='https://quirksmode.org/mobile/default.html' target='_blank'>Cross-browser support of touchMove</a> <li><a
+     * href='https://stackoverflow.com/questions/26218146/pointer-events-ie11-surface' target='_blank'>preventDefault() doesn't
+     * work in IE11 on MS Surface</a> <li><a
+     * href='https://stackoverflow.com/questions/49299496/html5-pointermove-touchmove-not-working-in-microsoft-edge'
+     * target='_blank'>preventDefault() doesn't work in Edge on MS Surface</a> <li><a
+     * href='https://web.archive.org/web/20160309214328/https://connect.microsoft.com/IE/feedback/details/767646/ms-touch-action-does-not-allow-a-way-to-programmatically-prevent-default-touch-behavior'
+     * target='_blank'>preventDefault() failure reported to Microsoft against IE10</a> </ul>
+     * @see com.smartgwt.client.widgets.grid.ListGrid#hideDragHandles
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getDragHandleField
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getDragHandleIcon
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getDragHandleIconSize
+     * @see <a href="http://www.smartclient.com/smartgwt/showcase/#grid_interaction_touch_drag" target="examples">Touch Drag Example</a>
+     */
+    public native void showDragHandles() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "showDragHandles", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.showDragHandles();
+    }-*/;
+
+	/**
      * Force a field to be shown. This method does not add new fields to the grid, it simply changes field visibility. If a
      * field.showIf expression exists, it will be destroyed. <P> Note: for showing multiple fields it is more efficient to call
      * {@link com.smartgwt.client.widgets.grid.ListGrid#showFields showFields()} than to call this method repeatedly.
@@ -25828,7 +26303,7 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             return formatter.@com.smartgwt.client.widgets.grid.CellFormatter::format(Ljava/lang/Object;Lcom/smartgwt/client/widgets/grid/ListGridRecord;II)(valueJ, recordJ, rowNum, colNum);
         }));
     }-*/;
-
+    
 	/**
      * Formatter for inactive content. <P> If present, this method will be invoked instead of {@link
      * com.smartgwt.client.widgets.grid.ListGrid#setCellFormatter setCellFormatter()} in cases  where the grid is rendering
@@ -26264,6 +26739,34 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     }-*/;
 
     /**
+     * When {@link com.smartgwt.client.widgets.grid.ListGrid#getSortByGroupFirst sortByGroupFirst}
+     * is active, sets the {@link com.smartgwt.client.widgets.grid.GroupNode GroupNode} value
+     * normalizer used for implicit sorting by the field(s) used for grouping.
+     * <P> 
+     * No default implementation.
+     *
+     * @param GroupSortNormalizer customizer
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getSortByGroupFirst
+     * @see com.smartgwt.client.widgets.grid.ListGrid#getGroupSortDirection
+     */
+    public native void setGroupSortNormalizer(GroupSortNormalizer customizer) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "setGroupSortNormalizer", "GroupSortNormalizer");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.groupSortNormalizer = $debox($entry(function(record, fieldName, context) {
+            var nodeJ;
+            if      (self.isGroupNode(record))     nodeJ = @com.smartgwt.client.widgets.grid.GroupNode::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            else if (self.isSummaryRecord(record)) nodeJ = @com.smartgwt.client.widgets.grid.GroupSummary::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            else                                   nodeJ = @com.smartgwt.client.widgets.grid.ListGridRecord::getOrCreateRef(Lcom/google/gwt/core/client/JavaScriptObject;)(record);
+            var returnValue = customizer.@com.smartgwt.client.widgets.grid.GroupSortNormalizer::normalize(Lcom/smartgwt/client/widgets/grid/ListGridRecord;Ljava/lang/String;Lcom/smartgwt/client/widgets/grid/ListGrid;)(
+                    nodeJ, fieldName, 
+                    @com.smartgwt.client.widgets.Canvas::getByJSObject(Lcom/google/gwt/core/client/JavaScriptObject;)(context));
+            return $wnd.SmartGWT.convertToPrimitiveType(returnValue);
+        }));
+    }-*/;
+
+	/**
      * Same as {@link #getFilterEditorCriteria() getFilterEditorCriteria()} but returns an
      * {@link com.smartgwt.client.data.AdvancedCriteria}.
      */
@@ -26982,14 +27485,32 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
     	
     }-*/;
 
-    public native void exportData() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.exportData();
-    }-*/;
+    public void exportData() {
+        exportData(null);
+    }
 
     public native void exportData(DSRequest requestProperties) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "exportData", "DSRequest,RPCCallback");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+        self.exportData(requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+
+    public native void exportData(DSRequest requestProperties, RPCCallback callback) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "exportData", "DSRequest,RPCCallback");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportData(requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()(),
+			$entry( function(response, rawData, request) {
+				if(callback!=null) callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(
+					@com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(response), 
+					rawData, 
+					@com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(request)
+				);
+			}));
     }-*/;
 
     /**
@@ -27127,7 +27648,25 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
         return fields != null ? fields.length : 0;
     }
     
-    /**
+    public native void transferRecords(Record[] records, Record targetRecord, Integer index, Canvas sourceWidget, TransferRecordsCallback callback) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
+        var targetRecordJS = targetRecord == null ? null : targetRecord.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        var indexJS = index == null ? null : index.@java.lang.Integer::intValue()();
+        var sourceWidgetJS = sourceWidget == null ? null : sourceWidget.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.transferRecords(recordsJS, targetRecordJS, indexJS, sourceWidgetJS, $entry(function(records) {
+            if(callback != null) {
+	    		var convertedArray = [];
+	    		for (var i = 0; i < records.length; i++) {
+	    			convertedArray[i] =  @com.smartgwt.client.data.Record::new(Lcom/google/gwt/core/client/JavaScriptObject;)(records[i]);
+	    		}
+                var recordsJ = @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(convertedArray);
+                callback.@com.smartgwt.client.widgets.TransferRecordsCallback::execute([Lcom/smartgwt/client/data/Record;)(recordsJ);
+            }
+        }));
+    }-*/;
+
+	/**
      * During a drag-and-drop interaction, this method returns the set of records being dragged
      * out of the component.  In the default implementation, this is the list of currently
      * selected records.<p>
@@ -27295,6 +27834,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.arrowKeyAction = getAttributeAsString("arrowKeyAction");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.arrowKeyAction:" + t.getMessage() + "\n";
+        }
+        try {
+            s.arrowKeyEditAction = getAttributeAsString("arrowKeyEditAction");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.arrowKeyEditAction:" + t.getMessage() + "\n";
         }
         try {
             s.asynchGroupingPrompt = getAttributeAsString("asynchGroupingPrompt");
@@ -27812,6 +28356,21 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.logicalStructureErrors += "ListGrid.discardEditsSaveButtonTitle:" + t.getMessage() + "\n";
         }
         try {
+            s.dragHandleFieldTitle = getAttributeAsString("dragHandleFieldTitle");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.dragHandleFieldTitle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dragHandleIcon = getAttributeAsString("dragHandleIcon");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.dragHandleIcon:" + t.getMessage() + "\n";
+        }
+        try {
+            s.dragHandleIconSize = getAttributeAsString("dragHandleIconSize");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.dragHandleIconSize:" + t.getMessage() + "\n";
+        }
+        try {
             s.dragScrollRedrawDelay = getAttributeAsString("dragScrollRedrawDelay");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.dragScrollRedrawDelay:" + t.getMessage() + "\n";
@@ -28010,6 +28569,16 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.exportHeaderHeights = getAttributeAsString("exportHeaderHeights");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.exportHeaderHeights:" + t.getMessage() + "\n";
+        }
+        try {
+            s.exportHiddenFieldWidth = getAttributeAsString("exportHiddenFieldWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.exportHiddenFieldWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.exportRawNumbers = getAttributeAsString("exportRawNumbers");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.exportRawNumbers:" + t.getMessage() + "\n";
         }
         try {
             s.exportRawValues = getAttributeAsString("exportRawValues");
@@ -28350,6 +28919,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.headerTitleStyle = getAttributeAsString("headerTitleStyle");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.headerTitleStyle:" + t.getMessage() + "\n";
+        }
+        try {
+            s.headerTitleVAlign = getAttributeAsString("headerTitleVAlign");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.headerTitleVAlign:" + t.getMessage() + "\n";
         }
         try {
             s.hideEmptySummaryRow = getAttributeAsString("hideEmptySummaryRow");
@@ -28762,6 +29336,21 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.logicalStructureErrors += "ListGrid.reverseRTLAlign:" + t.getMessage() + "\n";
         }
         try {
+            s.rotatedHeaderMenuButtonHeight = getAttributeAsString("rotatedHeaderMenuButtonHeight");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.rotatedHeaderMenuButtonHeight:" + t.getMessage() + "\n";
+        }
+        try {
+            s.rotatedHeaderMenuButtonWidth = getAttributeAsString("rotatedHeaderMenuButtonWidth");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.rotatedHeaderMenuButtonWidth:" + t.getMessage() + "\n";
+        }
+        try {
+            s.rotateHeaderTitles = getAttributeAsString("rotateHeaderTitles");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.rotateHeaderTitles:" + t.getMessage() + "\n";
+        }
+        try {
             s.rowEndEditAction = getAttributeAsString("rowEndEditAction");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.rowEndEditAction:" + t.getMessage() + "\n";
@@ -29017,6 +29606,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.logicalStructureErrors += "ListGrid.showHoverComponents:" + t.getMessage() + "\n";
         }
         try {
+            s.showInitialDragHandles = getAttributeAsString("showInitialDragHandles");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.showInitialDragHandles:" + t.getMessage() + "\n";
+        }
+        try {
             s.showPartialSelection = getAttributeAsString("showPartialSelection");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.showPartialSelection:" + t.getMessage() + "\n";
@@ -29105,6 +29699,11 @@ public class ListGrid extends VLayout implements DataBoundComponent, com.smartgw
             s.skinImgDir = getAttributeAsString("skinImgDir");
         } catch (Throwable t) {
             s.logicalStructureErrors += "ListGrid.skinImgDir:" + t.getMessage() + "\n";
+        }
+        try {
+            s.skipLineBreaks = getAttributeAsString("skipLineBreaks");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "ListGrid.skipLineBreaks:" + t.getMessage() + "\n";
         }
         try {
             s.sortArrowMenuButtonSpaceOffset = getAttributeAsString("sortArrowMenuButtonSpaceOffset");

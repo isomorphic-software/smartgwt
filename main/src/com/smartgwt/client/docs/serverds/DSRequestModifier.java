@@ -95,8 +95,7 @@ import java.util.Map;
  *  </pre>
  *  <p>
  * DSRequestModifiers are intended partly as a security mechanism, so like {@link
- * com.smartgwt.client.docs.serverds.DSRequestModifier#getDeclarativeSecurity Declarative
- * Security} 
+ * com.smartgwt.client.docs.DeclarativeSecurity Declarative Security} 
  * features, they apply to requests from browsers, but by default do not apply to requests
  * initiated by server code.  
  * To have DSRequestModifiers apply to a server-initiated DSRequest, use either setRPCManager() or

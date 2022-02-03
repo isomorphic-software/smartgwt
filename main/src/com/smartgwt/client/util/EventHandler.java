@@ -340,6 +340,32 @@ public class EventHandler {
     }-*/;
 
 
+	/**
+     * Sets the initial coordinate offset of the last event, typically a mouseDown or touchStart,
+     * from the drag target.  For example, when grabbing and dragging a {@link com.smartgwt.client.widgets.Scrollbar} thumb
+     * with
+     *  the mouse, you'd expect positive coordinates that reflect your position relative to the top,
+     * left corner of the thumb.  If a drag tracker will be used, call {@link
+     * com.smartgwt.client.util.EventHandler#setDragTracker setDragTracker()}
+     *  instead, which takes optional arguments <code>offsetX</code> and <code>offsetY</code> that
+     *  act similarly to those passed to this method.
+     *  <P>
+     *  Your canvas can call this method to set the initial drag offset to whatever you want like so:
+     *  <pre>
+     *     dragStart : function () {
+     *         isc.EventHandler.setDragOffset(5, 20);
+     *     }</pre>
+     * 
+     * 
+     * @param offsetX initial x-offset for the drag
+     * @param offsetY initial y-offset for the drag
+     * @see com.smartgwt.client.widgets.events.DragStartEvent
+     */
+    public static native void setDragOffset(int offsetX, int offsetY) /*-{
+        $wnd.isc.EventHandler.setDragOffset(offsetX, offsetY);
+    }-*/;
+
+
 
 	/**
      * This API may be called to set the native HTML5 drag tracker image. The <code>x</code> and <code>y</code> parameters may

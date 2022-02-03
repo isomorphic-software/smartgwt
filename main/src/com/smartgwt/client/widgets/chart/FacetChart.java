@@ -2125,7 +2125,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for {@link com.smartgwt.client.widgets.chart.FacetChart#getGradationGaps gradationGaps}.
      *
-     * @param gradationGaps ) new {@link com.smartgwt.client.widgets.chart.FacetChart#getGradationGaps gradationGaps} value. Default value is [1, 2, 5]
+     * @param gradationGaps new {@link com.smartgwt.client.widgets.chart.FacetChart#getGradationGaps gradationGaps} value. Default value is [1, 2, 5]
      * @see <a href="http://www.smartclient.com/smartgwtee/showcase/#customTicksChart" target="examples">Custom Date Ticks Example</a>
      */
     public void setGradationGaps(float... gradationGaps) {
@@ -3296,7 +3296,7 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * <br><br>If this method is called after the component has been drawn/initialized:
      * Setter for {@link com.smartgwt.client.widgets.chart.FacetChart#getOtherAxisGradationGaps otherAxisGradationGaps}.
      *
-     * @param otherAxisGradationGaps ) new {@link com.smartgwt.client.widgets.chart.FacetChart#getOtherAxisGradationGaps otherAxisGradationGaps} value. Default value is null
+     * @param otherAxisGradationGaps new {@link com.smartgwt.client.widgets.chart.FacetChart#getOtherAxisGradationGaps otherAxisGradationGaps} value. Default value is null
      */
     public void setOtherAxisGradationGaps(float... otherAxisGradationGaps) {
         setAttribute("otherAxisGradationGaps", otherAxisGradationGaps, true);
@@ -7570,16 +7570,55 @@ public class FacetChart extends DrawPane implements com.smartgwt.client.widgets.
      * from that facet.&#010 <p>&#010 For example, with
      * a facet with id "regions" and facetValues "west", "north" and "east", and&#010 with {@link
      * com.smartgwt.client.widgets.chart.FacetChart#getValueProperty valueProperty} with it's default value
-     *  "_value", the
-     * <code>data</code> property&#010 could be:&#010 <pre>&#010    isc.Chart.create({&#010       facets:[{ id:"regions"
-     * }],&#010       data : [&#010          {regions:"west", _value:4},&#010          {regions:"north", _value:2},&#010
-     * {regions:"east", _value:5}&#010       ]&#010    })</pre>&#010 If there were a second facet with id "product" and
-     * facetValues "cars" and "trucks", a Chart&#010 with a complete set of values would be:&#010 <pre>&#010
-     * isc.Chart.create({&#010       facets:[{ id:"regions" }, { id:"product" }],&#010       data : [&#010
-     * {product:"cars", regions:"west", _value:4},&#010          {product:"cars", regions:"north", _value:2},&#010
-     * {product:"cars", regions:"east", _value:5},&#010          {product:"trucks", regions:"west", _value:1},&#010
-     * {product:"trucks", regions:"north", _value:9},&#010          {product:"trucks", regions:"east", _value:3}&#010
-     * ]&#010    })</pre>&#010 This 2 facet (or "2 dimensional") dataset, if rendered as a bar chart, would use stacked or&#010
+     *  "_value", the <code>data</code> property could be:
+     * <pre>
+     *    FacetChart chart = new FacetChart();
+     *    chart.setFacets(new Facet("regions"));
+     *    Record[] records = new Record[3]; 
+     *    records[0] = new Record();
+     *    records[0].setAttribute("regions", "west");
+     *    records[0].setAttribute("_value", 4);
+     *    records[1] = new Record();
+     *    records[1].setAttribute("regions", "north");
+     *    records[1].setAttribute("_value", 2);
+     *    records[2] = new Record();
+     *    records[2].setAttribute("regions", "east");
+     *    records[2].setAttribute("_value", 5);
+     *    chart.setData(records);
+     * </pre>
+     * If there were a second facet with id "product" and facetValues "cars" and "trucks", a Chart
+     * with a complete set of values would be:
+     * <pre>
+     *    FacetChart chart = new FacetChart();
+     *    chart.setFacets(new Facet("regions"), new Facet("product"));
+     *    Record[] records = new Record[6]; 
+     *    records[0] = new Record();
+     *    records[0].setAttribute("product", "cars");
+     *    records[0].setAttribute("regions", "west");
+     *    records[0].setAttribute("_value", 4);
+     *    records[1] = new Record();
+     *    records[1].setAttribute("product", "cars");
+     *    records[1].setAttribute("regions", "north");
+     *    records[1].setAttribute("_value", 2);
+     *    records[2] = new Record();
+     *    records[2].setAttribute("product", "cars");
+     *    records[2].setAttribute("regions", "east");
+     *    records[2].setAttribute("_value", 5);
+     *    records[3] = new Record();
+     *    records[3].setAttribute("product", "trucks");
+     *    records[3].setAttribute("regions", "west");
+     *    records[3].setAttribute("_value", 1);
+     *    records[4] = new Record();
+     *    records[4].setAttribute("product", "trucks");
+     *    records[4].setAttribute("regions", "north");
+     *    records[4].setAttribute("_value", 9);
+     *    records[5] = new Record();
+     *    records[5].setAttribute("product", "trucks");
+     *    records[5].setAttribute("regions", "east");
+     *    records[5].setAttribute("_value", 3);	    
+     *    chart.setData(records);
+     * </pre>
+     * This 2 facet (or "2 dimensional") dataset, if rendered as a bar chart, would use stacked or&#010
      * clustered bars and a legend.&#010
      *
      * @param data data Default value is null

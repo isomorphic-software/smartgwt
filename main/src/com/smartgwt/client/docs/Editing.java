@@ -130,24 +130,13 @@ package com.smartgwt.client.docs;
  * com.smartgwt.client.widgets.form.fields.FormItem#getIcons FormItem icon} that pops up a
  * separate Window containing a FileItem in a DynamicForm, so long as the form in the Window saves
  * the uploaded file immediately rather than trying to have the grid perform the save.
- * @see com.smartgwt.client.types.InlineEditEvent
  * @see com.smartgwt.client.types.RowEndEditAction
  * @see com.smartgwt.client.types.EnterKeyEditAction
  * @see com.smartgwt.client.types.EscapeKeyEditAction
+ * @see com.smartgwt.client.types.ArrowKeyEditAction
  * @see com.smartgwt.client.types.EditCompletionEvent
  * @see com.smartgwt.client.types.ListGridEditEvent
- * @see com.smartgwt.client.widgets.cube.CubeGrid#setEditValue
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditValue
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditedRecord
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditedCell
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditValues
- * @see com.smartgwt.client.widgets.cube.CubeGrid#clearEditValue
- * @see com.smartgwt.client.widgets.cube.CubeGrid#saveEdits
- * @see com.smartgwt.client.widgets.cube.CubeGrid#getAllEditCells
- * @see com.smartgwt.client.widgets.cube.CubeGrid#discardAllEdits
- * @see com.smartgwt.client.widgets.cube.CubeGrid#recordHasChanges
- * @see com.smartgwt.client.widgets.cube.CubeGrid#hasChanges
- * @see com.smartgwt.client.widgets.cube.CubeGrid#saveAllEdits
+ * @see com.smartgwt.client.types.InlineEditEvent
  * @see com.smartgwt.client.widgets.grid.ListGridField#defaultDynamicValue
  * @see com.smartgwt.client.widgets.grid.events.EditorEnterEvent
  * @see com.smartgwt.client.widgets.grid.events.EditorExitEvent
@@ -198,6 +187,18 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#formatEditorValue
  * @see com.smartgwt.client.widgets.grid.ListGrid#parseEditorValue
  * @see com.smartgwt.client.widgets.tree.TreeGrid#startEditingNew
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#setEditValue
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditValue
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditedRecord
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditedCell
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getEditValues
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#clearEditValue
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#saveEdits
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#getAllEditCells
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#discardAllEdits
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#recordHasChanges
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#hasChanges
+ * @see com.smartgwt.client.widgets.cube.CubeGrid#saveAllEdits
  * @see com.smartgwt.client.widgets.form.DynamicForm#getEditorType
  * @see com.smartgwt.client.widgets.form.DynamicForm#fieldIsEditable
  * @see com.smartgwt.client.widgets.calendar.Calendar#getEventSnapGap
@@ -218,6 +219,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGridField#getDefaultValue
  * @see com.smartgwt.client.widgets.grid.ListGridField#getEnterKeyEditAction
  * @see com.smartgwt.client.widgets.grid.ListGridField#getEscapeKeyEditAction
+ * @see com.smartgwt.client.widgets.grid.ListGridField#getArrowKeyEditAction
  * @see com.smartgwt.client.widgets.grid.ListGridField#getEditorType
  * @see com.smartgwt.client.widgets.grid.ListGridField#getEditorProperties
  * @see com.smartgwt.client.widgets.grid.ListGridField#getInitialValue
@@ -244,6 +246,7 @@ package com.smartgwt.client.docs;
  * @see com.smartgwt.client.widgets.grid.ListGrid#getListEndEditAction
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEnterKeyEditAction
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEscapeKeyEditAction
+ * @see com.smartgwt.client.widgets.grid.ListGrid#getArrowKeyEditAction
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEditEvent
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEditOnFocus
  * @see com.smartgwt.client.widgets.grid.ListGrid#getEditOnF2Keypress

@@ -146,18 +146,30 @@ package com.smartgwt.client.docs;
  * <a href='http://www.google.com/search?q=sforce+partner+wsdl' target='_blank'>SalesForce partner
  * web services</a>
  *  (additional code is required to handle authentication and other details):
+ *  
+ *  
  *  <pre>
- *  isc.DataSource.create({
- *     serviceNamespace : "urn:partner.soap.sforce.com",
- *     operationBindings : [
- *         { operationType:"fetch", wsOperation:"query", recordName: "sObject" },
- *         { operationType:"update", wsOperation:"update", recordName: "SaveResult" },
- *         { operationType:"add", wsOperation:"create", recordName: "SaveResult" },
- *         { operationType:"remove", wsOperation:"delete", recordName: "DeleteResult" }
- *     ],
- *     ...
- *  }); 
+ *       DataSource dataSource = new DataSource();
+ *       dataSource.setServiceNamespace("urn:partner.soap.sforce.com");
+ *       OperationBinding fetch = new OperationBinding();
+ *       fetch.setOperationType(DSOperationType.FETCH);
+ *       fetch.setWsOperation("query");
+ *       fetch.setRecordName("sObject");
+ *       OperationBinding add = new OperationBinding();
+ *       add.setOperationType(DSOperationType.ADD);
+ *       add.setWsOperation("create");
+ *       add.setRecordName("SaveResult");
+ *       OperationBinding update = new OperationBinding();
+ *       update.setOperationType(DSOperationType.UPDATE);
+ *       update.setWsOperation("update");
+ *       update.setRecordName("SaveResult");
+ *       OperationBinding remove = new OperationBinding();
+ *       remove.setOperationType(DSOperationType.REMOVE);
+ *       remove.setWsOperation("delete");
+ *       remove.setRecordName("DeleteResult");
+ *       dataSource.setOperationBindings(fetch, add, update, remove);
  *  </pre>
+ *  
  *  NOTE: additional code is required to handle authentication and other details, see the
  *  complete code in smartclientSDK/examples/databinding/SalesForce.
  *  <P>
@@ -239,8 +251,9 @@ package com.smartgwt.client.docs;
  * URL where ISC
  * expects to find the SmartClientOperations web service, use {@link
  * com.smartgwt.client.data.WebService#setLocation WebService.setLocation()}
- *  like so:<pre>
- *       var service = isc.WebService.get("urn:operations.smartclient.com");
+ *  like so:
+ *  <pre>
+ *       WebService service = WebService.get("urn:operations.smartclient.com");
  *       service.setLocation("myURL");
  *  </pre>
  *  <P>

@@ -48,6 +48,7 @@ public class ImgButtonLogicalStructure extends ImgLogicalStructure {
     public String align;
     public String autoFit;
     public String baseStyle;
+    public String heightAsString;
     public String hiliteAccessKey;
     public String icon;
     public String iconAlign;
@@ -74,4 +75,5 @@ public class ImgButtonLogicalStructure extends ImgLogicalStructure {
     public String state;
     public String title;
     public String valign;
+    public String widthAsString;
 }

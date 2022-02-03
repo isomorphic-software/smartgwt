@@ -20,16 +20,13 @@ package com.smartgwt.client.widgets.calendar.events;
 import com.smartgwt.client.event.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
-/**
- * @deprecated Please use addEventReposition[Move/Stop]Handler instead, this will be removed in a future release.
- */
-public interface HasTimelineEventMovedHandlers extends HasHandlers {
+public interface HasIndicatorClickHandlers extends HasHandlers {
     /**
-     * Called when a Timeline event is moved via dragging by a user.  Call {@link com.smartgwt.client.widgets.calendar.events.TimelineEventMoved#cancel()} from within {@link com.smartgwt.client.widgets.calendar.events.TimelineEventMovedHandler#onTimelineEventMoved} to disallow the  move.
+     * Called whenever an {@link com.smartgwt.client.widgets.calendar.IndicatorCanvas} is clicked in the  {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getTimelineView timelineView}.  There is no default implementation.
      *
-     * @param handler the timelineEventMoved handler
+     * @param handler the indicatorClick handler
      * @return {@link HandlerRegistration} used to remove this handler
-     * @deprecated Please use addEventReposition[Move/Stop]Handler instead, this will be removed in a future release.
      */
-    HandlerRegistration addTimelineEventMovedHandler(TimelineEventMovedHandler handler);
+    HandlerRegistration addIndicatorClickHandler(IndicatorClickHandler handler);
 }

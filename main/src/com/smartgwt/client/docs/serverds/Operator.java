@@ -42,6 +42,7 @@ public class Operator {
      * com.smartgwt.client.widgets.form.fields.FormItem#getAllowExpressions expression} in a FormItem.
      *
      * <p>Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public String symbol;
 
@@ -53,6 +54,7 @@ public class Operator {
      * the UI.
      *
      * <p>Default value is false
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public boolean hidden;
 
@@ -62,6 +64,7 @@ public class Operator {
      * com.smartgwt.client.data.DataSource#addSearchOperator DataSource.addSearchOperator()}.
      *
      * <p>Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public FieldType[] fieldTypes;
 
@@ -69,6 +72,7 @@ public class Operator {
      * Name of a property on the Operators class that provides the title for this operator.
      *
      * <p>Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public Identifier titleProperty;
 
@@ -79,6 +83,7 @@ public class Operator {
      * server will need to be contacted to perform filtering.
      *
      * <p>Default value is false
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public boolean requiresServer;
 
@@ -89,6 +94,7 @@ public class Operator {
      * {@link com.smartgwt.client.types.OperatorId here}.
      *
      * <p>Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public OperatorId ID;
 
@@ -100,6 +106,7 @@ public class Operator {
      * property.
      *
      * <p>Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public String textTitle;
 
@@ -110,6 +117,7 @@ public class Operator {
      * property.
      *
      * <p>Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public String title;
 
@@ -122,6 +130,7 @@ public class Operator {
      * com.smartgwt.client.docs.serverds.Criterion#fieldName Criterion.fieldName}.
      *
      * <p>Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public OperatorValueType valueType;
 
@@ -130,6 +139,7 @@ public class Operator {
      * with text-based fields.
      *
      * <p>Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public Identifier textTitleProperty;
 
@@ -140,6 +150,7 @@ public class Operator {
      * <code>null</code> means an ordinary TextItem is fine.
      *
      * <p>Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public FormItem editorType;
 

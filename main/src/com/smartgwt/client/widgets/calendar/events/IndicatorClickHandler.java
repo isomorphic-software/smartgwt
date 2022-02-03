@@ -19,15 +19,12 @@ package com.smartgwt.client.widgets.calendar.events;
 
 import com.google.gwt.event.shared.EventHandler;
 
-/**
- * @deprecated Please use addEventResize[Move/Stop]Handler instead, this will be removed in a future release.
- */
-public interface TimelineEventResizedHandler extends EventHandler {
+public interface IndicatorClickHandler extends EventHandler {
     /**
-     * Called when a Timeline event is resized via dragging by a user.  Call {@link com.smartgwt.client.widgets.calendar.events.TimelineEventResized#cancel()} from within {@link com.smartgwt.client.widgets.calendar.events.TimelineEventResizedHandler#onTimelineEventResized} to disallow  the resize.
+     * Called whenever an {@link com.smartgwt.client.widgets.calendar.IndicatorCanvas} is clicked in the  {@link
+     * com.smartgwt.client.widgets.calendar.Calendar#getTimelineView timelineView}.  There is no default implementation.
      *
      * @param event the event
-     * @deprecated Please use addEventResize[Move/Stop]Handler instead, this will be removed in a future release.
      */
-    void onTimelineEventResized(com.smartgwt.client.widgets.calendar.events.TimelineEventResized event);
+    void onIndicatorClick(com.smartgwt.client.widgets.calendar.events.IndicatorClick event);
 }

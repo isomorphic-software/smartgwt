@@ -142,12 +142,56 @@ public class PaneChangedEvent extends BrowserEvent<PaneChangedHandler>  {
      *
      * @return new {@link com.smartgwt.client.widgets.layout.SplitPane#getCurrentPane SplitPane.currentPane} value.
      */
-    public native CurrentPane getPane() /*-{
+    public native CurrentPane getNewPane() /*-{
         var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
-        var ret = self.pane;
+        var ret = self.newPane;
         if(ret == null) return null;
         var enumValues = @com.smartgwt.client.types.CurrentPane::values()();
         return @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(enumValues, ret);
     }-*/;
+
+	/**
+     * old {@link com.smartgwt.client.widgets.layout.SplitPane#getCurrentPane SplitPane.currentPane} value.
+     *
+     * @return old {@link com.smartgwt.client.widgets.layout.SplitPane#getCurrentPane SplitPane.currentPane} value.
+     */
+    public native CurrentPane getOldPane() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.oldPane;
+        if(ret == null) return null;
+        var enumValues = @com.smartgwt.client.types.CurrentPane::values()();
+        return @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(enumValues, ret);
+    }-*/;
+
+	/**
+     * reason for pane change
+     *
+     * @return reason for pane change
+     */
+    public native NavigationMethod getNavigationMethod() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.navigationMethod;
+        if(ret == null) return null;
+        var enumValues = @com.smartgwt.client.types.NavigationMethod::values()();
+        return @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(enumValues, ret);
+    }-*/;
+
+
+	/**
+     * Synonym for {@link #getNewPane()}.
+     *
+     * @return new {@link com.smartgwt.client.widgets.layout.SplitPane#getCurrentPane SplitPane.currentPane}
+     * value.
+     * @deprecated Use {@link #getNewPane()} instead.
+     */
+    public native CurrentPane getPane() /*-{
+        var self = this.@com.smartgwt.client.event.AbstractSmartEvent::jsObj;
+        var ret = self.newPane;
+        if(ret == null) return null;
+        var enumValues = @com.smartgwt.client.types.CurrentPane::values()();
+        return @com.smartgwt.client.util.EnumUtil::getEnum([Lcom/smartgwt/client/types/ValueEnum;Ljava/lang/String;)(enumValues, ret);
+    }-*/;
+
+
 
 }

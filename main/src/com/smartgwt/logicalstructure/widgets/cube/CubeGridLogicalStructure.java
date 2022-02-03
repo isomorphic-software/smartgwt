@@ -46,6 +46,7 @@ import com.smartgwt.logicalstructure.widgets.drawing.*;
 public class CubeGridLogicalStructure extends ListGridLogicalStructure {
     public String alternateRecordStyles;
     public String autoFetchTextMatchStyle;
+    public String autoFitFieldWidths;
     public String autoSelectHeaders;
     public String autoSelectValues;
     public String autoSizeHeaders;
@@ -101,10 +102,12 @@ public class CubeGridLogicalStructure extends ListGridLogicalStructure {
     public String hideEmptyAxis;
     public String hideEmptyFacetValues;
     public Hilite[] hilites;
+    public String indentVTreeFacets;
     public String innerHeaderBaseStyle;
     public String metricFacetId;
     public String padTitles;
     public String rollupValue;
+    public String rotateHeaderTitles;
     public String[] rowFacets;
     public String rowHeaderBaseStyle;
     public String rowHeaderGridMode;
@@ -120,6 +123,8 @@ public class CubeGridLogicalStructure extends ListGridLogicalStructure {
     public String valueFormat;
     public String valueProperty;
     public String valueTitle;
+    public String vTreeFacetIndent;
+    public String vTreeFacetIndentDirection;
     public String wrapFacetTitles;
     public String wrapFacetValueTitles;
 }

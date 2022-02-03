@@ -124,6 +124,9 @@ import com.smartgwt.logicalstructure.widgets.tools.*;
  * the automatically chosen FormItem via {@link com.smartgwt.client.data.DataSourceField#getEditorType
  * DataSourceField.editorType}.  
  *  <P>
+ *  FormItem lifecycle is managed by the DynamicForm itself. FormItem instances are created
+ *  and destroyed automatically when new fields are added to the form. 
+ *  <P>
  *  When using DataSource binding, you can also add additional FormItems not specified in the
  *  DataSource, or override any properties on the automatically generated FormItems, without
  *  having to re-declare any information that comes from the DataSource.  See the QuickStart
@@ -254,6 +257,7 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
      * com.smartgwt.client.widgets.form.fields.FormItem#getAllowExpressions FormItem.allowExpressions} for details.
      *
      * @param allowExpressions New allowExpressions value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public void setAllowExpressions(Boolean allowExpressions) {
         setAttribute("allowExpressions", allowExpressions, true);
@@ -269,6 +273,7 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
      * com.smartgwt.client.widgets.form.fields.FormItem#getAllowExpressions FormItem.allowExpressions} for details.
      *
      * @return Current allowExpressions value. Default value is null
+     * @see com.smartgwt.client.docs.AdvancedFilter AdvancedFilter overview and related methods
      */
     public Boolean getAllowExpressions()  {
         return getAttributeAsBoolean("allowExpressions");
@@ -613,7 +618,7 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
      * If true, the headers for any {@link com.smartgwt.client.widgets.layout.SectionStackSection#getItems SectionItems} will
      * be included in the page's tab order for accessibility. May also be set at the item level via {@link
      * com.smartgwt.client.widgets.form.fields.SectionItem#getCanTabToHeader SectionItem.canTabToHeader} <P> If unset, section
-     * headers will be focusable if {@link com.smartgwt.client.util.isc#setScreenReaderMode isc.setScreenReaderMode()} has been
+     * headers will be focusable if  {@link com.smartgwt.client.util.SC#setScreenReaderMode SC.setScreenReaderMode()}  has been
      * called. See {@link com.smartgwt.client.docs.Accessibility}.
      * <p><b>Note : </b> This is an advanced setting</p>
      *
@@ -628,7 +633,7 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
      * If true, the headers for any {@link com.smartgwt.client.widgets.layout.SectionStackSection#getItems SectionItems} will
      * be included in the page's tab order for accessibility. May also be set at the item level via {@link
      * com.smartgwt.client.widgets.form.fields.SectionItem#getCanTabToHeader SectionItem.canTabToHeader} <P> If unset, section
-     * headers will be focusable if {@link com.smartgwt.client.util.isc#setScreenReaderMode isc.setScreenReaderMode()} has been
+     * headers will be focusable if  {@link com.smartgwt.client.util.SC#setScreenReaderMode SC.setScreenReaderMode()}  has been
      * called. See {@link com.smartgwt.client.docs.Accessibility}.
      *
      * @return Current canTabToSectionHeaders value. Default value is null
@@ -1059,6 +1064,7 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
      * <p><b>Note : </b> This is an advanced setting</p>
      *
      * @param formSubmitFailedWarning New formSubmitFailedWarning value. Default value is "Form was unable to be submitted. The most likely cause for this is an invalid value in an upload field."
+     * @deprecated see {@link com.smartgwt.client.widgets.form.DynamicForm#addFormSubmitFailedHandler DynamicForm.formSubmitFailed()}
      */
     public void setFormSubmitFailedWarning(String formSubmitFailedWarning) {
         setAttribute("formSubmitFailedWarning", formSubmitFailedWarning, true);
@@ -1070,6 +1076,7 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
      * invalid file-path into an upload type field.
      *
      * @return Current formSubmitFailedWarning value. Default value is "Form was unable to be submitted. The most likely cause for this is an invalid value in an upload field."
+     * @deprecated see {@link com.smartgwt.client.widgets.form.DynamicForm#addFormSubmitFailedHandler DynamicForm.formSubmitFailed()}
      */
     public String getFormSubmitFailedWarning()  {
         return getAttributeAsString("formSubmitFailedWarning");
@@ -2476,6 +2483,92 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
     
 
     /**
+     * For editable fields with a specified {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField
+     * FormItem.displayField} and  {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
+     * FormItem.optionDataSource}, if the user selects a new value (typically from PickList based item such as a SelectItem),
+     * should the selected displayValue be updated on the record being edited in addition to the value for the actual item.<br>
+     * Note that this only applies for fields using  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue local display field values} - typically
+     * {@link com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey fields} where the display field is {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#includeFrom included from} another dataSource. <P> Default value is
+     * <code>true</code>. This is typically desirable for editing records with a displayField-mapped field, as it ensures the
+     * edited record will be be updated to contain the correct display value as well as the correct data value. As such, the
+     * expected display value is available on the record for display (for example in a ListGrid cell). <P> It may not be
+     * desirable for an interface specifically intended for  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria gathering criteria} - in this case, results ought to be
+     * limited by an item's actual selected value, not by whatever text is displayed to  the user. <P> See {@link
+     * com.smartgwt.client.data.DataSourceField#getDisplayField DataSourceField.displayField} for more details. <P> Note: the
+     * modified display field value will be passed to the server along with the modified foreignKey field value if a  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#saveData databound update operation} is performed. This occurs even if the
+     * displayField is {@link com.smartgwt.client.docs.serverds.DataSourceField#includeFrom included from another DataSource}
+     * and therefore read-only. In this case the server will simply ignore the modified display field value. This is as
+     * expected - a subsequent fetch for the same record would recalculate the displayField value on the server using the
+     * updated foreignKey field value (and return the same display value previously displayed to the user). <P> This attribute
+     * can also be set for {@link com.smartgwt.client.widgets.form.fields.FormItem#getStoreDisplayValues individual items}.
+     * <p><b>Note : </b> This is an advanced setting</p>
+     *
+     * @param storeDisplayValues New storeDisplayValues value. Default value is true
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     */
+    public void setStoreDisplayValues(Boolean storeDisplayValues)  throws IllegalStateException {
+        setAttribute("storeDisplayValues", storeDisplayValues, false);
+    }
+
+    /**
+     * For editable fields with a specified {@link com.smartgwt.client.widgets.form.fields.FormItem#getDisplayField
+     * FormItem.displayField} and  {@link com.smartgwt.client.widgets.form.fields.FormItem#getOptionDataSource
+     * FormItem.optionDataSource}, if the user selects a new value (typically from PickList based item such as a SelectItem),
+     * should the selected displayValue be updated on the record being edited in addition to the value for the actual item.<br>
+     * Note that this only applies for fields using  {@link
+     * com.smartgwt.client.widgets.form.fields.FormItem#getUseLocalDisplayFieldValue local display field values} - typically
+     * {@link com.smartgwt.client.data.DataSourceField#getForeignKey foreignKey fields} where the display field is {@link
+     * com.smartgwt.client.docs.serverds.DataSourceField#includeFrom included from} another dataSource. <P> Default value is
+     * <code>true</code>. This is typically desirable for editing records with a displayField-mapped field, as it ensures the
+     * edited record will be be updated to contain the correct display value as well as the correct data value. As such, the
+     * expected display value is available on the record for display (for example in a ListGrid cell). <P> It may not be
+     * desirable for an interface specifically intended for  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#getValuesAsCriteria gathering criteria} - in this case, results ought to be
+     * limited by an item's actual selected value, not by whatever text is displayed to  the user. <P> See {@link
+     * com.smartgwt.client.data.DataSourceField#getDisplayField DataSourceField.displayField} for more details. <P> Note: the
+     * modified display field value will be passed to the server along with the modified foreignKey field value if a  {@link
+     * com.smartgwt.client.widgets.form.DynamicForm#saveData databound update operation} is performed. This occurs even if the
+     * displayField is {@link com.smartgwt.client.docs.serverds.DataSourceField#includeFrom included from another DataSource}
+     * and therefore read-only. In this case the server will simply ignore the modified display field value. This is as
+     * expected - a subsequent fetch for the same record would recalculate the displayField value on the server using the
+     * updated foreignKey field value (and return the same display value previously displayed to the user). <P> This attribute
+     * can also be set for {@link com.smartgwt.client.widgets.form.fields.FormItem#getStoreDisplayValues individual items}.
+     *
+     * @return Current storeDisplayValues value. Default value is true
+     */
+    public Boolean getStoreDisplayValues()  {
+        Boolean result = getAttributeAsBoolean("storeDisplayValues");
+        return result == null ? true : result;
+    }
+    
+
+    /**
+     * Default {@link com.smartgwt.client.widgets.form.fields.TextItem#getSuppressBrowserClearIcon
+     * TextItem.suppressBrowserClearIcon} value for TextItems within this  form.
+     *
+     * @param suppressBrowserClearIcons New suppressBrowserClearIcons value. Default value is false
+     */
+    public void setSuppressBrowserClearIcons(boolean suppressBrowserClearIcons) {
+        setAttribute("suppressBrowserClearIcons", suppressBrowserClearIcons, true);
+    }
+
+    /**
+     * Default {@link com.smartgwt.client.widgets.form.fields.TextItem#getSuppressBrowserClearIcon
+     * TextItem.suppressBrowserClearIcon} value for TextItems within this  form.
+     *
+     * @return Current suppressBrowserClearIcons value. Default value is false
+     */
+    public boolean getSuppressBrowserClearIcons()  {
+        Boolean result = getAttributeAsBoolean("suppressBrowserClearIcons");
+        return result == null ? false : result;
+    }
+    
+
+    /**
      * When calling {@link com.smartgwt.client.widgets.form.DynamicForm#saveData saveData()} on a form or valuesManager, by
      * default if the server returns an error code, any callback passed into saveData() will not be fired. If the error code
      * returned by the server indicates a validation error, it will be displayed to the user by updating the form items to show
@@ -3378,7 +3471,10 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
      * is unable to submit to the server. Default behavior is to display the {@link
      * com.smartgwt.client.widgets.form.DynamicForm#getFormSubmitFailedWarning DynamicForm.formSubmitFailedWarning} in a
      * warning dialog. The most common cause for this failure is that the user has typed an invalid file-path into an upload
-     * type field.
+     * type field. <P> <b>Note:</b> This is very unlikely to occur with modern versions of IE, which don't allow the path of a
+     * file to be edited by hand (only selected via file navigation).  It was last seen in IE6-7 under Windows XP. <P> Rather
+     * than throwing an exception on the client during submit(), normally all failures in native form submission are handled by
+     * the server.  For further information, see {@link com.smartgwt.client.docs.Upload File Uploading}.
      *
      * @param handler the formSubmitFailed handler
      * @return {@link HandlerRegistration} used to remove this handler
@@ -5986,14 +6082,32 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
     	
     }-*/;
 
-    public native void exportData() /*-{
-        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.exportData();
-    }-*/;
+    public void exportData() {
+        exportData(null);
+    }
 
     public native void exportData(DSRequest requestProperties) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "exportData", "DSRequest,RPCCallback");
+        }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
-        self.exportData(requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+        self.exportData(requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()());
+    }-*/;
+
+
+    public native void exportData(DSRequest requestProperties, RPCCallback callback) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "exportData", "DSRequest,RPCCallback");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.exportData(requestProperties == null ? null : requestProperties.@com.smartgwt.client.core.DataClass::getJsObj()(),
+			$entry( function(response, rawData, request) {
+				if(callback!=null) callback.@com.smartgwt.client.rpc.RPCCallback::execute(Lcom/smartgwt/client/rpc/RPCResponse;Ljava/lang/Object;Lcom/smartgwt/client/rpc/RPCRequest;)(
+					@com.smartgwt.client.rpc.RPCResponse::new(Lcom/google/gwt/core/client/JavaScriptObject;)(response), 
+					rawData, 
+					@com.smartgwt.client.rpc.RPCRequest::new(Lcom/google/gwt/core/client/JavaScriptObject;)(request)
+				);
+			}));
     }-*/;
 
     /**
@@ -6131,7 +6245,25 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
         return fields != null ? fields.length : 0;
     }
     
-    /**
+    public native void transferRecords(Record[] records, Record targetRecord, Integer index, Canvas sourceWidget, TransferRecordsCallback callback) /*-{
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        var recordsJS = @com.smartgwt.client.util.JSOHelper::convertToJavaScriptArray([Ljava/lang/Object;)(records);
+        var targetRecordJS = targetRecord == null ? null : targetRecord.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+        var indexJS = index == null ? null : index.@java.lang.Integer::intValue()();
+        var sourceWidgetJS = sourceWidget == null ? null : sourceWidget.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.transferRecords(recordsJS, targetRecordJS, indexJS, sourceWidgetJS, $entry(function(records) {
+            if(callback != null) {
+	    		var convertedArray = [];
+	    		for (var i = 0; i < records.length; i++) {
+	    			convertedArray[i] =  @com.smartgwt.client.data.Record::new(Lcom/google/gwt/core/client/JavaScriptObject;)(records[i]);
+	    		}
+                var recordsJ = @com.smartgwt.client.util.JSOHelper::convertToJavaObjectArray(Lcom/google/gwt/core/client/JavaScriptObject;)(convertedArray);
+                callback.@com.smartgwt.client.widgets.TransferRecordsCallback::execute([Lcom/smartgwt/client/data/Record;)(recordsJ);
+            }
+        }));
+    }-*/;
+
+	/**
      * During a drag-and-drop interaction, this method returns the set of records being dragged
      * out of the component.  In the default implementation, this is the list of currently
      * selected records.<p>
@@ -6559,6 +6691,16 @@ public class DynamicForm extends Canvas implements DataBoundComponent, com.smart
             s.stopOnError = getAttributeAsString("stopOnError");
         } catch (Throwable t) {
             s.logicalStructureErrors += "DynamicForm.stopOnError:" + t.getMessage() + "\n";
+        }
+        try {
+            s.storeDisplayValues = getAttributeAsString("storeDisplayValues");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.storeDisplayValues:" + t.getMessage() + "\n";
+        }
+        try {
+            s.suppressBrowserClearIcons = getAttributeAsString("suppressBrowserClearIcons");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "DynamicForm.suppressBrowserClearIcons:" + t.getMessage() + "\n";
         }
         try {
             s.suppressValidationErrorCallback = getAttributeAsString("suppressValidationErrorCallback");

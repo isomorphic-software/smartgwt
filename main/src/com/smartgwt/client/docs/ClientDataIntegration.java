@@ -80,17 +80,21 @@ package com.smartgwt.client.docs;
  *  <P>
  *  For example, the following code defines a DataSource that a ListGrid could bind to in order
  *  to display an RSS 2.0 feed.
- *  <PRE>
- *     isc.DataSource.create({
- *         dataURL:feedURL,
- *         recordXPath:"//item",
- *         fields:[
- *             { name:"title" },
- *             { name:"link" },
- *             { name:"description" }
- *         ]
- *     });
- *  </PRE>
+ *  
+ *  
+ *  <pre>
+ *     DataSource ds = new DataSource();
+ *     ds.setDataURL(feedURL);
+ *     ds.setRecordXPath("//item");
+ *     DataSourceField titleField = new DataSourceField();
+ *     titleField.setName("title");
+ *     DataSourceField linkField = new DataSourceField();
+ *     linkField.setName("link");
+ *     DataSourceField descriptionField = new DataSourceField();
+ *     descriptionField.setName("description");
+ *     ds.setFields(titleField, linkField, descriptionField);
+ *  </pre>
+ *  
  *  A representative slice of an RSS 2.0 feed follows:
  *  <pre>
  *      &lt;?xml version="1.0" encoding="iso-8859-1" ?&gt; 

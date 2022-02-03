@@ -82,8 +82,8 @@ import com.google.gwt.event.shared.HasHandlers;
  * primarily intended as a temporary form of DataSource used during the process of converting a mockup into a real
  * application.  Generally, if creating a client-only DataSource in  Java, there is no reason to use the mock data format,
  * as the mock data is not especially readable when written as a String literal.  The mock data format <i>can</i> be a
- * slightly more compact and readable as compared to declaring {@link com.smartgwt.client.data.DataSource#getTestData
- * DataSource.testData} in XML.
+ * slightly more compact and readable as compared to declaring {@link com.smartgwt.client.data.DataSource#getCacheData
+ * DataSource.cacheData} in XML.
  */
 @BeanFactory.FrameworkClass
 @BeanFactory.ScClassName("MockDataSource")

@@ -554,6 +554,59 @@ public class ValuesManager extends BaseClass implements com.smartgwt.client.form
     }-*/;
 	
 	/**
+     * Performs silent validation of the value manager values, like {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#valuesAreValid valuesAreValid()}.  In contrast to {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#valuesAreValid valuesAreValid()}, this method allows checking for
+     * server-side errors, and finding out what the errors are.   <P> The callback must be passed unless server-side validation
+     * is being skipped, and If passed, it always fires, errors or not, firing synchronously if server validation is skipped.
+     * @param callback callback to invoke after validation is complete
+     *
+     * @return null if server-side validation is required, or no errors are present; otherwise, a Map of field names to the associated
+     * errors, for those fields that failed validation.
+     * @see com.smartgwt.client.docs.Validation Validation overview and related methods
+     */
+    public native Map checkForValidationErrors(ValidationStatusCallback callback) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "checkForValidationErrors", "ValidationStatusCallback");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.checkForValidationErrors(
+			$entry( function(errorMap) { 
+				if(callback!=null) callback.@com.smartgwt.client.data.ValidationStatusCallback::execute(Ljava/util/Map;)(
+					@com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(errorMap)
+				);
+			}));
+        return @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+
+	/**
+     * Performs silent validation of the value manager values, like {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#valuesAreValid valuesAreValid()}.  In contrast to {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#valuesAreValid valuesAreValid()}, this method allows checking for
+     * server-side errors, and finding out what the errors are.   <P> The callback must be passed unless server-side validation
+     * is being skipped, and If passed, it always fires, errors or not, firing synchronously if server validation is skipped.
+     * @param callback callback to invoke after validation is complete
+     * @param skipServerValidation whether to skip doing server-side validation
+     *
+     * @return null if server-side validation is required, or no errors are present; otherwise, a Map of field names to the associated
+     * errors, for those fields that failed validation.
+     * @see com.smartgwt.client.docs.Validation Validation overview and related methods
+     */
+    public native Map checkForValidationErrors(ValidationStatusCallback callback, boolean skipServerValidation) /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "checkForValidationErrors", "ValidationStatusCallback,boolean");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.checkForValidationErrors(
+			$entry( function(errorMap) { 
+				if(callback!=null) callback.@com.smartgwt.client.data.ValidationStatusCallback::execute(Ljava/util/Map;)(
+					@com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(errorMap)
+				);
+			}), skipServerValidation);
+        return @com.smartgwt.client.util.JSOHelper::convertToMap(Lcom/google/gwt/core/client/JavaScriptObject;)(ret);
+    }-*/;
+	
+	/**
      * Clears all errors from member forms.
      * @param showErrors If true, clear any visible error messages.
      * @see com.smartgwt.client.docs.Errors Errors overview and related methods
@@ -1416,7 +1469,10 @@ public class ValuesManager extends BaseClass implements com.smartgwt.client.form
      * Validator.serverCondition}) this will also be initialized. Such validation will occur asynchronously.  Developers can
      * use {@link com.smartgwt.client.widgets.form.ValuesManager#isPendingAsyncValidation isPendingAsyncValidation()} and
      * {@link com.smartgwt.client.widgets.form.ValuesManager#addAsyncValidationReplyHandler
-     * ValuesManager.asyncValidationReply()} to detect and respond to asynchronous validation.
+     * ValuesManager.asyncValidationReply()} to detect and respond to asynchronous validation. <P> Note that for silent
+     * validation, {@link com.smartgwt.client.widgets.form.ValuesManager#valuesAreValid valuesAreValid()} (client-side) and 
+     * {@link com.smartgwt.client.widgets.form.ValuesManager#checkForValidationErrors checkForValidationErrors()} (client and
+     * server-side) can be used instead.
      *
      * @return true if all validation passed
      * @see com.smartgwt.client.widgets.form.DynamicForm#validate
@@ -1430,6 +1486,29 @@ public class ValuesManager extends BaseClass implements com.smartgwt.client.form
         var ret = self.validate();
         if(ret == null) return null;
         return @com.smartgwt.client.util.JSOHelper::toBoolean(Z)(ret);
+    }-*/;
+
+	/**
+     * Method to determine whether the current set of values for this values manager would pass validation by the validators
+     * defined in the member forms.  This method operates client-side, without contacting the server, running validators on the
+     * forms' values and returning a value indicating whether validation was successful. <P> Note that, like {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#validate validate()}, this method will perform value validation even
+     * if:<ul> <li>A datasource field has no corresponding item in any member form</li> <li>The item in question is hidden</li>
+     * <li>The member form containing the item is hidden</li></ul> <P> Unlike {@link
+     * com.smartgwt.client.widgets.form.ValuesManager#validate validate()} this method will not store the errors on the forms
+     * or display them to the user.
+     *
+     * @return Boolean value indicating validation success, or if  <code>returnErrors</code> was specified,  a map of field names to
+     * the associated errors, for those fields that failed validation, or null if validation succeeded.
+     * @see com.smartgwt.client.docs.Validation Validation overview and related methods
+     */
+    public native boolean valuesAreValid() /*-{
+        if (this.@com.smartgwt.client.core.BaseClass::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "valuesAreValid", "");
+        }
+        var self = this.@com.smartgwt.client.core.BaseClass::getOrCreateJsObj()();
+        var ret = self.valuesAreValid();
+        return ret == null ? false : ret;
     }-*/;
 
 	/**

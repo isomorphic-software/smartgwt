@@ -1398,6 +1398,152 @@ scClassName = "BaseWidget";
         this.nativeObject = new NativeObject(this);
     }
 
+    // ---------------------------------------
+    // Dynamic Properties
+
+    /**
+     * Sets up the value of <code>propertyName</code> to be dynamically derived from the
+     * {@link com.smartgwt.client.widgets.Canvas#getRuleScope ruleScope}, by either a simple
+     * {@link com.smartgwt.client.docs.DataPath} into the ruleScope or via a textual
+     * or numeric formula using the ruleScope as available formula inputs.
+     * <p>
+     * The dataPath or formula is evaluated immediately when addDynamicProperty() is called, then re-evaluated
+     * every time the ruleScope changes.
+     * <p>
+     * It is invalid usage to use <code>addDynamicProperty()</code> on a property that is not runtime settable,
+     * however, <code>addDynamicProperty()</code> will not throw an error or log a warning if this is done.
+     * <p>
+     * If a property is already dynamic and addDynamicProperty() is called again, the new dynamic behavior
+     * replaces the old.  If a property should no longer be dynamic, call +link{clearDynamicProperty()}.
+     * <p>
+     * Dynamic properties can also be declared together via {@link dynamicProperties}.
+     *
+     * @param propertyName name of a settable property on this instance
+     * @param source dataPath
+     */
+    public native void addDynamicProperty (String propertyName, String source) /*-{
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            var widget = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            widget.addDynamicProperty(propertyName, source);
+        } else {
+            var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
+            if(config["dynamicProperties"] === undefined) {
+                config["dynamicProperties"] = {};
+            }
+            config["dynamicProperties"][propertyName] = (source == null ? null : String(source));
+        }
+    }-*/;
+
+    /**
+     * Sets up the value of <code>propertyName</code> to be dynamically derived from the
+     * {@link com.smartgwt.client.widgets.Canvas#getRuleScope ruleScope}, by either a simple
+     * {@link com.smartgwt.client.docs.DataPath} into the ruleScope or via a textual
+     * or numeric formula using the ruleScope as available formula inputs.
+     * <p>
+     * The dataPath or formula is evaluated immediately when addDynamicProperty() is called, then re-evaluated
+     * every time the ruleScope changes.
+     * <p>
+     * It is invalid usage to use <code>addDynamicProperty()</code> on a property that is not runtime settable,
+     * however, <code>addDynamicProperty()</code> will not throw an error or log a warning if this is done.
+     * <p>
+     * If a property is already dynamic and addDynamicProperty() is called again, the new dynamic behavior
+     * replaces the old.  If a property should no longer be dynamic, call +link{clearDynamicProperty()}.
+     * <p>
+     * Dynamic properties can also be declared together via {@link dynamicProperties}.
+     *
+     * @param propertyName name of a settable property on this instance
+     * @param source UserFormula
+     */
+    public native void addDynamicProperty (String propertyName, UserFormula source) /*-{
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            var widget = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            widget.addDynamicProperty(propertyName, source);
+        } else {
+            var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
+            if(config["dynamicProperties"] === undefined) {
+                config["dynamicProperties"] = {};
+            }
+            var jsObj = (source == null ? null : source.@com.smartgwt.client.widgets.UserFormula::getJsObj()());
+            config["dynamicProperties"][propertyName] = source;
+        }
+    }-*/;
+
+    /**
+     * Sets up the value of <code>propertyName</code> to be dynamically derived from the
+     * {@link com.smartgwt.client.widgets.Canvas#getRuleScope ruleScope}, by either a simple
+     * {@link com.smartgwt.client.docs.DataPath} into the ruleScope or via a textual
+     * or numeric formula using the ruleScope as available formula inputs.
+     * <p>
+     * The dataPath or formula is evaluated immediately when addDynamicProperty() is called, then re-evaluated
+     * every time the ruleScope changes.
+     * <p>
+     * It is invalid usage to use <code>addDynamicProperty()</code> on a property that is not runtime settable,
+     * however, <code>addDynamicProperty()</code> will not throw an error or log a warning if this is done.
+     * <p>
+     * If a property is already dynamic and addDynamicProperty() is called again, the new dynamic behavior
+     * replaces the old.  If a property should no longer be dynamic, call +link{clearDynamicProperty()}.
+     * <p>
+     * Dynamic properties can also be declared together via {@link dynamicProperties}.
+     *
+     * @param propertyName name of a settable property on this instance
+     * @param source UserSummary
+     */
+    public native void addDynamicProperty (String propertyName, UserSummary source) /*-{
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            var widget = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            widget.addDynamicProperty(propertyName, source);
+        } else {
+            var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
+            if(config["dynamicProperties"] === undefined) {
+                config["dynamicProperties"] = {};
+            }
+            var jsObj = (source == null ? null : source.@com.smartgwt.client.widgets.UserSummary::getJsObj()());
+            config["dynamicProperties"][propertyName] = source;
+        }
+    }-*/;
+
+
+    /**
+     * Clears a dynamic property previously established via {@link addDynamicProperty}.
+     * <p>
+     * If the property is not currently dynamic, nothing will be done (and no warning logged).
+     * <p>
+     * The current value of the property will not be changed by this call.
+     * 
+     * @param propertyName name of the dynamic property to clear
+     */
+    public native void clearDynamicProperty (String propertyName) /*-{
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            var widget = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            widget.clearDynamicProperty(propertyName);
+        } else {
+            var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
+            if(config["dynamicProperties"] !== undefined) {
+                delete config["dynamicProperties"][propertyName];
+            }
+        }
+    }-*/;
+
+    /**
+     * Returns true if the property is dynamic.
+     * 
+     * @param propertyName name of the dynamic property to check
+     * @return boolean true if the property is dynamic
+     */
+    public native boolean hasDynamicProperty (String propertyName) /*-{
+        var ret = false;
+        if(this.@com.smartgwt.client.widgets.BaseWidget::isCreated()()) {
+            var widget = this.@com.smartgwt.client.widgets.BaseWidget::getJsObj()();
+            ret = widget.hasDynamicProperty(propertyName);
+        } else {
+            var config = this.@com.smartgwt.client.widgets.BaseWidget::config;
+            if(config["dynamicProperties"] !== undefined) {
+                ret = (config["dynamicProperties"][propertyName] != null);
+            }
+        }
+        return ret;
+    }-*/;
+
     /**
      * Setter implementing the {@link com.smartgwt.client.core.LogicalStructure} interface,
      * which supports Eclipse's logical structure debugging facility.

@@ -195,6 +195,45 @@ public class CalendarView extends ListGrid {
     
 
     /**
+     * {@link com.smartgwt.client.widgets.Canvas} displayed while dragging or resizing an event in this view and styled
+     * according to {@link com.smartgwt.client.widgets.calendar.CalendarView#getEventDragCanvasStyleName
+     * eventDragCanvasStyleName}.
+     * <p>
+     * This component is an AutoChild named "eventDragCanvas".  For an overview of how to use and
+     * configure AutoChildren, see {@link com.smartgwt.client.docs.AutoChildUsage Using AutoChildren}.
+     *
+     * @return Current eventDragCanvas value. Default value is null
+     * @throws IllegalStateException if this widget has not yet been rendered.
+     */
+    public Canvas getEventDragCanvas() throws IllegalStateException {
+        errorIfNotCreated("eventDragCanvas");
+        return (Canvas)Canvas.getByJSObject(getAttributeAsJavaScriptObject("eventDragCanvas"));
+    }
+    
+
+    /**
+     * CSS class applied to the {@link com.smartgwt.client.widgets.calendar.CalendarView#getEventDragCanvas eventDragCanvas}.
+     *
+     * @param eventDragCanvasStyleName New eventDragCanvasStyleName value. Default value is "eventDragCanvas"
+     * @throws IllegalStateException this property cannot be changed after the component has been created
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public void setEventDragCanvasStyleName(String eventDragCanvasStyleName)  throws IllegalStateException {
+        setAttribute("eventDragCanvasStyleName", eventDragCanvasStyleName, false);
+    }
+
+    /**
+     * CSS class applied to the {@link com.smartgwt.client.widgets.calendar.CalendarView#getEventDragCanvas eventDragCanvas}.
+     *
+     * @return Current eventDragCanvasStyleName value. Default value is "eventDragCanvas"
+     * @see com.smartgwt.client.docs.CSSStyleName CSSStyleName 
+     */
+    public String getEventDragCanvasStyleName()  {
+        return getAttributeAsString("eventDragCanvasStyleName");
+    }
+    
+
+    /**
      * If specified, overrides {@link com.smartgwt.client.widgets.calendar.Calendar#getEventStyleName Calendar.eventStyleName}
      * and dictates the CSS style to  use for events rendered in this view.  Has no effect on events that already have a 
      * {@link com.smartgwt.client.widgets.calendar.CalendarEvent#getStyleName style specified}.
@@ -334,7 +373,8 @@ public class CalendarView extends ListGrid {
     }-*/;
 
 	/**
-     * Rebuild this CalendarView, including a data refresh.
+     * Rebuild this CalendarView, including re-fetching its data as necessary.  To avoid  re-fetching the data, pass 'false' to
+     * this method, or call  +link{calendarView.refreshEvents, refreshEvents()) instead.
      */
     public native void rebuild() /*-{
         if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
@@ -342,6 +382,52 @@ public class CalendarView extends ListGrid {
         }
         var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
         self.rebuild();
+    }-*/;
+
+	/**
+     * Rebuild this CalendarView, including re-fetching its data as necessary.  To avoid  re-fetching the data, pass 'false' to
+     * this method, or call  +link{calendarView.refreshEvents, refreshEvents()) instead.
+     * @param refreshData If false, prevents data from bing refreshed.
+     */
+    public native void rebuild(Boolean refreshData) /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "rebuild", "Boolean");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.rebuild(refreshData == null ? null : refreshData.@java.lang.Boolean::booleanValue()());
+    }-*/;
+	
+	/**
+     * Clear, recalculate and redraw the events for the current range, without causing a fetch.
+     */
+    public native void refreshEvents() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "refreshEvents", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.refreshEvents();
+    }-*/;
+
+	/**
+     * Move the viewport of this CalendarView to the end of its scrollable range.
+     */
+    public native void scrollToEnd() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "scrollToEnd", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.scrollToEnd();
+    }-*/;
+
+	/**
+     * Move the viewport of this CalendarView to the start of its scrollable range.
+     */
+    public native void scrollToStart() /*-{
+        if (this.@com.smartgwt.client.widgets.BaseWidget::isConfigOnly()()) {
+            @com.smartgwt.client.util.ConfigUtil::warnOfPostConfigInstantiation(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)(this.@java.lang.Object::getClass()(), "scrollToStart", "");
+        }
+        var self = this.@com.smartgwt.client.widgets.BaseWidget::getOrCreateJsObj()();
+        self.scrollToStart();
     }-*/;
 
 
@@ -388,6 +474,11 @@ public class CalendarView extends ListGrid {
             s.calendar = getCalendar();
         } catch (Throwable t) {
             s.logicalStructureErrors += "CalendarView.calendar:" + t.getMessage() + "\n";
+        }
+        try {
+            s.eventDragCanvasStyleName = getAttributeAsString("eventDragCanvasStyleName");
+        } catch (Throwable t) {
+            s.logicalStructureErrors += "CalendarView.eventDragCanvasStyleName:" + t.getMessage() + "\n";
         }
         try {
             s.eventStyleName = getAttributeAsString("eventStyleName");
