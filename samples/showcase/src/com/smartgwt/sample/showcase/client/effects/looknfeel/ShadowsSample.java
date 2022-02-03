@@ -43,9 +43,9 @@ public class ShadowsSample extends ShowcasePanel {
 
 
         final Label label = new Label(EXAMPLE_TEXT);
-        label.setWidth(250);
+        label.setWidth(240);
         label.setPadding(10);
-        label.setLeft(160);
+        label.setLeft(200);
         label.setTop(20);
         label.setBackgroundColor("white");
         label.setBorder("1px solid #c0c0c0");
@@ -56,12 +56,12 @@ public class ShadowsSample extends ShowcasePanel {
         label.setKeepInParentRect(true);
 
         final Slider softness = new Slider("Softness");
-        softness.setMinValue(1);
-        softness.setMaxValue(10);
+        softness.setMinValue(1.0);
+        softness.setMaxValue(10.0);
         softness.setNumValues(11);
         softness.setShowRange(false);
-        softness.setLabelWidth(20);
-        softness.setValue(10);
+        softness.setLabelWidth(40);
+        softness.setValue(10.0);
         softness.addDrawHandler(new DrawHandler() {
             public void onDraw(DrawEvent event) {
                 softness.addValueChangedHandler(new ValueChangedHandler() {
@@ -75,13 +75,13 @@ public class ShadowsSample extends ShowcasePanel {
 
 
         final Slider offset = new Slider("Offset");
-        offset.setMinValue(0);
-        offset.setMaxValue(20);
+        offset.setMinValue(0.0);
+        offset.setMaxValue(20.0);
         offset.setNumValues(21);
         offset.setShowRange(false);
-        offset.setLabelWidth(20);
-        offset.setLeft(60);
-        offset.setValue(5);
+        offset.setLabelWidth(40);
+        offset.setLeft(80);
+        offset.setValue(5.0);
         
         offset.addDrawHandler(new DrawHandler() {
             public void onDraw(DrawEvent event) {

@@ -71,6 +71,7 @@ public class FormDataBindingSample extends ShowcasePanel {
         PasswordItem passwordItem2 = new PasswordItem();
         passwordItem2.setName("password2");
         passwordItem2.setTitle("Password Again");
+        passwordItem2.setWrapTitle(false);
         passwordItem2.setRequired(true);
         passwordItem2.setLength(20);
 
@@ -87,7 +88,7 @@ public class FormDataBindingSample extends ShowcasePanel {
 
 			@Override
 			protected boolean condition(Object value) {
-				if (new Boolean(true).equals(value)) return true;
+				if (Boolean.TRUE.equals(value)) return true;
 				return false;
 			}
         	

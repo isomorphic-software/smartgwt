@@ -2,6 +2,8 @@ package com.smartgwt.sample.showcase.client.grid.dataoperation;
 
 import com.smartgwt.client.data.Criteria;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.layout.HStack;
+import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
@@ -35,8 +37,9 @@ public class GridDataBoundFetchSample extends ShowcasePanel {
     }
 
     public Canvas getViewPanel() {
-        Canvas canvas = new Canvas();
-
+        VLayout vLayout = new VLayout();
+        vLayout.setMembersMargin(15);
+            
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(500);
         countryGrid.setHeight(224);
@@ -58,20 +61,17 @@ public class GridDataBoundFetchSample extends ShowcasePanel {
 				countryGrid.fetchData(new Criteria("countryCode", "US"));				
 			}        	
         });
-        fetchUS.setLeft(0);
-        fetchUS.setTop(240);
         fetchUS.setWidth(140);
         
         IButton fetchEurope = new IButton("Fetch Continent:Europe");
+        fetchEurope.setAutoFit(true);
         fetchEurope.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				countryGrid.fetchData(new Criteria("continent", "Europe"));				
 			}
         	
         });
-        fetchEurope.setLeft(160);
-        fetchEurope.setTop(240);
-        fetchEurope.setWidth(140);
+        fetchEurope.setMinWidth(140);
 
         IButton fetchAll = new IButton("Fetch All");
         fetchAll.addClickHandler(new ClickHandler() {
@@ -80,16 +80,19 @@ public class GridDataBoundFetchSample extends ShowcasePanel {
 			}
         	
         });
-        fetchAll.setLeft(320);
-        fetchAll.setTop(240);
         fetchAll.setWidth(140);
-        
-        canvas.addChild(countryGrid);
-        canvas.addChild(fetchUS);
-        canvas.addChild(fetchEurope);
-        canvas.addChild(fetchAll);
 
-        return canvas;
+        HStack hStack = new HStack();
+        hStack.setWidth100();
+        hStack.setMembersMargin(20);
+        hStack.addMember(fetchUS);
+        hStack.addMember(fetchEurope);
+        hStack.addMember(fetchAll);
+        
+        vLayout.addMember(countryGrid);
+        vLayout.addMember(hStack);
+
+        return vLayout;
     }
 
     public String getIntro() {

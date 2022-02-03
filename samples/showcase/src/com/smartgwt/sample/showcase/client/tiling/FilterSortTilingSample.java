@@ -21,6 +21,7 @@ import com.smartgwt.client.widgets.tile.TileGrid;
 import com.smartgwt.client.widgets.viewer.CellStyleHandler;
 import com.smartgwt.client.widgets.viewer.DetailFormatter;
 import com.smartgwt.client.widgets.viewer.DetailViewerField;
+import com.smartgwt.client.widgets.viewer.DetailViewer;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.AnimalXmlDS;
@@ -57,7 +58,7 @@ public class FilterSortTilingSample extends ShowcasePanel {
 
         final TileGrid tileGrid = new TileGrid();
         tileGrid.setTileWidth(158);
-        tileGrid.setTileHeight(205);
+        tileGrid.setTileHeight(225);
         tileGrid.setHeight(400);
         tileGrid.setID("boundList");
         tileGrid.setCanReorderTiles(true);
@@ -66,12 +67,17 @@ public class FilterSortTilingSample extends ShowcasePanel {
         tileGrid.setAutoFetchData(true);
         tileGrid.setAnimateTileChange(true);
 
+        DetailViewer detailViewerProperties = new DetailViewer();
+        detailViewerProperties.setRowHeight(22);
+        tileGrid.setDetailViewerProperties(detailViewerProperties);
+        
         DetailViewerField pictureField = new DetailViewerField("picture");
+        pictureField.setCellStyle("animalImage");
         DetailViewerField commonNameField = new DetailViewerField("commonName");
         commonNameField.setCellStyle("commonName");
 
         DetailViewerField lifeSpanField = new DetailViewerField("lifeSpan");
-        lifeSpanField.setCellStyle("lifeSpan");
+        lifeSpanField.setCellStyle("animalText");
         lifeSpanField.setDetailFormatter(new DetailFormatter() {
             public String format(Object value, Record record, DetailViewerField field) {
                 return "Lifespan: " + value;
@@ -88,7 +94,7 @@ public class FilterSortTilingSample extends ShowcasePanel {
                 } else if ("Not Endangered".equals(value)) {
                     return "notEndangered";
                 } else {
-                    return null;
+                    return "animalText";
                 }
             }
         });

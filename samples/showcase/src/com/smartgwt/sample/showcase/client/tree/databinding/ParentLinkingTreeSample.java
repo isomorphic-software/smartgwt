@@ -58,6 +58,7 @@ public class ParentLinkingTreeSample extends ShowcasePanel {
         employeeTreeGrid.setClosedIconSuffix("");
         employeeTreeGrid.setFields(new TreeGridField("Name"));
         employeeTreeGrid.setData(employeeTree);
+        employeeTreeGrid.setShowSelectedIcons(true);
         
         employeeTreeGrid.getData().openAll();
         

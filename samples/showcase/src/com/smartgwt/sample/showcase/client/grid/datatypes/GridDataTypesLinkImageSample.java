@@ -10,7 +10,7 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class GridDataTypesLinkImageSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "Click on the book images in the \"Info\" column to" +
+    private static final String DESCRIPTION = "Click on the images in the \"Info\" column to" +
                                               " open external links.";
 
     public static class Factory implements PanelFactory {

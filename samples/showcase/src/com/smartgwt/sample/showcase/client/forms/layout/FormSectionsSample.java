@@ -34,7 +34,8 @@ public class FormSectionsSample extends ShowcasePanel {
     public Canvas getViewPanel() {
     	
         final DynamicForm form = new DynamicForm();
-        form.setWidth(300);
+        form.setWidth(350);
+        form.setTitleWidth(120);
         
         TextItem itemName = new TextItem();
         itemName.setName("itemName");
@@ -62,6 +63,7 @@ public class FormSectionsSample extends ShowcasePanel {
         DateItem nextShipment = new DateItem();
         nextShipment.setName("nextShipment");
         nextShipment.setTitle("Next Shipment");
+        nextShipment.setWrapTitle(false);
         nextShipment.setUseTextField(true);
         nextShipment.setDefaultValue(256);
         

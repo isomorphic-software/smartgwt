@@ -23,6 +23,7 @@ import com.smartgwt.client.widgets.tile.events.RecordClickHandler;
 import com.smartgwt.client.widgets.viewer.CellStyleHandler;
 import com.smartgwt.client.widgets.viewer.DetailFormatter;
 import com.smartgwt.client.widgets.viewer.DetailViewerField;
+import com.smartgwt.client.widgets.viewer.DetailViewer;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.AnimalXmlDS;
@@ -57,7 +58,7 @@ public class TileEditingSample extends ShowcasePanel {
 
         final TileGrid tileGrid = new TileGrid();
         tileGrid.setTileWidth(150);
-        tileGrid.setTileHeight(205);
+        tileGrid.setTileHeight(225);
         tileGrid.setHeight(400);
         tileGrid.setSelectionType(SelectionStyle.SINGLE);
         tileGrid.setCanReorderTiles(true);
@@ -65,14 +66,19 @@ public class TileEditingSample extends ShowcasePanel {
         tileGrid.setTileDragAppearance(DragAppearance.OUTLINE);
         tileGrid.setDataSource(AnimalXmlDS.getInstance());
 
+        DetailViewer detailViewerProperties = new DetailViewer();
+        detailViewerProperties.setRowHeight(22);
+        tileGrid.setDetailViewerProperties(detailViewerProperties);
+
         tileGrid.setAnimateTileChange(true);
 
         DetailViewerField pictureField = new DetailViewerField("picture");
+        pictureField.setCellStyle("animalImage");
         DetailViewerField commonNameField = new DetailViewerField("commonName");
         commonNameField.setCellStyle("commonName");
 
         DetailViewerField lifeSpanField = new DetailViewerField("lifeSpan");
-        lifeSpanField.setCellStyle("lifeSpan");
+        lifeSpanField.setCellStyle("animalText");
         lifeSpanField.setDetailFormatter(new DetailFormatter() {
             public String format(Object value, Record record, DetailViewerField field) {
                 return "Lifespan: " + value;
@@ -89,7 +95,7 @@ public class TileEditingSample extends ShowcasePanel {
                 } else if ("Not Endangered".equals(value)) {
                     return "notEndangered";
                 } else {
-                    return null;
+                    return "animalText";
                 }
             }
         });
@@ -140,7 +146,12 @@ public class TileEditingSample extends ShowcasePanel {
         return vStack;
 
     }
-
+    
+    @Override
+    protected boolean shouldWrapViewPanel() {
+        return true;
+    }
+    
     public String getIntro() {
         return DESCRIPTION;
     }

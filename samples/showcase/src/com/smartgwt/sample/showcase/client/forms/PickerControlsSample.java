@@ -11,8 +11,8 @@ import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class PickerControlsSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "<p>The CustomPicker example demonstrates various standard picker icons that provided with the library. " +
-            "You can combine as many pickers as you like as illustrated by the sample below.</p>";
+    private static final String DESCRIPTION = "<p>The CustomPicker example demonstrates various standard picker icons that are provided with Smart GWT. " +
+            "You can combine as many pickers as you like as illustrated by this sample.</p>";
 
     public static class Factory implements PanelFactory {
         private String id;
@@ -39,6 +39,7 @@ public class PickerControlsSample extends ShowcasePanel {
         form.setAutoFocus(true);
         form.setWidth(400);
         form.setTitleWidth(100);
+        form.setColWidths(110, "*");
 
         PickerIcon clearPicker = new PickerIcon(PickerIcon.CLEAR, new FormItemClickHandler() {
             public void onFormItemClick(FormItemIconClickEvent event) {
@@ -76,5 +77,8 @@ public class PickerControlsSample extends ShowcasePanel {
         form.setFields(pickerControls, datePickerControl, refreshOnlyControl);
 
         return form;
+    }
+    public String getIntro() {
+        return DESCRIPTION;
     }
 }

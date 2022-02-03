@@ -94,6 +94,7 @@ public class GridRowExpansionEditorSample extends ShowcasePanel {
         listGrid.setCanExpandRecords(true);
         listGrid.setAutoFetchData(true);
         listGrid.setDataSource(dataSource);
+        listGrid.setExpansionFieldImageShowSelected(true);
 
         ListGridField itemNameField = new ListGridField("itemName");
         ListGridField skuField = new ListGridField("SKU");

@@ -53,7 +53,7 @@ public class ItemDetailTabPane extends TabSet {
         itemViewer = new DetailViewer();
         itemViewer.setDataSource(supplyItemDS);
         itemViewer.setWidth100();
-        itemViewer.setMargin(25);
+        itemViewer.setMargin(5);
         itemViewer.setEmptyMessage("Select an item to view its details");
 
         editorLabel = new Label();
@@ -64,7 +64,7 @@ public class ItemDetailTabPane extends TabSet {
 
         editorForm = new DynamicForm();
         editorForm.setWidth(650);
-        editorForm.setMargin(25);
+        editorForm.setMargin(5);
         editorForm.setNumCols(4);
         editorForm.setCellPadding(5);
         editorForm.setAutoFocus(false);
@@ -101,11 +101,11 @@ public class ItemDetailTabPane extends TabSet {
         });
 
         editorForm.setFields(sku, description, category, unitCost, inStock, nextShipment, saveButton);
-        editorForm.setColWidths(100, 200, 100, 200);
+        editorForm.setColWidths(80, 200, 100, 200);
 
 
         viewTab = new Tab("View");
-        viewTab.setIcon("silk/application_form.png", 16);
+        viewTab.setIcon("demoApp/icon_view.png", 16);
         viewTab.setWidth(70);
         viewTab.setPane(itemViewer);
 

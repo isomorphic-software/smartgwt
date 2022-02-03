@@ -40,7 +40,6 @@ public class TabsCustomControlSample extends ShowcasePanel {
         tabSet.setTabBarPosition(Side.TOP);
 
         //required so that the select item doesnt touch the tab pane
-        tabSet.setTabBarThickness(25);
         tabSet.setTabBarAlign(Side.LEFT);
         tabSet.setWidth(400);
         tabSet.setHeight(200);

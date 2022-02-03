@@ -50,7 +50,6 @@ public class GridCustomGroupingSample extends ShowcasePanel {
         countryGrid.setWidth(500);
         countryGrid.setHeight(224);
         countryGrid.setShowAllRecords(true);
-        countryGrid.setCellHeight(22);
         countryGrid.setDataSource(dataSource);
         countryGrid.setGroupStartOpen(GroupStartOpen.ALL);
         countryGrid.setGroupByField("population");
@@ -79,22 +78,11 @@ public class GridCustomGroupingSample extends ShowcasePanel {
 
         ListGridField populationField = new ListGridField("population");
         populationField.setType(ListGridFieldType.INTEGER);
-        populationField.setCellFormatter(new CellFormatter() {
-            public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
-                if(value == null) return null;
-                try {
-                    NumberFormat nf = NumberFormat.getFormat("0,000");
-                    return nf.format(((Number) value).longValue());
-                } catch (Exception e) {
-                    return value.toString();
-                }
-            }
-        });
 
         populationField.setGroupValueFunction(new GroupValueFunction() {
             public Object getGroupValue(Object value, ListGridRecord record, ListGridField field, String fieldName, ListGrid grid) {
-                int population = (Integer) value;
-                if(population < 100000000) {
+                Integer population = (Integer) value;
+                if(population == null || population < 100000000) {
                     return groupSmall;
                 } else if  (population < 1000000000) {
                     return groupMed;

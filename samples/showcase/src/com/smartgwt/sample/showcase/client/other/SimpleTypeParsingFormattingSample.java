@@ -181,12 +181,12 @@ public class SimpleTypeParsingFormattingSample extends ShowcasePanel {
 
     private ListGridRecord[] getSampleData() {
         ListGridRecord[] testData = new ListGridRecord[6];
-        testData[0] = new SupplyItem(0, "Indices White Polypropylene A4 1-5", new Float(1.03));
-        testData[1] = new SupplyItem(1, "Paper Acid Free Tissue 400 x 660mm", new Float(20.73));
-        testData[2] = new SupplyItem(1, "Envelopes White 90 x 145mm", new Float(12.13));
-        testData[3] = new SupplyItem(1, "Vehicle and Expenses Book Wildon No.86", new Float(1.92));
-        testData[4] = new SupplyItem(1, "Document Holder A4 Multi Punched", new Float(3.07));
-        testData[5] = new SupplyItem(1, "File Spiral Spring F/c Buff Plain", new Float(1.58));
+        testData[0] = new SupplyItem(0, "Indices White Polypropylene A4 1-5", Float.valueOf(1.03f));
+        testData[1] = new SupplyItem(1, "Paper Acid Free Tissue 400 x 660mm", Float.valueOf(20.73f));
+        testData[2] = new SupplyItem(1, "Envelopes White 90 x 145mm", Float.valueOf(12.13f));
+        testData[3] = new SupplyItem(1, "Vehicle and Expenses Book Wildon No.86", Float.valueOf(1.92f));
+        testData[4] = new SupplyItem(1, "Document Holder A4 Multi Punched", Float.valueOf(3.07f));
+        testData[5] = new SupplyItem(1, "File Spiral Spring F/c Buff Plain", Float.valueOf(1.58f));
         return testData;
     }
 

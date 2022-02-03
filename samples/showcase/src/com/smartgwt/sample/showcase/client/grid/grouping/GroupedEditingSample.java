@@ -42,7 +42,6 @@ public class GroupedEditingSample extends ShowcasePanel {
         countryGrid.setWidth(522);
         countryGrid.setHeight(224);
         countryGrid.setShowAllRecords(true);
-        countryGrid.setCellHeight(22);
         countryGrid.setCanEdit(true);
         countryGrid.setEditEvent(ListGridEditEvent.CLICK);
         countryGrid.setGroupStartOpen(GroupStartOpen.ALL);

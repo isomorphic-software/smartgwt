@@ -45,7 +45,7 @@ public class OfflinePreferencesSample extends ShowcasePanel {
             "the grid and reload again. Persisting a user's preferences like this is a compelling addition to any application, and in this case we don't even need " +
             "a server.</p>" +
             "<p>Offline support is provided in modern HTML5 browsers, and also in older versions of Internet Explorer (6 and greater); the underlying technologies " +
-            "used are very different, but the SmartClient API you use is the same regardless of browser. </p>";
+            "used are very different, but the Smart GWT API you use is the same regardless of browser. </p>";
 
     public static class Factory implements PanelFactory {
         private String id;
@@ -98,17 +98,6 @@ public class OfflinePreferencesSample extends ShowcasePanel {
         ListGridField capitalField = new ListGridField("capital", "Capital");
 
         ListGridField populationField = new ListGridField("population", "Population");
-        populationField.setCellFormatter(new CellFormatter() {
-            public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
-                if (value == null) return null;
-                try {
-                    NumberFormat nf = NumberFormat.getFormat("0,000");
-                    return nf.format(((Number) value).longValue());
-                } catch (Exception e) {
-                    return value.toString();
-                }
-            }
-        });
 
         ListGridField areaField = new ListGridField("area", "Area (km&sup2;)");
         areaField.setType(ListGridFieldType.INTEGER);

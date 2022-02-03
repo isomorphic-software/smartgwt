@@ -17,6 +17,7 @@ import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.types.OperatorId;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.grid.CellFormatter;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
@@ -60,7 +61,7 @@ public class GridDataDrivenHilitingSample extends ShowcasePanel {
                 setFieldNames("area");
                 setCriteria(new Criterion("area", OperatorId.GREATER_THAN, 5000000));
                 setTextColor("#FF0000");
-                setCssText("color:#FF0000");
+                setCssText("color:#FF0000;");
                 setId("0");
             }},
             new Hilite() {{
@@ -70,14 +71,15 @@ public class GridDataDrivenHilitingSample extends ShowcasePanel {
                 setCriteria(new AdvancedCriteria(OperatorId.AND, new Criterion[] {
                                 new Criterion("gdp", OperatorId.GREATER_THAN, 1000000),
                                 new Criterion("area", OperatorId.LESS_THAN, 500000)}));
-                setCssText("color:#3333FF;background-color:#CDEB8B;");
+                setCssText("color:#3333FF;background-color:#639966;");
                 setHtmlAfter("&nbsp;" + Canvas.imgHTML("[SKIN]/actions/back.png"));
                 setId("1");
             }}
     };
     
     public Canvas getViewPanel() {
-
+        final VLayout layout = new VLayout(10);
+        
         DataSource countryDataSource = getCountryDataSource();
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setHiliteProperty("_hilite");
@@ -106,17 +108,6 @@ public class GridDataDrivenHilitingSample extends ShowcasePanel {
         ListGridField capitalField = new ListGridField("capital", "Capital");
 
         ListGridField populationField = new ListGridField("population", "Population");
-        populationField.setCellFormatter(new CellFormatter() {
-            public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
-                if (value == null) return null;
-                try {
-                    NumberFormat nf = NumberFormat.getFormat("0,000");
-                    return nf.format(((Number) value).longValue());
-                } catch (Exception e) {
-                    return value.toString();
-                }
-            }
-        });
 
         ListGridField areaField = new ListGridField("area", "Area (km&sup2;)");
         areaField.setType(ListGridFieldType.INTEGER);
@@ -152,8 +143,8 @@ public class GridDataDrivenHilitingSample extends ShowcasePanel {
 
         countryGrid.setHilites(hilites);
 
-        return countryGrid;
-
+        layout.addMember(countryGrid);
+        return layout;
     }
 
     private DataSource getCountryDataSource() {
@@ -265,5 +256,9 @@ public class GridDataDrivenHilitingSample extends ShowcasePanel {
         return DESCRIPTION;
     }
 
+    @Override
+    protected boolean shouldWrapViewPanel() {
+        return true;
+    }
 }
 

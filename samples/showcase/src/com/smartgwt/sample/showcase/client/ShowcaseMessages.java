@@ -18,7 +18,7 @@ public interface ShowcaseMessages extends Messages {
     @DefaultMessage("Search samples...")
     public String searchSamplesHint();
 
-    @DefaultMessage("Version: {0}<br>Built {1}")
+    @DefaultMessage("Version: {0}<br>Built: {1}")
     public SafeHtml versionLabelContents(String version, String buildDate);
 
     @DefaultMessage("Skin")
@@ -31,7 +31,32 @@ public interface ShowcaseMessages extends Messages {
     public String graphiteSkinName();
     @DefaultMessage("Simplicity")
     public String simplicitySkinName();
-
+    @DefaultMessage("Tahoe")
+    public String tahoeSkinName();
+    @DefaultMessage("Stratus")
+    public String stratusSkinName();
+    @DefaultMessage("Obsidian")
+    public String obsidianSkinName();
+    @DefaultMessage("Twilight")
+    public String twilightSkinName();
+    @DefaultMessage("TreeFrog")
+    public String treeFrogSkinName();
+    @DefaultMessage("Black Ops")
+    public String blackOpsSkinName();
+    
+    @DefaultMessage("Density")
+    public SafeHtml densityItemTitle();
+    @DefaultMessage("Dense")
+    public SafeHtml denseDensityName();
+    @DefaultMessage("Compact")
+    public SafeHtml compactDensityName();
+    @DefaultMessage("Medium")
+    public SafeHtml mediumDensityName();
+    @DefaultMessage("Expanded")
+    public SafeHtml expandedDensityName();
+    @DefaultMessage("Spacious")
+    public SafeHtml spaciousDensityName();    
+    
     @DefaultMessage("Print")
     public SafeHtml printButtonTitle();
 

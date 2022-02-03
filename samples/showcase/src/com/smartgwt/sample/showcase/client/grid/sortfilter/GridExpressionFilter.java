@@ -32,7 +32,7 @@ public class GridExpressionFilter extends ShowcasePanel {
     private static final String DESCRIPTION = "<p>DynamicForms and FormItems are capable of parsing simple expressions " +
             "entered as part of their values, when allowExpressions is true on either entity. ListGrids use this facility, " +
             "when showFilterEditor and allowFilterExpressions are true, to allow expressions to be entered directly into the FormItems displayed in the filterEditor.</p>" +
-            "<p>Below is a ListGrid with a FilterEditor and allowFilterExpressions: true. Some expression-based filter-criteria have been applied via initialCriteria: " +
+            "<p>Below is a ListGrid with a FilterEditor and allowFilterExpressions: true. Some expression-based filter-criteria has been applied via initialCriteria: " +
             "the list displays countries with no 'i's in the country name, with a Capital that starts with a letter &quot;A&quot; through &quot;F&quot; and with a population less than " +
             "1 million or more than 100 million.</p>" +
             "<p>See the table on the right for the supported expression-symbols. Note that logical &quot;and&quot; and &quot;or&quot; expressions are treated as text in text-based fields and ignored.</p>";
@@ -118,6 +118,11 @@ public class GridExpressionFilter extends ShowcasePanel {
         return layout;
     }
 
+    @Override
+    protected boolean shouldWrapViewPanel() {
+        return true;
+    }
+    
     protected boolean isTopIntro() {
         return true;
     }

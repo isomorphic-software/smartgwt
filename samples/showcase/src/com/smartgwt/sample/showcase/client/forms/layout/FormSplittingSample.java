@@ -88,6 +88,7 @@ public class FormSplittingSample extends ShowcasePanel {
         DateItem nextShipment = new DateItem();
         nextShipment.setName("nextShipment");
         nextShipment.setTitle("Next Shipment");
+        nextShipment.setWrapTitle(false);
         nextShipment.setUseTextField(true);
         
         form1.setFields(inStock, nextShipment);

@@ -63,11 +63,11 @@ public class TimelineResolutionSample extends ShowcasePanel {
         
         calendar = new Timeline();
         calendar.setHeight(451);
-        calendar.setStartDate(new Date(112, 5, 2));
-        calendar.setEndDate(new Date(112, 5, 22));
+        calendar.setStartDate(new Date(116, 5, 2));
+        calendar.setEndDate(new Date(116, 5, 22));
         calendar.setCanEditLane(true);
         calendar.setShowEventDescriptions(false);
-        calendar.setEventSnapGap(1); // snap to 1 minute intervals
+        calendar.setEventSnapGap(60); // snap to 1 hour intervals
         calendar.setLaneEventPadding(2); // add a little space around events
         // set up the grid 
         calendar.setHeaderLevels(headerLevels);
@@ -81,7 +81,7 @@ public class TimelineResolutionSample extends ShowcasePanel {
         ToolStrip toolStrip = new ToolStrip();
         toolStrip.addButton(
             getButton("minuteDay", "Minutes (12 hours, every 15 minute)",
-                new HeaderLevel[] { new HeaderLevel(TimeUnit.HOUR), new HeaderLevel(TimeUnit.MINUTE) }, TimeUnit.HOUR, 24, 15
+                new HeaderLevel[] { new HeaderLevel(TimeUnit.HOUR), new HeaderLevel(TimeUnit.MINUTE) }, TimeUnit.HOUR, 12, 15
             )
         );
         toolStrip.addButton(
@@ -105,7 +105,7 @@ public class TimelineResolutionSample extends ShowcasePanel {
                 )
             );
         toolStrip.addButton(
-                getButton("monthQuarterYear", "Months (2 year2, with quarters)",
+                getButton("monthQuarterYear", "Months (2 years, with quarters)",
                     new HeaderLevel[] { new HeaderLevel(TimeUnit.YEAR), new HeaderLevel(TimeUnit.QUARTER), new HeaderLevel(TimeUnit.MONTH) }, TimeUnit.MONTH, 24, null
                 )
             );

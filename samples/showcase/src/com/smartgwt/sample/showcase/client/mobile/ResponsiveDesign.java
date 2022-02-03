@@ -58,7 +58,6 @@ public class ResponsiveDesign extends ShowcasePanel {
 
     public Canvas createSplitPane(final DeviceMode deviceMode) {
         final SplitPane splitPane = new SplitPane();
-        splitPane.setAutoDraw(Boolean.FALSE);
         splitPane.setNavigationTitle("Categories");
         splitPane.setShowLeftButton(false);
         splitPane.setShowRightButton(false);
@@ -67,11 +66,9 @@ public class ResponsiveDesign extends ShowcasePanel {
 
         final DetailViewer detailPane = new DetailViewer();
         detailPane.setDataSource(ItemSupplyXmlDS.getInstance());
-        detailPane.setAutoDraw(Boolean.FALSE);
 
         final ListGrid listPane = new ListGrid();
         listPane.setDataSource(ItemSupplyXmlDS.getInstance());
-        listPane.setAutoDraw(Boolean.FALSE);
         listPane.addRecordClickHandler(new RecordClickHandler() {
             @Override
             public void onRecordClick(RecordClickEvent event) {
@@ -88,7 +85,6 @@ public class ResponsiveDesign extends ShowcasePanel {
         }
         
         final TreeGrid navigationPane = new TreeGrid();
-        navigationPane.setAutoDraw(Boolean.TRUE);
         navigationPane.setDataSource(SupplyCategoryXmlDS.getInstance());
         navigationPane.setAutoFetchData(Boolean.TRUE);
         navigationPane.setShowHeader(deviceMode.equals(DeviceMode.DESKTOP));

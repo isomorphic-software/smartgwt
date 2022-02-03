@@ -85,6 +85,7 @@ public class GridSummariesSample extends ShowcasePanel {
         ListGridField quantityField = new ListGridField("quantity");
         quantityField.setShowGroupSummary(false);
         quantityField.setShowGridSummary(false);
+        quantityField.setCanHide(false);
 
         ListGridField unitPriceField = new ListGridField("unitPrice");
         unitPriceField.setAlign(Alignment.RIGHT);
@@ -101,6 +102,7 @@ public class GridSummariesSample extends ShowcasePanel {
         });
         unitPriceField.setShowGroupSummary(false);
         unitPriceField.setShowGridSummary(false);
+        unitPriceField.setCanHide(false);
 
         ListGridSummaryField totalField = new ListGridSummaryField("total", "Total");
         totalField.setAlign(Alignment.RIGHT);        
@@ -108,6 +110,7 @@ public class GridSummariesSample extends ShowcasePanel {
         totalField.setSummaryFunction(SummaryFunctionType.SUM);
         totalField.setShowGridSummary(true);
         totalField.setShowGroupSummary(true);
+        totalField.setCanHide(false);
         totalField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
                 if (value == null) return null;
@@ -122,7 +125,7 @@ public class GridSummariesSample extends ShowcasePanel {
 
         final ListGrid listGrid = new ListGrid();
 
-        listGrid.setWidth(600);
+        listGrid.setWidth(620);
         listGrid.setHeight(520);
         listGrid.setAutoFetchData(true);
 

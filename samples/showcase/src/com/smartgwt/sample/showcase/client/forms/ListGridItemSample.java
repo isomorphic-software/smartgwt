@@ -50,7 +50,7 @@ import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 public class ListGridItemSample extends ShowcasePanel {
     private static final String DESCRIPTION =
         "<p>A special type of form control called a CanvasItem allows any kind of " +
-        "SmartClient widget to participate in form layout and values management.</p>" +
+        "Smart GWT widget to participate in form layout and values management.</p>" +
         "<p>Drag resize the form (blue bordered area) &mdash; notice how the embedded ListGrid fills the available " +
         "space.</p>" +
         "<p>The embedded ListGrid starts out showing the initial value provided to the form " +
@@ -228,6 +228,11 @@ public class ListGridItemSample extends ShowcasePanel {
         
         panel.setMembers(leftStack, exampleForm);
         return panel;
+    }
+    
+    @Override
+    protected boolean shouldWrapViewPanel() {
+        return true;
     }
     
     public String getIntro() {

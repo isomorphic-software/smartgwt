@@ -40,7 +40,7 @@ public class WindowMinimizeSample extends ShowcasePanel {
         Window window = new Window();
         window.setTitle("Minimizing a window");
         window.setWidth(300);
-        window.setHeight(85);
+        window.setHeight(100);
         window.setCanDragResize(true);
         window.addItem(label);
         

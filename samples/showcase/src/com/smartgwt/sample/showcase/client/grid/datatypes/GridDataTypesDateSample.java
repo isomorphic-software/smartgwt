@@ -49,7 +49,7 @@ public class GridDataTypesDateSample extends ShowcasePanel {
         countryCodeField.setImageURLPrefix("flags/16/");
         countryCodeField.setImageURLSuffix(".png");
         countryCodeField.setCanEdit(false);
-        ListGridField nameField = new ListGridField("countryName", "Country", 150);
+        ListGridField nameField = new ListGridField("countryName", "Country");
         ListGridField independenceField = new ListGridField("independence", "Nationhood", 225);
         independenceField.setType(ListGridFieldType.DATE);
         

@@ -8,6 +8,7 @@ import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.data.Criteria;
 
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
@@ -44,42 +45,64 @@ public class ComboBoxSpecialValuesSample extends ShowcasePanel {
     public Canvas getViewPanel() {
         
         DynamicForm form = new DynamicForm();
-		form.setWidth(500);
-		form.setNumCols(4);
+        form.setWidth(500);
+        form.setWrapItemTitles(false);
 		
-		SelectItem selectItem = new SelectItem();
-		selectItem.setOptionDataSource(ItemSupplyXmlDS.getInstance());
-		selectItem.setDisplayField("itemName");
-		selectItem.setValueField("itemID");
-		selectItem.setPickListWidth(300);
-		selectItem.setName("filteredSelect");
-		selectItem.setTitle("Choose an item (Select)");
+        SelectItem selectItem = new SelectItem();
+        selectItem.setOptionDataSource(ItemSupplyXmlDS.getInstance());
+        selectItem.setDisplayField("itemName");
+        selectItem.setValueField("itemID");
+        selectItem.setPickListWidth(300);
+        selectItem.setName("filteredSelect");
+        selectItem.setTitle("Choose an item (Select)");
 		
-		ListGrid pickListProperties = new ListGrid();
-		pickListProperties.setShowFilterEditor(true);
-		selectItem.setPickListProperties(pickListProperties);
-		ListGridField skuField = new ListGridField("SKU");
-		ListGridField itemNameField = new ListGridField("itemName");
-		selectItem.setPickListFields(skuField, itemNameField);
-		LinkedHashMap<String,String> hashMap = new LinkedHashMap<String,String>();
-		hashMap.put("**EmptyValue**", "None");
-		hashMap.put("-1", "Not Applicable");
-		selectItem.setSpecialValues(hashMap);
-		selectItem.setSeparateSpecialValues(true);
+        ListGrid pickListProperties = new ListGrid();
+        pickListProperties.setShowFilterEditor(true);
+        selectItem.setPickListProperties(pickListProperties);
+        ListGridField skuField = new ListGridField("SKU");
+        ListGridField itemNameField = new ListGridField("itemName");
+        selectItem.setPickListFields(skuField, itemNameField);
+        LinkedHashMap<String,String> hashMap = new LinkedHashMap<String,String>();
+        hashMap.put("**EmptyValue**", "None");
+        hashMap.put("-1", "Not Applicable");
+        selectItem.setSpecialValues(hashMap);
+        selectItem.setSeparateSpecialValues(true);
 
-		ComboBoxItem comboBoxItem = new ComboBoxItem();
-		comboBoxItem.setName("filteredCombo");
-		comboBoxItem.setTitle("Choose an item (ComboBox)");
-		comboBoxItem.setAddUnknownValues(false);
-		comboBoxItem.setOptionDataSource(ItemSupplyXmlDS.getInstance());
-		comboBoxItem.setDisplayField("itemName");
-		comboBoxItem.setValueField("itemID");
-		comboBoxItem.setPickListWidth(300);
-		comboBoxItem.setPickListFields(skuField, itemNameField);
-		comboBoxItem.setSpecialValues(hashMap);
-		comboBoxItem.setSeparateSpecialValues(true);
+        ComboBoxItem comboBoxItem = new ComboBoxItem();
+        comboBoxItem.setName("filteredCombo");
+        comboBoxItem.setTitle("Choose an item (ComboBox)");
+        comboBoxItem.setAddUnknownValues(false);
+        comboBoxItem.setOptionDataSource(ItemSupplyXmlDS.getInstance());
+        comboBoxItem.setDisplayField("itemName");
+        comboBoxItem.setValueField("itemID");
+        comboBoxItem.setPickListWidth(300);
+        comboBoxItem.setPickListFields(skuField, itemNameField);
+        comboBoxItem.setSpecialValues(hashMap);
+        comboBoxItem.setSeparateSpecialValues(true);
 		
-		form.setFields(selectItem, comboBoxItem);
+        SelectItem multipleSelect = new SelectItem("multipleSelect");
+        multipleSelect.setTitle("Select items");
+        multipleSelect.setOptionDataSource(ItemSupplyXmlDS.getInstance());
+
+        Criteria criteria = new Criteria();
+        criteria.addCriteria("units", "Set");
+        multipleSelect.setOptionCriteria(criteria);
+        multipleSelect.setDisplayField("SKU");
+        multipleSelect.setValueField("itemID");
+        multipleSelect.setPickListWidth(400);
+		
+        ListGridField skuLGF = new ListGridField("SKU", "SKU");
+        ListGridField itemNameLGF = new ListGridField("itemName", "Item Name");
+        multipleSelect.setPickListFields(skuLGF, itemNameLGF);
+        multipleSelect.setMultiple(true);
+        multipleSelect.setSeparateSpecialValues(true);
+        
+        LinkedHashMap<String, String> valueMap = new LinkedHashMap<String, String>();  
+        valueMap.put("**emptyValue**", "Select None");  
+        valueMap.put("**selectAllValues**", "Select All"); 
+        multipleSelect.setSpecialValues(valueMap);
+        
+        form.setFields(selectItem, comboBoxItem, multipleSelect);
 		
 		return form;
     }

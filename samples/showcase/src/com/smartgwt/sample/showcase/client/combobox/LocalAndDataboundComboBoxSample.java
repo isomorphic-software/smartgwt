@@ -39,6 +39,7 @@ public class LocalAndDataboundComboBoxSample extends ShowcasePanel {
         final DynamicForm form = new DynamicForm();
         form.setWidth(500);
         form.setNumCols(4);
+        form.setWrapItemTitles(false);
 
         ComboBoxItem bugStatusItem = new ComboBoxItem("bugStatus");
         bugStatusItem.setTitle("Bug Status");

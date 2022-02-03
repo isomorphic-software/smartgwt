@@ -38,7 +38,7 @@ public class GridDataBindingInlineDataSample extends ShowcasePanel {
         countryGrid.setHeight(224);
         countryGrid.setShowAllRecords(true);
 
-        ListGridField countryCodeField = new ListGridField("countryCode", "Code", 40);
+        ListGridField countryCodeField = new ListGridField("countryCode", "Code", 50);
         ListGridField nameField = new ListGridField("countryName", "Country", 120);
         ListGridField capitalField = new ListGridField("capital", "Capital");
 

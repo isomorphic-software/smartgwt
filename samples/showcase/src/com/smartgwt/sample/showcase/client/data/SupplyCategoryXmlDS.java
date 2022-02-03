@@ -14,6 +14,13 @@ public class SupplyCategoryXmlDS extends DataSource {
         return instance;
     }
 
+    public static SupplyCategoryXmlDS getInstance(String id) {
+        if (instance == null) {
+            instance = new SupplyCategoryXmlDS(id);
+        }
+        return instance;
+    }
+
     public SupplyCategoryXmlDS(String id) {
 
         setID(id);
@@ -27,7 +34,7 @@ public class SupplyCategoryXmlDS extends DataSource {
         parentField.setHidden(true);
         parentField.setRequired(true);
         parentField.setRootValue("root");
-        parentField.setForeignKey("supplyCategoryDS.categoryName");
+        parentField.setForeignKey(id+".categoryName");
 
 
         setFields(itemNameField, parentField);

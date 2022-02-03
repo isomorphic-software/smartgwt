@@ -50,6 +50,7 @@ public class WorkdayCalendarSample extends ShowcasePanel {
         eventDS.setTestData(CalendarData.getRecords());
 
         Calendar calendar = new Calendar();
+        calendar.setStartDate(CalendarData.getDataStartDate());
         calendar.setShowWeekends(false);
         calendar.setShowWorkday(true);
         calendar.setScrollToWorkday(true);

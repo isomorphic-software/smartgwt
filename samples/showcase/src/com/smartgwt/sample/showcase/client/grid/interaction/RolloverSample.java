@@ -57,7 +57,7 @@ public class RolloverSample extends ShowcasePanel {
         canvas.addChild(countryGrid);
 
         IButton rolloverOff = new IButton("Rollover Off");
-        rolloverOff.setLeft(120);
+        rolloverOff.setLeft(130);
         rolloverOff.setTop(240);
         rolloverOff.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {

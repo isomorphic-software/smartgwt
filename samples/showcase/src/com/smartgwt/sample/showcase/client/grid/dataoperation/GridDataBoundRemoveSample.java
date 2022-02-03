@@ -3,6 +3,8 @@ package com.smartgwt.sample.showcase.client.grid.dataoperation;
 import com.smartgwt.client.rpc.RPCManager;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.layout.HStack;
+import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
@@ -37,7 +39,8 @@ public class GridDataBoundRemoveSample extends ShowcasePanel {
     }
 
     public Canvas getViewPanel() {
-        Canvas canvas = new Canvas();
+        VLayout vLayout = new VLayout();
+        vLayout.setMembersMargin(15);
 
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setWidth(500);
@@ -54,17 +57,16 @@ public class GridDataBoundRemoveSample extends ShowcasePanel {
         countryGrid.setDataPageSize(50);
         countryGrid.setAutoFetchData(true);
         
-        IButton removeFirst = new IButton("Remove First");
+        IButton removeFirst = new IButton("Remove first");
         removeFirst.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				countryGrid.removeData(countryGrid.getRecord(0));				
 			}        	
         });
-        removeFirst.setLeft(0);
-        removeFirst.setTop(240);
-        removeFirst.setWidth(145);
+        removeFirst.setWidth(140);
 
-        IButton removeSelected = new IButton("Remove First Selected");
+        IButton removeSelected = new IButton("Remove first selected");
+        removeSelected.setAutoFit(true);
         removeSelected.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				ListGridRecord selectedRecord = countryGrid.getSelectedRecord();
@@ -76,11 +78,9 @@ public class GridDataBoundRemoveSample extends ShowcasePanel {
 			}
         	
         });
-        removeSelected.setLeft(160);
-        removeSelected.setTop(240);
-        removeSelected.setWidth(150);
+        removeSelected.setMinWidth(140);
 
-        IButton removeAll = new IButton("Remove All Selected");
+        IButton removeAll = new IButton("Remove all selected");
         removeAll.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				ListGridRecord[] selectedRecords = countryGrid.getSelection();
@@ -91,21 +91,29 @@ public class GridDataBoundRemoveSample extends ShowcasePanel {
                 if (!wasQueuing) RPCManager.sendQueue();
 			}        	
         });
-        removeAll.setLeft(320);
-        removeAll.setTop(240);
         removeAll.setWidth(140);
-        
-        canvas.addChild(countryGrid);
-        canvas.addChild(removeFirst);
-        canvas.addChild(removeSelected);
-        canvas.addChild(removeAll);
 
-        return canvas;
+        HStack hStack = new HStack();
+        hStack.setWidth100();
+        hStack.setMembersMargin(20);
+        hStack.addMember(removeFirst);
+        hStack.addMember(removeSelected);
+        hStack.addMember(removeAll);
+
+        vLayout.addMember(countryGrid);
+        vLayout.addMember(hStack);
+
+        return vLayout;
     	
     }
 
     public String getIntro() {
         return DESCRIPTION;
+    }
+        
+    @Override
+    protected boolean shouldWrapViewPanel() {
+        return true;
     }
 
 }

@@ -58,11 +58,10 @@ class ApplicationPanel extends SplitPane {
 	final boolean useDesktopMode = ShowcaseConfiguration.getSingleton().isOpenForTesting() || Browser.getIsDesktop();
 
     public ApplicationPanel() {
-    	setDeviceMode(useDesktopMode ? DeviceMode.DESKTOP : DeviceMode.HANDSET);
+    	if (useDesktopMode) setDeviceMode(DeviceMode.DESKTOP);
 
         setWidth100();
         setHeight100();
-        setLayoutMargin(20);
 
         DataSource supplyCategoryDS = SupplyCategoryXmlDS.getInstance();
         DataSource supplyItemDS = ItemSupplyXmlDS.getInstance();

@@ -51,6 +51,7 @@ public class OrderItemLocalDS extends DataSource {
         DataSourceDateField shipDateField = new DataSourceDateField("shipDate", "Ship Date");
         DataSourceIntegerField quantityField = new DataSourceIntegerField("quantity", "Quantity");
         DataSourceFloatField unitPriceField = new DataSourceFloatField("unitPrice", "Price");
+        unitPriceField.setFormat("0.00");
 
         setFields(pkField, orderIdField, itemDescriptionField, categoryField, shipDateField, quantityField, unitPriceField);
 

@@ -58,6 +58,7 @@ public class SectionsCustomControlsSample extends ShowcasePanel {
         addButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 listGrid.startEditingNew();
+                event.cancel();
             }
         });
 
@@ -70,6 +71,7 @@ public class SectionsCustomControlsSample extends ShowcasePanel {
         removeButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 listGrid.removeSelectedData();
+                event.cancel();
             }
         });
 
@@ -79,7 +81,7 @@ public class SectionsCustomControlsSample extends ShowcasePanel {
         form.setNumCols(1);
 
         SelectItem selectItem = new SelectItem();
-        selectItem.setWidth(120);
+        selectItem.setWidth(140);
         selectItem.setShowTitle(false);
         selectItem.setValueMap("Development", "Staging", "Production");
         selectItem.setDefaultValue("Development");

@@ -57,6 +57,7 @@ public class CornersSample extends ShowcasePanel {
 		label3.setEdgeImage("corners/glow_35.png");
 		label3.setEdgeSize(35);
 		label3.setEdgeOffset(25);
+		label3.setWidth(270);
 		
 		canvas.addChild(label1);
 		canvas.addChild(label2);
@@ -72,8 +73,7 @@ public class CornersSample extends ShowcasePanel {
 	private Label createLabel() {
 		Label label = new Label(EXAMPLE_TEXT);
 		label.setWidth(250);
-		label.setPadding(8);
-		label.setBackgroundColor("white");
+        label.setStyleName("blackText");
 		label.setCanDragReposition(true);
 		label.setDragAppearance(DragAppearance.TARGET);
 		label.setShowEdges(true);

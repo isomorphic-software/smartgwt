@@ -39,7 +39,7 @@ public class GridEditAllRowsSample extends ShowcasePanel {
 
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setAlwaysShowEditors(true);
-        countryGrid.setWidth(550);
+        countryGrid.setWidth(600);
         countryGrid.setHeight(224);
         countryGrid.setShowAllRecords(true);
         countryGrid.setCellHeight(22);
@@ -57,18 +57,7 @@ public class GridEditAllRowsSample extends ShowcasePanel {
         ListGridField memberG8Field = new ListGridField("member_g8", "Member G8");
         ListGridField populationField = new ListGridField("population", "Population");
         populationField.setType(ListGridFieldType.INTEGER);
-        populationField.setCellFormatter(new CellFormatter() {
-            public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
-                if(value == null) return null;
-                NumberFormat nf = NumberFormat.getFormat("0,000");
-                try {
-                    return nf.format(((Number) value).longValue());
-                } catch (Exception e) {
-                    return value.toString();
-                }
-            }
-        });
-        ListGridField independenceField = new ListGridField("independence", "Independence");
+        ListGridField independenceField = new ListGridField("independence", "Independence", 130);
         countryGrid.setFields(countryCodeField, nameField,continentField, memberG8Field, populationField, independenceField);
 
         countryGrid.setAutoFetchData(true);

@@ -41,6 +41,7 @@ public class GridRowExpansionDetailsSample extends ShowcasePanel {
         listGrid.setHeight(500);
         listGrid.setCanExpandRecords(true);
         listGrid.setExpansionMode(ExpansionMode.DETAILS);
+        listGrid.setExpansionFieldImageShowSelected(true);
         listGrid.setAutoFetchData(true);
         listGrid.setDataSource(dataSource);
 

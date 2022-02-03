@@ -18,6 +18,7 @@ package com.smartgwt.sample.showcase.client.grid.hover;
 
 import com.smartgwt.client.data.Criteria;
 import com.smartgwt.client.data.Record;
+import com.smartgwt.client.data.DSRequest;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
@@ -60,7 +61,9 @@ public class GridCustomHoverSample extends ShowcasePanel {
                 detailViewer.setDataSource(ItemSupplyXmlDS.getInstance());
                 Criteria criteria = new Criteria();
                 criteria.addCriteria("itemID", record.getAttribute("itemID"));
-                detailViewer.fetchData(criteria);
+                DSRequest req = new DSRequest();
+                req.setShowPrompt(false);
+                detailViewer.fetchData(criteria, null, req);
 
                 return detailViewer;
             }

@@ -48,6 +48,7 @@ public class MultipleColumnsSample extends ShowcasePanel {
         treeGrid.setShowDropIcons(false);
         treeGrid.setClosedIconSuffix("");
         treeGrid.setAutoFetchData(true);
+        treeGrid.setShowSelectedIcons(true);
 
         TreeGridField nameField = new TreeGridField("Name");
         TreeGridField jobField = new TreeGridField("Job");

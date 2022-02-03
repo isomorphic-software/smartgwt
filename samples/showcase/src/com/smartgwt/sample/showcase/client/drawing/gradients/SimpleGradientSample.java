@@ -22,7 +22,7 @@ import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class SimpleGradientSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "Sample of using simple type of gradient.";
+    private static final String DESCRIPTION = "Sample of using a simple type of gradient.";
     private DrawPane drawPane;
     private DynamicForm simpleGradientDynamicForm;
 

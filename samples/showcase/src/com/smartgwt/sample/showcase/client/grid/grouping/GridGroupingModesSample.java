@@ -41,10 +41,9 @@ public class GridGroupingModesSample extends ShowcasePanel {
 
         CountryXmlDS countryDS = CountryXmlDS.getInstance();
     	final ListGrid countryGrid = new ListGrid();  
-        countryGrid.setWidth(500);  
+        countryGrid.setWidth(550);  
         countryGrid.setHeight(425);  
         countryGrid.setAlternateRecordStyles(true);
-        countryGrid.setCellHeight(22);
         countryGrid.setDataSource(countryDS);
         countryGrid.setGroupStartOpen(GroupStartOpen.ALL);
         countryGrid.setGroupByField("continent");
@@ -77,6 +76,7 @@ public class GridGroupingModesSample extends ShowcasePanel {
             }
         });
         ListGridField independenceField = new ListGridField("independence");
+        independenceField.setWidth(130);
         LinkedHashMap<String, String> mapIndependence = new LinkedHashMap<String, String>();
         mapIndependence.put("epoch", "Epoch");
         mapIndependence.put("season", "Season");

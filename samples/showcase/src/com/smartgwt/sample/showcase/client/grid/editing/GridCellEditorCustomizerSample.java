@@ -21,6 +21,7 @@ import java.util.Date;
 import com.smartgwt.client.types.ListGridEditEvent;
 import com.smartgwt.client.types.MultipleAppearance;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.Slider;
 import com.smartgwt.client.widgets.form.fields.CheckboxItem;
 import com.smartgwt.client.widgets.form.fields.DateItem;
 import com.smartgwt.client.widgets.form.fields.FormItem;
@@ -39,7 +40,7 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 
 public class GridCellEditorCustomizerSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "<p><b>Click</b> on any cell of the &quot;Value Field&quot; column to start editing. This example illustrates have cell editors can be customized for the <b>same</b> ListGridField, but " +
+    private static final String DESCRIPTION = "<p><b>Click</b> on any cell of the &quot;Value Field&quot; column to start editing. This example illustrates how cell editors can be customized for the <b>same</b> ListGridField, but " +
             "different records using ListGrid.setEditorCustomizer(..)</p>";
 
     public static class Factory implements PanelFactory {
@@ -67,7 +68,8 @@ public class GridCellEditorCustomizerSample extends ShowcasePanel {
         countryGrid.setHeight(340);
         countryGrid.setShowAllRecords(true);
 
-        ListGridField nameField = new ListGridField("name", "Name", 120);
+        ListGridField nameField = new ListGridField("name", "Name");
+        nameField.setWidth("*");
         nameField.setCanEdit(false);
 
         ListGridField valueField = new ListGridField("value", "Value Field", 170);
@@ -108,9 +110,12 @@ public class GridCellEditorCustomizerSample extends ShowcasePanel {
                             selectItemMultipleGrid.setValueMap("Cat", "Dog", "Giraffe", "Goat", "Marmoset", "Mouse");
                             return selectItemMultipleGrid;
                         case 7:
+                            Slider sliderProperties = new Slider();
+                            sliderProperties.setMargin(2);
                             SliderItem sliderItem = new SliderItem();
                             sliderItem.setMaxValue(10);
-                            sliderItem.setWidth(160);
+                            sliderItem.setWidth(170);
+                            sliderItem.setAutoChildProperties("slider", sliderProperties);
                             return sliderItem;
                         default:
                             return context.getDefaultProperties();

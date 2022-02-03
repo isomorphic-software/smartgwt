@@ -120,6 +120,7 @@ public class LinesAndArrowheadsSample extends ShowcasePanel {
         lineStyleDynamicForm.setID("dynamicForm");
         lineStyleDynamicForm.setWidth(300);
         lineStyleDynamicForm.setHeight(100);
+        lineStyleDynamicForm.setColWidths(150, "*");
         lineStyleDynamicForm.setLeft(25);
         lineStyleDynamicForm.setTop(850);
         lineStyleDynamicForm.setFields(lineWidthSpinner,lineStyleSelect,arrowStyleSelect);

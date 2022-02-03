@@ -6,6 +6,8 @@ import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.data.DataSource;
+import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.CountrySampleData;
@@ -32,11 +34,14 @@ public class DisabledRowsSample extends ShowcasePanel {
     }
 
     public Canvas getViewPanel() {
+        DataSource ds = CountryDS.getInstance();
 
         ListGridRecord[] records = CountrySampleData.getRecords();
-        for (ListGridRecord record : records) {
-            if (record.getAttributeAsString("continent").equals("Europe")) {
-                record.setEnabled(false);
+        ListGridRecord[] countryRecords = new ListGridRecord[records.length];
+        for (int i = 0; i < records.length; i++) {
+            countryRecords[i] = (ListGridRecord)ds.copyRecord(records[i]);
+            if (countryRecords[i].getAttributeAsString("continent").equals("Europe")) {
+                countryRecords[i].setEnabled(false);
             }
         }
 
@@ -57,10 +62,34 @@ public class DisabledRowsSample extends ShowcasePanel {
         countryGrid.setFields(countryCodeField, nameField, capitalField, continentField);
         countryGrid.setCanResizeFields(true);
 
-        countryGrid.setData(records);
+        countryGrid.setData(countryRecords);
 
         return countryGrid;
     }
+    
+    private static class CountryDS extends DataSource {  
+  
+        private static CountryDS instance = null;  
+          
+        public static CountryDS getInstance() {  
+            if (instance == null) {  
+                instance = new CountryDS("countryDS_DRS");  
+            }  
+            return instance;  
+        }  
+  
+        public CountryDS(String id) {  
+            setID(id);  
+              
+            DataSourceTextField countryCodeDSField = new DataSourceTextField("countryCode");
+            DataSourceTextField countryNameDSField = new DataSourceTextField("countryName");
+            DataSourceTextField capitalDSField = new DataSourceTextField("capital");
+            DataSourceTextField continentDSField = new DataSourceTextField("continent");
+            setFields(countryCodeDSField, countryNameDSField, capitalDSField, continentDSField);
+              
+            setClientOnly(true);  
+        }  
+    } 
 
     public String getIntro() {
         return DESCRIPTION;

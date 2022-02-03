@@ -14,7 +14,7 @@ import com.smartgwt.sample.showcase.client.data.PartData;
 
 
 public class DragListMoveSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "Drag and drop to copy items from the first list to the second list. You can drag over the top or bottom " +
+    private static final String DESCRIPTION = "Drag and drop to move items from the first list to the second list. You can drag over the top or bottom " +
             "edge of a scrolling list to scroll in that direction before dropping.";
 
     public static class Factory implements PanelFactory {

@@ -9,7 +9,7 @@ import com.smartgwt.sample.showcase.client.data.WorldXmlDS;
 
 public class GridLiveFilterSample extends ShowcasePanel {
     private static final String DESCRIPTION = "<p>Begin typing a country name into in the filter box for the Country column. " +
-            "Grids can be configured to filter as you type..</p>";
+            "Grids can be configured to filter as you type.</p>";
 
     public static class Factory implements PanelFactory {
         private String id;

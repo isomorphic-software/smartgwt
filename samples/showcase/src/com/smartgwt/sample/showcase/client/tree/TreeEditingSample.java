@@ -7,6 +7,7 @@ import com.smartgwt.client.widgets.form.fields.IPickTreeItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeGridField;
@@ -46,6 +47,7 @@ public class TreeEditingSample extends ShowcasePanel {
 		TreeGridField fieldName = new TreeGridField("Name", 150);
 		TreeGridField fieldJob = new TreeGridField("Job", 150);
 		TreeGridField fieldSalary = new TreeGridField("Salary");
+		fieldSalary.setFormat("\u00A4,0.00");
 
 		TreeGrid employeeTree = new TreeGrid();
 		employeeTree.setID("employeeTree");
@@ -63,7 +65,13 @@ public class TreeEditingSample extends ShowcasePanel {
 		employeeTree.setShowOpenIcons(false);
 		employeeTree.setClosedIconSuffix("");
 		employeeTree.setFields(fieldName, fieldJob, fieldSalary);
-		
+        employeeTree.setShowSelectedIcons(true);
+
+		ListGridField gridFieldName = new ListGridField("Name", 150);
+		ListGridField gridFieldJob = new ListGridField("Job", 150);
+		ListGridField gridFieldSalary = new ListGridField("Salary");
+		gridFieldSalary.setFormat("\u00A4,0.00");
+
 		final ListGrid employeeGrid = new ListGrid();
 		employeeGrid.setID("employeeGrid");
 		employeeGrid.setWidth(500);
@@ -71,7 +79,7 @@ public class TreeEditingSample extends ShowcasePanel {
         employeeGrid.setEmptyMessage("Select an Employee from the PickTree Item above.");
 		employeeGrid.setDataSource(EmployeeXmlDS.getInstance());
 		employeeGrid.setCanEdit(true);
-		employeeGrid.setFields(new TreeGridField("Name", 150), new TreeGridField("Job", 150), new TreeGridField("Salary"));
+		employeeGrid.setFields(gridFieldName, gridFieldJob, gridFieldSalary);
 
 		IPickTreeItem searchPickTree = new IPickTreeItem();
 		searchPickTree.setCanSelectParentItems(true);
@@ -107,4 +115,9 @@ public class TreeEditingSample extends ShowcasePanel {
 	public String getIntro() {
 		return DESCRIPTION;
 	}
+    
+    @Override
+    protected boolean shouldWrapViewPanel() {
+        return true;
+    }
 }

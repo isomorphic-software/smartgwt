@@ -36,6 +36,10 @@ public class DataBoundCalendarSample extends ShowcasePanel {
         }
     }
 
+    public String getCssUrl() {
+        return "source/calendar/calendar.css.html";
+    }
+
     public Canvas getViewPanel() {
         DataSource eventDS = new DataSource();
         DataSourceSequenceField eventIdField = new DataSourceSequenceField("eventId");
@@ -51,6 +55,7 @@ public class DataBoundCalendarSample extends ShowcasePanel {
         eventDS.setTestData(CalendarData.getRecords());
 
         Calendar calendar = new Calendar();
+        calendar.setStartDate(CalendarData.getDataStartDate());
         calendar.setDataSource(eventDS);
         calendar.setAutoFetchData(true);
 

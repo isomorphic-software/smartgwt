@@ -112,12 +112,11 @@ public class GridRowExpansionRelatedRecordsSample extends ShowcasePanel {
 
                 final ListGrid grid = this;
 
-                VLayout layout = new VLayout(5);
+                VLayout layout = new VLayout();
                 layout.setPadding(5);
 
                 final ListGrid countryGrid = new ListGrid();
                 countryGrid.setHeight(224);
-                countryGrid.setCellHeight(22);
                 countryGrid.setDataSource(getRelatedDataSource(record));
                 countryGrid.fetchRelatedData(record, SupplyCategoryXmlDS.getInstance());
 
@@ -130,10 +129,10 @@ public class GridRowExpansionRelatedRecordsSample extends ShowcasePanel {
                 layout.addMember(countryGrid);
 
                 HLayout hLayout = new HLayout(10);
+                hLayout.setPadding(5);
                 hLayout.setAlign(Alignment.CENTER);
 
                 IButton saveButton = new IButton("Save");
-                saveButton.setTop(250);
                 saveButton.addClickHandler(new ClickHandler() {
                     public void onClick(ClickEvent event) {
                         countryGrid.saveAllEdits();
@@ -167,6 +166,7 @@ public class GridRowExpansionRelatedRecordsSample extends ShowcasePanel {
             listGrid.setHeight(500);
             listGrid.setDrawAheadRatio(4);
             listGrid.setCanExpandRecords(true);
+            listGrid.setExpansionFieldImageShowSelected(true);
 
             listGrid.setAutoFetchData(true);
             listGrid.setDataSource(dataSource);

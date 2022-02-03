@@ -41,6 +41,7 @@ public class LoadOnDemandTreeSample extends ShowcasePanel {
         employeeTreeGrid.setClosedIconSuffix("");
         employeeTreeGrid.setAutoFetchData(true);
         employeeTreeGrid.setDataSource(EmployeeXmlDS.getInstance());
+        employeeTreeGrid.setShowSelectedIcons(true);
         
         return employeeTreeGrid;
     }

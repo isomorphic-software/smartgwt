@@ -62,7 +62,7 @@ public class GridDataBoundDragDropSample extends ShowcasePanel {
         DataSource employeesDS = EmployeeXmlDS.getInstance();
 
         final ListGrid employeesGrid = new ListGrid();
-        employeesGrid.setWidth(300);
+        employeesGrid.setWidth(320);
         employeesGrid.setHeight(224);
         employeesGrid.setDataSource(employeesDS);
         employeesGrid.setCanDragRecordsOut(true);
@@ -70,7 +70,7 @@ public class GridDataBoundDragDropSample extends ShowcasePanel {
         employeesGrid.setAutoFetchData(false);
 
         ListGridField employeeIdField = new ListGridField("EmployeeId");
-        employeeIdField.setWidth("25%");
+        employeeIdField.setWidth("35%");
 
         ListGridField nameField = new ListGridField("Name");
 
@@ -80,7 +80,7 @@ public class GridDataBoundDragDropSample extends ShowcasePanel {
         DataSource teamMembersDS = TeamMembersXmlDS.getInstance();
 
         final ListGrid projectGrid = new ListGrid();
-        projectGrid.setWidth(300);
+        projectGrid.setWidth(400);
         projectGrid.setHeight(264);
         projectGrid.setDataSource(teamMembersDS);
         projectGrid.setCanAcceptDroppedRecords(true);
@@ -89,10 +89,10 @@ public class GridDataBoundDragDropSample extends ShowcasePanel {
         projectGrid.setPreventDuplicates(true);
 
         ListGridField employeeIdField2 = new ListGridField("employeeId");
-        employeeIdField2.setWidth("20%");
+        employeeIdField2.setWidth("30%");
 
         ListGridField employeeNameField2 = new ListGridField("employeeName");
-        employeeNameField2.setWidth("40%");
+        employeeNameField2.setWidth("35%");
         ListGridField projectCodeField2 = new ListGridField("projectCode");
 
         projectGrid.setFields(employeeIdField2, employeeNameField2, projectCodeField2);
@@ -102,7 +102,7 @@ public class GridDataBoundDragDropSample extends ShowcasePanel {
 
         VStack vStack = new VStack();
         LayoutSpacer spacer = new LayoutSpacer();
-        spacer.setHeight(30);
+        spacer.setHeight(40);
         vStack.addMember(spacer);
         vStack.addMember(employeesGrid);
 
@@ -120,8 +120,8 @@ public class GridDataBoundDragDropSample extends ShowcasePanel {
 
         final DynamicForm projectSelectorForm = new DynamicForm();
         projectSelectorForm.setWidth(300);
-        projectSelectorForm.setHeight(30);
-
+        projectSelectorForm.setHeight(40);
+        projectSelectorForm.setWrapItemTitles(false);
         SelectItem selectItem = new SelectItem("projectCode", "Team for Project");
         selectItem.setDefaultValue(projects[0]);
         selectItem.setValueMap(projects);

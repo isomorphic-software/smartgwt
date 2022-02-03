@@ -161,7 +161,7 @@ public class GridDependentSelectsSample extends ShowcasePanel {
         layout.addMember(remoteDataGrid);
 
         IButton newOrderButton = new IButton("Order New Item");
-        newOrderButton.setWidth(110);
+        newOrderButton.setAutoFit(true);
         newOrderButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 Map defaultValues = new HashMap();

@@ -40,7 +40,7 @@ public class DragTilesMoveSample extends ShowcasePanel {
         tileGrid.setWidth(500);
         tileGrid.setHeight(400);
         tileGrid.setTileWidth(150);
-        tileGrid.setTileHeight(150);
+        tileGrid.setTileHeight(155);
         tileGrid.setCanAcceptDrop(true);
         tileGrid.setCanDrag(true);
         tileGrid.setData(new TileRecord[]{});
@@ -53,7 +53,7 @@ public class DragTilesMoveSample extends ShowcasePanel {
         tileGrid.setFields(pictureField, commonNameField);
 
         ListGrid listGrid = new ListGrid();
-        listGrid.setWidth(300);
+        listGrid.setWidth(350);
         listGrid.setHeight(400);
         listGrid.setDataSource(AnimalXmlDS.getInstance());
         listGrid.setAutoFetchData(true);
@@ -63,8 +63,7 @@ public class DragTilesMoveSample extends ShowcasePanel {
 
         ListGridField commonNameField2 = new ListGridField("commonName");
         ListGridField lifeSpanField = new ListGridField("lifeSpan");
-        lifeSpanField.setWidth(50);
-        ListGridField statusField = new ListGridField("status");
+        ListGridField statusField = new ListGridField("status", 150);
         listGrid.setFields(commonNameField2, lifeSpanField, statusField);
 
         VLayout vLayout = new VLayout(20);

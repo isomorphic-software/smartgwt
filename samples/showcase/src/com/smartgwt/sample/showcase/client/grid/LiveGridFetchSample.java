@@ -133,8 +133,11 @@ public class LiveGridFetchSample extends ShowcasePanel {
         return listGrid;
     }
 
-
     public String getIntro() {
         return DESCRIPTION;
+    }
+    @Override
+    protected boolean isTopIntro() {
+        return true;
     }
 }

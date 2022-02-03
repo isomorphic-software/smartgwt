@@ -60,7 +60,7 @@ public class GridDataBoundFilterSample extends ShowcasePanel {
         });
         filterUnited.setLeft(0);
         filterUnited.setTop(240);
-        filterUnited.setWidth(140);
+        filterUnited.setWidth(150);
         
         IButton filterPort = new IButton("Filter Capital:port");
         filterPort.addClickHandler(new ClickHandler() {

@@ -82,8 +82,10 @@ public class GridMultiLineSummariesSample extends ShowcasePanel {
         orderIdField.setSummaryFunction(SummaryFunctionType.COUNT);
 
         ListGridField itemDescriptionField = new ListGridField("itemDescription");
+        itemDescriptionField.setWidth(100);
 
         ListGridField categoryField = new ListGridField("category");
+        categoryField.setWidth(90);
         categoryField.setShowGridSummary(true);
         categoryField.setSummaryFunction(new SummaryFunction() {
             public Object getSummaryValue(Record[] records, ListGridField field) {
@@ -168,7 +170,7 @@ public class GridMultiLineSummariesSample extends ShowcasePanel {
 
         final ListGrid listGrid = new ListGrid();
 
-        listGrid.setWidth(600);
+        listGrid.setWidth(670);
         listGrid.setHeight(520);
         listGrid.setAutoFetchData(true);
 

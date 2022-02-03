@@ -16,6 +16,7 @@
 
 package com.smartgwt.sample.showcase.client;
 
+import com.smartgwt.client.util.SC;
 import com.smartgwt.client.types.SelectionStyle;
 import com.smartgwt.client.types.SortArrow;
 import com.smartgwt.client.types.TreeModelType;
@@ -38,9 +39,6 @@ public class SideNavTree extends TreeGrid {
 
     static final String ID_SUFFIX = "";
 
-    static final Float releaseVersion = 
-        Float.parseFloat(ShowcaseData.getCurrentReleaseVersion());
-
     private ExplorerTreeNode[] showcaseData;
     private boolean hasBetaSamples;
     private Tree tree = new Tree();
@@ -58,6 +56,11 @@ public class SideNavTree extends TreeGrid {
         setLoadDataOnDemand(false);
         setCanSort(false);
         setShowHeader(false);
+
+        if (Showcase.usingFlatSkin()) {
+            setStyleName("etree");
+            setBaseStyle("etreeCell");
+        }
 
         TreeGridField field = new TreeGridField();
         field.setCanFilter(true);
@@ -94,8 +97,8 @@ public class SideNavTree extends TreeGrid {
             Collections.reverse(mobileSamples);
             for (final ExplorerTreeNode explorerTreeNode : mobileSamples) {
                 String version = explorerTreeNode.getVersion();
-                if (Float.parseFloat(version) ==  releaseVersion) {
-                    ((ExplorerTreeNode)tree.getParent(explorerTreeNode)).setVersion(version);
+                if (version != null && Float.parseFloat(version) >= Float.parseFloat(SC.getSgwtParityStableVersionNumber())) {
+                    ((ExplorerTreeNode)tree.getParent(explorerTreeNode)).setVersion(SC.getSgwtParityStableVersionNumber());
                 }
             }
         }
@@ -116,11 +119,16 @@ public class SideNavTree extends TreeGrid {
         for (final ExplorerTreeNode explorerTreeNode : getAllNodes()) {
             if (explorerTreeNode.getVersion() == null) {
                 continue;
-            } else if (Float.parseFloat(explorerTreeNode.getVersion()) >  releaseVersion) {
+            } else if (Float.parseFloat(explorerTreeNode.getVersion()) > Float.parseFloat(SC.getSgwtVersionNumber())) {
                 explorerTreeNode.setHTML(explorerTreeNode.getHTML() + 
                     "<sup style='color: red;font-size:10px;font-weight: 700;'> BETA</sup>");
                 hasBetaSamples = true;
-            } else if (Float.parseFloat(explorerTreeNode.getVersion()) == releaseVersion) {
+            } else if (Float.parseFloat(explorerTreeNode.getVersion()) == Float.parseFloat(SC.getSgwtVersionNumber())
+                       && explorerTreeNode.getAttribute("ref") == null) {
+                if ((explorerTreeNode.getVersion()+"d").equals(SC.getSgwtVersion())) {
+                    explorerTreeNode.setHTML(explorerTreeNode.getHTML() +
+                    "<sup style='color: red;font-size:10px;font-weight: 700;'> BETA</sup>");
+                }
                 boolean exist = false;
                 for (final ExplorerTreeNode explorerTreeNode1 : newSamples) {
                     // compare node names to check identify here

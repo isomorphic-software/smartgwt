@@ -40,13 +40,13 @@ public class GridDataBindingListGridFieldsSample extends ShowcasePanel {
         countryGrid.setHeight(224);
         countryGrid.setShowAllRecords(true);
 
-        ListGridField countryCodeField = new ListGridField("countryCode", "Code", 40);
+        ListGridField countryCodeField = new ListGridField("countryCode", "Code", 50);
         ListGridField nameField = new ListGridField("countryName", "Country");
-        ListGridField independenceField = new ListGridField("independence", "Nationhood", 225);
+        ListGridField independenceField = new ListGridField("independence", "Nationhood", 110);
         independenceField.setType(ListGridFieldType.DATE);
         ListGridField populationField = new ListGridField("population", "Population");
         populationField.setType(ListGridFieldType.INTEGER);
-        ListGridField gdpField = new ListGridField("gdp", "GDP ($B)");
+        ListGridField gdpField = new ListGridField("gdp", "GDP ($B)", 120);
         gdpField.setType(ListGridFieldType.FLOAT);
 
         countryGrid.setFields(new ListGridField[] {countryCodeField, nameField, independenceField,

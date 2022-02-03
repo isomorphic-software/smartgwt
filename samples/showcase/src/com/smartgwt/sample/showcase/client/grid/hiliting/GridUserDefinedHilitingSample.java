@@ -27,7 +27,7 @@ public class GridUserDefinedHilitingSample extends ShowcasePanel {
             "the list to the left. When the simple hilite rule appears on the right, select the \"greater than\" operation from the drop-down box, type \"5000000\" " +
             "into the value textBox, select a color from the 'Color' picker widget and click 'Save'. You'll see that all \"Area (km<sup>2</sup>)\" values in the grid that exceed " +
             "5000000 are now hilighted in your chosen color.</p>" +
-            "<p>Now, add an Advanced criteria. Again, click the \"Edit Hilites\" button and then click the \"Add Advanced Rule\" button in the top left of the " +
+            "<p>Now, add an Advanced criteria. Again, click the \"Edit Hilites\" button and then click the \"Add Advanced Rule\" button in the bottom right of the " +
             "HiliteEditor - you'll now see the AdvancedHiliteEditor window. Add a new criterion that specifies <i>GDP ($M) greater than 1000000</i>. Click the green plus " +
             "icon beneath the criterion and add a second one, this time specifying <i>Area (km<sup>2</sup>) less than 500000</i>. In the list below, select both \"GDP ($M)\" and \"Area (km<sup>2</sup>)\" " +
             "and select a background color. Clicking 'Save' now will update the grid, showing both GDP and Area data in your selected background color, when GDP is higher than " +
@@ -131,17 +131,6 @@ public class GridUserDefinedHilitingSample extends ShowcasePanel {
         ListGridField capitalField = new ListGridField("capital", "Capital");
 
         ListGridField populationField = new ListGridField("population", "Population");
-        populationField.setCellFormatter(new CellFormatter() {
-            public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
-                if (value == null) return null;
-                try {
-                    NumberFormat nf = NumberFormat.getFormat("0,000");
-                    return nf.format(((Number) value).longValue());
-                } catch (Exception e) {
-                    return value.toString();
-                }
-            }
-        });
 
         ListGridField areaField = new ListGridField("area", "Area (km&sup2;)");
         areaField.setType(ListGridFieldType.INTEGER);
@@ -182,5 +171,9 @@ public class GridUserDefinedHilitingSample extends ShowcasePanel {
         return DESCRIPTION;
     }
 
+    @Override
+    protected boolean shouldWrapViewPanel() {
+        return true;
+    }
 }
 

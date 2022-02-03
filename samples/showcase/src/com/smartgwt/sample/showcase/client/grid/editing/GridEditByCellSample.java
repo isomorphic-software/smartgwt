@@ -15,7 +15,7 @@ import com.smartgwt.sample.showcase.client.data.CountryXmlDS;
 
 public class GridEditByCellSample extends ShowcasePanel {
     private static final String DESCRIPTION = "<p><b>Click</b> on any cell to start editing. Use <b>Tab</b>, <b>Shift-Tab</b>," +
-            "<b>Up Arrow</b>, and <b>Down Arrow</b> to move between cells.</p><p>Press <b>Enter</b> to save the current row" +
+            "<b>Up Arrow</b>, and <b>Down Arrow</b> to move between cells.</p><p>Press <b>Enter</b> to save the current row " +
             "and dismiss the editors, or <b>Esc</b> to discard changes for the current cell and dismiss" +
             "the editors.</p>";
 
@@ -40,10 +40,9 @@ public class GridEditByCellSample extends ShowcasePanel {
     public Canvas getViewPanel() {
 
         final ListGrid countryGrid = new ListGrid();
-        countryGrid.setWidth(550);
+        countryGrid.setWidth(600);
         countryGrid.setHeight(224);
         countryGrid.setShowAllRecords(true);
-        countryGrid.setCellHeight(22);
         // use server-side dataSource so edits are retained across page transitions
         countryGrid.setDataSource(CountryXmlDS.getInstance());
 
@@ -59,18 +58,7 @@ public class GridEditByCellSample extends ShowcasePanel {
         ListGridField memberG8Field = new ListGridField("member_g8", "Member G8");
         ListGridField populationField = new ListGridField("population", "Population");
         populationField.setType(ListGridFieldType.INTEGER);
-        populationField.setCellFormatter(new CellFormatter() {
-            public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
-                if(value == null) return null;
-                try {
-                    NumberFormat nf = NumberFormat.getFormat("0,000");
-                    return nf.format(((Number) value).longValue());
-                } catch (Exception e) {
-                    return value.toString();
-                }
-            }
-        });
-        ListGridField independenceField = new ListGridField("independence", "Independence");
+        ListGridField independenceField = new ListGridField("independence", "Independence", 130);
         countryGrid.setFields(countryCodeField, nameField,continentField, memberG8Field, populationField, independenceField);
 
         countryGrid.setAutoFetchData(true);

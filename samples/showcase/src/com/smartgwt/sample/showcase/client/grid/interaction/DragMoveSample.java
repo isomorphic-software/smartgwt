@@ -8,6 +8,7 @@ import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.layout.HStack;
 import com.smartgwt.client.widgets.layout.VStack;
 import com.smartgwt.client.widgets.TransferImgButton;
+import com.smartgwt.client.widgets.TransferImgButton.TransferImg;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
@@ -83,14 +84,18 @@ public class DragMoveSample extends ShowcasePanel {
         vStack.setLayoutAlign(VerticalAlignment.CENTER);
         vStack.setHeight(74);
 
-        TransferImgButton right = new TransferImgButton(TransferImgButton.RIGHT);
+        TransferImgButton right = new TransferImgButton(new TransferImg("icons/32/arrow_right.png"));
+        right.setHeight(32);
+        right.setWidth(32);
         right.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 countryGrid2.transferSelectedData(countryGrid1);
             }
         });
 
-        TransferImgButton left = new TransferImgButton(TransferImgButton.LEFT);
+        TransferImgButton left = new TransferImgButton(new TransferImg("icons/32/arrow_left.png"));
+        left.setHeight(32);
+        left.setWidth(32);
         left.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 countryGrid1.transferSelectedData(countryGrid2);

@@ -2,6 +2,9 @@ package com.smartgwt.sample.showcase.client.drawing.gradients;
 
 import com.smartgwt.client.types.Cursor;
 import com.smartgwt.client.types.Overflow;
+import com.smartgwt.client.types.ValidatorType;
+import com.smartgwt.client.types.FormErrorOrientation;
+
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.drawing.ColorStop;
 import com.smartgwt.client.widgets.drawing.DrawCurve;
@@ -18,13 +21,14 @@ import com.smartgwt.client.widgets.form.events.ItemChangedEvent;
 import com.smartgwt.client.widgets.form.events.ItemChangedHandler;
 import com.smartgwt.client.widgets.form.fields.ColorPickerItem;
 import com.smartgwt.client.widgets.form.fields.SliderItem;
+import com.smartgwt.client.widgets.form.validator.Validator;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VStack;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class LinearGradientSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "Sample of using linear type of gradient.";
+    private static final String DESCRIPTION = "Sample of using a linear type of gradient.";
     private DrawPane drawPane;
     private DynamicForm linearGradientDynamicForm,
                         linearGradientSliderDynamicForm;
@@ -93,41 +97,32 @@ public class LinearGradientSample extends ShowcasePanel {
 
         linearGradientDynamicForm = new DynamicForm();
         linearGradientDynamicForm.setID("linearGradientDynamicForm");
-        linearGradientDynamicForm.setWidth(250);
+        linearGradientDynamicForm.setWidth(400);
         linearGradientDynamicForm.addItemChangedHandler(linearGradientItemChangedHandler);
         linearGradientDynamicForm.setFields(startColorColorPicker, 
                                             firstStopColorPicker, 
                                             secondStopColorPicker, 
                                             endColorColorPicker);
 
-        SliderItem x1Slider = new SliderItem("x1");
-        x1Slider.setMinValue(1);
-        x1Slider.setMaxValue(100);
-        x1Slider.setHeight(20);
+        SliderItem x1Slider = new GradientItem("x1");
         x1Slider.setDefaultValue(20);
 
-        SliderItem y1Slider = new SliderItem("y1");
-        y1Slider.setMinValue(1);
-        y1Slider.setMaxValue(100);
-        y1Slider.setHeight(20);
+        SliderItem y1Slider = new GradientItem("y1");
         y1Slider.setDefaultValue(20);
 
-        SliderItem x2Slider = new SliderItem("x2");
-        x2Slider.setMinValue(1);
-        x2Slider.setMaxValue(100);
-        x2Slider.setHeight(20);
+        SliderItem x2Slider = new GradientItem("x2");
         x2Slider.setDefaultValue(80);
 
-        SliderItem y2Slider = new SliderItem("y2");
-        y2Slider.setMinValue(1);
-        y2Slider.setMaxValue(100);
-        y2Slider.setHeight(20);
+        SliderItem y2Slider = new GradientItem("y2");
         y2Slider.setDefaultValue(80);
         
         linearGradientSliderDynamicForm = new DynamicForm();
-        linearGradientSliderDynamicForm.setWidth(270);
+        linearGradientSliderDynamicForm.setWidth(290);
+        linearGradientSliderDynamicForm.setTitleWidth(30);
         linearGradientSliderDynamicForm.setFields(x1Slider, y1Slider, x2Slider, y2Slider);
         linearGradientSliderDynamicForm.addItemChangedHandler(linearGradientItemChangedHandler);
+        linearGradientSliderDynamicForm.setErrorOrientation(FormErrorOrientation.RIGHT);
+        linearGradientSliderDynamicForm.setValidateOnChange(true);
         linearGradientSliderDynamicForm.draw();
         
         linearGradientShapesDraw(drawPane);
@@ -135,6 +130,7 @@ public class LinearGradientSample extends ShowcasePanel {
 
         VStack layout = new VStack();
         HLayout layout2 = new HLayout();
+        layout2.setMembersMargin(10);
         layout2.addMember(drawPane);
         layout2.addMember(linearGradientSliderDynamicForm);
         layout.addMember(layout2);
@@ -151,6 +147,12 @@ public class LinearGradientSample extends ShowcasePanel {
      */
     private void linearGradientShapesDraw(DrawPane drawPane) {
 
+        Object x1 = linearGradientSliderDynamicForm.getValue("x1");
+        Object y1 = linearGradientSliderDynamicForm.getValue("y1");
+        Object x2 = linearGradientSliderDynamicForm.getValue("x2");
+        Object y2 = linearGradientSliderDynamicForm.getValue("y2");
+        if (x1.equals(x2) && y1.equals(y2)) return;
+        
         drawPane.erase();
 
         ColorStop colorStop1 = new ColorStop();
@@ -170,10 +172,8 @@ public class LinearGradientSample extends ShowcasePanel {
         colorStop4.setOffset(1.0f);
         
         LinearGradient linearGradient = new LinearGradient();
-        linearGradient.setX1(linearGradientSliderDynamicForm.getValue("x1") + "%");
-        linearGradient.setY1(linearGradientSliderDynamicForm.getValue("y1") + "%");
-        linearGradient.setX2(linearGradientSliderDynamicForm.getValue("x2") + "%");
-        linearGradient.setY2(linearGradientSliderDynamicForm.getValue("y2") + "%");
+        linearGradient.setX1(x1 + "%"); linearGradient.setY1(y1 + "%");
+        linearGradient.setX2(x2 + "%"); linearGradient.setY2(y2 + "%");
         linearGradient.setColorStops(colorStop1, colorStop2, colorStop3, colorStop4);
         
         DrawTriangle drawTriangle = new DrawTriangle();
@@ -209,6 +209,26 @@ public class LinearGradientSample extends ShowcasePanel {
         drawRect.setHeight(100);
         drawRect.draw();
                
+    }
+
+    public static class GradientValidator extends Validator {
+        public GradientValidator() {
+            setType(ValidatorType.CUSTOM);
+            setDependentFields(new String[] {"x1", "x2", "y1", "y2"});
+            setCondition("record.x1 != record.x2 || record.y1 != record.y2");
+            setErrorMessage("please select x1\u00a0!=\u00a0x2 or " +
+                                          "y1\u00a0!=\u00a0y2 to avoid a singular gradient");
+        }
+    }
+
+    public static class GradientItem extends SliderItem {
+        public GradientItem(String name) {
+            super(name);
+            setHeight(20);
+            setMinValue(1);
+            setMaxValue(100);
+            setValidators(new GradientValidator());
+        }
     }
 
     public String getIntro() {

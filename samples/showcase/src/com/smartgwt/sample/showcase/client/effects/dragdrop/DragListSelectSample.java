@@ -35,7 +35,7 @@ public class DragListSelectSample extends ShowcasePanel {
 
         final PartsListGrid mirrorSelectionList = new PartsListGrid();
         mirrorSelectionList.setHeight(160);
-        mirrorSelectionList.setEmptyMessage("<br><br>Nothing selected");
+        mirrorSelectionList.setEmptyMessage("Nothing selected");
         mirrorSelectionList.setLeft(200);
 
         final PartsListGrid myList1 = new PartsListGrid();

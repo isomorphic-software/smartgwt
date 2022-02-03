@@ -41,10 +41,6 @@ public class RibbonBarSample extends ShowcasePanel {
         RibbonBar ribbonBar = new RibbonBar();
         ribbonBar.setLeft(0);
         ribbonBar.setTop(75);
-        ribbonBar.setWidth100();
-
-        ribbonBar.setMembersMargin(2);
-        ribbonBar.setLayoutMargin(2);
 
         Menu menu = new Menu();
         
@@ -56,7 +52,6 @@ public class RibbonBarSample extends ShowcasePanel {
         fileGroup.setTitle("File");
         fileGroup.setTitleAlign(Alignment.LEFT);
         fileGroup.setNumRows(3);
-        fileGroup.setRowHeight(26);
         fileGroup.addControl(getIconMenuButton("New", "piece_blue", menu, true));
         fileGroup.addControl(getIconButton("Open", "star_yellow", true));
         fileGroup.addControl(getIconButton("Save", "pawn_red", true));
@@ -65,7 +60,6 @@ public class RibbonBarSample extends ShowcasePanel {
         RibbonGroup editGroup = new RibbonGroup();
         editGroup.setTitle("Edit");
         editGroup.setNumRows(3);
-        editGroup.setRowHeight(26);
         editGroup.addControl(getIconButton("Edit", "piece_blue", false));
         editGroup.addControl(getIconButton("Copy", "pawn_green", false));
         editGroup.addControl(getIconButton("Paste", "cube_yellow", false));
@@ -76,7 +70,6 @@ public class RibbonBarSample extends ShowcasePanel {
         RibbonGroup insertGroup = new RibbonGroup();
         insertGroup.setTitle("Insert");
         insertGroup.setNumRows(3);
-        insertGroup.setRowHeight(26);
         insertGroup.addControl(getIconMenuButton("Picture", null, menu, true));
         insertGroup.addControl(getIconButton("Link", "pawn_white", false));
         insertGroup.addControl(getIconButton("Document", "star_yellow", false));
@@ -115,5 +108,9 @@ public class RibbonBarSample extends ShowcasePanel {
 
     public String getIntro() {
         return DESCRIPTION;
+    }
+    
+    public boolean isTopIntro() {
+        return true;
     }
 }

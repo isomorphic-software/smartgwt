@@ -36,9 +36,9 @@ public class ButtonIconsSample extends ShowcasePanel {
 
     public Canvas getViewPanel() {
 
-        final IButton findButton = new IButton("Print");
+        final IButton findButton = new IButton("Find related");
         findButton.setWidth(120);
-        findButton.setIcon("silk/printer.png");
+        findButton.setIcon("icons/16/find.png");
 
         final IButton saveButton = new IButton("Save");
         saveButton.setShowRollOver(true);

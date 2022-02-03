@@ -23,7 +23,7 @@ import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class RadialGradientSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "Sample of using radial type of gradient.";
+    private static final String DESCRIPTION = "Sample of using a radial type of gradient.";
     private DrawPane drawPane;
     private DynamicForm radialGradientDynamicForm;
     private DynamicForm radialGradientSliderDynamicForm;
@@ -94,8 +94,9 @@ public class RadialGradientSample extends ShowcasePanel {
         
         radialGradientDynamicForm = new DynamicForm();
         radialGradientDynamicForm.setTop(1850);
-        radialGradientDynamicForm.setWidth(270);
+        radialGradientDynamicForm.setWidth(400);
         radialGradientDynamicForm.setLeft(475);
+        radialGradientDynamicForm.setColWidths(150, "*");
         radialGradientDynamicForm.setFields(startColorColorPicker,firstStopColorPicker,secondStopColorPicker,endColorColorPicker);
         radialGradientDynamicForm.addItemChangedHandler(radialGradientItemChangedHandler);
         radialGradientDynamicForm.draw();

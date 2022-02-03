@@ -85,8 +85,8 @@ public class GridCellWidgetsSample extends ShowcasePanel {
                     return recordCanvas;
                 } else if (fieldName.equals("buttonField")) {
                     IButton button = new IButton();
-                    button.setHeight(18);
-                    button.setWidth(65);                    
+                    button.setHeight(26);
+                    button.setWidth(70);                    
                     button.setIcon("flags/16/" + record.getAttribute("countryCode") + ".png");
                     button.setTitle("Info");
                     button.addClickHandler(new ClickHandler() {
@@ -101,13 +101,13 @@ public class GridCellWidgetsSample extends ShowcasePanel {
 
             }
         };
+        countryGrid.setWidth(600);
+        countryGrid.setHeight(224);
+
+        countryGrid.setVirtualScrolling(false);        
         countryGrid.setShowRecordComponents(true);        
         countryGrid.setShowRecordComponentsByCell(true);
         countryGrid.setCanRemoveRecords(true);
-
-        countryGrid.setWidth(550);
-        countryGrid.setHeight(224);
-        countryGrid.setShowAllRecords(true);
 
         ListGridField countryCodeField = new ListGridField("countryCode", "Flag", 40);
         countryCodeField.setAlign(Alignment.CENTER);
@@ -123,7 +123,7 @@ public class GridCellWidgetsSample extends ShowcasePanel {
         buttonField.setAlign(Alignment.CENTER);
         
         ListGridField iconField = new ListGridField("iconField", "Comments/Stats");
-        iconField.setWidth(100);
+        iconField.setWidth(120);
 
         countryGrid.setFields(countryCodeField, nameField, capitalField, continentField, buttonField, iconField);
         countryGrid.setCanResizeFields(true);

@@ -46,6 +46,7 @@ public class GridRowExpansionDetailFieldSample extends ShowcasePanel {
         listGrid.setHeight(500);
         listGrid.setCanExpandRecords(true);
         listGrid.setExpansionMode(ExpansionMode.DETAIL_FIELD);
+        listGrid.setExpansionFieldImageShowSelected(true);
         listGrid.setDetailField("background");
 
         ListGridField nameField = new ListGridField("countryName", "Country");

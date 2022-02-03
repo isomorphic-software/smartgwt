@@ -11,7 +11,7 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class FormShowHideSample extends ShowcasePanel {
 
-    private static final String DESCRIPTION = "Select \"On order\" to reveal the \"Shipping Date\" field.";
+    private static final String DESCRIPTION = "Select \"Shipment on order\" to reveal the \"Order Placed\" field.";
 
     public static class Factory implements PanelFactory {
         private String id;
@@ -39,6 +39,7 @@ public class FormShowHideSample extends ShowcasePanel {
         final DateItem orderDate = new DateItem();
         orderDate.setName("orderDate");
         orderDate.setTitle("Order Placed");
+        orderDate.setWrapTitle(false);
         orderDate.setRequired(true);
         orderDate.setVisible(false);
 

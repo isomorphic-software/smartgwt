@@ -7,6 +7,7 @@ import com.smartgwt.client.data.fields.DataSourceDateField;
 import com.smartgwt.client.data.fields.DataSourceSequenceField;
 import com.smartgwt.client.data.fields.DataSourceTextField;
 import com.smartgwt.client.util.SC;
+import com.smartgwt.client.util.DateUtil;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.calendar.Calendar;
 import com.smartgwt.client.widgets.calendar.CalendarEvent;
@@ -66,6 +67,7 @@ public class CompactCalendarSample extends ShowcasePanel {
             }
         };
 
+        calendar.setStartDate(CalendarData.getDataStartDate());
         calendar.setWidth(500);
         calendar.setHeight(220);
         calendar.setShowDayView(false);
@@ -88,7 +90,8 @@ public class CompactCalendarSample extends ShowcasePanel {
                     nameStr = "No events";
                 } else {
                     for (CalendarEvent calEvent : events) {
-                        nameStr += calEvent.getName() + "<br/>";
+                        nameStr += DateUtil.TOSHORTPADDEDTIME.format(calEvent.getStartDate()) + " " + 
+                            calEvent.getName() + "<br/>";
                     }
                 }
                 SC.say(nameStr);

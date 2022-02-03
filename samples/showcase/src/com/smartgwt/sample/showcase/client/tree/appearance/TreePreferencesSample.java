@@ -65,10 +65,6 @@ public class TreePreferencesSample extends ShowcasePanel {
 
     public Canvas getViewPanel() {
 
-        VLayout layout = new VLayout(15);
-        layout.setWidth(650);
-        layout.setAutoHeight();
-
         EmployeeXmlDS employeesDS = EmployeeXmlDS.getInstance();
 
         final TreeGrid treeGrid = new TreeGrid();
@@ -83,6 +79,7 @@ public class TreePreferencesSample extends ShowcasePanel {
         treeGrid.setShowDropIcons(false);
         treeGrid.setClosedIconSuffix("");
         treeGrid.setAutoFetchData(true);
+        treeGrid.setShowSelectedIcons(true);
 
         TreeGridField nameField = new TreeGridField("Name");
         TreeGridField jobField = new TreeGridField("Job");
@@ -105,16 +102,17 @@ public class TreePreferencesSample extends ShowcasePanel {
         treeGrid.setFields(nameField, jobField, salaryField);
 
         //create another grid to display the preference name and viewState string
-        final ListGrid preferecesGrid = new ListGrid();
-        preferecesGrid.setHeight(300);
-        preferecesGrid.setWrapCells(true);
-        preferecesGrid.setFixedRecordHeights(false);
-        preferecesGrid.setCanEdit(true);
-        preferecesGrid.setEmptyMessage("No Saved Preferences");
-        preferecesGrid.setSelectionType(SelectionStyle.SINGLE);
-        preferecesGrid.setCanRemoveRecords(true);
+        final ListGrid preferencesGrid = new ListGrid();
+        preferencesGrid.setHeight(300);
+        preferencesGrid.setWrapCells(true);
+        preferencesGrid.setFixedRecordHeights(false);
+        preferencesGrid.setCanEdit(true);
+        preferencesGrid.setEmptyMessage("No Saved Preferences");
+        preferencesGrid.setSelectionType(SelectionStyle.SINGLE);
+        preferencesGrid.setCanRemoveRecords(true);
         final ListGridField name = new ListGridField("name", "Preference");
         ListGridField viewState = new ListGridField("viewState", "View State String");
+//        viewState.setEditorType(TextAreaItem.class);
         viewState.setEditorType(new TextAreaItem());
         viewState.setCellFormatter(new CellFormatter() {
             @Override
@@ -123,8 +121,8 @@ public class TreePreferencesSample extends ShowcasePanel {
                 return ((String) value).replace("\\r", "");
             }
         });
-        preferecesGrid.setFields(name, viewState);
-        preferecesGrid.setAutoFetchData(true);
+        preferencesGrid.setFields(name, viewState);
+        preferencesGrid.setAutoFetchData(true);
 
         //create a "preferences" DataSource to bind to SelectItem and Preferences ListGrid
         final DataSource preferencesDS = new DataSource();
@@ -136,7 +134,7 @@ public class TreePreferencesSample extends ShowcasePanel {
         DataSourceTextField stateField = new DataSourceTextField("viewState", "View State");
         preferencesDS.setFields(pkField, preferenceField, stateField);
         preferencesDS.setClientOnly(true);
-        preferecesGrid.setDataSource(preferencesDS);
+        preferencesGrid.setDataSource(preferencesDS);
 
         ToolStripButton formulaButton = new ToolStripButton("Formula Builder", "crystal/oo/sc_insertformula.png");
         formulaButton.setAutoFit(true);
@@ -207,7 +205,7 @@ public class TreePreferencesSample extends ShowcasePanel {
                         if (value != null && !value.equals("")) {
                             String viewState = treeGrid.getViewState();
                             PreferenceRecord record = new PreferenceRecord(PK_COUNTER++, value, viewState);
-                            preferecesGrid.addData(record);
+                            preferencesGrid.addData(record);
                             preferenceSelectItem.setValue(value);
                         }
                     }
@@ -226,16 +224,6 @@ public class TreePreferencesSample extends ShowcasePanel {
         countryGridToolStrip.addSeparator();
         countryGridToolStrip.addFormItem(preferenceSelectItem);
 
-        VLayout countryGridLayout = new VLayout(0);
-        countryGridLayout.setWidth(650);
-        countryGridLayout.addMember(countryGridToolStrip);
-        countryGridLayout.addMember(treeGrid);
-        layout.addMember(countryGridLayout);
-
-        VLayout preferencesGridLayout = new VLayout(0);
-        preferencesGridLayout.setWidth(650);
-        preferencesGridLayout.addMember(preferecesGrid);
-
         //toolstrip to attach to the preferences grid
         ToolStrip preferencesToolStrip = new ToolStrip();
         preferencesToolStrip.setWidth100();
@@ -245,7 +233,7 @@ public class TreePreferencesSample extends ShowcasePanel {
         restoreButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                Record record = preferecesGrid.getSelectedRecord();
+                Record record = preferencesGrid.getSelectedRecord();
                 if (record != null) {
                     String viewState = record.getAttribute("viewState");
                     treeGrid.setViewState(viewState);
@@ -253,16 +241,22 @@ public class TreePreferencesSample extends ShowcasePanel {
             }
         });
         preferencesToolStrip.addButton(restoreButton);
-        preferencesGridLayout.addMember(preferencesToolStrip);
 
-        layout.addMember(preferencesGridLayout);
+        VLayout layout = new VLayout();
+        layout.setWidth(650);
+        layout.setMinBreadthMember(countryGridToolStrip);
 
         layout.addDrawHandler(new DrawHandler() {
             @Override
             public void onDraw(DrawEvent event) {
-                preferecesGrid.addData(new PreferenceRecord(PK_COUNTER++, "Default", treeGrid.getViewState()));
+                preferencesGrid.addData(new PreferenceRecord(PK_COUNTER++, "Default", treeGrid.getViewState()));
             }
         });
+
+        layout.addMember(countryGridToolStrip);
+        layout.addMember(treeGrid);
+        layout.addMember(preferencesGrid);
+        layout.addMember(preferencesToolStrip);
 
         return layout;
     }

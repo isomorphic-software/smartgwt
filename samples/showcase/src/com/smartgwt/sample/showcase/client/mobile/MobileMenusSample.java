@@ -78,17 +78,7 @@ public class MobileMenusSample extends ShowcasePanel {
 
         MenuItemSeparator separator = new MenuItemSeparator();
 
-        final MenuItem activateMenu = new MenuItem("Activate");
-        activateMenu.setDynamicTitleFunction(new MenuItemStringFunction() {
-            public String execute(final Canvas aTarget, final Menu aMenu, final MenuItem aItem) {
-                if (Math.random() > 0.5) {
-                    return "De-Activate Blacklist";
-                } else {
-                    return "Activate Blacklist";
-                }
-            }
-        });
-        menu.setItems(activateMenu, newItem, openItem, separator, saveItem, saveAsItem,
+        menu.setItems(newItem, openItem, separator, saveItem, saveAsItem,
                 separator, recentDocItem, separator, exportItem, separator, printItem);
 
         IMenuButton menuButton = new IMenuButton("File", menu);

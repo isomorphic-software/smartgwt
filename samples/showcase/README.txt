@@ -6,7 +6,7 @@ capabilities.
 
 Prerequisites
 -------------
-- Google Web Toolkit, 1.5.3 or later (2.0 or later recommended)
+- Google Web Toolkit, 2.6.1 or later
   http://code.google.com/webtoolkit/download.html
 
   Ensure GWT_HOME to the location of your Google Web Toolkit SDK directory.
@@ -21,10 +21,6 @@ Prerequisites
   
 Build and Deployment Instructions
 ---------------------------------
-- 'ant hosted'
-  Run Showcase in GWT Hosted Mode.
-
-  
 - 'ant'
   Compile Showcase for deployment.
 
@@ -35,3 +31,10 @@ Build and Deployment Instructions
   If you have a web container operating on localhost:8080, you can deploy
   showcase.war into the web container and access the Showcase at:
   http://localhost:8080/showcase/index.html
+
+
+- 'ant hosted' (Deprecated)
+  Run Showcase in GWT Hosted Mode.  
+
+  Consider using the currently supported Super Development Mode instead:
+  https://www.smartclient.com/smartgwt/javadoc/com/smartgwt/client/docs/SuperDevModeTroubleshooting.html

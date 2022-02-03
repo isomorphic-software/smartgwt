@@ -21,7 +21,7 @@ public class TimelineFilteringSample extends ShowcasePanel {
 
     private static final String DESCRIPTION = "<p>This example shows how individual events, " +
             "lanes and even date-columns can be filtered out of the Timeline at runtime.  " +
-            "Select the checkboxes, or enter a string into the text-boxes below to see the " +
+            "Select the checkboxes, or enter a string into the text-boxes to see the " +
             "view reconstructed accordingly.</p>";
 
     public static class Factory implements PanelFactory {
@@ -71,11 +71,11 @@ public class TimelineFilteringSample extends ShowcasePanel {
 		createCalendar();
         
         calendar.setHeight(451);
-        calendar.setStartDate(new Date(112, 5, 2));
-        calendar.setEndDate(new Date(112, 5, 22));
+        calendar.setStartDate(new Date(116, 5, 2));
+        calendar.setEndDate(new Date(116, 5, 22));
         calendar.setCanEditLane(true);
         calendar.setShowEventDescriptions(false);
-        calendar.setEventSnapGap(1); // snap to 1 minute intervals
+        calendar.setEventSnapGap(8 * 60); // snap to 8 hour intervals
         calendar.setLaneEventPadding(2); // add a little space around events
         // set up the grid 
         calendar.setHeaderLevels(headerLevels);
@@ -142,14 +142,12 @@ public class TimelineFilteringSample extends ShowcasePanel {
     	eventItem = new FormItem("eventItem");
     	eventItem.setTitle("Filter by Event Name");
     	eventItem.setTitleOrientation(TitleOrientation.TOP);
-    	eventItem.setChangeOnKeypress(false);
     	eventItem.setDefaultValue("");
     	eventItem.addChangedHandler(defaultChangedHandler);
     	
     	laneItem = new FormItem("laneItem");
     	laneItem.setTitle("Filter by Lane Name");
     	laneItem.setTitleOrientation(TitleOrientation.TOP);
-    	laneItem.setChangeOnKeypress(false);
     	laneItem.setDefaultValue("");
     	laneItem.addChangedHandler(defaultChangedHandler);
     	

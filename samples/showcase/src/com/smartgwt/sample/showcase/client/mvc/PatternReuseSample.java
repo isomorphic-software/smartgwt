@@ -117,7 +117,7 @@ public class PatternReuseSample extends ShowcasePanel {
             editorLayout.setWidth(280);
 
             grid = new ListGrid();
-            grid.setWidth(500);
+            grid.setWidth(600);
             grid.setHeight(350);
             grid.setDataSource(datasource);
             grid.setAutoFetchData(true);

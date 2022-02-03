@@ -6,6 +6,7 @@ import com.smartgwt.client.data.DSRequest;
 import com.smartgwt.client.data.DSResponse;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.VisibilityMode;
+import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.events.ClickEvent;
@@ -18,6 +19,7 @@ import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.SectionStack;
 import com.smartgwt.client.widgets.layout.SectionStackSection;
 import com.smartgwt.client.widgets.layout.VLayout;
+import com.smartgwt.client.widgets.layout.VStack;
 import com.smartgwt.client.widgets.viewer.DetailViewer;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
@@ -61,10 +63,9 @@ public class PrintingSample extends ShowcasePanel {
         printStack.setWidth(400);
         printStack.setHeight(455);
 
-
         final DetailViewer printViewer = new DetailViewer();
         printViewer.setDataSource(countryDS);
-        printViewer.setWidth100();
+        printViewer.setWidth(380);
         printViewer.setMargin(15);
         printViewer.setEmptyMessage("Select a country to view its details");
 
@@ -92,7 +93,11 @@ public class PrintingSample extends ShowcasePanel {
 
         SectionStackSection detailsSection = new SectionStackSection("Country Details");
         detailsSection.setExpanded(true);
-        detailsSection.addItem(printViewer);
+        VStack vStack = new VStack();
+        vStack.setOverflow(Overflow.AUTO);
+        vStack.setWidth100();
+        vStack.addMember(printViewer);
+        detailsSection.addItem(vStack);
         printStack.addSection(detailsSection);
 
 

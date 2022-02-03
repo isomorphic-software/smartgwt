@@ -64,6 +64,7 @@ public class FormMatchValueSample extends ShowcasePanel {
         PasswordItem password2 = new PasswordItem();
         password2.setName("password2");
         password2.setTitle("Password again");
+        password2.setWrapTitle(false);
         password2.setRequired(true);
 
         final ButtonItem createAccount = new ButtonItem();

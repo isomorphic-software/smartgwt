@@ -54,7 +54,7 @@ public class MenuTreeBindingSample extends ShowcasePanel {
 		});
 
 		IMenuButton bDepartment = new IMenuButton("Go to department", mDepartment);
-		bDepartment.setWidth(140);
+		bDepartment.setWidth(160);
 
 		vLayout.addMember(bDepartment);
 
@@ -73,7 +73,7 @@ public class MenuTreeBindingSample extends ShowcasePanel {
 		});
 
 		IMenuButton bCategory = new IMenuButton("Go to category", mCategory);
-		bCategory.setWidth(140);
+		bCategory.setWidth(160);
 
 		vLayout.addMember(bCategory);
 
@@ -113,6 +113,11 @@ public class MenuTreeBindingSample extends ShowcasePanel {
 		return retVal;
 	}
 
+    @Override
+    protected boolean shouldWrapViewPanel() {
+        return true;
+    }
+    
 	public String getIntro() {
 		return DESCRIPTION;
 	}

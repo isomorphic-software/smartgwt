@@ -21,8 +21,8 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class FormServerXmlValidationSample extends ShowcasePanel {
     private static final String DESCRIPTION = "<p>Click \"Save\" to see validation errors derived from an XML response. Validation errors " +
-            "expressed in application-specific XML formats can be communicated to visual components by implementing DataSource.setResponseTransformHandler(). " +
-            "The resulting validation errors will be displayed and tracked by forms and editabled grids.</p>";
+            "expressed in application-specific XML formats can be communicated to visual components by implementing DataSource.setResponseTransformHandler().</p> " +
+            "<p>The resulting validation errors will be displayed and tracked by forms and editabled grids.</p>";
 
     public static class Factory implements PanelFactory {
         private String id;

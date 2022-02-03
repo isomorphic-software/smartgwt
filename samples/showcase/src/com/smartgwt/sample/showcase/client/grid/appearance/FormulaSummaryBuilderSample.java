@@ -27,7 +27,7 @@ public class FormulaSummaryBuilderSample extends ShowcasePanel {
             "<p>Launch the Formula Builder and enter the title of the new field, and the desired formula. For example, enter <b>Population Density</b> " +
             "for the field name and in the formula field enter <b>A / B</b>. As indicated in the dialog, A represents the Population field, and B represents the Area field. " +
             "Notice that you can now sort on this newly added <b>Population Density</b> field just like any other field. Click the help icon to view the various supported inbuilt functions.</p>" +
-            "<p>Next launch the Summary Builder and enter the title of the new field, and the Summary formulation. For example, enter <b>County (Flag)</b> " +
+            "<p>Next launch the Summary Builder and enter the title of the new field, and the Summary formulation. For example, enter <b>Country (Flag)</b> " +
             "for the field name and enter <b>#B (#A)</b> in the summary field.</p>";
 
     public static class Factory implements PanelFactory {
@@ -81,17 +81,6 @@ public class FormulaSummaryBuilderSample extends ShowcasePanel {
         ListGridField capitalField = new ListGridField("capital", "Capital");
 
         ListGridField populationField = new ListGridField("population", "Population");
-        populationField.setCellFormatter(new CellFormatter() {
-            public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
-                if (value == null) return null;
-                try {
-                    NumberFormat nf = NumberFormat.getFormat("0,000");
-                    return nf.format(((Number) value).longValue());
-                } catch (Exception e) {
-                    return value.toString();
-                }
-            }
-        });
 
         ListGridField areaField = new ListGridField("area", "Area (km&sup2;)");
         areaField.setType(ListGridFieldType.INTEGER);

@@ -3,7 +3,7 @@
 
 <module rename-to="showcase">
 
-    <inherits name='com.google.gwt.user.User'/>
+    <inherits name="com.google.gwt.user.User"/>
     <inherits name="com.google.gwt.core.Core"/>
     <inherits name="com.google.gwt.user.History"/>
     <inherits name="com.google.gwt.i18n.I18N"/>
@@ -12,12 +12,21 @@
     <inherits name="com.smartgwt.DrawingNoScript"/>
     <inherits name="com.smartgwt.tools.SmartGwtTools"/>
 
+    <inherits name="com.smartclient.theme.enterprise.EnterpriseResources"/>
+    <inherits name="com.smartclient.theme.enterpriseblue.EnterpriseBlueResources"/>
     <inherits name="com.smartclient.theme.graphite.GraphiteResources"/>
     <inherits name="com.smartclient.theme.simplicity.SimplicityResources"/>
-    <inherits name="com.smartclient.theme.enterpriseblue.EnterpriseBlueResources"/>
+    <inherits name="com.smartclient.theme.obsidian.ObsidianResources"/>
+    <inherits name="com.smartclient.theme.stratus.StratusResources"/>
+    <inherits name="com.smartclient.theme.twilight.TwilightResources"/>
 
-    <!-- Uncomment lines below for GWT Super Dev Mode Support:
-       - both lines needed for GWT < 2.6, only the first line needed for GWT < 2.7
+    <inherits name="com.smartclient.theme.fleet.FleetResources"/>
+    <inherits name="com.smartclient.theme.treefrog.TreeFrogResources"/>
+    <inherits name="com.smartclient.theme.blackops.BlackOpsResources"/>
+    <inherits name="com.smartclient.theme.silverwave.SilverWaveResources"/>
+
+    <!-- Uncomment lines below for GWT Super Dev Mode Support in GWT versions before 2.7.0:
+       - both lines needed for GWT < 2.6, only the first line needed for GWT 2.6.x
        - see http://www.smartclient.com/docs/release/a/b/c/go.html#group..debugging -->
     <!-- <add-linker name="xsiframe" />                                             -->
     <!-- <set-configuration-property name="devModeRedirectEnabled" value="true" />  -->

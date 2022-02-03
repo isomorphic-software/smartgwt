@@ -12,7 +12,7 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class AnimateFadeSample extends ShowcasePanel {
 
-	private static final String DESCRIPTION = "Click the buttons to fade the image.";
+	private static final String DESCRIPTION = "Click the buttons to show or hide the image with a fade effect.";
 
 	public static class Factory implements PanelFactory {
 		private String id;

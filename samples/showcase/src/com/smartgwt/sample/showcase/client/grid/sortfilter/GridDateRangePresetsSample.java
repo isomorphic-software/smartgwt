@@ -2,7 +2,10 @@ package com.smartgwt.sample.showcase.client.grid.sortfilter;
 
 import com.smartgwt.client.data.AdvancedCriteria;
 import com.smartgwt.client.data.Criterion;
+import com.smartgwt.client.data.Operator;
 import com.smartgwt.client.types.OperatorId;
+import com.smartgwt.client.types.OperatorValueType;
+import com.smartgwt.client.types.FieldType;
 import com.smartgwt.client.widgets.Button;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Label;
@@ -15,6 +18,7 @@ import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.PresetDateRangeXmlDS;
+import com.smartgwt.sample.showcase.client.data.RecentDateRangeItem;
 
 
 
@@ -63,22 +67,32 @@ public class GridDateRangePresetsSample extends ShowcasePanel {
         // ---------------------------------------------------------------------------------------
         // Date Range (Presets)
         Label dateRangeLabel = new Label();
-        dateRangeLabel.setWidth(595);
+        dateRangeLabel.setWidth(650);
         dateRangeLabel.setHeight(25);
         dateRangeLabel.setContents("RecentDateRangeItem (ListGrid FilterEditor)");
         dateRangeLabel.setBaseStyle("exampleSeparator");
 
         PresetDateRangeXmlDS dataSource = PresetDateRangeXmlDS.getInstance();
-
+        
         // Create a ListGrid displaying data from the worldDS  
         final ListGrid grid1 = new ListGrid();
-        grid1.setWidth(595);
+        grid1.setWidth(650);
         grid1.setDataSource(dataSource);
         grid1.setShowFilterEditor(true);
 
         RecentDateRangeItem rangeItem = new RecentDateRangeItem();
         rangeItem.setWidth("*");
         rangeItem.setShowTitle(false);
+
+        Operator operator = new Operator();
+        operator.setID("recentDateRange");
+        operator.setTitle("in recent date range");
+        operator.setValueType(OperatorValueType.CUSTOM);
+        operator.setEditorType("com.smartgwt.sample.showcase.client.data.RecentDateRangeItem");
+        
+        FieldType[] types = new FieldType[1];
+        types[0] = FieldType.DATE;
+        dataSource.addSearchOperator(operator, types);
 
         ListGridField orderDate = new ListGridField("orderDate", "Order Date");
         orderDate.setFilterEditorProperties(rangeItem);
@@ -90,13 +104,13 @@ public class GridDateRangePresetsSample extends ShowcasePanel {
         // ---------------------------------------------------------------------------------------
         // FilterBuilder Example 
         Label filterBuilderLabel = new Label();
-        filterBuilderLabel.setWidth(595);
+        filterBuilderLabel.setWidth(650);
         filterBuilderLabel.setHeight(25);
         filterBuilderLabel.setContents("RecentDateRangeItem (FilterBuilder)");
         filterBuilderLabel.setBaseStyle("exampleSeparator");
 
         final FilterBuilder filterBuilder = new FilterBuilder();
-        filterBuilder.setWidth(595);
+        filterBuilder.setWidth(650);
         filterBuilder.setDataSource(dataSource);
         AdvancedCriteria ac = new AdvancedCriteria(OperatorId.AND);
         Criterion c = new Criterion();
@@ -116,19 +130,19 @@ public class GridDateRangePresetsSample extends ShowcasePanel {
 			}
 		});
 
-        ListGridField orderDate2 = new ListGridField("orderDate", "Order Date");
-        orderDate2.setFilterEditorProperties(rangeItem);
-        orderDate2.setCanFilter(true);
-
-        grid2.setWidth(595);
+        grid2.setWidth(650);
         grid2.setDataSource(dataSource);
         grid2.setAutoFetchData(true);
-        grid2.setShowFilterEditor(true);
+        grid2.setShowFilterEditor(false);
         grid2.setUseAllDataSourceFields(true);
-        grid2.setFields(orderDate2);
         
         layout.setMembers(dateRangeLabel, grid1, filterBuilderLabel, filterBuilder, searchButton, grid2);
         return layout;
+    }
+
+    @Override
+    protected boolean shouldWrapViewPanel() {
+        return true;
     }
 
     public String getIntro() {

@@ -44,7 +44,7 @@ public class EmptyGridSample extends ShowcasePanel {
         countryGrid.setTop(50);
         countryGrid.setShowAllRecords(true);
         countryGrid.setShowEmptyMessage(true);
-        countryGrid.setEmptyMessage("<br>Click the <b>Set data</b> button to populate this grid.");
+        countryGrid.setEmptyMessage("Click the <b>Set data</b> button to populate this grid.");
 
         ListGridField nameField = new ListGridField("countryName", "Country", 120);
         ListGridField capitalField = new ListGridField("capital", "Capital");
@@ -68,7 +68,7 @@ public class EmptyGridSample extends ShowcasePanel {
         canvas.addChild(setDataButton);
 
         IButton clearDataButton = new IButton("Clear Data");
-        clearDataButton.setLeft(120);
+        clearDataButton.setLeft(130);
         clearDataButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 countryGrid.setData(new ListGridRecord[]{});

@@ -9,7 +9,7 @@ import com.smartgwt.sample.showcase.client.data.CalendarOverlappingData;
 public class OverlappingEventsCalendarSample extends ShowcasePanel {
 
     private static final String DESCRIPTION = "<p>When eventAutoArrange is true, you can have the Calendar overlap concurrent events slightly. " +
-            "The z-order is from left to right and the overlap-size is a percentage of event-width </p>. " +
+            "The z-order is from left to right and the overlap-size is a percentage of event-width.</p>" +
             "<p>If two events start at exactly the same time, the default behaviour is to reject the overlap to avoid the first " +
             "event's close button from being hidden by the second event. You can see this by dropping one event onto the start-time of another below.</p>";
 
@@ -38,7 +38,7 @@ public class OverlappingEventsCalendarSample extends ShowcasePanel {
         Calendar calendar = new Calendar();
         calendar.setData(CalendarOverlappingData.getRecords());
         calendar.setAutoFetchData(true);
-
+        calendar.scrollToTime("07:00");
         //the following are the Calendar's defaults and would still have been set without this code
         calendar.setEventAutoArrange(true);
         calendar.setEventOverlap(true);

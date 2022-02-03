@@ -87,6 +87,10 @@ public class DragMenuGridSample extends ShowcasePanel {
         return layout;
     }
 
+    @Override
+    protected boolean shouldWrapViewPanel() {
+        return true;
+    }
 
     public String getIntro() {
         return DESCRIPTION;

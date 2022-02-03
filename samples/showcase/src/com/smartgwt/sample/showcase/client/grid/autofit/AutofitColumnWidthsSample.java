@@ -12,10 +12,15 @@ import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class AutofitColumnWidthsSample extends ShowcasePanel {
 
-    private static final String DESCRIPTION = "ListGrid fields can be set to auto-fit to their titles and/or field values. " +
-            "In this example the first two columns are set to auto-fit when the grid is drawn. The first field's title exceeds the space used by its " +
-            "values, and the second field the reverse is true. In both cases the column is correctly sized to fit its content. " +
-            "Note that the user can also perform one time auto-fit of columns at runtime by double-clicking on any header or using the context-menu option.";
+    private static final String DESCRIPTION = "ListGrid fields can be set to auto-fit to their titles, "+
+        "to data values, or to the larger of both."+
+        "<p>"+
+        "In this example the first two columns are set to auto-fit. The first field auto-fits to its "+
+        "long title (\"Flag Thumbnail\"). The second field auto-fits to the data values, so there is "+
+        "extra space after the title."+
+        "<p>"+
+        "Note that the user can also perform one time auto-fit of columns at runtime by double-clicking "+
+        "on any header or using the context-menu option.";
 
     public static class Factory implements PanelFactory {
         private String id;
@@ -42,18 +47,21 @@ public class AutofitColumnWidthsSample extends ShowcasePanel {
         countryGrid.setWidth100();
         countryGrid.setHeight(224);
         countryGrid.setShowAllRecords(true);
+        countryGrid.setLeaveHeaderMenuButtonSpace(false);
 
         //size field to fit either the field title or the data values in the field
         countryGrid.setAutoFitWidthApproach(AutoFitWidthApproach.BOTH);
         countryGrid.setCanSort(false);
 
-        ListGridField countryCodeField = new ListGridField("countryCode", "Flag");
-        countryCodeField.setAlign(Alignment.CENTER);
+        ListGridField countryCodeField = new ListGridField("countryCode", "Flag Thumbnail");
+        countryCodeField.setCellAlign(Alignment.CENTER);
         countryCodeField.setType(ListGridFieldType.IMAGE);
         countryCodeField.setImageURLPrefix("flags/16/");
         countryCodeField.setImageURLSuffix(".png");
+        countryCodeField.setAutoFitWidth(true);
 
         ListGridField nameField = new ListGridField("countryName", "Country");
+        nameField.setAutoFitWidth(true);
         ListGridField capitalField = new ListGridField("capital", "Capital");
         ListGridField continentField = new ListGridField("continent", "Continent");
         countryGrid.setFields(countryCodeField, nameField, capitalField, continentField);

@@ -3,6 +3,9 @@ package com.smartgwt.sample.showcase.client.combobox;
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.widgets.Canvas;
+import com.smartgwt.client.widgets.layout.HStack;
+import com.smartgwt.client.widgets.layout.VStack;
+import com.smartgwt.client.widgets.layout.LayoutSpacer;
 import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.HeaderItem;
@@ -40,19 +43,15 @@ public class SelectedValueComboBoxSample extends ShowcasePanel {
 
     public Canvas getViewPanel() {
 
-        Canvas canvas = new Canvas();
-
         DataSource supplyItemDS = ItemSupplyXmlDS.getInstance();
 
         final Label label = new Label();
         label.setAlign(Alignment.CENTER);
         label.setBorder("1px solid #287fd6");
-        label.setTop(75);
         label.setHeight(50);
         label.setWidth(250);
         label.setMargin(10);
         label.setContents("Select an item to order");
-        canvas.addChild(label);
 
         DynamicForm form = new DynamicForm();
 
@@ -78,21 +77,21 @@ public class SelectedValueComboBoxSample extends ShowcasePanel {
         spinnerItem.setMin(1);
 
         form.setItems(headerItem, selectItem, spinnerItem);
-        canvas.addChild(form);
-
+        
+        VStack vStack1 = new VStack();
+        vStack1.setMembersMargin(5);
+        vStack1.addMember(form);
+        vStack1.addMember(label);
+        
         final Label label2 = new Label();
         label2.setAlign(Alignment.CENTER);
         label2.setBorder("1px solid #287fd6");
-        label2.setTop(75);
-        label2.setLeft(300);
         label2.setHeight(50);
         label2.setWidth(250);
         label2.setMargin(10);
         label2.setContents("Select an item to order");
-        canvas.addChild(label2);
 
         DynamicForm form2 = new DynamicForm();
-        form2.setLeft(300);
 
         HeaderItem headerItem2 = new HeaderItem();
         headerItem2.setDefaultValue("Order Supply Item");
@@ -120,9 +119,21 @@ public class SelectedValueComboBoxSample extends ShowcasePanel {
         spinnerItem2.setMin(1);
 
         form2.setItems(headerItem2, selectItem2, spinnerItem2);
-        canvas.addChild(form2);
+        
+        VStack vStack2 = new VStack();
+        vStack2.setMembersMargin(5);
+        vStack2.addMember(form2);
+        vStack2.addMember(label2);		
+        
+        LayoutSpacer layoutSpacer = new LayoutSpacer();
+        layoutSpacer.setWidth(50);
+        
+        HStack hStack = new HStack();
+        hStack.addMember(vStack1);
+        hStack.addMember(layoutSpacer);
+        hStack.addMember(vStack2);
 
-        return canvas;
+        return hStack;
     }
 
     public String getIntro() {

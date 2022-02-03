@@ -69,7 +69,7 @@ public class GridDataBoundUpdateSample extends ShowcasePanel {
         });
         changeEurope.setLeft(0);
         changeEurope.setTop(240);
-        changeEurope.setWidth(140);
+        changeEurope.setWidth(150);
         
         IButton changeAsia = new IButton("Continent -> Asia");
         changeAsia.addClickHandler(new ClickHandler() {
@@ -83,9 +83,9 @@ public class GridDataBoundUpdateSample extends ShowcasePanel {
 				}
 			}        	
         });
-        changeAsia.setLeft(160);
+        changeAsia.setLeft(170);
         changeAsia.setTop(240);
-        changeAsia.setWidth(140);
+        changeAsia.setWidth(150);
 
 
         

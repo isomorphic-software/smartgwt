@@ -16,8 +16,9 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.CountryXmlDS;
 
 public class GridCustomEditorsSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "<b>Click</b> on any cell to start editing. The \"Country\", \"Government\", \"Population\", and \"Nationhood\" columns " +
-            "specify custom editors: a multi-select item, a multiple-line textarea, a numeric spinner, and a compound date control.";
+    private static final String DESCRIPTION = "<b>Click</b> on any cell to start editing. The \"Government\", \"Population\", "+
+        "and \"Nationhood\" columns specify custom editors. In this example, they are a multiple-line Text Area, a Numeric "+
+        "Spinner and a Compound Date Control.";
 
     public static class Factory implements PanelFactory {
         private String id;
@@ -58,19 +59,8 @@ public class GridCustomEditorsSample extends ShowcasePanel {
 
         ListGridField populationField = new ListGridField("population", "Population", 100);
         populationField.setEditorProperties(new SpinnerItem());
-
         populationField.setType(ListGridFieldType.INTEGER);
-        populationField.setCellFormatter(new CellFormatter() {
-            public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
-                if(value == null || value.equals("")) return null;
-                NumberFormat nf = NumberFormat.getFormat("0,000");
-                try {
-                    return nf.format(((Number) value).longValue());
-                } catch (Exception e) {
-                    return value.toString();
-                }
-            }
-        });
+
         ListGridField independenceField = new ListGridField("independence", "Independence", 225);
         DateItem dateItem = new DateItem();
         dateItem.setUseTextField(false);

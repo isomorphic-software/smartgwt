@@ -85,6 +85,7 @@ public class TreeDragReparentSample extends ShowcasePanel {
         employeeTreeGrid.setClosedIconSuffix("");
         employeeTreeGrid.setData(employeeTree);
         employeeTreeGrid.setFields(formattedField);
+        employeeTreeGrid.setShowSelectedIcons(true);
         
         return employeeTreeGrid;
     }

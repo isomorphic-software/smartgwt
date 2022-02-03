@@ -60,7 +60,7 @@ public class ResizeSample extends ShowcasePanel {
         });
 
         IButton collapseButton = new IButton("Collapse");
-        collapseButton.setLeft(120);
+        collapseButton.setLeft(130);
         collapseButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 htmlFlow.resizeTo(75, 45);

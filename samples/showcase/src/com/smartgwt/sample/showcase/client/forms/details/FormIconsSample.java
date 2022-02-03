@@ -12,7 +12,7 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class FormIconsSample extends ShowcasePanel {
 
-    private static final String DESCRIPTION = "Click on the help icon below to see a description " +
+    private static final String DESCRIPTION = "Click on the help icon to see a description " +
     		"for severity levels. Form items can show an arbitrary number of icons to do whatever you need.";
 
     private static final String HELPTEXT = "<br><b>Severity 1</b> - Critical problem<br>System is unavailable in production or " +
@@ -51,6 +51,7 @@ public class FormIconsSample extends ShowcasePanel {
         final StaticTextItem severityLevel = new StaticTextItem();
         severityLevel.setName("severityLevel");
         severityLevel.setTitle("Severity Level");
+        severityLevel.setWrapTitle(false);
         severityLevel.setDefaultValue("Severity 2");
         severityLevel.setIcons(icon);
         severityLevel.addIconClickHandler(new IconClickHandler() {

@@ -2,6 +2,7 @@
 package com.smartgwt.sample.showcase.client.sections;
 
 import com.smartgwt.client.types.VisibilityMode;
+import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.Img;
@@ -40,6 +41,7 @@ public class SectionsAddRemoveSample extends ShowcasePanel {
     public Canvas getViewPanel() {
         final SectionStack sectionStack = new SectionStack();
         sectionStack.setVisibilityMode(VisibilityMode.MULTIPLE);
+        sectionStack.setOverflow(Overflow.AUTO);
         sectionStack.setWidth(300);
         sectionStack.setHeight(350);
 

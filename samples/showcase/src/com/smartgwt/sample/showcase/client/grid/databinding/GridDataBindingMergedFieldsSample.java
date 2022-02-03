@@ -53,11 +53,10 @@ public class GridDataBindingMergedFieldsSample extends ShowcasePanel {
         countryCodeField.setAlign(Alignment.CENTER);
         countryCodeField.setImageURLPrefix("flags/16/");
         countryCodeField.setImageURLSuffix(".png");
-        ListGridField nameField = new ListGridField("countryName", "Country", 150);
-        ListGridField independenceField = new ListGridField("independence", "Nationhood", 225);
+        ListGridField nameField = new ListGridField("countryName", "Country", 100);
+        ListGridField independenceField = new ListGridField("independence", "Nationhood", 100);
         independenceField.setType(ListGridFieldType.DATE);
-        independenceField.setWidth(70);
-        ListGridField populationField = new ListGridField("population", "Population");
+        ListGridField populationField = new ListGridField("population", "Population", 100);
         populationField.setType(ListGridFieldType.INTEGER);
         populationField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {

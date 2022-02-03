@@ -1,3 +1,0 @@
-After running the GWT compiler, copy the contents of ../../../MyContacts/war/mycontacts into this directory:
-
-cp -R ../../../MyContacts/war/mycontacts/* .

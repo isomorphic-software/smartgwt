@@ -53,8 +53,8 @@ public class TimelineGroupingSample extends ShowcasePanel {
         
         Timeline calendar = new Timeline();
         calendar.setHeight(451);
-        calendar.setStartDate(new Date(112, 5, 2));
-        calendar.setEndDate(new Date(112, 5, 22));
+        calendar.setStartDate(new Date(116, 5, 2));
+        calendar.setEndDate(new Date(116, 5, 22));
         calendar.setCanEditLane(true);
         calendar.setShowEventDescriptions(false);
         // grouping settings

@@ -22,7 +22,7 @@ import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class ShapeGallerySample extends ShowcasePanel {
-    private static final String DESCRIPTION = "This is a sample of the shapes available in the SmartClient drawing module.";
+    private static final String DESCRIPTION = "This is a sample of the shapes available in the Smart GWT drawing module.";
 
     public static class Factory implements PanelFactory {
 
@@ -144,5 +144,10 @@ public class ShapeGallerySample extends ShowcasePanel {
 
     public String getIntro() {
         return DESCRIPTION;
+    }
+
+    @Override
+    protected boolean shouldWrapViewPanel() {
+        return true;
     }
 }

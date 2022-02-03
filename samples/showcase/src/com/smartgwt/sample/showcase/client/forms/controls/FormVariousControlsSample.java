@@ -12,6 +12,7 @@ import com.smartgwt.client.widgets.form.fields.CheckboxItem;
 import com.smartgwt.client.widgets.form.fields.ColorPickerItem;
 import com.smartgwt.client.widgets.form.fields.ComboBoxItem;
 import com.smartgwt.client.widgets.form.fields.DateItem;
+import com.smartgwt.client.widgets.form.fields.DateTimeItem;
 import com.smartgwt.client.widgets.form.fields.DateRangeItem;
 import com.smartgwt.client.widgets.form.fields.LinkItem;
 import com.smartgwt.client.widgets.form.fields.MiniDateRangeItem;
@@ -54,8 +55,8 @@ public class FormVariousControlsSample extends ShowcasePanel {
         VLayout layout = new VLayout(10);
 
         final DynamicForm form = new DynamicForm();
-        form.setWidth(400);
-        form.setColWidths(120, "*");
+        form.setWidth(620);
+        form.setColWidths(190, "*");
 
         TextItem textItem = new TextItem();
         textItem.setTitle("Text");
@@ -86,7 +87,6 @@ public class FormVariousControlsSample extends ShowcasePanel {
         SliderItem sliderItem = new SliderItem();
         sliderItem.setTitle("Slider");
         sliderItem.setHeight(40);
-        sliderItem.setWidth(180);
         sliderItem.setMinValue(1.0);
         sliderItem.setMaxValue(5.0);
         sliderItem.setNumValues(5);
@@ -94,8 +94,8 @@ public class FormVariousControlsSample extends ShowcasePanel {
 
         LinkItem linkItem = new LinkItem("link");
         linkItem.setTitle("LinkItem");
-        linkItem.setLinkTitle("<br>Click Me<br>");
-        linkItem.setHeight(36);
+        linkItem.setLinkTitle("Click Me");
+        linkItem.setHeight(80);
         linkItem.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 SC.say("Hello World");
@@ -115,13 +115,13 @@ public class FormVariousControlsSample extends ShowcasePanel {
         layout.addMember(form);
 
         DynamicForm selectComboForm = new DynamicForm();
-        selectComboForm.setWidth(450);
-        selectComboForm.setColWidths(120, "*");
+        selectComboForm.setWidth(620);
+        selectComboForm.setColWidths(190, "*");
         selectComboForm.setIsGroup(true);
         selectComboForm.setGroupTitle("Select / Combo Controls");
 
         ComboBoxItem cbItem = new ComboBoxItem();
-        cbItem.setTitle("Select");
+        cbItem.setTitle("ComboBox");
         cbItem.setHint("<nobr>A simple combobox</nobr>");
         cbItem.setType("comboBox");
         cbItem.setValueMap("Cat", "Dog", "Giraffe", "Goat", "Marmoset", "Mouse");
@@ -142,7 +142,7 @@ public class FormVariousControlsSample extends ShowcasePanel {
 
         final SelectItem selectItem = new SelectItem();
         selectItem.setTitle("Select");
-        selectItem.setHint("<nobr>A combobox with icons</nobr>");
+        selectItem.setHint("<nobr>A select with icons</nobr>");
         selectItem.setValueMap(valueMap);
         selectItem.setImageURLPrefix("flags/16/");
         selectItem.setImageURLSuffix(".png");
@@ -164,7 +164,7 @@ public class FormVariousControlsSample extends ShowcasePanel {
 
         SelectItem selectItem2 = new SelectItem();
         selectItem2.setTitle("Select");
-        selectItem2.setHint("<nobr>A combobox with styled entries</nobr>");
+        selectItem2.setHint("<nobr>A select with styled entries</nobr>");
         selectItem2.setValueMap("<span style='color:#FF0000;'>Red</span>",
                 "<span style='color:#00FF00;'>Green</span>",
                 "<span style='color:#0000FF;'>Blue</span>");
@@ -186,8 +186,8 @@ public class FormVariousControlsSample extends ShowcasePanel {
         layout.addMember(selectComboForm);
 
         DynamicForm dateForm = new DynamicForm();
-        dateForm.setWidth(450);
-        dateForm.setColWidths(120, "*");
+        dateForm.setWidth(620);
+        dateForm.setColWidths(190, "*");
         dateForm.setIsGroup(true);
         dateForm.setGroupTitle("Date Controls");
 
@@ -200,8 +200,13 @@ public class FormVariousControlsSample extends ShowcasePanel {
         dateItem2.setUseTextField(true);
         dateItem2.setHint("<nobr>Direct date input</nobr>");
 
+        DateTimeItem dateTimeItem = new DateTimeItem();
+        dateTimeItem.setTitle("Datetime");
+        dateTimeItem.setHint("<nobr>Direct datetime input</nobr>");
+        dateTimeItem.setUseTextField(true);
+        
         TimeItem timeItem1 = new TimeItem("timeItem", "Time");
-        TimeItem timeItem2 = new TimeItem("timeItem", "Time");
+        TimeItem timeItem2 = new TimeItem("timeItem2", "Time");
         timeItem2.setHint("Picklist based time input");
         timeItem2.setUseTextField(false);
 
@@ -215,7 +220,7 @@ public class FormVariousControlsSample extends ShowcasePanel {
         MiniDateRangeItem miniDateRangeItem = new MiniDateRangeItem("mdri", "Mini Date Range");
         RelativeDateItem relativeDateItem = new RelativeDateItem("rdi", "Relative Date");
 
-        dateForm.setItems(dateItem, dateItem2, timeItem1, timeItem2,
+        dateForm.setItems(dateItem, dateItem2, dateTimeItem, timeItem1, timeItem2,
                           dateRangeItem, miniDateRangeItem, relativeDateItem);
         layout.addMember(dateForm);
 
@@ -224,6 +229,11 @@ public class FormVariousControlsSample extends ShowcasePanel {
 
     public String getIntro() {
         return DESCRIPTION;
+    }
+    
+    @Override
+    protected boolean shouldWrapViewPanel() {
+        return true;
     }
 
 }

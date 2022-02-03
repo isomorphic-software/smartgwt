@@ -64,6 +64,7 @@ public class FormTitlesSample extends ShowcasePanel {
         password2Item.setTitle("Password again");
         password2Item.setRequired(true);
         password2Item.setType("password");
+        password2Item.setWrapTitle(false);
 
         form.setFields(new FormItem[] {usernameItem, emailItem, passwordItem, password2Item});
         

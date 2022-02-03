@@ -46,7 +46,7 @@ public class MultiFieldSearchSample extends ShowcasePanel {
 		DataSource supplyItemDS = ItemSupplyXmlDS.getInstance();
 		
 		final DynamicForm form = new DynamicForm();
-		form.setWidth(500);
+		form.setWidth(550);
 		form.setNumCols(4);
 		
 		ListGrid pickListProperties = new ListGrid();
@@ -57,6 +57,7 @@ public class MultiFieldSearchSample extends ShowcasePanel {
 		
 		SelectItem filteredSelect = new SelectItem("filteredSelect");
 		filteredSelect.setTitle("Item (Select)");
+        filteredSelect.setWrapTitle(false);
 		filteredSelect.setOptionDataSource(supplyItemDS);
 		filteredSelect.setDisplayField("itemName");
 		filteredSelect.setValueField("SKU");
@@ -66,6 +67,7 @@ public class MultiFieldSearchSample extends ShowcasePanel {
 		
 		ComboBoxItem filteredCombo = new ComboBoxItem();
         filteredCombo.setTitle("Item (ComboBox)");
+        filteredCombo.setWrapTitle(false);
         filteredCombo.setAddUnknownValues(false);
         filteredCombo.setOptionDataSource(supplyItemDS);
         filteredCombo.setDisplayField("itemName");

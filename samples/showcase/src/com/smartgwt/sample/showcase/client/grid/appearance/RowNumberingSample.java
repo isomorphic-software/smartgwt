@@ -69,7 +69,7 @@ public class RowNumberingSample extends ShowcasePanel {
         canvas.addChild(hideCapital);
 
         IButton showCapitals = new IButton("Show Capitals");
-        showCapitals.setLeft(120);
+        showCapitals.setLeft(130);
         showCapitals.setTop(240);
         showCapitals.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {

@@ -44,16 +44,19 @@ public class ToolStripVerticalSample extends ShowcasePanel {
         ToolStripButton boldButton = new ToolStripButton();
         boldButton.setIcon("[SKIN]/RichTextEditor/text_bold.png");
         boldButton.setActionType(SelectionType.CHECKBOX);
+        boldButton.setShowFocused(false);
         toolStrip.addButton(boldButton);
 
         ToolStripButton italicsButton = new ToolStripButton();
         italicsButton.setIcon("[SKIN]/RichTextEditor/text_italic.png");
         italicsButton.setActionType(SelectionType.CHECKBOX);
+        italicsButton.setShowFocused(false);
         toolStrip.addButton(italicsButton);
 
         ToolStripButton underlineButton = new ToolStripButton();
         underlineButton.setIcon("[SKIN]/RichTextEditor/text_underline.png");
         underlineButton.setActionType(SelectionType.CHECKBOX);
+        underlineButton.setShowFocused(false);
         toolStrip.addButton(underlineButton);
 
         toolStrip.addSeparator();

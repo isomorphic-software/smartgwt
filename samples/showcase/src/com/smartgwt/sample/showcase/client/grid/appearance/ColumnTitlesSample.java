@@ -67,7 +67,7 @@ public class ColumnTitlesSample extends ShowcasePanel {
         canvas.addChild(nameButton);
 
         IButton countryButton = new IButton("\"Country\"");
-        countryButton.setLeft(120);
+        countryButton.setLeft(130);
         countryButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 countryGrid.setFieldTitle("countryName", "Country");

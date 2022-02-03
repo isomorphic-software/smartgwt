@@ -45,7 +45,7 @@ public class SectionsResizeSample extends ShowcasePanel {
         final SectionStack sectionStack = new SectionStack();
         sectionStack.setVisibilityMode(VisibilityMode.MULTIPLE);
         sectionStack.setWidth(300);
-        sectionStack.setHeight(350);
+        sectionStack.setHeight(400);
 
         SectionStackSection section1 = new SectionStackSection("Blue Pawn");
         section1.setExpanded(true);
@@ -76,12 +76,7 @@ public class SectionsResizeSample extends ShowcasePanel {
         HLayout layout = new HLayout();
         layout.setMembersMargin(20);
         layout.addMember(sectionStack);
-
-        VLayout buttons = new VLayout();
-        buttons.setMembersMargin(10);
-        buttons.addMember(resizeButton);
-
-        layout.addMember(buttons);
+        layout.addMember(resizeButton);
         return layout;
     }
 

@@ -42,13 +42,12 @@ public class TabsCloseableSample extends ShowcasePanel {
         topTabSet.setWidth(400);
         topTabSet.setHeight(200);
 
-        Tab tTab1 = new Tab("Blue", "pieces/16/pawn_blue.png");
-
+        Tab tTab1 = new Tab("Blue");
         tTab1.setCanClose(true);
         Img tImg1 = new Img("pieces/48/pawn_blue.png", 48, 48);
         tTab1.setPane(tImg1);
 
-        Tab tTab2 = new Tab("Green", "pieces/16/pawn_green.png");
+        Tab tTab2 = new Tab("Green");
         Img tImg2 = new Img("pieces/48/pawn_green.png", 48, 48);
         tTab2.setPane(tImg2);
 
@@ -63,11 +62,13 @@ public class TabsCloseableSample extends ShowcasePanel {
             public void onClick(ClickEvent event) {
                 String title = topTabSet.getTabs().length % 2 == 0 ? "Yellow" : "Green";
                 String iconType = topTabSet.getTabs().length % 2 == 0 ? "pawn" : "cube";
-                Tab tTab = new Tab(title, "pieces/16/" + iconType + "_" + title.toLowerCase() + ".png");
+                Tab tTab = new Tab(title);
                 tTab.setCanClose(true);
                 Img tImg = new Img("pieces/48/" + iconType + "_" + title.toLowerCase() + ".png", 48, 48);
                 tTab.setPane(tImg);
                 topTabSet.addTab(tTab);
+                // Select the newly created Tab
+                topTabSet.selectTab(tTab);
             }
         });
 

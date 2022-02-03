@@ -143,6 +143,7 @@ public class GridToGridSample extends ShowcasePanel {
             layout.addMember(paste);
             layout.setAlign(MEMBER_ALIGNMENT[index]);
             layout.setHeight(25);
+            layout.setMembersMargin(10);
             this.addMember(layout);
         }
 
@@ -167,7 +168,7 @@ public class GridToGridSample extends ShowcasePanel {
             myTab.setPane(canvas);
             board.addTab(myTab);
         }
-        this.board.setHeight(325);
+        this.board.setHeight(350);
         return board;
     }
 

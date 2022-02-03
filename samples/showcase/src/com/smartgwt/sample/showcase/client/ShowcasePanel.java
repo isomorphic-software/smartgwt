@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.smartgwt.client.types.ContentsType;
+import com.smartgwt.client.types.Overflow;
 import com.smartgwt.client.types.Side;
 import com.smartgwt.client.util.Browser;
 import com.smartgwt.client.widgets.Canvas;
@@ -109,13 +110,12 @@ public abstract class ShowcasePanel extends VLayout {
         int userHeight = com.google.gwt.user.client.Window.getClientHeight() - 96;
         win.setHeight(userHeight < height ? userHeight : height);
 
-        int windowTop = 40;
-        int windowLeft = com.google.gwt.user.client.Window.getClientWidth() - (win.getWidth() + 20) - getPageLeft();
+        int windowTop = 10;
+        int windowLeft = getWidth() - win.getWidth() - 10;
         win.setLeft(windowLeft);
         win.setTop(windowTop);
         win.setCanDragReposition(true);
         win.setCanDragResize(true);
-        win.setMembersMargin(5);
 
         final TabSet tabs = new TabSet();
         tabs.setTabBarPosition(Side.TOP);
@@ -188,7 +188,6 @@ public abstract class ShowcasePanel extends VLayout {
             }
 
             if (useDesktopMode) {
-                introWindow.setAutoSize(true);
                 introWindow.setAutoHeight();
             }
             introWindow.setCanDragReposition(false);
@@ -199,8 +198,12 @@ public abstract class ShowcasePanel extends VLayout {
         if (useDesktopMode) {
             final Layout layout = ((Layout)getMember(0));
             if (topIntro) {
+                introWindow.setAutoSize(false);
+                introWindow.setOverflow(Overflow.VISIBLE);
+                introWindow.setAutoChildProperties("body", new Canvas() {{setOverflow(Overflow.VISIBLE);}});
                 layout.addMember(introWindow, 0);
             } else {
+                introWindow.setAutoSize(true);   
                 layout.addMember(introWindow);
             }
         } else {
@@ -218,6 +221,8 @@ public abstract class ShowcasePanel extends VLayout {
         tabPane.setHeight100();
         tabPane.setContentsURL(url);
         tabPane.setContentsType(ContentsType.PAGE);
+        tabPane.setOverflow(Overflow.AUTO);
+        tabPane.setBackgroundColor("white");
 
         final Tab tab = new Tab(title, icon);
         tab.setPane(tabPane);

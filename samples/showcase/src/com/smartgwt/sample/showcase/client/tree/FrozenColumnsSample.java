@@ -9,8 +9,8 @@ import com.smartgwt.sample.showcase.client.data.EmployeeXmlDS;
 
 public class FrozenColumnsSample extends ShowcasePanel {
     private static final String DESCRIPTION = "<p>Grids and multi-column trees can set a  " +
-            "column to frozen by setting <code>frozen:true</code>.</p><p>Columns can be " +
-            "reorder, drag and drop and load on demand all function normally. Double click " +
+            "column to frozen by setting <code>frozen:true</code>.</p><p>" +
+            "Reordering, drag and drop and load on demand all function normally. Double click " +
             "a cell to edit.</p>";
 
     public static class Factory implements PanelFactory {
@@ -45,7 +45,8 @@ public class FrozenColumnsSample extends ShowcasePanel {
         treeGrid.setFolderIcon("icons/16/person.png");
         treeGrid.setAutoFetchData(true);
         treeGrid.setCanFreezeFields(true);
-        treeGrid.setCanReparentNodes(true);        
+        treeGrid.setCanReparentNodes(true);       
+        treeGrid.setShowSelectedIcons(true);
 
         TreeGridField nameField = new TreeGridField("Name", 150);
         nameField.setFrozen(true);
@@ -53,9 +54,9 @@ public class FrozenColumnsSample extends ShowcasePanel {
         TreeGridField jobField = new TreeGridField("Job", 150);
         TreeGridField employeeTypeField = new TreeGridField("EmployeeType", 150);
         TreeGridField employeeStatusField = new TreeGridField("EmployeeStatus", 150);
-        TreeGridField salaryField = new TreeGridField("Salary");
-        TreeGridField genderField = new TreeGridField("Gender");
-        TreeGridField maritalStatusField = new TreeGridField("MaritalStatus");
+        TreeGridField salaryField = new TreeGridField("Salary", 100);
+        TreeGridField genderField = new TreeGridField("Gender", 100);
+        TreeGridField maritalStatusField = new TreeGridField("MaritalStatus", 100);
 
         treeGrid.setFields(nameField, jobField, employeeTypeField,employeeStatusField,
                 salaryField, genderField, maritalStatusField);

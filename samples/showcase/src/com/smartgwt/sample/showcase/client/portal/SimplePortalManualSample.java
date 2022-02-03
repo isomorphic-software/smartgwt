@@ -271,6 +271,6 @@ public class SimplePortalManualSample extends ShowcasePanel {
     }
 
     public String getIntro() {
-        return null;
+        return DESCRIPTION;
     }
 }

@@ -35,7 +35,7 @@ public class WindowFooterSample extends ShowcasePanel {
 
         final Window window = new Window();
         window.setTitle("Window with footer");
-        window.setWidth(200);
+        window.setWidth(300);
         window.setHeight(200);
         window.setCanDragResize(true);
         window.setShowFooter(true);

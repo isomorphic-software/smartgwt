@@ -7,6 +7,10 @@ import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.events.SelectionUpdatedEvent;
 import com.smartgwt.client.widgets.grid.events.SelectionUpdatedHandler;
+import com.smartgwt.client.widgets.grid.events.RecordClickEvent;    
+import com.smartgwt.client.widgets.grid.events.RecordClickHandler;
+import com.smartgwt.client.widgets.tree.events.NodeClickEvent;    
+import com.smartgwt.client.widgets.tree.events.NodeClickHandler;
 import com.smartgwt.client.widgets.layout.SplitPane;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.tree.TreeGrid;
@@ -20,12 +24,19 @@ public class SplitPanePanel extends VLayout {
         final SplitPane splitPane = new SplitPane();
 
         final DetailViewer detailPane = new DetailViewer();
-        detailPane.setAutoDraw(false);
         detailPane.setDataSource(ItemSupplyXmlDS.getInstance());
 
         final ListGrid listPane = new ListGrid();
-        listPane.setAutoDraw(false);
         listPane.setDataSource(ItemSupplyXmlDS.getInstance());
+        listPane.addRecordClickHandler(new RecordClickHandler() {    
+            @Override    
+            public void onRecordClick(RecordClickEvent event) {    
+                detailPane.viewSelectedData(listPane);    
+                splitPane.setDetailTitle((event.getRecordNum() + 1) + " of " + listPane.getTotalRows());    
+                splitPane.showDetailPane();    
+            }    
+        }); 
+        
         if (Browser.getIsTablet()) {
             ListGridField itemNameField = new ListGridField("itemName");
             ListGridField unitCostField = new ListGridField("unitCost");
@@ -34,10 +45,18 @@ public class SplitPanePanel extends VLayout {
         }
 
         final TreeGrid navigationPane = new TreeGrid();
-        navigationPane.setAutoDraw(false);
         navigationPane.setDataSource(SupplyCategoryXmlDS.getInstance());
         navigationPane.setAutoFetchData(true);
         navigationPane.setShowHeader(Browser.getIsDesktop());
+        navigationPane.addNodeClickHandler(new NodeClickHandler() {    
+                
+            @Override    
+            public void onNodeClick(NodeClickEvent event) {    
+                listPane.fetchRelatedData(event.getNode(), navigationPane);    
+                splitPane.setListTitle(event.getNode().getAttribute("categoryName"));    
+                splitPane.showListPane();    
+            }    
+        }); 
         navigationPane.addSelectionUpdatedHandler(new SelectionUpdatedHandler() {
             @Override
             public void onSelectionUpdated(SelectionUpdatedEvent event) {
@@ -46,7 +65,6 @@ public class SplitPanePanel extends VLayout {
             }
         });
 
-        splitPane.setAutoDraw(false);
         splitPane.setNavigationTitle("Categories");
         splitPane.setShowLeftButton(false);
         splitPane.setShowRightButton(false);
@@ -54,9 +72,7 @@ public class SplitPanePanel extends VLayout {
         splitPane.setDetailPane(detailPane);
         splitPane.setListPane(listPane);
         splitPane.setNavigationPane(navigationPane);
-        splitPane.setAutoNavigate(true);
-        splitPane.setListPaneTitleTemplate("${record.categoryName}");
-        splitPane.setDetailPaneTitleTemplate("${index + 1} of ${totalRows}");
+        splitPane.setAutoNavigate(false);
         return splitPane;
     }
 

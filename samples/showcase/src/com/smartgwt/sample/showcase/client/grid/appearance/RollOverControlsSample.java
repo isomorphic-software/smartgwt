@@ -65,7 +65,7 @@ public class RollOverControlsSample extends ShowcasePanel {
 
                 if(rollOverCanvas == null) {
                     rollOverCanvas = new HLayout(3);
-                    rollOverCanvas.setSnapTo("TR");
+                    rollOverCanvas.setSnapTo("R");
                     rollOverCanvas.setWidth(50);
                     rollOverCanvas.setHeight(22);
 

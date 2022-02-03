@@ -12,7 +12,7 @@ import com.smartgwt.client.widgets.form.fields.MultiComboBoxItem;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
-import com.smartgwt.client.widgets.layout.VStack;
+import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
@@ -106,10 +106,13 @@ public class MultiComboBoxSample extends ShowcasePanel {
         suppliesForm.setTitleOrientation(TitleOrientation.TOP);
         suppliesForm.setItems(suppliesItem);
 
-        final VStack layout = new VStack(10);
-        layout.setWidth(500);
+        final VLayout layout = new VLayout(10);
+        layout.setWidth("100%");
         layout.setMembers(configureForm, suppliesForm);
-        return layout;
+
+        final Canvas canvas = new Canvas();
+        canvas.addChild(layout);
+        return canvas;
     }
 
     public String getIntro() {

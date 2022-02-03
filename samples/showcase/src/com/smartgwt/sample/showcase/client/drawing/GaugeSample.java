@@ -85,15 +85,16 @@ public class GaugeSample extends ShowcasePanel {
         gauge.setValue(45.0);
 
         gauge.setSectors(new GaugeSector[]{
-            new GaugeSector(10, "#FF0000"),
-            new GaugeSector(30, "#FF6600"),
-            new GaugeSector(60, "#FFFF00"),
-            new GaugeSector(90, "#99CC00"),
-            new GaugeSector(100, "#00FF00")
+            new GaugeSector(10, "#E33B35"),
+            new GaugeSector(30, "#ED5450"),
+            new GaugeSector(60, "#FCBE29"),
+            new GaugeSector(90, "#0889C6"),
+            new GaugeSector(100, "#3AACE1")
         });
 
         configForm = new DynamicForm();
         configForm.setNumCols(3);
+        configForm.setColWidths(120, 100, "*");
         configForm.setWidth(320);
         configForm.setIsGroup(true);
         configForm.setGroupTitle("Configuration");
@@ -106,6 +107,7 @@ public class GaugeSample extends ShowcasePanel {
 
         drawnClockwiseConfigItem = new CheckboxItem("chkbox_drawnClockwise", "Draw Clockwise?");
         drawnClockwiseConfigItem.setEndRow(true);
+        drawnClockwiseConfigItem.setColSpan(2);
         drawnClockwiseConfigItem.setValue(gauge.getDrawnClockwise());
         drawnClockwiseConfigItem.addChangedHandler(new ChangedHandler() {
             @Override
@@ -116,6 +118,7 @@ public class GaugeSample extends ShowcasePanel {
 
         minValueConfigItem = new TextItem("text_minValue", "Min. Value");
         minValueConfigItem.setEndRow(true);
+        minValueConfigItem.setWidth(100);
         minValueConfigItem.setValue(String.valueOf(gauge.getMinValueAsDouble()));
         minValueConfigItem.addBlurHandler(new BlurHandler() {
             @Override
@@ -129,6 +132,7 @@ public class GaugeSample extends ShowcasePanel {
 
         maxValueConfigItem = new TextItem("text_maxValue", "Max. Value");
         maxValueConfigItem.setEndRow(true);
+        maxValueConfigItem.setWidth(100);
         maxValueConfigItem.setValue(String.valueOf(gauge.getMaxValueAsDouble()));
         maxValueConfigItem.addBlurHandler(new BlurHandler() {
             @Override
@@ -142,6 +146,7 @@ public class GaugeSample extends ShowcasePanel {
 
         numMajorTicksConfigItem = new TextItem("text_numMajorTicks", "# Major Ticks");
         numMajorTicksConfigItem.setEndRow(true);
+        numMajorTicksConfigItem.setWidth(100);
         numMajorTicksConfigItem.setValue(String.valueOf(gauge.getNumMajorTicks()));
         numMajorTicksConfigItem.addBlurHandler(new BlurHandler() {
             @Override
@@ -153,6 +158,7 @@ public class GaugeSample extends ShowcasePanel {
 
         numMinorTicksConfigItem = new TextItem("text_numMinorTicks", "# Minor Ticks");
         numMinorTicksConfigItem.setEndRow(true);
+        numMinorTicksConfigItem.setWidth(100);
         numMinorTicksConfigItem.setValue(String.valueOf(gauge.getNumMinorTicks()));
         numMinorTicksConfigItem.addBlurHandler(new BlurHandler() {
             @Override
@@ -164,6 +170,7 @@ public class GaugeSample extends ShowcasePanel {
 
         labelPrefixConfigItem = new TextItem("text_labelPrefix", "Label Prefix");
         labelPrefixConfigItem.setEndRow(true);
+        labelPrefixConfigItem.setWidth(100);
         labelPrefixConfigItem.setValue(gauge.getLabelPrefix());
         labelPrefixConfigItem.addBlurHandler(new BlurHandler() {
             @Override
@@ -174,6 +181,7 @@ public class GaugeSample extends ShowcasePanel {
 
         labelSuffixConfigItem = new TextItem("text_labelSuffix", "Label Suffix");
         labelSuffixConfigItem.setEndRow(true);
+        labelSuffixConfigItem.setWidth(100);
         labelSuffixConfigItem.setValue(gauge.getLabelSuffix());
         labelSuffixConfigItem.addBlurHandler(new BlurHandler() {
             @Override
@@ -184,6 +192,7 @@ public class GaugeSample extends ShowcasePanel {
 
         newSectorValueTextItem = new TextItem("text_newSectorValue", "New Sector - Value");
         newSectorValueTextItem.setEndRow(false);
+        newSectorValueTextItem.setWidth(100);
 
         addSectorButtonItem = new ButtonItem("button_addSector", "Add Sector");
         addSectorButtonItem.setStartRow(false);
@@ -211,7 +220,7 @@ public class GaugeSample extends ShowcasePanel {
         makeSectorsForm();
 
         gaugeValueConfigItem = new SliderItem("slider_gaugeValue", "Value");
-        gaugeValueConfigItem.setColSpan(2);
+        gaugeValueConfigItem.setColSpan(3);
         gaugeValueConfigItem.addChangedHandler(new ChangedHandler() {
             @Override
             public void onChanged(ChangedEvent event) {

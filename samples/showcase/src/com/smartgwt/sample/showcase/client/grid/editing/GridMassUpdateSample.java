@@ -48,9 +48,8 @@ public class GridMassUpdateSample extends ShowcasePanel {
         Canvas canvas = new Canvas();
 
         final ListGrid countryGrid = new ListGrid();
-        countryGrid.setWidth(500);
+        countryGrid.setWidth(550);
         countryGrid.setHeight(224);
-        countryGrid.setCellHeight(22);
         countryGrid.setDataSource(CountryXmlDS.getInstance());
 
         ListGridField nameField = new ListGridField("countryName", "Country");
@@ -58,20 +57,7 @@ public class GridMassUpdateSample extends ShowcasePanel {
         ListGridField memberG8Field = new ListGridField("member_g8", "Member G8");
         ListGridField populationField = new ListGridField("population", "Population");
         populationField.setType(ListGridFieldType.INTEGER);
-        populationField.setCellFormatter(new CellFormatter() {
-            public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
-                if(value == null) {
-                    return null;
-                }
-                NumberFormat nf = NumberFormat.getFormat("0,000");
-                try {
-                    return nf.format(((Number) value).longValue());
-                } catch (Exception e) {
-                    return value.toString();
-                }
-            }
-        });
-        ListGridField independenceField = new ListGridField("independence", "Independence");
+        ListGridField independenceField = new ListGridField("independence", "Independence", 130);
         countryGrid.setFields(nameField,continentField, memberG8Field, populationField, independenceField);
 
         countryGrid.setAutoFetchData(true);
@@ -93,7 +79,7 @@ public class GridMassUpdateSample extends ShowcasePanel {
 
         IButton saveButton = new IButton("Save");
         saveButton.setTop(250);
-        saveButton.setLeft(110);
+        saveButton.setLeft(140);
         saveButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 countryGrid.saveAllEdits();
@@ -103,7 +89,7 @@ public class GridMassUpdateSample extends ShowcasePanel {
 
         IButton discardButton = new IButton("Discard");
         discardButton.setTop(250);
-        discardButton.setLeft(220);
+        discardButton.setLeft(280);
         discardButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 countryGrid.discardAllEdits();

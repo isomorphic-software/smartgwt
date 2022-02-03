@@ -49,6 +49,7 @@ public class IFramesSample extends ShowcasePanel {
         hStack.setMembersMargin(10);
 
         IButton wikipediaButton = new IButton("Wikipedia: Ajax");
+        wikipediaButton.setAutoFit(true);
         wikipediaButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 htmlPane.setContentsURL("http://en.wikipedia.org/wiki/Ajax_%28mythology%29");
@@ -57,7 +58,7 @@ public class IFramesSample extends ShowcasePanel {
         hStack.addMember(wikipediaButton);
 
         IButton ciaButton = new IButton("CIA World Factbook: USA");
-        ciaButton.setWidth(150);
+        ciaButton.setAutoFit(true);
         ciaButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 htmlPane.setContentsURL("https://www.cia.gov/library/publications/the-world-factbook/geos/us.html");

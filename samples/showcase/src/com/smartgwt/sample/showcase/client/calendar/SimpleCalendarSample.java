@@ -35,6 +35,7 @@ public class SimpleCalendarSample extends ShowcasePanel {
 
     public Canvas getViewPanel() {
         Calendar calendar = new Calendar();
+        calendar.setStartDate(CalendarData.getDataStartDate());
         calendar.setData(CalendarData.getRecords());
         return calendar;
     }

@@ -97,7 +97,8 @@ public class FieldPickerSample extends ShowcasePanel {
             super();
             
             setID("pickableFields");
-            
+            setCanEditTitles(true);
+
             setAutoFitData(Autofit.BOTH);
             setAutoFitMaxColumns(8);
             setAutoFitMaxRecords(20);
@@ -109,14 +110,6 @@ public class FieldPickerSample extends ShowcasePanel {
             ListGridField[] fields = createFields(200);
             setFields(getOrderedFields(fields));
             setData(createRecords(20, fields));
-
-            Record windowProps = new Record();
-            windowProps.setAttribute("isModal", false);
-            setAttribute("fieldPickerWindowProperties", windowProps.getJsObj(), true);
-        }
-
-        protected String getBaseStyle(ListGridRecord record, int rowNum, int colNum) {
-            return colNum % 2 == 0 ? "myEvenGridCell" : "myOddGridCell";
         }
     }
 

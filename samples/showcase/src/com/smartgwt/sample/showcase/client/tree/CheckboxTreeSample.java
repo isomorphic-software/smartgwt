@@ -23,10 +23,10 @@ public class CheckboxTreeSample extends ShowcasePanel {
 
     public static final TreeNode[] employeeData = new TreeNode[] {
             new EmployeeTreeNode("4", "1", "Charles Madigen", "Chief Operating Officer", true),
+            new EmployeeTreeNode("188", "4", "Rogine Leger", "Mgr Syst P P", true),
             new EmployeeTreeNode("189", "4", "Gene Porter", "Mgr Tech Plng IntIS T", false),
             new EmployeeTreeNode("265", "189", "Olivier Doucet", "Asset Spec Lines Stns", false),
-            new EmployeeTreeNode("264", "189", "Cheryl Pearson", "Dsl Sys Rep", false),
-            new EmployeeTreeNode("188", "4", "Rogine Leger", "Mgr Syst P P", true)
+            new EmployeeTreeNode("264", "189", "Cheryl Pearson", "Dsl Sys Rep", false)
     };
 
     public static class Factory implements PanelFactory {

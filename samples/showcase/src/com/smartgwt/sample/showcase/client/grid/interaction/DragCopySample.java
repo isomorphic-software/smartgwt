@@ -6,6 +6,7 @@ import com.smartgwt.client.types.ListGridFieldType;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.layout.HStack;
 import com.smartgwt.client.widgets.TransferImgButton;
+import com.smartgwt.client.widgets.TransferImgButton.TransferImg;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;
@@ -81,7 +82,9 @@ public class DragCopySample extends ShowcasePanel {
                 
         countryGrid2.setFields(countryCodeField2, nameField2);
 
-        TransferImgButton copy = new TransferImgButton(TransferImgButton.RIGHT);
+        TransferImgButton copy = new TransferImgButton(new TransferImg("icons/32/arrow_right.png"));
+        copy.setHeight(32);
+        copy.setWidth(32);
         copy.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 countryGrid2.transferSelectedData(countryGrid1);

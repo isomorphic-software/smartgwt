@@ -43,7 +43,7 @@ public class GridDataTypesCalculatedSample extends ShowcasePanel {
         Canvas canvas = new Canvas();
 
         final ListGrid countryGrid = new ListGrid();
-        countryGrid.setWidth(500);
+        countryGrid.setWidth(550);
         countryGrid.setHeight(224);
         countryGrid.setShowAllRecords(true);
         countryGrid.setCanEdit(true);
@@ -94,7 +94,7 @@ final ListGridField populationField = new ListGridField("population", "Populatio
             }
         });
 
-        final ListGridField gdpPerCapitaField = new ListGridField("gdpPerCapita", "GDP (per capita)");
+        final ListGridField gdpPerCapitaField = new ListGridField("gdpPerCapita", "GDP (per capita)", 150);
         gdpPerCapitaField.setCanEdit(false);
         gdpPerCapitaField.setAlign(Alignment.RIGHT);
         gdpPerCapitaField.setType(ListGridFieldType.FLOAT);

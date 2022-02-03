@@ -36,8 +36,8 @@ public class SearchForm extends com.smartgwt.client.widgets.form.SearchForm {
         setStyleName("defaultBorder");
         
         findItem = new ButtonItem("Find");
-        findItem.setIcon("silk/find.png");
-        findItem.setWidth(70);
+        findItem.setIcon("icons/16/find.png");
+        findItem.setWidth(80);
         findItem.setEndRow(false);
 
         TextItem skuItem = new TextItem("SKU");

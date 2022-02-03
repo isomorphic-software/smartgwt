@@ -61,8 +61,7 @@ public class WindowModalitySample extends ShowcasePanel {
             public void onClick(ClickEvent event) {
                 buttonTouchThis.setTitle("Can't Touch This");
                 final Window winModal = new Window();
-                winModal.setWidth(360);
-                winModal.setHeight(115);
+                winModal.setAutoSize(true);
                 winModal.setTitle("Modal Window");
                 winModal.setShowMinimizeButton(false);
                 winModal.setIsModal(true);
@@ -106,5 +105,10 @@ public class WindowModalitySample extends ShowcasePanel {
 
     public String getIntro() {
         return DESCRIPTION;
+    }
+    
+    @Override
+    protected boolean shouldWrapViewPanel() {
+        return true;
     }
 }

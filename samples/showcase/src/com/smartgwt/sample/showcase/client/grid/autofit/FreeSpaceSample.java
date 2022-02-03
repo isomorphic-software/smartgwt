@@ -58,13 +58,13 @@ public class FreeSpaceSample extends ShowcasePanel {
         Tab viewTab = new Tab("View");
 
         Canvas viewLabel = new Canvas();
-        viewLabel.setContents("[Record Details can be dispalyed here]");
+        viewLabel.setContents("[Record Details can be displayed here]");
         viewTab.setPane(viewLabel);
 
         Tab editTab = new Tab("Edit");
 
         Canvas editLabel = new Canvas();
-        editLabel.setContents("[Form for edits can be dispalyed here]");
+        editLabel.setContents("[Form for edits can be displayed here]");
         editTab.setPane(editLabel);
 
         tabSet.setTabs(viewTab, editTab);
@@ -99,7 +99,7 @@ public class FreeSpaceSample extends ShowcasePanel {
         navLayout.setMembers(treeGrid, listGrid);
 
         SectionStack sectionStack = new SectionStack();        
-        sectionStack.setWidth(600);
+        sectionStack.setWidth(650);
         sectionStack.setHeight(400);
         sectionStack.setVisibilityMode(VisibilityMode.MULTIPLE);
         sectionStack.setAnimateSections(true);
@@ -117,7 +117,7 @@ public class FreeSpaceSample extends ShowcasePanel {
 
         sectionStack.setSections(summarySection, detailsSection);
 
-
+        sectionStack.setBorder("1px solid blue");
         return sectionStack;
     }
 

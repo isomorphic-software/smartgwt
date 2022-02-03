@@ -19,6 +19,6 @@ import com.google.gwt.user.client.Window;
 
 public class SmartGwtEECommand implements Command {
     public void execute() {
-        Window.open("http://www.smartclient.com/smartgwtee/showcase", "sgwtee_showcase", null);
+        Window.open("http://www.smartclient.com/smartgwtee/showcase/#new_category", "sgwtee_showcase", null);
     }
 }

@@ -46,7 +46,7 @@ public class FormHintsSample extends ShowcasePanel {
         form.setWidth(300);
 
         TextItem caseNumber = new TextItem("case", "Case #");
-        caseNumber.setWidth(130);
+        caseNumber.setWidth(150);
         caseNumber.setHint("Enter case number");
         caseNumber.setShowHintInField(true);
 
@@ -56,6 +56,7 @@ public class FormHintsSample extends ShowcasePanel {
         final StaticTextItem severityLevel = new StaticTextItem();
         severityLevel.setName("severityLevel");
         severityLevel.setTitle("Severity Level");
+        severityLevel.setWrapTitle(false);
         severityLevel.setDefaultValue("Severity 2");
         severityLevel.setIcons(icon);
         severityLevel.addIconClickHandler(new IconClickHandler() {

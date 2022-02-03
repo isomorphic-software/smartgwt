@@ -44,6 +44,7 @@ public class CountryXmlDS extends DataSource {
         DataSourceDateField independenceField = new DataSourceDateField("independence", "Nationhood");
         DataSourceFloatField areaField = new DataSourceFloatField("area", "Area (km&sup2;)"); 
         DataSourceIntegerField populationField = new DataSourceIntegerField("population", "Population");
+        populationField.setFormat(",0");
         DataSourceFloatField gdpField = new DataSourceFloatField("gdp", "GDP ($M)");
         DataSourceLinkField articleField = new DataSourceLinkField("article", "Info");
 

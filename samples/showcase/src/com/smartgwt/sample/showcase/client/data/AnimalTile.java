@@ -32,8 +32,11 @@ public class AnimalTile extends DynamicForm {
 
         StaticTextItem commonName = new StaticTextItem("commonName");
         commonName.setShowTitle(false);
+        commonName.setTextBoxStyle("commonName");
+        commonName.setShowTitle(false);
         StaticTextItem lifeSpan = new StaticTextItem("lifeSpan");
         lifeSpan.setShowTitle(false);
+        lifeSpan.setTextBoxStyle("animalText");
         lifeSpan.setValueFormatter(new FormItemValueFormatter() {
             
             @Override
@@ -55,6 +58,8 @@ public class AnimalTile extends DynamicForm {
                     res = "threatened";
                 } else if (value.equals("Not Endangered")) {
                     res = "notEndangered";
+                } else {
+                    res = "animalText";
                 }
                 return "<span class=" + res + ">" + value + "</span>";
             }

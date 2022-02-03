@@ -70,13 +70,18 @@ public class DragReorderSample extends ShowcasePanel {
         TransferImgButton up = new TransferImgButton(TransferImgButton.UP);
         up.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                ListGridRecord selectedRecord = countryGrid.getSelectedRecord();
-                if(selectedRecord != null) {
-                    int idx = countryGrid.getRecordIndex(selectedRecord);
-                    if(idx > 0) {
-                        RecordList rs = countryGrid.getRecordList();
-                        rs.removeAt(idx);
-                        rs.addAt(selectedRecord, idx - 1);
+                ListGridRecord[] selectedRecords = countryGrid.getSelectedRecords();
+                for (int i=0; i<selectedRecords.length; i++) {
+                    ListGridRecord selectedRecord = selectedRecords[i];
+                    if(selectedRecord != null) {
+                        int idx = countryGrid.getRecordIndex(selectedRecord);
+                        if(idx > 0) {
+                            RecordList rs = countryGrid.getRecordList();
+                            rs.removeAt(idx);
+                            rs.addAt(selectedRecord, idx - 1);
+                        } else {
+                            break;
+                        }
                     }
                 }
             }
@@ -85,13 +90,16 @@ public class DragReorderSample extends ShowcasePanel {
         TransferImgButton upFirst = new TransferImgButton(TransferImgButton.UP_FIRST);
         upFirst.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                ListGridRecord selectedRecord = countryGrid.getSelectedRecord();
-                if(selectedRecord != null) {
-                    int idx = countryGrid.getRecordIndex(selectedRecord);
-                    if(idx > 0) {
-                        RecordList rs = countryGrid.getRecordList();
-                        rs.removeAt(idx);
-                        rs.addAt(selectedRecord, 0);
+                ListGridRecord[] selectedRecords = countryGrid.getSelectedRecords();
+                for (int i=0; i<selectedRecords.length; i++) {
+                    ListGridRecord selectedRecord = selectedRecords[i];
+                    if(selectedRecord != null) {
+                        int idx = countryGrid.getRecordIndex(selectedRecord);
+                        if(idx > 0) {
+                            RecordList rs = countryGrid.getRecordList();
+                            rs.removeAt(idx);
+                            rs.addAt(selectedRecord, i);
+                        }
                     }
                 }
             }
@@ -100,14 +108,19 @@ public class DragReorderSample extends ShowcasePanel {
         TransferImgButton down = new TransferImgButton(TransferImgButton.DOWN);
         down.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                ListGridRecord selectedRecord = countryGrid.getSelectedRecord();
-                if(selectedRecord != null) {
-                    RecordList rs = countryGrid.getRecordList();
-                    int numRecords = rs.getLength();
-                    int idx = countryGrid.getRecordIndex(selectedRecord);
-                    if(idx < numRecords - 1) {
-                        rs.removeAt(idx);
-                        rs.addAt(selectedRecord, idx + 1);
+                ListGridRecord[] selectedRecords = countryGrid.getSelectedRecords();
+                for (int i=selectedRecords.length-1; i>=0; i--) {
+                    ListGridRecord selectedRecord = selectedRecords[i];
+                    if(selectedRecord != null) {
+                        RecordList rs = countryGrid.getRecordList();
+                        int numRecords = rs.getLength();
+                        int idx = countryGrid.getRecordIndex(selectedRecord);
+                        if(idx < numRecords - 1) {
+                            rs.removeAt(idx);
+                            rs.addAt(selectedRecord, idx + 1);
+                        } else {
+                            break;
+                        }
                     }
                 }
             }
@@ -116,14 +129,17 @@ public class DragReorderSample extends ShowcasePanel {
         TransferImgButton downLast = new TransferImgButton(TransferImgButton.DOWN_LAST);
         downLast.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                ListGridRecord selectedRecord = countryGrid.getSelectedRecord();
-                if(selectedRecord != null) {
-                    RecordList rs = countryGrid.getRecordList();
-                    int numRecords = rs.getLength();
-                    int idx = countryGrid.getRecordIndex(selectedRecord);
-                    if(idx < numRecords - 1) {
-                        rs.removeAt(idx);
-                        rs.addAt(selectedRecord, rs.getLength());
+                ListGridRecord[] selectedRecords = countryGrid.getSelectedRecords();
+                for (int i=0; i<selectedRecords.length; i++) {
+                    ListGridRecord selectedRecord = selectedRecords[i];
+                    if(selectedRecord != null) {
+                        RecordList rs = countryGrid.getRecordList();
+                        int numRecords = rs.getLength();
+                        int idx = countryGrid.getRecordIndex(selectedRecord);
+                        if(idx < numRecords - 1) {
+                            rs.removeAt(idx);
+                            rs.addAt(selectedRecord, rs.getLength());
+                        }
                     }
                 }
             }

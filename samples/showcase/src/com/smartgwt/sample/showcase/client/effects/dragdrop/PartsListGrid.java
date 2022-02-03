@@ -16,7 +16,7 @@ public final class PartsListGrid extends ListGrid {
         setBodyStyleName("normal");
         setShowHeader(false);
         setLeaveScrollbarGap(false);
-        setEmptyMessage("<br><br>Drag &amp; drop parts here");
+        setEmptyMessage("Drag &amp; drop parts here");
 
         ListGridField partSrcField = new ListGridField("partSrc", 24);
         partSrcField.setType(ListGridFieldType.IMAGE);

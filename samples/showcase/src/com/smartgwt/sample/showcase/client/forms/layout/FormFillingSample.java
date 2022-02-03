@@ -15,7 +15,7 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 public class FormFillingSample extends ShowcasePanel {
     private static final String DESCRIPTION = "Click on the \"Short Message\" and \"Long Message\"" +
                                               " buttons to change the amount of space available" +
-                                              " to the form. SmartClient form layouts allow you" +
+                                              " to the form. Smart GWT form layouts allow you" +
                                               " to fill available space, even when available" +
                                               " space cannot be known in advance because it is" +
                                               " data-dependant.";
@@ -40,7 +40,7 @@ public class FormFillingSample extends ShowcasePanel {
       
     public Canvas getViewPanel() {
         VLayout messageLayout = new VLayout();
-        messageLayout.setWidth(200);
+        messageLayout.setWidth(220);
         messageLayout.setHeight(300);
         messageLayout.setBorder("1px solid #6a6a6a");
         messageLayout.setLayoutMargin(5);
@@ -74,6 +74,8 @@ public class FormFillingSample extends ShowcasePanel {
         VLayout buttonLayout = new VLayout(10);        
         
         IButton shortMessageButton = new IButton("Short message");
+        shortMessageButton.setMinWidth(140);
+        shortMessageButton.setAutoFit(true);
         shortMessageButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 textCanvas.setContents(textCanvas.getPrefix() + "I'll be in town Saturday.  Give me a call on my cell and" +
@@ -82,6 +84,8 @@ public class FormFillingSample extends ShowcasePanel {
         });
 
         IButton longMessageButton = new IButton("Long message");
+        longMessageButton.setMinWidth(140);
+        longMessageButton.setAutoFit(true);
         longMessageButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 updateContents(textCanvas);

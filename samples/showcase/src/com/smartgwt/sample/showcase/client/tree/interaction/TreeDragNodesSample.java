@@ -118,7 +118,7 @@ public class TreeDragNodesSample extends ShowcasePanel {
             setBodyStyleName("normal");
             setShowHeader(false);
             setLeaveScrollbarGap(false);
-            setEmptyMessage("<br>Drag &amp; drop parts here");
+            setEmptyMessage("Drag &amp; drop parts here");
             setManyItemsImage("cubes_all.png");
             setAppImgDir("pieces/16/");
             setCanReorderRecords(true);

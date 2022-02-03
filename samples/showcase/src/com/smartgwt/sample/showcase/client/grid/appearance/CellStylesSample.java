@@ -56,6 +56,7 @@ public class CellStylesSample extends ShowcasePanel {
             setWidth(500);
             setHeight(184);
             setShowAllRecords(true);
+            setAlternateFieldStyles(false);
             setCanDragSelect(true);
 
             ListGridField countryCodeField = new ListGridField("countryCode", "Flag", 40);

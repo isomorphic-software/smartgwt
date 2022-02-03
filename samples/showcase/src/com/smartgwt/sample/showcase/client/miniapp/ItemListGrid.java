@@ -20,6 +20,7 @@ import com.smartgwt.client.bean.BeanFactory;
 import com.smartgwt.client.data.DataSource;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.SelectionStyle;
+import com.smartgwt.client.types.AutoFitWidthApproach;
 import com.smartgwt.client.widgets.form.fields.SpinnerItem;
 import com.smartgwt.client.widgets.grid.CellFormatter;
 import com.smartgwt.client.widgets.grid.ListGrid;
@@ -38,19 +39,17 @@ public class ItemListGrid extends ListGrid {
 
         ListGridField itemName = new ListGridField("itemName", "Name");
         itemName.setShowHover(true);
+        
+        ListGridField units = new ListGridField("units");
+        units.setWidth(100);
+        units.setAutoFitWidthApproach(AutoFitWidthApproach.BOTH);
+        units.setAutoFitWidth(true);
+        
         ListGridField unitCost = new ListGridField("unitCost");
-
-        unitCost.setCellFormatter(new CellFormatter() {
-            public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
-                if (value == null) return null;
-                try {
-                    NumberFormat nf = NumberFormat.getFormat("##0.00");
-                    return "$" + nf.format(((Number) value).floatValue());
-                } catch (Exception e) {
-                    return value.toString();
-                }
-            }
-        });
+        unitCost.setWidth(100);
+        unitCost.setAutoFitWidthApproach(AutoFitWidthApproach.BOTH);
+        unitCost.setAutoFitWidth(true);
+        unitCost.setFormat("¤,0.00");
 
         unitCost.setEditorType(SpinnerItem.class);
         SpinnerItem spinnerItem = new SpinnerItem();
@@ -59,25 +58,30 @@ public class ItemListGrid extends ListGrid {
 
         ListGridField sku = new ListGridField("SKU");
         sku.setCanEdit(false);
+        sku.setAutoFitWidthApproach(AutoFitWidthApproach.VALUE);
+        sku.setAutoFitWidth(true);
 
         ListGridField description = new ListGridField("description");
+        description.setWidth(150);
         description.setShowHover(true);
 
         ListGridField category = new ListGridField("category");
         category.setCanEdit(false);
+        category.setAutoFitWidthApproach(AutoFitWidthApproach.VALUE);
+        category.setAutoFitWidth(true);
 
         ListGridField inStock = new ListGridField("inStock");
-        inStock.setWidth(55);
+        inStock.setWidth(70);
         inStock.setAlign(Alignment.CENTER);
 
-        ListGridField nextShipment = new ListGridField("nextShipent");
+        ListGridField nextShipment = new ListGridField("nextShipent", 150);
         nextShipment.setShowIfCondition(new ListGridFieldIfFunction() {
             public boolean execute(ListGrid grid, ListGridField field, int fieldNum) {
                 return false;
             }
         });
 
-        setFields(itemName, unitCost, sku, description, category, inStock);
+        setFields(itemName, units, unitCost, sku, description, category, inStock);
         setCanEdit(true);
         setCanDragRecordsOut(true);
         setHoverWidth(200);

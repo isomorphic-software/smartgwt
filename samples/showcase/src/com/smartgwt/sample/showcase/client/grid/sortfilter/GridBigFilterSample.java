@@ -14,7 +14,7 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 public class GridBigFilterSample extends ShowcasePanel {
     private static final String DESCRIPTION = "<p>When a FilterBuilder must work with a very large number of fields, you can set " +
             "FilterBuilder.fieldDataSource to a DataSource containing records that represent the fields to display in the " +
-            "FieldPickers in each clause. The FilterBuilder below is created without a normal DataSource, but specifies a " +
+            "FieldPickers in each clause. The FilterBuilder shown is created without a normal DataSource, but specifies a " +
             "fieldDataSource and the FieldPicker items in each clause are populated dynamically with it's records. " +
             "In this mode, the FieldPickers are represented by ComboBoxItems, rather than SelectItems, and have default settings " +
             "that provide type-ahead auto-completion.<p>" +

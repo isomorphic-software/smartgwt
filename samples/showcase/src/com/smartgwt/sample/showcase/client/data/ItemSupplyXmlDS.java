@@ -13,10 +13,19 @@ import com.smartgwt.client.widgets.form.validator.FloatRangeValidator;
 public class ItemSupplyXmlDS extends DataSource {
 
     private static ItemSupplyXmlDS instance = null;
+    private static String supplyCategoryName = "supplyCategoryDS";
 
     public static ItemSupplyXmlDS getInstance() {
         if (instance == null) {
             instance = new ItemSupplyXmlDS("supplyItemDS");
+        }
+        return instance;
+    }
+
+    public static ItemSupplyXmlDS getInstance(String id, String scName) {
+        if (instance == null) {
+            supplyCategoryName = scName;
+            instance = new ItemSupplyXmlDS(id);
         }
         return instance;
     }
@@ -34,7 +43,7 @@ public class ItemSupplyXmlDS extends DataSource {
 
         DataSourceTextField descriptionField = new DataSourceTextField("description", "Description", 2000);
         DataSourceTextField categoryField = new DataSourceTextField("category", "Category", 128, true);
-        categoryField.setForeignKey("supplyCategoryDS.categoryName");
+        categoryField.setForeignKey(supplyCategoryName+".categoryName");
 
         DataSourceEnumField unitsField = new DataSourceEnumField("units", "Units", 5);
         unitsField.setValueMap("Roll", "Ea", "Pkt", "Set", "Tube", "Pad", "Ream", "Tin", "Bag", "Ctn", "Box");

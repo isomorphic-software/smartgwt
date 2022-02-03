@@ -21,7 +21,7 @@ import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class FormServerJsonValidationSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "<p>Click \"Save\" to see validation errors derived from an JSON response. Validation errors " +
+    private static final String DESCRIPTION = "<p>Click \"Save\" to see validation errors derived from a JSON response. Validation errors " +
             "expressed in application-specific JSON formats can be communicated to visual components by implementing DataSource.setResponseTransformHandler().</p> " +
             "<p>The resulting validation errors will be displayed and tracked by forms and editabled grids.</p>";
 

@@ -7,7 +7,7 @@ import com.smartgwt.client.widgets.calendar.CalendarEvent;
 public class TimelineData {
 
     private static CalendarEvent[] records;
-    private static Date today = new Date(112, 5, 2);
+    private static Date today = new Date(116, 5, 2);
     private static int year = today.getYear();
     private static int month = today.getMonth();
     private static int start = today.getDate();
@@ -30,7 +30,7 @@ public class TimelineData {
                 new CalendarEvent(5, "ListGrid cell-level selection", "Implement spreadsheet-like selection in ListGrid", new Date(year, month, start + 7), new Date(year, month, start + 14, 23, 59, 59), "charlesMadigen"),
                 new CalendarEvent(6, "Text import", "Server text-import", new Date(year, month, start + 16), new Date(year, month, start + 20, 23, 59, 59), "charlesMadigen"),
                 new CalendarEvent(7, "TabIndex enhancements", "Enhance formItem tabindex handling", new Date(year, month, start + 9), new Date(year, month, start + 11, 23, 59, 59), "kaiKong"),
-                new CalendarEvent(8, "Visual Builder skin", "Skinning changes", new Date(year, month, start), new Date(year, month, start + 3, 23, 59, 59), "shelleyFewel"),
+                new CalendarEvent(8, "Reify skin", "Skinning changes", new Date(year, month, start), new Date(year, month, start + 3, 23, 59, 59), "shelleyFewel"),
                 
                 new CalendarEvent(9, "DataSource Transaction-handling", "New transaction features", new Date(year, month, start), new Date(year, month, start + 2, 23, 59, 59), "tamaraKane"),
                 new CalendarEvent(10, "New Samples", "Add 20 samples for the following new features: ...", new Date(year, month, start + 4), new Date(year, month, start + 20, 23, 59, 59), "tamaraKane"),

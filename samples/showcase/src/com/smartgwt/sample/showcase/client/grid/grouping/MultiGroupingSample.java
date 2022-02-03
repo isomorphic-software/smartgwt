@@ -98,6 +98,7 @@ public class MultiGroupingSample extends ShowcasePanel {
 
         final IButton button = new IButton();
         button.setTop(525);
+        button.setWidth(150);
         button.setTitle("Configure Grouping");
         button.addClickHandler(new ClickHandler() {
                 public void onClick(ClickEvent event) {

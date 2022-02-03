@@ -37,17 +37,16 @@ public class SliderSample extends ShowcasePanel {
 
         final Slider vSlider = new Slider("Rating");
         vSlider.setMinValue(1);
-        vSlider.setMaxValue(5);
-        vSlider.setNumValues(5);
-        vSlider.setHeight(300);
+        vSlider.setMaxValue(1000);
+        vSlider.setNumValues(50);
         canvas.addChild(vSlider);
 
         final Slider hSlider = new Slider("Rating");
         hSlider.setVertical(false);
         hSlider.setMinValue(1);
-        hSlider.setMaxValue(5);
-        hSlider.setNumValues(5);
-        hSlider.setTop(200);
+        hSlider.setMaxValue(1000);
+        hSlider.setNumValues(50);
+        hSlider.setTop(240);
         hSlider.setLeft(100);
         canvas.addChild(hSlider);
 

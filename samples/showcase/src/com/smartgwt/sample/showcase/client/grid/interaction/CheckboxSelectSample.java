@@ -62,7 +62,7 @@ public class CheckboxSelectSample extends ShowcasePanel {
 
         ListGridField nameField = new ListGridField("countryName", "Country");
         ListGridField capitalField = new ListGridField("capital", "Capital");
-        ListGridField continentField = new ListGridField("continent", "Capital");
+        ListGridField continentField = new ListGridField("continent", "Continent");
         countryGrid.setFields(countryCodeField, nameField, capitalField, continentField);
 
         countryGrid.setData(CountrySampleData.getRecords());

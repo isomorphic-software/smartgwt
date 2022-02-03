@@ -572,30 +572,42 @@ private static void writeStartOfDataHTMLFile() {
 //--------------------------------------------------------------------------------------------------
 
 private static void writeStartOfHTMLFile(final PrintWriter sourceWriter,
-                                         final String sourceFileDirName, String targetSourceFilePath) {
-  int depth = 0;
-  if (sourceFileDirName.contains("/public/")) {
-    depth = sourceFileDirName.substring(sourceFileDirName.indexOf("/public/")).split("/").length - 1;
+                                         final String sourceFileDirName, 
+                                         String targetSourceFilePath) 
+{
+  // validate sourceFileDirName path
+  if (!sourceFileDirName.contains("/public/") && !sourceFileDirName.contains("/com/") &&
+      !sourceFileDirName.contains("/war/"))
+  {
+      throw new RuntimeException("Unrecognized source file directory: " + sourceFileDirName);
   }
-  else if (sourceFileDirName.contains("/com/")) {
-    depth = sourceFileDirName.substring(sourceFileDirName.indexOf("/com/")).split("/").length - 5;
-  } else if (sourceFileDirName.contains("/war/")) {
-    depth = sourceFileDirName.substring(sourceFileDirName.indexOf("/war/")).split("/").length -2;
+
+  int depth;
+
+  // if targetSourceFilePath is valid, compute depth from war directory
+  if (targetSourceFilePath.contains("/war/") && 
+      targetSourceFilePath.matches(".*/[^/]+\\.[A-Za-z]+"))
+  {
+      String warPath = targetSourceFilePath.substring(targetSourceFilePath.indexOf("/war/"));
+      depth = warPath.split("/").length - 3;
   } else {
-      throw new RuntimeException("Unrecognized path " + sourceFileDirName);
+      throw new RuntimeException("Unrecognized target path: " + targetSourceFilePath);
   }
+
   String parentDirs = "";
   for (int i = 0; i < depth; i++) {
-    parentDirs += "../";
+      parentDirs += "../";
   }
+
   sourceWriter.println("<html>");
   sourceWriter.println("<head>");
   sourceWriter.println("<link rel='stylesheet' href='" + parentDirs +
                        "js/sh/SyntaxHighlighter.css' type='text/css' />");
   sourceWriter.println("<script src='" + parentDirs + "js/sh/shCore.js'></script>");
-    String type;
-   if(targetSourceFilePath.contains(".xml")) {
-    type= "xml";
+
+  String type;
+  if(targetSourceFilePath.contains(".xml")) {
+      type= "xml";
   } else if(targetSourceFilePath.contains(".css")) {
       type= "css";
   } else if (targetSourceFilePath.contains(".js")){
@@ -605,7 +617,7 @@ private static void writeStartOfHTMLFile(final PrintWriter sourceWriter,
   }
 
   if(type.equals("xml")) {
-    sourceWriter.println("<script src='" + parentDirs + "js/sh/shBrushXml.js'></script>");
+      sourceWriter.println("<script src='" + parentDirs + "js/sh/shBrushXml.js'></script>");
   } else if(type.equals("css")) {
       sourceWriter.println("<script src='" + parentDirs + "js/sh/shBrushCss.js'></script>");
   } else if (type.equals("js")){
@@ -625,7 +637,7 @@ private static void writeStartOfHTMLFile(final PrintWriter sourceWriter,
   sourceWriter.println(".dp-highlighter {");
   sourceWriter.println("  white-space: nowrap;");
   sourceWriter.println("  overflow: visible;");
-  sourceWriter.println("  width: 600px;");
+  sourceWriter.println("  width: auto;");
   sourceWriter.println("  font-size: 11px;");
   sourceWriter.println("  font-family:Courier New,monospace;");
   sourceWriter.println("}");

@@ -16,7 +16,7 @@ import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class ExpandCollapseSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "<p>Click on any section header showing an arrow to expand and collapse it (the \"Green Cube\" section is " +
+    private static final String DESCRIPTION = "<p>Click on any section header showing an arrow to expand and collapse it (the \"Green Pawn\" section is " +
             "marked not collapsible).</p><p>Click on the \"Expand Blue\" and \"Collapse Blue\" buttons to " +
             "expand and collapse the blue section externally.</p>";
 

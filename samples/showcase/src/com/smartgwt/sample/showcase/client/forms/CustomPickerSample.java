@@ -19,7 +19,7 @@ import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class CustomPickerSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "<p>The CustomPicker example demonstrates various custom picker icons that (YesNoMaybeItem) implemented as a \"picker\" that the user can pop up from a picker icon next to a form or grid value.</p>";
+    private static final String DESCRIPTION = "<p>The CustomPicker example demonstrates various custom picker icons (YesNoMaybeItem) implemented as a \"picker\" that the user can pop up from a picker icon next to a form or grid value.</p>";
 
     public static class Factory implements PanelFactory {
         private String id;
@@ -75,16 +75,12 @@ public class CustomPickerSample extends ShowcasePanel {
             dialog.setShowHeader(false);
             dialog.setShowEdges(false);
             dialog.setEdgeSize(10);
-            dialog.setWidth(500);
-            dialog.setHeight(400);
-
             dialog.setShowToolbar(false);
-            dialog.setWidth(130);
-            dialog.setHeight(110);
-
+            dialog.setAutoSize(true);
+            dialog.setWidth(100);
 
             Map bodyDefaults = new HashMap();
-            bodyDefaults.put("layoutLeftMargin", 5);
+            bodyDefaults.put("layoutMargin", 10);
             bodyDefaults.put("membersMargin", 10);
             dialog.setBodyDefaults(bodyDefaults);
 

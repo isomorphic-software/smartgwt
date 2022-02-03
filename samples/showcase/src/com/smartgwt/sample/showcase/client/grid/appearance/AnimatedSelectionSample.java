@@ -39,6 +39,7 @@ public class AnimatedSelectionSample extends ShowcasePanel {
         countryGrid.setWidth(500);
         countryGrid.setHeight(224);
         countryGrid.setAlternateRecordStyles(false);
+        countryGrid.setAlternateFieldStyles(false);
         countryGrid.setShowAllRecords(true);
 
         ListGridField countryCodeField = new ListGridField("countryCode", "Flag", 40);

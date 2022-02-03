@@ -59,6 +59,7 @@ public class NavigationBarSample extends ShowcasePanel {
         final IButton button1 = new IButton();
         button1.setTitle("Fa Bai");
         button1.setWidth(150);
+        button1.setAutoFit(true);
         button1.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent arg0) {
@@ -68,6 +69,7 @@ public class NavigationBarSample extends ShowcasePanel {
         final IButton button2 = new IButton();
         button2.setTitle("Abe Jacobs");
         button2.setWidth(150);
+        button2.setAutoFit(true);
         button2.addClickHandler(new ClickHandler() {
             @Override
              public void onClick(ClickEvent arg0) {
@@ -77,6 +79,7 @@ public class NavigationBarSample extends ShowcasePanel {
         final IButton button3 = new IButton();
         button3.setTitle("Izabella Chernyak F.");
         button3.setWidth(150);
+        button3.setAutoFit(true);
         button3.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent arg0) {
@@ -85,7 +88,7 @@ public class NavigationBarSample extends ShowcasePanel {
         });
         final IButton button4 = new IButton();
         button4.setTitle("Christine Bergeron Fewell");
-        button4.setWidth(150);
+        button4.setAutoFit(true);
         button4.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent arg0) {
@@ -107,6 +110,10 @@ public class NavigationBarSample extends ShowcasePanel {
 
     public String getIntro() {
         return DESCRIPTION;
+    }
+    @Override
+    protected boolean isTopIntro() {
+        return true;
     }
 
 }

@@ -55,6 +55,7 @@ public class CustomEventCalendarSample extends ShowcasePanel {
         eventDS.setTestData(CalendarData.getRecords());
 
         Calendar calendar = new Calendar();
+        calendar.setStartDate(CalendarData.getDataStartDate());
         calendar.setDataSource(eventDS);
         calendar.setAutoFetchData(true);
 

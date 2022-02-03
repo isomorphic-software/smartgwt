@@ -35,6 +35,7 @@ public class CalendarDateTimeFormatSample extends ShowcasePanel {
 
     public Canvas getViewPanel() {
         Calendar calendar = new Calendar();
+        calendar.setStartDate(CalendarData.getDataStartDate());
         //use 24 hr based times
         calendar.setTimeFormatter(TimeFormatter.TOSHORT24HOURTIME);
 

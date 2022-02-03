@@ -76,9 +76,12 @@ public class UserSizingSample extends ShowcasePanel {
         HLayout buttonLayout = new HLayout(15);
 
         final IButton removeMember = new IButton("Remove Member 1");
-        removeMember.setWidth(140);
+        removeMember.setMinWidth(120);
+        removeMember.setAutoFit(true);
         
         final IButton addMember = new IButton("Add Member 1");
+        addMember.setMinWidth(120);
+        addMember.setAutoFit(true);
         addMember.setDisabled(true);
 
         removeMember.addClickHandler(new ClickHandler() {

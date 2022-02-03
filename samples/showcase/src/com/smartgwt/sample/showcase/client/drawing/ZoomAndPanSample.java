@@ -1,7 +1,6 @@
 package com.smartgwt.sample.showcase.client.drawing;
 
-import com.smartgwt.client.types.Cursor;
-import com.smartgwt.client.types.Overflow;
+import com.smartgwt.client.types.ArrowStyle;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Slider;
 import com.smartgwt.client.widgets.drawing.DrawCurve;
@@ -19,12 +18,12 @@ import com.smartgwt.client.widgets.events.DrawEvent;
 import com.smartgwt.client.widgets.events.DrawHandler;
 import com.smartgwt.client.widgets.events.ValueChangedEvent;
 import com.smartgwt.client.widgets.events.ValueChangedHandler;
-import com.smartgwt.client.widgets.layout.VLayout;
+import com.smartgwt.client.widgets.layout.VStack;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 
 public class ZoomAndPanSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "Sample of zooming and panning features of Drawing module. Use slider for zoom and drag image by mouse.";
+    private static final String DESCRIPTION = "Sample of zooming and panning features of the Drawing module. Use the slider to zoom and drag the image with the mouse.";
     private DrawPane drawPane;
 
     public static class Factory implements PanelFactory {
@@ -48,14 +47,17 @@ public class ZoomAndPanSample extends ShowcasePanel {
 
     public Canvas getViewPanel() {
         drawPane = new DrawPane();
-        drawPane.setHeight(450);
-        drawPane.setWidth(700);
+        drawPane.setHeight(400);
+        drawPane.setWidth(400);
         drawPane.setLeft(25);
+        drawPane.setDrawingHeight(450);
+        drawPane.setDrawingWidth(700);
+        drawPane.setTranslate(new int[] {10, 10});
         drawPane.setShowEdges(true);
         drawPane.setEdgeSize(4);
         drawPane.setBackgroundColor("papayawhip");
-        drawPane.setOverflow(Overflow.HIDDEN);
-        drawPane.setCursor(Cursor.AUTO);
+        drawPane.setCanDragScroll(true);
+        drawPane.setZoomLevel(1.5);
 
         drawPane.addDrawHandler(new DrawHandler() {
             @Override
@@ -63,6 +65,65 @@ public class ZoomAndPanSample extends ShowcasePanel {
 
                 DrawPane drawPane = (DrawPane) event.getSource();
 
+                DrawLine refLineX = new DrawLine();
+                refLineX.setDrawPane(drawPane);
+                refLineX.setStartPoint(new Point(0,0));
+                refLineX.setEndPoint(new Point(100,0));
+                refLineX.setLineWidth(1);
+                refLineX.setLineColor("#ff0000");
+                refLineX.setEndArrow(ArrowStyle.OPEN);
+                refLineX.draw();
+
+                DrawLabel refLineXLabel = new DrawLabel();
+                refLineXLabel.setDrawPane(drawPane);
+                refLineXLabel.setLeft(110);
+                refLineXLabel.setTop(10);
+                refLineXLabel.setFontFamily("Arial");
+                refLineXLabel.setFontSize(14);
+                refLineXLabel.setFontWeight("normal");
+                refLineXLabel.setLineColor("#ff0000");
+                refLineXLabel.setContents("X");
+                refLineXLabel.draw();
+
+                DrawLine refLineY = new DrawLine();
+                refLineY.setDrawPane(drawPane);
+                refLineY.setStartPoint(new Point(0,0));
+                refLineY.setEndPoint(new Point(0,100));
+                refLineY.setLineWidth(1);
+                refLineY.setLineColor("#ff0000");
+                refLineY.setEndArrow(ArrowStyle.OPEN);
+                refLineY.draw();
+
+                DrawLabel refLineYLabel = new DrawLabel();
+                refLineYLabel.setDrawPane(drawPane);
+                refLineYLabel.setLeft(10);
+                refLineYLabel.setTop(110);
+                refLineYLabel.setFontFamily("Arial");
+                refLineYLabel.setFontSize(14);
+                refLineYLabel.setFontWeight("normal");
+                refLineYLabel.setLineColor("#ff0000");
+                refLineYLabel.setContents("Y");
+                refLineYLabel.draw();
+
+                DrawOval refOval = new DrawOval();
+                refOval.setDrawPane(drawPane);
+                refOval.setCenterPoint(new Point(0, 0));
+                refOval.setRadius(4);
+                refOval.setFillColor("#ff0000");
+                refOval.setLineColor(null);
+                refOval.draw();
+
+                DrawLabel refOvalLabel = new DrawLabel();
+                refOvalLabel.setDrawPane(drawPane);
+                refOvalLabel.setLeft(5);
+                refOvalLabel.setTop(5);
+                refOvalLabel.setFontFamily("Arial");
+                refOvalLabel.setFontSize(14);
+                refOvalLabel.setFontWeight("normal");
+                refOvalLabel.setLineColor("#ff0000");
+                refOvalLabel.setContents("(0, 0)");
+                refOvalLabel.draw();
+                
                 DrawLabel triangleLabel = new DrawLabel();
                 triangleLabel.setDrawPane(drawPane);
                 triangleLabel.setLeft(50);
@@ -179,8 +240,8 @@ public class ZoomAndPanSample extends ShowcasePanel {
                 DrawSector drawSector = new DrawSector();
                 drawSector.setDrawPane(drawPane);
                 drawSector.setCenterPoint(new Point(550,300));
-                drawSector.setStartAngle(0);
-                drawSector.setEndAngle(90);
+                drawSector.setStartAngle(0.0);
+                drawSector.setEndAngle(90.0);
                 drawSector.setRadius(100);
                 drawSector.draw();
             }
@@ -196,17 +257,15 @@ public class ZoomAndPanSample extends ShowcasePanel {
         };
 
         Slider paneRotationSlider = new Slider();
-        paneRotationSlider.setMinValue(0);
-        paneRotationSlider.setMaxValue(360);
+        paneRotationSlider.setMinValue(0.0);
+        paneRotationSlider.setMaxValue(360.0);
         paneRotationSlider.setNumValues(360);
         paneRotationSlider.setWidth(400);
-        paneRotationSlider.setLeft(25);
-        paneRotationSlider.setTop(500);
-        paneRotationSlider.setValue(0);
+        paneRotationSlider.setValue(0.0);
         paneRotationSlider.setTitle("Rotate Pane");
+        paneRotationSlider.setLabelWidth(110);
         paneRotationSlider.setVertical(false);
         paneRotationSlider.addValueChangedHandler(paneRotationSliderValueChangeHandler);
-        paneRotationSlider.draw();
 
         ValueChangedHandler zoomSliderValueChangeHandler = new ValueChangedHandler() {
             @Override
@@ -218,24 +277,24 @@ public class ZoomAndPanSample extends ShowcasePanel {
         };
 
         Slider zoomSlider = new Slider();
-        zoomSlider.setMinValue(.10f);
-        zoomSlider.setMaxValue(3.0f);
+        zoomSlider.setMinValue(0.1);
+        zoomSlider.setMaxValue(3.0);
         zoomSlider.setNumValues(300);
         zoomSlider.setWidth(400);
-        zoomSlider.setLeft(25);
-        zoomSlider.setTop(550);
-        zoomSlider.setValue(1.0f);
+        zoomSlider.setValue(1.5);
         zoomSlider.setRoundValues(false);
         zoomSlider.setRoundPrecision(2);
         zoomSlider.setTitle("Zoom Shapes");
+        zoomSlider.setLabelWidth(110);
         zoomSlider.setVertical(false);
         zoomSlider.addValueChangedHandler(zoomSliderValueChangeHandler);
-        zoomSlider.draw();
 
-        VLayout layout = new VLayout();
+        VStack layout = new VStack();
+        layout.setWidth100();
+        layout.setMembersMargin(15);
         layout.addMember(drawPane);
-        layout.addMember(paneRotationSlider);
         layout.addMember(zoomSlider);
+        layout.addMember(paneRotationSlider);
 
         return layout;
     }

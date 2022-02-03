@@ -7,6 +7,8 @@ import com.smartgwt.client.widgets.form.DynamicForm;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
 import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
+import com.smartgwt.client.widgets.form.fields.FormItemCriteriaFunction;
+import com.smartgwt.client.widgets.form.fields.FormItemFunctionContext;
 import com.smartgwt.sample.showcase.client.PanelFactory;
 import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.ItemSupplyXmlDS;
@@ -57,20 +59,19 @@ public class FormDataboundDependentSelectsSample extends ShowcasePanel {
             }
         });
 
-        SelectItem itemName = new SelectItem() {
+        SelectItem itemName = new SelectItem();
+        itemName.setPickListFilterCriteriaFunction(new FormItemCriteriaFunction() {
             @Override
-            protected Criteria getPickListFilterCriteria() {
+            public Criteria getCriteria(FormItemFunctionContext itemContext) {
                 String category = (String) categoryItem.getValue();
                 Criteria criteria = new Criteria("category", category);
                 return criteria;
             }
-        };
+        });
         itemName.setName("itemName");
         itemName.setTitle("Item");
         itemName.setPickListWidth(250);        
         itemName.setOptionDataSource(itemSupplyDS);
-
-        
 
         form.setItems(categoryItem, itemName);
 

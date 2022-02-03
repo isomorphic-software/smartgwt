@@ -62,18 +62,11 @@ public class MultiLevelSortSample extends ShowcasePanel {
 
         IButton button = new IButton("Multilevel Sort");
         button.setIcon("crystal/16/actions/sort_incr.png");
-        button.setWidth(120);
+        button.setMinWidth(120);
+        button.setAutoFit(true);
         button.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                MultiSortDialog.askForSort(listGrid, listGrid.getSort(), new MultiSortCallback() {
-                    public void execute(SortSpecifier[] sortLevels) {
-                        //if sortLevels is null, it means that the Cancel button was clicked
-                        //in which case we simply want to dismiss the dialog
-                        if(sortLevels != null) {
-                            listGrid.setSort(sortLevels);
-                        }
-                    }
-                });
+                listGrid.askForSort();
             }
         });
 

@@ -40,7 +40,7 @@ public class GridTopHeaderSample extends ShowcasePanel {
     public Canvas getViewPanel() {
 
         SectionStack sectionStack = new SectionStack();
-        sectionStack.setWidth(550);
+        sectionStack.setWidth(600);
         sectionStack.setHeight(230);
 
         String title = Canvas.imgHTML("silk/world.png") + " Countries Visited";
@@ -53,7 +53,6 @@ public class GridTopHeaderSample extends ShowcasePanel {
         countryGrid.setWidth("100%");
         countryGrid.setHeight("100%");
         countryGrid.setShowAllRecords(true);
-        countryGrid.setCellHeight(22);
         countryGrid.setDataSource(CountryXmlDS.getInstance());
 
         ListGridField countryCodeField = new ListGridField("countryCode", "Flag", 40);
@@ -68,18 +67,7 @@ public class GridTopHeaderSample extends ShowcasePanel {
         ListGridField memberG8Field = new ListGridField("member_g8", "Member G8");
         ListGridField populationField = new ListGridField("population", "Population");
         populationField.setType(ListGridFieldType.INTEGER);
-        populationField.setCellFormatter(new CellFormatter() {
-            public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
-                if(value == null) return null;
-                NumberFormat nf = NumberFormat.getFormat("0,000");
-                try {
-                    return nf.format(((Number) value).longValue());
-                } catch (Exception e) {
-                    return value.toString();
-                }
-            }
-        });
-        ListGridField independenceField = new ListGridField("independence", "Independence");
+        ListGridField independenceField = new ListGridField("independence", "Independence", 150);
         countryGrid.setFields(countryCodeField, nameField,continentField, memberG8Field, populationField, independenceField);
 
         countryGrid.setAutoFetchData(true);

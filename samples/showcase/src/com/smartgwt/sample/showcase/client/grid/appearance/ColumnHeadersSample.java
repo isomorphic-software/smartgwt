@@ -59,7 +59,7 @@ public class ColumnHeadersSample extends ShowcasePanel {
         canvas.addChild(countryGrid);
 
         IButton hideHeader = new IButton("Hide Header");
-        hideHeader.setLeft(120);
+        hideHeader.setLeft(130);
         hideHeader.setTop(240);
         hideHeader.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {

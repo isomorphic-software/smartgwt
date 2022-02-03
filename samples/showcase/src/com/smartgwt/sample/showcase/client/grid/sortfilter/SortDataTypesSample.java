@@ -39,7 +39,7 @@ public class SortDataTypesSample extends ShowcasePanel {
     public Canvas getViewPanel() {
 
         final ListGrid countryGrid = new ListGrid();
-        countryGrid.setWidth(500);
+        countryGrid.setWidth(550);
         countryGrid.setHeight(224);
         countryGrid.setShowAllRecords(true);
 
@@ -53,7 +53,7 @@ public class SortDataTypesSample extends ShowcasePanel {
         final NumberFormat nf = NumberFormat.getFormat("0,000");
 
         ListGridField nameField = new ListGridField("countryName", "Country");
-        ListGridField independenceField = new ListGridField("independence", "NationHood");
+        ListGridField independenceField = new ListGridField("independence", "NationHood", 100);
         independenceField.setType(ListGridFieldType.DATE);
 
         ListGridField areaField = new ListGridField("area", "Area (km&sup2;)");
@@ -72,7 +72,7 @@ public class SortDataTypesSample extends ShowcasePanel {
             }
         });
 
-        ListGridField gdpPerCapitaField = new ListGridField("gdp_percap", "GDP (per capita)");
+        ListGridField gdpPerCapitaField = new ListGridField("gdp_percap", "GDP (per capita)", 150);
         gdpPerCapitaField.setAlign(Alignment.RIGHT);
         gdpPerCapitaField.setCellFormatter(new CellFormatter() {
             public String format(Object value, ListGridRecord record, int rowNum, int colNum) {

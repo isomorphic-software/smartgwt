@@ -47,22 +47,22 @@ public class TimelineZonesAndIndicatorsSample extends ShowcasePanel {
         
         Timeline calendar = new Timeline();
         calendar.setHeight(451);
-        calendar.setStartDate(new Date(112, 5, 2));
-        calendar.setEndDate(new Date(112, 5, 22));
+        calendar.setStartDate(new Date(116, 5, 2));
+        calendar.setEndDate(new Date(116, 5, 22));
         calendar.setCanEditLane(true);
         calendar.setShowEventDescriptions(false);
-        calendar.setEventSnapGap(1); // snap to 1 minute intervals
+        calendar.setEventSnapGap(8 * 60); // snap to 8 hour intervals
         calendar.setLaneEventPadding(2); // add a little space around events
         // zone settings
         calendar.setShowZones(true);
         calendar.setZones(
-        	new CalendarEvent(-1, "June 3-6", "", new Date(112, 5, 3), new Date(112, 5, 6)),
-        	new CalendarEvent(-2, "June 10-14", "", new Date(112, 5, 10), new Date(112, 5, 14))
+        	new CalendarEvent(-1, "June 3-6", "", new Date(116, 5, 3), new Date(116, 5, 6)),
+        	new CalendarEvent(-2, "June 10-14", "", new Date(116, 5, 10), new Date(116, 5, 14))
         );
         // indicator settings
         calendar.setShowIndicators(true);
         calendar.setIndicators(
-        	new CalendarEvent(-3, "June 15 - noon", "Team Lunch", new Date(112, 5, 15, 12, 0), null)
+        	new CalendarEvent(-3, "June 15 - noon", "Team Lunch", new Date(116, 5, 15, 12, 0), null)
         );
         // set up the grid 
         calendar.setHeaderLevels(headerLevels);

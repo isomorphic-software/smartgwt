@@ -13,7 +13,7 @@ import com.smartgwt.sample.showcase.client.ShowcasePanel;
 import com.smartgwt.sample.showcase.client.data.CountrySampleData;
 
 public class DragSelectSample extends ShowcasePanel {
-    private static final String DESCRIPTION = "<p>Drag to select a range of rows. Alternatively a single row in the grid and then Shift-click to " +
+    private static final String DESCRIPTION = "<p>Drag to select a range of rows. Alternatively click a single row in the grid and then Shift-click to " +
             "select a continuous range of rows.</p><p>Ctrl-click to add or remove individual rows from the selection.</p>";
 
     public static class Factory implements PanelFactory {

@@ -41,7 +41,7 @@ public class AutofitColumnsSample extends ShowcasePanel {
         countryGrid.setShowAllRecords(true);
         countryGrid.setAutoFitData(Autofit.HORIZONTAL);
 
-        ListGridField countryCodeField = new ListGridField("countryCode", "Flag", 50);
+        ListGridField countryCodeField = new ListGridField("countryCode", "Flag", 60);
         countryCodeField.setAlign(Alignment.CENTER);
         countryCodeField.setType(ListGridFieldType.IMAGE);
         countryCodeField.setImageURLPrefix("flags/16/");

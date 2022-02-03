@@ -64,7 +64,6 @@ public class PortletAnimationSample extends ShowcasePanel {
         portalLayout.setColumnBorder("0");
         	
         listGrid = new ListGrid();
-        listGrid.setAutoDraw(false);
         listGrid.setWidth(120);
         listGrid.setHeight(20);
         // autosize to fit the list, instead of scrolling
@@ -141,13 +140,12 @@ public class PortletAnimationSample extends ShowcasePanel {
                 newPortlet.setDragOpacity(30);
                 // these settings enable the portlet to autosize its height only to fit its contents
                 // (since width is determined from the containing layout, not the portlet contents)
-                newPortlet.setHeight(140);
+                newPortlet.setHeight(145);
                 newPortlet.setOverflow(Overflow.VISIBLE);
                 LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
                 map.put("overflow", "VISIBLE");
                 newPortlet.setBodyDefaults(map);
                 Label label = new Label();
-                label.setAutoDraw(false);
                 label.setAlign(Alignment.CENTER);
                 label.setLayoutAlign(Alignment.CENTER);
                 label.setContents(record.getAttributeAsString("portletName")+" contents");
@@ -209,7 +207,6 @@ public class PortletAnimationSample extends ShowcasePanel {
 		
         // create an outline around the portlet
         final Canvas outline = new Canvas();
-        outline.setAutoDraw(false);
         outline.setBorder("2px solid #8289A6");
         outline.setRect(portlet.getPageRect());
         outline.bringToFront();

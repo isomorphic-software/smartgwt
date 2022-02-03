@@ -85,6 +85,7 @@ public class HoversTooltipsSample extends ShowcasePanel {
         StaticTextItem severityField = new StaticTextItem();
         severityField.setName("severityLevel");
         severityField.setTitle("Severity Level");
+        severityField.setWrapTitle(false);
         severityField.setDefaultValue("Severity 2");
         severityField.setPrompt("<b>Severity 1</b> - Critical problem<br>System is unavailable in production or " +
                 "is corrupting data, and the error severely impacts the user's operations." +

@@ -41,7 +41,6 @@ public class DateChooserSample extends ShowcasePanel {
         form.setItems(blurbItem);
 
         final DateChooser dateChooser = new DateChooser();
-        dateChooser.setWidth(100);
         dateChooser.addDataChangedHandler(new DataChangedHandler() {
             @Override
             public void onDataChanged(DataChangedEvent event) {

@@ -50,7 +50,7 @@ public class HeaderHoverTipsSample extends ShowcasePanel {
         ListGridField capitalField = new ListGridField("capital", "Capital");
         capitalField.setPrompt("Location of seat of government");
 
-        ListGridField nationHoodField = new ListGridField("independence", "Nationhood");
+        ListGridField nationHoodField = new ListGridField("independence", "Nationhood", 100);
         nationHoodField.setType(ListGridFieldType.DATE);
         nationHoodField.setPrompt("Date of sovereignty, founding, or other significant nationhood event");
 

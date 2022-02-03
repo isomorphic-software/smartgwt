@@ -6,7 +6,6 @@ import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.Slider;
 import com.smartgwt.client.widgets.drawing.DrawCurve;
 import com.smartgwt.client.widgets.drawing.DrawItem;
-import com.smartgwt.client.widgets.drawing.DrawLabel;
 import com.smartgwt.client.widgets.drawing.DrawLine;
 import com.smartgwt.client.widgets.drawing.DrawLinePath;
 import com.smartgwt.client.widgets.drawing.DrawOval;
@@ -148,6 +147,7 @@ public class RotationSample extends ShowcasePanel {
         shapesRotationSlider.setWidth(400);
         shapesRotationSlider.setValue(0.0);
         shapesRotationSlider.setTitle("Rotate Shapes");
+        shapesRotationSlider.setLabelWidth(110);
         shapesRotationSlider.setVertical(false);
         shapesRotationSlider.addValueChangedHandler(new ValueChangedHandler() {
             @Override
@@ -171,6 +171,7 @@ public class RotationSample extends ShowcasePanel {
         paneRotationSlider.setWidth(400);
         paneRotationSlider.setValue(0.0);
         paneRotationSlider.setTitle("Rotate Pane");
+        paneRotationSlider.setLabelWidth(110);
         paneRotationSlider.setVertical(false);
         paneRotationSlider.addValueChangedHandler(new ValueChangedHandler() {
             @Override
@@ -181,11 +182,17 @@ public class RotationSample extends ShowcasePanel {
 
         final Layout layout = new VStack();
         layout.setWidth100();
+        layout.setMembersMargin(15);
         layout.setMembers(mainPane, shapesRotationSlider, paneRotationSlider);
         return layout;
     }
 
     public String getIntro() {
         return DESCRIPTION;
+    }
+
+    @Override
+    protected boolean shouldWrapViewPanel() {
+        return true;
     }
 }

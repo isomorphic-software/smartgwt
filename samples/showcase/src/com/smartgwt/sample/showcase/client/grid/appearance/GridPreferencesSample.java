@@ -67,10 +67,6 @@ public class GridPreferencesSample extends ShowcasePanel {
 
     public Canvas getViewPanel() {
 
-        VLayout layout = new VLayout(15);
-        layout.setWidth(650);
-        layout.setAutoHeight();
-
         final ListGrid countryGrid = new ListGrid();
         countryGrid.setLeaveScrollbarGap(true);
         countryGrid.setCanFreezeFields(true);
@@ -96,17 +92,6 @@ public class GridPreferencesSample extends ShowcasePanel {
         ListGridField capitalField = new ListGridField("capital", "Capital");
 
         ListGridField populationField = new ListGridField("population", "Population");
-        populationField.setCellFormatter(new CellFormatter() {
-            public String format(Object value, ListGridRecord record, int rowNum, int colNum) {
-                if (value == null) return null;
-                try {
-                    NumberFormat nf = NumberFormat.getFormat("0,000");
-                    return nf.format(((Number) value).longValue());
-                } catch (Exception e) {
-                    return value.toString();
-                }
-            }
-        });
 
         ListGridField areaField = new ListGridField("area", "Area (km&sup2;)");
         areaField.setType(ListGridFieldType.INTEGER);
@@ -161,6 +146,7 @@ public class GridPreferencesSample extends ShowcasePanel {
 
         ToolStripButton formulaButton = new ToolStripButton("Formula Builder", "crystal/oo/sc_insertformula.png");
         formulaButton.setAutoFit(true);
+        formulaButton.setShowDownIcon(false);
         formulaButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 countryGrid.addFormulaField();
@@ -169,6 +155,7 @@ public class GridPreferencesSample extends ShowcasePanel {
 
         ToolStripButton summaryBuilder = new ToolStripButton("Summary Builder", "crystal/16/apps/tooloptions.png");
         summaryBuilder.setAutoFit(true);
+        summaryBuilder.setShowDownIcon(false);
         summaryBuilder.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 countryGrid.addSummaryField();
@@ -205,6 +192,7 @@ public class GridPreferencesSample extends ShowcasePanel {
 
         ToolStripButton savePreference = new ToolStripButton("Save Preference", "silk/database_gear.png");
         savePreference.setAutoFit(true);
+        savePreference.setShowDownIcon(false);
         savePreference.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 SC.askforValue("Enter Preference name :", new ValueCallback() {
@@ -232,22 +220,13 @@ public class GridPreferencesSample extends ShowcasePanel {
         countryGridToolStrip.addSeparator();
         countryGridToolStrip.addFormItem(preferenceSelectItem);
 
-        VLayout countryGridLayout = new VLayout(0);
-        countryGridLayout.setWidth(650);
-        countryGridLayout.addMember(countryGridToolStrip);
-        countryGridLayout.addMember(countryGrid);
-        layout.addMember(countryGridLayout);
-
-        VLayout preferencesGridLayout = new VLayout(0);
-        preferencesGridLayout.setWidth(650);
-        preferencesGridLayout.addMember(preferencesGrid);
-
         //toolstrip to attach to the preferences grid
         ToolStrip preferencesToolStrip = new ToolStrip();
         preferencesToolStrip.setWidth100();
         preferencesToolStrip.addFill();
 
         ToolStripButton restoreButton = new ToolStripButton("Restore State", "silk/database_gear.png");
+        restoreButton.setShowDownIcon(false);
         restoreButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
@@ -261,9 +240,10 @@ public class GridPreferencesSample extends ShowcasePanel {
             }
         });
         preferencesToolStrip.addButton(restoreButton);
-        preferencesGridLayout.addMember(preferencesToolStrip);
 
-        layout.addMember(preferencesGridLayout);
+        VLayout layout = new VLayout();
+        layout.setWidth(650);
+        layout.setMinBreadthMember(countryGridToolStrip);
 
         layout.addDrawHandler(new DrawHandler() {
             @Override
@@ -271,6 +251,11 @@ public class GridPreferencesSample extends ShowcasePanel {
                 preferencesGrid.addData(new PreferenceRecord(PK_COUNTER++, "Default", countryGrid.getViewState()));
             }
         });
+
+        layout.addMember(countryGridToolStrip);
+        layout.addMember(countryGrid);
+        layout.addMember(preferencesGrid);
+        layout.addMember(preferencesToolStrip);
 
         return layout;
     }
@@ -308,6 +293,11 @@ public class GridPreferencesSample extends ShowcasePanel {
         public void setViewState(String viewState) {
             setAttribute("viewState", viewState);
         }
+    }
+    
+    @Override
+    protected boolean shouldWrapViewPanel() {
+        return true;
     }
 
     public String getIntro() {

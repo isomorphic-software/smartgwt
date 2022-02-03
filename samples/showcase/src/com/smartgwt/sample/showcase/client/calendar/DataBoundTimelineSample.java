@@ -53,14 +53,14 @@ public class DataBoundTimelineSample extends ShowcasePanel {
         DataSourceDateTimeField endDateField = new DataSourceDateTimeField("endDate");
         DataSourceTextField laneField = new DataSourceTextField("lane");
 
-        eventDS.setFields(eventIdField, nameField, descField, startDateField, endDateField);
+        eventDS.setFields(eventIdField, nameField, descField, startDateField, endDateField, laneField);
         eventDS.setClientOnly(true);
         eventDS.setTestData(TimelineData.getRecords());
 
         Timeline calendar = new Timeline();
         calendar.setHeight(451);
-        calendar.setStartDate(new Date(112, 5, 2));
-        calendar.setEndDate(new Date(112, 5, 22));
+        calendar.setStartDate(new Date(116, 5, 2));
+        calendar.setEndDate(new Date(116, 5, 22));
         calendar.setData(TimelineData.getRecords());
         calendar.setLanes(TimelineLaneData.getRecords());
         calendar.setCanEditLane(true);
